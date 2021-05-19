@@ -1,7 +1,6 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cz.loono.loono">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="cz.loono.app">
    <application
-        android:label="loono"
+        android:label="@string/app_name"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

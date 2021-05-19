@@ -33,8 +33,7 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "cz.loono.loono"
+        applicationId "cz.loono.app"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
@@ -46,6 +45,21 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
+        }
+    }
+
+    flavorDimensions "flavors"
+
+    productFlavors {
+        prod {
+            dimension "flavors"
+            applicationId "cz.loono.app"
+            resValue "string", "app_name", "loono"
+        }
+        dev {
+            dimension "flavors"
+            applicationId "cz.loono.app.dev"
+            resValue "string", "app_name", "[DEV] loono"
         }
     }
 }
