@@ -7,7 +7,7 @@ import 'package:loono/services/firebase_service.dart';
 Future<Widget> buildApp({required AppConfig config}) async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await FirebaseService.init(config);
+  await FirebaseService.create(config);
 
   return MyApp(config: config);
 }

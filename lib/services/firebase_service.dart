@@ -6,7 +6,7 @@ class FirebaseService {
 
   final FirebaseApp app;
 
-  static Future<FirebaseService> init(AppConfig config) async {
+  static Future<FirebaseService> create(AppConfig config) async {
     final app = await Firebase.initializeApp();
     return FirebaseService._(app);
   }
