@@ -22,9 +22,9 @@ environment:
 
 dependencies:
   cupertino_icons: ^1.0.2
+  firebase_core: ^1.2.0
   flutter:
     sdk: flutter
-  package_info: ^2.0.0
   pedantic: ^1.11.0
 
 dev_dependencies:

@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:loono/core/app_config.dart';
 import 'package:loono/core/app_flavor.dart';
 import 'package:loono/screens/home_screen.dart';
+import 'package:loono/services/firebase_service.dart';
 
-Widget buildApp({required AppConfig config}) {
-  // Load everything needed for launching the app here
+Future<Widget> buildApp({required AppConfig config}) async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await FirebaseService.init(config);
 
   return MyApp(config: config);
 }
