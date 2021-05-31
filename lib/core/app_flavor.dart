@@ -9,4 +9,8 @@ extension AppFlavorExt on AppFlavor {
         return dev();
     }
   }
+
+  String get prettyString {
+    return toString().split('.').last;
+  }
 }

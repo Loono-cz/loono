@@ -5,8 +5,6 @@ import 'package:loono/services/firebase_service.dart';
 import 'package:provider/provider.dart';
 
 Future<Widget> buildApp({required AppConfig config}) async {
-  WidgetsFlutterBinding.ensureInitialized();
-
   await FirebaseService.create(config);
 
   return MultiProvider(
