@@ -1,10 +1,16 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:loono/core/app_logger.dart';
 
 /// Mainly used when building a screen opened via a deep link.
 /// It returns null if the screen should not be accessed.
 typedef PageBuilder = Page<Object>? Function(BuildContext);
+
+/// Only used in this file to decide if a screen can be opened
+extension _PageList on List<Page> {
+  bool containsKey(LocalKey? key) => any((page) => page.key == key);
+}
 
 class ScreenNavigator extends StatefulWidget {
   const ScreenNavigator({required this.initialPages, Key? key})
@@ -28,6 +34,8 @@ class ScreenNavigator extends StatefulWidget {
 }
 
 class ScreenNavigatorState extends State<ScreenNavigator> {
+  final AppLogger _logger = AppLogger('ScreenNavigator');
+
   final _navigatorKey = GlobalKey<NavigatorState>();
   final _stack = <Page>[];
   final _onPop = <Page, Completer>{};
@@ -49,6 +57,7 @@ class ScreenNavigatorState extends State<ScreenNavigator> {
 
   void pushBuilders(List<PageBuilder> pageBuilders) {
     if (pageBuilders.isEmpty) {
+      _logger.debug('pushBuilders called without builders to push');
       return;
     }
 
@@ -61,6 +70,7 @@ class ScreenNavigatorState extends State<ScreenNavigator> {
       for (final page in _pages) {
         if (page != null) {
           _stack.add(page);
+          _logger.debug('pushBuilders: pushing ${page.name}');
         }
       }
       setState(() {});
@@ -69,26 +79,60 @@ class ScreenNavigatorState extends State<ScreenNavigator> {
 
   /// If you're expecting this page to return a value use [pushAsync]
   void push(Page page) {
+    if (_stack.containsKey(page.key)) {
+      _logger.debug(
+        'push: cannot add two pages with the same key on the stack ${page.key}',
+      );
+      return;
+    }
+
     _stack.add(page);
+    _logger.debug('push: pushing ${page.name}');
     setState(() {});
   }
 
-  Future<T> pushAsync<T>(Page<T> page) async {
+  Future<T?> pushAsync<T>(Page<T> page) async {
+    if (_stack.containsKey(page.key)) {
+      _logger.debug(
+        'push: cannot add two pages with the same key on the stack ${page.key}',
+      );
+      return null;
+    }
+
     final _completer = Completer<T>();
     _onPop[page] = _completer;
     setState(() => _stack.add(page));
+    _logger
+      ..debug('pushAsync: pushing ${page.name}')
+      ..debug('pushAsync: expecting a value of type $T');
     return _completer.future;
   }
 
   void pushReplacement(Page page) {
+    if (_stack.containsKey(page.key)) {
+      _logger.debug(
+        'push: cannot add two pages with the same key on the stack ${page.key}',
+      );
+      return;
+    }
+
     final removedPage = _stack.removeLast();
     _onPop.remove(removedPage);
+    _logger.debug('pushReplacement: removed ${removedPage.name}');
 
     _stack.add(page);
+    _logger.debug('pushReplacement: pushing ${page.name}');
     setState(() {});
   }
 
   void pushAndRemoveUntil(Page page, {required Set<String> screenIsAny}) {
+    if (_stack.containsKey(page.key)) {
+      _logger.debug(
+        'push: cannot add two pages with the same key on the stack ${page.key}',
+      );
+      return;
+    }
+
     removeUntil(screenIsAny: screenIsAny);
     push(page);
   }
@@ -96,7 +140,9 @@ class ScreenNavigatorState extends State<ScreenNavigator> {
   void clearStackAndPushList(List<Page> pages) {
     _stack.clear();
     _onPop.clear();
+    _logger.debug('clearStackAndPushList: stack cleared');
     _stack.addAll(pages);
+    _logger.debug('clearStackAndPushList: pushed ${pages.map((p) => p.name)}');
     setState(() {});
   }
 
@@ -117,15 +163,24 @@ class ScreenNavigatorState extends State<ScreenNavigator> {
     }
 
     if (updatedStack.isNotEmpty) {
+      _logger.debug(
+        'removeUntil: stack before removing ${_stack.map((p) => p.name)}',
+      );
       _stack
         ..clear()
         ..addAll(updatedStack);
       _onPop
         ..clear()
         ..addAll(updatedOnPop);
+      _logger.debug(
+        'removeUntil: stack after removing ${_stack.map((p) => p.name)}',
+      );
       return true;
     }
 
+    _logger.debug(
+      'removeUntil: could not find any screen matching $screenIsAny}',
+    );
     return false;
   }
 
@@ -141,7 +196,11 @@ class ScreenNavigatorState extends State<ScreenNavigator> {
 
   void pop() {
     final page = _stack.removeLast();
-    _onPop.remove(page);
+    final completer = _onPop.remove(page);
+    if (completer != null) {
+      completer.complete();
+    }
+    _logger.debug('pop: popped ${page.name}');
     setState(() {});
   }
 
@@ -149,7 +208,12 @@ class ScreenNavigatorState extends State<ScreenNavigator> {
     if (_onPop.containsKey(_stack.last)) {
       final page = _stack.removeLast();
       final completer = _onPop.remove(page);
-      completer!.complete(value);
+      if (completer != null) {
+        completer.complete(value);
+      }
+      _logger
+        ..debug('popWith: popped ${page.name}')
+        ..debug('popWith: returning $value');
       setState(() {});
     } else {
       throw 'To return a value from a screen use the [pushAsync] method';
@@ -169,6 +233,11 @@ class ScreenNavigatorState extends State<ScreenNavigator> {
           if (index != -1) {
             _stack.remove(page);
             _onPop.remove(page);
+            final completer = _onPop.remove(page);
+            if (completer != null) {
+              completer.complete();
+            }
+            _logger.debug('onPopPage: popped ${page.name}');
           }
           setState(() {});
           return route.didPop(result);

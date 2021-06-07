@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:loono/core/api_exception.dart';
+import 'package:loono/core/http/api_exception.dart';
 
 abstract class BaseApiClient {
   const BaseApiClient(this._httpClient);
