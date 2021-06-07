@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:loono/core/app_config.dart';
 import 'package:loono/core/app_flavor.dart';
 import 'package:loono/screens/screen_names.dart';
-import 'package:loono/utils/state_management.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   @visibleForTesting
@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
       key: const ValueKey(ScreenNames.homeScreen),
       name: ScreenNames.homeScreen,
       child: HomeScreen(
-        config: find<AppConfig>(context),
+        config: context.read<AppConfig>(),
       ),
     );
   }

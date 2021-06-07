@@ -1,15 +1,25 @@
+import 'package:dio/dio.dart';
 import 'package:loono/core/app_flavor.dart';
 
 abstract class AppConfig {
-  const AppConfig._({required this.flavor});
+  AppConfig._({required this.flavor});
 
   final AppFlavor flavor;
+
+  final BaseOptions dioBaseOptions = BaseOptions(
+    connectTimeout: 10000, // 10s
+    receiveTimeout: 5000,
+    contentType: 'application/json',
+    validateStatus: (status) {
+      return status != null && status >= 200 && status <= 299;
+    },
+  );
 }
 
 class ProdConfig extends AppConfig {
-  const ProdConfig() : super._(flavor: AppFlavor.prod);
+  ProdConfig() : super._(flavor: AppFlavor.prod);
 }
 
 class DevConfig extends AppConfig {
-  const DevConfig() : super._(flavor: AppFlavor.dev);
+  DevConfig() : super._(flavor: AppFlavor.dev);
 }

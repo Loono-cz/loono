@@ -9,7 +9,7 @@ Future<void> main() async {
 
   final secrets = await Secrets.create();
   final sentryService = SentryService(dns: secrets.sentryDns);
-  const config = ProdConfig();
+  final config = ProdConfig();
 
   await sentryService.sentryScope(
     appFlavor: config.flavor,

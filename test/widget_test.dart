@@ -7,7 +7,7 @@ import 'package:loono/screens/home_screen.dart';
 void main() {
   testWidgets('Hello world smoke test', (tester) async {
     await tester.pumpWidget(
-      const MaterialApp(
+      MaterialApp(
         home: HomeScreen(
           config: DevConfig(),
         ),
