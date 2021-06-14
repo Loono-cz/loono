@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/core/app_config.dart';
 
-import 'package:loono/screens/home_screen.dart';
+import 'package:loono/screens/home/home.screen.dart';
 
 void main() {
   testWidgets('Hello world smoke test', (tester) async {
@@ -14,6 +14,6 @@ void main() {
       ),
     );
 
-    expect(find.text('Loono'), findsOneWidget);
+    expect(find.text('Loono [DEV]'), findsOneWidget);
   });
 }

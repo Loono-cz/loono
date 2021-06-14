@@ -15,12 +15,12 @@ class MaybeFailure<T extends Object> {
 
   final T? _value;
 
-  bool get isFailure => _failure != null;
+  bool get hasFailure => _failure != null;
 
   bool get hasValue => _value != null;
 
   T get value {
-    if (isFailure) {
+    if (hasFailure) {
       throw NoValuePresentError();
     }
 
@@ -39,7 +39,7 @@ class MaybeFailure<T extends Object> {
     required S Function(ApiException) onFailure,
     required S Function(T) onValue,
   }) {
-    if (isFailure) {
+    if (hasFailure) {
       return onFailure(_failure!);
     }
 
