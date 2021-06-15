@@ -232,7 +232,6 @@ class ScreenNavigatorState extends State<ScreenNavigator> {
           final index = _stack.indexOf(page);
           if (index != -1) {
             _stack.remove(page);
-            _onPop.remove(page);
             final completer = _onPop.remove(page);
             if (completer != null) {
               completer.complete();
