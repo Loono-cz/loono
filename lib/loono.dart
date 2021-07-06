@@ -7,10 +7,12 @@ import 'package:loono/screens/screen_navigator.dart';
 class Loono extends StatelessWidget {
   const Loono({
     required this.config,
+    required this.screenNavigatorKey,
     Key? key,
   }) : super(key: key);
 
   final AppConfig config;
+  final GlobalKey<ScreenNavigatorState> screenNavigatorKey;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,7 @@ class Loono extends StatelessWidget {
         ),
       ),
       home: ScreenNavigator(
+        key: screenNavigatorKey,
         initialPages: [
           HomeScreen.buildPage(context)
         ],

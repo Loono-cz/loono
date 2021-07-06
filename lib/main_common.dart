@@ -4,6 +4,7 @@ import 'package:loono/api/example.api.dart';
 import 'package:loono/core/app_config.dart';
 import 'package:loono/core/http/logger_interceptor.dart';
 import 'package:loono/loono.dart';
+import 'package:loono/screens/screen_navigator.dart';
 import 'package:loono/services/example.service.dart';
 import 'package:loono/services/firebase_service.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +17,8 @@ Future<Widget> buildApp({required AppConfig config}) async {
 
   final _exampleApi = ExampleApi(_dio, config.apiConfig);
 
+  final screenNavigatorKey = GlobalKey<ScreenNavigatorState>();
+
   return MultiProvider(
     providers: [
       Provider<AppConfig>.value(value: config),
@@ -23,6 +26,9 @@ Future<Widget> buildApp({required AppConfig config}) async {
         create: (_) => ExampleService(_exampleApi),
       )
     ],
-    child: Loono(config: config),
+    child: Loono(
+      config: config,
+      screenNavigatorKey: screenNavigatorKey,
+    ),
   );
 }

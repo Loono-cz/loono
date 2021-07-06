@@ -13,8 +13,10 @@ extension _PageList on List<Page> {
 }
 
 class ScreenNavigator extends StatefulWidget {
-  const ScreenNavigator({required this.initialPages, Key? key})
-      : super(key: key);
+  const ScreenNavigator({
+    required this.initialPages,
+    required GlobalKey<ScreenNavigatorState> key,
+  }) : super(key: key);
 
   final List<Page<Object>> initialPages;
 
@@ -102,9 +104,7 @@ class ScreenNavigatorState extends State<ScreenNavigator> {
     final _completer = Completer<T>();
     _onPop[page] = _completer;
     setState(() => _stack.add(page));
-    _logger
-      ..debug('pushAsync: pushing ${page.name}')
-      ..debug('pushAsync: expecting a value of type $T');
+    _logger.debug('pushAsync: pushing ${page.name}');
     return _completer.future;
   }
 
@@ -117,8 +117,13 @@ class ScreenNavigatorState extends State<ScreenNavigator> {
     }
 
     final removedPage = _stack.removeLast();
-    _onPop.remove(removedPage);
     _logger.debug('pushReplacement: removed ${removedPage.name}');
+
+    // Inherit the replaced page completer
+    final removedCompleter = _onPop.remove(removedPage);
+    if (removedCompleter != null) {
+      _onPop[page] = removedCompleter;
+    }
 
     _stack.add(page);
     _logger.debug('pushReplacement: pushing ${page.name}');
@@ -141,6 +146,7 @@ class ScreenNavigatorState extends State<ScreenNavigator> {
     _stack.clear();
     _onPop.clear();
     _logger.debug('clearStackAndPushList: stack cleared');
+
     _stack.addAll(pages);
     _logger.debug('clearStackAndPushList: pushed ${pages.map((p) => p.name)}');
     setState(() {});
@@ -153,12 +159,14 @@ class ScreenNavigatorState extends State<ScreenNavigator> {
     final updatedStack = [..._stack];
     final updatedOnPop = {..._onPop};
 
+    Completer? lastRemovedCompleter;
+
     for (final page in _stack.reversed) {
       if (screenIsAny.contains(page.name)) {
         break;
       } else {
         updatedStack.remove(page);
-        updatedOnPop.remove(page);
+        lastRemovedCompleter = updatedOnPop.remove(page);
       }
     }
 
@@ -166,26 +174,30 @@ class ScreenNavigatorState extends State<ScreenNavigator> {
       _logger.debug(
         'removeUntil: stack before removing ${_stack.map((p) => p.name)}',
       );
-      _stack
-        ..clear()
-        ..addAll(updatedStack);
-      _onPop
-        ..clear()
-        ..addAll(updatedOnPop);
+
+      _stack.clear();
+      _onPop.clear();
+
+      _stack.addAll(updatedStack);
+      _onPop.addAll(updatedOnPop);
+
+      // Inherit the last removed page completer if any
+      if (lastRemovedCompleter != null) {
+        _onPop[_stack.last] = lastRemovedCompleter;
+      }
+
       _logger.debug(
         'removeUntil: stack after removing ${_stack.map((p) => p.name)}',
       );
+
       return true;
     }
 
-    _logger.debug(
-      'removeUntil: could not find any screen matching $screenIsAny}',
-    );
+    _logger.debug('removeUntil: could not find any match $screenIsAny}');
     return false;
   }
 
-  /// Same behaviour as [removeUntil] plus calling setState
-  /// to update the widget tree on success
+  /// Same behaviour as [removeUntil] plus calling setState on success
   void popUntil({required Set<String> screenIsAny}) {
     final success = removeUntil(screenIsAny: screenIsAny);
 
@@ -194,30 +206,29 @@ class ScreenNavigatorState extends State<ScreenNavigator> {
     }
   }
 
-  void pop() {
+  void pop<T extends Object>([T? value]) {
     final page = _stack.removeLast();
     final completer = _onPop.remove(page);
     if (completer != null) {
       completer.complete();
     }
-    _logger.debug('pop: popped ${page.name}');
+    _logger.debug('pop: popped ${page.name} with value $value');
     setState(() {});
   }
 
-  void popWith<T>([T? value]) {
-    if (_onPop.containsKey(_stack.last)) {
-      final page = _stack.removeLast();
+  bool _onPopPage(Route<dynamic> route, dynamic result) {
+    final page = route.settings as Page;
+    final index = _stack.indexOf(page);
+    if (index != -1) {
+      _stack.remove(page);
       final completer = _onPop.remove(page);
       if (completer != null) {
-        completer.complete(value);
+        completer.complete();
       }
-      _logger
-        ..debug('popWith: popped ${page.name}')
-        ..debug('popWith: returning $value');
-      setState(() {});
-    } else {
-      throw 'To return a value from a screen use the [pushAsync] method';
+      _logger.debug('onPopPage: popped ${page.name}');
     }
+    setState(() {});
+    return route.didPop(result);
   }
 
   @override
@@ -227,20 +238,7 @@ class ScreenNavigatorState extends State<ScreenNavigator> {
       child: Navigator(
         key: _navigatorKey,
         pages: List.of(_stack),
-        onPopPage: (route, dynamic result) {
-          final page = route.settings as Page;
-          final index = _stack.indexOf(page);
-          if (index != -1) {
-            _stack.remove(page);
-            final completer = _onPop.remove(page);
-            if (completer != null) {
-              completer.complete();
-            }
-            _logger.debug('onPopPage: popped ${page.name}');
-          }
-          setState(() {});
-          return route.didPop(result);
-        },
+        onPopPage: _onPopPage,
       ),
     );
   }
