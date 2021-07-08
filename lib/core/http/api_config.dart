@@ -13,8 +13,8 @@ abstract class ApiConfig {
   final int? port;
 }
 
-class ExampleApiConfig extends ApiConfig {
-  ExampleApiConfig() : super._(
+class DogApiConfig extends ApiConfig {
+  DogApiConfig() : super._(
     host: 'dog.ceo',
     path: 'api',
   );

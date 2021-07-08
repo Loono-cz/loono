@@ -22,7 +22,7 @@ class ProdConfig extends AppConfig {
   ProdConfig()
       : super._(
           flavor: AppFlavor.prod,
-          apiConfig: ExampleApiConfig(),
+          apiConfig: DogApiConfig(),
         );
 }
 
@@ -31,6 +31,6 @@ class DevConfig extends AppConfig {
       : super._(
           flavor: AppFlavor.dev,
           // We would use a different config for dev and prod
-          apiConfig: ExampleApiConfig(),
+          apiConfig: DogApiConfig(),
         );
 }

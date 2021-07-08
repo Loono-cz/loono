@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:loono/utils/provider_utils.dart';
 import 'package:loono/utils/theme_utils.dart';
-import 'package:loono/dtos/example_api/breeds.dart';
+import 'package:loono/dtos/breed_api/breeds.dart';
 import 'package:loono/screens/example/example.notifier.dart';
 import 'package:loono/screens/screen_names.dart';
-import 'package:loono/services/example.service.dart';
+import 'package:loono/services/breed.service.dart';
 import 'package:loono/widgets/loading_indicator.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +24,7 @@ class ExampleScreen extends StatelessWidget {
       child: InsertNotifier<ExampleNotifier>(
         notifierBuilder: (context) {
           return ExampleNotifier(
-            context.read<ExampleService>(),
+            context.read<BreedService>(),
             breed: breed,
           );
         },

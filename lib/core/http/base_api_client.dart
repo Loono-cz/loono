@@ -1,10 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:loono/core/http/api_exception.dart';
 
-abstract class BaseApiClient {
-  const BaseApiClient(this._httpClient);
+abstract class BaseApiClient<U extends ApiException> {
+  const BaseApiClient(this._httpClient, this._errorParser);
 
   final Dio _httpClient;
+  final U Function(DioError error) _errorParser;
 
   Uri buildUri({
     required String endpoint,
@@ -44,7 +45,7 @@ abstract class BaseApiClient {
     try {
       return await _httpClient.delete<dynamic>(url);
     } on DioError catch (error) {
-      throw ApiException.from(error);
+      throw _errorParser(error);
     }
   }
 
@@ -64,7 +65,7 @@ abstract class BaseApiClient {
         options: options,
       );
     } on DioError catch (error) {
-      throw ApiException.from(error);
+      throw _errorParser(error);
     }
   }
 
@@ -118,7 +119,7 @@ abstract class BaseApiClient {
         options: options,
       );
     } on DioError catch (error) {
-      throw ApiException.from(error);
+      throw _errorParser(error);
     }
   }
 
@@ -176,7 +177,7 @@ abstract class BaseApiClient {
         options: options,
       );
     } on DioError catch (error) {
-      throw ApiException.from(error);
+      throw _errorParser(error);
     }
   }
 

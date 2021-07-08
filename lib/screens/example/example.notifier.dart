@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:loono/core/result.dart';
-import 'package:loono/dtos/example_api/breeds.dart';
-import 'package:loono/services/example.service.dart';
+import 'package:loono/dtos/breed_api/breeds.dart';
+import 'package:loono/services/breed.service.dart';
 
 class ExampleNotifier extends ChangeNotifier {
-  ExampleNotifier(this._exampleService, {this.breed}) {
+  ExampleNotifier(this._breedService, {this.breed}) {
     fetchImage();
   }
 
-  final ExampleService _exampleService;
+  final BreedService _breedService;
   final Breed? breed;
 
   // Use a similar style to wrap anything that might not be available straight
@@ -25,7 +25,7 @@ class ExampleNotifier extends ChangeNotifier {
     _result = const Result.loading();
     notifyListeners();
 
-    final response = await _exampleService.getRandomImage(
+    final response = await _breedService.getRandomImage(
       breed: breed,
     );
 

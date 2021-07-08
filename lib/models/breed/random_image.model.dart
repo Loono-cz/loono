@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:loono/dtos/example_api/random_image.dto.dart';
+import 'package:loono/dtos/breed_api/random_image.dto.dart';
 
 part 'random_image.model.freezed.dart';
 

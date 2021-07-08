@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:loono/core/app_config.dart';
 import 'package:loono/core/app_flavor.dart';
 import 'package:loono/utils/theme_utils.dart';
-import 'package:loono/dtos/example_api/breeds.dart';
+import 'package:loono/dtos/breed_api/breeds.dart';
 import 'package:loono/screens/example/example.screen.dart';
 import 'package:loono/screens/screen_names.dart';
 import 'package:loono/screens/screen_navigator.dart';

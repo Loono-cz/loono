@@ -1,22 +1,38 @@
 import 'package:dio/dio.dart';
 
-class ApiException {
+abstract class ApiException {
   ApiException({this.statusCode, this.message});
 
-  factory ApiException.from(DioError error) {
+  ApiException.from(DioError error) {
     final response = error.response;
 
     if (response != null) {
-      return ApiException(
-        statusCode: response.statusCode,
-        // TODO(any): decode Loono backend error message
-        message: response.data?.toString(),
-      );
+      statusCode = response.statusCode;
+      message = parseMessage(response.data);
     }
-
-    return ApiException();
   }
 
-  final int? statusCode;
-  final String? message;
+  late final int? statusCode;
+  late final String? message;
+
+  String? parseMessage(dynamic data);
+}
+
+class DogException extends ApiException {
+  DogException({int? statusCode, String? message})
+      : super(statusCode: statusCode, message: message);
+
+  DogException._(DioError error) : super.from(error);
+
+  // Useful to defined a tear-off method
+  static DogException from(DioError error) {
+    return DogException._(error);
+  }
+
+  @override
+  String? parseMessage(dynamic data) {
+    // Any custom logic in decoding the body of the error message
+    // should be performed inside this overridden method
+    return data?.toString();
+  }
 }

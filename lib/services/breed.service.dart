@@ -1,14 +1,14 @@
-import 'package:loono/api/example.api.dart';
+import 'package:loono/api/breed_api.dart';
 import 'package:loono/core/http/api_exception.dart';
 import 'package:loono/core/maybe_failure.dart';
-import 'package:loono/dtos/example_api/breeds.dart';
-import 'package:loono/dtos/example_api/random_image.dto.dart';
-import 'package:loono/models/example/random_image.model.dart';
+import 'package:loono/dtos/breed_api/breeds.dart';
+import 'package:loono/dtos/breed_api/random_image.dto.dart';
+import 'package:loono/models/breed/random_image.model.dart';
 
-class ExampleService {
-  ExampleService(this._exampleApi);
+class BreedService {
+  BreedService(this._breedApi);
 
-  final ExampleApi _exampleApi;
+  final BreedApi _breedApi;
 
   Future<MaybeFailure<String>> getRandomImage({
     Breed? breed,
@@ -17,9 +17,9 @@ class ExampleService {
       late RandomImageDto response;
 
       if (breed != null) {
-        response = await _exampleApi.getRandomImageByBreed(breed: breed);
+        response = await _breedApi.getRandomImageByBreed(breed: breed);
       } else {
-        response = await _exampleApi.getRandomImage();
+        response = await _breedApi.getRandomImage();
       }
 
       final model = RandomImageModel.fromDto(response);
@@ -29,9 +29,7 @@ class ExampleService {
       }
 
       return MaybeFailure.failure(
-        ApiException(
-          message: response.status,
-        ),
+        DogException(message: response.message),
       );
     } on ApiException catch (e) {
       return MaybeFailure.failure(e);
