@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:loono/api/dog.api_client.dart';
+import 'package:loono/api/dog.api.client.dart';
 import 'package:loono/core/http/api_config.dart';
 import 'package:loono/dtos/breed_api/breeds.dart';
 import 'package:loono/dtos/breed_api/random_image.dto.dart';

@@ -1,4 +1,4 @@
-import 'package:loono/api/breed_api.dart';
+import 'package:loono/api/breed.api.dart';
 import 'package:loono/core/http/api_exception.dart';
 import 'package:loono/core/maybe_failure.dart';
 import 'package:loono/dtos/breed_api/breeds.dart';

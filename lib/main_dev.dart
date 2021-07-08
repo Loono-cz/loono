@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:loono/core/app_config.dart';
 import 'package:loono/core/secrets.dart';
 import 'package:loono/main_common.dart';
-import 'package:loono/services/sentry_service.dart';
+import 'package:loono/services/sentry.service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
