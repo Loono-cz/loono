@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 /// Ask a colleague for the up-to-date ones.
 ///
 /// {
-///   "sentryDns": "secret-value",
+///   "example-key": "example-value",
 /// }
 class Secrets {
   Secrets._({required Map<String, dynamic> config}) : _config = config;
@@ -21,7 +21,8 @@ class Secrets {
     );
   }
 
+  // ignore: unused_field
   final Map<String, dynamic> _config;
 
-  String get sentryDns => _config['sentryDns'] as String;
+  // String get exampleKey => _config['exampleKey'] as String;
 }

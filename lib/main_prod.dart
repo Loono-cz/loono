@@ -1,24 +1,25 @@
+import 'dart:async';
+
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/core/app_config.dart';
-import 'package:loono/core/secrets.dart';
 import 'package:loono/main_common.dart';
-import 'package:loono/services/sentry.service.dart';
+import 'package:loono/services/firebase.service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final secrets = await Secrets.create();
-  final sentryService = SentryService(dns: secrets.sentryDns);
   final config = ProdConfig();
 
-  await sentryService.sentryScope(
-    appFlavor: config.flavor,
-    appRunner: () async {
-      runApp(
-        await buildApp(
-          config: config,
-        ),
-      );
-    },
-  );
+  final _firebase = await FirebaseService.create(config);
+  await _firebase.setCrashlyticsCollection(enable: !kDebugMode);
+
+  await runZonedGuarded<Future<void>>(() async {
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+
+    final app = await buildApp(config: config);
+
+    runApp(app);
+  }, FirebaseCrashlytics.instance.recordError);
 }
