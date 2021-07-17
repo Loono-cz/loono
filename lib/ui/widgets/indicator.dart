@@ -15,7 +15,6 @@ class Indicator extends StatefulWidget {
   final bool finished;
   final Duration duration;
   final bool shouldAnimate;
-
   final double maxWidth;
 
   @override
@@ -36,12 +35,6 @@ class _IndicatorState extends State<Indicator>
     );
     containerAnim = Tween<double>(begin: 0.0, end: widget.maxWidth)
         .animate(animationController);
-    animationController.addStatusListener((AnimationStatus status) {
-      if (status == AnimationStatus.completed && widget.shouldAnimate) {
-        // animationController.reverse();
-        // animationController.reset();
-      }
-    });
   }
 
   @override
@@ -77,8 +70,6 @@ class _IndicatorState extends State<Indicator>
     } else {
       return buildContainer(width: widget.maxWidth);
     }
-
-
   }
 
   Container buildContainer({

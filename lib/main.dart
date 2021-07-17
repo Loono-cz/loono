@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:loono/ui/screens/test_page.dart';
-import 'package:loono/utils/registry.dart';
 import 'package:loono/ui/screens/dashboard.dart';
+import 'package:loono/ui/screens/onboarding.dart';
+import 'package:loono/utils/registry.dart';
 
 Future<void> main() async {
   await setup();
