@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono/ui/screens/dashboard.dart';
+import 'package:loono/ui/screens/intro_video.dart';
 
 Future<void> main() async {
   await setup();
@@ -13,9 +14,10 @@ class Loono extends StatelessWidget {
     return MaterialApp(
       title: 'Loono',
       color: Colors.deepOrange,
-      initialRoute: '/dashboard',
+      initialRoute: '/intro_video',
       routes: {
         '/dashboard': (_) => DashboardScreen(),
+        '/intro_video': (_) => IntroVideoScreen(),
       },
     );
   }
