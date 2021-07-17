@@ -10,15 +10,7 @@ class TestPage extends StatefulWidget {
 }
 
 class _TestPageState extends State<TestPage> {
-  final PageController pageController = PageController(initialPage: 0);
-
-  @override
-  void initState() {
-    pageController.addListener(() {
-      setState(() {});
-    });
-    super.initState();
-  }
+  final PageController pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +19,9 @@ class _TestPageState extends State<TestPage> {
       child: Stack(
         children: [
           PageView(
+            onPageChanged: (value) {
+              setState(() {});
+            },
             scrollDirection: Axis.horizontal,
             controller: pageController,
             children: const <Widget>[
@@ -48,7 +43,7 @@ class _TestPageState extends State<TestPage> {
             padding: const EdgeInsets.only(top: 70.0, left: 21.0, right: 21.0),
             child: IndicatorRow(
               currentIndex: pageController.hasClients
-                  ? pageController.page?.toInt() ?? 0
+                  ? pageController.page?.round() ?? 0
                   : 0,
             ),
           ),

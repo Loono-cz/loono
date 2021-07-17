@@ -38,7 +38,7 @@ class _IndicatorState extends State<Indicator>
         Tween<double>(begin: 0.0, end: widget.maxWidth).animate(animationController);
     animationController.addStatusListener((AnimationStatus status) {
       if (status == AnimationStatus.completed && widget.shouldAnimate) {
-        // animationController.reset();
+        // animationController.reverse();
         // animationController.reset();
       }
     });
@@ -53,9 +53,9 @@ class _IndicatorState extends State<Indicator>
   @override
   Widget build(BuildContext context) {
     if (widget.shouldAnimate) {
-      // if (animationController.status == AnimationStatus.completed) {
-      //   animationController.reset();
-      // }
+      if (animationController.status == AnimationStatus.completed) {
+        animationController.reset();
+      }
       animationController.forward();
     }
 
