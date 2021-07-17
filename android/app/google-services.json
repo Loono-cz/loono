@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "47384724742",
+    "project_id": "loonoapp",
+    "storage_bucket": "loonoapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:47384724742:android:4fe9b3f518f92d16034a87",
+        "android_client_info": {
+          "package_name": "cz.loono.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "47384724742-eilr1mj2d0e1gi3dr2dvk2gikl0lu9tl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcJOqJu0Nh703cgLxx4_LhqL2KCxkahbs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "47384724742-eilr1mj2d0e1gi3dr2dvk2gikl0lu9tl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "47384724742-jrt87snrcj3fkl2vba7bdhojmrgkrou9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "cz.loono.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

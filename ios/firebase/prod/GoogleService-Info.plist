@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>47384724742-jrt87snrcj3fkl2vba7bdhojmrgkrou9.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.47384724742-jrt87snrcj3fkl2vba7bdhojmrgkrou9</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA1hA8D5N2R7PuxqQM53fpWT59UZiRlMu0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>47384724742</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>cz.loono.app</string>
+	<key>PROJECT_ID</key>
+	<string>loonoapp</string>
+	<key>STORAGE_BUCKET</key>
+	<string>loonoapp.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:47384724742:ios:4ab4ce461f6d62fc034a87</string>
+</dict>
+</plist>
