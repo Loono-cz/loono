@@ -35,12 +35,11 @@ class _IndicatorState extends State<Indicator>
         Tween<double>(begin: 0.0, end: 75.0).animate(animationController);
     animationController.addStatusListener((AnimationStatus status) {
       if (status == AnimationStatus.completed && widget.shouldAnimate) {
-          animationController.reset();
+        // animationController.reset();
         // animationController.reset();
       }
     });
   }
-
 
   @override
   void dispose() {
@@ -51,6 +50,9 @@ class _IndicatorState extends State<Indicator>
   @override
   Widget build(BuildContext context) {
     if (widget.shouldAnimate) {
+      if (animationController.status == AnimationStatus.completed) {
+        animationController.reset();
+      }
       animationController.forward();
     }
 
@@ -60,14 +62,14 @@ class _IndicatorState extends State<Indicator>
         widget.finished
             ? buildContainer()
             : AnimatedBuilder(
-          animation: containerAnim,
-          builder: (BuildContext context, Widget? child) {
-            return buildContainer(
-              width: containerAnim.value,
-              color: _activeColor,
-            );
-          },
-        ),
+                animation: containerAnim,
+                builder: (BuildContext context, Widget? child) {
+                  return buildContainer(
+                    width: containerAnim.value,
+                    color: _activeColor,
+                  );
+                },
+              ),
       ],
     );
   }
