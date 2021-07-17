@@ -57,36 +57,3 @@ class _TestPageState extends State<TestPage> {
     );
   }
 }
-
-class CustomPageView extends StatefulWidget {
-  const CustomPageView({Key? key}) : super(key: key);
-
-  @override
-  _CustomPageViewState createState() => _CustomPageViewState();
-}
-
-class _CustomPageViewState extends State<CustomPageView> {
-  final PageController pageController = PageController(initialPage: 0);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: PageView(
-        physics: NeverScrollableScrollPhysics(),
-        scrollDirection: Axis.horizontal,
-        controller: pageController,
-        children: const <Widget>[
-          Center(
-            child: Text('First Page'),
-          ),
-          Center(
-            child: Text('Second Page'),
-          ),
-          Center(
-            child: Text('Third Page'),
-          ),
-        ],
-      ),
-    );
-  }
-}

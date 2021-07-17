@@ -9,11 +9,14 @@ class Indicator extends StatefulWidget {
     this.finished = false,
     this.duration = const Duration(milliseconds: 4000),
     this.shouldAnimate = false,
+    required this.maxWidth,
   }) : super(key: key);
 
   final bool finished;
   final Duration duration;
   final bool shouldAnimate;
+
+  final double maxWidth;
 
   @override
   _IndicatorState createState() => _IndicatorState();
@@ -32,7 +35,7 @@ class _IndicatorState extends State<Indicator>
       vsync: this,
     );
     containerAnim =
-        Tween<double>(begin: 0.0, end: 75.0).animate(animationController);
+        Tween<double>(begin: 0.0, end: widget.maxWidth).animate(animationController);
     animationController.addStatusListener((AnimationStatus status) {
       if (status == AnimationStatus.completed && widget.shouldAnimate) {
         // animationController.reset();
@@ -50,17 +53,17 @@ class _IndicatorState extends State<Indicator>
   @override
   Widget build(BuildContext context) {
     if (widget.shouldAnimate) {
-      if (animationController.status == AnimationStatus.completed) {
-        animationController.reset();
-      }
+      // if (animationController.status == AnimationStatus.completed) {
+      //   animationController.reset();
+      // }
       animationController.forward();
     }
 
     return Stack(
       children: [
-        buildContainer(),
+        buildContainer(width: widget.maxWidth),
         widget.finished
-            ? buildContainer()
+            ? buildContainer(width: widget.maxWidth)
             : AnimatedBuilder(
                 animation: containerAnim,
                 builder: (BuildContext context, Widget? child) {
@@ -76,12 +79,15 @@ class _IndicatorState extends State<Indicator>
 
   Container buildContainer({
     Color color = _underlyingColor,
-    double width = 75.0,
+    required double width,
   }) {
     return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(6.0),
+        color: color,
+      ),
       height: 4.0,
       width: width,
-      color: color,
     );
   }
 }

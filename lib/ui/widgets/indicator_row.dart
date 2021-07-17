@@ -14,16 +14,15 @@ class IndicatorRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: List.generate(
         numOfIndicators,
         (index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 6.0),
-            child: Indicator(
-              finished: index > currentIndex,
-              shouldAnimate: index == currentIndex,
-            ),
+          return Indicator(
+            finished: index > currentIndex,
+            shouldAnimate: index == currentIndex,
+            maxWidth: MediaQuery.of(context).size.width / numOfIndicators * 0.75,
           );
         },
       ),
