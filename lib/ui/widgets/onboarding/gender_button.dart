@@ -30,9 +30,9 @@ class GenderButton extends StatelessWidget {
         padding: const EdgeInsets.all(5),
         decoration: active
             ? BoxDecoration(
-                border: Border.all(color: const Color(0xFFEFAD89)),
-                borderRadius: BorderRadius.circular(10),
-              )
+          border: Border.all(color: const Color(0xFFEFAD89)),
+          borderRadius: BorderRadius.circular(10),
+        )
             : null,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

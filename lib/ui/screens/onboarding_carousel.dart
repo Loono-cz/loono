@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loono/ui/widgets/indicator_row.dart';
+import 'package:loono/ui/screens/intro_video.dart';
 
 class OnboardingCarouselScreen extends StatefulWidget {
   OnboardingCarouselScreen({Key? key}) : super(key: key);
@@ -21,9 +22,9 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
             onPageChanged: (_) => setState(() {}),
             scrollDirection: Axis.horizontal,
             controller: pageController,
-            children: const <Widget>[
+            children: <Widget>[
               Center(
-                child: Text('First Page'),
+                child: IntroVideoScreen()
               ),
               Center(
                 child: Text('Second Page'),
