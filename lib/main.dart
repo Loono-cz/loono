@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:loono/ui/screens/onboarding.dart';
 import 'package:loono/utils/registry.dart';
-import 'package:loono/ui/screens/dashboard.dart';
 
 Future<void> main() async {
   await setup();
@@ -15,7 +15,7 @@ class Loono extends StatelessWidget {
       color: Colors.deepOrange,
       initialRoute: '/dashboard',
       routes: {
-        '/dashboard': (_) => DashboardScreen(),
+        '/dashboard': (_) => OnBoardingPage(),
       },
     );
   }
