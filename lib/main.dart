@@ -14,9 +14,10 @@ class Loono extends StatelessWidget {
     return MaterialApp(
       title: 'Loono',
       color: Colors.deepOrange,
-      initialRoute: '/dashboard',
+      initialRoute: '/onboarding',
       routes: {
-        '/dashboard': (_) => TestPage(),
+        '/dashboard': (_) => DashboardScreen(),
+        '/onboarding': (_) => OnboardingCarouselScreen(),
       },
     );
   }

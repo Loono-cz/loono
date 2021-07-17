@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:loono/ui/widgets/indicator.dart';
 import 'package:loono/ui/widgets/indicator_row.dart';
 
-class TestPage extends StatefulWidget {
-  TestPage({Key? key}) : super(key: key);
+class OnboardingCarouselScreen extends StatefulWidget {
+  OnboardingCarouselScreen({Key? key}) : super(key: key);
 
   @override
-  _TestPageState createState() => _TestPageState();
+  _OnboardingCarouselScreenState createState() => _OnboardingCarouselScreenState();
 }
 
-class _TestPageState extends State<TestPage> {
+class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
   final PageController pageController = PageController();
 
   @override
@@ -19,9 +18,7 @@ class _TestPageState extends State<TestPage> {
       child: Stack(
         children: [
           PageView(
-            onPageChanged: (value) {
-              setState(() {});
-            },
+            onPageChanged: (_) => setState(() {}),
             scrollDirection: Axis.horizontal,
             controller: pageController,
             children: const <Widget>[
