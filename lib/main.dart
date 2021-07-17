@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loono/ui/screens/onboarding.dart';
+import 'package:loono/ui/screens/welcome.dart';
 import 'package:loono/utils/registry.dart';
 
 Future<void> main() async {
@@ -13,8 +14,9 @@ class Loono extends StatelessWidget {
     return MaterialApp(
       title: 'Loono',
       color: Colors.deepOrange,
-      initialRoute: '/dashboard',
+      initialRoute: '/welcome',
       routes: {
+        '/welcome': (_) => const WelcomeScreen(),
         '/dashboard': (_) => OnBoardingPage(),
       },
     );
