@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class WInkWell extends StatelessWidget {
+class ExtendedInkWell extends StatelessWidget {
   final Widget child;
   final VoidCallback? onTap;
   final VoidCallback? onLongPress;
@@ -16,7 +16,7 @@ class WInkWell extends StatelessWidget {
   final Color? splashColor;
   final Color? highlightColor;
 
-  const WInkWell(
+  const ExtendedInkWell(
       {required this.child,
       required this.onTap,
       this.onLongPress,
