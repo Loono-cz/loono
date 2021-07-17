@@ -19,7 +19,7 @@ class IndicatorRow extends StatelessWidget {
         numOfIndicators,
         (index) {
           return Indicator(
-            finished: index > currentIndex,
+            finished: index < currentIndex,
             shouldAnimate: index == currentIndex,
             maxWidth: MediaQuery.of(context).size.width / numOfIndicators * 0.75,
           );

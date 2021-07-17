@@ -34,8 +34,8 @@ class _IndicatorState extends State<Indicator>
       duration: widget.duration,
       vsync: this,
     );
-    containerAnim =
-        Tween<double>(begin: 0.0, end: widget.maxWidth).animate(animationController);
+    containerAnim = Tween<double>(begin: 0.0, end: widget.maxWidth)
+        .animate(animationController);
     animationController.addStatusListener((AnimationStatus status) {
       if (status == AnimationStatus.completed && widget.shouldAnimate) {
         // animationController.reverse();
@@ -53,28 +53,32 @@ class _IndicatorState extends State<Indicator>
   @override
   Widget build(BuildContext context) {
     if (widget.shouldAnimate) {
-      if (animationController.status == AnimationStatus.completed) {
-        animationController.reset();
-      }
+      animationController.reset();
       animationController.forward();
+
+      return Stack(
+        children: [
+          buildContainer(width: widget.maxWidth),
+          AnimatedBuilder(
+            animation: containerAnim,
+            builder: (BuildContext context, Widget? child) {
+              return buildContainer(
+                width: containerAnim.value,
+                color: _activeColor,
+              );
+            },
+          ),
+        ],
+      );
     }
 
-    return Stack(
-      children: [
-        buildContainer(width: widget.maxWidth),
-        widget.finished
-            ? buildContainer(width: widget.maxWidth)
-            : AnimatedBuilder(
-                animation: containerAnim,
-                builder: (BuildContext context, Widget? child) {
-                  return buildContainer(
-                    width: containerAnim.value,
-                    color: _activeColor,
-                  );
-                },
-              ),
-      ],
-    );
+    if (widget.finished) {
+      return buildContainer(width: widget.maxWidth, color: _activeColor);
+    } else {
+      return buildContainer(width: widget.maxWidth);
+    }
+
+
   }
 
   Container buildContainer({
