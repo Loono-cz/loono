@@ -3,8 +3,11 @@ import 'package:loono/ui/widgets/onboarding/gender_button.dart';
 
 enum Gender { man, woman, other }
 
+typedef GenderCallback = void Function(Gender genger);
+
 class GendersContainer extends StatefulWidget {
-  const GendersContainer({Key? key}) : super(key: key);
+  const GendersContainer({Key? key, this.genderCallBack}) : super(key: key);
+  final GenderCallback? genderCallBack;
 
   @override
   _GendersContainerState createState() => _GendersContainerState();
@@ -12,7 +15,6 @@ class GendersContainer extends StatefulWidget {
 
 class _GendersContainerState extends State<GendersContainer> {
   Gender? activeButton;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -27,7 +29,10 @@ class _GendersContainerState extends State<GendersContainer> {
               label: 'žena',
               width: 28,
               height: 45,
-              onClick: () => setState(() => activeButton = Gender.woman),
+              onClick: () => setState(() {
+                activeButton = Gender.woman;
+                widget.genderCallBack!(activeButton!);
+              }),
             ),
             GenderButton(
               active: activeButton == Gender.man,
@@ -35,7 +40,10 @@ class _GendersContainerState extends State<GendersContainer> {
               label: 'muž',
               width: 40,
               height: 40,
-              onClick: () => setState(() => activeButton = Gender.man),
+              onClick: () => setState(() {
+                activeButton = Gender.man;
+                widget.genderCallBack!(activeButton!);
+              }),
             ),
             GenderButton(
               active: activeButton == Gender.other,
@@ -43,7 +51,10 @@ class _GendersContainerState extends State<GendersContainer> {
               label: 'lgbt',
               width: 62,
               height: 65,
-              onClick: () => setState(() => activeButton = Gender.other),
+              onClick: () => setState(() {
+                activeButton = Gender.other;
+                widget.genderCallBack!(activeButton!);
+              }),
             ),
           ],
         ),

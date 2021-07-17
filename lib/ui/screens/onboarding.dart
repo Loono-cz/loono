@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:loono/ui/screens/onboarding_second.dart';
 import 'package:loono/ui/widgets/extend_inkwell.dart';
+import 'package:loono/ui/widgets/onboarding/genders_container.dart';
 
-class OnBoardingPage extends StatelessWidget {
-  const OnBoardingPage({Key? key}) : super(key: key);
+class OnBoardingPage extends StatefulWidget {
+  OnBoardingPage({Key? key}) : super(key: key);
 
+  @override
+  _OnBoardingPageState createState() => _OnBoardingPageState();
+}
+
+class _OnBoardingPageState extends State<OnBoardingPage> {
+  Gender? activeButton;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,17 +46,30 @@ class OnBoardingPage extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 50),
-              Expanded(
-                child: Container(
-                  color: Colors.red,
-                ),
-              ),
+              Expanded(child: GendersContainer(
+                genderCallBack: (gender) {
+                  setState(() {
+                    activeButton = gender;
+                  });
+                },
+              )),
               Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: ExtendedInkWell(
-                  onTap: () {},
-                  materialColor: const Color(0xFFEFAD89),
+                  onTap: activeButton == null
+                      ? () {}
+                      : () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const OnBoardingPageSecond()),
+                          );
+                        },
+                  splashColor: activeButton == null ? Colors.transparent : null,
+                  materialColor: activeButton == null
+                      ? const Color(0xFFEFAD89).withOpacity(0.5)
+                      : const Color(0xFFEFAD89),
                   borderRadius: const BorderRadius.all(Radius.circular(10.0)),
                   child: const SizedBox(
                     height: 65,
@@ -61,7 +82,7 @@ class OnBoardingPage extends StatelessWidget {
               ),
               const SizedBox(
                 height: 120,
-              )
+              ),
             ],
           ),
         ),
