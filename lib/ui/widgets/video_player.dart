@@ -46,16 +46,16 @@ class _VideoPlayerScreenState extends State<CustomVideoPlayer> {
         future: _initializeVideoPlayerFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            return Center(
-                child: Stack(
-                  fit: StackFit.loose,
-                    children: [
-                      AspectRatio(
-                        aspectRatio: _controller.value.aspectRatio,
-                        child: VideoPlayer(_controller),
-                      )
-                    ]
-                )
+            return Container(
+              width: double.infinity,
+              height: double.infinity,
+              child: FittedBox(
+                  alignment: Alignment.center,
+                  fit: BoxFit.fitWidth,
+                  child: Container(
+                    width: _controller.value.size.width,
+                    height: _controller.value.size.height,
+                    child: VideoPlayer(_controller))),
             );
           } else {
             return Center(child: CircularProgressIndicator());
