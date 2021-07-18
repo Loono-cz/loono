@@ -60,8 +60,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
       child: ListWheelScrollView.useDelegate(
         overAndUnderCenterOpacity: 0.3,
         physics: const FixedExtentScrollPhysics(),
-        itemExtent: 31,
-        perspective: 0.001,
+        itemExtent: 36,
         childDelegate: ListWheelChildLoopingListDelegate(
             children: items.keys
                 .map(
@@ -71,14 +70,24 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
                   ),
                 )
                 .toList()),
-        onSelectedItemChanged: (index) => () {
-          if (forType == ColumnType.month) {
-            print("mesic $index");
-          } else {
-            print("rok $index");
-          }
-        },
+        onSelectedItemChanged: (index) =>
+            _selectedItemHandle(forType: forType, items: items, value: items.keys.elementAt(index)),
       ),
     );
+  }
+
+  TextStyle _setTextStyle({required String text}) {
+    return TextStyle(fontSize: 24, fontWeight: FontWeight.w700);
+  }
+
+  void _selectedItemHandle({required ColumnType forType, required Map items, required int value}) {
+    switch (forType) {
+      case ColumnType.month:
+        print("month $value");
+        break;
+      case ColumnType.year:
+        print(items[value]);
+        break;
+    }
   }
 }
