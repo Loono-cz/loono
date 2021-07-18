@@ -11,6 +11,8 @@ class CustomDatePicker extends StatefulWidget {
 }
 
 class _CustomDatePickerState extends State<CustomDatePicker> {
+  DateTime datePickerDate = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -28,14 +30,17 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
 
   List<int> _getDatePickerYears() {
     final List<int> years = [];
-    for (int year = 1900; year <= widget.today.year + 10; year++) {
+    for (int year = widget.today.year; year <= widget.today.year; year++) {
+      years.add(year);
+    }
+    for (int year = widget.today.year - 100; year < widget.today.year; year++) {
       years.add(year);
     }
     return years;
   }
 
   Map<int, String> _getDatePickerMonths() {
-    return {
+    final Map<int, String> monthsMap = {
       DateTime.january: "Leden",
       DateTime.february: "Únor",
       DateTime.march: "Březen",
@@ -49,6 +54,14 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
       DateTime.november: "Listopad",
       DateTime.december: "Prosinec",
     };
+    final List<int> keysOrder = [];
+    for (int month = widget.today.month; month <= 12; month++) {
+      keysOrder.add(month);
+    }
+    for (int month = DateTime.january; month < widget.today.month; month++) {
+      keysOrder.add(month);
+    }
+    return {for (var key in keysOrder) key: monthsMap[key] as String};
   }
 
   Widget _datePickerColumn({required ColumnType forType}) {
@@ -83,10 +96,12 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   void _selectedItemHandle({required ColumnType forType, required Map items, required int value}) {
     switch (forType) {
       case ColumnType.month:
-        print("month $value");
+        datePickerDate = DateTime(datePickerDate.year, value);
+        print("month change $datePickerDate");
         break;
       case ColumnType.year:
-        print(items[value]);
+        datePickerDate = DateTime(items[value] as int, datePickerDate.month);
+        print("year change $datePickerDate");
         break;
     }
   }
