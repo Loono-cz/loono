@@ -20,6 +20,9 @@ class Loono extends StatelessWidget {
       initialRoute: '/onboarding',
       routes: {
         '/onboarding': (_) => OnboardingCarouselScreen(),
+        '/carousel2': (_) => CarouselScreen(),
+        '/carousel3': (_) => CarouselScreenSecond(),
+        '/carousel4': (_) => CarouselScreenThird(),
         '/dashboard': (_) => DashboardScreen(),
         '/welcome': (_) => const WelcomeScreen(),
         '/dashboard': (_) => OnBoardingPage(),
