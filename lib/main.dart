@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loono/ui/screens/onboarding/birthdate.dart';
 import 'package:loono/ui/screens/onboarding/carousel/carousel.dart';
 import 'package:loono/ui/screens/onboarding/doctors/general_practicioner.dart';
 import 'package:loono/ui/screens/onboarding/doctors/gynecology.dart';
@@ -22,10 +23,8 @@ class Loono extends StatelessWidget {
       routes: {
         '/welcome': (_) => const WelcomeScreen(),
         '/onboarding/carousel': (_) => const OnboardingCarouselScreen(),
-        // '/onboarding/carousel/2': (_) => CarouselScreen(),
-        // '/onboarding/carousel/3': (_) => CarouselScreenSecond(),
-        // '/onboarding/carousel/4': (_) => CarouselScreenThird(),
         '/onboarding/gender': (_) => const OnboardingGenderScreen(),
+        '/onboarding/birthdate': (_) => OnBoardingBirthdateScreen(),
         '/onboarding/doctor/general-practicioner': (_) => OnboardingGeneralPracticionerScreen(),
         '/onboarding/doctor/gynecology': (_) => OnboardingGynecologyScreen(),
         '/achievement': (_) => AchievementScreen(),

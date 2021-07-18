@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:loono/ui/screens/onboarding_second.dart';
 import 'package:loono/ui/widgets/extend_inkwell.dart';
 import 'package:loono/ui/widgets/onboarding/genders_container.dart';
 
@@ -23,7 +22,7 @@ class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
             children: [
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/onboarding/doctor/general-practicioner');
+                  Navigator.pushNamed(context, '/onboarding/birthdate');
                 },
                 child: const Align(
                   alignment: Alignment.topRight,
@@ -59,7 +58,7 @@ class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
                   onTap: activeButton == null
                       ? () {}
                       : () {
-                          Navigator.pushNamed(context, '/onboarding/doctor/general-practicioner');
+                          Navigator.pushNamed(context, '/onboarding/birthdate');
                         },
                   splashColor: activeButton == null ? Colors.transparent : null,
                   materialColor: activeButton == null

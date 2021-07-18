@@ -32,7 +32,7 @@ class AchievementScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 64),
-              LoonoButton(() => {debugPrint("Foo")}, "Pokracovat", true),
+              LoonoButton(() => {debugPrint("Foo")}, "Pokracovat", enabled: true),
             ],
           ),
         ),

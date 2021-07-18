@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
-enum FileType {
-  URL, ASSETS
-}
+enum FileType { url, assets }
 
 class CustomVideoPlayer extends StatefulWidget {
   final String source;
   final FileType type;
   final bool autoplay;
-  CustomVideoPlayer({required this.type, required this.source, this.autoplay=true, Key? key}) : super(key: key);
+  const CustomVideoPlayer(
+      {required this.type, required this.source, this.autoplay = true, Key? key})
+      : super(key: key);
 
   @override
   _VideoPlayerScreenState createState() => _VideoPlayerScreenState();
@@ -21,13 +21,11 @@ class _VideoPlayerScreenState extends State<CustomVideoPlayer> {
 
   @override
   void initState() {
-    _controller = (this.widget.type == FileType.URL) ?
-      VideoPlayerController.network(this.widget.source) :
-      VideoPlayerController.asset(this.widget.source);
+    _controller = (widget.type == FileType.url)
+        ? VideoPlayerController.network(widget.source)
+        : VideoPlayerController.asset(widget.source);
     _initializeVideoPlayerFuture = _controller.initialize();
-    _initializeVideoPlayerFuture.then((val) => {
-      if (this.widget.autoplay)  _controller.play()
-    });
+    _initializeVideoPlayerFuture.then((val) => {if (widget.autoplay) _controller.play()});
     _controller.setLooping(true);
     super.initState();
   }
@@ -46,28 +44,27 @@ class _VideoPlayerScreenState extends State<CustomVideoPlayer> {
         future: _initializeVideoPlayerFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            return Container(
+            return SizedBox(
               width: double.infinity,
               height: double.infinity,
               child: FittedBox(
-                  alignment: Alignment.center,
-                  fit: BoxFit.fitWidth,
-                  child: Container(
-                    width: _controller.value.size.width,
-                    height: _controller.value.size.height,
-                    child: VideoPlayer(_controller))),
+                fit: BoxFit.fitWidth,
+                child: SizedBox(
+                  width: _controller.value.size.width,
+                  height: _controller.value.size.height,
+                  child: VideoPlayer(_controller),
+                ),
+              ),
             );
           } else {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
         },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
-            _controller.value.isPlaying
-                ? _controller.pause()
-                : _controller.play();
+            _controller.value.isPlaying ? _controller.pause() : _controller.play();
           });
         },
         child: Icon(

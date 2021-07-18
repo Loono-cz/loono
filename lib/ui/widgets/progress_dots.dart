@@ -18,7 +18,7 @@ class LoonoProgressIndicator extends StatelessWidget {
     for (var i = 0; i < numberOfSteps; i++) {
       final text = (i + 1).toString();
       if (i < currentStep) {
-        dots.add(ProgressDot(style: ProgressDotStyle.done, text: "✔︎"));
+        dots.add(const ProgressDot(style: ProgressDotStyle.done, text: "✔︎"));
       }
       if (i == currentStep) {
         dots.add(ProgressDot(style: ProgressDotStyle.doing, text: text));

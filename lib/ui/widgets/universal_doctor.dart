@@ -29,20 +29,20 @@ class UniversalDoctor extends StatelessWidget {
         SvgPicture.asset(
           'assets/icons/$imagePath.svg',
         ),
-        const SizedBox(height: 32),
+        const SizedBox(height: 16),
         Text(
           question,
           textAlign: TextAlign.center,
         ),
-        const SizedBox(height: 32),
+        const SizedBox(height: 16),
         Text(
           questionHeader,
           style: LoonoFonts.bigFontStyle,
         ),
-        const SizedBox(height: 64),
-        LoonoButton(nextCallback, "V posledních dvou letech", true),
         const SizedBox(height: 16),
-        LoonoButton(nextCallback, "Více, než 2 roky nebo nevím", true),
+        LoonoButton(nextCallback, "V posledních dvou letech", enabled: true),
+        const SizedBox(height: 8),
+        LoonoButton(nextCallback, "Více, než 2 roky nebo nevím", enabled: true),
       ],
     );
   }

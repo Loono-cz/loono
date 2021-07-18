@@ -15,7 +15,7 @@ class IntroVideo extends StatelessWidget {
       body: Center(
         child: Stack(
           children: [
-            CustomVideoPlayer(type: FileType.ASSETS, source: 'assets/intro_video.mp4'),
+            const CustomVideoPlayer(type: FileType.assets, source: 'assets/intro_video.mp4'),
             TextOverlay(textLines: textLines),
           ],
         ),

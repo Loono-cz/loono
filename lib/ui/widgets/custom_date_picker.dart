@@ -13,16 +13,16 @@ class CustomDatePicker extends StatefulWidget {
 class _CustomDatePickerState extends State<CustomDatePicker> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 230,
-      child: Row(
-        children: [
-          const Spacer(),
-          _datePickerColumn(forType: ColumnType.month),
-          _datePickerColumn(forType: ColumnType.year),
-          const Spacer()
-        ],
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Expanded(
+          child: _datePickerColumn(forType: ColumnType.month),
+        ),
+        Expanded(
+          child: _datePickerColumn(forType: ColumnType.year),
+        ),
+      ],
     );
   }
 
@@ -55,30 +55,27 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
     final items =
         forType == ColumnType.month ? _getDatePickerMonths() : _getDatePickerYears().asMap();
 
-    return SizedBox(
-      width: 160,
-      child: ListWheelScrollView.useDelegate(
-        overAndUnderCenterOpacity: 0.3,
-        physics: const FixedExtentScrollPhysics(),
-        itemExtent: 31,
-        perspective: 0.001,
-        childDelegate: ListWheelChildLoopingListDelegate(
-            children: items.keys
-                .map(
-                  (index) => Text(
-                    items[index].toString(),
-                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w400),
-                  ),
-                )
-                .toList()),
-        onSelectedItemChanged: (index) => () {
-          if (forType == ColumnType.month) {
-            print("mesic $index");
-          } else {
-            print("rok $index");
-          }
-        },
-      ),
+    return ListWheelScrollView.useDelegate(
+      overAndUnderCenterOpacity: 0.3,
+      physics: const FixedExtentScrollPhysics(),
+      itemExtent: 31,
+      perspective: 0.001,
+      childDelegate: ListWheelChildLoopingListDelegate(
+          children: items.keys
+              .map(
+                (index) => Text(
+                  items[index].toString(),
+                  style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w400),
+                ),
+              )
+              .toList()),
+      onSelectedItemChanged: (index) => () {
+        if (forType == ColumnType.month) {
+          debugPrint("mesic $index");
+        } else {
+          debugPrint("rok $index");
+        }
+      },
     );
   }
 }

@@ -13,8 +13,8 @@ class CarouselContentWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 150.0),
+        const Padding(
+          padding: EdgeInsets.only(top: 150.0),
           child: Text(
             'K čemu prevence?',
             textAlign: TextAlign.left,
@@ -29,7 +29,7 @@ class CarouselContentWidget extends StatelessWidget {
           child: Text(
             text,
             textAlign: TextAlign.left,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 24.0,
               color: Color.fromRGBO(26, 25, 25, 1),
             ),

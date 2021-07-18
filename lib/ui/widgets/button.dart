@@ -5,7 +5,7 @@ class LoonoButton extends StatelessWidget {
   final void Function() onPressed;
   final String text;
   final bool enabled;
-  const LoonoButton(this.onPressed, this.text, this.enabled);
+  const LoonoButton(this.onPressed, this.text, {required this.enabled});
 
   @override
   Widget build(BuildContext context) {
