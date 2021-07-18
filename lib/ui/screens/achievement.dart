@@ -14,7 +14,7 @@ class AchievementScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SvgPicture.asset("assets/svg/guarantee.svg"),
+              SvgPicture.asset("assets/icons/guarantee.svg"),
               const SizedBox(height: 32),
               const Text("Báječné! Jsi poctivější než polovina žen v Česku"),
               const Text(
@@ -25,14 +25,14 @@ class AchievementScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SvgPicture.asset(
-                    "assets/svg/star.svg",
+                    "assets/icons/star.svg",
                   ),
                   const SizedBox(width: 4),
                   const Text("200"),
                 ],
               ),
               const SizedBox(height: 64),
-              LoonoButton(() => {debugPrint("Foo")}, "Some text", true),
+              LoonoButton(() => {debugPrint("Foo")}, "Pokracovat", true),
             ],
           ),
         ),

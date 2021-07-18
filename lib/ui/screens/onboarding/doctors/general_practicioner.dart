@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:loono/ui/widgets/progress_dots.dart';
 import 'package:loono/ui/widgets/universal_doctor.dart';
+import 'package:loono/ui/widgets/progress_dots.dart';
 
 class OnboardingGeneralPracticionerScreen extends StatelessWidget {
   @override
@@ -24,16 +24,19 @@ class OnboardingGeneralPracticionerScreen extends StatelessWidget {
                   const SizedBox(width: 32),
                   TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/doctor/gynecology');
+                      Navigator.pushNamed(context, '/onboarding/doctor/gynecology');
                     },
                     child: const Text('přeskočit'),
                   )
                 ],
               ),
-              const Expanded(
+              Expanded(
                 child: UniversalDoctor(
                   questionHeader: 'Praktického lékaře?',
                   imagePath: 'practicioner',
+                  nextCallback: () {
+                    Navigator.pushNamed(context, '/onboarding/doctor/gynecology');
+                  },
                 ),
               ),
             ],

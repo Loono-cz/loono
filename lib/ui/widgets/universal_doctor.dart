@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:loono/constants.dart';
 import 'package:loono/ui/widgets/button.dart';
-import '../../constants.dart';
 
 enum DoctorVisit {
   lastTwoYears,
@@ -12,11 +12,12 @@ class UniversalDoctor extends StatelessWidget {
   final String question;
   final String questionHeader;
   final String imagePath;
-
+  final void Function() nextCallback;
   const UniversalDoctor({
     this.question = 'Kdy jsi byla naposledy na preventivní prohlídce u',
     required this.questionHeader,
     required this.imagePath,
+    required this.nextCallback,
   });
 
   @override
@@ -26,21 +27,22 @@ class UniversalDoctor extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SvgPicture.asset(
-          'assets/svg/$imagePath.svg',
+          'assets/icons/$imagePath.svg',
         ),
         const SizedBox(height: 32),
         Text(
           question,
           textAlign: TextAlign.center,
         ),
+        const SizedBox(height: 32),
         Text(
           questionHeader,
           style: LoonoFonts.bigFontStyle,
         ),
         const SizedBox(height: 64),
-        LoonoButton(() => {debugPrint("Foo")}, "Some text", true),
+        LoonoButton(nextCallback, "V posledních dvou letech", true),
         const SizedBox(height: 16),
-        LoonoButton(() => {debugPrint("Foo")}, "Some text", false),
+        LoonoButton(nextCallback, "Více, než 2 roky nebo nevím", true),
       ],
     );
   }

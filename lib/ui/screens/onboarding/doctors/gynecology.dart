@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:loono/ui/widgets/progress_dots.dart';
 import 'package:loono/ui/widgets/universal_doctor.dart';
+import 'package:loono/ui/widgets/progress_dots.dart';
 
 class OnboardingGynecologyScreen extends StatelessWidget {
   @override
@@ -30,10 +30,13 @@ class OnboardingGynecologyScreen extends StatelessWidget {
                   )
                 ],
               ),
-              const Expanded(
+              Expanded(
                 child: UniversalDoctor(
                   questionHeader: 'Gynekologii?',
                   imagePath: 'gynecology',
+                  nextCallback: () {
+                    Navigator.pushNamed(context, '/achievement');
+                  },
                 ),
               ),
             ],

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:loono/ui/screens/onboarding/carousel/carousel_fourth.dart';
+import 'package:loono/ui/screens/onboarding/carousel/carousel_second.dart';
+import 'package:loono/ui/screens/onboarding/carousel/carousel_third.dart';
 import 'package:loono/ui/widgets/indicator_row.dart';
 import 'package:loono/ui/widgets/intro_video.dart';
 
@@ -23,29 +26,9 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
             controller: pageController,
             children: <Widget>[
               Scaffold(body: Center(child: IntroVideo())),
-              const Scaffold(
-                body: Center(
-                  child: Text('Second Page'),
-                ),
-              ),
-              const Scaffold(
-                body: Center(
-                  child: Text('Third Page'),
-                ),
-              ),
-              Scaffold(
-                body: Column(
-                  children: [
-                    const Text('Fourth Page'),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/onboarding/gender');
-                      },
-                      child: const Text('pokracovat'),
-                    )
-                  ],
-                ),
-              ),
+              OnboardingSecondCarouselScreen(),
+              OnboardingThirdCarouselScreen(),
+              OnboardFourthCarouselScreen(),
             ],
           ),
           Padding(

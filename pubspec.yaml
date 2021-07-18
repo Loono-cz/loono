@@ -45,4 +45,5 @@ flutter:
   assets:
     - assets/.env
     - assets/icons/
+    - assets/images/
     - assets/intro_video.mp4
