@@ -8,22 +8,18 @@ const textLines = [
   'mladých profesionálů'
 ];
 
-class IntroVideoScreen extends StatelessWidget {
+class IntroVideo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-          child: Stack(
-            fit: StackFit.loose,
-            children: [
-              CustomVideoPlayer(
-                  type: FileType.ASSETS,
-                  source: 'assets/intro_video.mp4'
-              ),
-              TextOverlay(textLines: textLines)
-            ]
-          )
-        )
+      body: Center(
+        child: Stack(
+          children: [
+            CustomVideoPlayer(type: FileType.ASSETS, source: 'assets/intro_video.mp4'),
+            TextOverlay(textLines: textLines),
+          ],
+        ),
+      ),
     );
   }
 }

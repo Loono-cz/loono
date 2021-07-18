@@ -29,11 +29,21 @@ class WelcomeScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 70),
-              OnboardingButton(label: 'Začít cestu za zdravím', onClick: () => print('Redirect to next page')),
+              OnboardingButton(
+                label: 'Začít cestu za zdravím',
+                onClick: () {
+                  Navigator.pushNamed(context, '/onboarding/carousel');
+                },
+              ),
               const SizedBox(height: 10),
               TextButton(
-                onPressed: () => print('Redirect to login'),
-                child: const Text('Už mám účet', style: TextStyle(color: Color(0xFF1A1919))),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/onboarding/carousel');
+                },
+                child: const Text(
+                  'Už mám účet',
+                  style: TextStyle(color: Color(0xFF1A1919)),
+                ),
               ),
             ],
           ),

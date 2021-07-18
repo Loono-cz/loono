@@ -3,14 +3,14 @@ import 'package:loono/ui/screens/onboarding_second.dart';
 import 'package:loono/ui/widgets/extend_inkwell.dart';
 import 'package:loono/ui/widgets/onboarding/genders_container.dart';
 
-class OnBoardingPage extends StatefulWidget {
-  OnBoardingPage({Key? key}) : super(key: key);
+class OnboardingGenderScreen extends StatefulWidget {
+  const OnboardingGenderScreen({Key? key}) : super(key: key);
 
   @override
-  _OnBoardingPageState createState() => _OnBoardingPageState();
+  _OnboardingGenderScreenState createState() => _OnboardingGenderScreenState();
 }
 
-class _OnBoardingPageState extends State<OnBoardingPage> {
+class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
   Gender? activeButton;
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             children: [
               TextButton(
                 onPressed: () {
-                  Navigator.pop(context); //TODO jump na posledni stranku
+                  Navigator.pushNamed(context, '/onboarding/doctor/general-practicioner');
                 },
                 child: const Align(
                   alignment: Alignment.topRight,
@@ -59,12 +59,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                   onTap: activeButton == null
                       ? () {}
                       : () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const OnBoardingPageSecond()),
-                          );
+                          Navigator.pushNamed(context, '/onboarding/doctor/general-practicioner');
                         },
                   splashColor: activeButton == null ? Colors.transparent : null,
                   materialColor: activeButton == null
@@ -74,8 +69,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                   child: const SizedBox(
                     height: 65,
                     child: Align(
-                      child: Text('Pokračovat',
-                          style: TextStyle(color: Colors.white)),
+                      child: Text('Pokračovat', style: TextStyle(color: Colors.white)),
                     ),
                   ),
                 ),
