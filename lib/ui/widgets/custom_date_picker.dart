@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 enum ColumnType { month, year }
 
 class CustomDatePicker extends StatefulWidget {
-  final double height;
+  final double customHeight;
   final DateTime today = DateTime.now();
 
-  CustomDatePicker({this.height = 230});
+  CustomDatePicker({this.customHeight = 230});
 
   @override
   _CustomDatePickerState createState() => _CustomDatePickerState();
@@ -15,14 +15,17 @@ class CustomDatePicker extends StatefulWidget {
 
 class _CustomDatePickerState extends State<CustomDatePicker> {
   DateTime datePickerDate = DateTime.now();
+  int _selectedMonthIndex = 0;
+  int _selectedYearIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: widget.height,
+      height: widget.customHeight,
       child: Row(
         children: [
           const Spacer(),
+          // TODO: add dot asset
           _datePickerColumn(forType: ColumnType.month),
           _datePickerColumn(forType: ColumnType.year),
           const Spacer()
@@ -64,6 +67,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
     for (int month = DateTime.january; month < widget.today.month; month++) {
       keysOrder.add(month);
     }
+    // TODO: null safety
     return {for (var key in keysOrder) key: monthsMap[key] as String};
   }
 
@@ -72,28 +76,55 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
         forType == ColumnType.month ? _getDatePickerMonths() : _getDatePickerYears().asMap();
 
     return SizedBox(
-      width: 160,
+      width: MediaQuery.of(context).size.width / 2,
       child: ListWheelScrollView.useDelegate(
-        overAndUnderCenterOpacity: 0.3,
         physics: const FixedExtentScrollPhysics(),
         itemExtent: 36,
         childDelegate: ListWheelChildLoopingListDelegate(
             children: items.keys
-                .map(
-                  (index) => Text(
-                    items[index].toString(),
-                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w400),
-                  ),
-                )
+                .map((index) =>
+                    _setListItem(forType: forType, index: index, text: items[index].toString()))
                 .toList()),
-        onSelectedItemChanged: (index) =>
-            _selectedItemHandle(forType: forType, items: items, value: items.keys.elementAt(index)),
+        onSelectedItemChanged: (index) {
+          _selectedItemHandle(forType: forType, items: items, value: items.keys.elementAt(index));
+          setState(() {
+            forType == ColumnType.month ? _selectedMonthIndex = index : _selectedYearIndex = index;
+          });
+        },
       ),
     );
   }
 
-  TextStyle _setTextStyle({required String text}) {
-    return TextStyle(fontSize: 24, fontWeight: FontWeight.w700);
+  Widget _setListItem({required int index, required ColumnType forType, required String text}) {
+    final int selectedIndex =
+        forType == ColumnType.month ? _selectedMonthIndex : _selectedYearIndex;
+
+    if (index == selectedIndex) {
+      return Opacity(
+          opacity: 1,
+          child: Text(
+            text,
+            style: const TextStyle(
+                fontSize: 24, fontWeight: FontWeight.w700, color: Color(0xFF000000)),
+          ));
+    } else if (((index <= selectedIndex + 2) && (index > selectedIndex)) ||
+        (index >= selectedIndex - 2) && (index < selectedIndex)) {
+      return Opacity(
+          opacity: 0.6,
+          child: Text(
+            text,
+            style: const TextStyle(
+                fontSize: 24, fontWeight: FontWeight.w400, color: Color(0xFF000000)),
+          ));
+    } else {
+      return Opacity(
+          opacity: 0.2,
+          child: Text(
+            text,
+            style: const TextStyle(
+                fontSize: 24, fontWeight: FontWeight.w400, color: Color(0xFF000000)),
+          ));
+    }
   }
 
   void _selectedItemHandle({required ColumnType forType, required Map items, required int value}) {
@@ -101,6 +132,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
       case ColumnType.month:
         datePickerDate = DateTime(datePickerDate.year, value);
         print("month change $datePickerDate");
+        print(_selectedMonthIndex);
         break;
       case ColumnType.year:
         datePickerDate = DateTime(items[value] as int, datePickerDate.month);
