@@ -22,15 +22,25 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: widget.customHeight,
-      child: Row(
-        children: [
-          const Spacer(),
-          // TODO: add dot asset
-          _datePickerColumn(forType: ColumnType.month),
-          _datePickerColumn(forType: ColumnType.year),
-          const Spacer()
-        ],
-      ),
+      child: Stack(alignment: AlignmentDirectional.centerStart, children: [
+        Row(
+          children: [
+            const Spacer(),
+            // TODO: add dot asset
+            _datePickerColumn(forType: ColumnType.month),
+            _datePickerColumn(forType: ColumnType.year),
+            const Spacer()
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Container(
+            width: 10,
+            height: 10,
+            decoration: const BoxDecoration(color: Color(0xffefad89), shape: BoxShape.circle),
+          ),
+        )
+      ]),
     );
   }
 
@@ -134,7 +144,6 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
       case ColumnType.month:
         datePickerDate = DateTime(datePickerDate.year, value);
         print("month change $datePickerDate");
-        print(_selectedMonthIndex);
         break;
       case ColumnType.year:
         datePickerDate = DateTime(items[value] as int, datePickerDate.month);
