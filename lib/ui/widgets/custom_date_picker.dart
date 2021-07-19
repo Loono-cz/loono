@@ -4,10 +4,7 @@ import 'package:flutter/material.dart';
 enum ColumnType { month, year }
 
 class CustomDatePicker extends StatefulWidget {
-  final double customHeight;
   final DateTime today = DateTime.now();
-
-  CustomDatePicker({this.customHeight = 232});
 
   @override
   _CustomDatePickerState createState() => _CustomDatePickerState();
@@ -21,7 +18,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: widget.customHeight,
+      height: 232,
       child: Stack(alignment: AlignmentDirectional.centerStart, children: [
         Row(
           children: [
