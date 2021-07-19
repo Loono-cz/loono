@@ -7,7 +7,7 @@ class CustomDatePicker extends StatefulWidget {
   final double customHeight;
   final DateTime today = DateTime.now();
 
-  CustomDatePicker({this.customHeight = 230});
+  CustomDatePicker({this.customHeight = 232});
 
   @override
   _CustomDatePickerState createState() => _CustomDatePickerState();
@@ -36,7 +36,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
 
   List<int> _getDatePickerYears() {
     final List<int> years = [];
-    for (int year = widget.today.year; year <= widget.today.year; year++) {
+    for (int year = widget.today.year; year <= widget.today.year + 10; year++) {
       years.add(year);
     }
     for (int year = widget.today.year - 100; year < widget.today.year; year++) {
@@ -61,7 +61,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
       DateTime.december: "Prosinec",
     };
     final List<int> keysOrder = [];
-    for (int month = widget.today.month; month <= 12; month++) {
+    for (int month = widget.today.month; month <= DateTime.monthsPerYear; month++) {
       keysOrder.add(month);
     }
     for (int month = DateTime.january; month < widget.today.month; month++) {
@@ -76,7 +76,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
         forType == ColumnType.month ? _getDatePickerMonths() : _getDatePickerYears().asMap();
 
     return SizedBox(
-      width: MediaQuery.of(context).size.width / 2,
+      width: MediaQuery.of(context).size.width / 2.5,
       child: ListWheelScrollView.useDelegate(
         physics: const FixedExtentScrollPhysics(),
         itemExtent: 36,
@@ -88,7 +88,9 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
         onSelectedItemChanged: (index) {
           _selectedItemHandle(forType: forType, items: items, value: items.keys.elementAt(index));
           setState(() {
-            forType == ColumnType.month ? _selectedMonthIndex = index : _selectedYearIndex = index;
+            forType == ColumnType.month
+                ? _selectedMonthIndex = items.keys.elementAt(index)
+                : _selectedYearIndex = index;
           });
         },
       ),
