@@ -21,12 +21,10 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
       height: 232,
       child: Stack(alignment: AlignmentDirectional.centerStart, children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Spacer(),
-            // TODO: add dot asset
             _datePickerColumn(forType: ColumnType.month),
             _datePickerColumn(forType: ColumnType.year),
-            const Spacer()
           ],
         ),
         Padding(
@@ -117,7 +115,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
                 fontSize: 24, fontWeight: FontWeight.w700, color: Color(0xFF000000)),
           ));
     } else if (((index <= selectedIndex + 2) && (index > selectedIndex)) ||
-        (index >= selectedIndex - 2) && (index < selectedIndex)) {
+        ((index >= selectedIndex - 2) && (index < selectedIndex))) {
       return Opacity(
           opacity: 0.6,
           child: Text(
@@ -136,6 +134,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
     }
   }
 
+  // TODO: Handle selected date
   void _selectedItemHandle({required ColumnType forType, required Map items, required int value}) {
     switch (forType) {
       case ColumnType.month:
