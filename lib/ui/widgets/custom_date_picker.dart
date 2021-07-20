@@ -12,8 +12,8 @@ class CustomDatePicker extends StatefulWidget {
 
 class _CustomDatePickerState extends State<CustomDatePicker> {
   DateTime datePickerDate = DateTime.now();
-  int _selectedMonthIndex = 0;
-  int _selectedYearIndex = 0;
+  late int _selectedMonthIndex = widget.today.month;
+  late int _selectedYearIndex = 0;
 
   @override
   Widget build(BuildContext context) {
