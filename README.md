@@ -2,15 +2,12 @@
 
 We show prevention matters.
 
-## Getting Started
+- To generate the freezed or db part files run `flutter packages pub run build_runner build --delete-conflicting-outputs`.
+- If you need to define anything non static on a freezed class remember to add a private constructor (https://pub.dev/packages/freezed#custom-getters-and-methods)
+- You might need to rerun the Dart Analyser for the IDE to be pick up the generated files
 
-This project is a starting point for a Flutter application.
+Notes
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- We are committing generated files to avoid situations where those files might be different among
+  developers or might differ from the ones generated via the CodeMagic pipeline. We also commit them to
+  avoid spending time and money when building the app on CodeMagic.
