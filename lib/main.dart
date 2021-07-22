@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:loono/ui/screens/onboarding/birthdate.dart';
 import 'package:loono/ui/screens/onboarding/carousel/carousel.dart';
 import 'package:loono/ui/screens/onboarding/doctors/general_practicioner.dart';
@@ -20,6 +21,8 @@ class Loono extends StatelessWidget {
       title: 'Loono',
       color: Colors.deepOrange,
       initialRoute: '/welcome',
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       routes: {
         '/welcome': (_) => const WelcomeScreen(),
         '/onboarding/carousel': (_) => const OnboardingCarouselScreen(),

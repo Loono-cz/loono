@@ -11,3 +11,8 @@ Notes
 - We are committing generated files to avoid situations where those files might be different among
   developers or might differ from the ones generated via the CodeMagic pipeline. We also commit them to
   avoid spending time and money when building the app on CodeMagic.
+
+## App internalizations
+
+- Currently app supports only Czech language, all texts used within the app should be located in `lib/l10n/intl_cs.arb`. Supporting new languages can be made by adding new language arb file.
+- Internalization is done by [flutter_internalization](https://flutter.dev/docs/development/accessibility-and-localization/internationalization) plugin

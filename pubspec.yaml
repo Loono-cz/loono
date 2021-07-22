@@ -20,9 +20,12 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_dotenv: ^5.0.0
+  flutter_localizations:
+    sdk: flutter
   flutter_svg: ^0.22.0
   freezed_annotation: ^0.14.2
   get_it: ^7.2.0
+  intl: ^0.17.0
   json_annotation: ^4.0.1
   moor: ^4.1.0
   package_info: ^2.0.2
@@ -41,6 +44,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true
 
   assets:
     - assets/.env
