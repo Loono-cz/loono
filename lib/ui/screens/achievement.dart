@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AchievementScreen extends StatelessWidget {
   final String imagePath = 'guarantee';
@@ -32,7 +33,8 @@ class AchievementScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 64),
-              LoonoButton(() => {debugPrint("Foo")}, "Pokracovat", enabled: true),
+              LoonoButton(() => {debugPrint("Foo")}, AppLocalizations.of(context)!.continue_info,
+                  enabled: true),
             ],
           ),
         ),
