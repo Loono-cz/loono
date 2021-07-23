@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:loono/ui/screens/onboarding/birthdate.dart';
+import 'package:loono/ui/screens/onboarding/carousel/carousel.dart';
+import 'package:loono/ui/screens/onboarding/doctors/general_practicioner.dart';
+import 'package:loono/ui/screens/onboarding/doctors/gynecology.dart';
+import 'package:loono/ui/screens/onboarding/gender.dart';
+import 'package:loono/ui/screens/welcome.dart';
+import 'package:loono/ui/screens/achievement.dart';
 import 'package:loono/utils/registry.dart';
-import 'package:loono/ui/screens/dashboard.dart';
 
 Future<void> main() async {
   await setup();
@@ -13,9 +19,15 @@ class Loono extends StatelessWidget {
     return MaterialApp(
       title: 'Loono',
       color: Colors.deepOrange,
-      initialRoute: '/dashboard',
+      initialRoute: '/welcome',
       routes: {
-        '/dashboard': (_) => DashboardScreen(),
+        '/welcome': (_) => const WelcomeScreen(),
+        '/onboarding/carousel': (_) => const OnboardingCarouselScreen(),
+        '/onboarding/gender': (_) => const OnboardingGenderScreen(),
+        '/onboarding/birthdate': (_) => OnBoardingBirthdateScreen(),
+        '/onboarding/doctor/general-practicioner': (_) => OnboardingGeneralPracticionerScreen(),
+        '/onboarding/doctor/gynecology': (_) => OnboardingGynecologyScreen(),
+        '/achievement': (_) => AchievementScreen(),
       },
     );
   }
