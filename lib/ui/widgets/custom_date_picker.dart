@@ -32,7 +32,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
           child: Container(
             width: 10,
             height: 10,
-            decoration: const BoxDecoration(color: Color(0xffbe5713), shape: BoxShape.circle),
+            decoration: const BoxDecoration(color: Color(0xFFEFAD89), shape: BoxShape.circle),
           ),
         )
       ]),
