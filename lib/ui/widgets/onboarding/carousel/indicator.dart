@@ -107,8 +107,8 @@ class _IndicatorState extends State<Indicator> with SingleTickerProviderStateMix
         borderRadius: BorderRadius.circular(6.0),
         color: color,
       ),
-      height: 4.0,
       width: width,
+      height: 4.0,
     );
   }
 }
