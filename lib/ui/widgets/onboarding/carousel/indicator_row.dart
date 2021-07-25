@@ -25,6 +25,9 @@ class IndicatorRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final itemMaxWidth =
+        (MediaQuery.of(context).size.width - _sidePadding * 2) / numOfIndicators * _sizeRatio;
+
     return Padding(
       padding: padding,
       child: Row(
@@ -33,9 +36,7 @@ class IndicatorRow extends StatelessWidget {
           numOfIndicators,
           (index) {
             return Indicator(
-              maxWidth: (MediaQuery.of(context).size.width - _sidePadding * 2) /
-                  numOfIndicators *
-                  _sizeRatio,
+              maxWidth: itemMaxWidth,
               finished: index < currentIndex,
               shouldAnimate: index == currentIndex,
               duration: currentDuration,
