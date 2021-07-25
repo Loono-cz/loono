@@ -24,10 +24,7 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
   void jumpToNextPage() => pageController.jumpToPage(currentPageIndex + 1);
 
   final stories = const <StoryPage>[
-    StoryPage.dark(
-      content: Scaffold(body: Center(child: IntroVideo())),
-      duration: Duration(seconds: 12),
-    ),
+    StoryPage.dark(content: IntroVideo(), duration: Duration(seconds: 13)),
     StoryPage(content: OnboardingSecondCarouselScreen()),
     StoryPage(content: OnboardingThirdCarouselScreen()),
     StoryPage(content: OnboardFourthCarouselScreen()),
