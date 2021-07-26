@@ -28,6 +28,7 @@ class Indicator extends StatefulWidget {
     required this.duration,
     this.shouldAnimate = false,
     required this.maxWidth,
+    this.height = 4.0,
     required this.indicatorStyle,
   }) : super(key: key);
 
@@ -35,6 +36,7 @@ class Indicator extends StatefulWidget {
   final Duration duration;
   final bool shouldAnimate;
   final double maxWidth;
+  final double height;
   final IndicatorStyle indicatorStyle;
 
   @override
@@ -108,7 +110,7 @@ class _IndicatorState extends State<Indicator> with SingleTickerProviderStateMix
         color: color,
       ),
       width: width,
-      height: 4.0,
+      height: widget.height,
     );
   }
 }
