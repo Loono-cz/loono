@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loono/ui/widgets/carousel_content_widget.dart';
+import 'package:loono/l10n/ext.dart';
 
 class OnboardingThirdCarouselScreen extends StatelessWidget {
   @override
@@ -10,7 +11,7 @@ class OnboardingThirdCarouselScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: CarouselContentWidget(
-            text: 'Zažiješ úlevu, že jsi nic nezanedbal/a.',
+            text: context.l10n.carousel_content_experience_relief,
             image: Row(
               children: [
                 Image.asset('assets/images/carousel-image-3.png'),
