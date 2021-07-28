@@ -36,6 +36,12 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
   StoryPage get currentStory => stories[currentPageIndex];
 
   @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,

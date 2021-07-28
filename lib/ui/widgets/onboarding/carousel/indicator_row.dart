@@ -13,8 +13,8 @@ class IndicatorRow extends StatelessWidget {
     required this.currentDuration,
     required this.currentStoryPageBackground,
     this.padding = const EdgeInsets.only(top: 60.0, left: _sidePadding, right: _sidePadding),
-  })  : assert(currentIndex >= 0 && currentIndex < numOfIndicators),
-        assert(numOfIndicators >= 0),
+  })  : assert(numOfIndicators > 0),
+        assert(currentIndex >= 0 && currentIndex < numOfIndicators),
         super(key: key);
 
   final int numOfIndicators;
