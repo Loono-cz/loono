@@ -47,6 +47,12 @@ class _FallbackAccountContentState extends State<FallbackAccountContent> {
   }
 
   @override
+  void dispose() {
+    _textEditingController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
