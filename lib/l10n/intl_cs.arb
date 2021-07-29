@@ -1,5 +1,7 @@
 {
   "@@locale" : "cs",
   "continue_info": "Pokračovat",
-  "@continue_info": {}
+  "@continue_info": {},
+  "carousel_content_experience_relief": "Zažiješ úlevu, že jsi nic nezanedbal/a.",
+  "@carousel_content_experience_relief": {}
 }
