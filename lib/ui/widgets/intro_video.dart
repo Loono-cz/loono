@@ -9,6 +9,8 @@ const textLines = [
 ];
 
 class IntroVideo extends StatelessWidget {
+  const IntroVideo({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

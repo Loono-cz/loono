@@ -11,6 +11,10 @@ class LoonoColors {
   static const gray = Color.fromARGB(255, 186, 186, 186);
   static const lightGray = Color.fromARGB(255, 248, 244, 242);
   static const secondaryFont = Color.fromARGB(255, 98, 181, 182);
+  static const storyIndicatorActiveDark = Color.fromARGB(255, 26, 25, 25);
+  static const storyIndicatorUnderlyingDark = Color.fromRGBO(26, 25, 25, 0.5);
+  static const storyIndicatorActiveLight = Color.fromARGB(255, 255, 255, 255);
+  static const storyIndicatorUnderlyingLight = Color.fromRGBO(248, 244, 242, 0.5);
 }
 
 class LoonoFonts {

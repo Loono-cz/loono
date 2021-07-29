@@ -2,6 +2,8 @@
   "@@locale" : "cs",
   "continue_info": "Pokračovat",
   "@continue_info": {},
+  "carousel_content_experience_relief": "Zažiješ úlevu, že jsi nic nezanedbal/a.",
+  "@carousel_content_experience_relief": {},
   "confirm_info": "Potvrdit",
   "@confirm_info": {},
   "fallback_account_name": "Tvoje přezdívka",
