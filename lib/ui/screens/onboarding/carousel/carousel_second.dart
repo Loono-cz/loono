@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:loono/ui/widgets/carousel_content_widget.dart';
 
 class OnboardingSecondCarouselScreen extends StatelessWidget {
+  const OnboardingSecondCarouselScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
