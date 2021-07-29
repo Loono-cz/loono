@@ -1,5 +1,11 @@
 {
   "@@locale" : "cs",
   "continue_info": "Pokračovat",
-  "@continue_info": {}
+  "@continue_info": {},
+  "skip_info": "Přeskočit",
+  "@skip_info": {},
+  "notification_allow_desc": "Když povolíš notifikace, připomeneme ti včas objednání na další prohlídku.",
+  "@notification_allow_desc": {},
+  "notification_allow_button": "Zapnout notifikace",
+  "@notification_allow_button": {}
 }
