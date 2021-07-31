@@ -78,8 +78,8 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
     for (int month = DateTime.january; month < widget.today.month; month++) {
       keysOrder.add(month);
     }
-    // TODO: null safety - wtf monthsMap is type of Map<int, String>
-    return {for (var key in keysOrder) key: monthsMap[key] as String};
+
+    return {for (var key in keysOrder) key: monthsMap[key]!};
   }
 
   Widget _datePickerColumn({required ColumnType forType}) {
