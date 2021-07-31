@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 
 enum ColumnType { month, year }
 
+typedef Callback = void Function(DateTime selectedDate);
+
 class CustomDatePicker extends StatefulWidget {
   final DateTime today = DateTime.now();
+  final Callback callback;
+
+  CustomDatePicker({Key? key, required this.callback}) : super(key: key);
 
   @override
   _CustomDatePickerState createState() => _CustomDatePickerState();
@@ -147,7 +152,6 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
         datePickerDate = DateTime(items[value] as int, datePickerDate.month);
         break;
     }
-    // TODO: Handle selected date
-    print("$forType change to value $datePickerDate");
+    widget.callback(datePickerDate);
   }
 }
