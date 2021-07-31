@@ -24,14 +24,14 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
       height: 232,
       child: Stack(alignment: AlignmentDirectional.centerStart, children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             _datePickerColumn(forType: ColumnType.month),
             _datePickerColumn(forType: ColumnType.year),
           ],
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 16, bottom: 10),
+          padding: const EdgeInsets.only(bottom: 10),
           child: Container(
             width: 10,
             height: 10,
