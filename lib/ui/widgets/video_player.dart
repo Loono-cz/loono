@@ -4,20 +4,28 @@ import 'package:video_player/video_player.dart';
 enum FileType { url, assets }
 
 class CustomVideoPlayer extends StatefulWidget {
+  const CustomVideoPlayer({
+    Key? key,
+    required this.type,
+    required this.source,
+    this.autoplay = true,
+    this.looping = false,
+    this.onLoaded,
+  }) : super(key: key);
+
   final String source;
   final FileType type;
   final bool autoplay;
-  const CustomVideoPlayer(
-      {required this.type, required this.source, this.autoplay = true, Key? key})
-      : super(key: key);
+  final bool looping;
+  final VoidCallback? onLoaded;
 
   @override
   _VideoPlayerScreenState createState() => _VideoPlayerScreenState();
 }
 
 class _VideoPlayerScreenState extends State<CustomVideoPlayer> {
-  late VideoPlayerController _controller;
-  late Future<void> _initializeVideoPlayerFuture;
+  late final VideoPlayerController _controller;
+  late final Future<void> _initializeVideoPlayerFuture;
 
   @override
   void initState() {
@@ -25,9 +33,31 @@ class _VideoPlayerScreenState extends State<CustomVideoPlayer> {
         ? VideoPlayerController.network(widget.source)
         : VideoPlayerController.asset(widget.source);
     _initializeVideoPlayerFuture = _controller.initialize();
-    _initializeVideoPlayerFuture.then((val) => {if (widget.autoplay) _controller.play()});
-    _controller.setLooping(true);
+    _initializeVideoPlayerFuture.then((_) {
+      if (widget.autoplay) {
+        _controller.play();
+        widget.onLoaded?.call();
+      }
+    });
+    _controller.setLooping(widget.looping);
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(CustomVideoPlayer oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (_controller.value.isInitialized && _controller.value.position != Duration.zero) {
+      // without this, quick swiping right and back will reset and stop the indicator, but the video will be still playing
+      // (and without addPostFrameCallback it throws some errors)
+      WidgetsBinding.instance!.addPostFrameCallback((_) async {
+        // without this delay, swiping right will replay the sound from the beginning of the video on the next screen for a moment
+        await Future.delayed(const Duration(milliseconds: 750));
+        if (mounted) {
+          _controller.seekTo(Duration.zero);
+          widget.onLoaded?.call();
+        }
+      });
+    }
   }
 
   @override
@@ -64,16 +94,16 @@ class _VideoPlayerScreenState extends State<CustomVideoPlayer> {
           },
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            _controller.value.isPlaying ? _controller.pause() : _controller.play();
-          });
-        },
-        child: Icon(
-          _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-        ),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     setState(() {
+      //       _controller.value.isPlaying ? _controller.pause() : _controller.play();
+      //     });
+      //   },
+      //   child: Icon(
+      //     _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
+      //   ),
+      // ),
     );
   }
 }

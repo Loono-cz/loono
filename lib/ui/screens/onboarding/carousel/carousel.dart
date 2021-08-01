@@ -17,6 +17,12 @@ class OnboardingCarouselScreen extends StatefulWidget {
 class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
   final PageController pageController = PageController();
 
+  bool isStoryLoaded = false;
+
+  void startStory() {
+    if (!isStoryLoaded) setState(() => isStoryLoaded = true);
+  }
+
   int get currentPageIndex => pageController.hasClients ? pageController.page?.round() ?? 0 : 0;
 
   bool get canTransitionToPrevStory => currentPageIndex > 0;
@@ -27,11 +33,15 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
 
   void jumpToNextStory() => pageController.jumpToPage(currentPageIndex + 1);
 
-  final stories = const <StoryPage>[
-    StoryPage.dark(content: IntroVideo(), duration: Duration(seconds: 13)),
-    StoryPage(content: OnboardingSecondCarouselScreen()),
-    StoryPage(content: OnboardingThirdCarouselScreen()),
-    StoryPage(
+  List<StoryPage> get stories => <StoryPage>[
+    StoryPage.dark(
+      content: IntroVideo(onVideoLoaded: startStory),
+      duration: const Duration(milliseconds: 12700),
+      autoplay: false,
+    ),
+    const StoryPage(content: OnboardingSecondCarouselScreen()),
+    const StoryPage(content: OnboardingThirdCarouselScreen()),
+    const StoryPage(
       content: OnboardFourthCarouselScreen(),
       interactiveContent: OnboardFourthCarouselInteractiveContent(),
     ),
@@ -52,7 +62,7 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
       child: Stack(
         children: [
           PageView(
-            onPageChanged: (_) => setState(() {}),
+            onPageChanged: (_) => setState(() => isStoryLoaded = false),
             controller: pageController,
             children: stories,
           ),
@@ -62,6 +72,7 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
             currentDuration: currentStory.duration,
             currentStoryPageBackground: currentStory.storyPageBackground,
             onStoryFinish: canTransitionToNextStory ? jumpToNextStory : null,
+            paused: !currentStory.autoplay && !isStoryLoaded,
           ),
           if (canTransitionToPrevStory) TapArea.leftSide(onTap: jumpToPrevStory),
           if (canTransitionToNextStory) TapArea.rightSide(onTap: jumpToNextStory),

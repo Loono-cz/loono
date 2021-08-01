@@ -9,7 +9,9 @@ const textLines = [
 ];
 
 class IntroVideo extends StatelessWidget {
-  const IntroVideo({Key? key}) : super(key: key);
+  const IntroVideo({Key? key, this.onVideoLoaded}) : super(key: key);
+
+  final VoidCallback? onVideoLoaded;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,11 @@ class IntroVideo extends StatelessWidget {
       body: Center(
         child: Stack(
           children: [
-            const CustomVideoPlayer(type: FileType.assets, source: 'assets/intro_video.mp4'),
+            CustomVideoPlayer(
+              type: FileType.assets,
+              source: 'assets/intro_video.mp4',
+              onLoaded: onVideoLoaded,
+            ),
             TextOverlay(textLines: textLines),
           ],
         ),
