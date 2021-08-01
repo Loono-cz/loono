@@ -6,8 +6,12 @@ typedef Callback = void Function(DateTime selectedDate);
 class CustomDatePicker extends StatefulWidget {
   final DateTime today = DateTime.now();
   final Callback callback;
+  final int yearsBeforeActual;
+  final int yearsOverActual;
 
-  CustomDatePicker({Key? key, required this.callback}) : super(key: key);
+  CustomDatePicker(
+      {Key? key, required this.callback, this.yearsBeforeActual = 100, this.yearsOverActual = 10})
+      : super(key: key);
 
   @override
   _CustomDatePickerState createState() => _CustomDatePickerState();
@@ -43,14 +47,13 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   }
 
   List<int> get _datePickerYears {
-    final List<int> years = [];
-    for (int year = widget.today.year; year <= widget.today.year + 10; year++) {
-      years.add(year);
-    }
-    for (int year = widget.today.year - 100; year < widget.today.year; year++) {
-      years.add(year);
-    }
-    return years;
+    return List<int>.generate(widget.yearsBeforeActual + widget.yearsOverActual + 1, (index) {
+      if (index > widget.yearsOverActual) {
+        return (widget.today.year - widget.yearsBeforeActual - widget.yearsOverActual) + index - 1;
+      } else {
+        return widget.today.year + index;
+      }
+    });
   }
 
   Map<int, String> get _datePickerMonths {
@@ -70,13 +73,13 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
       DateTime.december: "Prosinec",
     };
 
-    final List<int> keysOrder = [];
-    for (int month = widget.today.month; month <= DateTime.monthsPerYear; month++) {
-      keysOrder.add(month);
-    }
-    for (int month = DateTime.january; month < widget.today.month; month++) {
-      keysOrder.add(month);
-    }
+    final List<int> keysOrder = List<int>.generate(DateTime.monthsPerYear, (index) {
+      if (DateTime.monthsPerYear - index < widget.today.month) {
+        return index - (DateTime.monthsPerYear - widget.today.month);
+      } else {
+        return widget.today.month + index;
+      }
+    });
 
     return {for (var key in keysOrder) key: monthsMap[key]!};
   }
