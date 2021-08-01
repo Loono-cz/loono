@@ -118,7 +118,7 @@ class _FallbackAccountContentState extends State<FallbackAccountContent> {
         decoration: InputDecoration(
           hintText: widget.hint,
           focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: LoonoColors.black),
+            borderSide: BorderSide(color: LoonoColors.primaryEnabled, width: 2.0),
           ),
         ),
         autofocus: true,
