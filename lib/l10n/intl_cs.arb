@@ -3,5 +3,13 @@
   "continue_info": "Pokračovat",
   "@continue_info": {},
   "carousel_content_experience_relief": "Zažiješ úlevu, že jsi nic nezanedbal/a.",
-  "@carousel_content_experience_relief": {}
+  "@carousel_content_experience_relief": {},
+  "confirm_info": "Potvrdit",
+  "@confirm_info": {},
+  "fallback_account_name": "Tvoje přezdívka",
+  "@fallback_account_name": {},
+  "fallback_account_email": "Tvůj e-mail",
+  "@fallback_account_email": {},
+  "fallback_account_email_desc": "Je tohle tvůj aktuální email? Pošleme ti do něj připomínku šesti nejdůležitějších preventivních prohlídek za rok.",
+  "@fallback_account_email_desc": {}
 }
