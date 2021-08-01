@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
 enum ColumnType { month, year }
-typedef Callback = void Function(DateTime selectedDate);
 
 class CustomDatePicker extends StatefulWidget {
   final DateTime today = DateTime.now();
-  final Callback callback;
+  final ValueChanged valueChanged;
   final int yearsBeforeActual;
   final int yearsOverActual;
 
   CustomDatePicker(
-      {Key? key, required this.callback, this.yearsBeforeActual = 100, this.yearsOverActual = 10})
+      {Key? key,
+      required this.valueChanged,
+      this.yearsBeforeActual = 100,
+      this.yearsOverActual = 10})
       : super(key: key);
 
   @override
@@ -21,6 +23,12 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   DateTime datePickerDate = DateTime.now();
   late int _selectedMonthIndex = widget.today.month;
   late int _selectedYearIndex = 0;
+
+  @override
+  void initState() {
+    widget.valueChanged(datePickerDate);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -154,6 +162,6 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
         datePickerDate = DateTime(items[value] as int, datePickerDate.month);
         break;
     }
-    widget.callback(datePickerDate);
+    widget.valueChanged(datePickerDate);
   }
 }
