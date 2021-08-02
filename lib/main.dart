@@ -21,7 +21,7 @@ class Loono extends StatelessWidget {
     return MaterialApp(
       title: 'Loono',
       color: Colors.deepOrange,
-      initialRoute: '/onboarding/allow_notifications',
+      initialRoute: '/welcome',
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       routes: {
