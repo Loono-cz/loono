@@ -40,7 +40,7 @@ class AllowNotificationsScreen extends StatelessWidget {
         },
         child: Text(
           context.l10n.skip_info,
-          style: const TextStyle(color: LoonoColors.black, fontWeight: FontWeight.w400),
+          style: const TextStyle(color: LoonoColors.black, fontWeight: FontWeight.w600),
         ),
       ),
     );
