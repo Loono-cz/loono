@@ -15,6 +15,17 @@ class LoonoColors {
   static const storyIndicatorUnderlyingDark = Color.fromRGBO(26, 25, 25, 0.5);
   static const storyIndicatorActiveLight = Color.fromARGB(255, 255, 255, 255);
   static const storyIndicatorUnderlyingLight = Color.fromRGBO(248, 244, 242, 0.5);
+  static const bottomSheet = Color.fromARGB(255, 253, 228, 211);
+
+  static const rainbow = <Color>[
+    Color.fromARGB(255, 230, 87, 86),
+    Color.fromARGB(255, 225, 127, 63),
+    Color.fromARGB(255, 240, 243, 61),
+    Color.fromARGB(255, 94, 221, 226),
+    Color.fromARGB(255, 156, 215, 242),
+    Color.fromARGB(255, 197, 85, 236),
+    Color.fromARGB(255, 237, 141, 140),
+  ];
 }
 
 class LoonoFonts {
