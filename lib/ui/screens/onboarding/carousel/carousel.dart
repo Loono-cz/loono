@@ -17,11 +17,35 @@ class OnboardingCarouselScreen extends StatefulWidget {
 class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
   final PageController pageController = PageController();
 
-  bool isStoryLoaded = false;
+  bool playStoryState = false;
 
-  void startStory() {
-    if (!isStoryLoaded) setState(() => isStoryLoaded = true);
+  bool get isStoryPaused => playStoryState == false;
+
+  List<StoryPage> get stories => <StoryPage>[
+    // const StoryPage(content: OnboardingSecondCarouselScreen(), duration: Duration(milliseconds: 3000)),
+    StoryPage.dark(
+      content: IntroVideo(onVideoLoaded: startStory, videoPaused: isStoryPaused),
+      duration: const Duration(milliseconds: 12700),
+      autoplay: false,
+    ),
+    // 3000ms je jen temporary na testovani, jestli se updatuje delka animace u ostatnich na default
+    const StoryPage(content: OnboardingSecondCarouselScreen(), duration: Duration(milliseconds: 3000)),
+    const StoryPage(content: OnboardingThirdCarouselScreen()),
+    const StoryPage(
+      content: OnboardFourthCarouselScreen(),
+      interactiveContent: OnboardFourthCarouselInteractiveContent(),
+    ),
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    if (stories.isNotEmpty && stories.first.autoplay) startStory();
   }
+
+  void startStory() => setState(() => playStoryState = true);
+
+  void pauseStory() => setState(() => playStoryState = false);
 
   int get currentPageIndex => pageController.hasClients ? pageController.page?.round() ?? 0 : 0;
 
@@ -32,20 +56,6 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
   void jumpToPrevStory() => pageController.jumpToPage(currentPageIndex - 1);
 
   void jumpToNextStory() => pageController.jumpToPage(currentPageIndex + 1);
-
-  List<StoryPage> get stories => <StoryPage>[
-    StoryPage.dark(
-      content: IntroVideo(onVideoLoaded: startStory),
-      duration: const Duration(milliseconds: 12700),
-      autoplay: false,
-    ),
-    const StoryPage(content: OnboardingSecondCarouselScreen()),
-    const StoryPage(content: OnboardingThirdCarouselScreen()),
-    const StoryPage(
-      content: OnboardFourthCarouselScreen(),
-      interactiveContent: OnboardFourthCarouselInteractiveContent(),
-    ),
-  ];
 
   StoryPage get currentStory => stories[currentPageIndex];
 
@@ -62,7 +72,7 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
       child: Stack(
         children: [
           PageView(
-            onPageChanged: (_) => setState(() => isStoryLoaded = false),
+            onPageChanged: (_) => currentStory.autoplay ? startStory() : pauseStory(),
             controller: pageController,
             children: stories,
           ),
@@ -72,10 +82,11 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
             currentDuration: currentStory.duration,
             currentStoryPageBackground: currentStory.storyPageBackground,
             onStoryFinish: canTransitionToNextStory ? jumpToNextStory : null,
-            paused: !currentStory.autoplay && !isStoryLoaded,
+            paused: isStoryPaused,
           ),
           if (canTransitionToPrevStory) TapArea.leftSide(onTap: jumpToPrevStory),
           if (canTransitionToNextStory) TapArea.rightSide(onTap: jumpToNextStory),
+          if (stories.isNotEmpty) TapArea.max(onLongPress: pauseStory, onLongPressUp: startStory),
           if (currentStory.hasInteractiveContent) currentStory.interactiveContent!,
         ],
       ),

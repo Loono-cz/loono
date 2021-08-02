@@ -25,6 +25,7 @@ class Indicator extends StatefulWidget {
   const Indicator({
     Key? key,
     this.finished = false,
+    this.paused = false,
     required this.duration,
     this.shouldAnimate = false,
     required this.maxWidth,
@@ -33,7 +34,9 @@ class Indicator extends StatefulWidget {
     this.onFinish,
   }) : super(key: key);
 
+
   final bool finished;
+  final bool paused;
   final Duration duration;
   final bool shouldAnimate;
   final double maxWidth;
@@ -58,17 +61,28 @@ class _IndicatorState extends State<Indicator> with SingleTickerProviderStateMix
       duration: widget.duration,
       vsync: this,
     )..addStatusListener((status) {
-        if (status == AnimationStatus.completed) {
-          widget.onFinish?.call();
-        }
-      });
+      if (status == AnimationStatus.completed) {
+        widget.onFinish?.call();
+      }
+    });
     containerAnim = Tween<double>(begin: 0.0, end: widget.maxWidth).animate(animationController);
   }
 
   @override
   void didUpdateWidget(Indicator oldWidget) {
     super.didUpdateWidget(oldWidget);
-    animationController.reset();
+    if (animationController.value > 0) {
+      if (widget.paused && !oldWidget.paused) {
+        // from animating to paused state
+        animationController.stop();
+      } else if (!widget.paused && oldWidget.paused) {
+        // from paused to animating state
+        animationController.forward();
+      } else {
+        animationController.reset();
+      }
+    }
+
     if (animationController.duration != widget.duration) {
       animationController.duration = widget.duration;
     }
@@ -83,9 +97,9 @@ class _IndicatorState extends State<Indicator> with SingleTickerProviderStateMix
   @override
   Widget build(BuildContext context) {
     if (widget.shouldAnimate) {
-      animationController
-        ..reset()
-        ..forward();
+      if (!widget.paused) {
+        animationController.forward();
+      }
 
       return Stack(
         children: [

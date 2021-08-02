@@ -11,12 +11,14 @@ class CustomVideoPlayer extends StatefulWidget {
     this.autoplay = true,
     this.looping = false,
     this.onLoaded,
+    this.paused = false,
   }) : super(key: key);
 
   final String source;
   final FileType type;
   final bool autoplay;
   final bool looping;
+  final bool paused;
   final VoidCallback? onLoaded;
 
   @override
@@ -46,17 +48,24 @@ class _VideoPlayerScreenState extends State<CustomVideoPlayer> {
   @override
   void didUpdateWidget(CustomVideoPlayer oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (_controller.value.isInitialized && _controller.value.position != Duration.zero) {
-      // without this, quick swiping right and back will reset and stop the indicator, but the video will be still playing
-      // (and without addPostFrameCallback it throws some errors)
-      WidgetsBinding.instance!.addPostFrameCallback((_) async {
-        // without this delay, swiping right will replay the sound from the beginning of the video on the next screen for a moment
-        await Future.delayed(const Duration(milliseconds: 750));
-        if (mounted) {
-          _controller.seekTo(Duration.zero);
-          widget.onLoaded?.call();
-        }
-      });
+    if (_controller.value.isInitialized) {
+      if (widget.paused != oldWidget.paused) {
+        oldWidget.paused ? _controller.play() : _controller.pause();
+        return;
+      }
+
+      if (_controller.value.position != Duration.zero) {
+        // without this, quick swiping right and back will reset and stop the indicator, but the video will be still playing
+        // (and without addPostFrameCallback it throws some errors)
+        WidgetsBinding.instance!.addPostFrameCallback((_) async {
+          // without this delay, swiping right will replay the sound from the beginning of the video on the next screen for a moment
+          await Future.delayed(const Duration(milliseconds: 750));
+          if (mounted) {
+            _controller.seekTo(Duration.zero);
+            widget.onLoaded?.call();
+          }
+        });
+      }
     }
   }
 

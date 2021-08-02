@@ -42,7 +42,8 @@ class IndicatorRow extends StatelessWidget {
             return Indicator(
               maxWidth: itemMaxWidth,
               finished: index < currentIndex,
-              shouldAnimate: !paused && index == currentIndex,
+              paused: paused,
+              shouldAnimate: index == currentIndex,
               duration: currentDuration,
               indicatorStyle: currentStoryPageBackground == StoryPageBackground.light
                   ? IndicatorStyle.dark()
