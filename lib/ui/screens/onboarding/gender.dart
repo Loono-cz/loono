@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loono/ui/widgets/extend_inkwell.dart';
 import 'package:loono/ui/widgets/onboarding/genders_container.dart';
+import 'package:loono/ui/widgets/skip_button.dart';
 
 class OnboardingGenderScreen extends StatefulWidget {
   const OnboardingGenderScreen({Key? key}) : super(key: key);
@@ -20,18 +21,7 @@ class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: Column(
             children: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/onboarding/birthdate');
-                },
-                child: const Align(
-                  alignment: Alignment.topRight,
-                  child: Text(
-                    'Přeskočit',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ),
-              ),
+              SkipButton(onPressed: () => Navigator.pushNamed(context, '/onboarding/birthdate')),
               const SizedBox(
                 height: 70,
               ),
@@ -61,9 +51,8 @@ class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
                           Navigator.pushNamed(context, '/onboarding/birthdate');
                         },
                   splashColor: activeButton == null ? Colors.transparent : null,
-                  materialColor: activeButton == null
-                      ? const Color(0xFFEFAD89).withOpacity(0.5)
-                      : const Color(0xFFEFAD89),
+                  materialColor:
+                      activeButton == null ? const Color(0xFFEFAD89).withOpacity(0.5) : const Color(0xFFEFAD89),
                   borderRadius: const BorderRadius.all(Radius.circular(10.0)),
                   child: const SizedBox(
                     height: 65,

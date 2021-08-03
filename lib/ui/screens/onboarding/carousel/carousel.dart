@@ -19,9 +19,13 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
 
   int get currentPageIndex => pageController.hasClients ? pageController.page?.round() ?? 0 : 0;
 
-  void jumpToPrevPage() => pageController.jumpToPage(currentPageIndex - 1);
+  bool get canTransitionToPrevStory => currentPageIndex > 0;
 
-  void jumpToNextPage() => pageController.jumpToPage(currentPageIndex + 1);
+  bool get canTransitionToNextStory => currentPageIndex < stories.length - 1;
+
+  void jumpToPrevStory() => pageController.jumpToPage(currentPageIndex - 1);
+
+  void jumpToNextStory() => pageController.jumpToPage(currentPageIndex + 1);
 
   final stories = const <StoryPage>[
     StoryPage.dark(content: IntroVideo(), duration: Duration(seconds: 13)),
@@ -57,9 +61,10 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
             currentIndex: currentPageIndex,
             currentDuration: currentStory.duration,
             currentStoryPageBackground: currentStory.storyPageBackground,
+            onStoryFinish: canTransitionToNextStory ? jumpToNextStory : null,
           ),
-          if (currentPageIndex > 0) TapArea.leftSide(onTap: jumpToPrevPage),
-          if (currentPageIndex < stories.length - 1) TapArea.rightSide(onTap: jumpToNextPage),
+          if (canTransitionToPrevStory) TapArea.leftSide(onTap: jumpToPrevStory),
+          if (canTransitionToNextStory) TapArea.rightSide(onTap: jumpToNextStory),
           if (currentStory.hasInteractiveContent) currentStory.interactiveContent!,
         ],
       ),
