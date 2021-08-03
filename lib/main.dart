@@ -7,6 +7,7 @@ import 'package:loono/ui/screens/onboarding/doctors/gynecology.dart';
 import 'package:loono/ui/screens/onboarding/gender.dart';
 import 'package:loono/ui/screens/welcome.dart';
 import 'package:loono/ui/screens/achievement.dart';
+import 'package:loono/ui/screens/award.dart';
 import 'package:loono/utils/registry.dart';
 
 Future<void> main() async {
@@ -31,6 +32,7 @@ class Loono extends StatelessWidget {
         '/onboarding/doctor/general-practicioner': (_) => OnboardingGeneralPracticionerScreen(),
         '/onboarding/doctor/gynecology': (_) => OnboardingGynecologyScreen(),
         '/achievement': (_) => AchievementScreen(),
+        '/award': (_) => AwardScreen(),
       },
     );
   }

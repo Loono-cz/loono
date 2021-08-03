@@ -35,7 +35,7 @@ class OnboardingGeneralPracticionerScreen extends StatelessWidget {
                   questionHeader: 'Praktického lékaře?',
                   imagePath: 'practicioner',
                   nextCallback: () {
-                    Navigator.pushNamed(context, '/onboarding/doctor/gynecology');
+                    Navigator.pushNamed(context, '/award');
                   },
                 ),
               ),
