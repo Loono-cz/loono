@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:video_player/video_player.dart';
 
 enum FileType { url, assets }
@@ -12,6 +13,7 @@ class CustomVideoPlayer extends StatefulWidget {
     this.looping = false,
     this.onLoaded,
     this.paused = false,
+    this.pageViewPage = 0,
   }) : super(key: key);
 
   final String source;
@@ -20,6 +22,7 @@ class CustomVideoPlayer extends StatefulWidget {
   final bool looping;
   final bool paused;
   final VoidCallback? onLoaded;
+  final int pageViewPage;
 
   @override
   _VideoPlayerScreenState createState() => _VideoPlayerScreenState();
@@ -28,9 +31,12 @@ class CustomVideoPlayer extends StatefulWidget {
 class _VideoPlayerScreenState extends State<CustomVideoPlayer> {
   late final VideoPlayerController _controller;
   late final Future<void> _initializeVideoPlayerFuture;
+  late final int pageViewPosition;
 
   @override
   void initState() {
+    super.initState();
+    pageViewPosition = widget.pageViewPage;
     _controller = (widget.type == FileType.url)
         ? VideoPlayerController.network(widget.source)
         : VideoPlayerController.asset(widget.source);
@@ -42,15 +48,31 @@ class _VideoPlayerScreenState extends State<CustomVideoPlayer> {
       }
     });
     _controller.setLooping(widget.looping);
-    super.initState();
   }
 
   @override
   void didUpdateWidget(CustomVideoPlayer oldWidget) {
     super.didUpdateWidget(oldWidget);
+    print('VALLLLLLLLLLS\n: default: ${pageViewPosition}\nnew: ${oldWidget.pageViewPage}\nwidgets: ${widget.pageViewPage}\n\n\n');
     if (_controller.value.isInitialized) {
       if (widget.paused != oldWidget.paused) {
+        print('here');
         oldWidget.paused ? _controller.play() : _controller.pause();
+      }
+
+      if ((pageViewPosition != oldWidget.pageViewPage) ||
+          (pageViewPosition == oldWidget.pageViewPage && pageViewPosition != widget.pageViewPage)) {
+        print('WIDGET STATE BOOL: ${widget.paused} --------- OLDWIDGET STATE BOOL: ${oldWidget.paused}');
+        if (pageViewPosition <= oldWidget.pageViewPage && widget.paused) {
+          print('PLAYINGGGGGGGGGG');
+          if (!(pageViewPosition > oldWidget.pageViewPage)) {
+            WidgetsBinding.instance!.addPostFrameCallback((_) {
+              if (mounted) widget.onLoaded?.call();
+            });
+          }
+          _controller.seekTo(Duration.zero);
+          _controller.play();
+        }
       }
     }
   }

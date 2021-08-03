@@ -24,8 +24,12 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
   List<StoryPage> get stories => <StoryPage>[
     // const StoryPage(content: OnboardingSecondCarouselScreen(), duration: Duration(milliseconds: 3000)),
     StoryPage.dark(
-      content: IntroVideo(onVideoLoaded: startStory, videoPaused: isStoryPaused),
-      duration: const Duration(milliseconds: 12700),
+          content: IntroVideo(
+            onVideoLoaded: loadStory,
+            videoPaused: isStoryPaused,
+            pageViewPage: currentPageIndex,
+          ),
+          duration: const Duration(milliseconds: 12700),
       autoplay: false,
     ),
     // 3000ms je jen temporary na testovani, jestli se updatuje delka animace u ostatnich na default
@@ -41,6 +45,10 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
   void initState() {
     super.initState();
     if (stories.isNotEmpty && stories.first.autoplay) startStory();
+  }
+
+  void loadStory() {
+    if (!playStoryState) setState(() => playStoryState = true);
   }
 
   void startStory() => setState(() => playStoryState = true);
