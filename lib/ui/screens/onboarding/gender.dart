@@ -3,6 +3,7 @@ import 'package:loono/constants.dart';
 import 'package:loono/ui/widgets/extend_inkwell.dart';
 import 'package:loono/ui/widgets/onboarding/genders_container.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/ui/widgets/skip_button.dart';
 
 class OnboardingGenderScreen extends StatefulWidget {
   const OnboardingGenderScreen({Key? key}) : super(key: key);

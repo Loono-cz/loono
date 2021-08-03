@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:loono/ui/widgets/universal_doctor.dart';
 import 'package:loono/ui/widgets/progress_dots.dart';
+import 'package:loono/ui/widgets/skip_button.dart';
+import 'package:loono/ui/widgets/universal_doctor.dart';
 
 class OnboardingGynecologyScreen extends StatelessWidget {
   @override
@@ -12,23 +13,12 @@ class OnboardingGynecologyScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Expanded(
-                    child: LoonoProgressIndicator(
-                      numberOfSteps: 3,
-                      currentStep: 2,
-                    ),
-                  ),
-                  const SizedBox(width: 32),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/achievement');
-                    },
-                    child: const Text('přeskočit'),
-                  )
-                ],
+              SkipButton(
+                onPressed: () => Navigator.pushNamed(context, '/achievement'),
+                sibling: const LoonoProgressIndicator(
+                  numberOfSteps: 3,
+                  currentStep: 2,
+                ),
               ),
               Expanded(
                 child: UniversalDoctor(
