@@ -63,7 +63,7 @@ class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
                     child: Align(
                       child: Text(
                         context.l10n.continue_info,
-                        style: const TextStyle(color: Colors.white),
+                        style: Theme.of(context).textTheme.button?.copyWith(color: Colors.white),
                       ),
                     ),
                   ),
