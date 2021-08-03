@@ -25,39 +25,50 @@ class _GendersContainerState extends State<GendersContainer> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            GenderButton(
-              active: activeButton == Gender.woman,
-              path: 'assets/icons/gender-woman.svg',
-              label: context.l10n.gender_female,
-              width: 28,
-              height: 45,
-              onClick: () => setState(() {
-                activeButton = Gender.woman;
-                widget.genderCallBack!(activeButton!);
-              }),
+            Expanded(
+              flex: 4,
+              child: GenderButton(
+                active: activeButton == Gender.woman,
+                path: 'assets/icons/gender-woman.svg',
+                label: context.l10n.gender_female,
+                width: 28,
+                height: 45,
+                onClick: () => setState(() {
+                  activeButton = Gender.woman;
+                  widget.genderCallBack!(activeButton!);
+                }),
+              ),
             ),
-            GenderButton(
-              active: activeButton == Gender.man,
-              path: 'assets/icons/gender-man.svg',
-              label: context.l10n.gender_male,
-              width: 40,
-              height: 40,
-              onClick: () => setState(() {
-                activeButton = Gender.man;
-                widget.genderCallBack!(activeButton!);
-              }),
+            const Spacer(),
+            Expanded(
+              flex: 4,
+              child: GenderButton(
+                active: activeButton == Gender.man,
+                path: 'assets/icons/gender-man.svg',
+                label: context.l10n.gender_male,
+                width: 40,
+                height: 40,
+                onClick: () => setState(() {
+                  activeButton = Gender.man;
+                  widget.genderCallBack!(activeButton!);
+                }),
+              ),
             ),
-            GenderButton(
-              active: activeButton == Gender.other,
-              path: 'assets/icons/gender-other.svg',
-              label: context.l10n.gender_other,
-              width: 28,
-              height: 45,
-              onClick: () => setState(() {
-                activeButton = Gender.other;
-                widget.genderCallBack!(null);
-                _showInfoSheet();
-              }),
+            const Spacer(),
+            Expanded(
+              flex: 4,
+              child: GenderButton(
+                active: activeButton == Gender.other,
+                path: 'assets/icons/gender-other.svg',
+                label: context.l10n.gender_other,
+                width: 28,
+                height: 45,
+                onClick: () => setState(() {
+                  activeButton = Gender.other;
+                  widget.genderCallBack!(null);
+                  _showInfoSheet();
+                }),
+              ),
             ),
           ],
         ),
@@ -111,7 +122,7 @@ class _GendersContainerState extends State<GendersContainer> {
           const SizedBox(height: 18.0),
           Text(context.l10n.gender_other_sheet_desc, style: textStyle),
           const SizedBox(height: 22.0),
-          // TODO: Underline/make clickable email address
+          // TODO: According to Otakar, email address should be clickable and it should open an email app
           Text(context.l10n.gender_other_sheet_contact, style: textStyle),
         ],
       ),
