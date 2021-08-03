@@ -27,6 +27,9 @@ class StoryPage extends StatelessWidget {
   final Widget? interactiveContent;
   final StoryPageBackground storyPageBackground;
   final Duration duration;
+
+  /// If `false` then the story will not start playing when shown. For example in videos, where the
+  /// story indicator animation should wait till the video gets loaded.
   final bool autoplay;
 
   bool get hasInteractiveContent => interactiveContent != null;
