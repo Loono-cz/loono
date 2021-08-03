@@ -30,7 +30,14 @@ class OnBoardingBirthdateScreen extends StatelessWidget {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 32),
-                  child: CustomDatePicker(),
+                  child: Center(
+                    child: CustomDatePicker(
+                      valueChanged: (selectedDate) {
+                        // TODO: Handle selected date
+                        print(selectedDate);
+                      },
+                    ),
+                  ),
                 ),
               ),
               ExtendedInkWell(
