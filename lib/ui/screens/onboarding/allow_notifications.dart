@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/extend_inkwell.dart';
+import 'package:loono/ui/widgets/skip_button.dart';
 
 class AllowNotificationsScreen extends StatelessWidget {
   const AllowNotificationsScreen({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class AllowNotificationsScreen extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 27.0),
-              _buildSkipButton(context),
+              SkipButton(onPressed: () => {}), // TODO: Navigate to Dentist Screen
               const SizedBox(height: 48.0),
               SvgPicture.asset("assets/icons/notification_bell.svg"),
               const SizedBox(height: 53.15),
@@ -26,21 +27,6 @@ class AllowNotificationsScreen extends StatelessWidget {
               const SizedBox(height: 122.0),
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSkipButton(BuildContext context) {
-    return Align(
-      alignment: AlignmentDirectional.centerEnd,
-      child: TextButton(
-        onPressed: () {
-          // TODO: Navigate to Dentist Screen
-        },
-        child: Text(
-          context.l10n.skip_info,
-          style: const TextStyle(color: LoonoColors.black, fontWeight: FontWeight.w600),
         ),
       ),
     );
@@ -57,7 +43,7 @@ class AllowNotificationsScreen extends StatelessWidget {
   Widget _buildAllowNotificationButton(BuildContext context) {
     return ExtendedInkWell(
       onTap: () {
-        // TODO: Display and handle allow notification dialog from some plugin. Does "Loono ti chce posílat notifikace" dialog come from plugin?
+        // TODO: Display and handle allow notification dialog (iOS only)
         // TODO: Then navigate to Dentist Screen
       },
       materialColor: LoonoColors.primaryEnabled,
