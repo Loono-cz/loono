@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/extend_inkwell.dart';
 import 'package:loono/ui/widgets/onboarding/genders_container.dart';
-import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
 
 class OnboardingGenderScreen extends StatefulWidget {
@@ -24,18 +24,7 @@ class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
           child: Column(
             children: [
               const SizedBox(height: 27.0),
-              Align(
-                alignment: AlignmentDirectional.centerEnd,
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/onboarding/birthdate');
-                  },
-                  child: Text(
-                    context.l10n.skip_info,
-                    style: const TextStyle(color: LoonoColors.black, fontWeight: FontWeight.w600),
-                  ),
-                ),
-              ),
+              SkipButton(onPressed: () => Navigator.pushNamed(context, '/onboarding/birthdate')),
               const SizedBox(
                 height: 70,
               ),

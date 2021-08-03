@@ -18,7 +18,7 @@ class SkipButton extends StatelessWidget {
           onPressed: onPressed,
           child: Text(
             AppLocalizations.of(context)!.skip,
-            style: const TextStyle(color: LoonoColors.black),
+            style: const TextStyle(color: LoonoColors.black, fontWeight: FontWeight.w600),
           ),
         ),
       ],
