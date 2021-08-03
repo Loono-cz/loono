@@ -83,7 +83,9 @@ class _IndicatorState extends State<Indicator> with SingleTickerProviderStateMix
     }
 
     if (animationController.duration != widget.duration) {
-      animationController.duration = widget.duration;
+      animationController
+        ..reset()
+        ..duration = widget.duration;
     }
   }
 
