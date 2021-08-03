@@ -33,7 +33,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 232,
+      height: 260,
       child: Stack(alignment: AlignmentDirectional.centerStart, children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -42,13 +42,10 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
             _datePickerColumn(forType: ColumnType.year),
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: Container(
-            width: 10,
-            height: 10,
-            decoration: const BoxDecoration(color: Color(0xFFEFAD89), shape: BoxShape.circle),
-          ),
+        Container(
+          width: 10,
+          height: 10,
+          decoration: const BoxDecoration(color: Color(0xFFEFAD89), shape: BoxShape.circle),
         )
       ]),
     );
@@ -96,10 +93,10 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
     final items = forType == ColumnType.month ? _datePickerMonths : _datePickerYears.asMap();
 
     return SizedBox(
-      width: MediaQuery.of(context).size.width / 2.5,
+      width: MediaQuery.of(context).size.width / 3,
       child: ListWheelScrollView.useDelegate(
         physics: const FixedExtentScrollPhysics(),
-        itemExtent: 36,
+        itemExtent: 40,
         childDelegate: ListWheelChildLoopingListDelegate(
             children: items.keys
                 .map((index) => _setListItem(
@@ -144,13 +141,15 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
       opacityValue = 0.5;
     }
 
-    return Opacity(
-        opacity: opacityValue,
-        child: Text(
-          text,
-          style:
-              const TextStyle(fontSize: 24, fontWeight: FontWeight.w400, color: Color(0xFF000000)),
-        ));
+    return Center(
+      child: Opacity(
+          opacity: opacityValue,
+          child: Text(
+            text,
+            style: const TextStyle(
+                fontSize: 16, fontWeight: FontWeight.w400, color: Color(0xFF000000)),
+          )),
+    );
   }
 
   void _selectedItemHandle({required ColumnType forType, required Map items, required int value}) {
