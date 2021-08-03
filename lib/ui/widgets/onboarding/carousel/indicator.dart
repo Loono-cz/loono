@@ -34,7 +34,6 @@ class Indicator extends StatefulWidget {
     this.onFinish,
   }) : super(key: key);
 
-
   final bool finished;
   final bool paused;
   final Duration duration;
