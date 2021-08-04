@@ -71,12 +71,8 @@ class _IndicatorState extends State<Indicator> with SingleTickerProviderStateMix
   void didUpdateWidget(Indicator oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (animationController.value > 0) {
-      if (widget.paused && !oldWidget.paused) {
-        // from animating to paused state
-        animationController.stop();
-      } else if (!widget.paused && oldWidget.paused) {
-        // from paused to animating state
-        animationController.forward();
+      if (widget.paused != oldWidget.paused) {
+        oldWidget.paused ? animationController.forward() : animationController.stop();
       } else {
         animationController.reset();
       }
