@@ -53,18 +53,14 @@ class _VideoPlayerScreenState extends State<CustomVideoPlayer> {
   @override
   void didUpdateWidget(CustomVideoPlayer oldWidget) {
     super.didUpdateWidget(oldWidget);
-    print('VALLLLLLLLLLS\n: default: ${initialPage}\nnew: ${oldWidget.currentPage}\nwidgets: ${widget.currentPage}\n\n\n');
     if (_controller.value.isInitialized) {
       if (widget.paused != oldWidget.paused) {
-        print('here');
         oldWidget.paused ? _controller.play() : _controller.pause();
       }
 
       if ((initialPage != oldWidget.currentPage) ||
           (initialPage == oldWidget.currentPage && initialPage != widget.currentPage)) {
-        print('WIDGET STATE BOOL: ${widget.paused} --------- OLDWIDGET STATE BOOL: ${oldWidget.paused}');
         if (initialPage <= oldWidget.currentPage && widget.paused) {
-          print('PLAYINGGGGGGGGGG');
           if (!(initialPage > oldWidget.currentPage)) {
             WidgetsBinding.instance!.addPostFrameCallback((_) {
               if (mounted) widget.onLoaded?.call();
