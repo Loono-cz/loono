@@ -22,24 +22,23 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
   bool get isStoryPaused => playStoryState == false;
 
   List<StoryPage> get stories => <StoryPage>[
-    // const StoryPage(content: OnboardingSecondCarouselScreen(), duration: Duration(milliseconds: 3000)),
-    StoryPage.dark(
+        StoryPage.dark(
           content: IntroVideo(
             onVideoLoaded: loadStory,
             videoPaused: isStoryPaused,
-            pageViewPage: currentPageIndex,
+            pageState: currentPageIndex,
           ),
           duration: const Duration(milliseconds: 12700),
-      autoplay: false,
-    ),
-    // 3000ms je jen temporary na testovani, jestli se updatuje delka animace u ostatnich na default
-    const StoryPage(content: OnboardingSecondCarouselScreen(), duration: Duration(milliseconds: 3000)),
-    const StoryPage(content: OnboardingThirdCarouselScreen()),
-    const StoryPage(
-      content: OnboardFourthCarouselScreen(),
-      interactiveContent: OnboardFourthCarouselInteractiveContent(),
-    ),
-  ];
+          autoplay: false,
+        ),
+        // 7000ms je jen temporary na testovani, jestli se updatuje delka animace u ostatnich na default
+        const StoryPage(content: OnboardingSecondCarouselScreen(), duration: Duration(milliseconds: 7000)),
+        const StoryPage(content: OnboardingThirdCarouselScreen()),
+        const StoryPage(
+          content: OnboardFourthCarouselScreen(),
+          interactiveContent: OnboardFourthCarouselInteractiveContent(),
+        ),
+      ];
 
   @override
   void initState() {

@@ -13,12 +13,12 @@ class IntroVideo extends StatelessWidget {
     Key? key,
     this.onVideoLoaded,
     this.videoPaused = false,
-    this.pageViewPage = 0,
+    this.pageState = 0,
   }) : super(key: key);
 
   final VoidCallback? onVideoLoaded;
   final bool videoPaused;
-  final int pageViewPage;
+  final int pageState;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class IntroVideo extends StatelessWidget {
               source: 'assets/intro_video.mp4',
               paused: videoPaused,
               onLoaded: onVideoLoaded,
-              pageViewPage: pageViewPage,
+              currentPage: pageState,
             ),
             TextOverlay(textLines: textLines),
           ],

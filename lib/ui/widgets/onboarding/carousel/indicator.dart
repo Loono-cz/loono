@@ -60,10 +60,10 @@ class _IndicatorState extends State<Indicator> with SingleTickerProviderStateMix
       duration: widget.duration,
       vsync: this,
     )..addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        widget.onFinish?.call();
-      }
-    });
+        if (status == AnimationStatus.completed) {
+          widget.onFinish?.call();
+        }
+      });
     containerAnim = Tween<double>(begin: 0.0, end: widget.maxWidth).animate(animationController);
   }
 

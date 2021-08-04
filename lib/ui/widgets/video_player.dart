@@ -13,7 +13,7 @@ class CustomVideoPlayer extends StatefulWidget {
     this.looping = false,
     this.onLoaded,
     this.paused = false,
-    this.pageViewPage = 0,
+    this.currentPage = 0,
   }) : super(key: key);
 
   final String source;
@@ -22,7 +22,7 @@ class CustomVideoPlayer extends StatefulWidget {
   final bool looping;
   final bool paused;
   final VoidCallback? onLoaded;
-  final int pageViewPage;
+  final int currentPage;
 
   @override
   _VideoPlayerScreenState createState() => _VideoPlayerScreenState();
@@ -31,12 +31,12 @@ class CustomVideoPlayer extends StatefulWidget {
 class _VideoPlayerScreenState extends State<CustomVideoPlayer> {
   late final VideoPlayerController _controller;
   late final Future<void> _initializeVideoPlayerFuture;
-  late final int pageViewPosition;
+  late final int initialPage;
 
   @override
   void initState() {
     super.initState();
-    pageViewPosition = widget.pageViewPage;
+    initialPage = widget.currentPage;
     _controller = (widget.type == FileType.url)
         ? VideoPlayerController.network(widget.source)
         : VideoPlayerController.asset(widget.source);
@@ -53,25 +53,26 @@ class _VideoPlayerScreenState extends State<CustomVideoPlayer> {
   @override
   void didUpdateWidget(CustomVideoPlayer oldWidget) {
     super.didUpdateWidget(oldWidget);
-    print('VALLLLLLLLLLS\n: default: ${pageViewPosition}\nnew: ${oldWidget.pageViewPage}\nwidgets: ${widget.pageViewPage}\n\n\n');
+    print('VALLLLLLLLLLS\n: default: ${initialPage}\nnew: ${oldWidget.currentPage}\nwidgets: ${widget.currentPage}\n\n\n');
     if (_controller.value.isInitialized) {
       if (widget.paused != oldWidget.paused) {
         print('here');
         oldWidget.paused ? _controller.play() : _controller.pause();
       }
 
-      if ((pageViewPosition != oldWidget.pageViewPage) ||
-          (pageViewPosition == oldWidget.pageViewPage && pageViewPosition != widget.pageViewPage)) {
+      if ((initialPage != oldWidget.currentPage) ||
+          (initialPage == oldWidget.currentPage && initialPage != widget.currentPage)) {
         print('WIDGET STATE BOOL: ${widget.paused} --------- OLDWIDGET STATE BOOL: ${oldWidget.paused}');
-        if (pageViewPosition <= oldWidget.pageViewPage && widget.paused) {
+        if (initialPage <= oldWidget.currentPage && widget.paused) {
           print('PLAYINGGGGGGGGGG');
-          if (!(pageViewPosition > oldWidget.pageViewPage)) {
+          if (!(initialPage > oldWidget.currentPage)) {
             WidgetsBinding.instance!.addPostFrameCallback((_) {
               if (mounted) widget.onLoaded?.call();
             });
           }
-          _controller.seekTo(Duration.zero);
-          _controller.play();
+          _controller
+            ..seekTo(Duration.zero)
+            ..play();
         }
       }
     }
