@@ -43,14 +43,14 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
   @override
   void initState() {
     super.initState();
-    if (stories.isNotEmpty && stories.first.autoplay) startStory();
+    if (stories.isNotEmpty && stories.first.autoplay) playStory();
   }
 
   void loadStory() {
     if (!playStoryState) setState(() => playStoryState = true);
   }
 
-  void startStory() => setState(() => playStoryState = true);
+  void playStory() => setState(() => playStoryState = true);
 
   void pauseStory() => setState(() => playStoryState = false);
 
@@ -79,7 +79,7 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
       child: Stack(
         children: [
           PageView(
-            onPageChanged: (_) => currentStory.autoplay ? startStory() : pauseStory(),
+            onPageChanged: (_) => currentStory.autoplay ? playStory() : pauseStory(),
             controller: pageController,
             children: stories,
           ),
@@ -93,7 +93,7 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
           ),
           if (canTransitionToPrevStory) TapArea.leftSide(onTap: jumpToPrevStory),
           if (canTransitionToNextStory) TapArea.rightSide(onTap: jumpToNextStory),
-          if (stories.isNotEmpty) TapArea.max(onLongPress: pauseStory, onLongPressUp: startStory),
+          if (stories.isNotEmpty) TapArea.max(onLongPress: pauseStory, onLongPressUp: playStory),
           if (currentStory.hasInteractiveContent) currentStory.interactiveContent!,
         ],
       ),
