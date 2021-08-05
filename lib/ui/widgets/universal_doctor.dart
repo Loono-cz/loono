@@ -27,7 +27,7 @@ class UniversalDoctor extends StatelessWidget {
 
     switch (forDoctorType) {
       case DoctorType.practitioner:
-        _question = 'Kdy jsi byla naposledy na preventivní prohlídce u';
+        _question = 'Kdy jsi byl/a naposledy na preventivní prohlídce u';
         _questionHeader = 'Praktického lékaře?';
         _imagePath = 'practicioner';
         break;
