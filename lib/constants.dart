@@ -25,10 +25,11 @@ class LoonoFonts {
     fontWeight: FontWeight.bold,
   );
 
-  static const fontStyle = TextStyle(
-    color: LoonoColors.black,
-    fontWeight: FontWeight.normal,
-  );
+  static const fontStyle =
+      TextStyle(color: LoonoColors.black, fontWeight: FontWeight.normal, fontSize: 14);
+
+  static const fontStyleWhite =
+      TextStyle(color: Colors.white, fontWeight: FontWeight.normal, fontSize: 14);
 
   static const headerFontStyle = TextStyle(
     fontSize: 24,

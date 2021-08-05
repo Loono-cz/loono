@@ -13,11 +13,15 @@ class LoonoButton extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: onPressed,
-        style: TextButton.styleFrom(
-          backgroundColor: enabled ? LoonoColors.primary : LoonoColors.primaryLight,
-          padding: const EdgeInsets.symmetric(vertical: 20),
+        style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            primary: enabled ? LoonoColors.primary : LoonoColors.primaryLight,
+            padding: const EdgeInsets.symmetric(vertical: 24),
+            elevation: 0),
+        child: Text(
+          text,
+          style: LoonoFonts.fontStyleWhite,
         ),
-        child: Text(text),
       ),
     );
   }
