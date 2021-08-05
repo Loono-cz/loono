@@ -22,8 +22,7 @@ class OnboardingGeneralPracticionerScreen extends StatelessWidget {
               ),
               Expanded(
                 child: UniversalDoctor(
-                  questionHeader: 'Praktického lékaře?',
-                  imagePath: 'practicioner',
+                  forDoctorType: DoctorType.practitioner,
                   nextCallback: () {
                     Navigator.pushNamed(context, '/onboarding/doctor/gynecology');
                   },

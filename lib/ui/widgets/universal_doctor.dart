@@ -1,47 +1,63 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/loono_button.dart';
 
 enum DoctorVisit {
   lastTwoYears,
   moreThanTwoYears,
 }
 
+enum DoctorType { practitioner, gynecologist }
+
 class UniversalDoctor extends StatelessWidget {
-  final String question;
-  final String questionHeader;
-  final String imagePath;
+  final DoctorType forDoctorType;
   final void Function() nextCallback;
   const UniversalDoctor({
-    this.question = 'Kdy jsi byla naposledy na preventivní prohlídce u',
-    required this.questionHeader,
-    required this.imagePath,
+    required this.forDoctorType,
     required this.nextCallback,
   });
 
   @override
   Widget build(BuildContext context) {
+    String _question;
+    String _questionHeader;
+    String _imagePath;
+    final double _bodyFooterDistance = MediaQuery.of(context).size.height / 8;
+
+    switch (forDoctorType) {
+      case DoctorType.practitioner:
+        _question = 'Kdy jsi byla naposledy na preventivní prohlídce u';
+        _questionHeader = 'Praktického lékaře?';
+        _imagePath = 'practicioner';
+        break;
+      case DoctorType.gynecologist:
+        _question = 'Kdy jsi byla naposledy na preventivní prohlídce na';
+        _questionHeader = 'Gynekologii?';
+        _imagePath = 'gynecology';
+        break;
+    }
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SvgPicture.asset(
-          'assets/icons/$imagePath.svg',
+          'assets/icons/$_imagePath.svg',
         ),
         const SizedBox(height: 16),
         Text(
-          question,
+          _question,
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 16),
         Text(
-          questionHeader,
+          _questionHeader,
           style: LoonoFonts.bigFontStyle,
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: _bodyFooterDistance),
         LoonoButton(nextCallback, "V posledních dvou letech", enabled: true),
-        const SizedBox(height: 8),
+        const SizedBox(height: 16),
         LoonoButton(nextCallback, "Více, než 2 roky nebo nevím", enabled: true),
       ],
     );

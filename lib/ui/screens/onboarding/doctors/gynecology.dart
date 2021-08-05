@@ -22,8 +22,7 @@ class OnboardingGynecologyScreen extends StatelessWidget {
               ),
               Expanded(
                 child: UniversalDoctor(
-                  questionHeader: 'Gynekologii?',
-                  imagePath: 'gynecology',
+                  forDoctorType: DoctorType.gynecologist,
                   nextCallback: () {
                     Navigator.pushNamed(context, '/achievement');
                   },
