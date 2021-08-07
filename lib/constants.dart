@@ -29,6 +29,10 @@ class LoonoColors {
   ];
 }
 
+class LoonoStrings {
+  static const contactEmail = 'poradna@loono.cz';
+}
+
 class LoonoFonts {
   static const bigFontStyle = TextStyle(
     fontSize: 25,

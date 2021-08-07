@@ -1,7 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/ui/widgets/onboarding/gender_button.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 enum Gender { man, woman, other }
 
@@ -111,10 +113,28 @@ class _GendersContainerState extends State<GendersContainer> {
                       const SizedBox(height: 18.0),
                       Text(context.l10n.gender_other_sheet_desc, style: textStyle),
                       const SizedBox(height: 22.0),
-                      // TODO: According to Otakar, email address should be clickable and it should open an email app
-                      Text(
-                        '${context.l10n.gender_other_sheet_contact} poradna@loono.cz.',
-                        style: textStyle,
+                      RichText(
+                        text: TextSpan(
+                          text: '${context.l10n.gender_other_sheet_contact} ',
+                          style: textStyle,
+                          children: [
+                            TextSpan(
+                              text: LoonoStrings.contactEmail,
+                              style: textStyle.copyWith(decoration: TextDecoration.underline),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () async {
+                                  final Uri emailLaunchUri = Uri(
+                                    scheme: 'mailto',
+                                    path: LoonoStrings.contactEmail,
+                                  );
+                                  if (await canLaunch(emailLaunchUri.toString())) {
+                                    launch(emailLaunchUri.toString());
+                                  }
+                                },
+                            ),
+                            const TextSpan(text: '.', style: textStyle),
+                          ],
+                        ),
                       ),
                     ],
                   ),

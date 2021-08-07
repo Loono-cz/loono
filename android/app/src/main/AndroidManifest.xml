@@ -38,5 +38,13 @@
             android:value="2" />
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <queries>
+        <!-- If your app emails -->
+        <intent>
+            <action android:name="android.intent.action.SEND" />
+            <data android:mimeType="*/*" />
+        </intent>
+    </queries>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
