@@ -16,7 +16,7 @@
   "@gender_other": {},
   "gender_other_sheet_desc": "Možná je pro tebe v tomto kroku těžké zvolit jednu z možností. V reálu nám jde o to, zda ti připomínat prevenci u gynekologa, nebo urologa. Zvol tedy možnost podle pohlaví, které ti bylo přiděleno při narození.",
   "@gender_other_sheet_desc": {},
-  "gender_other_sheet_contact": "Pokud si stále nevíš rady, co vybrat, napiš nám na poradna@loono.cz.",
+  "gender_other_sheet_contact": "Pokud si stále nevíš rady, co vybrat, napiš nám na",
   "@gender_other_sheet_contact": {},
   "fallback_account_name": "Tvoje přezdívka",
   "@fallback_account_name": {},

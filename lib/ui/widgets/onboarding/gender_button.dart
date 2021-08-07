@@ -26,8 +26,8 @@ class GenderButton extends StatelessWidget {
       behavior: HitTestBehavior.translucent,
       onTap: onClick,
       child: Container(
-        width: 80,
-        height: 120,
+        width: 100,
+        height: 145,
         padding: const EdgeInsets.all(5),
         decoration: active
             ? BoxDecoration(
@@ -38,13 +38,14 @@ class GenderButton extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const SizedBox(height: 23.0),
             SvgPicture.asset(
               path,
               width: width,
               height: height,
               color: active ? LoonoColors.primaryEnabled : LoonoColors.black,
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 37.0),
             Text(
               label,
               textAlign: TextAlign.center,
@@ -53,6 +54,7 @@ class GenderButton extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
+            const SizedBox(height: 11.0),
           ],
         ),
       ),

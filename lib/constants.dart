@@ -16,7 +16,7 @@ class LoonoColors {
   static const storyIndicatorActiveLight = Color.fromARGB(255, 255, 255, 255);
   static const storyIndicatorUnderlyingLight = Color.fromRGBO(248, 244, 242, 0.5);
   static const googleLogInBlue = Color.fromRGBO(66, 133, 244, 1);
-  static const bottomSheet = Color.fromARGB(255, 253, 228, 211);
+  static const bottomSheetLight = Color.fromARGB(255, 254, 242, 233);
 
   static const rainbow = <Color>[
     Color.fromARGB(255, 230, 87, 86),

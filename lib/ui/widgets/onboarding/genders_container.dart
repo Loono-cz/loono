@@ -78,10 +78,11 @@ class _GendersContainerState extends State<GendersContainer> {
 
   void _showInfoSheet() {
     const linearGradient = LinearGradient(colors: LoonoColors.rainbow);
+    const textStyle = TextStyle(color: LoonoColors.black, height: 1.5);
 
     showModalBottomSheet(
       context: context,
-      backgroundColor: LoonoColors.bottomSheet,
+      backgroundColor: LoonoColors.bottomSheetLight,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
@@ -103,29 +104,26 @@ class _GendersContainerState extends State<GendersContainer> {
                     style: const TextStyle(color: Colors.white, fontSize: 24.0),
                   ),
                 ),
-                _buildSheetTexts(context),
+                Padding(
+                  padding: const EdgeInsets.only(right: 35.0),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 18.0),
+                      Text(context.l10n.gender_other_sheet_desc, style: textStyle),
+                      const SizedBox(height: 22.0),
+                      // TODO: According to Otakar, email address should be clickable and it should open an email app
+                      Text(
+                        '${context.l10n.gender_other_sheet_contact} poradna@loono.cz.',
+                        style: textStyle,
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
         );
       },
-    );
-  }
-
-  Widget _buildSheetTexts(BuildContext context) {
-    const textStyle = TextStyle(color: LoonoColors.black, height: 1.5);
-
-    return Padding(
-      padding: const EdgeInsets.only(right: 53.0),
-      child: Column(
-        children: [
-          const SizedBox(height: 18.0),
-          Text(context.l10n.gender_other_sheet_desc, style: textStyle),
-          const SizedBox(height: 22.0),
-          // TODO: According to Otakar, email address should be clickable and it should open an email app
-          Text(context.l10n.gender_other_sheet_contact, style: textStyle),
-        ],
-      ),
     );
   }
 }
