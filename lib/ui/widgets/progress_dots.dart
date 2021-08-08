@@ -15,8 +15,8 @@ class LoonoProgressIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dots = <Widget>[];
-    for (var i = 0; i < numberOfSteps; i++) {
-      final text = (i + 1).toString();
+    for (var i = 1; i <= numberOfSteps; i++) {
+      final text = (i).toString();
       if (i < currentStep) {
         dots.add(const ProgressDot(style: ProgressDotStyle.done, text: "✔︎"));
       }
