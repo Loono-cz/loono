@@ -25,5 +25,21 @@
   "sign_in_with_google_account": "Přihlásit pomocí Google účtu",
   "@sign_in_with_google_account": {},
   "by_logging_in_you_agree_to_the_terms_of_privacy": "Přihlášením souhlasíš s podmínkami ochrany soukromí.",
-  "@by_logging_in_you_agree_to_the_terms_of_privacy": {}
+  "@by_logging_in_you_agree_to_the_terms_of_privacy": {},
+  "universal_dr_practitioner_question": "Kdy jsi byl/a naposledy na preventivní prohlídce u",
+  "@universal_dr_practitioner_question": {},
+  "universal_dr_practitioner_question_header": "Praktického lékaře?",
+  "@universal_dr_practitioner_question_header": {},
+  "universal_dr_gynecology_question": "Kdy jsi byla naposledy na preventivní prohlídce na",
+  "@universal_dr_gynecology_question": {},
+  "universal_dr_gynecology_question_header": "Gynekologii?",
+  "@universal_dr_gynecology_question_header": {},
+  "universal_dr_dentist_question": "Kdy jsi byl/a naposledy na preventivní prohlídce u",
+  "@universal_dr_dentist_question": {},
+  "universal_dr_dentist_question_header": "ZUBAŘE?",
+  "@universal_dr_dentist_question_header": {},
+  "universal_dr_button_last_two_years": "V posledních dvou letech",
+  "@universal_dr_button_last_two_years": {},
+  "universal_dr_button_more_than_two_years": "Více, než 2 roky nebo nevím",
+  "@universal_dr_button_more_than_two_years": {}
 }
