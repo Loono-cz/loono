@@ -34,7 +34,7 @@ class UniversalDoctor extends StatelessWidget {
         break;
       case DoctorType.gynecologist:
         _question = context.l10n.universal_dr_gynecology_question;
-        _questionHeader = context.l10n.universal_dr_practitioner_question_header;
+        _questionHeader = context.l10n.universal_dr_gynecology_question_header;
         _imagePath = 'gynecology';
         break;
       case DoctorType.dentist:

@@ -3,7 +3,7 @@ import 'package:loono/ui/widgets/progress_dots.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
 import 'package:loono/ui/widgets/universal_doctor.dart';
 
-class OnboardingGynecologyScreen extends StatelessWidget {
+class OnboardingDentistScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,17 +14,17 @@ class OnboardingGynecologyScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SkipButton(
-                onPressed: () => Navigator.pushNamed(context, '/onboarding/doctor/dentist'),
+                onPressed: () => Navigator.pushNamed(context, '/achievement'),
                 sibling: const LoonoProgressIndicator(
                   numberOfSteps: 3,
-                  currentStep: 2,
+                  currentStep: 3,
                 ),
               ),
               Expanded(
                 child: UniversalDoctor(
-                  forDoctorType: DoctorType.gynecologist,
+                  forDoctorType: DoctorType.dentist,
                   nextCallback: () {
-                    Navigator.pushNamed(context, '/onboarding/doctor/dentist');
+                    Navigator.pushNamed(context, '/achievement');
                   },
                 ),
               ),

@@ -6,6 +6,7 @@ import 'package:loono/ui/screens/onboarding/birthdate.dart';
 import 'package:loono/ui/screens/onboarding/carousel/carousel.dart';
 import 'package:loono/ui/screens/onboarding/doctors/general_practicioner.dart';
 import 'package:loono/ui/screens/onboarding/doctors/gynecology.dart';
+import 'package:loono/ui/screens/onboarding/doctors/dentist.dart';
 import 'package:loono/ui/screens/onboarding/fallback_account/email.dart';
 import 'package:loono/ui/screens/onboarding/fallback_account/nickname.dart';
 import 'package:loono/ui/screens/onboarding/gender.dart';
@@ -33,6 +34,7 @@ class Loono extends StatelessWidget {
         '/onboarding/birthdate': (_) => OnBoardingBirthdateScreen(),
         '/onboarding/doctor/general-practicioner': (_) => OnboardingGeneralPracticionerScreen(),
         '/onboarding/doctor/gynecology': (_) => OnboardingGynecologyScreen(),
+        '/onboarding/doctor/dentist': (_) => OnboardingDentistScreen(),
         '/achievement': (_) => AchievementScreen(),
         '/create-account': (_) => const CreateAccountScreen(),
         '/fallback_account/name': (_) => const NicknameScreen(),
