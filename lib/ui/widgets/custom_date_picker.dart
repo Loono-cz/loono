@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:loono/l10n/ext.dart';
+import 'package:loono/constants.dart';
 
 enum ColumnType { month, year }
 
@@ -45,7 +47,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
         Container(
           width: 10,
           height: 10,
-          decoration: const BoxDecoration(color: Color(0xFFEFAD89), shape: BoxShape.circle),
+          decoration: const BoxDecoration(color: LoonoColors.primary, shape: BoxShape.circle),
         )
       ]),
     );
@@ -62,20 +64,19 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   }
 
   Map<int, String> get _datePickerMonths {
-    // TODO: Localization
     final Map<int, String> monthsMap = {
-      DateTime.january: "Leden",
-      DateTime.february: "Únor",
-      DateTime.march: "Březen",
-      DateTime.april: "Duben",
-      DateTime.may: "Květen",
-      DateTime.june: "Červen",
-      DateTime.july: "Červenec",
-      DateTime.august: "Srpen",
-      DateTime.september: "Září",
-      DateTime.october: "Říjen",
-      DateTime.november: "Listopad",
-      DateTime.december: "Prosinec",
+      DateTime.january: context.l10n.custom_date_picker_jan,
+      DateTime.february: context.l10n.custom_date_picker_feb,
+      DateTime.march: context.l10n.custom_date_picker_mar,
+      DateTime.april: context.l10n.custom_date_picker_apr,
+      DateTime.may: context.l10n.custom_date_picker_may,
+      DateTime.june: context.l10n.custom_date_picker_jun,
+      DateTime.july: context.l10n.custom_date_picker_jul,
+      DateTime.august: context.l10n.custom_date_picker_aug,
+      DateTime.september: context.l10n.custom_date_picker_sep,
+      DateTime.october: context.l10n.custom_date_picker_oct,
+      DateTime.november: context.l10n.custom_date_picker_nov,
+      DateTime.december: context.l10n.custom_date_picker_dec,
     };
 
     final List<int> keysOrder = List<int>.generate(DateTime.monthsPerYear, (index) {
@@ -146,8 +147,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
           opacity: opacityValue,
           child: Text(
             text,
-            style: const TextStyle(
-                fontSize: 16, fontWeight: FontWeight.w400, color: Color(0xFF000000)),
+            style: LoonoFonts.fontStyle,
           )),
     );
   }
