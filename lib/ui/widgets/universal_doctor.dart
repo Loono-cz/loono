@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/ui/widgets/loono_button.dart';
+import 'package:loono/l10n/ext.dart';
 
 enum DoctorVisit {
   lastTwoYears,
   moreThanTwoYears,
 }
 
-enum DoctorType { practitioner, gynecologist }
+enum DoctorType { practitioner, gynecologist, dentist }
 
 class UniversalDoctor extends StatelessWidget {
   final DoctorType forDoctorType;
@@ -27,14 +28,19 @@ class UniversalDoctor extends StatelessWidget {
 
     switch (forDoctorType) {
       case DoctorType.practitioner:
-        _question = 'Kdy jsi byl/a naposledy na preventivní prohlídce u';
-        _questionHeader = 'Praktického lékaře?';
+        _question = context.l10n.universal_dr_practitioner_question;
+        _questionHeader = context.l10n.universal_dr_practitioner_question_header;
         _imagePath = 'practicioner';
         break;
       case DoctorType.gynecologist:
-        _question = 'Kdy jsi byla naposledy na preventivní prohlídce na';
-        _questionHeader = 'Gynekologii?';
+        _question = context.l10n.universal_dr_gynecology_question;
+        _questionHeader = context.l10n.universal_dr_practitioner_question_header;
         _imagePath = 'gynecology';
+        break;
+      case DoctorType.dentist:
+        _question = context.l10n.universal_dr_dentist_question;
+        _questionHeader = context.l10n.universal_dr_dentist_question_header;
+        _imagePath = 'dentist';
         break;
     }
 
@@ -50,15 +56,16 @@ class UniversalDoctor extends StatelessWidget {
           _question,
           textAlign: TextAlign.center,
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 8),
         Text(
           _questionHeader,
           style: LoonoFonts.bigFontStyle,
         ),
         SizedBox(height: _bodyFooterDistance),
-        LoonoButton(nextCallback, "V posledních dvou letech", enabled: true),
+        LoonoButton(nextCallback, context.l10n.universal_dr_button_last_two_years, enabled: true),
         const SizedBox(height: 16),
-        LoonoButton(nextCallback, "Více, než 2 roky nebo nevím", enabled: true),
+        LoonoButton(nextCallback, context.l10n.universal_dr_button_more_than_two_years,
+            enabled: true),
       ],
     );
   }
