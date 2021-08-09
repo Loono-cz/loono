@@ -7,23 +7,28 @@ class TapArea extends StatelessWidget {
     this.width,
     this.height,
     this.onTap,
+    this.onPanStart,
+    this.onPanEnd,
     this.onLongPress,
     this.onLongPressUp,
   }) : super(key: key);
 
-  const TapArea.leftSide({Key? key, this.onTap, this.onLongPress, this.onLongPressUp})
+  const TapArea.leftSide(
+      {Key? key, this.onTap, this.onPanStart, this.onPanEnd, this.onLongPress, this.onLongPressUp})
       : alignment = Alignment.centerLeft,
         width = null,
         height = double.infinity,
         super(key: key);
 
-  const TapArea.rightSide({Key? key, this.onTap, this.onLongPress, this.onLongPressUp})
+  const TapArea.rightSide(
+      {Key? key, this.onTap, this.onPanStart, this.onPanEnd, this.onLongPress, this.onLongPressUp})
       : alignment = Alignment.centerRight,
         width = null,
         height = double.infinity,
         super(key: key);
 
-  const TapArea.max({Key? key, this.onTap, this.onLongPress, this.onLongPressUp})
+  const TapArea.max(
+      {Key? key, this.onTap, this.onPanStart, this.onPanEnd, this.onLongPress, this.onLongPressUp})
       : alignment = Alignment.center,
         width = double.infinity,
         height = double.infinity,
@@ -33,6 +38,8 @@ class TapArea extends StatelessWidget {
   final double? height;
   final double? width;
   final VoidCallback? onTap;
+  final GestureDragStartCallback? onPanStart;
+  final GestureDragEndCallback? onPanEnd;
   final VoidCallback? onLongPress;
   final VoidCallback? onLongPressUp;
 
@@ -43,6 +50,8 @@ class TapArea extends StatelessWidget {
       child: GestureDetector(
         behavior: HitTestBehavior.translucent,
         onTap: onTap,
+        onPanStart: onPanStart,
+        onPanEnd: onPanEnd,
         onLongPress: onLongPress,
         onLongPressUp: onLongPressUp,
         child: SizedBox(

@@ -7,6 +7,8 @@ import 'package:loono/ui/widgets/onboarding/carousel/indicator_row.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/story_page.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/tap_area.dart';
 
+const _pageAnimDuration = Duration(milliseconds: 400);
+
 class OnboardingCarouselScreen extends StatefulWidget {
   const OnboardingCarouselScreen({Key? key}) : super(key: key);
 
@@ -21,24 +23,28 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
 
   bool get isStoryPaused => playStoryState == false;
 
-  List<StoryPage> get stories => <StoryPage>[
+  List<StoryPage> get _allStories => <StoryPage>[
         StoryPage.dark(
           content: IntroVideo(
             onVideoLoaded: loadStory,
             videoPaused: isStoryPaused,
             pageState: currentPageIndex,
           ),
+          interactiveContent: OnboardFirstCarouselInteractiveContent(onTap: animToNextStory),
+          indicatorVisible: true,
           duration: const Duration(milliseconds: 12700),
           autoplay: false,
         ),
-        // 7000ms je jen temporary na testovani, jestli se updatuje delka animace u ostatnich na default
-        const StoryPage(content: OnboardingSecondCarouselScreen(), duration: Duration(milliseconds: 7000)),
-        const StoryPage(content: OnboardingThirdCarouselScreen()),
-        const StoryPage(
-          content: OnboardFourthCarouselScreen(),
-          interactiveContent: OnboardFourthCarouselInteractiveContent(),
+        StoryPage(
+          content: OnboardingSecondCarouselScreen(onBack: animToPrevStory, onNext: animToNextStory),
         ),
+        StoryPage(
+          content: OnboardingThirdCarouselScreen(onBack: animToPrevStory, onNext: animToNextStory),
+        ),
+        StoryPage(content: OnboardFourthCarouselScreen(onBack: animToPrevStory)),
       ];
+
+  List<StoryPage> get stories => _allStories.where((story) => story.indicatorVisible).toList();
 
   @override
   void initState() {
@@ -50,13 +56,13 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
     if (!playStoryState) setState(() => playStoryState = true);
   }
 
-  void playStory() => setState(() => playStoryState = true);
+  void playStory([DragEndDetails? details]) => setState(() => playStoryState = true);
 
-  void pauseStory() => setState(() => playStoryState = false);
+  void pauseStory([DragStartDetails? details]) => setState(() => playStoryState = false);
 
   int get currentPageIndex => pageController.hasClients ? pageController.page?.round() ?? 0 : 0;
 
-  bool get canTransitionToPrevStory => currentPageIndex > 0;
+  bool get canTransitionToPrevStory => currentPageIndex > 0 && currentPageIndex < stories.length;
 
   bool get canTransitionToNextStory => currentPageIndex < stories.length - 1;
 
@@ -64,7 +70,13 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
 
   void jumpToNextStory() => pageController.jumpToPage(currentPageIndex + 1);
 
-  StoryPage get currentStory => stories[currentPageIndex];
+  void animToPrevStory() => pageController.animateToPage(currentPageIndex - 1,
+      duration: _pageAnimDuration, curve: Curves.linear);
+
+  void animToNextStory() => pageController.animateToPage(currentPageIndex + 1,
+      duration: _pageAnimDuration, curve: Curves.linear);
+
+  StoryPage get currentStory => _allStories[currentPageIndex];
 
   @override
   void dispose() {
@@ -81,20 +93,24 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
           PageView(
             onPageChanged: (_) => currentStory.autoplay ? playStory() : pauseStory(),
             controller: pageController,
-            children: stories,
+            physics: const NeverScrollableScrollPhysics(),
+            children: _allStories,
           ),
-          IndicatorRow(
-            numOfIndicators: stories.length,
-            currentIndex: currentPageIndex,
-            currentDuration: currentStory.duration,
-            currentStoryPageBackground: currentStory.storyPageBackground,
-            onStoryFinish: canTransitionToNextStory ? jumpToNextStory : null,
-            paused: isStoryPaused,
-          ),
+          if (currentStory.indicatorVisible)
+            IndicatorRow(
+              numOfIndicators: stories.length,
+              currentIndex: currentPageIndex,
+              currentDuration: currentStory.duration,
+              currentStoryPageBackground: currentStory.storyPageBackground,
+              onStoryFinish: canTransitionToNextStory ? jumpToNextStory : null,
+              paused: isStoryPaused,
+            ),
           if (canTransitionToPrevStory) TapArea.leftSide(onTap: jumpToPrevStory),
           if (canTransitionToNextStory) TapArea.rightSide(onTap: jumpToNextStory),
-          if (stories.isNotEmpty) TapArea.max(onLongPress: pauseStory, onLongPressUp: playStory),
-          if (currentStory.hasInteractiveContent) currentStory.interactiveContent!,
+          if (currentStory.indicatorVisible) ...[
+            if (stories.isNotEmpty) TapArea.max(onPanStart: pauseStory, onPanEnd: playStory),
+            if (currentStory.hasInteractiveContent) currentStory.interactiveContent!,
+          ],
         ],
       ),
     );

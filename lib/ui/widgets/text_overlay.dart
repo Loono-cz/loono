@@ -1,32 +1,40 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 
-class TextOverlay extends StatelessWidget {
-  final double fontSizeRatio = 1.9;
-  final double spacingRatio = 0.013;
-  final int? maxLineLength;
-  final List<String> textLines;
+const _fontSizeRatio = 1.9;
+const _spacingRatio = 0.013;
 
-  TextOverlay({required this.textLines, Key? key})
+class TextOverlay extends StatelessWidget {
+  TextOverlay({Key? key, this.padding, required this.textLines})
       : maxLineLength = textLines.map((line) => line.length).reduce(max),
         super(key: key);
+
+  late final int maxLineLength;
+
+  final EdgeInsets? padding;
+  final List<String> textLines;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: Alignment.bottomCenter,
-      padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.2),
+      alignment: Alignment.topCenter,
+      padding: padding,
       child: Wrap(
         direction: Axis.vertical,
-        spacing: spacingRatio * MediaQuery.of(context).size.height,
+        spacing: _spacingRatio * MediaQuery.of(context).size.height,
         children: textLines
             .map(
               (textLine) => Container(
                 color: Colors.white,
-                child: Text(
-                  textLine,
-                  style: TextStyle(
-                    fontSize: fontSizeRatio * (MediaQuery.of(context).size.width / maxLineLength!),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Text(
+                    textLine,
+                    style: TextStyle(
+                      fontSize:
+                          _fontSizeRatio * (MediaQuery.of(context).size.width / maxLineLength),
+                    ),
                   ),
                 ),
               ),

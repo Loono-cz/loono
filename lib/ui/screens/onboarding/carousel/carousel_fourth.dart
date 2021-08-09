@@ -1,44 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:loono/constants.dart';
-import 'package:loono/ui/widgets/carousel_content_widget.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:loono/l10n/ext.dart';
+import 'package:loono/ui/widgets/onboarding/carousel/app_bar.dart';
+import 'package:loono/ui/widgets/onboarding/carousel/button.dart';
+import 'package:loono/ui/widgets/onboarding/carousel/carousel_content.dart';
 
 class OnboardFourthCarouselScreen extends StatelessWidget {
-  const OnboardFourthCarouselScreen({Key? key}) : super(key: key);
+  const OnboardFourthCarouselScreen({Key? key, this.onNext, this.onBack}) : super(key: key);
+
+  final VoidCallback? onNext;
+  final VoidCallback? onBack;
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Color.fromRGBO(241, 249, 249, 1),
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.0),
-          child: CarouselContentWidget(
-            text: 'Staneš se skutečným hrdinou / hrdinkou svého života.',
+    return WillPopScope(
+      onWillPop: () async {
+        onBack?.call();
+        return false;
+      },
+      child: Scaffold(
+        backgroundColor: const Color.fromRGBO(241, 249, 249, 1),
+        appBar: carouselAppBar(context),
+        body: SafeArea(
+          child: CarouselBaseContent(
+            headerText: context.l10n.carousel_content_4_header,
+            bodyText: context.l10n.carousel_content_4_body,
+            bottomText: context.l10n.carousel_content_4_bottom,
+            image: Center(
+              child: SvgPicture.asset(
+                'assets/icons/carousel_4.svg',
+                width: MediaQuery.of(context).size.width,
+                // height: MediaQuery.of(context).size.height * 0.311,
+              ),
+            ),
+            button: CarouselButton(
+              text: context.l10n.carousel_content_4_button,
+              onTap: () => Navigator.pushNamed(context, '/onboarding/gender'),
+            ),
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class OnboardFourthCarouselInteractiveContent extends StatelessWidget {
-  const OnboardFourthCarouselInteractiveContent({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Positioned(
-      bottom: 120.0,
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.symmetric(horizontal: 40.0),
-        child: TextButton(
-          style: ButtonStyle(
-            alignment: Alignment.center,
-            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-            backgroundColor: MaterialStateProperty.all<Color>(LoonoColors.primary),
-          ),
-          onPressed: () => Navigator.pushNamed(context, '/onboarding/gender'),
-          child: const Text('Beru zdraví do svých rukou'),
         ),
       ),
     );
