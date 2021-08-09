@@ -10,7 +10,6 @@ import 'package:loono/ui/screens/onboarding/fallback_account/email.dart';
 import 'package:loono/ui/screens/onboarding/fallback_account/nickname.dart';
 import 'package:loono/ui/screens/onboarding/gender.dart';
 import 'package:loono/ui/screens/welcome.dart';
-import 'package:loono/ui/screens/achievement.dart';
 import 'package:loono/ui/screens/award.dart';
 import 'package:loono/utils/registry.dart';
 
