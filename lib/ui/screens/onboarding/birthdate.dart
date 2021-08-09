@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loono/ui/widgets/custom_date_picker.dart';
 import 'package:loono/ui/widgets/extend_inkwell.dart';
+import 'package:loono/ui/widgets/skip_button.dart';
 
 class OnBoardingBirthdateScreen extends StatelessWidget {
   @override
@@ -12,18 +13,7 @@ class OnBoardingBirthdateScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: Column(
             children: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/onboarding/doctor/general-practicioner');
-                },
-                child: const Align(
-                  alignment: Alignment.topRight,
-                  child: Text(
-                    'Přeskočit',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ),
-              ),
+              SkipButton(onPressed: () => Navigator.pushNamed(context, '/onboarding/doctor/general-practicioner')),
               const SizedBox(
                 height: 70,
               ),
@@ -40,7 +30,14 @@ class OnBoardingBirthdateScreen extends StatelessWidget {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 32),
-                  child: CustomDatePicker(),
+                  child: Center(
+                    child: CustomDatePicker(
+                      valueChanged: (selectedDate) {
+                        // TODO: Handle selected date
+                        print(selectedDate);
+                      },
+                    ),
+                  ),
                 ),
               ),
               ExtendedInkWell(

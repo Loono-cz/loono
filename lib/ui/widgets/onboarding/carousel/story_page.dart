@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const _defaultDuration = Duration(seconds: 4);
+const _defaultDuration = Duration(seconds: 15);
 
 enum StoryPageBackground { dark, light }
 

@@ -30,6 +30,7 @@ class Indicator extends StatefulWidget {
     required this.maxWidth,
     this.height = 4.0,
     required this.indicatorStyle,
+    this.onFinish,
   }) : super(key: key);
 
   final bool finished;
@@ -38,6 +39,7 @@ class Indicator extends StatefulWidget {
   final double maxWidth;
   final double height;
   final IndicatorStyle indicatorStyle;
+  final VoidCallback? onFinish;
 
   @override
   _IndicatorState createState() => _IndicatorState();
@@ -55,13 +57,18 @@ class _IndicatorState extends State<Indicator> with SingleTickerProviderStateMix
     animationController = AnimationController(
       duration: widget.duration,
       vsync: this,
-    );
+    )..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          widget.onFinish?.call();
+        }
+      });
     containerAnim = Tween<double>(begin: 0.0, end: widget.maxWidth).animate(animationController);
   }
 
   @override
   void didUpdateWidget(Indicator oldWidget) {
     super.didUpdateWidget(oldWidget);
+    animationController.reset();
     if (animationController.duration != widget.duration) {
       animationController.duration = widget.duration;
     }

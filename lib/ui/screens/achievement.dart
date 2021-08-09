@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/ui/widgets/button.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AchievementScreen extends StatelessWidget {
   final String imagePath = 'guarantee';
@@ -18,8 +18,7 @@ class AchievementScreen extends StatelessWidget {
               SvgPicture.asset("assets/icons/guarantee.svg"),
               const SizedBox(height: 32),
               const Text("Báječné! Jsi poctivější než polovina žen v Česku"),
-              const Text(
-                  "Tato prohlídka je důležitá pro včasné odhalení rakoviny děložního čípku a jiných obtíží."),
+              const Text("Tato prohlídka je důležitá pro včasné odhalení rakoviny děložního čípku a jiných obtíží."),
               const Text('Jen tak dál…'),
               const SizedBox(height: 32),
               Row(
@@ -33,8 +32,11 @@ class AchievementScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 64),
-              LoonoButton(() => {debugPrint("Foo")}, AppLocalizations.of(context)!.continue_info,
-                  enabled: true),
+              LoonoButton(
+                () => Navigator.pushNamed(context, '/create-account'),
+                AppLocalizations.of(context)!.continue_info,
+                enabled: true,
+              ),
             ],
           ),
         ),

@@ -22,7 +22,7 @@ class TapArea extends StatelessWidget {
         behavior: HitTestBehavior.translucent,
         onTap: onTap,
         child: SizedBox(
-          width: MediaQuery.of(context).size.width / 4,
+          width: MediaQuery.of(context).size.width / 2,
           height: double.infinity,
         ),
       ),
