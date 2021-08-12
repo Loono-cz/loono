@@ -90,7 +90,7 @@ class _GendersContainerState extends State<GendersContainer> {
       ),
       builder: (context) {
         return FractionallySizedBox(
-          heightFactor: 0.881,
+          heightFactor: MediaQuery.of(context).size.height > 750 ? 0.7 : 0.881,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18.0),
             child: Column(
