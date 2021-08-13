@@ -18,12 +18,9 @@ class OnboardFourthCarouselScreen extends StatelessWidget {
           headerText: context.l10n.carousel_content_4_header,
           bodyText: context.l10n.carousel_content_4_body,
           bottomText: context.l10n.carousel_content_4_bottom,
-          image: Center(
-            child: SvgPicture.asset(
-              'assets/icons/carousel_4.svg',
-              width: MediaQuery.of(context).size.width,
-              // height: MediaQuery.of(context).size.height * 0.311,
-            ),
+          image: SvgPicture.asset(
+            'assets/icons/carousel_4.svg',
+            width: MediaQuery.of(context).size.width,
           ),
           button: CarouselButton(
             text: context.l10n.carousel_content_4_button,

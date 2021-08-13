@@ -19,7 +19,7 @@ class TextOverlay extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.topCenter,
-      padding: padding,
+      padding: padding ?? EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.55),
       child: Wrap(
         direction: Axis.vertical,
         spacing: _spacingRatio * MediaQuery.of(context).size.height,
@@ -27,14 +27,11 @@ class TextOverlay extends StatelessWidget {
             .map(
               (textLine) => Container(
                 color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Text(
-                    textLine,
-                    style: TextStyle(
-                      fontSize:
-                          _fontSizeRatio * (MediaQuery.of(context).size.width / maxLineLength),
-                    ),
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Text(
+                  textLine,
+                  style: TextStyle(
+                    fontSize: _fontSizeRatio * (MediaQuery.of(context).size.width / maxLineLength),
                   ),
                 ),
               ),

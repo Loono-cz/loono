@@ -14,10 +14,7 @@ class IntroVideo extends StatelessWidget {
         child: Stack(
           children: [
             const CustomVideoPlayer(type: FileType.assets, source: 'assets/intro_video.mp4'),
-            TextOverlay(
-              padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.53),
-              textLines: context.l10n.carousel_content_1_body.split('\n'),
-            ),
+            TextOverlay(textLines: context.l10n.carousel_content_1_body.split('\n')),
           ],
         ),
       ),

@@ -144,7 +144,7 @@ class CarouselBaseContent extends StatelessWidget {
                 ),
               ),
             ),
-            if (image != null) image!,
+            if (image != null) Center(child: image),
             Expanded(child: Container(color: Colors.white)),
           ],
         ),

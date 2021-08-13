@@ -46,7 +46,7 @@ class Loono extends StatelessWidget {
           case '/onboarding/carousel4':
             return _swipeTransition(const OnboardFourthCarouselScreen());
           case '/onboarding/gender':
-            return MaterialPageRoute(builder: (_) => const OnboardingGenderScreen());
+            return _swipeTransition(const OnboardingGenderScreen());
           case '/onboarding/birthdate':
             return MaterialPageRoute(builder: (_) => OnBoardingBirthdateScreen());
           case '/onboarding/doctor/general-practicioner':
