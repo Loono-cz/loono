@@ -14,37 +14,6 @@ class OnboardingCarouselScreen extends StatefulWidget {
 class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
   final PageController pageController = PageController();
 
-  bool playStoryState = false;
-
-  bool get isStoryPaused => playStoryState == false;
-
-  List<StoryPage> get stories => <StoryPage>[
-        StoryPage.dark(
-          content: IntroVideo(
-            onVideoLoaded: loadStory,
-            videoPaused: isStoryPaused,
-            pageState: currentPageIndex,
-          ),
-          interactiveContent: const OnboardFirstCarouselInteractiveContent(),
-          duration: const Duration(milliseconds: 12700),
-          autoplay: false,
-        ),
-      ];
-
-  @override
-  void initState() {
-    super.initState();
-    if (stories.isNotEmpty && stories.first.autoplay) playStory();
-  }
-
-  void loadStory() {
-    if (!playStoryState) setState(() => playStoryState = true);
-  }
-
-  void playStory([DragEndDetails? details]) => setState(() => playStoryState = true);
-
-  void pauseStory([DragStartDetails? details]) => setState(() => playStoryState = false);
-
   int get currentPageIndex => pageController.hasClients ? pageController.page?.round() ?? 0 : 0;
 
   bool get canTransitionToPrevStory => currentPageIndex > 0;
@@ -54,6 +23,14 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
   void jumpToPrevStory() => pageController.jumpToPage(currentPageIndex - 1);
 
   void jumpToNextStory() => pageController.jumpToPage(currentPageIndex + 1);
+
+  final stories = const <StoryPage>[
+    StoryPage.dark(
+      content: IntroVideo(),
+      interactiveContent: OnboardFirstCarouselInteractiveContent(),
+      duration: Duration(seconds: 13),
+    ),
+  ];
 
   StoryPage get currentStory => stories[currentPageIndex];
 
@@ -70,7 +47,7 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
       child: Stack(
         children: [
           PageView(
-            onPageChanged: (_) => currentStory.autoplay ? playStory() : pauseStory(),
+            onPageChanged: (_) => setState(() {}),
             controller: pageController,
             children: stories,
           ),
@@ -80,11 +57,9 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
             currentDuration: currentStory.duration,
             currentStoryPageBackground: currentStory.storyPageBackground,
             onStoryFinish: canTransitionToNextStory ? jumpToNextStory : null,
-            paused: isStoryPaused,
           ),
           if (canTransitionToPrevStory) TapArea.leftSide(onTap: jumpToPrevStory),
           if (canTransitionToNextStory) TapArea.rightSide(onTap: jumpToNextStory),
-          if (stories.isNotEmpty) TapArea.max(onPanStart: pauseStory, onPanEnd: playStory),
           if (currentStory.hasInteractiveContent) currentStory.interactiveContent!,
         ],
       ),

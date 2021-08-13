@@ -5,16 +5,7 @@ import 'package:loono/ui/widgets/text_overlay.dart';
 import 'package:loono/ui/widgets/video_player.dart';
 
 class IntroVideo extends StatelessWidget {
-  const IntroVideo({
-    Key? key,
-    this.onVideoLoaded,
-    this.videoPaused = false,
-    this.pageState = 0,
-  }) : super(key: key);
-
-  final VoidCallback? onVideoLoaded;
-  final bool videoPaused;
-  final int pageState;
+  const IntroVideo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +13,7 @@ class IntroVideo extends StatelessWidget {
       body: Center(
         child: Stack(
           children: [
-            CustomVideoPlayer(
-              type: FileType.assets,
-              source: 'assets/intro_video.mp4',
-              paused: videoPaused,
-              onLoaded: onVideoLoaded,
-              currentPage: pageState,
-            ),
+            const CustomVideoPlayer(type: FileType.assets, source: 'assets/intro_video.mp4'),
             TextOverlay(
               padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.53),
               textLines: context.l10n.carousel_content_1_body.split('\n'),

@@ -25,7 +25,6 @@ class Indicator extends StatefulWidget {
   const Indicator({
     Key? key,
     this.finished = false,
-    this.paused = false,
     required this.duration,
     this.shouldAnimate = false,
     required this.maxWidth,
@@ -35,7 +34,6 @@ class Indicator extends StatefulWidget {
   }) : super(key: key);
 
   final bool finished;
-  final bool paused;
   final Duration duration;
   final bool shouldAnimate;
   final double maxWidth;
@@ -70,18 +68,9 @@ class _IndicatorState extends State<Indicator> with SingleTickerProviderStateMix
   @override
   void didUpdateWidget(Indicator oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (animationController.value > 0) {
-      if (widget.paused != oldWidget.paused) {
-        oldWidget.paused ? animationController.forward() : animationController.stop();
-      } else {
-        animationController.reset();
-      }
-    }
-
+    animationController.reset();
     if (animationController.duration != widget.duration) {
-      animationController
-        ..reset()
-        ..duration = widget.duration;
+      animationController.duration = widget.duration;
     }
   }
 
@@ -94,9 +83,9 @@ class _IndicatorState extends State<Indicator> with SingleTickerProviderStateMix
   @override
   Widget build(BuildContext context) {
     if (widget.shouldAnimate) {
-      if (!widget.paused) {
-        animationController.forward();
-      }
+      animationController
+        ..reset()
+        ..forward();
 
       return Stack(
         children: [
