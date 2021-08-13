@@ -12,7 +12,6 @@ class StoryPage extends StatelessWidget {
     this.interactiveContent,
     this.storyPageBackground = StoryPageBackground.light,
     this.autoplay = true,
-    this.indicatorVisible = false,
   }) : super(key: key);
 
   const StoryPage.dark({
@@ -21,7 +20,6 @@ class StoryPage extends StatelessWidget {
     this.interactiveContent,
     this.duration = _defaultDuration,
     this.autoplay = true,
-    this.indicatorVisible = false,
   })  : storyPageBackground = StoryPageBackground.dark,
         super(key: key);
 
@@ -29,7 +27,6 @@ class StoryPage extends StatelessWidget {
   final Widget? interactiveContent;
   final StoryPageBackground storyPageBackground;
   final Duration duration;
-  final bool indicatorVisible;
 
   /// If `false` then the story will not start playing when shown. For example in videos, where the
   /// story indicator animation should wait till the video gets loaded.
