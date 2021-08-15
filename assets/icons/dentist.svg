@@ -1,7 +1,7 @@
 <svg width="204" height="204" viewBox="0 0 204 204" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="102" cy="102" r="102" fill="#FFFAF7"/>
 <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="204" height="204">
-<circle cx="75" cy="75" r="75" fill="#FCECE5"/>
+<circle cx="102" cy="102" r="102" fill="#FCECE5"/>
 </mask>
 <g mask="url(#mask0)">
 <g clip-path="url(#clip0)">
