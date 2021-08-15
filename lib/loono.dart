@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loono/ui/screens/achievement.dart';
 import 'package:loono/ui/screens/create_account.dart';
+import 'package:loono/ui/screens/onboarding/allow_notifications.dart';
 import 'package:loono/ui/screens/onboarding/birthdate.dart';
 import 'package:loono/ui/screens/onboarding/carousel/carousel.dart';
 import 'package:loono/ui/screens/onboarding/doctors/general_practicioner.dart';
@@ -26,6 +27,7 @@ class Loono extends StatelessWidget {
         '/onboarding/gender': (_) => const OnboardingGenderScreen(),
         '/onboarding/birthdate': (_) => OnBoardingBirthdateScreen(),
         '/onboarding/doctor/general-practicioner': (_) => OnboardingGeneralPracticionerScreen(),
+        '/onboarding/allow_notifications': (_) => const AllowNotificationsScreen(),
         '/onboarding/doctor/gynecology': (_) => OnboardingGynecologyScreen(),
         '/achievement': (_) => AchievementScreen(),
         '/create-account': (_) => const CreateAccountScreen(),
