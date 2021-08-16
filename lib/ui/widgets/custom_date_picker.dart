@@ -65,18 +65,18 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
 
   Map<int, String> get _datePickerMonths {
     final Map<int, String> monthsMap = {
-      DateTime.january: context.l10n.custom_date_picker_jan,
-      DateTime.february: context.l10n.custom_date_picker_feb,
-      DateTime.march: context.l10n.custom_date_picker_mar,
-      DateTime.april: context.l10n.custom_date_picker_apr,
-      DateTime.may: context.l10n.custom_date_picker_may,
-      DateTime.june: context.l10n.custom_date_picker_jun,
-      DateTime.july: context.l10n.custom_date_picker_jul,
-      DateTime.august: context.l10n.custom_date_picker_aug,
-      DateTime.september: context.l10n.custom_date_picker_sep,
-      DateTime.october: context.l10n.custom_date_picker_oct,
-      DateTime.november: context.l10n.custom_date_picker_nov,
-      DateTime.december: context.l10n.custom_date_picker_dec,
+      DateTime.january: context.l10n.month_january,
+      DateTime.february: context.l10n.month_february,
+      DateTime.march: context.l10n.month_march,
+      DateTime.april: context.l10n.month_april,
+      DateTime.may: context.l10n.month_may,
+      DateTime.june: context.l10n.month_june,
+      DateTime.july: context.l10n.month_july,
+      DateTime.august: context.l10n.month_august,
+      DateTime.september: context.l10n.month_september,
+      DateTime.october: context.l10n.month_october,
+      DateTime.november: context.l10n.month_november,
+      DateTime.december: context.l10n.month_december,
     };
 
     final List<int> keysOrder = List<int>.generate(DateTime.monthsPerYear, (index) {
