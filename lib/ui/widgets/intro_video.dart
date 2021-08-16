@@ -38,13 +38,12 @@ class IntroVideo extends StatelessWidget {
 }
 
 class OnboardFirstCarouselInteractiveContent extends StatelessWidget {
-  const OnboardFirstCarouselInteractiveContent({Key? key}) : super(key: key);
+  const OnboardFirstCarouselInteractiveContent({Key? key, this.onTap}) : super(key: key);
+
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return CarouselButton(
-      text: context.l10n.continue_info,
-      onTap: () => Navigator.pushNamed(context, '/onboarding/carousel2'),
-    );
+    return CarouselButton(text: context.l10n.continue_info, onTap: onTap);
   }
 }
