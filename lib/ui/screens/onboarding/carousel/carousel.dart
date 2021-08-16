@@ -71,10 +71,10 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
   void jumpToNextStory() => pageController.jumpToPage(currentPageIndex + 1);
 
   void animToPrevStory() => pageController.animateToPage(currentPageIndex - 1,
-      duration: _pageAnimDuration, curve: Curves.linearToEaseOut);
+      duration: _pageAnimDuration, curve: Curves.linearToEaseOut.flipped);
 
   void animToNextStory() => pageController.animateToPage(currentPageIndex + 1,
-      duration: _pageAnimDuration, curve: Curves.linearToEaseOut.flipped);
+      duration: _pageAnimDuration, curve: Curves.linearToEaseOut);
 
   StoryPage get currentStory => _allStories[currentPageIndex];
 
