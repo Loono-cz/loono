@@ -4,8 +4,8 @@ import 'package:loono/ui/screens/create_account.dart';
 import 'package:loono/ui/screens/onboarding/allow_notifications.dart';
 import 'package:loono/ui/screens/onboarding/birthdate.dart';
 import 'package:loono/ui/screens/onboarding/carousel/carousel.dart';
-import 'package:loono/ui/screens/onboarding/doctors/general_practicioner.dart';
-import 'package:loono/ui/screens/onboarding/doctors/gynecology.dart';
+import 'package:loono/ui/screens/onboarding/onboarding_doctor_screen.dart';
+import 'package:loono/ui/widgets/universal_doctor_widget.dart';
 import 'package:loono/ui/screens/onboarding/fallback_account/email.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:loono/ui/screens/onboarding/fallback_account/nickname.dart';
@@ -26,9 +26,13 @@ class Loono extends StatelessWidget {
         '/onboarding/carousel': (_) => const OnboardingCarouselScreen(),
         '/onboarding/gender': (_) => const OnboardingGenderScreen(),
         '/onboarding/birthdate': (_) => OnBoardingBirthdateScreen(),
-        '/onboarding/doctor/general-practicioner': (_) => OnboardingGeneralPracticionerScreen(),
+        '/onboarding/doctor/general-practicioner': (_) =>
+            const OnboardingDoctorScreen(doctorType: DoctorType.practitioner),
+        '/onboarding/doctor/gynecology': (_) =>
+            const OnboardingDoctorScreen(doctorType: DoctorType.gynecologist),
+        '/onboarding/doctor/dentist': (_) =>
+            const OnboardingDoctorScreen(doctorType: DoctorType.dentist),
         '/onboarding/allow_notifications': (_) => const AllowNotificationsScreen(),
-        '/onboarding/doctor/gynecology': (_) => OnboardingGynecologyScreen(),
         '/achievement': (_) => AchievementScreen(),
         '/create-account': (_) => const CreateAccountScreen(),
         '/fallback_account/name': (_) => const NicknameScreen(),
