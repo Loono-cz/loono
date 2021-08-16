@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:loono/ui/screens/onboarding/carousel/carousel_fourth.dart';
+import 'package:loono/ui/screens/onboarding/carousel/carousel_second.dart';
+import 'package:loono/ui/screens/onboarding/carousel/carousel_third.dart';
 import 'package:loono/ui/widgets/intro_video.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/indicator_row.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/story_page.dart';
@@ -14,6 +17,40 @@ class OnboardingCarouselScreen extends StatefulWidget {
 class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
   final PageController pageController = PageController();
 
+  bool playStoryState = false;
+
+  bool get isStoryPaused => playStoryState == false;
+
+  List<StoryPage> get stories => <StoryPage>[
+        StoryPage.dark(
+          content: IntroVideo(
+            onVideoLoaded: loadStory,
+            videoPaused: isStoryPaused,
+            pageState: currentPageIndex,
+          ),
+          interactiveContent: const OnboardFirstCarouselInteractiveContent(),
+          duration: const Duration(milliseconds: 12700),
+          autoplay: false,
+        ),
+        const StoryPage(content: OnboardingSecondCarouselScreen()),
+        const StoryPage(content: OnboardingThirdCarouselScreen()),
+        const StoryPage(content: OnboardFourthCarouselScreen()),
+      ];
+
+  @override
+  void initState() {
+    super.initState();
+    if (stories.isNotEmpty && stories.first.autoplay) playStory();
+  }
+
+  void loadStory() {
+    if (!playStoryState) setState(() => playStoryState = true);
+  }
+
+  void playStory() => setState(() => playStoryState = true);
+
+  void pauseStory() => setState(() => playStoryState = false);
+
   int get currentPageIndex => pageController.hasClients ? pageController.page?.round() ?? 0 : 0;
 
   bool get canTransitionToPrevStory => currentPageIndex > 0;
@@ -23,14 +60,6 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
   void jumpToPrevStory() => pageController.jumpToPage(currentPageIndex - 1);
 
   void jumpToNextStory() => pageController.jumpToPage(currentPageIndex + 1);
-
-  final stories = const <StoryPage>[
-    StoryPage.dark(
-      content: IntroVideo(),
-      interactiveContent: OnboardFirstCarouselInteractiveContent(),
-      duration: Duration(seconds: 13),
-    ),
-  ];
 
   StoryPage get currentStory => stories[currentPageIndex];
 
@@ -47,7 +76,7 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
       child: Stack(
         children: [
           PageView(
-            onPageChanged: (_) => setState(() {}),
+            onPageChanged: (_) => currentStory.autoplay ? playStory() : pauseStory(),
             controller: pageController,
             children: stories,
           ),
@@ -57,9 +86,11 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
             currentDuration: currentStory.duration,
             currentStoryPageBackground: currentStory.storyPageBackground,
             onStoryFinish: canTransitionToNextStory ? jumpToNextStory : null,
+            paused: isStoryPaused,
           ),
           if (canTransitionToPrevStory) TapArea.leftSide(onTap: jumpToPrevStory),
           if (canTransitionToNextStory) TapArea.rightSide(onTap: jumpToNextStory),
+          if (stories.isNotEmpty) TapArea.max(onLongPress: pauseStory, onLongPressUp: playStory),
           if (currentStory.hasInteractiveContent) currentStory.interactiveContent!,
         ],
       ),
