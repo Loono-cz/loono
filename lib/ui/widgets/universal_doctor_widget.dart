@@ -58,7 +58,7 @@ class UniversalDoctor extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Text(
-          _questionHeader,
+          _questionHeader.toUpperCase(),
           style: LoonoFonts.bigFontStyle,
         ),
         SizedBox(height: _bodyFooterDistance),
