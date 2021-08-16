@@ -1,33 +1,77 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:video_player/video_player.dart';
 
 enum FileType { url, assets }
 
 class CustomVideoPlayer extends StatefulWidget {
+  const CustomVideoPlayer({
+    Key? key,
+    required this.type,
+    required this.source,
+    this.autoplay = true,
+    this.looping = false,
+    this.onLoaded,
+    this.paused = false,
+    this.currentPage = 0,
+  }) : super(key: key);
+
   final String source;
   final FileType type;
   final bool autoplay;
-  const CustomVideoPlayer(
-      {required this.type, required this.source, this.autoplay = true, Key? key})
-      : super(key: key);
+  final bool looping;
+  final bool paused;
+  final VoidCallback? onLoaded;
+  final int currentPage;
 
   @override
   _VideoPlayerScreenState createState() => _VideoPlayerScreenState();
 }
 
 class _VideoPlayerScreenState extends State<CustomVideoPlayer> {
-  late VideoPlayerController _controller;
-  late Future<void> _initializeVideoPlayerFuture;
+  late final VideoPlayerController _controller;
+  late final Future<void> _initializeVideoPlayerFuture;
+  late final int initialPage;
 
   @override
   void initState() {
+    super.initState();
+    initialPage = widget.currentPage;
     _controller = (widget.type == FileType.url)
         ? VideoPlayerController.network(widget.source)
         : VideoPlayerController.asset(widget.source);
     _initializeVideoPlayerFuture = _controller.initialize();
-    _initializeVideoPlayerFuture.then((val) => {if (widget.autoplay) _controller.play()});
-    _controller.setLooping(true);
-    super.initState();
+    _initializeVideoPlayerFuture.then((_) {
+      if (widget.autoplay) {
+        _controller.play();
+        widget.onLoaded?.call();
+      }
+    });
+    _controller.setLooping(widget.looping);
+  }
+
+  @override
+  void didUpdateWidget(CustomVideoPlayer oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (_controller.value.isInitialized) {
+      if (widget.paused != oldWidget.paused) {
+        oldWidget.paused ? _controller.play() : _controller.pause();
+      }
+
+      if ((initialPage != oldWidget.currentPage) ||
+          (initialPage == oldWidget.currentPage && initialPage != widget.currentPage)) {
+        if (initialPage <= oldWidget.currentPage && widget.paused) {
+          if (!(initialPage > oldWidget.currentPage)) {
+            WidgetsBinding.instance!.addPostFrameCallback((_) {
+              if (mounted) widget.onLoaded?.call();
+            });
+          }
+          _controller
+            ..seekTo(Duration.zero)
+            ..play();
+        }
+      }
+    }
   }
 
   @override
@@ -62,16 +106,6 @@ class _VideoPlayerScreenState extends State<CustomVideoPlayer> {
               return const Center(child: CircularProgressIndicator());
             }
           },
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            _controller.value.isPlaying ? _controller.pause() : _controller.play();
-          });
-        },
-        child: Icon(
-          _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
         ),
       ),
     );
