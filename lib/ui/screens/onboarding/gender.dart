@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:loono/constants.dart';
+import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/extend_inkwell.dart';
 import 'package:loono/ui/widgets/onboarding/genders_container.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
@@ -21,17 +23,18 @@ class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: Column(
             children: [
+              const SizedBox(height: 27.0),
               SkipButton(onPressed: () => Navigator.pushNamed(context, '/onboarding/birthdate')),
               const SizedBox(
                 height: 70,
               ),
-              const Align(
+              Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Jaké je tvoje pohlaví?',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 24,
+                  context.l10n.gender_title,
+                  style: const TextStyle(
+                    color: LoonoColors.black,
+                    fontSize: 16.0,
                   ),
                 ),
               ),
@@ -51,13 +54,17 @@ class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
                           Navigator.pushNamed(context, '/onboarding/birthdate');
                         },
                   splashColor: activeButton == null ? Colors.transparent : null,
-                  materialColor:
-                      activeButton == null ? const Color(0xFFEFAD89).withOpacity(0.5) : const Color(0xFFEFAD89),
+                  materialColor: activeButton == null
+                      ? LoonoColors.primaryDisabled
+                      : LoonoColors.primaryEnabled,
                   borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-                  child: const SizedBox(
+                  child: SizedBox(
                     height: 65,
                     child: Align(
-                      child: Text('Pokračovat', style: TextStyle(color: Colors.white)),
+                      child: Text(
+                        context.l10n.continue_info,
+                        style: Theme.of(context).textTheme.button?.copyWith(color: Colors.white),
+                      ),
                     ),
                   ),
                 ),
