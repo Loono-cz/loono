@@ -62,5 +62,7 @@
   "have_you_been_on_a_preventive_check_up_just_approximately": "jsi byla na preventivní prohlídce? Stačí přibližně.",
   "@have_you_been_on_a_preventive_check_up_just_approximately": {},
   "detist": "Zubař",
-  "@detist": {}
+  "@detist": {},
+  "general_practitioner": "Praktický lékař",
+  "@general_practitioner": {}
 }
