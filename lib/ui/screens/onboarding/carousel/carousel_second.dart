@@ -1,23 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:loono/ui/widgets/carousel_content_widget.dart';
+import 'package:loono/constants.dart';
+import 'package:loono/l10n/ext.dart';
+import 'package:loono/ui/widgets/onboarding/carousel/app_bar.dart';
+import 'package:loono/ui/widgets/onboarding/carousel/button.dart';
+import 'package:loono/ui/widgets/onboarding/carousel/carousel_content.dart';
 
 class OnboardingSecondCarouselScreen extends StatelessWidget {
-  const OnboardingSecondCarouselScreen({Key? key}) : super(key: key);
+  const OnboardingSecondCarouselScreen({Key? key, this.onNext, this.onBack}) : super(key: key);
+
+  final VoidCallback? onNext;
+  final VoidCallback? onBack;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromRGBO(237, 248, 253, 1),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: CarouselContentWidget(
-            text: 'Prodloužíš si život v\nprůměru o 20 let.',
-            image: Row(
-              children: [
-                Image.asset('assets/images/carousel-image-2.png'),
-              ],
-            ),
+    return WillPopScope(
+      onWillPop: () async {
+        onBack?.call();
+        return false;
+      },
+      child: Scaffold(
+        backgroundColor: const Color.fromRGBO(237, 248, 253, 1),
+        appBar: carouselAppBar(context),
+        body: SafeArea(
+          child: CarouselStatContent(
+            statText: context.l10n.carousel_content_2_stat,
+            statTextColor: LoonoColors.primaryEnabled,
+            bodyText: context.l10n.carousel_content_2_body,
+            button: CarouselButton(text: context.l10n.continue_info, onTap: onNext),
           ),
         ),
       ),

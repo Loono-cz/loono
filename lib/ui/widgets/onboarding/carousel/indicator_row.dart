@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/indicator.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/story_page.dart';
 
-const _sidePadding = 19.0;
+const _sidePadding = 17.0;
 const _sizeRatio = 0.936;
 
 class IndicatorRow extends StatelessWidget {
@@ -35,7 +35,8 @@ class IndicatorRow extends StatelessWidget {
     return Padding(
       padding: padding,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment:
+            numOfIndicators == 1 ? MainAxisAlignment.center : MainAxisAlignment.spaceBetween,
         children: List.generate(
           numOfIndicators,
           (index) {

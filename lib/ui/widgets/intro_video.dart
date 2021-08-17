@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:loono/ui/widgets/video_player.dart';
+import 'package:loono/l10n/ext.dart';
+import 'package:loono/ui/widgets/onboarding/carousel/button.dart';
 import 'package:loono/ui/widgets/text_overlay.dart';
-
-const textLines = [
-  'Jsme Loono, tým mladých',
-  'lékařů, studentů medicíny a',
-  'mladých profesionálů'
-];
+import 'package:loono/ui/widgets/video_player.dart';
 
 class IntroVideo extends StatelessWidget {
   const IntroVideo({
@@ -33,7 +29,7 @@ class IntroVideo extends StatelessWidget {
               onLoaded: onVideoLoaded,
               currentPage: pageState,
             ),
-            TextOverlay(textLines: textLines),
+            TextOverlay(textLines: context.l10n.carousel_content_1_body.split('\n')),
           ],
         ),
       ),
@@ -41,6 +37,13 @@ class IntroVideo extends StatelessWidget {
   }
 }
 
+class OnboardFirstCarouselInteractiveContent extends StatelessWidget {
+  const OnboardFirstCarouselInteractiveContent({Key? key, this.onTap}) : super(key: key);
 
-// type: FileType.URL,
-// source: 'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4'
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return CarouselButton(text: context.l10n.continue_info, onTap: onTap);
+  }
+}
