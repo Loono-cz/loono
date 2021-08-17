@@ -12,8 +12,8 @@ class GynecologyDateScreen extends StatelessWidget {
       image: SvgPicture.asset('assets/icons/gynecology.svg', width: 50),
       title: context.l10n.gynecology,
       onDateChanged: (value) => print(value),
-      onContinueButtonPress: () => Navigator.pushNamed(context, '/create-account'),
-      onSkipButtonPress: () => Navigator.pushNamed(context, '/create-account'),
+      onContinueButtonPress: () => Navigator.pushNamed(context, '/onboarding/doctor/dentist-date'),
+      onSkipButtonPress: () => Navigator.pushNamed(context, '/onboarding/doctor/dentist-date'),
     );
   }
 }
