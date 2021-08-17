@@ -33,7 +33,7 @@ class AchievementScreen extends StatelessWidget {
               ),
               const SizedBox(height: 64),
               LoonoButton(
-                () => Navigator.pushNamed(context, '/create-account'),
+                () => Navigator.pushNamed(context, '/onboarding/doctor/gynecology-date'),
                 AppLocalizations.of(context)!.continue_info,
                 enabled: true,
               ),

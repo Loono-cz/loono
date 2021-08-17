@@ -74,5 +74,15 @@
   "month_november": "Listopad",
   "@month_november": {},
   "month_december": "Prosinec",
-  "@month_december": {}
+  "@month_december": {},
+  "gynecology": "Gynekologie",
+  "@gynecology": {},
+  "when_was_the_last_time": "Kdy naposledy",
+  "@when_was_the_last_time": {},
+  "have_you_been_on_a_preventive_check_up_just_approximately": "jsi byla na preventivní prohlídce? Stačí přibližně.",
+  "@have_you_been_on_a_preventive_check_up_just_approximately": {},
+  "detist": "Zubař",
+  "@detist": {},
+  "general_practitioner": "Praktický lékař",
+  "@general_practitioner": {}
 }

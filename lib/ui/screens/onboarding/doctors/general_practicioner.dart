@@ -14,7 +14,7 @@ class OnboardingGeneralPracticionerScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SkipButton(
-                onPressed: () => Navigator.pushNamed(context, '/onboarding/allow_notifications'),
+                onPressed: () => Navigator.pushNamed(context, '/onboarding/doctor/general-practitioner-date'),
                 sibling: const LoonoProgressIndicator(
                   numberOfSteps: 3,
                   currentStep: 1,
@@ -25,7 +25,7 @@ class OnboardingGeneralPracticionerScreen extends StatelessWidget {
                   questionHeader: 'Praktického lékaře?',
                   imagePath: 'practicioner',
                   nextCallback: () {
-                    Navigator.pushNamed(context, '/onboarding/allow_notifications');
+                    Navigator.pushNamed(context, '/onboarding/doctor/general-practitioner-date');
                   },
                 ),
               ),

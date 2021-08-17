@@ -28,6 +28,7 @@ class LoonoFonts {
   static const fontStyle = TextStyle(
     color: LoonoColors.black,
     fontWeight: FontWeight.normal,
+    height: 1.5,
   );
 
   static const headerFontStyle = TextStyle(
