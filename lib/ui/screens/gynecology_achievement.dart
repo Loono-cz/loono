@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/ui/widgets/button.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class AwardScreen extends StatelessWidget {
-  final String imagePath = 'assets/icons/guarantee.svg';
+class GynecologyAchievementScreen extends StatelessWidget {
+  final String imagePath = 'guarantee';
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +15,10 @@ class AwardScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SvgPicture.asset('assets/icons/guarantee.svg'),
+              SvgPicture.asset("assets/icons/guarantee.svg"),
               const SizedBox(height: 32),
-              const Text("Gratulujeme!"),
-              const Text(
-                  "Pravidelná prohlídka ti dodá klid. A taky máš velkou šanci odhalit závažná onemocnění včas."),
+              const Text("Báječné! Jsi poctivější než polovina žen v Česku"),
+              const Text("Tato prohlídka je důležitá pro včasné odhalení rakoviny děložního čípku a jiných obtíží."),
               const Text('Jen tak dál…'),
               const SizedBox(height: 32),
               Row(
@@ -33,8 +32,11 @@ class AwardScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 64),
-              LoonoButton(() => {Navigator.pushNamed(context, '/onboarding/doctor/gynecology')}, AppLocalizations.of(context)!.continue_info,
-                  enabled: true),
+              LoonoButton(
+                () => Navigator.pushNamed(context, '/onboarding/doctor/gynecology-date'),
+                AppLocalizations.of(context)!.continue_info,
+                enabled: true,
+              ),
             ],
           ),
         ),

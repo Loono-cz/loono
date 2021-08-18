@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:loono/ui/screens/achievement.dart';
+import 'package:loono/ui/screens/gynecology_achievement.dart';
+import 'package:loono/ui/screens/general_practicioner_achievement.dart';
 import 'package:loono/ui/screens/create_account.dart';
 import 'package:loono/ui/screens/onboarding/allow_notifications.dart';
 import 'package:loono/ui/screens/onboarding/birthdate.dart';
@@ -33,12 +34,13 @@ class Loono extends StatelessWidget {
         '/onboarding/doctor/general-practitioner-date': (_) => const GeneralPractitionerDateScreen(),
         '/onboarding/allow_notifications': (_) => const AllowNotificationsScreen(),
         '/onboarding/doctor/gynecology': (_) => OnboardingGynecologyScreen(),
-        '/achievement': (_) => AchievementScreen(),
+        '/gynecology_achievement': (_) => GynecologyAchievementScreen(),
         '/onboarding/doctor/gynecology-date': (_) => const GynecologyDateScreen(),
         '/onboarding/doctor/dentist-date': (_) => const DentistDateScreen(),
         '/create-account': (_) => const CreateAccountScreen(),
         '/fallback_account/name': (_) => const NicknameScreen(),
         '/fallback_account/email': (_) => const EmailScreen(),
+        '/general_practicioner_achievement': (_) => GeneralPracticionerAchievementScreen(),
       },
     );
   }

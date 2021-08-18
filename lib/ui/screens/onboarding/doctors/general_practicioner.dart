@@ -11,7 +11,8 @@ class OnboardingGeneralPracticionerScreen extends StatelessWidget {
           imagePath: "practicioner",
           numberOfSteps: 3,
           currentStep: 1,
-          nextScreen: "/award",
+          nextScreen1: '/general_practicioner_achievement',
+          nextScreen2: '/onboarding/doctor/general-practitioner-date',
           skipScreen: "/onboarding/doctor/gynecology",
         )
       ),

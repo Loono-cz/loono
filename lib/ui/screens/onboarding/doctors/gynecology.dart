@@ -11,8 +11,9 @@ class OnboardingGynecologyScreen extends StatelessWidget {
             imagePath: "gynecology",
             numberOfSteps: 3,
             currentStep: 2,
-            nextScreen: "/achievement",
-            skipScreen: "'/create-account'",
+            nextScreen1: "/gynecology_achievement",
+            nextScreen2: "/onboarding/doctor/gynecology-date",
+            skipScreen: "/create-account",
           )
       ),
     );
