@@ -22,7 +22,10 @@ class CreateAccountScreen extends StatelessWidget {
               child: SafeArea(
                 child: Column(
                   children: [
-                    SkipButton(onPressed: () => print('Next')),
+                    SkipButton(
+                      text: context.l10n.skip,
+                      onPressed: () => Navigator.pushNamed(context, '/fallback_account/name'),
+                    ),
                     const SizedBox(height: 5),
                     SizedBox(
                       width: double.infinity,

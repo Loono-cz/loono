@@ -51,6 +51,8 @@
   "@fallback_account_email_desc": {},
   "skip": "Přeskočit",
   "@skip": {},
+  "skip_questionnaire": "Přeskočit dotazník",
+  "@skip_questionnaire": {},
   "only_a_small_step_remains_and_you_have": "Jen malý krok zbývá a máš",
   "@only_a_small_step_remains_and_you_have": {},
   "prevention_in_your_hands": "prevenci ve svých rukou",
