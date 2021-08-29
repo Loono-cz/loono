@@ -14,6 +14,7 @@ class OnboardingGenderScreen extends StatefulWidget {
 
 class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
   Gender? activeButton;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,8 +24,12 @@ class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: Column(
             children: [
-              const SizedBox(height: 27.0),
-              SkipButton(onPressed: () => Navigator.pushNamed(context, '/onboarding/birthdate')),
+              SkipButton(
+                onPressed: () {
+                  // TODO: Store data (https://cesko-digital.atlassian.net/browse/LOON-144)
+                  Navigator.pushNamed(context, '/create-account');
+                },
+              ),
               const SizedBox(
                 height: 70,
               ),
@@ -51,6 +56,7 @@ class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
                   onTap: activeButton == null
                       ? () {}
                       : () {
+                          // TODO: Store data (https://cesko-digital.atlassian.net/browse/LOON-144)
                           Navigator.pushNamed(context, '/onboarding/birthdate');
                         },
                   splashColor: activeButton == null ? Colors.transparent : null,

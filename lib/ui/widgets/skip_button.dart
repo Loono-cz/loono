@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/l10n/ext.dart';
 
 class SkipButton extends StatelessWidget {
+  final String? text;
   final void Function() onPressed;
   final Widget? sibling;
 
-  const SkipButton({Key? key, required this.onPressed, this.sibling}) : super(key: key);
+  const SkipButton({Key? key, this.text, required this.onPressed, this.sibling}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class SkipButton extends StatelessWidget {
         TextButton(
           onPressed: onPressed,
           child: Text(
-            AppLocalizations.of(context)!.skip,
+            text ?? context.l10n.skip_questionnaire,
             style: const TextStyle(color: LoonoColors.black, fontWeight: FontWeight.w600),
           ),
         ),

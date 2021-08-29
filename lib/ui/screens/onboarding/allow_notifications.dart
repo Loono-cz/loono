@@ -18,8 +18,8 @@ class AllowNotificationsScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 27.0),
               SkipButton(
-                onPressed: () => Navigator.pushNamed(context,
-                    '/onboarding/doctor/gynecology'), // TODO: Navigate to Dentist Screen (if man)
+                text: context.l10n.skip,
+                onPressed: () => Navigator.pushNamed(context, '/onboarding/doctor/gynecology'),
               ),
               const SizedBox(height: 48.0),
               SvgPicture.asset("assets/icons/notification_bell.svg", width: 128.0),
