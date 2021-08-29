@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:loono/ui/screens/onboarding/carousel/carousel_fourth.dart';
 import 'package:loono/ui/screens/onboarding/carousel/carousel_second.dart';
 import 'package:loono/ui/screens/onboarding/carousel/carousel_third.dart';
 import 'package:loono/ui/widgets/intro_video.dart';
@@ -38,10 +37,7 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
         StoryPage(
           content: OnboardingSecondCarouselScreen(onBack: animToPrevStory, onNext: animToNextStory),
         ),
-        StoryPage(
-          content: OnboardingThirdCarouselScreen(onBack: animToPrevStory, onNext: animToNextStory),
-        ),
-        StoryPage(content: OnboardFourthCarouselScreen(onBack: animToPrevStory)),
+        StoryPage(content: OnboardingThirdCarouselScreen(onBack: animToPrevStory)),
       ];
 
   List<StoryPage> get stories => _allStories.where((story) => story.indicatorVisible).toList();

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/app_bar.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/button.dart';
@@ -18,14 +19,21 @@ class OnboardingThirdCarouselScreen extends StatelessWidget {
         return false;
       },
       child: Scaffold(
-        backgroundColor: const Color.fromRGBO(252, 237, 237, 1),
+        backgroundColor: const Color.fromRGBO(241, 249, 249, 1),
         appBar: carouselAppBar(context),
         body: SafeArea(
-          child: CarouselStatContent(
-            statText: context.l10n.carousel_content_3_stat,
-            statTextColor: const Color.fromRGBO(59, 126, 129, 1),
+          child: CarouselImageContent(
+            headerText: context.l10n.carousel_content_3_header,
             bodyText: context.l10n.carousel_content_3_body,
-            button: CarouselButton(text: context.l10n.carousel_content_3_button, onTap: onNext),
+            image: SvgPicture.asset(
+              'assets/icons/carousel_doctors.svg',
+              width: MediaQuery.of(context).size.width,
+            ),
+            button: CarouselButton(
+              text: context.l10n.carousel_content_3_button,
+              onTap: () => Navigator.pushNamed(context, '/onboarding/gender'),
+            ),
+            bottomText: context.l10n.carousel_content_3_bottom,
           ),
         ),
       ),

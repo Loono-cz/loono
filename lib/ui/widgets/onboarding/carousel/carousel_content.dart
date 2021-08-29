@@ -3,16 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 
-const _highlightNumPattern = r'\d* %';
-
 class TextHighlighter {
   const TextHighlighter({this.text, this.highlight = false});
 
   final String? text;
   final bool highlight;
 
-  static List<TextHighlighter> parse(String input) {
-    final numMatch = RegExp(_highlightNumPattern).firstMatch(input);
+  static List<TextHighlighter> parse(String input, {required String highlightPattern}) {
+    final numMatch = RegExp(highlightPattern).firstMatch(input);
     if (numMatch == null) {
       return [TextHighlighter(text: input)];
     }
@@ -42,15 +40,17 @@ class CarouselStatContent extends StatelessWidget {
   const CarouselStatContent({
     this.statText = '',
     this.statTextColor = LoonoColors.black,
+    this.highlightPattern,
     this.bodyText = '',
-    this.dataDateText = '',
     this.button,
+    this.dataSourceText = '',
   });
 
   final String statText;
+  final String? highlightPattern;
   final Color statTextColor;
   final String bodyText;
-  final String dataDateText;
+  final String dataSourceText;
   final Widget? button;
 
   TextStyle get statTextStyle => TextStyle(
@@ -66,20 +66,25 @@ class CarouselStatContent extends StatelessWidget {
     return Stack(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 61.0),
+          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.15),
           child: Column(
             children: [
               const SizedBox(width: double.infinity, height: 50.0),
               RichText(
                 textAlign: TextAlign.center,
-                text: TextSpan(
-                  children: TextHighlighter.parse(statText).map((item) {
-                    if (item.highlight) {
-                      return TextSpan(text: item.text, style: highlightTextStyle);
-                    }
-                    return TextSpan(text: item.text, style: statTextStyle);
-                  }).toList(),
-                ),
+                text: highlightPattern == null
+                    ? TextSpan(text: statText, style: statTextStyle)
+                    : TextSpan(
+                        children:
+                            TextHighlighter.parse(statText, highlightPattern: highlightPattern!)
+                                .map(
+                                  (item) => TextSpan(
+                                    text: item.text,
+                                    style: item.highlight ? highlightTextStyle : statTextStyle,
+                                  ),
+                                )
+                                .toList(),
+                      ),
               ),
               const SizedBox(height: 60.0),
               Text(
@@ -92,27 +97,24 @@ class CarouselStatContent extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
+              const Spacer(),
+              Text(
+                '* ${context.l10n.carousel_content_data_source} $dataSourceText',
+                textAlign: TextAlign.center,
+                style: LoonoFonts.paragraphSmallFontStyle.copyWith(color: Colors.black),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.05),
             ],
           ),
         ),
         if (button != null) button!,
-        Positioned(
-          bottom: MediaQuery.of(context).size.height * 0.06,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Text(
-              '* ${context.l10n.carousel_content_data_date} $dataDateText',
-              style: LoonoFonts.paragraphSmallFontStyle.copyWith(color: Colors.black),
-            ),
-          ),
-        ),
       ],
     );
   }
 }
 
-class CarouselBaseContent extends StatelessWidget {
-  const CarouselBaseContent({
+class CarouselImageContent extends StatelessWidget {
+  const CarouselImageContent({
     this.headerText = '',
     this.bodyText = '',
     this.bottomText = '',
