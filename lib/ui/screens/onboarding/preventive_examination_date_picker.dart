@@ -53,9 +53,8 @@ class PreventiveExaminationDatePickerScreen extends StatelessWidget {
               Center(child: CustomDatePicker(valueChanged: onDateChanged)),
               const SizedBox(height: 25),
               LoonoButton(
-                onContinueButtonPress,
-                context.l10n.continue_info,
-                enabled: true,
+                onTap: onContinueButtonPress,
+                text: context.l10n.continue_info,
               ),
             ],
           ),

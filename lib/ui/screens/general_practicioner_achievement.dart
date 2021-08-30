@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/ui/widgets/button.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GeneralPracticionerAchievementScreen extends StatelessWidget {
   final String imagePath = 'assets/icons/guarantee.svg';
@@ -33,8 +33,12 @@ class GeneralPracticionerAchievementScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 64),
-              LoonoButton(() => {Navigator.pushNamed(context, '/onboarding/doctor/general-practitioner-date')}, AppLocalizations.of(context)!.continue_info,
-                  enabled: true),
+              LoonoButton(
+                text: AppLocalizations.of(context)!.continue_info,
+                onTap: () {
+                  Navigator.pushNamed(context, '/onboarding/doctor/general-practitioner-date');
+                },
+              ),
             ],
           ),
         ),

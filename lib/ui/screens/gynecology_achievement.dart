@@ -33,9 +33,8 @@ class GynecologyAchievementScreen extends StatelessWidget {
               ),
               const SizedBox(height: 64),
               LoonoButton(
-                () => Navigator.pushNamed(context, '/onboarding/doctor/gynecology-date'),
-                AppLocalizations.of(context)!.continue_info,
-                enabled: true,
+                text: AppLocalizations.of(context)!.continue_info,
+                onTap: () => Navigator.pushNamed(context, '/onboarding/doctor/gynecology-date'),
               ),
             ],
           ),

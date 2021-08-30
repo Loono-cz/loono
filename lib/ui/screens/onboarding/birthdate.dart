@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:loono/l10n/ext.dart';
+import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/custom_date_picker.dart';
-import 'package:loono/ui/widgets/extend_inkwell.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
 
 class OnBoardingBirthdateScreen extends StatelessWidget {
@@ -40,18 +41,11 @@ class OnBoardingBirthdateScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              ExtendedInkWell(
+              LoonoButton(
+                text: context.l10n.continue_info,
                 onTap: () {
                   Navigator.pushNamed(context, '/onboarding/doctor/general-practicioner');
                 },
-                materialColor: const Color(0xFFEFAD89),
-                borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-                child: const SizedBox(
-                  height: 65,
-                  child: Align(
-                    child: Text('Pokračovat', style: TextStyle(color: Colors.white)),
-                  ),
-                ),
               ),
               const SizedBox(
                 height: 120,
