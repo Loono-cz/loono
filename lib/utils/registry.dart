@@ -13,7 +13,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 final registry = GetIt.instance;
 
-Future<void> setup() async {
+Future<void> setup(AppFlavors flavor) async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
@@ -35,7 +35,12 @@ Future<void> setup() async {
     osVersion = 'Unknown OS';
   }
 
-  final config = AppConfig(env: dotenv.env, packageInfo: appInfo, platformVersion: osVersion);
+  final config = AppConfig(
+    env: dotenv.env,
+    packageInfo: appInfo,
+    platformVersion: osVersion,
+    flavor: flavor,
+  );
 
   registry.registerLazySingleton<GlobalKey<NavigatorState>>(() => GlobalKey());
   registry.registerLazySingleton<AppConfig>(() => config);

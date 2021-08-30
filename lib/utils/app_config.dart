@@ -1,5 +1,7 @@
 import 'package:package_info/package_info.dart';
 
+enum AppFlavors { dev, prod }
+
 class AppConfig {
   final String apiUrl;
 
@@ -9,11 +11,13 @@ class AppConfig {
   final String buildNumber;
 
   final String platformVersion;
+  final AppFlavors flavor;
 
   AppConfig({
     required Map<String, String> env,
     required PackageInfo packageInfo,
     required this.platformVersion,
+    required this.flavor,
   })  : apiUrl = getEnvString(env, 'API_URL'),
         appId = packageInfo.packageName,
         appName = packageInfo.appName,

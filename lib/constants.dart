@@ -16,6 +16,21 @@ class LoonoColors {
   static const storyIndicatorActiveLight = Color.fromARGB(255, 255, 255, 255);
   static const storyIndicatorUnderlyingLight = Color.fromRGBO(248, 244, 242, 0.5);
   static const googleLogInBlue = Color.fromRGBO(66, 133, 244, 1);
+  static const bottomSheetLight = Color.fromARGB(255, 254, 242, 233);
+
+  static const rainbow = <Color>[
+    Color.fromARGB(255, 230, 87, 86),
+    Color.fromARGB(255, 225, 127, 63),
+    Color.fromARGB(255, 240, 243, 61),
+    Color.fromARGB(255, 94, 221, 226),
+    Color.fromARGB(255, 156, 215, 242),
+    Color.fromARGB(255, 197, 85, 236),
+    Color.fromARGB(255, 237, 141, 140),
+  ];
+}
+
+class LoonoStrings {
+  static const contactEmail = 'poradna@loono.cz';
 }
 
 class LoonoFonts {
@@ -28,10 +43,25 @@ class LoonoFonts {
   static const fontStyle = TextStyle(
     color: LoonoColors.black,
     fontWeight: FontWeight.normal,
+    height: 1.5,
   );
 
   static const headerFontStyle = TextStyle(
     fontSize: 24,
+    color: LoonoColors.black,
+    fontWeight: FontWeight.normal,
+  );
+
+  static const paragraphFontStyle = TextStyle(
+    fontSize: 14,
+    height: 1.5,
+    color: LoonoColors.black,
+    fontWeight: FontWeight.normal,
+  );
+
+  static const paragraphSmallFontStyle = TextStyle(
+    fontSize: 12,
+    height: 1.5,
     color: LoonoColors.black,
     fontWeight: FontWeight.normal,
   );
