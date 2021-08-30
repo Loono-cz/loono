@@ -42,7 +42,7 @@ class Loono extends StatelessWidget {
         '/create-account': (_) => const CreateAccountScreen(),
         '/fallback_account/name': (_) => const NicknameScreen(),
         '/fallback_account/email': (_) => const EmailScreen(),
-        '/general_practicioner_achievement': (_) => GeneralPracticionerAchievementScreen(),
+        '/general-practicioner-achievement': (_) => GeneralPracticionerAchievementScreen(),
       },
     );
   }
