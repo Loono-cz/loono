@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../constants.dart';
 
 class LoonoProgressIndicator extends StatelessWidget {
@@ -18,7 +19,7 @@ class LoonoProgressIndicator extends StatelessWidget {
     for (var i = 0; i < numberOfSteps; i++) {
       final text = (i + 1).toString();
       if (i < currentStep) {
-        dots.add(const ProgressDot(style: ProgressDotStyle.done, text: "✔︎"));
+        dots.add(const ProgressDot(style: ProgressDotStyle.done, text: ''));
       }
       if (i == currentStep) {
         dots.add(ProgressDot(style: ProgressDotStyle.doing, text: text));
@@ -28,9 +29,33 @@ class LoonoProgressIndicator extends StatelessWidget {
       }
     }
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: dots,
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        LayoutBuilder(
+          builder: (_, constraints) {
+            return Row(
+              children: [
+                ...List.generate(
+                  constraints.maxWidth ~/ 13.5,
+                  (_) => Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 1.5),
+                    child: Container(
+                      height: 1.5,
+                      width: 10.5,
+                      color: LoonoColors.beigeLight,
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: dots,
+        ),
+      ],
     );
   }
 }
@@ -54,41 +79,45 @@ class ProgressDot extends StatelessWidget {
       width: size,
       height: size,
       decoration: BoxDecoration(
-        color: backgroundColor(),
-        border: style == ProgressDotStyle.todo
-            ? Border.all(color: LoonoColors.lightGray)
-            : Border.all(color: LoonoColors.primary),
+        color: backgroundColor,
+        border: Border.all(color: borderColor),
         shape: BoxShape.circle,
       ),
       child: Align(
-        child: Text(text,
-            style: TextStyle(
-              fontSize: size / 3,
-              color: textColor(),
-            )),
+        child: style == ProgressDotStyle.done
+            ? SvgPicture.asset('assets/icons/check.svg', width: 16.0)
+            : Text(
+                text,
+                style: TextStyle(
+                  fontSize: size / 3,
+                  color: textColor,
+                ),
+              ),
       ),
     );
   }
 
-  Color backgroundColor() {
+  Color get borderColor => textColor;
+
+  Color get backgroundColor {
+    switch (style) {
+      case ProgressDotStyle.done:
+        return LoonoColors.greenLight;
+      case ProgressDotStyle.doing:
+        return LoonoColors.beigeLighter;
+      case ProgressDotStyle.todo:
+        return Colors.white;
+    }
+  }
+
+  Color get textColor {
     switch (style) {
       case ProgressDotStyle.done:
         return LoonoColors.green;
       case ProgressDotStyle.doing:
-        return LoonoColors.inactiveButtonFace;
-      case ProgressDotStyle.todo:
-        return LoonoColors.lightGray;
-    }
-  }
-
-  Color textColor() {
-    switch (style) {
-      case ProgressDotStyle.done:
-        return Colors.white;
-      case ProgressDotStyle.doing:
         return LoonoColors.primary;
       case ProgressDotStyle.todo:
-        return LoonoColors.gray;
+        return LoonoColors.beigeLight;
     }
   }
 }

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class LoonoColors {
-  static const inactiveButtonFace = Color.fromARGB(255, 255, 250, 247);
   static const primary = Color.fromARGB(255, 239, 173, 137);
   static const primaryLight = Color.fromARGB(255, 254, 241, 233);
   static const primaryEnabled = Color.fromARGB(255, 190, 87, 19);
   static const primaryDisabled = Color.fromRGBO(190, 87, 19, 0.2);
   static const black = Color.fromARGB(255, 26, 25, 25);
-  static const green = Color.fromARGB(255, 167, 206, 130);
-  static const gray = Color.fromARGB(255, 186, 186, 186);
-  static const lightGray = Color.fromARGB(255, 248, 244, 242);
+  static const beigeLight = Color.fromRGBO(253, 228, 211, 1);
+  static const beigeLighter = Color.fromRGBO(254, 242, 233, 1);
+  static const green = Color.fromRGBO(59, 126, 129, 1);
+  static const greenLight = Color.fromRGBO(241, 249, 249, 1);
   static const secondaryFont = Color.fromARGB(255, 98, 181, 182);
   static const storyIndicatorActiveDark = Color.fromARGB(255, 26, 25, 25);
   static const storyIndicatorUnderlyingDark = Color.fromRGBO(26, 25, 25, 0.5);
