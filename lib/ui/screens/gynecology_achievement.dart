@@ -1,46 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/achievement_screen.dart';
 
 class GynecologyAchievementScreen extends StatelessWidget {
-  final String imagePath = 'guarantee';
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SvgPicture.asset("assets/icons/guarantee.svg"),
-              const SizedBox(height: 32),
-              const Text("Báječné! Jsi poctivější než polovina žen v Česku"),
-              const Text("Tato prohlídka je důležitá pro včasné odhalení rakoviny děložního čípku a jiných obtíží."),
-              const Text('Jen tak dál…'),
-              const SizedBox(height: 32),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    "assets/icons/star.svg",
-                  ),
-                  const SizedBox(width: 4),
-                  const Text("200"),
-                ],
-              ),
-              const SizedBox(height: 64),
-              LoonoButton(
-                () => Navigator.pushNamed(context, '/onboarding/doctor/gynecology-date'),
-                AppLocalizations.of(context)!.continue_info,
-                enabled: true,
-              ),
-            ],
-          ),
-        ),
-      ),
+    return const Scaffold(
+        body: SafeArea(
+            child: AchievementScreen(
+              textLower: "Jen tak dál",
+              textMiddle: "Tato prohlídka je důležitá pro včasné odhalení rakoviny děložního čípku a jiných obtíží.",
+              textUpper: "Báječné! Jsi poctivější než polovina žen v Česku",
+              nextScreen: '/onboarding/doctor/gynecology-date',
+              numberOfPoints: 200,
+            )
+        )
     );
   }
 }
