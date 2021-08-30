@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/indicator.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/story_page.dart';
 
-const _sidePadding = 19.0;
+const _sidePadding = 17.0;
 const _sizeRatio = 0.936;
 
 class IndicatorRow extends StatelessWidget {
@@ -13,6 +13,8 @@ class IndicatorRow extends StatelessWidget {
     required this.currentDuration,
     required this.currentStoryPageBackground,
     this.padding = const EdgeInsets.only(top: 60.0, left: _sidePadding, right: _sidePadding),
+    this.onStoryFinish,
+    this.paused = false,
   })  : assert(numOfIndicators > 0),
         assert(currentIndex >= 0 && currentIndex < numOfIndicators),
         super(key: key);
@@ -22,6 +24,8 @@ class IndicatorRow extends StatelessWidget {
   final Duration currentDuration;
   final StoryPageBackground currentStoryPageBackground;
   final EdgeInsets padding;
+  final VoidCallback? onStoryFinish;
+  final bool paused;
 
   @override
   Widget build(BuildContext context) {
@@ -31,18 +35,21 @@ class IndicatorRow extends StatelessWidget {
     return Padding(
       padding: padding,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment:
+            numOfIndicators == 1 ? MainAxisAlignment.center : MainAxisAlignment.spaceBetween,
         children: List.generate(
           numOfIndicators,
           (index) {
             return Indicator(
               maxWidth: itemMaxWidth,
               finished: index < currentIndex,
+              paused: paused,
               shouldAnimate: index == currentIndex,
               duration: currentDuration,
               indicatorStyle: currentStoryPageBackground == StoryPageBackground.light
                   ? IndicatorStyle.dark()
                   : IndicatorStyle.light(),
+              onFinish: onStoryFinish,
             );
           },
         ),

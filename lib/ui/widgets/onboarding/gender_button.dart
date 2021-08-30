@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:loono/constants.dart';
 
 class GenderButton extends StatelessWidget {
   final bool active;
@@ -25,29 +26,35 @@ class GenderButton extends StatelessWidget {
       behavior: HitTestBehavior.translucent,
       onTap: onClick,
       child: Container(
-        width: 80,
-        height: 120,
+        width: 100,
+        height: 145,
         padding: const EdgeInsets.all(5),
         decoration: active
             ? BoxDecoration(
-          border: Border.all(color: const Color(0xFFEFAD89)),
+          border: Border.all(color: LoonoColors.primaryEnabled),
           borderRadius: BorderRadius.circular(10),
         )
             : null,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const SizedBox(height: 23.0),
             SvgPicture.asset(
               path,
               width: width,
               height: height,
-              color: active ? const Color(0xFFEFAD89) : const Color(0xFF1A1919),
+              color: active ? LoonoColors.primaryEnabled : LoonoColors.black,
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 37.0),
             Text(
               label,
-              style: TextStyle(color: active ? const Color(0xFFEFAD89) : const Color(0xFF1A1919)),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: active ? LoonoColors.primaryEnabled : LoonoColors.black,
+                fontWeight: FontWeight.w600,
+              ),
             ),
+            const SizedBox(height: 11.0),
           ],
         ),
       ),

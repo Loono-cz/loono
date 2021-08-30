@@ -12,12 +12,14 @@ class UniversalDoctor extends StatelessWidget {
   final String question;
   final String questionHeader;
   final String imagePath;
-  final void Function() nextCallback;
+  final void Function() nextCallback1;
+  final void Function() nextCallback2;
   const UniversalDoctor({
     this.question = 'Kdy jsi byla naposledy na preventivní prohlídce u',
     required this.questionHeader,
     required this.imagePath,
-    required this.nextCallback,
+    required this.nextCallback1,
+    required this.nextCallback2,
   });
 
   @override
@@ -40,9 +42,9 @@ class UniversalDoctor extends StatelessWidget {
           style: LoonoFonts.bigFontStyle,
         ),
         const SizedBox(height: 16),
-        LoonoButton(nextCallback, "V posledních dvou letech", enabled: true),
+        LoonoButton(nextCallback1, "V posledních dvou letech", enabled: true),
         const SizedBox(height: 8),
-        LoonoButton(nextCallback, "Více, než 2 roky nebo nevím", enabled: true),
+        LoonoButton(nextCallback2, "Více, než 2 roky nebo nevím", enabled: true),
       ],
     );
   }
