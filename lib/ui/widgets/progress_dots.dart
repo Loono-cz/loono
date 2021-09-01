@@ -19,7 +19,7 @@ class LoonoProgressIndicator extends StatelessWidget {
     for (var i = 0; i < numberOfSteps; i++) {
       final text = (i + 1).toString();
       if (i < currentStep) {
-        dots.add(const ProgressDot(style: ProgressDotStyle.done, text: ''));
+        dots.add(const ProgressDot(style: ProgressDotStyle.done));
       }
       if (i == currentStep) {
         dots.add(ProgressDot(style: ProgressDotStyle.doing, text: text));
@@ -35,19 +35,17 @@ class LoonoProgressIndicator extends StatelessWidget {
         LayoutBuilder(
           builder: (_, constraints) {
             return Row(
-              children: [
-                ...List.generate(
-                  constraints.maxWidth ~/ 13.5,
-                  (_) => Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 1.5),
-                    child: Container(
-                      height: 1.5,
-                      width: 10.5,
-                      color: LoonoColors.beigeLight,
-                    ),
+              children: List.generate(
+                constraints.maxWidth ~/ 13.5,
+                (_) => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 1.5),
+                  child: Container(
+                    height: 1.5,
+                    width: 10.5,
+                    color: LoonoColors.beigeLight,
                   ),
                 ),
-              ],
+              ),
             );
           },
         ),
@@ -70,7 +68,7 @@ class ProgressDot extends StatelessWidget {
   const ProgressDot({
     this.size = 34,
     required this.style,
-    required this.text,
+    this.text = '',
   });
 
   @override
