@@ -35,6 +35,7 @@ class LoonoProgressIndicator extends StatelessWidget {
         LayoutBuilder(
           builder: (_, constraints) {
             return Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
                 constraints.maxWidth ~/ 13.5,
                 (_) => Padding(
