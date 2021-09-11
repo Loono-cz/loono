@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:loono/l10n/ext.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/l10n/ext.dart';
 
 enum ColumnType { month, year }
 
 class CustomDatePicker extends StatefulWidget {
   final DateTime today = DateTime.now();
-  final ValueChanged valueChanged;
+  final ValueChanged<DateTime> valueChanged;
   final int yearsBeforeActual;
   final int yearsOverActual;
 

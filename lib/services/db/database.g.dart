@@ -7,47 +7,144 @@ part of 'database.dart';
 // **************************************************************************
 
 // ignore_for_file: unnecessary_brace_in_string_interps, unnecessary_this
-class Todo extends DataClass implements Insertable<Todo> {
+class User extends DataClass implements Insertable<User> {
   final String id;
-  final String body;
-  final bool done;
-  Todo({required this.id, required this.body, required this.done});
-  factory Todo.fromData(Map<String, dynamic> data, GeneratedDatabase db,
+  final int? sexRaw;
+  final String? dateOfBirthRaw;
+  final int? generalPracticionerCcaVisitRaw;
+  final String? generalPracticionerVisitDateRaw;
+  final int? gynecologyCcaVisitRaw;
+  final String? gynecologyVisitDateRaw;
+  final String? dentistVisitDateRaw;
+  final String? nickname;
+  final String? email;
+  User(
+      {required this.id,
+      this.sexRaw,
+      this.dateOfBirthRaw,
+      this.generalPracticionerCcaVisitRaw,
+      this.generalPracticionerVisitDateRaw,
+      this.gynecologyCcaVisitRaw,
+      this.gynecologyVisitDateRaw,
+      this.dentistVisitDateRaw,
+      this.nickname,
+      this.email});
+  factory User.fromData(Map<String, dynamic> data, GeneratedDatabase db,
       {String? prefix}) {
     final effectivePrefix = prefix ?? '';
-    return Todo(
+    return User(
       id: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
-      body: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}body'])!,
-      done: const BoolType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}done'])!,
+      sexRaw: const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}sex_raw']),
+      dateOfBirthRaw: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}date_of_birth_raw']),
+      generalPracticionerCcaVisitRaw: const IntType().mapFromDatabaseResponse(
+          data['${effectivePrefix}general_practicioner_cca_visit_raw']),
+      generalPracticionerVisitDateRaw: const StringType()
+          .mapFromDatabaseResponse(
+              data['${effectivePrefix}general_practicioner_visit_date_raw']),
+      gynecologyCcaVisitRaw: const IntType().mapFromDatabaseResponse(
+          data['${effectivePrefix}gynecology_cca_visit_raw']),
+      gynecologyVisitDateRaw: const StringType().mapFromDatabaseResponse(
+          data['${effectivePrefix}gynecology_visit_date_raw']),
+      dentistVisitDateRaw: const StringType().mapFromDatabaseResponse(
+          data['${effectivePrefix}dentist_visit_date_raw']),
+      nickname: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}nickname']),
+      email: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}email']),
     );
   }
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<String>(id);
-    map['body'] = Variable<String>(body);
-    map['done'] = Variable<bool>(done);
+    if (!nullToAbsent || sexRaw != null) {
+      map['sex_raw'] = Variable<int?>(sexRaw);
+    }
+    if (!nullToAbsent || dateOfBirthRaw != null) {
+      map['date_of_birth_raw'] = Variable<String?>(dateOfBirthRaw);
+    }
+    if (!nullToAbsent || generalPracticionerCcaVisitRaw != null) {
+      map['general_practicioner_cca_visit_raw'] =
+          Variable<int?>(generalPracticionerCcaVisitRaw);
+    }
+    if (!nullToAbsent || generalPracticionerVisitDateRaw != null) {
+      map['general_practicioner_visit_date_raw'] =
+          Variable<String?>(generalPracticionerVisitDateRaw);
+    }
+    if (!nullToAbsent || gynecologyCcaVisitRaw != null) {
+      map['gynecology_cca_visit_raw'] = Variable<int?>(gynecologyCcaVisitRaw);
+    }
+    if (!nullToAbsent || gynecologyVisitDateRaw != null) {
+      map['gynecology_visit_date_raw'] =
+          Variable<String?>(gynecologyVisitDateRaw);
+    }
+    if (!nullToAbsent || dentistVisitDateRaw != null) {
+      map['dentist_visit_date_raw'] = Variable<String?>(dentistVisitDateRaw);
+    }
+    if (!nullToAbsent || nickname != null) {
+      map['nickname'] = Variable<String?>(nickname);
+    }
+    if (!nullToAbsent || email != null) {
+      map['email'] = Variable<String?>(email);
+    }
     return map;
   }
 
-  TodosCompanion toCompanion(bool nullToAbsent) {
-    return TodosCompanion(
+  UsersCompanion toCompanion(bool nullToAbsent) {
+    return UsersCompanion(
       id: Value(id),
-      body: Value(body),
-      done: Value(done),
+      sexRaw:
+          sexRaw == null && nullToAbsent ? const Value.absent() : Value(sexRaw),
+      dateOfBirthRaw: dateOfBirthRaw == null && nullToAbsent
+          ? const Value.absent()
+          : Value(dateOfBirthRaw),
+      generalPracticionerCcaVisitRaw:
+          generalPracticionerCcaVisitRaw == null && nullToAbsent
+              ? const Value.absent()
+              : Value(generalPracticionerCcaVisitRaw),
+      generalPracticionerVisitDateRaw:
+          generalPracticionerVisitDateRaw == null && nullToAbsent
+              ? const Value.absent()
+              : Value(generalPracticionerVisitDateRaw),
+      gynecologyCcaVisitRaw: gynecologyCcaVisitRaw == null && nullToAbsent
+          ? const Value.absent()
+          : Value(gynecologyCcaVisitRaw),
+      gynecologyVisitDateRaw: gynecologyVisitDateRaw == null && nullToAbsent
+          ? const Value.absent()
+          : Value(gynecologyVisitDateRaw),
+      dentistVisitDateRaw: dentistVisitDateRaw == null && nullToAbsent
+          ? const Value.absent()
+          : Value(dentistVisitDateRaw),
+      nickname: nickname == null && nullToAbsent
+          ? const Value.absent()
+          : Value(nickname),
+      email:
+          email == null && nullToAbsent ? const Value.absent() : Value(email),
     );
   }
 
-  factory Todo.fromJson(Map<String, dynamic> json,
+  factory User.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
     serializer ??= moorRuntimeOptions.defaultSerializer;
-    return Todo(
+    return User(
       id: serializer.fromJson<String>(json['id']),
-      body: serializer.fromJson<String>(json['body']),
-      done: serializer.fromJson<bool>(json['done']),
+      sexRaw: serializer.fromJson<int?>(json['sexRaw']),
+      dateOfBirthRaw: serializer.fromJson<String?>(json['dateOfBirthRaw']),
+      generalPracticionerCcaVisitRaw:
+          serializer.fromJson<int?>(json['generalPracticionerCcaVisitRaw']),
+      generalPracticionerVisitDateRaw:
+          serializer.fromJson<String?>(json['generalPracticionerVisitDateRaw']),
+      gynecologyCcaVisitRaw:
+          serializer.fromJson<int?>(json['gynecologyCcaVisitRaw']),
+      gynecologyVisitDateRaw:
+          serializer.fromJson<String?>(json['gynecologyVisitDateRaw']),
+      dentistVisitDateRaw:
+          serializer.fromJson<String?>(json['dentistVisitDateRaw']),
+      nickname: serializer.fromJson<String?>(json['nickname']),
+      email: serializer.fromJson<String?>(json['email']),
     );
   }
   @override
@@ -55,72 +152,196 @@ class Todo extends DataClass implements Insertable<Todo> {
     serializer ??= moorRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'id': serializer.toJson<String>(id),
-      'body': serializer.toJson<String>(body),
-      'done': serializer.toJson<bool>(done),
+      'sexRaw': serializer.toJson<int?>(sexRaw),
+      'dateOfBirthRaw': serializer.toJson<String?>(dateOfBirthRaw),
+      'generalPracticionerCcaVisitRaw':
+          serializer.toJson<int?>(generalPracticionerCcaVisitRaw),
+      'generalPracticionerVisitDateRaw':
+          serializer.toJson<String?>(generalPracticionerVisitDateRaw),
+      'gynecologyCcaVisitRaw': serializer.toJson<int?>(gynecologyCcaVisitRaw),
+      'gynecologyVisitDateRaw':
+          serializer.toJson<String?>(gynecologyVisitDateRaw),
+      'dentistVisitDateRaw': serializer.toJson<String?>(dentistVisitDateRaw),
+      'nickname': serializer.toJson<String?>(nickname),
+      'email': serializer.toJson<String?>(email),
     };
   }
 
-  Todo copyWith({String? id, String? body, bool? done}) => Todo(
+  User copyWith(
+          {String? id,
+          int? sexRaw,
+          String? dateOfBirthRaw,
+          int? generalPracticionerCcaVisitRaw,
+          String? generalPracticionerVisitDateRaw,
+          int? gynecologyCcaVisitRaw,
+          String? gynecologyVisitDateRaw,
+          String? dentistVisitDateRaw,
+          String? nickname,
+          String? email}) =>
+      User(
         id: id ?? this.id,
-        body: body ?? this.body,
-        done: done ?? this.done,
+        sexRaw: sexRaw ?? this.sexRaw,
+        dateOfBirthRaw: dateOfBirthRaw ?? this.dateOfBirthRaw,
+        generalPracticionerCcaVisitRaw: generalPracticionerCcaVisitRaw ??
+            this.generalPracticionerCcaVisitRaw,
+        generalPracticionerVisitDateRaw: generalPracticionerVisitDateRaw ??
+            this.generalPracticionerVisitDateRaw,
+        gynecologyCcaVisitRaw:
+            gynecologyCcaVisitRaw ?? this.gynecologyCcaVisitRaw,
+        gynecologyVisitDateRaw:
+            gynecologyVisitDateRaw ?? this.gynecologyVisitDateRaw,
+        dentistVisitDateRaw: dentistVisitDateRaw ?? this.dentistVisitDateRaw,
+        nickname: nickname ?? this.nickname,
+        email: email ?? this.email,
       );
   @override
   String toString() {
-    return (StringBuffer('Todo(')
+    return (StringBuffer('User(')
           ..write('id: $id, ')
-          ..write('body: $body, ')
-          ..write('done: $done')
+          ..write('sexRaw: $sexRaw, ')
+          ..write('dateOfBirthRaw: $dateOfBirthRaw, ')
+          ..write(
+              'generalPracticionerCcaVisitRaw: $generalPracticionerCcaVisitRaw, ')
+          ..write(
+              'generalPracticionerVisitDateRaw: $generalPracticionerVisitDateRaw, ')
+          ..write('gynecologyCcaVisitRaw: $gynecologyCcaVisitRaw, ')
+          ..write('gynecologyVisitDateRaw: $gynecologyVisitDateRaw, ')
+          ..write('dentistVisitDateRaw: $dentistVisitDateRaw, ')
+          ..write('nickname: $nickname, ')
+          ..write('email: $email')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode =>
-      $mrjf($mrjc(id.hashCode, $mrjc(body.hashCode, done.hashCode)));
+  int get hashCode => $mrjf($mrjc(
+      id.hashCode,
+      $mrjc(
+          sexRaw.hashCode,
+          $mrjc(
+              dateOfBirthRaw.hashCode,
+              $mrjc(
+                  generalPracticionerCcaVisitRaw.hashCode,
+                  $mrjc(
+                      generalPracticionerVisitDateRaw.hashCode,
+                      $mrjc(
+                          gynecologyCcaVisitRaw.hashCode,
+                          $mrjc(
+                              gynecologyVisitDateRaw.hashCode,
+                              $mrjc(
+                                  dentistVisitDateRaw.hashCode,
+                                  $mrjc(nickname.hashCode,
+                                      email.hashCode))))))))));
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is Todo &&
+      (other is User &&
           other.id == this.id &&
-          other.body == this.body &&
-          other.done == this.done);
+          other.sexRaw == this.sexRaw &&
+          other.dateOfBirthRaw == this.dateOfBirthRaw &&
+          other.generalPracticionerCcaVisitRaw ==
+              this.generalPracticionerCcaVisitRaw &&
+          other.generalPracticionerVisitDateRaw ==
+              this.generalPracticionerVisitDateRaw &&
+          other.gynecologyCcaVisitRaw == this.gynecologyCcaVisitRaw &&
+          other.gynecologyVisitDateRaw == this.gynecologyVisitDateRaw &&
+          other.dentistVisitDateRaw == this.dentistVisitDateRaw &&
+          other.nickname == this.nickname &&
+          other.email == this.email);
 }
 
-class TodosCompanion extends UpdateCompanion<Todo> {
+class UsersCompanion extends UpdateCompanion<User> {
   final Value<String> id;
-  final Value<String> body;
-  final Value<bool> done;
-  const TodosCompanion({
+  final Value<int?> sexRaw;
+  final Value<String?> dateOfBirthRaw;
+  final Value<int?> generalPracticionerCcaVisitRaw;
+  final Value<String?> generalPracticionerVisitDateRaw;
+  final Value<int?> gynecologyCcaVisitRaw;
+  final Value<String?> gynecologyVisitDateRaw;
+  final Value<String?> dentistVisitDateRaw;
+  final Value<String?> nickname;
+  final Value<String?> email;
+  const UsersCompanion({
     this.id = const Value.absent(),
-    this.body = const Value.absent(),
-    this.done = const Value.absent(),
+    this.sexRaw = const Value.absent(),
+    this.dateOfBirthRaw = const Value.absent(),
+    this.generalPracticionerCcaVisitRaw = const Value.absent(),
+    this.generalPracticionerVisitDateRaw = const Value.absent(),
+    this.gynecologyCcaVisitRaw = const Value.absent(),
+    this.gynecologyVisitDateRaw = const Value.absent(),
+    this.dentistVisitDateRaw = const Value.absent(),
+    this.nickname = const Value.absent(),
+    this.email = const Value.absent(),
   });
-  TodosCompanion.insert({
+  UsersCompanion.insert({
     required String id,
-    required String body,
-    required bool done,
-  })  : id = Value(id),
-        body = Value(body),
-        done = Value(done);
-  static Insertable<Todo> custom({
+    this.sexRaw = const Value.absent(),
+    this.dateOfBirthRaw = const Value.absent(),
+    this.generalPracticionerCcaVisitRaw = const Value.absent(),
+    this.generalPracticionerVisitDateRaw = const Value.absent(),
+    this.gynecologyCcaVisitRaw = const Value.absent(),
+    this.gynecologyVisitDateRaw = const Value.absent(),
+    this.dentistVisitDateRaw = const Value.absent(),
+    this.nickname = const Value.absent(),
+    this.email = const Value.absent(),
+  }) : id = Value(id);
+  static Insertable<User> custom({
     Expression<String>? id,
-    Expression<String>? body,
-    Expression<bool>? done,
+    Expression<int?>? sexRaw,
+    Expression<String?>? dateOfBirthRaw,
+    Expression<int?>? generalPracticionerCcaVisitRaw,
+    Expression<String?>? generalPracticionerVisitDateRaw,
+    Expression<int?>? gynecologyCcaVisitRaw,
+    Expression<String?>? gynecologyVisitDateRaw,
+    Expression<String?>? dentistVisitDateRaw,
+    Expression<String?>? nickname,
+    Expression<String?>? email,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
-      if (body != null) 'body': body,
-      if (done != null) 'done': done,
+      if (sexRaw != null) 'sex_raw': sexRaw,
+      if (dateOfBirthRaw != null) 'date_of_birth_raw': dateOfBirthRaw,
+      if (generalPracticionerCcaVisitRaw != null)
+        'general_practicioner_cca_visit_raw': generalPracticionerCcaVisitRaw,
+      if (generalPracticionerVisitDateRaw != null)
+        'general_practicioner_visit_date_raw': generalPracticionerVisitDateRaw,
+      if (gynecologyCcaVisitRaw != null)
+        'gynecology_cca_visit_raw': gynecologyCcaVisitRaw,
+      if (gynecologyVisitDateRaw != null)
+        'gynecology_visit_date_raw': gynecologyVisitDateRaw,
+      if (dentistVisitDateRaw != null)
+        'dentist_visit_date_raw': dentistVisitDateRaw,
+      if (nickname != null) 'nickname': nickname,
+      if (email != null) 'email': email,
     });
   }
 
-  TodosCompanion copyWith(
-      {Value<String>? id, Value<String>? body, Value<bool>? done}) {
-    return TodosCompanion(
+  UsersCompanion copyWith(
+      {Value<String>? id,
+      Value<int?>? sexRaw,
+      Value<String?>? dateOfBirthRaw,
+      Value<int?>? generalPracticionerCcaVisitRaw,
+      Value<String?>? generalPracticionerVisitDateRaw,
+      Value<int?>? gynecologyCcaVisitRaw,
+      Value<String?>? gynecologyVisitDateRaw,
+      Value<String?>? dentistVisitDateRaw,
+      Value<String?>? nickname,
+      Value<String?>? email}) {
+    return UsersCompanion(
       id: id ?? this.id,
-      body: body ?? this.body,
-      done: done ?? this.done,
+      sexRaw: sexRaw ?? this.sexRaw,
+      dateOfBirthRaw: dateOfBirthRaw ?? this.dateOfBirthRaw,
+      generalPracticionerCcaVisitRaw:
+          generalPracticionerCcaVisitRaw ?? this.generalPracticionerCcaVisitRaw,
+      generalPracticionerVisitDateRaw: generalPracticionerVisitDateRaw ??
+          this.generalPracticionerVisitDateRaw,
+      gynecologyCcaVisitRaw:
+          gynecologyCcaVisitRaw ?? this.gynecologyCcaVisitRaw,
+      gynecologyVisitDateRaw:
+          gynecologyVisitDateRaw ?? this.gynecologyVisitDateRaw,
+      dentistVisitDateRaw: dentistVisitDateRaw ?? this.dentistVisitDateRaw,
+      nickname: nickname ?? this.nickname,
+      email: email ?? this.email,
     );
   }
 
@@ -130,52 +351,132 @@ class TodosCompanion extends UpdateCompanion<Todo> {
     if (id.present) {
       map['id'] = Variable<String>(id.value);
     }
-    if (body.present) {
-      map['body'] = Variable<String>(body.value);
+    if (sexRaw.present) {
+      map['sex_raw'] = Variable<int?>(sexRaw.value);
     }
-    if (done.present) {
-      map['done'] = Variable<bool>(done.value);
+    if (dateOfBirthRaw.present) {
+      map['date_of_birth_raw'] = Variable<String?>(dateOfBirthRaw.value);
+    }
+    if (generalPracticionerCcaVisitRaw.present) {
+      map['general_practicioner_cca_visit_raw'] =
+          Variable<int?>(generalPracticionerCcaVisitRaw.value);
+    }
+    if (generalPracticionerVisitDateRaw.present) {
+      map['general_practicioner_visit_date_raw'] =
+          Variable<String?>(generalPracticionerVisitDateRaw.value);
+    }
+    if (gynecologyCcaVisitRaw.present) {
+      map['gynecology_cca_visit_raw'] =
+          Variable<int?>(gynecologyCcaVisitRaw.value);
+    }
+    if (gynecologyVisitDateRaw.present) {
+      map['gynecology_visit_date_raw'] =
+          Variable<String?>(gynecologyVisitDateRaw.value);
+    }
+    if (dentistVisitDateRaw.present) {
+      map['dentist_visit_date_raw'] =
+          Variable<String?>(dentistVisitDateRaw.value);
+    }
+    if (nickname.present) {
+      map['nickname'] = Variable<String?>(nickname.value);
+    }
+    if (email.present) {
+      map['email'] = Variable<String?>(email.value);
     }
     return map;
   }
 
   @override
   String toString() {
-    return (StringBuffer('TodosCompanion(')
+    return (StringBuffer('UsersCompanion(')
           ..write('id: $id, ')
-          ..write('body: $body, ')
-          ..write('done: $done')
+          ..write('sexRaw: $sexRaw, ')
+          ..write('dateOfBirthRaw: $dateOfBirthRaw, ')
+          ..write(
+              'generalPracticionerCcaVisitRaw: $generalPracticionerCcaVisitRaw, ')
+          ..write(
+              'generalPracticionerVisitDateRaw: $generalPracticionerVisitDateRaw, ')
+          ..write('gynecologyCcaVisitRaw: $gynecologyCcaVisitRaw, ')
+          ..write('gynecologyVisitDateRaw: $gynecologyVisitDateRaw, ')
+          ..write('dentistVisitDateRaw: $dentistVisitDateRaw, ')
+          ..write('nickname: $nickname, ')
+          ..write('email: $email')
           ..write(')'))
         .toString();
   }
 }
 
-class $TodosTable extends Todos with TableInfo<$TodosTable, Todo> {
+class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   final GeneratedDatabase _db;
   final String? _alias;
-  $TodosTable(this._db, [this._alias]);
+  $UsersTable(this._db, [this._alias]);
   final VerificationMeta _idMeta = const VerificationMeta('id');
   late final GeneratedColumn<String?> id = GeneratedColumn<String?>(
       'id', aliasedName, false,
       typeName: 'TEXT', requiredDuringInsert: true);
-  final VerificationMeta _bodyMeta = const VerificationMeta('body');
-  late final GeneratedColumn<String?> body = GeneratedColumn<String?>(
-      'body', aliasedName, false,
-      typeName: 'TEXT', requiredDuringInsert: true);
-  final VerificationMeta _doneMeta = const VerificationMeta('done');
-  late final GeneratedColumn<bool?> done = GeneratedColumn<bool?>(
-      'done', aliasedName, false,
-      typeName: 'INTEGER',
-      requiredDuringInsert: true,
-      defaultConstraints: 'CHECK (done IN (0, 1))');
+  final VerificationMeta _sexRawMeta = const VerificationMeta('sexRaw');
+  late final GeneratedColumn<int?> sexRaw = GeneratedColumn<int?>(
+      'sex_raw', aliasedName, true,
+      typeName: 'INTEGER', requiredDuringInsert: false);
+  final VerificationMeta _dateOfBirthRawMeta =
+      const VerificationMeta('dateOfBirthRaw');
+  late final GeneratedColumn<String?> dateOfBirthRaw = GeneratedColumn<String?>(
+      'date_of_birth_raw', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
+  final VerificationMeta _generalPracticionerCcaVisitRawMeta =
+      const VerificationMeta('generalPracticionerCcaVisitRaw');
+  late final GeneratedColumn<int?> generalPracticionerCcaVisitRaw =
+      GeneratedColumn<int?>(
+          'general_practicioner_cca_visit_raw', aliasedName, true,
+          typeName: 'INTEGER', requiredDuringInsert: false);
+  final VerificationMeta _generalPracticionerVisitDateRawMeta =
+      const VerificationMeta('generalPracticionerVisitDateRaw');
+  late final GeneratedColumn<String?> generalPracticionerVisitDateRaw =
+      GeneratedColumn<String?>(
+          'general_practicioner_visit_date_raw', aliasedName, true,
+          typeName: 'TEXT', requiredDuringInsert: false);
+  final VerificationMeta _gynecologyCcaVisitRawMeta =
+      const VerificationMeta('gynecologyCcaVisitRaw');
+  late final GeneratedColumn<int?> gynecologyCcaVisitRaw =
+      GeneratedColumn<int?>('gynecology_cca_visit_raw', aliasedName, true,
+          typeName: 'INTEGER', requiredDuringInsert: false);
+  final VerificationMeta _gynecologyVisitDateRawMeta =
+      const VerificationMeta('gynecologyVisitDateRaw');
+  late final GeneratedColumn<String?> gynecologyVisitDateRaw =
+      GeneratedColumn<String?>('gynecology_visit_date_raw', aliasedName, true,
+          typeName: 'TEXT', requiredDuringInsert: false);
+  final VerificationMeta _dentistVisitDateRawMeta =
+      const VerificationMeta('dentistVisitDateRaw');
+  late final GeneratedColumn<String?> dentistVisitDateRaw =
+      GeneratedColumn<String?>('dentist_visit_date_raw', aliasedName, true,
+          typeName: 'TEXT', requiredDuringInsert: false);
+  final VerificationMeta _nicknameMeta = const VerificationMeta('nickname');
+  late final GeneratedColumn<String?> nickname = GeneratedColumn<String?>(
+      'nickname', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
+  final VerificationMeta _emailMeta = const VerificationMeta('email');
+  late final GeneratedColumn<String?> email = GeneratedColumn<String?>(
+      'email', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
   @override
-  List<GeneratedColumn> get $columns => [id, body, done];
+  List<GeneratedColumn> get $columns => [
+        id,
+        sexRaw,
+        dateOfBirthRaw,
+        generalPracticionerCcaVisitRaw,
+        generalPracticionerVisitDateRaw,
+        gynecologyCcaVisitRaw,
+        gynecologyVisitDateRaw,
+        dentistVisitDateRaw,
+        nickname,
+        email
+      ];
   @override
-  String get aliasedName => _alias ?? 'todos';
+  String get aliasedName => _alias ?? 'users';
   @override
-  String get actualTableName => 'todos';
+  String get actualTableName => 'users';
   @override
-  VerificationContext validateIntegrity(Insertable<Todo> instance,
+  VerificationContext validateIntegrity(Insertable<User> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -184,17 +485,55 @@ class $TodosTable extends Todos with TableInfo<$TodosTable, Todo> {
     } else if (isInserting) {
       context.missing(_idMeta);
     }
-    if (data.containsKey('body')) {
-      context.handle(
-          _bodyMeta, body.isAcceptableOrUnknown(data['body']!, _bodyMeta));
-    } else if (isInserting) {
-      context.missing(_bodyMeta);
+    if (data.containsKey('sex_raw')) {
+      context.handle(_sexRawMeta,
+          sexRaw.isAcceptableOrUnknown(data['sex_raw']!, _sexRawMeta));
     }
-    if (data.containsKey('done')) {
+    if (data.containsKey('date_of_birth_raw')) {
       context.handle(
-          _doneMeta, done.isAcceptableOrUnknown(data['done']!, _doneMeta));
-    } else if (isInserting) {
-      context.missing(_doneMeta);
+          _dateOfBirthRawMeta,
+          dateOfBirthRaw.isAcceptableOrUnknown(
+              data['date_of_birth_raw']!, _dateOfBirthRawMeta));
+    }
+    if (data.containsKey('general_practicioner_cca_visit_raw')) {
+      context.handle(
+          _generalPracticionerCcaVisitRawMeta,
+          generalPracticionerCcaVisitRaw.isAcceptableOrUnknown(
+              data['general_practicioner_cca_visit_raw']!,
+              _generalPracticionerCcaVisitRawMeta));
+    }
+    if (data.containsKey('general_practicioner_visit_date_raw')) {
+      context.handle(
+          _generalPracticionerVisitDateRawMeta,
+          generalPracticionerVisitDateRaw.isAcceptableOrUnknown(
+              data['general_practicioner_visit_date_raw']!,
+              _generalPracticionerVisitDateRawMeta));
+    }
+    if (data.containsKey('gynecology_cca_visit_raw')) {
+      context.handle(
+          _gynecologyCcaVisitRawMeta,
+          gynecologyCcaVisitRaw.isAcceptableOrUnknown(
+              data['gynecology_cca_visit_raw']!, _gynecologyCcaVisitRawMeta));
+    }
+    if (data.containsKey('gynecology_visit_date_raw')) {
+      context.handle(
+          _gynecologyVisitDateRawMeta,
+          gynecologyVisitDateRaw.isAcceptableOrUnknown(
+              data['gynecology_visit_date_raw']!, _gynecologyVisitDateRawMeta));
+    }
+    if (data.containsKey('dentist_visit_date_raw')) {
+      context.handle(
+          _dentistVisitDateRawMeta,
+          dentistVisitDateRaw.isAcceptableOrUnknown(
+              data['dentist_visit_date_raw']!, _dentistVisitDateRawMeta));
+    }
+    if (data.containsKey('nickname')) {
+      context.handle(_nicknameMeta,
+          nickname.isAcceptableOrUnknown(data['nickname']!, _nicknameMeta));
+    }
+    if (data.containsKey('email')) {
+      context.handle(
+          _emailMeta, email.isAcceptableOrUnknown(data['email']!, _emailMeta));
     }
     return context;
   }
@@ -202,23 +541,23 @@ class $TodosTable extends Todos with TableInfo<$TodosTable, Todo> {
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  Todo map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return Todo.fromData(data, _db,
+  User map(Map<String, dynamic> data, {String? tablePrefix}) {
+    return User.fromData(data, _db,
         prefix: tablePrefix != null ? '$tablePrefix.' : null);
   }
 
   @override
-  $TodosTable createAlias(String alias) {
-    return $TodosTable(_db, alias);
+  $UsersTable createAlias(String alias) {
+    return $UsersTable(_db, alias);
   }
 }
 
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
-  late final $TodosTable todos = $TodosTable(this);
-  late final TodosDao todosDao = TodosDao(this as AppDatabase);
+  late final $UsersTable users = $UsersTable(this);
+  late final UsersDao usersDao = UsersDao(this as AppDatabase);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [todos];
+  List<DatabaseSchemaEntity> get allSchemaEntities => [users];
 }

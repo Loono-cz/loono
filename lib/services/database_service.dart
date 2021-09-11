@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:loono/models/todo.dart';
+import 'package:loono/models/user.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:path_provider/path_provider.dart';
 
 class DatabaseService {
   late AppDatabase _engine;
-  late final TodosDao todos;
+  late final UsersDao users;
 
   Future<void> init(String key) async {
     try {
@@ -14,7 +14,7 @@ class DatabaseService {
       debugPrint('directory could not be created');
     }
     _engine = AppDatabase('app.db', key);
-    todos = _engine.todosDao;
+    users = _engine.usersDao;
   }
 
   Future<void> clearDb() {
