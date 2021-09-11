@@ -43,8 +43,10 @@ class AchievementScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 64),
-              LoonoButton(() => {Navigator.pushNamed(context, nextScreen)}, AppLocalizations.of(context)!.continue_info,
-                  enabled: true),
+              LoonoButton(
+                text: AppLocalizations.of(context)!.continue_info,
+                onTap: () => Navigator.pushNamed(context, nextScreen),
+              ),
             ],
           ),
         ),

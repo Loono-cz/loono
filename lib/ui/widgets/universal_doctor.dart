@@ -42,9 +42,9 @@ class UniversalDoctor extends StatelessWidget {
           style: LoonoFonts.bigFontStyle,
         ),
         const SizedBox(height: 16),
-        LoonoButton(nextCallback1, "V posledních dvou letech", enabled: true),
+        LoonoButton.light(onTap: nextCallback1, text: "V posledních dvou letech"),
         const SizedBox(height: 8),
-        LoonoButton(nextCallback2, "Více, než 2 roky nebo nevím", enabled: true),
+        LoonoButton.light(onTap: nextCallback2, text: "Více, než 2 roky nebo nevím"),
       ],
     );
   }

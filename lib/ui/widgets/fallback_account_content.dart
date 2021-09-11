@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:loono/ui/widgets/extend_inkwell.dart';
+import 'package:loono/ui/widgets/button.dart';
 
 typedef SubmitCallback = void Function(String input);
 
@@ -66,7 +66,7 @@ class _FallbackAccountContentState extends State<FallbackAccountContent> {
               _buildForm(),
               if (widget.description.isNotEmpty) ..._buildDescription(),
               const Spacer(),
-              _buildButton(context),
+              LoonoButton(text: context.l10n.confirm_info, onTap: validateAndSubmit),
               const SizedBox(height: 18.0),
             ],
           ),
@@ -125,23 +125,6 @@ class _FallbackAccountContentState extends State<FallbackAccountContent> {
         autovalidateMode: widget.autovalidateMode,
         validator: widget.validator,
         keyboardType: widget.keyboardType,
-      ),
-    );
-  }
-
-  Widget _buildButton(BuildContext context) {
-    return ExtendedInkWell(
-      onTap: validateAndSubmit,
-      materialColor: LoonoColors.primaryEnabled,
-      borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-      child: SizedBox(
-        height: 65,
-        child: Align(
-          child: Text(
-            context.l10n.confirm_info,
-            style: Theme.of(context).textTheme.button?.copyWith(color: Colors.white),
-          ),
-        ),
       ),
     );
   }

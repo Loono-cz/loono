@@ -6,6 +6,7 @@ class LoonoColors {
   static const primaryLight = Color.fromARGB(255, 254, 241, 233);
   static const primaryEnabled = Color.fromARGB(255, 190, 87, 19);
   static const primaryDisabled = Color.fromRGBO(190, 87, 19, 0.2);
+  static const buttonLight = Color.fromRGBO(253, 228, 211, 1);
   static const black = Color.fromARGB(255, 26, 25, 25);
   static const green = Color.fromARGB(255, 167, 206, 130);
   static const gray = Color.fromARGB(255, 186, 186, 186);
