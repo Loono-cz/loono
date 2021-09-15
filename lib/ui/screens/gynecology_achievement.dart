@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/achievement_screen.dart';
 
 class GynecologyAchievementScreen extends StatelessWidget {
+  const GynecologyAchievementScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        body: SafeArea(
-            child: AchievementScreen(
-              textLower: "Jen tak dál",
-              textMiddle: "Tato prohlídka je důležitá pro včasné odhalení rakoviny děložního čípku a jiných obtíží.",
-              textUpper: "Báječné! Jsi poctivější než polovina žen v Česku",
-              nextScreen: '/onboarding/doctor/gynecology-date',
-              numberOfPoints: 200,
-            )
-        )
+    return Scaffold(
+      body: SafeArea(
+        child: AchievementScreen(
+          header: context.l10n.achievement_gynecology_header,
+          textLines: [
+            context.l10n.achievement_gynecology_text_1,
+            '${context.l10n.achievement_keep_it_up_text}!',
+          ],
+          nextScreen: '/onboarding/doctor/gynecology-date',
+          numberOfPoints: 200,
+        ),
+      ),
     );
   }
 }

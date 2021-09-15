@@ -8,6 +8,7 @@ class LoonoColors {
   static const primaryDisabled = Color.fromRGBO(190, 87, 19, 0.2);
   static const buttonLight = Color.fromRGBO(253, 228, 211, 1);
   static const black = Color.fromARGB(255, 26, 25, 25);
+  static const blueContrast = Color.fromRGBO(8, 32, 230, 1);
   static const green = Color.fromARGB(255, 167, 206, 130);
   static const gray = Color.fromARGB(255, 186, 186, 186);
   static const lightGray = Color.fromARGB(255, 248, 244, 242);
@@ -53,6 +54,12 @@ class LoonoFonts {
     fontWeight: FontWeight.normal,
   );
 
+  static const subtitleFontStyle = TextStyle(
+    fontSize: 14,
+    color: LoonoColors.black,
+    fontWeight: FontWeight.w700,
+  );
+
   static const paragraphFontStyle = TextStyle(
     fontSize: 14,
     height: 1.5,
@@ -66,4 +73,11 @@ class LoonoFonts {
     color: LoonoColors.black,
     fontWeight: FontWeight.normal,
   );
+}
+
+class LoonoSizes {
+  static double buttonBottomPadding(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    return screenHeight > 750 ? screenHeight * 0.15 : screenHeight * 0.075;
+  }
 }
