@@ -9,22 +9,46 @@ class TapArea extends StatelessWidget {
     this.onTap,
     this.onLongPress,
     this.onLongPressUp,
+    this.onPanStart,
+    this.onPanEnd,
+    this.onPanDown,
   }) : super(key: key);
 
-  const TapArea.leftSide({Key? key, this.onTap, this.onLongPress, this.onLongPressUp})
-      : alignment = Alignment.centerLeft,
+  const TapArea.leftSide({
+    Key? key,
+    this.onTap,
+    this.onLongPress,
+    this.onLongPressUp,
+    this.onPanStart,
+    this.onPanDown,
+    this.onPanEnd,
+  })  : alignment = Alignment.centerLeft,
         width = null,
         height = double.infinity,
         super(key: key);
 
-  const TapArea.rightSide({Key? key, this.onTap, this.onLongPress, this.onLongPressUp})
-      : alignment = Alignment.centerRight,
+  const TapArea.rightSide({
+    Key? key,
+    this.onTap,
+    this.onLongPress,
+    this.onLongPressUp,
+    this.onPanStart,
+    this.onPanDown,
+    this.onPanEnd,
+  })  : alignment = Alignment.centerRight,
         width = null,
         height = double.infinity,
         super(key: key);
 
-  const TapArea.max({Key? key, this.onTap, this.onLongPress, this.onLongPressUp})
-      : alignment = Alignment.center,
+  const TapArea.max({
+    Key? key,
+    this.onTap,
+    this.onLongPress,
+    this.onLongPressUp,
+    this.onPanStart,
+    this.onPanDown,
+    this.onPanEnd,
+  })  : alignment = Alignment.center,
         width = double.infinity,
         height = double.infinity,
         super(key: key);
@@ -35,6 +59,9 @@ class TapArea extends StatelessWidget {
   final VoidCallback? onTap;
   final VoidCallback? onLongPress;
   final VoidCallback? onLongPressUp;
+  final GestureDragStartCallback? onPanStart;
+  final GestureDragDownCallback? onPanDown;
+  final GestureDragEndCallback? onPanEnd;
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +72,9 @@ class TapArea extends StatelessWidget {
         onTap: onTap,
         onLongPress: onLongPress,
         onLongPressUp: onLongPressUp,
+        onPanStart: onPanStart,
+        onPanDown: onPanDown,
+        onPanEnd: onPanEnd,
         child: SizedBox(
           width: width ?? MediaQuery.of(context).size.width / 2,
           height: height ?? double.infinity,

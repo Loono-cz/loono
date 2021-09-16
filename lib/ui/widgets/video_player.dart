@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:loono/ui/widgets/onboarding/carousel/story_page.dart';
 import 'package:video_player/video_player.dart';
 
 enum FileType { url, assets }
@@ -12,17 +13,15 @@ class CustomVideoPlayer extends StatefulWidget {
     this.autoplay = true,
     this.looping = false,
     this.onLoaded,
-    this.paused = false,
-    this.currentPage = 0,
+    required this.storyPageState,
   }) : super(key: key);
 
   final String source;
   final FileType type;
   final bool autoplay;
   final bool looping;
-  final bool paused;
   final VoidCallback? onLoaded;
-  final int currentPage;
+  final StoryPageState storyPageState;
 
   @override
   _VideoPlayerScreenState createState() => _VideoPlayerScreenState();
@@ -33,10 +32,16 @@ class _VideoPlayerScreenState extends State<CustomVideoPlayer> {
   late final Future<void> _initializeVideoPlayerFuture;
   late final int initialPage;
 
+  void resetVideo() {
+    _controller
+      ..seekTo(Duration.zero)
+      ..play();
+  }
+
   @override
   void initState() {
     super.initState();
-    initialPage = widget.currentPage;
+    initialPage = widget.storyPageState.pageIndexState;
     _controller = (widget.type == FileType.url)
         ? VideoPlayerController.network(widget.source)
         : VideoPlayerController.asset(widget.source);
@@ -54,21 +59,32 @@ class _VideoPlayerScreenState extends State<CustomVideoPlayer> {
   void didUpdateWidget(CustomVideoPlayer oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (_controller.value.isInitialized) {
-      if (widget.paused != oldWidget.paused) {
-        oldWidget.paused ? _controller.play() : _controller.pause();
+      if (widget.storyPageState.hasResetState != oldWidget.storyPageState.hasResetState) {
+        resetVideo();
+        WidgetsBinding.instance!.addPostFrameCallback((_) {
+          if (mounted) widget.onLoaded?.call();
+        });
       }
 
-      if ((initialPage != oldWidget.currentPage) ||
-          (initialPage == oldWidget.currentPage && initialPage != widget.currentPage)) {
-        if (initialPage <= oldWidget.currentPage && widget.paused) {
-          if (!(initialPage > oldWidget.currentPage)) {
+      if (widget.storyPageState.isPaused != oldWidget.storyPageState.isPaused) {
+        oldWidget.storyPageState.isPaused ? _controller.play() : _controller.pause();
+      }
+
+      if (widget.storyPageState.isMuted != oldWidget.storyPageState.isMuted) {
+        oldWidget.storyPageState.isMuted ? _controller.setVolume(1.0) : _controller.setVolume(0.0);
+      }
+
+      if ((initialPage != oldWidget.storyPageState.pageIndexState) ||
+          (initialPage == oldWidget.storyPageState.pageIndexState &&
+              initialPage != widget.storyPageState.pageIndexState)) {
+        if (initialPage <= oldWidget.storyPageState.pageIndexState &&
+            widget.storyPageState.isPaused) {
+          if (!(initialPage > oldWidget.storyPageState.pageIndexState)) {
             WidgetsBinding.instance!.addPostFrameCallback((_) {
               if (mounted) widget.onLoaded?.call();
             });
           }
-          _controller
-            ..seekTo(Duration.zero)
-            ..play();
+          resetVideo();
         }
       }
     }
