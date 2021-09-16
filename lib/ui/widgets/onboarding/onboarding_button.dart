@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loono/constants.dart';
 
 class OnboardingButton extends StatelessWidget {
   final bool active;
@@ -16,7 +17,7 @@ class OnboardingButton extends StatelessWidget {
         style: TextButton.styleFrom(
           primary: Colors.white,
           padding: const EdgeInsets.symmetric(vertical: 15),
-          backgroundColor: const Color(0xFFEFAD89).withOpacity(active ? 1 : 0.5),
+          backgroundColor: LoonoColors.primaryEnabled,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         ),
         child: Text(label),
