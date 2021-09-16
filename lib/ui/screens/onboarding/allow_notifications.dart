@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:loono/ui/widgets/extend_inkwell.dart';
+import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
 
 class AllowNotificationsScreen extends StatelessWidget {
@@ -30,23 +30,12 @@ class AllowNotificationsScreen extends StatelessWidget {
                 style: const TextStyle(color: LoonoColors.black, fontSize: 16.0),
               ),
               const Spacer(),
-              ExtendedInkWell(
+              LoonoButton(
+                text: context.l10n.notification_allow_button,
                 onTap: () {
                   // TODO: Display and handle allow notification dialog (iOS only)
-                  // TODO: Then navigate to Dentist Screen (if man)
                   Navigator.pushNamed(context, '/onboarding/doctor/gynecology');
                 },
-                materialColor: LoonoColors.primaryEnabled,
-                borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-                child: SizedBox(
-                  height: 65.0,
-                  child: Align(
-                    child: Text(
-                      context.l10n.notification_allow_button,
-                      style: Theme.of(context).textTheme.button?.copyWith(color: Colors.white),
-                    ),
-                  ),
-                ),
               ),
               const SizedBox(height: 122.0),
             ],
