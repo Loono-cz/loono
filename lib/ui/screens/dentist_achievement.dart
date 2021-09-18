@@ -1,21 +1,23 @@
-
 import 'package:flutter/material.dart';
+import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/achievement_screen.dart';
 
 class DentistAchievementScreen extends StatelessWidget {
+  const DentistAchievementScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        body: SafeArea(
-            child: AchievementScreen(
-              textLower: "Jen tak dál",
-              textMiddle: "Zubní prohlídka ti dává jistotu, že je v tvé ústní dutině vše v pořádku a neděje se v ní nic skrytého, co by časem mohlo zbytečně bolet.",
-              textUpper: "Gratulujeme!",
-              nextScreen: '/onboarding/doctor/dentist-date',
-              numberOfPoints: 200,
-            )
-        )
+    return Scaffold(
+      body: SafeArea(
+        child: AchievementScreen(
+          header: context.l10n.achievement_congrats_header,
+          textLines: [
+            context.l10n.achievement_dentist_text_1,
+          ],
+          nextScreen: '/onboarding/doctor/dentist-date',
+          numberOfPoints: 200,
+        ),
+      ),
     );
   }
 }
