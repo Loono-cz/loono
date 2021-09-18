@@ -4,6 +4,7 @@ import 'package:loono/ui/screens/create_account.dart';
 import 'package:loono/ui/screens/dentist_achievement.dart';
 import 'package:loono/ui/screens/general_practicioner_achievement.dart';
 import 'package:loono/ui/screens/gynecology_achievement.dart';
+import 'package:loono/ui/screens/login.dart';
 import 'package:loono/ui/screens/onboarding/allow_notifications.dart';
 import 'package:loono/ui/screens/onboarding/birthdate.dart';
 import 'package:loono/ui/screens/onboarding/carousel/carousel.dart';
@@ -43,6 +44,7 @@ class Loono extends StatelessWidget {
         '/create-account': (_) => const CreateAccountScreen(),
         '/fallback_account/name': (_) => const NicknameScreen(),
         '/fallback_account/email': (_) => const EmailScreen(),
+        '/login': (_) => const LoginScreen(),
       },
     );
   }

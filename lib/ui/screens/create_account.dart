@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:loono/ui/widgets/apple_log_in_button.dart';
-import 'package:loono/ui/widgets/google_log_in_button.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
+import 'package:loono/ui/widgets/social_login_button.dart';
 
 class CreateAccountScreen extends StatelessWidget {
   const CreateAccountScreen({Key? key}) : super(key: key);
@@ -70,9 +69,9 @@ class CreateAccountScreen extends StatelessWidget {
                       style: LoonoFonts.fontStyle,
                     ),
                     const SizedBox(height: 25),
-                    AppleLogInButton(onPressed: () => print('Sign in with apple')),
+                    SocialLoginButton.apple(onPressed: () => print('Sign in with apple')),
                     const SizedBox(height: 15),
-                    GoogleLogInButton(onPressed: () => print('Sign in with google')),
+                    SocialLoginButton.google(onPressed: () => print('Sign in with google')),
                     Expanded(
                       child: Align(
                         alignment: Alignment.bottomCenter,
