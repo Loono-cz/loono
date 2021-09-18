@@ -38,7 +38,7 @@ class WelcomeScreen extends StatelessWidget {
                 const SizedBox(height: 10),
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/onboarding/carousel');
+                    Navigator.pushNamed(context, '/login');
                   },
                   child: const Text(
                     'Už mám účet',
