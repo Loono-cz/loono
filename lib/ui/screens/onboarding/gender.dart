@@ -29,7 +29,6 @@ class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
             children: [
               SkipButton(
                 onPressed: () {
-                  // TODO: Store data (https://cesko-digital.atlassian.net/browse/LOON-144)
                   Navigator.pushNamed(context, '/create-account');
                 },
               ),

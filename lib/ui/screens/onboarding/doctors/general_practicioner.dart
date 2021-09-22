@@ -6,24 +6,26 @@ import 'package:loono/utils/registry.dart';
 
 class OnboardingGeneralPracticionerScreen extends StatelessWidget {
   final _usersDao = registry.get<DatabaseService>().users;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: UniversalDoctorScreen(
-          questionHeader: "Praktického lékaře?",
+          questionHeader: "Praktického lékaře",
           imagePath: "practicioner",
           numberOfSteps: 3,
           currentStep: 1,
+          nextButton1Text: 'V posledních 2 letech',
+          nextButton2Text: 'Jsou to více než 2 roky nebo nevím',
           nextCallback1: () async {
             await _usersDao.updateGeneralPracticionerCcaVisit(CcaDoctorVisit.inLastTwoYears);
             Navigator.pushNamed(context, '/general-practicioner-achievement');
           },
           nextCallback2: () async {
             await _usersDao.updateGeneralPracticionerCcaVisit(CcaDoctorVisit.moreThanTwoYearsOrIdk);
-            Navigator.pushNamed(context, '/onboarding/doctor/general-practitioner-date');
+            Navigator.pushNamed(context, '/onboarding/doctor/gynecology');
           },
-          skipScreen: "/onboarding/doctor/gynecology",
         ),
       ),
     );
