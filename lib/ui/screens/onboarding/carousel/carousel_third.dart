@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/l10n/ext.dart';
@@ -31,7 +32,7 @@ class OnboardingThirdCarouselScreen extends StatelessWidget {
             ),
             button: CarouselButton(
               text: context.l10n.carousel_content_3_button,
-              onTap: () => Navigator.pushNamed(context, '/onboarding/gender'),
+              onTap: () => AutoRouter.of(context).pushNamed('onboarding/gender'),
             ),
             bottomText: context.l10n.carousel_content_3_bottom,
           ),

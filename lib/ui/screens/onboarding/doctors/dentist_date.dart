@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/helpers/date_without_day.dart';
@@ -27,9 +28,9 @@ class _DentistDateScreenState extends State<DentistDateScreen> {
         await registry.get<DatabaseService>().users.updateDentistVisitDate(
             DateWithoutDay(month: monthFromInt(selectedDate!.month), year: selectedDate!.year));
 
-        Navigator.pushNamed(context, '/create-account');
+        AutoRouter.of(context).pushNamed('create-account');
       },
-      onSkipButtonPress: () => Navigator.pushNamed(context, '/create-account'),
+      onSkipButtonPress: () => AutoRouter.of(context).pushNamed('create-account'),
     );
   }
 }

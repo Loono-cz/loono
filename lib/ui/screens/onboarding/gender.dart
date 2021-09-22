@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
@@ -30,7 +31,7 @@ class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
               SkipButton(
                 onPressed: () {
                   // TODO: Store data (https://cesko-digital.atlassian.net/browse/LOON-144)
-                  Navigator.pushNamed(context, '/create-account');
+                  AutoRouter.of(context).pushNamed('create-account');
                 },
               ),
               const SizedBox(
@@ -62,7 +63,7 @@ class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
                       ? () {}
                       : () async {
                           await registry.get<DatabaseService>().users.updateSex(activeButton!);
-                          Navigator.pushNamed(context, '/onboarding/birthdate');
+                          AutoRouter.of(context).pushNamed('onboarding/birthdate');
                         },
                 ),
               ),

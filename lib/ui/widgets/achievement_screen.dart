@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
@@ -63,7 +64,7 @@ class AchievementScreen extends StatelessWidget {
               const Spacer(flex: 2),
               LoonoButton(
                 text: context.l10n.continue_info,
-                onTap: () => Navigator.pushNamed(context, nextScreen),
+                onTap: () => AutoRouter.of(context).pushNamed(nextScreen),
               ),
               SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
             ],

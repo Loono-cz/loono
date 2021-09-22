@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/database_service.dart';
@@ -21,7 +22,7 @@ class NicknameScreen extends StatelessWidget {
       },
       onSubmit: (input) async {
         await registry.get<DatabaseService>().users.updateNickname(input);
-        Navigator.pushNamed(context, '/fallback_account/email');
+        AutoRouter.of(context).pushNamed('/fallback_account/email');
       },
     );
   }

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/helpers/date_without_day.dart';
@@ -25,9 +26,9 @@ class _GeneralPractitionerDateScreenState extends State<GeneralPractitionerDateS
         if (selectedDate == null) return;
         await registry.get<DatabaseService>().users.updateGeneralPracticionerVisitDate(
             DateWithoutDay(month: monthFromInt(selectedDate!.month), year: selectedDate!.year));
-        Navigator.pushNamed(context, '/onboarding/allow_notifications');
+        AutoRouter.of(context).pushNamed('onboarding/allow_notifications');
       },
-      onSkipButtonPress: () => Navigator.pushNamed(context, '/onboarding/allow_notifications'),
+      onSkipButtonPress: () => AutoRouter.of(context).pushNamed('onboarding/allow_notifications'),
     );
   }
 }

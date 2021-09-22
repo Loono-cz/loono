@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/ui/widgets/button.dart';
@@ -37,12 +38,12 @@ class WelcomeScreen extends StatelessWidget {
                     text: 'Začít cestu za zdravím',
                     onTap: () async {
                       await registry.get<UserRepository>().createUser();
-                      Navigator.pushNamed(context, '/onboarding/carousel');
+                      AutoRouter.of(context).pushNamed('onboarding/carousel');
                     }),
                 const SizedBox(height: 10),
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/login');
+                    AutoRouter.of(context).pushNamed('login');
                   },
                   child: const Text(
                     'Už mám účet',

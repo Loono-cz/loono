@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/models/user.dart';
 import 'package:loono/services/database_service.dart';
@@ -17,13 +18,13 @@ class OnboardingGeneralPracticionerScreen extends StatelessWidget {
           currentStep: 1,
           nextCallback1: () async {
             await _usersDao.updateGeneralPracticionerCcaVisit(CcaDoctorVisit.inLastTwoYears);
-            Navigator.pushNamed(context, '/general-practicioner-achievement');
+            AutoRouter.of(context).pushNamed('general-practicioner-achievement');
           },
           nextCallback2: () async {
             await _usersDao.updateGeneralPracticionerCcaVisit(CcaDoctorVisit.moreThanTwoYearsOrIdk);
-            Navigator.pushNamed(context, '/onboarding/doctor/general-practitioner-date');
+            AutoRouter.of(context).pushNamed('onboarding/doctor/general-practitioner-date');
           },
-          skipScreen: "/onboarding/doctor/gynecology",
+          skipScreen: "onboarding/doctor/gynecology",
         ),
       ),
     );

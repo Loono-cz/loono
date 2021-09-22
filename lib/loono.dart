@@ -1,51 +1,39 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:loono/ui/screens/create_account.dart';
-import 'package:loono/ui/screens/dentist_achievement.dart';
-import 'package:loono/ui/screens/general_practicioner_achievement.dart';
-import 'package:loono/ui/screens/gynecology_achievement.dart';
-import 'package:loono/ui/screens/login.dart';
-import 'package:loono/ui/screens/onboarding/allow_notifications.dart';
-import 'package:loono/ui/screens/onboarding/birthdate.dart';
-import 'package:loono/ui/screens/onboarding/carousel/carousel.dart';
-import 'package:loono/ui/screens/onboarding/doctors/dentist_date.dart';
-import 'package:loono/ui/screens/onboarding/doctors/general_practicioner.dart';
-import 'package:loono/ui/screens/onboarding/doctors/general_practitioner_date.dart';
-import 'package:loono/ui/screens/onboarding/doctors/gynecology.dart';
-import 'package:loono/ui/screens/onboarding/doctors/gynecology_date.dart';
-import 'package:loono/ui/screens/onboarding/fallback_account/email.dart';
-import 'package:loono/ui/screens/onboarding/fallback_account/nickname.dart';
-import 'package:loono/ui/screens/onboarding/gender.dart';
-import 'package:loono/ui/screens/welcome.dart';
+import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/services/database_service.dart';
+import 'package:loono/services/db/database.dart';
+import 'package:loono/utils/registry.dart';
 
 class Loono extends StatelessWidget {
+  final _router = registry<AppRouter>();
+  final _usersDao = registry.get<DatabaseService>().users;
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Loono',
-      color: Colors.deepOrange,
-      initialRoute: '/welcome',
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      routes: {
-        '/welcome': (_) => const WelcomeScreen(),
-        '/onboarding/carousel': (_) => const OnboardingCarouselScreen(),
-        '/onboarding/gender': (_) => const OnboardingGenderScreen(),
-        '/onboarding/birthdate': (_) => OnBoardingBirthdateScreen(),
-        '/onboarding/doctor/general-practicioner': (_) => OnboardingGeneralPracticionerScreen(),
-        '/general-practicioner-achievement': (_) => const GeneralPracticionerAchievementScreen(),
-        '/onboarding/doctor/general-practitioner-date': (_) => const GeneralPractitionerDateScreen(),
-        '/onboarding/allow_notifications': (_) => const AllowNotificationsScreen(),
-        '/onboarding/doctor/gynecology': (_) => OnboardingGynecologyScreen(),
-        '/gynecology_achievement': (_) => const GynecologyAchievementScreen(),
-        '/onboarding/doctor/gynecology-date': (_) => const GynecologyDateScreen(),
-        '/dentist_achievement': (_) => const DentistAchievementScreen(),
-        '/onboarding/doctor/dentist-date': (_) => const DentistDateScreen(),
-        '/create-account': (_) => const CreateAccountScreen(),
-        '/fallback_account/name': (_) => const NicknameScreen(),
-        '/fallback_account/email': (_) => const EmailScreen(),
-        '/login': (_) => const LoginScreen(),
-      },
-    );
+    return StreamBuilder<User?>(
+        stream: _usersDao.watchUser(),
+        builder: (context, snapshot) {
+          return MaterialApp.router(
+            title: 'Loono',
+            color: Colors.deepOrange,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            routerDelegate: AutoRouterDelegate(_router),
+            // routerDelegate: AutoRouterDelegate.declarative(
+            //   _router,
+            //   routes: (context) {
+            //     if (snapshot.hasData) {
+            //       final currUser = snapshot.data;
+            //       if (currUser == null) return [WelcomeRoute()];
+            //       if (currUser.sexRaw == 0) return [AllowNotificationsRoute()];
+            //     }
+            //     return [WelcomeRoute()];
+            //   },
+            // ),
+            routeInformationParser: _router.defaultRouteParser(),
+          );
+        });
   }
 }

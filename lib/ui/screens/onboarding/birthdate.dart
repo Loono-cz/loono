@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/l10n/ext.dart';
@@ -26,7 +27,7 @@ class _OnBoardingBirthdateScreenState extends State<OnBoardingBirthdateScreen> {
             children: [
               SkipButton(
                   onPressed: () =>
-                      Navigator.pushNamed(context, '/onboarding/doctor/general-practicioner')),
+                      AutoRouter.of(context).pushNamed('/onboarding/doctor/general-practicioner')),
               const SizedBox(
                 height: 70,
               ),
@@ -58,7 +59,7 @@ class _OnBoardingBirthdateScreenState extends State<OnBoardingBirthdateScreen> {
                   if (selectedDate != null) {
                     await registry.get<DatabaseService>().users.updateDateOfBirth(DateWithoutDay(
                         month: monthFromInt(selectedDate!.month), year: selectedDate!.year));
-                    Navigator.pushNamed(context, '/onboarding/doctor/general-practicioner');
+                    AutoRouter.of(context).pushNamed('onboarding/doctor/general-practicioner');
                   }
                 },
               ),

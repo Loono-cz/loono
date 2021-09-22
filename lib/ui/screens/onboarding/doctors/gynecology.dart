@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/models/user.dart';
 import 'package:loono/services/database_service.dart';
@@ -17,13 +18,13 @@ class OnboardingGynecologyScreen extends StatelessWidget {
           currentStep: 2,
           nextCallback1: () async {
             await _usersDao.updateGynecologyCcaVisit(CcaDoctorVisit.inLastTwoYears);
-            Navigator.pushNamed(context, "/gynecology_achievement");
+            AutoRouter.of(context).pushNamed("gynecology_achievement");
           },
           nextCallback2: () async {
             await _usersDao.updateGynecologyCcaVisit(CcaDoctorVisit.moreThanTwoYearsOrIdk);
-            Navigator.pushNamed(context, "/onboarding/doctor/gynecology-date");
+            AutoRouter.of(context).pushNamed("onboarding/doctor/gynecology-date");
           },
-          skipScreen: "/create-account",
+          skipScreen: "create-account",
         ),
       ),
     );

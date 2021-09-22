@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/helpers/date_without_day.dart';
@@ -26,9 +27,9 @@ class _GynecologyDateScreenState extends State<GynecologyDateScreen> {
         if (selectedDate == null) return;
         await registry.get<DatabaseService>().users.updateGynecologyVisitDate(
             DateWithoutDay(month: monthFromInt(selectedDate!.month), year: selectedDate!.year));
-        Navigator.pushNamed(context, '/onboarding/doctor/dentist-date');
+        AutoRouter.of(context).pushNamed('onboarding/doctor/dentist-date');
       },
-      onSkipButtonPress: () => Navigator.pushNamed(context, '/onboarding/doctor/dentist-date'),
+      onSkipButtonPress: () => AutoRouter.of(context).pushNamed('onboarding/doctor/dentist-date'),
     );
   }
 }
