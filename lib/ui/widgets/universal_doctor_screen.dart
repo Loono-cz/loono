@@ -9,8 +9,8 @@ class UniversalDoctorScreen extends StatelessWidget {
   final String imagePath;
   final int numberOfSteps;
   final int currentStep;
-  final String nextScreen1;
-  final String nextScreen2;
+  final void Function() nextCallback1;
+  final void Function() nextCallback2;
   final String skipScreen;
   const UniversalDoctorScreen({
     this.question = 'Kdy jsi byla naposledy na preventivní prohlídce u',
@@ -18,8 +18,8 @@ class UniversalDoctorScreen extends StatelessWidget {
     required this.imagePath,
     required this.numberOfSteps,
     required this.currentStep,
-    required this.nextScreen1,
-    required this.nextScreen2,
+    required this.nextCallback1,
+    required this.nextCallback2,
     required this.skipScreen,
   });
 
@@ -43,12 +43,8 @@ class UniversalDoctorScreen extends StatelessWidget {
                 child: UniversalDoctor(
                   questionHeader: questionHeader,
                   imagePath: imagePath,
-                  nextCallback1: () {
-                    Navigator.pushNamed(context, nextScreen1);
-                  },
-                  nextCallback2: () {
-                    Navigator.pushNamed(context, nextScreen2);
-                  },
+                  nextCallback1: nextCallback1,
+                  nextCallback2: nextCallback2,
                 ),
               ),
             ],

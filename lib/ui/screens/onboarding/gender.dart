@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/models/user.dart';
+import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/onboarding/genders_container.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
+import 'package:loono/utils/registry.dart';
 
 class OnboardingGenderScreen extends StatefulWidget {
   const OnboardingGenderScreen({Key? key}) : super(key: key);
@@ -13,7 +16,7 @@ class OnboardingGenderScreen extends StatefulWidget {
 }
 
 class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
-  Gender? activeButton;
+  Sex? activeButton;
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +60,8 @@ class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
                   enabled: activeButton != null,
                   onTap: activeButton == null
                       ? () {}
-                      : () {
-                          // TODO: Store data (https://cesko-digital.atlassian.net/browse/LOON-144)
+                      : () async {
+                          await registry.get<DatabaseService>().users.updateSex(activeButton!);
                           Navigator.pushNamed(context, '/onboarding/birthdate');
                         },
                 ),

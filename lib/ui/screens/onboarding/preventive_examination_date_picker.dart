@@ -8,7 +8,7 @@ import 'package:loono/ui/widgets/skip_button.dart';
 class PreventiveExaminationDatePickerScreen extends StatelessWidget {
   final Widget image;
   final String title;
-  final ValueChanged onDateChanged;
+  final ValueChanged<DateTime> onDateChanged;
   final void Function() onContinueButtonPress;
   final void Function()? onSkipButtonPress;
 

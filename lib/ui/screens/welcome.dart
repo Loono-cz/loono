@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/utils/registry.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -32,9 +34,11 @@ class WelcomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 70),
                 LoonoButton(
-                  text: 'Začít cestu za zdravím',
-                  onTap: () => Navigator.pushNamed(context, '/onboarding/carousel'),
-                ),
+                    text: 'Začít cestu za zdravím',
+                    onTap: () async {
+                      await registry.get<UserRepository>().createUser();
+                      Navigator.pushNamed(context, '/onboarding/carousel');
+                    }),
                 const SizedBox(height: 10),
                 TextButton(
                   onPressed: () {
