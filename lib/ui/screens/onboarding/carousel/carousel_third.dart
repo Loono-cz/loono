@@ -32,7 +32,8 @@ class OnboardingThirdCarouselScreen extends StatelessWidget {
             ),
             button: CarouselButton(
               text: context.l10n.carousel_content_3_button,
-              onTap: () => AutoRouter.of(context).pushNamed('onboarding/gender'),
+              // onTap: () => AutoRouter.of(context).pushNamed('onboarding/gender'),
+              onTap: () => AutoRouter.of(context).pushNamed('onboarding'),
             ),
             bottomText: context.l10n.carousel_content_3_bottom,
           ),

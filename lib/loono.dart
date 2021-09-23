@@ -21,17 +21,6 @@ class Loono extends StatelessWidget {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             routerDelegate: AutoRouterDelegate(_router),
-            // routerDelegate: AutoRouterDelegate.declarative(
-            //   _router,
-            //   routes: (context) {
-            //     if (snapshot.hasData) {
-            //       final currUser = snapshot.data;
-            //       if (currUser == null) return [WelcomeRoute()];
-            //       if (currUser.sexRaw == 0) return [AllowNotificationsRoute()];
-            //     }
-            //     return [WelcomeRoute()];
-            //   },
-            // ),
             routeInformationParser: _router.defaultRouteParser(),
           );
         });

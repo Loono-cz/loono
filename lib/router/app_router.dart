@@ -16,6 +16,7 @@ import 'package:loono/ui/screens/onboarding/doctors/gynecology_date.dart';
 import 'package:loono/ui/screens/onboarding/fallback_account/email.dart';
 import 'package:loono/ui/screens/onboarding/fallback_account/nickname.dart';
 import 'package:loono/ui/screens/onboarding/gender.dart';
+import 'package:loono/ui/screens/onboarding/onboarding_wrapper_screen.dart';
 import 'package:loono/ui/screens/welcome.dart';
 
 // @CupertinoAutoRouter
@@ -24,29 +25,30 @@ import 'package:loono/ui/screens/welcome.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Page|Screen,Route',
   routes: <AutoRoute>[
-    AutoRoute(
-      page: WelcomeScreen,
-      initial: true,
-      path: 'welcome',
-    ),
+    AutoRoute(page: WelcomeScreen, initial: true, path: 'welcome'),
     AutoRoute(page: OnboardingCarouselScreen, path: 'onboarding/carousel'),
-    AutoRoute(page: OnboardingGenderScreen, path: 'onboarding/gender'),
-    AutoRoute(page: OnBoardingBirthdateScreen, path: 'onboarding/birthdate'),
     AutoRoute(
-      page: OnboardingGeneralPracticionerScreen,
-      path: 'onboarding/doctor/general-practicioner',
+      page: OnboardingWrapperScreen,
+      path: 'onboarding',
+      children: [
+        AutoRoute(page: OnboardingGenderScreen, path: 'onboarding/gender'),
+        AutoRoute(page: OnBoardingBirthdateScreen, path: 'onboarding/birthdate'),
+        AutoRoute(
+            page: OnboardingGeneralPracticionerScreen,
+            path: 'onboarding/doctor/general-practicioner'),
+        AutoRoute(
+            page: GeneralPracticionerAchievementScreen, path: 'general-practicioner-achievement'),
+        AutoRoute(
+            page: GeneralPractitionerDateScreen,
+            path: 'onboarding/doctor/general-practitioner-date'),
+        AutoRoute(page: AllowNotificationsScreen, path: 'onboarding/allow_notifications'),
+        AutoRoute(page: OnboardingGynecologyScreen, path: 'onboarding/doctor/gynecology'),
+        AutoRoute(page: GynecologyAchievementScreen, path: 'gynecology_achievement'),
+        AutoRoute(page: GynecologyDateScreen, path: 'onboarding/doctor/gynecology-date'),
+        AutoRoute(page: DentistAchievementScreen, path: 'dentist_achievement'),
+        AutoRoute(page: DentistDateScreen, path: 'onboarding/doctor/dentist-date'),
+      ],
     ),
-    AutoRoute(page: GeneralPracticionerAchievementScreen, path: 'general-practicioner-achievement'),
-    AutoRoute(
-      page: GeneralPractitionerDateScreen,
-      path: 'onboarding/doctor/general-practitioner-date',
-    ),
-    AutoRoute(page: AllowNotificationsScreen, path: 'onboarding/allow_notifications'),
-    AutoRoute(page: OnboardingGynecologyScreen, path: 'onboarding/doctor/gynecology'),
-    AutoRoute(page: GynecologyAchievementScreen, path: 'gynecology_achievement'),
-    AutoRoute(page: GynecologyDateScreen, path: 'onboarding/doctor/gynecology-date'),
-    AutoRoute(page: DentistAchievementScreen, path: 'dentist_achievement'),
-    AutoRoute(page: DentistDateScreen, path: 'onboarding/doctor/dentist-date'),
     AutoRoute(page: CreateAccountScreen, path: 'create-account'),
     AutoRoute(page: NicknameScreen, path: 'fallback_account/name'),
     AutoRoute(page: EmailScreen, path: 'fallback_account/email'),

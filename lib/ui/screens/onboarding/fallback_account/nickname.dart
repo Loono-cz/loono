@@ -22,7 +22,7 @@ class NicknameScreen extends StatelessWidget {
       },
       onSubmit: (input) async {
         await registry.get<DatabaseService>().users.updateNickname(input);
-        AutoRouter.of(context).pushNamed('/fallback_account/email');
+        AutoRouter.of(context).pushNamed('fallback_account/email');
       },
     );
   }
