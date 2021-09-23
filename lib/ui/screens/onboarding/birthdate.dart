@@ -24,9 +24,7 @@ class _OnBoardingBirthdateScreenState extends State<OnBoardingBirthdateScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: Column(
             children: [
-              SkipButton(
-                  onPressed: () =>
-                      Navigator.pushNamed(context, '/onboarding/doctor/general-practicioner')),
+              SkipButton(onPressed: () => Navigator.pushNamed(context, '/onboarding/doctor/general-practicioner')),
               const SizedBox(
                 height: 70,
               ),
@@ -48,6 +46,9 @@ class _OnBoardingBirthdateScreenState extends State<OnBoardingBirthdateScreen> {
                       valueChanged: (val) {
                         selectedDate = val;
                       },
+                      yearsOverActual: 0,
+                      defaultMonth: DateTime.january,
+                      defaultYear: DateTime.now().year - 35,
                     ),
                   ),
                 ),
@@ -56,8 +57,8 @@ class _OnBoardingBirthdateScreenState extends State<OnBoardingBirthdateScreen> {
                 text: context.l10n.continue_info,
                 onTap: () async {
                   if (selectedDate != null) {
-                    await registry.get<DatabaseService>().users.updateDateOfBirth(DateWithoutDay(
-                        month: monthFromInt(selectedDate!.month), year: selectedDate!.year));
+                    await registry.get<DatabaseService>().users.updateDateOfBirth(
+                        DateWithoutDay(month: monthFromInt(selectedDate!.month), year: selectedDate!.year));
                     Navigator.pushNamed(context, '/onboarding/doctor/general-practicioner');
                   }
                 },
