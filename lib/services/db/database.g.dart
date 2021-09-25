@@ -15,6 +15,7 @@ class User extends DataClass implements Insertable<User> {
   final String? generalPracticionerVisitDateRaw;
   final int? gynecologyCcaVisitRaw;
   final String? gynecologyVisitDateRaw;
+  final int? dentistCcaVisitRaw;
   final String? dentistVisitDateRaw;
   final String? nickname;
   final String? email;
@@ -26,6 +27,7 @@ class User extends DataClass implements Insertable<User> {
       this.generalPracticionerVisitDateRaw,
       this.gynecologyCcaVisitRaw,
       this.gynecologyVisitDateRaw,
+      this.dentistCcaVisitRaw,
       this.dentistVisitDateRaw,
       this.nickname,
       this.email});
@@ -48,6 +50,8 @@ class User extends DataClass implements Insertable<User> {
           data['${effectivePrefix}gynecology_cca_visit_raw']),
       gynecologyVisitDateRaw: const StringType().mapFromDatabaseResponse(
           data['${effectivePrefix}gynecology_visit_date_raw']),
+      dentistCcaVisitRaw: const IntType().mapFromDatabaseResponse(
+          data['${effectivePrefix}dentist_cca_visit_raw']),
       dentistVisitDateRaw: const StringType().mapFromDatabaseResponse(
           data['${effectivePrefix}dentist_visit_date_raw']),
       nickname: const StringType()
@@ -80,6 +84,9 @@ class User extends DataClass implements Insertable<User> {
     if (!nullToAbsent || gynecologyVisitDateRaw != null) {
       map['gynecology_visit_date_raw'] =
           Variable<String?>(gynecologyVisitDateRaw);
+    }
+    if (!nullToAbsent || dentistCcaVisitRaw != null) {
+      map['dentist_cca_visit_raw'] = Variable<int?>(dentistCcaVisitRaw);
     }
     if (!nullToAbsent || dentistVisitDateRaw != null) {
       map['dentist_visit_date_raw'] = Variable<String?>(dentistVisitDateRaw);
@@ -115,6 +122,9 @@ class User extends DataClass implements Insertable<User> {
       gynecologyVisitDateRaw: gynecologyVisitDateRaw == null && nullToAbsent
           ? const Value.absent()
           : Value(gynecologyVisitDateRaw),
+      dentistCcaVisitRaw: dentistCcaVisitRaw == null && nullToAbsent
+          ? const Value.absent()
+          : Value(dentistCcaVisitRaw),
       dentistVisitDateRaw: dentistVisitDateRaw == null && nullToAbsent
           ? const Value.absent()
           : Value(dentistVisitDateRaw),
@@ -141,6 +151,7 @@ class User extends DataClass implements Insertable<User> {
           serializer.fromJson<int?>(json['gynecologyCcaVisitRaw']),
       gynecologyVisitDateRaw:
           serializer.fromJson<String?>(json['gynecologyVisitDateRaw']),
+      dentistCcaVisitRaw: serializer.fromJson<int?>(json['dentistCcaVisitRaw']),
       dentistVisitDateRaw:
           serializer.fromJson<String?>(json['dentistVisitDateRaw']),
       nickname: serializer.fromJson<String?>(json['nickname']),
@@ -161,6 +172,7 @@ class User extends DataClass implements Insertable<User> {
       'gynecologyCcaVisitRaw': serializer.toJson<int?>(gynecologyCcaVisitRaw),
       'gynecologyVisitDateRaw':
           serializer.toJson<String?>(gynecologyVisitDateRaw),
+      'dentistCcaVisitRaw': serializer.toJson<int?>(dentistCcaVisitRaw),
       'dentistVisitDateRaw': serializer.toJson<String?>(dentistVisitDateRaw),
       'nickname': serializer.toJson<String?>(nickname),
       'email': serializer.toJson<String?>(email),
@@ -175,6 +187,7 @@ class User extends DataClass implements Insertable<User> {
           String? generalPracticionerVisitDateRaw,
           int? gynecologyCcaVisitRaw,
           String? gynecologyVisitDateRaw,
+          int? dentistCcaVisitRaw,
           String? dentistVisitDateRaw,
           String? nickname,
           String? email}) =>
@@ -190,6 +203,7 @@ class User extends DataClass implements Insertable<User> {
             gynecologyCcaVisitRaw ?? this.gynecologyCcaVisitRaw,
         gynecologyVisitDateRaw:
             gynecologyVisitDateRaw ?? this.gynecologyVisitDateRaw,
+        dentistCcaVisitRaw: dentistCcaVisitRaw ?? this.dentistCcaVisitRaw,
         dentistVisitDateRaw: dentistVisitDateRaw ?? this.dentistVisitDateRaw,
         nickname: nickname ?? this.nickname,
         email: email ?? this.email,
@@ -206,6 +220,7 @@ class User extends DataClass implements Insertable<User> {
               'generalPracticionerVisitDateRaw: $generalPracticionerVisitDateRaw, ')
           ..write('gynecologyCcaVisitRaw: $gynecologyCcaVisitRaw, ')
           ..write('gynecologyVisitDateRaw: $gynecologyVisitDateRaw, ')
+          ..write('dentistCcaVisitRaw: $dentistCcaVisitRaw, ')
           ..write('dentistVisitDateRaw: $dentistVisitDateRaw, ')
           ..write('nickname: $nickname, ')
           ..write('email: $email')
@@ -229,9 +244,11 @@ class User extends DataClass implements Insertable<User> {
                           $mrjc(
                               gynecologyVisitDateRaw.hashCode,
                               $mrjc(
-                                  dentistVisitDateRaw.hashCode,
-                                  $mrjc(nickname.hashCode,
-                                      email.hashCode))))))))));
+                                  dentistCcaVisitRaw.hashCode,
+                                  $mrjc(
+                                      dentistVisitDateRaw.hashCode,
+                                      $mrjc(nickname.hashCode,
+                                          email.hashCode)))))))))));
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -245,6 +262,7 @@ class User extends DataClass implements Insertable<User> {
               this.generalPracticionerVisitDateRaw &&
           other.gynecologyCcaVisitRaw == this.gynecologyCcaVisitRaw &&
           other.gynecologyVisitDateRaw == this.gynecologyVisitDateRaw &&
+          other.dentistCcaVisitRaw == this.dentistCcaVisitRaw &&
           other.dentistVisitDateRaw == this.dentistVisitDateRaw &&
           other.nickname == this.nickname &&
           other.email == this.email);
@@ -258,6 +276,7 @@ class UsersCompanion extends UpdateCompanion<User> {
   final Value<String?> generalPracticionerVisitDateRaw;
   final Value<int?> gynecologyCcaVisitRaw;
   final Value<String?> gynecologyVisitDateRaw;
+  final Value<int?> dentistCcaVisitRaw;
   final Value<String?> dentistVisitDateRaw;
   final Value<String?> nickname;
   final Value<String?> email;
@@ -269,6 +288,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     this.generalPracticionerVisitDateRaw = const Value.absent(),
     this.gynecologyCcaVisitRaw = const Value.absent(),
     this.gynecologyVisitDateRaw = const Value.absent(),
+    this.dentistCcaVisitRaw = const Value.absent(),
     this.dentistVisitDateRaw = const Value.absent(),
     this.nickname = const Value.absent(),
     this.email = const Value.absent(),
@@ -281,6 +301,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     this.generalPracticionerVisitDateRaw = const Value.absent(),
     this.gynecologyCcaVisitRaw = const Value.absent(),
     this.gynecologyVisitDateRaw = const Value.absent(),
+    this.dentistCcaVisitRaw = const Value.absent(),
     this.dentistVisitDateRaw = const Value.absent(),
     this.nickname = const Value.absent(),
     this.email = const Value.absent(),
@@ -293,6 +314,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     Expression<String?>? generalPracticionerVisitDateRaw,
     Expression<int?>? gynecologyCcaVisitRaw,
     Expression<String?>? gynecologyVisitDateRaw,
+    Expression<int?>? dentistCcaVisitRaw,
     Expression<String?>? dentistVisitDateRaw,
     Expression<String?>? nickname,
     Expression<String?>? email,
@@ -309,6 +331,8 @@ class UsersCompanion extends UpdateCompanion<User> {
         'gynecology_cca_visit_raw': gynecologyCcaVisitRaw,
       if (gynecologyVisitDateRaw != null)
         'gynecology_visit_date_raw': gynecologyVisitDateRaw,
+      if (dentistCcaVisitRaw != null)
+        'dentist_cca_visit_raw': dentistCcaVisitRaw,
       if (dentistVisitDateRaw != null)
         'dentist_visit_date_raw': dentistVisitDateRaw,
       if (nickname != null) 'nickname': nickname,
@@ -324,6 +348,7 @@ class UsersCompanion extends UpdateCompanion<User> {
       Value<String?>? generalPracticionerVisitDateRaw,
       Value<int?>? gynecologyCcaVisitRaw,
       Value<String?>? gynecologyVisitDateRaw,
+      Value<int?>? dentistCcaVisitRaw,
       Value<String?>? dentistVisitDateRaw,
       Value<String?>? nickname,
       Value<String?>? email}) {
@@ -339,6 +364,7 @@ class UsersCompanion extends UpdateCompanion<User> {
           gynecologyCcaVisitRaw ?? this.gynecologyCcaVisitRaw,
       gynecologyVisitDateRaw:
           gynecologyVisitDateRaw ?? this.gynecologyVisitDateRaw,
+      dentistCcaVisitRaw: dentistCcaVisitRaw ?? this.dentistCcaVisitRaw,
       dentistVisitDateRaw: dentistVisitDateRaw ?? this.dentistVisitDateRaw,
       nickname: nickname ?? this.nickname,
       email: email ?? this.email,
@@ -373,6 +399,9 @@ class UsersCompanion extends UpdateCompanion<User> {
       map['gynecology_visit_date_raw'] =
           Variable<String?>(gynecologyVisitDateRaw.value);
     }
+    if (dentistCcaVisitRaw.present) {
+      map['dentist_cca_visit_raw'] = Variable<int?>(dentistCcaVisitRaw.value);
+    }
     if (dentistVisitDateRaw.present) {
       map['dentist_visit_date_raw'] =
           Variable<String?>(dentistVisitDateRaw.value);
@@ -398,6 +427,7 @@ class UsersCompanion extends UpdateCompanion<User> {
               'generalPracticionerVisitDateRaw: $generalPracticionerVisitDateRaw, ')
           ..write('gynecologyCcaVisitRaw: $gynecologyCcaVisitRaw, ')
           ..write('gynecologyVisitDateRaw: $gynecologyVisitDateRaw, ')
+          ..write('dentistCcaVisitRaw: $dentistCcaVisitRaw, ')
           ..write('dentistVisitDateRaw: $dentistVisitDateRaw, ')
           ..write('nickname: $nickname, ')
           ..write('email: $email')
@@ -445,6 +475,11 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   late final GeneratedColumn<String?> gynecologyVisitDateRaw =
       GeneratedColumn<String?>('gynecology_visit_date_raw', aliasedName, true,
           typeName: 'TEXT', requiredDuringInsert: false);
+  final VerificationMeta _dentistCcaVisitRawMeta =
+      const VerificationMeta('dentistCcaVisitRaw');
+  late final GeneratedColumn<int?> dentistCcaVisitRaw = GeneratedColumn<int?>(
+      'dentist_cca_visit_raw', aliasedName, true,
+      typeName: 'INTEGER', requiredDuringInsert: false);
   final VerificationMeta _dentistVisitDateRawMeta =
       const VerificationMeta('dentistVisitDateRaw');
   late final GeneratedColumn<String?> dentistVisitDateRaw =
@@ -467,6 +502,7 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
         generalPracticionerVisitDateRaw,
         gynecologyCcaVisitRaw,
         gynecologyVisitDateRaw,
+        dentistCcaVisitRaw,
         dentistVisitDateRaw,
         nickname,
         email
@@ -520,6 +556,12 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
           _gynecologyVisitDateRawMeta,
           gynecologyVisitDateRaw.isAcceptableOrUnknown(
               data['gynecology_visit_date_raw']!, _gynecologyVisitDateRawMeta));
+    }
+    if (data.containsKey('dentist_cca_visit_raw')) {
+      context.handle(
+          _dentistCcaVisitRawMeta,
+          dentistCcaVisitRaw.isAcceptableOrUnknown(
+              data['dentist_cca_visit_raw']!, _dentistCcaVisitRawMeta));
     }
     if (data.containsKey('dentist_visit_date_raw')) {
       context.handle(

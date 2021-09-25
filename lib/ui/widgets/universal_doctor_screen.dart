@@ -5,23 +5,24 @@ import 'package:loono/ui/widgets/skip_button.dart';
 import 'package:loono/ui/widgets/universal_doctor.dart';
 
 class UniversalDoctorScreen extends StatelessWidget {
-  final String question;
   final String questionHeader;
   final String imagePath;
   final int numberOfSteps;
   final int currentStep;
+  final String nextButton1Text;
+  final String nextButton2Text;
   final void Function() nextCallback1;
   final void Function() nextCallback2;
-  final String skipScreen;
+
   const UniversalDoctorScreen({
-    this.question = 'Kdy jsi byla naposledy na preventivní prohlídce u',
     required this.questionHeader,
     required this.imagePath,
     required this.numberOfSteps,
     required this.currentStep,
+    this.nextButton1Text = 'V posledním roce',
+    this.nextButton2Text = 'Je to více než rok nebo nevím',
     required this.nextCallback1,
     required this.nextCallback2,
-    required this.skipScreen,
   });
 
   @override
@@ -34,7 +35,7 @@ class UniversalDoctorScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SkipButton(
-                onPressed: () => AutoRouter.of(context).pushNamed(skipScreen),
+                onPressed: () => AutoRouter.of(context).pushNamed('/create-account'),
                 sibling: LoonoProgressIndicator(
                   numberOfSteps: numberOfSteps,
                   currentStep: currentStep,
@@ -44,6 +45,8 @@ class UniversalDoctorScreen extends StatelessWidget {
                 child: UniversalDoctor(
                   questionHeader: questionHeader,
                   imagePath: imagePath,
+                  button1Text: nextButton1Text,
+                  button2Text: nextButton2Text,
                   nextCallback1: nextCallback1,
                   nextCallback2: nextCallback2,
                 ),

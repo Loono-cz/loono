@@ -16,6 +16,7 @@ class GeneralPractitionerDateScreen extends StatefulWidget {
 
 class _GeneralPractitionerDateScreenState extends State<GeneralPractitionerDateScreen> {
   DateTime? selectedDate;
+
   @override
   Widget build(BuildContext context) {
     return PreventiveExaminationDatePickerScreen(
