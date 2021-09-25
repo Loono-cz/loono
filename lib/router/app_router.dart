@@ -8,6 +8,7 @@ import 'package:loono/ui/screens/login.dart';
 import 'package:loono/ui/screens/onboarding/allow_notifications.dart';
 import 'package:loono/ui/screens/onboarding/birthdate.dart';
 import 'package:loono/ui/screens/onboarding/carousel/carousel.dart';
+import 'package:loono/ui/screens/onboarding/doctors/dentist.dart';
 import 'package:loono/ui/screens/onboarding/doctors/dentist_date.dart';
 import 'package:loono/ui/screens/onboarding/doctors/general_practicioner.dart';
 import 'package:loono/ui/screens/onboarding/doctors/general_practitioner_date.dart';
@@ -45,6 +46,7 @@ import 'package:loono/ui/screens/welcome.dart';
         AutoRoute(page: OnboardingGynecologyScreen, path: 'onboarding/doctor/gynecology'),
         AutoRoute(page: GynecologyAchievementScreen, path: 'gynecology_achievement'),
         AutoRoute(page: GynecologyDateScreen, path: 'onboarding/doctor/gynecology-date'),
+        AutoRoute(page: OnboardingDentistScreen, path: 'onboarding/doctor/dentist'),
         AutoRoute(page: DentistAchievementScreen, path: 'dentist_achievement'),
         AutoRoute(page: DentistDateScreen, path: 'onboarding/doctor/dentist-date'),
       ],
