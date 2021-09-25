@@ -21,7 +21,7 @@ class StoryPageState {
 
   bool get isPlaying => playState == PlayState.playing;
 
-  bool get hasResetState => playState == PlayState.reset;
+  bool get isInResetState => playState == PlayState.reset;
 
   bool get isMuted => muteState == true;
 

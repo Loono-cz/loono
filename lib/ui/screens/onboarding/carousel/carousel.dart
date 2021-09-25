@@ -29,7 +29,8 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
           interactiveContent: OnboardFirstCarouselInteractiveContent(
             storyPageState: storyPageState,
             onVolumeTap: storyPageState.isMuted ? unmuteStory : muteStory,
-            onButtonTap: animToNextStory,
+            onResetTap: resetStory,
+            onContinueTap: animToNextStory,
           ),
           indicatorVisible: true,
           duration: const Duration(milliseconds: 12700),
@@ -108,11 +109,7 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
               onStoryFinish: canTransitionToNextStory ? jumpToNextStory : null,
               storyPageState: storyPageState,
             ),
-            if (canTransitionToPrevStory)
-              TapArea.leftSide(onTap: jumpToPrevStory),
-            // TODO: Tapping on the left side should reset story
-            // else
-            //   TapArea.leftSide(onTap: resetStory),
+            if (canTransitionToPrevStory) TapArea.leftSide(onTap: jumpToPrevStory),
             if (canTransitionToNextStory) TapArea.rightSide(onTap: jumpToNextStory),
             if (stories.isNotEmpty) TapArea.max(onPanDown: pauseStory, onPanEnd: playStory),
             if (currentStory.hasInteractiveContent) currentStory.interactiveContent!,

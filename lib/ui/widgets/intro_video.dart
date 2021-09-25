@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:loono/ui/widgets/onboarding/carousel/button.dart';
+import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/story_page.dart';
 import 'package:loono/ui/widgets/text_overlay.dart';
 import 'package:loono/ui/widgets/video_player.dart';
@@ -40,12 +40,14 @@ class OnboardFirstCarouselInteractiveContent extends StatelessWidget {
     Key? key,
     required this.storyPageState,
     this.onVolumeTap,
-    this.onButtonTap,
+    this.onResetTap,
+    this.onContinueTap,
   }) : super(key: key);
 
   final StoryPageState storyPageState;
   final VoidCallback? onVolumeTap;
-  final VoidCallback? onButtonTap;
+  final VoidCallback? onResetTap;
+  final VoidCallback? onContinueTap;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +58,6 @@ class OnboardFirstCarouselInteractiveContent extends StatelessWidget {
           left: 20.0,
           child: Material(
             color: Colors.transparent,
-            // TODO: Change/update this volume icon once it is added to Figma
             child: IconButton(
               icon: Icon(
                 storyPageState.isMuted ? Icons.volume_off : Icons.volume_up,
@@ -67,7 +68,26 @@ class OnboardFirstCarouselInteractiveContent extends StatelessWidget {
             ),
           ),
         ),
-        CarouselButton(text: context.l10n.continue_info, onTap: onButtonTap),
+        Positioned(
+          bottom: MediaQuery.of(context).size.height * 0.14,
+          child: Row(
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width / 2,
+                padding: const EdgeInsets.only(left: 20.0, right: 7.5),
+                child: LoonoButton.light(
+                  text: context.l10n.carousel_content_1_reset_button,
+                  onTap: onResetTap,
+                ),
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width / 2,
+                padding: const EdgeInsets.only(left: 7.5, right: 20.0),
+                child: LoonoButton(text: context.l10n.continue_info, onTap: onContinueTap),
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }

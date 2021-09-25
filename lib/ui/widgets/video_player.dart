@@ -59,7 +59,7 @@ class _VideoPlayerScreenState extends State<CustomVideoPlayer> {
   void didUpdateWidget(CustomVideoPlayer oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (_controller.value.isInitialized) {
-      if (widget.storyPageState.hasResetState != oldWidget.storyPageState.hasResetState) {
+      if (widget.storyPageState.isInResetState != oldWidget.storyPageState.isInResetState) {
         resetVideo();
         WidgetsBinding.instance!.addPostFrameCallback((_) {
           if (mounted) widget.onLoaded?.call();
