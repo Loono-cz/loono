@@ -7,6 +7,7 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
+import '../models/user.dart' as _i21;
 import '../ui/screens/create_account.dart' as _i6;
 import '../ui/screens/dentist_achievement.dart' as _i19;
 import '../ui/screens/general_practicioner_achievement.dart' as _i13;
@@ -66,8 +67,10 @@ class AppRouter extends _i1.RootStackRouter {
           routeData: routeData, child: const _i10.OnboardingGenderScreen());
     },
     OnBoardingBirthdateRoute.name: (routeData) {
+      final args = routeData.argsAs<OnBoardingBirthdateRouteArgs>();
       return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i11.OnBoardingBirthdateScreen());
+          routeData: routeData,
+          child: _i11.OnBoardingBirthdateScreen(key: args.key, sex: args.sex));
     },
     OnboardingGeneralPracticionerRoute.name: (routeData) {
       return _i1.MaterialPageX<dynamic>(
@@ -200,10 +203,22 @@ class OnboardingGenderRoute extends _i1.PageRouteInfo<void> {
   static const String name = 'OnboardingGenderRoute';
 }
 
-class OnBoardingBirthdateRoute extends _i1.PageRouteInfo<void> {
-  const OnBoardingBirthdateRoute() : super(name, path: 'onboarding/birthdate');
+class OnBoardingBirthdateRoute
+    extends _i1.PageRouteInfo<OnBoardingBirthdateRouteArgs> {
+  OnBoardingBirthdateRoute({_i2.Key? key, required _i21.Sex sex})
+      : super(name,
+            path: 'onboarding/birthdate',
+            args: OnBoardingBirthdateRouteArgs(key: key, sex: sex));
 
   static const String name = 'OnBoardingBirthdateRoute';
+}
+
+class OnBoardingBirthdateRouteArgs {
+  const OnBoardingBirthdateRouteArgs({this.key, required this.sex});
+
+  final _i2.Key? key;
+
+  final _i21.Sex sex;
 }
 
 class OnboardingGeneralPracticionerRoute extends _i1.PageRouteInfo<void> {

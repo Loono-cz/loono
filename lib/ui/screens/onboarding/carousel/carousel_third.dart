@@ -2,9 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/repositories/user_repository.dart';
+import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/app_bar.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/button.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/carousel_content.dart';
+import 'package:loono/utils/registry.dart';
 
 class OnboardingThirdCarouselScreen extends StatelessWidget {
   const OnboardingThirdCarouselScreen({Key? key, this.onNext, this.onBack}) : super(key: key);
@@ -32,8 +35,11 @@ class OnboardingThirdCarouselScreen extends StatelessWidget {
             ),
             button: CarouselButton(
               text: context.l10n.carousel_content_3_button,
-              // onTap: () => AutoRouter.of(context).pushNamed('onboarding/gender'),
-              onTap: () => AutoRouter.of(context).pushNamed('onboarding'),
+              onTap: () async {
+                await registry.get<UserRepository>().createUser();
+                AutoRouter.of(context)
+                    .pushAndPopUntil(const OnboardingWrapperRoute(), predicate: (_) => false);
+              },
             ),
             bottomText: context.l10n.carousel_content_3_bottom,
           ),

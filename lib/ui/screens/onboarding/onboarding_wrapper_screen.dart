@@ -1,9 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:loono/models/user.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
+import 'package:loono/services/onboarding_state_service.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:provider/provider.dart';
 
 class OnboardingWrapperScreen extends StatefulWidget {
   const OnboardingWrapperScreen({Key? key}) : super(key: key);
@@ -17,7 +20,11 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<User?>(
+    final onboardingState = context.watch<OnboardingStateService>();
+
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: StreamBuilder<User?>(
         stream: _usersDao.watchUser(),
         builder: (context, snapshot) {
           return AutoRouter.declarative(
@@ -28,39 +35,32 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
               return [
                 if (user.sexRaw == null) const OnboardingGenderRoute(),
 
-                // male flow TODO:
+                /// male flow
                 if (user.sexRaw == 0) ...[
-                  if (user.dateOfBirthRaw == null) const OnBoardingBirthdateRoute(),
+                  if (user.dateOfBirthRaw == null) OnBoardingBirthdateRoute(sex: Sex.male),
                   if (user.generalPracticionerCcaVisitRaw == null)
                     const OnboardingGeneralPracticionerRoute(),
+                  if (user.generalPracticionerCcaVisitRaw == null)
+                    const OnboardingGeneralPracticionerRoute(),
+                  if (user.generalPracticionerCcaVisitRaw == null)
+                    const OnboardingGeneralPracticionerRoute(),
+                ],
+
+                /// female flow
+                if (user.sexRaw == 1) ...[
+                  if (user.dateOfBirthRaw == null) OnBoardingBirthdateRoute(sex: Sex.female),
+                  // if (user.generalPracticionerCcaVisitRaw == null)
+                  //   const OnboardingGeneralPracticionerRoute(),
                   // if (user.generalPracticionerCcaVisitRaw == null)
                   //   const OnboardingGeneralPracticionerRoute(),
                   // if (user.generalPracticionerCcaVisitRaw == null)
                   //   const OnboardingGeneralPracticionerRoute(),
                 ],
-
-                // female flow
-                // TODO:
               ];
-
-              // return [
-              //   EmailRoute(onNext: (result) {
-              //     setState(() {
-              //       email: result;
-              //     });
-              //   }),
-              //   if (email.isNotEmpty) PasswordRoute(onNext: (result) async {
-              //     try {
-              //       // validate the email and password
-              //       await validateEmailAndPassword(email, result)
-              //       widget.onLogin(true);
-              //     } catch (e) {
-              //       // do something with the error
-              //     }
-              //   }),
-              // ];
             },
           );
-        });
+        },
+      ),
+    );
   }
 }

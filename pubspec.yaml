@@ -31,6 +31,7 @@ dependencies:
   moor: ^4.1.0
   package_info: ^2.0.2
   path_provider: ^2.0.2
+  provider: ^6.0.1
   sqlparser: ^0.17.2
   url_launcher: ^6.0.9 #  TODO: setup on iOS https://pub.dev/packages/url_launcher#ios
   uuid: ^3.0.4

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/models/user.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/custom_date_picker.dart';
@@ -9,6 +10,10 @@ import 'package:loono/ui/widgets/skip_button.dart';
 import 'package:loono/utils/registry.dart';
 
 class OnBoardingBirthdateScreen extends StatefulWidget {
+  const OnBoardingBirthdateScreen({Key? key, required this.sex}) : super(key: key);
+
+  final Sex sex;
+
   @override
   State<OnBoardingBirthdateScreen> createState() => _OnBoardingBirthdateScreenState();
 }
@@ -27,15 +32,15 @@ class _OnBoardingBirthdateScreenState extends State<OnBoardingBirthdateScreen> {
             children: [
               SkipButton(
                   onPressed: () =>
-                      AutoRouter.of(context).pushNamed('/onboarding/doctor/general-practicioner')),
+                      AutoRouter.of(context).pushNamed('onboarding/doctor/general-practicioner')),
               const SizedBox(
                 height: 70,
               ),
-              const Align(
+              Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Kdy ses narodil/a?',
-                  style: TextStyle(
+                  widget.sex == Sex.male ? 'Kdy ses narodil?' : 'Kdy ses narodila?',
+                  style: const TextStyle(
                     color: Colors.black,
                     fontSize: 24,
                   ),
@@ -59,7 +64,6 @@ class _OnBoardingBirthdateScreenState extends State<OnBoardingBirthdateScreen> {
                   if (selectedDate != null) {
                     await registry.get<DatabaseService>().users.updateDateOfBirth(DateWithoutDay(
                         month: monthFromInt(selectedDate!.month), year: selectedDate!.year));
-                    AutoRouter.of(context).pushNamed('onboarding/doctor/general-practicioner');
                   }
                 },
               ),

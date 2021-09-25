@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
@@ -10,13 +9,13 @@ class AchievementScreen extends StatelessWidget {
     required this.header,
     required this.textLines,
     required this.numberOfPoints,
-    required this.nextScreen,
+    required this.onButtonTap,
   });
 
   final String header;
   final List<String> textLines;
   final int numberOfPoints;
-  final String nextScreen;
+  final VoidCallback? onButtonTap;
 
   @override
   Widget build(BuildContext context) {
@@ -62,10 +61,7 @@ class AchievementScreen extends StatelessWidget {
                 ],
               ),
               const Spacer(flex: 2),
-              LoonoButton(
-                text: context.l10n.continue_info,
-                onTap: () => AutoRouter.of(context).pushNamed(nextScreen),
-              ),
+              LoonoButton(text: context.l10n.continue_info, onTap: onButtonTap),
               SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
             ],
           ),
