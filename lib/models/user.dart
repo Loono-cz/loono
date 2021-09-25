@@ -26,6 +26,7 @@ class Users extends Table {
   TextColumn get generalPracticionerVisitDateRaw => text().nullable()();
   IntColumn get gynecologyCcaVisitRaw => integer().nullable()();
   TextColumn get gynecologyVisitDateRaw => text().nullable()();
+  IntColumn get dentistCcaVisitRaw => integer().nullable()();
   TextColumn get dentistVisitDateRaw => text().nullable()();
 
   TextColumn get nickname => text().nullable()();
@@ -87,6 +88,10 @@ class UsersDao extends DatabaseAccessor<AppDatabase> with _$UsersDaoMixin {
   Future<void> updateGynecologyVisitDate(DateWithoutDay dateWithoutDay) async {
     await updateCurrentUser(
         UsersCompanion(gynecologyVisitDateRaw: Value(jsonEncode(dateWithoutDay.toJson()))));
+  }
+
+  Future<void> updateDentistCcaVisit(CcaDoctorVisit ccaDoctorVisit) async {
+    await updateCurrentUser(UsersCompanion(dentistCcaVisitRaw: Value(ccaDoctorVisit.index)));
   }
 
   Future<void> updateDentistVisitDate(DateWithoutDay dateWithoutDay) async {

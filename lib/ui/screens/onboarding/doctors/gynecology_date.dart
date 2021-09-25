@@ -26,9 +26,9 @@ class _GynecologyDateScreenState extends State<GynecologyDateScreen> {
         if (selectedDate == null) return;
         await registry.get<DatabaseService>().users.updateGynecologyVisitDate(
             DateWithoutDay(month: monthFromInt(selectedDate!.month), year: selectedDate!.year));
-        Navigator.pushNamed(context, '/onboarding/doctor/dentist-date');
+        Navigator.pushNamed(context, '/onboarding/doctor/dentist');
       },
-      onSkipButtonPress: () => Navigator.pushNamed(context, '/onboarding/doctor/dentist-date'),
+      onSkipButtonPress: () => Navigator.pushNamed(context, '/onboarding/doctor/dentist'),
     );
   }
 }

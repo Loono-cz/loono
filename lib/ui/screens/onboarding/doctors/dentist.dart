@@ -4,7 +4,7 @@ import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/universal_doctor_screen.dart';
 import 'package:loono/utils/registry.dart';
 
-class OnboardingGynecologyScreen extends StatelessWidget {
+class OnboardingDentistScreen extends StatelessWidget {
   final _usersDao = registry.get<DatabaseService>().users;
 
   @override
@@ -12,17 +12,17 @@ class OnboardingGynecologyScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: UniversalDoctorScreen(
-          questionHeader: "Gynekologa",
-          imagePath: "gynecology",
+          questionHeader: "Zubaře",
+          imagePath: "dentist",
           numberOfSteps: 3,
-          currentStep: 2,
+          currentStep: 3,
           nextCallback1: () async {
-            await _usersDao.updateGynecologyCcaVisit(CcaDoctorVisit.inLastTwoYears);
-            Navigator.pushNamed(context, "/gynecology_achievement");
+            await _usersDao.updateDentistCcaVisit(CcaDoctorVisit.inLastTwoYears);
+            Navigator.pushNamed(context, '/dentist_achievement');
           },
           nextCallback2: () async {
-            await _usersDao.updateGynecologyCcaVisit(CcaDoctorVisit.moreThanTwoYearsOrIdk);
-            Navigator.pushNamed(context, "/onboarding/doctor/dentist");
+            await _usersDao.updateDentistCcaVisit(CcaDoctorVisit.moreThanTwoYearsOrIdk);
+            Navigator.pushNamed(context, '/create-account');
           },
         ),
       ),
