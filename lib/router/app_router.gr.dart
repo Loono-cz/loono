@@ -7,7 +7,7 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
-import '../models/user.dart' as _i22;
+import '../helpers/sex_extensions.dart' as _i22;
 import '../ui/screens/create_account.dart' as _i6;
 import '../ui/screens/dentist_achievement.dart' as _i20;
 import '../ui/screens/general_practicioner_achievement.dart' as _i13;
@@ -74,9 +74,11 @@ class AppRouter extends _i1.RootStackRouter {
           child: _i11.OnBoardingBirthdateScreen(key: args.key, sex: args.sex));
     },
     OnboardingGeneralPracticionerRoute.name: (routeData) {
+      final args = routeData.argsAs<OnboardingGeneralPracticionerRouteArgs>();
       return _i1.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: _i12.OnboardingGeneralPracticionerScreen());
+          child: _i12.OnboardingGeneralPracticionerScreen(
+              key: args.key, sex: args.sex));
     },
     GeneralPracticionerAchievementRoute.name: (routeData) {
       return _i1.MaterialPageX<dynamic>(
@@ -93,8 +95,10 @@ class AppRouter extends _i1.RootStackRouter {
           routeData: routeData, child: const _i15.AllowNotificationsScreen());
     },
     OnboardingGynecologyRoute.name: (routeData) {
+      final args = routeData.argsAs<OnboardingGynecologyRouteArgs>();
       return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i16.OnboardingGynecologyScreen());
+          routeData: routeData,
+          child: _i16.OnboardingGynecologyScreen(key: args.key, sex: args.sex));
     },
     GynecologyAchievementRoute.name: (routeData) {
       return _i1.MaterialPageX<dynamic>(
@@ -106,8 +110,10 @@ class AppRouter extends _i1.RootStackRouter {
           routeData: routeData, child: const _i18.GynecologyDateScreen());
     },
     OnboardingDentistRoute.name: (routeData) {
+      final args = routeData.argsAs<OnboardingDentistRouteArgs>();
       return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i19.OnboardingDentistScreen());
+          routeData: routeData,
+          child: _i19.OnboardingDentistScreen(key: args.key, sex: args.sex));
     },
     DentistAchievementRoute.name: (routeData) {
       return _i1.MaterialPageX<dynamic>(
@@ -228,11 +234,22 @@ class OnBoardingBirthdateRouteArgs {
   final _i22.Sex sex;
 }
 
-class OnboardingGeneralPracticionerRoute extends _i1.PageRouteInfo<void> {
-  const OnboardingGeneralPracticionerRoute()
-      : super(name, path: 'onboarding/doctor/general-practicioner');
+class OnboardingGeneralPracticionerRoute
+    extends _i1.PageRouteInfo<OnboardingGeneralPracticionerRouteArgs> {
+  OnboardingGeneralPracticionerRoute({_i2.Key? key, required _i22.Sex sex})
+      : super(name,
+            path: 'onboarding/doctor/general-practicioner',
+            args: OnboardingGeneralPracticionerRouteArgs(key: key, sex: sex));
 
   static const String name = 'OnboardingGeneralPracticionerRoute';
+}
+
+class OnboardingGeneralPracticionerRouteArgs {
+  const OnboardingGeneralPracticionerRouteArgs({this.key, required this.sex});
+
+  final _i2.Key? key;
+
+  final _i22.Sex sex;
 }
 
 class GeneralPracticionerAchievementRoute extends _i1.PageRouteInfo<void> {
@@ -256,11 +273,22 @@ class AllowNotificationsRoute extends _i1.PageRouteInfo<void> {
   static const String name = 'AllowNotificationsRoute';
 }
 
-class OnboardingGynecologyRoute extends _i1.PageRouteInfo<void> {
-  const OnboardingGynecologyRoute()
-      : super(name, path: 'onboarding/doctor/gynecology');
+class OnboardingGynecologyRoute
+    extends _i1.PageRouteInfo<OnboardingGynecologyRouteArgs> {
+  OnboardingGynecologyRoute({_i2.Key? key, required _i22.Sex sex})
+      : super(name,
+            path: 'onboarding/doctor/gynecology',
+            args: OnboardingGynecologyRouteArgs(key: key, sex: sex));
 
   static const String name = 'OnboardingGynecologyRoute';
+}
+
+class OnboardingGynecologyRouteArgs {
+  const OnboardingGynecologyRouteArgs({this.key, required this.sex});
+
+  final _i2.Key? key;
+
+  final _i22.Sex sex;
 }
 
 class GynecologyAchievementRoute extends _i1.PageRouteInfo<void> {
@@ -277,11 +305,22 @@ class GynecologyDateRoute extends _i1.PageRouteInfo<void> {
   static const String name = 'GynecologyDateRoute';
 }
 
-class OnboardingDentistRoute extends _i1.PageRouteInfo<void> {
-  const OnboardingDentistRoute()
-      : super(name, path: 'onboarding/doctor/dentist');
+class OnboardingDentistRoute
+    extends _i1.PageRouteInfo<OnboardingDentistRouteArgs> {
+  OnboardingDentistRoute({_i2.Key? key, required _i22.Sex sex})
+      : super(name,
+            path: 'onboarding/doctor/dentist',
+            args: OnboardingDentistRouteArgs(key: key, sex: sex));
 
   static const String name = 'OnboardingDentistRoute';
+}
+
+class OnboardingDentistRouteArgs {
+  const OnboardingDentistRouteArgs({this.key, required this.sex});
+
+  final _i2.Key? key;
+
+  final _i22.Sex sex;
 }
 
 class DentistAchievementRoute extends _i1.PageRouteInfo<void> {

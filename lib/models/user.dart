@@ -1,13 +1,12 @@
 import 'dart:convert';
 
 import 'package:loono/helpers/date_without_day.dart';
+import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/utils/memoized_stream.dart';
 import 'package:moor/moor.dart';
 
 part 'user.g.dart';
-
-enum Sex { male, female }
 
 enum CcaDoctorVisit {
   inLastTwoYears,

@@ -27,7 +27,6 @@ class _GeneralPractitionerDateScreenState extends State<GeneralPractitionerDateS
         if (selectedDate == null) return;
         await registry.get<DatabaseService>().users.updateGeneralPracticionerVisitDate(
             DateWithoutDay(month: monthFromInt(selectedDate!.month), year: selectedDate!.year));
-        AutoRouter.of(context).pushNamed('onboarding/allow_notifications');
       },
       onSkipButtonPress: () => AutoRouter.of(context).pushNamed('onboarding/allow_notifications'),
     );

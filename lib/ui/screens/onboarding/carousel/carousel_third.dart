@@ -37,8 +37,7 @@ class OnboardingThirdCarouselScreen extends StatelessWidget {
               text: context.l10n.carousel_content_3_button,
               onTap: () async {
                 await registry.get<UserRepository>().createUser();
-                AutoRouter.of(context)
-                    .pushAndPopUntil(const OnboardingWrapperRoute(), predicate: (_) => false);
+                AutoRouter.of(context).push(const OnboardingWrapperRoute());
               },
             ),
             bottomText: context.l10n.carousel_content_3_bottom,

@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:loono/models/user.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/onboarding/genders_container.dart';
@@ -28,11 +28,7 @@ class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: Column(
             children: [
-              SkipButton(
-                onPressed: () {
-                  AutoRouter.of(context).pushNamed('create-account');
-                },
-              ),
+              SkipButton(onPressed: () => AutoRouter.of(context).pushNamed('create-account')),
               const SizedBox(
                 height: 70,
               ),

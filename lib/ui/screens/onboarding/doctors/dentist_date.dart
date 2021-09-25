@@ -27,7 +27,6 @@ class _DentistDateScreenState extends State<DentistDateScreen> {
         if (selectedDate == null) return;
         await registry.get<DatabaseService>().users.updateDentistVisitDate(
             DateWithoutDay(month: monthFromInt(selectedDate!.month), year: selectedDate!.year));
-
         AutoRouter.of(context).pushNamed('create-account');
       },
       onSkipButtonPress: () => AutoRouter.of(context).pushNamed('create-account'),
