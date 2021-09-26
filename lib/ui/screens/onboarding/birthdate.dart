@@ -39,7 +39,7 @@ class _OnBoardingBirthdateScreenState extends State<OnBoardingBirthdateScreen> {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  widget.sex.getAgeLabel(context),
+                  widget.sex.getBirthdateLabel(context),
                   style: const TextStyle(color: Colors.black, fontSize: 24),
                 ),
               ),

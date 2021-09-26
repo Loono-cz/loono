@@ -28,7 +28,7 @@ class _GynecologyDateScreenState extends State<GynecologyDateScreen> {
         await registry.get<DatabaseService>().users.updateGynecologyVisitDate(
             DateWithoutDay(month: monthFromInt(selectedDate!.month), year: selectedDate!.year));
       },
-      onSkipButtonPress: () => AutoRouter.of(context).pushNamed('/onboarding/doctor/dentist'),
+      onSkipButtonPress: () => AutoRouter.of(context).pushNamed('onboarding/doctor/dentist'),
     );
   }
 }

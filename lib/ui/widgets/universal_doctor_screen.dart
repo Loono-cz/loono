@@ -37,7 +37,7 @@ class UniversalDoctorScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SkipButton(
-                onPressed: () => AutoRouter.of(context).pushNamed('/create-account'),
+                onPressed: () => AutoRouter.of(context).pushNamed('create-account'),
                 sibling: LoonoProgressIndicator(
                   numberOfSteps: numberOfSteps,
                   currentStep: currentStep,

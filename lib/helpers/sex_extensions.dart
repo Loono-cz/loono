@@ -4,27 +4,27 @@ import 'package:loono/l10n/ext.dart';
 enum Sex { male, female }
 
 extension SexLabelsExt on Sex {
-  String getAgeLabel(BuildContext context) {
-    switch (this) {
-      case Sex.male:
-        return context.l10n.age_male_header;
-      case Sex.female:
-        return context.l10n.age_female_header;
-    }
-  }
-
   String getBirthdateLabel(BuildContext context) {
     switch (this) {
       case Sex.male:
-        return context.l10n.birthdate_male_question;
+        return context.l10n.birthdate_male_header;
       case Sex.female:
-        return context.l10n.birthdate_female_question;
+        return context.l10n.birthdate_female_header;
+    }
+  }
+
+  String getUniversalDoctorLabel(BuildContext context) {
+    switch (this) {
+      case Sex.male:
+        return context.l10n.universal_doctor_male_question;
+      case Sex.female:
+        return context.l10n.universal_doctor_female_question;
     }
   }
 }
 
 extension SexProgressDotsExt on Sex {
-  int get getTotalNumOfSteps {
+  int get totalNumOfSteps {
     switch (this) {
       case Sex.male:
         return 2;

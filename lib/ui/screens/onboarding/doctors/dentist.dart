@@ -18,10 +18,10 @@ class OnboardingDentistScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: UniversalDoctorScreen(
-          question: sex.getBirthdateLabel(context),
+          question: sex.getUniversalDoctorLabel(context),
           questionHighlight: "Zubaře",
           imagePath: "dentist",
-          numberOfSteps: sex.getTotalNumOfSteps,
+          numberOfSteps: sex.totalNumOfSteps,
           currentStep: sex.dentistStep,
           nextCallback1: () async {
             await _usersDao.updateDentistCcaVisit(CcaDoctorVisit.inLastTwoYears);

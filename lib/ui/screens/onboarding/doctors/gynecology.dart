@@ -17,10 +17,10 @@ class OnboardingGynecologyScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: UniversalDoctorScreen(
-          question: sex.getBirthdateLabel(context),
+          question: sex.getUniversalDoctorLabel(context),
           questionHighlight: "Gynekologa",
           imagePath: "gynecology",
-          numberOfSteps: sex.getTotalNumOfSteps,
+          numberOfSteps: sex.totalNumOfSteps,
           currentStep: sex.gynecologyStep,
           nextCallback1: () async {
             await _usersDao.updateGynecologyCcaVisit(CcaDoctorVisit.inLastTwoYears);

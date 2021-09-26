@@ -5,7 +5,7 @@ import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/utils/registry.dart';
 
 class Loono extends StatelessWidget {
-  final _router = registry<AppRouter>();
+  final _router = registry.get<AppRouter>();
 
   @override
   Widget build(BuildContext context) {

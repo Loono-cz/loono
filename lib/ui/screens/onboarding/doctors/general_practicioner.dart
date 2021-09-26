@@ -17,10 +17,10 @@ class OnboardingGeneralPracticionerScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: UniversalDoctorScreen(
-          question: sex.getBirthdateLabel(context),
+          question: sex.getUniversalDoctorLabel(context),
           questionHighlight: "Praktického lékaře",
           imagePath: "practicioner",
-          numberOfSteps: sex.getTotalNumOfSteps,
+          numberOfSteps: sex.totalNumOfSteps,
           currentStep: sex.generalPractitionerStep,
           nextButton1Text: 'V posledních 2 letech',
           nextButton2Text: 'Jsou to více než 2 roky nebo nevím',
