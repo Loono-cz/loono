@@ -11,7 +11,7 @@ class CheckIsLoggedIn extends AutoRouteGuard {
     if (_authService.isLoggedIn) {
       resolver.next();
     } else {
-      router.push(const WelcomeRoute());
+      router.push(const OnboardingWrapperRoute());
     }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/progress_dots.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
 import 'package:loono/ui/widgets/universal_doctor.dart';
@@ -37,7 +38,7 @@ class UniversalDoctorScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SkipButton(
-                onPressed: () => AutoRouter.of(context).pushNamed('create-account'),
+                onPressed: () => AutoRouter.of(context).push(const CreateAccountRoute()),
                 sibling: numberOfSteps > 2
                     ? LoonoProgressIndicator(numberOfSteps: numberOfSteps, currentStep: currentStep)
                     : Row(

@@ -25,26 +25,30 @@ import 'package:loono/ui/screens/welcome.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Page|Screen,Route',
   routes: <AutoRoute>[
-    AutoRoute(page: WelcomeScreen, path: 'welcome'),
-    AutoRoute(page: OnboardingCarouselScreen, path: 'onboarding/carousel'),
-    CustomRoute(
+    AutoRoute(page: MainScreen, path: 'main', initial: true, guards: [CheckIsLoggedIn]),
+    AutoRoute(
       page: OnboardingWrapperScreen,
       path: 'onboarding',
-      transitionsBuilder: TransitionsBuilders.slideLeft,
       children: [
+        AutoRoute(page: WelcomeScreen, path: 'welcome'),
+        CustomRoute(
+          page: OnboardingCarouselScreen,
+          path: 'carousel',
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+        ),
         CustomRoute(
           page: OnboardingGenderScreen,
-          path: 'onboarding/gender',
+          path: 'gender',
           transitionsBuilder: TransitionsBuilders.slideLeft,
         ),
         CustomRoute(
           page: OnBoardingBirthdateScreen,
-          path: 'onboarding/birthdate',
+          path: 'birthdate',
           transitionsBuilder: TransitionsBuilders.slideLeft,
         ),
         CustomRoute(
           page: OnboardingGeneralPracticionerScreen,
-          path: 'onboarding/doctor/general-practicioner',
+          path: 'doctor/general-practicioner',
           transitionsBuilder: TransitionsBuilders.slideLeft,
         ),
         CustomRoute(
@@ -54,17 +58,17 @@ import 'package:loono/ui/screens/welcome.dart';
         ),
         CustomRoute(
           page: GeneralPractitionerDateScreen,
-          path: 'onboarding/doctor/general-practitioner-date',
+          path: 'doctor/general-practitioner-date',
           transitionsBuilder: TransitionsBuilders.slideLeft,
         ),
         CustomRoute(
           page: AllowNotificationsScreen,
-          path: 'onboarding/allow_notifications',
+          path: 'allow_notifications',
           transitionsBuilder: TransitionsBuilders.slideLeft,
         ),
         CustomRoute(
           page: OnboardingGynecologyScreen,
-          path: 'onboarding/doctor/gynecology',
+          path: 'doctor/gynecology',
           transitionsBuilder: TransitionsBuilders.slideLeft,
         ),
         CustomRoute(
@@ -74,12 +78,12 @@ import 'package:loono/ui/screens/welcome.dart';
         ),
         CustomRoute(
           page: GynecologyDateScreen,
-          path: 'onboarding/doctor/gynecology-date',
+          path: 'doctor/gynecology-date',
           transitionsBuilder: TransitionsBuilders.slideLeft,
         ),
         CustomRoute(
           page: OnboardingDentistScreen,
-          path: 'onboarding/doctor/dentist',
+          path: 'doctor/dentist',
           transitionsBuilder: TransitionsBuilders.slideLeft,
         ),
         CustomRoute(
@@ -89,7 +93,7 @@ import 'package:loono/ui/screens/welcome.dart';
         ),
         CustomRoute(
           page: DentistDateScreen,
-          path: 'onboarding/doctor/dentist-date',
+          path: 'doctor/dentist-date',
           transitionsBuilder: TransitionsBuilders.slideLeft,
         ),
       ],
@@ -98,7 +102,6 @@ import 'package:loono/ui/screens/welcome.dart';
     AutoRoute(page: NicknameScreen, path: 'fallback_account/name'),
     AutoRoute(page: EmailScreen, path: 'fallback_account/email'),
     AutoRoute(page: LoginScreen, path: 'login'),
-    AutoRoute(page: MainScreen, path: 'main', initial: true, guards: [CheckIsLoggedIn]),
   ],
 )
 class $AppRouter {}

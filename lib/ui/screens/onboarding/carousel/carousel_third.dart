@@ -1,13 +1,13 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
-import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/services/onboarding_state_service.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/app_bar.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/button.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/carousel_content.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:provider/provider.dart';
 
 class OnboardingThirdCarouselScreen extends StatelessWidget {
   const OnboardingThirdCarouselScreen({Key? key, this.onNext, this.onBack}) : super(key: key);
@@ -37,10 +37,7 @@ class OnboardingThirdCarouselScreen extends StatelessWidget {
               text: context.l10n.carousel_content_3_button,
               onTap: () async {
                 await registry.get<UserRepository>().createUser();
-                AutoRouter.of(context)
-                  ..push(const OnboardingWrapperRoute());
-                // TODO: uncomment this (for https://cesko-digital.atlassian.net/browse/LOON-202)
-                  // ..removeWhere((route) => true);
+                context.read<OnboardingStateService>().startQuestionnaire();
               },
             ),
             bottomText: context.l10n.carousel_content_3_bottom,

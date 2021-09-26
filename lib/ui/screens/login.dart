@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/social_login_button.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -51,7 +52,7 @@ class LoginScreen extends StatelessWidget {
             ),
             const Spacer(),
             TextButton(
-              onPressed: () => AutoRouter.of(context).pushNamed('welcome'),
+              onPressed: () => AutoRouter.of(context).push(const OnboardingWrapperRoute()),
               child: Text(
                 context.l10n.login_start_over_button,
                 style: LoonoFonts.paragraphFontStyle,

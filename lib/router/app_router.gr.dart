@@ -8,15 +8,15 @@ import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
 import '../helpers/sex_extensions.dart' as _i24;
-import '../ui/screens/create_account.dart' as _i7;
+import '../ui/screens/create_account.dart' as _i6;
 import '../ui/screens/dentist_achievement.dart' as _i22;
 import '../ui/screens/general_practicioner_achievement.dart' as _i15;
 import '../ui/screens/gynecology_achievement.dart' as _i19;
-import '../ui/screens/login.dart' as _i10;
-import '../ui/screens/main/main_screen.dart' as _i11;
+import '../ui/screens/login.dart' as _i9;
+import '../ui/screens/main/main_screen.dart' as _i4;
 import '../ui/screens/onboarding/allow_notifications.dart' as _i17;
 import '../ui/screens/onboarding/birthdate.dart' as _i13;
-import '../ui/screens/onboarding/carousel/carousel.dart' as _i5;
+import '../ui/screens/onboarding/carousel/carousel.dart' as _i11;
 import '../ui/screens/onboarding/doctors/dentist.dart' as _i21;
 import '../ui/screens/onboarding/doctors/dentist_date.dart' as _i23;
 import '../ui/screens/onboarding/doctors/general_practicioner.dart' as _i14;
@@ -24,11 +24,11 @@ import '../ui/screens/onboarding/doctors/general_practitioner_date.dart'
     as _i16;
 import '../ui/screens/onboarding/doctors/gynecology.dart' as _i18;
 import '../ui/screens/onboarding/doctors/gynecology_date.dart' as _i20;
-import '../ui/screens/onboarding/fallback_account/email.dart' as _i9;
-import '../ui/screens/onboarding/fallback_account/nickname.dart' as _i8;
+import '../ui/screens/onboarding/fallback_account/email.dart' as _i8;
+import '../ui/screens/onboarding/fallback_account/nickname.dart' as _i7;
 import '../ui/screens/onboarding/gender.dart' as _i12;
-import '../ui/screens/onboarding/onboarding_wrapper_screen.dart' as _i6;
-import '../ui/screens/welcome.dart' as _i4;
+import '../ui/screens/onboarding/onboarding_wrapper_screen.dart' as _i5;
+import '../ui/screens/welcome.dart' as _i10;
 import 'guards/check_is_logged_in.dart' as _i3;
 
 class AppRouter extends _i1.RootStackRouter {
@@ -41,41 +41,41 @@ class AppRouter extends _i1.RootStackRouter {
 
   @override
   final Map<String, _i1.PageFactory> pagesMap = {
-    WelcomeRoute.name: (routeData) {
+    MainRoute.name: (routeData) {
       return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i4.WelcomeScreen());
-    },
-    OnboardingCarouselRoute.name: (routeData) {
-      return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i5.OnboardingCarouselScreen());
+          routeData: routeData, child: const _i4.MainScreen());
     },
     OnboardingWrapperRoute.name: (routeData) {
-      return _i1.CustomPage<dynamic>(
-          routeData: routeData,
-          child: const _i6.OnboardingWrapperScreen(),
-          transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
-          opaque: true,
-          barrierDismissible: false);
+      return _i1.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i5.OnboardingWrapperScreen());
     },
     CreateAccountRoute.name: (routeData) {
       return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i7.CreateAccountScreen());
+          routeData: routeData, child: const _i6.CreateAccountScreen());
     },
     NicknameRoute.name: (routeData) {
       return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i8.NicknameScreen());
+          routeData: routeData, child: const _i7.NicknameScreen());
     },
     EmailRoute.name: (routeData) {
       return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i9.EmailScreen());
+          routeData: routeData, child: const _i8.EmailScreen());
     },
     LoginRoute.name: (routeData) {
       return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i10.LoginScreen());
+          routeData: routeData, child: const _i9.LoginScreen());
     },
-    MainRoute.name: (routeData) {
+    WelcomeRoute.name: (routeData) {
       return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i11.MainScreen());
+          routeData: routeData, child: const _i10.WelcomeScreen());
+    },
+    OnboardingCarouselRoute.name: (routeData) {
+      return _i1.CustomPage<dynamic>(
+          routeData: routeData,
+          child: const _i11.OnboardingCarouselScreen(),
+          transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
     },
     OnboardingGenderRoute.name: (routeData) {
       return _i1.CustomPage<dynamic>(
@@ -184,55 +184,47 @@ class AppRouter extends _i1.RootStackRouter {
   List<_i1.RouteConfig> get routes => [
         _i1.RouteConfig('/#redirect',
             path: '/', redirectTo: 'main', fullMatch: true),
-        _i1.RouteConfig(WelcomeRoute.name, path: 'welcome'),
-        _i1.RouteConfig(OnboardingCarouselRoute.name,
-            path: 'onboarding/carousel'),
+        _i1.RouteConfig(MainRoute.name,
+            path: 'main', guards: [checkIsLoggedIn]),
         _i1.RouteConfig(OnboardingWrapperRoute.name,
             path: 'onboarding',
             children: [
-              _i1.RouteConfig(OnboardingGenderRoute.name,
-                  path: 'onboarding/gender'),
-              _i1.RouteConfig(OnBoardingBirthdateRoute.name,
-                  path: 'onboarding/birthdate'),
+              _i1.RouteConfig(WelcomeRoute.name, path: 'welcome'),
+              _i1.RouteConfig(OnboardingCarouselRoute.name, path: 'carousel'),
+              _i1.RouteConfig(OnboardingGenderRoute.name, path: 'gender'),
+              _i1.RouteConfig(OnBoardingBirthdateRoute.name, path: 'birthdate'),
               _i1.RouteConfig(OnboardingGeneralPracticionerRoute.name,
-                  path: 'onboarding/doctor/general-practicioner'),
+                  path: 'doctor/general-practicioner'),
               _i1.RouteConfig(GeneralPracticionerAchievementRoute.name,
                   path: 'general-practicioner-achievement'),
               _i1.RouteConfig(GeneralPractitionerDateRoute.name,
-                  path: 'onboarding/doctor/general-practitioner-date'),
+                  path: 'doctor/general-practitioner-date'),
               _i1.RouteConfig(AllowNotificationsRoute.name,
-                  path: 'onboarding/allow_notifications'),
+                  path: 'allow_notifications'),
               _i1.RouteConfig(OnboardingGynecologyRoute.name,
-                  path: 'onboarding/doctor/gynecology'),
+                  path: 'doctor/gynecology'),
               _i1.RouteConfig(GynecologyAchievementRoute.name,
                   path: 'gynecology_achievement'),
               _i1.RouteConfig(GynecologyDateRoute.name,
-                  path: 'onboarding/doctor/gynecology-date'),
+                  path: 'doctor/gynecology-date'),
               _i1.RouteConfig(OnboardingDentistRoute.name,
-                  path: 'onboarding/doctor/dentist'),
+                  path: 'doctor/dentist'),
               _i1.RouteConfig(DentistAchievementRoute.name,
                   path: 'dentist_achievement'),
               _i1.RouteConfig(DentistDateRoute.name,
-                  path: 'onboarding/doctor/dentist-date')
+                  path: 'doctor/dentist-date')
             ]),
         _i1.RouteConfig(CreateAccountRoute.name, path: 'create-account'),
         _i1.RouteConfig(NicknameRoute.name, path: 'fallback_account/name'),
         _i1.RouteConfig(EmailRoute.name, path: 'fallback_account/email'),
-        _i1.RouteConfig(LoginRoute.name, path: 'login'),
-        _i1.RouteConfig(MainRoute.name, path: 'main', guards: [checkIsLoggedIn])
+        _i1.RouteConfig(LoginRoute.name, path: 'login')
       ];
 }
 
-class WelcomeRoute extends _i1.PageRouteInfo<void> {
-  const WelcomeRoute() : super(name, path: 'welcome');
+class MainRoute extends _i1.PageRouteInfo<void> {
+  const MainRoute() : super(name, path: 'main');
 
-  static const String name = 'WelcomeRoute';
-}
-
-class OnboardingCarouselRoute extends _i1.PageRouteInfo<void> {
-  const OnboardingCarouselRoute() : super(name, path: 'onboarding/carousel');
-
-  static const String name = 'OnboardingCarouselRoute';
+  static const String name = 'MainRoute';
 }
 
 class OnboardingWrapperRoute extends _i1.PageRouteInfo<void> {
@@ -266,14 +258,20 @@ class LoginRoute extends _i1.PageRouteInfo<void> {
   static const String name = 'LoginRoute';
 }
 
-class MainRoute extends _i1.PageRouteInfo<void> {
-  const MainRoute() : super(name, path: 'main');
+class WelcomeRoute extends _i1.PageRouteInfo<void> {
+  const WelcomeRoute() : super(name, path: 'welcome');
 
-  static const String name = 'MainRoute';
+  static const String name = 'WelcomeRoute';
+}
+
+class OnboardingCarouselRoute extends _i1.PageRouteInfo<void> {
+  const OnboardingCarouselRoute() : super(name, path: 'carousel');
+
+  static const String name = 'OnboardingCarouselRoute';
 }
 
 class OnboardingGenderRoute extends _i1.PageRouteInfo<void> {
-  const OnboardingGenderRoute() : super(name, path: 'onboarding/gender');
+  const OnboardingGenderRoute() : super(name, path: 'gender');
 
   static const String name = 'OnboardingGenderRoute';
 }
@@ -282,7 +280,7 @@ class OnBoardingBirthdateRoute
     extends _i1.PageRouteInfo<OnBoardingBirthdateRouteArgs> {
   OnBoardingBirthdateRoute({_i2.Key? key, required _i24.Sex sex})
       : super(name,
-            path: 'onboarding/birthdate',
+            path: 'birthdate',
             args: OnBoardingBirthdateRouteArgs(key: key, sex: sex));
 
   static const String name = 'OnBoardingBirthdateRoute';
@@ -300,7 +298,7 @@ class OnboardingGeneralPracticionerRoute
     extends _i1.PageRouteInfo<OnboardingGeneralPracticionerRouteArgs> {
   OnboardingGeneralPracticionerRoute({_i2.Key? key, required _i24.Sex sex})
       : super(name,
-            path: 'onboarding/doctor/general-practicioner',
+            path: 'doctor/general-practicioner',
             args: OnboardingGeneralPracticionerRouteArgs(key: key, sex: sex));
 
   static const String name = 'OnboardingGeneralPracticionerRoute';
@@ -323,14 +321,13 @@ class GeneralPracticionerAchievementRoute extends _i1.PageRouteInfo<void> {
 
 class GeneralPractitionerDateRoute extends _i1.PageRouteInfo<void> {
   const GeneralPractitionerDateRoute()
-      : super(name, path: 'onboarding/doctor/general-practitioner-date');
+      : super(name, path: 'doctor/general-practitioner-date');
 
   static const String name = 'GeneralPractitionerDateRoute';
 }
 
 class AllowNotificationsRoute extends _i1.PageRouteInfo<void> {
-  const AllowNotificationsRoute()
-      : super(name, path: 'onboarding/allow_notifications');
+  const AllowNotificationsRoute() : super(name, path: 'allow_notifications');
 
   static const String name = 'AllowNotificationsRoute';
 }
@@ -339,7 +336,7 @@ class OnboardingGynecologyRoute
     extends _i1.PageRouteInfo<OnboardingGynecologyRouteArgs> {
   OnboardingGynecologyRoute({_i2.Key? key, required _i24.Sex sex})
       : super(name,
-            path: 'onboarding/doctor/gynecology',
+            path: 'doctor/gynecology',
             args: OnboardingGynecologyRouteArgs(key: key, sex: sex));
 
   static const String name = 'OnboardingGynecologyRoute';
@@ -361,8 +358,7 @@ class GynecologyAchievementRoute extends _i1.PageRouteInfo<void> {
 }
 
 class GynecologyDateRoute extends _i1.PageRouteInfo<void> {
-  const GynecologyDateRoute()
-      : super(name, path: 'onboarding/doctor/gynecology-date');
+  const GynecologyDateRoute() : super(name, path: 'doctor/gynecology-date');
 
   static const String name = 'GynecologyDateRoute';
 }
@@ -371,7 +367,7 @@ class OnboardingDentistRoute
     extends _i1.PageRouteInfo<OnboardingDentistRouteArgs> {
   OnboardingDentistRoute({_i2.Key? key, required _i24.Sex sex})
       : super(name,
-            path: 'onboarding/doctor/dentist',
+            path: 'doctor/dentist',
             args: OnboardingDentistRouteArgs(key: key, sex: sex));
 
   static const String name = 'OnboardingDentistRoute';
@@ -392,8 +388,7 @@ class DentistAchievementRoute extends _i1.PageRouteInfo<void> {
 }
 
 class DentistDateRoute extends _i1.PageRouteInfo<void> {
-  const DentistDateRoute()
-      : super(name, path: 'onboarding/doctor/dentist-date');
+  const DentistDateRoute() : super(name, path: 'doctor/dentist-date');
 
   static const String name = 'DentistDateRoute';
 }

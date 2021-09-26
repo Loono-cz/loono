@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/models/user.dart';
+import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/universal_doctor_screen.dart';
 import 'package:loono/utils/registry.dart';
@@ -28,7 +29,7 @@ class OnboardingDentistScreen extends StatelessWidget {
           },
           nextCallback2: () async {
             await _usersDao.updateDentistCcaVisit(CcaDoctorVisit.moreThanTwoYearsOrIdk);
-            AutoRouter.of(context).pushNamed('create-account');
+            AutoRouter.of(context).push(const CreateAccountRoute());
           },
         ),
       ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/custom_date_picker.dart';
@@ -30,7 +31,7 @@ class _OnBoardingBirthdateScreenState extends State<OnBoardingBirthdateScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: Column(
             children: [
-              SkipButton(onPressed: () => AutoRouter.of(context).pushNamed('create-account')),
+              SkipButton(onPressed: () => AutoRouter.of(context).push(const CreateAccountRoute())),
               const SizedBox(
                 height: 70,
               ),
