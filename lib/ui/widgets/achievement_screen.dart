@@ -52,11 +52,11 @@ class AchievementScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SvgPicture.asset('assets/icons/star.svg', color: LoonoColors.blueContrast),
-                  const SizedBox(width: 5),
+                  SvgPicture.asset('assets/icons/star.svg', color: LoonoColors.primary),
+                  const SizedBox(width: 8),
                   Text(
                     numberOfPoints.toString(),
-                    style: LoonoFonts.subtitleFontStyle.copyWith(color: LoonoColors.blueContrast),
+                    style: LoonoFonts.subtitleFontStyle.copyWith(color: LoonoColors.primary),
                   ),
                 ],
               ),
