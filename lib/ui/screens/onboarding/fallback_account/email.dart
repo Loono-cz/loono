@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/database_service.dart';
@@ -22,7 +23,7 @@ class EmailScreen extends StatelessWidget {
       },
       onSubmit: (input) async {
         await registry.get<DatabaseService>().users.updateEmail(input);
-        debugPrint(input);
+        AutoRouter.of(context).pushNamed('main');
       },
     );
   }

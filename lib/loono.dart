@@ -5,7 +5,7 @@ import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/utils/registry.dart';
 
 class Loono extends StatelessWidget {
-  final _router = registry.get<AppRouter>();
+  final _appRouter = registry.get<AppRouter>();
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +14,8 @@ class Loono extends StatelessWidget {
       color: Colors.deepOrange,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      routerDelegate: AutoRouterDelegate(_router),
-      routeInformationParser: _router.defaultRouteParser(),
+      routerDelegate: AutoRouterDelegate(_appRouter),
+      routeInformationParser: _appRouter.defaultRouteParser(),
     );
   }
 }

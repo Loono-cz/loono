@@ -1,10 +1,12 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:loono/router/guards/check_is_logged_in.dart';
 import 'package:loono/ui/screens/create_account.dart';
 import 'package:loono/ui/screens/dentist_achievement.dart';
 import 'package:loono/ui/screens/general_practicioner_achievement.dart';
 import 'package:loono/ui/screens/gynecology_achievement.dart';
 import 'package:loono/ui/screens/login.dart';
+import 'package:loono/ui/screens/main/main_screen.dart';
 import 'package:loono/ui/screens/onboarding/allow_notifications.dart';
 import 'package:loono/ui/screens/onboarding/birthdate.dart';
 import 'package:loono/ui/screens/onboarding/carousel/carousel.dart';
@@ -23,7 +25,7 @@ import 'package:loono/ui/screens/welcome.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Page|Screen,Route',
   routes: <AutoRoute>[
-    AutoRoute(page: WelcomeScreen, initial: true, path: 'welcome'),
+    AutoRoute(page: WelcomeScreen, path: 'welcome'),
     AutoRoute(page: OnboardingCarouselScreen, path: 'onboarding/carousel'),
     CustomRoute(
       page: OnboardingWrapperScreen,
@@ -96,6 +98,7 @@ import 'package:loono/ui/screens/welcome.dart';
     AutoRoute(page: NicknameScreen, path: 'fallback_account/name'),
     AutoRoute(page: EmailScreen, path: 'fallback_account/email'),
     AutoRoute(page: LoginScreen, path: 'login'),
+    AutoRoute(page: MainScreen, path: 'main', initial: true, guards: [CheckIsLoggedIn]),
   ],
 )
 class $AppRouter {}

@@ -7,6 +7,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/router/guards/check_is_logged_in.dart';
+import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/utils/app_config.dart';
 import 'package:package_info/package_info.dart';
@@ -46,6 +48,7 @@ Future<void> setup(AppFlavors flavor) async {
   registry.registerLazySingleton<AppConfig>(() => config);
 
   // services
+  registry.registerSingleton<AuthService>(AuthService());
   registry.registerSingleton<DatabaseService>(DatabaseService());
   // TODO: generate the key and store it into secure storage
   await registry.get<DatabaseService>().init('SUPER SECURE KEY');
@@ -54,5 +57,5 @@ Future<void> setup(AppFlavors flavor) async {
   registry.registerSingleton<UserRepository>(UserRepository());
 
   // router
-  registry.registerSingleton<AppRouter>(AppRouter());
+  registry.registerSingleton<AppRouter>(AppRouter(checkIsLoggedIn: CheckIsLoggedIn()));
 }
