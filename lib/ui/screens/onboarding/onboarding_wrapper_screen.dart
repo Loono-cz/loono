@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/helpers/sex_extensions.dart';
+import 'package:loono/models/achievement.dart';
 import 'package:loono/models/user.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
@@ -54,7 +55,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                         [
                           OnboardingGeneralPracticionerRoute(sex: user.sex!),
                           _dateOrAchievementOrNextDoctorRoute(
-                            onboardingState: onboardingState,
+                            achievementCollection: user.achievementCollection,
                             currDoctorCcaVisit: user.generalPracticionerCcaVisit,
                             currDoctorAchievementId: GeneralPracticionerAchievementScreen.id,
                             achievementRoute: const GeneralPracticionerAchievementRoute(),
@@ -77,7 +78,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                               nextDoctorRoute: OnboardingGynecologyRoute(sex: user.sex!),
                             ),
                             _dateOrAchievementOrNextDoctorRoute(
-                              onboardingState: onboardingState,
+                              achievementCollection: user.achievementCollection,
                               currDoctorCcaVisit: user.gynecologyCcaVisit,
                               currDoctorAchievementId: GynecologyAchievementScreen.id,
                               achievementRoute: const GynecologyAchievementRoute(),
@@ -101,7 +102,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                             nextDoctorRoute: OnboardingDentistRoute(sex: user.sex!),
                           ),
                           _dateOrAchievementOrNextDoctorRoute(
-                            onboardingState: onboardingState,
+                            achievementCollection: user.achievementCollection,
                             currDoctorCcaVisit: user.dentistCcaVisit,
                             currDoctorAchievementId: DentistAchievementScreen.id,
                             achievementRoute: const DentistAchievementRoute(),
@@ -135,7 +136,7 @@ PageRouteInfo<dynamic>? _nextDoctorOnlyRoute({
 }
 
 PageRouteInfo<dynamic>? _dateOrAchievementOrNextDoctorRoute({
-  required OnboardingStateService onboardingState,
+  required Set<Achievement>? achievementCollection,
   required CcaDoctorVisit? currDoctorCcaVisit,
   required String currDoctorAchievementId,
   required PageRouteInfo<dynamic> achievementRoute,
@@ -144,7 +145,10 @@ PageRouteInfo<dynamic>? _dateOrAchievementOrNextDoctorRoute({
 }) {
   if (currDoctorCcaVisit != null) {
     if (currDoctorCcaVisit == CcaDoctorVisit.inLastTwoYears) {
-      if (!onboardingState.containsAchievement(currDoctorAchievementId)) {
+      if (achievementCollection == null ||
+          !achievementCollection
+              .map((achievement) => achievement.id)
+              .contains(currDoctorAchievementId)) {
         return achievementRoute;
       } else {
         return dateRoute;

@@ -5,8 +5,6 @@ enum OnboardingProgressStatus { welcome, intro, questionnaire }
 class OnboardingStateService extends ChangeNotifier {
   OnboardingProgressStatus onboardingProgressStatus = OnboardingProgressStatus.welcome;
 
-  final _obtainedAchievementsIDs = <String>{};
-
   bool get hasWelcomeStatus =>
       onboardingProgressStatus == OnboardingProgressStatus.welcome;
 
@@ -26,15 +24,6 @@ class OnboardingStateService extends ChangeNotifier {
   void startQuestionnaire() {
     if (onboardingProgressStatus != OnboardingProgressStatus.questionnaire) {
       onboardingProgressStatus = OnboardingProgressStatus.questionnaire;
-      notifyListeners();
-    }
-  }
-
-  bool containsAchievement(String id) => _obtainedAchievementsIDs.contains(id);
-
-  void obtainAchievement(String id) {
-    if (!_obtainedAchievementsIDs.contains(id)) {
-      _obtainedAchievementsIDs.add(id);
       notifyListeners();
     }
   }

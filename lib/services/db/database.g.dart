@@ -19,6 +19,7 @@ class User extends DataClass implements Insertable<User> {
   final String? dentistVisitDateRaw;
   final String? nickname;
   final String? email;
+  final String? achievementCollectionRaw;
   User(
       {required this.id,
       this.sexRaw,
@@ -30,7 +31,8 @@ class User extends DataClass implements Insertable<User> {
       this.dentistCcaVisitRaw,
       this.dentistVisitDateRaw,
       this.nickname,
-      this.email});
+      this.email,
+      this.achievementCollectionRaw});
   factory User.fromData(Map<String, dynamic> data, GeneratedDatabase db,
       {String? prefix}) {
     final effectivePrefix = prefix ?? '';
@@ -58,6 +60,8 @@ class User extends DataClass implements Insertable<User> {
           .mapFromDatabaseResponse(data['${effectivePrefix}nickname']),
       email: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}email']),
+      achievementCollectionRaw: const StringType().mapFromDatabaseResponse(
+          data['${effectivePrefix}achievement_collection_raw']),
     );
   }
   @override
@@ -97,6 +101,10 @@ class User extends DataClass implements Insertable<User> {
     if (!nullToAbsent || email != null) {
       map['email'] = Variable<String?>(email);
     }
+    if (!nullToAbsent || achievementCollectionRaw != null) {
+      map['achievement_collection_raw'] =
+          Variable<String?>(achievementCollectionRaw);
+    }
     return map;
   }
 
@@ -133,6 +141,9 @@ class User extends DataClass implements Insertable<User> {
           : Value(nickname),
       email:
           email == null && nullToAbsent ? const Value.absent() : Value(email),
+      achievementCollectionRaw: achievementCollectionRaw == null && nullToAbsent
+          ? const Value.absent()
+          : Value(achievementCollectionRaw),
     );
   }
 
@@ -156,6 +167,8 @@ class User extends DataClass implements Insertable<User> {
           serializer.fromJson<String?>(json['dentistVisitDateRaw']),
       nickname: serializer.fromJson<String?>(json['nickname']),
       email: serializer.fromJson<String?>(json['email']),
+      achievementCollectionRaw:
+          serializer.fromJson<String?>(json['achievementCollectionRaw']),
     );
   }
   @override
@@ -176,6 +189,8 @@ class User extends DataClass implements Insertable<User> {
       'dentistVisitDateRaw': serializer.toJson<String?>(dentistVisitDateRaw),
       'nickname': serializer.toJson<String?>(nickname),
       'email': serializer.toJson<String?>(email),
+      'achievementCollectionRaw':
+          serializer.toJson<String?>(achievementCollectionRaw),
     };
   }
 
@@ -190,7 +205,8 @@ class User extends DataClass implements Insertable<User> {
           int? dentistCcaVisitRaw,
           String? dentistVisitDateRaw,
           String? nickname,
-          String? email}) =>
+          String? email,
+          String? achievementCollectionRaw}) =>
       User(
         id: id ?? this.id,
         sexRaw: sexRaw ?? this.sexRaw,
@@ -207,6 +223,8 @@ class User extends DataClass implements Insertable<User> {
         dentistVisitDateRaw: dentistVisitDateRaw ?? this.dentistVisitDateRaw,
         nickname: nickname ?? this.nickname,
         email: email ?? this.email,
+        achievementCollectionRaw:
+            achievementCollectionRaw ?? this.achievementCollectionRaw,
       );
   @override
   String toString() {
@@ -223,7 +241,8 @@ class User extends DataClass implements Insertable<User> {
           ..write('dentistCcaVisitRaw: $dentistCcaVisitRaw, ')
           ..write('dentistVisitDateRaw: $dentistVisitDateRaw, ')
           ..write('nickname: $nickname, ')
-          ..write('email: $email')
+          ..write('email: $email, ')
+          ..write('achievementCollectionRaw: $achievementCollectionRaw')
           ..write(')'))
         .toString();
   }
@@ -247,8 +266,12 @@ class User extends DataClass implements Insertable<User> {
                                   dentistCcaVisitRaw.hashCode,
                                   $mrjc(
                                       dentistVisitDateRaw.hashCode,
-                                      $mrjc(nickname.hashCode,
-                                          email.hashCode)))))))))));
+                                      $mrjc(
+                                          nickname.hashCode,
+                                          $mrjc(
+                                              email.hashCode,
+                                              achievementCollectionRaw
+                                                  .hashCode))))))))))));
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -265,7 +288,8 @@ class User extends DataClass implements Insertable<User> {
           other.dentistCcaVisitRaw == this.dentistCcaVisitRaw &&
           other.dentistVisitDateRaw == this.dentistVisitDateRaw &&
           other.nickname == this.nickname &&
-          other.email == this.email);
+          other.email == this.email &&
+          other.achievementCollectionRaw == this.achievementCollectionRaw);
 }
 
 class UsersCompanion extends UpdateCompanion<User> {
@@ -280,6 +304,7 @@ class UsersCompanion extends UpdateCompanion<User> {
   final Value<String?> dentistVisitDateRaw;
   final Value<String?> nickname;
   final Value<String?> email;
+  final Value<String?> achievementCollectionRaw;
   const UsersCompanion({
     this.id = const Value.absent(),
     this.sexRaw = const Value.absent(),
@@ -292,6 +317,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     this.dentistVisitDateRaw = const Value.absent(),
     this.nickname = const Value.absent(),
     this.email = const Value.absent(),
+    this.achievementCollectionRaw = const Value.absent(),
   });
   UsersCompanion.insert({
     required String id,
@@ -305,6 +331,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     this.dentistVisitDateRaw = const Value.absent(),
     this.nickname = const Value.absent(),
     this.email = const Value.absent(),
+    this.achievementCollectionRaw = const Value.absent(),
   }) : id = Value(id);
   static Insertable<User> custom({
     Expression<String>? id,
@@ -318,6 +345,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     Expression<String?>? dentistVisitDateRaw,
     Expression<String?>? nickname,
     Expression<String?>? email,
+    Expression<String?>? achievementCollectionRaw,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -337,6 +365,8 @@ class UsersCompanion extends UpdateCompanion<User> {
         'dentist_visit_date_raw': dentistVisitDateRaw,
       if (nickname != null) 'nickname': nickname,
       if (email != null) 'email': email,
+      if (achievementCollectionRaw != null)
+        'achievement_collection_raw': achievementCollectionRaw,
     });
   }
 
@@ -351,7 +381,8 @@ class UsersCompanion extends UpdateCompanion<User> {
       Value<int?>? dentistCcaVisitRaw,
       Value<String?>? dentistVisitDateRaw,
       Value<String?>? nickname,
-      Value<String?>? email}) {
+      Value<String?>? email,
+      Value<String?>? achievementCollectionRaw}) {
     return UsersCompanion(
       id: id ?? this.id,
       sexRaw: sexRaw ?? this.sexRaw,
@@ -368,6 +399,8 @@ class UsersCompanion extends UpdateCompanion<User> {
       dentistVisitDateRaw: dentistVisitDateRaw ?? this.dentistVisitDateRaw,
       nickname: nickname ?? this.nickname,
       email: email ?? this.email,
+      achievementCollectionRaw:
+          achievementCollectionRaw ?? this.achievementCollectionRaw,
     );
   }
 
@@ -412,6 +445,10 @@ class UsersCompanion extends UpdateCompanion<User> {
     if (email.present) {
       map['email'] = Variable<String?>(email.value);
     }
+    if (achievementCollectionRaw.present) {
+      map['achievement_collection_raw'] =
+          Variable<String?>(achievementCollectionRaw.value);
+    }
     return map;
   }
 
@@ -430,7 +467,8 @@ class UsersCompanion extends UpdateCompanion<User> {
           ..write('dentistCcaVisitRaw: $dentistCcaVisitRaw, ')
           ..write('dentistVisitDateRaw: $dentistVisitDateRaw, ')
           ..write('nickname: $nickname, ')
-          ..write('email: $email')
+          ..write('email: $email, ')
+          ..write('achievementCollectionRaw: $achievementCollectionRaw')
           ..write(')'))
         .toString();
   }
@@ -493,6 +531,11 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   late final GeneratedColumn<String?> email = GeneratedColumn<String?>(
       'email', aliasedName, true,
       typeName: 'TEXT', requiredDuringInsert: false);
+  final VerificationMeta _achievementCollectionRawMeta =
+      const VerificationMeta('achievementCollectionRaw');
+  late final GeneratedColumn<String?> achievementCollectionRaw =
+      GeneratedColumn<String?>('achievement_collection_raw', aliasedName, true,
+          typeName: 'TEXT', requiredDuringInsert: false);
   @override
   List<GeneratedColumn> get $columns => [
         id,
@@ -505,7 +548,8 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
         dentistCcaVisitRaw,
         dentistVisitDateRaw,
         nickname,
-        email
+        email,
+        achievementCollectionRaw
       ];
   @override
   String get aliasedName => _alias ?? 'users';
@@ -576,6 +620,13 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
     if (data.containsKey('email')) {
       context.handle(
           _emailMeta, email.isAcceptableOrUnknown(data['email']!, _emailMeta));
+    }
+    if (data.containsKey('achievement_collection_raw')) {
+      context.handle(
+          _achievementCollectionRawMeta,
+          achievementCollectionRaw.isAcceptableOrUnknown(
+              data['achievement_collection_raw']!,
+              _achievementCollectionRawMeta));
     }
     return context;
   }
