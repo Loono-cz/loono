@@ -4,11 +4,9 @@ import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/database_service.dart';
-import 'package:loono/services/onboarding_state_service.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/custom_date_picker.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
-import 'package:provider/provider.dart';
 import 'package:loono/utils/registry.dart';
 
 class OnBoardingBirthdateScreen extends StatefulWidget {
@@ -59,10 +57,7 @@ class _OnBoardingBirthdateScreenState extends State<OnBoardingBirthdateScreen> {
                 text: context.l10n.continue_info,
                 onTap: () async {
                   if (selectedDate != null) {
-                    await registry
-                        .get<DatabaseService>()
-                        .users
-                        .updateDateOfBirth(DateWithoutDay(
+                    await registry.get<DatabaseService>().users.updateDateOfBirth(DateWithoutDay(
                         month: monthFromInt(selectedDate!.month), year: selectedDate!.year));
                   }
                 },
