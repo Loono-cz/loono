@@ -3,27 +3,36 @@ import 'package:flutter/material.dart';
 enum OnboardingProgressStatus { welcome, intro, questionnaire }
 
 class OnboardingStateService extends ChangeNotifier {
-  OnboardingProgressStatus onboardingProgressStatus = OnboardingProgressStatus.welcome;
+  OnboardingProgressStatus _onboardingProgressStatus = OnboardingProgressStatus.welcome;
 
-  bool get hasWelcomeStatus =>
-      onboardingProgressStatus == OnboardingProgressStatus.welcome;
+  final _universalDoctorDateSkips = <String>{};
 
-  bool get hasIntroStatus =>
-      onboardingProgressStatus == OnboardingProgressStatus.intro;
+  bool get hasWelcomeStatus => _onboardingProgressStatus == OnboardingProgressStatus.welcome;
+
+  bool get hasIntroStatus => _onboardingProgressStatus == OnboardingProgressStatus.intro;
 
   bool get hasQuestionnaireStatus =>
-      onboardingProgressStatus == OnboardingProgressStatus.questionnaire;
+      _onboardingProgressStatus == OnboardingProgressStatus.questionnaire;
 
   void startIntro() {
-    if (onboardingProgressStatus != OnboardingProgressStatus.intro) {
-      onboardingProgressStatus = OnboardingProgressStatus.intro;
+    if (_onboardingProgressStatus != OnboardingProgressStatus.intro) {
+      _onboardingProgressStatus = OnboardingProgressStatus.intro;
       notifyListeners();
     }
   }
 
   void startQuestionnaire() {
-    if (onboardingProgressStatus != OnboardingProgressStatus.questionnaire) {
-      onboardingProgressStatus = OnboardingProgressStatus.questionnaire;
+    if (_onboardingProgressStatus != OnboardingProgressStatus.questionnaire) {
+      _onboardingProgressStatus = OnboardingProgressStatus.questionnaire;
+      notifyListeners();
+    }
+  }
+
+  bool isUniversalDoctorDateSkipped(String id) => _universalDoctorDateSkips.contains(id);
+
+  void skipUniversalDoctorDate(String id) {
+    if (!_universalDoctorDateSkips.contains(id)) {
+      _universalDoctorDateSkips.add(id);
       notifyListeners();
     }
   }

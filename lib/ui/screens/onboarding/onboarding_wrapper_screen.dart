@@ -11,6 +11,9 @@ import 'package:loono/services/onboarding_state_service.dart';
 import 'package:loono/ui/screens/dentist_achievement.dart';
 import 'package:loono/ui/screens/general_practicioner_achievement.dart';
 import 'package:loono/ui/screens/gynecology_achievement.dart';
+import 'package:loono/ui/screens/onboarding/doctors/dentist_date.dart';
+import 'package:loono/ui/screens/onboarding/doctors/general_practitioner_date.dart';
+import 'package:loono/ui/screens/onboarding/doctors/gynecology_date.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:provider/provider.dart';
 
@@ -55,9 +58,11 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                         [
                           OnboardingGeneralPracticionerRoute(sex: user.sex!),
                           _dateOrAchievementOrNextDoctorRoute(
+                            onboardingState: onboardingState,
                             achievementCollection: user.achievementCollection,
                             currDoctorCcaVisit: user.generalPracticionerCcaVisit,
                             currDoctorAchievementId: GeneralPracticionerAchievementScreen.id,
+                            currDoctorDateId: GeneralPractitionerDateScreen.id,
                             achievementRoute: const GeneralPracticionerAchievementRoute(),
                             dateRoute: const GeneralPractitionerDateRoute(),
                             nextDoctorRoute: user.sex == Sex.female
@@ -78,9 +83,11 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                               nextDoctorRoute: OnboardingGynecologyRoute(sex: user.sex!),
                             ),
                             _dateOrAchievementOrNextDoctorRoute(
+                              onboardingState: onboardingState,
                               achievementCollection: user.achievementCollection,
                               currDoctorCcaVisit: user.gynecologyCcaVisit,
                               currDoctorAchievementId: GynecologyAchievementScreen.id,
+                              currDoctorDateId: GynecologyDateScreen.id,
                               achievementRoute: const GynecologyAchievementRoute(),
                               dateRoute: const GynecologyDateRoute(),
                               nextDoctorRoute: OnboardingDentistRoute(sex: user.sex!),
@@ -102,9 +109,11 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                             nextDoctorRoute: OnboardingDentistRoute(sex: user.sex!),
                           ),
                           _dateOrAchievementOrNextDoctorRoute(
+                            onboardingState: onboardingState,
                             achievementCollection: user.achievementCollection,
                             currDoctorCcaVisit: user.dentistCcaVisit,
                             currDoctorAchievementId: DentistAchievementScreen.id,
+                            currDoctorDateId: DentistDateScreen.id,
                             achievementRoute: const DentistAchievementRoute(),
                             dateRoute: const DentistDateRoute(),
                             nextDoctorRoute: OnboardingDentistRoute(sex: user.sex!),
@@ -136,9 +145,11 @@ PageRouteInfo<dynamic>? _nextDoctorOnlyRoute({
 }
 
 PageRouteInfo<dynamic>? _dateOrAchievementOrNextDoctorRoute({
+  required OnboardingStateService onboardingState,
   required Set<Achievement>? achievementCollection,
   required CcaDoctorVisit? currDoctorCcaVisit,
   required String currDoctorAchievementId,
+  required String currDoctorDateId,
   required PageRouteInfo<dynamic> achievementRoute,
   required PageRouteInfo<dynamic> dateRoute,
   required PageRouteInfo<dynamic> nextDoctorRoute,
@@ -151,6 +162,9 @@ PageRouteInfo<dynamic>? _dateOrAchievementOrNextDoctorRoute({
               .contains(currDoctorAchievementId)) {
         return achievementRoute;
       } else {
+        if (onboardingState.isUniversalDoctorDateSkipped(currDoctorDateId)) {
+          return nextDoctorRoute;
+        }
         return dateRoute;
       }
     } else {

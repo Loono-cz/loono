@@ -11,6 +11,8 @@ import 'package:loono/utils/registry.dart';
 class DentistDateScreen extends StatefulWidget {
   const DentistDateScreen({Key? key}) : super(key: key);
 
+  static const id = 'DentistDateScreen';
+
   @override
   State<DentistDateScreen> createState() => _DentistDateScreenState();
 }
