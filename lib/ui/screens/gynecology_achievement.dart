@@ -10,13 +10,14 @@ class GynecologyAchievementScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: AchievementScreen(
-          header: context.l10n.achievement_gynecology_header,
+          header: context.l10n.achievement_belt_gynecologist_header,
           textLines: [
             context.l10n.achievement_gynecology_text_1,
             '${context.l10n.achievement_keep_it_up_text}!',
           ],
           nextScreen: '/onboarding/doctor/gynecology-date',
           numberOfPoints: 200,
+          itemPath: 'assets/icons/belt-gynecologist.svg',
         ),
       ),
     );
