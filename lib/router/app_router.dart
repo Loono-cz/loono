@@ -20,35 +20,76 @@ import 'package:loono/ui/screens/onboarding/gender.dart';
 import 'package:loono/ui/screens/onboarding/onboarding_wrapper_screen.dart';
 import 'package:loono/ui/screens/welcome.dart';
 
-// @CupertinoAutoRouter
-// @AdaptiveAutoRouter
-// @CustomAutoRouter
 @MaterialAutoRouter(
   replaceInRouteName: 'Page|Screen,Route',
   routes: <AutoRoute>[
     AutoRoute(page: WelcomeScreen, initial: true, path: 'welcome'),
     AutoRoute(page: OnboardingCarouselScreen, path: 'onboarding/carousel'),
-    AutoRoute(
+    CustomRoute(
       page: OnboardingWrapperScreen,
       path: 'onboarding',
+      transitionsBuilder: TransitionsBuilders.slideLeft,
       children: [
-        AutoRoute(page: OnboardingGenderScreen, path: 'onboarding/gender'),
-        AutoRoute(page: OnBoardingBirthdateScreen, path: 'onboarding/birthdate'),
-        AutoRoute(
-            page: OnboardingGeneralPracticionerScreen,
-            path: 'onboarding/doctor/general-practicioner'),
-        AutoRoute(
-            page: GeneralPracticionerAchievementScreen, path: 'general-practicioner-achievement'),
-        AutoRoute(
-            page: GeneralPractitionerDateScreen,
-            path: 'onboarding/doctor/general-practitioner-date'),
-        AutoRoute(page: AllowNotificationsScreen, path: 'onboarding/allow_notifications'),
-        AutoRoute(page: OnboardingGynecologyScreen, path: 'onboarding/doctor/gynecology'),
-        AutoRoute(page: GynecologyAchievementScreen, path: 'gynecology_achievement'),
-        AutoRoute(page: GynecologyDateScreen, path: 'onboarding/doctor/gynecology-date'),
-        AutoRoute(page: OnboardingDentistScreen, path: 'onboarding/doctor/dentist'),
-        AutoRoute(page: DentistAchievementScreen, path: 'dentist_achievement'),
-        AutoRoute(page: DentistDateScreen, path: 'onboarding/doctor/dentist-date'),
+        CustomRoute(
+          page: OnboardingGenderScreen,
+          path: 'onboarding/gender',
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+        ),
+        CustomRoute(
+          page: OnBoardingBirthdateScreen,
+          path: 'onboarding/birthdate',
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+        ),
+        CustomRoute(
+          page: OnboardingGeneralPracticionerScreen,
+          path: 'onboarding/doctor/general-practicioner',
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+        ),
+        CustomRoute(
+          page: GeneralPracticionerAchievementScreen,
+          path: 'general-practicioner-achievement',
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+        ),
+        CustomRoute(
+          page: GeneralPractitionerDateScreen,
+          path: 'onboarding/doctor/general-practitioner-date',
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+        ),
+        CustomRoute(
+          page: AllowNotificationsScreen,
+          path: 'onboarding/allow_notifications',
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+        ),
+        CustomRoute(
+          page: OnboardingGynecologyScreen,
+          path: 'onboarding/doctor/gynecology',
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+        ),
+        CustomRoute(
+          page: GynecologyAchievementScreen,
+          path: 'gynecology_achievement',
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+        ),
+        CustomRoute(
+          page: GynecologyDateScreen,
+          path: 'onboarding/doctor/gynecology-date',
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+        ),
+        CustomRoute(
+          page: OnboardingDentistScreen,
+          path: 'onboarding/doctor/dentist',
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+        ),
+        CustomRoute(
+          page: DentistAchievementScreen,
+          path: 'dentist_achievement',
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+        ),
+        CustomRoute(
+          page: DentistDateScreen,
+          path: 'onboarding/doctor/dentist-date',
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+        ),
       ],
     ),
     AutoRoute(page: CreateAccountScreen, path: 'create-account'),

@@ -44,8 +44,12 @@ class AppRouter extends _i1.RootStackRouter {
           routeData: routeData, child: const _i4.OnboardingCarouselScreen());
     },
     OnboardingWrapperRoute.name: (routeData) {
-      return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i5.OnboardingWrapperScreen());
+      return _i1.CustomPage<dynamic>(
+          routeData: routeData,
+          child: const _i5.OnboardingWrapperScreen(),
+          transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
     },
     CreateAccountRoute.name: (routeData) {
       return _i1.MaterialPageX<dynamic>(
@@ -64,64 +68,105 @@ class AppRouter extends _i1.RootStackRouter {
           routeData: routeData, child: const _i9.LoginScreen());
     },
     OnboardingGenderRoute.name: (routeData) {
-      return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i10.OnboardingGenderScreen());
+      return _i1.CustomPage<dynamic>(
+          routeData: routeData,
+          child: const _i10.OnboardingGenderScreen(),
+          transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
     },
     OnBoardingBirthdateRoute.name: (routeData) {
       final args = routeData.argsAs<OnBoardingBirthdateRouteArgs>();
-      return _i1.MaterialPageX<dynamic>(
+      return _i1.CustomPage<dynamic>(
           routeData: routeData,
-          child: _i11.OnBoardingBirthdateScreen(key: args.key, sex: args.sex));
+          child: _i11.OnBoardingBirthdateScreen(key: args.key, sex: args.sex),
+          transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
     },
     OnboardingGeneralPracticionerRoute.name: (routeData) {
       final args = routeData.argsAs<OnboardingGeneralPracticionerRouteArgs>();
-      return _i1.MaterialPageX<dynamic>(
+      return _i1.CustomPage<dynamic>(
           routeData: routeData,
           child: _i12.OnboardingGeneralPracticionerScreen(
-              key: args.key, sex: args.sex));
+              key: args.key, sex: args.sex),
+          transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
     },
     GeneralPracticionerAchievementRoute.name: (routeData) {
-      return _i1.MaterialPageX<dynamic>(
+      return _i1.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i13.GeneralPracticionerAchievementScreen());
+          child: const _i13.GeneralPracticionerAchievementScreen(),
+          transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
     },
     GeneralPractitionerDateRoute.name: (routeData) {
-      return _i1.MaterialPageX<dynamic>(
+      return _i1.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i14.GeneralPractitionerDateScreen());
+          child: const _i14.GeneralPractitionerDateScreen(),
+          transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
     },
     AllowNotificationsRoute.name: (routeData) {
-      return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i15.AllowNotificationsScreen());
+      return _i1.CustomPage<dynamic>(
+          routeData: routeData,
+          child: const _i15.AllowNotificationsScreen(),
+          transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
     },
     OnboardingGynecologyRoute.name: (routeData) {
       final args = routeData.argsAs<OnboardingGynecologyRouteArgs>();
-      return _i1.MaterialPageX<dynamic>(
+      return _i1.CustomPage<dynamic>(
           routeData: routeData,
-          child: _i16.OnboardingGynecologyScreen(key: args.key, sex: args.sex));
+          child: _i16.OnboardingGynecologyScreen(key: args.key, sex: args.sex),
+          transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
     },
     GynecologyAchievementRoute.name: (routeData) {
-      return _i1.MaterialPageX<dynamic>(
+      return _i1.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i17.GynecologyAchievementScreen());
+          child: const _i17.GynecologyAchievementScreen(),
+          transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
     },
     GynecologyDateRoute.name: (routeData) {
-      return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i18.GynecologyDateScreen());
+      return _i1.CustomPage<dynamic>(
+          routeData: routeData,
+          child: const _i18.GynecologyDateScreen(),
+          transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
     },
     OnboardingDentistRoute.name: (routeData) {
       final args = routeData.argsAs<OnboardingDentistRouteArgs>();
-      return _i1.MaterialPageX<dynamic>(
+      return _i1.CustomPage<dynamic>(
           routeData: routeData,
-          child: _i19.OnboardingDentistScreen(key: args.key, sex: args.sex));
+          child: _i19.OnboardingDentistScreen(key: args.key, sex: args.sex),
+          transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
     },
     DentistAchievementRoute.name: (routeData) {
-      return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i20.DentistAchievementScreen());
+      return _i1.CustomPage<dynamic>(
+          routeData: routeData,
+          child: const _i20.DentistAchievementScreen(),
+          transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
     },
     DentistDateRoute.name: (routeData) {
-      return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i21.DentistDateScreen());
+      return _i1.CustomPage<dynamic>(
+          routeData: routeData,
+          child: const _i21.DentistDateScreen(),
+          transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
     }
   };
 

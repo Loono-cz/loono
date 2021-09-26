@@ -25,7 +25,8 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async => false,
+      // TODO: set to false (for https://cesko-digital.atlassian.net/browse/LOON-202)
+      onWillPop: () async => true,
       child: ChangeNotifierProvider<OnboardingStateService>(
         create: (_) => OnboardingStateService(),
         builder: (context, _) {
