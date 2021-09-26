@@ -113,8 +113,12 @@ extension UserExtension on User {
   CcaDoctorVisit? get generalPracticionerCcaVisit => generalPracticionerCcaVisitRaw == null
       ? null
       : CcaDoctorVisit.values[generalPracticionerCcaVisitRaw!];
+
   CcaDoctorVisit? get gynecologyCcaVisit =>
       gynecologyCcaVisitRaw == null ? null : CcaDoctorVisit.values[gynecologyCcaVisitRaw!];
+
+  CcaDoctorVisit? get dentistCcaVisit =>
+      dentistCcaVisitRaw == null ? null : CcaDoctorVisit.values[dentistCcaVisitRaw!];
 
   DateWithoutDay? get generalPracticionerVisitDate => generalPracticionerVisitDateRaw == null
       ? null

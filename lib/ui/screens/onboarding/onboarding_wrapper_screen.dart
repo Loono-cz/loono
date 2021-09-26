@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/models/user.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -40,69 +41,74 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                   final user = snapshot.data;
                   if (user == null) return [const OnboardingGenderRoute()];
 
-                  final flows = <PageRouteInfo<dynamic>>[
-                    if (user.sexRaw == null) const OnboardingGenderRoute(),
-                    if (user.sexRaw == 0 || user.sexRaw == 1)
-                      ...[
-                        OnBoardingBirthdateRoute(sex: Sex.values.elementAt(user.sexRaw!)),
+                  final flows = <PageRouteInfo<dynamic>?>[];
+                  if (user.sex == null) flows.add(const OnboardingGenderRoute());
+                  if (user.sex == Sex.male || user.sex == Sex.female) {
+                    flows.add(OnBoardingBirthdateRoute(sex: user.sex!));
 
-                        /// GeneralPractitioner Route
-                        if (user.dateOfBirthRaw != null)
-                          OnboardingGeneralPracticionerRoute(sex: Sex.values.elementAt(user.sexRaw!)),
+                    if (user.dateOfBirthRaw != null) {
+                      /// GeneralPractitioner Route
+                      flows.add(OnboardingGeneralPracticionerRoute(sex: user.sex!));
+                      flows.add(
+                        dateOrAchievementOrNextDoctorRoute(
+                          onboardingState: onboardingState,
+                          currDoctorCcaVisit: user.generalPracticionerCcaVisit,
+                          currDoctorAchievementId: GeneralPracticionerAchievementScreen.id,
+                          achievementRoute: const GeneralPracticionerAchievementRoute(),
+                          dateRoute: const GeneralPractitionerDateRoute(),
+                          nextDoctorRoute: user.sex == Sex.female
+                              ? OnboardingGynecologyRoute(sex: user.sex!) as PageRouteInfo<dynamic>
+                              : OnboardingDentistRoute(sex: user.sex!),
+                        ),
+                      );
 
-                        if (user.generalPracticionerCcaVisitRaw != null)
-                          if (user.generalPracticionerCcaVisitRaw ==
-                              CcaDoctorVisit.inLastTwoYears.index) ...[
-                            if (!onboardingState
-                                .containsAchievement(GeneralPracticionerAchievementScreen.id))
-                              const GeneralPracticionerAchievementRoute()
-                            else
-                              const GeneralPractitionerDateRoute(),
-                          ] else ...[
-                            if (user.sexRaw == 1)
-                              OnboardingGynecologyRoute(sex: Sex.values.elementAt(user.sexRaw!))
-                            else
-                              OnboardingDentistRoute(sex: Sex.values.elementAt(user.sexRaw!)),
-                          ],
+                      /// Gynecology Route (female only)
+                      if (user.sex == Sex.female) {
+                        flows.add(
+                          nextDoctorOnlyRoute(
+                            prevDoctorCcaVisit: user.generalPracticionerCcaVisit,
+                            prevDoctorDateVisit: user.generalPracticionerVisitDate,
+                            nextDoctorRoute: OnboardingGynecologyRoute(sex: user.sex!),
+                          ),
+                        );
+                        flows.add(
+                          dateOrAchievementOrNextDoctorRoute(
+                            onboardingState: onboardingState,
+                            currDoctorCcaVisit: user.gynecologyCcaVisit,
+                            currDoctorAchievementId: GynecologyAchievementScreen.id,
+                            achievementRoute: const GynecologyAchievementRoute(),
+                            dateRoute: const GynecologyDateRoute(),
+                            nextDoctorRoute: OnboardingDentistRoute(sex: user.sex!),
+                          ),
+                        );
+                      }
 
-                        /// Gynecology Route (female)
-                        if (user.generalPracticionerVisitDate != null &&
-                            user.generalPracticionerVisitDateRaw != null)
-                          if (user.sexRaw == 1)
-                            OnboardingGynecologyRoute(sex: Sex.values.elementAt(user.sexRaw!))
-                          else
-                            OnboardingDentistRoute(sex: Sex.values.elementAt(user.sexRaw!)),
+                      /// Dentist Route
+                      flows.add(
+                        nextDoctorOnlyRoute(
+                          prevDoctorCcaVisit: user.sex == Sex.male
+                              ? user.generalPracticionerCcaVisit
+                              : user.gynecologyCcaVisit,
+                          prevDoctorDateVisit: user.sex == Sex.male
+                              ? user.generalPracticionerVisitDate
+                              : user.gynecologyVisitDate,
+                          nextDoctorRoute: OnboardingDentistRoute(sex: user.sex!),
+                        ),
+                      );
+                      flows.add(
+                        dateOrAchievementOrNextDoctorRoute(
+                          onboardingState: onboardingState,
+                          currDoctorCcaVisit: user.dentistCcaVisit,
+                          currDoctorAchievementId: DentistAchievementScreen.id,
+                          achievementRoute: const DentistAchievementRoute(),
+                          dateRoute: const DentistDateRoute(),
+                          nextDoctorRoute: OnboardingDentistRoute(sex: user.sex!),
+                        ),
+                      );
+                    }
+                  }
 
-                        if (user.sexRaw == 1)
-                          if (user.gynecologyCcaVisitRaw != null)
-                            if (user.gynecologyCcaVisitRaw ==
-                                CcaDoctorVisit.inLastTwoYears.index) ...[
-                              if (!onboardingState
-                                  .containsAchievement(GynecologyAchievementScreen.id))
-                                const GynecologyAchievementRoute()
-                              else
-                                const GynecologyDateRoute(),
-                            ] else ...[
-                              OnboardingDentistRoute(sex: Sex.values.elementAt(user.sexRaw!)),
-                            ],
-
-                        /// Dentist Route
-                        if (user.dentistVisitDate != null && user.dentistVisitDateRaw != null)
-                          OnboardingDentistRoute(sex: Sex.values.elementAt(user.sexRaw!)),
-
-                        if (user.dentistCcaVisitRaw != null)
-                          if (user.dentistCcaVisitRaw == CcaDoctorVisit.inLastTwoYears.index) ...[
-                            if (!onboardingState.containsAchievement(DentistAchievementScreen.id))
-                              const DentistAchievementRoute()
-                            else
-                              const DentistDateRoute(),
-                          ] else ...[
-                            OnboardingDentistRoute(sex: Sex.values.elementAt(user.sexRaw!)),
-                          ],
-                      ],
-                  ];
-
-                  return [flows.last];
+                  return [flows.lastWhere((e) => e != null)!];
                 },
               );
             },
@@ -110,5 +116,36 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
         },
       ),
     );
+  }
+}
+
+PageRouteInfo<dynamic>? nextDoctorOnlyRoute({
+  required CcaDoctorVisit? prevDoctorCcaVisit,
+  required DateWithoutDay? prevDoctorDateVisit,
+  required PageRouteInfo<dynamic> nextDoctorRoute,
+}) {
+  if (prevDoctorCcaVisit != null && prevDoctorDateVisit != null) {
+    return nextDoctorRoute;
+  }
+}
+
+PageRouteInfo<dynamic>? dateOrAchievementOrNextDoctorRoute({
+  required OnboardingStateService onboardingState,
+  required CcaDoctorVisit? currDoctorCcaVisit,
+  required String currDoctorAchievementId,
+  required PageRouteInfo<dynamic> achievementRoute,
+  required PageRouteInfo<dynamic> dateRoute,
+  required PageRouteInfo<dynamic> nextDoctorRoute,
+}) {
+  if (currDoctorCcaVisit != null) {
+    if (currDoctorCcaVisit == CcaDoctorVisit.inLastTwoYears) {
+      if (!onboardingState.containsAchievement(currDoctorAchievementId)) {
+        return achievementRoute;
+      } else {
+        return dateRoute;
+      }
+    } else {
+      return nextDoctorRoute;
+    }
   }
 }

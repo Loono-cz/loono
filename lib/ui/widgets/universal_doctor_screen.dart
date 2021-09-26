@@ -38,10 +38,20 @@ class UniversalDoctorScreen extends StatelessWidget {
             children: [
               SkipButton(
                 onPressed: () => AutoRouter.of(context).pushNamed('create-account'),
-                sibling: LoonoProgressIndicator(
-                  numberOfSteps: numberOfSteps,
-                  currentStep: currentStep,
-                ),
+                sibling: numberOfSteps > 2
+                    ? LoonoProgressIndicator(numberOfSteps: numberOfSteps, currentStep: currentStep)
+                    : Row(
+                        children: [
+                          Flexible(
+                            flex: 5,
+                            child: LoonoProgressIndicator(
+                              numberOfSteps: numberOfSteps,
+                              currentStep: currentStep,
+                            ),
+                          ),
+                          const Flexible(flex: 4, child: SizedBox()),
+                        ],
+                      ),
               ),
               Expanded(
                 child: UniversalDoctor(
