@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:loono/models/achievement.dart';
-import 'package:loono/services/database_service.dart';
+import 'package:loono/services/onboarding_state_service.dart';
 import 'package:loono/ui/widgets/achievement_screen.dart';
-import 'package:loono/utils/registry.dart';
+import 'package:provider/provider.dart';
 
 class GynecologyAchievementScreen extends StatelessWidget {
   const GynecologyAchievementScreen({Key? key}) : super(key: key);
@@ -21,10 +20,7 @@ class GynecologyAchievementScreen extends StatelessWidget {
             context.l10n.achievement_gynecology_text_1,
             '${context.l10n.achievement_keep_it_up_text}!',
           ],
-          onButtonTap: () async => registry
-              .get<DatabaseService>()
-              .users
-              .updateAchievementCollection(Achievement(id: id, points: _worth)),
+          onButtonTap: () => context.read<OnboardingStateService>().obtainAchievement(id),
           numberOfPoints: _worth,
           itemPath: 'assets/icons/belt-gynecologist.svg',
         ),
