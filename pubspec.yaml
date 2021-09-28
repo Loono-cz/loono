@@ -32,7 +32,7 @@ dependencies:
   package_info: ^2.0.2
   path_provider: ^2.0.2
   provider: ^6.0.1
-  sqlparser: ^0.17.2
+  sqlparser: ^0.17.2 # added due to: https://github.com/simolus3/moor/issues/1437
   url_launcher: ^6.0.9 #  TODO: setup on iOS https://pub.dev/packages/url_launcher#ios
   uuid: ^3.0.4
   video_player: ^2.1.10
