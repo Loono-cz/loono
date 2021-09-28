@@ -33,7 +33,6 @@ class OnboardingThirdCarouselScreen extends StatelessWidget {
               text: context.l10n.carousel_content_3_button,
               onTap: () => Navigator.pushNamed(context, '/onboarding/gender'),
             ),
-            bottomText: context.l10n.carousel_content_3_bottom,
           ),
         ),
       ),

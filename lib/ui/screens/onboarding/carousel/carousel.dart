@@ -18,18 +18,20 @@ class OnboardingCarouselScreen extends StatefulWidget {
 class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
   final PageController pageController = PageController();
 
-  bool playStoryState = false;
+  final StoryPageState storyStateController = StoryPageState();
 
-  bool get isStoryPaused => playStoryState == false;
+  StoryPageState get storyPageState =>
+      storyStateController.copyWith(pageIndexState: currentPageIndex);
 
   List<StoryPage> get _allStories => <StoryPage>[
         StoryPage.dark(
-          content: IntroVideo(
-            onVideoLoaded: loadStory,
-            videoPaused: isStoryPaused,
-            pageState: currentPageIndex,
+          content: IntroVideo(onVideoLoaded: loadStory, storyPageState: storyPageState),
+          interactiveContent: OnboardFirstCarouselInteractiveContent(
+            storyPageState: storyPageState,
+            onVolumeTap: storyPageState.isMuted ? unmuteStory : muteStory,
+            onResetTap: resetStory,
+            onContinueTap: animToNextStory,
           ),
-          interactiveContent: OnboardFirstCarouselInteractiveContent(onTap: animToNextStory),
           indicatorVisible: true,
           duration: const Duration(milliseconds: 12700),
           autoplay: false,
@@ -49,12 +51,18 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
   }
 
   void loadStory() {
-    if (!playStoryState) setState(() => playStoryState = true);
+    if (!storyPageState.isPlaying) playStory();
   }
 
-  void playStory() => setState(() => playStoryState = true);
+  void resetStory() => setState(() => storyStateController.reset());
 
-  void pauseStory() => setState(() => playStoryState = false);
+  void playStory([DragEndDetails? details]) => setState(() => storyStateController.unpause());
+
+  void pauseStory([DragDownDetails? details]) => setState(() => storyStateController.pause());
+
+  void muteStory() => setState(() => storyStateController.mute());
+
+  void unmuteStory() => setState(() => storyStateController.unmute());
 
   int get currentPageIndex => pageController.hasClients ? pageController.page?.round() ?? 0 : 0;
 
@@ -92,19 +100,18 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
             physics: const NeverScrollableScrollPhysics(),
             children: _allStories,
           ),
-          if (currentStory.indicatorVisible)
+          if (currentStory.indicatorVisible) ...[
             IndicatorRow(
               numOfIndicators: stories.length,
               currentIndex: currentPageIndex,
               currentDuration: currentStory.duration,
               currentStoryPageBackground: currentStory.storyPageBackground,
               onStoryFinish: canTransitionToNextStory ? jumpToNextStory : null,
-              paused: isStoryPaused,
+              storyPageState: storyPageState,
             ),
-          if (canTransitionToPrevStory) TapArea.leftSide(onTap: jumpToPrevStory),
-          if (canTransitionToNextStory) TapArea.rightSide(onTap: jumpToNextStory),
-          if (currentStory.indicatorVisible) ...[
-            if (stories.isNotEmpty) TapArea.max(onLongPress: pauseStory, onLongPressUp: playStory),
+            if (canTransitionToPrevStory) TapArea.leftSide(onTap: jumpToPrevStory),
+            if (canTransitionToNextStory) TapArea.rightSide(onTap: jumpToNextStory),
+            if (stories.isNotEmpty) TapArea.max(onPanDown: pauseStory, onPanEnd: playStory),
             if (currentStory.hasInteractiveContent) currentStory.interactiveContent!,
           ],
         ],

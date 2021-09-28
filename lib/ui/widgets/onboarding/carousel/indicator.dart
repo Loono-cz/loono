@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/ui/widgets/onboarding/carousel/story_page.dart';
 
 class IndicatorStyle {
   const IndicatorStyle({
@@ -25,9 +26,9 @@ class Indicator extends StatefulWidget {
   const Indicator({
     Key? key,
     this.finished = false,
-    this.paused = false,
+    required this.storyPageState,
     required this.duration,
-    this.shouldAnimate = false,
+    this.isAnimated = false,
     required this.maxWidth,
     this.height = 4.0,
     required this.indicatorStyle,
@@ -35,9 +36,9 @@ class Indicator extends StatefulWidget {
   }) : super(key: key);
 
   final bool finished;
-  final bool paused;
+  final StoryPageState storyPageState;
   final Duration duration;
-  final bool shouldAnimate;
+  final bool isAnimated;
   final double maxWidth;
   final double height;
   final IndicatorStyle indicatorStyle;
@@ -71,9 +72,17 @@ class _IndicatorState extends State<Indicator> with SingleTickerProviderStateMix
   void didUpdateWidget(Indicator oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (animationController.value > 0) {
-      if (widget.paused != oldWidget.paused) {
-        oldWidget.paused ? animationController.forward() : animationController.stop();
-      } else {
+      if (widget.storyPageState.isPaused != oldWidget.storyPageState.isPaused) {
+        oldWidget.storyPageState.isPaused
+            ? animationController.forward()
+            : animationController.stop();
+      } else if (!(widget.storyPageState.isMuted != oldWidget.storyPageState.isMuted)) {
+        animationController.reset();
+      }
+    }
+
+    if (animationController.status == AnimationStatus.completed) {
+      if (!(widget.storyPageState.isMuted != oldWidget.storyPageState.isMuted)) {
         animationController.reset();
       }
     }
@@ -93,8 +102,8 @@ class _IndicatorState extends State<Indicator> with SingleTickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
-    if (widget.shouldAnimate) {
-      if (!widget.paused) {
+    if (widget.isAnimated) {
+      if (!widget.storyPageState.isPaused) {
         animationController.forward();
       }
 
