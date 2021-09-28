@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
 import 'package:loono/ui/widgets/social_login_button.dart';
 
@@ -23,7 +25,7 @@ class CreateAccountScreen extends StatelessWidget {
                   children: [
                     SkipButton(
                       text: context.l10n.skip,
-                      onPressed: () => Navigator.pushNamed(context, '/fallback_account/name'),
+                      onPressed: () => AutoRouter.of(context).push(const NicknameRoute()),
                     ),
                     const SizedBox(height: 5),
                     SizedBox(

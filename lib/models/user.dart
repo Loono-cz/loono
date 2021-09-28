@@ -1,13 +1,13 @@
 import 'dart:convert';
 
 import 'package:loono/helpers/date_without_day.dart';
+import 'package:loono/helpers/sex_extensions.dart';
+import 'package:loono/models/achievement.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/utils/memoized_stream.dart';
 import 'package:moor/moor.dart';
 
 part 'user.g.dart';
-
-enum Sex { male, female }
 
 enum CcaDoctorVisit {
   inLastTwoYears,
@@ -31,6 +31,8 @@ class Users extends Table {
 
   TextColumn get nickname => text().nullable()();
   TextColumn get email => text().nullable()();
+
+  TextColumn get achievementCollectionRaw => text().nullable()();
 }
 
 @UseDao(tables: [Users])
@@ -106,6 +108,18 @@ class UsersDao extends DatabaseAccessor<AppDatabase> with _$UsersDaoMixin {
   Future<void> updateEmail(String email) async {
     await updateCurrentUser(UsersCompanion(email: Value(email)));
   }
+
+  Future<void> updateAchievementCollection(Achievement achievement) async {
+    final currCollection = user?.achievementCollection;
+    final updatedCollection = <Achievement>{};
+    if (currCollection == null) {
+      updatedCollection.add(achievement);
+    } else {
+      updatedCollection.addAll([...currCollection, achievement]);
+    }
+    await updateCurrentUser(
+        UsersCompanion(achievementCollectionRaw: Value(jsonEncode(updatedCollection.toList()))));
+  }
 }
 
 extension UserExtension on User {
@@ -114,8 +128,12 @@ extension UserExtension on User {
   CcaDoctorVisit? get generalPracticionerCcaVisit => generalPracticionerCcaVisitRaw == null
       ? null
       : CcaDoctorVisit.values[generalPracticionerCcaVisitRaw!];
+
   CcaDoctorVisit? get gynecologyCcaVisit =>
       gynecologyCcaVisitRaw == null ? null : CcaDoctorVisit.values[gynecologyCcaVisitRaw!];
+
+  CcaDoctorVisit? get dentistCcaVisit =>
+      dentistCcaVisitRaw == null ? null : CcaDoctorVisit.values[dentistCcaVisitRaw!];
 
   DateWithoutDay? get generalPracticionerVisitDate => generalPracticionerVisitDateRaw == null
       ? null
@@ -129,4 +147,11 @@ extension UserExtension on User {
   DateWithoutDay? get dentistVisitDate => dentistVisitDateRaw == null
       ? null
       : DateWithoutDay.fromJson(jsonDecode(dentistVisitDateRaw!) as Map<String, dynamic>);
+
+  Set<Achievement>? get achievementCollection {
+    if (achievementCollectionRaw == null) return null;
+    final decodedList = jsonDecode(achievementCollectionRaw!) as List<dynamic>;
+    return List<Achievement>.from(
+        decodedList.map((item) => Achievement.fromJson(item as Map<String, dynamic>))).toSet();
+  }
 }

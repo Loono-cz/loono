@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/models/user.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/universal_doctor_screen.dart';
 import 'package:loono/utils/registry.dart';
 
 class OnboardingGynecologyScreen extends StatelessWidget {
+  OnboardingGynecologyScreen({Key? key, required this.sex}) : super(key: key);
+
+  final Sex sex;
+
   final _usersDao = registry.get<DatabaseService>().users;
 
   @override
@@ -12,17 +17,16 @@ class OnboardingGynecologyScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: UniversalDoctorScreen(
-          questionHeader: "Gynekologa",
+          question: sex.getUniversalDoctorLabel(context),
+          questionHighlight: "Gynekologa",
           imagePath: "gynecology",
-          numberOfSteps: 3,
-          currentStep: 2,
+          numberOfSteps: sex.totalNumOfSteps,
+          currentStep: sex.gynecologyStep,
           nextCallback1: () async {
             await _usersDao.updateGynecologyCcaVisit(CcaDoctorVisit.inLastTwoYears);
-            Navigator.pushNamed(context, "/gynecology_achievement");
           },
           nextCallback2: () async {
             await _usersDao.updateGynecologyCcaVisit(CcaDoctorVisit.moreThanTwoYearsOrIdk);
-            Navigator.pushNamed(context, "/onboarding/doctor/dentist");
           },
         ),
       ),

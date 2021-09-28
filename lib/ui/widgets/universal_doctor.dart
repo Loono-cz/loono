@@ -14,7 +14,7 @@ class UniversalDoctor extends StatelessWidget {
   final void Function() nextCallback2;
 
   const UniversalDoctor({
-    this.question = 'Kdy jsi byl/a naposledy na preventivní prohlídce u',
+    required this.question,
     required this.questionHeader,
     required this.imagePath,
     required this.button1Text,

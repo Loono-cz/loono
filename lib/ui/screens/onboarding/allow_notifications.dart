@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
@@ -19,7 +20,8 @@ class AllowNotificationsScreen extends StatelessWidget {
               const SizedBox(height: 27.0),
               SkipButton(
                 text: context.l10n.skip,
-                onPressed: () => Navigator.pushNamed(context, '/onboarding/doctor/gynecology'),
+                // TODO: declarative route
+                onPressed: () {},
               ),
               const SizedBox(height: 48.0),
               SvgPicture.asset("assets/icons/notification_bell.svg", width: 128.0),
@@ -34,7 +36,7 @@ class AllowNotificationsScreen extends StatelessWidget {
                 text: context.l10n.notification_allow_button,
                 onTap: () {
                   // TODO: Display and handle allow notification dialog (iOS only)
-                  Navigator.pushNamed(context, '/onboarding/doctor/gynecology');
+                  // TODO: declarative route
                 },
               ),
               const SizedBox(height: 122.0),

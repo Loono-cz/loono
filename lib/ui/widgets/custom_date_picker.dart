@@ -43,7 +43,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 260,
+      height: MediaQuery.of(context).size.height * 0.32,
       child: Stack(alignment: AlignmentDirectional.centerStart, children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -55,9 +55,11 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
         Container(
           width: 10,
           height: 10,
-          decoration:
-              const BoxDecoration(color: LoonoColors.primaryEnabled, shape: BoxShape.circle),
-        )
+          decoration: const BoxDecoration(
+            color: LoonoColors.primaryEnabled,
+            shape: BoxShape.circle,
+          ),
+        ),
       ]),
     );
   }

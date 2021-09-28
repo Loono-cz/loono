@@ -9,15 +9,15 @@ class AchievementScreen extends StatelessWidget {
     required this.header,
     required this.textLines,
     required this.numberOfPoints,
-    required this.nextScreen,
     required this.itemPath,
+    required this.onButtonTap,
   });
 
   final String header;
   final List<String> textLines;
   final int numberOfPoints;
-  final String nextScreen;
   final String itemPath;
+  final VoidCallback? onButtonTap;
 
   @override
   Widget build(BuildContext context) {
@@ -71,10 +71,7 @@ class AchievementScreen extends StatelessWidget {
                 ],
               ),
               const Spacer(flex: 2),
-              LoonoButton(
-                text: context.l10n.continue_info,
-                onTap: () => Navigator.pushNamed(context, nextScreen),
-              ),
+              LoonoButton(text: context.l10n.continue_info, onTap: onButtonTap),
               SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
             ],
           ),
