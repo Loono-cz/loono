@@ -10,13 +10,14 @@ class GeneralPracticionerAchievementScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: AchievementScreen(
-          header: context.l10n.achievement_congrats_header,
+          header: context.l10n.achievement_coat_practitioner_header,
           textLines: [
             context.l10n.achievement_general_practitioner_text_1,
             '${context.l10n.achievement_keep_it_up_text}...',
           ],
           nextScreen: '/onboarding/doctor/general-practitioner-date',
           numberOfPoints: 200,
+          itemPath: 'assets/icons/coat-practitioner.svg',
         ),
       ),
     );

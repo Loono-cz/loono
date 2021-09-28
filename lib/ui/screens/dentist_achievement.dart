@@ -10,12 +10,13 @@ class DentistAchievementScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: AchievementScreen(
-          header: context.l10n.achievement_congrats_header,
+          header: context.l10n.achievement_headband_dentist_header,
           textLines: [
             context.l10n.achievement_dentist_text_1,
           ],
           nextScreen: '/onboarding/doctor/dentist-date',
-          numberOfPoints: 200,
+          numberOfPoints: 300,
+          itemPath: 'assets/icons/headband-dentist.svg',
         ),
       ),
     );
