@@ -14,7 +14,7 @@ class IndicatorRow extends StatelessWidget {
     required this.currentStoryPageBackground,
     this.padding = const EdgeInsets.only(top: 60.0, left: _sidePadding, right: _sidePadding),
     this.onStoryFinish,
-    this.paused = false,
+    required this.storyPageState,
   })  : assert(numOfIndicators > 0),
         assert(currentIndex >= 0 && currentIndex < numOfIndicators),
         super(key: key);
@@ -25,7 +25,7 @@ class IndicatorRow extends StatelessWidget {
   final StoryPageBackground currentStoryPageBackground;
   final EdgeInsets padding;
   final VoidCallback? onStoryFinish;
-  final bool paused;
+  final StoryPageState storyPageState;
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +43,8 @@ class IndicatorRow extends StatelessWidget {
             return Indicator(
               maxWidth: itemMaxWidth,
               finished: index < currentIndex,
-              paused: paused,
-              shouldAnimate: index == currentIndex,
+              storyPageState: storyPageState,
+              isAnimated: index == currentIndex,
               duration: currentDuration,
               indicatorStyle: currentStoryPageBackground == StoryPageBackground.light
                   ? IndicatorStyle.dark()

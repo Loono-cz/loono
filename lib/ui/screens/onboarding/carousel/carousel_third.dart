@@ -40,7 +40,6 @@ class OnboardingThirdCarouselScreen extends StatelessWidget {
                 context.read<OnboardingStateService>().startQuestionnaire();
               },
             ),
-            bottomText: context.l10n.carousel_content_3_bottom,
           ),
         ),
       ),

@@ -50,6 +50,9 @@ class _OnBoardingBirthdateScreenState extends State<OnBoardingBirthdateScreen> {
                       valueChanged: (val) {
                         selectedDate = val;
                       },
+                      yearsOverActual: 0,
+                      defaultMonth: DateTime.january,
+                      defaultYear: DateTime.now().year - 35,
                     ),
                   ),
                 ),

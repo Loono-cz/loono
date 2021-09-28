@@ -9,12 +9,14 @@ class AchievementScreen extends StatelessWidget {
     required this.header,
     required this.textLines,
     required this.numberOfPoints,
+    required this.itemPath,
     required this.onButtonTap,
   });
 
   final String header;
   final List<String> textLines;
   final int numberOfPoints;
+  final String itemPath;
   final VoidCallback? onButtonTap;
 
   @override
@@ -26,13 +28,21 @@ class AchievementScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Spacer(flex: 3),
+              const Spacer(flex: 4),
               SvgPicture.asset(
-                'assets/icons/guarantee.svg',
+                itemPath,
                 width: MediaQuery.of(context).size.width / 2,
               ),
-              const SizedBox(height: 18),
-              Text(header, textAlign: TextAlign.center, style: LoonoFonts.headerFontStyle),
+              const SizedBox(height: 24),
+              SvgPicture.asset('assets/icons/item-shadow.svg'),
+              const SizedBox(height: 24),
+              Text(
+                context.l10n.achievement_subtitle_earning,
+                textAlign: TextAlign.center,
+                style: LoonoFonts.paragraphFontStyle,
+              ),
+              const SizedBox(height: 8),
+              Text(header, textAlign: TextAlign.center, style: LoonoFonts.bigFontStyle),
               const SizedBox(height: 12),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -52,11 +62,11 @@ class AchievementScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SvgPicture.asset('assets/icons/star.svg', color: LoonoColors.blueContrast),
-                  const SizedBox(width: 5),
+                  SvgPicture.asset('assets/icons/star.svg', color: LoonoColors.primary),
+                  const SizedBox(width: 8),
                   Text(
                     numberOfPoints.toString(),
-                    style: LoonoFonts.subtitleFontStyle.copyWith(color: LoonoColors.blueContrast),
+                    style: LoonoFonts.subtitleFontStyle.copyWith(color: LoonoColors.primary),
                   ),
                 ],
               ),

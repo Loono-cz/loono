@@ -68,7 +68,7 @@ class CreateAccountScreen extends StatelessWidget {
                   children: [
                     Text(
                       context.l10n.create_an_account_so_you_can_track_your_progress,
-                      style: LoonoFonts.fontStyle,
+                      style: LoonoFonts.paragraphFontStyle,
                     ),
                     const SizedBox(height: 25),
                     SocialLoginButton.apple(onPressed: () => print('Sign in with apple')),
@@ -81,7 +81,7 @@ class CreateAccountScreen extends StatelessWidget {
                           onPressed: () => print('click'),
                           child: Text(
                             context.l10n.by_logging_in_you_agree_to_the_terms_of_privacy,
-                            style: LoonoFonts.fontStyle,
+                            style: LoonoFonts.paragraphSmallFontStyle,
                             textAlign: TextAlign.center,
                           ),
                         ),

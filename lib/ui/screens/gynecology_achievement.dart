@@ -16,7 +16,7 @@ class GynecologyAchievementScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: AchievementScreen(
-          header: context.l10n.achievement_gynecology_header,
+          header: context.l10n.achievement_belt_gynecologist_header,
           textLines: [
             context.l10n.achievement_gynecology_text_1,
             '${context.l10n.achievement_keep_it_up_text}!',
@@ -25,7 +25,8 @@ class GynecologyAchievementScreen extends StatelessWidget {
               .get<DatabaseService>()
               .users
               .updateAchievementCollection(Achievement(id: id, points: _worth)),
-          numberOfPoints: 200,
+          numberOfPoints: _worth,
+          itemPath: 'assets/icons/belt-gynecologist.svg',
         ),
       ),
     );

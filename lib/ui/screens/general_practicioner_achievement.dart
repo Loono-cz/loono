@@ -16,7 +16,7 @@ class GeneralPracticionerAchievementScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: AchievementScreen(
-          header: context.l10n.achievement_congrats_header,
+          header: context.l10n.achievement_coat_practitioner_header,
           textLines: [
             context.l10n.achievement_general_practitioner_text_1,
             '${context.l10n.achievement_keep_it_up_text}...',
@@ -25,7 +25,8 @@ class GeneralPracticionerAchievementScreen extends StatelessWidget {
               .get<DatabaseService>()
               .users
               .updateAchievementCollection(Achievement(id: id, points: _worth)),
-          numberOfPoints: 200,
+          numberOfPoints: _worth,
+          itemPath: 'assets/icons/coat-practitioner.svg',
         ),
       ),
     );
