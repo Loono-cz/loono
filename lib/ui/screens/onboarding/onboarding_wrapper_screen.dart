@@ -76,6 +76,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                         flows.addAll(
                           [
                             _nextDoctorOnlyRoute(
+                              onboardingState: onboardingState,
                               prevDoctorCcaVisit: user.generalPracticionerCcaVisit,
                               prevDoctorDateVisit: user.generalPracticionerVisitDate,
                               nextDoctorRoute: OnboardingGynecologyRoute(sex: user.sex!),
@@ -97,6 +98,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                       flows.addAll(
                         [
                           _nextDoctorOnlyRoute(
+                            onboardingState: onboardingState,
                             prevDoctorCcaVisit: user.sex == Sex.male
                                 ? user.generalPracticionerCcaVisit
                                 : user.gynecologyCcaVisit,
@@ -131,11 +133,16 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
 }
 
 PageRouteInfo<dynamic>? _nextDoctorOnlyRoute({
+  required OnboardingStateService onboardingState,
   required CcaDoctorVisit? prevDoctorCcaVisit,
   required DateWithoutDay? prevDoctorDateVisit,
+  PageRouteInfo<dynamic> allowNotificationsRoute = const AllowNotificationsRoute(),
   required PageRouteInfo<dynamic> nextDoctorRoute,
 }) {
   if (prevDoctorCcaVisit != null && prevDoctorDateVisit != null) {
+    if (onboardingState.hasNotRequestedNotificationsPermission) {
+      return allowNotificationsRoute;
+    }
     return nextDoctorRoute;
   }
 }
@@ -147,6 +154,7 @@ PageRouteInfo<dynamic>? _dateOrAchievementOrNextDoctorRoute({
   required String currDoctorDateId,
   required PageRouteInfo<dynamic> achievementRoute,
   required PageRouteInfo<dynamic> dateRoute,
+  PageRouteInfo<dynamic> allowNotificationsRoute = const AllowNotificationsRoute(),
   required PageRouteInfo<dynamic> nextDoctorRoute,
 }) {
   if (currDoctorCcaVisit != null) {
@@ -155,6 +163,9 @@ PageRouteInfo<dynamic>? _dateOrAchievementOrNextDoctorRoute({
         return achievementRoute;
       } else {
         if (onboardingState.isUniversalDoctorDateSkipped(currDoctorDateId)) {
+          if (onboardingState.hasNotRequestedNotificationsPermission) {
+            return allowNotificationsRoute;
+          }
           return nextDoctorRoute;
         }
         return dateRoute;

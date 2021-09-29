@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 enum OnboardingProgressStatus { welcome, intro, questionnaire }
+
+enum NotificationPermissionState { notRequested, requested }
 
 class OnboardingStateService extends ChangeNotifier {
   OnboardingProgressStatus _onboardingProgressStatus = OnboardingProgressStatus.welcome;
@@ -8,6 +12,11 @@ class OnboardingStateService extends ChangeNotifier {
   final _obtainedAchievementsIDs = <String>{};
 
   final _universalDoctorDateSkips = <String>{};
+
+  // on Android notifications are allowed by default
+  NotificationPermissionState _notificationPermissionState = Platform.isIOS
+      ? NotificationPermissionState.notRequested
+      : NotificationPermissionState.requested;
 
   bool get hasWelcomeStatus => _onboardingProgressStatus == OnboardingProgressStatus.welcome;
 
@@ -44,6 +53,16 @@ class OnboardingStateService extends ChangeNotifier {
   void skipUniversalDoctorDate(String id) {
     if (!_universalDoctorDateSkips.contains(id)) {
       _universalDoctorDateSkips.add(id);
+      notifyListeners();
+    }
+  }
+
+  bool get hasNotRequestedNotificationsPermission =>
+      _notificationPermissionState == NotificationPermissionState.notRequested;
+
+  void notificationsPermissionRequested() {
+    if (_notificationPermissionState != NotificationPermissionState.requested) {
+      _notificationPermissionState = NotificationPermissionState.requested;
       notifyListeners();
     }
   }
