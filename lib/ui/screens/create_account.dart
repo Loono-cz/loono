@@ -5,11 +5,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
 import 'package:loono/ui/widgets/social_login_button.dart';
+import 'package:loono/utils/registry.dart';
 
 class CreateAccountScreen extends StatelessWidget {
-  const CreateAccountScreen({Key? key}) : super(key: key);
+  CreateAccountScreen({Key? key}) : super(key: key);
+
+  final _authService = registry.get<AuthService>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +28,7 @@ class CreateAccountScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     SkipButton(
-                      text: context.l10n.skip,
+                      text: context.l10n.skip_without_account,
                       onPressed: () => AutoRouter.of(context).push(const NicknameRoute()),
                     ),
                     const SizedBox(height: 5),
@@ -42,7 +46,8 @@ class CreateAccountScreen extends StatelessWidget {
                         Positioned(
                           left: -12,
                           top: -5,
-                          child: SvgPicture.asset('assets/icons/create-account-ellipse.svg', width: 290),
+                          child: SvgPicture.asset('assets/icons/create-account-ellipse.svg',
+                              width: 290),
                         ),
                         Align(
                           alignment: Alignment.centerLeft,
@@ -71,9 +76,23 @@ class CreateAccountScreen extends StatelessWidget {
                       style: LoonoFonts.paragraphFontStyle,
                     ),
                     const SizedBox(height: 25),
-                    SocialLoginButton.apple(onPressed: () => print('Sign in with apple')),
+                    SocialLoginButton.apple(
+                      onPressed: () async {
+                        await _authService.signInWithApple();
+                        if (await _authService.getCurrentUser() != null) {
+                          AutoRouter.of(context).push(const NicknameRoute());
+                        }
+                      },
+                    ),
                     const SizedBox(height: 15),
-                    SocialLoginButton.google(onPressed: () => print('Sign in with google')),
+                    SocialLoginButton.google(
+                      onPressed: () async {
+                        await _authService.signInWithGoogle();
+                        if (await _authService.getCurrentUser() != null) {
+                          AutoRouter.of(context).push(const NicknameRoute());
+                        }
+                      },
+                    ),
                     Expanded(
                       child: Align(
                         alignment: Alignment.bottomCenter,
@@ -87,6 +106,7 @@ class CreateAccountScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+                    const SizedBox(height: 30),
                   ],
                 ),
               ),

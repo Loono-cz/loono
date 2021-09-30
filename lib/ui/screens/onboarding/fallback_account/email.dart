@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -17,10 +18,9 @@ class EmailScreen extends StatelessWidget {
       description: context.l10n.fallback_account_email_desc,
       keyboardType: TextInputType.emailAddress,
       validator: (input) {
-        // TODO: Use some real validation
-        if (input == null) return '';
-        if (!input.contains('@')) return 'Chybí @';
-        return null;
+        if (input == null || !EmailValidator.validate(input)) {
+          return context.l10n.email_validator_wrong_input;
+        }
       },
       onSubmit: (input) async {
         await registry.get<DatabaseService>().users.updateEmail(input);

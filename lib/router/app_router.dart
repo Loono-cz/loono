@@ -22,6 +22,8 @@ import 'package:loono/ui/screens/onboarding/gender.dart';
 import 'package:loono/ui/screens/onboarding/onboarding_wrapper_screen.dart';
 import 'package:loono/ui/screens/welcome.dart';
 
+/// After editing this, run:
+/// flutter pub run build_runner build --delete-conflicting-outputs
 @MaterialAutoRouter(
   replaceInRouteName: 'Page|Screen,Route',
   routes: <AutoRoute>[

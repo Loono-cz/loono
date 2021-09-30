@@ -61,9 +61,11 @@
   "@skip_questionnaire": {},
   "skip_idk": "Nevím",
   "@skip_idk": {},
+  "skip_without_account": "Pokračovat bez účtu",
+  "@skip_without_account": {},
   "only_a_small_step_remains_and_you_have": "Jen malý krok zbývá a máš",
   "@only_a_small_step_remains_and_you_have": {},
-  "prevention_in_your_hands": "prevenci ve svých rukou",
+  "prevention_in_your_hands": "prevenci ve svých rukou.",
   "@prevention_in_your_hands": {},
   "create_an_account_so_you_can_track_your_progress": "Vytvoř si účet, ať můžeš sledovat své pokroky.",
   "@create_an_account_so_you_can_track_your_progress": {},
@@ -124,5 +126,11 @@
   "gynecology": "Gynekologie",
   "@gynecology": {},
   "dentist": "Zubař",
-  "@dentist": {}
+  "@dentist": {},
+  "nickname_validator_empty_input": "Prázdné pole",
+  "@nickname_validator_empty_input": {},
+  "nickname_validator_too_long_input": "Příliš dlouhá přezdívka",
+  "@nickname_validator_too_long_input": {},
+  "email_validator_wrong_input": "Nesprávný formát e-mailu",
+  "@email_validator_wrong_input": {}
 }

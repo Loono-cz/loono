@@ -4,10 +4,14 @@ import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/ui/widgets/social_login_button.dart';
+import 'package:loono/utils/registry.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  LoginScreen({Key? key}) : super(key: key);
+
+  final _authService = registry.get<AuthService>();
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +40,11 @@ class LoginScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
               child: SocialLoginButton.apple(
-                onPressed: () {
-                  // TODO: Login with Apple (https://cesko-digital.atlassian.net/browse/LOON-176)
+                onPressed: () async {
+                  await _authService.signInWithApple();
+                  if (await _authService.getCurrentUser() != null) {
+                    AutoRouter.of(context).push(const MainRoute());
+                  }
                 },
               ),
             ),
@@ -45,8 +52,11 @@ class LoginScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
               child: SocialLoginButton.google(
-                onPressed: () {
-                  // TODO: Login with Google (https://cesko-digital.atlassian.net/browse/LOON-176)
+                onPressed: () async {
+                  await _authService.signInWithGoogle();
+                  if (await _authService.getCurrentUser() != null) {
+                    AutoRouter.of(context).push(const MainRoute());
+                  }
                 },
               ),
             ),

@@ -50,8 +50,10 @@ class AppRouter extends _i1.RootStackRouter {
           routeData: routeData, child: const _i5.OnboardingWrapperScreen());
     },
     CreateAccountRoute.name: (routeData) {
+      final args = routeData.argsAs<CreateAccountRouteArgs>(
+          orElse: () => const CreateAccountRouteArgs());
       return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i6.CreateAccountScreen());
+          routeData: routeData, child: _i6.CreateAccountScreen(key: args.key));
     },
     NicknameRoute.name: (routeData) {
       return _i1.MaterialPageX<dynamic>(
@@ -62,8 +64,10 @@ class AppRouter extends _i1.RootStackRouter {
           routeData: routeData, child: const _i8.EmailScreen());
     },
     LoginRoute.name: (routeData) {
+      final args = routeData.argsAs<LoginRouteArgs>(
+          orElse: () => const LoginRouteArgs());
       return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i9.LoginScreen());
+          routeData: routeData, child: _i9.LoginScreen(key: args.key));
     },
     WelcomeRoute.name: (routeData) {
       return _i1.MaterialPageX<dynamic>(
@@ -234,10 +238,18 @@ class OnboardingWrapperRoute extends _i1.PageRouteInfo<void> {
   static const String name = 'OnboardingWrapperRoute';
 }
 
-class CreateAccountRoute extends _i1.PageRouteInfo<void> {
-  const CreateAccountRoute() : super(name, path: 'create-account');
+class CreateAccountRoute extends _i1.PageRouteInfo<CreateAccountRouteArgs> {
+  CreateAccountRoute({_i2.Key? key})
+      : super(name,
+            path: 'create-account', args: CreateAccountRouteArgs(key: key));
 
   static const String name = 'CreateAccountRoute';
+}
+
+class CreateAccountRouteArgs {
+  const CreateAccountRouteArgs({this.key});
+
+  final _i2.Key? key;
 }
 
 class NicknameRoute extends _i1.PageRouteInfo<void> {
@@ -252,10 +264,17 @@ class EmailRoute extends _i1.PageRouteInfo<void> {
   static const String name = 'EmailRoute';
 }
 
-class LoginRoute extends _i1.PageRouteInfo<void> {
-  const LoginRoute() : super(name, path: 'login');
+class LoginRoute extends _i1.PageRouteInfo<LoginRouteArgs> {
+  LoginRoute({_i2.Key? key})
+      : super(name, path: 'login', args: LoginRouteArgs(key: key));
 
   static const String name = 'LoginRoute';
+}
+
+class LoginRouteArgs {
+  const LoginRouteArgs({this.key});
+
+  final _i2.Key? key;
 }
 
 class WelcomeRoute extends _i1.PageRouteInfo<void> {

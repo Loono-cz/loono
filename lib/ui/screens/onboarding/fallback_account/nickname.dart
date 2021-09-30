@@ -16,10 +16,8 @@ class NicknameScreen extends StatelessWidget {
       hint: 'Ema',
       keyboardType: TextInputType.name,
       validator: (input) {
-        // TODO: Use some real validation
-        if (input == null) return '';
-        if (input.isEmpty) return 'Prázdné pole';
-        return null;
+        if (input == null || input.isEmpty) return context.l10n.nickname_validator_empty_input;
+        if (input.length > 250) return context.l10n.nickname_validator_too_long_input;
       },
       onSubmit: (input) async {
         await registry.get<DatabaseService>().users.updateNickname(input);
