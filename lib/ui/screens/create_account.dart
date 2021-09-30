@@ -29,7 +29,7 @@ class CreateAccountScreen extends StatelessWidget {
                   children: [
                     SkipButton(
                       text: context.l10n.skip_without_account,
-                      onPressed: () => AutoRouter.of(context).push(const NicknameRoute()),
+                      onPressed: () => AutoRouter.of(context).push(NicknameRoute()),
                     ),
                     const SizedBox(height: 5),
                     SizedBox(
@@ -78,18 +78,18 @@ class CreateAccountScreen extends StatelessWidget {
                     const SizedBox(height: 25),
                     SocialLoginButton.apple(
                       onPressed: () async {
-                        await _authService.signInWithApple();
-                        if (await _authService.getCurrentUser() != null) {
-                          AutoRouter.of(context).push(const NicknameRoute());
+                        final authUser = await _authService.signInWithApple();
+                        if (authUser != null) {
+                          AutoRouter.of(context).push(NicknameRoute());
                         }
                       },
                     ),
                     const SizedBox(height: 15),
                     SocialLoginButton.google(
                       onPressed: () async {
-                        await _authService.signInWithGoogle();
-                        if (await _authService.getCurrentUser() != null) {
-                          AutoRouter.of(context).push(const NicknameRoute());
+                        final authUser = await _authService.signInWithGoogle();
+                        if (authUser != null) {
+                          AutoRouter.of(context).push(NicknameRoute(authUser: authUser));
                         }
                       },
                     ),

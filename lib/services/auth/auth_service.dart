@@ -28,6 +28,7 @@ class AuthService implements IAuth {
         : AuthUser(
             uid: firebaseUser.uid,
             name: firebaseUser.displayName,
+            email: firebaseUser.email,
             avatarUrl: firebaseUser.photoURL,
             isAnonymous: firebaseUser.isAnonymous,
           );

@@ -43,7 +43,7 @@ class LoginScreen extends StatelessWidget {
                 onPressed: () async {
                   await _authService.signInWithApple();
                   if (await _authService.getCurrentUser() != null) {
-                    AutoRouter.of(context).push(const MainRoute());
+                    AutoRouter.of(context).push(MainWrapperRoute());
                   }
                 },
               ),
@@ -55,7 +55,7 @@ class LoginScreen extends StatelessWidget {
                 onPressed: () async {
                   await _authService.signInWithGoogle();
                   if (await _authService.getCurrentUser() != null) {
-                    AutoRouter.of(context).push(const MainRoute());
+                    AutoRouter.of(context).push(MainWrapperRoute());
                   }
                 },
               ),

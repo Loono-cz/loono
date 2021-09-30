@@ -7,6 +7,7 @@ import 'package:loono/ui/screens/general_practicioner_achievement.dart';
 import 'package:loono/ui/screens/gynecology_achievement.dart';
 import 'package:loono/ui/screens/login.dart';
 import 'package:loono/ui/screens/main/main_screen.dart';
+import 'package:loono/ui/screens/main/main_wrapper_screen.dart';
 import 'package:loono/ui/screens/onboarding/allow_notifications.dart';
 import 'package:loono/ui/screens/onboarding/birthdate.dart';
 import 'package:loono/ui/screens/onboarding/carousel/carousel.dart';
@@ -27,7 +28,15 @@ import 'package:loono/ui/screens/welcome.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Page|Screen,Route',
   routes: <AutoRoute>[
-    AutoRoute(page: MainScreen, path: 'main', initial: true, guards: [CheckIsLoggedIn]),
+    AutoRoute(
+      page: MainWrapperScreen,
+      path: 'main',
+      initial: true,
+      guards: [CheckIsLoggedIn],
+      children: [
+        AutoRoute(page: MainScreen, path: 'main-menu'),
+      ],
+    ),
     AutoRoute(
       page: OnboardingWrapperScreen,
       path: 'onboarding',

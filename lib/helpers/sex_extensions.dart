@@ -21,6 +21,15 @@ extension SexLabelsExt on Sex {
         return context.l10n.universal_doctor_female_question;
     }
   }
+
+  String getNicknameHintLabel(BuildContext context) {
+    switch (this) {
+      case Sex.male:
+        return 'Adam';
+      case Sex.female:
+        return 'Ema';
+    }
+  }
 }
 
 extension SexProgressDotsExt on Sex {
