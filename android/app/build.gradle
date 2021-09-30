@@ -58,11 +58,20 @@ android {
                 keyPassword "prod-or-dev-password"
             }
         }
+        debug {
+            storeFile=file("loono-debug")
+            storePassword="Vd3ryhCWsy3PJHP"
+            keyAlias="vcas-debug"
+            keyPassword="Vd3ryhCWsy3PJHP"
+        }
     }
 
     buildTypes {
         release {
             signingConfig signingConfigs.release
+        }
+        debug {
+            signingConfig signingConfigs.debug
         }
     }
 
