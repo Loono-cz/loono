@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:loono/models/user.dart';
 import 'package:loono/ui/widgets/onboarding/gender_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 

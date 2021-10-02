@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/services/onboarding_state_service.dart';
 import 'package:loono/ui/widgets/achievement_screen.dart';
+import 'package:provider/provider.dart';
 
 class DentistAchievementScreen extends StatelessWidget {
   const DentistAchievementScreen({Key? key}) : super(key: key);
+
+  static const String id = 'DentistAchievementScreen';
+  static const int _worth = 300;
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +19,8 @@ class DentistAchievementScreen extends StatelessWidget {
           textLines: [
             context.l10n.achievement_dentist_text_1,
           ],
-          nextScreen: '/onboarding/doctor/dentist-date',
-          numberOfPoints: 300,
+          onButtonTap: () => context.read<OnboardingStateService>().obtainAchievement(id),
+          numberOfPoints: _worth,
           itemPath: 'assets/icons/headband-dentist.svg',
         ),
       ),

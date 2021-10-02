@@ -24,38 +24,37 @@ class PreventiveExaminationDatePickerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const sizedBox = SizedBox(height: 12);
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(24),
+          padding: const EdgeInsets.all(18),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (onSkipButtonPress != null) SkipButton(onPressed: onSkipButtonPress!),
+              if (onSkipButtonPress != null)
+                SkipButton(text: context.l10n.skip_idk, onPressed: onSkipButtonPress!),
+              sizedBox,
+              sizedBox,
               image,
               sizedBox,
-              Text(title, style: LoonoFonts.bigFontStyle),
+              Text(title, style: LoonoFonts.bigFontStyle.copyWith(fontSize: 24)),
               sizedBox,
-              RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                        text: '${context.l10n.when_was_the_last_time} ',
-                        style: LoonoFonts.fontStyle.copyWith(fontWeight: FontWeight.bold)),
-                    TextSpan(
-                      text: context.l10n.have_you_been_on_a_preventive_check_up_just_approximately,
-                      style: LoonoFonts.fontStyle,
-                    ),
-                  ],
+              Text(context.l10n.check_up_body_text, style: LoonoFonts.fontStyle),
+              const Spacer(),
+              Center(
+                child: CustomDatePicker(
+                  valueChanged: onDateChanged,
+                  yearsBeforeActual: DateTime.now().year - 1900,
+                  yearsOverActual: 2,
                 ),
               ),
-              sizedBox,
-              Center(child: CustomDatePicker(valueChanged: onDateChanged)),
-              const SizedBox(height: 25),
+              const Spacer(),
               LoonoButton(
                 onTap: onContinueButtonPress,
                 text: context.l10n.continue_info,
               ),
+              SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
             ],
           ),
         ),

@@ -1,10 +1,17 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/models/user.dart';
+import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/universal_doctor_screen.dart';
 import 'package:loono/utils/registry.dart';
 
 class OnboardingDentistScreen extends StatelessWidget {
+  OnboardingDentistScreen({Key? key, required this.sex}) : super(key: key);
+
+  final Sex sex;
+
   final _usersDao = registry.get<DatabaseService>().users;
 
   @override
@@ -12,17 +19,17 @@ class OnboardingDentistScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: UniversalDoctorScreen(
-          questionHeader: "Zubaře",
+          question: sex.getUniversalDoctorLabel(context),
+          questionHighlight: "Zubaře",
           imagePath: "dentist",
-          numberOfSteps: 3,
-          currentStep: 3,
+          numberOfSteps: sex.totalNumOfSteps,
+          currentStep: sex.dentistStep,
           nextCallback1: () async {
             await _usersDao.updateDentistCcaVisit(CcaDoctorVisit.inLastTwoYears);
-            Navigator.pushNamed(context, '/dentist_achievement');
           },
           nextCallback2: () async {
             await _usersDao.updateDentistCcaVisit(CcaDoctorVisit.moreThanTwoYearsOrIdk);
-            Navigator.pushNamed(context, '/create-account');
+            AutoRouter.of(context).push(const CreateAccountRoute());
           },
         ),
       ),

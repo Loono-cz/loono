@@ -6,14 +6,13 @@ part of 'date_without_day.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_DateWithoutDay _$_$_DateWithoutDayFromJson(Map<String, dynamic> json) {
-  return _$_DateWithoutDay(
-    month: _$enumDecode(_$MonthsEnumMap, json['month']),
-    year: json['year'] as int,
-  );
-}
+_$_DateWithoutDay _$$_DateWithoutDayFromJson(Map<String, dynamic> json) =>
+    _$_DateWithoutDay(
+      month: _$enumDecode(_$MonthsEnumMap, json['month']),
+      year: json['year'] as int,
+    );
 
-Map<String, dynamic> _$_$_DateWithoutDayToJson(_$_DateWithoutDay instance) =>
+Map<String, dynamic> _$$_DateWithoutDayToJson(_$_DateWithoutDay instance) =>
     <String, dynamic>{
       'month': _$MonthsEnumMap[instance.month],
       'year': instance.year,

@@ -1,10 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/progress_dots.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
 import 'package:loono/ui/widgets/universal_doctor.dart';
 
 class UniversalDoctorScreen extends StatelessWidget {
-  final String questionHeader;
+  final String question;
+  final String questionHighlight;
   final String imagePath;
   final int numberOfSteps;
   final int currentStep;
@@ -14,7 +17,8 @@ class UniversalDoctorScreen extends StatelessWidget {
   final void Function() nextCallback2;
 
   const UniversalDoctorScreen({
-    required this.questionHeader,
+    required this.question,
+    required this.questionHighlight,
     required this.imagePath,
     required this.numberOfSteps,
     required this.currentStep,
@@ -34,15 +38,26 @@ class UniversalDoctorScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SkipButton(
-                onPressed: () => Navigator.pushNamed(context, '/create-account'),
-                sibling: LoonoProgressIndicator(
-                  numberOfSteps: numberOfSteps,
-                  currentStep: currentStep,
-                ),
+                onPressed: () => AutoRouter.of(context).push(const CreateAccountRoute()),
+                sibling: numberOfSteps > 2
+                    ? LoonoProgressIndicator(numberOfSteps: numberOfSteps, currentStep: currentStep)
+                    : Row(
+                        children: [
+                          Flexible(
+                            flex: 5,
+                            child: LoonoProgressIndicator(
+                              numberOfSteps: numberOfSteps,
+                              currentStep: currentStep,
+                            ),
+                          ),
+                          const Flexible(flex: 4, child: SizedBox()),
+                        ],
+                      ),
               ),
               Expanded(
                 child: UniversalDoctor(
-                  questionHeader: questionHeader,
+                  question: question,
+                  questionHeader: questionHighlight,
                   imagePath: imagePath,
                   button1Text: nextButton1Text,
                   button2Text: nextButton2Text,
