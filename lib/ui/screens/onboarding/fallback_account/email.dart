@@ -40,9 +40,9 @@ class EmailScreen extends StatelessWidget {
           },
           onSubmit: (input) async {
             await registry.get<DatabaseService>().users.updateEmail(input);
-            if (await _authService.getCurrentUser() == null) {
-              _authService.signInAnonymously();
-            }
+            // if (await _authService.getCurrentUser() == null) {
+            //   _authService.signInAnonymously();
+            // }
             AutoRouter.of(context).push(MainWrapperRoute());
           },
         );
