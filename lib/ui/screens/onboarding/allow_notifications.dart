@@ -1,10 +1,11 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/services/onboarding_state_service.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
+import 'package:provider/provider.dart';
 
 class AllowNotificationsScreen extends StatelessWidget {
   const AllowNotificationsScreen({Key? key}) : super(key: key);
@@ -20,8 +21,8 @@ class AllowNotificationsScreen extends StatelessWidget {
               const SizedBox(height: 27.0),
               SkipButton(
                 text: context.l10n.skip,
-                // TODO: declarative route
-                onPressed: () {},
+                onPressed: () =>
+                    context.read<OnboardingStateService>().notificationsPermissionRequested(),
               ),
               const SizedBox(height: 48.0),
               SvgPicture.asset("assets/icons/notification_bell.svg", width: 128.0),
@@ -36,7 +37,7 @@ class AllowNotificationsScreen extends StatelessWidget {
                 text: context.l10n.notification_allow_button,
                 onTap: () {
                   // TODO: Display and handle allow notification dialog (iOS only)
-                  // TODO: declarative route
+                  context.read<OnboardingStateService>().notificationsPermissionRequested();
                 },
               ),
               const SizedBox(height: 122.0),
