@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/firebase_user.dart';
 import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/ui/screens/onboarding/fallback_account/nickname.dart';
@@ -16,6 +17,7 @@ class EmailScreen extends StatelessWidget {
   final AuthUser? authUser;
 
   final _usersDao = registry.get<DatabaseService>().users;
+  final _authService = registry.get<AuthService>();
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +40,9 @@ class EmailScreen extends StatelessWidget {
           },
           onSubmit: (input) async {
             await registry.get<DatabaseService>().users.updateEmail(input);
+            if (await _authService.getCurrentUser() == null) {
+              _authService.signInAnonymously();
+            }
             AutoRouter.of(context).push(MainWrapperRoute());
           },
         );
