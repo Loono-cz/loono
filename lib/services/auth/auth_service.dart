@@ -72,7 +72,7 @@ class AuthService implements IAuth {
       rawNonce: rawNonce,
     );
 
-    final userCredential = await FirebaseAuth.instance.signInWithCredential(oauthCredential);
+    final userCredential = await _auth.signInWithCredential(oauthCredential);
     return _authUserFromFirebase(userCredential.user);
   }
 

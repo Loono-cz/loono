@@ -41,8 +41,8 @@ class LoginScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
               child: SocialLoginButton.apple(
                 onPressed: () async {
-                  await _authService.signInWithApple();
-                  if (await _authService.getCurrentUser() != null) {
+                  final authUser = await _authService.signInWithApple();
+                  if (authUser != null) {
                     AutoRouter.of(context).push(MainWrapperRoute());
                   }
                 },
@@ -53,8 +53,8 @@ class LoginScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
               child: SocialLoginButton.google(
                 onPressed: () async {
-                  await _authService.signInWithGoogle();
-                  if (await _authService.getCurrentUser() != null) {
+                  final authUser = await _authService.signInWithGoogle();
+                  if (authUser != null) {
                     AutoRouter.of(context).push(MainWrapperRoute());
                   }
                 },
