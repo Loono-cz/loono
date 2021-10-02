@@ -80,7 +80,7 @@ class CreateAccountScreen extends StatelessWidget {
                       onPressed: () async {
                         final authUser = await _authService.signInWithApple();
                         if (authUser != null) {
-                          AutoRouter.of(context).push(NicknameRoute());
+                          AutoRouter.of(context).push(NicknameRoute(authUser: authUser));
                         }
                       },
                     ),
