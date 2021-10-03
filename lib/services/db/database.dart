@@ -1,14 +1,14 @@
 import 'package:encrypted_moor/encrypted_moor.dart';
 import 'package:flutter/material.dart';
-import 'package:loono/models/todo.dart';
+import 'package:loono/models/user.dart';
 import 'package:moor/moor.dart';
 
 part 'database.g.dart';
 
 @UseMoor(tables: [
-  Todos,
+  Users,
 ], daos: [
-  TodosDao,
+  UsersDao,
 ])
 class AppDatabase extends _$AppDatabase {
   AppDatabase(String path, String password)

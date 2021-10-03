@@ -1,26 +1,31 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/progress_dots.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
 import 'package:loono/ui/widgets/universal_doctor.dart';
 
 class UniversalDoctorScreen extends StatelessWidget {
   final String question;
-  final String questionHeader;
+  final String questionHighlight;
   final String imagePath;
   final int numberOfSteps;
   final int currentStep;
-  final String nextScreen1;
-  final String nextScreen2;
-  final String skipScreen;
+  final String nextButton1Text;
+  final String nextButton2Text;
+  final void Function() nextCallback1;
+  final void Function() nextCallback2;
+
   const UniversalDoctorScreen({
-    this.question = 'Kdy jsi byla naposledy na preventivní prohlídce u',
-    required this.questionHeader,
+    required this.question,
+    required this.questionHighlight,
     required this.imagePath,
     required this.numberOfSteps,
     required this.currentStep,
-    required this.nextScreen1,
-    required this.nextScreen2,
-    required this.skipScreen,
+    this.nextButton1Text = 'V posledním roce',
+    this.nextButton2Text = 'Je to více než rok nebo nevím',
+    required this.nextCallback1,
+    required this.nextCallback2,
   });
 
   @override
@@ -33,22 +38,31 @@ class UniversalDoctorScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SkipButton(
-                onPressed: () => Navigator.pushNamed(context, skipScreen),
-                sibling: LoonoProgressIndicator(
-                  numberOfSteps: numberOfSteps,
-                  currentStep: currentStep,
-                ),
+                onPressed: () => AutoRouter.of(context).push(const CreateAccountRoute()),
+                sibling: numberOfSteps > 2
+                    ? LoonoProgressIndicator(numberOfSteps: numberOfSteps, currentStep: currentStep)
+                    : Row(
+                        children: [
+                          Flexible(
+                            flex: 5,
+                            child: LoonoProgressIndicator(
+                              numberOfSteps: numberOfSteps,
+                              currentStep: currentStep,
+                            ),
+                          ),
+                          const Flexible(flex: 4, child: SizedBox()),
+                        ],
+                      ),
               ),
               Expanded(
                 child: UniversalDoctor(
-                  questionHeader: questionHeader,
+                  question: question,
+                  questionHeader: questionHighlight,
                   imagePath: imagePath,
-                  nextCallback1: () {
-                    Navigator.pushNamed(context, nextScreen1);
-                  },
-                  nextCallback2: () {
-                    Navigator.pushNamed(context, nextScreen2);
-                  },
+                  button1Text: nextButton1Text,
+                  button2Text: nextButton2Text,
+                  nextCallback1: nextCallback1,
+                  nextCallback2: nextCallback2,
                 ),
               ),
             ],

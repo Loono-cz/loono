@@ -1,13 +1,14 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/onboarding/gender_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 enum Gender { man, woman, other }
 
-typedef GenderCallback = void Function(Gender? gender);
+typedef GenderCallback = void Function(Sex? gender);
 
 class GendersContainer extends StatefulWidget {
   const GendersContainer({Key? key, this.genderCallBack}) : super(key: key);
@@ -40,7 +41,7 @@ class _GendersContainerState extends State<GendersContainer> {
                 height: 45,
                 onClick: () => setState(() {
                   activeButton = Gender.woman;
-                  widget.genderCallBack!(activeButton);
+                  widget.genderCallBack!(Sex.female);
                   _closeSheet();
                 }),
               ),
@@ -56,7 +57,7 @@ class _GendersContainerState extends State<GendersContainer> {
                 height: 40,
                 onClick: () => setState(() {
                   activeButton = Gender.man;
-                  widget.genderCallBack!(activeButton);
+                  widget.genderCallBack!(Sex.male);
                   _closeSheet();
                 }),
               ),

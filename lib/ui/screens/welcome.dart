@@ -1,6 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:loono/constants.dart';
-import 'package:loono/ui/widgets/onboarding/onboarding_button.dart';
+import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/services/onboarding_state_service.dart';
+import 'package:loono/ui/widgets/button.dart';
+import 'package:provider/provider.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -26,17 +29,15 @@ class WelcomeScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: LoonoFonts.headerFontStyle,
                 ),
-                const SizedBox(height: 100),
-                OnboardingButton(
-                  label: 'Začít',
-                  onClick: () {
-                    Navigator.pushNamed(context, '/onboarding/carousel');
-                  },
+                const SizedBox(height: 70),
+                LoonoButton(
+                  text: 'Začít cestu za zdravím',
+                  onTap: () => context.read<OnboardingStateService>().startIntro(),
                 ),
                 const SizedBox(height: 15),
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/fallback_account/email');
+                    AutoRouter.of(context).push(const LoginRoute());
                   },
                   child: const Text(
                     'Už mám účet',

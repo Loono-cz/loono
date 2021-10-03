@@ -1,9 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/onboarding/genders_container.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
+import 'package:loono/utils/registry.dart';
 
 class OnboardingGenderScreen extends StatefulWidget {
   const OnboardingGenderScreen({Key? key}) : super(key: key);
@@ -13,7 +18,7 @@ class OnboardingGenderScreen extends StatefulWidget {
 }
 
 class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
-  Gender? activeButton;
+  Sex? activeButton;
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +29,7 @@ class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: Column(
             children: [
-              SkipButton(
-                onPressed: () {
-                  // TODO: Store data (https://cesko-digital.atlassian.net/browse/LOON-144)
-                  Navigator.pushNamed(context, '/create-account');
-                },
-              ),
+              SkipButton(onPressed: () => AutoRouter.of(context).push(const CreateAccountRoute())),
               const SizedBox(
                 height: 70,
               ),
@@ -57,10 +57,7 @@ class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
                   enabled: activeButton != null,
                   onTap: activeButton == null
                       ? () {}
-                      : () {
-                          // TODO: Store data (https://cesko-digital.atlassian.net/browse/LOON-144)
-                          Navigator.pushNamed(context, '/onboarding/birthdate');
-                        },
+                      : () async => registry.get<DatabaseService>().users.updateSex(activeButton!),
                 ),
               ),
               const SizedBox(

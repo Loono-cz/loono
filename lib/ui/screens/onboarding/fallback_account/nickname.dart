@@ -1,6 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/fallback_account_content.dart';
+import 'package:loono/utils/registry.dart';
 
 class NicknameScreen extends StatelessWidget {
   const NicknameScreen({Key? key}) : super(key: key);
@@ -17,10 +21,9 @@ class NicknameScreen extends StatelessWidget {
         if (input.isEmpty) return 'Prázdné pole';
         return null;
       },
-      onSubmit: (input) {
-        // TODO: Save it to somewhere
-        debugPrint(input);
-        Navigator.pushNamed(context, '/fallback_account/email');
+      onSubmit: (input) async {
+        await registry.get<DatabaseService>().users.updateNickname(input);
+        AutoRouter.of(context).push(const EmailRoute());
       },
     );
   }

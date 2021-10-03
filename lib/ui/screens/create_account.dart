@@ -1,11 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:loono/ui/widgets/apple_log_in_button.dart';
-import 'package:loono/ui/widgets/google_log_in_button.dart';
+import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
+import 'package:loono/ui/widgets/social_login_button.dart';
 
 class CreateAccountScreen extends StatelessWidget {
   const CreateAccountScreen({Key? key}) : super(key: key);
@@ -24,7 +25,7 @@ class CreateAccountScreen extends StatelessWidget {
                   children: [
                     SkipButton(
                       text: context.l10n.skip,
-                      onPressed: () => Navigator.pushNamed(context, '/fallback_account/name'),
+                      onPressed: () => AutoRouter.of(context).push(const NicknameRoute()),
                     ),
                     const SizedBox(height: 5),
                     SizedBox(
@@ -67,12 +68,12 @@ class CreateAccountScreen extends StatelessWidget {
                   children: [
                     Text(
                       context.l10n.create_an_account_so_you_can_track_your_progress,
-                      style: LoonoFonts.fontStyle,
+                      style: LoonoFonts.paragraphFontStyle,
                     ),
                     const SizedBox(height: 25),
-                    AppleLogInButton(onPressed: () => print('Sign in with apple')),
+                    SocialLoginButton.apple(onPressed: () => print('Sign in with apple')),
                     const SizedBox(height: 15),
-                    GoogleLogInButton(onPressed: () => print('Sign in with google')),
+                    SocialLoginButton.google(onPressed: () => print('Sign in with google')),
                     Expanded(
                       child: Align(
                         alignment: Alignment.bottomCenter,
@@ -80,7 +81,7 @@ class CreateAccountScreen extends StatelessWidget {
                           onPressed: () => print('click'),
                           child: Text(
                             context.l10n.by_logging_in_you_agree_to_the_terms_of_privacy,
-                            style: LoonoFonts.fontStyle,
+                            style: LoonoFonts.paragraphSmallFontStyle,
                             textAlign: TextAlign.center,
                           ),
                         ),

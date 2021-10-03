@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 
 class LoonoColors {
-  static const inactiveButtonFace = Color.fromARGB(255, 255, 250, 247);
   static const primary = Color.fromARGB(255, 239, 173, 137);
   static const primaryLight = Color.fromARGB(255, 254, 241, 233);
   static const primaryEnabled = Color.fromARGB(255, 190, 87, 19);
   static const primaryDisabled = Color.fromRGBO(190, 87, 19, 0.2);
   static const buttonLight = Color.fromRGBO(253, 228, 211, 1);
   static const black = Color.fromARGB(255, 26, 25, 25);
-  static const green = Color.fromARGB(255, 167, 206, 130);
-  static const gray = Color.fromARGB(255, 186, 186, 186);
-  static const lightGray = Color.fromARGB(255, 248, 244, 242);
-  static const secondaryFont = Color.fromARGB(255, 98, 181, 182);
+  static const blueContrast = Color.fromRGBO(8, 32, 230, 1);
+  static const beigeLight = Color.fromRGBO(253, 228, 211, 1);
+  static const beigeLighter = Color.fromRGBO(254, 242, 233, 1);
+  static const green = Color.fromRGBO(59, 126, 129, 1);
+  static const greenLight = Color.fromRGBO(241, 249, 249, 1);
+  static const secondaryFont = Color.fromRGBO(59, 126, 129, 1);
   static const storyIndicatorActiveDark = Color.fromARGB(255, 26, 25, 25);
   static const storyIndicatorUnderlyingDark = Color.fromRGBO(26, 25, 25, 0.5);
   static const storyIndicatorActiveLight = Color.fromARGB(255, 255, 255, 255);
@@ -53,6 +54,12 @@ class LoonoFonts {
     fontWeight: FontWeight.normal,
   );
 
+  static const subtitleFontStyle = TextStyle(
+    fontSize: 14,
+    color: LoonoColors.black,
+    fontWeight: FontWeight.w700,
+  );
+
   static const paragraphFontStyle = TextStyle(
     fontSize: 14,
     height: 1.5,
@@ -66,4 +73,11 @@ class LoonoFonts {
     color: LoonoColors.black,
     fontWeight: FontWeight.normal,
   );
+}
+
+class LoonoSizes {
+  static double buttonBottomPadding(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    return screenHeight > 750 ? screenHeight * 0.15 : screenHeight * 0.075;
+  }
 }

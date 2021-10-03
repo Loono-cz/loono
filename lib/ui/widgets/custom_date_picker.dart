@@ -1,30 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:loono/l10n/ext.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/l10n/ext.dart';
 
 enum ColumnType { month, year }
 
 class CustomDatePicker extends StatefulWidget {
   final DateTime today = DateTime.now();
-  final ValueChanged valueChanged;
+  final ValueChanged<DateTime> valueChanged;
   final int yearsBeforeActual;
   final int yearsOverActual;
+  final int? defaultMonth;
+  final int? defaultYear;
 
-  CustomDatePicker(
-      {Key? key,
-      required this.valueChanged,
-      this.yearsBeforeActual = 100,
-      this.yearsOverActual = 10})
-      : super(key: key);
+  CustomDatePicker({
+    Key? key,
+    required this.valueChanged,
+    this.yearsBeforeActual = 100,
+    this.yearsOverActual = 10,
+    this.defaultMonth,
+    this.defaultYear,
+  }) : super(key: key);
 
   @override
   _CustomDatePickerState createState() => _CustomDatePickerState();
 }
 
 class _CustomDatePickerState extends State<CustomDatePicker> {
-  DateTime datePickerDate = DateTime.now();
-  late int _selectedMonthIndex = widget.today.month;
+  late int _selectedMonthIndex = widget.defaultMonth ?? widget.today.month;
   late int _selectedYearIndex = 0;
+  late DateTime datePickerDate = DateTime(
+    widget.defaultYear ?? widget.today.year,
+    _selectedMonthIndex,
+    widget.today.day,
+  );
 
   @override
   void initState() {
@@ -35,7 +43,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 260,
+      height: MediaQuery.of(context).size.height * 0.32,
       child: Stack(alignment: AlignmentDirectional.centerStart, children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -47,20 +55,29 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
         Container(
           width: 10,
           height: 10,
-          decoration: const BoxDecoration(color: LoonoColors.primary, shape: BoxShape.circle),
-        )
+          decoration: const BoxDecoration(
+            color: LoonoColors.primaryEnabled,
+            shape: BoxShape.circle,
+          ),
+        ),
       ]),
     );
   }
 
   List<int> get _datePickerYears {
-    return List<int>.generate(widget.yearsBeforeActual + widget.yearsOverActual + 1, (index) {
-      if (index > widget.yearsOverActual) {
-        return (widget.today.year - widget.yearsBeforeActual - widget.yearsOverActual) + index - 1;
-      } else {
-        return widget.today.year + index;
-      }
-    });
+    final defaultYear = widget.defaultYear ?? widget.today.year;
+    final minYear = widget.today.year - widget.yearsBeforeActual;
+    final maxYear = widget.today.year + widget.yearsOverActual;
+    assert(defaultYear >= minYear && defaultYear <= maxYear);
+
+    final diff = maxYear - minYear;
+    final List<int> years = [];
+    for (int i = 0; i <= diff; i++) {
+      final year = defaultYear + i <= maxYear ? defaultYear + i : defaultYear - (diff - i + 1);
+      years.add(year);
+    }
+
+    return years;
   }
 
   Map<int, String> get _datePickerMonths {
@@ -78,12 +95,14 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
       DateTime.november: context.l10n.month_november,
       DateTime.december: context.l10n.month_december,
     };
+    final int defaultMonth = widget.defaultMonth ?? widget.today.month;
+    assert(monthsMap.containsKey(defaultMonth));
 
     final List<int> keysOrder = List<int>.generate(DateTime.monthsPerYear, (index) {
-      if (DateTime.monthsPerYear - index < widget.today.month) {
-        return index - (DateTime.monthsPerYear - widget.today.month);
+      if (DateTime.monthsPerYear - index < defaultMonth) {
+        return index - (DateTime.monthsPerYear - defaultMonth);
       } else {
-        return widget.today.month + index;
+        return defaultMonth + index;
       }
     });
 
@@ -100,8 +119,8 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
         itemExtent: 40,
         childDelegate: ListWheelChildLoopingListDelegate(
             children: items.keys
-                .map((index) => _setListItem(
-                    forType: forType, index: index, text: items[index].toString(), items: items))
+                .map((index) =>
+                    _setListItem(forType: forType, index: index, text: items[index].toString(), items: items))
                 .toList()),
         onSelectedItemChanged: (index) {
           _selectedItemHandle(forType: forType, items: items, value: items.keys.elementAt(index));
@@ -115,13 +134,13 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
     );
   }
 
-  Widget _setListItem(
-      {required int index,
-      required ColumnType forType,
-      required String text,
-      required Map<int, Object> items}) {
-    final int selectedIndex =
-        forType == ColumnType.month ? _selectedMonthIndex : _selectedYearIndex;
+  Widget _setListItem({
+    required int index,
+    required ColumnType forType,
+    required String text,
+    required Map<int, Object> items,
+  }) {
+    final int selectedIndex = forType == ColumnType.month ? _selectedMonthIndex : _selectedYearIndex;
 
     final List<int> keys = items.keys.toList();
     keys.sort();
