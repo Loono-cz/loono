@@ -1,9 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:loono/helpers/sex_extensions.dart';
+import 'package:loono/helpers/nickname_hint_resolver.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/firebase_user.dart';
-import 'package:loono/models/user.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
@@ -17,21 +16,6 @@ class NicknameScreen extends StatelessWidget {
 
   final _usersDao = registry.get<DatabaseService>().users;
 
-  static String getHintText({required User? user, required AuthUser? authUser}) {
-    final hasPredefinedHintText = authUser?.name != null;
-    final String hintText;
-    if (hasPredefinedHintText) {
-      hintText = authUser!.name!;
-    } else {
-      if (user?.sex == null) {
-        hintText = 'Ema';
-      } else {
-        hintText = user!.sex == Sex.male ? 'Adam' : 'Eva';
-      }
-    }
-    return hintText;
-  }
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<User?>(
@@ -39,8 +23,8 @@ class NicknameScreen extends StatelessWidget {
       builder: (context, snapshot) {
         return FallbackAccountContent(
           title: context.l10n.fallback_account_name,
-          initialText: authUser?.name?.split(' ').first,
-          hint: getHintText(user: snapshot.data, authUser: authUser),
+          initialText: getRealNicknameOrNull(authUser: authUser),
+          hint: getHintText(context, user: snapshot.data),
           keyboardType: TextInputType.name,
           validator: (input) {
             if (input == null || input.isEmpty) {
