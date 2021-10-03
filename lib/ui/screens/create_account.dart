@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/auth/auth_service.dart';
@@ -78,19 +79,23 @@ class CreateAccountScreen extends StatelessWidget {
                     const SizedBox(height: 25),
                     SocialLoginButton.apple(
                       onPressed: () async {
-                        final authUser = await _authService.signInWithApple();
-                        if (authUser != null) {
-                          AutoRouter.of(context).push(NicknameRoute(authUser: authUser));
-                        }
+                        final authUserResult = await _authService.signInWithApple();
+                        authUserResult.fold(
+                          (failure) => showSnackBar(context, message: failure.message),
+                          (authUser) =>
+                              AutoRouter.of(context).push(NicknameRoute(authUser: authUser)),
+                        );
                       },
                     ),
                     const SizedBox(height: 15),
                     SocialLoginButton.google(
                       onPressed: () async {
-                        final authUser = await _authService.signInWithGoogle();
-                        if (authUser != null) {
-                          AutoRouter.of(context).push(NicknameRoute(authUser: authUser));
-                        }
+                        final authUserResult = await _authService.signInWithGoogle();
+                        authUserResult.fold(
+                          (failure) => showSnackBar(context, message: failure.message),
+                          (authUser) =>
+                              AutoRouter.of(context).push(NicknameRoute(authUser: authUser)),
+                        );
                       },
                     ),
                     Expanded(

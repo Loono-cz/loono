@@ -34,7 +34,7 @@ class EmailScreen extends StatelessWidget {
             }
           },
           onSubmit: (input) async {
-            await registry.get<DatabaseService>().users.updateEmail(input);
+            await _usersDao.updateEmail(input);
             // if (await _authService.getCurrentUser() == null) {
             //   _authService.signInAnonymously();
             // }
