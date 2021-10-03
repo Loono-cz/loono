@@ -35,9 +35,6 @@ class EmailScreen extends StatelessWidget {
           },
           onSubmit: (input) async {
             await _usersDao.updateEmail(input);
-            // if (await _authService.getCurrentUser() == null) {
-            //   _authService.signInAnonymously();
-            // }
             AutoRouter.of(context).push(const MainWrapperRoute());
           },
         );

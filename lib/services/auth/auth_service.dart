@@ -12,7 +12,7 @@ abstract class IAuth {
 
   Future<Either<AuthFailure, AuthUser>> signInWithApple();
 
-  Future<AuthUser?> signInAnonymously();
+  Future<Either<AuthFailure, AuthUser>> signInAnonymously();
 
   Future<void> signOut();
 }
@@ -49,7 +49,7 @@ class AuthService implements IAuth {
     } on PlatformException catch (e) {
       if (e.code == 'network_error') return const Left(NetworkFailure());
       const Left(UnknownFailure());
-    } catch (e) {
+    } catch (_) {
       const Left(UnknownFailure());
     }
 
@@ -65,7 +65,7 @@ class AuthService implements IAuth {
     UserCredential? userCredential;
     try {
       userCredential = await _auth.signInWithCredential(credential);
-    } catch (e) {
+    } catch (_) {
       return const Left(UnknownFailure());
     }
     return userCredential.user == null
@@ -93,8 +93,8 @@ class AuthService implements IAuth {
         nonce: nonce,
       );
     } on SignInWithAppleAuthorizationException catch (e) {
-      return Left(UnknownFailure('Chyba: $e\nZkus to znovu později.'));
-    } catch (e) {
+      return Left(UnknownFailure('Chyba: ${e.message}\nZkus to znovu později.'));
+    } catch (_) {
       return const Left(UnknownFailure());
     }
 
@@ -106,7 +106,7 @@ class AuthService implements IAuth {
     UserCredential? userCredential;
     try {
       userCredential = await _auth.signInWithCredential(oauthCredential);
-    } catch (e) {
+    } catch (_) {
       return const Left(UnknownFailure());
     }
     return userCredential.user == null
@@ -115,9 +115,19 @@ class AuthService implements IAuth {
   }
 
   @override
-  Future<AuthUser?> signInAnonymously() async {
-    final userCredential = await _auth.signInAnonymously();
-    return _authUserFromFirebase(userCredential.user);
+  Future<Either<AuthFailure, AuthUser>> signInAnonymously() async {
+    final UserCredential? userCredential;
+    try {
+      userCredential = await _auth.signInAnonymously();
+    } on FirebaseException catch (e) {
+      if (e.code == 'network-request-failed') return const Left(NetworkFailure());
+      return const Left(UnknownFailure());
+    } catch (_) {
+      return const Left(UnknownFailure());
+    }
+    return userCredential.user == null
+        ? const Left(UnknownFailure())
+        : Right(_authUserFromFirebase(userCredential.user)!);
   }
 
   @override

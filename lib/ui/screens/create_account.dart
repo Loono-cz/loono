@@ -7,6 +7,7 @@ import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/auth/auth_service.dart';
+import 'package:loono/services/auth/failures.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
 import 'package:loono/ui/widgets/social_login_button.dart';
 import 'package:loono/utils/registry.dart';
@@ -15,6 +16,61 @@ class CreateAccountScreen extends StatelessWidget {
   CreateAccountScreen({Key? key}) : super(key: key);
 
   final _authService = registry.get<AuthService>();
+
+  Future<void> _showNoAccountWarningDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text(
+            'Když si nevytvoříš účet, tak můžeš přijít o všechna svá data.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Zpátky'),
+            ),
+            TextButton(
+              onPressed: () async {
+                final authUserResult = await _authService.signInAnonymously();
+                authUserResult.fold(
+                  (failure) {
+                    if (failure is NetworkFailure) {
+                      _showNoInternetDialog(context);
+                    } else {
+                      Navigator.of(context).pop();
+                      showSnackBar(context, message: failure.message);
+                    }
+                  },
+                  (authUser) => AutoRouter.of(context).push(NicknameRoute()),
+                );
+              },
+              child: const Text('Nevytvářet účet'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _showNoInternetDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text(
+            'Pro pokračování je nutné připojit se k internetu.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Ok'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +86,7 @@ class CreateAccountScreen extends StatelessWidget {
                   children: [
                     SkipButton(
                       text: context.l10n.skip_without_account,
-                      onPressed: () => AutoRouter.of(context).push(NicknameRoute()),
+                      onPressed: () => _showNoAccountWarningDialog(context),
                     ),
                     const SizedBox(height: 5),
                     SizedBox(
