@@ -48,9 +48,9 @@ class AuthService implements IAuth {
       googleUser = await _googleSignIn.signIn();
     } on PlatformException catch (e) {
       if (e.code == 'network_error') return const Left(NetworkFailure());
-      const Left(UnknownFailure());
+      return const Left(UnknownFailure());
     } catch (_) {
-      const Left(UnknownFailure());
+      return const Left(UnknownFailure());
     }
 
     // if googleUser is null, signIn was interrupted/cancelled
