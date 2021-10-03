@@ -44,10 +44,8 @@ class AppRouter extends _i1.RootStackRouter {
   @override
   final Map<String, _i1.PageFactory> pagesMap = {
     MainWrapperRoute.name: (routeData) {
-      final args = routeData.argsAs<MainWrapperRouteArgs>(
-          orElse: () => const MainWrapperRouteArgs());
       return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i4.MainWrapperScreen(key: args.key));
+          routeData: routeData, child: const _i4.MainWrapperScreen());
     },
     OnboardingWrapperRoute.name: (routeData) {
       return _i1.MaterialPageX<dynamic>(
@@ -241,20 +239,11 @@ class AppRouter extends _i1.RootStackRouter {
       ];
 }
 
-class MainWrapperRoute extends _i1.PageRouteInfo<MainWrapperRouteArgs> {
-  MainWrapperRoute({_i2.Key? key, List<_i1.PageRouteInfo>? children})
-      : super(name,
-            path: 'main',
-            args: MainWrapperRouteArgs(key: key),
-            initialChildren: children);
+class MainWrapperRoute extends _i1.PageRouteInfo<void> {
+  const MainWrapperRoute({List<_i1.PageRouteInfo>? children})
+      : super(name, path: 'main', initialChildren: children);
 
   static const String name = 'MainWrapperRoute';
-}
-
-class MainWrapperRouteArgs {
-  const MainWrapperRouteArgs({this.key});
-
-  final _i2.Key? key;
 }
 
 class OnboardingWrapperRoute extends _i1.PageRouteInfo<void> {

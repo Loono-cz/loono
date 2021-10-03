@@ -17,15 +17,15 @@ class _MainScreenState extends State<MainScreen> {
 
   static const List<Widget> _pages = <Widget>[
     Text(
-      'Page: Já',
+      'Screen: Já',
       style: LoonoFonts.headerFontStyle,
     ),
     Text(
-      'Page: Najít lékaře',
+      'Screen: Najít lékaře',
       style: LoonoFonts.headerFontStyle,
     ),
     Text(
-      'Page: Objev zdraví',
+      'Screen: Objev zdraví',
       style: LoonoFonts.headerFontStyle,
     ),
   ];
