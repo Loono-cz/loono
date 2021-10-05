@@ -6,7 +6,7 @@ abstract class AuthFailure {
 
 class UnknownFailure extends AuthFailure {
   const UnknownFailure([String? message])
-      : super(message ?? 'Neznámá chyba. Zkus to znovu později.');
+      : super(message ?? 'Přihlášení se nepovedlo. Zkus to znovu později.');
 }
 
 class NoMessageFailure extends AuthFailure {

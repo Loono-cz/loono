@@ -55,6 +55,8 @@
   "notification_allow_button": "Zapnout notifikace",
   "@notification_allow_button": {},
   "@fallback_account_email_desc": {},
+  "ok_action": "Ok",
+  "@ok_action": {},
   "skip": "Přeskočit",
   "@skip": {},
   "skip_questionnaire": "Přeskočit dotazník",
@@ -127,10 +129,12 @@
   "@gynecology": {},
   "dentist": "Zubař",
   "@dentist": {},
-  "nickname_validator_empty_input": "Prázdné pole",
+  "nickname_validator_empty_input": "Vyplň přezdívku",
   "@nickname_validator_empty_input": {},
-  "nickname_validator_too_long_input": "Příliš dlouhá přezdívka",
+  "nickname_validator_too_long_input": "Zkrať přezdívku na 250 znaků",
   "@nickname_validator_too_long_input": {},
   "email_validator_wrong_input": "Nesprávný formát e-mailu",
-  "@email_validator_wrong_input": {}
+  "@email_validator_wrong_input": {},
+  "create_account_anonymous_login_connection_error": "Pro pokračování je nutné připojit se k internetu.",
+  "@create_account_anonymous_login_connection_error": {}
 }

@@ -17,54 +17,16 @@ class CreateAccountScreen extends StatelessWidget {
 
   final _authService = registry.get<AuthService>();
 
-  Future<void> _showNoAccountWarningDialog(BuildContext context) {
-    return showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text(
-            'Když si nevytvoříš účet, tak můžeš přijít o všechna svá data.',
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Zpátky'),
-            ),
-            TextButton(
-              onPressed: () async {
-                final authUserResult = await _authService.signInAnonymously();
-                authUserResult.fold(
-                  (failure) {
-                    if (failure is NetworkFailure) {
-                      _showNoInternetDialog(context);
-                    } else {
-                      Navigator.of(context).pop();
-                      showSnackBar(context, message: failure.message);
-                    }
-                  },
-                  (authUser) => AutoRouter.of(context).push(NicknameRoute()),
-                );
-              },
-              child: const Text('Nevytvářet účet'),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   Future<void> _showNoInternetDialog(BuildContext context) {
     return showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text(
-            'Pro pokračování je nutné připojit se k internetu.',
-          ),
+          title: Text(context.l10n.create_account_anonymous_login_connection_error),
           actions: [
             TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Ok'),
+              onPressed: () => AutoRouter.of(context).pop(),
+              child: Text(context.l10n.ok_action),
             ),
           ],
         );
@@ -86,7 +48,19 @@ class CreateAccountScreen extends StatelessWidget {
                   children: [
                     SkipButton(
                       text: context.l10n.skip_without_account,
-                      onPressed: () => _showNoAccountWarningDialog(context),
+                      onPressed: () async {
+                        final authUserResult = await _authService.signInAnonymously();
+                        authUserResult.fold(
+                          (failure) {
+                            if (failure is NetworkFailure) {
+                              _showNoInternetDialog(context);
+                            } else {
+                              showSnackBar(context, message: failure.message);
+                            }
+                          },
+                          (authUser) => AutoRouter.of(context).push(NicknameRoute()),
+                        );
+                      },
                     ),
                     const SizedBox(height: 5),
                     SizedBox(
