@@ -14,5 +14,5 @@ class NoMessageFailure extends AuthFailure {
 }
 
 class NetworkFailure extends AuthFailure {
-  const NetworkFailure() : super('Nejsi připojený k internetu.');
+  const NetworkFailure() : super('Nejsi připojený(á) k internetu.');
 }
