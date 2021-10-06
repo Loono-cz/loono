@@ -1,18 +1,17 @@
-abstract class AuthFailure {
-  const AuthFailure(this.message);
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  final String message;
-}
+part 'failures.freezed.dart';
 
-class UnknownFailure extends AuthFailure {
-  const UnknownFailure([String? message])
-      : super(message ?? 'Přihlášení se nepovedlo. Zkus to znovu později.');
-}
+@freezed
+class AuthFailure with _$AuthFailure {
+  const AuthFailure._();
 
-class NoMessageFailure extends AuthFailure {
-  const NoMessageFailure() : super('');
-}
+  const factory AuthFailure.unknown(
+          [@Default('Přihlášení se nepovedlo. Zkus to znovu později.') String message]) =
+      UnknownFailure;
 
-class NetworkFailure extends AuthFailure {
-  const NetworkFailure() : super('Nejsi připojený(á) k internetu.');
+  const factory AuthFailure.noMessage([@Default('') String message]) = NoMessageFailure;
+
+  const factory AuthFailure.network([@Default('Nejsi připojený/á k internetu.') String message]) =
+      NetworkFailure;
 }

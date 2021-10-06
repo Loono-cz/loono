@@ -7,17 +7,7 @@ import 'package:loono/services/auth/failures.dart';
 import 'package:loono/utils/crypto_utils.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
-abstract class IAuth {
-  Future<Either<AuthFailure, AuthUser>> signInWithGoogle();
-
-  Future<Either<AuthFailure, AuthUser>> signInWithApple();
-
-  Future<Either<AuthFailure, AuthUser>> signInAnonymously();
-
-  Future<void> signOut();
-}
-
-class AuthService implements IAuth {
+class AuthService {
   final _auth = FirebaseAuth.instance;
 
   final _googleSignIn = GoogleSignIn();
@@ -40,21 +30,20 @@ class AuthService implements IAuth {
     return authUser;
   }
 
-  @override
   Future<Either<AuthFailure, AuthUser>> signInWithGoogle() async {
     // TODO: better error handling
     GoogleSignInAccount? googleUser;
     try {
       googleUser = await _googleSignIn.signIn();
     } on PlatformException catch (e) {
-      if (e.code == 'network_error') return const Left(NetworkFailure());
-      return const Left(UnknownFailure());
+      if (e.code == 'network_error') return const Left(AuthFailure.network());
+      return const Left(AuthFailure.unknown());
     } catch (_) {
-      return const Left(UnknownFailure());
+      return const Left(AuthFailure.unknown());
     }
 
     // if googleUser is null, signIn was interrupted/cancelled
-    if (googleUser == null) return const Left(NoMessageFailure());
+    if (googleUser == null) return const Left(AuthFailure.noMessage());
 
     final googleAuth = await googleUser.authentication;
     final credential = GoogleAuthProvider.credential(
@@ -66,14 +55,13 @@ class AuthService implements IAuth {
     try {
       userCredential = await _auth.signInWithCredential(credential);
     } catch (_) {
-      return const Left(UnknownFailure());
+      return const Left(AuthFailure.unknown());
     }
     return userCredential.user == null
-        ? const Left(UnknownFailure())
+        ? const Left(AuthFailure.unknown())
         : Right(_authUserFromFirebase(userCredential.user)!);
   }
 
-  @override
   Future<Either<AuthFailure, AuthUser>> signInWithApple() async {
     // TODO: better error handling
     // To prevent replay attacks with the credential returned from Apple, we
@@ -93,9 +81,9 @@ class AuthService implements IAuth {
         nonce: nonce,
       );
     } on SignInWithAppleAuthorizationException catch (e) {
-      return Left(UnknownFailure('Chyba: ${e.message}\nZkus to znovu později.'));
+      return Left(AuthFailure.unknown('Chyba: ${e.message}\nZkus to znovu později.'));
     } catch (_) {
-      return const Left(UnknownFailure());
+      return const Left(AuthFailure.unknown());
     }
 
     final oauthCredential = OAuthProvider('apple.com').credential(
@@ -107,30 +95,28 @@ class AuthService implements IAuth {
     try {
       userCredential = await _auth.signInWithCredential(oauthCredential);
     } catch (_) {
-      return const Left(UnknownFailure());
+      return const Left(AuthFailure.unknown());
     }
     return userCredential.user == null
-        ? const Left(UnknownFailure())
+        ? const Left(AuthFailure.unknown())
         : Right(_authUserFromFirebase(userCredential.user)!);
   }
 
-  @override
   Future<Either<AuthFailure, AuthUser>> signInAnonymously() async {
     final UserCredential? userCredential;
     try {
       userCredential = await _auth.signInAnonymously();
     } on FirebaseException catch (e) {
-      if (e.code == 'network-request-failed') return const Left(NetworkFailure());
-      return const Left(UnknownFailure());
+      if (e.code == 'network-request-failed') return const Left(AuthFailure.network());
+      return const Left(AuthFailure.unknown());
     } catch (_) {
-      return const Left(UnknownFailure());
+      return const Left(AuthFailure.unknown());
     }
     return userCredential.user == null
-        ? const Left(UnknownFailure())
+        ? const Left(AuthFailure.unknown())
         : Right(_authUserFromFirebase(userCredential.user)!);
   }
 
-  @override
   Future<void> signOut() async {
     await _auth.signOut();
     await _googleSignIn.signOut();
