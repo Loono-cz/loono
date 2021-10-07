@@ -39,6 +39,9 @@ android {
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+
+//        "added due to: The number of method references in a .dex file cannot exceed 64k"
+        multiDexEnabled true
     }
 
     signingConfigs {
@@ -55,11 +58,20 @@ android {
                 keyPassword "prod-or-dev-password"
             }
         }
+        debug {
+            storeFile=file("loono-debug")
+            storePassword="Vd3ryhCWsy3PJHP"
+            keyAlias="vcas-debug"
+            keyPassword="Vd3ryhCWsy3PJHP"
+        }
     }
 
     buildTypes {
         release {
             signingConfig signingConfigs.release
+        }
+        debug {
+            signingConfig signingConfigs.debug
         }
     }
 
@@ -85,6 +97,8 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.multidex:multidex:2.0.1'
+
 }
 
 apply plugin: 'com.google.firebase.crashlytics'

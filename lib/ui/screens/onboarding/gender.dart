@@ -29,7 +29,7 @@ class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: Column(
             children: [
-              SkipButton(onPressed: () => AutoRouter.of(context).push(const CreateAccountRoute())),
+              SkipButton(onPressed: () => AutoRouter.of(context).push(CreateAccountRoute())),
               const SizedBox(
                 height: 70,
               ),

@@ -29,7 +29,7 @@ class OnboardingDentistScreen extends StatelessWidget {
           },
           nextCallback2: () async {
             await _usersDao.updateDentistCcaVisit(CcaDoctorVisit.moreThanTwoYearsOrIdk);
-            AutoRouter.of(context).push(const CreateAccountRoute());
+            AutoRouter.of(context).push(CreateAccountRoute());
           },
         ),
       ),

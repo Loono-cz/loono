@@ -7,8 +7,9 @@ class CheckIsLoggedIn extends AutoRouteGuard {
   final _authService = registry.get<AuthService>();
 
   @override
-  void onNavigation(NavigationResolver resolver, StackRouter router) async {
-    if (_authService.isLoggedIn) {
+  Future<void> onNavigation(NavigationResolver resolver, StackRouter router) async {
+    final currUser = await _authService.getCurrentUser();
+    if (currUser != null) {
       resolver.next();
     } else {
       router.push(const OnboardingWrapperRoute());
