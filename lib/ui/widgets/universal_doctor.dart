@@ -65,7 +65,7 @@ class UniversalDoctor extends StatelessWidget {
           onTap: nextCallback2,
           text: button2Text,
         ),
-        const Spacer(),
+        SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
       ],
     );
   }

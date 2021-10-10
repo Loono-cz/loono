@@ -28,7 +28,7 @@ class PreventiveExaminationDatePickerScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(18),
+          padding: const EdgeInsets.only(top: 18, left: 18, right: 18),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

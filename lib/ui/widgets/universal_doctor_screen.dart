@@ -33,7 +33,7 @@ class UniversalDoctorScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(24),
+          padding: const EdgeInsets.only(top: 18, left: 18, right: 18),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
