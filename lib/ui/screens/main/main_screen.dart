@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/services/auth/auth_service.dart';
+import 'package:loono/utils/registry.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -9,19 +11,21 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  final _authService = registry.get<AuthService>();
+
   int _selectedIndex = 0;
 
   static const List<Widget> _pages = <Widget>[
     Text(
-      'Page: Já',
+      'Screen: Já',
       style: LoonoFonts.headerFontStyle,
     ),
     Text(
-      'Page: Najít lékaře',
+      'Screen: Najít lékaře',
       style: LoonoFonts.headerFontStyle,
     ),
     Text(
-      'Page: Objev zdraví',
+      'Screen: Objev zdraví',
       style: LoonoFonts.headerFontStyle,
     ),
   ];
@@ -31,6 +35,15 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            tooltip: 'Odhlásit se',
+            onPressed: () async => _authService.signOut(),
+          ),
+        ],
+      ),
       body: Center(
         child: _pages.elementAt(_selectedIndex),
       ),

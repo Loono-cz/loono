@@ -1,40 +1,72 @@
 {
   "project_info": {
     "project_number": "682822084991",
-    "project_id": "loonoapp",
-    "storage_bucket": "loonoapp.appspot.com"
+    "project_id": "loonoapp-dev",
+    "storage_bucket": "loonoapp-dev.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:47384724742:android:4fe9b3f518f92d16034a87",
+        "mobilesdk_app_id": "1:682822084991:android:88f55435f354869a47924a",
         "android_client_info": {
-          "package_name": "cz.loono.app"
+          "package_name": "cz.loono.app.dev"
         }
       },
       "oauth_client": [
         {
-          "client_id": "47384724742-eilr1mj2d0e1gi3dr2dvk2gikl0lu9tl.apps.googleusercontent.com",
+          "client_id": "682822084991-hqsie5e4oo0tio9ah6f11uanh53ti5e4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cz.loono.app.dev",
+            "certificate_hash": "d0cf8a24b3c72e4363056d6fc148bb031642f684"
+          }
+        },
+        {
+          "client_id": "682822084991-jcp0usqedsllrb5iia5r05720bjrafl4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cz.loono.app.dev",
+            "certificate_hash": "ade66263add9f419a1e1c04195209789ba7da0d7"
+          }
+        },
+        {
+          "client_id": "682822084991-kta8cv4sjchkc9uurkonp4nopskiupob.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cz.loono.app.dev",
+            "certificate_hash": "d4a6f30ea4937ce1c0cc2832009b97bdfd79dd90"
+          }
+        },
+        {
+          "client_id": "682822084991-sv4dvmi0mkq8l9h6ie3b62p6f2c9k1kv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cz.loono.app.dev",
+            "certificate_hash": "ed35300873f27b038a235c8118f023197a5ffa28"
+          }
+        },
+        {
+          "client_id": "682822084991-cdckpd6aunlhq928mqufibeihugmc42m.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAcJOqJu0Nh703cgLxx4_LhqL2KCxkahbs"
+          "current_key": "AIzaSyBofB9Di5WmUT0u3-HQgsj0sxbbqk_fe8o"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "47384724742-eilr1mj2d0e1gi3dr2dvk2gikl0lu9tl.apps.googleusercontent.com",
+              "client_id": "682822084991-cdckpd6aunlhq928mqufibeihugmc42m.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "47384724742-jrt87snrcj3fkl2vba7bdhojmrgkrou9.apps.googleusercontent.com",
+              "client_id": "682822084991-1339pn73ln6d433lif52f9jp0k65e7en.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "cz.loono.app"
+                "bundle_id": "cz.loono.app.dev"
               }
             }
           ]

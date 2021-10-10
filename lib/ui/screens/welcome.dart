@@ -42,7 +42,7 @@ class WelcomeScreen extends StatelessWidget {
                 const SizedBox(height: 10),
                 TextButton(
                   onPressed: () {
-                    AutoRouter.of(context).push(const LoginRoute());
+                    AutoRouter.of(context).push(LoginRoute());
                   },
                   child: const Text(
                     'Už mám účet',

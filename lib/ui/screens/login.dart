@@ -2,12 +2,17 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/ui/widgets/social_login_button.dart';
+import 'package:loono/utils/registry.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  LoginScreen({Key? key}) : super(key: key);
+
+  final _authService = registry.get<AuthService>();
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +41,12 @@ class LoginScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
               child: SocialLoginButton.apple(
-                onPressed: () {
-                  // TODO: Login with Apple (https://cesko-digital.atlassian.net/browse/LOON-176)
+                onPressed: () async {
+                  final authUserResult = await _authService.signInWithApple();
+                  authUserResult.fold(
+                    (failure) => showSnackBar(context, message: failure.message),
+                    (authUser) => AutoRouter.of(context).push(const MainWrapperRoute()),
+                  );
                 },
               ),
             ),
@@ -45,8 +54,12 @@ class LoginScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
               child: SocialLoginButton.google(
-                onPressed: () {
-                  // TODO: Login with Google (https://cesko-digital.atlassian.net/browse/LOON-176)
+                onPressed: () async {
+                  final authUserResult = await _authService.signInWithGoogle();
+                  authUserResult.fold(
+                    (failure) => showSnackBar(context, message: failure.message),
+                    (authUser) => AutoRouter.of(context).push(const MainWrapperRoute()),
+                  );
                 },
               ),
             ),

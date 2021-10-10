@@ -9,6 +9,7 @@ class FallbackAccountContent extends StatefulWidget {
   const FallbackAccountContent({
     Key? key,
     this.title = '',
+    this.initialText,
     this.hint,
     this.description = '',
     this.validator,
@@ -19,6 +20,7 @@ class FallbackAccountContent extends StatefulWidget {
   }) : super(key: key);
 
   final String title;
+  final String? initialText;
   final String? hint;
   final String description;
   final FormFieldValidator<String>? validator;
@@ -37,13 +39,19 @@ class FallbackAccountContent extends StatefulWidget {
 }
 
 class _FallbackAccountContentState extends State<FallbackAccountContent> {
-  final _textEditingController = TextEditingController();
+  late final TextEditingController _textEditingController;
   final _formKey = GlobalKey<FormState>();
 
   void validateAndSubmit() {
     if (_formKey.currentState?.validate() == true) {
       widget.onSubmit?.call(_textEditingController.text);
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _textEditingController = TextEditingController(text: widget.initialText);
   }
 
   @override
