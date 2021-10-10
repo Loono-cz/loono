@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/onboarding_state_service.dart';
 import 'package:loono/ui/widgets/button.dart';
@@ -24,10 +25,10 @@ class WelcomeScreen extends StatelessWidget {
                   height: 213,
                 ),
                 const SizedBox(height: 50),
-                const Text(
-                  'Chraň své zdraví včasnou prevencí',
+                Text(
+                  context.l10n.carousel_welcome_dialog,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Color(0xFF1A1919),
                     fontWeight: FontWeight.w400,
                     fontSize: 24,
@@ -36,7 +37,7 @@ class WelcomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 70),
                 LoonoButton(
-                  text: 'Začít cestu za zdravím',
+                  text: context.l10n.carousel_start,
                   onTap: () => context.read<OnboardingStateService>().startIntro(),
                 ),
                 const SizedBox(height: 10),
@@ -44,9 +45,9 @@ class WelcomeScreen extends StatelessWidget {
                   onPressed: () {
                     AutoRouter.of(context).push(LoginRoute());
                   },
-                  child: const Text(
-                    'Už mám účet',
-                    style: TextStyle(color: Color(0xFF1A1919)),
+                  child: Text(
+                    context.l10n.carousel_have_account,
+                    style: const TextStyle(color: Color(0xFF1A1919)),
                   ),
                 ),
               ],

@@ -39,9 +39,23 @@ class _OnBoardingBirthdateScreenState extends State<OnBoardingBirthdateScreen> {
               ),
               Align(
                 alignment: Alignment.centerLeft,
-                child: Text(
-                  widget.sex.getBirthdateLabel(context),
-                  style: const TextStyle(color: Colors.black, fontSize: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.sex.getBirthdateLabel(context),
+                      style: const TextStyle(color: Colors.black, fontSize: 24),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      context.l10n.birthdate_subtitle.split('\n')[0],
+                      style: LoonoFonts.paragraphSmallFontStyle,
+                    ),
+                    Text(
+                      context.l10n.birthdate_subtitle.split('\n')[1],
+                      style: LoonoFonts.paragraphSmallFontStyle,
+                    )
+                  ],
                 ),
               ),
               Expanded(
