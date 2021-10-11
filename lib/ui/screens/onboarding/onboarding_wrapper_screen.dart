@@ -42,7 +42,12 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                 routes: (context) {
                   final user = snapshot.data;
                   if (onboardingState.hasWelcomeStatus) return [const WelcomeRoute()];
-                  if (onboardingState.hasIntroStatus) return [const OnboardingCarouselRoute()];
+                  if (onboardingState.hasIntroStatus) {
+                    return const [
+                      WelcomeRoute(),
+                      OnboardingCarouselRoute(),
+                    ];
+                  }
 
                   final flows = <PageRouteInfo<dynamic>?>[];
                   if (onboardingState.hasQuestionnaireStatus) {

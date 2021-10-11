@@ -52,11 +52,11 @@ class CreateAccountScreen extends StatelessWidget {
                         final authUserResult = await _authService.signInAnonymously();
                         authUserResult.fold(
                           (failure) {
-                            if (failure is NetworkFailure) {
-                              _showNoInternetDialog(context);
-                            } else {
-                              showSnackBar(context, message: failure.message);
-                            }
+                            failure.maybeWhen(
+                              network: (_) => _showNoInternetDialog(context),
+                              orElse: () =>
+                                  showSnackBarError(context, message: failure.getMessage(context)),
+                            );
                           },
                           (authUser) => AutoRouter.of(context).push(NicknameRoute()),
                         );
@@ -111,7 +111,8 @@ class CreateAccountScreen extends StatelessWidget {
                       onPressed: () async {
                         final authUserResult = await _authService.signInWithApple();
                         authUserResult.fold(
-                          (failure) => showSnackBar(context, message: failure.message),
+                          (failure) =>
+                              showSnackBarError(context, message: failure.getMessage(context)),
                           (authUser) =>
                               AutoRouter.of(context).push(NicknameRoute(authUser: authUser)),
                         );
@@ -122,7 +123,8 @@ class CreateAccountScreen extends StatelessWidget {
                       onPressed: () async {
                         final authUserResult = await _authService.signInWithGoogle();
                         authUserResult.fold(
-                          (failure) => showSnackBar(context, message: failure.message),
+                          (failure) =>
+                              showSnackBarError(context, message: failure.getMessage(context)),
                           (authUser) =>
                               AutoRouter.of(context).push(NicknameRoute(authUser: authUser)),
                         );

@@ -80,8 +80,8 @@ class AuthService {
         ],
         nonce: nonce,
       );
-    } on SignInWithAppleAuthorizationException catch (e) {
-      return Left(AuthFailure.unknown('Chyba: ${e.message}\nZkus to znovu později.'));
+    } on SignInWithAppleAuthorizationException catch (_) {
+      return const Left(AuthFailure.unknown());
     } catch (_) {
       return const Left(AuthFailure.unknown());
     }
