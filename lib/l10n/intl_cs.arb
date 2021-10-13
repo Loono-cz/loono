@@ -140,5 +140,7 @@
   "auth_unknown_failure_message": "Přihlášení se nepovedlo. Zkus to znovu později.",
   "@auth_unknown_failure_message": {},
   "auth_network_failure_message": "Nejsi připojený(á) k internetu.",
-  "@auth_network_failure_message": {}
+  "@auth_network_failure_message": {},
+  "auth_account_not_exists_message": "Účet s tímto emailem zatím neexistuje",
+  "@auth_account_not_exists_message": {}
 }

@@ -13,7 +13,7 @@ void _showSnackBar(
   if (message.isEmpty) return;
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
-      dismissDirection: DismissDirection.up,
+      dismissDirection: DismissDirection.vertical,
       backgroundColor: backgroundColor,
       behavior: SnackBarBehavior.floating,
       duration: duration,

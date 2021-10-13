@@ -9,6 +9,8 @@ extension AuthFailureMessageExt on AuthFailure {
     return when(
       unknown: (message) => message ?? context.l10n.auth_unknown_failure_message,
       noMessage: () => '',
+      accountNotExists: (email) =>
+          '${context.l10n.auth_account_not_exists_message} ${email == null ? '' : '($email).'}',
       network: (message) => message ?? context.l10n.auth_network_failure_message,
     );
   }
@@ -21,6 +23,8 @@ class AuthFailure with _$AuthFailure {
   const factory AuthFailure.unknown([String? message]) = UnknownFailure;
 
   const factory AuthFailure.noMessage() = NoMessageFailure;
+
+  const factory AuthFailure.accountNotExists([String? email]) = AccountNotExists;
 
   const factory AuthFailure.network([String? message]) = NetworkFailure;
 }

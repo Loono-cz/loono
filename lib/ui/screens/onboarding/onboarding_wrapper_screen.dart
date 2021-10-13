@@ -59,7 +59,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                     flows.add(OnBoardingBirthdateRoute(sex: sex));
 
                     if (user.dateOfBirthRaw != null) {
-                      /// GeneralPractitioner Route
+                      // GeneralPractitioner Route
                       flows.addAll(
                         [
                           OnboardingGeneralPracticionerRoute(sex: sex),
@@ -77,7 +77,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                         ],
                       );
 
-                      /// Gynecology Route (female only)
+                      // Gynecology Route (female only)
                       if (sex == Sex.female) {
                         flows.addAll(
                           [
@@ -100,7 +100,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                         );
                       }
 
-                      /// Dentist Route
+                      // Dentist Route
                       flows.addAll(
                         [
                           _nextDoctorOnlyRoute(

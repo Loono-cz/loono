@@ -7,6 +7,8 @@ import 'package:loono/services/auth/failures.dart';
 import 'package:loono/utils/crypto_utils.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
+enum _SignInMethod { apple, google }
+
 class AuthService {
   final _auth = FirebaseAuth.instance;
 
@@ -30,7 +32,38 @@ class AuthService {
     return authUser;
   }
 
-  Future<Either<AuthFailure, AuthUser>> signInWithGoogle() async {
+  Future<Either<AuthFailure, AuthUser>> signInWithGoogle() async => _signInWithGoogle();
+
+  Future<Either<AuthFailure, AuthUser>> signInWithApple() async => _signInWithApple();
+
+  Future<Tuple2<bool, AuthFailure?>> checkGoogleAccountExists() async =>
+      _checkAccountExists(_SignInMethod.google);
+
+  Future<Tuple2<bool, AuthFailure?>> checkAppleAccountExists() async =>
+      _checkAccountExists(_SignInMethod.apple);
+
+  Future<Tuple2<bool, AuthFailure?>> _checkAccountExists(_SignInMethod signInMethod) async {
+    final Either<AuthFailure, AuthUser> result;
+    switch (signInMethod) {
+      case _SignInMethod.apple:
+        result = await _signInWithApple(checkIfAccountExists: true);
+        break;
+      case _SignInMethod.google:
+        result = await _signInWithGoogle(checkIfAccountExists: true);
+        break;
+    }
+    return result.fold(
+      (failure) => failure.maybeWhen(
+        accountNotExists: (email) => Tuple2(false, AuthFailure.accountNotExists(email)),
+        orElse: () => const Tuple2(true, null),
+      ),
+      (authUser) => const Tuple2(true, null),
+    );
+  }
+
+  Future<Either<AuthFailure, AuthUser>> _signInWithGoogle({
+    bool checkIfAccountExists = false,
+  }) async {
     // TODO: better error handling
     GoogleSignInAccount? googleUser;
     try {
@@ -54,6 +87,16 @@ class AuthService {
     UserCredential? userCredential;
     try {
       userCredential = await _auth.signInWithCredential(credential);
+      // TODO: isNewUser != accountNotExists
+      // this actually checks if it is a new user and then registers him to the Firebase,
+      // so it only works for the first time
+      if (checkIfAccountExists) {
+        final isNewUser = userCredential.additionalUserInfo?.isNewUser == true;
+        if (isNewUser) {
+          final email = userCredential.additionalUserInfo?.profile?['email'] as String?;
+          return Left(AuthFailure.accountNotExists(email));
+        }
+      }
     } catch (_) {
       return const Left(AuthFailure.unknown());
     }
@@ -62,7 +105,9 @@ class AuthService {
         : Right(_authUserFromFirebase(userCredential.user)!);
   }
 
-  Future<Either<AuthFailure, AuthUser>> signInWithApple() async {
+  Future<Either<AuthFailure, AuthUser>> _signInWithApple({
+    bool checkIfAccountExists = false,
+  }) async {
     // TODO: better error handling
     // To prevent replay attacks with the credential returned from Apple, we
     // include a nonce in the credential request. When signing in with
@@ -80,7 +125,8 @@ class AuthService {
         ],
         nonce: nonce,
       );
-    } on SignInWithAppleAuthorizationException catch (_) {
+    } on SignInWithAppleException catch (_) {
+      // TODO: find out network error code
       return const Left(AuthFailure.unknown());
     } catch (_) {
       return const Left(AuthFailure.unknown());
@@ -94,6 +140,13 @@ class AuthService {
     UserCredential? userCredential;
     try {
       userCredential = await _auth.signInWithCredential(oauthCredential);
+      if (checkIfAccountExists) {
+        final isNewUser = userCredential.additionalUserInfo?.isNewUser == true;
+        if (isNewUser) {
+          // TODO: add email to message
+          return const Left(AuthFailure.accountNotExists());
+        }
+      }
     } catch (_) {
       return const Left(AuthFailure.unknown());
     }
