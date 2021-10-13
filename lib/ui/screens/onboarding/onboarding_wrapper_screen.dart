@@ -1,18 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/helpers/date_without_day.dart';
+import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/models/user.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/onboarding_state_service.dart';
-import 'package:loono/ui/screens/dentist_achievement.dart';
-import 'package:loono/ui/screens/general_practicioner_achievement.dart';
-import 'package:loono/ui/screens/gynecology_achievement.dart';
-import 'package:loono/ui/screens/onboarding/doctors/dentist_date.dart';
-import 'package:loono/ui/screens/onboarding/doctors/general_practitioner_date.dart';
-import 'package:loono/ui/screens/onboarding/doctors/gynecology_date.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:provider/provider.dart';
 
@@ -66,8 +61,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                           _dateOrAchievementOrNextDoctorRoute(
                             onboardingState: onboardingState,
                             currDoctorCcaVisit: user.generalPracticionerCcaVisit,
-                            currDoctorAchievementId: GeneralPracticionerAchievementScreen.id,
-                            currDoctorDateId: GeneralPractitionerDateScreen.id,
+                            examinationType: ExaminationType.GENERAL_PRACTITIONER,
                             achievementRoute: const GeneralPracticionerAchievementRoute(),
                             dateRoute: const GeneralPractitionerDateRoute(),
                             nextDoctorRoute: sex == Sex.female
@@ -90,8 +84,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                             _dateOrAchievementOrNextDoctorRoute(
                               onboardingState: onboardingState,
                               currDoctorCcaVisit: user.gynecologyCcaVisit,
-                              currDoctorAchievementId: GynecologyAchievementScreen.id,
-                              currDoctorDateId: GynecologyDateScreen.id,
+                              examinationType: ExaminationType.GYNECOLOGIST,
                               achievementRoute: const GynecologyAchievementRoute(),
                               dateRoute: const GynecologyDateRoute(),
                               nextDoctorRoute: OnboardingDentistRoute(sex: sex),
@@ -116,8 +109,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                           _dateOrAchievementOrNextDoctorRoute(
                             onboardingState: onboardingState,
                             currDoctorCcaVisit: user.dentistCcaVisit,
-                            currDoctorAchievementId: DentistAchievementScreen.id,
-                            currDoctorDateId: DentistDateScreen.id,
+                            examinationType: ExaminationType.DENTIST,
                             achievementRoute: const DentistAchievementRoute(),
                             dateRoute: const DentistDateRoute(),
                             nextDoctorRoute: OnboardingDentistRoute(sex: sex),
@@ -156,8 +148,7 @@ PageRouteInfo<dynamic>? _nextDoctorOnlyRoute({
 PageRouteInfo<dynamic>? _dateOrAchievementOrNextDoctorRoute({
   required OnboardingStateService onboardingState,
   required CcaDoctorVisit? currDoctorCcaVisit,
-  required String currDoctorAchievementId,
-  required String currDoctorDateId,
+  required ExaminationType examinationType,
   required PageRouteInfo<dynamic> achievementRoute,
   required PageRouteInfo<dynamic> dateRoute,
   PageRouteInfo<dynamic> allowNotificationsRoute = const AllowNotificationsRoute(),
@@ -165,10 +156,10 @@ PageRouteInfo<dynamic>? _dateOrAchievementOrNextDoctorRoute({
 }) {
   if (currDoctorCcaVisit != null) {
     if (currDoctorCcaVisit == CcaDoctorVisit.inLastTwoYears) {
-      if (!onboardingState.containsAchievement(currDoctorAchievementId)) {
+      if (!onboardingState.containsAchievement(examinationType)) {
         return achievementRoute;
       } else {
-        if (onboardingState.isUniversalDoctorDateSkipped(currDoctorDateId)) {
+        if (onboardingState.isUniversalDoctorDateSkipped(examinationType)) {
           if (onboardingState.hasNotRequestedNotificationsPermission) {
             return allowNotificationsRoute;
           }
