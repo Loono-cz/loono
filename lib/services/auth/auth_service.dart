@@ -93,6 +93,7 @@ class AuthService {
       if (checkIfAccountExists) {
         final isNewUser = userCredential.additionalUserInfo?.isNewUser == true;
         if (isNewUser) {
+          await signOut();
           final email = userCredential.additionalUserInfo?.profile?['email'] as String?;
           return Left(AuthFailure.accountNotExists(email));
         }
@@ -144,6 +145,7 @@ class AuthService {
         final isNewUser = userCredential.additionalUserInfo?.isNewUser == true;
         if (isNewUser) {
           // TODO: add email to message
+          await signOut();
           return const Left(AuthFailure.accountNotExists());
         }
       }
