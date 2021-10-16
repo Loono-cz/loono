@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/helpers/sex_extensions.dart';
+import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/user.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
@@ -20,10 +21,12 @@ class OnboardingDentistScreen extends StatelessWidget {
       body: SafeArea(
         child: UniversalDoctorScreen(
           question: sex.getUniversalDoctorLabel(context),
-          questionHighlight: "Zubaře",
-          imagePath: "dentist",
+          questionHighlight: context.l10n.dentist_question_highlight,
+          imagePath: 'dentist',
           numberOfSteps: sex.totalNumOfSteps,
           currentStep: sex.dentistStep,
+          nextButton1Text: context.l10n.dentist_next_button1,
+          nextButton2Text: context.l10n.dentist_next_button2,
           nextCallback1: () async {
             await _usersDao.updateDentistCcaVisit(CcaDoctorVisit.inLastTwoYears);
           },

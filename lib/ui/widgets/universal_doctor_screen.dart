@@ -22,8 +22,8 @@ class UniversalDoctorScreen extends StatelessWidget {
     required this.imagePath,
     required this.numberOfSteps,
     required this.currentStep,
-    this.nextButton1Text = 'V posledním roce',
-    this.nextButton2Text = 'Je to více než rok nebo nevím',
+    required this.nextButton1Text,
+    required this.nextButton2Text,
     required this.nextCallback1,
     required this.nextCallback2,
   });
@@ -33,7 +33,7 @@ class UniversalDoctorScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(24),
+          padding: const EdgeInsets.only(top: 18, left: 18, right: 18),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
