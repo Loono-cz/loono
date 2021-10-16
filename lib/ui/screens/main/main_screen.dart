@@ -1,7 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/services/auth/auth_service.dart';
-import 'package:loono/utils/registry.dart';
+import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/l10n/ext.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -11,8 +12,6 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final _authService = registry.get<AuthService>();
-
   int _selectedIndex = 0;
 
   static const List<Widget> _pages = <Widget>[
@@ -34,37 +33,47 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            tooltip: 'Odhlásit se',
-            onPressed: () async => _authService.signOut(),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        body: SafeArea(
+          child: Column(
+            children: [
+              // TODO: Only user with created account can open Settings
+              Align(
+                alignment: Alignment.topLeft,
+                child: TextButton(
+                  onPressed: () {
+                    AutoRouter.of(context).push(const SettingsScreenRouter());
+                  },
+                  child: const Text('SETTINGS'),
+                ),
+              ),
+              Center(
+                child: _pages.elementAt(_selectedIndex),
+              ),
+            ],
           ),
-        ],
-      ),
-      body: Center(
-        child: _pages.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        selectedItemColor: LoonoColors.primaryEnabled,
-        onTap: _onItemTapped,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Já',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Najít lékaře',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.lightbulb_outline),
-            label: 'Objev zdraví',
-          ),
-        ],
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _selectedIndex,
+          selectedItemColor: LoonoColors.primaryEnabled,
+          onTap: _onItemTapped,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.person),
+              label: context.l10n.main_menu_item_me,
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.search),
+              label: context.l10n.main_menu_item_find_doc,
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.lightbulb_outline),
+              label: context.l10n.main_menu_item_explore,
+            ),
+          ],
+        ),
       ),
     );
   }

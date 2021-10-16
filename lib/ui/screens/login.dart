@@ -45,7 +45,7 @@ class LoginScreen extends StatelessWidget {
                   final authUserResult = await _authService.signInWithApple();
                   authUserResult.fold(
                     (failure) => showSnackBar(context, message: failure.message),
-                    (authUser) => AutoRouter.of(context).push(const MainWrapperRoute()),
+                    (authUser) => AutoRouter.of(context).push(const MainScreenRouter()),
                   );
                 },
               ),
@@ -58,7 +58,7 @@ class LoginScreen extends StatelessWidget {
                   final authUserResult = await _authService.signInWithGoogle();
                   authUserResult.fold(
                     (failure) => showSnackBar(context, message: failure.message),
-                    (authUser) => AutoRouter.of(context).push(const MainWrapperRoute()),
+                    (authUser) => AutoRouter.of(context).push(const MainScreenRouter()),
                   );
                 },
               ),

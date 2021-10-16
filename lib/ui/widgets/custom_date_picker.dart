@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 
+const _itemHeight = 40.0;
+
 enum ColumnType { month, year }
 
 class CustomDatePicker extends StatefulWidget {
@@ -11,6 +13,7 @@ class CustomDatePicker extends StatefulWidget {
   final int yearsOverActual;
   final int? defaultMonth;
   final int? defaultYear;
+  final bool filled;
 
   CustomDatePicker({
     Key? key,
@@ -19,6 +22,7 @@ class CustomDatePicker extends StatefulWidget {
     this.yearsOverActual = 10,
     this.defaultMonth,
     this.defaultYear,
+    this.filled = false,
   }) : super(key: key);
 
   @override
@@ -44,23 +48,38 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.32,
-      child: Stack(alignment: AlignmentDirectional.centerStart, children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            _datePickerColumn(forType: ColumnType.month),
-            _datePickerColumn(forType: ColumnType.year),
-          ],
-        ),
-        Container(
-          width: 10,
-          height: 10,
-          decoration: const BoxDecoration(
-            color: LoonoColors.primaryEnabled,
-            shape: BoxShape.circle,
+      child: Stack(
+        alignment: AlignmentDirectional.centerStart,
+        children: [
+          if (widget.filled)
+            Container(
+              width: double.infinity,
+              height: _itemHeight,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              _datePickerColumn(forType: ColumnType.month),
+              _datePickerColumn(forType: ColumnType.year),
+            ],
           ),
-        ),
-      ]),
+          Padding(
+            padding: const EdgeInsets.only(left: 15),
+            child: Container(
+              width: 10,
+              height: 10,
+              decoration: const BoxDecoration(
+                color: LoonoColors.primaryEnabled,
+                shape: BoxShape.circle,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -116,11 +135,11 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
       width: MediaQuery.of(context).size.width / 3,
       child: ListWheelScrollView.useDelegate(
         physics: const FixedExtentScrollPhysics(),
-        itemExtent: 40,
+        itemExtent: _itemHeight,
         childDelegate: ListWheelChildLoopingListDelegate(
             children: items.keys
-                .map((index) =>
-                    _setListItem(forType: forType, index: index, text: items[index].toString(), items: items))
+                .map((index) => _setListItem(
+                    forType: forType, index: index, text: items[index].toString(), items: items))
                 .toList()),
         onSelectedItemChanged: (index) {
           _selectedItemHandle(forType: forType, items: items, value: items.keys.elementAt(index));
@@ -140,7 +159,8 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
     required String text,
     required Map<int, Object> items,
   }) {
-    final int selectedIndex = forType == ColumnType.month ? _selectedMonthIndex : _selectedYearIndex;
+    final int selectedIndex =
+        forType == ColumnType.month ? _selectedMonthIndex : _selectedYearIndex;
 
     final List<int> keys = items.keys.toList();
     keys.sort();

@@ -7,7 +7,6 @@ import 'package:loono/ui/screens/general_practicioner_achievement.dart';
 import 'package:loono/ui/screens/gynecology_achievement.dart';
 import 'package:loono/ui/screens/login.dart';
 import 'package:loono/ui/screens/main/main_screen.dart';
-import 'package:loono/ui/screens/main/main_wrapper_screen.dart';
 import 'package:loono/ui/screens/onboarding/allow_notifications.dart';
 import 'package:loono/ui/screens/onboarding/birthdate.dart';
 import 'package:loono/ui/screens/onboarding/carousel/carousel.dart';
@@ -21,7 +20,18 @@ import 'package:loono/ui/screens/onboarding/fallback_account/email.dart';
 import 'package:loono/ui/screens/onboarding/fallback_account/nickname.dart';
 import 'package:loono/ui/screens/onboarding/gender.dart';
 import 'package:loono/ui/screens/onboarding/onboarding_wrapper_screen.dart';
+import 'package:loono/ui/screens/settings/edit_birthdate.dart';
+import 'package:loono/ui/screens/settings/edit_email.dart';
+import 'package:loono/ui/screens/settings/edit_nickname.dart';
+import 'package:loono/ui/screens/settings/edit_sex.dart';
+import 'package:loono/ui/screens/settings/open_settings.dart';
+import 'package:loono/ui/screens/settings/update_profile.dart';
 import 'package:loono/ui/screens/welcome.dart';
+
+const _onboardingTransition = TransitionsBuilders.slideLeft;
+
+const _openSettingsTransition = TransitionsBuilders.slideBottom;
+const _settingsTransition = TransitionsBuilders.slideLeft;
 
 /// After editing this, run:
 /// flutter pub run build_runner build --delete-conflicting-outputs
@@ -29,12 +39,47 @@ import 'package:loono/ui/screens/welcome.dart';
   replaceInRouteName: 'Page|Screen,Route',
   routes: <AutoRoute>[
     AutoRoute(
-      page: MainWrapperScreen,
+      page: EmptyRouterScreen,
       path: 'main',
+      name: 'MainScreenRouter',
       initial: true,
       guards: [CheckIsLoggedIn],
       children: [
-        AutoRoute(page: MainScreen, path: 'main-menu'),
+        AutoRoute(page: MainScreen, path: ''),
+        CustomRoute(
+          page: EmptyRouterScreen,
+          path: 'settings',
+          name: 'SettingsScreenRouter',
+          transitionsBuilder: _openSettingsTransition,
+          children: [
+            AutoRoute(page: OpenSettingsScreen, path: ''),
+            CustomRoute(
+              page: UpdateProfileScreen,
+              path: 'update-profile',
+              transitionsBuilder: _settingsTransition,
+            ),
+            CustomRoute(
+              page: EditNicknameScreen,
+              path: 'update-profile/nickname',
+              transitionsBuilder: _settingsTransition,
+            ),
+            CustomRoute(
+              page: EditEmailScreen,
+              path: 'update-profile/email',
+              transitionsBuilder: _settingsTransition,
+            ),
+            CustomRoute(
+              page: EditSexScreen,
+              path: 'update-profile/sex',
+              transitionsBuilder: _settingsTransition,
+            ),
+            CustomRoute(
+              page: EditBirthdateScreen,
+              path: 'update-profile/birthdate',
+              transitionsBuilder: _settingsTransition,
+            ),
+          ],
+        ),
       ],
     ),
     AutoRoute(
@@ -45,67 +90,67 @@ import 'package:loono/ui/screens/welcome.dart';
         CustomRoute(
           page: OnboardingCarouselScreen,
           path: 'carousel',
-          transitionsBuilder: TransitionsBuilders.slideLeft,
+          transitionsBuilder: _onboardingTransition,
         ),
         CustomRoute(
           page: OnboardingGenderScreen,
           path: 'gender',
-          transitionsBuilder: TransitionsBuilders.slideLeft,
+          transitionsBuilder: _onboardingTransition,
         ),
         CustomRoute(
           page: OnBoardingBirthdateScreen,
           path: 'birthdate',
-          transitionsBuilder: TransitionsBuilders.slideLeft,
+          transitionsBuilder: _onboardingTransition,
         ),
         CustomRoute(
           page: OnboardingGeneralPracticionerScreen,
           path: 'doctor/general-practicioner',
-          transitionsBuilder: TransitionsBuilders.slideLeft,
+          transitionsBuilder: _onboardingTransition,
         ),
         CustomRoute(
           page: GeneralPracticionerAchievementScreen,
           path: 'general-practicioner-achievement',
-          transitionsBuilder: TransitionsBuilders.slideLeft,
+          transitionsBuilder: _onboardingTransition,
         ),
         CustomRoute(
           page: GeneralPractitionerDateScreen,
           path: 'doctor/general-practitioner-date',
-          transitionsBuilder: TransitionsBuilders.slideLeft,
+          transitionsBuilder: _onboardingTransition,
         ),
         CustomRoute(
           page: AllowNotificationsScreen,
           path: 'allow_notifications',
-          transitionsBuilder: TransitionsBuilders.slideLeft,
+          transitionsBuilder: _onboardingTransition,
         ),
         CustomRoute(
           page: OnboardingGynecologyScreen,
           path: 'doctor/gynecology',
-          transitionsBuilder: TransitionsBuilders.slideLeft,
+          transitionsBuilder: _onboardingTransition,
         ),
         CustomRoute(
           page: GynecologyAchievementScreen,
           path: 'gynecology_achievement',
-          transitionsBuilder: TransitionsBuilders.slideLeft,
+          transitionsBuilder: _onboardingTransition,
         ),
         CustomRoute(
           page: GynecologyDateScreen,
           path: 'doctor/gynecology-date',
-          transitionsBuilder: TransitionsBuilders.slideLeft,
+          transitionsBuilder: _onboardingTransition,
         ),
         CustomRoute(
           page: OnboardingDentistScreen,
           path: 'doctor/dentist',
-          transitionsBuilder: TransitionsBuilders.slideLeft,
+          transitionsBuilder: _onboardingTransition,
         ),
         CustomRoute(
           page: DentistAchievementScreen,
           path: 'dentist_achievement',
-          transitionsBuilder: TransitionsBuilders.slideLeft,
+          transitionsBuilder: _onboardingTransition,
         ),
         CustomRoute(
           page: DentistDateScreen,
           path: 'doctor/dentist-date',
-          transitionsBuilder: TransitionsBuilders.slideLeft,
+          transitionsBuilder: _onboardingTransition,
         ),
       ],
     ),

@@ -8,6 +8,8 @@ typedef SubmitCallback = void Function(String input);
 class FallbackAccountContent extends StatefulWidget {
   const FallbackAccountContent({
     Key? key,
+    this.appBar,
+    this.backgroundColor,
     this.title = '',
     this.initialText,
     this.hint,
@@ -17,8 +19,12 @@ class FallbackAccountContent extends StatefulWidget {
     this.autovalidateMode = AutovalidateMode.disabled,
     this.onChanged,
     this.onSubmit,
+    this.buttonText,
+    this.filled,
   }) : super(key: key);
 
+  final PreferredSizeWidget? appBar;
+  final Color? backgroundColor;
   final String title;
   final String? initialText;
   final String? hint;
@@ -26,6 +32,8 @@ class FallbackAccountContent extends StatefulWidget {
   final FormFieldValidator<String>? validator;
   final TextInputType? keyboardType;
   final AutovalidateMode? autovalidateMode;
+  final String? buttonText;
+  final bool? filled;
 
   /// Called whenever the text changes in the [TextFormField].
   final ValueChanged<String>? onChanged;
@@ -63,6 +71,8 @@ class _FallbackAccountContentState extends State<FallbackAccountContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: widget.appBar,
+      backgroundColor: widget.backgroundColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -74,7 +84,10 @@ class _FallbackAccountContentState extends State<FallbackAccountContent> {
               _buildForm(),
               if (widget.description.isNotEmpty) ..._buildDescription(),
               const Spacer(),
-              LoonoButton(text: context.l10n.confirm_info, onTap: validateAndSubmit),
+              LoonoButton(
+                text: widget.buttonText ?? context.l10n.confirm_info,
+                onTap: validateAndSubmit,
+              ),
               const SizedBox(height: 18.0),
             ],
           ),
@@ -125,9 +138,17 @@ class _FallbackAccountContentState extends State<FallbackAccountContent> {
         style: const TextStyle(fontSize: 24.0, color: LoonoColors.black),
         decoration: InputDecoration(
           hintText: widget.hint,
-          focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: LoonoColors.primaryEnabled, width: 2.0),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: const BorderSide(color: LoonoColors.primaryEnabled, width: 4.0),
+            borderRadius: widget.filled == true
+                ? const BorderRadius.all(Radius.circular(10.0))
+                : const BorderRadius.only(
+                    topLeft: Radius.circular(4.0),
+                    topRight: Radius.circular(4.0),
+                  ),
           ),
+          filled: widget.filled,
+          fillColor: widget.filled == true ? Colors.white : null,
         ),
         autofocus: true,
         autovalidateMode: widget.autovalidateMode,
