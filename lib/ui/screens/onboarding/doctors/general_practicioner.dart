@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loono/helpers/sex_extensions.dart';
+import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/user.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/ui/widgets/universal_doctor_screen.dart';
@@ -18,12 +19,12 @@ class OnboardingGeneralPracticionerScreen extends StatelessWidget {
       body: SafeArea(
         child: UniversalDoctorScreen(
           question: sex.getUniversalDoctorLabel(context),
-          questionHighlight: "Praktického lékaře",
-          imagePath: "practicioner",
+          questionHighlight: context.l10n.practitioner_question_highlight,
+          imagePath: 'practicioner',
           numberOfSteps: sex.totalNumOfSteps,
           currentStep: sex.generalPractitionerStep,
-          nextButton1Text: 'V posledních 2 letech',
-          nextButton2Text: 'Jsou to více než 2 roky nebo nevím',
+          nextButton1Text: context.l10n.practitioner_next_button1,
+          nextButton2Text: context.l10n.practitioner_next_button2,
           nextCallback1: () async =>
               _userRepository.updateGeneralPracticionerCcaVisit(CcaDoctorVisit.inLastTwoYears),
           nextCallback2: () async => _userRepository

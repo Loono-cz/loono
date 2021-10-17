@@ -51,7 +51,7 @@ class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
                 },
               )),
               Padding(
-                padding: const EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.only(top: 8),
                 child: LoonoButton(
                   text: context.l10n.continue_info,
                   enabled: activeButton != null,
@@ -60,9 +60,7 @@ class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
                       : () async => registry.get<UserRepository>().updateSex(activeButton!),
                 ),
               ),
-              const SizedBox(
-                height: 120,
-              ),
+              SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
             ],
           ),
         ),

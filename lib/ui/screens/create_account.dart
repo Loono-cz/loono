@@ -106,42 +106,44 @@ class CreateAccountScreen extends StatelessWidget {
                       context.l10n.create_an_account_so_you_can_track_your_progress,
                       style: LoonoFonts.paragraphFontStyle,
                     ),
-                    const SizedBox(height: 25),
-                    SocialLoginButton.apple(
-                      onPressed: () async {
-                        final authUserResult = await _authService.signInWithApple();
-                        authUserResult.fold(
-                          (failure) => showSnackBar(context, message: failure.message),
-                          (authUser) =>
-                              AutoRouter.of(context).push(NicknameRoute(authUser: authUser)),
-                        );
-                      },
-                    ),
-                    const SizedBox(height: 15),
-                    SocialLoginButton.google(
-                      onPressed: () async {
-                        final authUserResult = await _authService.signInWithGoogle();
-                        authUserResult.fold(
-                          (failure) => showSnackBar(context, message: failure.message),
-                          (authUser) =>
-                              AutoRouter.of(context).push(NicknameRoute(authUser: authUser)),
-                        );
-                      },
-                    ),
                     Expanded(
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: TextButton(
-                          onPressed: () => print('click'),
-                          child: Text(
-                            context.l10n.by_logging_in_you_agree_to_the_terms_of_privacy,
-                            style: LoonoFonts.paragraphSmallFontStyle,
-                            textAlign: TextAlign.center,
+                        child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SocialLoginButton.apple(
+                            onPressed: () async {
+                              final authUserResult = await _authService.signInWithApple();
+                              authUserResult.fold(
+                                (failure) => showSnackBar(context, message: failure.message),
+                                (authUser) =>
+                                    AutoRouter.of(context).push(NicknameRoute(authUser: authUser)),
+                              );
+                            },
                           ),
-                        ),
+                          const SizedBox(height: 15),
+                          SocialLoginButton.google(
+                            onPressed: () async {
+                              final authUserResult = await _authService.signInWithGoogle();
+                              authUserResult.fold(
+                                (failure) => showSnackBar(context, message: failure.message),
+                                (authUser) =>
+                                    AutoRouter.of(context).push(NicknameRoute(authUser: authUser)),
+                              );
+                            },
+                          )
+                        ],
                       ),
-                    ),
-                    const SizedBox(height: 30),
+                    )),
+                    TextButton(
+                      onPressed: () => print('click'),
+                      child: Text(
+                        context.l10n.by_logging_in_you_agree_to_the_terms_of_privacy,
+                        style: LoonoFonts.paragraphSmallFontStyle,
+                        textAlign: TextAlign.center,
+                      ),
+                    )
                   ],
                 ),
               ),

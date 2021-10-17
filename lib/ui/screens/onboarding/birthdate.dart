@@ -10,6 +10,8 @@ import 'package:loono/ui/widgets/custom_date_picker.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
 import 'package:loono/utils/registry.dart';
 
+import '../../../constants.dart';
+
 class OnBoardingBirthdateScreen extends StatefulWidget {
   const OnBoardingBirthdateScreen({Key? key, required this.sex}) : super(key: key);
 
@@ -37,9 +39,23 @@ class _OnBoardingBirthdateScreenState extends State<OnBoardingBirthdateScreen> {
               ),
               Align(
                 alignment: Alignment.centerLeft,
-                child: Text(
-                  widget.sex.getBirthdateLabel(context),
-                  style: const TextStyle(color: Colors.black, fontSize: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.sex.getBirthdateLabel(context),
+                      style: const TextStyle(color: Colors.black, fontSize: 24),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      context.l10n.birthdate_subtitle.split('\n')[0],
+                      style: LoonoFonts.paragraphSmallFontStyle,
+                    ),
+                    Text(
+                      context.l10n.birthdate_subtitle.split('\n')[1],
+                      style: LoonoFonts.paragraphSmallFontStyle,
+                    )
+                  ],
                 ),
               ),
               Expanded(
@@ -66,9 +82,7 @@ class _OnBoardingBirthdateScreenState extends State<OnBoardingBirthdateScreen> {
                   }
                 },
               ),
-              const SizedBox(
-                height: 120,
-              )
+              SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
             ],
           ),
         ),
