@@ -43,17 +43,11 @@ class LoginScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
               child: SocialLoginButton.apple(
                 onPressed: () async {
-                  final accountExists = await _authService.checkAppleAccountExists();
-                  if (accountExists.value1) {
-                    final authUserResult = await _authService.signInWithApple();
-                    authUserResult.fold(
-                      (failure) => showSnackBarError(context, message: failure.getMessage(context)),
-                      (authUser) => AutoRouter.of(context).push(const MainWrapperRoute()),
-                    );
-                  } else {
-                    showSnackBarError(context,
-                        message: accountExists.value2?.getMessage(context) ?? '');
-                  }
+                  final accountExistsResult = await _authService.checkAppleAccountExistsAndSignIn();
+                  accountExistsResult.fold(
+                    (failure) => showSnackBarError(context, message: failure.getMessage(context)),
+                    (authUser) => AutoRouter.of(context).push(const MainWrapperRoute()),
+                  );
                 },
               ),
             ),
@@ -62,17 +56,12 @@ class LoginScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
               child: SocialLoginButton.google(
                 onPressed: () async {
-                  final accountExists = await _authService.checkGoogleAccountExists();
-                  if (accountExists.value1) {
-                    final authUserResult = await _authService.signInWithGoogle();
-                    authUserResult.fold(
-                      (failure) => showSnackBarError(context, message: failure.getMessage(context)),
-                      (authUser) => AutoRouter.of(context).push(const MainWrapperRoute()),
-                    );
-                  } else {
-                    showSnackBarError(context,
-                        message: accountExists.value2?.getMessage(context) ?? '');
-                  }
+                  final accountExistsResult =
+                      await _authService.checkGoogleAccountExistsAndSignIn();
+                  accountExistsResult.fold(
+                    (failure) => showSnackBarError(context, message: failure.getMessage(context)),
+                    (authUser) => AutoRouter.of(context).push(const MainWrapperRoute()),
+                  );
                 },
               ),
             ),
