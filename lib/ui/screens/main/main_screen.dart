@@ -1,7 +1,5 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/utils/registry.dart';
 
@@ -42,10 +40,7 @@ class _MainScreenState extends State<MainScreen> {
           IconButton(
             icon: const Icon(Icons.logout),
             tooltip: 'Odhlásit se',
-            onPressed: () async {
-              await _authService.signOut();
-              AutoRouter.of(context).replaceAll([const MainWrapperRoute()]);
-            },
+            onPressed: () async => _authService.signOut(),
           ),
         ],
       ),
