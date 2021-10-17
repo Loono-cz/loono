@@ -4,6 +4,7 @@ import 'package:loono/helpers/nickname_hint_resolver.dart';
 import 'package:loono/helpers/validators.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/firebase_user.dart';
+import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
@@ -16,6 +17,7 @@ class EmailScreen extends StatelessWidget {
   final AuthUser? authUser;
 
   final _usersDao = registry.get<DatabaseService>().users;
+  final _userRepository = registry.get<UserRepository>();
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class EmailScreen extends StatelessWidget {
           keyboardType: TextInputType.emailAddress,
           validator: Validators.email(context),
           onSubmit: (input) async {
-            await _usersDao.updateEmail(input);
+            await _userRepository.updateEmail(input);
             AutoRouter.of(context).push(const MainScreenRouter());
           },
         );

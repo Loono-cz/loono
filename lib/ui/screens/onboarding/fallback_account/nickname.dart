@@ -4,6 +4,7 @@ import 'package:loono/helpers/nickname_hint_resolver.dart';
 import 'package:loono/helpers/validators.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/firebase_user.dart';
+import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
@@ -29,7 +30,7 @@ class NicknameScreen extends StatelessWidget {
           keyboardType: TextInputType.name,
           validator: Validators.nickname(context),
           onSubmit: (input) async {
-            await _usersDao.updateNickname(input);
+            await registry.get<UserRepository>().updateNickname(input);
             AutoRouter.of(context).push(EmailRoute(authUser: authUser));
           },
         );

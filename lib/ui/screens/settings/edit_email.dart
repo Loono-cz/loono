@@ -4,18 +4,16 @@ import 'package:loono/constants.dart';
 import 'package:loono/helpers/nickname_hint_resolver.dart';
 import 'package:loono/helpers/validators.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:loono/services/database_service.dart';
+import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/ui/widgets/fallback_account_content.dart';
 import 'package:loono/ui/widgets/settings/app_bar.dart';
 import 'package:loono/utils/registry.dart';
 
 class EditEmailScreen extends StatelessWidget {
-  EditEmailScreen({Key? key, required this.user}) : super(key: key);
+  const EditEmailScreen({Key? key, required this.user}) : super(key: key);
 
   final User? user;
-
-  final _usersDao = registry.get<DatabaseService>().users;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +28,7 @@ class EditEmailScreen extends StatelessWidget {
       keyboardType: TextInputType.emailAddress,
       validator: Validators.email(context),
       onSubmit: (input) async {
-        await _usersDao.updateEmail(input);
+        await registry.get<UserRepository>().updateEmail(input);
         AutoRouter.of(context).pop();
       },
     );

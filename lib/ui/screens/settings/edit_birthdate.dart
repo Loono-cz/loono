@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:loono/services/database_service.dart';
+import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/custom_date_picker.dart';
 import 'package:loono/ui/widgets/settings/app_bar.dart';
@@ -52,7 +52,7 @@ class _EditBirthdateScreenState extends State<EditBirthdateScreen> {
                 text: context.l10n.action_save,
                 onTap: () async {
                   if (selectedDate != null) {
-                    await registry.get<DatabaseService>().users.updateDateOfBirth(DateWithoutDay(
+                    await registry.get<UserRepository>().updateDateOfBirth(DateWithoutDay(
                         month: monthFromInt(selectedDate!.month), year: selectedDate!.year));
                   }
                   AutoRouter.of(context).pop();

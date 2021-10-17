@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/models/user.dart';
-import 'package:loono/services/database_service.dart';
+import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/ui/widgets/universal_doctor_screen.dart';
 import 'package:loono/utils/registry.dart';
 
@@ -10,7 +10,7 @@ class OnboardingGeneralPracticionerScreen extends StatelessWidget {
 
   final Sex sex;
 
-  final _usersDao = registry.get<DatabaseService>().users;
+  final _userRepository = registry.get<UserRepository>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +24,10 @@ class OnboardingGeneralPracticionerScreen extends StatelessWidget {
           currentStep: sex.generalPractitionerStep,
           nextButton1Text: 'V posledních 2 letech',
           nextButton2Text: 'Jsou to více než 2 roky nebo nevím',
-          nextCallback1: () async {
-            await _usersDao.updateGeneralPracticionerCcaVisit(CcaDoctorVisit.inLastTwoYears);
-          },
-          nextCallback2: () async {
-            await _usersDao.updateGeneralPracticionerCcaVisit(CcaDoctorVisit.moreThanTwoYearsOrIdk);
-          },
+          nextCallback1: () async =>
+              _userRepository.updateGeneralPracticionerCcaVisit(CcaDoctorVisit.inLastTwoYears),
+          nextCallback2: () async => _userRepository
+              .updateGeneralPracticionerCcaVisit(CcaDoctorVisit.moreThanTwoYearsOrIdk),
         ),
       ),
     );

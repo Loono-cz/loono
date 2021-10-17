@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:loono/services/database_service.dart';
+import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/onboarding/genders_container.dart';
 import 'package:loono/ui/widgets/settings/app_bar.dart';
@@ -42,7 +42,7 @@ class _EditSexScreenState extends State<EditSexScreen> {
                   onTap: activeButton == null
                       ? () {}
                       : () async {
-                          await registry.get<DatabaseService>().users.updateSex(activeButton!);
+                          await registry.get<UserRepository>().updateSex(activeButton!);
                           AutoRouter.of(context).pop();
                         },
                 ),
