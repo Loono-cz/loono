@@ -39,46 +39,46 @@ const _settingsTransition = TransitionsBuilders.slideLeft;
   replaceInRouteName: 'Page|Screen,Route',
   routes: <AutoRoute>[
     AutoRoute(
+      // page: MainScreen,
       page: EmptyRouterScreen,
       path: 'main',
       name: 'MainScreenRouter',
       initial: true,
       guards: [CheckIsLoggedIn],
       children: [
+        // Main
         AutoRoute(page: MainScreen, path: ''),
+
+        // Settings
         CustomRoute(
-          page: EmptyRouterScreen,
+          page: OpenSettingsScreen,
           path: 'settings',
-          name: 'SettingsScreenRouter',
           transitionsBuilder: _openSettingsTransition,
-          children: [
-            AutoRoute(page: OpenSettingsScreen, path: ''),
-            CustomRoute(
-              page: UpdateProfileScreen,
-              path: 'update-profile',
-              transitionsBuilder: _settingsTransition,
-            ),
-            CustomRoute(
-              page: EditNicknameScreen,
-              path: 'update-profile/nickname',
-              transitionsBuilder: _settingsTransition,
-            ),
-            CustomRoute(
-              page: EditEmailScreen,
-              path: 'update-profile/email',
-              transitionsBuilder: _settingsTransition,
-            ),
-            CustomRoute(
-              page: EditSexScreen,
-              path: 'update-profile/sex',
-              transitionsBuilder: _settingsTransition,
-            ),
-            CustomRoute(
-              page: EditBirthdateScreen,
-              path: 'update-profile/birthdate',
-              transitionsBuilder: _settingsTransition,
-            ),
-          ],
+        ),
+        CustomRoute(
+          page: UpdateProfileScreen,
+          path: 'settings/update-profile',
+          transitionsBuilder: _settingsTransition,
+        ),
+        CustomRoute(
+          page: EditNicknameScreen,
+          path: 'settings/update-profile/nickname',
+          transitionsBuilder: _settingsTransition,
+        ),
+        CustomRoute(
+          page: EditEmailScreen,
+          path: 'settings/update-profile/email',
+          transitionsBuilder: _settingsTransition,
+        ),
+        CustomRoute(
+          page: EditSexScreen,
+          path: 'settings/update-profile/sex',
+          transitionsBuilder: _settingsTransition,
+        ),
+        CustomRoute(
+          page: EditBirthdateScreen,
+          path: 'settings/update-profile/birthdate',
+          transitionsBuilder: _settingsTransition,
         ),
       ],
     ),

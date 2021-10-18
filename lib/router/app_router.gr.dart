@@ -87,17 +87,13 @@ class AppRouter extends _i1.RootStackRouter {
       return _i1.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i9.MainScreen());
     },
-    SettingsScreenRouter.name: (routeData) {
+    OpenSettingsRoute.name: (routeData) {
       return _i1.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i1.EmptyRouterScreen(),
+          child: const _i10.OpenSettingsScreen(),
           transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
           opaque: true,
           barrierDismissible: false);
-    },
-    OpenSettingsRoute.name: (routeData) {
-      return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i10.OpenSettingsScreen());
     },
     UpdateProfileRoute.name: (routeData) {
       final args = routeData.argsAs<UpdateProfileRouteArgs>(
@@ -266,20 +262,17 @@ class AppRouter extends _i1.RootStackRouter {
           checkIsLoggedIn
         ], children: [
           _i1.RouteConfig(MainRoute.name, path: ''),
-          _i1.RouteConfig(SettingsScreenRouter.name,
-              path: 'settings',
-              children: [
-                _i1.RouteConfig(OpenSettingsRoute.name, path: ''),
-                _i1.RouteConfig(UpdateProfileRoute.name,
-                    path: 'update-profile'),
-                _i1.RouteConfig(EditNicknameRoute.name,
-                    path: 'update-profile/nickname'),
-                _i1.RouteConfig(EditEmailRoute.name,
-                    path: 'update-profile/email'),
-                _i1.RouteConfig(EditSexRoute.name, path: 'update-profile/sex'),
-                _i1.RouteConfig(EditBirthdateRoute.name,
-                    path: 'update-profile/birthdate')
-              ])
+          _i1.RouteConfig(OpenSettingsRoute.name, path: 'settings'),
+          _i1.RouteConfig(UpdateProfileRoute.name,
+              path: 'settings/update-profile'),
+          _i1.RouteConfig(EditNicknameRoute.name,
+              path: 'settings/update-profile/nickname'),
+          _i1.RouteConfig(EditEmailRoute.name,
+              path: 'settings/update-profile/email'),
+          _i1.RouteConfig(EditSexRoute.name,
+              path: 'settings/update-profile/sex'),
+          _i1.RouteConfig(EditBirthdateRoute.name,
+              path: 'settings/update-profile/birthdate')
         ]),
         _i1.RouteConfig(OnboardingWrapperRoute.name,
             path: 'onboarding',
@@ -397,15 +390,8 @@ class MainRoute extends _i1.PageRouteInfo<void> {
   static const String name = 'MainRoute';
 }
 
-class SettingsScreenRouter extends _i1.PageRouteInfo<void> {
-  const SettingsScreenRouter({List<_i1.PageRouteInfo>? children})
-      : super(name, path: 'settings', initialChildren: children);
-
-  static const String name = 'SettingsScreenRouter';
-}
-
 class OpenSettingsRoute extends _i1.PageRouteInfo<void> {
-  const OpenSettingsRoute() : super(name, path: '');
+  const OpenSettingsRoute() : super(name, path: 'settings');
 
   static const String name = 'OpenSettingsRoute';
 }
@@ -413,7 +399,8 @@ class OpenSettingsRoute extends _i1.PageRouteInfo<void> {
 class UpdateProfileRoute extends _i1.PageRouteInfo<UpdateProfileRouteArgs> {
   UpdateProfileRoute({_i2.Key? key})
       : super(name,
-            path: 'update-profile', args: UpdateProfileRouteArgs(key: key));
+            path: 'settings/update-profile',
+            args: UpdateProfileRouteArgs(key: key));
 
   static const String name = 'UpdateProfileRoute';
 }
@@ -427,7 +414,7 @@ class UpdateProfileRouteArgs {
 class EditNicknameRoute extends _i1.PageRouteInfo<EditNicknameRouteArgs> {
   EditNicknameRoute({_i2.Key? key, required _i31.User? user})
       : super(name,
-            path: 'update-profile/nickname',
+            path: 'settings/update-profile/nickname',
             args: EditNicknameRouteArgs(key: key, user: user));
 
   static const String name = 'EditNicknameRoute';
@@ -444,7 +431,7 @@ class EditNicknameRouteArgs {
 class EditEmailRoute extends _i1.PageRouteInfo<EditEmailRouteArgs> {
   EditEmailRoute({_i2.Key? key, required _i31.User? user})
       : super(name,
-            path: 'update-profile/email',
+            path: 'settings/update-profile/email',
             args: EditEmailRouteArgs(key: key, user: user));
 
   static const String name = 'EditEmailRoute';
@@ -459,13 +446,14 @@ class EditEmailRouteArgs {
 }
 
 class EditSexRoute extends _i1.PageRouteInfo<void> {
-  const EditSexRoute() : super(name, path: 'update-profile/sex');
+  const EditSexRoute() : super(name, path: 'settings/update-profile/sex');
 
   static const String name = 'EditSexRoute';
 }
 
 class EditBirthdateRoute extends _i1.PageRouteInfo<void> {
-  const EditBirthdateRoute() : super(name, path: 'update-profile/birthdate');
+  const EditBirthdateRoute()
+      : super(name, path: 'settings/update-profile/birthdate');
 
   static const String name = 'EditBirthdateRoute';
 }

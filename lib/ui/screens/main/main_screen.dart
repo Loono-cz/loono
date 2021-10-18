@@ -44,7 +44,9 @@ class _MainScreenState extends State<MainScreen> {
                 alignment: Alignment.topLeft,
                 child: TextButton(
                   onPressed: () {
-                    AutoRouter.of(context).push(const SettingsScreenRouter());
+                    AutoRouter.of(context).push(const OpenSettingsRoute());
+                    // AutoRouter.of(context)
+                    //     .push(const MainScreenRouter(children: [OpenSettingsRoute()]));
                   },
                   child: const Text('SETTINGS'),
                 ),
