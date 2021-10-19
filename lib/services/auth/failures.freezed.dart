@@ -17,20 +17,23 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$AuthFailureTearOff {
   const _$AuthFailureTearOff();
 
-  UnknownFailure unknown(
-      [String message = 'Přihlášení se nepovedlo. Zkus to znovu později.']) {
+  UnknownFailure unknown([String? message]) {
     return UnknownFailure(
       message,
     );
   }
 
-  NoMessageFailure noMessage([String message = '']) {
-    return NoMessageFailure(
-      message,
+  NoMessageFailure noMessage() {
+    return const NoMessageFailure();
+  }
+
+  AccountNotExists accountNotExists([String? email]) {
+    return AccountNotExists(
+      email,
     );
   }
 
-  NetworkFailure network([String message = 'Nejsi připojený/á k internetu.']) {
+  NetworkFailure network([String? message]) {
     return NetworkFailure(
       message,
     );
@@ -42,27 +45,28 @@ const $AuthFailure = _$AuthFailureTearOff();
 
 /// @nodoc
 mixin _$AuthFailure {
-  String get message => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String message) unknown,
-    required TResult Function(String message) noMessage,
-    required TResult Function(String message) network,
+    required TResult Function(String? message) unknown,
+    required TResult Function() noMessage,
+    required TResult Function(String? email) accountNotExists,
+    required TResult Function(String? message) network,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String message)? unknown,
-    TResult Function(String message)? noMessage,
-    TResult Function(String message)? network,
+    TResult Function(String? message)? unknown,
+    TResult Function()? noMessage,
+    TResult Function(String? email)? accountNotExists,
+    TResult Function(String? message)? network,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message)? unknown,
-    TResult Function(String message)? noMessage,
-    TResult Function(String message)? network,
+    TResult Function(String? message)? unknown,
+    TResult Function()? noMessage,
+    TResult Function(String? email)? accountNotExists,
+    TResult Function(String? message)? network,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -70,6 +74,7 @@ mixin _$AuthFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(UnknownFailure value) unknown,
     required TResult Function(NoMessageFailure value) noMessage,
+    required TResult Function(AccountNotExists value) accountNotExists,
     required TResult Function(NetworkFailure value) network,
   }) =>
       throw _privateConstructorUsedError;
@@ -77,6 +82,7 @@ mixin _$AuthFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(UnknownFailure value)? unknown,
     TResult Function(NoMessageFailure value)? noMessage,
+    TResult Function(AccountNotExists value)? accountNotExists,
     TResult Function(NetworkFailure value)? network,
   }) =>
       throw _privateConstructorUsedError;
@@ -84,13 +90,10 @@ mixin _$AuthFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UnknownFailure value)? unknown,
     TResult Function(NoMessageFailure value)? noMessage,
+    TResult Function(AccountNotExists value)? accountNotExists,
     TResult Function(NetworkFailure value)? network,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $AuthFailureCopyWith<AuthFailure> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -99,7 +102,6 @@ abstract class $AuthFailureCopyWith<$Res> {
   factory $AuthFailureCopyWith(
           AuthFailure value, $Res Function(AuthFailure) then) =
       _$AuthFailureCopyWithImpl<$Res>;
-  $Res call({String message});
 }
 
 /// @nodoc
@@ -109,28 +111,14 @@ class _$AuthFailureCopyWithImpl<$Res> implements $AuthFailureCopyWith<$Res> {
   final AuthFailure _value;
   // ignore: unused_field
   final $Res Function(AuthFailure) _then;
-
-  @override
-  $Res call({
-    Object? message = freezed,
-  }) {
-    return _then(_value.copyWith(
-      message: message == freezed
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class $UnknownFailureCopyWith<$Res>
-    implements $AuthFailureCopyWith<$Res> {
+abstract class $UnknownFailureCopyWith<$Res> {
   factory $UnknownFailureCopyWith(
           UnknownFailure value, $Res Function(UnknownFailure) then) =
       _$UnknownFailureCopyWithImpl<$Res>;
-  @override
-  $Res call({String message});
+  $Res call({String? message});
 }
 
 /// @nodoc
@@ -151,7 +139,7 @@ class _$UnknownFailureCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
       message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -159,13 +147,10 @@ class _$UnknownFailureCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UnknownFailure extends UnknownFailure {
-  const _$UnknownFailure(
-      [this.message = 'Přihlášení se nepovedlo. Zkus to znovu později.'])
-      : super._();
+  const _$UnknownFailure([this.message]) : super._();
 
-  @JsonKey(defaultValue: 'Přihlášení se nepovedlo. Zkus to znovu později.')
   @override
-  final String message;
+  final String? message;
 
   @override
   String toString() {
@@ -192,9 +177,10 @@ class _$UnknownFailure extends UnknownFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String message) unknown,
-    required TResult Function(String message) noMessage,
-    required TResult Function(String message) network,
+    required TResult Function(String? message) unknown,
+    required TResult Function() noMessage,
+    required TResult Function(String? email) accountNotExists,
+    required TResult Function(String? message) network,
   }) {
     return unknown(message);
   }
@@ -202,9 +188,10 @@ class _$UnknownFailure extends UnknownFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String message)? unknown,
-    TResult Function(String message)? noMessage,
-    TResult Function(String message)? network,
+    TResult Function(String? message)? unknown,
+    TResult Function()? noMessage,
+    TResult Function(String? email)? accountNotExists,
+    TResult Function(String? message)? network,
   }) {
     return unknown?.call(message);
   }
@@ -212,9 +199,10 @@ class _$UnknownFailure extends UnknownFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message)? unknown,
-    TResult Function(String message)? noMessage,
-    TResult Function(String message)? network,
+    TResult Function(String? message)? unknown,
+    TResult Function()? noMessage,
+    TResult Function(String? email)? accountNotExists,
+    TResult Function(String? message)? network,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -228,6 +216,7 @@ class _$UnknownFailure extends UnknownFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(UnknownFailure value) unknown,
     required TResult Function(NoMessageFailure value) noMessage,
+    required TResult Function(AccountNotExists value) accountNotExists,
     required TResult Function(NetworkFailure value) network,
   }) {
     return unknown(this);
@@ -238,6 +227,7 @@ class _$UnknownFailure extends UnknownFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(UnknownFailure value)? unknown,
     TResult Function(NoMessageFailure value)? noMessage,
+    TResult Function(AccountNotExists value)? accountNotExists,
     TResult Function(NetworkFailure value)? network,
   }) {
     return unknown?.call(this);
@@ -248,6 +238,7 @@ class _$UnknownFailure extends UnknownFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UnknownFailure value)? unknown,
     TResult Function(NoMessageFailure value)? noMessage,
+    TResult Function(AccountNotExists value)? accountNotExists,
     TResult Function(NetworkFailure value)? network,
     required TResult orElse(),
   }) {
@@ -259,25 +250,20 @@ class _$UnknownFailure extends UnknownFailure {
 }
 
 abstract class UnknownFailure extends AuthFailure {
-  const factory UnknownFailure([String message]) = _$UnknownFailure;
+  const factory UnknownFailure([String? message]) = _$UnknownFailure;
   const UnknownFailure._() : super._();
 
-  @override
-  String get message => throw _privateConstructorUsedError;
-  @override
+  String? get message => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UnknownFailureCopyWith<UnknownFailure> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $NoMessageFailureCopyWith<$Res>
-    implements $AuthFailureCopyWith<$Res> {
+abstract class $NoMessageFailureCopyWith<$Res> {
   factory $NoMessageFailureCopyWith(
           NoMessageFailure value, $Res Function(NoMessageFailure) then) =
       _$NoMessageFailureCopyWithImpl<$Res>;
-  @override
-  $Res call({String message});
 }
 
 /// @nodoc
@@ -290,81 +276,59 @@ class _$NoMessageFailureCopyWithImpl<$Res>
 
   @override
   NoMessageFailure get _value => super._value as NoMessageFailure;
-
-  @override
-  $Res call({
-    Object? message = freezed,
-  }) {
-    return _then(NoMessageFailure(
-      message == freezed
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$NoMessageFailure extends NoMessageFailure {
-  const _$NoMessageFailure([this.message = '']) : super._();
-
-  @JsonKey(defaultValue: '')
-  @override
-  final String message;
+  const _$NoMessageFailure() : super._();
 
   @override
   String toString() {
-    return 'AuthFailure.noMessage(message: $message)';
+    return 'AuthFailure.noMessage()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is NoMessageFailure &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+    return identical(this, other) || (other is NoMessageFailure);
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
-
-  @JsonKey(ignore: true)
-  @override
-  $NoMessageFailureCopyWith<NoMessageFailure> get copyWith =>
-      _$NoMessageFailureCopyWithImpl<NoMessageFailure>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String message) unknown,
-    required TResult Function(String message) noMessage,
-    required TResult Function(String message) network,
+    required TResult Function(String? message) unknown,
+    required TResult Function() noMessage,
+    required TResult Function(String? email) accountNotExists,
+    required TResult Function(String? message) network,
   }) {
-    return noMessage(message);
+    return noMessage();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String message)? unknown,
-    TResult Function(String message)? noMessage,
-    TResult Function(String message)? network,
+    TResult Function(String? message)? unknown,
+    TResult Function()? noMessage,
+    TResult Function(String? email)? accountNotExists,
+    TResult Function(String? message)? network,
   }) {
-    return noMessage?.call(message);
+    return noMessage?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message)? unknown,
-    TResult Function(String message)? noMessage,
-    TResult Function(String message)? network,
+    TResult Function(String? message)? unknown,
+    TResult Function()? noMessage,
+    TResult Function(String? email)? accountNotExists,
+    TResult Function(String? message)? network,
     required TResult orElse(),
   }) {
     if (noMessage != null) {
-      return noMessage(message);
+      return noMessage();
     }
     return orElse();
   }
@@ -374,6 +338,7 @@ class _$NoMessageFailure extends NoMessageFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(UnknownFailure value) unknown,
     required TResult Function(NoMessageFailure value) noMessage,
+    required TResult Function(AccountNotExists value) accountNotExists,
     required TResult Function(NetworkFailure value) network,
   }) {
     return noMessage(this);
@@ -384,6 +349,7 @@ class _$NoMessageFailure extends NoMessageFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(UnknownFailure value)? unknown,
     TResult Function(NoMessageFailure value)? noMessage,
+    TResult Function(AccountNotExists value)? accountNotExists,
     TResult Function(NetworkFailure value)? network,
   }) {
     return noMessage?.call(this);
@@ -394,6 +360,7 @@ class _$NoMessageFailure extends NoMessageFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UnknownFailure value)? unknown,
     TResult Function(NoMessageFailure value)? noMessage,
+    TResult Function(AccountNotExists value)? accountNotExists,
     TResult Function(NetworkFailure value)? network,
     required TResult orElse(),
   }) {
@@ -405,25 +372,163 @@ class _$NoMessageFailure extends NoMessageFailure {
 }
 
 abstract class NoMessageFailure extends AuthFailure {
-  const factory NoMessageFailure([String message]) = _$NoMessageFailure;
+  const factory NoMessageFailure() = _$NoMessageFailure;
   const NoMessageFailure._() : super._();
+}
+
+/// @nodoc
+abstract class $AccountNotExistsCopyWith<$Res> {
+  factory $AccountNotExistsCopyWith(
+          AccountNotExists value, $Res Function(AccountNotExists) then) =
+      _$AccountNotExistsCopyWithImpl<$Res>;
+  $Res call({String? email});
+}
+
+/// @nodoc
+class _$AccountNotExistsCopyWithImpl<$Res>
+    extends _$AuthFailureCopyWithImpl<$Res>
+    implements $AccountNotExistsCopyWith<$Res> {
+  _$AccountNotExistsCopyWithImpl(
+      AccountNotExists _value, $Res Function(AccountNotExists) _then)
+      : super(_value, (v) => _then(v as AccountNotExists));
 
   @override
-  String get message => throw _privateConstructorUsedError;
+  AccountNotExists get _value => super._value as AccountNotExists;
+
   @override
+  $Res call({
+    Object? email = freezed,
+  }) {
+    return _then(AccountNotExists(
+      email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AccountNotExists extends AccountNotExists {
+  const _$AccountNotExists([this.email]) : super._();
+
+  @override
+  final String? email;
+
+  @override
+  String toString() {
+    return 'AuthFailure.accountNotExists(email: $email)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is AccountNotExists &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(email);
+
   @JsonKey(ignore: true)
-  $NoMessageFailureCopyWith<NoMessageFailure> get copyWith =>
+  @override
+  $AccountNotExistsCopyWith<AccountNotExists> get copyWith =>
+      _$AccountNotExistsCopyWithImpl<AccountNotExists>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? message) unknown,
+    required TResult Function() noMessage,
+    required TResult Function(String? email) accountNotExists,
+    required TResult Function(String? message) network,
+  }) {
+    return accountNotExists(email);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? message)? unknown,
+    TResult Function()? noMessage,
+    TResult Function(String? email)? accountNotExists,
+    TResult Function(String? message)? network,
+  }) {
+    return accountNotExists?.call(email);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? message)? unknown,
+    TResult Function()? noMessage,
+    TResult Function(String? email)? accountNotExists,
+    TResult Function(String? message)? network,
+    required TResult orElse(),
+  }) {
+    if (accountNotExists != null) {
+      return accountNotExists(email);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UnknownFailure value) unknown,
+    required TResult Function(NoMessageFailure value) noMessage,
+    required TResult Function(AccountNotExists value) accountNotExists,
+    required TResult Function(NetworkFailure value) network,
+  }) {
+    return accountNotExists(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(UnknownFailure value)? unknown,
+    TResult Function(NoMessageFailure value)? noMessage,
+    TResult Function(AccountNotExists value)? accountNotExists,
+    TResult Function(NetworkFailure value)? network,
+  }) {
+    return accountNotExists?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UnknownFailure value)? unknown,
+    TResult Function(NoMessageFailure value)? noMessage,
+    TResult Function(AccountNotExists value)? accountNotExists,
+    TResult Function(NetworkFailure value)? network,
+    required TResult orElse(),
+  }) {
+    if (accountNotExists != null) {
+      return accountNotExists(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AccountNotExists extends AuthFailure {
+  const factory AccountNotExists([String? email]) = _$AccountNotExists;
+  const AccountNotExists._() : super._();
+
+  String? get email => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $AccountNotExistsCopyWith<AccountNotExists> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $NetworkFailureCopyWith<$Res>
-    implements $AuthFailureCopyWith<$Res> {
+abstract class $NetworkFailureCopyWith<$Res> {
   factory $NetworkFailureCopyWith(
           NetworkFailure value, $Res Function(NetworkFailure) then) =
       _$NetworkFailureCopyWithImpl<$Res>;
-  @override
-  $Res call({String message});
+  $Res call({String? message});
 }
 
 /// @nodoc
@@ -444,7 +549,7 @@ class _$NetworkFailureCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
       message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -452,12 +557,10 @@ class _$NetworkFailureCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
 /// @nodoc
 
 class _$NetworkFailure extends NetworkFailure {
-  const _$NetworkFailure([this.message = 'Nejsi připojený/á k internetu.'])
-      : super._();
+  const _$NetworkFailure([this.message]) : super._();
 
-  @JsonKey(defaultValue: 'Nejsi připojený/á k internetu.')
   @override
-  final String message;
+  final String? message;
 
   @override
   String toString() {
@@ -484,9 +587,10 @@ class _$NetworkFailure extends NetworkFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String message) unknown,
-    required TResult Function(String message) noMessage,
-    required TResult Function(String message) network,
+    required TResult Function(String? message) unknown,
+    required TResult Function() noMessage,
+    required TResult Function(String? email) accountNotExists,
+    required TResult Function(String? message) network,
   }) {
     return network(message);
   }
@@ -494,9 +598,10 @@ class _$NetworkFailure extends NetworkFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String message)? unknown,
-    TResult Function(String message)? noMessage,
-    TResult Function(String message)? network,
+    TResult Function(String? message)? unknown,
+    TResult Function()? noMessage,
+    TResult Function(String? email)? accountNotExists,
+    TResult Function(String? message)? network,
   }) {
     return network?.call(message);
   }
@@ -504,9 +609,10 @@ class _$NetworkFailure extends NetworkFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message)? unknown,
-    TResult Function(String message)? noMessage,
-    TResult Function(String message)? network,
+    TResult Function(String? message)? unknown,
+    TResult Function()? noMessage,
+    TResult Function(String? email)? accountNotExists,
+    TResult Function(String? message)? network,
     required TResult orElse(),
   }) {
     if (network != null) {
@@ -520,6 +626,7 @@ class _$NetworkFailure extends NetworkFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(UnknownFailure value) unknown,
     required TResult Function(NoMessageFailure value) noMessage,
+    required TResult Function(AccountNotExists value) accountNotExists,
     required TResult Function(NetworkFailure value) network,
   }) {
     return network(this);
@@ -530,6 +637,7 @@ class _$NetworkFailure extends NetworkFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(UnknownFailure value)? unknown,
     TResult Function(NoMessageFailure value)? noMessage,
+    TResult Function(AccountNotExists value)? accountNotExists,
     TResult Function(NetworkFailure value)? network,
   }) {
     return network?.call(this);
@@ -540,6 +648,7 @@ class _$NetworkFailure extends NetworkFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UnknownFailure value)? unknown,
     TResult Function(NoMessageFailure value)? noMessage,
+    TResult Function(AccountNotExists value)? accountNotExists,
     TResult Function(NetworkFailure value)? network,
     required TResult orElse(),
   }) {
@@ -551,12 +660,10 @@ class _$NetworkFailure extends NetworkFailure {
 }
 
 abstract class NetworkFailure extends AuthFailure {
-  const factory NetworkFailure([String message]) = _$NetworkFailure;
+  const factory NetworkFailure([String? message]) = _$NetworkFailure;
   const NetworkFailure._() : super._();
 
-  @override
-  String get message => throw _privateConstructorUsedError;
-  @override
+  String? get message => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $NetworkFailureCopyWith<NetworkFailure> get copyWith =>
       throw _privateConstructorUsedError;

@@ -1,17 +1,30 @@
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:loono/l10n/ext.dart';
 
 part 'failures.freezed.dart';
+
+extension AuthFailureMessageExt on AuthFailure {
+  String getMessage(BuildContext context) {
+    return when(
+      unknown: (message) => message ?? context.l10n.auth_unknown_failure_message,
+      noMessage: () => '',
+      accountNotExists: (email) =>
+          '${context.l10n.auth_account_not_exists_message} ${email == null ? '' : '($email).'}',
+      network: (message) => message ?? context.l10n.auth_network_failure_message,
+    );
+  }
+}
 
 @freezed
 class AuthFailure with _$AuthFailure {
   const AuthFailure._();
 
-  const factory AuthFailure.unknown(
-          [@Default('Přihlášení se nepovedlo. Zkus to znovu později.') String message]) =
-      UnknownFailure;
+  const factory AuthFailure.unknown([String? message]) = UnknownFailure;
 
-  const factory AuthFailure.noMessage([@Default('') String message]) = NoMessageFailure;
+  const factory AuthFailure.noMessage() = NoMessageFailure;
 
-  const factory AuthFailure.network([@Default('Nejsi připojený/á k internetu.') String message]) =
-      NetworkFailure;
+  const factory AuthFailure.accountNotExists([String? email]) = AccountNotExists;
+
+  const factory AuthFailure.network([String? message]) = NetworkFailure;
 }

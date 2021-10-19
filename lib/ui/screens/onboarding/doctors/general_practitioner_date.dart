@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/helpers/date_without_day.dart';
+import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/services/onboarding_state_service.dart';
@@ -11,7 +12,7 @@ import 'package:provider/provider.dart';
 class GeneralPractitionerDateScreen extends StatefulWidget {
   const GeneralPractitionerDateScreen({Key? key}) : super(key: key);
 
-  static const id = 'GeneralPractitionerDateScreen';
+  static const type = ExaminationType.GENERAL_PRACTITIONER;
 
   @override
   State<GeneralPractitionerDateScreen> createState() => _GeneralPractitionerDateScreenState();
@@ -33,7 +34,7 @@ class _GeneralPractitionerDateScreenState extends State<GeneralPractitionerDateS
       },
       onSkipButtonPress: () => context
           .read<OnboardingStateService>()
-          .skipUniversalDoctorDate(GeneralPractitionerDateScreen.id),
+          .skipUniversalDoctorDate(GeneralPractitionerDateScreen.type),
     );
   }
 }

@@ -33,8 +33,8 @@ const _onboardingTransition = TransitionsBuilders.slideLeft;
 const _openSettingsTransition = TransitionsBuilders.slideBottom;
 const _settingsTransition = TransitionsBuilders.slideLeft;
 
-/// After editing this, run:
-/// flutter pub run build_runner build --delete-conflicting-outputs
+// After editing this, run:
+// flutter pub run build_runner build --delete-conflicting-outputs
 @MaterialAutoRouter(
   replaceInRouteName: 'Page|Screen,Route',
   routes: <AutoRoute>[

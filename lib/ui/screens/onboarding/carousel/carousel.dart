@@ -90,31 +90,34 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Stack(
-        children: [
-          PageView(
-            onPageChanged: (_) => currentStory.autoplay ? playStory() : pauseStory(),
-            controller: pageController,
-            physics: const NeverScrollableScrollPhysics(),
-            children: _allStories,
-          ),
-          if (currentStory.indicatorVisible) ...[
-            IndicatorRow(
-              numOfIndicators: stories.length,
-              currentIndex: currentPageIndex,
-              currentDuration: currentStory.duration,
-              currentStoryPageBackground: currentStory.storyPageBackground,
-              onStoryFinish: canTransitionToNextStory ? jumpToNextStory : null,
-              storyPageState: storyPageState,
+    return WillPopScope(
+      onWillPop: () async => currentPageIndex != 0,
+      child: Container(
+        color: Colors.white,
+        child: Stack(
+          children: [
+            PageView(
+              onPageChanged: (_) => currentStory.autoplay ? playStory() : pauseStory(),
+              controller: pageController,
+              physics: const NeverScrollableScrollPhysics(),
+              children: _allStories,
             ),
-            if (canTransitionToPrevStory) TapArea.leftSide(onTap: jumpToPrevStory),
-            if (canTransitionToNextStory) TapArea.rightSide(onTap: jumpToNextStory),
-            if (stories.isNotEmpty) TapArea.max(onPanDown: pauseStory, onPanEnd: playStory),
-            if (currentStory.hasInteractiveContent) currentStory.interactiveContent!,
+            if (currentStory.indicatorVisible) ...[
+              IndicatorRow(
+                numOfIndicators: stories.length,
+                currentIndex: currentPageIndex,
+                currentDuration: currentStory.duration,
+                currentStoryPageBackground: currentStory.storyPageBackground,
+                onStoryFinish: canTransitionToNextStory ? jumpToNextStory : null,
+                storyPageState: storyPageState,
+              ),
+              if (canTransitionToPrevStory) TapArea.leftSide(onTap: jumpToPrevStory),
+              if (canTransitionToNextStory) TapArea.rightSide(onTap: jumpToNextStory),
+              if (stories.isNotEmpty) TapArea.max(onPanDown: pauseStory, onPanEnd: playStory),
+              if (currentStory.hasInteractiveContent) currentStory.interactiveContent!,
+            ],
           ],
-        ],
+        ),
       ),
     );
   }

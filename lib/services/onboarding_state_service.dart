@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:loono/helpers/examination_types.dart';
 
 enum OnboardingProgressStatus { welcome, intro, questionnaire }
 
@@ -9,9 +10,9 @@ enum NotificationPermissionState { notRequested, requested }
 class OnboardingStateService extends ChangeNotifier {
   OnboardingProgressStatus _onboardingProgressStatus = OnboardingProgressStatus.welcome;
 
-  final _obtainedAchievementsIDs = <String>{};
+  final _obtainedExaminationAchievements = <ExaminationType>{};
 
-  final _universalDoctorDateSkips = <String>{};
+  final _universalDoctorDateSkips = <ExaminationType>{};
 
   // on Android notifications are allowed by default
   NotificationPermissionState _notificationPermissionState = Platform.isIOS
@@ -39,20 +40,22 @@ class OnboardingStateService extends ChangeNotifier {
     }
   }
 
-  bool containsAchievement(String id) => _obtainedAchievementsIDs.contains(id);
+  bool containsAchievement(ExaminationType examination) =>
+      _obtainedExaminationAchievements.contains(examination);
 
-  void obtainAchievement(String id) {
-    if (!_obtainedAchievementsIDs.contains(id)) {
-      _obtainedAchievementsIDs.add(id);
+  void obtainAchievementForExamination(ExaminationType examination) {
+    if (!_obtainedExaminationAchievements.contains(examination)) {
+      _obtainedExaminationAchievements.add(examination);
       notifyListeners();
     }
   }
 
-  bool isUniversalDoctorDateSkipped(String id) => _universalDoctorDateSkips.contains(id);
+  bool isUniversalDoctorDateSkipped(ExaminationType examination) =>
+      _universalDoctorDateSkips.contains(examination);
 
-  void skipUniversalDoctorDate(String id) {
-    if (!_universalDoctorDateSkips.contains(id)) {
-      _universalDoctorDateSkips.add(id);
+  void skipUniversalDoctorDate(ExaminationType examination) {
+    if (!_universalDoctorDateSkips.contains(examination)) {
+      _universalDoctorDateSkips.add(examination);
       notifyListeners();
     }
   }
