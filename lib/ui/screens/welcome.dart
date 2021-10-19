@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/onboarding_state_service.dart';
@@ -12,6 +13,7 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: LoonoColors.primaryLight,
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -28,26 +30,21 @@ class WelcomeScreen extends StatelessWidget {
                 Text(
                   context.l10n.carousel_welcome_dialog,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Color(0xFF1A1919),
-                    fontWeight: FontWeight.w400,
-                    fontSize: 24,
-                    letterSpacing: 0.5,
-                  ),
+                  style: LoonoFonts.headerFontStyle,
                 ),
                 const SizedBox(height: 70),
                 LoonoButton(
                   text: context.l10n.carousel_start,
                   onTap: () => context.read<OnboardingStateService>().startIntro(),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 15),
                 TextButton(
                   onPressed: () {
                     AutoRouter.of(context).push(LoginRoute());
                   },
                   child: Text(
                     context.l10n.carousel_have_account,
-                    style: const TextStyle(color: Color(0xFF1A1919)),
+                    style: LoonoFonts.fontStyle,
                   ),
                 ),
               ],
