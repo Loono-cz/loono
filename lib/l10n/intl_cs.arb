@@ -162,5 +162,11 @@
   "email_validator_wrong_input": "Nesprávný formát e-mailu",
   "@email_validator_wrong_input": {},
   "create_account_anonymous_login_connection_error": "Pro pokračování je nutné připojit se k internetu.",
-  "@create_account_anonymous_login_connection_error": {}
+  "@create_account_anonymous_login_connection_error": {},
+  "auth_unknown_failure_message": "Přihlášení se nepovedlo. Zkus to znovu později.",
+  "@auth_unknown_failure_message": {},
+  "auth_network_failure_message": "Nejsi připojený(á) k internetu.",
+  "@auth_network_failure_message": {},
+  "auth_account_not_exists_message": "Účet s tímto emailem zatím neexistuje",
+  "@auth_account_not_exists_message": {}
 }

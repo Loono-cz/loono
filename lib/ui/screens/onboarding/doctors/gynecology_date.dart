@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/helpers/date_without_day.dart';
+import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/onboarding_state_service.dart';
@@ -11,7 +12,7 @@ import 'package:provider/provider.dart';
 class GynecologyDateScreen extends StatefulWidget {
   const GynecologyDateScreen({Key? key}) : super(key: key);
 
-  static const id = 'GynecologyDateScreen';
+  static const type = ExaminationType.GYNECOLOGIST;
 
   @override
   State<GynecologyDateScreen> createState() => _GynecologyDateScreenState();
@@ -32,7 +33,7 @@ class _GynecologyDateScreenState extends State<GynecologyDateScreen> {
             DateWithoutDay(month: monthFromInt(selectedDate!.month), year: selectedDate!.year));
       },
       onSkipButtonPress: () =>
-          context.read<OnboardingStateService>().skipUniversalDoctorDate(GynecologyDateScreen.id),
+          context.read<OnboardingStateService>().skipUniversalDoctorDate(GynecologyDateScreen.type),
     );
   }
 }

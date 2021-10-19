@@ -52,11 +52,11 @@ class CreateAccountScreen extends StatelessWidget {
                         final authUserResult = await _authService.signInAnonymously();
                         authUserResult.fold(
                           (failure) {
-                            if (failure is NetworkFailure) {
-                              _showNoInternetDialog(context);
-                            } else {
-                              showSnackBar(context, message: failure.message);
-                            }
+                            failure.maybeWhen(
+                              network: (_) => _showNoInternetDialog(context),
+                              orElse: () =>
+                                  showSnackBarError(context, message: failure.getMessage(context)),
+                            );
                           },
                           (authUser) => AutoRouter.of(context).push(NicknameRoute()),
                         );
@@ -107,35 +107,38 @@ class CreateAccountScreen extends StatelessWidget {
                       style: LoonoFonts.paragraphFontStyle,
                     ),
                     Expanded(
-                        child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SocialLoginButton.apple(
-                            onPressed: () async {
-                              final authUserResult = await _authService.signInWithApple();
-                              authUserResult.fold(
-                                (failure) => showSnackBar(context, message: failure.message),
-                                (authUser) =>
-                                    AutoRouter.of(context).push(NicknameRoute(authUser: authUser)),
-                              );
-                            },
-                          ),
-                          const SizedBox(height: 15),
-                          SocialLoginButton.google(
-                            onPressed: () async {
-                              final authUserResult = await _authService.signInWithGoogle();
-                              authUserResult.fold(
-                                (failure) => showSnackBar(context, message: failure.message),
-                                (authUser) =>
-                                    AutoRouter.of(context).push(NicknameRoute(authUser: authUser)),
-                              );
-                            },
-                          )
-                        ],
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SocialLoginButton.apple(
+                              onPressed: () async {
+                                final authUserResult = await _authService.signInWithApple();
+                                authUserResult.fold(
+                                  (failure) => showSnackBarError(context,
+                                      message: failure.getMessage(context)),
+                                  (authUser) => AutoRouter.of(context)
+                                      .push(NicknameRoute(authUser: authUser)),
+                                );
+                              },
+                            ),
+                            const SizedBox(height: 15),
+                            SocialLoginButton.google(
+                              onPressed: () async {
+                                final authUserResult = await _authService.signInWithGoogle();
+                                authUserResult.fold(
+                                  (failure) => showSnackBarError(context,
+                                      message: failure.getMessage(context)),
+                                  (authUser) => AutoRouter.of(context)
+                                      .push(NicknameRoute(authUser: authUser)),
+                                );
+                              },
+                            ),
+                          ],
+                        ),
                       ),
-                    )),
+                    ),
                     TextButton(
                       onPressed: () => print('click'),
                       child: Text(
@@ -143,7 +146,7 @@ class CreateAccountScreen extends StatelessWidget {
                         style: LoonoFonts.paragraphSmallFontStyle,
                         textAlign: TextAlign.center,
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

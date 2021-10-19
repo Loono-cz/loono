@@ -18,7 +18,7 @@ class Loono extends StatelessWidget {
       builder: (context, snapshot) {
         final authUser = snapshot.data;
         if (authUser == null) {
-          SchedulerBinding.instance!.addPostFrameCallback((_) {
+          SchedulerBinding.instance?.addPostFrameCallback((_) {
             _appRouter.removeWhere((_) => true);
             _appRouter.push(const MainWrapperRoute());
           });
