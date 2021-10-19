@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/user.dart';
@@ -32,13 +34,18 @@ class UpdateProfileScreen extends StatelessWidget {
     }
   }
 
-  String _getBirthdateValue(String? dateTimeRaw) {
-    if (dateTimeRaw == null) return '';
+  DateWithoutDay? _getBirthdateDate(String? dateTimeRaw) {
+    if (dateTimeRaw == null) return null;
     final dateTimeMap = jsonDecode(dateTimeRaw) as Map<String, dynamic>;
-    final month = dateTimeMap['month'] as String?;
-    final year = int.tryParse(dateTimeMap['year'].toString());
-    if (month == null || year == null) return '';
-    return '$month $year';
+    final dateWithoutDay = DateWithoutDay.fromJson(dateTimeMap);
+    return dateWithoutDay;
+  }
+
+  String _getBirthdateValue(DateWithoutDay? dateWithoutDay) {
+    if (dateWithoutDay == null) return '';
+    final date = DateTime(dateWithoutDay.year, dateWithoutDay.month.index + 1);
+    final formattedDate = DateFormat.yMMMM('cs-CZ').format(date);
+    return formattedDate.toString();
   }
 
   @override
@@ -56,6 +63,7 @@ class UpdateProfileScreen extends StatelessWidget {
               stream: _usersDao.watchUser(),
               builder: (context, snapshot) {
                 final user = snapshot.data;
+                final dateWithoutDay = _getBirthdateDate(user?.dateOfBirthRaw);
 
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,10 +80,10 @@ class UpdateProfileScreen extends StatelessWidget {
                           context.l10n.update_profile_photo,
                           style: const TextStyle(fontSize: 12, color: Colors.black),
                         ),
-                        LoonoAvatar(),
+                        const LoonoAvatar(),
                         TextButton(
                           onPressed: () {
-                            //
+                            // TODO: Update photo screen
                           },
                           child: Text(
                             context.l10n.action_change,
@@ -101,13 +109,13 @@ class UpdateProfileScreen extends StatelessWidget {
                     UpdateProfileItem(
                       label: context.l10n.update_profile_sex,
                       value: _getUserSexValue(context, sex: user?.sex),
-                      route: const EditSexRoute(),
+                      route: EditSexRoute(sex: user?.sex),
                     ),
                     itemSpacing,
                     UpdateProfileItem(
                       label: context.l10n.update_profile_birthdate,
-                      value: _getBirthdateValue(user?.dateOfBirthRaw),
-                      route: const EditBirthdateRoute(),
+                      value: _getBirthdateValue(dateWithoutDay),
+                      route: EditBirthdateRoute(dateWithoutDay: dateWithoutDay),
                     ),
                     const SizedBox(height: 80.0),
                     LoonoButton.light(

@@ -10,7 +10,9 @@ import 'package:loono/ui/widgets/settings/app_bar.dart';
 import 'package:loono/utils/registry.dart';
 
 class EditBirthdateScreen extends StatefulWidget {
-  const EditBirthdateScreen({Key? key}) : super(key: key);
+  const EditBirthdateScreen({Key? key, required this.dateWithoutDay}) : super(key: key);
+
+  final DateWithoutDay? dateWithoutDay;
 
   @override
   State<EditBirthdateScreen> createState() => _EditBirthdateScreenState();
@@ -18,6 +20,12 @@ class EditBirthdateScreen extends StatefulWidget {
 
 class _EditBirthdateScreenState extends State<EditBirthdateScreen> {
   DateTime? selectedDate;
+
+  int? get initialMonth {
+    final storedMonth = widget.dateWithoutDay?.month.index;
+    if (storedMonth == null) return null;
+    return storedMonth + 1;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +50,8 @@ class _EditBirthdateScreenState extends State<EditBirthdateScreen> {
                   child: CustomDatePicker(
                     valueChanged: (val) => selectedDate = val,
                     yearsOverActual: 0,
-                    defaultMonth: DateTime.january,
-                    defaultYear: DateTime.now().year - 35,
+                    defaultMonth: initialMonth ?? DateTime.january,
+                    defaultYear: widget.dateWithoutDay?.year ?? DateTime.now().year - 35,
                     filled: true,
                   ),
                 ),

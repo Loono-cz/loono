@@ -10,7 +10,9 @@ import 'package:loono/ui/widgets/settings/app_bar.dart';
 import 'package:loono/utils/registry.dart';
 
 class EditSexScreen extends StatefulWidget {
-  const EditSexScreen({Key? key}) : super(key: key);
+  const EditSexScreen({Key? key, required this.sex}) : super(key: key);
+
+  final Sex? sex;
 
   @override
   State<EditSexScreen> createState() => _EditSexScreenState();
@@ -18,6 +20,23 @@ class EditSexScreen extends StatefulWidget {
 
 class _EditSexScreenState extends State<EditSexScreen> {
   Sex? activeButton;
+
+  Gender? get initialGender {
+    switch (widget.sex) {
+      case Sex.male:
+        return Gender.man;
+      case Sex.female:
+        return Gender.woman;
+      default:
+        return null;
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    activeButton = widget.sex;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +50,9 @@ class _EditSexScreenState extends State<EditSexScreen> {
             children: [
               Expanded(
                 child: GendersContainer(
+                  initialActiveButton: initialGender,
                   genderCallBack: (gender) => setState(() => activeButton = gender),
+                  bottomSheetColor: Colors.white.withOpacity(0.2),
                 ),
               ),
               Padding(

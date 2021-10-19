@@ -7,6 +7,7 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
+import '../helpers/date_without_day.dart' as _i33;
 import '../helpers/sex_extensions.dart' as _i32;
 import '../models/firebase_user.dart' as _i30;
 import '../services/db/database.dart' as _i31;
@@ -124,17 +125,20 @@ class AppRouter extends _i1.RootStackRouter {
           barrierDismissible: false);
     },
     EditSexRoute.name: (routeData) {
+      final args = routeData.argsAs<EditSexRouteArgs>();
       return _i1.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i14.EditSexScreen(),
+          child: _i14.EditSexScreen(key: args.key, sex: args.sex),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
     },
     EditBirthdateRoute.name: (routeData) {
+      final args = routeData.argsAs<EditBirthdateRouteArgs>();
       return _i1.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i15.EditBirthdateScreen(),
+          child: _i15.EditBirthdateScreen(
+              key: args.key, dateWithoutDay: args.dateWithoutDay),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -445,17 +449,40 @@ class EditEmailRouteArgs {
   final _i31.User? user;
 }
 
-class EditSexRoute extends _i1.PageRouteInfo<void> {
-  const EditSexRoute() : super(name, path: 'settings/update-profile/sex');
+class EditSexRoute extends _i1.PageRouteInfo<EditSexRouteArgs> {
+  EditSexRoute({_i2.Key? key, required _i32.Sex? sex})
+      : super(name,
+            path: 'settings/update-profile/sex',
+            args: EditSexRouteArgs(key: key, sex: sex));
 
   static const String name = 'EditSexRoute';
 }
 
-class EditBirthdateRoute extends _i1.PageRouteInfo<void> {
-  const EditBirthdateRoute()
-      : super(name, path: 'settings/update-profile/birthdate');
+class EditSexRouteArgs {
+  const EditSexRouteArgs({this.key, required this.sex});
+
+  final _i2.Key? key;
+
+  final _i32.Sex? sex;
+}
+
+class EditBirthdateRoute extends _i1.PageRouteInfo<EditBirthdateRouteArgs> {
+  EditBirthdateRoute(
+      {_i2.Key? key, required _i33.DateWithoutDay? dateWithoutDay})
+      : super(name,
+            path: 'settings/update-profile/birthdate',
+            args: EditBirthdateRouteArgs(
+                key: key, dateWithoutDay: dateWithoutDay));
 
   static const String name = 'EditBirthdateRoute';
+}
+
+class EditBirthdateRouteArgs {
+  const EditBirthdateRouteArgs({this.key, required this.dateWithoutDay});
+
+  final _i2.Key? key;
+
+  final _i33.DateWithoutDay? dateWithoutDay;
 }
 
 class WelcomeRoute extends _i1.PageRouteInfo<void> {
