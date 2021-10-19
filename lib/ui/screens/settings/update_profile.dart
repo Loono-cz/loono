@@ -132,17 +132,17 @@ class UpdateProfileScreen extends StatelessWidget {
                             },
                             child: Text(
                               context.l10n.update_profile_privacy_action,
-                              style: const TextStyle(fontSize: 14, color: Colors.black),
+                              style: LoonoFonts.fontStyle,
                             ),
                           ),
-                          const SizedBox(height: 64.0),
+                          const SizedBox(height: 32.0),
                           TextButton(
                             onPressed: () {
                               // TODO: Remove account
                             },
                             child: Text(
                               context.l10n.remove_account_action,
-                              style: const TextStyle(fontSize: 14, color: LoonoColors.redButton),
+                              style: LoonoFonts.fontStyle.copyWith(color: LoonoColors.redButton),
                             ),
                           ),
                         ],
