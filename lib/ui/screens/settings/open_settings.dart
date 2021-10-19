@@ -9,7 +9,7 @@ class OpenSettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: settingsAppBar(context),
+      appBar: settingsAppBar(context, showBackButton: false),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(18),
