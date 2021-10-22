@@ -7,30 +7,37 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
-import '../helpers/sex_extensions.dart' as _i26;
-import '../models/firebase_user.dart' as _i25;
-import '../ui/screens/create_account.dart' as _i6;
-import '../ui/screens/dentist_achievement.dart' as _i23;
-import '../ui/screens/general_practicioner_achievement.dart' as _i16;
-import '../ui/screens/gynecology_achievement.dart' as _i20;
-import '../ui/screens/login.dart' as _i9;
-import '../ui/screens/main/main_screen.dart' as _i10;
-import '../ui/screens/main/main_wrapper_screen.dart' as _i4;
-import '../ui/screens/onboarding/allow_notifications.dart' as _i18;
-import '../ui/screens/onboarding/birthdate.dart' as _i14;
-import '../ui/screens/onboarding/carousel/carousel.dart' as _i12;
-import '../ui/screens/onboarding/doctors/dentist.dart' as _i22;
-import '../ui/screens/onboarding/doctors/dentist_date.dart' as _i24;
-import '../ui/screens/onboarding/doctors/general_practicioner.dart' as _i15;
+import '../helpers/date_without_day.dart' as _i33;
+import '../helpers/sex_extensions.dart' as _i32;
+import '../models/firebase_user.dart' as _i30;
+import '../services/db/database.dart' as _i31;
+import '../ui/screens/create_account.dart' as _i5;
+import '../ui/screens/dentist_achievement.dart' as _i28;
+import '../ui/screens/general_practicioner_achievement.dart' as _i21;
+import '../ui/screens/gynecology_achievement.dart' as _i25;
+import '../ui/screens/login.dart' as _i8;
+import '../ui/screens/main/main_screen.dart' as _i9;
+import '../ui/screens/onboarding/allow_notifications.dart' as _i23;
+import '../ui/screens/onboarding/birthdate.dart' as _i19;
+import '../ui/screens/onboarding/carousel/carousel.dart' as _i17;
+import '../ui/screens/onboarding/doctors/dentist.dart' as _i27;
+import '../ui/screens/onboarding/doctors/dentist_date.dart' as _i29;
+import '../ui/screens/onboarding/doctors/general_practicioner.dart' as _i20;
 import '../ui/screens/onboarding/doctors/general_practitioner_date.dart'
-    as _i17;
-import '../ui/screens/onboarding/doctors/gynecology.dart' as _i19;
-import '../ui/screens/onboarding/doctors/gynecology_date.dart' as _i21;
-import '../ui/screens/onboarding/fallback_account/email.dart' as _i8;
-import '../ui/screens/onboarding/fallback_account/nickname.dart' as _i7;
-import '../ui/screens/onboarding/gender.dart' as _i13;
-import '../ui/screens/onboarding/onboarding_wrapper_screen.dart' as _i5;
-import '../ui/screens/welcome.dart' as _i11;
+    as _i22;
+import '../ui/screens/onboarding/doctors/gynecology.dart' as _i24;
+import '../ui/screens/onboarding/doctors/gynecology_date.dart' as _i26;
+import '../ui/screens/onboarding/fallback_account/email.dart' as _i7;
+import '../ui/screens/onboarding/fallback_account/nickname.dart' as _i6;
+import '../ui/screens/onboarding/gender.dart' as _i18;
+import '../ui/screens/onboarding/onboarding_wrapper_screen.dart' as _i4;
+import '../ui/screens/settings/edit_birthdate.dart' as _i15;
+import '../ui/screens/settings/edit_email.dart' as _i13;
+import '../ui/screens/settings/edit_nickname.dart' as _i12;
+import '../ui/screens/settings/edit_sex.dart' as _i14;
+import '../ui/screens/settings/open_settings.dart' as _i10;
+import '../ui/screens/settings/update_profile.dart' as _i11;
+import '../ui/screens/welcome.dart' as _i16;
 import 'guards/check_is_logged_in.dart' as _i3;
 
 class AppRouter extends _i1.RootStackRouter {
@@ -43,52 +50,107 @@ class AppRouter extends _i1.RootStackRouter {
 
   @override
   final Map<String, _i1.PageFactory> pagesMap = {
-    MainWrapperRoute.name: (routeData) {
+    MainScreenRouter.name: (routeData) {
       return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i4.MainWrapperScreen());
+          routeData: routeData, child: const _i1.EmptyRouterScreen());
     },
     OnboardingWrapperRoute.name: (routeData) {
       return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i5.OnboardingWrapperScreen());
+          routeData: routeData, child: const _i4.OnboardingWrapperScreen());
     },
     CreateAccountRoute.name: (routeData) {
       final args = routeData.argsAs<CreateAccountRouteArgs>(
           orElse: () => const CreateAccountRouteArgs());
       return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i6.CreateAccountScreen(key: args.key));
+          routeData: routeData, child: _i5.CreateAccountScreen(key: args.key));
     },
     NicknameRoute.name: (routeData) {
       final args = routeData.argsAs<NicknameRouteArgs>(
           orElse: () => const NicknameRouteArgs());
       return _i1.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: _i7.NicknameScreen(key: args.key, authUser: args.authUser));
+          child: _i6.NicknameScreen(key: args.key, authUser: args.authUser));
     },
     EmailRoute.name: (routeData) {
       final args = routeData.argsAs<EmailRouteArgs>(
           orElse: () => const EmailRouteArgs());
       return _i1.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: _i8.EmailScreen(key: args.key, authUser: args.authUser));
+          child: _i7.EmailScreen(key: args.key, authUser: args.authUser));
     },
     LoginRoute.name: (routeData) {
       final args = routeData.argsAs<LoginRouteArgs>(
           orElse: () => const LoginRouteArgs());
       return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i9.LoginScreen(key: args.key));
+          routeData: routeData, child: _i8.LoginScreen(key: args.key));
     },
     MainRoute.name: (routeData) {
       return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i10.MainScreen());
+          routeData: routeData, child: const _i9.MainScreen());
+    },
+    OpenSettingsRoute.name: (routeData) {
+      return _i1.CustomPage<dynamic>(
+          routeData: routeData,
+          child: const _i10.OpenSettingsScreen(),
+          transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
+          opaque: true,
+          barrierDismissible: false);
+    },
+    UpdateProfileRoute.name: (routeData) {
+      final args = routeData.argsAs<UpdateProfileRouteArgs>(
+          orElse: () => const UpdateProfileRouteArgs());
+      return _i1.CustomPage<dynamic>(
+          routeData: routeData,
+          child: _i11.UpdateProfileScreen(key: args.key),
+          transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
+    },
+    EditNicknameRoute.name: (routeData) {
+      final args = routeData.argsAs<EditNicknameRouteArgs>();
+      return _i1.CustomPage<dynamic>(
+          routeData: routeData,
+          child: _i12.EditNicknameScreen(key: args.key, user: args.user),
+          transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
+    },
+    EditEmailRoute.name: (routeData) {
+      final args = routeData.argsAs<EditEmailRouteArgs>();
+      return _i1.CustomPage<dynamic>(
+          routeData: routeData,
+          child: _i13.EditEmailScreen(key: args.key, user: args.user),
+          transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
+    },
+    EditSexRoute.name: (routeData) {
+      final args = routeData.argsAs<EditSexRouteArgs>();
+      return _i1.CustomPage<dynamic>(
+          routeData: routeData,
+          child: _i14.EditSexScreen(key: args.key, sex: args.sex),
+          transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
+    },
+    EditBirthdateRoute.name: (routeData) {
+      final args = routeData.argsAs<EditBirthdateRouteArgs>();
+      return _i1.CustomPage<dynamic>(
+          routeData: routeData,
+          child: _i15.EditBirthdateScreen(
+              key: args.key, dateWithoutDay: args.dateWithoutDay),
+          transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
     },
     WelcomeRoute.name: (routeData) {
       return _i1.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i11.WelcomeScreen());
+          routeData: routeData, child: const _i16.WelcomeScreen());
     },
     OnboardingCarouselRoute.name: (routeData) {
       return _i1.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i12.OnboardingCarouselScreen(),
+          child: const _i17.OnboardingCarouselScreen(),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -96,7 +158,7 @@ class AppRouter extends _i1.RootStackRouter {
     OnboardingGenderRoute.name: (routeData) {
       return _i1.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i13.OnboardingGenderScreen(),
+          child: const _i18.OnboardingGenderScreen(),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -105,7 +167,7 @@ class AppRouter extends _i1.RootStackRouter {
       final args = routeData.argsAs<OnBoardingBirthdateRouteArgs>();
       return _i1.CustomPage<dynamic>(
           routeData: routeData,
-          child: _i14.OnBoardingBirthdateScreen(key: args.key, sex: args.sex),
+          child: _i19.OnBoardingBirthdateScreen(key: args.key, sex: args.sex),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -114,7 +176,7 @@ class AppRouter extends _i1.RootStackRouter {
       final args = routeData.argsAs<OnboardingGeneralPracticionerRouteArgs>();
       return _i1.CustomPage<dynamic>(
           routeData: routeData,
-          child: _i15.OnboardingGeneralPracticionerScreen(
+          child: _i20.OnboardingGeneralPracticionerScreen(
               key: args.key, sex: args.sex),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
           opaque: true,
@@ -123,7 +185,7 @@ class AppRouter extends _i1.RootStackRouter {
     GeneralPracticionerAchievementRoute.name: (routeData) {
       return _i1.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i16.GeneralPracticionerAchievementScreen(),
+          child: const _i21.GeneralPracticionerAchievementScreen(),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -131,7 +193,7 @@ class AppRouter extends _i1.RootStackRouter {
     GeneralPractitionerDateRoute.name: (routeData) {
       return _i1.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i17.GeneralPractitionerDateScreen(),
+          child: const _i22.GeneralPractitionerDateScreen(),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -139,7 +201,7 @@ class AppRouter extends _i1.RootStackRouter {
     AllowNotificationsRoute.name: (routeData) {
       return _i1.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i18.AllowNotificationsScreen(),
+          child: const _i23.AllowNotificationsScreen(),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -148,7 +210,7 @@ class AppRouter extends _i1.RootStackRouter {
       final args = routeData.argsAs<OnboardingGynecologyRouteArgs>();
       return _i1.CustomPage<dynamic>(
           routeData: routeData,
-          child: _i19.OnboardingGynecologyScreen(key: args.key, sex: args.sex),
+          child: _i24.OnboardingGynecologyScreen(key: args.key, sex: args.sex),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -156,7 +218,7 @@ class AppRouter extends _i1.RootStackRouter {
     GynecologyAchievementRoute.name: (routeData) {
       return _i1.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i20.GynecologyAchievementScreen(),
+          child: const _i25.GynecologyAchievementScreen(),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -164,7 +226,7 @@ class AppRouter extends _i1.RootStackRouter {
     GynecologyDateRoute.name: (routeData) {
       return _i1.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i21.GynecologyDateScreen(),
+          child: const _i26.GynecologyDateScreen(),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -173,7 +235,7 @@ class AppRouter extends _i1.RootStackRouter {
       final args = routeData.argsAs<OnboardingDentistRouteArgs>();
       return _i1.CustomPage<dynamic>(
           routeData: routeData,
-          child: _i22.OnboardingDentistScreen(key: args.key, sex: args.sex),
+          child: _i27.OnboardingDentistScreen(key: args.key, sex: args.sex),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -181,7 +243,7 @@ class AppRouter extends _i1.RootStackRouter {
     DentistAchievementRoute.name: (routeData) {
       return _i1.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i23.DentistAchievementScreen(),
+          child: const _i28.DentistAchievementScreen(),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -189,7 +251,7 @@ class AppRouter extends _i1.RootStackRouter {
     DentistDateRoute.name: (routeData) {
       return _i1.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i24.DentistDateScreen(),
+          child: const _i29.DentistDateScreen(),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -200,10 +262,22 @@ class AppRouter extends _i1.RootStackRouter {
   List<_i1.RouteConfig> get routes => [
         _i1.RouteConfig('/#redirect',
             path: '/', redirectTo: 'main', fullMatch: true),
-        _i1.RouteConfig(MainWrapperRoute.name,
-            path: 'main',
-            guards: [checkIsLoggedIn],
-            children: [_i1.RouteConfig(MainRoute.name, path: 'main-menu')]),
+        _i1.RouteConfig(MainScreenRouter.name, path: 'main', guards: [
+          checkIsLoggedIn
+        ], children: [
+          _i1.RouteConfig(MainRoute.name, path: ''),
+          _i1.RouteConfig(OpenSettingsRoute.name, path: 'settings'),
+          _i1.RouteConfig(UpdateProfileRoute.name,
+              path: 'settings/update-profile'),
+          _i1.RouteConfig(EditNicknameRoute.name,
+              path: 'settings/update-profile/nickname'),
+          _i1.RouteConfig(EditEmailRoute.name,
+              path: 'settings/update-profile/email'),
+          _i1.RouteConfig(EditSexRoute.name,
+              path: 'settings/update-profile/sex'),
+          _i1.RouteConfig(EditBirthdateRoute.name,
+              path: 'settings/update-profile/birthdate')
+        ]),
         _i1.RouteConfig(OnboardingWrapperRoute.name,
             path: 'onboarding',
             children: [
@@ -239,11 +313,11 @@ class AppRouter extends _i1.RootStackRouter {
       ];
 }
 
-class MainWrapperRoute extends _i1.PageRouteInfo<void> {
-  const MainWrapperRoute({List<_i1.PageRouteInfo>? children})
+class MainScreenRouter extends _i1.PageRouteInfo<void> {
+  const MainScreenRouter({List<_i1.PageRouteInfo>? children})
       : super(name, path: 'main', initialChildren: children);
 
-  static const String name = 'MainWrapperRoute';
+  static const String name = 'MainScreenRouter';
 }
 
 class OnboardingWrapperRoute extends _i1.PageRouteInfo<void> {
@@ -268,7 +342,7 @@ class CreateAccountRouteArgs {
 }
 
 class NicknameRoute extends _i1.PageRouteInfo<NicknameRouteArgs> {
-  NicknameRoute({_i2.Key? key, _i25.AuthUser? authUser})
+  NicknameRoute({_i2.Key? key, _i30.AuthUser? authUser})
       : super(name,
             path: 'fallback_account/name',
             args: NicknameRouteArgs(key: key, authUser: authUser));
@@ -281,11 +355,11 @@ class NicknameRouteArgs {
 
   final _i2.Key? key;
 
-  final _i25.AuthUser? authUser;
+  final _i30.AuthUser? authUser;
 }
 
 class EmailRoute extends _i1.PageRouteInfo<EmailRouteArgs> {
-  EmailRoute({_i2.Key? key, _i25.AuthUser? authUser})
+  EmailRoute({_i2.Key? key, _i30.AuthUser? authUser})
       : super(name,
             path: 'fallback_account/email',
             args: EmailRouteArgs(key: key, authUser: authUser));
@@ -298,7 +372,7 @@ class EmailRouteArgs {
 
   final _i2.Key? key;
 
-  final _i25.AuthUser? authUser;
+  final _i30.AuthUser? authUser;
 }
 
 class LoginRoute extends _i1.PageRouteInfo<LoginRouteArgs> {
@@ -315,9 +389,100 @@ class LoginRouteArgs {
 }
 
 class MainRoute extends _i1.PageRouteInfo<void> {
-  const MainRoute() : super(name, path: 'main-menu');
+  const MainRoute() : super(name, path: '');
 
   static const String name = 'MainRoute';
+}
+
+class OpenSettingsRoute extends _i1.PageRouteInfo<void> {
+  const OpenSettingsRoute() : super(name, path: 'settings');
+
+  static const String name = 'OpenSettingsRoute';
+}
+
+class UpdateProfileRoute extends _i1.PageRouteInfo<UpdateProfileRouteArgs> {
+  UpdateProfileRoute({_i2.Key? key})
+      : super(name,
+            path: 'settings/update-profile',
+            args: UpdateProfileRouteArgs(key: key));
+
+  static const String name = 'UpdateProfileRoute';
+}
+
+class UpdateProfileRouteArgs {
+  const UpdateProfileRouteArgs({this.key});
+
+  final _i2.Key? key;
+}
+
+class EditNicknameRoute extends _i1.PageRouteInfo<EditNicknameRouteArgs> {
+  EditNicknameRoute({_i2.Key? key, required _i31.User? user})
+      : super(name,
+            path: 'settings/update-profile/nickname',
+            args: EditNicknameRouteArgs(key: key, user: user));
+
+  static const String name = 'EditNicknameRoute';
+}
+
+class EditNicknameRouteArgs {
+  const EditNicknameRouteArgs({this.key, required this.user});
+
+  final _i2.Key? key;
+
+  final _i31.User? user;
+}
+
+class EditEmailRoute extends _i1.PageRouteInfo<EditEmailRouteArgs> {
+  EditEmailRoute({_i2.Key? key, required _i31.User? user})
+      : super(name,
+            path: 'settings/update-profile/email',
+            args: EditEmailRouteArgs(key: key, user: user));
+
+  static const String name = 'EditEmailRoute';
+}
+
+class EditEmailRouteArgs {
+  const EditEmailRouteArgs({this.key, required this.user});
+
+  final _i2.Key? key;
+
+  final _i31.User? user;
+}
+
+class EditSexRoute extends _i1.PageRouteInfo<EditSexRouteArgs> {
+  EditSexRoute({_i2.Key? key, required _i32.Sex? sex})
+      : super(name,
+            path: 'settings/update-profile/sex',
+            args: EditSexRouteArgs(key: key, sex: sex));
+
+  static const String name = 'EditSexRoute';
+}
+
+class EditSexRouteArgs {
+  const EditSexRouteArgs({this.key, required this.sex});
+
+  final _i2.Key? key;
+
+  final _i32.Sex? sex;
+}
+
+class EditBirthdateRoute extends _i1.PageRouteInfo<EditBirthdateRouteArgs> {
+  EditBirthdateRoute(
+      {_i2.Key? key, required _i33.DateWithoutDay? dateWithoutDay})
+      : super(name,
+            path: 'settings/update-profile/birthdate',
+            args: EditBirthdateRouteArgs(
+                key: key, dateWithoutDay: dateWithoutDay));
+
+  static const String name = 'EditBirthdateRoute';
+}
+
+class EditBirthdateRouteArgs {
+  const EditBirthdateRouteArgs({this.key, required this.dateWithoutDay});
+
+  final _i2.Key? key;
+
+  final _i33.DateWithoutDay? dateWithoutDay;
 }
 
 class WelcomeRoute extends _i1.PageRouteInfo<void> {
@@ -340,7 +505,7 @@ class OnboardingGenderRoute extends _i1.PageRouteInfo<void> {
 
 class OnBoardingBirthdateRoute
     extends _i1.PageRouteInfo<OnBoardingBirthdateRouteArgs> {
-  OnBoardingBirthdateRoute({_i2.Key? key, required _i26.Sex sex})
+  OnBoardingBirthdateRoute({_i2.Key? key, required _i32.Sex sex})
       : super(name,
             path: 'birthdate',
             args: OnBoardingBirthdateRouteArgs(key: key, sex: sex));
@@ -353,12 +518,12 @@ class OnBoardingBirthdateRouteArgs {
 
   final _i2.Key? key;
 
-  final _i26.Sex sex;
+  final _i32.Sex sex;
 }
 
 class OnboardingGeneralPracticionerRoute
     extends _i1.PageRouteInfo<OnboardingGeneralPracticionerRouteArgs> {
-  OnboardingGeneralPracticionerRoute({_i2.Key? key, required _i26.Sex sex})
+  OnboardingGeneralPracticionerRoute({_i2.Key? key, required _i32.Sex sex})
       : super(name,
             path: 'doctor/general-practicioner',
             args: OnboardingGeneralPracticionerRouteArgs(key: key, sex: sex));
@@ -371,7 +536,7 @@ class OnboardingGeneralPracticionerRouteArgs {
 
   final _i2.Key? key;
 
-  final _i26.Sex sex;
+  final _i32.Sex sex;
 }
 
 class GeneralPracticionerAchievementRoute extends _i1.PageRouteInfo<void> {
@@ -396,7 +561,7 @@ class AllowNotificationsRoute extends _i1.PageRouteInfo<void> {
 
 class OnboardingGynecologyRoute
     extends _i1.PageRouteInfo<OnboardingGynecologyRouteArgs> {
-  OnboardingGynecologyRoute({_i2.Key? key, required _i26.Sex sex})
+  OnboardingGynecologyRoute({_i2.Key? key, required _i32.Sex sex})
       : super(name,
             path: 'doctor/gynecology',
             args: OnboardingGynecologyRouteArgs(key: key, sex: sex));
@@ -409,7 +574,7 @@ class OnboardingGynecologyRouteArgs {
 
   final _i2.Key? key;
 
-  final _i26.Sex sex;
+  final _i32.Sex sex;
 }
 
 class GynecologyAchievementRoute extends _i1.PageRouteInfo<void> {
@@ -427,7 +592,7 @@ class GynecologyDateRoute extends _i1.PageRouteInfo<void> {
 
 class OnboardingDentistRoute
     extends _i1.PageRouteInfo<OnboardingDentistRouteArgs> {
-  OnboardingDentistRoute({_i2.Key? key, required _i26.Sex sex})
+  OnboardingDentistRoute({_i2.Key? key, required _i32.Sex sex})
       : super(name,
             path: 'doctor/dentist',
             args: OnboardingDentistRouteArgs(key: key, sex: sex));
@@ -440,7 +605,7 @@ class OnboardingDentistRouteArgs {
 
   final _i2.Key? key;
 
-  final _i26.Sex sex;
+  final _i32.Sex sex;
 }
 
 class DentistAchievementRoute extends _i1.PageRouteInfo<void> {

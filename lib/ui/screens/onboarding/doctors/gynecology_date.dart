@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:loono/services/database_service.dart';
+import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/services/onboarding_state_service.dart';
 import 'package:loono/ui/screens/onboarding/preventive_examination_date_picker.dart';
 import 'package:loono/utils/registry.dart';
@@ -29,7 +29,7 @@ class _GynecologyDateScreenState extends State<GynecologyDateScreen> {
       onDateChanged: (value) => selectedDate = value,
       onContinueButtonPress: () async {
         if (selectedDate == null) return;
-        await registry.get<DatabaseService>().users.updateGynecologyVisitDate(
+        await registry.get<UserRepository>().updateGynecologyVisitDate(
             DateWithoutDay(month: monthFromInt(selectedDate!.month), year: selectedDate!.year));
       },
       onSkipButtonPress: () =>

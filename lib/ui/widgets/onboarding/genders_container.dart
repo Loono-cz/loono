@@ -11,8 +11,16 @@ enum Gender { man, woman, other }
 typedef GenderCallback = void Function(Sex? gender);
 
 class GendersContainer extends StatefulWidget {
-  const GendersContainer({Key? key, this.genderCallBack}) : super(key: key);
+  const GendersContainer({
+    Key? key,
+    this.genderCallBack,
+    this.initialActiveButton,
+    this.bottomSheetColor = LoonoColors.bottomSheetLight,
+  }) : super(key: key);
+
   final GenderCallback? genderCallBack;
+  final Gender? initialActiveButton;
+  final Color bottomSheetColor;
 
   @override
   _GendersContainerState createState() => _GendersContainerState();
@@ -22,6 +30,12 @@ class _GendersContainerState extends State<GendersContainer> {
   PersistentBottomSheetController? sheetController;
 
   Gender? activeButton;
+
+  @override
+  void initState() {
+    super.initState();
+    activeButton = widget.initialActiveButton;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +108,7 @@ class _GendersContainerState extends State<GendersContainer> {
           heightFactor: MediaQuery.of(context).size.height > 750 ? 0.37 : 0.441,
           child: Container(
             decoration: BoxDecoration(
-              color: LoonoColors.bottomSheetLight,
+              color: widget.bottomSheetColor,
               borderRadius: BorderRadius.circular(10.0),
             ),
             child: Padding(

@@ -20,7 +20,7 @@ class Loono extends StatelessWidget {
         if (authUser == null) {
           SchedulerBinding.instance?.addPostFrameCallback((_) {
             _appRouter.removeWhere((_) => true);
-            _appRouter.push(const MainWrapperRoute());
+            _appRouter.push(const MainScreenRouter());
           });
         }
 

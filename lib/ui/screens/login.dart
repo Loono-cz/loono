@@ -46,7 +46,7 @@ class LoginScreen extends StatelessWidget {
                   final accountExistsResult = await _authService.checkAppleAccountExistsAndSignIn();
                   accountExistsResult.fold(
                     (failure) => showSnackBarError(context, message: failure.getMessage(context)),
-                    (authUser) => AutoRouter.of(context).push(const MainWrapperRoute()),
+                    (authUser) => AutoRouter.of(context).push(const MainScreenRouter()),
                   );
                 },
               ),
@@ -60,7 +60,7 @@ class LoginScreen extends StatelessWidget {
                       await _authService.checkGoogleAccountExistsAndSignIn();
                   accountExistsResult.fold(
                     (failure) => showSnackBarError(context, message: failure.getMessage(context)),
-                    (authUser) => AutoRouter.of(context).push(const MainWrapperRoute()),
+                    (authUser) => AutoRouter.of(context).push(const MainScreenRouter()),
                   );
                 },
               ),

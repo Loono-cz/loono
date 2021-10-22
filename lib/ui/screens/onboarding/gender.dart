@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
-import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/onboarding/genders_container.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
@@ -57,7 +57,7 @@ class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
                   enabled: activeButton != null,
                   onTap: activeButton == null
                       ? () {}
-                      : () async => registry.get<DatabaseService>().users.updateSex(activeButton!),
+                      : () async => registry.get<UserRepository>().updateSex(activeButton!),
                 ),
               ),
               SizedBox(height: LoonoSizes.buttonBottomPadding(context)),

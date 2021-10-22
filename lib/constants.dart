@@ -15,6 +15,8 @@ class LoonoColors {
   static const greenSuccess = Color.fromRGBO(59, 129, 79, 1);
   static const red = Color.fromRGBO(216, 66, 72, 1);
   static const secondaryFont = Color.fromRGBO(59, 126, 129, 1);
+  static const redButton = Color.fromARGB(255, 230, 87, 86);
+  static const settingsBackground = Color.fromRGBO(254, 242, 233, 1);
   static const storyIndicatorActiveDark = Color.fromARGB(255, 26, 25, 25);
   static const storyIndicatorUnderlyingDark = Color.fromRGBO(26, 25, 25, 0.5);
   static const storyIndicatorActiveLight = Color.fromARGB(255, 255, 255, 255);
