@@ -9,7 +9,6 @@ class GeneralPracticionerAchievementScreen extends StatelessWidget {
   const GeneralPracticionerAchievementScreen({Key? key}) : super(key: key);
 
   static const type = ExaminationType.GENERAL_PRACTITIONER;
-  static const int worth = 200;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,7 @@ class GeneralPracticionerAchievementScreen extends StatelessWidget {
           ],
           onButtonTap: () =>
               context.read<OnboardingStateService>().obtainAchievementForExamination(type),
-          numberOfPoints: worth,
+          numberOfPoints: type.awardPoints,
           itemPath: 'assets/icons/coat-practitioner.svg',
         ),
       ),

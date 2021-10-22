@@ -9,7 +9,6 @@ class DentistAchievementScreen extends StatelessWidget {
   const DentistAchievementScreen({Key? key}) : super(key: key);
 
   static const type = ExaminationType.DENTIST;
-  static const int worth = 300;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +21,7 @@ class DentistAchievementScreen extends StatelessWidget {
           ],
           onButtonTap: () =>
               context.read<OnboardingStateService>().obtainAchievementForExamination(type),
-          numberOfPoints: worth,
+          numberOfPoints: type.awardPoints,
           itemPath: 'assets/icons/headband-dentist.svg',
         ),
       ),

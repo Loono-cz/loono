@@ -36,43 +36,38 @@ class LeaderboardScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20.0),
               // TODO: Fetch and display real leaderboard values
-              StreamBuilder<dynamic>(
-                stream: null,
-                builder: (context, snapshot) {
-                  return Flexible(
-                    child: ListView.separated(
-                      itemCount: 6,
-                      shrinkWrap: true,
-                      separatorBuilder: (_, i) => i == 2
-                          ? Divider(
-                              color: LoonoColors.leaderboardPrimary,
-                              indent: MediaQuery.of(context).size.width / 4,
-                              endIndent: MediaQuery.of(context).size.width / 4,
-                            )
-                          : const SizedBox.shrink(),
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          contentPadding: const EdgeInsets.only(left: 4.0, right: 16.0),
-                          title: Row(
-                            children: [
-                              Text('${index + 1}.'),
-                              const SizedBox(width: 10.0),
-                              const LoonoAvatar(radius: 27),
-                              const SizedBox(width: 10.0),
-                              const Text('uživatel'),
-                            ],
-                          ),
-                          trailing: Text(
-                            '0',
-                            style: LoonoFonts.headerFontStyle.copyWith(
-                              color: LoonoColors.leaderboardPrimary,
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  );
-                },
+              Flexible(
+                child: ListView.separated(
+                  itemCount: 6,
+                  shrinkWrap: true,
+                  separatorBuilder: (_, i) => i == 2
+                      ? Divider(
+                          color: LoonoColors.leaderboardPrimary,
+                          indent: MediaQuery.of(context).size.width / 4,
+                          endIndent: MediaQuery.of(context).size.width / 4,
+                        )
+                      : const SizedBox.shrink(),
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      contentPadding: const EdgeInsets.only(left: 4.0, right: 16.0),
+                      title: Row(
+                        children: [
+                          Text('${index + 1}.'),
+                          const SizedBox(width: 10.0),
+                          const LoonoAvatar(radius: 27),
+                          const SizedBox(width: 10.0),
+                          const Text('uživatel'),
+                        ],
+                      ),
+                      trailing: Text(
+                        '0',
+                        style: LoonoFonts.headerFontStyle.copyWith(
+                          color: LoonoColors.leaderboardPrimary,
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ),
               const SizedBox(height: 20.0),
               LoonoButton.light(
