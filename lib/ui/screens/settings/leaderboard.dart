@@ -72,7 +72,7 @@ class LeaderboardScreen extends StatelessWidget {
               const SizedBox(height: 20.0),
               LoonoButton.light(
                 text: context.l10n.leaderboard_points_help_button,
-                onTap: () => AutoRouter.of(context).push(const PointsHelpRoute()),
+                onTap: () => AutoRouter.of(context).navigate(const PointsHelpRoute()),
               ),
             ],
           ),

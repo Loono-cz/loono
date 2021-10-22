@@ -36,9 +36,7 @@ class PointsHelpScreen extends StatelessWidget {
               const Spacer(flex: 2),
               LoonoButton.light(
                 text: context.l10n.leaderboard,
-                onTap: () {
-                  AutoRouter.of(context).push(const LeaderboardRoute());
-                },
+                onTap: () => AutoRouter.of(context).navigate(const LeaderboardRoute()),
               ),
               const Spacer(flex: 5),
             ],
