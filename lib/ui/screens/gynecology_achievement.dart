@@ -9,7 +9,7 @@ class GynecologyAchievementScreen extends StatelessWidget {
   const GynecologyAchievementScreen({Key? key}) : super(key: key);
 
   static const type = ExaminationType.GYNECOLOGIST;
-  static const int _worth = 200;
+  static const int worth = 200;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class GynecologyAchievementScreen extends StatelessWidget {
           ],
           onButtonTap: () =>
               context.read<OnboardingStateService>().obtainAchievementForExamination(type),
-          numberOfPoints: _worth,
+          numberOfPoints: worth,
           itemPath: 'assets/icons/belt-gynecologist.svg',
         ),
       ),
