@@ -89,9 +89,11 @@ class AppRouter extends _i1.RootStackRouter {
           routeData: routeData, child: const _i9.MainScreen());
     },
     OpenSettingsRoute.name: (routeData) {
+      final args = routeData.argsAs<OpenSettingsRouteArgs>(
+          orElse: () => const OpenSettingsRouteArgs());
       return _i1.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i10.OpenSettingsScreen(),
+          child: _i10.OpenSettingsScreen(key: args.key),
           transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
           opaque: true,
           barrierDismissible: false);
@@ -394,10 +396,17 @@ class MainRoute extends _i1.PageRouteInfo<void> {
   static const String name = 'MainRoute';
 }
 
-class OpenSettingsRoute extends _i1.PageRouteInfo<void> {
-  const OpenSettingsRoute() : super(name, path: 'settings');
+class OpenSettingsRoute extends _i1.PageRouteInfo<OpenSettingsRouteArgs> {
+  OpenSettingsRoute({_i2.Key? key})
+      : super(name, path: 'settings', args: OpenSettingsRouteArgs(key: key));
 
   static const String name = 'OpenSettingsRoute';
+}
+
+class OpenSettingsRouteArgs {
+  const OpenSettingsRouteArgs({this.key});
+
+  final _i2.Key? key;
 }
 
 class UpdateProfileRoute extends _i1.PageRouteInfo<UpdateProfileRouteArgs> {
