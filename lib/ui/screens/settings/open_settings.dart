@@ -23,6 +23,18 @@ class OpenSettingsScreen extends StatelessWidget {
                 },
                 child: Text('UPDATE PROFILE'),
               ),
+              TextButton(
+                onPressed: () {
+                  AutoRouter.of(context).push(const PointsHelpRoute());
+                },
+                child: Text('VIEW POINTS'),
+              ),
+              TextButton(
+                onPressed: () {
+                  AutoRouter.of(context).push(const LeaderboardRoute());
+                },
+                child: Text('LEADERBOARD'),
+              ),
             ],
           ),
         ),

@@ -197,5 +197,15 @@
   "auth_network_failure_message": "Nejsi připojený(á) k internetu.",
   "@auth_network_failure_message": {},
   "auth_account_not_exists_message": "Účet s tímto emailem zatím neexistuje",
-  "@auth_account_not_exists_message": {}
+  "@auth_account_not_exists_message": {},
+  "points_info": "Za to, že aktivně dodržuješ prevenci a dbáš o svoje zdraví ti dáváme body. Je to jednoduchý způsob jak ti ukázat, že se posouváš kupředu a pokud jsi soutěživý typ, tak taky možnost se porovnat s ostatními.\n\nČasem ti za získané body nabídneme speciální akce ve spolupráci se zajímavými partnery a taky slevy do našeho shopu.",
+  "@points_info": {},
+  "points_your_points_desc": "tvoje body",
+  "@points_your_points_desc": {},
+  "points": "Body",
+  "@points": {},
+  "leaderboard": "Žebříček",
+  "@leaderboard": {},
+  "leaderboard_points_help_button": "Co s body?",
+  "@leaderboard_points_help_button": {}
 }

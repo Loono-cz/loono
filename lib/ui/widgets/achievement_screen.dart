@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/loono_point.dart';
 
 class AchievementScreen extends StatelessWidget {
   const AchievementScreen({
@@ -62,11 +63,11 @@ class AchievementScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SvgPicture.asset('assets/icons/star.svg', color: LoonoColors.primary),
+                  const LoonoPointIcon(),
                   const SizedBox(width: 8),
                   Text(
                     numberOfPoints.toString(),
-                    style: LoonoFonts.subtitleFontStyle.copyWith(color: LoonoColors.primary),
+                    style: LoonoFonts.subtitleFontStyle.copyWith(color: LoonoColors.primaryEnabled),
                   ),
                 ],
               ),
