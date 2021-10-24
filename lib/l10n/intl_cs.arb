@@ -197,5 +197,13 @@
   "auth_network_failure_message": "Nejsi připojený(á) k internetu.",
   "@auth_network_failure_message": {},
   "auth_account_not_exists_message": "Účet s tímto emailem zatím neexistuje",
-  "@auth_account_not_exists_message": {}
+  "@auth_account_not_exists_message": {},
+  "settings_edit_account_button": "Upravit účet",
+  "@settings_edit_account_button": {},
+  "settings_user_points_help_button": "Co s body?",
+  "@settings_user_points_help_button": {},
+  "settings_leaderboard_button": "Žebříček",
+  "@settings_leaderboard_button": {},
+  "settings_user_points_label": "Tvoje body",
+  "@settings_user_points_label": {}
 }
