@@ -79,7 +79,8 @@ class OpenSettingsScreen extends StatelessWidget {
                           child: LoonoButton.light(
                             text: context.l10n.settings_user_points_help_button,
                             onTap: () {
-                              print('user points help screen'); // TODO: navigate to screen
+                              print(
+                                  'user points help screen'); // TODO: navigate to screen https://cesko-digital.atlassian.net/browse/LOON-236
                             },
                           ),
                         ),
@@ -88,7 +89,8 @@ class OpenSettingsScreen extends StatelessWidget {
                           child: LoonoButton.light(
                             text: context.l10n.settings_leaderboard_button,
                             onTap: () {
-                              print('leaderboard screen'); // TODO: navigate to screen
+                              print(
+                                  'leaderboard screen'); // TODO: navigate to screen https://cesko-digital.atlassian.net/browse/LOON-236
                             },
                           ),
                         )
