@@ -20,11 +20,16 @@ import 'package:loono/ui/screens/onboarding/fallback_account/email.dart';
 import 'package:loono/ui/screens/onboarding/fallback_account/nickname.dart';
 import 'package:loono/ui/screens/onboarding/gender.dart';
 import 'package:loono/ui/screens/onboarding/onboarding_wrapper_screen.dart';
+import 'package:loono/ui/screens/settings/camera_photo_taken.dart';
 import 'package:loono/ui/screens/settings/edit_birthdate.dart';
 import 'package:loono/ui/screens/settings/edit_email.dart';
 import 'package:loono/ui/screens/settings/edit_nickname.dart';
+import 'package:loono/ui/screens/settings/edit_photo.dart';
 import 'package:loono/ui/screens/settings/edit_sex.dart';
+import 'package:loono/ui/screens/settings/gallery_photo_taken_screen.dart';
+import 'package:loono/ui/screens/settings/leaderboard.dart';
 import 'package:loono/ui/screens/settings/open_settings.dart';
+import 'package:loono/ui/screens/settings/points_help.dart';
 import 'package:loono/ui/screens/settings/update_profile.dart';
 import 'package:loono/ui/screens/welcome.dart';
 
@@ -39,7 +44,6 @@ const _settingsTransition = TransitionsBuilders.slideLeft;
   replaceInRouteName: 'Page|Screen,Route',
   routes: <AutoRoute>[
     AutoRoute(
-      // page: MainScreen,
       page: EmptyRouterScreen,
       path: 'main',
       name: 'MainScreenRouter',
@@ -78,6 +82,31 @@ const _settingsTransition = TransitionsBuilders.slideLeft;
         CustomRoute(
           page: EditBirthdateScreen,
           path: 'settings/update-profile/birthdate',
+          transitionsBuilder: _settingsTransition,
+        ),
+        CustomRoute(
+          page: EditPhotoScreen,
+          path: 'settings/update-profile/photo',
+          transitionsBuilder: _settingsTransition,
+        ),
+        CustomRoute(
+          page: CameraPhotoTakenScreen,
+          path: 'settings/update-profile/photo/camera-taken',
+          transitionsBuilder: _settingsTransition,
+        ),
+        CustomRoute(
+          page: GalleryPhotoTakenScreen,
+          path: 'settings/update-profile/photo/gallery-taken',
+          transitionsBuilder: _settingsTransition,
+        ),
+        CustomRoute(
+          page: LeaderboardScreen,
+          path: 'settings/leaderboard',
+          transitionsBuilder: _settingsTransition,
+        ),
+        CustomRoute(
+          page: PointsHelpScreen,
+          path: 'settings/points-help',
           transitionsBuilder: _settingsTransition,
         ),
       ],
