@@ -32,7 +32,13 @@ dependencies:
   freezed_annotation: ^0.14.2
   get_it: ^7.2.0
   google_sign_in: ^5.1.1
-  image_picker: ^0.8.4+2 # TODO: Setup on iOS (https://pub.dev/packages/image_picker#ios)
+
+  # TODO: Setup on iOS (https://pub.dev/packages/image_picker#ios)
+  # TODO: In rare occasions, on some Xiaomi models picking an image from camera causes the app to restart
+  #   - switch to camera package, or
+  #   - handle MainActivity destruction https://pub.dev/packages/image_picker#handling-mainactivity-destruction-on-android
+  image_picker: ^0.8.4+2
+
   intl: ^0.17.0
   json_annotation: ^4.0.1
   moor: ^4.1.0
