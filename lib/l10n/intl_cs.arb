@@ -207,5 +207,13 @@
   "leaderboard": "Žebříček",
   "@leaderboard": {},
   "leaderboard_points_help_button": "Co s body?",
-  "@leaderboard_points_help_button": {}
+  "@leaderboard_points_help_button": {},
+  "settings_edit_account_button": "Upravit účet",
+  "@settings_edit_account_button": {},
+  "settings_user_points_help_button": "Co s body?",
+  "@settings_user_points_help_button": {},
+  "settings_leaderboard_button": "Žebříček",
+  "@settings_leaderboard_button": {},
+  "settings_user_points_label": "Tvoje body",
+  "@settings_user_points_label": {}
 }

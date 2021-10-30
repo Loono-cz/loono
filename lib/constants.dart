@@ -78,6 +78,12 @@ class LoonoFonts {
     color: LoonoColors.black,
     fontWeight: FontWeight.normal,
   );
+
+  static const primaryColorStyle = TextStyle(
+    fontSize: 24,
+    color: LoonoColors.primary,
+    fontWeight: FontWeight.w700,
+  );
 }
 
 class LoonoSizes {
