@@ -238,4 +238,9 @@
   "@image_error_size_exceeded": {},
   "photo_changed_success": "Fotografie úspěšně změněna",
   "@photo_changed_success": {}
+  "@leaderboard_points_help_button": {},
+  "settings_edit_account_button": "Upravit účet",
+  "@settings_edit_account_button": {},
+  "settings_user_points_help_button": "Co s body?",
+  "@settings_user_points_help_button": {}
 }
