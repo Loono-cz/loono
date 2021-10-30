@@ -67,10 +67,14 @@ Future<PermissionStatus> _checkHasPermission(Permission permission) async {
     case PermissionStatus.granted:
       return PermissionStatus.granted;
     case PermissionStatus.denied:
-      // We didn't ask for permission yet or the permission has been denied before but not permanently
-      if (await permission.request().isGranted) {
+      final newStatus = await permission.request();
+      if (newStatus == PermissionStatus.granted) {
         // Either the permission was already granted before or the user just granted it
         return PermissionStatus.granted;
+      }
+      // See https://github.com/Baseflow/flutter-permission-handler/wiki/Changes-in-6.0.0#breaking-changes
+      if (newStatus == PermissionStatus.permanentlyDenied) {
+        return PermissionStatus.permanentlyDenied;
       }
       return PermissionStatus.denied;
     case PermissionStatus.permanentlyDenied:
