@@ -34,9 +34,9 @@ dependencies:
   google_sign_in: ^5.1.1
 
   # TODO: Setup on iOS (https://pub.dev/packages/image_picker#ios)
-  # TODO: In rare occasions, on some Xiaomi models picking an image from camera causes the app to restart
-  #   - switch to camera package, or
-  #   - handle MainActivity destruction https://pub.dev/packages/image_picker#handling-mainactivity-destruction-on-android
+  # TODO: Investigate the number of crash occurrences on Xiaomi models https://github.com/flutter/flutter/issues/66322
+  #   - possible solution:
+  #     - handle MainActivity destruction https://pub.dev/packages/image_picker#handling-mainactivity-destruction-on-android
   image_picker: ^0.8.4+2
 
   intl: ^0.17.0
