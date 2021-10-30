@@ -29,6 +29,7 @@ import 'package:loono/ui/screens/settings/edit_sex.dart';
 import 'package:loono/ui/screens/settings/gallery_photo_taken_screen.dart';
 import 'package:loono/ui/screens/settings/leaderboard.dart';
 import 'package:loono/ui/screens/settings/open_settings.dart';
+import 'package:loono/ui/screens/settings/photo_cropped_result.dart';
 import 'package:loono/ui/screens/settings/points_help.dart';
 import 'package:loono/ui/screens/settings/update_profile.dart';
 import 'package:loono/ui/screens/welcome.dart';
@@ -97,6 +98,11 @@ const _settingsTransition = TransitionsBuilders.slideLeft;
         CustomRoute(
           page: GalleryPhotoTakenScreen,
           path: 'settings/update-profile/photo/gallery-taken',
+          transitionsBuilder: _settingsTransition,
+        ),
+        CustomRoute(
+          page: PhotoCroppedResultScreen,
+          path: 'settings/update-profile/photo/photo-cropped-result',
           transitionsBuilder: _settingsTransition,
         ),
         CustomRoute(

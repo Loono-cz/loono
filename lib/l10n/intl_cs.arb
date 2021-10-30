@@ -218,6 +218,8 @@
   "@camera_photo_taken_again_action": {},
   "gallery_photo_picked_again_action": "Vybrat jinou fotografii",
   "@gallery_photo_picked_again_action": {},
+  "photo_crop_again_action": "Upravit výřez fotografie",
+  "@photo_crop_again_action": {},
   "permission_camera": "fotoaparátu",
   "@permission_camera": {},
   "permission_storage": "úložišti",

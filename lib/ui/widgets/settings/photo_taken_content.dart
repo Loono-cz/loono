@@ -4,7 +4,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:crop_your_image/crop_your_image.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
@@ -75,26 +74,28 @@ class _PhotoTakenContentState extends State<PhotoTakenContent> {
                             withCircleUi: true,
                             controller: cropController,
                             onStatusChanged: (status) {
-                              if (status == CropStatus.ready) setState(() => isLoading = false);
-                              if (status == CropStatus.cropping) setState(() => isCropping = true);
+                              if (status == CropStatus.ready) {
+                                setState(() {
+                                  isLoading = false;
+                                  isCropping = false;
+                                });
+                              }
+                              if (status == CropStatus.cropping) {
+                                setState(() {
+                                  isLoading = true;
+                                  isCropping = true;
+                                });
+                              }
                             },
-                            onCropped: (imageBytes) {
-                              // TODO: Save picture to Firebase
-                              showSnackBarSuccess(context,
-                                  message: context.l10n.photo_changed_success);
-                              AutoRouter.of(context).pushAndPopUntil(
-                                EditPhotoRoute(imageBytes: imageBytes),
-                                predicate: (route) =>
-                                    route.settings.name == UpdateProfileRoute.name,
-                              );
-                            },
+                            onCropped: (imageBytes) => AutoRouter.of(context)
+                                .push(PhotoCroppedResultRoute(imageBytes: imageBytes)),
                           ),
                   ),
                 ),
                 const Spacer(),
                 LoonoButton(
                   enabled: isLoading == false && isCropping == false,
-                  text: context.l10n.action_save,
+                  text: context.l10n.continue_info,
                   onTap: () => cropController.crop(),
                 ),
                 const SizedBox(height: 30),
