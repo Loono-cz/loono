@@ -88,11 +88,23 @@ extension ImageErrorMessagesExt on ImageError {
       noMessage: () => '',
       unknown: () => context.l10n.image_error_unknown,
       permissionDenied: (permission) =>
-          '${context.l10n.image_error_permission_denied} ${permission.getPermissionName(context)}',
-      permissionPermanentlyDenied: (permission) =>
-          '${context.l10n.image_error_permission_permanently_denied_1} ${permission.getPermissionName(context)}. ${context.l10n.image_error_permission_permanently_denied_2}',
-      permissionLimited: (permission) =>
-          "'${permission.getPermissionName(context)}' ${context.l10n.image_error_permission_limited}.",
+          '${context.l10n.image_error_permission_denied} ${permission.getPermissionName(context)}.',
+      permissionPermanentlyDenied: (permission) {
+        switch (permission) {
+          case RequiredImagePermission.camera:
+            return '${context.l10n.image_error_permission_permanently_denied_camera} ${context.l10n.image_error_permission_settings_info}';
+          case RequiredImagePermission.storage:
+            return '${context.l10n.image_error_permission_permanently_denied_storage} ${context.l10n.image_error_permission_settings_info}';
+        }
+      },
+      permissionLimited: (permission) {
+        switch (permission) {
+          case RequiredImagePermission.camera:
+            return '${context.l10n.image_error_permission_permanently_denied_camera} ${context.l10n.image_error_permission_settings_info}';
+          case RequiredImagePermission.storage:
+            return '${context.l10n.image_error_permission_permanently_denied_storage} ${context.l10n.image_error_permission_settings_info}';
+        }
+      },
       network: () => context.l10n.image_error_network,
       sizeExceeded: () => context.l10n.image_error_size_exceeded,
     );

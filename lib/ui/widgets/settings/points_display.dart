@@ -57,7 +57,7 @@ class PointsDisplay extends StatelessWidget {
           builder: (context, snapshot) {
             return Text(
               _calculateTotalPoints(snapshot.data).toString(),
-              style: LoonoFonts.headerFontStyle.copyWith(color: LoonoColors.leaderboardPrimary),
+              style: LoonoFonts.primaryColorStyle,
             );
           },
         ),
