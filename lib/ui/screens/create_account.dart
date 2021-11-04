@@ -8,6 +8,7 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/auth/failures.dart';
+import 'package:loono/ui/widgets/confirmation_dialog.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
 import 'package:loono/ui/widgets/social_login_button.dart';
 import 'package:loono/utils/registry.dart';
@@ -16,23 +17,6 @@ class CreateAccountScreen extends StatelessWidget {
   CreateAccountScreen({Key? key}) : super(key: key);
 
   final _authService = registry.get<AuthService>();
-
-  Future<void> _showNoInternetDialog(BuildContext context) {
-    return showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text(context.l10n.create_account_anonymous_login_connection_error),
-          actions: [
-            TextButton(
-              onPressed: () => AutoRouter.of(context).pop(),
-              child: Text(context.l10n.ok_action),
-            ),
-          ],
-        );
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +37,13 @@ class CreateAccountScreen extends StatelessWidget {
                         authUserResult.fold(
                           (failure) {
                             failure.maybeWhen(
-                              network: (_) => _showNoInternetDialog(context),
-                              orElse: () =>
-                                  showSnackBarError(context, message: failure.getMessage(context)),
+                              network: (_) => showConfirmationDialog(
+                                context,
+                                onConfirm: () => AutoRouter.of(context).pop(),
+                                confirmationButtonLabel: context.l10n.ok_action,
+                                content: context.l10n.create_account_anonymous_login_connection_error,
+                              ),
+                              orElse: () => showSnackBarError(context, message: failure.getMessage(context)),
                             );
                           },
                           (authUser) => AutoRouter.of(context).push(NicknameRoute()),
@@ -77,8 +65,7 @@ class CreateAccountScreen extends StatelessWidget {
                         Positioned(
                           left: -12,
                           top: -5,
-                          child: SvgPicture.asset('assets/icons/create-account-ellipse.svg',
-                              width: 290),
+                          child: SvgPicture.asset('assets/icons/create-account-ellipse.svg', width: 290),
                         ),
                         Align(
                           alignment: Alignment.centerLeft,
@@ -116,10 +103,8 @@ class CreateAccountScreen extends StatelessWidget {
                               onPressed: () async {
                                 final authUserResult = await _authService.signInWithApple();
                                 authUserResult.fold(
-                                  (failure) => showSnackBarError(context,
-                                      message: failure.getMessage(context)),
-                                  (authUser) => AutoRouter.of(context)
-                                      .push(NicknameRoute(authUser: authUser)),
+                                  (failure) => showSnackBarError(context, message: failure.getMessage(context)),
+                                  (authUser) => AutoRouter.of(context).push(NicknameRoute(authUser: authUser)),
                                 );
                               },
                             ),
@@ -128,10 +113,8 @@ class CreateAccountScreen extends StatelessWidget {
                               onPressed: () async {
                                 final authUserResult = await _authService.signInWithGoogle();
                                 authUserResult.fold(
-                                  (failure) => showSnackBarError(context,
-                                      message: failure.getMessage(context)),
-                                  (authUser) => AutoRouter.of(context)
-                                      .push(NicknameRoute(authUser: authUser)),
+                                  (failure) => showSnackBarError(context, message: failure.getMessage(context)),
+                                  (authUser) => AutoRouter.of(context).push(NicknameRoute(authUser: authUser)),
                                 );
                               },
                             ),

@@ -12,6 +12,7 @@ class LoonoButton extends StatelessWidget {
     this.enabled = true,
     this.enabledColor,
     this.disabledColor,
+    this.textColor,
     this.buttonStyle = ButtonStyle.dark,
   }) : super(key: key);
 
@@ -22,6 +23,7 @@ class LoonoButton extends StatelessWidget {
     this.enabled = true,
     this.enabledColor,
     this.disabledColor,
+    this.textColor,
   })  : buttonStyle = ButtonStyle.light,
         super(key: key);
 
@@ -30,6 +32,7 @@ class LoonoButton extends StatelessWidget {
   final bool enabled;
   final Color? enabledColor;
   final Color? disabledColor;
+  final Color? textColor;
   final ButtonStyle buttonStyle;
 
   bool get isLight => buttonStyle == ButtonStyle.light;
@@ -41,17 +44,17 @@ class LoonoButton extends StatelessWidget {
       splashColor: enabled ? null : Colors.transparent,
       materialColor: enabled
           ? (enabledColor ?? (isLight ? LoonoColors.buttonLight : LoonoColors.primaryEnabled))
-          : (disabledColor ??
-              (isLight ? LoonoColors.buttonLight.withOpacity(0.5) : LoonoColors.primaryDisabled)),
+          : (disabledColor ?? (isLight ? LoonoColors.buttonLight.withOpacity(0.5) : LoonoColors.primaryDisabled)),
       borderRadius: BorderRadius.circular(10.0),
       child: SizedBox(
         height: 65.0,
         child: Align(
           child: Text(
             text,
-            style: Theme.of(context).textTheme.button?.copyWith(
-                  color: isLight ? Colors.black : Colors.white,
-                ),
+            style: Theme.of(context)
+                .textTheme
+                .button
+                ?.copyWith(color: textColor ?? (isLight ? Colors.black : Colors.white)),
           ),
         ),
       ),

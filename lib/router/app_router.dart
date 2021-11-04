@@ -6,6 +6,7 @@ import 'package:loono/ui/screens/dentist_achievement.dart';
 import 'package:loono/ui/screens/general_practicioner_achievement.dart';
 import 'package:loono/ui/screens/gynecology_achievement.dart';
 import 'package:loono/ui/screens/login.dart';
+import 'package:loono/ui/screens/logout.dart';
 import 'package:loono/ui/screens/main/main_screen.dart';
 import 'package:loono/ui/screens/onboarding/allow_notifications.dart';
 import 'package:loono/ui/screens/onboarding/birthdate.dart';
@@ -169,6 +170,7 @@ const _settingsTransition = TransitionsBuilders.slideLeft;
     AutoRoute(page: NicknameScreen, path: 'fallback_account/name'),
     AutoRoute(page: EmailScreen, path: 'fallback_account/email'),
     AutoRoute(page: LoginScreen, path: 'login'),
+    AutoRoute(page: LogoutScreen, path: 'logout'),
   ],
 )
 class $AppRouter {}
