@@ -13,6 +13,7 @@ import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/confirmation_dialog.dart';
 import 'package:loono/ui/widgets/settings/app_bar.dart';
 import 'package:loono/ui/widgets/settings/avatar.dart';
 import 'package:loono/ui/widgets/settings/update_profile_item.dart';
@@ -119,7 +120,18 @@ class UpdateProfileScreen extends StatelessWidget {
                     const SizedBox(height: 80.0),
                     LoonoButton.light(
                       text: context.l10n.sign_out_action,
-                      onTap: () async => _authService.signOut(),
+                      onTap: () async {
+                        showConfirmationDialog(
+                          context,
+                          onConfirm: () => AutoRouter.of(context).pushAndPopUntil(
+                            // TODO: After updating a routes do logout processes here instead of in LogoutScreen
+                            const LogoutRoute(),
+                            predicate: (_) => false,
+                          ),
+                          onCancel: () => AutoRouter.of(context).pop(),
+                          content: context.l10n.logout_confirmation_dialog_content,
+                        );
+                      },
                     ),
                     const SizedBox(height: 41.0),
                     Align(

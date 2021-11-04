@@ -243,5 +243,19 @@
   "settings_edit_account_button": "Upravit účet",
   "@settings_edit_account_button": {},
   "settings_user_points_help_button": "Co s body?",
-  "@settings_user_points_help_button": {}
+  "@settings_user_points_help_button": {},
+  "cancel": "Zrušit",
+  "@cancel": {},
+  "logout_confirmation_dialog_content": "Opravdu se chceš odhlásit? Nebudeme ti připomínat prohlídky notifikacemi.",
+  "@logout_confirmation_dialog_content": {},
+  "logout_screen_success_message": "Odhlášení proběhlo úspěšně",
+  "@logout_screen_success_message": {},
+  "logout_screen_header": "Tak zase příště",
+  "@logout_screen_header": {},
+  "logout_screen_content": "Abychom ti mohli připomínat preventivní prohlídky notifikacemi, musíš se přihlásit.",
+  "@logout_screen_content": {},
+  "login": "Přihlásit se",
+  "@login": {},
+  "use_app_without_account": "Používat aplikaci bez účtu",
+  "@use_app_without_account": {}
 }
