@@ -57,7 +57,7 @@ class _LogoutScreenState extends State<LogoutScreen> {
                 textColor: LoonoColors.black,
                 onTap: () async {
                   final authUserResult = await _authService.signInAnonymously();
-                  authUserResult.fold(
+                  authUserResult.leftMap(
                     (failure) {
                       failure.maybeWhen(
                         network: (_) => showConfirmationDialog(
@@ -70,7 +70,6 @@ class _LogoutScreenState extends State<LogoutScreen> {
                             showSnackBarError(context, message: failure.getMessage(context)),
                       );
                     },
-                    (authUser) => AutoRouter.of(context).push(NicknameRoute()),
                   );
                 },
               ),
