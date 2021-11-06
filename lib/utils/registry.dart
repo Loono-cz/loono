@@ -63,8 +63,10 @@ Future<void> setup(AppFlavors flavor) async {
   registry.get<AuthService>().authStateStream.listen(
         (event) => event.maybeWhen(
           loggedIn: () => registry.get<AuthRouter>().replaceAll([LoggedInRoute()]),
+          accountJustCreated: (authUser) =>
+              registry.get<AuthRouter>().replaceAll([NicknameRoute(authUser: authUser)]),
           loggedOut: () => registry.get<AuthRouter>().replaceAll([const OnboardingWrapperRoute()]),
-          loggedManually: () => registry.get<AuthRouter>().replaceAll([const LogoutRoute()]),
+          loggedOutManually: () => registry.get<AuthRouter>().replaceAll([const LogoutRoute()]),
           orElse: () {},
         ),
       );
