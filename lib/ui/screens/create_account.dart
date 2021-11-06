@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/routers/auth_router.dart';
 import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/auth/failures.dart';
 import 'package:loono/ui/widgets/confirmation_dialog.dart';
@@ -41,9 +41,11 @@ class CreateAccountScreen extends StatelessWidget {
                                 context,
                                 onConfirm: () => AutoRouter.of(context).pop(),
                                 confirmationButtonLabel: context.l10n.ok_action,
-                                content: context.l10n.create_account_anonymous_login_connection_error,
+                                content:
+                                    context.l10n.create_account_anonymous_login_connection_error,
                               ),
-                              orElse: () => showSnackBarError(context, message: failure.getMessage(context)),
+                              orElse: () =>
+                                  showSnackBarError(context, message: failure.getMessage(context)),
                             );
                           },
                           (authUser) => AutoRouter.of(context).push(NicknameRoute()),
@@ -65,7 +67,8 @@ class CreateAccountScreen extends StatelessWidget {
                         Positioned(
                           left: -12,
                           top: -5,
-                          child: SvgPicture.asset('assets/icons/create-account-ellipse.svg', width: 290),
+                          child: SvgPicture.asset('assets/icons/create-account-ellipse.svg',
+                              width: 290),
                         ),
                         Align(
                           alignment: Alignment.centerLeft,
@@ -103,8 +106,10 @@ class CreateAccountScreen extends StatelessWidget {
                               onPressed: () async {
                                 final authUserResult = await _authService.signInWithApple();
                                 authUserResult.fold(
-                                  (failure) => showSnackBarError(context, message: failure.getMessage(context)),
-                                  (authUser) => AutoRouter.of(context).push(NicknameRoute(authUser: authUser)),
+                                  (failure) => showSnackBarError(context,
+                                      message: failure.getMessage(context)),
+                                  (authUser) => AutoRouter.of(context)
+                                      .push(NicknameRoute(authUser: authUser)),
                                 );
                               },
                             ),
@@ -113,8 +118,10 @@ class CreateAccountScreen extends StatelessWidget {
                               onPressed: () async {
                                 final authUserResult = await _authService.signInWithGoogle();
                                 authUserResult.fold(
-                                  (failure) => showSnackBarError(context, message: failure.getMessage(context)),
-                                  (authUser) => AutoRouter.of(context).push(NicknameRoute(authUser: authUser)),
+                                  (failure) => showSnackBarError(context,
+                                      message: failure.getMessage(context)),
+                                  (authUser) => AutoRouter.of(context)
+                                      .push(NicknameRoute(authUser: authUser)),
                                 );
                               },
                             ),

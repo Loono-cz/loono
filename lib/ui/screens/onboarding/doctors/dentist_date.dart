@@ -4,14 +4,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
-import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/routers/auth_router.dart';
 import 'package:loono/ui/screens/onboarding/preventive_examination_date_picker.dart';
 import 'package:loono/utils/registry.dart';
 
 class DentistDateScreen extends StatefulWidget {
   const DentistDateScreen({Key? key}) : super(key: key);
-
-  static const id = 'DentistDateScreen';
 
   @override
   State<DentistDateScreen> createState() => _DentistDateScreenState();

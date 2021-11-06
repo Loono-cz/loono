@@ -4,7 +4,7 @@ import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/user.dart';
 import 'package:loono/repositories/user_repository.dart';
-import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/routers/auth_router.dart';
 import 'package:loono/ui/widgets/universal_doctor_screen.dart';
 import 'package:loono/utils/registry.dart';
 

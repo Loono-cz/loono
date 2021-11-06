@@ -4,7 +4,7 @@ import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/models/user.dart';
-import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/routers/auth_router.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/onboarding_state_service.dart';
@@ -44,7 +44,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                     ];
                   }
 
-                  final flows = <PageRouteInfo<dynamic>?>[];
+                  final flows = <PageRouteInfo?>[];
                   if (onboardingState.hasQuestionnaireStatus) {
                     flows.add(const OnboardingGenderRoute());
                   }
@@ -65,7 +65,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                             achievementRoute: const GeneralPracticionerAchievementRoute(),
                             dateRoute: const GeneralPractitionerDateRoute(),
                             nextDoctorRoute: sex == Sex.female
-                                ? OnboardingGynecologyRoute(sex: sex) as PageRouteInfo<dynamic>
+                                ? OnboardingGynecologyRoute(sex: sex) as PageRouteInfo
                                 : OnboardingDentistRoute(sex: sex),
                           ),
                         ],
@@ -130,12 +130,12 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
   }
 }
 
-PageRouteInfo<dynamic>? _nextDoctorOnlyRoute({
+PageRouteInfo? _nextDoctorOnlyRoute({
   required OnboardingStateService onboardingState,
   required CcaDoctorVisit? prevDoctorCcaVisit,
   required DateWithoutDay? prevDoctorDateVisit,
-  PageRouteInfo<dynamic> allowNotificationsRoute = const AllowNotificationsRoute(),
-  required PageRouteInfo<dynamic> nextDoctorRoute,
+  PageRouteInfo allowNotificationsRoute = const AllowNotificationsRoute(),
+  required PageRouteInfo nextDoctorRoute,
 }) {
   if (prevDoctorCcaVisit != null && prevDoctorDateVisit != null) {
     if (onboardingState.hasNotRequestedNotificationsPermission) {
@@ -145,14 +145,14 @@ PageRouteInfo<dynamic>? _nextDoctorOnlyRoute({
   }
 }
 
-PageRouteInfo<dynamic>? _dateOrAchievementOrNextDoctorRoute({
+PageRouteInfo? _dateOrAchievementOrNextDoctorRoute({
   required OnboardingStateService onboardingState,
   required CcaDoctorVisit? currDoctorCcaVisit,
   required ExaminationType examinationType,
-  required PageRouteInfo<dynamic> achievementRoute,
-  required PageRouteInfo<dynamic> dateRoute,
-  PageRouteInfo<dynamic> allowNotificationsRoute = const AllowNotificationsRoute(),
-  required PageRouteInfo<dynamic> nextDoctorRoute,
+  required PageRouteInfo achievementRoute,
+  required PageRouteInfo dateRoute,
+  PageRouteInfo allowNotificationsRoute = const AllowNotificationsRoute(),
+  required PageRouteInfo nextDoctorRoute,
 }) {
   if (currDoctorCcaVisit != null) {
     if (currDoctorCcaVisit == CcaDoctorVisit.inLastTwoYears) {

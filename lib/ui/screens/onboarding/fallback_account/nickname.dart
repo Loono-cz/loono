@@ -5,7 +5,7 @@ import 'package:loono/helpers/validators.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/firebase_user.dart';
 import 'package:loono/repositories/user_repository.dart';
-import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/routers/auth_router.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/ui/widgets/fallback_account_content.dart';

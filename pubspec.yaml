@@ -7,7 +7,7 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  auto_route: ^2.4.0
+  auto_route: ^3.0.4
   crypto: ^3.0.1
   cupertino_icons: ^1.0.2
   dartz: ^0.10.0
@@ -44,7 +44,7 @@ dependencies:
   video_player: ^2.1.10
 
 dev_dependencies:
-  auto_route_generator: ^2.4.0
+  auto_route_generator: ^3.0.1
   build_runner: ^2.0.4
   flutter_test:
     sdk: flutter

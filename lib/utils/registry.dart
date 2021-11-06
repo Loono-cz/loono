@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:loono/repositories/user_repository.dart';
-import 'package:loono/router/app_router.gr.dart';
-import 'package:loono/router/guards/check_is_logged_in.dart';
+import 'package:loono/routers/app_router.dart';
+import 'package:loono/routers/auth_router.dart';
 import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/utils/app_config.dart';
@@ -44,18 +44,28 @@ Future<void> setup(AppFlavors flavor) async {
     flavor: flavor,
   );
 
-  registry.registerLazySingleton<GlobalKey<NavigatorState>>(() => GlobalKey());
   registry.registerLazySingleton<AppConfig>(() => config);
 
   // services
-  registry.registerSingleton<AuthService>(AuthService());
   registry.registerSingleton<DatabaseService>(DatabaseService());
   // TODO: generate the key and store it into secure storage
   await registry.get<DatabaseService>().init('SUPER SECURE KEY');
+  registry.registerSingleton<AuthService>(AuthService());
 
   //repositories
   registry.registerSingleton<UserRepository>(UserRepository());
 
-  // router
-  registry.registerSingleton<AppRouter>(AppRouter(checkIsLoggedIn: CheckIsLoggedIn()));
+  // routers
+  registry.registerSingleton<AuthRouter>(AuthRouter());
+  registry.registerSingleton<AppRouter>(AppRouter());
+
+  registry.get<AppRouter>().replaceAll([const MainScreenRouter()]);
+  registry.get<AuthService>().authStateStream.listen(
+        (event) => event.maybeWhen(
+          loggedIn: () => registry.get<AuthRouter>().replaceAll([LoggedInRoute()]),
+          loggedOut: () => registry.get<AuthRouter>().replaceAll([const OnboardingWrapperRoute()]),
+          loggedManually: () => registry.get<AuthRouter>().replaceAll([const LogoutRoute()]),
+          orElse: () {},
+        ),
+      );
 }

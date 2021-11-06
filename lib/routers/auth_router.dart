@@ -1,99 +1,46 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:loono/router/guards/check_is_logged_in.dart';
+import 'package:flutter/material.dart';
+import 'package:loono/helpers/sex_extensions.dart';
+import 'package:loono/models/firebase_user.dart';
 import 'package:loono/ui/screens/create_account.dart';
-import 'package:loono/ui/screens/dentist_achievement.dart';
-import 'package:loono/ui/screens/general_practicioner_achievement.dart';
-import 'package:loono/ui/screens/gynecology_achievement.dart';
+import 'package:loono/ui/screens/logged_in.dart';
 import 'package:loono/ui/screens/login.dart';
 import 'package:loono/ui/screens/logout.dart';
-import 'package:loono/ui/screens/main/main_screen.dart';
 import 'package:loono/ui/screens/onboarding/allow_notifications.dart';
 import 'package:loono/ui/screens/onboarding/birthdate.dart';
 import 'package:loono/ui/screens/onboarding/carousel/carousel.dart';
 import 'package:loono/ui/screens/onboarding/doctors/dentist.dart';
+import 'package:loono/ui/screens/onboarding/doctors/dentist_achievement.dart';
 import 'package:loono/ui/screens/onboarding/doctors/dentist_date.dart';
 import 'package:loono/ui/screens/onboarding/doctors/general_practicioner.dart';
+import 'package:loono/ui/screens/onboarding/doctors/general_practicioner_achievement.dart';
 import 'package:loono/ui/screens/onboarding/doctors/general_practitioner_date.dart';
 import 'package:loono/ui/screens/onboarding/doctors/gynecology.dart';
+import 'package:loono/ui/screens/onboarding/doctors/gynecology_achievement.dart';
 import 'package:loono/ui/screens/onboarding/doctors/gynecology_date.dart';
 import 'package:loono/ui/screens/onboarding/fallback_account/email.dart';
 import 'package:loono/ui/screens/onboarding/fallback_account/nickname.dart';
 import 'package:loono/ui/screens/onboarding/gender.dart';
 import 'package:loono/ui/screens/onboarding/onboarding_wrapper_screen.dart';
-import 'package:loono/ui/screens/settings/edit_birthdate.dart';
-import 'package:loono/ui/screens/settings/edit_email.dart';
-import 'package:loono/ui/screens/settings/edit_nickname.dart';
-import 'package:loono/ui/screens/settings/edit_sex.dart';
-import 'package:loono/ui/screens/settings/leaderboard.dart';
-import 'package:loono/ui/screens/settings/open_settings.dart';
-import 'package:loono/ui/screens/settings/points_help.dart';
-import 'package:loono/ui/screens/settings/update_profile.dart';
 import 'package:loono/ui/screens/welcome.dart';
+
+part 'auth_router.gr.dart';
 
 const _onboardingTransition = TransitionsBuilders.slideLeft;
 
-const _openSettingsTransition = TransitionsBuilders.slideBottom;
-const _settingsTransition = TransitionsBuilders.slideLeft;
-
-// After editing this, run:
-// flutter pub run build_runner build --delete-conflicting-outputs
+// Pre-auth screens
 @MaterialAutoRouter(
-  replaceInRouteName: 'Page|Screen,Route',
+  replaceInRouteName: 'Page|Screen|Dialog,Route',
   routes: <AutoRoute>[
-    AutoRoute(
-      page: EmptyRouterScreen,
-      path: 'main',
-      name: 'MainScreenRouter',
-      initial: true,
-      guards: [CheckIsLoggedIn],
-      children: [
-        // Main
-        AutoRoute(page: MainScreen, path: ''),
+    AutoRoute(page: LoginScreen, path: 'login'),
+    AutoRoute(page: CreateAccountScreen, path: 'create-account'),
+    AutoRoute(page: NicknameScreen, path: 'fallback_account/name'),
+    AutoRoute(page: EmailScreen, path: 'fallback_account/email'),
+    AutoRoute(page: LogoutScreen, path: 'logout'),
+    AutoRoute(page: LoggedInScreen, path: 'logged-in'),
 
-        // Settings
-        CustomRoute(
-          page: OpenSettingsScreen,
-          path: 'settings',
-          transitionsBuilder: _openSettingsTransition,
-        ),
-        CustomRoute(
-          page: UpdateProfileScreen,
-          path: 'settings/update-profile',
-          transitionsBuilder: _settingsTransition,
-        ),
-        CustomRoute(
-          page: EditNicknameScreen,
-          path: 'settings/update-profile/nickname',
-          transitionsBuilder: _settingsTransition,
-        ),
-        CustomRoute(
-          page: EditEmailScreen,
-          path: 'settings/update-profile/email',
-          transitionsBuilder: _settingsTransition,
-        ),
-        CustomRoute(
-          page: EditSexScreen,
-          path: 'settings/update-profile/sex',
-          transitionsBuilder: _settingsTransition,
-        ),
-        CustomRoute(
-          page: EditBirthdateScreen,
-          path: 'settings/update-profile/birthdate',
-          transitionsBuilder: _settingsTransition,
-        ),
-        CustomRoute(
-          page: LeaderboardScreen,
-          path: 'settings/leaderboard',
-          transitionsBuilder: _settingsTransition,
-        ),
-        CustomRoute(
-          page: PointsHelpScreen,
-          path: 'settings/points-help',
-          transitionsBuilder: _settingsTransition,
-        ),
-      ],
-    ),
+    // Onboarding flow
     AutoRoute(
       page: OnboardingWrapperScreen,
       path: 'onboarding',
@@ -166,11 +113,6 @@ const _settingsTransition = TransitionsBuilders.slideLeft;
         ),
       ],
     ),
-    AutoRoute(page: CreateAccountScreen, path: 'create-account'),
-    AutoRoute(page: NicknameScreen, path: 'fallback_account/name'),
-    AutoRoute(page: EmailScreen, path: 'fallback_account/email'),
-    AutoRoute(page: LoginScreen, path: 'login'),
-    AutoRoute(page: LogoutScreen, path: 'logout'),
   ],
 )
-class $AppRouter {}
+class AuthRouter extends _$AuthRouter {}

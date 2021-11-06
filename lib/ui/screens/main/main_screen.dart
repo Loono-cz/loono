@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/routers/app_router.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -44,9 +44,7 @@ class _MainScreenState extends State<MainScreen> {
                 alignment: Alignment.topLeft,
                 child: TextButton(
                   onPressed: () {
-                    AutoRouter.of(context).push(OpenSettingsRoute());
-                    // AutoRouter.of(context)
-                    //     .push(const MainScreenRouter(children: [OpenSettingsRoute()]));
+                    AutoRouter.of(context).push(const SettingsRouter());
                   },
                   child: const Text('SETTINGS'),
                 ),

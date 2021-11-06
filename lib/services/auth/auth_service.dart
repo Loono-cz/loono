@@ -1,21 +1,57 @@
+import 'dart:async';
+
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:loono/models/firebase_user.dart';
+import 'package:loono/services/auth/auth_state.dart';
 import 'package:loono/services/auth/failures.dart';
 import 'package:loono/utils/crypto_utils.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class AuthService {
-  final _auth = FirebaseAuth.instance;
+  final StreamController<AuthState> _authStateStreamController = StreamController.broadcast();
+
+  AuthState _authState = const AuthState.unknown();
+
+  // Account is new, go to Nickname edit route
+  bool get _isAccountNewlyCreated => _authState == const AuthState.accountCreated();
+
+  AuthService() {
+    _authStateStream = _authStateStreamController.stream;
+    _auth = FirebaseAuth.instance;
+    _auth.authStateChanges().listen((user) {
+      if (user != null) {
+        if (!_isAccountNewlyCreated) {
+          _changeAuthState(const AuthState.loggedIn());
+        }
+      } else {
+        // If user is logged out manually through sign out button,
+        // do not go to WelcomeScreen, but to LogoutScreen (handled in registry.dart)
+        if (_authState != const AuthState.loggingOut() &&
+            _authState != const AuthState.loggedManually()) {
+          _changeAuthState(const AuthState.loggedOut());
+        }
+      }
+    });
+  }
+
+  late Stream<AuthState> _authStateStream;
+
+  late FirebaseAuth _auth;
+
+  Stream<AuthState> get authStateStream => _authStateStream;
 
   final _googleSignIn = GoogleSignIn();
 
   Future<AuthUser?> getCurrentUser() async => _authUserFromFirebase(_auth.currentUser);
 
-  Stream<AuthUser?> get onAuthStateChanged =>
-      _auth.authStateChanges().map((firebaseUser) => _authUserFromFirebase(firebaseUser));
+  void _changeAuthState(AuthState state) {
+    _authState = state;
+    _authStateStreamController.add(state);
+  }
 
   AuthUser? _authUserFromFirebase(User? firebaseUser) {
     final authUser = firebaseUser == null
@@ -108,6 +144,9 @@ class AuthService {
     UserCredential? userCredential;
     try {
       userCredential = await _auth.signInWithCredential(credential);
+
+      final isNewUser = userCredential.additionalUserInfo?.isNewUser == true;
+      if (isNewUser) _changeAuthState(const AuthState.accountCreated());
     } catch (_) {
       return const Left(AuthFailure.unknown());
     }
@@ -152,6 +191,9 @@ class AuthService {
     UserCredential? userCredential;
     try {
       userCredential = await _auth.signInWithCredential(oauthCredential);
+
+      final isNewUser = userCredential.additionalUserInfo?.isNewUser == true;
+      if (isNewUser) _changeAuthState(const AuthState.accountCreated());
     } catch (_) {
       return const Left(AuthFailure.unknown());
     }
@@ -170,13 +212,28 @@ class AuthService {
     } catch (_) {
       return const Left(AuthFailure.unknown());
     }
-    return userCredential.user == null
-        ? const Left(AuthFailure.unknown())
-        : Right(_authUserFromFirebase(userCredential.user)!);
+    if (userCredential.user == null) {
+      return const Left(AuthFailure.unknown());
+    } else {
+      _changeAuthState(const AuthState.accountCreated());
+      return Right(_authUserFromFirebase(userCredential.user)!);
+    }
+  }
+
+  Future<void> finishCreateAccountProcess() async {
+    if (await getCurrentUser() != null) {
+      _changeAuthState(const AuthState.loggedIn());
+    }
   }
 
   Future<void> signOut() async {
-    await _auth.signOut();
-    await _googleSignIn.signOut();
+    _changeAuthState(const AuthState.loggingOut());
+    try {
+      await _auth.signOut();
+      await _googleSignIn.signOut();
+      _changeAuthState(const AuthState.loggedManually());
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 }

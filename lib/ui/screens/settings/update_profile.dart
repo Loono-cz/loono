@@ -8,7 +8,7 @@ import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/user.dart';
-import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/routers/app_router.dart';
 import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
@@ -17,6 +17,7 @@ import 'package:loono/ui/widgets/confirmation_dialog.dart';
 import 'package:loono/ui/widgets/settings/app_bar.dart';
 import 'package:loono/ui/widgets/settings/avatar.dart';
 import 'package:loono/ui/widgets/settings/update_profile_item.dart';
+import 'package:loono/utils/app_clear.dart';
 import 'package:loono/utils/registry.dart';
 
 class UpdateProfileScreen extends StatelessWidget {
@@ -125,11 +126,10 @@ class UpdateProfileScreen extends StatelessWidget {
                       onTap: () async {
                         showConfirmationDialog(
                           context,
-                          onConfirm: () => AutoRouter.of(context).pushAndPopUntil(
-                            // TODO: After updating a routes do logout processes here instead of in LogoutScreen
-                            const LogoutRoute(),
-                            predicate: (_) => false,
-                          ),
+                          onConfirm: () async {
+                            await _authService.signOut();
+                            await clearAllData();
+                          },
                           onCancel: () => AutoRouter.of(context).pop(),
                           content: context.l10n.logout_confirmation_dialog_content,
                         );

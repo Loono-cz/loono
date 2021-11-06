@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/routers/app_router.dart';
 
 AppBar settingsAppBar(BuildContext context, {bool showBackButton = true}) {
   return AppBar(

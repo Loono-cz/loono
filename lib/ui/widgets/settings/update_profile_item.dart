@@ -11,7 +11,7 @@ class UpdateProfileItem extends StatelessWidget {
 
   final String label;
   final String value;
-  final PageRouteInfo<dynamic> route;
+  final PageRouteInfo route;
 
   @override
   Widget build(BuildContext context) {
