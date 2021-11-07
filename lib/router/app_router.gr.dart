@@ -40,7 +40,7 @@ import '../ui/screens/settings/edit_email.dart' as _i14;
 import '../ui/screens/settings/edit_nickname.dart' as _i13;
 import '../ui/screens/settings/edit_photo.dart' as _i17;
 import '../ui/screens/settings/edit_sex.dart' as _i15;
-import '../ui/screens/settings/gallery_photo_taken_screen.dart' as _i19;
+import '../ui/screens/settings/gallery_photo_taken.dart' as _i19;
 import '../ui/screens/settings/leaderboard.dart' as _i21;
 import '../ui/screens/settings/open_settings.dart' as _i11;
 import '../ui/screens/settings/photo_cropped_result.dart' as _i20;

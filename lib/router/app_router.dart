@@ -27,7 +27,7 @@ import 'package:loono/ui/screens/settings/edit_email.dart';
 import 'package:loono/ui/screens/settings/edit_nickname.dart';
 import 'package:loono/ui/screens/settings/edit_photo.dart';
 import 'package:loono/ui/screens/settings/edit_sex.dart';
-import 'package:loono/ui/screens/settings/gallery_photo_taken_screen.dart';
+import 'package:loono/ui/screens/settings/gallery_photo_taken.dart';
 import 'package:loono/ui/screens/settings/leaderboard.dart';
 import 'package:loono/ui/screens/settings/open_settings.dart';
 import 'package:loono/ui/screens/settings/photo_cropped_result.dart';

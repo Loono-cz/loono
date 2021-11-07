@@ -85,10 +85,3 @@ class LoonoFonts {
     fontWeight: FontWeight.w700,
   );
 }
-
-class LoonoSizes {
-  static double buttonBottomPadding(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    return screenHeight > 750 ? screenHeight * 0.15 : screenHeight * 0.075;
-  }
-}

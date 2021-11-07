@@ -25,7 +25,7 @@ class AllowNotificationsScreen extends StatelessWidget {
                     context.read<OnboardingStateService>().notificationsPermissionRequested(),
               ),
               const SizedBox(height: 48.0),
-              SvgPicture.asset("assets/icons/notification_bell.svg", width: 128.0),
+              SvgPicture.asset('assets/icons/notification_bell.svg', width: 128.0),
               const SizedBox(height: 53.15),
               Text(
                 context.l10n.notification_allow_desc,
