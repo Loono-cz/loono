@@ -14,6 +14,7 @@ class LoonoColors {
   static const greenLight = Color.fromRGBO(241, 249, 249, 1);
   static const greenSuccess = Color.fromRGBO(59, 129, 79, 1);
   static const leaderboardPrimary = Color.fromRGBO(248, 185, 144, 1);
+  static const pink = Color.fromRGBO(252, 237, 237, 1);
   static const red = Color.fromRGBO(216, 66, 72, 1);
   static const secondaryFont = Color.fromRGBO(59, 126, 129, 1);
   static const redButton = Color.fromARGB(255, 230, 87, 86);

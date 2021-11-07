@@ -22,11 +22,9 @@ import 'package:loono/ui/screens/onboarding/fallback_account/nickname.dart';
 import 'package:loono/ui/screens/onboarding/gender.dart';
 import 'package:loono/ui/screens/onboarding/onboarding_wrapper_screen.dart';
 import 'package:loono/ui/screens/settings/camera_photo_taken.dart';
-import 'package:loono/ui/screens/settings/edit_birthdate.dart';
 import 'package:loono/ui/screens/settings/edit_email.dart';
 import 'package:loono/ui/screens/settings/edit_nickname.dart';
 import 'package:loono/ui/screens/settings/edit_photo.dart';
-import 'package:loono/ui/screens/settings/edit_sex.dart';
 import 'package:loono/ui/screens/settings/gallery_photo_taken.dart';
 import 'package:loono/ui/screens/settings/leaderboard.dart';
 import 'package:loono/ui/screens/settings/open_settings.dart';
@@ -74,16 +72,6 @@ const _settingsTransition = TransitionsBuilders.slideLeft;
         CustomRoute(
           page: EditEmailScreen,
           path: 'settings/update-profile/email',
-          transitionsBuilder: _settingsTransition,
-        ),
-        CustomRoute(
-          page: EditSexScreen,
-          path: 'settings/update-profile/sex',
-          transitionsBuilder: _settingsTransition,
-        ),
-        CustomRoute(
-          page: EditBirthdateScreen,
-          path: 'settings/update-profile/birthdate',
           transitionsBuilder: _settingsTransition,
         ),
         CustomRoute(
