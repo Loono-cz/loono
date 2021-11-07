@@ -27,6 +27,7 @@ class LoonoButton extends StatelessWidget {
   })  : buttonStyle = ButtonStyle.light,
         super(key: key);
 
+  /// Called only if [enabled] is `true`.
   final VoidCallback? onTap;
   final String text;
   final bool enabled;
@@ -40,7 +41,7 @@ class LoonoButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExtendedInkWell(
-      onTap: onTap,
+      onTap: enabled ? onTap : null,
       splashColor: enabled ? null : Colors.transparent,
       materialColor: enabled
           ? (enabledColor ?? (isLight ? LoonoColors.buttonLight : LoonoColors.primaryEnabled))

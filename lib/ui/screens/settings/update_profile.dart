@@ -65,7 +65,7 @@ class UpdateProfileScreen extends StatelessWidget {
               stream: _usersDao.watchUser(),
               builder: (context, snapshot) {
                 final user = snapshot.data;
-                final dateWithoutDay = _getBirthdateDate(user?.dateOfBirthRaw);
+                final birthDateWithoutDay = _getBirthdateDate(user?.dateOfBirthRaw);
 
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,14 +79,12 @@ class UpdateProfileScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          context.l10n.update_profile_photo,
+                          context.l10n.photo_header,
                           style: const TextStyle(fontSize: 12, color: Colors.black),
                         ),
                         const LoonoAvatar(),
                         TextButton(
-                          onPressed: () {
-                            // TODO: Update photo screen
-                          },
+                          onPressed: () => AutoRouter.of(context).push(EditPhotoRoute()),
                           child: Text(
                             context.l10n.action_change,
                             style: const TextStyle(fontSize: 14, color: Colors.black),
@@ -116,8 +114,8 @@ class UpdateProfileScreen extends StatelessWidget {
                     itemSpacing,
                     UpdateProfileItem(
                       label: context.l10n.update_profile_birthdate,
-                      value: _getBirthdateValue(dateWithoutDay),
-                      route: EditBirthdateRoute(dateWithoutDay: dateWithoutDay),
+                      value: _getBirthdateValue(birthDateWithoutDay),
+                      route: EditBirthdateRoute(dateWithoutDay: birthDateWithoutDay),
                     ),
                     const SizedBox(height: 80.0),
                     LoonoButton.light(

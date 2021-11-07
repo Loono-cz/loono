@@ -45,16 +45,28 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Nutne doplnit!</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Nutne doplnit!</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Feel free to disable</string>
 	<key>CFBundleURLTypes</key>
 	<array>
-	<dict>
-		<key>CFBundleTypeRole</key>
-		<string>Editor</string>
-		<key>CFBundleURLSchemes</key>
-		<array>
-			<string>com.googleusercontent.apps.682822084991-1339pn73ln6d433lif52f9jp0k65e7en</string>
-		</array>
-	</dict>
-</array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.682822084991-1339pn73ln6d433lif52f9jp0k65e7en</string>
+			</array>
+		</dict>
+	</array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>https</string>
+		<string>mailto</string>
+		<string>tel</string>
+	</array>
 </dict>
 </plist>
