@@ -42,10 +42,9 @@ Future<Either<ImageError, Uint8List>> takePictureAsBytes(ImageSource imageSource
     case PermissionStatus.denied:
       return Left(ImageError.permissionDenied(requiredImagePermission));
     case PermissionStatus.permanentlyDenied:
-      return Left(ImageError.permissionPermanentlyDenied(requiredImagePermission));
     case PermissionStatus.restricted:
     case PermissionStatus.limited:
-      return Left(ImageError.permissionLimited(requiredImagePermission));
+      return Left(ImageError.permissionPermanentlyDenied(requiredImagePermission));
     case PermissionStatus.granted:
       // Permission is granted, pick an image
       final XFile? picture;
@@ -101,14 +100,6 @@ extension ImageErrorMessagesExt on ImageError {
             return '${context.l10n.image_error_permission_permanently_denied_storage} ${context.l10n.image_error_permission_settings_info}';
         }
       },
-      permissionLimited: (permission) {
-        switch (permission) {
-          case RequiredImagePermission.camera:
-            return '${context.l10n.image_error_permission_permanently_denied_camera} ${context.l10n.image_error_permission_settings_info}';
-          case RequiredImagePermission.storage:
-            return '${context.l10n.image_error_permission_permanently_denied_storage} ${context.l10n.image_error_permission_settings_info}';
-        }
-      },
       network: () => context.l10n.image_error_network,
       sizeExceeded: () => context.l10n.image_error_size_exceeded,
     );
@@ -127,9 +118,6 @@ class ImageError with _$ImageError {
 
   const factory ImageError.permissionPermanentlyDenied(RequiredImagePermission permission) =
       PermissionPermanentlyDenied;
-
-  const factory ImageError.permissionLimited(RequiredImagePermission permission) =
-      PermissionLimited;
 
   const factory ImageError.network() = NetworkError;
 
