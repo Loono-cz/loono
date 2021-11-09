@@ -84,6 +84,46 @@ class _$AppRouter extends RootStackRouter {
           opaque: true,
           barrierDismissible: false);
     },
+    EditPhotoRoute.name: (routeData) {
+      final args = routeData.argsAs<EditPhotoRouteArgs>(
+          orElse: () => const EditPhotoRouteArgs());
+      return CustomPage<dynamic>(
+          routeData: routeData,
+          child: EditPhotoScreen(key: args.key, imageBytes: args.imageBytes),
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
+    },
+    CameraPhotoTakenRoute.name: (routeData) {
+      final args = routeData.argsAs<CameraPhotoTakenRouteArgs>();
+      return CustomPage<dynamic>(
+          routeData: routeData,
+          child: CameraPhotoTakenScreen(
+              key: args.key, imageBytes: args.imageBytes),
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
+    },
+    GalleryPhotoTakenRoute.name: (routeData) {
+      final args = routeData.argsAs<GalleryPhotoTakenRouteArgs>();
+      return CustomPage<dynamic>(
+          routeData: routeData,
+          child: GalleryPhotoTakenScreen(
+              key: args.key, imageBytes: args.imageBytes),
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
+    },
+    PhotoCroppedResultRoute.name: (routeData) {
+      final args = routeData.argsAs<PhotoCroppedResultRouteArgs>();
+      return CustomPage<dynamic>(
+          routeData: routeData,
+          child: PhotoCroppedResultScreen(
+              key: args.key, imageBytes: args.imageBytes),
+          transitionsBuilder: TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
+    },
     LeaderboardRoute.name: (routeData) {
       return CustomPage<dynamic>(
           routeData: routeData,
@@ -123,6 +163,18 @@ class _$AppRouter extends RootStackRouter {
                     path: 'update-profile/sex', parent: SettingsRouter.name),
                 RouteConfig(EditBirthdateRoute.name,
                     path: 'update-profile/birthdate',
+                    parent: SettingsRouter.name),
+                RouteConfig(EditPhotoRoute.name,
+                    path: 'settings/update-profile/photo',
+                    parent: SettingsRouter.name),
+                RouteConfig(CameraPhotoTakenRoute.name,
+                    path: 'settings/update-profile/photo/camera-taken',
+                    parent: SettingsRouter.name),
+                RouteConfig(GalleryPhotoTakenRoute.name,
+                    path: 'settings/update-profile/photo/gallery-taken',
+                    parent: SettingsRouter.name),
+                RouteConfig(PhotoCroppedResultRoute.name,
+                    path: 'settings/update-profile/photo/photo-cropped-result',
                     parent: SettingsRouter.name),
                 RouteConfig(LeaderboardRoute.name,
                     path: 'leaderboard', parent: SettingsRouter.name),
@@ -256,6 +308,80 @@ class EditBirthdateRouteArgs {
   final Key? key;
 
   final DateWithoutDay? dateWithoutDay;
+}
+
+/// generated route for [EditPhotoScreen]
+class EditPhotoRoute extends PageRouteInfo<EditPhotoRouteArgs> {
+  EditPhotoRoute({Key? key, Uint8List? imageBytes})
+      : super(name,
+            path: 'settings/update-profile/photo',
+            args: EditPhotoRouteArgs(key: key, imageBytes: imageBytes));
+
+  static const String name = 'EditPhotoRoute';
+}
+
+class EditPhotoRouteArgs {
+  const EditPhotoRouteArgs({this.key, this.imageBytes});
+
+  final Key? key;
+
+  final Uint8List? imageBytes;
+}
+
+/// generated route for [CameraPhotoTakenScreen]
+class CameraPhotoTakenRoute extends PageRouteInfo<CameraPhotoTakenRouteArgs> {
+  CameraPhotoTakenRoute({Key? key, required Uint8List imageBytes})
+      : super(name,
+            path: 'settings/update-profile/photo/camera-taken',
+            args: CameraPhotoTakenRouteArgs(key: key, imageBytes: imageBytes));
+
+  static const String name = 'CameraPhotoTakenRoute';
+}
+
+class CameraPhotoTakenRouteArgs {
+  const CameraPhotoTakenRouteArgs({this.key, required this.imageBytes});
+
+  final Key? key;
+
+  final Uint8List imageBytes;
+}
+
+/// generated route for [GalleryPhotoTakenScreen]
+class GalleryPhotoTakenRoute extends PageRouteInfo<GalleryPhotoTakenRouteArgs> {
+  GalleryPhotoTakenRoute({Key? key, required Uint8List imageBytes})
+      : super(name,
+            path: 'settings/update-profile/photo/gallery-taken',
+            args: GalleryPhotoTakenRouteArgs(key: key, imageBytes: imageBytes));
+
+  static const String name = 'GalleryPhotoTakenRoute';
+}
+
+class GalleryPhotoTakenRouteArgs {
+  const GalleryPhotoTakenRouteArgs({this.key, required this.imageBytes});
+
+  final Key? key;
+
+  final Uint8List imageBytes;
+}
+
+/// generated route for [PhotoCroppedResultScreen]
+class PhotoCroppedResultRoute
+    extends PageRouteInfo<PhotoCroppedResultRouteArgs> {
+  PhotoCroppedResultRoute({Key? key, required Uint8List imageBytes})
+      : super(name,
+            path: 'settings/update-profile/photo/photo-cropped-result',
+            args:
+                PhotoCroppedResultRouteArgs(key: key, imageBytes: imageBytes));
+
+  static const String name = 'PhotoCroppedResultRoute';
+}
+
+class PhotoCroppedResultRouteArgs {
+  const PhotoCroppedResultRouteArgs({this.key, required this.imageBytes});
+
+  final Key? key;
+
+  final Uint8List imageBytes;
 }
 
 /// generated route for [LeaderboardScreen]

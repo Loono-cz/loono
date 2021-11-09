@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/routers/app_router.dart';
@@ -9,6 +8,7 @@ import 'package:loono/services/db/database.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/settings/app_bar.dart';
 import 'package:loono/ui/widgets/settings/avatar.dart';
+import 'package:loono/ui/widgets/settings/points_display.dart';
 import 'package:loono/utils/registry.dart';
 
 class OpenSettingsScreen extends StatelessWidget {
@@ -51,21 +51,10 @@ class OpenSettingsScreen extends StatelessWidget {
                       },
                     ),
                     const SizedBox(height: 104.0),
-                    Row(
-                      children: [
-                        const Spacer(),
-                        SvgPicture.asset('assets/icons/logo-loono.svg'),
-                        const SizedBox(width: 16.0),
-                        const Text(
-                          '100', // TODO: user points
-                          style: LoonoFonts.primaryColorStyle,
-                        ),
-                        const Spacer(),
-                      ],
-                    ),
+                    PointsDisplay(),
                     const SizedBox(height: 12.0),
                     Text(
-                      context.l10n.settings_user_points_label.toUpperCase(),
+                      context.l10n.points_your_points_desc.toUpperCase(),
                       style: const TextStyle(
                         fontSize: 11,
                         color: LoonoColors.black,
@@ -86,7 +75,7 @@ class OpenSettingsScreen extends StatelessWidget {
                         const SizedBox(width: 8.0),
                         Expanded(
                           child: LoonoButton.light(
-                            text: context.l10n.settings_leaderboard_button,
+                            text: context.l10n.leaderboard,
                             onTap: () {
                               AutoRouter.of(context).push(const LeaderboardRoute());
                             },

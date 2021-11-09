@@ -31,7 +31,11 @@ class PointsHelpScreen extends StatelessWidget {
               const SizedBox(height: 13.0),
               Text(
                 context.l10n.points_your_points_desc.toUpperCase(),
-                style: LoonoFonts.subtitleFontStyle,
+                style: const TextStyle(
+                  fontSize: 11,
+                  color: LoonoColors.black,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               const Spacer(flex: 2),
               LoonoButton.light(

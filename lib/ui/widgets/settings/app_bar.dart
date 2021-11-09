@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/routers/app_router.dart';
 
-AppBar settingsAppBar(BuildContext context, {bool showBackButton = true}) {
+AppBar settingsAppBar(
+  BuildContext context, {
+  bool showBackButton = true,
+  PageRouteInfo<dynamic> closeRoute = const MainScreenRouter(),
+}) {
   return AppBar(
     backgroundColor: Colors.transparent,
     elevation: 0,
@@ -12,7 +16,7 @@ AppBar settingsAppBar(BuildContext context, {bool showBackButton = true}) {
     actions: [
       IconButton(
         icon: const Icon(Icons.close),
-        onPressed: () => AutoRouter.of(context).navigate(const MainScreenRouter()),
+        onPressed: () => AutoRouter.of(context).navigate(closeRoute),
       ),
     ],
   );

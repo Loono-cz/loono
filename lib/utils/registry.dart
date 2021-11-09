@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/routers/app_router.dart';
 import 'package:loono/routers/auth_router.dart';
@@ -52,8 +53,11 @@ Future<void> setup(AppFlavors flavor) async {
   await registry.get<DatabaseService>().init('SUPER SECURE KEY');
   registry.registerSingleton<AuthService>(AuthService());
 
-  //repositories
+  // repositories
   registry.registerSingleton<UserRepository>(UserRepository());
+
+  // utils
+  registry.registerLazySingleton<ImagePicker>(() => ImagePicker());
 
   // routers
   registry.registerSingleton<AuthRouter>(AuthRouter());
