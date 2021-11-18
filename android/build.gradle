@@ -11,6 +11,10 @@ buildscript {
         classpath 'com.google.gms:google-services:4.3.8'
         classpath 'com.google.firebase:firebase-crashlytics-gradle:2.5.1'
     }
+
+    ext {
+        defaultEnvFile = "../assets/.env"
+    }
 }
 
 allprojects {

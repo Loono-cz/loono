@@ -25,6 +25,7 @@ dependencies:
   firebase_crashlytics: ^2.0.7
   flutter:
     sdk: flutter
+  flutter_config: ^2.0.0
   flutter_dotenv: ^5.0.0
   flutter_localizations:
     sdk: flutter
