@@ -6,13 +6,11 @@ import 'package:loono/utils/app_config.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 class NotificationService {
-  NotificationService() {
-    _init();
-  }
+  NotificationService();
 
   final _permissionController = StreamController<OSNotificationPermission>.broadcast();
 
-  Future<void> _init() async {
+  Future<void> init() async {
     await OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
     final appId = getEnvString(dotenv.env, 'ONESIGNAL_APP_ID');
     await OneSignal.shared.setAppId(appId);

@@ -28,11 +28,9 @@ Future<void> setup(AppFlavors flavor) async {
   try {
     final deviceInfo = DeviceInfoPlugin();
     if (Platform.isIOS) {
-      await deviceInfo.iosInfo
-          .then((ios) => osVersion = 'iOS ${ios.systemVersion}');
+      await deviceInfo.iosInfo.then((ios) => osVersion = 'iOS ${ios.systemVersion}');
     } else if (Platform.isAndroid) {
-      await deviceInfo.androidInfo
-          .then((android) => osVersion = 'Android ${android.version}');
+      await deviceInfo.androidInfo.then((android) => osVersion = 'Android ${android.version}');
     } else {
       osVersion = 'Unknown OS';
     }
@@ -52,6 +50,7 @@ Future<void> setup(AppFlavors flavor) async {
   registry.registerLazySingleton<AppConfig>(() => config);
 
   registry.registerSingleton<NotificationService>(NotificationService());
+  await registry.get<NotificationService>().init();
 
   // services
   registry.registerSingleton<AuthService>(AuthService());
@@ -63,8 +62,7 @@ Future<void> setup(AppFlavors flavor) async {
   registry.registerSingleton<UserRepository>(UserRepository());
 
   // router
-  registry.registerSingleton<AppRouter>(
-      AppRouter(checkIsLoggedIn: CheckIsLoggedIn()));
+  registry.registerSingleton<AppRouter>(AppRouter(checkIsLoggedIn: CheckIsLoggedIn()));
 
   // utils
   registry.registerLazySingleton<ImagePicker>(() => ImagePicker());
