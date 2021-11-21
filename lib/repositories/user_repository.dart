@@ -47,6 +47,8 @@ class UserRepository {
 
   Future<void> updateEmail(String email) async => _db.users.updateEmail(email);
 
+  Future<void> updateProfileImageUrl(String? url) async => _db.users.updateProfileImageUrl(url);
+
   Future<void> updateAchievementCollection(Achievement achievement) async =>
       _db.users.updateAchievementCollection(achievement);
 }

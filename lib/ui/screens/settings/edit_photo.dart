@@ -6,11 +6,13 @@ import 'package:image_picker/image_picker.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/repositories/firebase_storage_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/settings/app_bar.dart';
 import 'package:loono/ui/widgets/settings/avatar.dart';
 import 'package:loono/utils/image_utils.dart';
+import 'package:loono/utils/registry.dart';
 
 class EditPhotoScreen extends StatelessWidget {
   const EditPhotoScreen({Key? key, this.imageBytes}) : super(key: key);
@@ -60,8 +62,15 @@ class EditPhotoScreen extends StatelessWidget {
               ),
               const Spacer(),
               TextButton(
-                onPressed: () {
-                  // TODO: Delete picture
+                onPressed: () async {
+                  final result = await registry.get<FirebaseStorageRepository>().deleteUserPhoto();
+                  if (result == true) {
+                    showSnackBarSuccess(context,
+                        message: context.l10n.edit_photo_delete_photo_action_success);
+                  } else {
+                    showSnackBarError(context,
+                        message: context.l10n.edit_photo_delete_photo_action_error);
+                  }
                 },
                 child: Text(
                   context.l10n.edit_photo_delete_photo_action,

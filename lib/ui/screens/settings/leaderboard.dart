@@ -54,7 +54,7 @@ class LeaderboardScreen extends StatelessWidget {
                         children: [
                           Text('${index + 1}.'),
                           const SizedBox(width: 10.0),
-                          const LoonoAvatar(radius: 27),
+                          LoonoAvatar(radius: 27),
                           const SizedBox(width: 10.0),
                           const Text('uživatel'),
                         ],
