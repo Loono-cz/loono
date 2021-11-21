@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   auto_route: ^2.4.0
+  collection: ^1.15.0
   crop_your_image: ^0.6.0+1
   crypto: ^3.0.1
   cupertino_icons: ^1.0.2
@@ -47,7 +48,6 @@ dependencies:
   permission_handler: ^8.2.5
   provider: ^6.0.1
   sign_in_with_apple: ^3.2.0
-  sqlparser: ^0.17.2 # added due to: https://github.com/simolus3/moor/issues/1437
   url_launcher: ^6.0.9
   uuid: ^3.0.4
   video_player: ^2.1.10

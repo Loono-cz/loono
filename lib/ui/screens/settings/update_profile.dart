@@ -9,10 +9,8 @@ import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/user.dart';
 import 'package:loono/router/app_router.gr.dart';
-import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
-import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/confirmation_dialog.dart';
 import 'package:loono/ui/widgets/settings/app_bar.dart';
 import 'package:loono/ui/widgets/settings/avatar.dart';
@@ -22,7 +20,6 @@ import 'package:loono/utils/registry.dart';
 class UpdateProfileScreen extends StatelessWidget {
   UpdateProfileScreen({Key? key}) : super(key: key);
 
-  final _authService = registry.get<AuthService>();
   final _usersDao = registry.get<DatabaseService>().users;
 
   String _getUserSexValue(BuildContext context, {Sex? sex}) {
@@ -109,34 +106,36 @@ class UpdateProfileScreen extends StatelessWidget {
                     UpdateProfileItem(
                       label: context.l10n.update_profile_sex,
                       value: _getUserSexValue(context, sex: user?.sex),
-                      route: EditSexRoute(sex: user?.sex),
+                      route: null,
+                      enabled: false,
                     ),
                     itemSpacing,
                     UpdateProfileItem(
                       label: context.l10n.update_profile_birthdate,
                       value: _getBirthdateValue(birthDateWithoutDay),
-                      route: EditBirthdateRoute(dateWithoutDay: birthDateWithoutDay),
+                      route: null,
+                      enabled: false,
                     ),
                     const SizedBox(height: 80.0),
-                    LoonoButton.light(
-                      text: context.l10n.sign_out_action,
-                      onTap: () async {
-                        showConfirmationDialog(
-                          context,
-                          onConfirm: () => AutoRouter.of(context).pushAndPopUntil(
-                            // TODO: After updating a routes do logout processes here instead of in LogoutScreen
-                            const LogoutRoute(),
-                            predicate: (_) => false,
-                          ),
-                          onCancel: () => AutoRouter.of(context).pop(),
-                          content: context.l10n.logout_confirmation_dialog_content,
-                        );
-                      },
-                    ),
-                    const SizedBox(height: 41.0),
                     Align(
                       child: Column(
                         children: [
+                          TextButton(
+                            onPressed: () async {
+                              showConfirmationDialog(
+                                context,
+                                onConfirm: () => AutoRouter.of(context).pushAndPopUntil(
+                                  // TODO: After updating a routes do logout processes here instead of in LogoutScreen
+                                  const LogoutRoute(),
+                                  predicate: (_) => false,
+                                ),
+                                onCancel: () => AutoRouter.of(context).pop(),
+                                content: context.l10n.logout_confirmation_dialog_content,
+                              );
+                            },
+                            child: Text(context.l10n.sign_out_action, style: LoonoFonts.fontStyle),
+                          ),
+                          const SizedBox(height: 41.0),
                           TextButton(
                             onPressed: () {
                               // TODO: Show 'Ochrana osobních údajů'
