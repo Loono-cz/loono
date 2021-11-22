@@ -26,12 +26,15 @@ dependencies:
   firebase_crashlytics: ^2.0.7
   flutter:
     sdk: flutter
+  flutter_config: ^2.0.0
   flutter_dotenv: ^5.0.0
   flutter_localizations:
     sdk: flutter
   flutter_svg: ^0.22.0
   freezed_annotation: ^0.14.2
+  geolocator: ^7.7.1
   get_it: ^7.2.0
+  google_maps_flutter: ^2.1.0
   google_sign_in: ^5.1.1
 
   # TODO: Investigate the number of crash occurrences on Xiaomi models https://github.com/flutter/flutter/issues/66322

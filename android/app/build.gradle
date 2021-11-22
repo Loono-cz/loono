@@ -26,6 +26,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'com.google.gms.google-services'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
+apply from: project(':flutter_config').projectDir.getPath() + "/dotenv.gradle"
+
+project.ext.envConfigFiles = [
+        devdebug   : ".env",
+        devrelease : ".env",
+        proddebug  : ".env",
+        prodrelease: ".env",
+]
 
 android {
     compileSdkVersion 31
@@ -60,10 +68,10 @@ android {
             }
         }
         debug {
-            storeFile=file("loono-debug")
-            storePassword="Vd3ryhCWsy3PJHP"
-            keyAlias="vcas-debug"
-            keyPassword="Vd3ryhCWsy3PJHP"
+            storeFile = file("loono-debug")
+            storePassword = "Vd3ryhCWsy3PJHP"
+            keyAlias = "vcas-debug"
+            keyPassword = "Vd3ryhCWsy3PJHP"
         }
     }
 
