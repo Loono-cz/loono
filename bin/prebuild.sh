@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # create .env
+echo "" >> assets/.env.example
 input="assets/.env.example"
 echo -n "" > assets/.env
 while IFS= read -r line
