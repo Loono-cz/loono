@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
 
 class TapArea extends StatelessWidget {
+  const TapArea._({
+    Key? key,
+    required this.alignment,
+    this.width,
+    this.height,
+    this.onTap,
+    this.onPanEnd,
+    this.onPanDown,
+  }) : super(key: key);
+
   const TapArea.leftSide({
     Key? key,
     this.onTap,

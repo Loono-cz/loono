@@ -19,6 +19,16 @@ extension SocialLoginButtonTypeExt on SocialLoginButtonType {
 }
 
 class SocialLoginButton extends StatelessWidget {
+  const SocialLoginButton._({
+    Key? key,
+    required this.onPressed,
+    this.text,
+    required this.socialLoginButtonType,
+    required this.border,
+    required this.assetLogoPath,
+    required this.buttonColor,
+  }) : super(key: key);
+
   const SocialLoginButton.apple({
     Key? key,
     required this.onPressed,

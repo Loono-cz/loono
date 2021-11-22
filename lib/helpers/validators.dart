@@ -1,4 +1,3 @@
-// ignore_for_file: avoid_classes_with_only_static_members
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/l10n/ext.dart';

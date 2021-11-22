@@ -55,7 +55,7 @@ class _PhotoTakenContentState extends State<PhotoTakenContent> {
                   alignment: Alignment.topLeft,
                   child: Text(context.l10n.photo_header, style: const TextStyle(fontSize: 24)),
                 ),
-                const Spacer(),
+                const SizedBox(height: 31),
                 Theme(
                   data: ThemeData(
                     progressIndicatorTheme: const ProgressIndicatorThemeData(
@@ -103,7 +103,7 @@ class _PhotoTakenContentState extends State<PhotoTakenContent> {
                   onPressed: widget.onSecondaryButtonTap,
                   child: Text(widget.secondaryButtonText, style: LoonoFonts.fontStyle),
                 ),
-                const Spacer(),
+                const Spacer(flex: 2),
               ],
             ),
           ),

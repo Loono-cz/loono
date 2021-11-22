@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/sex_extensions.dart';
-import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';

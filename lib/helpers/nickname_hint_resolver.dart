@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/models/firebase_user.dart';
@@ -17,5 +16,5 @@ String getHintText(BuildContext context, {required User? user}) {
 }
 
 String? getRealNicknameOrNull({required AuthUser? authUser}) {
-  return authUser?.name?.split(' ').firstOrNull;
+  return authUser?.name?.split(' ').first;
 }
