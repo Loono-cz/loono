@@ -7,6 +7,7 @@ import 'package:loono/models/user.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
+import 'package:loono/services/notification_service.dart';
 import 'package:loono/services/onboarding_state_service.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:provider/provider.dart';
@@ -26,7 +27,9 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
     return WillPopScope(
       onWillPop: () async => false,
       child: ChangeNotifierProvider<OnboardingStateService>(
-        create: (_) => OnboardingStateService(),
+        create: (_) => OnboardingStateService(
+          notificationService: registry.get<NotificationService>(),
+        ),
         builder: (context, _) {
           final onboardingState = context.watch<OnboardingStateService>();
 

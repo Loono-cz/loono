@@ -11,6 +11,7 @@ import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/router/guards/check_is_logged_in.dart';
 import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/database_service.dart';
+import 'package:loono/services/notification_service.dart';
 import 'package:loono/utils/app_config.dart';
 import 'package:package_info/package_info.dart';
 
@@ -47,6 +48,9 @@ Future<void> setup(AppFlavors flavor) async {
 
   registry.registerLazySingleton<GlobalKey<NavigatorState>>(() => GlobalKey());
   registry.registerLazySingleton<AppConfig>(() => config);
+
+  registry.registerSingleton<NotificationService>(NotificationService());
+  await registry.get<NotificationService>().init();
 
   // services
   registry.registerSingleton<AuthService>(AuthService());
