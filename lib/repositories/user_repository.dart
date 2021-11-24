@@ -86,7 +86,7 @@ class UserRepository {
   Future<bool?> updateUserPhoto(Uint8List imageBytes) async {
     final downloadUrl = await _firebaseStorageService.uploadData(
       imageBytes,
-      ref: await _firebaseStorageService.getUserPhotoRef(),
+      ref: await _firebaseStorageService.userPhotoRef,
       settableMetadata: SettableMetadata(contentType: 'image/png'),
     );
     await _db.users.updateProfileImageUrl(downloadUrl);
@@ -98,8 +98,11 @@ class UserRepository {
   /// Returns `true` if the operation was successful.
   Future<bool?> deleteUserPhoto() async {
     final result = await _firebaseStorageService.deleteData(
-        ref: await _firebaseStorageService.getUserPhotoRef());
-    await _db.users.updateProfileImageUrl(null);
+      ref: await _firebaseStorageService.userPhotoRef,
+    );
+    if (result == true) {
+      await _db.users.updateProfileImageUrl(null);
+    }
     return result;
   }
 }

@@ -13,7 +13,7 @@ class FirebaseStorageService {
   final FirebaseStorage _storage;
 
   /// Returns [Reference] location of the user's avatar.
-  Future<Reference?> getUserPhotoRef() async {
+  Future<Reference?> get userPhotoRef async {
     final uid = await _authService.userUid;
     if (uid == null) return null;
     return _storage.ref().child('users').child(uid).child('files').child('avatar.png');
