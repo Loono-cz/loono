@@ -71,12 +71,9 @@ class EditPhotoScreen extends StatelessWidget {
               TextButton(
                 onPressed: () async {
                   final result = await registry.get<UserRepository>().deleteUserPhoto();
-                  if (result == true) {
+                  if (result) {
                     showSnackBarSuccess(context,
                         message: context.l10n.edit_photo_delete_photo_action_success);
-                  } else {
-                    showSnackBarError(context,
-                        message: context.l10n.edit_photo_delete_photo_action_error);
                   }
                 },
                 child: Text(

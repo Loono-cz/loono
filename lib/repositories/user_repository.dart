@@ -82,26 +82,30 @@ class UserRepository {
   /// updated with the new one.
   ///
   /// Returns `true` if the operation was successful.
-  Future<bool?> updateUserPhoto(Uint8List imageBytes) async {
+  Future<bool> updateUserPhoto(Uint8List imageBytes) async {
     final downloadUrl = await _firebaseStorageService.uploadData(
       imageBytes,
       ref: await _firebaseStorageService.userPhotoRef,
       settableMetadata: SettableMetadata(contentType: 'image/png'),
     );
-    await _db.users.updateProfileImageUrl(downloadUrl);
-    if (downloadUrl != null) return true;
+    if (downloadUrl != null) {
+      await _db.users.updateProfileImageUrl(downloadUrl);
+      return true;
+    }
+    return false;
   }
 
   /// Deletes user's avatar.
   ///
   /// Returns `true` if the operation was successful.
-  Future<bool?> deleteUserPhoto() async {
+  Future<bool> deleteUserPhoto() async {
     final result = await _firebaseStorageService.deleteData(
       ref: await _firebaseStorageService.userPhotoRef,
     );
     if (result == true) {
       await _db.users.updateProfileImageUrl(null);
+      return true;
     }
-    return result;
+    return false;
   }
 }

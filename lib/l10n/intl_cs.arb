@@ -216,8 +216,6 @@
   "@edit_photo_delete_photo_action": {},
   "edit_photo_delete_photo_action_success": "Fotografie byla smazána",
   "@edit_photo_delete_photo_action_success": {},
-  "edit_photo_delete_photo_action_error": "Během mazání fotografie nastala chyba",
-  "@edit_photo_delete_photo_action_error": {},
   "camera_photo_taken_again_action": "Vyfotit znovu",
   "@camera_photo_taken_again_action": {},
   "gallery_photo_picked_again_action": "Vybrat jinou fotografii",
