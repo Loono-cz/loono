@@ -45,8 +45,10 @@ class _PhotoCroppedResultScreenState extends State<PhotoCroppedResultScreen> {
                   child: Text(context.l10n.photo_header, style: const TextStyle(fontSize: 24)),
                 ),
                 const SizedBox(height: 31),
-                LoonoAvatar(
-                    radius: MediaQuery.of(context).size.width * 0.3, imageBytes: widget.imageBytes),
+                CustomLoonoAvatar.memory(
+                  radius: MediaQuery.of(context).size.width * 0.3,
+                  imageBytes: widget.imageBytes,
+                ),
                 const Spacer(),
                 LoonoButton(
                   text: context.l10n.action_save,

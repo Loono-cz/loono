@@ -17,8 +17,9 @@ import 'package:loono/utils/registry.dart';
 class EditPhotoScreen extends StatelessWidget {
   const EditPhotoScreen({Key? key, this.imageBytes}) : super(key: key);
 
-  // TODO: Remove this parameter once uploading profile image to Firebase is done
   final Uint8List? imageBytes;
+
+  double _getAvatarSize(BuildContext context) => MediaQuery.of(context).size.width * 0.3;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,13 @@ class EditPhotoScreen extends StatelessWidget {
                 child: Text(context.l10n.photo_header, style: const TextStyle(fontSize: 24)),
               ),
               const SizedBox(height: 31),
-              LoonoAvatar(radius: MediaQuery.of(context).size.width * 0.3, imageBytes: imageBytes),
+              if (imageBytes == null)
+                LoonoAvatar(radius: _getAvatarSize(context))
+              else
+                CustomLoonoAvatar.memory(
+                  radius: _getAvatarSize(context),
+                  imageBytes: imageBytes,
+                ),
               const Spacer(flex: 2),
               LoonoButton.light(
                 text: context.l10n.edit_photo_take_camera_picture_action,
