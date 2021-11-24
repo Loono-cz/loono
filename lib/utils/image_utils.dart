@@ -14,7 +14,7 @@ part 'image_utils.freezed.dart';
 enum RequiredImagePermission { camera, storage }
 
 /// 10 MB
-const int MAX_IMAGE_SIZE_IN_BYTES = 10000000;
+const int _MAX_IMAGE_SIZE_IN_BYTES = 10000000;
 
 extension RequiredImagePermissionExt on RequiredImagePermission {
   String getPermissionName(BuildContext context) {
@@ -27,9 +27,9 @@ extension RequiredImagePermissionExt on RequiredImagePermission {
   }
 }
 
-/// Checks if the [imageBytes] size is bigger than the max limit ([MAX_IMAGE_SIZE_IN_BYTES]).
+/// Checks if the [imageBytes] size is bigger than the max limit ([_MAX_IMAGE_SIZE_IN_BYTES]).
 bool isImageBiggerThanLimit(Uint8List imageBytes) =>
-    imageBytes.lengthInBytes > MAX_IMAGE_SIZE_IN_BYTES;
+    imageBytes.lengthInBytes > _MAX_IMAGE_SIZE_IN_BYTES;
 
 Future<Either<ImageError, Uint8List>> takePictureAsBytes(ImageSource imageSource) async {
   Permission permission;

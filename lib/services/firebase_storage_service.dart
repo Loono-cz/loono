@@ -12,6 +12,11 @@ class FirebaseStorageService {
   final AuthService _authService;
   final FirebaseStorage _storage;
 
+  /// Represents an on-going Firebase Storage upload task.
+  ///
+  /// If `null` then there is not any on-going task.
+  UploadTask? uploadTask;
+
   /// Returns [Reference] location of the user's avatar.
   Future<Reference?> get userPhotoRef async {
     final uid = await _authService.userUid;
@@ -32,13 +37,15 @@ class FirebaseStorageService {
     SettableMetadata? settableMetadata,
   }) async {
     if (ref == null) return null;
-    final uploadTask = ref.putData(bytesData, settableMetadata);
+    uploadTask = ref.putData(bytesData, settableMetadata);
     final TaskSnapshot taskSnapshot;
     try {
-      taskSnapshot = await uploadTask;
+      taskSnapshot = await uploadTask!;
     } catch (e) {
       debugPrint(e.toString());
       return null;
+    } finally {
+      uploadTask = null;
     }
     final downloadUrl = await taskSnapshot.ref.getDownloadURL();
     return downloadUrl;
