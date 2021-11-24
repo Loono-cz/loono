@@ -12,6 +12,7 @@ class FirebaseStorageService {
   final AuthService _authService;
   final FirebaseStorage _storage;
 
+  /// Returns [Reference] location of the user's avatar.
   Future<Reference?> getUserPhotoRef() async {
     final uid = await _authService.userUid;
     if (uid == null) return null;
@@ -19,9 +20,9 @@ class FirebaseStorageService {
   }
 
   // TODO: Error handling
-  /// This will upload data in the form of bytes to Firebase Storage.
+  /// Uploads data in the form of bytes to Firebase Storage to the referenced [ref] location.
   ///
-  /// If the user already has an avatar, the current one will be replaced and
+  /// If the file already exists in the [ref] location, the current one will be replaced and
   /// updated with the new one.
   ///
   /// Returns download URL of the uploaded file.
@@ -44,6 +45,7 @@ class FirebaseStorageService {
   }
 
   // TODO: Error messaging
+  /// Deletes data at the [ref] location.
   Future<bool?> deleteData({required Reference? ref}) async {
     if (ref == null) return null;
     await ref.delete();
