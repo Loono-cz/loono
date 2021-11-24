@@ -35,7 +35,7 @@ class EditPhotoScreen extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: Text(context.l10n.photo_header, style: const TextStyle(fontSize: 24)),
               ),
-              const SizedBox(height: 31),
+              const Spacer(),
               if (imageBytes == null)
                 LoonoAvatar(radius: _getAvatarSize(context))
               else
@@ -81,7 +81,7 @@ class EditPhotoScreen extends StatelessWidget {
                   style: LoonoFonts.fontStyle,
                 ),
               ),
-              const Spacer(),
+              const Spacer(flex: 2),
             ],
           ),
         ),
