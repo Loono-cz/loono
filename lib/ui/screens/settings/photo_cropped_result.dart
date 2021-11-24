@@ -53,6 +53,10 @@ class _PhotoCroppedResultScreenState extends State<PhotoCroppedResultScreen> {
                 LoonoButton(
                   text: context.l10n.action_save,
                   onTap: () async {
+                    if (isImageBiggerThanLimit(widget.imageBytes)) {
+                      showSnackBarError(context, message: context.l10n.image_error_size_exceeded);
+                      return;
+                    }
                     setState(() => _isUploading = true);
                     final photoUploadResult =
                         await registry.get<UserRepository>().updateUserPhoto(widget.imageBytes);

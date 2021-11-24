@@ -76,7 +76,6 @@ class UserRepository {
 
   // TODO: Error handling
   // TODO: Compress the image before uploading
-  // TODO: Check the image size before uploading (should be <10 MB)
   /// Updates user's avatar.
   ///
   /// If the user already has an avatar, the current one will be replaced and
