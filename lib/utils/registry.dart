@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:loono/repositories/healthcare_repository.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/router/guards/check_is_logged_in.dart';
@@ -60,6 +61,9 @@ Future<void> setup(AppFlavors flavor) async {
 
   // repositories
   registry.registerSingleton<UserRepository>(UserRepository());
+  registry.registerSingleton<HealthcareProviderRepository>(HealthcareProviderRepository(
+    databaseService: registry.get<DatabaseService>(),
+  ));
 
   // router
   registry.registerSingleton<AppRouter>(AppRouter(checkIsLoggedIn: CheckIsLoggedIn()));

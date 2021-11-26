@@ -15,10 +15,10 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _pages = <Widget>[
-    PreventionScreen(),
+  static final List<Widget> _pages = <Widget>[
+    const PreventionScreen(),
     FindDoctorScreen(),
-    AboutHealthScreen(),
+    const AboutHealthScreen(),
   ];
 
   void _onItemTapped(int index) => setState(() => _selectedIndex = index);

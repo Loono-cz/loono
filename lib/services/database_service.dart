@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loono/models/healthcare_provider.dart';
 import 'package:loono/models/user.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:path_provider/path_provider.dart';
@@ -6,6 +7,7 @@ import 'package:path_provider/path_provider.dart';
 class DatabaseService {
   late AppDatabase _engine;
   late final UsersDao users;
+  late final HealthcareProvidersDao healthcareProviders;
 
   Future<void> init(String key) async {
     try {
@@ -15,6 +17,7 @@ class DatabaseService {
     }
     _engine = AppDatabase('app.db', key);
     users = _engine.usersDao;
+    healthcareProviders = _engine.healthcareProvidersDao;
   }
 
   Future<void> clearDb() {

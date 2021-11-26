@@ -645,12 +645,601 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   }
 }
 
+class HealthcareProvider extends DataClass
+    implements Insertable<HealthcareProvider> {
+  final int locationId;
+  final int institutionId;
+
+  /// Provides a date of the this healthcare providers update.
+  ///
+  /// format: YYYY-MM-DD
+  final String? updateDate;
+  final String? title;
+  final BuiltList<String>? category;
+  final String? street;
+  final String? specialization;
+  final String? houseNumber;
+  final String? city;
+  final String? postalCode;
+  final double lat;
+  final double lng;
+  HealthcareProvider(
+      {required this.locationId,
+      required this.institutionId,
+      this.updateDate,
+      this.title,
+      this.category,
+      this.street,
+      this.specialization,
+      this.houseNumber,
+      this.city,
+      this.postalCode,
+      required this.lat,
+      required this.lng});
+  factory HealthcareProvider.fromData(
+      Map<String, dynamic> data, GeneratedDatabase db,
+      {String? prefix}) {
+    final effectivePrefix = prefix ?? '';
+    return HealthcareProvider(
+      locationId: const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}location_id'])!,
+      institutionId: const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}institution_id'])!,
+      updateDate: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}update_date']),
+      title: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}title']),
+      category: $HealthcareProvidersTable.$converter0.mapToDart(
+          const StringType()
+              .mapFromDatabaseResponse(data['${effectivePrefix}category'])),
+      street: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}street']),
+      specialization: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}specialization']),
+      houseNumber: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}house_number']),
+      city: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}city']),
+      postalCode: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}postal_code']),
+      lat: const RealType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}lat'])!,
+      lng: const RealType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}lng'])!,
+    );
+  }
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['location_id'] = Variable<int>(locationId);
+    map['institution_id'] = Variable<int>(institutionId);
+    if (!nullToAbsent || updateDate != null) {
+      map['update_date'] = Variable<String?>(updateDate);
+    }
+    if (!nullToAbsent || title != null) {
+      map['title'] = Variable<String?>(title);
+    }
+    if (!nullToAbsent || category != null) {
+      final converter = $HealthcareProvidersTable.$converter0;
+      map['category'] = Variable<String?>(converter.mapToSql(category));
+    }
+    if (!nullToAbsent || street != null) {
+      map['street'] = Variable<String?>(street);
+    }
+    if (!nullToAbsent || specialization != null) {
+      map['specialization'] = Variable<String?>(specialization);
+    }
+    if (!nullToAbsent || houseNumber != null) {
+      map['house_number'] = Variable<String?>(houseNumber);
+    }
+    if (!nullToAbsent || city != null) {
+      map['city'] = Variable<String?>(city);
+    }
+    if (!nullToAbsent || postalCode != null) {
+      map['postal_code'] = Variable<String?>(postalCode);
+    }
+    map['lat'] = Variable<double>(lat);
+    map['lng'] = Variable<double>(lng);
+    return map;
+  }
+
+  HealthcareProvidersCompanion toCompanion(bool nullToAbsent) {
+    return HealthcareProvidersCompanion(
+      locationId: Value(locationId),
+      institutionId: Value(institutionId),
+      updateDate: updateDate == null && nullToAbsent
+          ? const Value.absent()
+          : Value(updateDate),
+      title:
+          title == null && nullToAbsent ? const Value.absent() : Value(title),
+      category: category == null && nullToAbsent
+          ? const Value.absent()
+          : Value(category),
+      street:
+          street == null && nullToAbsent ? const Value.absent() : Value(street),
+      specialization: specialization == null && nullToAbsent
+          ? const Value.absent()
+          : Value(specialization),
+      houseNumber: houseNumber == null && nullToAbsent
+          ? const Value.absent()
+          : Value(houseNumber),
+      city: city == null && nullToAbsent ? const Value.absent() : Value(city),
+      postalCode: postalCode == null && nullToAbsent
+          ? const Value.absent()
+          : Value(postalCode),
+      lat: Value(lat),
+      lng: Value(lng),
+    );
+  }
+
+  factory HealthcareProvider.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= moorRuntimeOptions.defaultSerializer;
+    return HealthcareProvider(
+      locationId: serializer.fromJson<int>(json['locationId']),
+      institutionId: serializer.fromJson<int>(json['institutionId']),
+      updateDate: serializer.fromJson<String?>(json['updateDate']),
+      title: serializer.fromJson<String?>(json['title']),
+      category: serializer.fromJson<BuiltList<String>?>(json['category']),
+      street: serializer.fromJson<String?>(json['street']),
+      specialization: serializer.fromJson<String?>(json['specialization']),
+      houseNumber: serializer.fromJson<String?>(json['houseNumber']),
+      city: serializer.fromJson<String?>(json['city']),
+      postalCode: serializer.fromJson<String?>(json['postalCode']),
+      lat: serializer.fromJson<double>(json['lat']),
+      lng: serializer.fromJson<double>(json['lng']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= moorRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'locationId': serializer.toJson<int>(locationId),
+      'institutionId': serializer.toJson<int>(institutionId),
+      'updateDate': serializer.toJson<String?>(updateDate),
+      'title': serializer.toJson<String?>(title),
+      'category': serializer.toJson<BuiltList<String>?>(category),
+      'street': serializer.toJson<String?>(street),
+      'specialization': serializer.toJson<String?>(specialization),
+      'houseNumber': serializer.toJson<String?>(houseNumber),
+      'city': serializer.toJson<String?>(city),
+      'postalCode': serializer.toJson<String?>(postalCode),
+      'lat': serializer.toJson<double>(lat),
+      'lng': serializer.toJson<double>(lng),
+    };
+  }
+
+  HealthcareProvider copyWith(
+          {int? locationId,
+          int? institutionId,
+          String? updateDate,
+          String? title,
+          BuiltList<String>? category,
+          String? street,
+          String? specialization,
+          String? houseNumber,
+          String? city,
+          String? postalCode,
+          double? lat,
+          double? lng}) =>
+      HealthcareProvider(
+        locationId: locationId ?? this.locationId,
+        institutionId: institutionId ?? this.institutionId,
+        updateDate: updateDate ?? this.updateDate,
+        title: title ?? this.title,
+        category: category ?? this.category,
+        street: street ?? this.street,
+        specialization: specialization ?? this.specialization,
+        houseNumber: houseNumber ?? this.houseNumber,
+        city: city ?? this.city,
+        postalCode: postalCode ?? this.postalCode,
+        lat: lat ?? this.lat,
+        lng: lng ?? this.lng,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('HealthcareProvider(')
+          ..write('locationId: $locationId, ')
+          ..write('institutionId: $institutionId, ')
+          ..write('updateDate: $updateDate, ')
+          ..write('title: $title, ')
+          ..write('category: $category, ')
+          ..write('street: $street, ')
+          ..write('specialization: $specialization, ')
+          ..write('houseNumber: $houseNumber, ')
+          ..write('city: $city, ')
+          ..write('postalCode: $postalCode, ')
+          ..write('lat: $lat, ')
+          ..write('lng: $lng')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => $mrjf($mrjc(
+      locationId.hashCode,
+      $mrjc(
+          institutionId.hashCode,
+          $mrjc(
+              updateDate.hashCode,
+              $mrjc(
+                  title.hashCode,
+                  $mrjc(
+                      category.hashCode,
+                      $mrjc(
+                          street.hashCode,
+                          $mrjc(
+                              specialization.hashCode,
+                              $mrjc(
+                                  houseNumber.hashCode,
+                                  $mrjc(
+                                      city.hashCode,
+                                      $mrjc(
+                                          postalCode.hashCode,
+                                          $mrjc(lat.hashCode,
+                                              lng.hashCode))))))))))));
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is HealthcareProvider &&
+          other.locationId == this.locationId &&
+          other.institutionId == this.institutionId &&
+          other.updateDate == this.updateDate &&
+          other.title == this.title &&
+          other.category == this.category &&
+          other.street == this.street &&
+          other.specialization == this.specialization &&
+          other.houseNumber == this.houseNumber &&
+          other.city == this.city &&
+          other.postalCode == this.postalCode &&
+          other.lat == this.lat &&
+          other.lng == this.lng);
+}
+
+class HealthcareProvidersCompanion extends UpdateCompanion<HealthcareProvider> {
+  final Value<int> locationId;
+  final Value<int> institutionId;
+  final Value<String?> updateDate;
+  final Value<String?> title;
+  final Value<BuiltList<String>?> category;
+  final Value<String?> street;
+  final Value<String?> specialization;
+  final Value<String?> houseNumber;
+  final Value<String?> city;
+  final Value<String?> postalCode;
+  final Value<double> lat;
+  final Value<double> lng;
+  const HealthcareProvidersCompanion({
+    this.locationId = const Value.absent(),
+    this.institutionId = const Value.absent(),
+    this.updateDate = const Value.absent(),
+    this.title = const Value.absent(),
+    this.category = const Value.absent(),
+    this.street = const Value.absent(),
+    this.specialization = const Value.absent(),
+    this.houseNumber = const Value.absent(),
+    this.city = const Value.absent(),
+    this.postalCode = const Value.absent(),
+    this.lat = const Value.absent(),
+    this.lng = const Value.absent(),
+  });
+  HealthcareProvidersCompanion.insert({
+    required int locationId,
+    required int institutionId,
+    this.updateDate = const Value.absent(),
+    this.title = const Value.absent(),
+    this.category = const Value.absent(),
+    this.street = const Value.absent(),
+    this.specialization = const Value.absent(),
+    this.houseNumber = const Value.absent(),
+    this.city = const Value.absent(),
+    this.postalCode = const Value.absent(),
+    required double lat,
+    required double lng,
+  })  : locationId = Value(locationId),
+        institutionId = Value(institutionId),
+        lat = Value(lat),
+        lng = Value(lng);
+  static Insertable<HealthcareProvider> custom({
+    Expression<int>? locationId,
+    Expression<int>? institutionId,
+    Expression<String?>? updateDate,
+    Expression<String?>? title,
+    Expression<BuiltList<String>?>? category,
+    Expression<String?>? street,
+    Expression<String?>? specialization,
+    Expression<String?>? houseNumber,
+    Expression<String?>? city,
+    Expression<String?>? postalCode,
+    Expression<double>? lat,
+    Expression<double>? lng,
+  }) {
+    return RawValuesInsertable({
+      if (locationId != null) 'location_id': locationId,
+      if (institutionId != null) 'institution_id': institutionId,
+      if (updateDate != null) 'update_date': updateDate,
+      if (title != null) 'title': title,
+      if (category != null) 'category': category,
+      if (street != null) 'street': street,
+      if (specialization != null) 'specialization': specialization,
+      if (houseNumber != null) 'house_number': houseNumber,
+      if (city != null) 'city': city,
+      if (postalCode != null) 'postal_code': postalCode,
+      if (lat != null) 'lat': lat,
+      if (lng != null) 'lng': lng,
+    });
+  }
+
+  HealthcareProvidersCompanion copyWith(
+      {Value<int>? locationId,
+      Value<int>? institutionId,
+      Value<String?>? updateDate,
+      Value<String?>? title,
+      Value<BuiltList<String>?>? category,
+      Value<String?>? street,
+      Value<String?>? specialization,
+      Value<String?>? houseNumber,
+      Value<String?>? city,
+      Value<String?>? postalCode,
+      Value<double>? lat,
+      Value<double>? lng}) {
+    return HealthcareProvidersCompanion(
+      locationId: locationId ?? this.locationId,
+      institutionId: institutionId ?? this.institutionId,
+      updateDate: updateDate ?? this.updateDate,
+      title: title ?? this.title,
+      category: category ?? this.category,
+      street: street ?? this.street,
+      specialization: specialization ?? this.specialization,
+      houseNumber: houseNumber ?? this.houseNumber,
+      city: city ?? this.city,
+      postalCode: postalCode ?? this.postalCode,
+      lat: lat ?? this.lat,
+      lng: lng ?? this.lng,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (locationId.present) {
+      map['location_id'] = Variable<int>(locationId.value);
+    }
+    if (institutionId.present) {
+      map['institution_id'] = Variable<int>(institutionId.value);
+    }
+    if (updateDate.present) {
+      map['update_date'] = Variable<String?>(updateDate.value);
+    }
+    if (title.present) {
+      map['title'] = Variable<String?>(title.value);
+    }
+    if (category.present) {
+      final converter = $HealthcareProvidersTable.$converter0;
+      map['category'] = Variable<String?>(converter.mapToSql(category.value));
+    }
+    if (street.present) {
+      map['street'] = Variable<String?>(street.value);
+    }
+    if (specialization.present) {
+      map['specialization'] = Variable<String?>(specialization.value);
+    }
+    if (houseNumber.present) {
+      map['house_number'] = Variable<String?>(houseNumber.value);
+    }
+    if (city.present) {
+      map['city'] = Variable<String?>(city.value);
+    }
+    if (postalCode.present) {
+      map['postal_code'] = Variable<String?>(postalCode.value);
+    }
+    if (lat.present) {
+      map['lat'] = Variable<double>(lat.value);
+    }
+    if (lng.present) {
+      map['lng'] = Variable<double>(lng.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('HealthcareProvidersCompanion(')
+          ..write('locationId: $locationId, ')
+          ..write('institutionId: $institutionId, ')
+          ..write('updateDate: $updateDate, ')
+          ..write('title: $title, ')
+          ..write('category: $category, ')
+          ..write('street: $street, ')
+          ..write('specialization: $specialization, ')
+          ..write('houseNumber: $houseNumber, ')
+          ..write('city: $city, ')
+          ..write('postalCode: $postalCode, ')
+          ..write('lat: $lat, ')
+          ..write('lng: $lng')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $HealthcareProvidersTable extends HealthcareProviders
+    with TableInfo<$HealthcareProvidersTable, HealthcareProvider> {
+  final GeneratedDatabase _db;
+  final String? _alias;
+  $HealthcareProvidersTable(this._db, [this._alias]);
+  final VerificationMeta _locationIdMeta = const VerificationMeta('locationId');
+  late final GeneratedColumn<int?> locationId = GeneratedColumn<int?>(
+      'location_id', aliasedName, false,
+      typeName: 'INTEGER', requiredDuringInsert: true);
+  final VerificationMeta _institutionIdMeta =
+      const VerificationMeta('institutionId');
+  late final GeneratedColumn<int?> institutionId = GeneratedColumn<int?>(
+      'institution_id', aliasedName, false,
+      typeName: 'INTEGER', requiredDuringInsert: true);
+  final VerificationMeta _updateDateMeta = const VerificationMeta('updateDate');
+  late final GeneratedColumn<String?> updateDate = GeneratedColumn<String?>(
+      'update_date', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
+  final VerificationMeta _titleMeta = const VerificationMeta('title');
+  late final GeneratedColumn<String?> title = GeneratedColumn<String?>(
+      'title', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
+  final VerificationMeta _categoryMeta = const VerificationMeta('category');
+  late final GeneratedColumnWithTypeConverter<BuiltList<String>, String?>
+      category = GeneratedColumn<String?>('category', aliasedName, true,
+              typeName: 'TEXT', requiredDuringInsert: false)
+          .withConverter<BuiltList<String>>(
+              $HealthcareProvidersTable.$converter0);
+  final VerificationMeta _streetMeta = const VerificationMeta('street');
+  late final GeneratedColumn<String?> street = GeneratedColumn<String?>(
+      'street', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
+  final VerificationMeta _specializationMeta =
+      const VerificationMeta('specialization');
+  late final GeneratedColumn<String?> specialization = GeneratedColumn<String?>(
+      'specialization', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
+  final VerificationMeta _houseNumberMeta =
+      const VerificationMeta('houseNumber');
+  late final GeneratedColumn<String?> houseNumber = GeneratedColumn<String?>(
+      'house_number', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
+  final VerificationMeta _cityMeta = const VerificationMeta('city');
+  late final GeneratedColumn<String?> city = GeneratedColumn<String?>(
+      'city', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
+  final VerificationMeta _postalCodeMeta = const VerificationMeta('postalCode');
+  late final GeneratedColumn<String?> postalCode = GeneratedColumn<String?>(
+      'postal_code', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
+  final VerificationMeta _latMeta = const VerificationMeta('lat');
+  late final GeneratedColumn<double?> lat = GeneratedColumn<double?>(
+      'lat', aliasedName, false,
+      typeName: 'REAL', requiredDuringInsert: true);
+  final VerificationMeta _lngMeta = const VerificationMeta('lng');
+  late final GeneratedColumn<double?> lng = GeneratedColumn<double?>(
+      'lng', aliasedName, false,
+      typeName: 'REAL', requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns => [
+        locationId,
+        institutionId,
+        updateDate,
+        title,
+        category,
+        street,
+        specialization,
+        houseNumber,
+        city,
+        postalCode,
+        lat,
+        lng
+      ];
+  @override
+  String get aliasedName => _alias ?? 'healthcare_providers';
+  @override
+  String get actualTableName => 'healthcare_providers';
+  @override
+  VerificationContext validateIntegrity(Insertable<HealthcareProvider> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('location_id')) {
+      context.handle(
+          _locationIdMeta,
+          locationId.isAcceptableOrUnknown(
+              data['location_id']!, _locationIdMeta));
+    } else if (isInserting) {
+      context.missing(_locationIdMeta);
+    }
+    if (data.containsKey('institution_id')) {
+      context.handle(
+          _institutionIdMeta,
+          institutionId.isAcceptableOrUnknown(
+              data['institution_id']!, _institutionIdMeta));
+    } else if (isInserting) {
+      context.missing(_institutionIdMeta);
+    }
+    if (data.containsKey('update_date')) {
+      context.handle(
+          _updateDateMeta,
+          updateDate.isAcceptableOrUnknown(
+              data['update_date']!, _updateDateMeta));
+    }
+    if (data.containsKey('title')) {
+      context.handle(
+          _titleMeta, title.isAcceptableOrUnknown(data['title']!, _titleMeta));
+    }
+    context.handle(_categoryMeta, const VerificationResult.success());
+    if (data.containsKey('street')) {
+      context.handle(_streetMeta,
+          street.isAcceptableOrUnknown(data['street']!, _streetMeta));
+    }
+    if (data.containsKey('specialization')) {
+      context.handle(
+          _specializationMeta,
+          specialization.isAcceptableOrUnknown(
+              data['specialization']!, _specializationMeta));
+    }
+    if (data.containsKey('house_number')) {
+      context.handle(
+          _houseNumberMeta,
+          houseNumber.isAcceptableOrUnknown(
+              data['house_number']!, _houseNumberMeta));
+    }
+    if (data.containsKey('city')) {
+      context.handle(
+          _cityMeta, city.isAcceptableOrUnknown(data['city']!, _cityMeta));
+    }
+    if (data.containsKey('postal_code')) {
+      context.handle(
+          _postalCodeMeta,
+          postalCode.isAcceptableOrUnknown(
+              data['postal_code']!, _postalCodeMeta));
+    }
+    if (data.containsKey('lat')) {
+      context.handle(
+          _latMeta, lat.isAcceptableOrUnknown(data['lat']!, _latMeta));
+    } else if (isInserting) {
+      context.missing(_latMeta);
+    }
+    if (data.containsKey('lng')) {
+      context.handle(
+          _lngMeta, lng.isAcceptableOrUnknown(data['lng']!, _lngMeta));
+    } else if (isInserting) {
+      context.missing(_lngMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {locationId, institutionId};
+  @override
+  HealthcareProvider map(Map<String, dynamic> data, {String? tablePrefix}) {
+    return HealthcareProvider.fromData(data, _db,
+        prefix: tablePrefix != null ? '$tablePrefix.' : null);
+  }
+
+  @override
+  $HealthcareProvidersTable createAlias(String alias) {
+    return $HealthcareProvidersTable(_db, alias);
+  }
+
+  static TypeConverter<BuiltList<String>, String> $converter0 =
+      const CategoryConverter();
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
   late final $UsersTable users = $UsersTable(this);
+  late final $HealthcareProvidersTable healthcareProviders =
+      $HealthcareProvidersTable(this);
   late final UsersDao usersDao = UsersDao(this as AppDatabase);
+  late final HealthcareProvidersDao healthcareProvidersDao =
+      HealthcareProvidersDao(this as AppDatabase);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [users];
+  List<DatabaseSchemaEntity> get allSchemaEntities =>
+      [users, healthcareProviders];
 }

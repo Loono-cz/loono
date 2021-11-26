@@ -44,6 +44,11 @@ dependencies:
 
   intl: ^0.17.0
   json_annotation: ^4.0.1
+  loono_api:
+    git:
+      url: https://github.com/vaetas/loono-api.git
+      path: dart
+      ref: 340dbcdf24959026d1b8b94a16ff167f2269f4f8
   moor: ^4.1.0
   onesignal_flutter: ^3.2.4
   package_info: ^2.0.2
