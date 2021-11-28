@@ -65,25 +65,6 @@ class _$AppRouter extends RootStackRouter {
           opaque: true,
           barrierDismissible: false);
     },
-    EditSexRoute.name: (routeData) {
-      final args = routeData.argsAs<EditSexRouteArgs>();
-      return CustomPage<dynamic>(
-          routeData: routeData,
-          child: EditSexScreen(key: args.key, sex: args.sex),
-          transitionsBuilder: TransitionsBuilders.slideLeft,
-          opaque: true,
-          barrierDismissible: false);
-    },
-    EditBirthdateRoute.name: (routeData) {
-      final args = routeData.argsAs<EditBirthdateRouteArgs>();
-      return CustomPage<dynamic>(
-          routeData: routeData,
-          child: EditBirthdateScreen(
-              key: args.key, dateWithoutDay: args.dateWithoutDay),
-          transitionsBuilder: TransitionsBuilders.slideLeft,
-          opaque: true,
-          barrierDismissible: false);
-    },
     EditPhotoRoute.name: (routeData) {
       final args = routeData.argsAs<EditPhotoRouteArgs>(
           orElse: () => const EditPhotoRouteArgs());
@@ -159,11 +140,6 @@ class _$AppRouter extends RootStackRouter {
                     parent: SettingsRouter.name),
                 RouteConfig(EditEmailRoute.name,
                     path: 'update-profile/email', parent: SettingsRouter.name),
-                RouteConfig(EditSexRoute.name,
-                    path: 'update-profile/sex', parent: SettingsRouter.name),
-                RouteConfig(EditBirthdateRoute.name,
-                    path: 'update-profile/birthdate',
-                    parent: SettingsRouter.name),
                 RouteConfig(EditPhotoRoute.name,
                     path: 'settings/update-profile/photo',
                     parent: SettingsRouter.name),
@@ -271,43 +247,6 @@ class EditEmailRouteArgs {
   final Key? key;
 
   final User? user;
-}
-
-/// generated route for [EditSexScreen]
-class EditSexRoute extends PageRouteInfo<EditSexRouteArgs> {
-  EditSexRoute({Key? key, required Sex? sex})
-      : super(name,
-            path: 'update-profile/sex',
-            args: EditSexRouteArgs(key: key, sex: sex));
-
-  static const String name = 'EditSexRoute';
-}
-
-class EditSexRouteArgs {
-  const EditSexRouteArgs({this.key, required this.sex});
-
-  final Key? key;
-
-  final Sex? sex;
-}
-
-/// generated route for [EditBirthdateScreen]
-class EditBirthdateRoute extends PageRouteInfo<EditBirthdateRouteArgs> {
-  EditBirthdateRoute({Key? key, required DateWithoutDay? dateWithoutDay})
-      : super(name,
-            path: 'update-profile/birthdate',
-            args: EditBirthdateRouteArgs(
-                key: key, dateWithoutDay: dateWithoutDay));
-
-  static const String name = 'EditBirthdateRoute';
-}
-
-class EditBirthdateRouteArgs {
-  const EditBirthdateRouteArgs({this.key, required this.dateWithoutDay});
-
-  final Key? key;
-
-  final DateWithoutDay? dateWithoutDay;
 }
 
 /// generated route for [EditPhotoScreen]

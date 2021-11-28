@@ -9,6 +9,7 @@ import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/user.dart';
 import 'package:loono/routers/app_router.dart';
+import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/ui/widgets/confirmation_dialog.dart';
@@ -22,6 +23,7 @@ class UpdateProfileScreen extends StatelessWidget {
   UpdateProfileScreen({Key? key}) : super(key: key);
 
   final _usersDao = registry.get<DatabaseService>().users;
+  final _authService = registry.get<AuthService>();
 
   String _getUserSexValue(BuildContext context, {Sex? sex}) {
     switch (sex) {

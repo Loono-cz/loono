@@ -3,17 +3,13 @@ import 'dart:typed_data';
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:loono/helpers/date_without_day.dart';
-import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/ui/screens/main/main_screen.dart';
 import 'package:loono/ui/screens/settings/camera_photo_taken.dart';
-import 'package:loono/ui/screens/settings/edit_birthdate.dart';
 import 'package:loono/ui/screens/settings/edit_email.dart';
 import 'package:loono/ui/screens/settings/edit_nickname.dart';
 import 'package:loono/ui/screens/settings/edit_photo.dart';
-import 'package:loono/ui/screens/settings/edit_sex.dart';
-import 'package:loono/ui/screens/settings/gallery_photo_taken_screen.dart';
+import 'package:loono/ui/screens/settings/gallery_photo_taken.dart';
 import 'package:loono/ui/screens/settings/leaderboard.dart';
 import 'package:loono/ui/screens/settings/open_settings.dart';
 import 'package:loono/ui/screens/settings/photo_cropped_result.dart';
@@ -60,16 +56,6 @@ const _settingsTransition = TransitionsBuilders.slideLeft;
             CustomRoute(
               page: EditEmailScreen,
               path: 'update-profile/email',
-              transitionsBuilder: _settingsTransition,
-            ),
-            CustomRoute(
-              page: EditSexScreen,
-              path: 'update-profile/sex',
-              transitionsBuilder: _settingsTransition,
-            ),
-            CustomRoute(
-              page: EditBirthdateScreen,
-              path: 'update-profile/birthdate',
               transitionsBuilder: _settingsTransition,
             ),
             CustomRoute(
