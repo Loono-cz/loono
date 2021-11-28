@@ -10,7 +10,7 @@
 	</array>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.cz.loono.app.dev.onesignal</string>
+		<string>group.cz.loono.app.onesignal</string>
 	</array>
 </dict>
 </plist>

@@ -124,7 +124,8 @@ class CreateAccountScreen extends StatelessWidget {
                       ),
                     ),
                     TextButton(
-                      onPressed: () => print('click'),
+                      // TODO: Terms of privacy page
+                      onPressed: () => debugPrint('click'),
                       child: Text(
                         context.l10n.by_logging_in_you_agree_to_the_terms_of_privacy,
                         style: LoonoFonts.paragraphSmallFontStyle,

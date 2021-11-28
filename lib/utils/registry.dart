@@ -11,6 +11,7 @@ import 'package:loono/routers/app_router.dart';
 import 'package:loono/routers/auth_router.dart';
 import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/database_service.dart';
+import 'package:loono/services/notification_service.dart';
 import 'package:loono/utils/app_config.dart';
 import 'package:package_info/package_info.dart';
 
@@ -46,6 +47,9 @@ Future<void> setup(AppFlavors flavor) async {
   );
 
   registry.registerLazySingleton<AppConfig>(() => config);
+
+  registry.registerSingleton<NotificationService>(NotificationService());
+  await registry.get<NotificationService>().init();
 
   // services
   registry.registerSingleton<DatabaseService>(DatabaseService());

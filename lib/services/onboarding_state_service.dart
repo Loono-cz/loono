@@ -2,12 +2,19 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:loono/helpers/examination_types.dart';
+import 'package:loono/services/notification_service.dart';
 
 enum OnboardingProgressStatus { welcome, intro, questionnaire }
 
 enum NotificationPermissionState { notRequested, requested }
 
 class OnboardingStateService extends ChangeNotifier {
+  OnboardingStateService({
+    required this.notificationService,
+  });
+
+  final NotificationService notificationService;
+
   OnboardingProgressStatus _onboardingProgressStatus = OnboardingProgressStatus.welcome;
 
   final _obtainedExaminationAchievements = <ExaminationType>{};
@@ -63,9 +70,18 @@ class OnboardingStateService extends ChangeNotifier {
   bool get hasNotRequestedNotificationsPermission =>
       _notificationPermissionState == NotificationPermissionState.notRequested;
 
-  void notificationsPermissionRequested() {
-    if (_notificationPermissionState != NotificationPermissionState.requested) {
+  // TODO: Maybe hide this option for Android users in the UI?
+  // TODO: User might decline the permission. Handle this possible state.
+  /// Prompt iOS users for notification permissions.
+  /// When user declines the permission we cannot request it again. This should
+  /// be represented in the UI.
+  Future<void> notificationsPermissionRequested() async {
+    final permissionGranted = await notificationService.promptPermissions();
+    if (permissionGranted) {
       _notificationPermissionState = NotificationPermissionState.requested;
+      notifyListeners();
+    } else {
+      _notificationPermissionState = NotificationPermissionState.notRequested;
       notifyListeners();
     }
   }
