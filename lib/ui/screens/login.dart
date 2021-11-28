@@ -65,6 +65,20 @@ class LoginScreen extends StatelessWidget {
                 },
               ),
             ),
+            const SizedBox(height: 20.0),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18.0),
+              child: SocialLoginButton.facebook(
+                onPressed: () async {
+                  final accountExistsResult =
+                      await _authService.checkFacebookAccountExistsAndSignIn();
+                  accountExistsResult.fold(
+                    (failure) => showSnackBarError(context, message: failure.getMessage(context)),
+                    (authUser) => AutoRouter.of(context).push(const MainScreenRouter()),
+                  );
+                },
+              ),
+            ),
             const Spacer(),
             TextButton(
               onPressed: () => AutoRouter.of(context).push(const OnboardingWrapperRoute()),
