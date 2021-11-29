@@ -74,8 +74,8 @@ class UserRepository {
     await _db.users.updateAchievementCollection(achievement);
   }
 
-  // TODO: Error handling
-  // TODO: Compress the image before uploading
+  // TODO: Error handling (https://cesko-digital.atlassian.net/browse/LOON-386)
+  // TODO: Compress the image before uploading (https://cesko-digital.atlassian.net/browse/LOON-368)
   /// Updates user's avatar.
   ///
   /// If the user already has an avatar, the current one will be replaced and
