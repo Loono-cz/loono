@@ -31,7 +31,7 @@ class _LogoutScreenState extends State<LogoutScreen> {
             children: [
               LoonoButton(
                 text: context.l10n.logout_screen_success_message,
-                onTap: () {},
+                onTap: null,
                 enabledColor: LoonoColors.greenSuccess,
               ),
               const SizedBox(height: 20),
@@ -51,9 +51,8 @@ class _LogoutScreenState extends State<LogoutScreen> {
                 onTap: () => AutoRouter.of(context).push(LoginRoute()),
               ),
               const SizedBox(height: 20),
-              LoonoButton(
+              LoonoButton.light(
                 text: context.l10n.use_app_without_account,
-                enabled: false,
                 textColor: LoonoColors.black,
                 onTap: () async {
                   final authUserResult = await _authService.signInAnonymously();

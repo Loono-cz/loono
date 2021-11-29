@@ -7,13 +7,14 @@ part 'auth_state.freezed.dart';
 class AuthState with _$AuthState {
   const factory AuthState.unknown() = Unknown;
 
-  const factory AuthState.accountJustCreated([AuthUser? authUser]) = AccountCreated;
+  const factory AuthState.notLoggedIn() = LoggedOut;
 
-  const factory AuthState.loggedIn() = LoggedIn;
+  const factory AuthState.loggedIn({
+    @Default(false) bool isAccountNew,
+    AuthUser? authUser,
+  }) = LoggedIn;
 
   const factory AuthState.loggingOut() = LoggingOut;
 
   const factory AuthState.loggedOutManually() = LoggedOutManually;
-
-  const factory AuthState.loggedOut() = LoggedOut;
 }

@@ -16,7 +16,8 @@ class PreventionScreen extends StatelessWidget {
             Align(
               alignment: Alignment.topLeft,
               child: TextButton(
-                onPressed: () => AutoRouter.of(context).push(OpenSettingsRoute()),
+                onPressed: () =>
+                    AutoRouter.of(context).push(SettingsRouter(children: [OpenSettingsRoute()])),
                 child: const Text('SETTINGS'),
               ),
             ),

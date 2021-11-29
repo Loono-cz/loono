@@ -29,6 +29,9 @@ part 'auth_router.gr.dart';
 
 const _onboardingTransition = TransitionsBuilders.slideLeft;
 
+// After editing this, run:
+// flutter pub run build_runner build --delete-conflicting-outputs
+//
 // Pre-auth screens
 @MaterialAutoRouter(
   replaceInRouteName: 'Page|Screen|Dialog,Route',
@@ -39,80 +42,80 @@ const _onboardingTransition = TransitionsBuilders.slideLeft;
     AutoRoute(page: EmailScreen, path: 'fallback_account/email'),
     AutoRoute(page: LogoutScreen, path: 'logout'),
     AutoRoute(page: LoggedInScreen, path: 'logged-in'),
-
-    // Onboarding flow
-    AutoRoute(
-      page: OnboardingWrapperScreen,
-      path: 'onboarding',
-      children: [
-        AutoRoute(page: WelcomeScreen, path: 'welcome'),
-        CustomRoute(
-          page: OnboardingCarouselScreen,
-          path: 'carousel',
-          transitionsBuilder: _onboardingTransition,
-        ),
-        CustomRoute(
-          page: OnboardingGenderScreen,
-          path: 'gender',
-          transitionsBuilder: _onboardingTransition,
-        ),
-        CustomRoute(
-          page: OnBoardingBirthdateScreen,
-          path: 'birthdate',
-          transitionsBuilder: _onboardingTransition,
-        ),
-        CustomRoute(
-          page: OnboardingGeneralPracticionerScreen,
-          path: 'doctor/general-practicioner',
-          transitionsBuilder: _onboardingTransition,
-        ),
-        CustomRoute(
-          page: GeneralPracticionerAchievementScreen,
-          path: 'general-practicioner-achievement',
-          transitionsBuilder: _onboardingTransition,
-        ),
-        CustomRoute(
-          page: GeneralPractitionerDateScreen,
-          path: 'doctor/general-practitioner-date',
-          transitionsBuilder: _onboardingTransition,
-        ),
-        CustomRoute(
-          page: AllowNotificationsScreen,
-          path: 'allow_notifications',
-          transitionsBuilder: _onboardingTransition,
-        ),
-        CustomRoute(
-          page: OnboardingGynecologyScreen,
-          path: 'doctor/gynecology',
-          transitionsBuilder: _onboardingTransition,
-        ),
-        CustomRoute(
-          page: GynecologyAchievementScreen,
-          path: 'gynecology_achievement',
-          transitionsBuilder: _onboardingTransition,
-        ),
-        CustomRoute(
-          page: GynecologyDateScreen,
-          path: 'doctor/gynecology-date',
-          transitionsBuilder: _onboardingTransition,
-        ),
-        CustomRoute(
-          page: OnboardingDentistScreen,
-          path: 'doctor/dentist',
-          transitionsBuilder: _onboardingTransition,
-        ),
-        CustomRoute(
-          page: DentistAchievementScreen,
-          path: 'dentist_achievement',
-          transitionsBuilder: _onboardingTransition,
-        ),
-        CustomRoute(
-          page: DentistDateScreen,
-          path: 'doctor/dentist-date',
-          transitionsBuilder: _onboardingTransition,
-        ),
-      ],
-    ),
+    _onboardingRoutes,
   ],
 )
 class AuthRouter extends _$AuthRouter {}
+
+const _onboardingRoutes = AutoRoute(
+  page: OnboardingWrapperScreen,
+  path: 'onboarding',
+  children: [
+    AutoRoute(page: WelcomeScreen, path: 'welcome'),
+    CustomRoute(
+      page: OnboardingCarouselScreen,
+      path: 'carousel',
+      transitionsBuilder: _onboardingTransition,
+    ),
+    CustomRoute(
+      page: OnboardingGenderScreen,
+      path: 'gender',
+      transitionsBuilder: _onboardingTransition,
+    ),
+    CustomRoute(
+      page: OnBoardingBirthdateScreen,
+      path: 'birthdate',
+      transitionsBuilder: _onboardingTransition,
+    ),
+    CustomRoute(
+      page: OnboardingGeneralPracticionerScreen,
+      path: 'doctor/general-practicioner',
+      transitionsBuilder: _onboardingTransition,
+    ),
+    CustomRoute(
+      page: GeneralPracticionerAchievementScreen,
+      path: 'general-practicioner-achievement',
+      transitionsBuilder: _onboardingTransition,
+    ),
+    CustomRoute(
+      page: GeneralPractitionerDateScreen,
+      path: 'doctor/general-practitioner-date',
+      transitionsBuilder: _onboardingTransition,
+    ),
+    CustomRoute(
+      page: AllowNotificationsScreen,
+      path: 'allow_notifications',
+      transitionsBuilder: _onboardingTransition,
+    ),
+    CustomRoute(
+      page: OnboardingGynecologyScreen,
+      path: 'doctor/gynecology',
+      transitionsBuilder: _onboardingTransition,
+    ),
+    CustomRoute(
+      page: GynecologyAchievementScreen,
+      path: 'gynecology_achievement',
+      transitionsBuilder: _onboardingTransition,
+    ),
+    CustomRoute(
+      page: GynecologyDateScreen,
+      path: 'doctor/gynecology-date',
+      transitionsBuilder: _onboardingTransition,
+    ),
+    CustomRoute(
+      page: OnboardingDentistScreen,
+      path: 'doctor/dentist',
+      transitionsBuilder: _onboardingTransition,
+    ),
+    CustomRoute(
+      page: DentistAchievementScreen,
+      path: 'dentist_achievement',
+      transitionsBuilder: _onboardingTransition,
+    ),
+    CustomRoute(
+      page: DentistDateScreen,
+      path: 'doctor/dentist-date',
+      transitionsBuilder: _onboardingTransition,
+    ),
+  ],
+);

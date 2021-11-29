@@ -68,12 +68,16 @@ Future<void> setup(AppFlavors flavor) async {
   registry.registerSingleton<AppRouter>(AppRouter());
 
   registry.get<AppRouter>().replaceAll([const MainScreenRouter()]);
-  registry.get<AuthService>().authStateStream.listen(
+  registry.get<AuthService>().authStateStream.stream.listen(
         (event) => event.maybeWhen(
-          loggedIn: () => registry.get<AuthRouter>().replaceAll([LoggedInRoute()]),
-          accountJustCreated: (authUser) =>
-              registry.get<AuthRouter>().replaceAll([NicknameRoute(authUser: authUser)]),
-          loggedOut: () => registry.get<AuthRouter>().replaceAll([const OnboardingWrapperRoute()]),
+          loggedIn: (isAccountNew, authUser) {
+            registry.get<AuthRouter>().replaceAll([
+              if (isAccountNew) NicknameRoute(authUser: authUser) else LoggedInRoute(),
+            ]);
+            registry.get<AppRouter>().replaceAll([const MainScreenRouter()]);
+          },
+          notLoggedIn: () =>
+              registry.get<AuthRouter>().replaceAll([const OnboardingWrapperRoute()]),
           loggedOutManually: () => registry.get<AuthRouter>().replaceAll([const LogoutRoute()]),
           orElse: () {},
         ),

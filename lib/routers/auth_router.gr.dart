@@ -228,6 +228,11 @@ class LoginRouteArgs {
   const LoginRouteArgs({this.key});
 
   final Key? key;
+
+  @override
+  String toString() {
+    return 'LoginRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for [CreateAccountScreen]
@@ -243,6 +248,11 @@ class CreateAccountRouteArgs {
   const CreateAccountRouteArgs({this.key});
 
   final Key? key;
+
+  @override
+  String toString() {
+    return 'CreateAccountRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for [NicknameScreen]
@@ -261,6 +271,11 @@ class NicknameRouteArgs {
   final Key? key;
 
   final AuthUser? authUser;
+
+  @override
+  String toString() {
+    return 'NicknameRouteArgs{key: $key, authUser: $authUser}';
+  }
 }
 
 /// generated route for [EmailScreen]
@@ -279,6 +294,11 @@ class EmailRouteArgs {
   final Key? key;
 
   final AuthUser? authUser;
+
+  @override
+  String toString() {
+    return 'EmailRouteArgs{key: $key, authUser: $authUser}';
+  }
 }
 
 /// generated route for [LogoutScreen]
@@ -300,6 +320,11 @@ class LoggedInRouteArgs {
   const LoggedInRouteArgs({this.key});
 
   final Key? key;
+
+  @override
+  String toString() {
+    return 'LoggedInRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for [OnboardingWrapperScreen]
@@ -348,6 +373,11 @@ class OnBoardingBirthdateRouteArgs {
   final Key? key;
 
   final Sex sex;
+
+  @override
+  String toString() {
+    return 'OnBoardingBirthdateRouteArgs{key: $key, sex: $sex}';
+  }
 }
 
 /// generated route for [OnboardingGeneralPracticionerScreen]
@@ -367,6 +397,11 @@ class OnboardingGeneralPracticionerRouteArgs {
   final Key? key;
 
   final Sex sex;
+
+  @override
+  String toString() {
+    return 'OnboardingGeneralPracticionerRouteArgs{key: $key, sex: $sex}';
+  }
 }
 
 /// generated route for [GeneralPracticionerAchievementScreen]
@@ -409,6 +444,11 @@ class OnboardingGynecologyRouteArgs {
   final Key? key;
 
   final Sex sex;
+
+  @override
+  String toString() {
+    return 'OnboardingGynecologyRouteArgs{key: $key, sex: $sex}';
+  }
 }
 
 /// generated route for [GynecologyAchievementScreen]
@@ -442,6 +482,11 @@ class OnboardingDentistRouteArgs {
   final Key? key;
 
   final Sex sex;
+
+  @override
+  String toString() {
+    return 'OnboardingDentistRouteArgs{key: $key, sex: $sex}';
+  }
 }
 
 /// generated route for [DentistAchievementScreen]

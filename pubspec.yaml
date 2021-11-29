@@ -22,6 +22,7 @@ dependencies:
       path: extras/encryption
       ref: 8f9e2a9edbc6e4fa4d8dfa1dea9c54aec2b38044
   firebase_auth: ^3.1.2
+  firebase_auth_platform_interface: ^6.1.4
   firebase_core: ^1.2.0
   firebase_crashlytics: ^2.0.7
   flutter:

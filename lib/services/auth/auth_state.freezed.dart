@@ -21,14 +21,15 @@ class _$AuthStateTearOff {
     return const Unknown();
   }
 
-  AccountCreated accountJustCreated([AuthUser? authUser]) {
-    return AccountCreated(
-      authUser,
-    );
+  LoggedOut notLoggedIn() {
+    return const LoggedOut();
   }
 
-  LoggedIn loggedIn() {
-    return const LoggedIn();
+  LoggedIn loggedIn({bool isAccountNew = false, AuthUser? authUser}) {
+    return LoggedIn(
+      isAccountNew: isAccountNew,
+      authUser: authUser,
+    );
   }
 
   LoggingOut loggingOut() {
@@ -37,10 +38,6 @@ class _$AuthStateTearOff {
 
   LoggedOutManually loggedOutManually() {
     return const LoggedOutManually();
-  }
-
-  LoggedOut loggedOut() {
-    return const LoggedOut();
   }
 }
 
@@ -52,62 +49,56 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
-    required TResult Function(AuthUser? authUser) accountJustCreated,
-    required TResult Function() loggedIn,
+    required TResult Function() notLoggedIn,
+    required TResult Function(bool isAccountNew, AuthUser? authUser) loggedIn,
     required TResult Function() loggingOut,
     required TResult Function() loggedOutManually,
-    required TResult Function() loggedOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unknown,
-    TResult Function(AuthUser? authUser)? accountJustCreated,
-    TResult Function()? loggedIn,
+    TResult Function()? notLoggedIn,
+    TResult Function(bool isAccountNew, AuthUser? authUser)? loggedIn,
     TResult Function()? loggingOut,
     TResult Function()? loggedOutManually,
-    TResult Function()? loggedOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
-    TResult Function(AuthUser? authUser)? accountJustCreated,
-    TResult Function()? loggedIn,
+    TResult Function()? notLoggedIn,
+    TResult Function(bool isAccountNew, AuthUser? authUser)? loggedIn,
     TResult Function()? loggingOut,
     TResult Function()? loggedOutManually,
-    TResult Function()? loggedOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Unknown value) unknown,
-    required TResult Function(AccountCreated value) accountJustCreated,
+    required TResult Function(LoggedOut value) notLoggedIn,
     required TResult Function(LoggedIn value) loggedIn,
     required TResult Function(LoggingOut value) loggingOut,
     required TResult Function(LoggedOutManually value) loggedOutManually,
-    required TResult Function(LoggedOut value) loggedOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Unknown value)? unknown,
-    TResult Function(AccountCreated value)? accountJustCreated,
+    TResult Function(LoggedOut value)? notLoggedIn,
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(LoggingOut value)? loggingOut,
     TResult Function(LoggedOutManually value)? loggedOutManually,
-    TResult Function(LoggedOut value)? loggedOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unknown value)? unknown,
-    TResult Function(AccountCreated value)? accountJustCreated,
+    TResult Function(LoggedOut value)? notLoggedIn,
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(LoggingOut value)? loggingOut,
     TResult Function(LoggedOutManually value)? loggedOutManually,
-    TResult Function(LoggedOut value)? loggedOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -166,11 +157,10 @@ class _$Unknown implements Unknown {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
-    required TResult Function(AuthUser? authUser) accountJustCreated,
-    required TResult Function() loggedIn,
+    required TResult Function() notLoggedIn,
+    required TResult Function(bool isAccountNew, AuthUser? authUser) loggedIn,
     required TResult Function() loggingOut,
     required TResult Function() loggedOutManually,
-    required TResult Function() loggedOut,
   }) {
     return unknown();
   }
@@ -179,11 +169,10 @@ class _$Unknown implements Unknown {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unknown,
-    TResult Function(AuthUser? authUser)? accountJustCreated,
-    TResult Function()? loggedIn,
+    TResult Function()? notLoggedIn,
+    TResult Function(bool isAccountNew, AuthUser? authUser)? loggedIn,
     TResult Function()? loggingOut,
     TResult Function()? loggedOutManually,
-    TResult Function()? loggedOut,
   }) {
     return unknown?.call();
   }
@@ -192,11 +181,10 @@ class _$Unknown implements Unknown {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
-    TResult Function(AuthUser? authUser)? accountJustCreated,
-    TResult Function()? loggedIn,
+    TResult Function()? notLoggedIn,
+    TResult Function(bool isAccountNew, AuthUser? authUser)? loggedIn,
     TResult Function()? loggingOut,
     TResult Function()? loggedOutManually,
-    TResult Function()? loggedOut,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -209,11 +197,10 @@ class _$Unknown implements Unknown {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Unknown value) unknown,
-    required TResult Function(AccountCreated value) accountJustCreated,
+    required TResult Function(LoggedOut value) notLoggedIn,
     required TResult Function(LoggedIn value) loggedIn,
     required TResult Function(LoggingOut value) loggingOut,
     required TResult Function(LoggedOutManually value) loggedOutManually,
-    required TResult Function(LoggedOut value) loggedOut,
   }) {
     return unknown(this);
   }
@@ -222,11 +209,10 @@ class _$Unknown implements Unknown {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Unknown value)? unknown,
-    TResult Function(AccountCreated value)? accountJustCreated,
+    TResult Function(LoggedOut value)? notLoggedIn,
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(LoggingOut value)? loggingOut,
     TResult Function(LoggedOutManually value)? loggedOutManually,
-    TResult Function(LoggedOut value)? loggedOut,
   }) {
     return unknown?.call(this);
   }
@@ -235,11 +221,10 @@ class _$Unknown implements Unknown {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unknown value)? unknown,
-    TResult Function(AccountCreated value)? accountJustCreated,
+    TResult Function(LoggedOut value)? notLoggedIn,
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(LoggingOut value)? loggingOut,
     TResult Function(LoggedOutManually value)? loggedOutManually,
-    TResult Function(LoggedOut value)? loggedOut,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -254,106 +239,75 @@ abstract class Unknown implements AuthState {
 }
 
 /// @nodoc
-abstract class $AccountCreatedCopyWith<$Res> {
-  factory $AccountCreatedCopyWith(
-          AccountCreated value, $Res Function(AccountCreated) then) =
-      _$AccountCreatedCopyWithImpl<$Res>;
-  $Res call({AuthUser? authUser});
+abstract class $LoggedOutCopyWith<$Res> {
+  factory $LoggedOutCopyWith(LoggedOut value, $Res Function(LoggedOut) then) =
+      _$LoggedOutCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$AccountCreatedCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
-    implements $AccountCreatedCopyWith<$Res> {
-  _$AccountCreatedCopyWithImpl(
-      AccountCreated _value, $Res Function(AccountCreated) _then)
-      : super(_value, (v) => _then(v as AccountCreated));
+class _$LoggedOutCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements $LoggedOutCopyWith<$Res> {
+  _$LoggedOutCopyWithImpl(LoggedOut _value, $Res Function(LoggedOut) _then)
+      : super(_value, (v) => _then(v as LoggedOut));
 
   @override
-  AccountCreated get _value => super._value as AccountCreated;
-
-  @override
-  $Res call({
-    Object? authUser = freezed,
-  }) {
-    return _then(AccountCreated(
-      authUser == freezed
-          ? _value.authUser
-          : authUser // ignore: cast_nullable_to_non_nullable
-              as AuthUser?,
-    ));
-  }
+  LoggedOut get _value => super._value as LoggedOut;
 }
 
 /// @nodoc
 
-class _$AccountCreated implements AccountCreated {
-  const _$AccountCreated([this.authUser]);
-
-  @override
-  final AuthUser? authUser;
+class _$LoggedOut implements LoggedOut {
+  const _$LoggedOut();
 
   @override
   String toString() {
-    return 'AuthState.accountJustCreated(authUser: $authUser)';
+    return 'AuthState.notLoggedIn()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is AccountCreated &&
-            (identical(other.authUser, authUser) ||
-                const DeepCollectionEquality()
-                    .equals(other.authUser, authUser)));
+    return identical(this, other) || (other is LoggedOut);
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(authUser);
-
-  @JsonKey(ignore: true)
-  @override
-  $AccountCreatedCopyWith<AccountCreated> get copyWith =>
-      _$AccountCreatedCopyWithImpl<AccountCreated>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
-    required TResult Function(AuthUser? authUser) accountJustCreated,
-    required TResult Function() loggedIn,
+    required TResult Function() notLoggedIn,
+    required TResult Function(bool isAccountNew, AuthUser? authUser) loggedIn,
     required TResult Function() loggingOut,
     required TResult Function() loggedOutManually,
-    required TResult Function() loggedOut,
   }) {
-    return accountJustCreated(authUser);
+    return notLoggedIn();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unknown,
-    TResult Function(AuthUser? authUser)? accountJustCreated,
-    TResult Function()? loggedIn,
+    TResult Function()? notLoggedIn,
+    TResult Function(bool isAccountNew, AuthUser? authUser)? loggedIn,
     TResult Function()? loggingOut,
     TResult Function()? loggedOutManually,
-    TResult Function()? loggedOut,
   }) {
-    return accountJustCreated?.call(authUser);
+    return notLoggedIn?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
-    TResult Function(AuthUser? authUser)? accountJustCreated,
-    TResult Function()? loggedIn,
+    TResult Function()? notLoggedIn,
+    TResult Function(bool isAccountNew, AuthUser? authUser)? loggedIn,
     TResult Function()? loggingOut,
     TResult Function()? loggedOutManually,
-    TResult Function()? loggedOut,
     required TResult orElse(),
   }) {
-    if (accountJustCreated != null) {
-      return accountJustCreated(authUser);
+    if (notLoggedIn != null) {
+      return notLoggedIn();
     }
     return orElse();
   }
@@ -362,59 +316,52 @@ class _$AccountCreated implements AccountCreated {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Unknown value) unknown,
-    required TResult Function(AccountCreated value) accountJustCreated,
+    required TResult Function(LoggedOut value) notLoggedIn,
     required TResult Function(LoggedIn value) loggedIn,
     required TResult Function(LoggingOut value) loggingOut,
     required TResult Function(LoggedOutManually value) loggedOutManually,
-    required TResult Function(LoggedOut value) loggedOut,
   }) {
-    return accountJustCreated(this);
+    return notLoggedIn(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Unknown value)? unknown,
-    TResult Function(AccountCreated value)? accountJustCreated,
+    TResult Function(LoggedOut value)? notLoggedIn,
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(LoggingOut value)? loggingOut,
     TResult Function(LoggedOutManually value)? loggedOutManually,
-    TResult Function(LoggedOut value)? loggedOut,
   }) {
-    return accountJustCreated?.call(this);
+    return notLoggedIn?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unknown value)? unknown,
-    TResult Function(AccountCreated value)? accountJustCreated,
+    TResult Function(LoggedOut value)? notLoggedIn,
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(LoggingOut value)? loggingOut,
     TResult Function(LoggedOutManually value)? loggedOutManually,
-    TResult Function(LoggedOut value)? loggedOut,
     required TResult orElse(),
   }) {
-    if (accountJustCreated != null) {
-      return accountJustCreated(this);
+    if (notLoggedIn != null) {
+      return notLoggedIn(this);
     }
     return orElse();
   }
 }
 
-abstract class AccountCreated implements AuthState {
-  const factory AccountCreated([AuthUser? authUser]) = _$AccountCreated;
-
-  AuthUser? get authUser => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $AccountCreatedCopyWith<AccountCreated> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class LoggedOut implements AuthState {
+  const factory LoggedOut() = _$LoggedOut;
 }
 
 /// @nodoc
 abstract class $LoggedInCopyWith<$Res> {
   factory $LoggedInCopyWith(LoggedIn value, $Res Function(LoggedIn) then) =
       _$LoggedInCopyWithImpl<$Res>;
+  $Res call({bool isAccountNew, AuthUser? authUser});
 }
 
 /// @nodoc
@@ -425,65 +372,100 @@ class _$LoggedInCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
 
   @override
   LoggedIn get _value => super._value as LoggedIn;
+
+  @override
+  $Res call({
+    Object? isAccountNew = freezed,
+    Object? authUser = freezed,
+  }) {
+    return _then(LoggedIn(
+      isAccountNew: isAccountNew == freezed
+          ? _value.isAccountNew
+          : isAccountNew // ignore: cast_nullable_to_non_nullable
+              as bool,
+      authUser: authUser == freezed
+          ? _value.authUser
+          : authUser // ignore: cast_nullable_to_non_nullable
+              as AuthUser?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$LoggedIn implements LoggedIn {
-  const _$LoggedIn();
+  const _$LoggedIn({this.isAccountNew = false, this.authUser});
+
+  @JsonKey(defaultValue: false)
+  @override
+  final bool isAccountNew;
+  @override
+  final AuthUser? authUser;
 
   @override
   String toString() {
-    return 'AuthState.loggedIn()';
+    return 'AuthState.loggedIn(isAccountNew: $isAccountNew, authUser: $authUser)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is LoggedIn);
+    return identical(this, other) ||
+        (other is LoggedIn &&
+            (identical(other.isAccountNew, isAccountNew) ||
+                const DeepCollectionEquality()
+                    .equals(other.isAccountNew, isAccountNew)) &&
+            (identical(other.authUser, authUser) ||
+                const DeepCollectionEquality()
+                    .equals(other.authUser, authUser)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(isAccountNew) ^
+      const DeepCollectionEquality().hash(authUser);
+
+  @JsonKey(ignore: true)
+  @override
+  $LoggedInCopyWith<LoggedIn> get copyWith =>
+      _$LoggedInCopyWithImpl<LoggedIn>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
-    required TResult Function(AuthUser? authUser) accountJustCreated,
-    required TResult Function() loggedIn,
+    required TResult Function() notLoggedIn,
+    required TResult Function(bool isAccountNew, AuthUser? authUser) loggedIn,
     required TResult Function() loggingOut,
     required TResult Function() loggedOutManually,
-    required TResult Function() loggedOut,
   }) {
-    return loggedIn();
+    return loggedIn(isAccountNew, authUser);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unknown,
-    TResult Function(AuthUser? authUser)? accountJustCreated,
-    TResult Function()? loggedIn,
+    TResult Function()? notLoggedIn,
+    TResult Function(bool isAccountNew, AuthUser? authUser)? loggedIn,
     TResult Function()? loggingOut,
     TResult Function()? loggedOutManually,
-    TResult Function()? loggedOut,
   }) {
-    return loggedIn?.call();
+    return loggedIn?.call(isAccountNew, authUser);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
-    TResult Function(AuthUser? authUser)? accountJustCreated,
-    TResult Function()? loggedIn,
+    TResult Function()? notLoggedIn,
+    TResult Function(bool isAccountNew, AuthUser? authUser)? loggedIn,
     TResult Function()? loggingOut,
     TResult Function()? loggedOutManually,
-    TResult Function()? loggedOut,
     required TResult orElse(),
   }) {
     if (loggedIn != null) {
-      return loggedIn();
+      return loggedIn(isAccountNew, authUser);
     }
     return orElse();
   }
@@ -492,11 +474,10 @@ class _$LoggedIn implements LoggedIn {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Unknown value) unknown,
-    required TResult Function(AccountCreated value) accountJustCreated,
+    required TResult Function(LoggedOut value) notLoggedIn,
     required TResult Function(LoggedIn value) loggedIn,
     required TResult Function(LoggingOut value) loggingOut,
     required TResult Function(LoggedOutManually value) loggedOutManually,
-    required TResult Function(LoggedOut value) loggedOut,
   }) {
     return loggedIn(this);
   }
@@ -505,11 +486,10 @@ class _$LoggedIn implements LoggedIn {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Unknown value)? unknown,
-    TResult Function(AccountCreated value)? accountJustCreated,
+    TResult Function(LoggedOut value)? notLoggedIn,
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(LoggingOut value)? loggingOut,
     TResult Function(LoggedOutManually value)? loggedOutManually,
-    TResult Function(LoggedOut value)? loggedOut,
   }) {
     return loggedIn?.call(this);
   }
@@ -518,11 +498,10 @@ class _$LoggedIn implements LoggedIn {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unknown value)? unknown,
-    TResult Function(AccountCreated value)? accountJustCreated,
+    TResult Function(LoggedOut value)? notLoggedIn,
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(LoggingOut value)? loggingOut,
     TResult Function(LoggedOutManually value)? loggedOutManually,
-    TResult Function(LoggedOut value)? loggedOut,
     required TResult orElse(),
   }) {
     if (loggedIn != null) {
@@ -533,7 +512,13 @@ class _$LoggedIn implements LoggedIn {
 }
 
 abstract class LoggedIn implements AuthState {
-  const factory LoggedIn() = _$LoggedIn;
+  const factory LoggedIn({bool isAccountNew, AuthUser? authUser}) = _$LoggedIn;
+
+  bool get isAccountNew => throw _privateConstructorUsedError;
+  AuthUser? get authUser => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LoggedInCopyWith<LoggedIn> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -575,11 +560,10 @@ class _$LoggingOut implements LoggingOut {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
-    required TResult Function(AuthUser? authUser) accountJustCreated,
-    required TResult Function() loggedIn,
+    required TResult Function() notLoggedIn,
+    required TResult Function(bool isAccountNew, AuthUser? authUser) loggedIn,
     required TResult Function() loggingOut,
     required TResult Function() loggedOutManually,
-    required TResult Function() loggedOut,
   }) {
     return loggingOut();
   }
@@ -588,11 +572,10 @@ class _$LoggingOut implements LoggingOut {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unknown,
-    TResult Function(AuthUser? authUser)? accountJustCreated,
-    TResult Function()? loggedIn,
+    TResult Function()? notLoggedIn,
+    TResult Function(bool isAccountNew, AuthUser? authUser)? loggedIn,
     TResult Function()? loggingOut,
     TResult Function()? loggedOutManually,
-    TResult Function()? loggedOut,
   }) {
     return loggingOut?.call();
   }
@@ -601,11 +584,10 @@ class _$LoggingOut implements LoggingOut {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
-    TResult Function(AuthUser? authUser)? accountJustCreated,
-    TResult Function()? loggedIn,
+    TResult Function()? notLoggedIn,
+    TResult Function(bool isAccountNew, AuthUser? authUser)? loggedIn,
     TResult Function()? loggingOut,
     TResult Function()? loggedOutManually,
-    TResult Function()? loggedOut,
     required TResult orElse(),
   }) {
     if (loggingOut != null) {
@@ -618,11 +600,10 @@ class _$LoggingOut implements LoggingOut {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Unknown value) unknown,
-    required TResult Function(AccountCreated value) accountJustCreated,
+    required TResult Function(LoggedOut value) notLoggedIn,
     required TResult Function(LoggedIn value) loggedIn,
     required TResult Function(LoggingOut value) loggingOut,
     required TResult Function(LoggedOutManually value) loggedOutManually,
-    required TResult Function(LoggedOut value) loggedOut,
   }) {
     return loggingOut(this);
   }
@@ -631,11 +612,10 @@ class _$LoggingOut implements LoggingOut {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Unknown value)? unknown,
-    TResult Function(AccountCreated value)? accountJustCreated,
+    TResult Function(LoggedOut value)? notLoggedIn,
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(LoggingOut value)? loggingOut,
     TResult Function(LoggedOutManually value)? loggedOutManually,
-    TResult Function(LoggedOut value)? loggedOut,
   }) {
     return loggingOut?.call(this);
   }
@@ -644,11 +624,10 @@ class _$LoggingOut implements LoggingOut {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unknown value)? unknown,
-    TResult Function(AccountCreated value)? accountJustCreated,
+    TResult Function(LoggedOut value)? notLoggedIn,
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(LoggingOut value)? loggingOut,
     TResult Function(LoggedOutManually value)? loggedOutManually,
-    TResult Function(LoggedOut value)? loggedOut,
     required TResult orElse(),
   }) {
     if (loggingOut != null) {
@@ -703,11 +682,10 @@ class _$LoggedOutManually implements LoggedOutManually {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
-    required TResult Function(AuthUser? authUser) accountJustCreated,
-    required TResult Function() loggedIn,
+    required TResult Function() notLoggedIn,
+    required TResult Function(bool isAccountNew, AuthUser? authUser) loggedIn,
     required TResult Function() loggingOut,
     required TResult Function() loggedOutManually,
-    required TResult Function() loggedOut,
   }) {
     return loggedOutManually();
   }
@@ -716,11 +694,10 @@ class _$LoggedOutManually implements LoggedOutManually {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unknown,
-    TResult Function(AuthUser? authUser)? accountJustCreated,
-    TResult Function()? loggedIn,
+    TResult Function()? notLoggedIn,
+    TResult Function(bool isAccountNew, AuthUser? authUser)? loggedIn,
     TResult Function()? loggingOut,
     TResult Function()? loggedOutManually,
-    TResult Function()? loggedOut,
   }) {
     return loggedOutManually?.call();
   }
@@ -729,11 +706,10 @@ class _$LoggedOutManually implements LoggedOutManually {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unknown,
-    TResult Function(AuthUser? authUser)? accountJustCreated,
-    TResult Function()? loggedIn,
+    TResult Function()? notLoggedIn,
+    TResult Function(bool isAccountNew, AuthUser? authUser)? loggedIn,
     TResult Function()? loggingOut,
     TResult Function()? loggedOutManually,
-    TResult Function()? loggedOut,
     required TResult orElse(),
   }) {
     if (loggedOutManually != null) {
@@ -746,11 +722,10 @@ class _$LoggedOutManually implements LoggedOutManually {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Unknown value) unknown,
-    required TResult Function(AccountCreated value) accountJustCreated,
+    required TResult Function(LoggedOut value) notLoggedIn,
     required TResult Function(LoggedIn value) loggedIn,
     required TResult Function(LoggingOut value) loggingOut,
     required TResult Function(LoggedOutManually value) loggedOutManually,
-    required TResult Function(LoggedOut value) loggedOut,
   }) {
     return loggedOutManually(this);
   }
@@ -759,11 +734,10 @@ class _$LoggedOutManually implements LoggedOutManually {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Unknown value)? unknown,
-    TResult Function(AccountCreated value)? accountJustCreated,
+    TResult Function(LoggedOut value)? notLoggedIn,
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(LoggingOut value)? loggingOut,
     TResult Function(LoggedOutManually value)? loggedOutManually,
-    TResult Function(LoggedOut value)? loggedOut,
   }) {
     return loggedOutManually?.call(this);
   }
@@ -772,11 +746,10 @@ class _$LoggedOutManually implements LoggedOutManually {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unknown value)? unknown,
-    TResult Function(AccountCreated value)? accountJustCreated,
+    TResult Function(LoggedOut value)? notLoggedIn,
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(LoggingOut value)? loggingOut,
     TResult Function(LoggedOutManually value)? loggedOutManually,
-    TResult Function(LoggedOut value)? loggedOut,
     required TResult orElse(),
   }) {
     if (loggedOutManually != null) {
@@ -788,129 +761,4 @@ class _$LoggedOutManually implements LoggedOutManually {
 
 abstract class LoggedOutManually implements AuthState {
   const factory LoggedOutManually() = _$LoggedOutManually;
-}
-
-/// @nodoc
-abstract class $LoggedOutCopyWith<$Res> {
-  factory $LoggedOutCopyWith(LoggedOut value, $Res Function(LoggedOut) then) =
-      _$LoggedOutCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$LoggedOutCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
-    implements $LoggedOutCopyWith<$Res> {
-  _$LoggedOutCopyWithImpl(LoggedOut _value, $Res Function(LoggedOut) _then)
-      : super(_value, (v) => _then(v as LoggedOut));
-
-  @override
-  LoggedOut get _value => super._value as LoggedOut;
-}
-
-/// @nodoc
-
-class _$LoggedOut implements LoggedOut {
-  const _$LoggedOut();
-
-  @override
-  String toString() {
-    return 'AuthState.loggedOut()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is LoggedOut);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() unknown,
-    required TResult Function(AuthUser? authUser) accountJustCreated,
-    required TResult Function() loggedIn,
-    required TResult Function() loggingOut,
-    required TResult Function() loggedOutManually,
-    required TResult Function() loggedOut,
-  }) {
-    return loggedOut();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? unknown,
-    TResult Function(AuthUser? authUser)? accountJustCreated,
-    TResult Function()? loggedIn,
-    TResult Function()? loggingOut,
-    TResult Function()? loggedOutManually,
-    TResult Function()? loggedOut,
-  }) {
-    return loggedOut?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? unknown,
-    TResult Function(AuthUser? authUser)? accountJustCreated,
-    TResult Function()? loggedIn,
-    TResult Function()? loggingOut,
-    TResult Function()? loggedOutManually,
-    TResult Function()? loggedOut,
-    required TResult orElse(),
-  }) {
-    if (loggedOut != null) {
-      return loggedOut();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Unknown value) unknown,
-    required TResult Function(AccountCreated value) accountJustCreated,
-    required TResult Function(LoggedIn value) loggedIn,
-    required TResult Function(LoggingOut value) loggingOut,
-    required TResult Function(LoggedOutManually value) loggedOutManually,
-    required TResult Function(LoggedOut value) loggedOut,
-  }) {
-    return loggedOut(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Unknown value)? unknown,
-    TResult Function(AccountCreated value)? accountJustCreated,
-    TResult Function(LoggedIn value)? loggedIn,
-    TResult Function(LoggingOut value)? loggingOut,
-    TResult Function(LoggedOutManually value)? loggedOutManually,
-    TResult Function(LoggedOut value)? loggedOut,
-  }) {
-    return loggedOut?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Unknown value)? unknown,
-    TResult Function(AccountCreated value)? accountJustCreated,
-    TResult Function(LoggedIn value)? loggedIn,
-    TResult Function(LoggingOut value)? loggingOut,
-    TResult Function(LoggedOutManually value)? loggedOutManually,
-    TResult Function(LoggedOut value)? loggedOut,
-    required TResult orElse(),
-  }) {
-    if (loggedOut != null) {
-      return loggedOut(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class LoggedOut implements AuthState {
-  const factory LoggedOut() = _$LoggedOut;
 }

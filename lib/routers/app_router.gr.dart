@@ -196,6 +196,11 @@ class OpenSettingsRouteArgs {
   const OpenSettingsRouteArgs({this.key});
 
   final Key? key;
+
+  @override
+  String toString() {
+    return 'OpenSettingsRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for [UpdateProfileScreen]
@@ -211,6 +216,11 @@ class UpdateProfileRouteArgs {
   const UpdateProfileRouteArgs({this.key});
 
   final Key? key;
+
+  @override
+  String toString() {
+    return 'UpdateProfileRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for [EditNicknameScreen]
@@ -229,6 +239,11 @@ class EditNicknameRouteArgs {
   final Key? key;
 
   final User? user;
+
+  @override
+  String toString() {
+    return 'EditNicknameRouteArgs{key: $key, user: $user}';
+  }
 }
 
 /// generated route for [EditEmailScreen]
@@ -247,6 +262,11 @@ class EditEmailRouteArgs {
   final Key? key;
 
   final User? user;
+
+  @override
+  String toString() {
+    return 'EditEmailRouteArgs{key: $key, user: $user}';
+  }
 }
 
 /// generated route for [EditPhotoScreen]
@@ -265,6 +285,11 @@ class EditPhotoRouteArgs {
   final Key? key;
 
   final Uint8List? imageBytes;
+
+  @override
+  String toString() {
+    return 'EditPhotoRouteArgs{key: $key, imageBytes: $imageBytes}';
+  }
 }
 
 /// generated route for [CameraPhotoTakenScreen]
@@ -283,6 +308,11 @@ class CameraPhotoTakenRouteArgs {
   final Key? key;
 
   final Uint8List imageBytes;
+
+  @override
+  String toString() {
+    return 'CameraPhotoTakenRouteArgs{key: $key, imageBytes: $imageBytes}';
+  }
 }
 
 /// generated route for [GalleryPhotoTakenScreen]
@@ -301,6 +331,11 @@ class GalleryPhotoTakenRouteArgs {
   final Key? key;
 
   final Uint8List imageBytes;
+
+  @override
+  String toString() {
+    return 'GalleryPhotoTakenRouteArgs{key: $key, imageBytes: $imageBytes}';
+  }
 }
 
 /// generated route for [PhotoCroppedResultScreen]
@@ -321,6 +356,11 @@ class PhotoCroppedResultRouteArgs {
   final Key? key;
 
   final Uint8List imageBytes;
+
+  @override
+  String toString() {
+    return 'PhotoCroppedResultRouteArgs{key: $key, imageBytes: $imageBytes}';
+  }
 }
 
 /// generated route for [LeaderboardScreen]

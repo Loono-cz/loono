@@ -34,64 +34,64 @@ const _settingsTransition = TransitionsBuilders.slideLeft;
       name: 'MainScreenRouter',
       children: [
         AutoRoute(page: MainScreen, path: ''),
-
-        // Settings
-        CustomRoute(
-          page: EmptyRouterScreen,
-          path: 'settings',
-          name: 'SettingsRouter',
-          transitionsBuilder: _openSettingsTransition,
-          children: [
-            AutoRoute(page: OpenSettingsScreen, path: ''),
-            CustomRoute(
-              page: UpdateProfileScreen,
-              path: 'update-profile',
-              transitionsBuilder: _settingsTransition,
-            ),
-            CustomRoute(
-              page: EditNicknameScreen,
-              path: 'update-profile/nickname',
-              transitionsBuilder: _settingsTransition,
-            ),
-            CustomRoute(
-              page: EditEmailScreen,
-              path: 'update-profile/email',
-              transitionsBuilder: _settingsTransition,
-            ),
-            CustomRoute(
-              page: EditPhotoScreen,
-              path: 'settings/update-profile/photo',
-              transitionsBuilder: _settingsTransition,
-            ),
-            CustomRoute(
-              page: CameraPhotoTakenScreen,
-              path: 'settings/update-profile/photo/camera-taken',
-              transitionsBuilder: _settingsTransition,
-            ),
-            CustomRoute(
-              page: GalleryPhotoTakenScreen,
-              path: 'settings/update-profile/photo/gallery-taken',
-              transitionsBuilder: _settingsTransition,
-            ),
-            CustomRoute(
-              page: PhotoCroppedResultScreen,
-              path: 'settings/update-profile/photo/photo-cropped-result',
-              transitionsBuilder: _settingsTransition,
-            ),
-            CustomRoute(
-              page: LeaderboardScreen,
-              path: 'leaderboard',
-              transitionsBuilder: _settingsTransition,
-            ),
-            CustomRoute(
-              page: PointsHelpScreen,
-              path: 'points-help',
-              transitionsBuilder: _settingsTransition,
-            ),
-          ],
-        ),
+        _settingsRoutes,
       ],
     ),
   ],
 )
 class AppRouter extends _$AppRouter {}
+
+const _settingsRoutes = CustomRoute(
+  page: EmptyRouterScreen,
+  path: 'settings',
+  name: 'SettingsRouter',
+  transitionsBuilder: _openSettingsTransition,
+  children: [
+    AutoRoute(page: OpenSettingsScreen, path: ''),
+    CustomRoute(
+      page: UpdateProfileScreen,
+      path: 'update-profile',
+      transitionsBuilder: _settingsTransition,
+    ),
+    CustomRoute(
+      page: EditNicknameScreen,
+      path: 'update-profile/nickname',
+      transitionsBuilder: _settingsTransition,
+    ),
+    CustomRoute(
+      page: EditEmailScreen,
+      path: 'update-profile/email',
+      transitionsBuilder: _settingsTransition,
+    ),
+    CustomRoute(
+      page: EditPhotoScreen,
+      path: 'settings/update-profile/photo',
+      transitionsBuilder: _settingsTransition,
+    ),
+    CustomRoute(
+      page: CameraPhotoTakenScreen,
+      path: 'settings/update-profile/photo/camera-taken',
+      transitionsBuilder: _settingsTransition,
+    ),
+    CustomRoute(
+      page: GalleryPhotoTakenScreen,
+      path: 'settings/update-profile/photo/gallery-taken',
+      transitionsBuilder: _settingsTransition,
+    ),
+    CustomRoute(
+      page: PhotoCroppedResultScreen,
+      path: 'settings/update-profile/photo/photo-cropped-result',
+      transitionsBuilder: _settingsTransition,
+    ),
+    CustomRoute(
+      page: LeaderboardScreen,
+      path: 'leaderboard',
+      transitionsBuilder: _settingsTransition,
+    ),
+    CustomRoute(
+      page: PointsHelpScreen,
+      path: 'points-help',
+      transitionsBuilder: _settingsTransition,
+    ),
+  ],
+);
