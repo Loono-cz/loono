@@ -143,15 +143,13 @@ class AuthService {
       facebookAuthCredential = FacebookAuthProvider.credential(loginData.accessToken!.token);
     }
 
-    UserCredential? userCredential;
+    UserCredential userCredential;
     try {
       userCredential = await _auth.signInWithCredential(facebookAuthCredential);
+      return Right(_authUserFromFirebase(userCredential.user)!);
     } catch (_) {
       return const Left(AuthFailure.unknown());
     }
-    return userCredential.user == null
-        ? const Left(AuthFailure.unknown())
-        : Right(_authUserFromFirebase(userCredential.user)!);
   }
 
   Future<Either<AuthFailure, AuthUser>> signInWithGoogle() async {
