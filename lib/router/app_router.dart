@@ -21,6 +21,7 @@ import 'package:loono/ui/screens/onboarding/fallback_account/email.dart';
 import 'package:loono/ui/screens/onboarding/fallback_account/nickname.dart';
 import 'package:loono/ui/screens/onboarding/gender.dart';
 import 'package:loono/ui/screens/onboarding/onboarding_wrapper_screen.dart';
+import 'package:loono/ui/screens/prevention/examination_detail.dart';
 import 'package:loono/ui/screens/settings/camera_photo_taken.dart';
 import 'package:loono/ui/screens/settings/edit_email.dart';
 import 'package:loono/ui/screens/settings/edit_nickname.dart';
@@ -34,9 +35,11 @@ import 'package:loono/ui/screens/settings/update_profile.dart';
 import 'package:loono/ui/screens/welcome.dart';
 
 const _onboardingTransition = TransitionsBuilders.slideLeft;
+const _preventionTransition = TransitionsBuilders.slideLeft;
 
 const _openSettingsTransition = TransitionsBuilders.slideBottom;
 const _settingsTransition = TransitionsBuilders.slideLeft;
+
 
 // After editing this, run:
 // flutter pub run build_runner build --delete-conflicting-outputs
@@ -52,6 +55,13 @@ const _settingsTransition = TransitionsBuilders.slideLeft;
       children: [
         // Main
         AutoRoute(page: MainScreen, path: ''),
+
+        // Prevention
+        CustomRoute(
+          page: ExaminationDetailScreen,
+          path: 'prevention-detail',
+          transitionsBuilder: _preventionTransition,
+        ),
 
         // Settings
         CustomRoute(

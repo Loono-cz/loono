@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:loono/constants.dart';
 import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/ui/widgets/prevention/examinations_sheet_overlay.dart';
 
 class PreventionScreen extends StatelessWidget {
   const PreventionScreen({Key? key}) : super(key: key);
@@ -10,7 +10,7 @@ class PreventionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
+        child: Stack(
           children: [
             // TODO: Only user with created account can open Settings
             Align(
@@ -20,12 +20,7 @@ class PreventionScreen extends StatelessWidget {
                 child: const Text('SETTINGS'),
               ),
             ),
-            const Center(
-              child: Text(
-                'Screen: Prevence',
-                style: LoonoFonts.headerFontStyle,
-              ),
-            ),
+            ExaminationsSheetOverlay(),
           ],
         ),
       ),
