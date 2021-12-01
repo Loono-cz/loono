@@ -14,6 +14,11 @@ class AuthService {
 
   Future<AuthUser?> getCurrentUser() async => _authUserFromFirebase(_auth.currentUser);
 
+  Future<String?> get userUid async {
+    final user = await getCurrentUser();
+    return user?.uid;
+  }
+
   Stream<AuthUser?> get onAuthStateChanged =>
       _auth.authStateChanges().map((firebaseUser) => _authUserFromFirebase(firebaseUser));
 
@@ -85,7 +90,6 @@ class AuthService {
   }
 
   Future<Either<AuthFailure, AuthUser>> signInWithGoogle() async {
-    // TODO: better error handling
     GoogleSignInAccount? googleUser;
     try {
       googleUser = await _googleSignIn.signIn();
@@ -117,7 +121,6 @@ class AuthService {
   }
 
   Future<Either<AuthFailure, AuthUser>> signInWithApple([String? idToken]) async {
-    // TODO: better error handling
     // To prevent replay attacks with the credential returned from Apple, we
     // include a nonce in the credential request. When signing in with
     // Firebase, the nonce in the id token returned by Apple, is expected to

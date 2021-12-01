@@ -216,6 +216,8 @@
   "@edit_photo_pick_gallery_picture_action": {},
   "edit_photo_delete_photo_action": "Smazat fotografii",
   "@edit_photo_delete_photo_action": {},
+  "edit_photo_delete_photo_action_success": "Fotografie byla smazána",
+  "@edit_photo_delete_photo_action_success": {},
   "camera_photo_taken_again_action": "Vyfotit znovu",
   "@camera_photo_taken_again_action": {},
   "gallery_photo_picked_again_action": "Vybrat jinou fotografii",
