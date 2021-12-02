@@ -85,6 +85,12 @@ extension ExaminationTypesExt on ExaminationType {
         ultrasoundBreast: () => 'Ultrazvuk prsu',
         urologist: () => 'Urolog',
       );
+
+  String get assetName {
+    const basePath = 'assets/icons/prevention/doctors/';
+    final doctor = mapToUnion.toString().split('.').last.replaceFirst('()', '.svg');
+    return '$basePath$doctor';
+  }
 }
 
 @freezed

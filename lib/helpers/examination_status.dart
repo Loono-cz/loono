@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'examination_status.freezed.dart';
 
 const examinationStatusOrdering = <ExaminationStatus>[
-  ExaminationStatus.scheduledNowOrSoon(),
+  ExaminationStatus.scheduledSoonOrOverdue(),
   ExaminationStatus.never(),
   ExaminationStatus.unfinished(),
   ExaminationStatus.scheduled(),
@@ -15,7 +15,7 @@ const examinationStatusOrdering = <ExaminationStatus>[
 extension ExaminationStatusExt on ExaminationStatus {
   String getHeaderMessage(BuildContext context) {
     return when(
-      scheduledNowOrSoon: () => 'běž na prohlídku',
+      scheduledSoonOrOverdue: () => 'běž na prohlídku',
       never: () => 'objednej se',
       unfinished: () => 'další prohlídky',
       scheduled: () => 'připomeneme ti prohlídku',
@@ -30,7 +30,7 @@ extension ExaminationStatusExt on ExaminationStatus {
 class ExaminationStatus with _$ExaminationStatus {
   const ExaminationStatus._();
 
-  const factory ExaminationStatus.scheduledNowOrSoon() = ScheduledNowOrSoonExamination;
+  const factory ExaminationStatus.scheduledSoonOrOverdue() = ScheduledSoonOrOverdueExamination;
 
   const factory ExaminationStatus.never() = NeverExamination;
 

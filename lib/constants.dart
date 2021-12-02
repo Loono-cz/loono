@@ -13,6 +13,7 @@ class LoonoColors {
   static const green = Color.fromRGBO(59, 126, 129, 1);
   static const greenLight = Color.fromRGBO(241, 249, 249, 1);
   static const greenSuccess = Color.fromRGBO(59, 129, 79, 1);
+  static const grey = Color.fromRGBO(99, 93, 88, 1);
   static const leaderboardPrimary = Color.fromRGBO(248, 185, 144, 1);
   static const pink = Color.fromRGBO(252, 237, 237, 1);
   static const red = Color.fromRGBO(216, 66, 72, 1);
@@ -25,6 +26,7 @@ class LoonoColors {
   static const storyIndicatorUnderlyingLight = Color.fromRGBO(248, 244, 242, 0.5);
   static const googleLogInBlue = Color.fromRGBO(66, 133, 244, 1);
   static const bottomSheetLight = Color.fromARGB(255, 254, 242, 233);
+  static const bottomSheetPrevention = Color.fromRGBO(250, 200, 167, 1);
 
   static const rainbow = <Color>[
     Color.fromARGB(255, 230, 87, 86),
@@ -83,6 +85,19 @@ class LoonoFonts {
   static const primaryColorStyle = TextStyle(
     fontSize: 24,
     color: LoonoColors.primary,
+    fontWeight: FontWeight.w700,
+  );
+
+  static const cardTitle = TextStyle(
+    fontSize: 16,
+    color: LoonoColors.green,
+    fontWeight: FontWeight.w700,
+  );
+
+  static const cardSubtitle = TextStyle(
+    fontSize: 11,
+    height: 1.5,
+    color: LoonoColors.primaryEnabled,
     fontWeight: FontWeight.w700,
   );
 }
