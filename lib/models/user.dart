@@ -32,6 +32,8 @@ class Users extends Table {
   TextColumn get nickname => text().nullable()();
   TextColumn get email => text().nullable()();
 
+  DateTimeColumn get mapDateUpdated => dateTime().nullable()();
+
   TextColumn get achievementCollectionRaw => text().nullable()();
 }
 
@@ -66,6 +68,10 @@ class UsersDao extends DatabaseAccessor<AppDatabase> with _$UsersDaoMixin {
 
   Future<void> updateSex(Sex sex) async {
     await updateCurrentUser(UsersCompanion(sexRaw: Value(sex.index)));
+  }
+
+  Future<void> updateMapDateUpdated(DateTime date) async {
+    await updateCurrentUser(UsersCompanion(mapDateUpdated: Value(date)));
   }
 
   Future<void> updateDateOfBirth(DateWithoutDay dateWithoutDay) async {

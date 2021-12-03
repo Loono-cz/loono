@@ -23,7 +23,7 @@ packages:
     source: hosted
     version: "0.7.0"
   archive:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: archive
       url: "https://pub.dartlang.org"
@@ -107,14 +107,14 @@ packages:
     source: hosted
     version: "7.1.0"
   built_collection:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: built_collection
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.1.0"
+    version: "5.1.1"
   built_value:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: built_value
       url: "https://pub.dartlang.org"
@@ -601,9 +601,9 @@ packages:
     dependency: "direct main"
     description:
       path: dart
-      ref: "340dbcdf24959026d1b8b94a16ff167f2269f4f8"
-      resolved-ref: "340dbcdf24959026d1b8b94a16ff167f2269f4f8"
-      url: "https://github.com/vaetas/loono-api.git"
+      ref: "2c16bad0d059766a2cb96257a446d71a804e2744"
+      resolved-ref: "2c16bad0d059766a2cb96257a446d71a804e2744"
+      url: "https://github.com/mzdm/loono-api.git"
     source: git
     version: "1.0.0"
   matcher:

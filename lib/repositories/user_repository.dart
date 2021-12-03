@@ -22,6 +22,10 @@ class UserRepository {
 
   Future<void> updateSex(Sex sex) async => _db.users.updateSex(sex);
 
+  Future<void> updateMapDateUpdated(DateTime date) async {
+    await _db.users.updateMapDateUpdated(date);
+  }
+
   Future<void> updateDateOfBirth(DateWithoutDay dateWithoutDay) async =>
       _db.users.updateDateOfBirth(dateWithoutDay);
 

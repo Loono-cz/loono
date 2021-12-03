@@ -1,33 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:loono/repositories/healthcare_repository.dart';
-import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
+import 'package:loono/services/map_state_sevice.dart';
+import 'package:loono/ui/widgets/find_doctor/bottom_sheet_overlay.dart';
 import 'package:loono/ui/widgets/find_doctor/map_preview.dart';
+import 'package:loono/ui/widgets/find_doctor/search_text_field.dart';
 import 'package:loono/utils/registry.dart';
-import 'package:loono_api/loono_api.dart';
+import 'package:provider/provider.dart';
 
 class FindDoctorScreen extends StatelessWidget {
   FindDoctorScreen({Key? key}) : super(key: key);
 
   final _healthcareProviderRepository = registry.get<HealthcareProviderRepository>();
 
-  final _healthcareProvidersDao = registry.get<DatabaseService>().healthcareProviders;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: FutureBuilder<void>(
+        child: FutureBuilder<List<HealthcareProvider>>(
           // TODO: Update only if outdated or it is first time fetch
-          future: _healthcareProviderRepository.updateAllData(_fakeData, '2021-11-02'),
+          future: _healthcareProviderRepository.checkAndUpdate(),
           builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              return StreamBuilder<List<HealthcareProvider>>(
-                stream: _healthcareProvidersDao.searchByCity('City1'),
-                builder: (context, snapshot) {
-                  debugPrint(snapshot.data.toString());
-                  return const MapPreview();
-                },
+            debugPrint(snapshot.data.toString());
+            if (snapshot.hasData && snapshot.connectionState == ConnectionState.done) {
+              return ChangeNotifierProvider<MapStateService>(
+                create: (_) => MapStateService()..addAll(snapshot.data!),
+                child: Stack(
+                  children: const [
+                    MapPreview(),
+                    SearchTextField(),
+                    MapSheetOverlay(),
+                  ],
+                ),
               );
             }
             return const Center(child: CircularProgressIndicator());
@@ -37,16 +41,3 @@ class FindDoctorScreen extends StatelessWidget {
     );
   }
 }
-
-final _fakeData = <SimpleHealthcareProvider>[
-  ...List.generate(
-    11,
-    (index) => (SimpleHealthcareProvider().toBuilder()
-          ..city = 'City$index'
-          ..lng = '2121212'
-          ..lat = '12211212.21242'
-          ..institutionId = index
-          ..locationId = index)
-        .build(),
-  ),
-];

@@ -19,6 +19,7 @@ class User extends DataClass implements Insertable<User> {
   final String? dentistVisitDateRaw;
   final String? nickname;
   final String? email;
+  final DateTime? mapDateUpdated;
   final String? achievementCollectionRaw;
   User(
       {required this.id,
@@ -32,6 +33,7 @@ class User extends DataClass implements Insertable<User> {
       this.dentistVisitDateRaw,
       this.nickname,
       this.email,
+      this.mapDateUpdated,
       this.achievementCollectionRaw});
   factory User.fromData(Map<String, dynamic> data, GeneratedDatabase db,
       {String? prefix}) {
@@ -60,6 +62,8 @@ class User extends DataClass implements Insertable<User> {
           .mapFromDatabaseResponse(data['${effectivePrefix}nickname']),
       email: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}email']),
+      mapDateUpdated: const DateTimeType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}map_date_updated']),
       achievementCollectionRaw: const StringType().mapFromDatabaseResponse(
           data['${effectivePrefix}achievement_collection_raw']),
     );
@@ -101,6 +105,9 @@ class User extends DataClass implements Insertable<User> {
     if (!nullToAbsent || email != null) {
       map['email'] = Variable<String?>(email);
     }
+    if (!nullToAbsent || mapDateUpdated != null) {
+      map['map_date_updated'] = Variable<DateTime?>(mapDateUpdated);
+    }
     if (!nullToAbsent || achievementCollectionRaw != null) {
       map['achievement_collection_raw'] =
           Variable<String?>(achievementCollectionRaw);
@@ -141,6 +148,9 @@ class User extends DataClass implements Insertable<User> {
           : Value(nickname),
       email:
           email == null && nullToAbsent ? const Value.absent() : Value(email),
+      mapDateUpdated: mapDateUpdated == null && nullToAbsent
+          ? const Value.absent()
+          : Value(mapDateUpdated),
       achievementCollectionRaw: achievementCollectionRaw == null && nullToAbsent
           ? const Value.absent()
           : Value(achievementCollectionRaw),
@@ -167,6 +177,7 @@ class User extends DataClass implements Insertable<User> {
           serializer.fromJson<String?>(json['dentistVisitDateRaw']),
       nickname: serializer.fromJson<String?>(json['nickname']),
       email: serializer.fromJson<String?>(json['email']),
+      mapDateUpdated: serializer.fromJson<DateTime?>(json['mapDateUpdated']),
       achievementCollectionRaw:
           serializer.fromJson<String?>(json['achievementCollectionRaw']),
     );
@@ -189,6 +200,7 @@ class User extends DataClass implements Insertable<User> {
       'dentistVisitDateRaw': serializer.toJson<String?>(dentistVisitDateRaw),
       'nickname': serializer.toJson<String?>(nickname),
       'email': serializer.toJson<String?>(email),
+      'mapDateUpdated': serializer.toJson<DateTime?>(mapDateUpdated),
       'achievementCollectionRaw':
           serializer.toJson<String?>(achievementCollectionRaw),
     };
@@ -206,6 +218,7 @@ class User extends DataClass implements Insertable<User> {
           String? dentistVisitDateRaw,
           String? nickname,
           String? email,
+          DateTime? mapDateUpdated,
           String? achievementCollectionRaw}) =>
       User(
         id: id ?? this.id,
@@ -223,6 +236,7 @@ class User extends DataClass implements Insertable<User> {
         dentistVisitDateRaw: dentistVisitDateRaw ?? this.dentistVisitDateRaw,
         nickname: nickname ?? this.nickname,
         email: email ?? this.email,
+        mapDateUpdated: mapDateUpdated ?? this.mapDateUpdated,
         achievementCollectionRaw:
             achievementCollectionRaw ?? this.achievementCollectionRaw,
       );
@@ -242,6 +256,7 @@ class User extends DataClass implements Insertable<User> {
           ..write('dentistVisitDateRaw: $dentistVisitDateRaw, ')
           ..write('nickname: $nickname, ')
           ..write('email: $email, ')
+          ..write('mapDateUpdated: $mapDateUpdated, ')
           ..write('achievementCollectionRaw: $achievementCollectionRaw')
           ..write(')'))
         .toString();
@@ -270,8 +285,10 @@ class User extends DataClass implements Insertable<User> {
                                           nickname.hashCode,
                                           $mrjc(
                                               email.hashCode,
-                                              achievementCollectionRaw
-                                                  .hashCode))))))))))));
+                                              $mrjc(
+                                                  mapDateUpdated.hashCode,
+                                                  achievementCollectionRaw
+                                                      .hashCode)))))))))))));
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -289,6 +306,7 @@ class User extends DataClass implements Insertable<User> {
           other.dentistVisitDateRaw == this.dentistVisitDateRaw &&
           other.nickname == this.nickname &&
           other.email == this.email &&
+          other.mapDateUpdated == this.mapDateUpdated &&
           other.achievementCollectionRaw == this.achievementCollectionRaw);
 }
 
@@ -304,6 +322,7 @@ class UsersCompanion extends UpdateCompanion<User> {
   final Value<String?> dentistVisitDateRaw;
   final Value<String?> nickname;
   final Value<String?> email;
+  final Value<DateTime?> mapDateUpdated;
   final Value<String?> achievementCollectionRaw;
   const UsersCompanion({
     this.id = const Value.absent(),
@@ -317,6 +336,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     this.dentistVisitDateRaw = const Value.absent(),
     this.nickname = const Value.absent(),
     this.email = const Value.absent(),
+    this.mapDateUpdated = const Value.absent(),
     this.achievementCollectionRaw = const Value.absent(),
   });
   UsersCompanion.insert({
@@ -331,6 +351,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     this.dentistVisitDateRaw = const Value.absent(),
     this.nickname = const Value.absent(),
     this.email = const Value.absent(),
+    this.mapDateUpdated = const Value.absent(),
     this.achievementCollectionRaw = const Value.absent(),
   }) : id = Value(id);
   static Insertable<User> custom({
@@ -345,6 +366,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     Expression<String?>? dentistVisitDateRaw,
     Expression<String?>? nickname,
     Expression<String?>? email,
+    Expression<DateTime?>? mapDateUpdated,
     Expression<String?>? achievementCollectionRaw,
   }) {
     return RawValuesInsertable({
@@ -365,6 +387,7 @@ class UsersCompanion extends UpdateCompanion<User> {
         'dentist_visit_date_raw': dentistVisitDateRaw,
       if (nickname != null) 'nickname': nickname,
       if (email != null) 'email': email,
+      if (mapDateUpdated != null) 'map_date_updated': mapDateUpdated,
       if (achievementCollectionRaw != null)
         'achievement_collection_raw': achievementCollectionRaw,
     });
@@ -382,6 +405,7 @@ class UsersCompanion extends UpdateCompanion<User> {
       Value<String?>? dentistVisitDateRaw,
       Value<String?>? nickname,
       Value<String?>? email,
+      Value<DateTime?>? mapDateUpdated,
       Value<String?>? achievementCollectionRaw}) {
     return UsersCompanion(
       id: id ?? this.id,
@@ -399,6 +423,7 @@ class UsersCompanion extends UpdateCompanion<User> {
       dentistVisitDateRaw: dentistVisitDateRaw ?? this.dentistVisitDateRaw,
       nickname: nickname ?? this.nickname,
       email: email ?? this.email,
+      mapDateUpdated: mapDateUpdated ?? this.mapDateUpdated,
       achievementCollectionRaw:
           achievementCollectionRaw ?? this.achievementCollectionRaw,
     );
@@ -445,6 +470,9 @@ class UsersCompanion extends UpdateCompanion<User> {
     if (email.present) {
       map['email'] = Variable<String?>(email.value);
     }
+    if (mapDateUpdated.present) {
+      map['map_date_updated'] = Variable<DateTime?>(mapDateUpdated.value);
+    }
     if (achievementCollectionRaw.present) {
       map['achievement_collection_raw'] =
           Variable<String?>(achievementCollectionRaw.value);
@@ -468,6 +496,7 @@ class UsersCompanion extends UpdateCompanion<User> {
           ..write('dentistVisitDateRaw: $dentistVisitDateRaw, ')
           ..write('nickname: $nickname, ')
           ..write('email: $email, ')
+          ..write('mapDateUpdated: $mapDateUpdated, ')
           ..write('achievementCollectionRaw: $achievementCollectionRaw')
           ..write(')'))
         .toString();
@@ -531,6 +560,11 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   late final GeneratedColumn<String?> email = GeneratedColumn<String?>(
       'email', aliasedName, true,
       typeName: 'TEXT', requiredDuringInsert: false);
+  final VerificationMeta _mapDateUpdatedMeta =
+      const VerificationMeta('mapDateUpdated');
+  late final GeneratedColumn<DateTime?> mapDateUpdated =
+      GeneratedColumn<DateTime?>('map_date_updated', aliasedName, true,
+          typeName: 'INTEGER', requiredDuringInsert: false);
   final VerificationMeta _achievementCollectionRawMeta =
       const VerificationMeta('achievementCollectionRaw');
   late final GeneratedColumn<String?> achievementCollectionRaw =
@@ -549,6 +583,7 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
         dentistVisitDateRaw,
         nickname,
         email,
+        mapDateUpdated,
         achievementCollectionRaw
       ];
   @override
@@ -621,6 +656,12 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
       context.handle(
           _emailMeta, email.isAcceptableOrUnknown(data['email']!, _emailMeta));
     }
+    if (data.containsKey('map_date_updated')) {
+      context.handle(
+          _mapDateUpdatedMeta,
+          mapDateUpdated.isAcceptableOrUnknown(
+              data['map_date_updated']!, _mapDateUpdatedMeta));
+    }
     if (data.containsKey('achievement_collection_raw')) {
       context.handle(
           _achievementCollectionRawMeta,
@@ -649,31 +690,25 @@ class HealthcareProvider extends DataClass
     implements Insertable<HealthcareProvider> {
   final int locationId;
   final int institutionId;
-
-  /// Provides a date of the this healthcare providers update.
-  ///
-  /// format: YYYY-MM-DD
-  final String? updateDate;
-  final String? title;
-  final BuiltList<String>? category;
-  final String? street;
+  final String title;
+  final BuiltList<String> category;
+  final String street;
+  final String houseNumber;
   final String? specialization;
-  final String? houseNumber;
-  final String? city;
-  final String? postalCode;
+  final String city;
+  final String postalCode;
   final double lat;
   final double lng;
   HealthcareProvider(
       {required this.locationId,
       required this.institutionId,
-      this.updateDate,
-      this.title,
-      this.category,
-      this.street,
+      required this.title,
+      required this.category,
+      required this.street,
+      required this.houseNumber,
       this.specialization,
-      this.houseNumber,
-      this.city,
-      this.postalCode,
+      required this.city,
+      required this.postalCode,
       required this.lat,
       required this.lng});
   factory HealthcareProvider.fromData(
@@ -685,23 +720,21 @@ class HealthcareProvider extends DataClass
           .mapFromDatabaseResponse(data['${effectivePrefix}location_id'])!,
       institutionId: const IntType()
           .mapFromDatabaseResponse(data['${effectivePrefix}institution_id'])!,
-      updateDate: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}update_date']),
       title: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}title']),
+          .mapFromDatabaseResponse(data['${effectivePrefix}title'])!,
       category: $HealthcareProvidersTable.$converter0.mapToDart(
           const StringType()
-              .mapFromDatabaseResponse(data['${effectivePrefix}category'])),
+              .mapFromDatabaseResponse(data['${effectivePrefix}category']))!,
       street: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}street']),
+          .mapFromDatabaseResponse(data['${effectivePrefix}street'])!,
+      houseNumber: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}house_number'])!,
       specialization: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}specialization']),
-      houseNumber: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}house_number']),
       city: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}city']),
+          .mapFromDatabaseResponse(data['${effectivePrefix}city'])!,
       postalCode: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}postal_code']),
+          .mapFromDatabaseResponse(data['${effectivePrefix}postal_code'])!,
       lat: const RealType()
           .mapFromDatabaseResponse(data['${effectivePrefix}lat'])!,
       lng: const RealType()
@@ -713,31 +746,18 @@ class HealthcareProvider extends DataClass
     final map = <String, Expression>{};
     map['location_id'] = Variable<int>(locationId);
     map['institution_id'] = Variable<int>(institutionId);
-    if (!nullToAbsent || updateDate != null) {
-      map['update_date'] = Variable<String?>(updateDate);
-    }
-    if (!nullToAbsent || title != null) {
-      map['title'] = Variable<String?>(title);
-    }
-    if (!nullToAbsent || category != null) {
+    map['title'] = Variable<String>(title);
+    {
       final converter = $HealthcareProvidersTable.$converter0;
-      map['category'] = Variable<String?>(converter.mapToSql(category));
+      map['category'] = Variable<String>(converter.mapToSql(category)!);
     }
-    if (!nullToAbsent || street != null) {
-      map['street'] = Variable<String?>(street);
-    }
+    map['street'] = Variable<String>(street);
+    map['house_number'] = Variable<String>(houseNumber);
     if (!nullToAbsent || specialization != null) {
       map['specialization'] = Variable<String?>(specialization);
     }
-    if (!nullToAbsent || houseNumber != null) {
-      map['house_number'] = Variable<String?>(houseNumber);
-    }
-    if (!nullToAbsent || city != null) {
-      map['city'] = Variable<String?>(city);
-    }
-    if (!nullToAbsent || postalCode != null) {
-      map['postal_code'] = Variable<String?>(postalCode);
-    }
+    map['city'] = Variable<String>(city);
+    map['postal_code'] = Variable<String>(postalCode);
     map['lat'] = Variable<double>(lat);
     map['lng'] = Variable<double>(lng);
     return map;
@@ -747,26 +767,15 @@ class HealthcareProvider extends DataClass
     return HealthcareProvidersCompanion(
       locationId: Value(locationId),
       institutionId: Value(institutionId),
-      updateDate: updateDate == null && nullToAbsent
-          ? const Value.absent()
-          : Value(updateDate),
-      title:
-          title == null && nullToAbsent ? const Value.absent() : Value(title),
-      category: category == null && nullToAbsent
-          ? const Value.absent()
-          : Value(category),
-      street:
-          street == null && nullToAbsent ? const Value.absent() : Value(street),
+      title: Value(title),
+      category: Value(category),
+      street: Value(street),
+      houseNumber: Value(houseNumber),
       specialization: specialization == null && nullToAbsent
           ? const Value.absent()
           : Value(specialization),
-      houseNumber: houseNumber == null && nullToAbsent
-          ? const Value.absent()
-          : Value(houseNumber),
-      city: city == null && nullToAbsent ? const Value.absent() : Value(city),
-      postalCode: postalCode == null && nullToAbsent
-          ? const Value.absent()
-          : Value(postalCode),
+      city: Value(city),
+      postalCode: Value(postalCode),
       lat: Value(lat),
       lng: Value(lng),
     );
@@ -778,14 +787,13 @@ class HealthcareProvider extends DataClass
     return HealthcareProvider(
       locationId: serializer.fromJson<int>(json['locationId']),
       institutionId: serializer.fromJson<int>(json['institutionId']),
-      updateDate: serializer.fromJson<String?>(json['updateDate']),
-      title: serializer.fromJson<String?>(json['title']),
-      category: serializer.fromJson<BuiltList<String>?>(json['category']),
-      street: serializer.fromJson<String?>(json['street']),
+      title: serializer.fromJson<String>(json['title']),
+      category: serializer.fromJson<BuiltList<String>>(json['category']),
+      street: serializer.fromJson<String>(json['street']),
+      houseNumber: serializer.fromJson<String>(json['houseNumber']),
       specialization: serializer.fromJson<String?>(json['specialization']),
-      houseNumber: serializer.fromJson<String?>(json['houseNumber']),
-      city: serializer.fromJson<String?>(json['city']),
-      postalCode: serializer.fromJson<String?>(json['postalCode']),
+      city: serializer.fromJson<String>(json['city']),
+      postalCode: serializer.fromJson<String>(json['postalCode']),
       lat: serializer.fromJson<double>(json['lat']),
       lng: serializer.fromJson<double>(json['lng']),
     );
@@ -796,14 +804,13 @@ class HealthcareProvider extends DataClass
     return <String, dynamic>{
       'locationId': serializer.toJson<int>(locationId),
       'institutionId': serializer.toJson<int>(institutionId),
-      'updateDate': serializer.toJson<String?>(updateDate),
-      'title': serializer.toJson<String?>(title),
-      'category': serializer.toJson<BuiltList<String>?>(category),
-      'street': serializer.toJson<String?>(street),
+      'title': serializer.toJson<String>(title),
+      'category': serializer.toJson<BuiltList<String>>(category),
+      'street': serializer.toJson<String>(street),
+      'houseNumber': serializer.toJson<String>(houseNumber),
       'specialization': serializer.toJson<String?>(specialization),
-      'houseNumber': serializer.toJson<String?>(houseNumber),
-      'city': serializer.toJson<String?>(city),
-      'postalCode': serializer.toJson<String?>(postalCode),
+      'city': serializer.toJson<String>(city),
+      'postalCode': serializer.toJson<String>(postalCode),
       'lat': serializer.toJson<double>(lat),
       'lng': serializer.toJson<double>(lng),
     };
@@ -812,12 +819,11 @@ class HealthcareProvider extends DataClass
   HealthcareProvider copyWith(
           {int? locationId,
           int? institutionId,
-          String? updateDate,
           String? title,
           BuiltList<String>? category,
           String? street,
-          String? specialization,
           String? houseNumber,
+          String? specialization,
           String? city,
           String? postalCode,
           double? lat,
@@ -825,12 +831,11 @@ class HealthcareProvider extends DataClass
       HealthcareProvider(
         locationId: locationId ?? this.locationId,
         institutionId: institutionId ?? this.institutionId,
-        updateDate: updateDate ?? this.updateDate,
         title: title ?? this.title,
         category: category ?? this.category,
         street: street ?? this.street,
-        specialization: specialization ?? this.specialization,
         houseNumber: houseNumber ?? this.houseNumber,
+        specialization: specialization ?? this.specialization,
         city: city ?? this.city,
         postalCode: postalCode ?? this.postalCode,
         lat: lat ?? this.lat,
@@ -841,12 +846,11 @@ class HealthcareProvider extends DataClass
     return (StringBuffer('HealthcareProvider(')
           ..write('locationId: $locationId, ')
           ..write('institutionId: $institutionId, ')
-          ..write('updateDate: $updateDate, ')
           ..write('title: $title, ')
           ..write('category: $category, ')
           ..write('street: $street, ')
-          ..write('specialization: $specialization, ')
           ..write('houseNumber: $houseNumber, ')
+          ..write('specialization: $specialization, ')
           ..write('city: $city, ')
           ..write('postalCode: $postalCode, ')
           ..write('lat: $lat, ')
@@ -861,35 +865,32 @@ class HealthcareProvider extends DataClass
       $mrjc(
           institutionId.hashCode,
           $mrjc(
-              updateDate.hashCode,
+              title.hashCode,
               $mrjc(
-                  title.hashCode,
+                  category.hashCode,
                   $mrjc(
-                      category.hashCode,
+                      street.hashCode,
                       $mrjc(
-                          street.hashCode,
+                          houseNumber.hashCode,
                           $mrjc(
                               specialization.hashCode,
                               $mrjc(
-                                  houseNumber.hashCode,
+                                  city.hashCode,
                                   $mrjc(
-                                      city.hashCode,
+                                      postalCode.hashCode,
                                       $mrjc(
-                                          postalCode.hashCode,
-                                          $mrjc(lat.hashCode,
-                                              lng.hashCode))))))))))));
+                                          lat.hashCode, lng.hashCode)))))))))));
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is HealthcareProvider &&
           other.locationId == this.locationId &&
           other.institutionId == this.institutionId &&
-          other.updateDate == this.updateDate &&
           other.title == this.title &&
           other.category == this.category &&
           other.street == this.street &&
-          other.specialization == this.specialization &&
           other.houseNumber == this.houseNumber &&
+          other.specialization == this.specialization &&
           other.city == this.city &&
           other.postalCode == this.postalCode &&
           other.lat == this.lat &&
@@ -899,25 +900,23 @@ class HealthcareProvider extends DataClass
 class HealthcareProvidersCompanion extends UpdateCompanion<HealthcareProvider> {
   final Value<int> locationId;
   final Value<int> institutionId;
-  final Value<String?> updateDate;
-  final Value<String?> title;
-  final Value<BuiltList<String>?> category;
-  final Value<String?> street;
+  final Value<String> title;
+  final Value<BuiltList<String>> category;
+  final Value<String> street;
+  final Value<String> houseNumber;
   final Value<String?> specialization;
-  final Value<String?> houseNumber;
-  final Value<String?> city;
-  final Value<String?> postalCode;
+  final Value<String> city;
+  final Value<String> postalCode;
   final Value<double> lat;
   final Value<double> lng;
   const HealthcareProvidersCompanion({
     this.locationId = const Value.absent(),
     this.institutionId = const Value.absent(),
-    this.updateDate = const Value.absent(),
     this.title = const Value.absent(),
     this.category = const Value.absent(),
     this.street = const Value.absent(),
-    this.specialization = const Value.absent(),
     this.houseNumber = const Value.absent(),
+    this.specialization = const Value.absent(),
     this.city = const Value.absent(),
     this.postalCode = const Value.absent(),
     this.lat = const Value.absent(),
@@ -926,43 +925,46 @@ class HealthcareProvidersCompanion extends UpdateCompanion<HealthcareProvider> {
   HealthcareProvidersCompanion.insert({
     required int locationId,
     required int institutionId,
-    this.updateDate = const Value.absent(),
-    this.title = const Value.absent(),
-    this.category = const Value.absent(),
-    this.street = const Value.absent(),
+    required String title,
+    required BuiltList<String> category,
+    required String street,
+    required String houseNumber,
     this.specialization = const Value.absent(),
-    this.houseNumber = const Value.absent(),
-    this.city = const Value.absent(),
-    this.postalCode = const Value.absent(),
+    required String city,
+    required String postalCode,
     required double lat,
     required double lng,
   })  : locationId = Value(locationId),
         institutionId = Value(institutionId),
+        title = Value(title),
+        category = Value(category),
+        street = Value(street),
+        houseNumber = Value(houseNumber),
+        city = Value(city),
+        postalCode = Value(postalCode),
         lat = Value(lat),
         lng = Value(lng);
   static Insertable<HealthcareProvider> custom({
     Expression<int>? locationId,
     Expression<int>? institutionId,
-    Expression<String?>? updateDate,
-    Expression<String?>? title,
-    Expression<BuiltList<String>?>? category,
-    Expression<String?>? street,
+    Expression<String>? title,
+    Expression<BuiltList<String>>? category,
+    Expression<String>? street,
+    Expression<String>? houseNumber,
     Expression<String?>? specialization,
-    Expression<String?>? houseNumber,
-    Expression<String?>? city,
-    Expression<String?>? postalCode,
+    Expression<String>? city,
+    Expression<String>? postalCode,
     Expression<double>? lat,
     Expression<double>? lng,
   }) {
     return RawValuesInsertable({
       if (locationId != null) 'location_id': locationId,
       if (institutionId != null) 'institution_id': institutionId,
-      if (updateDate != null) 'update_date': updateDate,
       if (title != null) 'title': title,
       if (category != null) 'category': category,
       if (street != null) 'street': street,
-      if (specialization != null) 'specialization': specialization,
       if (houseNumber != null) 'house_number': houseNumber,
+      if (specialization != null) 'specialization': specialization,
       if (city != null) 'city': city,
       if (postalCode != null) 'postal_code': postalCode,
       if (lat != null) 'lat': lat,
@@ -973,25 +975,23 @@ class HealthcareProvidersCompanion extends UpdateCompanion<HealthcareProvider> {
   HealthcareProvidersCompanion copyWith(
       {Value<int>? locationId,
       Value<int>? institutionId,
-      Value<String?>? updateDate,
-      Value<String?>? title,
-      Value<BuiltList<String>?>? category,
-      Value<String?>? street,
+      Value<String>? title,
+      Value<BuiltList<String>>? category,
+      Value<String>? street,
+      Value<String>? houseNumber,
       Value<String?>? specialization,
-      Value<String?>? houseNumber,
-      Value<String?>? city,
-      Value<String?>? postalCode,
+      Value<String>? city,
+      Value<String>? postalCode,
       Value<double>? lat,
       Value<double>? lng}) {
     return HealthcareProvidersCompanion(
       locationId: locationId ?? this.locationId,
       institutionId: institutionId ?? this.institutionId,
-      updateDate: updateDate ?? this.updateDate,
       title: title ?? this.title,
       category: category ?? this.category,
       street: street ?? this.street,
-      specialization: specialization ?? this.specialization,
       houseNumber: houseNumber ?? this.houseNumber,
+      specialization: specialization ?? this.specialization,
       city: city ?? this.city,
       postalCode: postalCode ?? this.postalCode,
       lat: lat ?? this.lat,
@@ -1008,30 +1008,27 @@ class HealthcareProvidersCompanion extends UpdateCompanion<HealthcareProvider> {
     if (institutionId.present) {
       map['institution_id'] = Variable<int>(institutionId.value);
     }
-    if (updateDate.present) {
-      map['update_date'] = Variable<String?>(updateDate.value);
-    }
     if (title.present) {
-      map['title'] = Variable<String?>(title.value);
+      map['title'] = Variable<String>(title.value);
     }
     if (category.present) {
       final converter = $HealthcareProvidersTable.$converter0;
-      map['category'] = Variable<String?>(converter.mapToSql(category.value));
+      map['category'] = Variable<String>(converter.mapToSql(category.value)!);
     }
     if (street.present) {
-      map['street'] = Variable<String?>(street.value);
+      map['street'] = Variable<String>(street.value);
+    }
+    if (houseNumber.present) {
+      map['house_number'] = Variable<String>(houseNumber.value);
     }
     if (specialization.present) {
       map['specialization'] = Variable<String?>(specialization.value);
     }
-    if (houseNumber.present) {
-      map['house_number'] = Variable<String?>(houseNumber.value);
-    }
     if (city.present) {
-      map['city'] = Variable<String?>(city.value);
+      map['city'] = Variable<String>(city.value);
     }
     if (postalCode.present) {
-      map['postal_code'] = Variable<String?>(postalCode.value);
+      map['postal_code'] = Variable<String>(postalCode.value);
     }
     if (lat.present) {
       map['lat'] = Variable<double>(lat.value);
@@ -1047,12 +1044,11 @@ class HealthcareProvidersCompanion extends UpdateCompanion<HealthcareProvider> {
     return (StringBuffer('HealthcareProvidersCompanion(')
           ..write('locationId: $locationId, ')
           ..write('institutionId: $institutionId, ')
-          ..write('updateDate: $updateDate, ')
           ..write('title: $title, ')
           ..write('category: $category, ')
           ..write('street: $street, ')
-          ..write('specialization: $specialization, ')
           ..write('houseNumber: $houseNumber, ')
+          ..write('specialization: $specialization, ')
           ..write('city: $city, ')
           ..write('postalCode: $postalCode, ')
           ..write('lat: $lat, ')
@@ -1076,42 +1072,38 @@ class $HealthcareProvidersTable extends HealthcareProviders
   late final GeneratedColumn<int?> institutionId = GeneratedColumn<int?>(
       'institution_id', aliasedName, false,
       typeName: 'INTEGER', requiredDuringInsert: true);
-  final VerificationMeta _updateDateMeta = const VerificationMeta('updateDate');
-  late final GeneratedColumn<String?> updateDate = GeneratedColumn<String?>(
-      'update_date', aliasedName, true,
-      typeName: 'TEXT', requiredDuringInsert: false);
   final VerificationMeta _titleMeta = const VerificationMeta('title');
   late final GeneratedColumn<String?> title = GeneratedColumn<String?>(
-      'title', aliasedName, true,
-      typeName: 'TEXT', requiredDuringInsert: false);
+      'title', aliasedName, false,
+      typeName: 'TEXT', requiredDuringInsert: true);
   final VerificationMeta _categoryMeta = const VerificationMeta('category');
   late final GeneratedColumnWithTypeConverter<BuiltList<String>, String?>
-      category = GeneratedColumn<String?>('category', aliasedName, true,
-              typeName: 'TEXT', requiredDuringInsert: false)
+      category = GeneratedColumn<String?>('category', aliasedName, false,
+              typeName: 'TEXT', requiredDuringInsert: true)
           .withConverter<BuiltList<String>>(
               $HealthcareProvidersTable.$converter0);
   final VerificationMeta _streetMeta = const VerificationMeta('street');
   late final GeneratedColumn<String?> street = GeneratedColumn<String?>(
-      'street', aliasedName, true,
-      typeName: 'TEXT', requiredDuringInsert: false);
+      'street', aliasedName, false,
+      typeName: 'TEXT', requiredDuringInsert: true);
+  final VerificationMeta _houseNumberMeta =
+      const VerificationMeta('houseNumber');
+  late final GeneratedColumn<String?> houseNumber = GeneratedColumn<String?>(
+      'house_number', aliasedName, false,
+      typeName: 'TEXT', requiredDuringInsert: true);
   final VerificationMeta _specializationMeta =
       const VerificationMeta('specialization');
   late final GeneratedColumn<String?> specialization = GeneratedColumn<String?>(
       'specialization', aliasedName, true,
       typeName: 'TEXT', requiredDuringInsert: false);
-  final VerificationMeta _houseNumberMeta =
-      const VerificationMeta('houseNumber');
-  late final GeneratedColumn<String?> houseNumber = GeneratedColumn<String?>(
-      'house_number', aliasedName, true,
-      typeName: 'TEXT', requiredDuringInsert: false);
   final VerificationMeta _cityMeta = const VerificationMeta('city');
   late final GeneratedColumn<String?> city = GeneratedColumn<String?>(
-      'city', aliasedName, true,
-      typeName: 'TEXT', requiredDuringInsert: false);
+      'city', aliasedName, false,
+      typeName: 'TEXT', requiredDuringInsert: true);
   final VerificationMeta _postalCodeMeta = const VerificationMeta('postalCode');
   late final GeneratedColumn<String?> postalCode = GeneratedColumn<String?>(
-      'postal_code', aliasedName, true,
-      typeName: 'TEXT', requiredDuringInsert: false);
+      'postal_code', aliasedName, false,
+      typeName: 'TEXT', requiredDuringInsert: true);
   final VerificationMeta _latMeta = const VerificationMeta('lat');
   late final GeneratedColumn<double?> lat = GeneratedColumn<double?>(
       'lat', aliasedName, false,
@@ -1124,12 +1116,11 @@ class $HealthcareProvidersTable extends HealthcareProviders
   List<GeneratedColumn> get $columns => [
         locationId,
         institutionId,
-        updateDate,
         title,
         category,
         street,
-        specialization,
         houseNumber,
+        specialization,
         city,
         postalCode,
         lat,
@@ -1160,20 +1151,26 @@ class $HealthcareProvidersTable extends HealthcareProviders
     } else if (isInserting) {
       context.missing(_institutionIdMeta);
     }
-    if (data.containsKey('update_date')) {
-      context.handle(
-          _updateDateMeta,
-          updateDate.isAcceptableOrUnknown(
-              data['update_date']!, _updateDateMeta));
-    }
     if (data.containsKey('title')) {
       context.handle(
           _titleMeta, title.isAcceptableOrUnknown(data['title']!, _titleMeta));
+    } else if (isInserting) {
+      context.missing(_titleMeta);
     }
     context.handle(_categoryMeta, const VerificationResult.success());
     if (data.containsKey('street')) {
       context.handle(_streetMeta,
           street.isAcceptableOrUnknown(data['street']!, _streetMeta));
+    } else if (isInserting) {
+      context.missing(_streetMeta);
+    }
+    if (data.containsKey('house_number')) {
+      context.handle(
+          _houseNumberMeta,
+          houseNumber.isAcceptableOrUnknown(
+              data['house_number']!, _houseNumberMeta));
+    } else if (isInserting) {
+      context.missing(_houseNumberMeta);
     }
     if (data.containsKey('specialization')) {
       context.handle(
@@ -1181,21 +1178,19 @@ class $HealthcareProvidersTable extends HealthcareProviders
           specialization.isAcceptableOrUnknown(
               data['specialization']!, _specializationMeta));
     }
-    if (data.containsKey('house_number')) {
-      context.handle(
-          _houseNumberMeta,
-          houseNumber.isAcceptableOrUnknown(
-              data['house_number']!, _houseNumberMeta));
-    }
     if (data.containsKey('city')) {
       context.handle(
           _cityMeta, city.isAcceptableOrUnknown(data['city']!, _cityMeta));
+    } else if (isInserting) {
+      context.missing(_cityMeta);
     }
     if (data.containsKey('postal_code')) {
       context.handle(
           _postalCodeMeta,
           postalCode.isAcceptableOrUnknown(
               data['postal_code']!, _postalCodeMeta));
+    } else if (isInserting) {
+      context.missing(_postalCodeMeta);
     }
     if (data.containsKey('lat')) {
       context.handle(

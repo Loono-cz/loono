@@ -1,3 +1,4 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:loono/helpers/healthcare_provider_type_converters.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono_api/loono_api.dart' show SimpleHealthcareProvider;
@@ -13,24 +14,19 @@ class HealthcareProviders extends Table {
 
   IntColumn get institutionId => integer()();
 
-  /// Provides a date of the this healthcare providers update.
-  ///
-  /// format: YYYY-MM-DD
-  TextColumn get updateDate => text().nullable()();
+  TextColumn get title => text()();
 
-  TextColumn get title => text().nullable()();
+  TextColumn get category => text().map(const CategoryConverter())();
 
-  TextColumn get category => text().map(const CategoryConverter()).nullable()();
+  TextColumn get street => text()();
 
-  TextColumn get street => text().nullable()();
+  TextColumn get houseNumber => text()();
 
   TextColumn get specialization => text().nullable()();
 
-  TextColumn get houseNumber => text().nullable()();
+  TextColumn get city => text()();
 
-  TextColumn get city => text().nullable()();
-
-  TextColumn get postalCode => text().nullable()();
+  TextColumn get postalCode => text()();
 
   RealColumn get lat => real()();
 
@@ -44,8 +40,9 @@ class HealthcareProvidersDao extends DatabaseAccessor<AppDatabase>
 
   Stream<List<HealthcareProvider>> watchAll() => select(healthcareProviders).watch();
 
-  /// Updates [HealthcareProviders] with new [SimpleHealthcareProvider] data.
-  Future<void> updateAllData(List<SimpleHealthcareProvider> newData, String updateDate) async {
+  Future<List<HealthcareProvider>> getAll() => select(healthcareProviders).get();
+
+  Future<void> updateAllData(BuiltList<SimpleHealthcareProvider> newData) async {
     await delete(healthcareProviders).go();
     await batch(
       (b) {
@@ -54,18 +51,17 @@ class HealthcareProvidersDao extends DatabaseAccessor<AppDatabase>
           newData
               .map(
                 (simpleHealthcareProvider) => HealthcareProvidersCompanion.insert(
-                  institutionId: simpleHealthcareProvider.institutionId!,
-                  locationId: simpleHealthcareProvider.locationId!,
-                  title: Value(simpleHealthcareProvider.title),
-                  street: Value(simpleHealthcareProvider.street),
-                  houseNumber: Value(simpleHealthcareProvider.houseNumber),
-                  city: Value(simpleHealthcareProvider.city),
-                  postalCode: Value(simpleHealthcareProvider.postalCode),
-                  lat: double.parse(simpleHealthcareProvider.lat!),
-                  lng: double.parse(simpleHealthcareProvider.lng!),
-                  category: Value(simpleHealthcareProvider.category),
+                  institutionId: simpleHealthcareProvider.institutionId,
+                  locationId: simpleHealthcareProvider.locationId,
+                  title: simpleHealthcareProvider.title,
+                  street: simpleHealthcareProvider.street ?? '',
+                  houseNumber: simpleHealthcareProvider.houseNumber,
+                  city: simpleHealthcareProvider.city,
+                  postalCode: simpleHealthcareProvider.postalCode,
+                  lat: simpleHealthcareProvider.lat!,
+                  lng: simpleHealthcareProvider.lng!,
+                  category: simpleHealthcareProvider.category,
                   specialization: Value(simpleHealthcareProvider.specialization),
-                  updateDate: Value(updateDate),
                 ),
               )
               .toList(),
