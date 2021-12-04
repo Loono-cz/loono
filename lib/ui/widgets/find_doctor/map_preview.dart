@@ -81,28 +81,18 @@ class _MapPreviewState extends State<MapPreview> {
             },
             markers: _createMarkers(healthcareProviders: value.healthcareProviders),
           ),
-          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+          floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
           floatingActionButton: Padding(
             padding:
                 EdgeInsets.fromLTRB(10.0, 10.0, 10.0, MediaQuery.of(context).size.height * 0.5),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const FloatingActionButton(
-                  onPressed: null,
-                  backgroundColor: Colors.white,
-                  child: Icon(Icons.info_outline, color: Colors.black87),
-                ),
-                FloatingActionButton(
-                  onPressed: () async {
-                    final currentPos = await _determinePosition();
-                    final latLng = LatLng(currentPos.latitude, currentPos.longitude);
-                    await _animateToPos(CameraPosition(target: latLng, zoom: 17.0));
-                  },
-                  backgroundColor: Colors.white,
-                  child: const Icon(Icons.my_location, color: Colors.black87),
-                ),
-              ],
+            child: FloatingActionButton(
+              onPressed: () async {
+                final currentPos = await _determinePosition();
+                final latLng = LatLng(currentPos.latitude, currentPos.longitude);
+                await _animateToPos(CameraPosition(target: latLng, zoom: 17.0));
+              },
+              backgroundColor: Colors.white,
+              child: const Icon(Icons.my_location, color: Colors.black87),
             ),
           ),
         );

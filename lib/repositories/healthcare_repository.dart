@@ -4,6 +4,7 @@ import 'package:archive/archive.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:loono/helpers/healthcare_provider_type_converters.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
@@ -23,20 +24,27 @@ class HealthcareProviderRepository {
   /// data are not up to date or not fetched yet.
   Future<List<HealthcareProvider>> checkAndUpdate() async {
     final localLatestUpdate = _db.users.user?.mapDateUpdated;
-    final serverLatestUpdateResponse = await _api.getProvidersApi().getProvidersLastupdate();
-    final serverLatestUpdateDate = serverLatestUpdateResponse.data?.lastUpdate;
+    Response<HealthcareProviderLastUpdate>? serverLatestUpdateResponse;
+    try {
+      serverLatestUpdateResponse = await _api.getProvidersApi().getProvidersLastupdate();
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    final serverLatestUpdateDate = serverLatestUpdateResponse?.data?.lastUpdate;
+    final serverFormat = DateFormat('yyyy-M-d');
 
     // server data are updated on the 2nd day of each month
     // update if outdated or data missing
     debugPrint('LOCAL LATEST: $localLatestUpdate\nSERVER LATEST: $serverLatestUpdateDate');
     if (localLatestUpdate == null ||
         (serverLatestUpdateDate != null &&
-            DateTime.parse(serverLatestUpdateDate).isBefore(localLatestUpdate))) {
+            serverFormat.parse(serverLatestUpdateDate).isAfter(localLatestUpdate))) {
       final BuiltList<SimpleHealthcareProvider>? list = await _getAllHealthcareProvidersData();
       if (list == null) return Future.error('Could not fetch the data');
       await _db.healthcareProviders.updateAllData(list);
-      await _db.users.updateMapDateUpdated(
-          serverLatestUpdateDate == null ? DateTime.now() : DateTime.parse(serverLatestUpdateDate));
+      await _db.users.updateMapDateUpdated(serverLatestUpdateDate == null
+          ? DateTime.now()
+          : serverFormat.parse(serverLatestUpdateDate));
     } else {
       // maps are up to date
     }
@@ -62,9 +70,7 @@ class HealthcareProviderRepository {
 
     BuiltList<SimpleHealthcareProvider>? list;
     try {
-      // final jsonFilee = archive.files.first.rawContent!.buffer;
       final jsonFile = archive.files.first.content as Uint8List;
-      // TODO: this is not working ...
       final content = utf8.decode(jsonFile);
       list = const SimpleHealthcareListConverter().fromJson(content);
     } catch (e) {

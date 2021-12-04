@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loono/constants.dart';
 import 'package:loono/services/map_state_sevice.dart';
 import 'package:provider/provider.dart';
 
@@ -14,10 +15,16 @@ class MapSheetOverlay extends StatelessWidget {
         return DraggableScrollableSheet(
           initialChildSize: 0.4,
           maxChildSize: 0.75,
-          minChildSize: 0.05,
+          minChildSize: 0.15,
           builder: (context, scrollController) {
             return Container(
-              color: const Color.fromRGBO(190, 88, 23, 1),
+              decoration: const BoxDecoration(
+                color: LoonoColors.bottomSheetPrevention,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(12),
+                  topRight: Radius.circular(12),
+                ),
+              ),
               child: ListView.builder(
                 controller: scrollController,
                 itemCount: value.healthcareProviders.length,
@@ -46,17 +53,22 @@ class MapSheetOverlay extends StatelessWidget {
                                 alignment: Alignment.centerRight,
                                 child: Text(
                                   'doktorů v okolí: ${value.healthcareProviders.length}',
-                                  style: TextStyle(color: Colors.white),
+                                  style: const TextStyle(color: Colors.white),
                                 ),
                               ),
                             ],
                           ),
                         ],
                         Card(
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                          elevation: 0.0,
                           child: SizedBox(
                             width: MediaQuery.of(context).size.width,
-                            height: 98.0,
-                            child: Center(child: Text('Doktor ${index + 1}')),
+                            height: 120.0,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(value.healthcareProviders[index].title),
+                            ),
                           ),
                         ),
                       ],
