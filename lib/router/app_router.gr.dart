@@ -4,14 +4,15 @@
 // AutoRouteGenerator
 // **************************************************************************
 
-import 'dart:typed_data' as _i38;
+import 'dart:typed_data' as _i39;
 
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
-import '../helpers/sex_extensions.dart' as _i39;
+import '../helpers/sex_extensions.dart' as _i40;
+import '../models/categorized_examination.dart' as _i37;
 import '../models/firebase_user.dart' as _i36;
-import '../services/db/database.dart' as _i37;
+import '../services/db/database.dart' as _i38;
 import '../ui/screens/create_account.dart' as _i5;
 import '../ui/screens/dentist_achievement.dart' as _i34;
 import '../ui/screens/general_practicioner_achievement.dart' as _i27;
@@ -100,9 +101,12 @@ class AppRouter extends _i1.RootStackRouter {
           routeData: routeData, child: const _i10.MainScreen());
     },
     ExaminationDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<ExaminationDetailRouteArgs>();
       return _i1.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i11.ExaminationDetailScreen(),
+          child: _i11.ExaminationDetailScreen(
+              key: args.key,
+              categorizedExamination: args.categorizedExamination),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -468,10 +472,26 @@ class MainRoute extends _i1.PageRouteInfo<void> {
   static const String name = 'MainRoute';
 }
 
-class ExaminationDetailRoute extends _i1.PageRouteInfo<void> {
-  const ExaminationDetailRoute() : super(name, path: 'prevention-detail');
+class ExaminationDetailRoute
+    extends _i1.PageRouteInfo<ExaminationDetailRouteArgs> {
+  ExaminationDetailRoute(
+      {_i2.Key? key,
+      required _i37.CategorizedExamination categorizedExamination})
+      : super(name,
+            path: 'prevention-detail',
+            args: ExaminationDetailRouteArgs(
+                key: key, categorizedExamination: categorizedExamination));
 
   static const String name = 'ExaminationDetailRoute';
+}
+
+class ExaminationDetailRouteArgs {
+  const ExaminationDetailRouteArgs(
+      {this.key, required this.categorizedExamination});
+
+  final _i2.Key? key;
+
+  final _i37.CategorizedExamination categorizedExamination;
 }
 
 class OpenSettingsRoute extends _i1.PageRouteInfo<OpenSettingsRouteArgs> {
@@ -503,7 +523,7 @@ class UpdateProfileRouteArgs {
 }
 
 class EditNicknameRoute extends _i1.PageRouteInfo<EditNicknameRouteArgs> {
-  EditNicknameRoute({_i2.Key? key, required _i37.User? user})
+  EditNicknameRoute({_i2.Key? key, required _i38.User? user})
       : super(name,
             path: 'settings/update-profile/nickname',
             args: EditNicknameRouteArgs(key: key, user: user));
@@ -516,11 +536,11 @@ class EditNicknameRouteArgs {
 
   final _i2.Key? key;
 
-  final _i37.User? user;
+  final _i38.User? user;
 }
 
 class EditEmailRoute extends _i1.PageRouteInfo<EditEmailRouteArgs> {
-  EditEmailRoute({_i2.Key? key, required _i37.User? user})
+  EditEmailRoute({_i2.Key? key, required _i38.User? user})
       : super(name,
             path: 'settings/update-profile/email',
             args: EditEmailRouteArgs(key: key, user: user));
@@ -533,11 +553,11 @@ class EditEmailRouteArgs {
 
   final _i2.Key? key;
 
-  final _i37.User? user;
+  final _i38.User? user;
 }
 
 class EditPhotoRoute extends _i1.PageRouteInfo<EditPhotoRouteArgs> {
-  EditPhotoRoute({_i2.Key? key, _i38.Uint8List? imageBytes})
+  EditPhotoRoute({_i2.Key? key, _i39.Uint8List? imageBytes})
       : super(name,
             path: 'settings/update-profile/photo',
             args: EditPhotoRouteArgs(key: key, imageBytes: imageBytes));
@@ -550,12 +570,12 @@ class EditPhotoRouteArgs {
 
   final _i2.Key? key;
 
-  final _i38.Uint8List? imageBytes;
+  final _i39.Uint8List? imageBytes;
 }
 
 class CameraPhotoTakenRoute
     extends _i1.PageRouteInfo<CameraPhotoTakenRouteArgs> {
-  CameraPhotoTakenRoute({_i2.Key? key, required _i38.Uint8List imageBytes})
+  CameraPhotoTakenRoute({_i2.Key? key, required _i39.Uint8List imageBytes})
       : super(name,
             path: 'settings/update-profile/photo/camera-taken',
             args: CameraPhotoTakenRouteArgs(key: key, imageBytes: imageBytes));
@@ -568,12 +588,12 @@ class CameraPhotoTakenRouteArgs {
 
   final _i2.Key? key;
 
-  final _i38.Uint8List imageBytes;
+  final _i39.Uint8List imageBytes;
 }
 
 class GalleryPhotoTakenRoute
     extends _i1.PageRouteInfo<GalleryPhotoTakenRouteArgs> {
-  GalleryPhotoTakenRoute({_i2.Key? key, required _i38.Uint8List imageBytes})
+  GalleryPhotoTakenRoute({_i2.Key? key, required _i39.Uint8List imageBytes})
       : super(name,
             path: 'settings/update-profile/photo/gallery-taken',
             args: GalleryPhotoTakenRouteArgs(key: key, imageBytes: imageBytes));
@@ -586,12 +606,12 @@ class GalleryPhotoTakenRouteArgs {
 
   final _i2.Key? key;
 
-  final _i38.Uint8List imageBytes;
+  final _i39.Uint8List imageBytes;
 }
 
 class PhotoCroppedResultRoute
     extends _i1.PageRouteInfo<PhotoCroppedResultRouteArgs> {
-  PhotoCroppedResultRoute({_i2.Key? key, required _i38.Uint8List imageBytes})
+  PhotoCroppedResultRoute({_i2.Key? key, required _i39.Uint8List imageBytes})
       : super(name,
             path: 'settings/update-profile/photo/photo-cropped-result',
             args:
@@ -605,7 +625,7 @@ class PhotoCroppedResultRouteArgs {
 
   final _i2.Key? key;
 
-  final _i38.Uint8List imageBytes;
+  final _i39.Uint8List imageBytes;
 }
 
 class LeaderboardRoute extends _i1.PageRouteInfo<void> {
@@ -640,7 +660,7 @@ class OnboardingGenderRoute extends _i1.PageRouteInfo<void> {
 
 class OnBoardingBirthdateRoute
     extends _i1.PageRouteInfo<OnBoardingBirthdateRouteArgs> {
-  OnBoardingBirthdateRoute({_i2.Key? key, required _i39.Sex sex})
+  OnBoardingBirthdateRoute({_i2.Key? key, required _i40.Sex sex})
       : super(name,
             path: 'birthdate',
             args: OnBoardingBirthdateRouteArgs(key: key, sex: sex));
@@ -653,12 +673,12 @@ class OnBoardingBirthdateRouteArgs {
 
   final _i2.Key? key;
 
-  final _i39.Sex sex;
+  final _i40.Sex sex;
 }
 
 class OnboardingGeneralPracticionerRoute
     extends _i1.PageRouteInfo<OnboardingGeneralPracticionerRouteArgs> {
-  OnboardingGeneralPracticionerRoute({_i2.Key? key, required _i39.Sex sex})
+  OnboardingGeneralPracticionerRoute({_i2.Key? key, required _i40.Sex sex})
       : super(name,
             path: 'doctor/general-practicioner',
             args: OnboardingGeneralPracticionerRouteArgs(key: key, sex: sex));
@@ -671,7 +691,7 @@ class OnboardingGeneralPracticionerRouteArgs {
 
   final _i2.Key? key;
 
-  final _i39.Sex sex;
+  final _i40.Sex sex;
 }
 
 class GeneralPracticionerAchievementRoute extends _i1.PageRouteInfo<void> {
@@ -696,7 +716,7 @@ class AllowNotificationsRoute extends _i1.PageRouteInfo<void> {
 
 class OnboardingGynecologyRoute
     extends _i1.PageRouteInfo<OnboardingGynecologyRouteArgs> {
-  OnboardingGynecologyRoute({_i2.Key? key, required _i39.Sex sex})
+  OnboardingGynecologyRoute({_i2.Key? key, required _i40.Sex sex})
       : super(name,
             path: 'doctor/gynecology',
             args: OnboardingGynecologyRouteArgs(key: key, sex: sex));
@@ -709,7 +729,7 @@ class OnboardingGynecologyRouteArgs {
 
   final _i2.Key? key;
 
-  final _i39.Sex sex;
+  final _i40.Sex sex;
 }
 
 class GynecologyAchievementRoute extends _i1.PageRouteInfo<void> {
@@ -727,7 +747,7 @@ class GynecologyDateRoute extends _i1.PageRouteInfo<void> {
 
 class OnboardingDentistRoute
     extends _i1.PageRouteInfo<OnboardingDentistRouteArgs> {
-  OnboardingDentistRoute({_i2.Key? key, required _i39.Sex sex})
+  OnboardingDentistRoute({_i2.Key? key, required _i40.Sex sex})
       : super(name,
             path: 'doctor/dentist',
             args: OnboardingDentistRouteArgs(key: key, sex: sex));
@@ -740,7 +760,7 @@ class OnboardingDentistRouteArgs {
 
   final _i2.Key? key;
 
-  final _i39.Sex sex;
+  final _i40.Sex sex;
 }
 
 class DentistAchievementRoute extends _i1.PageRouteInfo<void> {

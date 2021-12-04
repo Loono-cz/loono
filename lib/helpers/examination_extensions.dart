@@ -3,40 +3,76 @@
 import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/helpers/examination_status.dart';
 import 'package:loono/helpers/examination_types.dart';
+import 'package:loono/models/categorized_examination.dart';
 
-const int DAYS_IN_YEAR = 365;
-const int TWO_MONTHS_IN_DAYS = 60;
+const int MONTHS_IN_YEAR = 12;
+const int TO_SCHEDULE_MONTHS_TRANSFER = 2;
 
 extension ExaminationRecordExt on ExaminationRecord {
-  ExaminationStatus calcStatus() {
-    final examinationRecord = this;
+  ExaminationStatus calculateStatus([DateTime? dateTimeNow]) {
+    final now = dateTimeNow ?? DateTime.now();
 
-    if (examinationRecord.nextVisitDate == null && examinationRecord.lastVisitDate != null) {
-      final lastVisitDateWithoutDay = examinationRecord.lastVisitDate!;
+    // STATUS: waiting or newToSchedule
+    if (nextVisitDate == null && lastVisitDate != null) {
+      final lastVisitDateWithoutDay = lastVisitDate!;
       final lastVisitDateTime =
           DateTime(lastVisitDateWithoutDay.year, lastVisitDateWithoutDay.month.index + 1);
-      // if last visit date is older than CURRENT_MONTH - (INTERVAL - 2 months)
-      final toSubtract =
-          Duration(days: examinationRecord.interval * DAYS_IN_YEAR + TWO_MONTHS_IN_DAYS);
-      if (lastVisitDateTime.difference(DateTime.now().subtract(toSubtract)).inDays < 0) {
-        return const ExaminationStatus.never();
+
+      // if last visit date is before: CURRENT_MONTH - (INTERVAL - 2 months)
+      final subtractedWaitingDate =
+          DateTime(now.year, now.month - (interval * MONTHS_IN_YEAR - TO_SCHEDULE_MONTHS_TRANSFER));
+      // then waiting time has ended, move to "TO BE SCHEDULED"
+      if (lastVisitDateTime.isBefore(subtractedWaitingDate) ||
+          lastVisitDateTime.isAtSameMomentAs(subtractedWaitingDate)) {
+        return const ExaminationStatus.newToSchedule();
       }
+      // else wait
       return const ExaminationStatus.waiting();
     }
 
-    final nextVisitDate = examinationRecord.nextVisitDate;
+    // STATUS: scheduled or scheduledSoonOrOverdue
     if (nextVisitDate != null) {
-      final diffInDaysFromNow = nextVisitDate.difference(DateTime.now()).inDays;
+      final diffInDaysFromNow = nextVisitDate!.difference(now).inDays;
+      // if it is more than 30 days before the check-up visit the status is "SCHEDULED"
       if (diffInDaysFromNow > 30) return const ExaminationStatus.scheduled();
+      // else 30 days or equal before check-up visit the status is "SCHEDULED_SOON_OR_OVERDUE"
       return const ExaminationStatus.scheduledSoonOrOverdue();
     }
 
-    if (examinationRecord.lastVisitDate == null &&
-        onboardingExaminations.contains(examinationRecord.examinationType)) {
-      return const ExaminationStatus.unfinished();
-    }
+    // else fallback to STATUS: unknownLastVisit
+    return const ExaminationStatus.unknownLastVisit();
+  }
+}
 
-    return const ExaminationStatus.never();
+extension CategorizedExaminationListExt on List<CategorizedExamination> {
+  void sortExaminations() {
+    if (isEmpty) return;
+    first.status.when(
+      scheduledSoonOrOverdue: () =>
+          sort((a, b) => b.examination.nextVisitDate!.compareTo(a.examination.nextVisitDate!)),
+      newToSchedule: () => sort((a, b) {
+        final lastVisitDateWithoutDayA = a.examination.lastVisitDate!;
+        final lastVisitDateWithoutDayB = b.examination.lastVisitDate!;
+        final lastVisitDateTimeA =
+            DateTime(lastVisitDateWithoutDayA.year, lastVisitDateWithoutDayA.month.index + 1);
+        final lastVisitDateTimeB =
+            DateTime(lastVisitDateWithoutDayB.year, lastVisitDateWithoutDayB.month.index + 1);
+        return lastVisitDateTimeA.compareTo(lastVisitDateTimeB);
+      }),
+      unknownLastVisit: () =>
+          sort((a, b) => a.examination.priority.compareTo(b.examination.priority)),
+      scheduled: () =>
+          sort((a, b) => a.examination.nextVisitDate!.compareTo(b.examination.nextVisitDate!)),
+      waiting: () => sort((a, b) {
+        final lastVisitDateWithoutDayA = a.examination.lastVisitDate!;
+        final lastVisitDateWithoutDayB = b.examination.lastVisitDate!;
+        final lastVisitDateTimeA =
+            DateTime(lastVisitDateWithoutDayA.year, lastVisitDateWithoutDayA.month.index + 1);
+        final lastVisitDateTimeB =
+            DateTime(lastVisitDateWithoutDayB.year, lastVisitDateWithoutDayB.month.index + 1);
+        return lastVisitDateTimeA.compareTo(lastVisitDateTimeB);
+      }),
+    );
   }
 }
 
@@ -67,12 +103,17 @@ class ExaminationRecord {
 }
 
 final fakeExaminationData = <ExaminationRecord>[
+  //
   ExaminationRecord(examinationType: ExaminationType.GENERAL_PRACTITIONER, worth: 200, interval: 2, priority: 1, nextVisitDate: DateTime(2021, 12, 28, 11)),
-  ExaminationRecord(examinationType: ExaminationType.GYNECOLOGIST, worth: 300, interval: 1, priority: 3, nextVisitDate: DateTime(2021, 12, 10, 10)),
-  ExaminationRecord(examinationType: ExaminationType.DENTIST, worth: 300, interval: 1, priority: 8, nextVisitDate: DateTime(2021, 12, 1, 6)),
-  const ExaminationRecord(examinationType: ExaminationType.MAMMOGRAM, worth: 500, interval: 2, priority: 2),
+  ExaminationRecord(examinationType: ExaminationType.GYNECOLOGIST, worth: 300, interval: 1, priority: 3, nextVisitDate: DateTime(2021, 12, 12, 10)),
+  ExaminationRecord(examinationType: ExaminationType.DENTIST, worth: 300, interval: 1, priority: 8, nextVisitDate: DateTime(2021, 10, 4, 7)),
+  ExaminationRecord(examinationType: ExaminationType.DERMATOLOGIST, worth: 200, interval: 1, priority: 6, nextVisitDate: DateTime(2022, 3, 10, 13)),
+
+  //
   const ExaminationRecord(examinationType: ExaminationType.OPHTHALMOLOGIST, worth: 100, interval: 2, priority: 9),
-  ExaminationRecord(examinationType: ExaminationType.DERMATOLOGIST, worth: 200, interval: 1, priority: 6, nextVisitDate: DateTime(2021, 2, 10, 13)),
-  ExaminationRecord(examinationType: ExaminationType.DENTIST, worth: 300, interval: 1, priority: 8, lastVisitDate: DateWithoutDay(month: Months.september, year: 2021)),
-  ExaminationRecord(examinationType: ExaminationType.GYNECOLOGIST, worth: 300, interval: 1, priority: 3, lastVisitDate: DateWithoutDay(month: Months.march, year: 2021)),
+  const ExaminationRecord(examinationType: ExaminationType.COLONOSCOPY, worth: 1000, interval: 10, priority: 4),
+
+  //
+  ExaminationRecord(examinationType: ExaminationType.UROLOGIST, worth: 500, interval: 2, priority: 2, lastVisitDate: DateWithoutDay(month: Months.september, year: 2021)),
+  ExaminationRecord(examinationType: ExaminationType.MAMMOGRAM, worth: 500, interval: 2, priority: 3, lastVisitDate: DateWithoutDay(month: Months.march, year: 2021)),
 ];

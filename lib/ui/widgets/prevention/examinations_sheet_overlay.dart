@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_extensions.dart';
@@ -22,7 +23,7 @@ class ExaminationsSheetOverlay extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final categorized = snapshot.data!
-                .map((e) => CategorizedExamination(examination: e, status: e.calcStatus()))
+                .map((e) => CategorizedExamination(examination: e, status: e.calculateStatus()))
                 .toList();
 
             return DraggableScrollableSheet(
@@ -31,14 +32,23 @@ class ExaminationsSheetOverlay extends StatelessWidget {
               minChildSize: 0.15,
               builder: (context, scrollController) {
                 return Container(
-                  color: LoonoColors.bottomSheetPrevention,
+                  decoration: const BoxDecoration(
+                    color: LoonoColors.bottomSheetPrevention,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(12),
+                      topRight: Radius.circular(12),
+                    ),
+                  ),
                   child: ListView.builder(
                     controller: scrollController,
                     itemCount: examinationStatusOrdering.length,
                     itemBuilder: (context, index) {
                       final examinationStatus = examinationStatusOrdering.elementAt(index);
-                      final categorizedExaminations =
-                          categorized.where((e) => e.status == examinationStatus);
+                      final categorizedExaminations = categorized
+                          .where((e) => e.status == examinationStatus)
+                          .toList()
+                        ..sortExaminations();
+
                       return categorizedExaminations.isEmpty
                           ? Column(
                               children: [
@@ -65,13 +75,15 @@ class ExaminationsSheetOverlay extends StatelessWidget {
                                       ),
                                       Column(
                                         children: categorizedExaminations
-                                            .map(
-                                              (e) => Padding(
+                                            .mapIndexed(
+                                              (index, e) => Padding(
                                                 padding: const EdgeInsets.symmetric(vertical: 6),
                                                 child: ExaminationCard(
+                                                  index: index,
                                                   categorizedExamination: e,
-                                                  onTap: () => AutoRouter.of(context)
-                                                      .navigate(const ExaminationDetailRoute()),
+                                                  onTap: () => AutoRouter.of(context).navigate(
+                                                      ExaminationDetailRoute(
+                                                          categorizedExamination: e)),
                                                 ),
                                               ),
                                             )

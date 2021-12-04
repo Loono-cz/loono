@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/ui/widgets/loono_point.dart';
@@ -10,12 +9,14 @@ import 'package:loono/ui/widgets/loono_point.dart';
 class ExaminationCard extends StatelessWidget {
   ExaminationCard({
     Key? key,
+    required this.index,
     required this.categorizedExamination,
     required this.onTap,
   }) : super(key: key);
 
   final now = DateTime.now();
 
+  final int index;
   final CategorizedExamination categorizedExamination;
   final VoidCallback? onTap;
 
@@ -46,8 +47,8 @@ class ExaminationCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: categorizedExamination.status.when(
               scheduledSoonOrOverdue: () => _scheduledContent(isSoonOrOverdue: true),
-              never: () => _makeAppointmentContent(context, isNew: true),
-              unfinished: () => _makeAppointmentContent(context),
+              newToSchedule: () => _makeAppointmentContent(context, isNew: true),
+              unknownLastVisit: () => _makeAppointmentContent(context),
               scheduled: () => _scheduledContent(),
               waiting: () => _waitingContent(),
             ),
@@ -61,7 +62,7 @@ class ExaminationCard extends StatelessWidget {
     final nextVisitDate = categorizedExamination.examination.nextVisitDate!;
     final diffDays = _diffInDays(nextVisitDate);
     final diffText = now.isAfter(nextVisitDate)
-        ? 'byla jsi na prohlídce?'
+        ? 'byl/a jsi na prohlídce?'
         : diffDays == 0
             ? 'dnes'
             : diffDays == 1
@@ -89,12 +90,10 @@ class ExaminationCard extends StatelessWidget {
                   diffText.toUpperCase(),
                   style: LoonoFonts.cardSubtitle.copyWith(color: LoonoColors.grey),
                 ),
-              ...[
-                const SizedBox(height: 8.0),
-                dateRow(),
-                const SizedBox(height: 5.0),
-                loonoPointRow(),
-              ],
+              const SizedBox(height: 8.0),
+              dateRow(),
+              const SizedBox(height: 5.0),
+              loonoPointRow(),
             ],
           ),
         ),
@@ -114,7 +113,7 @@ class ExaminationCard extends StatelessWidget {
               Row(
                 children: [
                   _title,
-                  if (isNew) ...[
+                  if (isNew && index == 0) ...[
                     const SizedBox(width: 5),
                     SvgPicture.asset('assets/icons/prevention/make_an_appointment.svg'),
                   ],
@@ -137,9 +136,10 @@ class ExaminationCard extends StatelessWidget {
 
   List<Widget> _waitingContent() {
     final lastDateVisit = categorizedExamination.examination.lastVisitDate!;
-    final lastDateVisitDateTime = DateTime(lastDateVisit.year, lastDateVisit.month.index + 1);
-    final waitingTime = Duration(days: DAYS_IN_YEAR * categorizedExamination.examination.interval);
-    final formattedDate = DateFormat.yMMMM('cs-CZ').format(lastDateVisitDateTime.add(waitingTime));
+    final newWaitToDateTime = DateTime(
+        lastDateVisit.year + categorizedExamination.examination.interval,
+        lastDateVisit.month.index + 1);
+    final formattedDate = DateFormat.yMMMM('cs-CZ').format(newWaitToDateTime);
 
     return <Widget>[
       Expanded(

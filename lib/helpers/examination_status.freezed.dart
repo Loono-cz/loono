@@ -21,12 +21,12 @@ class _$ExaminationStatusTearOff {
     return const ScheduledSoonOrOverdueExamination();
   }
 
-  NeverExamination never() {
-    return const NeverExamination();
+  NewToScheduleExamination newToSchedule() {
+    return const NewToScheduleExamination();
   }
 
-  UnfinishedExamination unfinished() {
-    return const UnfinishedExamination();
+  UnknownLastVisitExamination unknownLastVisit() {
+    return const UnknownLastVisitExamination();
   }
 
   ScheduledExamination scheduled() {
@@ -46,8 +46,8 @@ mixin _$ExaminationStatus {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() scheduledSoonOrOverdue,
-    required TResult Function() never,
-    required TResult Function() unfinished,
+    required TResult Function() newToSchedule,
+    required TResult Function() unknownLastVisit,
     required TResult Function() scheduled,
     required TResult Function() waiting,
   }) =>
@@ -55,8 +55,8 @@ mixin _$ExaminationStatus {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? scheduledSoonOrOverdue,
-    TResult Function()? never,
-    TResult Function()? unfinished,
+    TResult Function()? newToSchedule,
+    TResult Function()? unknownLastVisit,
     TResult Function()? scheduled,
     TResult Function()? waiting,
   }) =>
@@ -64,8 +64,8 @@ mixin _$ExaminationStatus {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? scheduledSoonOrOverdue,
-    TResult Function()? never,
-    TResult Function()? unfinished,
+    TResult Function()? newToSchedule,
+    TResult Function()? unknownLastVisit,
     TResult Function()? scheduled,
     TResult Function()? waiting,
     required TResult orElse(),
@@ -75,8 +75,9 @@ mixin _$ExaminationStatus {
   TResult map<TResult extends Object?>({
     required TResult Function(ScheduledSoonOrOverdueExamination value)
         scheduledSoonOrOverdue,
-    required TResult Function(NeverExamination value) never,
-    required TResult Function(UnfinishedExamination value) unfinished,
+    required TResult Function(NewToScheduleExamination value) newToSchedule,
+    required TResult Function(UnknownLastVisitExamination value)
+        unknownLastVisit,
     required TResult Function(ScheduledExamination value) scheduled,
     required TResult Function(WaitingExamination value) waiting,
   }) =>
@@ -85,8 +86,8 @@ mixin _$ExaminationStatus {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ScheduledSoonOrOverdueExamination value)?
         scheduledSoonOrOverdue,
-    TResult Function(NeverExamination value)? never,
-    TResult Function(UnfinishedExamination value)? unfinished,
+    TResult Function(NewToScheduleExamination value)? newToSchedule,
+    TResult Function(UnknownLastVisitExamination value)? unknownLastVisit,
     TResult Function(ScheduledExamination value)? scheduled,
     TResult Function(WaitingExamination value)? waiting,
   }) =>
@@ -95,8 +96,8 @@ mixin _$ExaminationStatus {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ScheduledSoonOrOverdueExamination value)?
         scheduledSoonOrOverdue,
-    TResult Function(NeverExamination value)? never,
-    TResult Function(UnfinishedExamination value)? unfinished,
+    TResult Function(NewToScheduleExamination value)? newToSchedule,
+    TResult Function(UnknownLastVisitExamination value)? unknownLastVisit,
     TResult Function(ScheduledExamination value)? scheduled,
     TResult Function(WaitingExamination value)? waiting,
     required TResult orElse(),
@@ -167,8 +168,8 @@ class _$ScheduledSoonOrOverdueExamination
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() scheduledSoonOrOverdue,
-    required TResult Function() never,
-    required TResult Function() unfinished,
+    required TResult Function() newToSchedule,
+    required TResult Function() unknownLastVisit,
     required TResult Function() scheduled,
     required TResult Function() waiting,
   }) {
@@ -179,8 +180,8 @@ class _$ScheduledSoonOrOverdueExamination
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? scheduledSoonOrOverdue,
-    TResult Function()? never,
-    TResult Function()? unfinished,
+    TResult Function()? newToSchedule,
+    TResult Function()? unknownLastVisit,
     TResult Function()? scheduled,
     TResult Function()? waiting,
   }) {
@@ -191,8 +192,8 @@ class _$ScheduledSoonOrOverdueExamination
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? scheduledSoonOrOverdue,
-    TResult Function()? never,
-    TResult Function()? unfinished,
+    TResult Function()? newToSchedule,
+    TResult Function()? unknownLastVisit,
     TResult Function()? scheduled,
     TResult Function()? waiting,
     required TResult orElse(),
@@ -208,8 +209,9 @@ class _$ScheduledSoonOrOverdueExamination
   TResult map<TResult extends Object?>({
     required TResult Function(ScheduledSoonOrOverdueExamination value)
         scheduledSoonOrOverdue,
-    required TResult Function(NeverExamination value) never,
-    required TResult Function(UnfinishedExamination value) unfinished,
+    required TResult Function(NewToScheduleExamination value) newToSchedule,
+    required TResult Function(UnknownLastVisitExamination value)
+        unknownLastVisit,
     required TResult Function(ScheduledExamination value) scheduled,
     required TResult Function(WaitingExamination value) waiting,
   }) {
@@ -221,8 +223,8 @@ class _$ScheduledSoonOrOverdueExamination
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ScheduledSoonOrOverdueExamination value)?
         scheduledSoonOrOverdue,
-    TResult Function(NeverExamination value)? never,
-    TResult Function(UnfinishedExamination value)? unfinished,
+    TResult Function(NewToScheduleExamination value)? newToSchedule,
+    TResult Function(UnknownLastVisitExamination value)? unknownLastVisit,
     TResult Function(ScheduledExamination value)? scheduled,
     TResult Function(WaitingExamination value)? waiting,
   }) {
@@ -234,8 +236,8 @@ class _$ScheduledSoonOrOverdueExamination
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ScheduledSoonOrOverdueExamination value)?
         scheduledSoonOrOverdue,
-    TResult Function(NeverExamination value)? never,
-    TResult Function(UnfinishedExamination value)? unfinished,
+    TResult Function(NewToScheduleExamination value)? newToSchedule,
+    TResult Function(UnknownLastVisitExamination value)? unknownLastVisit,
     TResult Function(ScheduledExamination value)? scheduled,
     TResult Function(WaitingExamination value)? waiting,
     required TResult orElse(),
@@ -254,37 +256,38 @@ abstract class ScheduledSoonOrOverdueExamination extends ExaminationStatus {
 }
 
 /// @nodoc
-abstract class $NeverExaminationCopyWith<$Res> {
-  factory $NeverExaminationCopyWith(
-          NeverExamination value, $Res Function(NeverExamination) then) =
-      _$NeverExaminationCopyWithImpl<$Res>;
+abstract class $NewToScheduleExaminationCopyWith<$Res> {
+  factory $NewToScheduleExaminationCopyWith(NewToScheduleExamination value,
+          $Res Function(NewToScheduleExamination) then) =
+      _$NewToScheduleExaminationCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$NeverExaminationCopyWithImpl<$Res>
+class _$NewToScheduleExaminationCopyWithImpl<$Res>
     extends _$ExaminationStatusCopyWithImpl<$Res>
-    implements $NeverExaminationCopyWith<$Res> {
-  _$NeverExaminationCopyWithImpl(
-      NeverExamination _value, $Res Function(NeverExamination) _then)
-      : super(_value, (v) => _then(v as NeverExamination));
+    implements $NewToScheduleExaminationCopyWith<$Res> {
+  _$NewToScheduleExaminationCopyWithImpl(NewToScheduleExamination _value,
+      $Res Function(NewToScheduleExamination) _then)
+      : super(_value, (v) => _then(v as NewToScheduleExamination));
 
   @override
-  NeverExamination get _value => super._value as NeverExamination;
+  NewToScheduleExamination get _value =>
+      super._value as NewToScheduleExamination;
 }
 
 /// @nodoc
 
-class _$NeverExamination extends NeverExamination {
-  const _$NeverExamination() : super._();
+class _$NewToScheduleExamination extends NewToScheduleExamination {
+  const _$NewToScheduleExamination() : super._();
 
   @override
   String toString() {
-    return 'ExaminationStatus.never()';
+    return 'ExaminationStatus.newToSchedule()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is NeverExamination);
+    return identical(this, other) || (other is NewToScheduleExamination);
   }
 
   @override
@@ -294,38 +297,38 @@ class _$NeverExamination extends NeverExamination {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() scheduledSoonOrOverdue,
-    required TResult Function() never,
-    required TResult Function() unfinished,
+    required TResult Function() newToSchedule,
+    required TResult Function() unknownLastVisit,
     required TResult Function() scheduled,
     required TResult Function() waiting,
   }) {
-    return never();
+    return newToSchedule();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? scheduledSoonOrOverdue,
-    TResult Function()? never,
-    TResult Function()? unfinished,
+    TResult Function()? newToSchedule,
+    TResult Function()? unknownLastVisit,
     TResult Function()? scheduled,
     TResult Function()? waiting,
   }) {
-    return never?.call();
+    return newToSchedule?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? scheduledSoonOrOverdue,
-    TResult Function()? never,
-    TResult Function()? unfinished,
+    TResult Function()? newToSchedule,
+    TResult Function()? unknownLastVisit,
     TResult Function()? scheduled,
     TResult Function()? waiting,
     required TResult orElse(),
   }) {
-    if (never != null) {
-      return never();
+    if (newToSchedule != null) {
+      return newToSchedule();
     }
     return orElse();
   }
@@ -335,12 +338,13 @@ class _$NeverExamination extends NeverExamination {
   TResult map<TResult extends Object?>({
     required TResult Function(ScheduledSoonOrOverdueExamination value)
         scheduledSoonOrOverdue,
-    required TResult Function(NeverExamination value) never,
-    required TResult Function(UnfinishedExamination value) unfinished,
+    required TResult Function(NewToScheduleExamination value) newToSchedule,
+    required TResult Function(UnknownLastVisitExamination value)
+        unknownLastVisit,
     required TResult Function(ScheduledExamination value) scheduled,
     required TResult Function(WaitingExamination value) waiting,
   }) {
-    return never(this);
+    return newToSchedule(this);
   }
 
   @override
@@ -348,12 +352,12 @@ class _$NeverExamination extends NeverExamination {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ScheduledSoonOrOverdueExamination value)?
         scheduledSoonOrOverdue,
-    TResult Function(NeverExamination value)? never,
-    TResult Function(UnfinishedExamination value)? unfinished,
+    TResult Function(NewToScheduleExamination value)? newToSchedule,
+    TResult Function(UnknownLastVisitExamination value)? unknownLastVisit,
     TResult Function(ScheduledExamination value)? scheduled,
     TResult Function(WaitingExamination value)? waiting,
   }) {
-    return never?.call(this);
+    return newToSchedule?.call(this);
   }
 
   @override
@@ -361,56 +365,58 @@ class _$NeverExamination extends NeverExamination {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ScheduledSoonOrOverdueExamination value)?
         scheduledSoonOrOverdue,
-    TResult Function(NeverExamination value)? never,
-    TResult Function(UnfinishedExamination value)? unfinished,
+    TResult Function(NewToScheduleExamination value)? newToSchedule,
+    TResult Function(UnknownLastVisitExamination value)? unknownLastVisit,
     TResult Function(ScheduledExamination value)? scheduled,
     TResult Function(WaitingExamination value)? waiting,
     required TResult orElse(),
   }) {
-    if (never != null) {
-      return never(this);
+    if (newToSchedule != null) {
+      return newToSchedule(this);
     }
     return orElse();
   }
 }
 
-abstract class NeverExamination extends ExaminationStatus {
-  const factory NeverExamination() = _$NeverExamination;
-  const NeverExamination._() : super._();
+abstract class NewToScheduleExamination extends ExaminationStatus {
+  const factory NewToScheduleExamination() = _$NewToScheduleExamination;
+  const NewToScheduleExamination._() : super._();
 }
 
 /// @nodoc
-abstract class $UnfinishedExaminationCopyWith<$Res> {
-  factory $UnfinishedExaminationCopyWith(UnfinishedExamination value,
-          $Res Function(UnfinishedExamination) then) =
-      _$UnfinishedExaminationCopyWithImpl<$Res>;
+abstract class $UnknownLastVisitExaminationCopyWith<$Res> {
+  factory $UnknownLastVisitExaminationCopyWith(
+          UnknownLastVisitExamination value,
+          $Res Function(UnknownLastVisitExamination) then) =
+      _$UnknownLastVisitExaminationCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$UnfinishedExaminationCopyWithImpl<$Res>
+class _$UnknownLastVisitExaminationCopyWithImpl<$Res>
     extends _$ExaminationStatusCopyWithImpl<$Res>
-    implements $UnfinishedExaminationCopyWith<$Res> {
-  _$UnfinishedExaminationCopyWithImpl(
-      UnfinishedExamination _value, $Res Function(UnfinishedExamination) _then)
-      : super(_value, (v) => _then(v as UnfinishedExamination));
+    implements $UnknownLastVisitExaminationCopyWith<$Res> {
+  _$UnknownLastVisitExaminationCopyWithImpl(UnknownLastVisitExamination _value,
+      $Res Function(UnknownLastVisitExamination) _then)
+      : super(_value, (v) => _then(v as UnknownLastVisitExamination));
 
   @override
-  UnfinishedExamination get _value => super._value as UnfinishedExamination;
+  UnknownLastVisitExamination get _value =>
+      super._value as UnknownLastVisitExamination;
 }
 
 /// @nodoc
 
-class _$UnfinishedExamination extends UnfinishedExamination {
-  const _$UnfinishedExamination() : super._();
+class _$UnknownLastVisitExamination extends UnknownLastVisitExamination {
+  const _$UnknownLastVisitExamination() : super._();
 
   @override
   String toString() {
-    return 'ExaminationStatus.unfinished()';
+    return 'ExaminationStatus.unknownLastVisit()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is UnfinishedExamination);
+    return identical(this, other) || (other is UnknownLastVisitExamination);
   }
 
   @override
@@ -420,38 +426,38 @@ class _$UnfinishedExamination extends UnfinishedExamination {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() scheduledSoonOrOverdue,
-    required TResult Function() never,
-    required TResult Function() unfinished,
+    required TResult Function() newToSchedule,
+    required TResult Function() unknownLastVisit,
     required TResult Function() scheduled,
     required TResult Function() waiting,
   }) {
-    return unfinished();
+    return unknownLastVisit();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? scheduledSoonOrOverdue,
-    TResult Function()? never,
-    TResult Function()? unfinished,
+    TResult Function()? newToSchedule,
+    TResult Function()? unknownLastVisit,
     TResult Function()? scheduled,
     TResult Function()? waiting,
   }) {
-    return unfinished?.call();
+    return unknownLastVisit?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? scheduledSoonOrOverdue,
-    TResult Function()? never,
-    TResult Function()? unfinished,
+    TResult Function()? newToSchedule,
+    TResult Function()? unknownLastVisit,
     TResult Function()? scheduled,
     TResult Function()? waiting,
     required TResult orElse(),
   }) {
-    if (unfinished != null) {
-      return unfinished();
+    if (unknownLastVisit != null) {
+      return unknownLastVisit();
     }
     return orElse();
   }
@@ -461,12 +467,13 @@ class _$UnfinishedExamination extends UnfinishedExamination {
   TResult map<TResult extends Object?>({
     required TResult Function(ScheduledSoonOrOverdueExamination value)
         scheduledSoonOrOverdue,
-    required TResult Function(NeverExamination value) never,
-    required TResult Function(UnfinishedExamination value) unfinished,
+    required TResult Function(NewToScheduleExamination value) newToSchedule,
+    required TResult Function(UnknownLastVisitExamination value)
+        unknownLastVisit,
     required TResult Function(ScheduledExamination value) scheduled,
     required TResult Function(WaitingExamination value) waiting,
   }) {
-    return unfinished(this);
+    return unknownLastVisit(this);
   }
 
   @override
@@ -474,12 +481,12 @@ class _$UnfinishedExamination extends UnfinishedExamination {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ScheduledSoonOrOverdueExamination value)?
         scheduledSoonOrOverdue,
-    TResult Function(NeverExamination value)? never,
-    TResult Function(UnfinishedExamination value)? unfinished,
+    TResult Function(NewToScheduleExamination value)? newToSchedule,
+    TResult Function(UnknownLastVisitExamination value)? unknownLastVisit,
     TResult Function(ScheduledExamination value)? scheduled,
     TResult Function(WaitingExamination value)? waiting,
   }) {
-    return unfinished?.call(this);
+    return unknownLastVisit?.call(this);
   }
 
   @override
@@ -487,22 +494,22 @@ class _$UnfinishedExamination extends UnfinishedExamination {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ScheduledSoonOrOverdueExamination value)?
         scheduledSoonOrOverdue,
-    TResult Function(NeverExamination value)? never,
-    TResult Function(UnfinishedExamination value)? unfinished,
+    TResult Function(NewToScheduleExamination value)? newToSchedule,
+    TResult Function(UnknownLastVisitExamination value)? unknownLastVisit,
     TResult Function(ScheduledExamination value)? scheduled,
     TResult Function(WaitingExamination value)? waiting,
     required TResult orElse(),
   }) {
-    if (unfinished != null) {
-      return unfinished(this);
+    if (unknownLastVisit != null) {
+      return unknownLastVisit(this);
     }
     return orElse();
   }
 }
 
-abstract class UnfinishedExamination extends ExaminationStatus {
-  const factory UnfinishedExamination() = _$UnfinishedExamination;
-  const UnfinishedExamination._() : super._();
+abstract class UnknownLastVisitExamination extends ExaminationStatus {
+  const factory UnknownLastVisitExamination() = _$UnknownLastVisitExamination;
+  const UnknownLastVisitExamination._() : super._();
 }
 
 /// @nodoc
@@ -546,8 +553,8 @@ class _$ScheduledExamination extends ScheduledExamination {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() scheduledSoonOrOverdue,
-    required TResult Function() never,
-    required TResult Function() unfinished,
+    required TResult Function() newToSchedule,
+    required TResult Function() unknownLastVisit,
     required TResult Function() scheduled,
     required TResult Function() waiting,
   }) {
@@ -558,8 +565,8 @@ class _$ScheduledExamination extends ScheduledExamination {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? scheduledSoonOrOverdue,
-    TResult Function()? never,
-    TResult Function()? unfinished,
+    TResult Function()? newToSchedule,
+    TResult Function()? unknownLastVisit,
     TResult Function()? scheduled,
     TResult Function()? waiting,
   }) {
@@ -570,8 +577,8 @@ class _$ScheduledExamination extends ScheduledExamination {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? scheduledSoonOrOverdue,
-    TResult Function()? never,
-    TResult Function()? unfinished,
+    TResult Function()? newToSchedule,
+    TResult Function()? unknownLastVisit,
     TResult Function()? scheduled,
     TResult Function()? waiting,
     required TResult orElse(),
@@ -587,8 +594,9 @@ class _$ScheduledExamination extends ScheduledExamination {
   TResult map<TResult extends Object?>({
     required TResult Function(ScheduledSoonOrOverdueExamination value)
         scheduledSoonOrOverdue,
-    required TResult Function(NeverExamination value) never,
-    required TResult Function(UnfinishedExamination value) unfinished,
+    required TResult Function(NewToScheduleExamination value) newToSchedule,
+    required TResult Function(UnknownLastVisitExamination value)
+        unknownLastVisit,
     required TResult Function(ScheduledExamination value) scheduled,
     required TResult Function(WaitingExamination value) waiting,
   }) {
@@ -600,8 +608,8 @@ class _$ScheduledExamination extends ScheduledExamination {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ScheduledSoonOrOverdueExamination value)?
         scheduledSoonOrOverdue,
-    TResult Function(NeverExamination value)? never,
-    TResult Function(UnfinishedExamination value)? unfinished,
+    TResult Function(NewToScheduleExamination value)? newToSchedule,
+    TResult Function(UnknownLastVisitExamination value)? unknownLastVisit,
     TResult Function(ScheduledExamination value)? scheduled,
     TResult Function(WaitingExamination value)? waiting,
   }) {
@@ -613,8 +621,8 @@ class _$ScheduledExamination extends ScheduledExamination {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ScheduledSoonOrOverdueExamination value)?
         scheduledSoonOrOverdue,
-    TResult Function(NeverExamination value)? never,
-    TResult Function(UnfinishedExamination value)? unfinished,
+    TResult Function(NewToScheduleExamination value)? newToSchedule,
+    TResult Function(UnknownLastVisitExamination value)? unknownLastVisit,
     TResult Function(ScheduledExamination value)? scheduled,
     TResult Function(WaitingExamination value)? waiting,
     required TResult orElse(),
@@ -672,8 +680,8 @@ class _$WaitingExamination extends WaitingExamination {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() scheduledSoonOrOverdue,
-    required TResult Function() never,
-    required TResult Function() unfinished,
+    required TResult Function() newToSchedule,
+    required TResult Function() unknownLastVisit,
     required TResult Function() scheduled,
     required TResult Function() waiting,
   }) {
@@ -684,8 +692,8 @@ class _$WaitingExamination extends WaitingExamination {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? scheduledSoonOrOverdue,
-    TResult Function()? never,
-    TResult Function()? unfinished,
+    TResult Function()? newToSchedule,
+    TResult Function()? unknownLastVisit,
     TResult Function()? scheduled,
     TResult Function()? waiting,
   }) {
@@ -696,8 +704,8 @@ class _$WaitingExamination extends WaitingExamination {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? scheduledSoonOrOverdue,
-    TResult Function()? never,
-    TResult Function()? unfinished,
+    TResult Function()? newToSchedule,
+    TResult Function()? unknownLastVisit,
     TResult Function()? scheduled,
     TResult Function()? waiting,
     required TResult orElse(),
@@ -713,8 +721,9 @@ class _$WaitingExamination extends WaitingExamination {
   TResult map<TResult extends Object?>({
     required TResult Function(ScheduledSoonOrOverdueExamination value)
         scheduledSoonOrOverdue,
-    required TResult Function(NeverExamination value) never,
-    required TResult Function(UnfinishedExamination value) unfinished,
+    required TResult Function(NewToScheduleExamination value) newToSchedule,
+    required TResult Function(UnknownLastVisitExamination value)
+        unknownLastVisit,
     required TResult Function(ScheduledExamination value) scheduled,
     required TResult Function(WaitingExamination value) waiting,
   }) {
@@ -726,8 +735,8 @@ class _$WaitingExamination extends WaitingExamination {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ScheduledSoonOrOverdueExamination value)?
         scheduledSoonOrOverdue,
-    TResult Function(NeverExamination value)? never,
-    TResult Function(UnfinishedExamination value)? unfinished,
+    TResult Function(NewToScheduleExamination value)? newToSchedule,
+    TResult Function(UnknownLastVisitExamination value)? unknownLastVisit,
     TResult Function(ScheduledExamination value)? scheduled,
     TResult Function(WaitingExamination value)? waiting,
   }) {
@@ -739,8 +748,8 @@ class _$WaitingExamination extends WaitingExamination {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ScheduledSoonOrOverdueExamination value)?
         scheduledSoonOrOverdue,
-    TResult Function(NeverExamination value)? never,
-    TResult Function(UnfinishedExamination value)? unfinished,
+    TResult Function(NewToScheduleExamination value)? newToSchedule,
+    TResult Function(UnknownLastVisitExamination value)? unknownLastVisit,
     TResult Function(ScheduledExamination value)? scheduled,
     TResult Function(WaitingExamination value)? waiting,
     required TResult orElse(),

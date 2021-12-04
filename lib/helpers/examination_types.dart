@@ -4,14 +4,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'examination_types.freezed.dart';
 
-const onboardingExaminations = <ExaminationType>[
-  ExaminationType.GENERAL_PRACTITIONER,
-  ExaminationType.GYNECOLOGIST,
-  ExaminationType.DENTIST,
-  ExaminationType.OPHTHALMOLOGIST,
-  ExaminationType.DERMATOLOGIST,
-];
-
 enum ExaminationType {
   BREAST_SELF,
   COLONOSCOPY,

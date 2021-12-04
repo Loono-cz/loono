@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:loono/models/categorized_examination.dart';
 
 class ExaminationDetailScreen extends StatelessWidget {
-  const ExaminationDetailScreen({Key? key}) : super(key: key);
+  const ExaminationDetailScreen({
+    Key? key,
+    required this.categorizedExamination,
+  }) : super(key: key);
+
+  final CategorizedExamination categorizedExamination;
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +16,7 @@ class ExaminationDetailScreen extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Text(
-            'Examination detail',
+            'Examination detail:\n${categorizedExamination.toString()}',
           ),
         ),
       ),
