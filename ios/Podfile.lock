@@ -6,6 +6,14 @@ PODS:
   - AppAuth/ExternalUserAgent (1.4.0)
   - device_info (0.0.1):
     - Flutter
+  - FBAEMKit (12.0.2):
+    - FBSDKCoreKit_Basics (= 12.0.2)
+  - FBSDKCoreKit (12.0.2):
+    - FBAEMKit (= 12.0.2)
+    - FBSDKCoreKit_Basics (= 12.0.2)
+  - FBSDKCoreKit_Basics (12.0.2)
+  - FBSDKLoginKit (12.0.2):
+    - FBSDKCoreKit (= 12.0.2)
   - Firebase/Auth (8.7.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 8.7.0)
@@ -53,6 +61,10 @@ PODS:
     - PromisesObjC (< 3.0, >= 1.2)
   - Flutter (1.0.0)
   - flutter_config (0.0.1):
+    - Flutter
+  - flutter_facebook_auth (3.5.3):
+    - FBSDKCoreKit (~> 12.0.2)
+    - FBSDKLoginKit (~> 12.0.2)
     - Flutter
   - FMDB/SQLCipher (2.7.5):
     - SQLCipher
@@ -139,6 +151,7 @@ DEPENDENCIES:
   - firebase_crashlytics (from `.symlinks/plugins/firebase_crashlytics/ios`)
   - Flutter (from `Flutter`)
   - flutter_config (from `.symlinks/plugins/flutter_config/ios`)
+  - flutter_facebook_auth (from `.symlinks/plugins/flutter_facebook_auth/ios`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
   - google_maps_flutter (from `.symlinks/plugins/google_maps_flutter/ios`)
   - google_sign_in (from `.symlinks/plugins/google_sign_in/ios`)
@@ -156,6 +169,10 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AppAuth
+    - FBAEMKit
+    - FBSDKCoreKit
+    - FBSDKCoreKit_Basics
+    - FBSDKLoginKit
     - Firebase
     - FirebaseAuth
     - FirebaseCore
@@ -187,6 +204,8 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_config:
     :path: ".symlinks/plugins/flutter_config/ios"
+  flutter_facebook_auth:
+    :path: ".symlinks/plugins/flutter_facebook_auth/ios"
   geolocator_apple:
     :path: ".symlinks/plugins/geolocator_apple/ios"
   google_maps_flutter:
@@ -215,6 +234,10 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
   device_info: d7d233b645a32c40dfdc212de5cf646ca482f175
+  FBAEMKit: c6b8ddf8371640fcd1a3b844d0f8884c8f334cea
+  FBSDKCoreKit: 506c0fd1c09a3075f62be8fa36bdd921c563daa9
+  FBSDKCoreKit_Basics: c0701d1634c944d60dd3c6361d66dbd0e707a456
+  FBSDKLoginKit: d7c9f6ddff20d7b04c94d1f1f065dc7a441d44a0
   Firebase: bc9325d5ee2041524bac78a5213d0e530c651309
   firebase_auth: 3193124aa14a62b8abec3fd069df73ef378d2c5b
   firebase_core: f5ac1f2726a2bd0468cea0161eddeea3d83d7e3e
@@ -226,6 +249,7 @@ SPEC CHECKSUMS:
   FirebaseInstallations: 2563cb18a723ef9c6ef18318a49519b75dce613c
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   flutter_config: 2226c1df19c78fe34a05eb7f1363445f18e76fc1
+  flutter_facebook_auth: 5638a1a8cc23016ec6f72945ba879f4482870c69
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   geolocator_apple: b741765c55dc21950e3e106e8b3584e55cf81ce5
   google_maps_flutter: abdb8dee6c52d4be36ad131ee6ebfacd14417c5a

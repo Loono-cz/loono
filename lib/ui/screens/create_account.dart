@@ -125,6 +125,18 @@ class CreateAccountScreen extends StatelessWidget {
                                 );
                               },
                             ),
+                            const SizedBox(height: 15),
+                            SocialLoginButton.facebook(
+                              onPressed: () async {
+                                final authUserResult = await _authService.signInWithFacebook();
+                                authUserResult.fold(
+                                  (failure) => showSnackBarError(context,
+                                      message: failure.getMessage(context)),
+                                  (authUser) => AutoRouter.of(context)
+                                      .push(NicknameRoute(authUser: authUser)),
+                                );
+                              },
+                            ),
                           ],
                         ),
                       ),
