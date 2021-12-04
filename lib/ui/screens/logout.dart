@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
@@ -31,6 +32,9 @@ class _LogoutScreenState extends State<LogoutScreen> {
 
     _authService.signOut();
     _usersDao.deleteAll();
+
+    // clears saved user avatar and other app's temp data
+    registry.get<DefaultCacheManager>().emptyCache();
     // TODO: Calling this after adding the firebase_messaging package in order to delete a fcm token
     // FirebaseMessaging.instance.deleteToken()
   }
@@ -81,7 +85,8 @@ class _LogoutScreenState extends State<LogoutScreen> {
                           confirmationButtonLabel: context.l10n.ok_action,
                           content: context.l10n.create_account_anonymous_login_connection_error,
                         ),
-                        orElse: () => showSnackBarError(context, message: failure.getMessage(context)),
+                        orElse: () =>
+                            showSnackBarError(context, message: failure.getMessage(context)),
                       );
                     },
                     (authUser) => AutoRouter.of(context).push(NicknameRoute()),

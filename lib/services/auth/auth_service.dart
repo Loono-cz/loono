@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:loono/models/firebase_user.dart';
 import 'package:loono/services/auth/failures.dart';
@@ -12,7 +13,14 @@ class AuthService {
 
   final _googleSignIn = GoogleSignIn();
 
+  final _facebookSignIn = FacebookAuth.instance;
+
   Future<AuthUser?> getCurrentUser() async => _authUserFromFirebase(_auth.currentUser);
+
+  Future<String?> get userUid async {
+    final user = await getCurrentUser();
+    return user?.uid;
+  }
 
   Stream<AuthUser?> get onAuthStateChanged =>
       _auth.authStateChanges().map((firebaseUser) => _authUserFromFirebase(firebaseUser));
@@ -84,8 +92,72 @@ class AuthService {
     return authResult;
   }
 
+  Future<Either<AuthFailure, AuthUser>> checkFacebookAccountExistsAndSignIn() async {
+    LoginResult facebookLogin;
+    try {
+      facebookLogin = await _facebookSignIn.login(permissions: ['email']);
+    } on PlatformException catch (e) {
+      if (e.code == 'network_error') return const Left(AuthFailure.network());
+      return const Left(AuthFailure.unknown());
+    } catch (_) {
+      return const Left(AuthFailure.unknown());
+    }
+
+    // if facebookUser login status not successful, signIn was interrupted/cancelled
+    if (facebookLogin.status != LoginStatus.success) {
+      return const Left(AuthFailure.noMessage());
+    }
+    // fetch FB user email and details
+    final facebookUser = await _facebookSignIn.getUserData();
+    final email = facebookUser.entries.firstWhere((element) => element.key == 'email').value;
+
+    if (email == null) {
+      // email not found - to debug: check if FB account has an email address
+      // https://github.com/darwin-morocho/flutter-facebook-auth/issues/45
+      return const Left(AuthFailure.noMessage());
+    }
+
+    final signInMethods = await _auth.fetchSignInMethodsForEmail(email.toString());
+    if (signInMethods.isEmpty) {
+      await _facebookSignIn.logOut();
+      return Left(AuthFailure.accountNotExists(email.toString()));
+    }
+
+    // account exists, sign in
+    final authResult = await signInWithFacebook(facebookLogin);
+    return authResult;
+  }
+
+  Future<Either<AuthFailure, AuthUser>> signInWithFacebook([LoginResult? loginData]) async {
+    OAuthCredential? facebookAuthCredential;
+    if (loginData == null) {
+      try {
+        // Trigger the sign-in flow
+        final LoginResult facebookLogin = await _facebookSignIn.login(permissions: ['email']);
+
+        // Create a credential from the access token
+        facebookAuthCredential = FacebookAuthProvider.credential(facebookLogin.accessToken!.token);
+      } on PlatformException catch (e) {
+        if (e.code == 'network_error') return const Left(AuthFailure.network());
+        return const Left(AuthFailure.unknown());
+      } catch (_) {
+        return const Left(AuthFailure.unknown());
+      }
+    } else {
+      // Create a credential from passed access token
+      facebookAuthCredential = FacebookAuthProvider.credential(loginData.accessToken!.token);
+    }
+
+    UserCredential userCredential;
+    try {
+      userCredential = await _auth.signInWithCredential(facebookAuthCredential);
+      return Right(_authUserFromFirebase(userCredential.user)!);
+    } catch (_) {
+      return const Left(AuthFailure.unknown());
+    }
+  }
+
   Future<Either<AuthFailure, AuthUser>> signInWithGoogle() async {
-    // TODO: better error handling
     GoogleSignInAccount? googleUser;
     try {
       googleUser = await _googleSignIn.signIn();
@@ -117,7 +189,6 @@ class AuthService {
   }
 
   Future<Either<AuthFailure, AuthUser>> signInWithApple([String? idToken]) async {
-    // TODO: better error handling
     // To prevent replay attacks with the credential returned from Apple, we
     // include a nonce in the credential request. When signing in with
     // Firebase, the nonce in the id token returned by Apple, is expected to
@@ -178,5 +249,6 @@ class AuthService {
   Future<void> signOut() async {
     await _auth.signOut();
     await _googleSignIn.signOut();
+    await _facebookSignIn.logOut();
   }
 }

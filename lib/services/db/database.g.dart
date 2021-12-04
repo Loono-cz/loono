@@ -19,6 +19,7 @@ class User extends DataClass implements Insertable<User> {
   final String? dentistVisitDateRaw;
   final String? nickname;
   final String? email;
+  final String? profileImageUrl;
   final DateTime? mapDateUpdated;
   final String? achievementCollectionRaw;
   User(
@@ -33,6 +34,7 @@ class User extends DataClass implements Insertable<User> {
       this.dentistVisitDateRaw,
       this.nickname,
       this.email,
+      this.profileImageUrl,
       this.mapDateUpdated,
       this.achievementCollectionRaw});
   factory User.fromData(Map<String, dynamic> data, GeneratedDatabase db,
@@ -62,6 +64,8 @@ class User extends DataClass implements Insertable<User> {
           .mapFromDatabaseResponse(data['${effectivePrefix}nickname']),
       email: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}email']),
+      profileImageUrl: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}profile_image_url']),
       mapDateUpdated: const DateTimeType()
           .mapFromDatabaseResponse(data['${effectivePrefix}map_date_updated']),
       achievementCollectionRaw: const StringType().mapFromDatabaseResponse(
@@ -104,6 +108,9 @@ class User extends DataClass implements Insertable<User> {
     }
     if (!nullToAbsent || email != null) {
       map['email'] = Variable<String?>(email);
+    }
+    if (!nullToAbsent || profileImageUrl != null) {
+      map['profile_image_url'] = Variable<String?>(profileImageUrl);
     }
     if (!nullToAbsent || mapDateUpdated != null) {
       map['map_date_updated'] = Variable<DateTime?>(mapDateUpdated);
@@ -148,6 +155,9 @@ class User extends DataClass implements Insertable<User> {
           : Value(nickname),
       email:
           email == null && nullToAbsent ? const Value.absent() : Value(email),
+      profileImageUrl: profileImageUrl == null && nullToAbsent
+          ? const Value.absent()
+          : Value(profileImageUrl),
       mapDateUpdated: mapDateUpdated == null && nullToAbsent
           ? const Value.absent()
           : Value(mapDateUpdated),
@@ -177,6 +187,7 @@ class User extends DataClass implements Insertable<User> {
           serializer.fromJson<String?>(json['dentistVisitDateRaw']),
       nickname: serializer.fromJson<String?>(json['nickname']),
       email: serializer.fromJson<String?>(json['email']),
+      profileImageUrl: serializer.fromJson<String?>(json['profileImageUrl']),
       mapDateUpdated: serializer.fromJson<DateTime?>(json['mapDateUpdated']),
       achievementCollectionRaw:
           serializer.fromJson<String?>(json['achievementCollectionRaw']),
@@ -200,6 +211,7 @@ class User extends DataClass implements Insertable<User> {
       'dentistVisitDateRaw': serializer.toJson<String?>(dentistVisitDateRaw),
       'nickname': serializer.toJson<String?>(nickname),
       'email': serializer.toJson<String?>(email),
+      'profileImageUrl': serializer.toJson<String?>(profileImageUrl),
       'mapDateUpdated': serializer.toJson<DateTime?>(mapDateUpdated),
       'achievementCollectionRaw':
           serializer.toJson<String?>(achievementCollectionRaw),
@@ -218,6 +230,7 @@ class User extends DataClass implements Insertable<User> {
           String? dentistVisitDateRaw,
           String? nickname,
           String? email,
+          String? profileImageUrl,
           DateTime? mapDateUpdated,
           String? achievementCollectionRaw}) =>
       User(
@@ -236,6 +249,7 @@ class User extends DataClass implements Insertable<User> {
         dentistVisitDateRaw: dentistVisitDateRaw ?? this.dentistVisitDateRaw,
         nickname: nickname ?? this.nickname,
         email: email ?? this.email,
+        profileImageUrl: profileImageUrl ?? this.profileImageUrl,
         mapDateUpdated: mapDateUpdated ?? this.mapDateUpdated,
         achievementCollectionRaw:
             achievementCollectionRaw ?? this.achievementCollectionRaw,
@@ -256,6 +270,7 @@ class User extends DataClass implements Insertable<User> {
           ..write('dentistVisitDateRaw: $dentistVisitDateRaw, ')
           ..write('nickname: $nickname, ')
           ..write('email: $email, ')
+          ..write('profileImageUrl: $profileImageUrl, ')
           ..write('mapDateUpdated: $mapDateUpdated, ')
           ..write('achievementCollectionRaw: $achievementCollectionRaw')
           ..write(')'))
@@ -286,9 +301,11 @@ class User extends DataClass implements Insertable<User> {
                                           $mrjc(
                                               email.hashCode,
                                               $mrjc(
-                                                  mapDateUpdated.hashCode,
-                                                  achievementCollectionRaw
-                                                      .hashCode)))))))))))));
+                                                  profileImageUrl.hashCode,
+                                                  $mrjc(
+                                                      mapDateUpdated.hashCode,
+                                                      achievementCollectionRaw
+                                                          .hashCode))))))))))))));
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -306,6 +323,7 @@ class User extends DataClass implements Insertable<User> {
           other.dentistVisitDateRaw == this.dentistVisitDateRaw &&
           other.nickname == this.nickname &&
           other.email == this.email &&
+          other.profileImageUrl == this.profileImageUrl &&
           other.mapDateUpdated == this.mapDateUpdated &&
           other.achievementCollectionRaw == this.achievementCollectionRaw);
 }
@@ -322,6 +340,7 @@ class UsersCompanion extends UpdateCompanion<User> {
   final Value<String?> dentistVisitDateRaw;
   final Value<String?> nickname;
   final Value<String?> email;
+  final Value<String?> profileImageUrl;
   final Value<DateTime?> mapDateUpdated;
   final Value<String?> achievementCollectionRaw;
   const UsersCompanion({
@@ -336,6 +355,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     this.dentistVisitDateRaw = const Value.absent(),
     this.nickname = const Value.absent(),
     this.email = const Value.absent(),
+    this.profileImageUrl = const Value.absent(),
     this.mapDateUpdated = const Value.absent(),
     this.achievementCollectionRaw = const Value.absent(),
   });
@@ -351,6 +371,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     this.dentistVisitDateRaw = const Value.absent(),
     this.nickname = const Value.absent(),
     this.email = const Value.absent(),
+    this.profileImageUrl = const Value.absent(),
     this.mapDateUpdated = const Value.absent(),
     this.achievementCollectionRaw = const Value.absent(),
   }) : id = Value(id);
@@ -366,6 +387,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     Expression<String?>? dentistVisitDateRaw,
     Expression<String?>? nickname,
     Expression<String?>? email,
+    Expression<String?>? profileImageUrl,
     Expression<DateTime?>? mapDateUpdated,
     Expression<String?>? achievementCollectionRaw,
   }) {
@@ -387,6 +409,7 @@ class UsersCompanion extends UpdateCompanion<User> {
         'dentist_visit_date_raw': dentistVisitDateRaw,
       if (nickname != null) 'nickname': nickname,
       if (email != null) 'email': email,
+      if (profileImageUrl != null) 'profile_image_url': profileImageUrl,
       if (mapDateUpdated != null) 'map_date_updated': mapDateUpdated,
       if (achievementCollectionRaw != null)
         'achievement_collection_raw': achievementCollectionRaw,
@@ -405,6 +428,7 @@ class UsersCompanion extends UpdateCompanion<User> {
       Value<String?>? dentistVisitDateRaw,
       Value<String?>? nickname,
       Value<String?>? email,
+      Value<String?>? profileImageUrl,
       Value<DateTime?>? mapDateUpdated,
       Value<String?>? achievementCollectionRaw}) {
     return UsersCompanion(
@@ -423,6 +447,7 @@ class UsersCompanion extends UpdateCompanion<User> {
       dentistVisitDateRaw: dentistVisitDateRaw ?? this.dentistVisitDateRaw,
       nickname: nickname ?? this.nickname,
       email: email ?? this.email,
+      profileImageUrl: profileImageUrl ?? this.profileImageUrl,
       mapDateUpdated: mapDateUpdated ?? this.mapDateUpdated,
       achievementCollectionRaw:
           achievementCollectionRaw ?? this.achievementCollectionRaw,
@@ -470,6 +495,9 @@ class UsersCompanion extends UpdateCompanion<User> {
     if (email.present) {
       map['email'] = Variable<String?>(email.value);
     }
+    if (profileImageUrl.present) {
+      map['profile_image_url'] = Variable<String?>(profileImageUrl.value);
+    }
     if (mapDateUpdated.present) {
       map['map_date_updated'] = Variable<DateTime?>(mapDateUpdated.value);
     }
@@ -496,6 +524,7 @@ class UsersCompanion extends UpdateCompanion<User> {
           ..write('dentistVisitDateRaw: $dentistVisitDateRaw, ')
           ..write('nickname: $nickname, ')
           ..write('email: $email, ')
+          ..write('profileImageUrl: $profileImageUrl, ')
           ..write('mapDateUpdated: $mapDateUpdated, ')
           ..write('achievementCollectionRaw: $achievementCollectionRaw')
           ..write(')'))
@@ -560,6 +589,11 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   late final GeneratedColumn<String?> email = GeneratedColumn<String?>(
       'email', aliasedName, true,
       typeName: 'TEXT', requiredDuringInsert: false);
+  final VerificationMeta _profileImageUrlMeta =
+      const VerificationMeta('profileImageUrl');
+  late final GeneratedColumn<String?> profileImageUrl =
+      GeneratedColumn<String?>('profile_image_url', aliasedName, true,
+          typeName: 'TEXT', requiredDuringInsert: false);
   final VerificationMeta _mapDateUpdatedMeta =
       const VerificationMeta('mapDateUpdated');
   late final GeneratedColumn<DateTime?> mapDateUpdated =
@@ -583,6 +617,7 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
         dentistVisitDateRaw,
         nickname,
         email,
+        profileImageUrl,
         mapDateUpdated,
         achievementCollectionRaw
       ];
@@ -655,6 +690,12 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
     if (data.containsKey('email')) {
       context.handle(
           _emailMeta, email.isAcceptableOrUnknown(data['email']!, _emailMeta));
+    }
+    if (data.containsKey('profile_image_url')) {
+      context.handle(
+          _profileImageUrlMeta,
+          profileImageUrl.isAcceptableOrUnknown(
+              data['profile_image_url']!, _profileImageUrlMeta));
     }
     if (data.containsKey('map_date_updated')) {
       context.handle(

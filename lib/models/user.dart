@@ -31,6 +31,7 @@ class Users extends Table {
 
   TextColumn get nickname => text().nullable()();
   TextColumn get email => text().nullable()();
+  TextColumn get profileImageUrl => text().nullable()();
 
   DateTimeColumn get mapDateUpdated => dateTime().nullable()();
 
@@ -109,6 +110,10 @@ class UsersDao extends DatabaseAccessor<AppDatabase> with _$UsersDaoMixin {
 
   Future<void> updateNickname(String nickname) async {
     await updateCurrentUser(UsersCompanion(nickname: Value(nickname)));
+  }
+
+  Future<void> updateProfileImageUrl(String? url) async {
+    await updateCurrentUser(UsersCompanion(profileImageUrl: Value(url)));
   }
 
   Future<void> updateEmail(String email) async {

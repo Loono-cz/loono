@@ -32,7 +32,7 @@ class OpenSettingsScreen extends StatelessWidget {
 
                 return Column(
                   children: [
-                    const LoonoAvatar(radius: 60.0),
+                    LoonoAvatar(radius: 60.0),
                     const SizedBox(height: 24.0),
                     if (userNickname != null)
                       Column(

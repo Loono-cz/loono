@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/auth/failures.dart';
@@ -14,6 +15,7 @@ class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
 
   final _authService = registry.get<AuthService>();
+  final _userRepository = registry.get<UserRepository>();
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,10 @@ class LoginScreen extends StatelessWidget {
                   final accountExistsResult = await _authService.checkAppleAccountExistsAndSignIn();
                   accountExistsResult.fold(
                     (failure) => showSnackBarError(context, message: failure.getMessage(context)),
-                    (authUser) => AutoRouter.of(context).push(const MainScreenRouter()),
+                    (authUser) async {
+                      await _userRepository.createUser();
+                      AutoRouter.of(context).push(const MainScreenRouter());
+                    },
                   );
                 },
               ),
@@ -58,6 +63,23 @@ class LoginScreen extends StatelessWidget {
                 onPressed: () async {
                   final accountExistsResult =
                       await _authService.checkGoogleAccountExistsAndSignIn();
+                  accountExistsResult.fold(
+                    (failure) => showSnackBarError(context, message: failure.getMessage(context)),
+                    (authUser) async {
+                      await _userRepository.createUser();
+                      AutoRouter.of(context).push(const MainScreenRouter());
+                    },
+                  );
+                },
+              ),
+            ),
+            const SizedBox(height: 20.0),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18.0),
+              child: SocialLoginButton.facebook(
+                onPressed: () async {
+                  final accountExistsResult =
+                      await _authService.checkFacebookAccountExistsAndSignIn();
                   accountExistsResult.fold(
                     (failure) => showSnackBarError(context, message: failure.getMessage(context)),
                     (authUser) => AutoRouter.of(context).push(const MainScreenRouter()),

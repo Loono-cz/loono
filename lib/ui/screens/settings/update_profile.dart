@@ -79,7 +79,7 @@ class UpdateProfileScreen extends StatelessWidget {
                           context.l10n.photo_header,
                           style: const TextStyle(fontSize: 12, color: Colors.black),
                         ),
-                        const LoonoAvatar(),
+                        LoonoAvatar(),
                         TextButton(
                           onPressed: () => AutoRouter.of(context).push(EditPhotoRoute()),
                           child: Text(
