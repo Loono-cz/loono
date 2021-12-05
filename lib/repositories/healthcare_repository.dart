@@ -39,6 +39,7 @@ class HealthcareProviderRepository {
     if (localLatestUpdate == null ||
         (serverLatestUpdateDate != null &&
             serverFormat.parse(serverLatestUpdateDate).isAfter(localLatestUpdate))) {
+      debugPrint('UPDATING MAPS...');
       final BuiltList<SimpleHealthcareProvider>? list = await _getAllHealthcareProvidersData();
       if (list == null) return Future.error('Could not fetch the data');
       await _db.healthcareProviders.updateAllData(list);
@@ -46,7 +47,7 @@ class HealthcareProviderRepository {
           ? DateTime.now()
           : serverFormat.parse(serverLatestUpdateDate));
     } else {
-      // maps are up to date
+      debugPrint('MAPS ARE UP TO DATE');
     }
     return _db.healthcareProviders.getAll();
   }

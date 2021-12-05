@@ -18,10 +18,9 @@ class FindDoctorScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: FutureBuilder<List<HealthcareProvider>>(
-          // TODO: Update only if outdated or it is first time fetch
           future: _healthcareProviderRepository.checkAndUpdate(),
           builder: (context, snapshot) {
-            debugPrint(snapshot.data.toString());
+            debugPrint(snapshot.data?.length.toString() ?? '');
             if (snapshot.hasData && snapshot.connectionState == ConnectionState.done) {
               return ChangeNotifierProvider<MapStateService>(
                 create: (_) => MapStateService()..addAll(snapshot.data!),

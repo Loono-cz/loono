@@ -48,7 +48,7 @@ class _MapPreviewState extends State<MapPreview> {
           },
           infoWindow: InfoWindow(
             title: 'institutionId: ${healthcareProvider.institutionId}',
-            snippet: 'title: ${healthcareProvider.title}',
+            snippet: '${healthcareProvider.title} (${healthcareProvider.specialization})',
             onTap: () {
               //
             },
