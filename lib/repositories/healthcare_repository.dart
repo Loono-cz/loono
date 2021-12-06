@@ -4,7 +4,6 @@ import 'package:archive/archive.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:loono/helpers/healthcare_provider_type_converters.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
@@ -18,7 +17,15 @@ class HealthcareProviderRepository {
 
   final DatabaseService _db;
 
-  final _api = LoonoApi();
+  final _api = LoonoApi(
+    dio: Dio(
+      BaseOptions(
+        baseUrl: LoonoApi.basePath,
+        connectTimeout: 5000,
+        receiveTimeout: 20000,
+      ),
+    ),
+  );
 
   /// Updates [HealthcareProviders] with new [SimpleHealthcareProvider] data if the current local
   /// data are not up to date or not fetched yet.
@@ -30,22 +37,18 @@ class HealthcareProviderRepository {
     } catch (e) {
       debugPrint(e.toString());
     }
-    final serverLatestUpdateDate = serverLatestUpdateResponse?.data?.lastUpdate;
-    final serverFormat = DateFormat('yyyy-M-d');
+    final serverLatestUpdate = serverLatestUpdateResponse?.data?.lastUpdate.toDateTime();
 
     // server data are updated on the 2nd day of each month
     // update if outdated or data missing
-    debugPrint('LOCAL LATEST: $localLatestUpdate\nSERVER LATEST: $serverLatestUpdateDate');
+    debugPrint('LOCAL LATEST: $localLatestUpdate\nSERVER LATEST: $serverLatestUpdate');
     if (localLatestUpdate == null ||
-        (serverLatestUpdateDate != null &&
-            serverFormat.parse(serverLatestUpdateDate).isAfter(localLatestUpdate))) {
+        (serverLatestUpdate != null && serverLatestUpdate.isAfter(localLatestUpdate))) {
       debugPrint('UPDATING MAPS...');
       final BuiltList<SimpleHealthcareProvider>? list = await _getAllHealthcareProvidersData();
       if (list == null) return Future.error('Could not fetch the data');
       await _db.healthcareProviders.updateAllData(list);
-      await _db.users.updateMapDateUpdated(serverLatestUpdateDate == null
-          ? DateTime.now()
-          : serverFormat.parse(serverLatestUpdateDate));
+      await _db.users.updateMapDateUpdated(serverLatestUpdate ?? Date.now().toDateTime());
     } else {
       debugPrint('MAPS ARE UP TO DATE');
     }

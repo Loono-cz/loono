@@ -678,8 +678,8 @@ packages:
     dependency: "direct main"
     description:
       path: dart
-      ref: "2c16bad0d059766a2cb96257a446d71a804e2744"
-      resolved-ref: "2c16bad0d059766a2cb96257a446d71a804e2744"
+      ref: "2cf908ba0e7ea52486ee6e82de0607764d92fee5"
+      resolved-ref: "2cf908ba0e7ea52486ee6e82de0607764d92fee5"
       url: "https://github.com/mzdm/loono-api.git"
     source: git
     version: "1.0.0"
