@@ -41,6 +41,7 @@ dependencies:
   freezed_annotation: ^0.14.2
   geolocator: ^7.7.1
   get_it: ^7.2.0
+  google_maps_cluster_manager: ^3.0.0+1
   google_maps_flutter: ^2.1.0
   google_sign_in: ^5.1.1
 

@@ -9,6 +9,8 @@ class MapStateService with ChangeNotifier {
 
   LatLngBounds? visibleRegion;
 
+  List<HealthcareProvider> get allHealthcareProviders => _allHealthcareProviders;
+
   List<HealthcareProvider> get healthcareProviders => _visibleHealthcareProviders;
 
   void _applyFilter() {

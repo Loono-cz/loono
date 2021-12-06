@@ -1,11 +1,13 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_cluster_manager/google_maps_cluster_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:loono/helpers/map_variables.dart';
-import 'package:loono/services/db/database.dart';
+import 'package:loono/models/healthcare_item_place.dart';
 import 'package:loono/services/map_state_sevice.dart';
+import 'package:loono/utils/map_utils.dart';
 import 'package:provider/provider.dart';
 
 class MapPreview extends StatefulWidget {
@@ -19,45 +21,66 @@ class _MapPreviewState extends State<MapPreview> {
   final _mapController = Completer<GoogleMapController>();
 
   late final MapStateService mapStateService;
+  late ClusterManager clusterManager;
+  Set<Marker> markers = Set();
 
   @override
   void initState() {
     super.initState();
     mapStateService = context.read<MapStateService>();
+    clusterManager = _initClusterManager();
   }
+
+  ClusterManager _initClusterManager() => ClusterManager<HealthcareItemPlace>(
+        <HealthcareItemPlace>[],
+        _updateMarkers,
+        markerBuilder: _markerBuilder,
+      );
 
   static const _initialCameraPos = CameraPosition(
     target: MapVariables.INITIAL_COORDS,
     zoom: MapVariables.DEFAULT_ZOOM,
   );
 
+  void _updateMarkers(Set<Marker> markers) {
+    setState(() {
+      this.markers
+        ..clear()
+        ..addAll(markers);
+    });
+  }
+
   Future<void> _animateToPos(CameraPosition cameraPosition) async {
     final GoogleMapController controller = await _mapController.future;
     await controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
   }
 
-  Set<Marker> _createMarkers({required List<HealthcareProvider> healthcareProviders}) {
-    final markers = <Marker>{};
-    for (final healthcareProvider in healthcareProviders) {
-      markers.add(
-        Marker(
-          markerId: MarkerId(healthcareProvider.institutionId.toString()),
-          position: LatLng(healthcareProvider.lat, healthcareProvider.lng),
+  Future<Marker> Function(Cluster<HealthcareItemPlace>) get _markerBuilder => (cluster) async {
+        final icon = await getMarkerBitmap(
+          cluster.isMultiple ? 125 : 75,
+          text: cluster.isMultiple ? cluster.count.toString() : null,
+        );
+
+        return Marker(
+          markerId: MarkerId(cluster.getId()),
+          position: cluster.location,
           onTap: () {
             //
           },
-          infoWindow: InfoWindow(
-            title: 'institutionId: ${healthcareProvider.institutionId}',
-            snippet: '${healthcareProvider.title} (${healthcareProvider.specialization})',
-            onTap: () {
-              //
-            },
-          ),
-        ),
-      );
-    }
-    return markers;
-  }
+          infoWindow: cluster.isMultiple
+              ? InfoWindow.noText
+              : InfoWindow(
+                  title:
+                      'institutionId: ${cluster.items.firstOrNull?.healthcareProvider.institutionId}',
+                  snippet:
+                      '${cluster.items.firstOrNull?.healthcareProvider.title} (${cluster.items.firstOrNull?.healthcareProvider.specialization})',
+                  onTap: () {
+                    //
+                  },
+                ),
+          icon: icon ?? BitmapDescriptor.defaultMarker,
+        );
+      };
 
   @override
   Widget build(BuildContext context) {
@@ -73,13 +96,19 @@ class _MapPreviewState extends State<MapPreview> {
               _mapController.complete(controller);
               final latLngBounds = await controller.getVisibleRegion();
               mapStateService.setVisibleRegion(latLngBounds);
+              clusterManager
+                ..setMapId(controller.mapId)
+                ..setItems(
+                    value.allHealthcareProviders.map((e) => HealthcareItemPlace(e)).toList());
             },
+            onCameraMove: clusterManager.onCameraMove,
             onCameraIdle: () async {
               final GoogleMapController controller = await _mapController.future;
               final latLngBounds = await controller.getVisibleRegion();
               mapStateService.setVisibleRegion(latLngBounds);
+              clusterManager.updateMap();
             },
-            markers: _createMarkers(healthcareProviders: value.healthcareProviders),
+            markers: markers,
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
           floatingActionButton: Padding(
@@ -87,7 +116,7 @@ class _MapPreviewState extends State<MapPreview> {
                 EdgeInsets.fromLTRB(10.0, 10.0, 10.0, MediaQuery.of(context).size.height * 0.5),
             child: FloatingActionButton(
               onPressed: () async {
-                final currentPos = await _determinePosition();
+                final currentPos = await determinePosition();
                 final latLng = LatLng(currentPos.latitude, currentPos.longitude);
                 await _animateToPos(CameraPosition(target: latLng, zoom: 17.0));
               },
@@ -99,29 +128,4 @@ class _MapPreviewState extends State<MapPreview> {
       },
     );
   }
-}
-
-Future<Position> _determinePosition() async {
-  bool serviceEnabled;
-  LocationPermission permission;
-
-  serviceEnabled = await Geolocator.isLocationServiceEnabled();
-  if (!serviceEnabled) {
-    // return Future.error('Location services are disabled.');
-  }
-
-  permission = await Geolocator.checkPermission();
-  if (permission == LocationPermission.denied) {
-    permission = await Geolocator.requestPermission();
-    if (permission == LocationPermission.denied) {
-      return Future.error('Location permissions are denied');
-    }
-  }
-
-  if (permission == LocationPermission.deniedForever) {
-    return Future.error(
-        'Location permissions are permanently denied, we cannot request permissions.');
-  }
-
-  return Geolocator.getCurrentPosition();
 }
