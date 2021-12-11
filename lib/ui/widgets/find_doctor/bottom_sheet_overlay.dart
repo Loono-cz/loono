@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/services/db/database.dart';
 import 'package:loono/services/map_state_sevice.dart';
 import 'package:provider/provider.dart';
 
 class MapSheetOverlay extends StatelessWidget {
   const MapSheetOverlay({
     Key? key,
+    required this.onItemTap,
   }) : super(key: key);
+
+  final void Function(HealthcareProvider)? onItemTap;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +33,8 @@ class MapSheetOverlay extends StatelessWidget {
                 controller: scrollController,
                 itemCount: value.currHealthcareProviders.length,
                 itemBuilder: (context, index) {
+                  final item = value.currHealthcareProviders[index];
+
                   return ListTile(
                     title: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,12 +68,15 @@ class MapSheetOverlay extends StatelessWidget {
                         Card(
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                           elevation: 0.0,
-                          child: SizedBox(
-                            width: MediaQuery.of(context).size.width,
-                            height: 120.0,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(value.currHealthcareProviders[index].title),
+                          child: InkWell(
+                            onTap: () => onItemTap?.call(item),
+                            child: SizedBox(
+                              width: MediaQuery.of(context).size.width,
+                              height: 120.0,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(item.title),
+                              ),
                             ),
                           ),
                         ),

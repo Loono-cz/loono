@@ -11,17 +11,23 @@ import 'package:loono/utils/map_utils.dart';
 import 'package:provider/provider.dart';
 
 class MapPreview extends StatefulWidget {
-  const MapPreview({Key? key}) : super(key: key);
+  const MapPreview({
+    Key? key,
+    required Completer<GoogleMapController> mapController,
+  })  : _mapController = mapController,
+        super(key: key);
+
+  final Completer<GoogleMapController> _mapController;
 
   @override
   _MapPreviewState createState() => _MapPreviewState();
 }
 
 class _MapPreviewState extends State<MapPreview> {
-  final _mapController = Completer<GoogleMapController>();
-
   late final MapStateService _mapStateService;
   late final ClusterManager _clusterManager;
+
+  Completer<GoogleMapController> get _mapController => widget._mapController;
 
   @override
   void initState() {
@@ -42,11 +48,6 @@ class _MapPreviewState extends State<MapPreview> {
     zoom: MapVariables.DEFAULT_ZOOM,
   );
 
-  Future<void> _animateToPos(CameraPosition cameraPosition) async {
-    final GoogleMapController controller = await _mapController.future;
-    await controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
-  }
-
   Future<Marker> Function(Cluster<HealthcareItemPlace>) get _markerBuilder => (cluster) async {
         final icon = await getMarkerBitmap(
           cluster.isMultiple ? 125 : 75,
@@ -65,7 +66,7 @@ class _MapPreviewState extends State<MapPreview> {
                   title:
                       'institutionId: ${cluster.items.firstOrNull?.healthcareProvider.institutionId}',
                   snippet:
-                      '${cluster.items.firstOrNull?.healthcareProvider.title} (${cluster.items.firstOrNull?.healthcareProvider.category.join(',')})',
+                      '${cluster.items.firstOrNull?.healthcareProvider.title} (${cluster.items.firstOrNull?.healthcareProvider.category.join(', ')})',
                   onTap: () {
                     //
                   },
@@ -110,7 +111,8 @@ class _MapPreviewState extends State<MapPreview> {
               onPressed: () async {
                 final currentPos = await determinePosition();
                 final latLng = LatLng(currentPos.latitude, currentPos.longitude);
-                await _animateToPos(CameraPosition(target: latLng, zoom: 17.0));
+                await animateToPos(_mapController,
+                    cameraPosition: CameraPosition(target: latLng, zoom: 17.0));
               },
               backgroundColor: Colors.white,
               child: const Icon(Icons.my_location, color: Colors.black87),

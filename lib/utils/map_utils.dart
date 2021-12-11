@@ -1,9 +1,18 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:loono/constants.dart';
+
+Future<void> animateToPos(
+  Completer<GoogleMapController> mapController, {
+  required CameraPosition cameraPosition,
+}) async {
+  final GoogleMapController controller = await mapController.future;
+  await controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+}
 
 Future<Position> determinePosition() async {
   bool serviceEnabled;

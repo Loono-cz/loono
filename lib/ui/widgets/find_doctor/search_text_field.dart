@@ -7,7 +7,10 @@ import 'package:loono/utils/registry.dart';
 class SearchTextField extends StatelessWidget {
   SearchTextField({
     Key? key,
+    required this.onItemTap,
   }) : super(key: key);
+
+  final void Function(HealthcareProvider)? onItemTap;
 
   final _healthcareProvidersRepository = registry.get<HealthcareProviderRepository>();
 
@@ -25,17 +28,19 @@ class SearchTextField extends StatelessWidget {
             hintText: 'Zadej adresu, jméno lékaře nebo odbornost',
           ),
         ),
-        debounceDuration: const Duration(milliseconds: 100),
+        debounceDuration: const Duration(milliseconds: 300),
         hideOnEmpty: true,
         suggestionsCallback: (pattern) async {
           // TODO: multi search query
+          if (pattern.isEmpty) return <HealthcareProvider>[];
           return _healthcareProvidersRepository.searchByTitle(pattern);
         },
         itemBuilder: (context, HealthcareProvider healthcareProvider) {
           return ListTile(
             leading: const Icon(Icons.person),
             title: Text((healthcareProvider.title) + (' (${healthcareProvider.city})')),
-            subtitle: Text(healthcareProvider.category.join(',')),
+            subtitle: Text(healthcareProvider.category.join(', ')),
+            onTap: () => onItemTap?.call(healthcareProvider),
           );
         },
         onSuggestionSelected: (HealthcareProvider healthcareProvider) {
