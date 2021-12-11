@@ -8,11 +8,15 @@ class MapStateService with ChangeNotifier {
   /// Currently selected or visible healthcare providers.
   final List<HealthcareProvider> _currHealthcareProviders = <HealthcareProvider>[];
 
+  final Set<Marker> _markers = <Marker>{};
+
   LatLngBounds? visibleRegion;
 
   List<HealthcareProvider> get allHealthcareProviders => _allHealthcareProviders;
 
   List<HealthcareProvider> get currHealthcareProviders => _currHealthcareProviders;
+
+  Set<Marker> get markers => _markers;
 
   void setVisibleRegion(LatLngBounds latLngBounds) {
     if (visibleRegion != latLngBounds) {
@@ -24,6 +28,13 @@ class MapStateService with ChangeNotifier {
 
   void addAll(List<HealthcareProvider> healthcareProviders) {
     _allHealthcareProviders.addAll(healthcareProviders);
+    notifyListeners();
+  }
+
+  void updateMarkers(Set<Marker> markers) {
+    _markers
+      ..clear()
+      ..addAll(markers);
     notifyListeners();
   }
 

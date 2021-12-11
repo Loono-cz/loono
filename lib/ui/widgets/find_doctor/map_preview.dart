@@ -20,20 +20,20 @@ class MapPreview extends StatefulWidget {
 class _MapPreviewState extends State<MapPreview> {
   final _mapController = Completer<GoogleMapController>();
 
-  late final MapStateService mapStateService;
-  late ClusterManager clusterManager;
-  Set<Marker> markers = Set();
+  late final MapStateService _mapStateService;
+  late final ClusterManager _clusterManager;
 
   @override
   void initState() {
     super.initState();
-    mapStateService = context.read<MapStateService>();
-    clusterManager = _initClusterManager();
+    _mapStateService = context.read<MapStateService>();
+    _clusterManager = _initClusterManager(_mapStateService);
   }
 
-  ClusterManager _initClusterManager() => ClusterManager<HealthcareItemPlace>(
+  ClusterManager _initClusterManager(MapStateService mapStateService) =>
+      ClusterManager<HealthcareItemPlace>(
         <HealthcareItemPlace>[],
-        _updateMarkers,
+        mapStateService.updateMarkers,
         markerBuilder: _markerBuilder,
       );
 
@@ -41,14 +41,6 @@ class _MapPreviewState extends State<MapPreview> {
     target: MapVariables.INITIAL_COORDS,
     zoom: MapVariables.DEFAULT_ZOOM,
   );
-
-  void _updateMarkers(Set<Marker> markers) {
-    setState(() {
-      this.markers
-        ..clear()
-        ..addAll(markers);
-    });
-  }
 
   Future<void> _animateToPos(CameraPosition cameraPosition) async {
     final GoogleMapController controller = await _mapController.future;
@@ -73,7 +65,7 @@ class _MapPreviewState extends State<MapPreview> {
                   title:
                       'institutionId: ${cluster.items.firstOrNull?.healthcareProvider.institutionId}',
                   snippet:
-                      '${cluster.items.firstOrNull?.healthcareProvider.title} (${cluster.items.firstOrNull?.healthcareProvider.specialization})',
+                      '${cluster.items.firstOrNull?.healthcareProvider.title} (${cluster.items.firstOrNull?.healthcareProvider.category.join(',')})',
                   onTap: () {
                     //
                   },
@@ -92,23 +84,23 @@ class _MapPreviewState extends State<MapPreview> {
             myLocationEnabled: true,
             myLocationButtonEnabled: false,
             zoomControlsEnabled: false,
-            onMapCreated: (GoogleMapController controller) async {
-              _mapController.complete(controller);
-              final latLngBounds = await controller.getVisibleRegion();
-              mapStateService.setVisibleRegion(latLngBounds);
-              clusterManager
-                ..setMapId(controller.mapId)
+            onMapCreated: (GoogleMapController mapController) async {
+              _mapController.complete(mapController);
+              final latLngBounds = await mapController.getVisibleRegion();
+              _mapStateService.setVisibleRegion(latLngBounds);
+              _clusterManager
+                ..setMapId(mapController.mapId)
                 ..setItems(
                     value.allHealthcareProviders.map((e) => HealthcareItemPlace(e)).toList());
             },
-            onCameraMove: clusterManager.onCameraMove,
+            onCameraMove: _clusterManager.onCameraMove,
             onCameraIdle: () async {
               final GoogleMapController controller = await _mapController.future;
               final latLngBounds = await controller.getVisibleRegion();
-              mapStateService.setVisibleRegion(latLngBounds);
-              clusterManager.updateMap();
+              _mapStateService.setVisibleRegion(latLngBounds);
+              _clusterManager.updateMap();
             },
-            markers: markers,
+            markers: value.markers,
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
           floatingActionButton: Padding(
