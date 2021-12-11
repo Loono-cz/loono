@@ -27,7 +27,7 @@ class MapSheetOverlay extends StatelessWidget {
               ),
               child: ListView.builder(
                 controller: scrollController,
-                itemCount: value.healthcareProviders.length,
+                itemCount: value.currHealthcareProviders.length,
                 itemBuilder: (context, index) {
                   return ListTile(
                     title: Column(
@@ -52,7 +52,7 @@ class MapSheetOverlay extends StatelessWidget {
                               Align(
                                 alignment: Alignment.centerRight,
                                 child: Text(
-                                  'doktorů v okolí: ${value.healthcareProviders.length}',
+                                  'doktorů v okolí: ${value.currHealthcareProviders.length}',
                                   style: const TextStyle(color: Colors.white),
                                 ),
                               ),
@@ -67,7 +67,7 @@ class MapSheetOverlay extends StatelessWidget {
                             height: 120.0,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Text(value.healthcareProviders[index].title),
+                              child: Text(value.currHealthcareProviders[index].title),
                             ),
                           ),
                         ),

@@ -18,7 +18,7 @@ class FindDoctorScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: FutureBuilder<List<HealthcareProvider>>(
-          future: _healthcareProviderRepository.checkAndUpdate(),
+          future: _healthcareProviderRepository.checkAndUpdateIfNeeded(),
           builder: (context, snapshot) {
             debugPrint(snapshot.data?.length.toString() ?? '');
             if (snapshot.hasData && snapshot.connectionState == ConnectionState.done) {

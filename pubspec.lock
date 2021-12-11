@@ -259,7 +259,7 @@ packages:
       name: dio
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.0"
+    version: "4.0.4"
   email_validator:
     dependency: "direct main"
     description:

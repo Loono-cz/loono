@@ -5,28 +5,14 @@ import 'package:loono/services/db/database.dart';
 class MapStateService with ChangeNotifier {
   final List<HealthcareProvider> _allHealthcareProviders = <HealthcareProvider>[];
 
-  final List<HealthcareProvider> _visibleHealthcareProviders = <HealthcareProvider>[];
+  /// Currently selected or visible healthcare providers.
+  final List<HealthcareProvider> _currHealthcareProviders = <HealthcareProvider>[];
 
   LatLngBounds? visibleRegion;
 
   List<HealthcareProvider> get allHealthcareProviders => _allHealthcareProviders;
 
-  List<HealthcareProvider> get healthcareProviders => _visibleHealthcareProviders;
-
-  void _applyFilter() {
-    _visibleHealthcareProviders
-      ..clear()
-      ..addAll(
-        _allHealthcareProviders.where(
-          (healthcareProvider) {
-            final lat = healthcareProvider.lat;
-            final lng = healthcareProvider.lng;
-            if (visibleRegion == null) return true;
-            return visibleRegion!.contains(LatLng(lat, lng));
-          },
-        ).toList(),
-      );
-  }
+  List<HealthcareProvider> get currHealthcareProviders => _currHealthcareProviders;
 
   void setVisibleRegion(LatLngBounds latLngBounds) {
     if (visibleRegion != latLngBounds) {
@@ -36,23 +22,23 @@ class MapStateService with ChangeNotifier {
     }
   }
 
-  void add(HealthcareProvider healthcareProvider) {
-    _allHealthcareProviders.add(healthcareProvider);
-    notifyListeners();
-  }
-
   void addAll(List<HealthcareProvider> healthcareProviders) {
     _allHealthcareProviders.addAll(healthcareProviders);
     notifyListeners();
   }
 
-  void remove(HealthcareProvider healthcareProvider) {
-    _allHealthcareProviders.remove(healthcareProvider);
-    notifyListeners();
-  }
-
-  void removeAll() {
-    _allHealthcareProviders.clear();
-    notifyListeners();
+  void _applyFilter() {
+    _currHealthcareProviders.replaceRange(
+      0,
+      _currHealthcareProviders.length,
+      _allHealthcareProviders.where(
+        (healthcareProvider) {
+          if (visibleRegion == null) return true;
+          final lat = healthcareProvider.lat;
+          final lng = healthcareProvider.lng;
+          return visibleRegion!.contains(LatLng(lat, lng));
+        },
+      ),
+    );
   }
 }

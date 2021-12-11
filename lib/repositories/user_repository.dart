@@ -38,8 +38,12 @@ class UserRepository {
     await _db.users.updateDateOfBirth(dateWithoutDay);
   }
 
-  Future<void> updateMapDateUpdated(DateTime date) async {
-    await _db.users.updateMapDateUpdated(date);
+  Future<void> updateLatestMapUpdateCheck(DateTime date) async {
+    await _db.users.updateLatestMapUpdateCheck(date);
+  }
+
+  Future<void> updateLatestMapServerUpdate(DateTime date) async {
+    await _db.users.updateLatestMapServerUpdate(date);
   }
 
   Future<void> updateGeneralPracticionerCcaVisit(CcaDoctorVisit ccaDoctorVisit) async {

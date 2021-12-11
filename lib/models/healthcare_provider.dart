@@ -38,8 +38,6 @@ class HealthcareProvidersDao extends DatabaseAccessor<AppDatabase>
     with _$HealthcareProvidersDaoMixin {
   HealthcareProvidersDao(AppDatabase db) : super(db);
 
-  Stream<List<HealthcareProvider>> watchAll() => select(healthcareProviders).watch();
-
   Future<List<HealthcareProvider>> getAll() => select(healthcareProviders).get();
 
   Future<void> updateAllData(BuiltList<SimpleHealthcareProvider> newData) async {
@@ -71,6 +69,8 @@ class HealthcareProvidersDao extends DatabaseAccessor<AppDatabase>
   }
 
   // TODO: Add more search queries
-  Stream<List<HealthcareProvider>> searchByCity(String query) =>
-      (select(healthcareProviders)..where((tbl) => tbl.city.like('%$query%'))).watch();
+  Future<List<HealthcareProvider>> searchByCity(String query) => (select(healthcareProviders)
+        ..where((tbl) => tbl.city.like('%$query%'))
+        ..distinct)
+      .get();
 }

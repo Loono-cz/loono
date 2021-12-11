@@ -20,7 +20,8 @@ class User extends DataClass implements Insertable<User> {
   final String? nickname;
   final String? email;
   final String? profileImageUrl;
-  final DateTime? mapDateUpdated;
+  final DateTime? latestMapUpdateCheck;
+  final DateTime? latestMapUpdate;
   final String? achievementCollectionRaw;
   User(
       {required this.id,
@@ -35,7 +36,8 @@ class User extends DataClass implements Insertable<User> {
       this.nickname,
       this.email,
       this.profileImageUrl,
-      this.mapDateUpdated,
+      this.latestMapUpdateCheck,
+      this.latestMapUpdate,
       this.achievementCollectionRaw});
   factory User.fromData(Map<String, dynamic> data, GeneratedDatabase db,
       {String? prefix}) {
@@ -66,8 +68,10 @@ class User extends DataClass implements Insertable<User> {
           .mapFromDatabaseResponse(data['${effectivePrefix}email']),
       profileImageUrl: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}profile_image_url']),
-      mapDateUpdated: const DateTimeType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}map_date_updated']),
+      latestMapUpdateCheck: const DateTimeType().mapFromDatabaseResponse(
+          data['${effectivePrefix}latest_map_update_check']),
+      latestMapUpdate: const DateTimeType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}latest_map_update']),
       achievementCollectionRaw: const StringType().mapFromDatabaseResponse(
           data['${effectivePrefix}achievement_collection_raw']),
     );
@@ -112,8 +116,12 @@ class User extends DataClass implements Insertable<User> {
     if (!nullToAbsent || profileImageUrl != null) {
       map['profile_image_url'] = Variable<String?>(profileImageUrl);
     }
-    if (!nullToAbsent || mapDateUpdated != null) {
-      map['map_date_updated'] = Variable<DateTime?>(mapDateUpdated);
+    if (!nullToAbsent || latestMapUpdateCheck != null) {
+      map['latest_map_update_check'] =
+          Variable<DateTime?>(latestMapUpdateCheck);
+    }
+    if (!nullToAbsent || latestMapUpdate != null) {
+      map['latest_map_update'] = Variable<DateTime?>(latestMapUpdate);
     }
     if (!nullToAbsent || achievementCollectionRaw != null) {
       map['achievement_collection_raw'] =
@@ -158,9 +166,12 @@ class User extends DataClass implements Insertable<User> {
       profileImageUrl: profileImageUrl == null && nullToAbsent
           ? const Value.absent()
           : Value(profileImageUrl),
-      mapDateUpdated: mapDateUpdated == null && nullToAbsent
+      latestMapUpdateCheck: latestMapUpdateCheck == null && nullToAbsent
           ? const Value.absent()
-          : Value(mapDateUpdated),
+          : Value(latestMapUpdateCheck),
+      latestMapUpdate: latestMapUpdate == null && nullToAbsent
+          ? const Value.absent()
+          : Value(latestMapUpdate),
       achievementCollectionRaw: achievementCollectionRaw == null && nullToAbsent
           ? const Value.absent()
           : Value(achievementCollectionRaw),
@@ -188,7 +199,9 @@ class User extends DataClass implements Insertable<User> {
       nickname: serializer.fromJson<String?>(json['nickname']),
       email: serializer.fromJson<String?>(json['email']),
       profileImageUrl: serializer.fromJson<String?>(json['profileImageUrl']),
-      mapDateUpdated: serializer.fromJson<DateTime?>(json['mapDateUpdated']),
+      latestMapUpdateCheck:
+          serializer.fromJson<DateTime?>(json['latestMapUpdateCheck']),
+      latestMapUpdate: serializer.fromJson<DateTime?>(json['latestMapUpdate']),
       achievementCollectionRaw:
           serializer.fromJson<String?>(json['achievementCollectionRaw']),
     );
@@ -212,7 +225,9 @@ class User extends DataClass implements Insertable<User> {
       'nickname': serializer.toJson<String?>(nickname),
       'email': serializer.toJson<String?>(email),
       'profileImageUrl': serializer.toJson<String?>(profileImageUrl),
-      'mapDateUpdated': serializer.toJson<DateTime?>(mapDateUpdated),
+      'latestMapUpdateCheck':
+          serializer.toJson<DateTime?>(latestMapUpdateCheck),
+      'latestMapUpdate': serializer.toJson<DateTime?>(latestMapUpdate),
       'achievementCollectionRaw':
           serializer.toJson<String?>(achievementCollectionRaw),
     };
@@ -231,7 +246,8 @@ class User extends DataClass implements Insertable<User> {
           String? nickname,
           String? email,
           String? profileImageUrl,
-          DateTime? mapDateUpdated,
+          DateTime? latestMapUpdateCheck,
+          DateTime? latestMapUpdate,
           String? achievementCollectionRaw}) =>
       User(
         id: id ?? this.id,
@@ -250,7 +266,8 @@ class User extends DataClass implements Insertable<User> {
         nickname: nickname ?? this.nickname,
         email: email ?? this.email,
         profileImageUrl: profileImageUrl ?? this.profileImageUrl,
-        mapDateUpdated: mapDateUpdated ?? this.mapDateUpdated,
+        latestMapUpdateCheck: latestMapUpdateCheck ?? this.latestMapUpdateCheck,
+        latestMapUpdate: latestMapUpdate ?? this.latestMapUpdate,
         achievementCollectionRaw:
             achievementCollectionRaw ?? this.achievementCollectionRaw,
       );
@@ -271,7 +288,8 @@ class User extends DataClass implements Insertable<User> {
           ..write('nickname: $nickname, ')
           ..write('email: $email, ')
           ..write('profileImageUrl: $profileImageUrl, ')
-          ..write('mapDateUpdated: $mapDateUpdated, ')
+          ..write('latestMapUpdateCheck: $latestMapUpdateCheck, ')
+          ..write('latestMapUpdate: $latestMapUpdate, ')
           ..write('achievementCollectionRaw: $achievementCollectionRaw')
           ..write(')'))
         .toString();
@@ -303,9 +321,13 @@ class User extends DataClass implements Insertable<User> {
                                               $mrjc(
                                                   profileImageUrl.hashCode,
                                                   $mrjc(
-                                                      mapDateUpdated.hashCode,
-                                                      achievementCollectionRaw
-                                                          .hashCode))))))))))))));
+                                                      latestMapUpdateCheck
+                                                          .hashCode,
+                                                      $mrjc(
+                                                          latestMapUpdate
+                                                              .hashCode,
+                                                          achievementCollectionRaw
+                                                              .hashCode)))))))))))))));
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -324,7 +346,8 @@ class User extends DataClass implements Insertable<User> {
           other.nickname == this.nickname &&
           other.email == this.email &&
           other.profileImageUrl == this.profileImageUrl &&
-          other.mapDateUpdated == this.mapDateUpdated &&
+          other.latestMapUpdateCheck == this.latestMapUpdateCheck &&
+          other.latestMapUpdate == this.latestMapUpdate &&
           other.achievementCollectionRaw == this.achievementCollectionRaw);
 }
 
@@ -341,7 +364,8 @@ class UsersCompanion extends UpdateCompanion<User> {
   final Value<String?> nickname;
   final Value<String?> email;
   final Value<String?> profileImageUrl;
-  final Value<DateTime?> mapDateUpdated;
+  final Value<DateTime?> latestMapUpdateCheck;
+  final Value<DateTime?> latestMapUpdate;
   final Value<String?> achievementCollectionRaw;
   const UsersCompanion({
     this.id = const Value.absent(),
@@ -356,7 +380,8 @@ class UsersCompanion extends UpdateCompanion<User> {
     this.nickname = const Value.absent(),
     this.email = const Value.absent(),
     this.profileImageUrl = const Value.absent(),
-    this.mapDateUpdated = const Value.absent(),
+    this.latestMapUpdateCheck = const Value.absent(),
+    this.latestMapUpdate = const Value.absent(),
     this.achievementCollectionRaw = const Value.absent(),
   });
   UsersCompanion.insert({
@@ -372,7 +397,8 @@ class UsersCompanion extends UpdateCompanion<User> {
     this.nickname = const Value.absent(),
     this.email = const Value.absent(),
     this.profileImageUrl = const Value.absent(),
-    this.mapDateUpdated = const Value.absent(),
+    this.latestMapUpdateCheck = const Value.absent(),
+    this.latestMapUpdate = const Value.absent(),
     this.achievementCollectionRaw = const Value.absent(),
   }) : id = Value(id);
   static Insertable<User> custom({
@@ -388,7 +414,8 @@ class UsersCompanion extends UpdateCompanion<User> {
     Expression<String?>? nickname,
     Expression<String?>? email,
     Expression<String?>? profileImageUrl,
-    Expression<DateTime?>? mapDateUpdated,
+    Expression<DateTime?>? latestMapUpdateCheck,
+    Expression<DateTime?>? latestMapUpdate,
     Expression<String?>? achievementCollectionRaw,
   }) {
     return RawValuesInsertable({
@@ -410,7 +437,9 @@ class UsersCompanion extends UpdateCompanion<User> {
       if (nickname != null) 'nickname': nickname,
       if (email != null) 'email': email,
       if (profileImageUrl != null) 'profile_image_url': profileImageUrl,
-      if (mapDateUpdated != null) 'map_date_updated': mapDateUpdated,
+      if (latestMapUpdateCheck != null)
+        'latest_map_update_check': latestMapUpdateCheck,
+      if (latestMapUpdate != null) 'latest_map_update': latestMapUpdate,
       if (achievementCollectionRaw != null)
         'achievement_collection_raw': achievementCollectionRaw,
     });
@@ -429,7 +458,8 @@ class UsersCompanion extends UpdateCompanion<User> {
       Value<String?>? nickname,
       Value<String?>? email,
       Value<String?>? profileImageUrl,
-      Value<DateTime?>? mapDateUpdated,
+      Value<DateTime?>? latestMapUpdateCheck,
+      Value<DateTime?>? latestMapUpdate,
       Value<String?>? achievementCollectionRaw}) {
     return UsersCompanion(
       id: id ?? this.id,
@@ -448,7 +478,8 @@ class UsersCompanion extends UpdateCompanion<User> {
       nickname: nickname ?? this.nickname,
       email: email ?? this.email,
       profileImageUrl: profileImageUrl ?? this.profileImageUrl,
-      mapDateUpdated: mapDateUpdated ?? this.mapDateUpdated,
+      latestMapUpdateCheck: latestMapUpdateCheck ?? this.latestMapUpdateCheck,
+      latestMapUpdate: latestMapUpdate ?? this.latestMapUpdate,
       achievementCollectionRaw:
           achievementCollectionRaw ?? this.achievementCollectionRaw,
     );
@@ -498,8 +529,12 @@ class UsersCompanion extends UpdateCompanion<User> {
     if (profileImageUrl.present) {
       map['profile_image_url'] = Variable<String?>(profileImageUrl.value);
     }
-    if (mapDateUpdated.present) {
-      map['map_date_updated'] = Variable<DateTime?>(mapDateUpdated.value);
+    if (latestMapUpdateCheck.present) {
+      map['latest_map_update_check'] =
+          Variable<DateTime?>(latestMapUpdateCheck.value);
+    }
+    if (latestMapUpdate.present) {
+      map['latest_map_update'] = Variable<DateTime?>(latestMapUpdate.value);
     }
     if (achievementCollectionRaw.present) {
       map['achievement_collection_raw'] =
@@ -525,7 +560,8 @@ class UsersCompanion extends UpdateCompanion<User> {
           ..write('nickname: $nickname, ')
           ..write('email: $email, ')
           ..write('profileImageUrl: $profileImageUrl, ')
-          ..write('mapDateUpdated: $mapDateUpdated, ')
+          ..write('latestMapUpdateCheck: $latestMapUpdateCheck, ')
+          ..write('latestMapUpdate: $latestMapUpdate, ')
           ..write('achievementCollectionRaw: $achievementCollectionRaw')
           ..write(')'))
         .toString();
@@ -594,10 +630,15 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   late final GeneratedColumn<String?> profileImageUrl =
       GeneratedColumn<String?>('profile_image_url', aliasedName, true,
           typeName: 'TEXT', requiredDuringInsert: false);
-  final VerificationMeta _mapDateUpdatedMeta =
-      const VerificationMeta('mapDateUpdated');
-  late final GeneratedColumn<DateTime?> mapDateUpdated =
-      GeneratedColumn<DateTime?>('map_date_updated', aliasedName, true,
+  final VerificationMeta _latestMapUpdateCheckMeta =
+      const VerificationMeta('latestMapUpdateCheck');
+  late final GeneratedColumn<DateTime?> latestMapUpdateCheck =
+      GeneratedColumn<DateTime?>('latest_map_update_check', aliasedName, true,
+          typeName: 'INTEGER', requiredDuringInsert: false);
+  final VerificationMeta _latestMapUpdateMeta =
+      const VerificationMeta('latestMapUpdate');
+  late final GeneratedColumn<DateTime?> latestMapUpdate =
+      GeneratedColumn<DateTime?>('latest_map_update', aliasedName, true,
           typeName: 'INTEGER', requiredDuringInsert: false);
   final VerificationMeta _achievementCollectionRawMeta =
       const VerificationMeta('achievementCollectionRaw');
@@ -618,7 +659,8 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
         nickname,
         email,
         profileImageUrl,
-        mapDateUpdated,
+        latestMapUpdateCheck,
+        latestMapUpdate,
         achievementCollectionRaw
       ];
   @override
@@ -697,11 +739,17 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
           profileImageUrl.isAcceptableOrUnknown(
               data['profile_image_url']!, _profileImageUrlMeta));
     }
-    if (data.containsKey('map_date_updated')) {
+    if (data.containsKey('latest_map_update_check')) {
       context.handle(
-          _mapDateUpdatedMeta,
-          mapDateUpdated.isAcceptableOrUnknown(
-              data['map_date_updated']!, _mapDateUpdatedMeta));
+          _latestMapUpdateCheckMeta,
+          latestMapUpdateCheck.isAcceptableOrUnknown(
+              data['latest_map_update_check']!, _latestMapUpdateCheckMeta));
+    }
+    if (data.containsKey('latest_map_update')) {
+      context.handle(
+          _latestMapUpdateMeta,
+          latestMapUpdate.isAcceptableOrUnknown(
+              data['latest_map_update']!, _latestMapUpdateMeta));
     }
     if (data.containsKey('achievement_collection_raw')) {
       context.handle(
