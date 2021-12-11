@@ -25,10 +25,10 @@ class FindDoctorScreen extends StatelessWidget {
               return ChangeNotifierProvider<MapStateService>(
                 create: (_) => MapStateService()..addAll(snapshot.data!),
                 child: Stack(
-                  children: const [
-                    MapPreview(),
+                  children: [
+                    const MapPreview(),
                     SearchTextField(),
-                    MapSheetOverlay(),
+                    const MapSheetOverlay(),
                   ],
                 ),
               );
