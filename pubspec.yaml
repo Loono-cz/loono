@@ -87,4 +87,6 @@ flutter:
   assets:
     - assets/.env
     - assets/icons/
+    - assets/icons/prevention/
+    - assets/icons/prevention/doctors/
     - assets/intro_video.mp4

@@ -8,6 +8,7 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/repositories/healthcare_repository.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -81,6 +82,7 @@ Future<void> setup(AppFlavors flavor) async {
     databaseService: registry.get<DatabaseService>(),
     firebaseStorageService: registry.get<FirebaseStorageService>(),
   ));
+  registry.registerSingleton<ExaminationRepository>(const ExaminationRepository());
   registry.registerSingleton<HealthcareProviderRepository>(HealthcareProviderRepository(
     apiService: registry.get<ApiService>(),
     databaseService: registry.get<DatabaseService>(),
