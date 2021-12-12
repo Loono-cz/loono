@@ -713,9 +713,9 @@ packages:
     dependency: "direct main"
     description:
       path: dart
-      ref: "2cf908ba0e7ea52486ee6e82de0607764d92fee5"
-      resolved-ref: "2cf908ba0e7ea52486ee6e82de0607764d92fee5"
-      url: "https://github.com/mzdm/loono-api.git"
+      ref: f2ebfbd1d98ad04d070ea0dfa7438a69b35ef827
+      resolved-ref: f2ebfbd1d98ad04d070ea0dfa7438a69b35ef827
+      url: "https://github.com/cesko-digital/loono-api.git"
     source: git
     version: "1.0.0"
   matcher:
