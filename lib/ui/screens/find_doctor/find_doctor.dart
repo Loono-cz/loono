@@ -26,7 +26,6 @@ class FindDoctorScreen extends StatelessWidget {
         child: FutureBuilder<List<HealthcareProvider>>(
           future: _healthcareProviderRepository.checkAndUpdateIfNeeded(),
           builder: (context, snapshot) {
-            debugPrint(snapshot.data?.length.toString() ?? '');
             if (snapshot.hasData && snapshot.connectionState == ConnectionState.done) {
               return ChangeNotifierProvider<MapStateService>(
                 create: (_) => MapStateService()..addAll(snapshot.data!),

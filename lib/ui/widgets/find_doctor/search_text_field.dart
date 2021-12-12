@@ -40,12 +40,9 @@ class SearchTextField extends StatelessWidget {
             leading: const Icon(Icons.person),
             title: Text((healthcareProvider.title) + (' (${healthcareProvider.city})')),
             subtitle: Text(healthcareProvider.category.join(', ')),
-            onTap: () => onItemTap?.call(healthcareProvider),
           );
         },
-        onSuggestionSelected: (HealthcareProvider healthcareProvider) {
-          // TODO: navigate to doctor detail
-        },
+        onSuggestionSelected: (HealthcareProvider suggestion) => onItemTap?.call(suggestion),
       ),
     );
   }
