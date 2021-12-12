@@ -24,49 +24,45 @@ class MapPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<MapStateService>(
-      builder: (context, mapState, child) {
-        return Scaffold(
-          body: GoogleMap(
-            initialCameraPosition: _initialCameraPos,
-            myLocationEnabled: true,
-            myLocationButtonEnabled: false,
-            zoomControlsEnabled: false,
-            onMapCreated: (GoogleMapController mapController) async {
-              _mapController.complete(mapController);
-              final latLngBounds = await mapController.getVisibleRegion();
-              mapState.setVisibleRegion(latLngBounds);
-              mapState.clusterManager
-                ..setMapId(mapController.mapId)
-                ..setItems(
-                    mapState.allHealthcareProviders.map((e) => HealthcareItemPlace(e)).toList());
-            },
-            onCameraMove: mapState.clusterManager.onCameraMove,
-            onCameraIdle: () async {
-              final GoogleMapController controller = await _mapController.future;
-              final latLngBounds = await controller.getVisibleRegion();
-              mapState.setVisibleRegion(latLngBounds);
-              mapState.clusterManager.updateMap();
-            },
-            markers: mapState.markers,
-          ),
-          floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-          floatingActionButton: Padding(
-            padding:
-                EdgeInsets.fromLTRB(10.0, 10.0, 10.0, MediaQuery.of(context).size.height * 0.5),
-            child: FloatingActionButton(
-              onPressed: () async {
-                final currentPos = await determinePosition();
-                final latLng = LatLng(currentPos.latitude, currentPos.longitude);
-                await animateToPos(_mapController,
-                    cameraPosition: CameraPosition(target: latLng, zoom: 17.0));
-              },
-              backgroundColor: Colors.white,
-              child: const Icon(Icons.my_location, color: Colors.black87),
-            ),
-          ),
-        );
-      },
+    final mapState = context.watch<MapStateService>();
+
+    return Scaffold(
+      body: GoogleMap(
+        initialCameraPosition: _initialCameraPos,
+        myLocationEnabled: true,
+        myLocationButtonEnabled: false,
+        zoomControlsEnabled: false,
+        onMapCreated: (GoogleMapController mapController) async {
+          _mapController.complete(mapController);
+          final latLngBounds = await mapController.getVisibleRegion();
+          mapState.setVisibleRegion(latLngBounds);
+          mapState.clusterManager
+            ..setMapId(mapController.mapId)
+            ..setItems(mapState.allHealthcareProviders.map((e) => HealthcareItemPlace(e)).toList());
+        },
+        onCameraMove: mapState.clusterManager.onCameraMove,
+        onCameraIdle: () async {
+          final GoogleMapController controller = await _mapController.future;
+          final latLngBounds = await controller.getVisibleRegion();
+          mapState.setVisibleRegion(latLngBounds);
+          mapState.clusterManager.updateMap();
+        },
+        markers: mapState.markers,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      floatingActionButton: Padding(
+        padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, MediaQuery.of(context).size.height * 0.5),
+        child: FloatingActionButton(
+          onPressed: () async {
+            final currentPos = await determinePosition();
+            final latLng = LatLng(currentPos.latitude, currentPos.longitude);
+            await animateToPos(_mapController,
+                cameraPosition: CameraPosition(target: latLng, zoom: 17.0));
+          },
+          backgroundColor: Colors.white,
+          child: const Icon(Icons.my_location, color: Colors.black87),
+        ),
+      ),
     );
   }
 }
