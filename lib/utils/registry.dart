@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:device_info/device_info.dart';
+import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
@@ -8,14 +9,17 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loono/repositories/examination_repository.dart';
+import 'package:loono/repositories/healthcare_repository.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/router/guards/check_is_logged_in.dart';
+import 'package:loono/services/api_service.dart';
 import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/firebase_storage_service.dart';
 import 'package:loono/services/notification_service.dart';
 import 'package:loono/utils/app_config.dart';
+import 'package:loono_api/loono_api.dart';
 import 'package:package_info/package_info.dart';
 
 final registry = GetIt.instance;
@@ -61,6 +65,15 @@ Future<void> setup(AppFlavors flavor) async {
   registry.registerSingleton<FirebaseStorageService>(FirebaseStorageService(
     authService: registry.get<AuthService>(),
   ));
+  registry.registerSingleton<ApiService>(ApiService(LoonoApi(
+    dio: Dio(
+      BaseOptions(
+        baseUrl: LoonoApi.basePath,
+        connectTimeout: 5000,
+        receiveTimeout: 8000,
+      ),
+    ),
+  )));
   // TODO: generate the key and store it into secure storage
   await registry.get<DatabaseService>().init('SUPER SECURE KEY');
 
@@ -70,6 +83,10 @@ Future<void> setup(AppFlavors flavor) async {
     firebaseStorageService: registry.get<FirebaseStorageService>(),
   ));
   registry.registerSingleton<ExaminationRepository>(const ExaminationRepository());
+  registry.registerSingleton<HealthcareProviderRepository>(HealthcareProviderRepository(
+    apiService: registry.get<ApiService>(),
+    databaseService: registry.get<DatabaseService>(),
+  ));
 
   // router
   registry.registerSingleton<AppRouter>(AppRouter(checkIsLoggedIn: CheckIsLoggedIn()));

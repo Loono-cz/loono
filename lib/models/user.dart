@@ -21,17 +21,30 @@ class Users extends Table {
   TextColumn get id => text()();
 
   IntColumn get sexRaw => integer().nullable()();
+
   TextColumn get dateOfBirthRaw => text().nullable()();
+
   IntColumn get generalPracticionerCcaVisitRaw => integer().nullable()();
+
   TextColumn get generalPracticionerVisitDateRaw => text().nullable()();
+
   IntColumn get gynecologyCcaVisitRaw => integer().nullable()();
+
   TextColumn get gynecologyVisitDateRaw => text().nullable()();
+
   IntColumn get dentistCcaVisitRaw => integer().nullable()();
+
   TextColumn get dentistVisitDateRaw => text().nullable()();
 
   TextColumn get nickname => text().nullable()();
+
   TextColumn get email => text().nullable()();
+
   TextColumn get profileImageUrl => text().nullable()();
+
+  DateTimeColumn get latestMapUpdateCheck => dateTime().nullable()();
+
+  DateTimeColumn get latestMapUpdate => dateTime().nullable()();
 
   TextColumn get achievementCollectionRaw => text().nullable()();
 }
@@ -43,6 +56,7 @@ class UsersDao extends DatabaseAccessor<AppDatabase> with _$UsersDaoMixin {
   }
 
   late final MemoizedStream<User?> userStream;
+
   User? get user => userStream.lastItem;
 
   Stream<User?> watchUser() {
@@ -67,6 +81,14 @@ class UsersDao extends DatabaseAccessor<AppDatabase> with _$UsersDaoMixin {
 
   Future<void> updateSex(Sex sex) async {
     await updateCurrentUser(UsersCompanion(sexRaw: Value(sex.index)));
+  }
+
+  Future<void> updateLatestMapUpdateCheck(DateTime date) async {
+    await updateCurrentUser(UsersCompanion(latestMapUpdateCheck: Value(date)));
+  }
+
+  Future<void> updateLatestMapServerUpdate(DateTime date) async {
+    await updateCurrentUser(UsersCompanion(latestMapUpdate: Value(date)));
   }
 
   Future<void> updateDateOfBirth(DateWithoutDay dateWithoutDay) async {
