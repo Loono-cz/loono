@@ -263,5 +263,11 @@
   "login": "Přihlásit se",
   "@login": {},
   "use_app_without_account": "Používat aplikaci bez účtu",
-  "@use_app_without_account": {}
+  "@use_app_without_account": {},
+  "never": "nikdy",
+  "@never": {},
+  "year": "rok",
+  "@year": {},
+  "years": "roky",
+  "@years": {}
 }
