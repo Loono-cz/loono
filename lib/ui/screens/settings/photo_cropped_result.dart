@@ -75,11 +75,10 @@ class _PhotoCroppedResultScreenState extends State<PhotoCroppedResultScreen> {
                           await registry.get<UserRepository>().updateUserPhoto(widget.imageBytes);
                       setState(() => _isUploading = false);
                       if (photoUploadResult) {
-                        showSnackBarSuccess(context, message: context.l10n.photo_changed_success);
-                        AutoRouter.of(context).pushAndPopUntil(
-                          EditPhotoRoute(imageBytes: widget.imageBytes),
-                          predicate: (route) => route.settings.name == UpdateProfileRoute.name,
-                        );
+                        context.pushRoute(EditPhotoRoute(
+                          imageBytes: widget.imageBytes,
+                          successMessage: context.l10n.photo_changed_success,
+                        ));
                       } else if (!_uploadCancelled) {
                         showSnackBarError(context,
                             message: const ImageError.unknown().getMessage(context));
