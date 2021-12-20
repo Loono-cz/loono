@@ -26,7 +26,8 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async => false,
+      /// index 2 has its own WillPopScope for webview navigation. This prevents pop event override
+      onWillPop: _selectedIndex == 2 ? null : () async => false,
       child: Scaffold(
         body: _pages.elementAt(_selectedIndex),
         bottomNavigationBar: BottomNavigationBar(
