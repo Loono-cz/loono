@@ -87,7 +87,7 @@ class ExaminationDetail extends StatelessWidget {
                         Navigator.of(context).pop();
                       },
                       icon: SvgPicture.asset(
-                        'assets/icons/prevention/arrow_back.svg',
+                        'assets/icons/arrow_back.svg',
                       ),
                     ),
                   ),
