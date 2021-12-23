@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/helpers/examination_status.dart';
+import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
@@ -24,34 +24,6 @@ class ExaminationDetail extends StatelessWidget {
 
   String _intervalYears(BuildContext context) =>
       '${categorizedExamination.examination.interval.toString()} ${categorizedExamination.examination.interval > 1 ? context.l10n.years : context.l10n.year}';
-
-  TextStyle _earlyOrderStyles() {
-    var color = LoonoColors.black;
-    var weight = FontWeight.w400;
-    final nextVisit = categorizedExamination.examination.nextVisitDate;
-    if (nextVisit != null && DateTime.now().isBefore(nextVisit)) {
-      color = LoonoColors.green;
-    } else if (nextVisit == null ||
-        categorizedExamination.status == const ExaminationStatus.newToSchedule()) {
-      color = LoonoColors.red;
-      weight = FontWeight.w700;
-    }
-    return LoonoFonts.cardTitle.copyWith(color: color, fontWeight: weight);
-  }
-
-  TextStyle _preventiveInspectionStyles() {
-    var color = LoonoColors.green;
-    var weight = FontWeight.w400;
-    final now = DateTime.now();
-    final nextVisit = categorizedExamination.examination.nextVisitDate;
-    if (nextVisit != null && DateTime.now().isAfter(nextVisit)) {
-      color = LoonoColors.red;
-      weight = FontWeight.w700;
-    } else if ((nextVisit != null && now.isBefore(nextVisit)) || nextVisit == null) {
-      color = LoonoColors.black;
-    }
-    return LoonoFonts.cardTitle.copyWith(color: color, fontWeight: weight);
-  }
 
   Widget _calendarRow(String text) => Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -158,7 +130,7 @@ class ExaminationDetail extends StatelessWidget {
               child: Text(
                 context.l10n.early_ordering,
                 textAlign: TextAlign.right,
-                style: _earlyOrderStyles(),
+                style: earlyOrderStyles(categorizedExamination),
               ),
             )),
             ExaminationProgressContent(
@@ -169,7 +141,7 @@ class ExaminationDetail extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 context.l10n.preventive_inspection,
-                style: _preventiveInspectionStyles(),
+                style: preventiveInspectionStyles(categorizedExamination),
               ),
             )),
           ],

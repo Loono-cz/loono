@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
@@ -18,60 +19,6 @@ class ScheduleExamination extends StatelessWidget {
         categorizedExamination.examination.examinationType.assetName,
         width: 133,
       );
-
-  String _czechPreposition() {
-    if ([
-      ExaminationType.COLONOSCOPY,
-      ExaminationType.MAMMOGRAM,
-    ].contains(categorizedExamination.examination.examinationType)) {
-      return 'na';
-    } else {
-      return 'u';
-    }
-  }
-
-  String _procedureQuestionTitle(BuildContext context) {
-    var response = '';
-    switch (categorizedExamination.examination.examinationType) {
-      case ExaminationType.COLONOSCOPY:
-        response = context.l10n.colonoscopy_question_highlight;
-        break;
-      case ExaminationType.DENTIST:
-        response = context.l10n.dentist_question_highlight;
-        break;
-      case ExaminationType.DERMATOLOGIST:
-        response = context.l10n.dermatology_question_highlight;
-        break;
-      case ExaminationType.GENERAL_PRACTITIONER:
-        response = context.l10n.practitioner_question_highlight;
-        break;
-      case ExaminationType.GYNECOLOGIST:
-        response = context.l10n.gynecology_question_highlight;
-        break;
-      case ExaminationType.MAMMOGRAM:
-        response = context.l10n.mammogram_question_highlight;
-        break;
-      case ExaminationType.OPHTHALMOLOGIST:
-        response = context.l10n.oculist_question_highlight;
-        break;
-      case ExaminationType.TESTICULAR_SELF:
-        // TODO: Handle this case.
-        break;
-      case ExaminationType.TOKS:
-        // TODO: Handle this case.
-        break;
-      case ExaminationType.ULTRASOUND_BREAST:
-        // TODO: Handle this case.
-        break;
-      case ExaminationType.UROLOGIST:
-        response = context.l10n.urology_question_highlight;
-        break;
-      case ExaminationType.BREAST_SELF:
-        // TODO: Handle this case.
-        break;
-    }
-    return response;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -123,7 +70,7 @@ class ScheduleExamination extends StatelessWidget {
                       ),
                     ),
                     TextSpan(
-                      text: _czechPreposition(),
+                      text: czechPreposition(categorizedExamination),
                       style: LoonoFonts.paragraphFontStyle,
                     ),
                   ],
@@ -133,7 +80,7 @@ class ScheduleExamination extends StatelessWidget {
                 height: 4,
               ),
               Text(
-                '${_procedureQuestionTitle(context)}?'.toUpperCase(),
+                '${procedureQuestionTitle(context, categorizedExamination)}?'.toUpperCase(),
                 style: LoonoFonts.headerFontStyle.copyWith(
                   color: LoonoColors.green,
                   fontWeight: FontWeight.w700,
