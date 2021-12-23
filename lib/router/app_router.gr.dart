@@ -34,7 +34,8 @@ import '../ui/screens/onboarding/fallback_account/email.dart' as _i7;
 import '../ui/screens/onboarding/fallback_account/nickname.dart' as _i6;
 import '../ui/screens/onboarding/gender.dart' as _i24;
 import '../ui/screens/onboarding/onboarding_wrapper_screen.dart' as _i4;
-import '../ui/screens/prevention/examination_detail.dart' as _i11;
+import '../ui/screens/prevention/examination_detail/examination_screen.dart'
+    as _i11;
 import '../ui/screens/settings/camera_photo_taken.dart' as _i17;
 import '../ui/screens/settings/edit_email.dart' as _i15;
 import '../ui/screens/settings/edit_nickname.dart' as _i14;
