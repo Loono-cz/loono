@@ -1,40 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
-class AboutHealthScreen extends StatelessWidget {
+class AboutHealthScreen extends StatefulWidget {
   const AboutHealthScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final GlobalKey webViewKey = GlobalKey();
-    InAppWebViewController? webViewController;
+  State<AboutHealthScreen> createState() => _AboutHealthScreenState();
+}
 
-    final InAppWebViewGroupOptions options = InAppWebViewGroupOptions(
-      crossPlatform: InAppWebViewOptions(
-        useShouldOverrideUrlLoading: true,
-        mediaPlaybackRequiresUserGesture: false,
-      ),
-      android: AndroidInAppWebViewOptions(
-        useHybridComposition: true,
-      ),
-      ios: IOSInAppWebViewOptions(
-        allowsInlineMediaPlayback: true,
-      ),
-    );
+class _AboutHealthScreenState extends State<AboutHealthScreen> {
+  InAppWebViewController? webViewController;
 
-    Future<bool> _handleBackGesture() async {
-      if (webViewController != null && await webViewController!.canGoBack()) {
-        await webViewController!.goBack();
-      }
-      return false;
+  final InAppWebViewGroupOptions options = InAppWebViewGroupOptions(
+    crossPlatform: InAppWebViewOptions(
+      useShouldOverrideUrlLoading: true,
+      mediaPlaybackRequiresUserGesture: false,
+    ),
+    android: AndroidInAppWebViewOptions(
+      useHybridComposition: true,
+    ),
+    ios: IOSInAppWebViewOptions(
+      allowsInlineMediaPlayback: true,
+    ),
+  );
+
+  Future<bool> _handleBackGesture() async {
+    if (webViewController != null && await webViewController!.canGoBack()) {
+      await webViewController!.goBack();
     }
+    return false;
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: _handleBackGesture,
       child: Scaffold(
         body: SafeArea(
           child: InAppWebView(
-            key: webViewKey,
             onWebViewCreated: (controller) {
               webViewController = controller;
             },
