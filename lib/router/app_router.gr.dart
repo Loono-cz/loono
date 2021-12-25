@@ -154,11 +154,8 @@ class AppRouter extends _i1.RootStackRouter {
           orElse: () => const EditPhotoRouteArgs());
       return _i1.CustomPage<dynamic>(
           routeData: routeData,
-          child: _i16.EditPhotoScreen(
-              key: args.key,
-              imageBytes: args.imageBytes,
-              successMessage: args.successMessage,
-              errorMessage: args.errorMessage),
+          child:
+              _i16.EditPhotoScreen(key: args.key, imageBytes: args.imageBytes),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -560,33 +557,20 @@ class EditEmailRouteArgs {
 }
 
 class EditPhotoRoute extends _i1.PageRouteInfo<EditPhotoRouteArgs> {
-  EditPhotoRoute(
-      {_i2.Key? key,
-      _i39.Uint8List? imageBytes,
-      String? successMessage,
-      String? errorMessage})
+  EditPhotoRoute({_i2.Key? key, _i39.Uint8List? imageBytes})
       : super(name,
             path: 'settings/update-profile/photo',
-            args: EditPhotoRouteArgs(
-                key: key,
-                imageBytes: imageBytes,
-                successMessage: successMessage,
-                errorMessage: errorMessage));
+            args: EditPhotoRouteArgs(key: key, imageBytes: imageBytes));
 
   static const String name = 'EditPhotoRoute';
 }
 
 class EditPhotoRouteArgs {
-  const EditPhotoRouteArgs(
-      {this.key, this.imageBytes, this.successMessage, this.errorMessage});
+  const EditPhotoRouteArgs({this.key, this.imageBytes});
 
   final _i2.Key? key;
 
   final _i39.Uint8List? imageBytes;
-
-  final String? successMessage;
-
-  final String? errorMessage;
 }
 
 class CameraPhotoTakenRoute

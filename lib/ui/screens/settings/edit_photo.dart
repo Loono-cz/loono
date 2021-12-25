@@ -4,7 +4,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
@@ -19,20 +18,14 @@ class EditPhotoScreen extends StatelessWidget {
   const EditPhotoScreen({
     Key? key,
     this.imageBytes,
-    this.successMessage,
-    this.errorMessage,
   }) : super(key: key);
 
   final Uint8List? imageBytes;
-  final String? successMessage;
-  final String? errorMessage;
 
   double _getAvatarSize(BuildContext context) => MediaQuery.of(context).size.width * 0.3;
 
   @override
   Widget build(BuildContext context) {
-    if (successMessage != null) showFlushBarSuccess(context, successMessage!, sync: false);
-    if (errorMessage != null) showFlushBarError(context, errorMessage!, sync: false);
     return Scaffold(
       appBar: settingsAppBar(context),
       backgroundColor: LoonoColors.settingsBackground,

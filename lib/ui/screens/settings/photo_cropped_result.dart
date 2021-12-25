@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
@@ -75,10 +76,12 @@ class _PhotoCroppedResultScreenState extends State<PhotoCroppedResultScreen> {
                           await registry.get<UserRepository>().updateUserPhoto(widget.imageBytes);
                       setState(() => _isUploading = false);
                       if (photoUploadResult) {
-                        context.pushRoute(EditPhotoRoute(
-                          imageBytes: widget.imageBytes,
-                          successMessage: context.l10n.photo_changed_success,
-                        ));
+                        AutoRouter.of(context).pushAndPopUntil(
+                          EditPhotoRoute(imageBytes: widget.imageBytes),
+                          predicate: (route) => route.settings.name == UpdateProfileRoute.name,
+                        );
+                        showFlushBarSuccess(context, context.l10n.photo_changed_success,
+                            sync: false);
                       } else if (!_uploadCancelled) {
                         showSnackBarError(context,
                             message: const ImageError.unknown().getMessage(context));
