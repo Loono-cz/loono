@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
@@ -84,7 +85,7 @@ class ExaminationDetail extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 10.0, top: 16),
                     child: IconButton(
                       onPressed: () {
-                        Navigator.of(context).pop();
+                        AutoRouter.of(context).pop();
                       },
                       icon: SvgPicture.asset(
                         'assets/icons/arrow_back.svg',
