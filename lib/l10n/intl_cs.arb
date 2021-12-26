@@ -299,5 +299,7 @@
   "next_visit": "Příští prohlídka",
   "@next_visit": {},
   "did_you_visited": "Byl/a jsi na\nprohlídce?",
-  "@did_you_visited": {}
+  "@did_you_visited": {},
+  "frequent_questions": "Časté dotazy",
+  "@frequent_questions": {}
 }

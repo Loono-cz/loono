@@ -20,8 +20,10 @@ class ExaminationDetailScreen extends StatelessWidget {
             ? ScheduleExamination(
                 categorizedExamination: categorizedExamination,
               )
-            : ExaminationDetail(
-                categorizedExamination: categorizedExamination,
+            : SingleChildScrollView(
+                child: ExaminationDetail(
+                  categorizedExamination: categorizedExamination,
+                ),
               ),
       ),
     );
