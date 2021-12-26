@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:loono/utils/app_config.dart';
+import 'package:loono/utils/registry.dart';
 
 class AboutHealthScreen extends StatefulWidget {
   const AboutHealthScreen({Key? key}) : super(key: key);
@@ -11,18 +15,16 @@ class AboutHealthScreen extends StatefulWidget {
 class _AboutHealthScreenState extends State<AboutHealthScreen> {
   InAppWebViewController? webViewController;
 
-  final InAppWebViewGroupOptions options = InAppWebViewGroupOptions(
-    crossPlatform: InAppWebViewOptions(
-      useShouldOverrideUrlLoading: true,
-      mediaPlaybackRequiresUserGesture: false,
-    ),
-    android: AndroidInAppWebViewOptions(
-      useHybridComposition: true,
-    ),
-    ios: IOSInAppWebViewOptions(
-      allowsInlineMediaPlayback: true,
-    ),
-  );
+  bool _useHybridComposition() {
+    final platform = registry.get<AppConfig>().platformVersion;
+    if (Platform.isAndroid && platform.contains('Android ')) {
+      final version = int.parse(platform.replaceAll('Android ', ''));
+
+      /// use hybrid composition for android api level >= 29 (android 10 +)
+      return version >= 29;
+    }
+    return false;
+  }
 
   Future<bool> _handleBackGesture() async {
     if (webViewController != null && await webViewController!.canGoBack()) {
@@ -44,7 +46,18 @@ class _AboutHealthScreenState extends State<AboutHealthScreen> {
             initialUrlRequest: URLRequest(
               url: Uri.parse('https://loono.cz/rozcestnik-prevence'),
             ),
-            initialOptions: options,
+            initialOptions: InAppWebViewGroupOptions(
+              crossPlatform: InAppWebViewOptions(
+                useShouldOverrideUrlLoading: true,
+                mediaPlaybackRequiresUserGesture: false,
+              ),
+              android: AndroidInAppWebViewOptions(
+                useHybridComposition: _useHybridComposition(),
+              ),
+              ios: IOSInAppWebViewOptions(
+                allowsInlineMediaPlayback: true,
+              ),
+            ),
             shouldOverrideUrlLoading: (controller, navigationAction) async {
               final uri = navigationAction.request.url!;
 
