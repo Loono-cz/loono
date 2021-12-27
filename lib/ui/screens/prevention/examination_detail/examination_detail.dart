@@ -172,7 +172,9 @@ class ExaminationDetail extends StatelessWidget {
         const SizedBox(
           height: 40,
         ),
-        const FaqSection(),
+        FaqSection(
+          examinationType: categorizedExamination.examination.examinationType,
+        ),
       ],
     );
   }

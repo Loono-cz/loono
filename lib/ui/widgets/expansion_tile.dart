@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/faq_content.dart';
+import 'package:loono/l10n/ext.dart';
 
 class FaqExpansionTile extends StatefulWidget {
+  const FaqExpansionTile(this.pair);
+
+  final FAQPair pair;
+
   @override
   State<FaqExpansionTile> createState() => _FaqExpansionTileState();
 }
 
 class _FaqExpansionTileState extends State<FaqExpansionTile> {
   bool _isExpanded = false;
+  bool _showMore = false;
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +37,8 @@ class _FaqExpansionTileState extends State<FaqExpansionTile> {
                   fontWeight: _isExpanded ? FontWeight.w600 : FontWeight.w400,
                   color: LoonoColors.black,
                 ),
-                child: const Text(
-                  'Title expansion tile',
+                child: Text(
+                  widget.pair.question,
                 ),
               ),
               onExpansionChanged: (val) {
@@ -44,15 +51,57 @@ class _FaqExpansionTileState extends State<FaqExpansionTile> {
                 duration: const Duration(milliseconds: 200),
                 child: SvgPicture.asset('assets/icons/chevron-down.svg'),
               ),
-              children: const <Widget>[
+              children: <Widget>[
                 ListTile(
-                  title: Text(
-                    'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In dapibus augue non sapien. Fusce aliquam vestibulum ipsum. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Etiam neque.',
-                    style: TextStyle(
-                      fontSize: 14.0,
-                    ),
+                  title: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Row(
+                        children: [
+                          Flexible(
+                            child: Text(
+                              widget.pair.answer.length > 370 && !_showMore
+                                  ? '${widget.pair.answer.substring(0, 370)}...'
+                                  : widget.pair.answer,
+                              style: const TextStyle(
+                                fontSize: 14.0,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      if (widget.pair.answer.length > 370)
+                        Row(
+                          children: [
+                            TextButton(
+                              onPressed: () {
+                                setState(() {
+                                  _showMore = !_showMore;
+                                });
+                              },
+                              style: ButtonStyle(
+                                padding: MaterialStateProperty.all(
+                                  const EdgeInsets.all(0),
+                                ),
+                                splashFactory: NoSplash.splashFactory,
+                              ),
+                              child: Text(
+                                _showMore
+                                    ? context.l10n.less_information
+                                    : context.l10n.more_information,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w600, color: LoonoColors.green),
+                              ),
+                            ),
+                          ],
+                        )
+                    ],
                   ),
-                  contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                  contentPadding: const EdgeInsets.only(
+                    left: 10,
+                    right: 10,
+                    bottom: 8,
+                  ),
                   dense: true,
                 )
               ],
