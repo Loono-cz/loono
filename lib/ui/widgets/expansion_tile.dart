@@ -61,7 +61,7 @@ class _FaqExpansionTileState extends State<FaqExpansionTile> {
                           Flexible(
                             child: Text(
                               widget.pair.answer.length > 370 && !_showMore
-                                  ? '${widget.pair.answer.substring(0, 370)}...'
+                                  ? '${widget.pair.answer.substring(0, 370).trim()}...'
                                   : widget.pair.answer,
                               style: const TextStyle(
                                 fontSize: 14.0,
