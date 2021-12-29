@@ -19,6 +19,7 @@ import 'package:loono/services/database_service.dart';
 import 'package:loono/services/firebase_storage_service.dart';
 import 'package:loono/services/notification_service.dart';
 import 'package:loono/utils/app_config.dart';
+import 'package:loono/workers/healtcare_providers_worker.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:package_info/package_info.dart';
 
@@ -94,4 +95,10 @@ Future<void> setup(AppFlavors flavor) async {
   // utils
   registry.registerLazySingleton<ImagePicker>(() => ImagePicker());
   registry.registerLazySingleton<DefaultCacheManager>(() => DefaultCacheManager());
+
+  //workers
+  registry.registerSingleton<HealtcareProvidersWorker>(HealtcareProvidersWorker(
+    apiService: registry.get<ApiService>(),
+    databaseService: registry.get<DatabaseService>(),
+  ));
 }
