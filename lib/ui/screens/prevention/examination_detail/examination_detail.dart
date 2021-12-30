@@ -7,6 +7,7 @@ import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
+import 'package:loono/ui/screens/prevention/examination_detail/faq_section.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/prevention/examination_progress_content.dart';
 
@@ -168,6 +169,12 @@ class ExaminationDetail extends StatelessWidget {
               ),
             ],
           ),
+        ),
+        const SizedBox(
+          height: 40,
+        ),
+        FaqSection(
+          examinationType: categorizedExamination.examination.examinationType,
         ),
       ],
     );
