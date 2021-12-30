@@ -37,7 +37,8 @@ Future<void> setup(AppFlavors flavor) async {
     if (Platform.isIOS) {
       await deviceInfo.iosInfo.then((ios) => osVersion = 'iOS ${ios.systemVersion}');
     } else if (Platform.isAndroid) {
-      await deviceInfo.androidInfo.then((android) => osVersion = 'Android ${android.version}');
+      await deviceInfo.androidInfo
+          .then((android) => osVersion = 'Android ${android.version.sdkInt}');
     } else {
       osVersion = 'Unknown OS';
     }
