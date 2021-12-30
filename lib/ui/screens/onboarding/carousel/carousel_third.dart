@@ -24,7 +24,7 @@ class OnboardingThirdCarouselScreen extends StatelessWidget {
       },
       child: Scaffold(
         backgroundColor: const Color.fromRGBO(241, 249, 249, 1),
-        appBar: carouselAppBar(context),
+        appBar: carouselAppBar(context, onBack),
         body: SafeArea(
           child: CarouselImageContent(
             headerText: context.l10n.carousel_content_3_header,
