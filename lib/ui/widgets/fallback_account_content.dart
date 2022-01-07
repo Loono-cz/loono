@@ -138,6 +138,7 @@ class _FallbackAccountContentState extends State<FallbackAccountContent> {
         style: const TextStyle(fontSize: 24.0, color: LoonoColors.black),
         decoration: InputDecoration(
           hintText: widget.hint,
+          hintStyle: const TextStyle(fontSize: 24.0, color: LoonoColors.grey),
           focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(
                 color: LoonoColors.primaryEnabled, width: widget.filled == true ? 4.0 : 2.0),
