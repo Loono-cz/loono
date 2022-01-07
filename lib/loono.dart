@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:loono/models/firebase_user.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -13,6 +14,8 @@ class Loono extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
+
     return StreamBuilder<AuthUser?>(
       stream: _auth.onAuthStateChanged,
       builder: (context, snapshot) {

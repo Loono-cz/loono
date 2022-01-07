@@ -4,6 +4,7 @@ import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_status.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
+import 'package:loono/ui/widgets/prevention/progress_bar/base_ring.dart';
 
 class ExaminationProgressContent extends StatelessWidget {
   const ExaminationProgressContent({Key? key, required this.categorizedExamination})
@@ -100,15 +101,60 @@ class ExaminationProgressContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(80),
-      child: Container(
-        width: 160,
-        height: 160,
-        color: LoonoColors.beigeLighter,
-        child: Center(
-          child: _progressBarContent(context),
-        ),
+    return SizedBox(
+      width: 168,
+      height: 168,
+      child: Stack(
+        children: [
+          SizedBox(
+            width: 168,
+            height: 168,
+            child: CustomPaint(
+              painter: const Ring(progressColor: LoonoColors.greenSuccess),
+              child: Center(
+                child: FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: _progressBarContent(context),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Container(
+                color: LoonoColors.greenSuccess,
+                width: 16,
+                height: 16,
+                child: const Icon(
+                  Icons.done,
+                  size: 14,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Container(
+                color: LoonoColors.red,
+                width: 16,
+                height: 16,
+                child: const Icon(
+                  Icons.priority_high,
+                  size: 14,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

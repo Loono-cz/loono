@@ -128,7 +128,7 @@ class ExaminationDetail extends StatelessWidget {
           children: [
             Expanded(
                 child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(4.0),
               child: Text(
                 context.l10n.early_ordering,
                 textAlign: TextAlign.right,
@@ -140,7 +140,7 @@ class ExaminationDetail extends StatelessWidget {
             ),
             Expanded(
                 child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(4.0),
               child: Text(
                 context.l10n.preventive_inspection,
                 style: preventiveInspectionStyles(categorizedExamination),
