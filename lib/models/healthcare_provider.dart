@@ -67,8 +67,4 @@ class HealthcareProvidersDao extends DatabaseAccessor<AppDatabase>
       },
     );
   }
-
-  // TODO: Add more search queries
-  Future<List<HealthcareProvider>> searchByTitle(String query) =>
-      (select(healthcareProviders)..where((tbl) => tbl.title.like('%$query%'))).get();
 }

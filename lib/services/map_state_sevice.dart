@@ -1,3 +1,4 @@
+import 'package:diacritic/diacritic.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_cluster_manager/google_maps_cluster_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -51,6 +52,14 @@ class MapStateService with ChangeNotifier {
       ..clear()
       ..addAll(markers);
     notifyListeners();
+  }
+
+  // TODO: combine queries
+  Iterable<HealthcareProvider> searchByTitle(String query) {
+    return _allHealthcareProviders.where((healthcareProvider) {
+      return removeDiacritics(healthcareProvider.title.toLowerCase())
+          .contains(removeDiacritics(query).toLowerCase());
+    });
   }
 
   void _applyFilter() {

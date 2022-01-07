@@ -19,6 +19,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   dartz: ^0.10.0
   device_info: ^2.0.2
+  diacritic: ^0.1.3
   dio: ^4.0.0
   email_validator: ^2.0.1
   encrypted_moor:

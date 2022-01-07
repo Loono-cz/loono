@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:loono/repositories/healthcare_repository.dart';
 import 'package:loono/services/db/database.dart';
+import 'package:loono/services/map_state_sevice.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:provider/provider.dart';
 
 class SearchTextField extends StatelessWidget {
   SearchTextField({
@@ -30,10 +32,10 @@ class SearchTextField extends StatelessWidget {
         ),
         debounceDuration: const Duration(milliseconds: 300),
         hideOnEmpty: true,
-        suggestionsCallback: (pattern) async {
+        suggestionsCallback: (query) {
           // TODO: multi search query
-          if (pattern.isEmpty) return <HealthcareProvider>[];
-          return _healthcareProvidersRepository.searchByTitle(pattern);
+          if (query.isEmpty) return <HealthcareProvider>[];
+          return context.read<MapStateService>().searchByTitle(query);
         },
         itemBuilder: (context, HealthcareProvider healthcareProvider) {
           return ListTile(

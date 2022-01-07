@@ -75,10 +75,6 @@ class HealthcareProviderRepository {
     return _db.healthcareProviders.getAll();
   }
 
-  Future<List<HealthcareProvider>> searchByTitle(String query) {
-    return _db.healthcareProviders.searchByTitle(query);
-  }
-
   Future<BuiltList<SimpleHealthcareProvider>?> _fetchAllProvidersData() async {
     final healthcareApiResponse = await _apiService.getProvidersAll();
     final Uint8List? responseData = healthcareApiResponse.mapOrNull(
