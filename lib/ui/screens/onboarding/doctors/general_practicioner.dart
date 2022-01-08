@@ -23,7 +23,7 @@ class OnboardingGeneralPracticionerScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: UniversalDoctorScreen(
-          examinationType: ExaminationType.GENERAL_PRACTITIONER,
+          examinationType: _type,
           question: sex.getUniversalDoctorLabel(context),
           questionHighlight: context.l10n.practitioner_question_highlight,
           assetPath: _type.assetPath,

@@ -25,7 +25,7 @@ class OnboardingDentistScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: UniversalDoctorScreen(
-          examinationType: ExaminationType.GYNECOLOGIST,
+          examinationType: _type,
           question: sex.getUniversalDoctorLabel(context),
           questionHighlight: context.l10n.dentist_question_highlight,
           assetPath: _type.assetPath,
