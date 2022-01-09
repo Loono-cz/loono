@@ -105,10 +105,10 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
                                   tz.getLocation(_timezone),
                                 ),
                                 end: tz.TZDateTime.from(
-                                  nextVisitDate!.add(const Duration(hours: 2)),
+                                  nextVisitDate!.add(const Duration(hours: 1)),
                                   tz.getLocation(_timezone),
                                 ),
-                                // TODO: Texts
+                                // TODO: Texts (https://cesko-digital.atlassian.net/browse/LOON-415)
                                 title:
                                     'TODO: Preventivní prohlídka - ${examinationRecord.examinationType.name}',
                                 description: 'TODO: popisek',
