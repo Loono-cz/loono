@@ -52,7 +52,6 @@ dependencies:
   image_picker: ^0.8.4+2
 
   intl: ^0.17.0
-  isolates: ^3.0.3+8
   json_annotation: ^4.0.1
   loono_api:
     git:
