@@ -15,7 +15,10 @@ import 'package:loono/utils/image_utils.dart';
 import 'package:loono/utils/registry.dart';
 
 class EditPhotoScreen extends StatelessWidget {
-  const EditPhotoScreen({Key? key, this.imageBytes}) : super(key: key);
+  const EditPhotoScreen({
+    Key? key,
+    this.imageBytes,
+  }) : super(key: key);
 
   final Uint8List? imageBytes;
 

@@ -28,6 +28,7 @@ class LoonoColors {
   static const facebookLogInBlue = Color.fromRGBO(24, 119, 242, 1);
   static const bottomSheetLight = Color.fromARGB(255, 254, 242, 233);
   static const bottomSheetPrevention = Color.fromRGBO(250, 200, 167, 1);
+  static const faqBackgroundBlue = Color.fromRGBO(237, 248, 252, 1);
 
   static const rainbow = <Color>[
     Color.fromARGB(255, 230, 87, 86),
