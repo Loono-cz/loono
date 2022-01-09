@@ -9,6 +9,7 @@ import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/helpers/ui_helpers.dart';
+import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/services/calendar_service.dart';
 import 'package:loono/ui/widgets/button.dart';
@@ -49,6 +50,8 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return Scaffold(
       backgroundColor: LoonoColors.bottomSheetPrevention,
       appBar: AppBar(
@@ -69,7 +72,7 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
           child: Column(
             children: [
               Text(
-                'Vyber kalendáře, do kterých ti má Preventivka zaznačovat prohlídky',
+                l10n.calendar_list_header,
                 style: LoonoFonts.headerFontStyle,
               ),
               const SizedBox(height: 45),
@@ -117,7 +120,7 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
                               if (result) {
                                 showSnackBarSuccess(
                                   context,
-                                  message: 'Prohlídky ti přidáme do kalendáře',
+                                  message: l10n.calendar_added_success_message,
                                 );
                                 AutoRouter.of(context).pop();
                               }
@@ -137,7 +140,8 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
                                   const SizedBox(width: 16),
                                   Expanded(
                                     child: Text(
-                                      calendar.name ?? 'Kalendář ${calendar.id}',
+                                      calendar.name ??
+                                          '${l10n.calendar_unknown_name} ${calendar.id}',
                                       style: Theme.of(context).textTheme.subtitle1,
                                     ),
                                   ),
@@ -154,10 +158,10 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
               ),
               const SizedBox(height: 30),
               // TODO: Figma UI might not be final yet
-              const Visibility(
+              Visibility(
                 visible: false,
                 child: LoonoButton(
-                  text: 'Vybrat kalendář',
+                  text: l10n.calendar_choose_calendar_button,
                   enabled: false,
                   onTap: null,
                 ),

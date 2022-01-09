@@ -50,6 +50,7 @@ class ExaminationDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final lastVisitDateWithoutDay = categorizedExamination.examination.lastVisitDate;
 
     final lastVisit = lastVisitDateWithoutDay != null
@@ -172,7 +173,7 @@ class ExaminationDetail extends StatelessWidget {
                           children: [
                             Expanded(
                               child: LoonoButton.light(
-                                text: 'Přidat do kalendáře',
+                                text: l10n.examination_detail_add_to_calendar_button,
                                 onTap: () async {
                                   final hasPermissionsGranted =
                                       await _calendarService.hasPermissionsGranted();
@@ -197,7 +198,7 @@ class ExaminationDetail extends StatelessWidget {
                 ),
                 Expanded(
                   child: LoonoButton.light(
-                    text: 'Upravit datum',
+                    text: l10n.examination_detail_edit_date_button,
                     onTap: () {},
                   ),
                 ),

@@ -5,6 +5,7 @@ import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/helpers/ui_helpers.dart';
+import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/calendar_service.dart';
 import 'package:loono/ui/widgets/button.dart';
@@ -20,6 +21,8 @@ class CalendarPermissionInfoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -31,7 +34,7 @@ class CalendarPermissionInfoScreen extends StatelessWidget {
                 child: TextButton(
                   onPressed: () => AutoRouter.of(context).pop(),
                   child: Text(
-                    'Nechci prohlídky v kalendáři',
+                    l10n.calendar_permission_close,
                     style: const TextStyle(color: LoonoColors.black, fontWeight: FontWeight.w600),
                   ),
                 ),
@@ -43,13 +46,13 @@ class CalendarPermissionInfoScreen extends StatelessWidget {
               ),
               const SizedBox(height: 40),
               Text(
-                'Když aplikaci povolíš přístup do kalendáře, budeme ti automaticky udržovat tvoje prohlídky aktuální v kalendáři.',
+                l10n.calendar_permission_desc,
                 style: LoonoFonts.paragraphFontStyle.copyWith(fontSize: 16),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 80),
               LoonoButton(
-                text: 'Povolit přístup do kalendáře',
+                text: l10n.calendar_permission_allow_button,
                 onTap: () async {
                   final permissionsGranted =
                       await registry.get<CalendarService>().promptPermissions();
