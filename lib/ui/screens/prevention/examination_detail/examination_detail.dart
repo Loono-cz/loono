@@ -20,7 +20,7 @@ class ExaminationDetail extends StatelessWidget {
   final CategorizedExamination categorizedExamination;
 
   Widget get _doctorAsset => SvgPicture.asset(
-        categorizedExamination.examination.examinationType.assetName,
+        categorizedExamination.examination.examinationType.assetPath,
         width: 180,
       );
 
