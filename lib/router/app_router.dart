@@ -21,6 +21,8 @@ import 'package:loono/ui/screens/onboarding/fallback_account/email.dart';
 import 'package:loono/ui/screens/onboarding/fallback_account/nickname.dart';
 import 'package:loono/ui/screens/onboarding/gender.dart';
 import 'package:loono/ui/screens/onboarding/onboarding_wrapper_screen.dart';
+import 'package:loono/ui/screens/prevention/calendar/calendar_list.dart';
+import 'package:loono/ui/screens/prevention/calendar/permission_info.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/examination_screen.dart';
 import 'package:loono/ui/screens/settings/camera_photo_taken.dart';
 import 'package:loono/ui/screens/settings/edit_email.dart';
@@ -59,6 +61,16 @@ const _settingsTransition = TransitionsBuilders.slideLeft;
         CustomRoute(
           page: ExaminationDetailScreen,
           path: 'prevention-detail',
+          transitionsBuilder: _preventionTransition,
+        ),
+        CustomRoute(
+          page: CalendarPermissionInfoScreen,
+          path: 'calendar/permission',
+          transitionsBuilder: _preventionTransition,
+        ),
+        CustomRoute(
+          page: CalendarListScreen,
+          path: 'calendar/list',
           transitionsBuilder: _preventionTransition,
         ),
 
