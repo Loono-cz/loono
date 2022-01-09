@@ -78,7 +78,7 @@ extension ExaminationTypesExt on ExaminationType {
         urologist: () => 'Urolog',
       );
 
-  String get assetName {
+  String get assetPath {
     const basePath = 'assets/icons/prevention/doctors/';
     final doctor = mapToUnion.toString().split('.').last.replaceFirst('()', '.svg');
     return '$basePath$doctor';

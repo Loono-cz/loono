@@ -31,7 +31,7 @@ class ExaminationDetail extends StatelessWidget {
 
   DateTime? get nextVisitDate => categorizedExamination.examination.nextVisitDate;
 
-  Widget get _doctorAsset => SvgPicture.asset(examinationType.assetName, width: 180);
+  Widget get _doctorAsset => SvgPicture.asset(examinationType.assetPath, width: 180);
 
   String _intervalYears(BuildContext context) =>
       '${categorizedExamination.examination.interval.toString()} ${categorizedExamination.examination.interval > 1 ? context.l10n.years : context.l10n.year}';
