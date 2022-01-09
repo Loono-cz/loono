@@ -1,8 +1,10 @@
 // ignore_for_file: constant_identifier_names
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:archive/archive.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/helpers/healthcare_provider_type_converters.dart';
 import 'package:loono/services/api_service.dart';
@@ -11,29 +13,61 @@ import 'package:loono/services/db/database.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:moor/moor.dart';
 
+enum HealtCareSyncState { started, fetching, parsing, storing, completed, error }
+
 class HealthcareProviderRepository {
-  const HealthcareProviderRepository({
+  final ApiService _apiService;
+  final DatabaseService _db;
+  static const int UPDATE_CHECK_INTERVAL_IN_DAYS = 21;
+
+  final _streamController = StreamController<HealtCareSyncState>.broadcast();
+  Stream<HealtCareSyncState> get healtcareProvidersStream => _streamController.stream;
+
+  HealthcareProviderRepository({
     required ApiService apiService,
     required DatabaseService databaseService,
   })  : _apiService = apiService,
         _db = databaseService;
 
-  final ApiService _apiService;
-  final DatabaseService _db;
+  void _emitStreamValue(HealtCareSyncState state) {
+    _streamController.sink.add(state);
+    debugPrint('HEALTHCARE_PROVIDERS STREAM VALUE $state ');
+  }
 
-  static const int UPDATE_CHECK_INTERVAL_IN_DAYS = 21;
+  Future<List<HealthcareProvider>> searchByTitle(String query) {
+    return _db.healthcareProviders.searchByTitle(query);
+  }
 
   /// Updates [HealthcareProviders] with new [SimpleHealthcareProvider] data if the current local
   /// data are not up to date or not fetched yet.
   ///
   /// If the data are up to date, returns cached healthcare providers data.
-  Future<List<HealthcareProvider>> checkAndUpdateIfNeeded() async {
-    final now = Date.now();
+  Future<void> checkAndUpdateIfNeeded() async {
+    await Future.delayed(const Duration(seconds: 3));
+    // TODO: odstranit, nyní řeší problém, kdy last item na auth = null
+
+    _emitStreamValue(HealtCareSyncState.started);
     final localLatestUpdateCheck = _db.users.user?.latestMapUpdateCheck;
     final localLatestUpdate = _db.users.user?.latestMapUpdate;
+    final serverLatestUpdate = await _getServerLatestUpdate(localLatestUpdateCheck);
+    // update if data are outdated or completely missing
+    debugPrint(
+        'HEALTHCARE_PROVIDERS: LOCAL LATEST: $localLatestUpdate | SERVER LATEST: $serverLatestUpdate');
+    if (localLatestUpdate == null ||
+        (serverLatestUpdate != null && serverLatestUpdate.isAfter(localLatestUpdate))) {
+      final BuiltList<SimpleHealthcareProvider>? list = await _fetchAllProvidersData();
+      if (list == null) return _emitStreamValue(HealtCareSyncState.error);
+      await _storeList(list, serverLatestUpdate);
+    } else {
+      debugPrint('HEALTHCARE_PROVIDERS: DATA ARE UP TO DATE');
+    }
+    _emitStreamValue(HealtCareSyncState.completed);
+  }
 
-    // check for a new server update if it is more than 21 days since the last check
+  Future<DateTime?>? _getServerLatestUpdate(DateTime? localLatestUpdateCheck) async {
+    final now = Date.now();
     Future<DateTime?>? serverLatestUpdateData;
+    // check for a new server update if it is more than 21 days since the last check
     if (localLatestUpdateCheck != null &&
         now.toDateTime().difference(localLatestUpdateCheck).inDays.abs() >
             UPDATE_CHECK_INTERVAL_IN_DAYS) {
@@ -55,49 +89,58 @@ class HealthcareProviderRepository {
         },
       );
     }
-
-    final serverLatestUpdate = await serverLatestUpdateData;
-
-    // update if data are outdated or completely missing
-    debugPrint(
-        'HEALTHCARE_PROVIDERS: LOCAL LATEST: $localLatestUpdate --- SERVER LATEST: $serverLatestUpdate');
-    if (localLatestUpdate == null ||
-        (serverLatestUpdate != null && serverLatestUpdate.isAfter(localLatestUpdate))) {
-      debugPrint('HEALTHCARE_PROVIDERS: UPDATING DATA...');
-      final BuiltList<SimpleHealthcareProvider>? list = await _fetchAllProvidersData();
-      if (list == null) return Future.error('Could not fetch the data');
-      await _db.healthcareProviders.updateAllData(list);
-      await _db.users.updateLatestMapServerUpdate(serverLatestUpdate ?? now.toDateTime());
-      await _db.users.updateLatestMapUpdateCheck(now.toDateTime());
-    } else {
-      debugPrint('HEALTHCARE_PROVIDERS: DATA ARE UP TO DATE');
-    }
-    return _db.healthcareProviders.getAll();
-  }
-
-  Future<List<HealthcareProvider>> searchByTitle(String query) {
-    return _db.healthcareProviders.searchByTitle(query);
+    return serverLatestUpdateData;
   }
 
   Future<BuiltList<SimpleHealthcareProvider>?> _fetchAllProvidersData() async {
+    _emitStreamValue(HealtCareSyncState.fetching);
     final healthcareApiResponse = await _apiService.getProvidersAll();
     final Uint8List? responseData = healthcareApiResponse.mapOrNull(
       success: (response) => response.data,
     );
     if (responseData == null) return null;
-
     // the response returns compressed zip file which contains serialized providers.json file
-    final archive = ZipDecoder().decodeBytes(responseData);
-    debugPrint(archive.toString());
-
-    BuiltList<SimpleHealthcareProvider>? list;
-    try {
-      final jsonFile = archive.files.first.content as Uint8List;
-      final content = utf8.decode(jsonFile);
-      list = const SimpleHealthcareListConverter().fromJson(content);
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-    return list;
+    _emitStreamValue(HealtCareSyncState.parsing);
+    final result =
+        await compute<Uint8List, BuiltList<SimpleHealthcareProvider>?>(_hadleZip, responseData);
+    return result;
   }
+
+  Future<void> _storeList(
+    BuiltList<SimpleHealthcareProvider> list,
+    DateTime? serverLatestUpdate,
+  ) async {
+    _emitStreamValue(HealtCareSyncState.storing);
+    // --------------With Compute-------------- NEfunguje
+    await compute<BuiltList<SimpleHealthcareProvider>, void>(
+      _healtcareProvidersDbUpdateAllData,
+      list,
+    );
+    //TODO: přidat druhej compute pro aktualizaci časů
+
+    // --------------Main Isolate--------------
+    // final now = Date.now();
+    // _db.healthcareProviders.updateAllData(list); Způsobuje zpomalení, operace je synchroni a na několik sec na emulátoru
+    // _db.users.updateLatestMapServerUpdate(serverLatestUpdate ?? now.toDateTime());
+    // _db.users.updateLatestMapUpdateCheck(now.toDateTime());
+  }
+}
+
+BuiltList<SimpleHealthcareProvider>? _hadleZip(Uint8List data) {
+  final archive = ZipDecoder().decodeBytes(data);
+  BuiltList<SimpleHealthcareProvider>? list;
+  try {
+    final jsonFile = archive.files.first.content as Uint8List;
+    final content = utf8.decode(jsonFile);
+    list = const SimpleHealthcareListConverter().fromJson(content);
+  } catch (e) {
+    debugPrint(e.toString());
+  }
+  return list;
+}
+
+Future<void> _healtcareProvidersDbUpdateAllData(BuiltList<SimpleHealthcareProvider> list) async {
+  final db = DatabaseService(); // NENALEZNE cestu k DB
+  db.init('SUPER SECURE KEY');
+  await db.healthcareProviders.updateAllData(list); //bez cesty vrátí chyby
 }

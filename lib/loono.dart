@@ -3,29 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:loono/models/firebase_user.dart';
+import 'package:loono/repositories/healthcare_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
-import 'package:loono/services/api_service.dart';
 import 'package:loono/services/auth/auth_service.dart';
-import 'package:loono/services/database_service.dart';
 import 'package:loono/utils/registry.dart';
-import 'package:loono/workers/healtcare_providers_worker.dart';
 
 class Loono extends StatelessWidget {
   final _auth = registry.get<AuthService>();
   final _appRouter = registry.get<AppRouter>();
+  final _healthcareProviderRepository = registry.get<HealthcareProviderRepository>();
 
   Future<void> syncHealtCareProviders(AuthUser user) async {
-    final worker = HealtcareProvidersWorker(
-      apiService: registry.get<ApiService>(),
-      databaseService: registry.get<DatabaseService>(),
-    );
-    await worker.isReady;
-    print('TEST');
-    worker.syncHealtcareProviders();
-    await worker.isSyncCompleted;
-    print('Worek je hotovej');
-    worker.dispose();
-    print('Worek je zrušenej');
+    _healthcareProviderRepository.checkAndUpdateIfNeeded();
   }
 
   @override
