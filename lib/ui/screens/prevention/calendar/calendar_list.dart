@@ -115,7 +115,8 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
                               );
                               final result = await _calendarRepository.createEvent(
                                 event: event,
-                                examinationRecord: examinationRecord,
+                                examinationType: examinationRecord.examinationType,
+                                startingDate: nextVisitDate!,
                               );
                               if (result) {
                                 showSnackBarSuccess(

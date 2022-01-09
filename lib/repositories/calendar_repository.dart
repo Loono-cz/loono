@@ -1,6 +1,6 @@
 import 'package:device_calendar/device_calendar.dart';
 import 'package:flutter/foundation.dart';
-import 'package:loono/helpers/examination_extensions.dart';
+import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/services/calendar_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
@@ -17,17 +17,18 @@ class CalendarRepository {
 
   Future<bool> createEvent({
     required Event event,
-    required ExaminationRecord examinationRecord,
+    required ExaminationType examinationType,
+    required DateTime startingDate,
   }) async {
     final eventId = await _calendarService.createOrUpdateEvent(event);
     if (eventId != null) {
       final calendarId = event.calendarId;
       if (calendarId != null) {
         final dbEvent = CalendarEvent(
-          type: examinationRecord.examinationType,
+          type: examinationType,
           deviceCalendarId: event.calendarId!,
           calendarEventId: eventId,
-          date: examinationRecord.nextVisitDate!,
+          date: startingDate,
         );
         await _db.calendarEvents.addOrUpdateEvent(dbEvent);
         return true;
