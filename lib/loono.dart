@@ -13,10 +13,6 @@ class Loono extends StatelessWidget {
   final _appRouter = registry.get<AppRouter>();
   final _healthcareProviderRepository = registry.get<HealthcareProviderRepository>();
 
-  Future<void> syncHealtCareProviders(AuthUser user) async {
-    _healthcareProviderRepository.checkAndUpdateIfNeeded();
-  }
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<AuthUser?>(
@@ -28,8 +24,8 @@ class Loono extends StatelessWidget {
             _appRouter.removeWhere((_) => true);
             _appRouter.push(const MainScreenRouter());
           });
+          _healthcareProviderRepository.checkAndUpdateIfNeeded();
         }
-        if (authUser != null) syncHealtCareProviders(authUser);
 
         return MaterialApp.router(
           title: 'Loono',

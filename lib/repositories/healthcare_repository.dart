@@ -43,7 +43,7 @@ class HealthcareProviderRepository {
   ///
   /// If the data are up to date, returns cached healthcare providers data.
   Future<void> checkAndUpdateIfNeeded() async {
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 5));
     // TODO: odstranit, nyní řeší problém, kdy last item na auth = null
 
     _emitStreamValue(HealtCareSyncState.started);
