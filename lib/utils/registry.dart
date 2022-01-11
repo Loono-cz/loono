@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:device_info/device_info.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +20,7 @@ import 'package:loono/services/firebase_storage_service.dart';
 import 'package:loono/services/notification_service.dart';
 import 'package:loono/utils/app_config.dart';
 import 'package:loono_api/loono_api.dart';
-import 'package:package_info/package_info.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 final registry = GetIt.instance;
 
