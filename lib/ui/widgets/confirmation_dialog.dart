@@ -20,7 +20,7 @@ void showConfirmationDialog(
     child: Text(confirmationButtonLabel ?? context.l10n.continue_info),
   );
 
-  showDialog(
+  showDialog<void>(
     context: context,
     useRootNavigator: false,
     builder: (context) => AlertDialog(

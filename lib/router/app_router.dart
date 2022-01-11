@@ -47,7 +47,7 @@ const _settingsTransition = TransitionsBuilders.slideLeft;
 @MaterialAutoRouter(
   replaceInRouteName: 'Page|Screen,Route',
   routes: <AutoRoute>[
-    AutoRoute(
+    AutoRoute<void>(
       page: EmptyRouterScreen,
       path: 'main',
       name: 'MainScreenRouter',
@@ -55,155 +55,155 @@ const _settingsTransition = TransitionsBuilders.slideLeft;
       guards: [CheckIsLoggedIn],
       children: [
         // Main
-        AutoRoute(page: MainScreen, path: ''),
+        AutoRoute<void>(page: MainScreen, path: ''),
 
         // Prevention
-        CustomRoute(
+        CustomRoute<void>(
           page: ExaminationDetailScreen,
           path: 'prevention-detail',
           transitionsBuilder: _preventionTransition,
         ),
-        CustomRoute(
+        CustomRoute<void>(
           page: AchievementScreen,
           path: 'questionnaire/reward',
           transitionsBuilder: _preventionTransition,
         ),
-        CustomRoute(
+        CustomRoute<void>(
           page: DatePickerScreen,
           path: 'questionnaire/date-picker',
           transitionsBuilder: _preventionTransition,
         ),
 
         // Settings
-        CustomRoute(
+        CustomRoute<void>(
           page: OpenSettingsScreen,
           path: 'settings',
           transitionsBuilder: _openSettingsTransition,
         ),
-        CustomRoute(
+        CustomRoute<void>(
           page: UpdateProfileScreen,
           path: 'settings/update-profile',
           transitionsBuilder: _settingsTransition,
         ),
-        CustomRoute(
+        CustomRoute<void>(
           page: EditNicknameScreen,
           path: 'settings/update-profile/nickname',
           transitionsBuilder: _settingsTransition,
         ),
-        CustomRoute(
+        CustomRoute<void>(
           page: EditEmailScreen,
           path: 'settings/update-profile/email',
           transitionsBuilder: _settingsTransition,
         ),
-        CustomRoute(
+        CustomRoute<void>(
           page: EditPhotoScreen,
           path: 'settings/update-profile/photo',
           transitionsBuilder: _settingsTransition,
         ),
-        CustomRoute(
+        CustomRoute<void>(
           page: CameraPhotoTakenScreen,
           path: 'settings/update-profile/photo/camera-taken',
           transitionsBuilder: _settingsTransition,
         ),
-        CustomRoute(
+        CustomRoute<void>(
           page: GalleryPhotoTakenScreen,
           path: 'settings/update-profile/photo/gallery-taken',
           transitionsBuilder: _settingsTransition,
         ),
-        CustomRoute(
+        CustomRoute<void>(
           page: PhotoCroppedResultScreen,
           path: 'settings/update-profile/photo/photo-cropped-result',
           transitionsBuilder: _settingsTransition,
         ),
-        CustomRoute(
+        CustomRoute<void>(
           page: LeaderboardScreen,
           path: 'settings/leaderboard',
           transitionsBuilder: _settingsTransition,
         ),
-        CustomRoute(
+        CustomRoute<void>(
           page: PointsHelpScreen,
           path: 'settings/points-help',
           transitionsBuilder: _settingsTransition,
         ),
       ],
     ),
-    AutoRoute(
+    AutoRoute<void>(
       page: OnboardingWrapperScreen,
       path: 'onboarding',
       children: [
-        AutoRoute(page: WelcomeScreen, path: 'welcome'),
-        CustomRoute(
+        AutoRoute<void>(page: WelcomeScreen, path: 'welcome'),
+        CustomRoute<void>(
           page: OnboardingCarouselScreen,
           path: 'carousel',
           transitionsBuilder: _onboardingTransition,
         ),
-        CustomRoute(
+        CustomRoute<void>(
           page: OnboardingGenderScreen,
           path: 'gender',
           transitionsBuilder: _onboardingTransition,
         ),
-        CustomRoute(
+        CustomRoute<void>(
           page: OnBoardingBirthdateScreen,
           path: 'birthdate',
           transitionsBuilder: _onboardingTransition,
         ),
-        CustomRoute(
+        CustomRoute<void>(
           page: OnboardingGeneralPracticionerScreen,
           path: 'doctor/general-practicioner',
           transitionsBuilder: _onboardingTransition,
         ),
-        CustomRoute(
+        CustomRoute<void>(
           page: GeneralPracticionerAchievementScreen,
           path: 'general-practicioner-achievement',
           transitionsBuilder: _onboardingTransition,
         ),
-        CustomRoute(
+        CustomRoute<void>(
           page: GeneralPractitionerDateScreen,
           path: 'doctor/general-practitioner-date',
           transitionsBuilder: _onboardingTransition,
         ),
-        CustomRoute(
+        CustomRoute<void>(
           page: AllowNotificationsScreen,
           path: 'allow_notifications',
           transitionsBuilder: _onboardingTransition,
         ),
-        CustomRoute(
+        CustomRoute<void>(
           page: OnboardingGynecologyScreen,
           path: 'doctor/gynecology',
           transitionsBuilder: _onboardingTransition,
         ),
-        CustomRoute(
+        CustomRoute<void>(
           page: GynecologyAchievementScreen,
           path: 'gynecology_achievement',
           transitionsBuilder: _onboardingTransition,
         ),
-        CustomRoute(
+        CustomRoute<void>(
           page: GynecologyDateScreen,
           path: 'doctor/gynecology-date',
           transitionsBuilder: _onboardingTransition,
         ),
-        CustomRoute(
+        CustomRoute<void>(
           page: OnboardingDentistScreen,
           path: 'doctor/dentist',
           transitionsBuilder: _onboardingTransition,
         ),
-        CustomRoute(
+        CustomRoute<void>(
           page: DentistAchievementScreen,
           path: 'dentist_achievement',
           transitionsBuilder: _onboardingTransition,
         ),
-        CustomRoute(
+        CustomRoute<void>(
           page: DentistDateScreen,
           path: 'doctor/dentist-date',
           transitionsBuilder: _onboardingTransition,
         ),
       ],
     ),
-    AutoRoute(page: CreateAccountScreen, path: 'create-account'),
-    AutoRoute(page: NicknameScreen, path: 'fallback_account/name'),
-    AutoRoute(page: EmailScreen, path: 'fallback_account/email'),
-    AutoRoute(page: LoginScreen, path: 'login'),
-    AutoRoute(page: LogoutScreen, path: 'logout'),
+    AutoRoute<void>(page: CreateAccountScreen, path: 'create-account'),
+    AutoRoute<void>(page: NicknameScreen, path: 'fallback_account/name'),
+    AutoRoute<void>(page: EmailScreen, path: 'fallback_account/email'),
+    AutoRoute<void>(page: LoginScreen, path: 'login'),
+    AutoRoute<void>(page: LogoutScreen, path: 'logout'),
   ],
 )
 class $AppRouter {}

@@ -179,6 +179,9 @@ extension UserExtension on User {
     if (achievementCollectionRaw == null) return null;
     final decodedList = jsonDecode(achievementCollectionRaw!) as List<dynamic>;
     return List<Achievement>.from(
-        decodedList.map((item) => Achievement.fromJson(item as Map<String, dynamic>))).toSet();
+      decodedList.map<dynamic>(
+        (dynamic item) => Achievement.fromJson(item as Map<String, dynamic>),
+      ),
+    ).toSet();
   }
 }

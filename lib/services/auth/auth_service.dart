@@ -109,7 +109,8 @@ class AuthService {
     }
     // fetch FB user email and details
     final facebookUser = await _facebookSignIn.getUserData();
-    final email = facebookUser.entries.firstWhere((element) => element.key == 'email').value;
+    final dynamic email =
+        facebookUser.entries.firstWhere((element) => element.key == 'email').value;
 
     if (email == null) {
       // email not found - to debug: check if FB account has an email address

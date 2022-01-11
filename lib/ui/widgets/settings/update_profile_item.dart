@@ -66,7 +66,7 @@ class _UpdateProfileItemState extends State<UpdateProfileItem> {
     const textStyle = TextStyle(color: LoonoColors.black, height: 1.5);
 
     _closeSheet();
-    sheetController = Scaffold.of(context).showBottomSheet(
+    sheetController = Scaffold.of(context).showBottomSheet<dynamic>(
       (context) {
         return FractionallySizedBox(
           heightFactor: MediaQuery.of(context).size.height > 750 ? 0.32 : 0.39,

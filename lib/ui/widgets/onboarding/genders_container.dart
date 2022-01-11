@@ -102,7 +102,7 @@ class _GendersContainerState extends State<GendersContainer> {
     const linearGradient = LinearGradient(colors: LoonoColors.rainbow);
     const textStyle = TextStyle(color: LoonoColors.black, height: 1.5);
 
-    sheetController = Scaffold.of(context).showBottomSheet(
+    sheetController = Scaffold.of(context).showBottomSheet<dynamic>(
       (context) {
         return FractionallySizedBox(
           heightFactor: MediaQuery.of(context).size.height > 750 ? 0.37 : 0.441,

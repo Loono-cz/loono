@@ -76,11 +76,11 @@ dependencies:
 dev_dependencies:
   auto_route_generator: ^2.4.0
   build_runner: ^2.0.4
+  flutter_lints: ^1.0.4
   flutter_test:
     sdk: flutter
   freezed: ^0.14.2
   json_serializable: ^5.0.2
-  lint: ^1.5.3
   moor_generator: ^4.1.0
 
 flutter:
