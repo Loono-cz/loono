@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loono/models/calendar_event.dart';
 import 'package:loono/models/healthcare_provider.dart';
 import 'package:loono/models/user.dart';
 import 'package:loono/services/db/database.dart';
@@ -8,6 +9,7 @@ class DatabaseService {
   late AppDatabase _engine;
   late final UsersDao users;
   late final HealthcareProvidersDao healthcareProviders;
+  late final CalendarEventsDao calendarEvents;
 
   Future<void> init(String key) async {
     try {
@@ -18,6 +20,7 @@ class DatabaseService {
     _engine = AppDatabase('app.db', key);
     users = _engine.usersDao;
     healthcareProviders = _engine.healthcareProvidersDao;
+    calendarEvents = _engine.calendarEventsDao;
   }
 
   Future<void> clearDb() {

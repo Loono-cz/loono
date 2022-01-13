@@ -1,2 +1,3 @@
 -keep class net.sqlcipher.** { *; }
 -keep class cz.loono.app.BuildConfig { *; }
+-keep class com.builttoroam.devicecalendar.** { *; }

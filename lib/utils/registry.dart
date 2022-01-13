@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:device_calendar/device_calendar.dart';
 import 'package:device_info/device_info.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/repositories/healthcare_repository.dart';
 import 'package:loono/repositories/user_repository.dart';
@@ -15,6 +17,7 @@ import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/router/guards/check_is_logged_in.dart';
 import 'package:loono/services/api_service.dart';
 import 'package:loono/services/auth/auth_service.dart';
+import 'package:loono/services/calendar_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/firebase_storage_service.dart';
 import 'package:loono/services/notification_service.dart';
@@ -75,6 +78,9 @@ Future<void> setup(AppFlavors flavor) async {
       ),
     ),
   )));
+  registry.registerSingleton<CalendarService>(CalendarService(
+    deviceCalendarPlugin: DeviceCalendarPlugin(),
+  ));
   // TODO: generate the key and store it into secure storage
   await registry.get<DatabaseService>().init('SUPER SECURE KEY');
 
@@ -87,6 +93,10 @@ Future<void> setup(AppFlavors flavor) async {
   registry.registerSingleton<HealthcareProviderRepository>(HealthcareProviderRepository(
     apiService: registry.get<ApiService>(),
     databaseService: registry.get<DatabaseService>(),
+  ));
+  registry.registerSingleton<CalendarRepository>(CalendarRepository(
+    databaseService: registry.get<DatabaseService>(),
+    calendarService: registry.get<CalendarService>(),
   ));
 
   // router
