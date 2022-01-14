@@ -22,6 +22,8 @@ class HealthcareProviderRepository {
 
   final _streamController = StreamController<HealtCareSyncState>.broadcast();
   Stream<HealtCareSyncState> get healtcareProvidersStream => _streamController.stream;
+  HealtCareSyncState? _lastStreamValue;
+  HealtCareSyncState? get lastStreamValue => _lastStreamValue;
 
   HealthcareProviderRepository({
     required ApiService apiService,
@@ -31,6 +33,7 @@ class HealthcareProviderRepository {
 
   void _emitStreamValue(HealtCareSyncState state) {
     _streamController.sink.add(state);
+    _lastStreamValue = state;
     debugPrint('HEALTHCARE_PROVIDERS STREAM VALUE $state ');
   }
 
