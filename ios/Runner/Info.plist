@@ -61,6 +61,8 @@
 	<string>Feel free to disable</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Nutne doplnit!</string>
+    <key>NSCalendarsUsageDescription</key>
+    <string>Nutne doplnit!</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
     <string>Nutne doplnit!</string>
     <key>NSLocationAlwaysUsageDescription</key>

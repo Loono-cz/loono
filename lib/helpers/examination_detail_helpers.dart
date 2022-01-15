@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_status.dart';
 import 'package:loono/helpers/examination_types.dart';
@@ -32,20 +33,50 @@ TextStyle preventiveInspectionStyles(CategorizedExamination examination) {
   return LoonoFonts.cardTitle.copyWith(color: color, fontWeight: weight);
 }
 
-String czechPreposition(CategorizedExamination examination) {
+String czechPreposition(BuildContext context, {required ExaminationType examinationType}) {
   if ([
     ExaminationType.COLONOSCOPY,
     ExaminationType.MAMMOGRAM,
-  ].contains(examination.examination.examinationType)) {
+  ].contains(examinationType)) {
     return 'na';
   } else {
     return 'u';
   }
 }
 
-String procedureQuestionTitle(BuildContext context, CategorizedExamination examination) {
+/// Gets localized message of: "In the last [interval] years".
+String getQuestionnaireFirstAnswer(
+  BuildContext context, {
+  required int interval,
+}) {
+  final l10n = context.l10n;
+  return Intl.plural(
+    interval,
+    one: l10n.questionnaire_first_answer_intl_one,
+    few: l10n.questionnaire_first_answer_intl_few_and_other(interval),
+    other: l10n.questionnaire_first_answer_intl_few_and_other(interval),
+    locale: 'cs-CZ',
+  );
+}
+
+/// Gets localized message of: "More than [interval] years".
+String getQuestionnaireSecondAnswer(
+  BuildContext context, {
+  required int interval,
+}) {
+  final l10n = context.l10n;
+  return Intl.plural(
+    interval,
+    one: l10n.questionnaire_second_answer_intl_one,
+    few: l10n.questionnaire_second_answer_intl_few(interval),
+    other: l10n.questionnaire_second_answer_intl_other(interval),
+    locale: 'cs-CZ',
+  );
+}
+
+String procedureQuestionTitle(BuildContext context, {required ExaminationType examinationType}) {
   var response = '';
-  switch (examination.examination.examinationType) {
+  switch (examinationType) {
     case ExaminationType.COLONOSCOPY:
       response = context.l10n.colonoscopy_question_highlight;
       break;

@@ -106,7 +106,7 @@ final fakeExaminationData = <ExaminationRecord>[
   //
   ExaminationRecord(examinationType: ExaminationType.GENERAL_PRACTITIONER, worth: 200, interval: 2, priority: 1, nextVisitDate: DateTime(2021, 12, 28, 11)),
   ExaminationRecord(examinationType: ExaminationType.GYNECOLOGIST, worth: 300, interval: 1, priority: 3, nextVisitDate: DateTime(2021, 12, 12, 10)),
-  ExaminationRecord(examinationType: ExaminationType.DENTIST, worth: 300, interval: 1, priority: 8, nextVisitDate: DateTime(2021, 10, 4, 7)),
+  ExaminationRecord(examinationType: ExaminationType.DENTIST, worth: 300, interval: 1, priority: 8, nextVisitDate: DateTime(2022, 2, 11, 7)),
   ExaminationRecord(examinationType: ExaminationType.DERMATOLOGIST, worth: 200, interval: 1, priority: 6, nextVisitDate: DateTime(2022, 3, 10, 13)),
 
   //
