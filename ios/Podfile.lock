@@ -4,6 +4,8 @@ PODS:
     - AppAuth/ExternalUserAgent (= 1.4.0)
   - AppAuth/Core (1.4.0)
   - AppAuth/ExternalUserAgent (1.4.0)
+  - device_calendar (0.0.1):
+    - Flutter
   - device_info (0.0.1):
     - Flutter
   - FBAEMKit (12.1.0):
@@ -84,6 +86,8 @@ PODS:
     - Flutter
     - OrderedSet (~> 5.0)
   - flutter_keyboard_visibility (0.0.1):
+    - Flutter
+  - flutter_native_timezone (0.0.1):
     - Flutter
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
@@ -173,6 +177,7 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - device_calendar (from `.symlinks/plugins/device_calendar/ios`)
   - device_info (from `.symlinks/plugins/device_info/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
@@ -183,6 +188,7 @@ DEPENDENCIES:
   - flutter_facebook_auth (from `.symlinks/plugins/flutter_facebook_auth/ios`)
   - flutter_inappwebview (from `.symlinks/plugins/flutter_inappwebview/ios`)
   - flutter_keyboard_visibility (from `.symlinks/plugins/flutter_keyboard_visibility/ios`)
+  - flutter_native_timezone (from `.symlinks/plugins/flutter_native_timezone/ios`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
   - google_maps_flutter (from `.symlinks/plugins/google_maps_flutter/ios`)
   - google_sign_in (from `.symlinks/plugins/google_sign_in/ios`)
@@ -227,6 +233,8 @@ SPEC REPOS:
     - SQLCipher
 
 EXTERNAL SOURCES:
+  device_calendar:
+    :path: ".symlinks/plugins/device_calendar/ios"
   device_info:
     :path: ".symlinks/plugins/device_info/ios"
   firebase_auth:
@@ -247,6 +255,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_inappwebview/ios"
   flutter_keyboard_visibility:
     :path: ".symlinks/plugins/flutter_keyboard_visibility/ios"
+  flutter_native_timezone:
+    :path: ".symlinks/plugins/flutter_native_timezone/ios"
   geolocator_apple:
     :path: ".symlinks/plugins/geolocator_apple/ios"
   google_maps_flutter:
@@ -278,6 +288,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
+  device_calendar: 9cb33f88a02e19652ec7b8b122ca778f751b1f7b
   device_info: d7d233b645a32c40dfdc212de5cf646ca482f175
   FBAEMKit: 56c0bb9b42e3747cd82b67934f0c2b19325382ea
   FBSDKCoreKit: 75368765d9c2303073145a7925dfaa9d60bcd77b
@@ -299,6 +310,7 @@ SPEC CHECKSUMS:
   flutter_facebook_auth: dfd6b2563406c538098e2127512d385c9ffd70ad
   flutter_inappwebview: bfd58618f49dc62f2676de690fc6dcda1d6c3721
   flutter_keyboard_visibility: 0339d06371254c3eb25eeb90ba8d17dca8f9c069
+  flutter_native_timezone: 5f05b2de06c9776b4cc70e1839f03de178394d22
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   geolocator_apple: b741765c55dc21950e3e106e8b3584e55cf81ce5
   google_maps_flutter: abdb8dee6c52d4be36ad131ee6ebfacd14417c5a
