@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/examination_detail_helpers.dart';
+import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/carousel_content.dart';
@@ -8,20 +10,22 @@ import 'package:loono/ui/widgets/onboarding/carousel/carousel_content.dart';
 class UniversalDoctor extends StatelessWidget {
   final String question;
   final String questionHeader;
-  final String imagePath;
+  final String assetPath;
   final String button1Text;
   final String button2Text;
   final void Function() nextCallback1;
   final void Function() nextCallback2;
+  final ExaminationType examinationType;
 
   const UniversalDoctor({
     required this.question,
     required this.questionHeader,
-    required this.imagePath,
+    required this.assetPath,
     required this.button1Text,
     required this.button2Text,
     required this.nextCallback1,
     required this.nextCallback2,
+    required this.examinationType,
   });
 
   @override
@@ -31,15 +35,34 @@ class UniversalDoctor extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Spacer(),
-        SvgPicture.asset(
-          'assets/icons/$imagePath.svg',
-          width: MediaQuery.of(context).size.width * 0.4,
+        ClipRRect(
+          borderRadius: BorderRadius.circular(75),
+          child: Container(
+            width: MediaQuery.of(context).size.width * 0.4,
+            height: MediaQuery.of(context).size.width * 0.4,
+            color: LoonoColors.beigeLighter,
+            child: Stack(
+              children: [
+                Positioned(
+                  bottom: 0,
+                  left: -10,
+                  child: SvgPicture.asset(
+                    assetPath,
+                    width: MediaQuery.of(context).size.width * 0.4,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
         const SizedBox(height: 16),
         RichText(
           textAlign: TextAlign.center,
           text: TextSpan(
-            children: TextHighlighter.parse(question, highlightPattern: '(preventivní prohlídce)')
+            children: TextHighlighter.parse(
+              '$question ${czechPreposition(context, examinationType: examinationType)}',
+              highlightPattern: '(preventivní prohlídce)',
+            )
                 .map(
                   (item) => TextSpan(
                     text: item.text,

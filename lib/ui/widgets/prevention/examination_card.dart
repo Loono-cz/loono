@@ -30,7 +30,7 @@ class ExaminationCard extends StatelessWidget {
       );
 
   Widget get _doctorAsset => SvgPicture.asset(
-        categorizedExamination.examination.examinationType.assetName,
+        categorizedExamination.examination.examinationType.assetPath,
         width: 100,
       );
 

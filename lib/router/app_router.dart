@@ -21,7 +21,10 @@ import 'package:loono/ui/screens/onboarding/fallback_account/email.dart';
 import 'package:loono/ui/screens/onboarding/fallback_account/nickname.dart';
 import 'package:loono/ui/screens/onboarding/gender.dart';
 import 'package:loono/ui/screens/onboarding/onboarding_wrapper_screen.dart';
+import 'package:loono/ui/screens/prevention/calendar/calendar_list.dart';
+import 'package:loono/ui/screens/prevention/calendar/permission_info.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/examination_screen.dart';
+import 'package:loono/ui/screens/prevention/questionnaire/date_picker_screen.dart';
 import 'package:loono/ui/screens/settings/camera_photo_taken.dart';
 import 'package:loono/ui/screens/settings/edit_email.dart';
 import 'package:loono/ui/screens/settings/edit_nickname.dart';
@@ -33,6 +36,7 @@ import 'package:loono/ui/screens/settings/photo_cropped_result.dart';
 import 'package:loono/ui/screens/settings/points_help.dart';
 import 'package:loono/ui/screens/settings/update_profile.dart';
 import 'package:loono/ui/screens/welcome.dart';
+import 'package:loono/ui/widgets/achievement_screen.dart';
 
 const _onboardingTransition = TransitionsBuilders.slideLeft;
 const _preventionTransition = TransitionsBuilders.slideLeft;
@@ -59,6 +63,26 @@ const _settingsTransition = TransitionsBuilders.slideLeft;
         CustomRoute(
           page: ExaminationDetailScreen,
           path: 'prevention-detail',
+          transitionsBuilder: _preventionTransition,
+        ),
+        CustomRoute(
+          page: AchievementScreen,
+          path: 'questionnaire/reward',
+          transitionsBuilder: _preventionTransition,
+        ),
+        CustomRoute(
+          page: DatePickerScreen,
+          path: 'questionnaire/date-picker',
+          transitionsBuilder: _preventionTransition,
+        ),
+        CustomRoute(
+          page: CalendarPermissionInfoScreen,
+          path: 'calendar/permission',
+          transitionsBuilder: _preventionTransition,
+        ),
+        CustomRoute(
+          page: CalendarListScreen,
+          path: 'calendar/list',
           transitionsBuilder: _preventionTransition,
         ),
 
