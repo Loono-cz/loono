@@ -9,21 +9,21 @@ import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
 
 void showConfirmationSheet(BuildContext context, ExaminationType examinationType) {
+  final practitioner =
+      procedureQuestionTitle(context, examinationType: examinationType).toLowerCase();
+  final preposition = czechPreposition(context, examinationType: examinationType);
+
+  void _completedAction() {
+    AutoRouter.of(context).popUntilRouteWithName('ExaminationDetailRoute');
+    showSnackBarError(context, message: 'TODO: save to API');
+  }
+
   showModalBottomSheet<void>(
     context: context,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(15.0),
     ),
     builder: (BuildContext context) {
-      final practitioner =
-          procedureQuestionTitle(context, examinationType: examinationType).toLowerCase();
-      final preposition = czechPreposition(context, examinationType: examinationType);
-
-      void _completedAction() {
-        AutoRouter.of(context).popUntilRouteWithName('ExaminationDetailRoute');
-        showSnackBarError(context, message: 'TODO: save to API');
-      }
-
       return Container(
         height: 340,
         decoration: const BoxDecoration(
@@ -64,7 +64,7 @@ void showConfirmationSheet(BuildContext context, ExaminationType examinationType
                 /// All achievement and assets not implemented yet. Should be completed in separate task.
                 /// As of now, API for completion doesnt exists. Should be completed in separate task.
                 LoonoButton.light(
-                  text: 'Ano, byl/a jsem na prohlídce',
+                  text: context.l10n.checkup_confirmation,
                   onTap: () => AutoRouter.of(context).navigate(
                     AchievementRoute(
                       header: 'TO DO: complete all rewards',

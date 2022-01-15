@@ -13,7 +13,7 @@ import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/faq_section.dart';
 import 'package:loono/ui/widgets/button.dart';
-import 'package:loono/ui/widgets/checkup_confirmation_sheet.dart';
+import 'package:loono/ui/widgets/prevention/checkup_confirmation_sheet.dart';
 import 'package:loono/ui/widgets/prevention/examination_progress_content.dart';
 import 'package:loono/utils/registry.dart';
 

@@ -453,5 +453,7 @@
   "checkup_confirmation_title": "Potvrzuješ hotovou prohlídku ",
   "@checkup_confirmation_title": {},
   "award_desc": "Skvělé! Vždycky, když si uděláš čas na své zdraví, je to důvod k oslavě.",
-  "@award_desc": {}
+  "@award_desc": {},
+  "checkup_confirmation": "Ano, byl/a jsem na prohlídce",
+  "@checkup_confirmation": {}
 }
