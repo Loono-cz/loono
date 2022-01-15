@@ -8,14 +8,6 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
 
-class Reward {
-  String title;
-  String imagePath;
-  int points;
-
-  Reward(this.title, this.imagePath, this.points);
-}
-
 void showConfirmationSheet(BuildContext context, ExaminationType examinationType) {
   showModalBottomSheet<void>(
     context: context,
@@ -68,9 +60,9 @@ void showConfirmationSheet(BuildContext context, ExaminationType examinationType
                   height: 60,
                 ),
 
-                /// leaving this here for testing. Full logic will be completed id progress bar task
-                /// all achievement and assets not implemented yet. Should be completed in separate task.
-                /// As of now API for completion toesnt exists. Should be completed in separate task.
+                /// Leaving this here for testing. Button switch will be implemented in progress bar task
+                /// All achievement and assets not implemented yet. Should be completed in separate task.
+                /// As of now, API for completion doesnt exists. Should be completed in separate task.
                 LoonoButton.light(
                   text: 'Ano, byl/a jsem na prohlídce',
                   onTap: () => AutoRouter.of(context).navigate(
