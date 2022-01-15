@@ -13,6 +13,7 @@ import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/faq_section.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/checkup_confirmation_sheet.dart';
 import 'package:loono/ui/widgets/prevention/examination_progress_content.dart';
 import 'package:loono/utils/registry.dart';
 
@@ -217,6 +218,28 @@ class ExaminationDetail extends StatelessWidget {
                   ),
                 ),
               ],
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Row(
+            children: [
+              Expanded(
+                child: LoonoButton.light(
+                  text: 'Byl/a jsem na\nprohlídce',
+                  onTap: () {
+                    showConfirmationSheet(
+                        context, categorizedExamination.examination.examinationType);
+                  },
+                  enabledColor: LoonoColors.primaryEnabled,
+                  textColor: Colors.white,
+                ),
+              ),
+              const SizedBox(width: 19),
+              const Expanded(
+                child: SizedBox(),
+              ),
             ],
           ),
         ),

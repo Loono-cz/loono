@@ -148,8 +148,8 @@
     "placeholders": {
       "interval": {
         "type": "int"
+      }
     }
-   }
   },
   "questionnaire_second_answer_intl_one": "Je to více než rok nebo nevím",
   "@questionnaire_second_answer_intl_one": {},
@@ -158,16 +158,16 @@
     "placeholders": {
       "interval": {
         "type": "int"
+      }
     }
-   }
   },
   "questionnaire_second_answer_intl_other": "Je to více než {interval} let nebo nevím",
   "@questionnaire_second_answer_intl_other": {
     "placeholders": {
       "interval": {
         "type": "int"
+      }
     }
-   }
   },
   "dentist_question_highlight": "Zubaře",
   "@dentist_question_highlight": {},
@@ -449,5 +449,9 @@
   "examination_detail_add_to_calendar_button": "Přidat do kalendáře",
   "@examination_detail_add_to_calendar_button": {},
   "examination_detail_edit_date_button": "Upravit datum",
-  "@examination_detail_edit_date_button": {}
+  "@examination_detail_edit_date_button": {},
+  "checkup_confirmation_title": "Potvrzuješ hotovou prohlídku ",
+  "@checkup_confirmation_title": {},
+  "award_desc": "Skvělé! Vždycky, když si uděláš čas na své zdraví, je to důvod k oslavě.",
+  "@award_desc": {}
 }
