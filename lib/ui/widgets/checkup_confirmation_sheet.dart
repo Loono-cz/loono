@@ -67,19 +67,21 @@ void showConfirmationSheet(BuildContext context, ExaminationType examinationType
                 const SizedBox(
                   height: 60,
                 ),
+
+                /// leaving this here for testing. Full logic will be completed id progress bar task
+                /// all achievement and assets not implemented yet. Should be completed in separate task.
+                /// As of now API for completion toesnt exists. Should be completed in separate task.
                 LoonoButton.light(
                   text: 'Ano, byl/a jsem na prohlídce',
-                  onTap: () => {
-                    AutoRouter.of(context).navigate(
-                      AchievementRoute(
-                        header: 'TO DO: complete all rewards',
-                        textLines: [context.l10n.award_desc],
-                        numberOfPoints: examinationType.awardPoints,
-                        itemPath: 'assets/icons/coat-practitioner.svg',
-                        onButtonTap: _completedAction,
-                      ),
+                  onTap: () => AutoRouter.of(context).navigate(
+                    AchievementRoute(
+                      header: 'TO DO: complete all rewards',
+                      textLines: [context.l10n.award_desc],
+                      numberOfPoints: examinationType.awardPoints,
+                      itemPath: 'assets/icons/coat-practitioner.svg',
+                      onButtonTap: _completedAction,
                     ),
-                  },
+                  ),
                   enabledColor: LoonoColors.primaryEnabled,
                   textColor: Colors.white,
                 ),
