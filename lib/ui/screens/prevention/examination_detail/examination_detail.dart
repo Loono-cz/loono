@@ -7,22 +7,31 @@ import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
+import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/services/calendar_service.dart';
+import 'package:loono/services/database_service.dart';
+import 'package:loono/services/db/database.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/faq_section.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/prevention/examination_progress_content.dart';
+import 'package:loono/utils/registry.dart';
 
 class ExaminationDetail extends StatelessWidget {
-  const ExaminationDetail({
+  ExaminationDetail({
     Key? key,
     required this.categorizedExamination,
   }) : super(key: key);
 
+  final _calendarService = registry.get<CalendarService>();
+  final _calendarEventsDao = registry.get<DatabaseService>().calendarEvents;
+
   final CategorizedExamination categorizedExamination;
 
-  Widget get _doctorAsset => SvgPicture.asset(
-        categorizedExamination.examination.examinationType.assetName,
-        width: 180,
-      );
+  ExaminationType get examinationType => categorizedExamination.examination.examinationType;
+
+  DateTime? get nextVisitDate => categorizedExamination.examination.nextVisitDate;
+
+  Widget get _doctorAsset => SvgPicture.asset(examinationType.assetPath, width: 180);
 
   String _intervalYears(BuildContext context) =>
       '${categorizedExamination.examination.interval.toString()} ${categorizedExamination.examination.interval > 1 ? context.l10n.years : context.l10n.year}';
@@ -41,6 +50,7 @@ class ExaminationDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final lastVisitDateWithoutDay = categorizedExamination.examination.lastVisitDate;
 
     final lastVisit = lastVisitDateWithoutDay != null
@@ -102,7 +112,7 @@ class ExaminationDetail extends StatelessWidget {
                       children: [
                         const SizedBox(height: 18),
                         Text(
-                          categorizedExamination.examination.examinationType.name.toUpperCase(),
+                          examinationType.name.toUpperCase(),
                           style: LoonoFonts.headerFontStyle.copyWith(
                             color: LoonoColors.green,
                             fontWeight: FontWeight.w700,
@@ -152,21 +162,61 @@ class ExaminationDetail extends StatelessWidget {
           padding: const EdgeInsets.all(20.0),
           child: Row(
             children: [
-              Expanded(
-                child: LoonoButton(
-                  text: 'to do',
-                  onTap: () {},
+              // displays calendar button for the scheduled check-ups which did not happen yet
+              if (nextVisitDate != null && nextVisitDate!.isAfter(DateTime.now())) ...[
+                StreamBuilder<CalendarEvent?>(
+                  stream: _calendarEventsDao.watch(examinationType),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return Expanded(
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: LoonoButton.light(
+                                text: l10n.examination_detail_add_to_calendar_button,
+                                onTap: () async {
+                                  final hasPermissionsGranted =
+                                      await _calendarService.hasPermissionsGranted();
+                                  if (hasPermissionsGranted) {
+                                    AutoRouter.of(context).push(CalendarListRoute(
+                                        examinationRecord: categorizedExamination.examination));
+                                  } else {
+                                    AutoRouter.of(context).push(CalendarPermissionInfoRoute(
+                                        examinationRecord: categorizedExamination.examination));
+                                  }
+                                },
+                              ),
+                            ),
+                            const SizedBox(width: 19),
+                          ],
+                        ),
+                      );
+                    }
+                    // hides calendar button if the event is already added in the device calendar
+                    return const SizedBox.shrink();
+                  },
                 ),
-              ),
-              const SizedBox(
-                width: 19,
-              ),
-              Expanded(
-                child: LoonoButton.light(
-                  text: 'to do',
-                  onTap: () {},
+                Expanded(
+                  child: LoonoButton.light(
+                    text: l10n.examination_detail_edit_date_button,
+                    onTap: () {},
+                  ),
                 ),
-              ),
+              ] else ...[
+                Expanded(
+                  child: LoonoButton.light(
+                    text: 'to do',
+                    onTap: () {},
+                  ),
+                ),
+                const SizedBox(width: 19),
+                Expanded(
+                  child: LoonoButton.light(
+                    text: 'to do',
+                    onTap: () {},
+                  ),
+                ),
+              ],
             ],
           ),
         ),
@@ -174,7 +224,7 @@ class ExaminationDetail extends StatelessWidget {
           height: 40,
         ),
         FaqSection(
-          examinationType: categorizedExamination.examination.examinationType,
+          examinationType: examinationType,
         ),
       ],
     );
