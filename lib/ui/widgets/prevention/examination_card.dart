@@ -29,10 +29,15 @@ class ExaminationCard extends StatelessWidget {
         style: LoonoFonts.cardTitle,
       );
 
-  Widget get _doctorAsset => SvgPicture.asset(
-        categorizedExamination.examination.examinationType.assetPath,
-        width: 100,
-      );
+  Widget get _doctorAsset => ClipRRect(
+    borderRadius: const BorderRadius.only(
+      bottomRight: Radius.circular(10),
+    ),
+    child: SvgPicture.asset(
+          categorizedExamination.examination.examinationType.assetPath,
+          width: 100,
+        ),
+  );
 
   @override
   Widget build(BuildContext context) {
