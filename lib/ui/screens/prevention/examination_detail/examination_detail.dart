@@ -15,6 +15,7 @@ import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/faq_section.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/prevention/checkup_edit_modal.dart';
 import 'package:loono/ui/widgets/prevention/checkup_confirmation_sheet.dart';
 import 'package:loono/ui/widgets/prevention/examination_progress_content.dart';
 import 'package:loono/utils/registry.dart';
@@ -186,11 +187,15 @@ class ExaminationDetail extends StatelessWidget {
                                   final hasPermissionsGranted =
                                       await _calendarService.hasPermissionsGranted();
                                   if (hasPermissionsGranted) {
-                                    AutoRouter.of(context).push(CalendarListRoute(
-                                        examinationRecord: categorizedExamination.examination));
+                                    AutoRouter.of(context).push(
+                                      CalendarListRoute(
+                                          examinationRecord: categorizedExamination.examination),
+                                    );
                                   } else {
-                                    AutoRouter.of(context).push(CalendarPermissionInfoRoute(
-                                        examinationRecord: categorizedExamination.examination));
+                                    AutoRouter.of(context).push(
+                                      CalendarPermissionInfoRoute(
+                                          examinationRecord: categorizedExamination.examination),
+                                    );
                                   }
                                 },
                               ),
@@ -207,7 +212,7 @@ class ExaminationDetail extends StatelessWidget {
                 Expanded(
                   child: LoonoButton.light(
                     text: l10n.examination_detail_edit_date_button,
-                    onTap: () {},
+                    onTap: () => showEditModal(context, categorizedExamination),
                   ),
                 ),
               ] else ...[
