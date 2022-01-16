@@ -455,7 +455,7 @@
   "award_desc": "Skvělé! Vždycky, když si uděláš čas na své zdraví, je to důvod k oslavě.",
   "@award_desc": {},
   "checkup_confirmation_male": "Byl jsem na prohlídce",
-  "@checkup_confirmation_button": {},
+  "@checkup_confirmation_male": {},
   "checkup_confirmation_female": "Byla jsem na prohlídce",
   "@checkup_confirmation_female": {},
   "yes": "Ano",
