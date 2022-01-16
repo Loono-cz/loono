@@ -46,19 +46,15 @@ class HealthcareProviderRepository {
   ///
   /// If the data are up to date, returns cached healthcare providers data.
   Future<void> checkAndUpdateIfNeeded() async {
-    await Future.delayed(const Duration(seconds: 5));
-    // TODO: odstranit, nyní řeší problém, kdy last item na auth = null
-
+    await _waitForExistingUser();
     _emitStreamValue(HealtCareSyncState.started);
     final localLatestUpdateCheck = _db.users.user?.latestMapUpdateCheck;
     final localLatestUpdate = _db.users.user?.latestMapUpdate;
     final serverLatestUpdate = await _getServerLatestUpdate(localLatestUpdateCheck);
-    // update if data are outdated or completely missing
     debugPrint(
         'HEALTHCARE_PROVIDERS: LOCAL LATEST: $localLatestUpdate | SERVER LATEST: $serverLatestUpdate');
-    // if (localLatestUpdate == null ||
-    //     (serverLatestUpdate != null && serverLatestUpdate.isAfter(localLatestUpdate))) {
-    if (true) {
+    if (localLatestUpdate == null ||
+        (serverLatestUpdate != null && serverLatestUpdate.isAfter(localLatestUpdate))) {
       final BuiltList<SimpleHealthcareProvider>? list = await _fetchAllProvidersData();
       if (list == null) return _emitStreamValue(HealtCareSyncState.error);
       await _storeList(list, serverLatestUpdate);
@@ -66,6 +62,15 @@ class HealthcareProviderRepository {
       debugPrint('HEALTHCARE_PROVIDERS: DATA ARE UP TO DATE');
     }
     _emitStreamValue(HealtCareSyncState.completed);
+  }
+
+  Future<void> _waitForExistingUser() async {
+    try {
+      if (_db.users.user != null) return;
+    } catch (e) {
+      await Future.delayed(const Duration(milliseconds: 300));
+      await _waitForExistingUser();
+    }
   }
 
   Future<DateTime?>? _getServerLatestUpdate(DateTime? localLatestUpdateCheck) async {
