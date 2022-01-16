@@ -36,7 +36,7 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
             style: const TextStyle(color: Colors.black),
           ),
           onPressed: () {
-            Navigator.pop(modalContext);
+            AutoRouter.of(modalContext).pop();
           },
         ),
         CupertinoActionSheetAction(

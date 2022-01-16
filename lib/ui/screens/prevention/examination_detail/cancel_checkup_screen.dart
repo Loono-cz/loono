@@ -6,6 +6,7 @@ import 'package:loono/constants.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/prevention/recommendation_item.dart';
 
 class CancelCheckupScreen extends StatelessWidget {
   const CancelCheckupScreen({
@@ -52,29 +53,27 @@ class CancelCheckupScreen extends StatelessWidget {
               const Expanded(
                 child: SizedBox(),
               ),
-              _RecommendedItem(
+              RecommendationItem(
                 asset: 'assets/icons/prevention/calendar.svg',
                 content: context.l10n.checkup_cancel_reschedule,
               ),
               const SizedBox(
                 height: 40,
               ),
-              _RecommendedItem(
+              RecommendationItem(
                 asset: 'assets/icons/prevention/phone.svg',
                 content: context.l10n.checkup_cancel_notify_doc,
               ),
               const SizedBox(
                 height: 60,
               ),
-              LoonoButton.light(
+              LoonoButton(
                 text: context.l10n.cancel_checkup,
                 onTap: () {
                   /// TODO: save to api and remove from calendar
                   showSnackBarError(context, message: 'TODO: save to API');
                   AutoRouter.of(context).pop();
                 },
-                enabledColor: LoonoColors.primaryEnabled,
-                textColor: Colors.white,
               ),
               const SizedBox(
                 height: 60,
@@ -83,42 +82,6 @@ class CancelCheckupScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _RecommendedItem extends StatelessWidget {
-  const _RecommendedItem({Key? key, required this.asset, required this.content}) : super(key: key);
-
-  final String asset;
-  final String content;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Container(
-          width: 71,
-          height: 71,
-          decoration: BoxDecoration(
-            color: LoonoColors.primary,
-            borderRadius: BorderRadius.circular(36),
-          ),
-          child: Center(
-            child: SvgPicture.asset(
-              asset,
-              width: 26,
-              color: Colors.white,
-            ),
-          ),
-        ),
-        const SizedBox(
-          width: 10,
-        ),
-        Flexible(
-          child: Text(content),
-        )
-      ],
     );
   }
 }
