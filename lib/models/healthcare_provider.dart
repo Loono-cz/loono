@@ -42,30 +42,35 @@ class HealthcareProvidersDao extends DatabaseAccessor<AppDatabase>
 
   Future<void> updateAllData(BuiltList<SimpleHealthcareProvider> newData) async {
     await delete(healthcareProviders).go();
-    await batch(
-      (b) {
-        b.insertAllOnConflictUpdate(
-          healthcareProviders,
-          newData
-              .map(
-                (simpleHealthcareProvider) => HealthcareProvidersCompanion.insert(
-                  institutionId: simpleHealthcareProvider.institutionId,
-                  locationId: simpleHealthcareProvider.locationId,
-                  title: simpleHealthcareProvider.title,
-                  street: simpleHealthcareProvider.street ?? '',
-                  houseNumber: simpleHealthcareProvider.houseNumber,
-                  city: simpleHealthcareProvider.city,
-                  postalCode: simpleHealthcareProvider.postalCode,
-                  lat: simpleHealthcareProvider.lat,
-                  lng: simpleHealthcareProvider.lng,
-                  category: simpleHealthcareProvider.category,
-                  specialization: Value(simpleHealthcareProvider.specialization),
-                ),
-              )
-              .toList(),
-        );
-      },
-    );
+    const batchSize = 100;
+    for (var i = 0; i < newData.length; i += batchSize) {
+      final rangeSize = (i + batchSize) > newData.length ? newData.length - 1 : i + batchSize;
+      final newDataPart = newData.getRange(i, rangeSize);
+      await batch(
+        (b) {
+          b.insertAllOnConflictUpdate(
+            healthcareProviders,
+            newDataPart
+                .map(
+                  (simpleHealthcareProvider) => HealthcareProvidersCompanion.insert(
+                    institutionId: simpleHealthcareProvider.institutionId,
+                    locationId: simpleHealthcareProvider.locationId,
+                    title: simpleHealthcareProvider.title,
+                    street: simpleHealthcareProvider.street ?? '',
+                    houseNumber: simpleHealthcareProvider.houseNumber,
+                    city: simpleHealthcareProvider.city,
+                    postalCode: simpleHealthcareProvider.postalCode,
+                    lat: simpleHealthcareProvider.lat,
+                    lng: simpleHealthcareProvider.lng,
+                    category: simpleHealthcareProvider.category,
+                    specialization: Value(simpleHealthcareProvider.specialization),
+                  ),
+                )
+                .toList(),
+          );
+        },
+      );
+    }
   }
 
   // TODO: Add more search queries

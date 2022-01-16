@@ -56,8 +56,9 @@ class HealthcareProviderRepository {
     // update if data are outdated or completely missing
     debugPrint(
         'HEALTHCARE_PROVIDERS: LOCAL LATEST: $localLatestUpdate | SERVER LATEST: $serverLatestUpdate');
-    if (localLatestUpdate == null ||
-        (serverLatestUpdate != null && serverLatestUpdate.isAfter(localLatestUpdate))) {
+    // if (localLatestUpdate == null ||
+    //     (serverLatestUpdate != null && serverLatestUpdate.isAfter(localLatestUpdate))) {
+    if (true) {
       final BuiltList<SimpleHealthcareProvider>? list = await _fetchAllProvidersData();
       if (list == null) return _emitStreamValue(HealtCareSyncState.error);
       await _storeList(list, serverLatestUpdate);
@@ -114,18 +115,10 @@ class HealthcareProviderRepository {
     DateTime? serverLatestUpdate,
   ) async {
     _emitStreamValue(HealtCareSyncState.storing);
-    // --------------With Compute-------------- NEfunguje
-    await compute<BuiltList<SimpleHealthcareProvider>, void>(
-      _healtcareProvidersDbUpdateAllData,
-      list,
-    );
-    //TODO: přidat druhej compute pro aktualizaci časů
-
-    // --------------Main Isolate--------------
-    // final now = Date.now();
-    // _db.healthcareProviders.updateAllData(list); Způsobuje zpomalení, operace je synchroni a na několik sec na emulátoru
-    // _db.users.updateLatestMapServerUpdate(serverLatestUpdate ?? now.toDateTime());
-    // _db.users.updateLatestMapUpdateCheck(now.toDateTime());
+    final now = Date.now();
+    await _db.healthcareProviders.updateAllData(list);
+    await _db.users.updateLatestMapServerUpdate(serverLatestUpdate ?? now.toDateTime());
+    await _db.users.updateLatestMapUpdateCheck(now.toDateTime());
   }
 }
 
@@ -140,10 +133,4 @@ BuiltList<SimpleHealthcareProvider>? _hadleZip(Uint8List data) {
     debugPrint(e.toString());
   }
   return list;
-}
-
-Future<void> _healtcareProvidersDbUpdateAllData(BuiltList<SimpleHealthcareProvider> list) async {
-  final db = DatabaseService(); // NENALEZNE cestu k DB
-  db.init('SUPER SECURE KEY');
-  await db.healthcareProviders.updateAllData(list); //bez cesty vrátí chyby
 }
