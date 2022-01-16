@@ -461,5 +461,15 @@
   "checkup_cancel_reschedule": "Co třeba prohlídku přeplánovat? Zavolej svému praktickému lékaři.",
   "@checkup_cancel_reschedule": {},
   "checkup_cancel_notify_doc": "Pokud to nejde jinak a prohlídku musíš zrušit, dej o tom včas vědět svému lékaři. ",
-  "@checkup_cancel_notify_doc": {}
+  "@checkup_cancel_notify_doc": {},
+  "checkup_confirmation_title": "Potvrzuješ hotovou prohlídku ",
+  "@checkup_confirmation_title": {},
+  "award_desc": "Skvělé! Vždycky, když si uděláš čas na své zdraví, je to důvod k oslavě.",
+  "@award_desc": {},
+  "checkup_confirmation_male": "Byl jsem na prohlídce",
+  "@checkup_confirmation_male": {},
+  "checkup_confirmation_female": "Byla jsem na prohlídce",
+  "@checkup_confirmation_female": {},
+  "yes": "Ano",
+  "@yes": {}
 }

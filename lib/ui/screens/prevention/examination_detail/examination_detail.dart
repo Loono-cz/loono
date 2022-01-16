@@ -5,14 +5,17 @@ import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_types.dart';
+import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
+import 'package:loono/models/user.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/calendar_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/faq_section.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/prevention/checkup_confirmation_sheet.dart';
 import 'package:loono/ui/widgets/prevention/checkup_edit_modal.dart';
 import 'package:loono/ui/widgets/prevention/examination_progress_content.dart';
 import 'package:loono/utils/registry.dart';
@@ -33,6 +36,11 @@ class ExaminationDetail extends StatelessWidget {
   DateTime? get nextVisitDate => categorizedExamination.examination.nextVisitDate;
 
   Widget get _doctorAsset => SvgPicture.asset(examinationType.assetPath, width: 180);
+
+  Sex get _sex {
+    final user = registry.get<DatabaseService>().users.user;
+    return user?.sex ?? Sex.male;
+  }
 
   String _intervalYears(BuildContext context) =>
       '${categorizedExamination.examination.interval.toString()} ${categorizedExamination.examination.interval > 1 ? context.l10n.years : context.l10n.year}';
@@ -222,6 +230,31 @@ class ExaminationDetail extends StatelessWidget {
                   ),
                 ),
               ],
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Row(
+            children: [
+              Expanded(
+                child: LoonoButton(
+                  text: _sex == Sex.male
+                      ? l10n.checkup_confirmation_male
+                      : l10n.checkup_confirmation_female,
+                  onTap: () {
+                    showConfirmationSheet(
+                      context,
+                      categorizedExamination.examination.examinationType,
+                      _sex,
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(width: 19),
+              const Expanded(
+                child: SizedBox(),
+              ),
             ],
           ),
         ),

@@ -45,13 +45,15 @@ class LoonoButton extends StatelessWidget {
       splashColor: enabled ? null : Colors.transparent,
       materialColor: enabled
           ? (enabledColor ?? (isLight ? LoonoColors.buttonLight : LoonoColors.primaryEnabled))
-          : (disabledColor ?? (isLight ? LoonoColors.buttonLight.withOpacity(0.5) : LoonoColors.primaryDisabled)),
+          : (disabledColor ??
+              (isLight ? LoonoColors.buttonLight.withOpacity(0.5) : LoonoColors.primaryDisabled)),
       borderRadius: BorderRadius.circular(10.0),
       child: SizedBox(
         height: 65.0,
         child: Align(
           child: Text(
             text,
+            textAlign: TextAlign.center,
             style: Theme.of(context)
                 .textTheme
                 .button
