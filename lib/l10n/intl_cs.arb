@@ -148,8 +148,8 @@
     "placeholders": {
       "interval": {
         "type": "int"
+      }
     }
-   }
   },
   "questionnaire_second_answer_intl_one": "Je to více než rok nebo nevím",
   "@questionnaire_second_answer_intl_one": {},
@@ -158,16 +158,16 @@
     "placeholders": {
       "interval": {
         "type": "int"
+      }
     }
-   }
   },
   "questionnaire_second_answer_intl_other": "Je to více než {interval} let nebo nevím",
   "@questionnaire_second_answer_intl_other": {
     "placeholders": {
       "interval": {
         "type": "int"
+      }
     }
-   }
   },
   "dentist_question_highlight": "Zubaře",
   "@dentist_question_highlight": {},
@@ -449,5 +449,17 @@
   "examination_detail_add_to_calendar_button": "Přidat do kalendáře",
   "@examination_detail_add_to_calendar_button": {},
   "examination_detail_edit_date_button": "Upravit datum",
-  "@examination_detail_edit_date_button": {}
+  "@examination_detail_edit_date_button": {},
+  "back": "Zpět",
+  "@back": {},
+  "cancel_checkup": "Zrušit prohlídku",
+  "@cancel_checkup": {},
+  "edit_checkup": "Změnit datum",
+  "@edit_checkup": {},
+  "checkup_cancel_question": "Opravdu chceš zrušit preventivní prohlídku",
+  "@checkup_cancel_question": {},
+  "checkup_cancel_reschedule": "Co třeba prohlídku přeplánovat? Zavolej svému praktickému lékaři.",
+  "@checkup_cancel_reschedule": {},
+  "checkup_cancel_notify_doc": "Pokud to nejde jinak a prohlídku musíš zrušit, dej o tom včas vědět svému lékaři. ",
+  "@checkup_cancel_notify_doc": {}
 }
