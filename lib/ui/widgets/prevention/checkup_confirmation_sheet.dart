@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_types.dart';
+import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
 
-void showConfirmationSheet(BuildContext context, ExaminationType examinationType) {
+void showConfirmationSheet(BuildContext context, ExaminationType examinationType, Sex sex) {
   final practitioner =
       procedureQuestionTitle(context, examinationType: examinationType).toLowerCase();
   final preposition = czechPreposition(context, examinationType: examinationType);
@@ -17,6 +18,8 @@ void showConfirmationSheet(BuildContext context, ExaminationType examinationType
     AutoRouter.of(context).popUntilRouteWithName('ExaminationDetailRoute');
     showSnackBarError(context, message: 'TODO: save to API');
   }
+
+  final l10n = context.l10n;
 
   showModalBottomSheet<void>(
     context: context,
@@ -63,8 +66,9 @@ void showConfirmationSheet(BuildContext context, ExaminationType examinationType
                 /// Leaving this here for testing. Button switch will be implemented in progress bar task
                 /// All achievement and assets not implemented yet. Should be completed in separate task.
                 /// As of now, API for completion doesnt exists. Should be completed in separate task.
-                LoonoButton.light(
-                  text: context.l10n.checkup_confirmation,
+                LoonoButton(
+                  text:
+                      '${l10n.yes}, ${sex == Sex.male ? l10n.checkup_confirmation_male.toLowerCase() : l10n.checkup_confirmation_female.toLowerCase()}',
                   onTap: () => AutoRouter.of(context).navigate(
                     AchievementRoute(
                       header: 'TO DO: complete all rewards',
@@ -74,8 +78,6 @@ void showConfirmationSheet(BuildContext context, ExaminationType examinationType
                       onButtonTap: _completedAction,
                     ),
                   ),
-                  enabledColor: LoonoColors.primaryEnabled,
-                  textColor: Colors.white,
                 ),
                 const SizedBox(
                   height: 60,

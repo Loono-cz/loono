@@ -5,8 +5,10 @@ import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_types.dart';
+import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
+import 'package:loono/models/user.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/calendar_service.dart';
 import 'package:loono/services/database_service.dart';
@@ -33,6 +35,11 @@ class ExaminationDetail extends StatelessWidget {
   DateTime? get nextVisitDate => categorizedExamination.examination.nextVisitDate;
 
   Widget get _doctorAsset => SvgPicture.asset(examinationType.assetPath, width: 180);
+
+  Sex get _sex {
+    final user = registry.get<DatabaseService>().users.user;
+    return user?.sex ?? Sex.male;
+  }
 
   String _intervalYears(BuildContext context) =>
       '${categorizedExamination.examination.interval.toString()} ${categorizedExamination.examination.interval > 1 ? context.l10n.years : context.l10n.year}';
@@ -226,14 +233,17 @@ class ExaminationDetail extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                child: LoonoButton.light(
-                  text: 'Byl/a jsem na\nprohlídce',
+                child: LoonoButton(
+                  text: _sex == Sex.male
+                      ? l10n.checkup_confirmation_male
+                      : l10n.checkup_confirmation_female,
                   onTap: () {
                     showConfirmationSheet(
-                        context, categorizedExamination.examination.examinationType);
+                      context,
+                      categorizedExamination.examination.examinationType,
+                      _sex,
+                    );
                   },
-                  enabledColor: LoonoColors.primaryEnabled,
-                  textColor: Colors.white,
                 ),
               ),
               const SizedBox(width: 19),
