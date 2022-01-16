@@ -34,7 +34,7 @@ class OnboardingThirdCarouselScreen extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
             ),
             button: CarouselButton(
-              heightMultiplier: context.l10n.carousel_multiplier_3_height,
+              heightMultiplier: 0.11,
               text: context.l10n.carousel_content_3_button,
               onTap: () async {
                 await registry.get<UserRepository>().createUser();

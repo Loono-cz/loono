@@ -29,7 +29,7 @@ Future<void> setup(AppFlavors flavor) async {
   await Firebase.initializeApp();
 
   final appInfo = await PackageInfo.fromPlatform();
-  await dotenv.load(fileName: 'assets/.env.example');
+  await dotenv.load(fileName: 'assets/.env');
 
   late final String osVersion;
   try {

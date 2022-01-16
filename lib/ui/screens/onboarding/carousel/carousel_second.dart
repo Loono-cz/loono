@@ -27,7 +27,7 @@ class OnboardingSecondCarouselScreen extends StatelessWidget {
             highlightPattern: '(${context.l10n.carousel_content_2_stat_highlight})',
             statTextColor: LoonoColors.primaryEnabled,
             bodyText: context.l10n.carousel_content_2_body,
-            button: CarouselButton(heightMultiplier: context.l10n.carousel_multiplier_2_height, text: context.l10n.continue_info, onTap: onNext),
+            button: CarouselButton(heightMultiplier: 0.14, text: context.l10n.continue_info, onTap: onNext),
             dataSourceText: context.l10n.carousel_content_2_data_source,
           ),
         ),
