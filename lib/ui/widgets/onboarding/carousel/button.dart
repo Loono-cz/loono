@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:loono/ui/widgets/button.dart';
 
 class CarouselButton extends StatelessWidget {
-  const CarouselButton({Key? key, required this.heightMultiplier, required this.text, this.onTap}) : super(key: key);
+  const CarouselButton({Key? key, required this.heightMultiplier, required this.text, this.onTap})
+      : super(key: key);
 
   final double heightMultiplier;
   final String text;
