@@ -57,7 +57,9 @@ Future<Either<ImageError, Uint8List>> takePictureAsBytes(ImageSource imageSource
       // Permission is granted, pick an image
       final XFile? picture;
       try {
-        picture = await registry.get<ImagePicker>().pickImage(source: imageSource);
+        picture = await registry
+            .get<ImagePicker>()
+            .pickImage(source: imageSource, preferredCameraDevice: CameraDevice.front);
       } catch (e) {
         // TODO: Better error messaging
         return const Left(ImageError.unknown());
