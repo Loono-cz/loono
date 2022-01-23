@@ -1,0 +1,21 @@
+name: Continuous Integration
+on:
+  pull_request:
+    branches:
+      - continuous-integration
+  push:
+    branches:
+      - continuous-integration
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dart-lang/setup-dart@v1
+
+      - name: Install dependencies
+        run: dart pub get
+
+      - name: Hello world
+        run: dart bin/hello_world.dart
+
