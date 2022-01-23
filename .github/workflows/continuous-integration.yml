@@ -13,8 +13,11 @@ jobs:
       - uses: actions/checkout@v2
       - uses: dart-lang/setup-dart@v1
 
+      - name: List files
+        run: ls -al
+
       - name: Install dependencies
-        run: dart pub get
+        run: flutter pub get
 
       - name: Hello world
         run: dart bin/hello_world.dart
