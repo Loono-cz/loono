@@ -3,8 +3,8 @@ import 'package:loono/l10n/ext.dart';
 
 void showConfirmationDialog(
   BuildContext context, {
-  required void Function() onConfirm,
-  void Function()? onCancel,
+  required VoidCallback onConfirm,
+  VoidCallback? onCancel,
   required String content,
   String? confirmationButtonLabel,
   String? cancelButtonLabel,

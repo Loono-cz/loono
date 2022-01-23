@@ -26,7 +26,7 @@ class _DatePickerScreenState extends State<DatePickerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const double imageAssetSize = 50.0;
+    const imageAssetSize = 50.0;
 
     return WillPopScope(
       onWillPop: () async => false,

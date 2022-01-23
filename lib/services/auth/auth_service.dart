@@ -22,8 +22,7 @@ class AuthService {
     return user?.uid;
   }
 
-  Stream<AuthUser?> get onAuthStateChanged =>
-      _auth.authStateChanges().map((firebaseUser) => _authUserFromFirebase(firebaseUser));
+  Stream<AuthUser?> get onAuthStateChanged => _auth.authStateChanges().map(_authUserFromFirebase);
 
   AuthUser? _authUserFromFirebase(User? firebaseUser) {
     final authUser = firebaseUser == null
@@ -134,7 +133,7 @@ class AuthService {
     if (loginData == null) {
       try {
         // Trigger the sign-in flow
-        final LoginResult facebookLogin = await _facebookSignIn.login(permissions: ['email']);
+        final facebookLogin = await _facebookSignIn.login(permissions: ['email']);
 
         // Create a credential from the access token
         facebookAuthCredential = FacebookAuthProvider.credential(facebookLogin.accessToken!.token);

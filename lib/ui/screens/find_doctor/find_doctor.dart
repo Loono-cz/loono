@@ -36,16 +36,18 @@ class FindDoctorScreen extends StatelessWidget {
                       onItemTap: (healthcareProvider) async => animateToPos(
                         _mapController,
                         cameraPosition: CameraPosition(
-                            target: LatLng(healthcareProvider.lat, healthcareProvider.lng),
-                            zoom: 17.0),
+                          target: LatLng(healthcareProvider.lat, healthcareProvider.lng),
+                          zoom: 17.0,
+                        ),
                       ),
                     ),
                     MapSheetOverlay(
                       onItemTap: (healthcareProvider) async => animateToPos(
                         _mapController,
                         cameraPosition: CameraPosition(
-                            target: LatLng(healthcareProvider.lat, healthcareProvider.lng),
-                            zoom: 17.0),
+                          target: LatLng(healthcareProvider.lat, healthcareProvider.lng),
+                          zoom: 17.0,
+                        ),
                       ),
                     ),
                   ],

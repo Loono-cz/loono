@@ -14,6 +14,7 @@ class ApiService {
 
   Future<ApiResponse<T>> _callApi<T>(Future<Response<T>> Function() apiCallback) async {
     try {
+      // ignore: omit_local_variable_types
       final Response<T> response = await apiCallback();
       return ApiResponse<T>.success(response.data as T);
     } on DioError catch (e, _) {

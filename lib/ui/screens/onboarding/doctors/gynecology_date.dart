@@ -30,7 +30,8 @@ class _GynecologyDateScreenState extends State<GynecologyDateScreen> {
       onContinueButtonPress: () async {
         if (selectedDate == null) return;
         await registry.get<UserRepository>().updateGynecologyVisitDate(
-            DateWithoutDay(month: monthFromInt(selectedDate!.month), year: selectedDate!.year));
+              DateWithoutDay(month: monthFromInt(selectedDate!.month), year: selectedDate!.year),
+            );
       },
       onSkipButtonPress: () =>
           context.read<OnboardingStateService>().skipUniversalDoctorDate(GynecologyDateScreen.type),

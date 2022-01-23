@@ -68,38 +68,52 @@ Future<void> setup(AppFlavors flavor) async {
   // services
   registry.registerSingleton<AuthService>(AuthService());
   registry.registerSingleton<DatabaseService>(DatabaseService());
-  registry.registerSingleton<FirebaseStorageService>(FirebaseStorageService(
-    authService: registry.get<AuthService>(),
-  ));
-  registry.registerSingleton<ApiService>(ApiService(LoonoApi(
-    dio: Dio(
-      BaseOptions(
-        baseUrl: LoonoApi.basePath,
-        connectTimeout: 5000,
-        receiveTimeout: 8000,
+  registry.registerSingleton<FirebaseStorageService>(
+    FirebaseStorageService(
+      authService: registry.get<AuthService>(),
+    ),
+  );
+  registry.registerSingleton<ApiService>(
+    ApiService(
+      LoonoApi(
+        dio: Dio(
+          BaseOptions(
+            baseUrl: LoonoApi.basePath,
+            connectTimeout: 5000,
+            receiveTimeout: 8000,
+          ),
+        ),
       ),
     ),
-  )));
-  registry.registerSingleton<CalendarService>(CalendarService(
-    deviceCalendarPlugin: DeviceCalendarPlugin(),
-  ));
+  );
+  registry.registerSingleton<CalendarService>(
+    CalendarService(
+      deviceCalendarPlugin: DeviceCalendarPlugin(),
+    ),
+  );
   // TODO: generate the key and store it into secure storage
   await registry.get<DatabaseService>().init('SUPER SECURE KEY');
 
   // repositories
-  registry.registerSingleton<UserRepository>(UserRepository(
-    databaseService: registry.get<DatabaseService>(),
-    firebaseStorageService: registry.get<FirebaseStorageService>(),
-  ));
+  registry.registerSingleton<UserRepository>(
+    UserRepository(
+      databaseService: registry.get<DatabaseService>(),
+      firebaseStorageService: registry.get<FirebaseStorageService>(),
+    ),
+  );
   registry.registerSingleton<ExaminationRepository>(const ExaminationRepository());
-  registry.registerSingleton<HealthcareProviderRepository>(HealthcareProviderRepository(
-    apiService: registry.get<ApiService>(),
-    databaseService: registry.get<DatabaseService>(),
-  ));
-  registry.registerSingleton<CalendarRepository>(CalendarRepository(
-    databaseService: registry.get<DatabaseService>(),
-    calendarService: registry.get<CalendarService>(),
-  ));
+  registry.registerSingleton<HealthcareProviderRepository>(
+    HealthcareProviderRepository(
+      apiService: registry.get<ApiService>(),
+      databaseService: registry.get<DatabaseService>(),
+    ),
+  );
+  registry.registerSingleton<CalendarRepository>(
+    CalendarRepository(
+      databaseService: registry.get<DatabaseService>(),
+      calendarService: registry.get<CalendarService>(),
+    ),
+  );
 
   // router
   registry.registerSingleton<AppRouter>(AppRouter(checkIsLoggedIn: CheckIsLoggedIn()));

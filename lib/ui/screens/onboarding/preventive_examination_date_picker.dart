@@ -7,12 +7,6 @@ import 'package:loono/ui/widgets/custom_date_picker.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
 
 class PreventiveExaminationDatePickerScreen extends StatelessWidget {
-  final Widget image;
-  final String title;
-  final ValueChanged<DateTime> onDateChanged;
-  final void Function() onContinueButtonPress;
-  final void Function()? onSkipButtonPress;
-
   const PreventiveExaminationDatePickerScreen({
     Key? key,
     required this.image,
@@ -21,6 +15,12 @@ class PreventiveExaminationDatePickerScreen extends StatelessWidget {
     required this.onContinueButtonPress,
     this.onSkipButtonPress,
   }) : super(key: key);
+
+  final Widget image;
+  final String title;
+  final ValueChanged<DateTime> onDateChanged;
+  final VoidCallback onContinueButtonPress;
+  final VoidCallback? onSkipButtonPress;
 
   @override
   Widget build(BuildContext context) {

@@ -3,11 +3,16 @@ import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 
 class SkipButton extends StatelessWidget {
-  final String? text;
-  final void Function() onPressed;
-  final Widget? sibling;
+  const SkipButton({
+    Key? key,
+    this.text,
+    required this.onPressed,
+    this.sibling,
+  }) : super(key: key);
 
-  const SkipButton({Key? key, this.text, required this.onPressed, this.sibling}) : super(key: key);
+  final String? text;
+  final VoidCallback onPressed;
+  final Widget? sibling;
 
   @override
   Widget build(BuildContext context) {

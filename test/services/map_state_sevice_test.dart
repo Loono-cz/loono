@@ -24,7 +24,7 @@ void main() {
   late MapStateService mapStateService;
 
   group('query search', () {
-    final List<HealthcareProvider> doctors = <String>[
+    final doctors = <String>[
       'Revmatologie Mariánské Lázně s.r.o.',
       'MUDr. Milena Nováková',
       'Bc. Jiří Novák',

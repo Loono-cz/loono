@@ -30,14 +30,14 @@ class ExaminationCard extends StatelessWidget {
       );
 
   Widget get _doctorAsset => ClipRRect(
-      borderRadius: const BorderRadius.only(
-       bottomRight: Radius.circular(10),
-    ),
-    child: SvgPicture.asset(
+        borderRadius: const BorderRadius.only(
+          bottomRight: Radius.circular(10),
+        ),
+        child: SvgPicture.asset(
           categorizedExamination.examination.examinationType.assetPath,
           width: 100,
         ),
-  );
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +54,8 @@ class ExaminationCard extends StatelessWidget {
               scheduledSoonOrOverdue: () => _scheduledContent(isSoonOrOverdue: true),
               newToSchedule: () => _makeAppointmentContent(context, isNew: true),
               unknownLastVisit: () => _makeAppointmentContent(context),
-              scheduled: () => _scheduledContent(),
-              waiting: () => _waitingContent(),
+              scheduled: _scheduledContent,
+              waiting: _waitingContent,
             ),
           ),
         ),
@@ -142,8 +142,9 @@ class ExaminationCard extends StatelessWidget {
   List<Widget> _waitingContent() {
     final lastDateVisit = categorizedExamination.examination.lastVisitDate!;
     final newWaitToDateTime = DateTime(
-        lastDateVisit.year + categorizedExamination.examination.interval,
-        lastDateVisit.month.index + 1);
+      lastDateVisit.year + categorizedExamination.examination.interval,
+      lastDateVisit.month.index + 1,
+    );
     final formattedDate = DateFormat.yMMMM('cs-CZ').format(newWaitToDateTime);
 
     return <Widget>[

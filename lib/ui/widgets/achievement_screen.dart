@@ -8,12 +8,13 @@ import 'package:loono/ui/widgets/loono_point.dart';
 
 class AchievementScreen extends StatelessWidget {
   const AchievementScreen({
+    Key? key,
     required this.header,
     required this.textLines,
     required this.numberOfPoints,
     required this.itemPath,
     required this.onButtonTap,
-  });
+  }) : super(key: key);
 
   final String header;
   final List<String> textLines;

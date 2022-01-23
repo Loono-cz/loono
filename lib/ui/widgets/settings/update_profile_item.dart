@@ -103,12 +103,12 @@ class _UpdateProfileItemState extends State<UpdateProfileItem> {
                                 style: textStyle.copyWith(decoration: TextDecoration.underline),
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () async {
-                                    final Uri emailLaunchUri = Uri(
+                                    final emailLaunchUri = Uri(
                                       scheme: 'mailto',
                                       path: LoonoStrings.contactEmail,
                                     );
                                     if (await canLaunch(emailLaunchUri.toString())) {
-                                      launch(emailLaunchUri.toString());
+                                      await launch(emailLaunchUri.toString());
                                     }
                                   },
                               ),

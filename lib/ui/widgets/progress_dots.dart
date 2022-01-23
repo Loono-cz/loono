@@ -3,15 +3,16 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
 
 class LoonoProgressIndicator extends StatelessWidget {
-  final int numberOfSteps;
-  final int currentStep;
-  final double size;
-
   const LoonoProgressIndicator({
+    Key? key,
     required this.numberOfSteps,
     required this.currentStep,
     this.size = 34,
-  });
+  }) : super(key: key);
+
+  final int numberOfSteps;
+  final int currentStep;
+  final double size;
 
   @override
   Widget build(BuildContext context) {
@@ -62,15 +63,16 @@ class LoonoProgressIndicator extends StatelessWidget {
 enum ProgressDotStyle { done, doing, todo }
 
 class ProgressDot extends StatelessWidget {
-  final double size;
-  final ProgressDotStyle style;
-  final String text;
-
   const ProgressDot({
+    Key? key,
     this.size = 34,
     required this.style,
     this.text = '',
-  });
+  }) : super(key: key);
+
+  final double size;
+  final ProgressDotStyle style;
+  final String text;
 
   @override
   Widget build(BuildContext context) {

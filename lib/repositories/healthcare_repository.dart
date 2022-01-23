@@ -60,10 +60,12 @@ class HealthcareProviderRepository {
 
     // update if data are outdated or completely missing
     debugPrint(
-        'HEALTHCARE_PROVIDERS: LOCAL LATEST: $localLatestUpdate --- SERVER LATEST: $serverLatestUpdate');
+      'HEALTHCARE_PROVIDERS: LOCAL LATEST: $localLatestUpdate --- SERVER LATEST: $serverLatestUpdate',
+    );
     if (localLatestUpdate == null ||
         (serverLatestUpdate != null && serverLatestUpdate.isAfter(localLatestUpdate))) {
       debugPrint('HEALTHCARE_PROVIDERS: UPDATING DATA...');
+      // ignore: omit_local_variable_types
       final BuiltList<SimpleHealthcareProvider>? list = await _fetchAllProvidersData();
       if (list == null) return Future.error('Could not fetch the data');
       await _db.healthcareProviders.updateAllData(list);
@@ -77,6 +79,7 @@ class HealthcareProviderRepository {
 
   Future<BuiltList<SimpleHealthcareProvider>?> _fetchAllProvidersData() async {
     final healthcareApiResponse = await _apiService.getProvidersAll();
+    // ignore: omit_local_variable_types
     final Uint8List? responseData = healthcareApiResponse.mapOrNull(
       success: (response) => response.data,
     );

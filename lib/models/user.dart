@@ -93,17 +93,20 @@ class UsersDao extends DatabaseAccessor<AppDatabase> with _$UsersDaoMixin {
 
   Future<void> updateDateOfBirth(DateWithoutDay dateWithoutDay) async {
     await updateCurrentUser(
-        UsersCompanion(dateOfBirthRaw: Value(jsonEncode(dateWithoutDay.toJson()))));
+      UsersCompanion(dateOfBirthRaw: Value(jsonEncode(dateWithoutDay.toJson()))),
+    );
   }
 
   Future<void> updateGeneralPracticionerCcaVisit(CcaDoctorVisit ccaDoctorVisit) async {
     await updateCurrentUser(
-        UsersCompanion(generalPracticionerCcaVisitRaw: Value(ccaDoctorVisit.index)));
+      UsersCompanion(generalPracticionerCcaVisitRaw: Value(ccaDoctorVisit.index)),
+    );
   }
 
   Future<void> updateGeneralPracticionerVisitDate(DateWithoutDay dateWithoutDay) async {
-    await updateCurrentUser(UsersCompanion(
-        generalPracticionerVisitDateRaw: Value(jsonEncode(dateWithoutDay.toJson()))));
+    await updateCurrentUser(
+      UsersCompanion(generalPracticionerVisitDateRaw: Value(jsonEncode(dateWithoutDay.toJson()))),
+    );
   }
 
   Future<void> updateGynecologyCcaVisit(CcaDoctorVisit ccaDoctorVisit) async {
@@ -112,7 +115,8 @@ class UsersDao extends DatabaseAccessor<AppDatabase> with _$UsersDaoMixin {
 
   Future<void> updateGynecologyVisitDate(DateWithoutDay dateWithoutDay) async {
     await updateCurrentUser(
-        UsersCompanion(gynecologyVisitDateRaw: Value(jsonEncode(dateWithoutDay.toJson()))));
+      UsersCompanion(gynecologyVisitDateRaw: Value(jsonEncode(dateWithoutDay.toJson()))),
+    );
   }
 
   Future<void> updateDentistCcaVisit(CcaDoctorVisit ccaDoctorVisit) async {
@@ -121,7 +125,8 @@ class UsersDao extends DatabaseAccessor<AppDatabase> with _$UsersDaoMixin {
 
   Future<void> updateDentistVisitDate(DateWithoutDay dateWithoutDay) async {
     await updateCurrentUser(
-        UsersCompanion(dentistVisitDateRaw: Value(jsonEncode(dateWithoutDay.toJson()))));
+      UsersCompanion(dentistVisitDateRaw: Value(jsonEncode(dateWithoutDay.toJson()))),
+    );
   }
 
   Future<void> updateNickname(String nickname) async {
@@ -145,7 +150,8 @@ class UsersDao extends DatabaseAccessor<AppDatabase> with _$UsersDaoMixin {
       updatedCollection.addAll([...currCollection, achievement]);
     }
     await updateCurrentUser(
-        UsersCompanion(achievementCollectionRaw: Value(jsonEncode(updatedCollection.toList()))));
+      UsersCompanion(achievementCollectionRaw: Value(jsonEncode(updatedCollection.toList()))),
+    );
   }
 }
 
@@ -165,7 +171,8 @@ extension UserExtension on User {
   DateWithoutDay? get generalPracticionerVisitDate => generalPracticionerVisitDateRaw == null
       ? null
       : DateWithoutDay.fromJson(
-          jsonDecode(generalPracticionerVisitDateRaw!) as Map<String, dynamic>);
+          jsonDecode(generalPracticionerVisitDateRaw!) as Map<String, dynamic>,
+        );
 
   DateWithoutDay? get gynecologyVisitDate => gynecologyVisitDateRaw == null
       ? null
