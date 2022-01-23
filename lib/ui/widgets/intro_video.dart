@@ -55,16 +55,18 @@ class OnboardFirstCarouselInteractiveContent extends StatelessWidget {
       children: [
         Positioned(
           top: MediaQuery.of(context).size.height * 0.1,
-          left: 20.0,
-          child: Material(
-            color: Colors.transparent,
-            child: IconButton(
-              icon: Icon(
-                storyPageState.isMuted ? Icons.volume_off : Icons.volume_up,
-                size: 40.0,
-                color: Colors.white,
-              ),
+          right: 10.0,
+          child: ButtonTheme(
+            height: 30,
+            minWidth: 30,
+            child: MaterialButton(
+              color: Colors.white.withOpacity(0.7),
               onPressed: onVolumeTap,
+              shape: const CircleBorder(),
+              child: Icon(
+                storyPageState.isMuted ? Icons.volume_off : Icons.volume_up,
+                color: Colors.black,
+              ),
             ),
           ),
         ),
