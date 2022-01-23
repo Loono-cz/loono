@@ -12,7 +12,7 @@ class SearchTextField extends StatelessWidget {
     required this.onItemTap,
   }) : super(key: key);
 
-  final void Function(HealthcareProvider)? onItemTap;
+  final ValueChanged<HealthcareProvider>? onItemTap;
 
   final _healthcareProvidersRepository = registry.get<HealthcareProviderRepository>();
 

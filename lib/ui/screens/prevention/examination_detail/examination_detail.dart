@@ -146,25 +146,27 @@ class ExaminationDetail extends StatelessWidget {
         Row(
           children: [
             Expanded(
-                child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                context.l10n.early_ordering,
-                textAlign: TextAlign.right,
-                style: earlyOrderStyles(categorizedExamination),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  context.l10n.early_ordering,
+                  textAlign: TextAlign.right,
+                  style: earlyOrderStyles(categorizedExamination),
+                ),
               ),
-            )),
+            ),
             ExaminationProgressContent(
               categorizedExamination: categorizedExamination,
             ),
             Expanded(
-                child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                context.l10n.preventive_inspection,
-                style: preventiveInspectionStyles(categorizedExamination),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  context.l10n.preventive_inspection,
+                  style: preventiveInspectionStyles(categorizedExamination),
+                ),
               ),
-            )),
+            ),
           ],
         ),
         Padding(
@@ -187,14 +189,16 @@ class ExaminationDetail extends StatelessWidget {
                                   final hasPermissionsGranted =
                                       await _calendarService.hasPermissionsGranted();
                                   if (hasPermissionsGranted) {
-                                    AutoRouter.of(context).push(
+                                    await AutoRouter.of(context).push(
                                       CalendarListRoute(
-                                          examinationRecord: categorizedExamination.examination),
+                                        examinationRecord: categorizedExamination.examination,
+                                      ),
                                     );
                                   } else {
-                                    AutoRouter.of(context).push(
+                                    await AutoRouter.of(context).push(
                                       CalendarPermissionInfoRoute(
-                                          examinationRecord: categorizedExamination.examination),
+                                        examinationRecord: categorizedExamination.examination,
+                                      ),
                                     );
                                   }
                                 },

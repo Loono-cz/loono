@@ -34,7 +34,7 @@ class CreateAccountScreen extends StatelessWidget {
                       text: context.l10n.skip_without_account,
                       onPressed: () async {
                         final authUserResult = await _authService.signInAnonymously();
-                        authUserResult.fold(
+                        await authUserResult.fold(
                           (failure) {
                             failure.maybeWhen(
                               network: (_) => showConfirmationDialog(
@@ -67,8 +67,10 @@ class CreateAccountScreen extends StatelessWidget {
                         Positioned(
                           left: -12,
                           top: -5,
-                          child: SvgPicture.asset('assets/icons/create-account-ellipse.svg',
-                              width: 290),
+                          child: SvgPicture.asset(
+                            'assets/icons/create-account-ellipse.svg',
+                            width: 290,
+                          ),
                         ),
                         Align(
                           alignment: Alignment.centerLeft,
@@ -106,10 +108,13 @@ class CreateAccountScreen extends StatelessWidget {
                               onPressed: () async {
                                 final authUserResult = await _authService.signInWithApple();
                                 authUserResult.fold(
-                                  (failure) => showSnackBarError(context,
-                                      message: failure.getMessage(context)),
-                                  (authUser) => AutoRouter.of(context)
-                                      .push(NicknameRoute(authUser: authUser)),
+                                  (failure) => showSnackBarError(
+                                    context,
+                                    message: failure.getMessage(context),
+                                  ),
+                                  (authUser) => AutoRouter.of(context).push(
+                                    NicknameRoute(authUser: authUser),
+                                  ),
                                 );
                               },
                             ),
@@ -118,10 +123,13 @@ class CreateAccountScreen extends StatelessWidget {
                               onPressed: () async {
                                 final authUserResult = await _authService.signInWithGoogle();
                                 authUserResult.fold(
-                                  (failure) => showSnackBarError(context,
-                                      message: failure.getMessage(context)),
-                                  (authUser) => AutoRouter.of(context)
-                                      .push(NicknameRoute(authUser: authUser)),
+                                  (failure) => showSnackBarError(
+                                    context,
+                                    message: failure.getMessage(context),
+                                  ),
+                                  (authUser) => AutoRouter.of(context).push(
+                                    NicknameRoute(authUser: authUser),
+                                  ),
                                 );
                               },
                             ),
@@ -130,8 +138,10 @@ class CreateAccountScreen extends StatelessWidget {
                               onPressed: () async {
                                 final authUserResult = await _authService.signInWithFacebook();
                                 authUserResult.fold(
-                                  (failure) => showSnackBarError(context,
-                                      message: failure.getMessage(context)),
+                                  (failure) => showSnackBarError(
+                                    context,
+                                    message: failure.getMessage(context),
+                                  ),
                                   (authUser) => AutoRouter.of(context)
                                       .push(NicknameRoute(authUser: authUser)),
                                 );

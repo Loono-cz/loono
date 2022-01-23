@@ -57,7 +57,7 @@ class CalendarPermissionInfoScreen extends StatelessWidget {
                   final permissionsGranted =
                       await registry.get<CalendarService>().promptPermissions();
                   if (permissionsGranted) {
-                    AutoRouter.of(context)
+                    await AutoRouter.of(context)
                         .popAndPush(CalendarListRoute(examinationRecord: examinationRecord));
                   } else {
                     // TODO: Navigate to guide screen on how to enable the permission

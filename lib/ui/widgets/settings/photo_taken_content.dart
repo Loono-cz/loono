@@ -96,7 +96,7 @@ class _PhotoTakenContentState extends State<PhotoTakenContent> {
                 LoonoButton(
                   enabled: isLoading == false && isCropping == false,
                   text: context.l10n.continue_info,
-                  onTap: () => cropController.crop(),
+                  onTap: cropController.crop,
                 ),
                 const SizedBox(height: 30),
                 TextButton(

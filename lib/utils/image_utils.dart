@@ -71,7 +71,7 @@ Future<Either<ImageError, Uint8List>> takePictureAsBytes(ImageSource imageSource
 }
 
 Future<PermissionStatus> _checkHasPermission(Permission permission) async {
-  final PermissionStatus status = await permission.status;
+  final status = await permission.status;
   switch (status) {
     case PermissionStatus.granted:
       return PermissionStatus.granted;

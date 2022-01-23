@@ -1,6 +1,20 @@
 import 'package:flutter/material.dart';
 
 class ExtendedInkWell extends StatelessWidget {
+  const ExtendedInkWell({
+    Key? key,
+    required this.child,
+    required this.onTap,
+    this.onLongPress,
+    this.clip = Clip.antiAlias,
+    this.borderRadius,
+    this.shape,
+    this.materialColor,
+    this.materialShadowColor,
+    this.splashColor,
+    this.highlightColor,
+  }) : super(key: key);
+
   final Widget child;
   final VoidCallback? onTap;
   final VoidCallback? onLongPress;
@@ -15,20 +29,6 @@ class ExtendedInkWell extends StatelessWidget {
   // InkWell
   final Color? splashColor;
   final Color? highlightColor;
-
-  const ExtendedInkWell(
-      {required this.child,
-      required this.onTap,
-      this.onLongPress,
-      this.clip = Clip.antiAlias,
-      this.borderRadius,
-      this.shape,
-      this.materialColor,
-      this.materialShadowColor,
-      this.splashColor,
-      this.highlightColor,
-      Key? key})
-      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
