@@ -2,12 +2,15 @@ import 'dart:convert';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/serializer.dart';
+import 'package:collection/collection.dart';
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:loono/helpers/examination_types.dart';
 import 'package:loono_api/loono_api.dart' show SimpleHealthcareProvider, standardSerializers;
 import 'package:moor/moor.dart';
 
-class CategoryConverter extends TypeConverter<BuiltList<String>, String> {
-  const CategoryConverter();
+class CategoryDbConverter extends TypeConverter<BuiltList<String>, String> {
+  const CategoryDbConverter();
 
   @override
   BuiltList<String>? mapToDart(String? fromDb) {
@@ -27,6 +30,23 @@ class CategoryConverter extends TypeConverter<BuiltList<String>, String> {
         specifiedType: const FullType(BuiltList, [FullType(String)]),
       ),
     );
+  }
+}
+
+class ExaminationDbTypeConverter extends TypeConverter<ExaminationType, String> {
+  const ExaminationDbTypeConverter();
+
+  @override
+  ExaminationType? mapToDart(String? fromDb) {
+    if (fromDb == null) return null;
+    return ExaminationType.values
+        .singleWhereOrNull((examinationType) => describeEnum(examinationType) == fromDb);
+  }
+
+  @override
+  String? mapToSql(ExaminationType? value) {
+    if (value == null) return null;
+    return describeEnum(value);
   }
 }
 
