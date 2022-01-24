@@ -93,12 +93,12 @@ const _settingsTransition = TransitionsBuilders.slideLeft;
           path: 'checkup/cancel',
           transitionsBuilder: _preventionTransition,
         ),
-        CustomRoute(
+        CustomRoute<void>(
           page: ChangeDateScreen,
           path: 'checkup/change-date',
           transitionsBuilder: _preventionTransition,
         ),
-        CustomRoute(
+        CustomRoute<void>(
           page: ChangeTimeScreen,
           path: 'checkup/change-time',
           transitionsBuilder: _preventionTransition,

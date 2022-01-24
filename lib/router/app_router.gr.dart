@@ -71,50 +71,50 @@ class AppRouter extends _i1.RootStackRouter {
   @override
   final Map<String, _i1.PageFactory> pagesMap = {
     MainScreenRouter.name: (routeData) {
-      return _i1.MaterialPageX<dynamic>(
+      return _i1.MaterialPageX<void>(
           routeData: routeData, child: const _i1.EmptyRouterScreen());
     },
     OnboardingWrapperRoute.name: (routeData) {
-      return _i1.MaterialPageX<dynamic>(
+      return _i1.MaterialPageX<void>(
           routeData: routeData, child: const _i4.OnboardingWrapperScreen());
     },
     CreateAccountRoute.name: (routeData) {
       final args = routeData.argsAs<CreateAccountRouteArgs>(
           orElse: () => const CreateAccountRouteArgs());
-      return _i1.MaterialPageX<dynamic>(
+      return _i1.MaterialPageX<void>(
           routeData: routeData, child: _i5.CreateAccountScreen(key: args.key));
     },
     NicknameRoute.name: (routeData) {
       final args = routeData.argsAs<NicknameRouteArgs>(
           orElse: () => const NicknameRouteArgs());
-      return _i1.MaterialPageX<dynamic>(
+      return _i1.MaterialPageX<void>(
           routeData: routeData,
           child: _i6.NicknameScreen(key: args.key, authUser: args.authUser));
     },
     EmailRoute.name: (routeData) {
       final args = routeData.argsAs<EmailRouteArgs>(
           orElse: () => const EmailRouteArgs());
-      return _i1.MaterialPageX<dynamic>(
+      return _i1.MaterialPageX<void>(
           routeData: routeData,
           child: _i7.EmailScreen(key: args.key, authUser: args.authUser));
     },
     LoginRoute.name: (routeData) {
       final args = routeData.argsAs<LoginRouteArgs>(
           orElse: () => const LoginRouteArgs());
-      return _i1.MaterialPageX<dynamic>(
+      return _i1.MaterialPageX<void>(
           routeData: routeData, child: _i8.LoginScreen(key: args.key));
     },
     LogoutRoute.name: (routeData) {
-      return _i1.MaterialPageX<dynamic>(
+      return _i1.MaterialPageX<void>(
           routeData: routeData, child: const _i9.LogoutScreen());
     },
     MainRoute.name: (routeData) {
-      return _i1.MaterialPageX<dynamic>(
+      return _i1.MaterialPageX<void>(
           routeData: routeData, child: const _i10.MainScreen());
     },
     ExaminationDetailRoute.name: (routeData) {
       final args = routeData.argsAs<ExaminationDetailRouteArgs>();
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: _i11.ExaminationDetailScreen(
               key: args.key,
@@ -125,9 +125,10 @@ class AppRouter extends _i1.RootStackRouter {
     },
     AchievementRoute.name: (routeData) {
       final args = routeData.argsAs<AchievementRouteArgs>();
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: _i12.AchievementScreen(
+              key: args.key,
               header: args.header,
               textLines: args.textLines,
               numberOfPoints: args.numberOfPoints,
@@ -139,7 +140,7 @@ class AppRouter extends _i1.RootStackRouter {
     },
     DatePickerRoute.name: (routeData) {
       final args = routeData.argsAs<DatePickerRouteArgs>();
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: _i13.DatePickerScreen(
               key: args.key,
@@ -153,7 +154,7 @@ class AppRouter extends _i1.RootStackRouter {
     },
     CalendarPermissionInfoRoute.name: (routeData) {
       final args = routeData.argsAs<CalendarPermissionInfoRouteArgs>();
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: _i14.CalendarPermissionInfoScreen(
               key: args.key, examinationRecord: args.examinationRecord),
@@ -163,7 +164,7 @@ class AppRouter extends _i1.RootStackRouter {
     },
     CalendarListRoute.name: (routeData) {
       final args = routeData.argsAs<CalendarListRouteArgs>();
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: _i15.CalendarListScreen(
               key: args.key, examinationRecord: args.examinationRecord),
@@ -173,7 +174,7 @@ class AppRouter extends _i1.RootStackRouter {
     },
     CancelCheckupRoute.name: (routeData) {
       final args = routeData.argsAs<CancelCheckupRouteArgs>();
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: _i16.CancelCheckupScreen(
               key: args.key, date: args.date, title: args.title),
@@ -207,7 +208,7 @@ class AppRouter extends _i1.RootStackRouter {
     OpenSettingsRoute.name: (routeData) {
       final args = routeData.argsAs<OpenSettingsRouteArgs>(
           orElse: () => const OpenSettingsRouteArgs());
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: _i19.OpenSettingsScreen(key: args.key),
           transitionsBuilder: _i1.TransitionsBuilders.slideBottom,
@@ -217,7 +218,7 @@ class AppRouter extends _i1.RootStackRouter {
     UpdateProfileRoute.name: (routeData) {
       final args = routeData.argsAs<UpdateProfileRouteArgs>(
           orElse: () => const UpdateProfileRouteArgs());
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: _i20.UpdateProfileScreen(key: args.key),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
@@ -226,7 +227,7 @@ class AppRouter extends _i1.RootStackRouter {
     },
     EditNicknameRoute.name: (routeData) {
       final args = routeData.argsAs<EditNicknameRouteArgs>();
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: _i21.EditNicknameScreen(key: args.key, user: args.user),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
@@ -235,7 +236,7 @@ class AppRouter extends _i1.RootStackRouter {
     },
     EditEmailRoute.name: (routeData) {
       final args = routeData.argsAs<EditEmailRouteArgs>();
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: _i22.EditEmailScreen(key: args.key, user: args.user),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
@@ -245,7 +246,7 @@ class AppRouter extends _i1.RootStackRouter {
     EditPhotoRoute.name: (routeData) {
       final args = routeData.argsAs<EditPhotoRouteArgs>(
           orElse: () => const EditPhotoRouteArgs());
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child:
               _i23.EditPhotoScreen(key: args.key, imageBytes: args.imageBytes),
@@ -255,7 +256,7 @@ class AppRouter extends _i1.RootStackRouter {
     },
     CameraPhotoTakenRoute.name: (routeData) {
       final args = routeData.argsAs<CameraPhotoTakenRouteArgs>();
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: _i24.CameraPhotoTakenScreen(
               key: args.key, imageBytes: args.imageBytes),
@@ -265,7 +266,7 @@ class AppRouter extends _i1.RootStackRouter {
     },
     GalleryPhotoTakenRoute.name: (routeData) {
       final args = routeData.argsAs<GalleryPhotoTakenRouteArgs>();
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: _i25.GalleryPhotoTakenScreen(
               key: args.key, imageBytes: args.imageBytes),
@@ -275,7 +276,7 @@ class AppRouter extends _i1.RootStackRouter {
     },
     PhotoCroppedResultRoute.name: (routeData) {
       final args = routeData.argsAs<PhotoCroppedResultRouteArgs>();
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: _i26.PhotoCroppedResultScreen(
               key: args.key, imageBytes: args.imageBytes),
@@ -284,7 +285,7 @@ class AppRouter extends _i1.RootStackRouter {
           barrierDismissible: false);
     },
     LeaderboardRoute.name: (routeData) {
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: const _i27.LeaderboardScreen(),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
@@ -292,7 +293,7 @@ class AppRouter extends _i1.RootStackRouter {
           barrierDismissible: false);
     },
     PointsHelpRoute.name: (routeData) {
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: const _i28.PointsHelpScreen(),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
@@ -300,11 +301,11 @@ class AppRouter extends _i1.RootStackRouter {
           barrierDismissible: false);
     },
     WelcomeRoute.name: (routeData) {
-      return _i1.MaterialPageX<dynamic>(
+      return _i1.MaterialPageX<void>(
           routeData: routeData, child: const _i29.WelcomeScreen());
     },
     OnboardingCarouselRoute.name: (routeData) {
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: const _i30.OnboardingCarouselScreen(),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
@@ -312,7 +313,7 @@ class AppRouter extends _i1.RootStackRouter {
           barrierDismissible: false);
     },
     OnboardingGenderRoute.name: (routeData) {
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: const _i31.OnboardingGenderScreen(),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
@@ -321,7 +322,7 @@ class AppRouter extends _i1.RootStackRouter {
     },
     OnBoardingBirthdateRoute.name: (routeData) {
       final args = routeData.argsAs<OnBoardingBirthdateRouteArgs>();
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: _i32.OnBoardingBirthdateScreen(key: args.key, sex: args.sex),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
@@ -330,7 +331,7 @@ class AppRouter extends _i1.RootStackRouter {
     },
     OnboardingGeneralPracticionerRoute.name: (routeData) {
       final args = routeData.argsAs<OnboardingGeneralPracticionerRouteArgs>();
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: _i33.OnboardingGeneralPracticionerScreen(
               key: args.key, sex: args.sex),
@@ -339,7 +340,7 @@ class AppRouter extends _i1.RootStackRouter {
           barrierDismissible: false);
     },
     GeneralPracticionerAchievementRoute.name: (routeData) {
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: const _i34.GeneralPracticionerAchievementScreen(),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
@@ -347,7 +348,7 @@ class AppRouter extends _i1.RootStackRouter {
           barrierDismissible: false);
     },
     GeneralPractitionerDateRoute.name: (routeData) {
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: const _i35.GeneralPractitionerDateScreen(),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
@@ -355,7 +356,7 @@ class AppRouter extends _i1.RootStackRouter {
           barrierDismissible: false);
     },
     AllowNotificationsRoute.name: (routeData) {
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: const _i36.AllowNotificationsScreen(),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
@@ -364,7 +365,7 @@ class AppRouter extends _i1.RootStackRouter {
     },
     OnboardingGynecologyRoute.name: (routeData) {
       final args = routeData.argsAs<OnboardingGynecologyRouteArgs>();
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: _i37.OnboardingGynecologyScreen(key: args.key, sex: args.sex),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
@@ -372,7 +373,7 @@ class AppRouter extends _i1.RootStackRouter {
           barrierDismissible: false);
     },
     GynecologyAchievementRoute.name: (routeData) {
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: const _i38.GynecologyAchievementScreen(),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
@@ -380,7 +381,7 @@ class AppRouter extends _i1.RootStackRouter {
           barrierDismissible: false);
     },
     GynecologyDateRoute.name: (routeData) {
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: const _i39.GynecologyDateScreen(),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
@@ -389,7 +390,7 @@ class AppRouter extends _i1.RootStackRouter {
     },
     OnboardingDentistRoute.name: (routeData) {
       final args = routeData.argsAs<OnboardingDentistRouteArgs>();
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: _i40.OnboardingDentistScreen(key: args.key, sex: args.sex),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
@@ -397,7 +398,7 @@ class AppRouter extends _i1.RootStackRouter {
           barrierDismissible: false);
     },
     DentistAchievementRoute.name: (routeData) {
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: const _i41.DentistAchievementScreen(),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
@@ -405,7 +406,7 @@ class AppRouter extends _i1.RootStackRouter {
           barrierDismissible: false);
     },
     DentistDateRoute.name: (routeData) {
-      return _i1.CustomPage<dynamic>(
+      return _i1.CustomPage<void>(
           routeData: routeData,
           child: const _i42.DentistDateScreen(),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
@@ -598,7 +599,8 @@ class ExaminationDetailRouteArgs {
 
 class AchievementRoute extends _i1.PageRouteInfo<AchievementRouteArgs> {
   AchievementRoute(
-      {required String header,
+      {_i2.Key? key,
+      required String header,
       required List<String> textLines,
       required int numberOfPoints,
       required String itemPath,
@@ -606,6 +608,7 @@ class AchievementRoute extends _i1.PageRouteInfo<AchievementRouteArgs> {
       : super(name,
             path: 'questionnaire/reward',
             args: AchievementRouteArgs(
+                key: key,
                 header: header,
                 textLines: textLines,
                 numberOfPoints: numberOfPoints,
@@ -617,11 +620,14 @@ class AchievementRoute extends _i1.PageRouteInfo<AchievementRouteArgs> {
 
 class AchievementRouteArgs {
   const AchievementRouteArgs(
-      {required this.header,
+      {this.key,
+      required this.header,
       required this.textLines,
       required this.numberOfPoints,
       required this.itemPath,
       required this.onButtonTap});
+
+  final _i2.Key? key;
 
   final String header;
 
