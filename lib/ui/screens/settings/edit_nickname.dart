@@ -29,7 +29,7 @@ class EditNicknameScreen extends StatelessWidget {
       validator: Validators.nickname(context),
       onSubmit: (input) async {
         await registry.get<UserRepository>().updateNickname(input);
-        AutoRouter.of(context).pop();
+        await AutoRouter.of(context).pop();
       },
     );
   }

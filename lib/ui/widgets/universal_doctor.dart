@@ -8,16 +8,8 @@ import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/carousel_content.dart';
 
 class UniversalDoctor extends StatelessWidget {
-  final String question;
-  final String questionHeader;
-  final String assetPath;
-  final String button1Text;
-  final String button2Text;
-  final void Function() nextCallback1;
-  final void Function() nextCallback2;
-  final ExaminationType examinationType;
-
   const UniversalDoctor({
+    Key? key,
     required this.question,
     required this.questionHeader,
     required this.assetPath,
@@ -26,7 +18,16 @@ class UniversalDoctor extends StatelessWidget {
     required this.nextCallback1,
     required this.nextCallback2,
     required this.examinationType,
-  });
+  }) : super(key: key);
+
+  final String question;
+  final String questionHeader;
+  final String assetPath;
+  final String button1Text;
+  final String button2Text;
+  final VoidCallback nextCallback1;
+  final VoidCallback nextCallback2;
+  final ExaminationType examinationType;
 
   @override
   Widget build(BuildContext context) {

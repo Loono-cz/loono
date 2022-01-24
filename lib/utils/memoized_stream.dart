@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class MemoizedStream<T> {
-  late T lastItem;
-  final Stream<T> stream;
-
   MemoizedStream(Stream<T> inputStream) : stream = inputStream.asBroadcastStream() {
     stream.listen((newItem) => lastItem = newItem);
   }
+
+  late T lastItem;
+  final Stream<T> stream;
 }
 
 class MemoizedStreamBuilder<T> extends StreamBuilder<T> {
@@ -17,8 +17,9 @@ class MemoizedStreamBuilder<T> extends StreamBuilder<T> {
     required MemoizedStream<T> memoizedStream,
     required Widget Function(BuildContext, AsyncSnapshot<T>) builder,
   }) : super(
-            builder: builder,
-            initialData: memoizedStream.lastItem,
-            stream: memoizedStream.stream,
-            key: key);
+          builder: builder,
+          initialData: memoizedStream.lastItem,
+          stream: memoizedStream.stream,
+          key: key,
+        );
 }

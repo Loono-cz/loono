@@ -123,7 +123,7 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
                                   context,
                                   message: l10n.calendar_added_success_message,
                                 );
-                                AutoRouter.of(context).pop();
+                                await AutoRouter.of(context).pop();
                               }
                             },
                             child: Padding(

@@ -37,7 +37,7 @@ class OnboardingDentistScreen extends StatelessWidget {
               _userRepository.updateDentistCcaVisit(CcaDoctorVisit.inLastTwoYears),
           nextCallback2: () async {
             await _userRepository.updateDentistCcaVisit(CcaDoctorVisit.moreThanTwoYearsOrIdk);
-            AutoRouter.of(context).push(CreateAccountRoute());
+            await AutoRouter.of(context).push(CreateAccountRoute());
           },
         ),
       ),

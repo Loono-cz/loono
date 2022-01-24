@@ -38,13 +38,14 @@ class TextHighlighter {
 
 class CarouselStatContent extends StatelessWidget {
   const CarouselStatContent({
+    Key? key,
     this.statText = '',
     this.statTextColor = LoonoColors.black,
     this.highlightPattern,
     this.bodyText = '',
     this.button,
     this.dataSourceText = '',
-  });
+  }) : super(key: key);
 
   final String statText;
   final String? highlightPattern;
@@ -115,12 +116,13 @@ class CarouselStatContent extends StatelessWidget {
 
 class CarouselImageContent extends StatelessWidget {
   const CarouselImageContent({
+    Key? key,
     this.headerText = '',
     this.bodyText = '',
     this.bottomText = '',
     this.button,
     this.image,
-  });
+  }) : super(key: key);
 
   final String headerText;
   final String bodyText;

@@ -7,18 +7,8 @@ import 'package:loono/ui/widgets/skip_button.dart';
 import 'package:loono/ui/widgets/universal_doctor.dart';
 
 class UniversalDoctorScreen extends StatelessWidget {
-  final String question;
-  final String questionHighlight;
-  final String assetPath;
-  final int numberOfSteps;
-  final int currentStep;
-  final String nextButton1Text;
-  final String nextButton2Text;
-  final void Function() nextCallback1;
-  final void Function() nextCallback2;
-  final ExaminationType examinationType;
-
   const UniversalDoctorScreen({
+    Key? key,
     required this.question,
     required this.questionHighlight,
     required this.assetPath,
@@ -29,7 +19,18 @@ class UniversalDoctorScreen extends StatelessWidget {
     required this.nextCallback1,
     required this.nextCallback2,
     required this.examinationType,
-  });
+  }) : super(key: key);
+
+  final String question;
+  final String questionHighlight;
+  final String assetPath;
+  final int numberOfSteps;
+  final int currentStep;
+  final String nextButton1Text;
+  final String nextButton2Text;
+  final VoidCallback nextCallback1;
+  final VoidCallback nextCallback2;
+  final ExaminationType examinationType;
 
   @override
   Widget build(BuildContext context) {

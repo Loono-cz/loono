@@ -66,7 +66,7 @@ class _UpdateProfileItemState extends State<UpdateProfileItem> {
     const textStyle = TextStyle(color: LoonoColors.black, height: 1.5);
 
     _closeSheet();
-    sheetController = Scaffold.of(context).showBottomSheet(
+    sheetController = Scaffold.of(context).showBottomSheet<dynamic>(
       (context) {
         return FractionallySizedBox(
           heightFactor: MediaQuery.of(context).size.height > 750 ? 0.32 : 0.39,
@@ -103,12 +103,12 @@ class _UpdateProfileItemState extends State<UpdateProfileItem> {
                                 style: textStyle.copyWith(decoration: TextDecoration.underline),
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () async {
-                                    final Uri emailLaunchUri = Uri(
+                                    final emailLaunchUri = Uri(
                                       scheme: 'mailto',
                                       path: LoonoStrings.contactEmail,
                                     );
                                     if (await canLaunch(emailLaunchUri.toString())) {
-                                      launch(emailLaunchUri.toString());
+                                      await launch(emailLaunchUri.toString());
                                     }
                                   },
                               ),

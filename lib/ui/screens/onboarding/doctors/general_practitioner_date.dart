@@ -30,7 +30,8 @@ class _GeneralPractitionerDateScreenState extends State<GeneralPractitionerDateS
       onContinueButtonPress: () async {
         if (selectedDate == null) return;
         await registry.get<UserRepository>().updateGeneralPracticionerVisitDate(
-            DateWithoutDay(month: monthFromInt(selectedDate!.month), year: selectedDate!.year));
+              DateWithoutDay(month: monthFromInt(selectedDate!.month), year: selectedDate!.year),
+            );
       },
       onSkipButtonPress: () => context
           .read<OnboardingStateService>()
