@@ -7,16 +7,6 @@ const _itemHeight = 40.0;
 enum ColumnType { day, month, year }
 
 class CustomDatePicker extends StatefulWidget {
-  final DateTime today = DateTime.now();
-  final ValueChanged<DateTime> valueChanged;
-  final int yearsBeforeActual;
-  final int yearsOverActual;
-  final int? defaultDay;
-  final int? defaultMonth;
-  final int? defaultYear;
-  final bool allowDays;
-  final bool filled;
-
   CustomDatePicker({
     Key? key,
     required this.valueChanged,
@@ -28,6 +18,16 @@ class CustomDatePicker extends StatefulWidget {
     this.allowDays = false,
     this.filled = false,
   }) : super(key: key);
+
+  final DateTime today = DateTime.now();
+  final ValueChanged<DateTime> valueChanged;
+  final int yearsBeforeActual;
+  final int yearsOverActual;
+  final int? defaultDay;
+  final int? defaultMonth;
+  final int? defaultYear;
+  final bool allowDays;
+  final bool filled;
 
   @override
   _CustomDatePickerState createState() => _CustomDatePickerState();
@@ -189,7 +189,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
     required String text,
     required Map<int, Object> items,
   }) {
-    final int selectedIndex = forType == ColumnType.day
+    final selectedIndex = forType == ColumnType.day
         ? _selectedDayIndex
         : forType == ColumnType.month
             ? _selectedMonthIndex

@@ -86,13 +86,14 @@ class _ChangeTimeScreenState extends State<ChangeTimeScreen> {
               ),
               const Spacer(),
               Center(
-                  child: SizedBox(
-                child: CustomTimePicker(
-                  valueChanged: onTimeChanged,
-                  defaultDate: widget.newDate,
-                  defaultHour: 12,
+                child: SizedBox(
+                  child: CustomTimePicker(
+                    valueChanged: onTimeChanged,
+                    defaultDate: widget.newDate,
+                    defaultHour: 12,
+                  ),
                 ),
-              )),
+              ),
               const Spacer(),
               LoonoButton(
                 text: context.l10n.action_save,

@@ -6,6 +6,7 @@ import 'package:loono/models/healthcare_item_place.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/utils/map_utils.dart';
 
+//ignore: prefer_mixin
 class MapStateService with ChangeNotifier {
   MapStateService() {
     clusterManager = _initClusterManager();

@@ -6,11 +6,6 @@ const _itemHeight = 40.0;
 enum ColumnType { hour, minute }
 
 class CustomTimePicker extends StatefulWidget {
-  final ValueChanged<DateTime> valueChanged;
-  final DateTime defaultDate;
-  final int defaultHour;
-  final bool filled;
-
   const CustomTimePicker({
     Key? key,
     required this.valueChanged,
@@ -18,6 +13,11 @@ class CustomTimePicker extends StatefulWidget {
     this.defaultHour = 9,
     this.filled = false,
   }) : super(key: key);
+
+  final ValueChanged<DateTime> valueChanged;
+  final DateTime defaultDate;
+  final int defaultHour;
+  final bool filled;
 
   @override
   _CustomTimePickerState createState() => _CustomTimePickerState();
@@ -98,13 +98,17 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
         physics: const FixedExtentScrollPhysics(),
         itemExtent: _itemHeight,
         childDelegate: ListWheelChildLoopingListDelegate(
-            children: items.keys
-                .map((index) => _setListItem(
-                    forType: forType,
-                    index: index,
-                    text: items[index].toString().padLeft(2, '0'),
-                    items: items))
-                .toList()),
+          children: items.keys
+              .map(
+                (index) => _setListItem(
+                  forType: forType,
+                  index: index,
+                  text: items[index].toString().padLeft(2, '0'),
+                  items: items,
+                ),
+              )
+              .toList(),
+        ),
         onSelectedItemChanged: (index) {
           _selectedItemHandle(forType: forType, items: items, value: items.keys.elementAt(index));
 
@@ -124,19 +128,17 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
     required String text,
     required Map<int, Object> items,
   }) {
-    final int selectedIndex =
-        forType == ColumnType.hour ? _selectedHourIndex : _selectedMinuteIndex;
+    final selectedIndex = forType == ColumnType.hour ? _selectedHourIndex : _selectedMinuteIndex;
 
-    final List<int> keys = items.keys.toList();
-    keys.sort();
+    final keys = items.keys.toList()..sort();
 
-    final bool firstOrLastCoupleInList =
+    final firstOrLastCoupleInList =
         (((selectedIndex == keys.last) && (index == keys.first || index == keys.first + 1)) ||
                 (selectedIndex == keys.last - 1) && (index == keys.first)) ||
             (((selectedIndex == keys.first) && (index == keys.last || index == keys.last - 1)) ||
                 (selectedIndex == keys.first + 1) && (index == keys.last));
 
-    double opacityValue = 0.2;
+    var opacityValue = 0.2;
 
     if (index == selectedIndex) {
       opacityValue = 1;
@@ -148,23 +150,34 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
 
     return Center(
       child: Opacity(
-          opacity: opacityValue,
-          child: Text(
-            text,
-            style: LoonoFonts.fontStyle,
-          )),
+        opacity: opacityValue,
+        child: Text(
+          text,
+          style: LoonoFonts.fontStyle,
+        ),
+      ),
     );
   }
 
   void _selectedItemHandle({required ColumnType forType, required Map items, required int value}) {
     switch (forType) {
       case ColumnType.hour:
-        timePickerDate = DateTime(timePickerDate.year, timePickerDate.month, timePickerDate.day,
-            items[value] as int, timePickerDate.minute);
+        timePickerDate = DateTime(
+          timePickerDate.year,
+          timePickerDate.month,
+          timePickerDate.day,
+          items[value] as int,
+          timePickerDate.minute,
+        );
         break;
       case ColumnType.minute:
-        timePickerDate = DateTime(timePickerDate.year, timePickerDate.month, timePickerDate.day,
-            timePickerDate.hour, items[value] as int);
+        timePickerDate = DateTime(
+          timePickerDate.year,
+          timePickerDate.month,
+          timePickerDate.day,
+          timePickerDate.hour,
+          items[value] as int,
+        );
         break;
     }
     widget.valueChanged(timePickerDate);
