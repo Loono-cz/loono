@@ -471,5 +471,11 @@
   "checkup_confirmation_female": "Byla jsem na prohlídce",
   "@checkup_confirmation_female": {},
   "yes": "Ano",
-  "@yes": {}
+  "@yes": {},
+  "new_checkup_date": "Nový datum prohlídky",
+  "@new_checkup_date": {},
+  "new_checkup_time": "Nový čas prohlídky",
+  "@new_checkup_time": {},
+  "original_date": "Původní termín",
+  "@original_date": {}
 }
