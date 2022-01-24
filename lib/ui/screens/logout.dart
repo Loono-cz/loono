@@ -76,7 +76,7 @@ class _LogoutScreenState extends State<LogoutScreen> {
                 textColor: LoonoColors.black,
                 onTap: () async {
                   final authUserResult = await _authService.signInAnonymously();
-                  authUserResult.fold(
+                  await authUserResult.fold(
                     (failure) {
                       failure.maybeWhen(
                         network: (_) => showConfirmationDialog(

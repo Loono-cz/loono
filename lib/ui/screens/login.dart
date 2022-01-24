@@ -50,7 +50,7 @@ class LoginScreen extends StatelessWidget {
                     (failure) => showSnackBarError(context, message: failure.getMessage(context)),
                     (authUser) async {
                       await _userRepository.createUser();
-                      AutoRouter.of(context).push(const MainScreenRouter());
+                      await AutoRouter.of(context).push(const MainScreenRouter());
                     },
                   );
                 },
@@ -67,7 +67,7 @@ class LoginScreen extends StatelessWidget {
                     (failure) => showSnackBarError(context, message: failure.getMessage(context)),
                     (authUser) async {
                       await _userRepository.createUser();
-                      AutoRouter.of(context).push(const MainScreenRouter());
+                      await AutoRouter.of(context).push(const MainScreenRouter());
                     },
                   );
                 },

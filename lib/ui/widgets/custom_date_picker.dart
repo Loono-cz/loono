@@ -97,8 +97,8 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
     assert(defaultYear >= minYear && defaultYear <= maxYear);
 
     final diff = maxYear - minYear;
-    final List<int> years = [];
-    for (int i = 0; i <= diff; i++) {
+    final years = <int>[];
+    for (var i = 0; i <= diff; i++) {
       final year = defaultYear + i <= maxYear ? defaultYear + i : defaultYear - (diff - i + 1);
       years.add(year);
     }
@@ -107,7 +107,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   }
 
   Map<int, String> get _datePickerMonths {
-    final Map<int, String> monthsMap = {
+    final monthsMap = <int, String>{
       DateTime.january: context.l10n.month_january,
       DateTime.february: context.l10n.month_february,
       DateTime.march: context.l10n.month_march,
@@ -121,10 +121,10 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
       DateTime.november: context.l10n.month_november,
       DateTime.december: context.l10n.month_december,
     };
-    final int defaultMonth = widget.defaultMonth ?? widget.today.month;
+    final defaultMonth = widget.defaultMonth ?? widget.today.month;
     assert(monthsMap.containsKey(defaultMonth));
 
-    final List<int> keysOrder = List<int>.generate(DateTime.monthsPerYear, (index) {
+    final keysOrder = List<int>.generate(DateTime.monthsPerYear, (index) {
       if (DateTime.monthsPerYear - index < defaultMonth) {
         return index - (DateTime.monthsPerYear - defaultMonth);
       } else {
@@ -157,10 +157,17 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
         controller: forType == ColumnType.day ? _dayController : null,
         itemExtent: _itemHeight,
         childDelegate: ListWheelChildLoopingListDelegate(
-            children: items.keys
-                .map((index) => _setListItem(
-                    forType: forType, index: index, text: items[index].toString(), items: items))
-                .toList()),
+          children: items.keys.map(
+            (index) {
+              return _setListItem(
+                forType: forType,
+                index: index,
+                text: items[index].toString(),
+                items: items,
+              );
+            },
+          ).toList(),
+        ),
         onSelectedItemChanged: (index) {
           _selectedItemHandle(forType: forType, items: items, value: items.keys.elementAt(index));
 
@@ -188,16 +195,15 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
             ? _selectedMonthIndex
             : _selectedYearIndex;
 
-    final List<int> keys = items.keys.toList();
-    keys.sort();
+    final keys = items.keys.toList()..sort();
 
-    final bool firstOrLastCoupleInList =
+    final firstOrLastCoupleInList =
         (((selectedIndex == keys.last) && (index == keys.first || index == keys.first + 1)) ||
                 (selectedIndex == keys.last - 1) && (index == keys.first)) ||
             (((selectedIndex == keys.first) && (index == keys.last || index == keys.last - 1)) ||
                 (selectedIndex == keys.first + 1) && (index == keys.last));
 
-    double opacityValue = 0.2;
+    var opacityValue = 0.2;
 
     if (index == selectedIndex) {
       opacityValue = 1;
@@ -209,11 +215,12 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
 
     return Center(
       child: Opacity(
-          opacity: opacityValue,
-          child: Text(
-            text,
-            style: LoonoFonts.fontStyle,
-          )),
+        opacity: opacityValue,
+        child: Text(
+          text,
+          style: LoonoFonts.fontStyle,
+        ),
+      ),
     );
   }
 

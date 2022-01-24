@@ -5,7 +5,7 @@ import 'package:loono/helpers/faq_content.dart';
 import 'package:loono/l10n/ext.dart';
 
 class FaqExpansionTile extends StatefulWidget {
-  const FaqExpansionTile(this.pair);
+  const FaqExpansionTile(this.pair, {Key? key}) : super(key: key);
 
   final FAQPair pair;
 
@@ -90,7 +90,9 @@ class _FaqExpansionTileState extends State<FaqExpansionTile> {
                                     ? context.l10n.less_information
                                     : context.l10n.more_information,
                                 style: const TextStyle(
-                                    fontWeight: FontWeight.w600, color: LoonoColors.green),
+                                  fontWeight: FontWeight.w600,
+                                  color: LoonoColors.green,
+                                ),
                               ),
                             ),
                           ],

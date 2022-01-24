@@ -76,15 +76,22 @@ class _PhotoCroppedResultScreenState extends State<PhotoCroppedResultScreen> {
                           await registry.get<UserRepository>().updateUserPhoto(widget.imageBytes);
                       setState(() => _isUploading = false);
                       if (photoUploadResult) {
+                        // TODO: Should we await .push here?
+                        // ignore: unawaited_futures
                         AutoRouter.of(context).pushAndPopUntil(
                           EditPhotoRoute(imageBytes: widget.imageBytes),
                           predicate: (route) => route.settings.name == UpdateProfileRoute.name,
                         );
-                        showFlushBarSuccess(context, context.l10n.photo_changed_success,
-                            sync: false);
+                        showFlushBarSuccess(
+                          context,
+                          context.l10n.photo_changed_success,
+                          sync: false,
+                        );
                       } else if (!_uploadCancelled) {
-                        showSnackBarError(context,
-                            message: const ImageError.unknown().getMessage(context));
+                        showSnackBarError(
+                          context,
+                          message: const ImageError.unknown().getMessage(context),
+                        );
                       }
                       _uploadCancelled = false;
                     },

@@ -14,7 +14,7 @@ class FAQPair {
 
 List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
   final texts = context.l10n;
-  List<FAQPair> result = [];
+  var result = <FAQPair>[];
 
   /// NOTE: Not the shortest solution but allows full control over each question and answer
   /// and allows asymmetric content in the future
@@ -110,8 +110,9 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
           answer: texts.faq_general_practitioner_answer,
         ),
         FAQPair(
-            question: texts.faq_reward_question,
-            answer: texts.faq_general_practitioner_reward_answer),
+          question: texts.faq_reward_question,
+          answer: texts.faq_general_practitioner_reward_answer,
+        ),
         FAQPair(
           question: texts.faq_flow_question,
           answer: texts.faq_general_practitioner_flow_answer,
