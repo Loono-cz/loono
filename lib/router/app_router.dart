@@ -76,7 +76,7 @@ const _settingsTransition = TransitionsBuilders.slideLeft;
           path: 'questionnaire/date-picker',
           transitionsBuilder: _preventionTransition,
         ),
-        CustomRoute<void>(
+        CustomRoute<bool>(
           page: CalendarPermissionInfoScreen,
           path: 'calendar/permission',
           transitionsBuilder: _preventionTransition,

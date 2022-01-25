@@ -2,6 +2,8 @@ import 'dart:collection';
 
 import 'package:device_calendar/device_calendar.dart';
 import 'package:flutter/foundation.dart';
+import 'package:loono/utils/permission_utils.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class CalendarService {
   CalendarService({
@@ -23,13 +25,25 @@ class CalendarService {
 
   /// Prompts the user for permission to write and read from the calendar.
   ///
-  /// Returns `true` if permission was granted.
-  Future<bool> promptPermissions() async {
-    var permissionResult = await _deviceCalendarPlugin.hasPermissions();
-    if (permissionResult.isSuccess && permissionResult.data == false) {
-      permissionResult = await _deviceCalendarPlugin.requestPermissions();
+  /// Returns `true` if the permission is `granted`.
+  ///
+  /// Returns `false` if the permission is `denied`.
+  ///
+  /// Returns `null` if the permission is `permanentlyDenied`.
+  Future<bool?> promptPermissions() async {
+    final permissionResult = await getPermissionStatus(Permission.calendar);
+    switch (permissionResult) {
+      case PermissionStatus.denied:
+        return false;
+      case PermissionStatus.granted:
+        return true;
+      case PermissionStatus.permanentlyDenied:
+      case PermissionStatus.restricted:
+      case PermissionStatus.limited:
+        return null;
+      default:
+        return false;
     }
-    return permissionResult.isSuccess && permissionResult.data == true;
   }
 
   /// Retrieves user's device calendars.

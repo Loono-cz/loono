@@ -151,7 +151,7 @@ class AppRouter extends _i1.RootStackRouter {
     },
     CalendarPermissionInfoRoute.name: (routeData) {
       final args = routeData.argsAs<CalendarPermissionInfoRouteArgs>();
-      return _i1.CustomPage<void>(
+      return _i1.CustomPage<bool>(
           routeData: routeData,
           child: _i14.CalendarPermissionInfoScreen(
               key: args.key, examinationRecord: args.examinationRecord),

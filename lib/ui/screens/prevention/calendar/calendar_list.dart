@@ -28,7 +28,6 @@ class CalendarListScreen extends StatefulWidget {
 class _CalendarListScreenState extends State<CalendarListScreen> {
   final _calendarRepository = registry.get<CalendarRepository>();
   final _calendarService = registry.get<CalendarService>();
-  final _calendarIdChoice = ValueNotifier<String?>(null);
 
   late final Future<UnmodifiableListView<Calendar>> _deviceCalendarsFuture;
 
@@ -37,6 +36,8 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
     super.initState();
     _deviceCalendarsFuture = _calendarService.retrieveDeviceCalendars();
   }
+
+  String? _calendarIdChoice;
 
   ExaminationRecord get examinationRecord => widget.examinationRecord;
 
@@ -80,53 +81,47 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
 
                       // TODO: Handle this case
                       if (calendars.isEmpty) return const Center(child: Text('Žádné kalendáře'));
+                      if (calendars.length == 1) {
+                        WidgetsBinding.instance?.scheduleFrameCallback((_) {
+                          setState(() => _calendarIdChoice = calendars.first.id);
+                        });
+                      }
 
-                      return ValueListenableBuilder<String?>(
-                        valueListenable: _calendarIdChoice,
-                        builder: (context, calendarChoiceValue, child) {
-                          return ListView.builder(
-                            itemCount: calendars.length,
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) {
-                              final calendar = calendars.elementAt(index);
+                      return ListView.builder(
+                        itemCount: calendars.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          final calendar = calendars.elementAt(index);
 
-                              if (calendar.id == null) return const SizedBox.shrink();
-                              if (calendars.length == 1) {
-                                WidgetsBinding.instance?.scheduleFrameCallback((_) {
-                                  _calendarIdChoice.value = calendars.first.id;
-                                });
-                              }
-                              return ListTile(
-                                onTap: () => _calendarIdChoice.value = calendar.id,
-                                leading: Padding(
-                                  padding: const EdgeInsets.all(4.0),
-                                  child: Container(
-                                    width: 15,
-                                    height: 15,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Color(calendar.color ?? 0xFFFFFFFF),
-                                    ),
-                                  ),
+                          return ListTile(
+                            onTap: () => setState(() => _calendarIdChoice = calendar.id),
+                            leading: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Container(
+                                width: 15,
+                                height: 15,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Color(calendar.color ?? 0xFFFFFFFF),
                                 ),
-                                minLeadingWidth: 20,
-                                title: Text(
-                                  calendar.name ?? '${l10n.calendar} ${calendar.id ?? ''}',
-                                  style: Theme.of(context).textTheme.subtitle1,
-                                ),
-                                trailing: Theme(
-                                  data: ThemeData(
-                                    unselectedWidgetColor: LoonoColors.grey,
-                                  ),
-                                  child: Radio<String?>(
-                                    value: calendars.elementAt(index).id,
-                                    groupValue: calendarChoiceValue,
-                                    activeColor: LoonoColors.primaryEnabled,
-                                    onChanged: (choice) => _calendarIdChoice.value = choice,
-                                  ),
-                                ),
-                              );
-                            },
+                              ),
+                            ),
+                            minLeadingWidth: 20,
+                            title: Text(
+                              calendar.name ?? '${l10n.calendar} ${calendar.id ?? ''}',
+                              style: Theme.of(context).textTheme.subtitle1,
+                            ),
+                            trailing: Theme(
+                              data: ThemeData(
+                                unselectedWidgetColor: LoonoColors.grey,
+                              ),
+                              child: Radio<String?>(
+                                value: calendar.id,
+                                groupValue: _calendarIdChoice,
+                                activeColor: LoonoColors.primaryEnabled,
+                                onChanged: (choice) => setState(() => _calendarIdChoice = choice),
+                              ),
+                            ),
                           );
                         },
                       );
@@ -136,27 +131,22 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
                 ),
               ),
               const SizedBox(height: 30),
-              ValueListenableBuilder<String?>(
-                valueListenable: _calendarIdChoice,
-                builder: (context, calendarChoiceValue, child) {
-                  return LoonoButton(
-                    text: l10n.calendar_choose_calendar_button,
-                    enabled: calendarChoiceValue != null,
-                    onTap: () async {
-                      final result = await _calendarRepository.createEvent(
-                        examinationRecord.examinationType,
-                        deviceCalendarId: calendarChoiceValue!,
-                        startingDate: nextVisitDate!,
-                      );
-                      if (result) {
-                        showSnackBarSuccess(
-                          context,
-                          message: l10n.calendar_added_success_message,
-                        );
-                        await AutoRouter.of(context).pop();
-                      }
-                    },
+              LoonoButton(
+                text: l10n.calendar_choose_calendar_button,
+                enabled: _calendarIdChoice != null,
+                onTap: () async {
+                  final result = await _calendarRepository.createEvent(
+                    examinationRecord.examinationType,
+                    deviceCalendarId: _calendarIdChoice!,
+                    startingDate: nextVisitDate!,
                   );
+                  if (result) {
+                    showSnackBarSuccess(
+                      context,
+                      message: l10n.calendar_added_success_message,
+                    );
+                    await AutoRouter.of(context).pop();
+                  }
                 },
               ),
               SizedBox(height: LoonoSizes.buttonBottomPadding(context)),

@@ -33,7 +33,7 @@ void showConfirmationSheet(BuildContext context, ExaminationType examinationType
       return Container(
         height: 340,
         decoration: const BoxDecoration(
-          color: LoonoColors.primary,
+          color: LoonoColors.bottomSheetPrevention,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(15),
             topRight: Radius.circular(15),
