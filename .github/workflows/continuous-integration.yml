@@ -24,7 +24,8 @@ jobs:
         run: flutter pub get
 
       - name: Copy .env.example into .env file
-        run: ./bin/workflow.sh
+        run: |
+          cp ../assets/.env.example ../assets/.env
         continue-on-error: true
 
       - name: Verify formatting dart
