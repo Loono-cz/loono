@@ -1,7 +1,7 @@
 import 'dart:collection';
 
 import 'package:device_calendar/device_calendar.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 
 class CalendarService {
   CalendarService({
@@ -49,5 +49,16 @@ class CalendarService {
     if (result.isSuccess) return result.data;
     if (result.hasErrors) debugPrint(result.errors.map((e) => e.errorMessage).toString());
     return null;
+  }
+
+  /// Deletes an event from the device calendar.
+  ///
+  /// Returns `true` if the operation was successful.
+  Future<bool> deleteEvent({
+    required String calendarId,
+    required String eventId,
+  }) async {
+    final result = await _deviceCalendarPlugin.deleteEvent(calendarId, eventId);
+    return result.isSuccess && result.data == true;
   }
 }

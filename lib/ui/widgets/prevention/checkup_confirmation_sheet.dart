@@ -6,15 +6,18 @@ import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/utils/registry.dart';
 
 void showConfirmationSheet(BuildContext context, ExaminationType examinationType, Sex sex) {
   final practitioner =
       procedureQuestionTitle(context, examinationType: examinationType).toLowerCase();
   final preposition = czechPreposition(context, examinationType: examinationType);
 
-  void _completedAction() {
+  Future<void> _completedAction() async {
+    await registry.get<CalendarRepository>().deleteOnlyDbEvent(examinationType);
     AutoRouter.of(context).popUntilRouteWithName('ExaminationDetailRoute');
     showSnackBarError(context, message: 'TODO: save to API');
   }
