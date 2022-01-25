@@ -23,6 +23,10 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Copy .env.example into .env file
+        run: ./bin/workflow.sh
+        continue-on-error: true
+
       - name: Verify formatting dart
         run: dart format --line-length 100 --output=none --set-exit-if-changed .
         continue-on-error: true
