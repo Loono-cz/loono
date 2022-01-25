@@ -27,10 +27,6 @@ jobs:
         run: dart format --line-length 100 --output=none --set-exit-if-changed .
         continue-on-error: true
 
-      - name: Analyze project source dart
-        run: dart analyze
-        continue-on-error: true
-
       - name: Analyze project source flutter
         run: flutter analyze
         continue-on-error: true
