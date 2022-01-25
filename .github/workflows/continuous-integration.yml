@@ -30,13 +30,14 @@ jobs:
 
       - name: Verify formatting dart
         run: |
-          libFiles =`ls ./lib/**/*.dart -R`
-          for file in libFiles
+          libFiles=`ls ./lib/**/*.dart -R`
+          for file in $libFiles
           do
             if [[ "$file" =~ ".g.dart" ]] || [[ "$file" =~ ".freezed.dart" ]] || [[ "$file" =~ ".gr.dart" ]]; then
-          #    do nothing
+              echo ""
             else
               dart format --line-length 100 --output=none --set-exit-if-changed $file
+            fi
           done
         continue-on-error: true
 
