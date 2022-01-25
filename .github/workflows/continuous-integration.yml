@@ -25,7 +25,7 @@ jobs:
 
       - name: Copy .env.example into .env file
         run: |
-          cp ../assets/.env.example ../assets/.env
+          cp ./assets/.env.example ./assets/.env
         continue-on-error: true
 
       - name: Verify formatting dart
