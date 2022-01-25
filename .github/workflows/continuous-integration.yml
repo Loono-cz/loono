@@ -29,7 +29,15 @@ jobs:
         continue-on-error: true
 
       - name: Verify formatting dart
-        run: dart format --line-length 100 --output=none --set-exit-if-changed .
+        run: |
+          libFiles =`ls ./lib/**/*.dart -R`
+          for file in libFiles
+          do
+            if [[ "$file" =~ ".g.dart" ]] || [[ "$file" =~ ".freezed.dart" ]] || [[ "$file" =~ ".gr.dart" ]]; then
+          #    do nothing
+            else
+              dart format --line-length 100 --output=none --set-exit-if-changed $file
+          done
         continue-on-error: true
 
       - name: Analyze project source flutter
