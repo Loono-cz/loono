@@ -20,14 +20,18 @@ class OnboardingSecondCarouselScreen extends StatelessWidget {
       },
       child: Scaffold(
         backgroundColor: const Color.fromRGBO(237, 248, 253, 1),
-        appBar: carouselAppBar(context),
+        appBar: carouselAppBar(context, onBack),
         body: SafeArea(
           child: CarouselStatContent(
             statText: context.l10n.carousel_content_2_stat,
             highlightPattern: '(${context.l10n.carousel_content_2_stat_highlight})',
             statTextColor: LoonoColors.primaryEnabled,
             bodyText: context.l10n.carousel_content_2_body,
-            button: CarouselButton(text: context.l10n.continue_info, onTap: onNext),
+            button: CarouselButton(
+              heightMultiplier: 0.14,
+              text: context.l10n.continue_info,
+              onTap: onNext,
+            ),
             dataSourceText: context.l10n.carousel_content_2_data_source,
           ),
         ),

@@ -10,7 +10,7 @@ class MapSheetOverlay extends StatelessWidget {
     required this.onItemTap,
   }) : super(key: key);
 
-  final void Function(HealthcareProvider)? onItemTap;
+  final ValueChanged<HealthcareProvider>? onItemTap;
 
   @override
   Widget build(BuildContext context) {

@@ -59,8 +59,9 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                       onItemTap: (healthcareProvider) async => animateToPos(
                         widget.mapController,
                         cameraPosition: CameraPosition(
-                            target: LatLng(healthcareProvider.lat, healthcareProvider.lng),
-                            zoom: 17.0),
+                          target: LatLng(healthcareProvider.lat, healthcareProvider.lng),
+                          zoom: 17.0,
+                        ),
                       ),
                     ),
                   if (_isHealtCareProvidersInMapService)
@@ -68,8 +69,9 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                       onItemTap: (healthcareProvider) async => animateToPos(
                         widget.mapController,
                         cameraPosition: CameraPosition(
-                            target: LatLng(healthcareProvider.lat, healthcareProvider.lng),
-                            zoom: 17.0),
+                          target: LatLng(healthcareProvider.lat, healthcareProvider.lng),
+                          zoom: 17.0,
+                        ),
                       ),
                     ),
                   if (!_isHealtCareProvidersInMapService)

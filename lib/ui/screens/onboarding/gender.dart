@@ -44,13 +44,15 @@ class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
                   ),
                 ),
               ),
-              Expanded(child: GendersContainer(
-                genderCallBack: (gender) {
-                  setState(() {
-                    activeButton = gender;
-                  });
-                },
-              )),
+              Expanded(
+                child: GendersContainer(
+                  genderCallBack: (gender) {
+                    setState(() {
+                      activeButton = gender;
+                    });
+                  },
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 8),
                 child: LoonoButton(

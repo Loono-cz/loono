@@ -77,8 +77,12 @@ class _OnBoardingBirthdateScreenState extends State<OnBoardingBirthdateScreen> {
                 text: context.l10n.continue_info,
                 onTap: () async {
                   if (selectedDate != null) {
-                    await registry.get<UserRepository>().updateDateOfBirth(DateWithoutDay(
-                        month: monthFromInt(selectedDate!.month), year: selectedDate!.year));
+                    await registry.get<UserRepository>().updateDateOfBirth(
+                          DateWithoutDay(
+                            month: monthFromInt(selectedDate!.month),
+                            year: selectedDate!.year,
+                          ),
+                        );
                   }
                 },
               ),

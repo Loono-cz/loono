@@ -40,7 +40,8 @@ class LoonoAvatar extends StatelessWidget {
                   placeholder: (context, url) => const Center(
                     child: CircularProgressIndicator(color: LoonoColors.primaryEnabled),
                   ),
-                  errorWidget: (context, url, error) => _DefaultLoonoCircleAvatar(radius: radius),
+                  errorWidget: (context, url, dynamic error) =>
+                      _DefaultLoonoCircleAvatar(radius: radius),
                 );
         },
       ),

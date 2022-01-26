@@ -15,7 +15,10 @@ import 'package:loono/utils/image_utils.dart';
 import 'package:loono/utils/registry.dart';
 
 class EditPhotoScreen extends StatelessWidget {
-  const EditPhotoScreen({Key? key, this.imageBytes}) : super(key: key);
+  const EditPhotoScreen({
+    Key? key,
+    this.imageBytes,
+  }) : super(key: key);
 
   final Uint8List? imageBytes;
 
@@ -72,8 +75,10 @@ class EditPhotoScreen extends StatelessWidget {
                 onPressed: () async {
                   final result = await registry.get<UserRepository>().deleteUserPhoto();
                   if (result) {
-                    showSnackBarSuccess(context,
-                        message: context.l10n.edit_photo_delete_photo_action_success);
+                    showSnackBarSuccess(
+                      context,
+                      message: context.l10n.edit_photo_delete_photo_action_success,
+                    );
                   }
                 },
                 child: Text(

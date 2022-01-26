@@ -12,6 +12,7 @@ Future<void> animateToPos(
   Completer<GoogleMapController> mapController, {
   required CameraPosition cameraPosition,
 }) async {
+  // ignore: omit_local_variable_types
   final GoogleMapController controller = await mapController.future;
   await controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
 }
@@ -35,7 +36,8 @@ Future<Position> determinePosition() async {
 
   if (permission == LocationPermission.deniedForever) {
     return Future.error(
-        'Location permissions are permanently denied, we cannot request permissions.');
+      'Location permissions are permanently denied, we cannot request permissions.',
+    );
   }
 
   return Geolocator.getCurrentPosition();
