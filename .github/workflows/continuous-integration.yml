@@ -36,6 +36,14 @@ jobs:
         with:
           flutter-version: '2.5.3'
           channel: 'stable'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Copy .env.example into .env file
+        run: |
+          cp ./assets/.env.example ./assets/.env
+
       - uses: invertase/github-action-dart-analyzer@v1
         with:
           # (Optional) Treat info level issues as fatal.
