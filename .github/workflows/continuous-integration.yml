@@ -26,7 +26,6 @@ jobs:
       - name: Copy .env.example into .env file
         run: |
           cp ./assets/.env.example ./assets/.env
-        continue-on-error: true
 
       - name: Verify formatting dart
         run: |
@@ -39,17 +38,10 @@ jobs:
               dart format --line-length 100 --output=none --set-exit-if-changed $file
             fi
           done
-        continue-on-error: true
 
       - name: Analyze project source flutter
         run: flutter analyze
-        continue-on-error: true
-
-      - name: Run tests dart
-        run: dart test
-        continue-on-error: true
 
       - name: Run tests flutter
         run: flutter test
-        continue-on-error: true
 
