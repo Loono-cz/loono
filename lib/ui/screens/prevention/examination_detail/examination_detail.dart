@@ -196,7 +196,7 @@ class ExaminationDetail extends StatelessWidget {
                                     );
                                   } else {
                                     await AutoRouter.of(context).push(
-                                      new CalendarPermissionInfoRoute(
+                                      CalendarPermissionInfoRoute(
                                         examinationRecord: categorizedExamination.examination,
                                       ),
                                     );
