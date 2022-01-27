@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:loono/repositories/healthcare_repository.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/map_state_sevice.dart';
-import 'package:loono/utils/registry.dart';
 import 'package:provider/provider.dart';
 
 class SearchTextField extends StatelessWidget {
-  SearchTextField({
+  const SearchTextField({
     Key? key,
     required this.onItemTap,
   }) : super(key: key);
 
   final ValueChanged<HealthcareProvider>? onItemTap;
-
-  final _healthcareProvidersRepository = registry.get<HealthcareProviderRepository>();
 
   @override
   Widget build(BuildContext context) {
