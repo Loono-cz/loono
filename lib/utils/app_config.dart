@@ -1,18 +1,8 @@
-import 'package:package_info/package_info.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 enum AppFlavors { dev, prod }
 
 class AppConfig {
-  final String apiUrl;
-
-  final String appId;
-  final String appName;
-  final String appVersion;
-  final String buildNumber;
-
-  final String platformVersion;
-  final AppFlavors flavor;
-
   AppConfig({
     required Map<String, String> env,
     required PackageInfo packageInfo,
@@ -23,11 +13,22 @@ class AppConfig {
         appName = packageInfo.appName,
         appVersion = packageInfo.version,
         buildNumber = packageInfo.buildNumber;
+
+  final String apiUrl;
+
+  final String appId;
+  final String appName;
+  final String appVersion;
+  final String buildNumber;
+
+  final String platformVersion;
+  final AppFlavors flavor;
 }
 
 class ConfigError extends Error {
-  final String message;
   ConfigError(this.message);
+
+  final String message;
 
   @override
   String toString() => 'ConfigError: $message';

@@ -1,5 +1,5 @@
 import 'package:built_collection/built_collection.dart';
-import 'package:loono/helpers/healthcare_provider_type_converters.dart';
+import 'package:loono/helpers/type_converters.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono_api/loono_api.dart' show SimpleHealthcareProvider;
 import 'package:moor/moor.dart';
@@ -16,7 +16,7 @@ class HealthcareProviders extends Table {
 
   TextColumn get title => text()();
 
-  TextColumn get category => text().map(const CategoryConverter())();
+  TextColumn get category => text().map(const CategoryDbConverter())();
 
   TextColumn get street => text()();
 
@@ -67,8 +67,4 @@ class HealthcareProvidersDao extends DatabaseAccessor<AppDatabase>
       },
     );
   }
-
-  // TODO: Add more search queries
-  Future<List<HealthcareProvider>> searchByTitle(String query) =>
-      (select(healthcareProviders)..where((tbl) => tbl.title.like('%$query%'))).get();
 }

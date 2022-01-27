@@ -29,7 +29,7 @@ class EditEmailScreen extends StatelessWidget {
       validator: Validators.email(context),
       onSubmit: (input) async {
         await registry.get<UserRepository>().updateEmail(input);
-        AutoRouter.of(context).pop();
+        await AutoRouter.of(context).pop();
       },
     );
   }

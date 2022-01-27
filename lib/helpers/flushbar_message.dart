@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 
 Flushbar<dynamic> _showFlushBar(BuildContext context, String message, Color bgColor) {
-  return Flushbar(
+  return Flushbar<dynamic>(
     flushbarStyle: FlushbarStyle.FLOATING,
     margin: const EdgeInsets.all(8),
     borderRadius: BorderRadius.circular(8),

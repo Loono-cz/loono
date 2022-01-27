@@ -12,7 +12,7 @@ class CheckIsLoggedIn extends AutoRouteGuard {
     if (currUser != null) {
       resolver.next();
     } else {
-      router.push(const OnboardingWrapperRoute());
+      await router.push(const OnboardingWrapperRoute());
     }
   }
 }

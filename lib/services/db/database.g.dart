@@ -1310,7 +1310,269 @@ class $HealthcareProvidersTable extends HealthcareProviders
   }
 
   static TypeConverter<BuiltList<String>, String> $converter0 =
-      const CategoryConverter();
+      const CategoryDbConverter();
+}
+
+class CalendarEvent extends DataClass implements Insertable<CalendarEvent> {
+  final ExaminationType type;
+  final String deviceCalendarId;
+  final String calendarEventId;
+  final DateTime date;
+  CalendarEvent(
+      {required this.type,
+      required this.deviceCalendarId,
+      required this.calendarEventId,
+      required this.date});
+  factory CalendarEvent.fromData(
+      Map<String, dynamic> data, GeneratedDatabase db,
+      {String? prefix}) {
+    final effectivePrefix = prefix ?? '';
+    return CalendarEvent(
+      type: $CalendarEventsTable.$converter0.mapToDart(const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}type']))!,
+      deviceCalendarId: const StringType().mapFromDatabaseResponse(
+          data['${effectivePrefix}device_calendar_id'])!,
+      calendarEventId: const StringType().mapFromDatabaseResponse(
+          data['${effectivePrefix}calendar_event_id'])!,
+      date: const DateTimeType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}date'])!,
+    );
+  }
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    {
+      final converter = $CalendarEventsTable.$converter0;
+      map['type'] = Variable<String>(converter.mapToSql(type)!);
+    }
+    map['device_calendar_id'] = Variable<String>(deviceCalendarId);
+    map['calendar_event_id'] = Variable<String>(calendarEventId);
+    map['date'] = Variable<DateTime>(date);
+    return map;
+  }
+
+  CalendarEventsCompanion toCompanion(bool nullToAbsent) {
+    return CalendarEventsCompanion(
+      type: Value(type),
+      deviceCalendarId: Value(deviceCalendarId),
+      calendarEventId: Value(calendarEventId),
+      date: Value(date),
+    );
+  }
+
+  factory CalendarEvent.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= moorRuntimeOptions.defaultSerializer;
+    return CalendarEvent(
+      type: serializer.fromJson<ExaminationType>(json['type']),
+      deviceCalendarId: serializer.fromJson<String>(json['deviceCalendarId']),
+      calendarEventId: serializer.fromJson<String>(json['calendarEventId']),
+      date: serializer.fromJson<DateTime>(json['date']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= moorRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'type': serializer.toJson<ExaminationType>(type),
+      'deviceCalendarId': serializer.toJson<String>(deviceCalendarId),
+      'calendarEventId': serializer.toJson<String>(calendarEventId),
+      'date': serializer.toJson<DateTime>(date),
+    };
+  }
+
+  CalendarEvent copyWith(
+          {ExaminationType? type,
+          String? deviceCalendarId,
+          String? calendarEventId,
+          DateTime? date}) =>
+      CalendarEvent(
+        type: type ?? this.type,
+        deviceCalendarId: deviceCalendarId ?? this.deviceCalendarId,
+        calendarEventId: calendarEventId ?? this.calendarEventId,
+        date: date ?? this.date,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('CalendarEvent(')
+          ..write('type: $type, ')
+          ..write('deviceCalendarId: $deviceCalendarId, ')
+          ..write('calendarEventId: $calendarEventId, ')
+          ..write('date: $date')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => $mrjf($mrjc(
+      type.hashCode,
+      $mrjc(deviceCalendarId.hashCode,
+          $mrjc(calendarEventId.hashCode, date.hashCode))));
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is CalendarEvent &&
+          other.type == this.type &&
+          other.deviceCalendarId == this.deviceCalendarId &&
+          other.calendarEventId == this.calendarEventId &&
+          other.date == this.date);
+}
+
+class CalendarEventsCompanion extends UpdateCompanion<CalendarEvent> {
+  final Value<ExaminationType> type;
+  final Value<String> deviceCalendarId;
+  final Value<String> calendarEventId;
+  final Value<DateTime> date;
+  const CalendarEventsCompanion({
+    this.type = const Value.absent(),
+    this.deviceCalendarId = const Value.absent(),
+    this.calendarEventId = const Value.absent(),
+    this.date = const Value.absent(),
+  });
+  CalendarEventsCompanion.insert({
+    required ExaminationType type,
+    required String deviceCalendarId,
+    required String calendarEventId,
+    required DateTime date,
+  })  : type = Value(type),
+        deviceCalendarId = Value(deviceCalendarId),
+        calendarEventId = Value(calendarEventId),
+        date = Value(date);
+  static Insertable<CalendarEvent> custom({
+    Expression<ExaminationType>? type,
+    Expression<String>? deviceCalendarId,
+    Expression<String>? calendarEventId,
+    Expression<DateTime>? date,
+  }) {
+    return RawValuesInsertable({
+      if (type != null) 'type': type,
+      if (deviceCalendarId != null) 'device_calendar_id': deviceCalendarId,
+      if (calendarEventId != null) 'calendar_event_id': calendarEventId,
+      if (date != null) 'date': date,
+    });
+  }
+
+  CalendarEventsCompanion copyWith(
+      {Value<ExaminationType>? type,
+      Value<String>? deviceCalendarId,
+      Value<String>? calendarEventId,
+      Value<DateTime>? date}) {
+    return CalendarEventsCompanion(
+      type: type ?? this.type,
+      deviceCalendarId: deviceCalendarId ?? this.deviceCalendarId,
+      calendarEventId: calendarEventId ?? this.calendarEventId,
+      date: date ?? this.date,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (type.present) {
+      final converter = $CalendarEventsTable.$converter0;
+      map['type'] = Variable<String>(converter.mapToSql(type.value)!);
+    }
+    if (deviceCalendarId.present) {
+      map['device_calendar_id'] = Variable<String>(deviceCalendarId.value);
+    }
+    if (calendarEventId.present) {
+      map['calendar_event_id'] = Variable<String>(calendarEventId.value);
+    }
+    if (date.present) {
+      map['date'] = Variable<DateTime>(date.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('CalendarEventsCompanion(')
+          ..write('type: $type, ')
+          ..write('deviceCalendarId: $deviceCalendarId, ')
+          ..write('calendarEventId: $calendarEventId, ')
+          ..write('date: $date')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $CalendarEventsTable extends CalendarEvents
+    with TableInfo<$CalendarEventsTable, CalendarEvent> {
+  final GeneratedDatabase _db;
+  final String? _alias;
+  $CalendarEventsTable(this._db, [this._alias]);
+  final VerificationMeta _typeMeta = const VerificationMeta('type');
+  late final GeneratedColumnWithTypeConverter<ExaminationType, String?> type =
+      GeneratedColumn<String?>('type', aliasedName, false,
+              typeName: 'TEXT', requiredDuringInsert: true)
+          .withConverter<ExaminationType>($CalendarEventsTable.$converter0);
+  final VerificationMeta _deviceCalendarIdMeta =
+      const VerificationMeta('deviceCalendarId');
+  late final GeneratedColumn<String?> deviceCalendarId =
+      GeneratedColumn<String?>('device_calendar_id', aliasedName, false,
+          typeName: 'TEXT', requiredDuringInsert: true);
+  final VerificationMeta _calendarEventIdMeta =
+      const VerificationMeta('calendarEventId');
+  late final GeneratedColumn<String?> calendarEventId =
+      GeneratedColumn<String?>('calendar_event_id', aliasedName, false,
+          typeName: 'TEXT', requiredDuringInsert: true);
+  final VerificationMeta _dateMeta = const VerificationMeta('date');
+  late final GeneratedColumn<DateTime?> date = GeneratedColumn<DateTime?>(
+      'date', aliasedName, false,
+      typeName: 'INTEGER', requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns =>
+      [type, deviceCalendarId, calendarEventId, date];
+  @override
+  String get aliasedName => _alias ?? 'calendar_events';
+  @override
+  String get actualTableName => 'calendar_events';
+  @override
+  VerificationContext validateIntegrity(Insertable<CalendarEvent> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    context.handle(_typeMeta, const VerificationResult.success());
+    if (data.containsKey('device_calendar_id')) {
+      context.handle(
+          _deviceCalendarIdMeta,
+          deviceCalendarId.isAcceptableOrUnknown(
+              data['device_calendar_id']!, _deviceCalendarIdMeta));
+    } else if (isInserting) {
+      context.missing(_deviceCalendarIdMeta);
+    }
+    if (data.containsKey('calendar_event_id')) {
+      context.handle(
+          _calendarEventIdMeta,
+          calendarEventId.isAcceptableOrUnknown(
+              data['calendar_event_id']!, _calendarEventIdMeta));
+    } else if (isInserting) {
+      context.missing(_calendarEventIdMeta);
+    }
+    if (data.containsKey('date')) {
+      context.handle(
+          _dateMeta, date.isAcceptableOrUnknown(data['date']!, _dateMeta));
+    } else if (isInserting) {
+      context.missing(_dateMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {type};
+  @override
+  CalendarEvent map(Map<String, dynamic> data, {String? tablePrefix}) {
+    return CalendarEvent.fromData(data, _db,
+        prefix: tablePrefix != null ? '$tablePrefix.' : null);
+  }
+
+  @override
+  $CalendarEventsTable createAlias(String alias) {
+    return $CalendarEventsTable(_db, alias);
+  }
+
+  static TypeConverter<ExaminationType, String> $converter0 =
+      const ExaminationTypeDbConverter();
 }
 
 abstract class _$AppDatabase extends GeneratedDatabase {
@@ -1318,12 +1580,15 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $UsersTable users = $UsersTable(this);
   late final $HealthcareProvidersTable healthcareProviders =
       $HealthcareProvidersTable(this);
+  late final $CalendarEventsTable calendarEvents = $CalendarEventsTable(this);
   late final UsersDao usersDao = UsersDao(this as AppDatabase);
   late final HealthcareProvidersDao healthcareProvidersDao =
       HealthcareProvidersDao(this as AppDatabase);
+  late final CalendarEventsDao calendarEventsDao =
+      CalendarEventsDao(this as AppDatabase);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities =>
-      [users, healthcareProviders];
+      [users, healthcareProviders, calendarEvents];
 }

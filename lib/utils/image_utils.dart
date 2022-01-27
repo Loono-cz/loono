@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/utils/permission_utils.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -45,7 +46,7 @@ Future<Either<ImageError, Uint8List>> takePictureAsBytes(ImageSource imageSource
       break;
   }
 
-  final permissionResult = await _checkHasPermission(permission);
+  final permissionResult = await getPermissionStatus(permission);
   switch (permissionResult) {
     case PermissionStatus.denied:
       return Left(ImageError.permissionDenied(requiredImagePermission));
@@ -57,7 +58,9 @@ Future<Either<ImageError, Uint8List>> takePictureAsBytes(ImageSource imageSource
       // Permission is granted, pick an image
       final XFile? picture;
       try {
-        picture = await registry.get<ImagePicker>().pickImage(source: imageSource);
+        picture = await registry
+            .get<ImagePicker>()
+            .pickImage(source: imageSource, preferredCameraDevice: CameraDevice.front);
       } catch (e) {
         // TODO: Better error messaging
         return const Left(ImageError.unknown());
@@ -65,31 +68,6 @@ Future<Either<ImageError, Uint8List>> takePictureAsBytes(ImageSource imageSource
       return picture == null
           ? const Left(ImageError.noMessage())
           : Right(await picture.readAsBytes());
-  }
-}
-
-Future<PermissionStatus> _checkHasPermission(Permission permission) async {
-  final PermissionStatus status = await permission.status;
-  switch (status) {
-    case PermissionStatus.granted:
-      return PermissionStatus.granted;
-    case PermissionStatus.denied:
-      final newStatus = await permission.request();
-      if (newStatus == PermissionStatus.granted) {
-        // Either the permission was already granted before or the user just granted it
-        return PermissionStatus.granted;
-      }
-      // See https://github.com/Baseflow/flutter-permission-handler/wiki/Changes-in-6.0.0#breaking-changes
-      if (newStatus == PermissionStatus.permanentlyDenied) {
-        return PermissionStatus.permanentlyDenied;
-      }
-      return PermissionStatus.denied;
-    case PermissionStatus.permanentlyDenied:
-      return PermissionStatus.permanentlyDenied;
-    case PermissionStatus.restricted:
-    case PermissionStatus.limited:
-      // The OS restricts access, for example because of parental controls (only supported on iOS)
-      return PermissionStatus.limited;
   }
 }
 
