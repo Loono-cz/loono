@@ -5,5 +5,5 @@ import 'package:loono/utils/registry.dart';
 
 Future<void> main() async {
   await setup(AppFlavors.dev);
-  runApp(Loono());
+  runApp(const Loono());
 }

@@ -82,8 +82,10 @@ class ExaminationsSheetOverlay extends StatelessWidget {
                                                   index: index,
                                                   categorizedExamination: e,
                                                   onTap: () => AutoRouter.of(context).navigate(
-                                                      ExaminationDetailRoute(
-                                                          categorizedExamination: e)),
+                                                    ExaminationDetailRoute(
+                                                      categorizedExamination: e,
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
                                             )

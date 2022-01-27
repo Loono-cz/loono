@@ -43,7 +43,6 @@ class ExaminationStatus with _$ExaminationStatus {
   /// **CURRENT_MONTH - (INTERVAL - 2 months)**.
   const factory ExaminationStatus.newToSchedule() = NewToScheduleExamination;
 
-
   /// In the onboarding form user did not know the last visit date.
   const factory ExaminationStatus.unknownLastVisit() = UnknownLastVisitExamination;
 

@@ -24,7 +24,7 @@ class OnboardingThirdCarouselScreen extends StatelessWidget {
       },
       child: Scaffold(
         backgroundColor: const Color.fromRGBO(241, 249, 249, 1),
-        appBar: carouselAppBar(context),
+        appBar: carouselAppBar(context, onBack),
         body: SafeArea(
           child: CarouselImageContent(
             headerText: context.l10n.carousel_content_3_header,
@@ -34,6 +34,7 @@ class OnboardingThirdCarouselScreen extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
             ),
             button: CarouselButton(
+              heightMultiplier: 0.11,
               text: context.l10n.carousel_content_3_button,
               onTap: () async {
                 await registry.get<UserRepository>().createUser();

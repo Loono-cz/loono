@@ -6,7 +6,8 @@ import 'package:archive/archive.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:loono/helpers/healthcare_provider_type_converters.dart';
+import 'package:loono/helpers/type_converters.dart';
+import 'package:loono/models/healthcare_provider.dart';
 import 'package:loono/services/api_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
@@ -37,10 +38,6 @@ class HealthcareProviderRepository {
     debugPrint('HEALTHCARE_PROVIDERS STREAM VALUE $state ');
   }
 
-  Future<List<HealthcareProvider>> searchByTitle(String query) {
-    return _db.healthcareProviders.searchByTitle(query);
-  }
-
   /// Updates [HealthcareProviders] with new [SimpleHealthcareProvider] data if the current local
   /// data are not up to date or not fetched yet.
   ///
@@ -68,7 +65,7 @@ class HealthcareProviderRepository {
     try {
       if (_db.users.user != null) return;
     } catch (e) {
-      await Future.delayed(const Duration(milliseconds: 300));
+      await Future<void>.delayed(const Duration(milliseconds: 300));
       await _waitForExistingUser();
     }
   }
@@ -104,6 +101,7 @@ class HealthcareProviderRepository {
   Future<BuiltList<SimpleHealthcareProvider>?> _fetchAllProvidersData() async {
     _emitStreamValue(HealtCareSyncState.fetching);
     final healthcareApiResponse = await _apiService.getProvidersAll();
+    // ignore: omit_local_variable_types
     final Uint8List? responseData = healthcareApiResponse.mapOrNull(
       success: (response) => response.data,
     );

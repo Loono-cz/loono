@@ -15,20 +15,26 @@ class PointsDisplay extends StatelessWidget {
   int _calculateTotalPoints(User? user) {
     if (user == null) return 0;
 
-    int points = 0;
+    var points = 0;
     for (final examinationType in ExaminationType.values) {
       switch (examinationType) {
         case ExaminationType.GENERAL_PRACTITIONER:
           points += _getAwardPoints(
-              examinationType: examinationType, ccaDoctorVisit: user.generalPracticionerCcaVisit);
+            examinationType: examinationType,
+            ccaDoctorVisit: user.generalPracticionerCcaVisit,
+          );
           break;
         case ExaminationType.GYNECOLOGIST:
           points += _getAwardPoints(
-              examinationType: examinationType, ccaDoctorVisit: user.gynecologyCcaVisit);
+            examinationType: examinationType,
+            ccaDoctorVisit: user.gynecologyCcaVisit,
+          );
           break;
         case ExaminationType.DENTIST:
           points += _getAwardPoints(
-              examinationType: examinationType, ccaDoctorVisit: user.dentistCcaVisit);
+            examinationType: examinationType,
+            ccaDoctorVisit: user.dentistCcaVisit,
+          );
           break;
         // TODO: Add the rest of ExaminationTypes once are added
         default:

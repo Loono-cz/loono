@@ -42,6 +42,7 @@ class MapPreview extends StatelessWidget {
         },
         onCameraMove: mapState.clusterManager.onCameraMove,
         onCameraIdle: () async {
+          // ignore: omit_local_variable_types
           final GoogleMapController controller = await _mapController.future;
           final latLngBounds = await controller.getVisibleRegion();
           mapState.setVisibleRegion(latLngBounds);
@@ -56,8 +57,10 @@ class MapPreview extends StatelessWidget {
           onPressed: () async {
             final currentPos = await determinePosition();
             final latLng = LatLng(currentPos.latitude, currentPos.longitude);
-            await animateToPos(_mapController,
-                cameraPosition: CameraPosition(target: latLng, zoom: 17.0));
+            await animateToPos(
+              _mapController,
+              cameraPosition: CameraPosition(target: latLng, zoom: 17.0),
+            );
           },
           backgroundColor: Colors.white,
           child: const Icon(Icons.my_location, color: Colors.black87),

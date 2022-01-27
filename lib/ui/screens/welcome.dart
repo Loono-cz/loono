@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -19,33 +20,41 @@ class WelcomeScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18.0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Image.asset(
-                  'assets/icons/welcome-logo.png',
-                  width: 172,
-                  height: 213,
+                const SizedBox(
+                  height: 90,
                 ),
-                const SizedBox(height: 50),
+                SvgPicture.asset(
+                  'assets/icons/welcome-logo.svg',
+                ),
                 Text(
                   context.l10n.carousel_welcome_dialog,
                   textAlign: TextAlign.center,
                   style: LoonoFonts.headerFontStyle,
                 ),
-                const SizedBox(height: 70),
-                LoonoButton(
-                  text: context.l10n.carousel_start,
-                  onTap: () => context.read<OnboardingStateService>().startIntro(),
-                ),
-                const SizedBox(height: 15),
-                TextButton(
-                  onPressed: () {
-                    AutoRouter.of(context).push(LoginRoute());
-                  },
-                  child: Text(
-                    context.l10n.carousel_have_account,
-                    style: LoonoFonts.fontStyle,
-                  ),
+                Column(
+                  children: [
+                    LoonoButton(
+                      text: context.l10n.carousel_start,
+                      onTap: () => context.read<OnboardingStateService>().startIntro(),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        AutoRouter.of(context).push(LoginRoute());
+                      },
+                      child: Text(
+                        context.l10n.carousel_have_account,
+                        style: LoonoFonts.fontStyle,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                  ],
                 ),
               ],
             ),

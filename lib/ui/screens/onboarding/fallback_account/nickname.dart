@@ -31,7 +31,7 @@ class NicknameScreen extends StatelessWidget {
           validator: Validators.nickname(context),
           onSubmit: (input) async {
             await registry.get<UserRepository>().updateNickname(input);
-            AutoRouter.of(context).push(EmailRoute(authUser: authUser));
+            await AutoRouter.of(context).push(EmailRoute(authUser: authUser));
           },
         );
       },

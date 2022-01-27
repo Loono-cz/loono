@@ -80,8 +80,9 @@ class ExaminationProgressContent extends StatelessWidget {
   Widget _earlyCheckupContent(BuildContext context) {
     final lastDateVisit = categorizedExamination.examination.lastVisitDate!;
     final newWaitToDateTime = DateTime(
-        lastDateVisit.year + categorizedExamination.examination.interval,
-        lastDateVisit.month.index + 1);
+      lastDateVisit.year + categorizedExamination.examination.interval,
+      lastDateVisit.month.index + 1,
+    );
     final formattedDate = DateFormat.yMMMM('cs-CZ').format(newWaitToDateTime);
     return Column(
       mainAxisSize: MainAxisSize.min,
