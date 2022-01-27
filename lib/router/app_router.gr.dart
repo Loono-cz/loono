@@ -4,16 +4,17 @@
 // AutoRouteGenerator
 // **************************************************************************
 
-import 'dart:typed_data' as _i48;
+import 'dart:typed_data' as _i49;
 
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
 import '../helpers/examination_extensions.dart' as _i46;
-import '../helpers/sex_extensions.dart' as _i49;
+import '../helpers/examination_types.dart' as _i47;
+import '../helpers/sex_extensions.dart' as _i50;
 import '../models/categorized_examination.dart' as _i45;
 import '../models/firebase_user.dart' as _i44;
-import '../services/db/database.dart' as _i47;
+import '../services/db/database.dart' as _i48;
 import '../ui/screens/create_account.dart' as _i5;
 import '../ui/screens/dentist_achievement.dart' as _i42;
 import '../ui/screens/general_practicioner_achievement.dart' as _i35;
@@ -156,7 +157,7 @@ class AppRouter extends _i1.RootStackRouter {
     },
     CalendarPermissionInfoRoute.name: (routeData) {
       final args = routeData.argsAs<CalendarPermissionInfoRouteArgs>();
-      return _i1.CustomPage<void>(
+      return _i1.CustomPage<bool>(
           routeData: routeData,
           child: _i14.CalendarPermissionInfoScreen(
               key: args.key, examinationRecord: args.examinationRecord),
@@ -179,7 +180,10 @@ class AppRouter extends _i1.RootStackRouter {
       return _i1.CustomPage<void>(
           routeData: routeData,
           child: _i16.CancelCheckupScreen(
-              key: args.key, date: args.date, title: args.title),
+              key: args.key,
+              examinationType: args.examinationType,
+              date: args.date,
+              title: args.title),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -736,19 +740,31 @@ class CalendarListRouteArgs {
 
 class CancelCheckupRoute extends _i1.PageRouteInfo<CancelCheckupRouteArgs> {
   CancelCheckupRoute(
-      {_i2.Key? key, required DateTime date, required String title})
+      {_i2.Key? key,
+      required _i47.ExaminationType examinationType,
+      required DateTime date,
+      required String title})
       : super(name,
             path: 'checkup/cancel',
-            args: CancelCheckupRouteArgs(key: key, date: date, title: title));
+            args: CancelCheckupRouteArgs(
+                key: key,
+                examinationType: examinationType,
+                date: date,
+                title: title));
 
   static const String name = 'CancelCheckupRoute';
 }
 
 class CancelCheckupRouteArgs {
   const CancelCheckupRouteArgs(
-      {this.key, required this.date, required this.title});
+      {this.key,
+      required this.examinationType,
+      required this.date,
+      required this.title});
 
   final _i2.Key? key;
+
+  final _i47.ExaminationType examinationType;
 
   final DateTime date;
 
@@ -852,7 +868,7 @@ class UpdateProfileRouteArgs {
 }
 
 class EditNicknameRoute extends _i1.PageRouteInfo<EditNicknameRouteArgs> {
-  EditNicknameRoute({_i2.Key? key, required _i47.User? user})
+  EditNicknameRoute({_i2.Key? key, required _i48.User? user})
       : super(name,
             path: 'settings/update-profile/nickname',
             args: EditNicknameRouteArgs(key: key, user: user));
@@ -865,11 +881,11 @@ class EditNicknameRouteArgs {
 
   final _i2.Key? key;
 
-  final _i47.User? user;
+  final _i48.User? user;
 }
 
 class EditEmailRoute extends _i1.PageRouteInfo<EditEmailRouteArgs> {
-  EditEmailRoute({_i2.Key? key, required _i47.User? user})
+  EditEmailRoute({_i2.Key? key, required _i48.User? user})
       : super(name,
             path: 'settings/update-profile/email',
             args: EditEmailRouteArgs(key: key, user: user));
@@ -882,11 +898,11 @@ class EditEmailRouteArgs {
 
   final _i2.Key? key;
 
-  final _i47.User? user;
+  final _i48.User? user;
 }
 
 class EditPhotoRoute extends _i1.PageRouteInfo<EditPhotoRouteArgs> {
-  EditPhotoRoute({_i2.Key? key, _i48.Uint8List? imageBytes})
+  EditPhotoRoute({_i2.Key? key, _i49.Uint8List? imageBytes})
       : super(name,
             path: 'settings/update-profile/photo',
             args: EditPhotoRouteArgs(key: key, imageBytes: imageBytes));
@@ -899,12 +915,12 @@ class EditPhotoRouteArgs {
 
   final _i2.Key? key;
 
-  final _i48.Uint8List? imageBytes;
+  final _i49.Uint8List? imageBytes;
 }
 
 class CameraPhotoTakenRoute
     extends _i1.PageRouteInfo<CameraPhotoTakenRouteArgs> {
-  CameraPhotoTakenRoute({_i2.Key? key, required _i48.Uint8List imageBytes})
+  CameraPhotoTakenRoute({_i2.Key? key, required _i49.Uint8List imageBytes})
       : super(name,
             path: 'settings/update-profile/photo/camera-taken',
             args: CameraPhotoTakenRouteArgs(key: key, imageBytes: imageBytes));
@@ -917,12 +933,12 @@ class CameraPhotoTakenRouteArgs {
 
   final _i2.Key? key;
 
-  final _i48.Uint8List imageBytes;
+  final _i49.Uint8List imageBytes;
 }
 
 class GalleryPhotoTakenRoute
     extends _i1.PageRouteInfo<GalleryPhotoTakenRouteArgs> {
-  GalleryPhotoTakenRoute({_i2.Key? key, required _i48.Uint8List imageBytes})
+  GalleryPhotoTakenRoute({_i2.Key? key, required _i49.Uint8List imageBytes})
       : super(name,
             path: 'settings/update-profile/photo/gallery-taken',
             args: GalleryPhotoTakenRouteArgs(key: key, imageBytes: imageBytes));
@@ -935,12 +951,12 @@ class GalleryPhotoTakenRouteArgs {
 
   final _i2.Key? key;
 
-  final _i48.Uint8List imageBytes;
+  final _i49.Uint8List imageBytes;
 }
 
 class PhotoCroppedResultRoute
     extends _i1.PageRouteInfo<PhotoCroppedResultRouteArgs> {
-  PhotoCroppedResultRoute({_i2.Key? key, required _i48.Uint8List imageBytes})
+  PhotoCroppedResultRoute({_i2.Key? key, required _i49.Uint8List imageBytes})
       : super(name,
             path: 'settings/update-profile/photo/photo-cropped-result',
             args:
@@ -954,7 +970,7 @@ class PhotoCroppedResultRouteArgs {
 
   final _i2.Key? key;
 
-  final _i48.Uint8List imageBytes;
+  final _i49.Uint8List imageBytes;
 }
 
 class LeaderboardRoute extends _i1.PageRouteInfo<void> {
@@ -989,7 +1005,7 @@ class OnboardingGenderRoute extends _i1.PageRouteInfo<void> {
 
 class OnBoardingBirthdateRoute
     extends _i1.PageRouteInfo<OnBoardingBirthdateRouteArgs> {
-  OnBoardingBirthdateRoute({_i2.Key? key, required _i49.Sex sex})
+  OnBoardingBirthdateRoute({_i2.Key? key, required _i50.Sex sex})
       : super(name,
             path: 'birthdate',
             args: OnBoardingBirthdateRouteArgs(key: key, sex: sex));
@@ -1002,12 +1018,12 @@ class OnBoardingBirthdateRouteArgs {
 
   final _i2.Key? key;
 
-  final _i49.Sex sex;
+  final _i50.Sex sex;
 }
 
 class OnboardingGeneralPracticionerRoute
     extends _i1.PageRouteInfo<OnboardingGeneralPracticionerRouteArgs> {
-  OnboardingGeneralPracticionerRoute({_i2.Key? key, required _i49.Sex sex})
+  OnboardingGeneralPracticionerRoute({_i2.Key? key, required _i50.Sex sex})
       : super(name,
             path: 'doctor/general-practicioner',
             args: OnboardingGeneralPracticionerRouteArgs(key: key, sex: sex));
@@ -1020,7 +1036,7 @@ class OnboardingGeneralPracticionerRouteArgs {
 
   final _i2.Key? key;
 
-  final _i49.Sex sex;
+  final _i50.Sex sex;
 }
 
 class GeneralPracticionerAchievementRoute extends _i1.PageRouteInfo<void> {
@@ -1045,7 +1061,7 @@ class AllowNotificationsRoute extends _i1.PageRouteInfo<void> {
 
 class OnboardingGynecologyRoute
     extends _i1.PageRouteInfo<OnboardingGynecologyRouteArgs> {
-  OnboardingGynecologyRoute({_i2.Key? key, required _i49.Sex sex})
+  OnboardingGynecologyRoute({_i2.Key? key, required _i50.Sex sex})
       : super(name,
             path: 'doctor/gynecology',
             args: OnboardingGynecologyRouteArgs(key: key, sex: sex));
@@ -1058,7 +1074,7 @@ class OnboardingGynecologyRouteArgs {
 
   final _i2.Key? key;
 
-  final _i49.Sex sex;
+  final _i50.Sex sex;
 }
 
 class GynecologyAchievementRoute extends _i1.PageRouteInfo<void> {
@@ -1076,7 +1092,7 @@ class GynecologyDateRoute extends _i1.PageRouteInfo<void> {
 
 class OnboardingDentistRoute
     extends _i1.PageRouteInfo<OnboardingDentistRouteArgs> {
-  OnboardingDentistRoute({_i2.Key? key, required _i49.Sex sex})
+  OnboardingDentistRoute({_i2.Key? key, required _i50.Sex sex})
       : super(name,
             path: 'doctor/dentist',
             args: OnboardingDentistRouteArgs(key: key, sex: sex));
@@ -1089,7 +1105,7 @@ class OnboardingDentistRouteArgs {
 
   final _i2.Key? key;
 
-  final _i49.Sex sex;
+  final _i50.Sex sex;
 }
 
 class DentistAchievementRoute extends _i1.PageRouteInfo<void> {
