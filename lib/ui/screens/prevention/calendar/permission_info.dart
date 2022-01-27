@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_extensions.dart';
-import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -54,14 +53,14 @@ class CalendarPermissionInfoScreen extends StatelessWidget {
               LoonoButton(
                 text: l10n.calendar_permission_allow_button,
                 onTap: () async {
-                  final permissionsGranted =
-                      await registry.get<CalendarService>().promptPermissions();
-                  if (permissionsGranted) {
+                  final calendarService = registry.get<CalendarService>();
+                  final permissionsStatus = await calendarService.promptPermissions();
+                  if (permissionsStatus == true) {
                     await AutoRouter.of(context)
                         .popAndPush(CalendarListRoute(examinationRecord: examinationRecord));
-                  } else {
-                    // TODO: Navigate to guide screen on how to enable the permission
-                    showSnackBarError(context, message: 'TODO: nepovolen přístup ke kalendáři');
+                  } else if (permissionsStatus == null) {
+                    // permanently denied
+                    await AutoRouter.of(context).pop(false);
                   }
                 },
               ),
