@@ -10,7 +10,6 @@ import 'package:loono/helpers/type_converters.dart';
 import 'package:loono/models/healthcare_provider.dart';
 import 'package:loono/services/api_service.dart';
 import 'package:loono/services/database_service.dart';
-import 'package:loono/services/db/database.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:moor/moor.dart';
 
@@ -49,10 +48,11 @@ class HealthcareProviderRepository {
     final localLatestUpdate = _db.users.user?.latestMapUpdate;
     final serverLatestUpdate = await _getServerLatestUpdate(localLatestUpdateCheck);
     debugPrint(
-        'HEALTHCARE_PROVIDERS: LOCAL LATEST: $localLatestUpdate | SERVER LATEST: $serverLatestUpdate');
+      'HEALTHCARE_PROVIDERS: LOCAL LATEST: $localLatestUpdate | SERVER LATEST: $serverLatestUpdate',
+    );
     if (localLatestUpdate == null ||
         (serverLatestUpdate != null && serverLatestUpdate.isAfter(localLatestUpdate))) {
-      final BuiltList<SimpleHealthcareProvider>? list = await _fetchAllProvidersData();
+      final list = await _fetchAllProvidersData();
       if (list == null) return _emitStreamValue(HealtCareSyncState.error);
       await _storeList(list, serverLatestUpdate);
     } else {

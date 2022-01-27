@@ -13,11 +13,11 @@ import 'package:loono/utils/registry.dart';
 import 'package:provider/provider.dart';
 
 class FindDoctorScreen extends StatefulWidget {
+  FindDoctorScreen({Key? key}) : super(key: key);
+
   final Completer<GoogleMapController> mapController = Completer<GoogleMapController>();
   final healthcareProviderRepository = registry.get<HealthcareProviderRepository>();
   final mapStateService = MapStateService();
-
-  FindDoctorScreen({Key? key}) : super(key: key);
 
   @override
   State<FindDoctorScreen> createState() => _FindDoctorScreenState();
