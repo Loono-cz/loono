@@ -15,6 +15,7 @@ import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/faq_section.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/prevention/calendar_permission_sheet.dart';
 import 'package:loono/ui/widgets/prevention/checkup_confirmation_sheet.dart';
 import 'package:loono/ui/widgets/prevention/checkup_edit_modal.dart';
 import 'package:loono/ui/widgets/prevention/examination_progress_content.dart';
@@ -230,11 +231,15 @@ class ExaminationDetail extends StatelessWidget {
                                       ),
                                     );
                                   } else {
-                                    await AutoRouter.of(context).push(
+                                    final result = await AutoRouter.of(context).push<bool>(
                                       CalendarPermissionInfoRoute(
                                         examinationRecord: categorizedExamination.examination,
                                       ),
                                     );
+                                    // permission was permanently denied, show permission settings guide
+                                    if (result == false) {
+                                      showCalendarPermissionSheet(context);
+                                    }
                                   }
                                 },
                               ),

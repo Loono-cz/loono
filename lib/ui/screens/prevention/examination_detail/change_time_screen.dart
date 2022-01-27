@@ -7,8 +7,10 @@ import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
+import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/custom_time_picker.dart';
+import 'package:loono/utils/registry.dart';
 
 class ChangeTimeScreen extends StatefulWidget {
   const ChangeTimeScreen({
@@ -97,7 +99,13 @@ class _ChangeTimeScreenState extends State<ChangeTimeScreen> {
               const Spacer(),
               LoonoButton(
                 text: context.l10n.action_save,
-                onTap: () {
+                onTap: () async {
+                  if (newDate != null) {
+                    await registry.get<CalendarRepository>().updateEventDate(
+                          examinationType,
+                          newDate: newDate!,
+                        );
+                  }
                   AutoRouter.of(context).popUntilRouteWithName('ExaminationDetailRoute');
                   showSnackBarError(context, message: 'TODO: save to API\n$newDate');
                 },
