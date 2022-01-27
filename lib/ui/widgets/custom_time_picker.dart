@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/datepicker_helpers.dart';
 
 const _itemHeight = 40.0;
 
@@ -92,6 +93,8 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
     final items =
         forType == ColumnType.hour ? _timePickerHours.asMap() : _timePickerMinutes.asMap();
 
+    final selectedIndex = forType == ColumnType.hour ? _selectedHourIndex : _selectedMinuteIndex;
+
     return SizedBox(
       width: MediaQuery.of(context).size.width / 3,
       child: ListWheelScrollView.useDelegate(
@@ -100,11 +103,11 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
         childDelegate: ListWheelChildLoopingListDelegate(
           children: items.keys
               .map(
-                (index) => _setListItem(
-                  forType: forType,
+                (index) => setListItem(
                   index: index,
                   text: items[index].toString().padLeft(2, '0'),
                   items: items,
+                  selectedIndex: selectedIndex,
                 ),
               )
               .toList(),
@@ -118,43 +121,6 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
                 : _selectedMinuteIndex = items.keys.elementAt(index);
           });
         },
-      ),
-    );
-  }
-
-  Widget _setListItem({
-    required int index,
-    required ColumnType forType,
-    required String text,
-    required Map<int, Object> items,
-  }) {
-    final selectedIndex = forType == ColumnType.hour ? _selectedHourIndex : _selectedMinuteIndex;
-
-    final keys = items.keys.toList()..sort();
-
-    final firstOrLastCoupleInList =
-        (((selectedIndex == keys.last) && (index == keys.first || index == keys.first + 1)) ||
-                (selectedIndex == keys.last - 1) && (index == keys.first)) ||
-            (((selectedIndex == keys.first) && (index == keys.last || index == keys.last - 1)) ||
-                (selectedIndex == keys.first + 1) && (index == keys.last));
-
-    var opacityValue = 0.2;
-
-    if (index == selectedIndex) {
-      opacityValue = 1;
-    } else if (((index <= selectedIndex + 2) && (index > selectedIndex)) ||
-        ((index >= selectedIndex - 2) && (index < selectedIndex)) ||
-        firstOrLastCoupleInList) {
-      opacityValue = 0.5;
-    }
-
-    return Center(
-      child: Opacity(
-        opacity: opacityValue,
-        child: Text(
-          text,
-          style: LoonoFonts.fontStyle,
-        ),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/datepicker_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 
 const _itemHeight = 40.0;
@@ -150,6 +151,12 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
             ? _datePickerMonths
             : _datePickerYears.asMap();
 
+    final selectedIndex = forType == ColumnType.day
+        ? _selectedDayIndex
+        : forType == ColumnType.month
+            ? _selectedMonthIndex
+            : _selectedYearIndex;
+
     return SizedBox(
       width: MediaQuery.of(context).size.width / (widget.allowDays ? 4 : 3),
       child: ListWheelScrollView.useDelegate(
@@ -159,11 +166,11 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
         childDelegate: ListWheelChildLoopingListDelegate(
           children: items.keys.map(
             (index) {
-              return _setListItem(
-                forType: forType,
+              return setListItem(
                 index: index,
                 text: items[index].toString(),
                 items: items,
+                selectedIndex: selectedIndex,
               );
             },
           ).toList(),
@@ -179,47 +186,6 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
                     : _selectedYearIndex = index;
           });
         },
-      ),
-    );
-  }
-
-  Widget _setListItem({
-    required int index,
-    required ColumnType forType,
-    required String text,
-    required Map<int, Object> items,
-  }) {
-    final selectedIndex = forType == ColumnType.day
-        ? _selectedDayIndex
-        : forType == ColumnType.month
-            ? _selectedMonthIndex
-            : _selectedYearIndex;
-
-    final keys = items.keys.toList()..sort();
-
-    final firstOrLastCoupleInList =
-        (((selectedIndex == keys.last) && (index == keys.first || index == keys.first + 1)) ||
-                (selectedIndex == keys.last - 1) && (index == keys.first)) ||
-            (((selectedIndex == keys.first) && (index == keys.last || index == keys.last - 1)) ||
-                (selectedIndex == keys.first + 1) && (index == keys.last));
-
-    var opacityValue = 0.2;
-
-    if (index == selectedIndex) {
-      opacityValue = 1;
-    } else if (((index <= selectedIndex + 2) && (index > selectedIndex)) ||
-        ((index >= selectedIndex - 2) && (index < selectedIndex)) ||
-        firstOrLastCoupleInList) {
-      opacityValue = 0.5;
-    }
-
-    return Center(
-      child: Opacity(
-        opacity: opacityValue,
-        child: Text(
-          text,
-          style: LoonoFonts.fontStyle,
-        ),
       ),
     );
   }
