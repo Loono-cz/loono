@@ -12,8 +12,6 @@ class SearchTextField extends StatelessWidget {
 
   final ValueChanged<HealthcareProvider>? onItemTap;
 
-  //final _healthcareProvidersRepository = registry.get<HealthcareProviderRepository>();
-
   @override
   Widget build(BuildContext context) {
     return Padding(
