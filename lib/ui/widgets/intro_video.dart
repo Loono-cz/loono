@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/story_page.dart';
@@ -55,16 +57,17 @@ class OnboardFirstCarouselInteractiveContent extends StatelessWidget {
       children: [
         Positioned(
           top: MediaQuery.of(context).size.height * 0.1,
-          left: 20.0,
-          child: Material(
-            color: Colors.transparent,
-            child: IconButton(
-              icon: Icon(
-                storyPageState.isMuted ? Icons.volume_off : Icons.volume_up,
-                size: 40.0,
-                color: Colors.white,
-              ),
+          right: 10.0,
+          child: ButtonTheme(
+            height: 30,
+            minWidth: 30,
+            child: MaterialButton(
+              color: LoonoColors.beigeLighter,
               onPressed: onVolumeTap,
+              shape: const CircleBorder(),
+              child: (storyPageState.isMuted)
+                  ? SvgPicture.asset('assets/icons/sound_off.svg')
+                  : SvgPicture.asset('assets/icons/sound_on.svg'),
             ),
           ),
         ),
