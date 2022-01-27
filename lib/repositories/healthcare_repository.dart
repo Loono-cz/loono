@@ -16,6 +16,12 @@ import 'package:moor/moor.dart';
 enum HealtCareSyncState { started, fetching, parsing, storing, completed, error }
 
 class HealthcareProviderRepository {
+  HealthcareProviderRepository({
+    required ApiService apiService,
+    required DatabaseService databaseService,
+  })  : _apiService = apiService,
+        _db = databaseService;
+
   final ApiService _apiService;
   final DatabaseService _db;
   static const int UPDATE_CHECK_INTERVAL_IN_DAYS = 21;
@@ -24,12 +30,6 @@ class HealthcareProviderRepository {
   Stream<HealtCareSyncState> get healtcareProvidersStream => _streamController.stream;
   HealtCareSyncState? _lastStreamValue;
   HealtCareSyncState? get lastStreamValue => _lastStreamValue;
-
-  HealthcareProviderRepository({
-    required ApiService apiService,
-    required DatabaseService databaseService,
-  })  : _apiService = apiService,
-        _db = databaseService;
 
   void _emitStreamValue(HealtCareSyncState state) {
     _streamController.sink.add(state);
