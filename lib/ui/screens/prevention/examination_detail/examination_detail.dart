@@ -173,6 +173,27 @@ class ExaminationDetail extends StatelessWidget {
           padding: const EdgeInsets.all(20.0),
           child: Row(
             children: [
+              Expanded(
+                child: LoonoButton(
+                  text: l10n.examination_detail_order_examination_button,
+                  onTap: () =>
+                      null, // TODO: udělat něco jako checkup_confirmation_sheet => generalizovat layout do nějaký HOC?
+                ),
+              ),
+              const SizedBox(width: 19),
+              Expanded(
+                child: LoonoButton.light(
+                  text: l10n.examination_detail_set_examination_button,
+                  onTap: () => null,
+                ),
+              )
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Row(
+            children: [
               // displays calendar button for the scheduled check-ups which did not happen yet
               if (nextVisitDate != null && nextVisitDate!.isAfter(DateTime.now())) ...[
                 StreamBuilder<CalendarEvent?>(
