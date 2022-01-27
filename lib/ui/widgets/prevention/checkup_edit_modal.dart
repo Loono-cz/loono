@@ -37,6 +37,8 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
           ),
           onPressed: () {
             AutoRouter.of(modalContext).pop();
+            AutoRouter.of(pageContext)
+                .navigate(ChangeDateRoute(categorizedExamination: examination));
           },
         ),
         CupertinoActionSheetAction(
