@@ -24,6 +24,8 @@ import 'package:loono/ui/screens/onboarding/onboarding_wrapper_screen.dart';
 import 'package:loono/ui/screens/prevention/calendar/calendar_list.dart';
 import 'package:loono/ui/screens/prevention/calendar/permission_info.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/cancel_checkup_screen.dart';
+import 'package:loono/ui/screens/prevention/examination_detail/change_date_screen.dart';
+import 'package:loono/ui/screens/prevention/examination_detail/change_time_screen.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/change_last_visit_screen.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/examination_screen.dart';
 import 'package:loono/ui/screens/prevention/questionnaire/date_picker_screen.dart';
@@ -93,8 +95,7 @@ const _settingsTransition = TransitionsBuilders.slideLeft;
           transitionsBuilder: _preventionTransition,
         ),
         CustomRoute<void>(
-          page: ChangeLastVisitScreen,
-          path: 'checkup/last-visit-update',
+
           transitionsBuilder: _preventionTransition,
         ),
 

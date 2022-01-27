@@ -5,7 +5,6 @@ import 'package:archive/archive.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/helpers/type_converters.dart';
-import 'package:loono/models/healthcare_provider.dart';
 import 'package:loono/services/api_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
@@ -24,7 +23,7 @@ class HealthcareProviderRepository {
 
   static const int UPDATE_CHECK_INTERVAL_IN_DAYS = 21;
 
-  /// Updates [HealthcareProviders] with new [SimpleHealthcareProvider] data if the current local
+  /// Updates "HealthcareProviders" with new [SimpleHealthcareProvider] data if the current local
   /// data are not up to date or not fetched yet.
   ///
   /// If the data are up to date, returns cached healthcare providers data.

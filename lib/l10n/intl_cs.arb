@@ -487,5 +487,11 @@
   "original_date": "Původní termín",
   "@original_date": {},
   "change_last_visit_title": "Změň datum poslední preventivní prohlídky",
-  "@change_last_visit_title": {}
+  "@change_last_visit_title": {},
+  "new_checkup_date": "Nový datum prohlídky",
+  "@new_checkup_date": {},
+  "new_checkup_time": "Nový čas prohlídky",
+  "@new_checkup_time": {},
+  "original_date": "Původní termín",
+  "@original_date": {}
 }
