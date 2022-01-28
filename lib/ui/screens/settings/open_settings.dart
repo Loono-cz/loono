@@ -22,7 +22,7 @@ class OpenSettingsScreen extends StatelessWidget {
     final mq = MediaQuery.of(context);
     var availableHeight =
         mq.size.height - AppBar().preferredSize.height - mq.padding.top - mq.padding.bottom;
-    if (availableHeight < 500) availableHeight = 500;
+    if (availableHeight < 600) availableHeight = 600;
     return Scaffold(
       appBar: settingsAppBar(context, showBackButton: false),
       backgroundColor: LoonoColors.settingsBackground,
