@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/datepicker_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 
 const _itemHeight = 40.0;
 
-enum ColumnType { month, year }
+enum ColumnType { day, month, year }
 
 class CustomDatePicker extends StatefulWidget {
   CustomDatePicker({
@@ -12,8 +13,10 @@ class CustomDatePicker extends StatefulWidget {
     required this.valueChanged,
     this.yearsBeforeActual = 100,
     this.yearsOverActual = 10,
+    this.defaultDay,
     this.defaultMonth,
     this.defaultYear,
+    this.allowDays = false,
     this.filled = false,
   }) : super(key: key);
 
@@ -21,8 +24,10 @@ class CustomDatePicker extends StatefulWidget {
   final ValueChanged<DateTime> valueChanged;
   final int yearsBeforeActual;
   final int yearsOverActual;
+  final int? defaultDay;
   final int? defaultMonth;
   final int? defaultYear;
+  final bool allowDays;
   final bool filled;
 
   @override
@@ -30,13 +35,15 @@ class CustomDatePicker extends StatefulWidget {
 }
 
 class _CustomDatePickerState extends State<CustomDatePicker> {
+  late int _selectedDayIndex = 0;
   late int _selectedMonthIndex = widget.defaultMonth ?? widget.today.month;
   late int _selectedYearIndex = 0;
   late DateTime datePickerDate = DateTime(
     widget.defaultYear ?? widget.today.year,
     _selectedMonthIndex,
-    widget.today.day,
+    _selectedDayIndex + 1,
   );
+  final FixedExtentScrollController _dayController = FixedExtentScrollController();
 
   @override
   void initState() {
@@ -63,6 +70,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              if (widget.allowDays) _datePickerColumn(forType: ColumnType.day),
               _datePickerColumn(forType: ColumnType.month),
               _datePickerColumn(forType: ColumnType.year),
             ],
@@ -128,82 +136,87 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
     return {for (var key in keysOrder) key: monthsMap[key]!};
   }
 
+  List<int> get _datePickerDays {
+    final daysInMonth = DateTime(datePickerDate.year, _selectedMonthIndex + 1, 0).day;
+
+    final days = [for (var i = 1; i <= daysInMonth; i += 1) i];
+
+    return days;
+  }
+
   Widget _datePickerColumn({required ColumnType forType}) {
-    final items = forType == ColumnType.month ? _datePickerMonths : _datePickerYears.asMap();
+    final items = forType == ColumnType.day
+        ? _datePickerDays.asMap()
+        : forType == ColumnType.month
+            ? _datePickerMonths
+            : _datePickerYears.asMap();
+
+    final selectedIndex = forType == ColumnType.day
+        ? _selectedDayIndex
+        : forType == ColumnType.month
+            ? _selectedMonthIndex
+            : _selectedYearIndex;
 
     return SizedBox(
-      width: MediaQuery.of(context).size.width / 3,
+      width: MediaQuery.of(context).size.width / (widget.allowDays ? 4 : 3),
       child: ListWheelScrollView.useDelegate(
         physics: const FixedExtentScrollPhysics(),
+        controller: forType == ColumnType.day ? _dayController : null,
         itemExtent: _itemHeight,
         childDelegate: ListWheelChildLoopingListDelegate(
           children: items.keys.map(
             (index) {
-              return _setListItem(
-                forType: forType,
+              return setListItem(
                 index: index,
                 text: items[index].toString(),
                 items: items,
+                selectedIndex: selectedIndex,
               );
             },
           ).toList(),
         ),
         onSelectedItemChanged: (index) {
           _selectedItemHandle(forType: forType, items: items, value: items.keys.elementAt(index));
+
           setState(() {
-            forType == ColumnType.month
-                ? _selectedMonthIndex = items.keys.elementAt(index)
-                : _selectedYearIndex = index;
+            forType == ColumnType.day
+                ? _selectedDayIndex = index
+                : forType == ColumnType.month
+                    ? _selectedMonthIndex = items.keys.elementAt(index)
+                    : _selectedYearIndex = index;
           });
         },
       ),
     );
   }
 
-  Widget _setListItem({
-    required int index,
-    required ColumnType forType,
-    required String text,
-    required Map<int, Object> items,
-  }) {
-    final selectedIndex = forType == ColumnType.month ? _selectedMonthIndex : _selectedYearIndex;
+  void _selectedItemHandle({required ColumnType forType, required Map items, required int value}) {
+    /// handle different month lengths
+    if (forType == ColumnType.month || forType == ColumnType.year) {
+      /// compensate for leap years
+      final daysInMonth = forType == ColumnType.month
+          ? DateTime(datePickerDate.year, value + 1, 0).day
+          : DateTime(items[value] as int, datePickerDate.month + 1, 0).day;
 
-    final keys = items.keys.toList()..sort();
-
-    final firstOrLastCoupleInList =
-        (((selectedIndex == keys.last) && (index == keys.first || index == keys.first + 1)) ||
-                (selectedIndex == keys.last - 1) && (index == keys.first)) ||
-            (((selectedIndex == keys.first) && (index == keys.last || index == keys.last - 1)) ||
-                (selectedIndex == keys.first + 1) && (index == keys.last));
-
-    var opacityValue = 0.2;
-
-    if (index == selectedIndex) {
-      opacityValue = 1;
-    } else if (((index <= selectedIndex + 2) && (index > selectedIndex)) ||
-        ((index >= selectedIndex - 2) && (index < selectedIndex)) ||
-        firstOrLastCoupleInList) {
-      opacityValue = 0.5;
+      /// jump to maximal possible day
+      _dayController.jumpToItem(_selectedDayIndex.clamp(0, daysInMonth));
+      if (_selectedDayIndex > daysInMonth - 1) {
+        _dayController.jumpToItem(daysInMonth - 1);
+        setState(() {
+          _selectedDayIndex = daysInMonth - 1;
+        });
+      }
     }
 
-    return Center(
-      child: Opacity(
-        opacity: opacityValue,
-        child: Text(
-          text,
-          style: LoonoFonts.fontStyle,
-        ),
-      ),
-    );
-  }
-
-  void _selectedItemHandle({required ColumnType forType, required Map items, required int value}) {
     switch (forType) {
+      case ColumnType.day:
+        datePickerDate = DateTime(datePickerDate.year, datePickerDate.month, items[value] as int);
+        break;
       case ColumnType.month:
-        datePickerDate = DateTime(datePickerDate.year, value);
+        datePickerDate = DateTime(datePickerDate.year, value, datePickerDate.day);
         break;
       case ColumnType.year:
-        datePickerDate = DateTime(items[value] as int, datePickerDate.month);
+        datePickerDate = DateTime(items[value] as int, datePickerDate.month, datePickerDate.day);
         break;
     }
     widget.valueChanged(datePickerDate);

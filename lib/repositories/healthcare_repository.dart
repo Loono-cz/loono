@@ -23,7 +23,7 @@ class HealthcareProviderRepository {
 
   static const int UPDATE_CHECK_INTERVAL_IN_DAYS = 21;
 
-  /// Updates [HealthcareProviders] with new [SimpleHealthcareProvider] data if the current local
+  /// Updates "HealthcareProviders" with new [SimpleHealthcareProvider] data if the current local
   /// data are not up to date or not fetched yet.
   ///
   /// If the data are up to date, returns cached healthcare providers data.
