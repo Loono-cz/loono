@@ -22,6 +22,7 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
             AutoRouter.of(modalContext).pop();
             AutoRouter.of(pageContext).navigate(
               CancelCheckupRoute(
+                examinationType: examinationType,
                 title: '${pageContext.l10n.checkup_cancel_question} $preposition $procedure?',
                 date: examination.examination.nextVisitDate ?? DateTime.now(),
               ),
@@ -36,6 +37,8 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
           ),
           onPressed: () {
             AutoRouter.of(modalContext).pop();
+            AutoRouter.of(pageContext)
+                .navigate(ChangeDateRoute(categorizedExamination: examination));
           },
         ),
         CupertinoActionSheetAction(

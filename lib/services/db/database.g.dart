@@ -1572,7 +1572,7 @@ class $CalendarEventsTable extends CalendarEvents
   }
 
   static TypeConverter<ExaminationType, String> $converter0 =
-      const ExaminationDbTypeConverter();
+      const ExaminationTypeDbConverter();
 }
 
 abstract class _$AppDatabase extends GeneratedDatabase {
