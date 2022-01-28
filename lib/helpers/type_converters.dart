@@ -33,8 +33,8 @@ class CategoryDbConverter extends TypeConverter<BuiltList<String>, String> {
   }
 }
 
-class ExaminationDbTypeConverter extends TypeConverter<ExaminationType, String> {
-  const ExaminationDbTypeConverter();
+class ExaminationTypeDbConverter extends TypeConverter<ExaminationType, String> {
+  const ExaminationTypeDbConverter();
 
   @override
   ExaminationType? mapToDart(String? fromDb) {
