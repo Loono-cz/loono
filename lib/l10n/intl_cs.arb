@@ -276,6 +276,8 @@
   "@settings_edit_account_button": {},
   "settings_user_points_help_button": "Co s body?",
   "@settings_user_points_help_button": {},
+  "settings_version": "Verze",
+  "@settings_version": {},
   "cancel": "Zrušit",
   "@cancel": {},
   "logout_confirmation_dialog_content": "Opravdu se chceš odhlásit? Nebudeme ti připomínat prohlídky notifikacemi.",
