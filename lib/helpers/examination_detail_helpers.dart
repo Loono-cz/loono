@@ -138,8 +138,10 @@ double upperArcProgress(CategorizedExamination examination) {
   final nextVisit = examination.examination.nextVisitDate;
   final status = examination.status;
   final interval = examination.examination.interval;
-  if ((status == const ExaminationStatus.scheduled() ||
-          status == const ExaminationStatus.scheduledSoonOrOverdue()) &&
+  if ([
+        const ExaminationStatus.scheduled(),
+        const ExaminationStatus.scheduledSoonOrOverdue(),
+      ].contains(status) &&
       nextVisit != null) {
     final totalDays = daysBetween(
       DateTime(nextVisit.year - interval, nextVisit.month),
@@ -197,8 +199,10 @@ bool isOverdue(CategorizedExamination examination) {
 }
 
 Color progressBarColor(ExaminationStatus status) {
-  if (status == const ExaminationStatus.scheduled() ||
-      status == const ExaminationStatus.scheduledSoonOrOverdue()) {
+  if ([
+    const ExaminationStatus.scheduled(),
+    const ExaminationStatus.scheduledSoonOrOverdue(),
+  ].contains(status)) {
     return LoonoColors.primaryEnabled;
   }
   return LoonoColors.greenSuccess;
@@ -206,8 +210,10 @@ Color progressBarColor(ExaminationStatus status) {
 
 Widget progressBarLeftDot(ExaminationStatus status) {
   var color = LoonoColors.red;
-  if (status == const ExaminationStatus.scheduledSoonOrOverdue() ||
-      status == const ExaminationStatus.scheduled()) {
+  if ([
+    const ExaminationStatus.scheduledSoonOrOverdue(),
+    const ExaminationStatus.scheduled(),
+  ].contains(status)) {
     color = LoonoColors.greenSuccess;
   } else if (status == const ExaminationStatus.waiting()) {
     color = LoonoColors.primary;
@@ -221,8 +227,10 @@ Widget progressBarLeftDot(ExaminationStatus status) {
         width: 16,
         height: 16,
         child: Visibility(
-          visible: (status == const ExaminationStatus.scheduledSoonOrOverdue() ||
-              status == const ExaminationStatus.scheduled()),
+          visible: [
+            const ExaminationStatus.scheduledSoonOrOverdue(),
+            const ExaminationStatus.scheduled(),
+          ].contains(status),
           child: const Icon(
             Icons.done,
             size: 14,
