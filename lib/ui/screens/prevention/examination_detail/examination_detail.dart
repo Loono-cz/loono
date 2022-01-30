@@ -281,9 +281,10 @@ class ExaminationDetail extends StatelessWidget {
                     onTap: () => showEditModal(context, categorizedExamination),
                   ),
                 ),
-              ] else if (categorizedExamination.status ==
-                      const ExaminationStatus.unknownLastVisit() ||
-                  categorizedExamination.status == const ExaminationStatus.newToSchedule()) ...[
+              ] else if ([
+                const ExaminationStatus.unknownLastVisit(),
+                const ExaminationStatus.newToSchedule()
+              ].contains(categorizedExamination.status)) ...[
                 Expanded(
                   child: LoonoButton(
                     text: 'objednat_se',

@@ -1,9 +1,9 @@
-import 'package:loono/helpers/examination_extensions.dart' as dummy;
+import 'package:loono/helpers/examination_extensions.dart';
 
 class ExaminationRepository {
   const ExaminationRepository();
 
-  Future<List<dummy.ExaminationRecord>> getExaminationRecords() async {
-    return dummy.fakeExaminationData;
+  Future<List<ExaminationRecord>> getExaminationRecords() async {
+    return fakeExaminationData;
   }
 }
