@@ -28,12 +28,16 @@ class ExaminationProgressContent extends StatelessWidget {
 
   /// get correct combination of text font styles and colors
   Widget _progressBarContent(BuildContext context) {
-    if (categorizedExamination.status == const ExaminationStatus.scheduledSoonOrOverdue() ||
-        categorizedExamination.status == const ExaminationStatus.scheduled()) {
+    if ([
+      const ExaminationStatus.scheduledSoonOrOverdue(),
+      const ExaminationStatus.scheduled(),
+    ].contains(categorizedExamination.status)) {
       /// known next visit
       return _scheduledVisitContent(context);
-    } else if (categorizedExamination.status == const ExaminationStatus.newToSchedule() ||
-        categorizedExamination.status == const ExaminationStatus.waiting()) {
+    } else if ([
+      const ExaminationStatus.newToSchedule(),
+      const ExaminationStatus.waiting(),
+    ].contains(categorizedExamination.status)) {
       /// awaiting new checkup
       return _earlyCheckupContent(context);
     } else if (categorizedExamination.examination.lastVisitDate != null) {

@@ -212,10 +212,11 @@ class ExaminationDetail extends StatelessWidget {
           child: Row(
             children: [
               // displays calendar button for the scheduled check-ups which did not happen yet
-              if (nextVisitDate != null &&
-                  (categorizedExamination.status == const ExaminationStatus.scheduled() ||
-                      categorizedExamination.status ==
-                          const ExaminationStatus.scheduledSoonOrOverdue())) ...[
+              if (_nextVisitDate != null &&
+                  [
+                    const ExaminationStatus.scheduled(),
+                    const ExaminationStatus.scheduledSoonOrOverdue()
+                  ].contains(categorizedExamination.status)) ...[
                 StreamBuilder<CalendarEvent?>(
                   stream: _calendarEventsDao.watch(_examinationType),
                   builder: (context, snapshot) {
@@ -223,7 +224,7 @@ class ExaminationDetail extends StatelessWidget {
                       return Expanded(
                         child: Row(
                           children: [
-                            if (nextVisitDate!.isAfter(DateTime.now()))
+                            if (_nextVisitDate!.isAfter(DateTime.now()))
                               Expanded(
                                 child: LoonoButton.light(
                                   text: l10n.examination_detail_add_to_calendar_button,
