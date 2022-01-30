@@ -5,19 +5,22 @@ import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/models/achievement.dart';
 import 'package:loono/models/user.dart';
+import 'package:loono/services/api_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/firebase_storage_service.dart';
 import 'package:uuid/uuid.dart';
 
-// TODO: Connect with ApiService
 class UserRepository {
   UserRepository({
+    required ApiService apiService,
     required DatabaseService databaseService,
     required FirebaseStorageService firebaseStorageService,
-  })  : _db = databaseService,
+  })  : _apiService = apiService,
+        _db = databaseService,
         _firebaseStorageService = firebaseStorageService;
 
+  final ApiService _apiService;
   final DatabaseService _db;
   final FirebaseStorageService _firebaseStorageService;
 
@@ -70,12 +73,21 @@ class UserRepository {
     await _db.users.updateDentistVisitDate(dateWithoutDay);
   }
 
+  // TODO: api for nickname update not available?
   Future<void> updateNickname(String nickname) async {
     await _db.users.updateNickname(nickname);
   }
 
-  Future<void> updateEmail(String email) async {
-    await _db.users.updateEmail(email);
+  Future<bool> updateEmail(String email) async {
+    final apiResponse = await _apiService.updateAccountUser(preferredEmail: email);
+    final result = await apiResponse.map(
+      success: (_) async {
+        await _db.users.updateEmail(email);
+        return true;
+      },
+      failure: (_) async => false,
+    );
+    return result;
   }
 
   Future<void> updateAchievementCollection(Achievement achievement) async {
@@ -97,8 +109,16 @@ class UserRepository {
       settableMetadata: SettableMetadata(contentType: 'image/png'),
     );
     if (downloadUrl != null) {
-      await _db.users.updateProfileImageUrl(downloadUrl);
-      return true;
+      final apiResponse = await _apiService.updateAccountSettings(profileImageUrl: downloadUrl);
+      final result = await apiResponse.map(
+        success: (data) async {
+          await _db.users.updateProfileImageUrl(downloadUrl);
+          print(data);
+          return true;
+        },
+        failure: (_) async => false,
+      );
+      return result;
     }
     return false;
   }
@@ -111,8 +131,15 @@ class UserRepository {
       ref: await _firebaseStorageService.userPhotoRef,
     );
     if (result == true) {
-      await _db.users.updateProfileImageUrl(null);
-      return true;
+      final apiResponse = await _apiService.updateAccountSettings(profileImageUrl: null);
+      final result = await apiResponse.map(
+        success: (_) async {
+          await _db.users.updateProfileImageUrl(null);
+          return true;
+        },
+        failure: (_) async => false,
+      );
+      return result;
     }
     return false;
   }

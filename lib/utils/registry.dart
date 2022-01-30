@@ -29,6 +29,12 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 final registry = GetIt.instance;
 
+final defaultDioOptions = BaseOptions(
+  baseUrl: LoonoApi.basePath,
+  connectTimeout: 5000,
+  receiveTimeout: 8000,
+);
+
 Future<void> setup(AppFlavors flavor) async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -59,6 +65,10 @@ Future<void> setup(AppFlavors flavor) async {
     flavor: flavor,
   );
 
+  final loonoApi = LoonoApi(
+    dio: Dio(defaultDioOptions),
+  );
+
   registry.registerLazySingleton<GlobalKey<NavigatorState>>(() => GlobalKey());
   registry.registerLazySingleton<AppConfig>(() => config);
 
@@ -66,26 +76,14 @@ Future<void> setup(AppFlavors flavor) async {
   await registry.get<NotificationService>().init();
 
   // services
-  registry.registerSingleton<AuthService>(AuthService());
+  registry.registerSingleton<AuthService>(AuthService(api: loonoApi));
   registry.registerSingleton<DatabaseService>(DatabaseService());
   registry.registerSingleton<FirebaseStorageService>(
     FirebaseStorageService(
       authService: registry.get<AuthService>(),
     ),
   );
-  registry.registerSingleton<ApiService>(
-    ApiService(
-      LoonoApi(
-        dio: Dio(
-          BaseOptions(
-            baseUrl: LoonoApi.basePath,
-            connectTimeout: 5000,
-            receiveTimeout: 8000,
-          ),
-        ),
-      ),
-    ),
-  );
+  registry.registerSingleton<ApiService>(ApiService(api: loonoApi));
   registry.registerSingleton<CalendarService>(
     CalendarService(
       deviceCalendarPlugin: DeviceCalendarPlugin(),
@@ -97,6 +95,7 @@ Future<void> setup(AppFlavors flavor) async {
   // repositories
   registry.registerSingleton<UserRepository>(
     UserRepository(
+      apiService: registry.get<ApiService>(),
       databaseService: registry.get<DatabaseService>(),
       firebaseStorageService: registry.get<FirebaseStorageService>(),
     ),

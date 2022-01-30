@@ -8,7 +8,7 @@ import 'package:loono/models/api_response.dart';
 import 'package:loono_api/loono_api.dart';
 
 class ApiService {
-  const ApiService(this._api);
+  const ApiService({required LoonoApi api}) : _api = api;
 
   final LoonoApi _api;
 
@@ -47,6 +47,48 @@ class ApiService {
       () async => _api.getProvidersApi().postProvidersDetail(
             healthcareProviderIdList: idList,
           ),
+    );
+  }
+
+  Future<ApiResponse<Account>> getAccount() async {
+    return _callApi(() async => _api.getAccountApi().getAccount());
+  }
+
+  Future<ApiResponse<Account>> updateAccountSettings({
+    String? profileImageUrl,
+    bool appointmentReminderEmailsOptIn = true,
+    bool leaderboardAnonymizationOptIn = false,
+    bool? newsletterOptIn = false,
+  }) async {
+    return _callApi(
+      () async => _api.getAccountApi().updateAccountSettings(
+        settings: Settings((b) {
+          b
+            ..profileImageUrl = profileImageUrl
+            ..appointmentReminderEmailsOptIn = appointmentReminderEmailsOptIn
+            ..leaderboardAnonymizationOptIn = leaderboardAnonymizationOptIn
+            ..newsletterOptIn = newsletterOptIn;
+        }),
+      ),
+    );
+  }
+
+  Future<ApiResponse<Account>> updateAccountUser({
+    Sex? sex,
+    int? birthdateYear,
+    int? birthdateMonth,
+    String? preferredEmail,
+  }) async {
+    return _callApi(
+      () async => _api.getAccountApi().updateAccountUser(
+        userPatch: UserPatch((b) {
+          b
+            ..sex = sex
+            ..birthdateYear = birthdateYear
+            ..birthdateMonth = birthdateMonth
+            ..preferredEmail = preferredEmail;
+        }),
+      ),
     );
   }
 }
