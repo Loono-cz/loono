@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
+import 'package:loono/helpers/examination_status.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/l10n/ext.dart';
@@ -31,6 +32,11 @@ class ExaminationDetail extends StatelessWidget {
   final _calendarEventsDao = registry.get<DatabaseService>().calendarEvents;
 
   final CategorizedExamination categorizedExamination;
+
+  /// TODO: replace skipped date for "posledni prohlidka: nevim" from db or api
+  final lastVisitSkippedDate = DateTime.now().subtract(
+    const Duration(days: 60),
+  );
 
   ExaminationType get examinationType => categorizedExamination.examination.examinationType;
 
@@ -147,23 +153,26 @@ class ExaminationDetail extends StatelessWidget {
         Row(
           children: [
             Expanded(
-                child: Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Text(
-                context.l10n.early_ordering,
-                textAlign: TextAlign.right,
-                style: earlyOrderStyles(categorizedExamination),
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Text(
+                  context.l10n.early_ordering,
+                  textAlign: TextAlign.right,
+                  style: earlyOrderStyles(categorizedExamination),
+                ),
               ),
             ),
             ExaminationProgressContent(
               categorizedExamination: categorizedExamination,
+              dateSkipped: lastVisitSkippedDate,
             ),
             Expanded(
-                child: Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Text(
-                context.l10n.preventive_inspection,
-                style: preventiveInspectionStyles(categorizedExamination),
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Text(
+                  context.l10n.preventive_inspection,
+                  style: preventiveInspectionStyles(categorizedExamination.status),
+                ),
               ),
             ),
           ],
@@ -173,7 +182,10 @@ class ExaminationDetail extends StatelessWidget {
           child: Row(
             children: [
               // displays calendar button for the scheduled check-ups which did not happen yet
-              if (nextVisitDate != null && nextVisitDate!.isAfter(DateTime.now())) ...[
+              if (nextVisitDate != null &&
+                  (categorizedExamination.status == const ExaminationStatus.scheduled() ||
+                      categorizedExamination.status ==
+                          const ExaminationStatus.scheduledSoonOrOverdue())) ...[
                 StreamBuilder<CalendarEvent?>(
                   stream: _calendarEventsDao.watch(examinationType),
                   builder: (context, snapshot) {
@@ -181,33 +193,48 @@ class ExaminationDetail extends StatelessWidget {
                       return Expanded(
                         child: Row(
                           children: [
-                            Expanded(
-                              child: LoonoButton.light(
-                                text: l10n.examination_detail_add_to_calendar_button,
-                                onTap: () async {
-                                  final hasPermissionsGranted =
-                                      await _calendarService.hasPermissionsGranted();
-                                  if (hasPermissionsGranted) {
-                                    await AutoRouter.of(context).push(
-                                      CalendarListRoute(
-                                        examinationRecord: categorizedExamination.examination,
-                                      ),
-                                    );
-                                  } else {
-                                    final result = await AutoRouter.of(context).push<bool>(
-                                      CalendarPermissionInfoRoute(
-                                        examinationRecord: categorizedExamination.examination,
-                                      ),
-                                    );
-                                    // permission was permanently denied, show permission settings guide
-                                    if (result == false) {
-                                      showCalendarPermissionSheet(context);
+                            if (nextVisitDate!.isAfter(DateTime.now()))
+                              Expanded(
+                                child: LoonoButton.light(
+                                  text: l10n.examination_detail_add_to_calendar_button,
+                                  onTap: () async {
+                                    final hasPermissionsGranted =
+                                        await _calendarService.hasPermissionsGranted();
+                                    if (hasPermissionsGranted) {
+                                      await AutoRouter.of(context).push(
+                                        CalendarListRoute(
+                                          examinationRecord: categorizedExamination.examination,
+                                        ),
+                                      );
+                                    } else {
+                                      final result = await AutoRouter.of(context).push<bool>(
+                                        CalendarPermissionInfoRoute(
+                                          examinationRecord: categorizedExamination.examination,
+                                        ),
+                                      );
+                                      // permission was permanently denied, show permission settings guide
+                                      if (result == false) {
+                                        showCalendarPermissionSheet(context);
+                                      }
                                     }
-                                  }
-                                },
+                                  },
+                                ),
+                              )
+                            else
+                              Expanded(
+                                child: LoonoButton(
+                                  text: _sex == Sex.male
+                                      ? l10n.checkup_confirmation_male
+                                      : l10n.checkup_confirmation_female,
+                                  onTap: () {
+                                    showConfirmationSheet(
+                                      context,
+                                      categorizedExamination.examination.examinationType,
+                                      _sex,
+                                    );
+                                  },
+                                ),
                               ),
-                            ),
-                            const SizedBox(width: 19),
                           ],
                         ),
                       );
@@ -216,52 +243,44 @@ class ExaminationDetail extends StatelessWidget {
                     return const SizedBox.shrink();
                   },
                 ),
+                const SizedBox(width: 19),
                 Expanded(
                   child: LoonoButton.light(
                     text: l10n.examination_detail_edit_date_button,
                     onTap: () => showEditModal(context, categorizedExamination),
                   ),
                 ),
-              ] else ...[
+              ] else if (categorizedExamination.status ==
+                      const ExaminationStatus.unknownLastVisit() ||
+                  categorizedExamination.status == const ExaminationStatus.newToSchedule()) ...[
                 Expanded(
-                  child: LoonoButton.light(
-                    text: 'to do',
-                    onTap: () {},
+                  child: LoonoButton(
+                    text: 'objednat_se',
+                    onTap: () => showEditModal(context, categorizedExamination),
                   ),
                 ),
                 const SizedBox(width: 19),
                 Expanded(
                   child: LoonoButton.light(
-                    text: 'to do',
-                    onTap: () {},
+                    text: 'mam_objednano',
+                    onTap: () => showEditModal(context, categorizedExamination),
                   ),
                 ),
-              ],
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Row(
-            children: [
-              Expanded(
-                child: LoonoButton(
-                  text: _sex == Sex.male
-                      ? l10n.checkup_confirmation_male
-                      : l10n.checkup_confirmation_female,
-                  onTap: () {
-                    showConfirmationSheet(
-                      context,
-                      categorizedExamination.examination.examinationType,
-                      _sex,
-                    );
-                  },
+              ] else if (categorizedExamination.status == const ExaminationStatus.waiting()) ...[
+                Expanded(
+                  child: LoonoButton.light(
+                    text: 'pridat_do_kalendare',
+                    onTap: () => showEditModal(context, categorizedExamination),
+                  ),
                 ),
-              ),
-              const SizedBox(width: 19),
-              const Expanded(
-                child: SizedBox(),
-              ),
+                const SizedBox(width: 19),
+                Expanded(
+                  child: LoonoButton.light(
+                    text: 'mam_objednano',
+                    onTap: () => showEditModal(context, categorizedExamination),
+                  ),
+                ),
+              ]
             ],
           ),
         ),

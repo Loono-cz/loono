@@ -101,7 +101,9 @@ Future<void> setup(AppFlavors flavor) async {
       firebaseStorageService: registry.get<FirebaseStorageService>(),
     ),
   );
-  registry.registerSingleton<ExaminationRepository>(const ExaminationRepository());
+  registry.registerSingleton<ExaminationRepository>(
+    const ExaminationRepository(),
+  );
   registry.registerSingleton<HealthcareProviderRepository>(
     HealthcareProviderRepository(
       apiService: registry.get<ApiService>(),

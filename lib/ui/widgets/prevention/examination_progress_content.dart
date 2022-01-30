@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_status.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/ui/widgets/prevention/progress_bar/base_ring.dart';
 
 class ExaminationProgressContent extends StatelessWidget {
-  const ExaminationProgressContent({Key? key, required this.categorizedExamination})
-      : super(key: key);
+  const ExaminationProgressContent({
+    Key? key,
+    required this.categorizedExamination,
+    required this.dateSkipped,
+  }) : super(key: key);
 
   final CategorizedExamination categorizedExamination;
+  final DateTime? dateSkipped;
 
   bool get _isToday {
     final now = DateTime.now();
@@ -36,13 +41,20 @@ class ExaminationProgressContent extends StatelessWidget {
       return Text(
         '${context.l10n.more_than} ${_intervalYears(context)} ${context.l10n.since_last_visit}',
         textAlign: TextAlign.center,
-        style: LoonoFonts.paragraphSmallFontStyle.copyWith(fontWeight: FontWeight.w700),
+        style: LoonoFonts.paragraphSmallFontStyle.copyWith(
+          fontWeight: FontWeight.w700,
+          color: LoonoColors.primaryEnabled,
+        ),
       );
     } else {
       /// first examination
       return Text(
         context.l10n.first_visit_awaiting,
-        style: LoonoFonts.paragraphSmallFontStyle.copyWith(fontWeight: FontWeight.w700),
+        textAlign: TextAlign.center,
+        style: LoonoFonts.paragraphSmallFontStyle.copyWith(
+          fontWeight: FontWeight.w700,
+          color: LoonoColors.primaryEnabled,
+        ),
       );
     }
   }
@@ -108,10 +120,13 @@ class ExaminationProgressContent extends StatelessWidget {
       child: Stack(
         children: [
           SizedBox(
-            width: 168,
-            height: 168,
             child: CustomPaint(
-              painter: const Ring(progressColor: LoonoColors.greenSuccess),
+              painter: Ring(
+                progressColor: progressBarColor(categorizedExamination.status),
+                upperArcAngle: upperArcProgress(categorizedExamination),
+                lowerArcAngle: lowerArcProgress(categorizedExamination),
+                isOverdue: isOverdue(categorizedExamination),
+              ),
               child: Center(
                 child: FittedBox(
                   fit: BoxFit.fitWidth,
@@ -123,38 +138,8 @@ class ExaminationProgressContent extends StatelessWidget {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Container(
-                color: LoonoColors.greenSuccess,
-                width: 16,
-                height: 16,
-                child: const Icon(
-                  Icons.done,
-                  size: 14,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Container(
-                color: LoonoColors.red,
-                width: 16,
-                height: 16,
-                child: const Icon(
-                  Icons.priority_high,
-                  size: 14,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
+          progressBarLeftDot(categorizedExamination.status),
+          progressBarRightDot(categorizedExamination.status),
         ],
       ),
     );
