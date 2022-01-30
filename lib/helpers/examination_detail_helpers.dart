@@ -55,6 +55,21 @@ String czechPreposition(BuildContext context, {required ExaminationType examinat
   }
 }
 
+final czechMonthsInflected = [
+  'lednu',
+  'únoru',
+  'březnu',
+  'dubnu',
+  'květnu',
+  'červnu',
+  'červenci',
+  'srpnu',
+  'září',
+  'říjnu',
+  'listopadu',
+  'prosinci',
+];
+
 /// Gets localized message of: "In the last [interval] years".
 String getQuestionnaireFirstAnswer(
   BuildContext context, {

@@ -20,6 +20,7 @@ import 'package:loono/ui/widgets/prevention/calendar_permission_sheet.dart';
 import 'package:loono/ui/widgets/prevention/checkup_confirmation_sheet.dart';
 import 'package:loono/ui/widgets/prevention/checkup_edit_modal.dart';
 import 'package:loono/ui/widgets/prevention/examination_progress_content.dart';
+import 'package:loono/ui/widgets/prevention/last_visit_sheet.dart';
 import 'package:loono/utils/registry.dart';
 
 class ExaminationDetail extends StatelessWidget {
@@ -38,11 +39,11 @@ class ExaminationDetail extends StatelessWidget {
     const Duration(days: 60),
   );
 
-  ExaminationType get examinationType => categorizedExamination.examination.examinationType;
+  ExaminationType get _examinationType => categorizedExamination.examination.examinationType;
 
-  DateTime? get nextVisitDate => categorizedExamination.examination.nextVisitDate;
+  DateTime? get _nextVisitDate => categorizedExamination.examination.nextVisitDate;
 
-  Widget get _doctorAsset => SvgPicture.asset(examinationType.assetPath, width: 180);
+  Widget get _doctorAsset => SvgPicture.asset(_examinationType.assetPath, width: 180);
 
   Sex get _sex {
     final user = registry.get<DatabaseService>().users.user;
@@ -52,16 +53,19 @@ class ExaminationDetail extends StatelessWidget {
   String _intervalYears(BuildContext context) =>
       '${categorizedExamination.examination.interval.toString()} ${categorizedExamination.examination.interval > 1 ? context.l10n.years : context.l10n.year}';
 
-  Widget _calendarRow(String text) => Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SvgPicture.asset('assets/icons/prevention/calendar.svg'),
-          const SizedBox(width: 5),
-          Text(
-            text,
-            style: LoonoFonts.cardSubtitle,
-          ),
-        ],
+  Widget _calendarRow(String text, {VoidCallback? onTap}) => GestureDetector(
+        onTap: onTap,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SvgPicture.asset('assets/icons/prevention/calendar.svg'),
+            const SizedBox(width: 5),
+            Text(
+              text,
+              style: LoonoFonts.cardSubtitle,
+            ),
+          ],
+        ),
       );
 
   @override
@@ -74,6 +78,10 @@ class ExaminationDetail extends StatelessWidget {
             DateTime(lastVisitDateWithoutDay.year, lastVisitDateWithoutDay.month.index + 1),
           )
         : context.l10n.never;
+
+    final practitioner =
+        procedureQuestionTitle(context, examinationType: _examinationType).toLowerCase();
+    final preposition = czechPreposition(context, examinationType: _examinationType);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -128,7 +136,7 @@ class ExaminationDetail extends StatelessWidget {
                       children: [
                         const SizedBox(height: 18),
                         Text(
-                          examinationType.name.toUpperCase(),
+                          _examinationType.name.toUpperCase(),
                           style: LoonoFonts.headerFontStyle.copyWith(
                             color: LoonoColors.green,
                             fontWeight: FontWeight.w700,
@@ -141,7 +149,29 @@ class ExaminationDetail extends StatelessWidget {
                         const SizedBox(height: 10),
                         _calendarRow(
                           '${context.l10n.last_visit}:\n$lastVisit',
-                        )
+                          onTap: () {
+                            if (lastVisitDateWithoutDay != null) {
+                              AutoRouter.of(context).navigate(
+                                ChangeLastVisitRoute(
+                                  originalDate: DateTime(
+                                    lastVisitDateWithoutDay.year,
+                                    lastVisitDateWithoutDay.month.index,
+                                  ),
+                                  title:
+                                      '${l10n.change_last_visit_title} $preposition $practitioner',
+                                ),
+                              );
+                            } else {
+                              showLastVisitSheet(
+                                context,
+                                _examinationType,
+                                _sex,
+                                categorizedExamination.examination.interval,
+                                lastVisitSkippedDate,
+                              );
+                            }
+                          },
+                        ),
                       ],
                     ),
                   ),
@@ -187,7 +217,7 @@ class ExaminationDetail extends StatelessWidget {
                       categorizedExamination.status ==
                           const ExaminationStatus.scheduledSoonOrOverdue())) ...[
                 StreamBuilder<CalendarEvent?>(
-                  stream: _calendarEventsDao.watch(examinationType),
+                  stream: _calendarEventsDao.watch(_examinationType),
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
                       return Expanded(
@@ -289,7 +319,7 @@ class ExaminationDetail extends StatelessWidget {
           height: 40,
         ),
         FaqSection(
-          examinationType: examinationType,
+          examinationType: _examinationType,
         ),
       ],
     );
