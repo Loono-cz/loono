@@ -256,28 +256,29 @@ class ExaminationDetail extends StatelessWidget {
                 Expanded(
                   child: LoonoButton(
                     text: 'objednat_se',
-                    onTap: () => showEditModal(context, categorizedExamination),
+                    onTap: () {},
                   ),
                 ),
                 const SizedBox(width: 19),
                 Expanded(
                   child: LoonoButton.light(
                     text: 'mam_objednano',
-                    onTap: () => showEditModal(context, categorizedExamination),
+                    onTap: () {},
                   ),
                 ),
               ] else if (categorizedExamination.status == const ExaminationStatus.waiting()) ...[
                 Expanded(
+                  /// tried connection the same calendar logic here as above, but calendar event didn't work
                   child: LoonoButton.light(
                     text: 'pridat_do_kalendare',
-                    onTap: () => showEditModal(context, categorizedExamination),
+                    onTap: () {},
                   ),
                 ),
                 const SizedBox(width: 19),
                 Expanded(
                   child: LoonoButton.light(
                     text: 'mam_objednano',
-                    onTap: () => showEditModal(context, categorizedExamination),
+                    onTap: () {},
                   ),
                 ),
               ]

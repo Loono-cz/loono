@@ -14,7 +14,7 @@ class ExaminationDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        /// TODO: first time after onboarding there should be "schedule" flow. We dont have flag for that for now
+        /// TODO: commented out for testing of "unknown" status. First time after onboarding there should be "schedule" flow. We dont have flag for that for now
         /*child: categorizedExamination.status == const ExaminationStatus.unknownLastVisit()
             ? ScheduleExamination(
                 examinationRecord: categorizedExamination.examination,
