@@ -259,7 +259,7 @@ class AuthService {
     await _facebookSignIn.logOut();
   }
 
-  // TODO: refresh token more often - maybe on each api call ?
+  // TODO: refresh token more often - maybe on each api call ? (https://cesko-digital.atlassian.net/browse/LOON-477)
   Future<void> _refreshUserToken(User? user) async {
     final authUser = _authUserFromFirebase(user);
     if (authUser == null) return;

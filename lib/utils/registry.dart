@@ -65,9 +65,7 @@ Future<void> setup(AppFlavors flavor) async {
     flavor: flavor,
   );
 
-  final loonoApi = LoonoApi(
-    dio: Dio(defaultDioOptions),
-  );
+  registry.registerSingleton<LoonoApi>(LoonoApi(dio: Dio(defaultDioOptions)));
 
   registry.registerLazySingleton<GlobalKey<NavigatorState>>(() => GlobalKey());
   registry.registerLazySingleton<AppConfig>(() => config);
@@ -76,14 +74,14 @@ Future<void> setup(AppFlavors flavor) async {
   await registry.get<NotificationService>().init();
 
   // services
-  registry.registerSingleton<AuthService>(AuthService(api: loonoApi));
+  registry.registerSingleton<AuthService>(AuthService(api: registry.get<LoonoApi>()));
   registry.registerSingleton<DatabaseService>(DatabaseService());
   registry.registerSingleton<FirebaseStorageService>(
     FirebaseStorageService(
       authService: registry.get<AuthService>(),
     ),
   );
-  registry.registerSingleton<ApiService>(ApiService(api: loonoApi));
+  registry.registerSingleton<ApiService>(ApiService(api: registry.get<LoonoApi>()));
   registry.registerSingleton<CalendarService>(
     CalendarService(
       deviceCalendarPlugin: DeviceCalendarPlugin(),

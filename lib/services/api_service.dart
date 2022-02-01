@@ -55,16 +55,14 @@ class ApiService {
   }
 
   Future<ApiResponse<Account>> updateAccountSettings({
-    String? profileImageUrl,
     bool appointmentReminderEmailsOptIn = true,
     bool leaderboardAnonymizationOptIn = false,
-    bool? newsletterOptIn = false,
+    bool newsletterOptIn = false,
   }) async {
     return _callApi(
       () async => _api.getAccountApi().updateAccountSettings(
         settings: Settings((b) {
           b
-            ..profileImageUrl = profileImageUrl
             ..appointmentReminderEmailsOptIn = appointmentReminderEmailsOptIn
             ..leaderboardAnonymizationOptIn = leaderboardAnonymizationOptIn
             ..newsletterOptIn = newsletterOptIn;
@@ -77,7 +75,9 @@ class ApiService {
     Sex? sex,
     int? birthdateYear,
     int? birthdateMonth,
+    String? nickname,
     String? preferredEmail,
+    String? profileImageUrl,
   }) async {
     return _callApi(
       () async => _api.getAccountApi().updateAccountUser(
@@ -86,7 +86,9 @@ class ApiService {
             ..sex = sex
             ..birthdateYear = birthdateYear
             ..birthdateMonth = birthdateMonth
-            ..preferredEmail = preferredEmail;
+            ..nickname = nickname
+            ..preferredEmail = preferredEmail
+            ..profileImageUrl = profileImageUrl;
         }),
       ),
     );

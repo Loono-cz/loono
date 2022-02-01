@@ -73,9 +73,16 @@ class UserRepository {
     await _db.users.updateDentistVisitDate(dateWithoutDay);
   }
 
-  // TODO: api for nickname update not available?
-  Future<void> updateNickname(String nickname) async {
-    await _db.users.updateNickname(nickname);
+  Future<bool> updateNickname(String nickname) async {
+    final apiResponse = await _apiService.updateAccountUser(nickname: nickname);
+    final result = await apiResponse.map(
+      success: (_) async {
+        await _db.users.updateNickname(nickname);
+        return true;
+      },
+      failure: (_) async => false,
+    );
+    return result;
   }
 
   Future<bool> updateEmail(String email) async {
@@ -109,11 +116,10 @@ class UserRepository {
       settableMetadata: SettableMetadata(contentType: 'image/png'),
     );
     if (downloadUrl != null) {
-      final apiResponse = await _apiService.updateAccountSettings(profileImageUrl: downloadUrl);
+      final apiResponse = await _apiService.updateAccountUser(profileImageUrl: downloadUrl);
       final result = await apiResponse.map(
         success: (data) async {
           await _db.users.updateProfileImageUrl(downloadUrl);
-          print(data);
           return true;
         },
         failure: (_) async => false,
@@ -131,7 +137,7 @@ class UserRepository {
       ref: await _firebaseStorageService.userPhotoRef,
     );
     if (result == true) {
-      final apiResponse = await _apiService.updateAccountSettings(profileImageUrl: null);
+      final apiResponse = await _apiService.updateAccountUser(profileImageUrl: null);
       final result = await apiResponse.map(
         success: (_) async {
           await _db.users.updateProfileImageUrl(null);
