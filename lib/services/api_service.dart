@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:typed_data';
 
+import 'package:built_collection/built_collection.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/models/api_params.dart';
@@ -46,6 +47,19 @@ class ApiService {
     return _callApi(
       () async => _api.getProvidersApi().postProvidersDetail(
             healthcareProviderIdList: idList,
+          ),
+    );
+  }
+
+  Future<ApiResponse<BuiltList<ExaminationRecord>>> getExaminations({ApiParams? params}) async {
+    return _callApi(
+      () async => _api.getExaminationsApi().getExaminations(
+            cancelToken: params?.cancelToken,
+            extra: params?.extra,
+            headers: params?.headers,
+            onReceiveProgress: params?.onReceiveProgress,
+            onSendProgress: params?.onSendProgress,
+            validateStatus: params?.validateStatus,
           ),
     );
   }
