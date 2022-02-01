@@ -194,7 +194,6 @@ class ExaminationDetail extends StatelessWidget {
             ),
             ExaminationProgressContent(
               categorizedExamination: categorizedExamination,
-              dateSkipped: lastVisitSkippedDate,
             ),
             Expanded(
               child: Padding(

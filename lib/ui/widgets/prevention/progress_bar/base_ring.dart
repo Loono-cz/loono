@@ -20,7 +20,7 @@ class Ring extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final center = Offset(size.width / 2, size.height / 2);
     final radius = min((size.width / 2) - 8, (size.height / 2) - 8);
-    final angle = 2 * pi * 0.5;
+    const angle = 2 * pi * 0.5;
 
     /// Draw top base ring
     final topBaseArc = Paint()

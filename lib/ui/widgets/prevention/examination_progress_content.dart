@@ -11,11 +11,9 @@ class ExaminationProgressContent extends StatelessWidget {
   const ExaminationProgressContent({
     Key? key,
     required this.categorizedExamination,
-    required this.dateSkipped,
   }) : super(key: key);
 
   final CategorizedExamination categorizedExamination;
-  final DateTime? dateSkipped;
 
   bool get _isToday {
     final now = DateTime.now();
