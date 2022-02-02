@@ -9,7 +9,7 @@ enum PlayState { playing, paused, reset }
 class StoryPageState {
   StoryPageState({
     this.playState = PlayState.paused,
-    this.muteState = false,
+    this.muteState = true,
     this.pageIndexState = 0,
   });
 
