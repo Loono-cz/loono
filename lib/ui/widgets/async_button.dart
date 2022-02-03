@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/ui/widgets/extend_inkwell.dart';
 
+/// TODO: Async loading button placeholder (https://cesko-digital.atlassian.net/browse/LOON-476)
 class AsyncLoonoButton extends StatefulWidget {
   const AsyncLoonoButton({
     Key? key,
@@ -15,8 +16,15 @@ class AsyncLoonoButton extends StatefulWidget {
   }) : super(key: key);
 
   /// Called only if [enabled] is `true`.
-  final Future<bool> Function() asyncCallback;
+  ///
+  /// If the evaluation of the this async function returns `true`, [onSuccess]
+  /// callback will be called. Else if it returns `false`, [onError] callback will be called.
+  final Future<bool?> Function() asyncCallback;
+
+  /// Callback is called if [asyncCallback] returns `true`.
   final VoidCallback? onSuccess;
+
+  /// Callback is called if [asyncCallback] returns `false`.
   final VoidCallback? onError;
   final String text;
   final bool enabled;
@@ -39,7 +47,7 @@ class _AsyncLoonoButtonState extends State<AsyncLoonoButton> {
               setState(() => _isLoading = false);
               if (asyncResult == true) {
                 widget.onSuccess?.call();
-              } else {
+              } else if (asyncResult == false) {
                 widget.onError?.call();
               }
             }

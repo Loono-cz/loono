@@ -38,10 +38,8 @@ class AuthService {
 
   Stream<AuthUser?> get onAuthStateChanged => _auth.authStateChanges().map(_authUserFromFirebase);
 
-  AuthUser? _authUserFromFirebase(User? firebaseUser) {
-    final authUser = firebaseUser == null ? null : AuthUser(firebaseUser: firebaseUser);
-    return authUser;
-  }
+  AuthUser? _authUserFromFirebase(User? firebaseUser) =>
+      firebaseUser == null ? null : AuthUser(firebaseUser: firebaseUser);
 
   Future<Either<AuthFailure, AuthUser>> checkGoogleAccountExistsAndSignIn() async {
     GoogleSignInAccount? googleUser;
@@ -260,14 +258,11 @@ class AuthService {
   }
 
   // TODO: refresh token more often - maybe on each api call ? (https://cesko-digital.atlassian.net/browse/LOON-477)
-  Future<void> _refreshUserToken(User? user) async {
-    final authUser = _authUserFromFirebase(user);
-    if (authUser == null) return;
+  Future<void> _refreshUserToken(User user) async {
+    final authUser = _authUserFromFirebase(user)!;
     final token = await authUser.getIdToken();
-    _api.dio.options.headers.addAll(<String, String>{
-      'Authorization': 'Bearer $token',
-    });
+    _api.dio.options.headers['Authorization'] = 'Bearer $token';
   }
 
-  void _clearUserToken() => _api.dio.options.headers.clear();
+  void _clearUserToken() => _api.dio.options.headers.remove('Authorization');
 }

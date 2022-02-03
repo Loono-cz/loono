@@ -32,9 +32,8 @@ class EmailScreen extends StatelessWidget {
           keyboardType: TextInputType.emailAddress,
           validator: Validators.email(context),
           onSubmit: (input) async {
-            final result = await _userRepository.updateEmail(input);
+            await _userRepository.updateEmail(input);
             await AutoRouter.of(context).push(const MainScreenRouter());
-            return result;
           },
         );
       },
