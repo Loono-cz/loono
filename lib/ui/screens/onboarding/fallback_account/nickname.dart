@@ -30,9 +30,8 @@ class NicknameScreen extends StatelessWidget {
           keyboardType: TextInputType.name,
           validator: Validators.nickname(context),
           onSubmit: (input) async {
-            final result = await registry.get<UserRepository>().updateNickname(input);
+            await registry.get<UserRepository>().updateNickname(input);
             await AutoRouter.of(context).push(EmailRoute(authUser: authUser));
-            return result;
           },
         );
       },

@@ -118,7 +118,7 @@ class UserRepository {
     if (downloadUrl != null) {
       final apiResponse = await _apiService.updateAccountUser(profileImageUrl: downloadUrl);
       final result = await apiResponse.map(
-        success: (data) async {
+        success: (_) async {
           await _db.users.updateProfileImageUrl(downloadUrl);
           return true;
         },
