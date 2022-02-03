@@ -62,7 +62,7 @@ dependencies:
     git:
       url: https://github.com/cesko-digital/loono-api.git
       path: dart
-      ref: f2ebfbd1d98ad04d070ea0dfa7438a69b35ef827
+      ref: 200edf8566f35b4233144bc3eeb99346b05f199c
   modal_progress_hud_nsn: ^0.1.0-nullsafety-1
   moor: ^4.1.0
   onesignal_flutter: ^3.2.4

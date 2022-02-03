@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:typed_data';
 
-import 'package:built_collection/built_collection.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/models/api_params.dart';
@@ -9,7 +8,7 @@ import 'package:loono/models/api_response.dart';
 import 'package:loono_api/loono_api.dart';
 
 class ApiService {
-  const ApiService(this._api);
+  const ApiService({required LoonoApi api}) : _api = api;
 
   final LoonoApi _api;
 
@@ -51,16 +50,30 @@ class ApiService {
     );
   }
 
-  Future<ApiResponse<BuiltList<ExaminationRecord>>> getExaminations({ApiParams? params}) async {
+  Future<ApiResponse<Account>> getAccount() async {
+    return _callApi(() async => _api.getAccountApi().getAccount());
+  }
+
+  Future<ApiResponse<Account>> updateAccountUser({
+    Sex? sex,
+    int? birthdateYear,
+    int? birthdateMonth,
+    String? nickname,
+    String? preferredEmail,
+    String? profileImageUrl,
+  }) async {
     return _callApi(
-      () async => _api.getExaminationsApi().getExaminations(
-            cancelToken: params?.cancelToken,
-            extra: params?.extra,
-            headers: params?.headers,
-            onReceiveProgress: params?.onReceiveProgress,
-            onSendProgress: params?.onSendProgress,
-            validateStatus: params?.validateStatus,
-          ),
+      () async => _api.getAccountApi().updateAccountUser(
+        userPatch: UserPatch((b) {
+          b
+            ..sex = sex
+            ..birthdateYear = birthdateYear
+            ..birthdateMonth = birthdateMonth
+            ..nickname = nickname
+            ..preferredEmail = preferredEmail
+            ..profileImageUrl = profileImageUrl;
+        }),
+      ),
     );
   }
 }
