@@ -71,7 +71,7 @@ class ScheduleExamination extends StatelessWidget {
                               children: [
                                 DatePickerRoute(
                                   assetPath: _examinationType.assetPath,
-                                  title: _examinationType.name,
+                                  title: _examinationType.l10n_name,
                                   onSkipButtonPress: (date) {
                                     // TODO: save to api, navigate to updated ExaminationDetail
                                     showSnackBarError(context, message: 'TODO: save to API');

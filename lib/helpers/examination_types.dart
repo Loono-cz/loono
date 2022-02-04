@@ -65,7 +65,8 @@ extension ExaminationTypeEnumExt on ExaminationTypeEnum {
     return examinationTypeUnion;
   }
 
-  String get name => mapToUnion.when(
+  // ignore: non_constant_identifier_names
+  String get l10n_name => mapToUnion.when(
         breastSelf: () => 'Samovyšetření prsa',
         colonoscopy: () => 'Koloskopie',
         dentist: () => 'Zubař',

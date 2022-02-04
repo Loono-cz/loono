@@ -25,7 +25,7 @@ class ExaminationCard extends StatelessWidget {
       .inDays;
 
   Widget get _title => Text(
-        categorizedExamination.examination.examinationType.name,
+        categorizedExamination.examination.examinationType.l10n_name,
         style: LoonoFonts.cardTitle,
       );
 

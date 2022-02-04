@@ -40,13 +40,13 @@ class ExaminationTypeEnumDbConverter extends TypeConverter<ExaminationTypeEnum, 
   ExaminationTypeEnum? mapToDart(String? fromDb) {
     if (fromDb == null) return null;
     return ExaminationTypeEnum.values
-        .singleWhereOrNull((examinationType) => describeEnum(examinationType) == fromDb);
+        .singleWhereOrNull((examinationType) => examinationType.name == fromDb);
   }
 
   @override
   String? mapToSql(ExaminationTypeEnum? value) {
     if (value == null) return null;
-    return describeEnum(value);
+    return value.name;
   }
 }
 

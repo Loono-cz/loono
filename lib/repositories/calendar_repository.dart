@@ -1,6 +1,7 @@
 import 'package:device_calendar/device_calendar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';
+import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/services/calendar_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
@@ -30,7 +31,7 @@ class CalendarRepository {
       eventId: deviceCalendarEventId,
       start: tz.TZDateTime.from(startingDate, tz.getLocation(timezone)),
       end: tz.TZDateTime.from(startingDate.add(const Duration(hours: 1)), tz.getLocation(timezone)),
-      title: '${examinationType.name} - preventivní prohlídka [Loono]',
+      title: '${examinationType.l10n_name} - preventivní prohlídka [Loono]',
     );
   }
 
