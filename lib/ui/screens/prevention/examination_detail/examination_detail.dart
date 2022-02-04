@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
-import 'package:loono/helpers/examination_status.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
@@ -135,7 +135,7 @@ class ExaminationDetail extends StatelessWidget {
                       children: [
                         const SizedBox(height: 18),
                         Text(
-                          _examinationType.name.toUpperCase(),
+                          _examinationType.l10n_name.toUpperCase(),
                           style: LoonoFonts.headerFontStyle.copyWith(
                             color: LoonoColors.green,
                             fontWeight: FontWeight.w700,
@@ -199,7 +199,7 @@ class ExaminationDetail extends StatelessWidget {
                 padding: const EdgeInsets.all(4.0),
                 child: Text(
                   context.l10n.preventive_inspection,
-                  style: preventiveInspectionStyles(categorizedExamination.status),
+                  style: preventiveInspectionStyles(categorizedExamination.category),
                 ),
               ),
             ),
@@ -212,9 +212,9 @@ class ExaminationDetail extends StatelessWidget {
               // displays calendar button for the scheduled check-ups which did not happen yet
               if (_nextVisitDate != null &&
                   [
-                    const ExaminationStatus.scheduled(),
-                    const ExaminationStatus.scheduledSoonOrOverdue()
-                  ].contains(categorizedExamination.status)) ...[
+                    const ExaminationCategory.scheduled(),
+                    const ExaminationCategory.scheduledSoonOrOverdue()
+                  ].contains(categorizedExamination.category)) ...[
                 StreamBuilder<CalendarEvent?>(
                   stream: _calendarEventsDao.watch(_examinationType),
                   builder: (context, snapshot) {
@@ -252,7 +252,7 @@ class ExaminationDetail extends StatelessWidget {
                             else
                               Expanded(
                                 child: LoonoButton(
-                                  text: _sex == Sex.male
+                                  text: _sex == Sex.MALE
                                       ? l10n.checkup_confirmation_male
                                       : l10n.checkup_confirmation_female,
                                   onTap: () {
@@ -280,9 +280,9 @@ class ExaminationDetail extends StatelessWidget {
                   ),
                 ),
               ] else if ([
-                const ExaminationStatus.unknownLastVisit(),
-                const ExaminationStatus.newToSchedule()
-              ].contains(categorizedExamination.status)) ...[
+                const ExaminationCategory.unknownLastVisit(),
+                const ExaminationCategory.newToSchedule()
+              ].contains(categorizedExamination.category)) ...[
                 Expanded(
                   child: LoonoButton(
                     text: 'objednat_se',
@@ -296,7 +296,8 @@ class ExaminationDetail extends StatelessWidget {
                     onTap: () {},
                   ),
                 ),
-              ] else if (categorizedExamination.status == const ExaminationStatus.waiting()) ...[
+              ] else if (categorizedExamination.category ==
+                  const ExaminationCategory.waiting()) ...[
                 Expanded(
                   /// tried connection the same calendar logic here as above, but calendar event didn't work
                   child: LoonoButton.light(

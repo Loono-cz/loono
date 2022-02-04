@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/helpers/examination_detail_helpers.dart';
-import 'package:loono/helpers/examination_status.dart';
 import 'package:loono/helpers/examination_category.dart';
+import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/ui/widgets/prevention/progress_bar/base_ring.dart';
@@ -28,15 +27,15 @@ class ExaminationProgressContent extends StatelessWidget {
   /// get correct combination of text font styles and colors
   Widget _progressBarContent(BuildContext context) {
     if ([
-      const ExaminationStatus.scheduledSoonOrOverdue(),
-      const ExaminationStatus.scheduled(),
-    ].contains(categorizedExamination.status)) {
+      const ExaminationCategory.scheduledSoonOrOverdue(),
+      const ExaminationCategory.scheduled(),
+    ].contains(categorizedExamination.category)) {
       /// known next visit
       return _scheduledVisitContent(context);
     } else if ([
-      const ExaminationStatus.newToSchedule(),
-      const ExaminationStatus.waiting(),
-    ].contains(categorizedExamination.status)) {
+      const ExaminationCategory.newToSchedule(),
+      const ExaminationCategory.waiting(),
+    ].contains(categorizedExamination.category)) {
       /// awaiting new checkup
       return _earlyCheckupContent(context);
     } else if (categorizedExamination.examination.lastVisitDate != null) {
@@ -125,7 +124,7 @@ class ExaminationProgressContent extends StatelessWidget {
           SizedBox(
             child: CustomPaint(
               painter: Ring(
-                progressColor: progressBarColor(categorizedExamination.status),
+                progressColor: progressBarColor(categorizedExamination.category),
                 upperArcAngle: upperArcProgress(categorizedExamination),
                 lowerArcAngle: lowerArcProgress(categorizedExamination),
                 isOverdue: isOverdue(categorizedExamination),
@@ -141,8 +140,8 @@ class ExaminationProgressContent extends StatelessWidget {
               ),
             ),
           ),
-          progressBarLeftDot(categorizedExamination.status),
-          progressBarRightDot(categorizedExamination.status),
+          progressBarLeftDot(categorizedExamination.category),
+          progressBarRightDot(categorizedExamination.category),
         ],
       ),
     );

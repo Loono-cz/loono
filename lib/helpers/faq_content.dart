@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono_api/loono_api.dart';
 
@@ -22,7 +23,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationTypeEnum type) {
     case ExaminationTypeEnum.COLONOSCOPY:
       result = [
         FAQPair(
-          question: '${texts.what_is} ${type.name}?',
+          question: '${texts.what_is} ${type.l10n_name}?',
           answer: texts.faq_colonoscopy_answer,
         ),
         FAQPair(
@@ -50,7 +51,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationTypeEnum type) {
     case ExaminationTypeEnum.DENTIST:
       result = [
         FAQPair(
-          question: '${texts.who_is} ${type.name}?',
+          question: '${texts.who_is} ${type.l10n_name}?',
           answer: texts.faq_dentist_answer,
         ),
         FAQPair(
@@ -78,7 +79,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationTypeEnum type) {
     case ExaminationTypeEnum.DERMATOLOGIST:
       result = [
         FAQPair(
-          question: '${texts.who_is} ${type.name}?',
+          question: '${texts.who_is} ${type.l10n_name}?',
           answer: texts.faq_dermatologist_answer,
         ),
         FAQPair(
@@ -106,7 +107,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationTypeEnum type) {
     case ExaminationTypeEnum.GENERAL_PRACTITIONER:
       result = [
         FAQPair(
-          question: '${texts.who_is} ${type.name}?',
+          question: '${texts.who_is} ${type.l10n_name}?',
           answer: texts.faq_general_practitioner_answer,
         ),
         FAQPair(
@@ -134,7 +135,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationTypeEnum type) {
     case ExaminationTypeEnum.GYNECOLOGIST:
       result = [
         FAQPair(
-          question: '${texts.who_is} ${type.name}?',
+          question: '${texts.who_is} ${type.l10n_name}?',
           answer: texts.faq_gynecologist_answer,
         ),
         FAQPair(
@@ -162,7 +163,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationTypeEnum type) {
     case ExaminationTypeEnum.MAMMOGRAM:
       result = [
         FAQPair(
-          question: '${texts.what_is} ${type.name}?',
+          question: '${texts.what_is} ${type.l10n_name}?',
           answer: texts.faq_mammogram_answer,
         ),
         FAQPair(
@@ -190,7 +191,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationTypeEnum type) {
     case ExaminationTypeEnum.OPHTHALMOLOGIST:
       result = [
         FAQPair(
-          question: '${texts.who_is} ${type.name}?',
+          question: '${texts.who_is} ${type.l10n_name}?',
           answer: texts.faq_ophthalmologist_answer,
         ),
         FAQPair(
@@ -219,7 +220,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationTypeEnum type) {
     case ExaminationTypeEnum.UROLOGIST:
       result = [
         FAQPair(
-          question: '${texts.who_is} ${type.name}?',
+          question: '${texts.who_is} ${type.l10n_name}?',
           answer: texts.faq_urologist_answer,
         ),
         FAQPair(

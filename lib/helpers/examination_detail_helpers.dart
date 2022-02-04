@@ -13,32 +13,32 @@ TextStyle earlyOrderStyles(CategorizedExamination examination) {
 
   if (nextVisit != null &&
       [
-        const ExaminationStatus.scheduled(),
-        const ExaminationStatus.scheduledSoonOrOverdue(),
-      ].contains(examination.status) &&
+        const ExaminationCategory.scheduled(),
+        const ExaminationCategory.scheduledSoonOrOverdue(),
+      ].contains(examination.category) &&
       DateTime.now().isBefore(nextVisit)) {
     color = LoonoColors.green;
   } else if ([
-    const ExaminationStatus.newToSchedule(),
-    const ExaminationStatus.unknownLastVisit(),
-  ].contains(examination.status)) {
+    const ExaminationCategory.newToSchedule(),
+    const ExaminationCategory.unknownLastVisit(),
+  ].contains(examination.category)) {
     color = LoonoColors.red;
     weight = FontWeight.w700;
   }
   return LoonoFonts.cardTitle.copyWith(color: color, fontWeight: weight);
 }
 
-TextStyle preventiveInspectionStyles(ExaminationStatus status) {
+TextStyle preventiveInspectionStyles(ExaminationCategory category) {
   var color = LoonoColors.green;
   var weight = FontWeight.w400;
 
-  if (status == const ExaminationStatus.scheduledSoonOrOverdue()) {
+  if (category == const ExaminationCategory.scheduledSoonOrOverdue()) {
     color = LoonoColors.red;
     weight = FontWeight.w700;
   } else if ([
-    const ExaminationStatus.scheduled(),
-    const ExaminationStatus.unknownLastVisit(),
-  ].contains(status)) {
+    const ExaminationCategory.scheduled(),
+    const ExaminationCategory.unknownLastVisit(),
+  ].contains(category)) {
     color = LoonoColors.black;
   }
   return LoonoFonts.cardTitle.copyWith(color: color, fontWeight: weight);
@@ -159,12 +159,12 @@ int daysBetween(DateTime from, DateTime to) {
 
 double upperArcProgress(CategorizedExamination examination) {
   final nextVisit = examination.examination.nextVisitDate;
-  final status = examination.status;
+  final category = examination.category;
   final interval = examination.examination.interval;
   if ([
-        const ExaminationStatus.scheduled(),
-        const ExaminationStatus.scheduledSoonOrOverdue(),
-      ].contains(status) &&
+        const ExaminationCategory.scheduled(),
+        const ExaminationCategory.scheduledSoonOrOverdue(),
+      ].contains(category) &&
       nextVisit != null) {
     final totalDays = daysBetween(
       DateTime(nextVisit.year - interval, nextVisit.month),
@@ -175,7 +175,7 @@ double upperArcProgress(CategorizedExamination examination) {
       DateTime.now(),
     );
     return (sinceScheduledDays / totalDays).clamp(0, 1);
-  } else if (status == const ExaminationStatus.waiting()) {
+  } else if (category == const ExaminationCategory.waiting()) {
     return 1;
   }
   return 0;
@@ -184,10 +184,10 @@ double upperArcProgress(CategorizedExamination examination) {
 double lowerArcProgress(CategorizedExamination examination) {
   final nextVisit = examination.examination.nextVisitDate;
   final lastVisit = examination.examination.lastVisitDate;
-  final status = examination.status;
+  final category = examination.category;
   final interval = examination.examination.interval;
 
-  if (status == const ExaminationStatus.scheduledSoonOrOverdue() && nextVisit != null) {
+  if (category == const ExaminationCategory.scheduledSoonOrOverdue() && nextVisit != null) {
     final intervalDays = daysBetween(
       nextVisit,
       DateTime(nextVisit.year + interval, nextVisit.month),
@@ -198,7 +198,7 @@ double lowerArcProgress(CategorizedExamination examination) {
           DateTime(nextVisit.year + interval, nextVisit.month),
         );
     return (afterScheduledDays / intervalDays).clamp(0, 1);
-  } else if (status == const ExaminationStatus.waiting() && lastVisit != null) {
+  } else if (category == const ExaminationCategory.waiting() && lastVisit != null) {
     final intervalDays = daysBetween(
       DateTime(lastVisit.year, lastVisit.month.index + 1),
       DateTime(lastVisit.year + interval, lastVisit.month.index + 1),
@@ -215,30 +215,30 @@ double lowerArcProgress(CategorizedExamination examination) {
 bool isOverdue(CategorizedExamination examination) {
   final nextVisit = examination.examination.nextVisitDate;
   if (nextVisit != null) {
-    return examination.status == const ExaminationStatus.scheduledSoonOrOverdue() &&
+    return examination.category == const ExaminationCategory.scheduledSoonOrOverdue() &&
         DateTime.now().isAfter(nextVisit);
   }
   return false;
 }
 
-Color progressBarColor(ExaminationStatus status) {
+Color progressBarColor(ExaminationCategory category) {
   if ([
-    const ExaminationStatus.scheduled(),
-    const ExaminationStatus.scheduledSoonOrOverdue(),
-  ].contains(status)) {
+    const ExaminationCategory.scheduled(),
+    const ExaminationCategory.scheduledSoonOrOverdue(),
+  ].contains(category)) {
     return LoonoColors.primaryEnabled;
   }
   return LoonoColors.greenSuccess;
 }
 
-Widget progressBarLeftDot(ExaminationStatus status) {
+Widget progressBarLeftDot(ExaminationCategory category) {
   var color = LoonoColors.red;
   if ([
-    const ExaminationStatus.scheduledSoonOrOverdue(),
-    const ExaminationStatus.scheduled(),
-  ].contains(status)) {
+    const ExaminationCategory.scheduledSoonOrOverdue(),
+    const ExaminationCategory.scheduled(),
+  ].contains(category)) {
     color = LoonoColors.greenSuccess;
-  } else if (status == const ExaminationStatus.waiting()) {
+  } else if (category == const ExaminationCategory.waiting()) {
     color = LoonoColors.primary;
   }
   return Align(
@@ -251,9 +251,9 @@ Widget progressBarLeftDot(ExaminationStatus status) {
         height: 16,
         child: Visibility(
           visible: [
-            const ExaminationStatus.scheduledSoonOrOverdue(),
-            const ExaminationStatus.scheduled(),
-          ].contains(status),
+            const ExaminationCategory.scheduledSoonOrOverdue(),
+            const ExaminationCategory.scheduled(),
+          ].contains(category),
           child: const Icon(
             Icons.done,
             size: 14,
@@ -265,13 +265,13 @@ Widget progressBarLeftDot(ExaminationStatus status) {
   );
 }
 
-Widget progressBarRightDot(ExaminationStatus status) {
+Widget progressBarRightDot(ExaminationCategory category) {
   var color = LoonoColors.primary;
   IconData? icon;
-  if (status == const ExaminationStatus.scheduledSoonOrOverdue()) {
+  if (category == const ExaminationCategory.scheduledSoonOrOverdue()) {
     color = LoonoColors.red;
     icon = Icons.priority_high;
-  } else if (status == const ExaminationStatus.waiting()) {
+  } else if (category == const ExaminationCategory.waiting()) {
     color = LoonoColors.greenSuccess;
     icon = Icons.done;
   }

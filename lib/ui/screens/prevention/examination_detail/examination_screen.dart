@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/examination_detail.dart';
 
@@ -16,7 +15,7 @@ class ExaminationDetailScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         /// TODO: commented out for testing of "unknown" status. First time after onboarding there should be "schedule" flow. We dont have flag for that for now
-        /*child: categorizedExamination.status == const ExaminationStatus.unknownLastVisit()
+        /*child: categorizedExamination.category == const ExaminationCategory.unknownLastVisit()
             ? ScheduleExamination(
                 examinationRecord: categorizedExamination.examination,
               )
