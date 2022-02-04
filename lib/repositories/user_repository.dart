@@ -4,20 +4,23 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/models/achievement.dart';
 import 'package:loono/models/user.dart';
+import 'package:loono/services/api_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/firebase_storage_service.dart';
 import 'package:loono_api/loono_api.dart' hide User;
 import 'package:uuid/uuid.dart';
 
-// TODO: Connect with ApiService
 class UserRepository {
   UserRepository({
+    required ApiService apiService,
     required DatabaseService databaseService,
     required FirebaseStorageService firebaseStorageService,
-  })  : _db = databaseService,
+  })  : _apiService = apiService,
+        _db = databaseService,
         _firebaseStorageService = firebaseStorageService;
 
+  final ApiService _apiService;
   final DatabaseService _db;
   final FirebaseStorageService _firebaseStorageService;
 
@@ -70,8 +73,16 @@ class UserRepository {
     await _db.users.updateDentistVisitDate(dateWithoutDay);
   }
 
-  Future<void> updateNickname(String nickname) async {
-    await _db.users.updateNickname(nickname);
+  Future<bool> updateNickname(String nickname) async {
+    final apiResponse = await _apiService.updateAccountUser(nickname: nickname);
+    final result = await apiResponse.map(
+      success: (_) async {
+        await _db.users.updateNickname(nickname);
+        return true;
+      },
+      failure: (_) async => false,
+    );
+    return result;
   }
 
   Future<void> updateEmail(String email) async {

@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/examination_detail_helpers.dart';
+import 'package:loono/helpers/examination_status.dart';
 import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
+import 'package:loono/ui/widgets/prevention/progress_bar/base_ring.dart';
 
 class ExaminationProgressContent extends StatelessWidget {
-  const ExaminationProgressContent({Key? key, required this.categorizedExamination})
-      : super(key: key);
+  const ExaminationProgressContent({
+    Key? key,
+    required this.categorizedExamination,
+  }) : super(key: key);
 
   final CategorizedExamination categorizedExamination;
 
@@ -22,12 +27,16 @@ class ExaminationProgressContent extends StatelessWidget {
 
   /// get correct combination of text font styles and colors
   Widget _progressBarContent(BuildContext context) {
-    if (categorizedExamination.category == const ExaminationCategory.scheduledSoonOrOverdue() ||
-        categorizedExamination.category == const ExaminationCategory.scheduled()) {
+    if ([
+      const ExaminationStatus.scheduledSoonOrOverdue(),
+      const ExaminationStatus.scheduled(),
+    ].contains(categorizedExamination.status)) {
       /// known next visit
       return _scheduledVisitContent(context);
-    } else if (categorizedExamination.category == const ExaminationCategory.newToSchedule() ||
-        categorizedExamination.category == const ExaminationCategory.waiting()) {
+    } else if ([
+      const ExaminationStatus.newToSchedule(),
+      const ExaminationStatus.waiting(),
+    ].contains(categorizedExamination.status)) {
       /// awaiting new checkup
       return _earlyCheckupContent(context);
     } else if (categorizedExamination.examination.lastVisitDate != null) {
@@ -35,13 +44,20 @@ class ExaminationProgressContent extends StatelessWidget {
       return Text(
         '${context.l10n.more_than} ${_intervalYears(context)} ${context.l10n.since_last_visit}',
         textAlign: TextAlign.center,
-        style: LoonoFonts.paragraphSmallFontStyle.copyWith(fontWeight: FontWeight.w700),
+        style: LoonoFonts.paragraphSmallFontStyle.copyWith(
+          fontWeight: FontWeight.w700,
+          color: LoonoColors.primaryEnabled,
+        ),
       );
     } else {
       /// first examination
       return Text(
         context.l10n.first_visit_awaiting,
-        style: LoonoFonts.paragraphSmallFontStyle.copyWith(fontWeight: FontWeight.w700),
+        textAlign: TextAlign.center,
+        style: LoonoFonts.paragraphSmallFontStyle.copyWith(
+          fontWeight: FontWeight.w700,
+          color: LoonoColors.primaryEnabled,
+        ),
       );
     }
   }
@@ -101,15 +117,33 @@ class ExaminationProgressContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(80),
-      child: Container(
-        width: 160,
-        height: 160,
-        color: LoonoColors.beigeLighter,
-        child: Center(
-          child: _progressBarContent(context),
-        ),
+    return SizedBox(
+      width: 168,
+      height: 168,
+      child: Stack(
+        children: [
+          SizedBox(
+            child: CustomPaint(
+              painter: Ring(
+                progressColor: progressBarColor(categorizedExamination.status),
+                upperArcAngle: upperArcProgress(categorizedExamination),
+                lowerArcAngle: lowerArcProgress(categorizedExamination),
+                isOverdue: isOverdue(categorizedExamination),
+              ),
+              child: Center(
+                child: FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: _progressBarContent(context),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          progressBarLeftDot(categorizedExamination.status),
+          progressBarRightDot(categorizedExamination.status),
+        ],
       ),
     );
   }

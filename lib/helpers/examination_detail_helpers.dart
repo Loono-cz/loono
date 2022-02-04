@@ -10,25 +10,35 @@ TextStyle earlyOrderStyles(CategorizedExamination examination) {
   var color = LoonoColors.black;
   var weight = FontWeight.w400;
   final nextVisit = examination.examination.nextVisitDate;
-  if (nextVisit != null && DateTime.now().isBefore(nextVisit)) {
+
+  if (nextVisit != null &&
+      [
+        const ExaminationStatus.scheduled(),
+        const ExaminationStatus.scheduledSoonOrOverdue(),
+      ].contains(examination.status) &&
+      DateTime.now().isBefore(nextVisit)) {
     color = LoonoColors.green;
-  } else if (nextVisit == null ||
-      examination.category == const ExaminationCategory.newToSchedule()) {
+  } else if ([
+    const ExaminationStatus.newToSchedule(),
+    const ExaminationStatus.unknownLastVisit(),
+  ].contains(examination.status)) {
     color = LoonoColors.red;
     weight = FontWeight.w700;
   }
   return LoonoFonts.cardTitle.copyWith(color: color, fontWeight: weight);
 }
 
-TextStyle preventiveInspectionStyles(CategorizedExamination examination) {
+TextStyle preventiveInspectionStyles(ExaminationStatus status) {
   var color = LoonoColors.green;
   var weight = FontWeight.w400;
-  final now = DateTime.now();
-  final nextVisit = examination.examination.nextVisitDate;
-  if (nextVisit != null && DateTime.now().isAfter(nextVisit)) {
+
+  if (status == const ExaminationStatus.scheduledSoonOrOverdue()) {
     color = LoonoColors.red;
     weight = FontWeight.w700;
-  } else if ((nextVisit != null && now.isBefore(nextVisit)) || nextVisit == null) {
+  } else if ([
+    const ExaminationStatus.scheduled(),
+    const ExaminationStatus.unknownLastVisit(),
+  ].contains(status)) {
     color = LoonoColors.black;
   }
   return LoonoFonts.cardTitle.copyWith(color: color, fontWeight: weight);
@@ -137,4 +147,150 @@ String procedureQuestionTitle(
       break;
   }
   return response;
+}
+
+int daysBetween(DateTime from, DateTime to) {
+  from = DateTime(from.year, from.month, from.day);
+  to = DateTime(to.year, to.month, to.day);
+
+  /// .inDays does not work here (https://stackoverflow.com/questions/52713115/flutter-find-the-number-of-days-between-two-dates/67679455#67679455)
+  return (to.difference(from).inHours / 24).round();
+}
+
+double upperArcProgress(CategorizedExamination examination) {
+  final nextVisit = examination.examination.nextVisitDate;
+  final status = examination.status;
+  final interval = examination.examination.interval;
+  if ([
+        const ExaminationStatus.scheduled(),
+        const ExaminationStatus.scheduledSoonOrOverdue(),
+      ].contains(status) &&
+      nextVisit != null) {
+    final totalDays = daysBetween(
+      DateTime(nextVisit.year - interval, nextVisit.month),
+      nextVisit,
+    );
+    final sinceScheduledDays = daysBetween(
+      DateTime(nextVisit.year - interval, nextVisit.month),
+      DateTime.now(),
+    );
+    return (sinceScheduledDays / totalDays).clamp(0, 1);
+  } else if (status == const ExaminationStatus.waiting()) {
+    return 1;
+  }
+  return 0;
+}
+
+double lowerArcProgress(CategorizedExamination examination) {
+  final nextVisit = examination.examination.nextVisitDate;
+  final lastVisit = examination.examination.lastVisitDate;
+  final status = examination.status;
+  final interval = examination.examination.interval;
+
+  if (status == const ExaminationStatus.scheduledSoonOrOverdue() && nextVisit != null) {
+    final intervalDays = daysBetween(
+      nextVisit,
+      DateTime(nextVisit.year + interval, nextVisit.month),
+    );
+    final afterScheduledDays = intervalDays -
+        daysBetween(
+          DateTime.now(),
+          DateTime(nextVisit.year + interval, nextVisit.month),
+        );
+    return (afterScheduledDays / intervalDays).clamp(0, 1);
+  } else if (status == const ExaminationStatus.waiting() && lastVisit != null) {
+    final intervalDays = daysBetween(
+      DateTime(lastVisit.year, lastVisit.month.index + 1),
+      DateTime(lastVisit.year + interval, lastVisit.month.index + 1),
+    );
+    final afterLastVisitDays = daysBetween(
+      DateTime(lastVisit.year, lastVisit.month.index + 1),
+      DateTime.now(),
+    );
+    return (afterLastVisitDays / intervalDays).clamp(0, 1);
+  }
+  return 0;
+}
+
+bool isOverdue(CategorizedExamination examination) {
+  final nextVisit = examination.examination.nextVisitDate;
+  if (nextVisit != null) {
+    return examination.status == const ExaminationStatus.scheduledSoonOrOverdue() &&
+        DateTime.now().isAfter(nextVisit);
+  }
+  return false;
+}
+
+Color progressBarColor(ExaminationStatus status) {
+  if ([
+    const ExaminationStatus.scheduled(),
+    const ExaminationStatus.scheduledSoonOrOverdue(),
+  ].contains(status)) {
+    return LoonoColors.primaryEnabled;
+  }
+  return LoonoColors.greenSuccess;
+}
+
+Widget progressBarLeftDot(ExaminationStatus status) {
+  var color = LoonoColors.red;
+  if ([
+    const ExaminationStatus.scheduledSoonOrOverdue(),
+    const ExaminationStatus.scheduled(),
+  ].contains(status)) {
+    color = LoonoColors.greenSuccess;
+  } else if (status == const ExaminationStatus.waiting()) {
+    color = LoonoColors.primary;
+  }
+  return Align(
+    alignment: Alignment.centerLeft,
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(8),
+      child: Container(
+        color: color,
+        width: 16,
+        height: 16,
+        child: Visibility(
+          visible: [
+            const ExaminationStatus.scheduledSoonOrOverdue(),
+            const ExaminationStatus.scheduled(),
+          ].contains(status),
+          child: const Icon(
+            Icons.done,
+            size: 14,
+            color: Colors.white,
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+Widget progressBarRightDot(ExaminationStatus status) {
+  var color = LoonoColors.primary;
+  IconData? icon;
+  if (status == const ExaminationStatus.scheduledSoonOrOverdue()) {
+    color = LoonoColors.red;
+    icon = Icons.priority_high;
+  } else if (status == const ExaminationStatus.waiting()) {
+    color = LoonoColors.greenSuccess;
+    icon = Icons.done;
+  }
+  return Align(
+    alignment: Alignment.centerRight,
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(8),
+      child: Container(
+        color: color,
+        width: 16,
+        height: 16,
+        child: icon != null
+            ? Icon(
+                icon,
+                size: 14,
+                color: Colors.white,
+              )
+            : const SizedBox(),
+      ),
+    ),
+  );
 }

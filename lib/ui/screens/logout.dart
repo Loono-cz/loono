@@ -4,7 +4,6 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:loono/models/user.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/auth/failures.dart';
@@ -21,18 +20,15 @@ class LogoutScreen extends StatefulWidget {
 }
 
 class _LogoutScreenState extends State<LogoutScreen> {
-  late AuthService _authService;
-  late UsersDao _usersDao;
+  late final AuthService _authService;
 
   @override
   void initState() {
     super.initState();
     _authService = registry.get<AuthService>();
-    _usersDao = registry.get<DatabaseService>().users;
-
     _authService.signOut();
-    _usersDao.deleteAll();
 
+    registry.get<DatabaseService>().clearDb();
     // clears saved user avatar and other app's temp data
     registry.get<DefaultCacheManager>().emptyCache();
     // TODO: Calling this after adding the firebase_messaging package in order to delete a fcm token
