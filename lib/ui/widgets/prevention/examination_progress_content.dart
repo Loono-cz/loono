@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/helpers/examination_status.dart';
+import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 
@@ -22,12 +22,12 @@ class ExaminationProgressContent extends StatelessWidget {
 
   /// get correct combination of text font styles and colors
   Widget _progressBarContent(BuildContext context) {
-    if (categorizedExamination.status == const ExaminationStatus.scheduledSoonOrOverdue() ||
-        categorizedExamination.status == const ExaminationStatus.scheduled()) {
+    if (categorizedExamination.category == const ExaminationCategory.scheduledSoonOrOverdue() ||
+        categorizedExamination.category == const ExaminationCategory.scheduled()) {
       /// known next visit
       return _scheduledVisitContent(context);
-    } else if (categorizedExamination.status == const ExaminationStatus.newToSchedule() ||
-        categorizedExamination.status == const ExaminationStatus.waiting()) {
+    } else if (categorizedExamination.category == const ExaminationCategory.newToSchedule() ||
+        categorizedExamination.category == const ExaminationCategory.waiting()) {
       /// awaiting new checkup
       return _earlyCheckupContent(context);
     } else if (categorizedExamination.examination.lastVisitDate != null) {

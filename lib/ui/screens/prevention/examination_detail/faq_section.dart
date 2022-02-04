@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/helpers/faq_content.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/expansion_tile.dart';
+import 'package:loono_api/loono_api.dart';
 
 class FaqSection extends StatelessWidget {
   const FaqSection({Key? key, required this.examinationType}) : super(key: key);
 
-  final ExaminationType examinationType;
+  final ExaminationTypeEnum examinationType;
 
   @override
   Widget build(BuildContext context) {

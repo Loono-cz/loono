@@ -50,7 +50,7 @@ class ExaminationCard extends StatelessWidget {
           onTap: onTap,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: categorizedExamination.status.when(
+            children: categorizedExamination.category.when(
               scheduledSoonOrOverdue: () => _scheduledContent(isSoonOrOverdue: true),
               newToSchedule: () => _makeAppointmentContent(context, isNew: true),
               unknownLastVisit: () => _makeAppointmentContent(context),

@@ -6,11 +6,11 @@ import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/helpers/snackbar_message.dart';
-import 'package:loono/models/user.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/universal_doctor.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart';
 
 class ScheduleExamination extends StatelessWidget {
   ScheduleExamination({
@@ -18,17 +18,17 @@ class ScheduleExamination extends StatelessWidget {
     required this.examinationRecord,
   }) : super(key: key);
 
-  final ExaminationRecord examinationRecord;
+  final ExaminationRecordTemp examinationRecord;
 
   final _appRouter = registry.get<AppRouter>();
 
-  ExaminationType get _examinationType => examinationRecord.examinationType;
+  ExaminationTypeEnum get _examinationType => examinationRecord.examinationType;
 
   int get _interval => examinationRecord.interval;
 
   Sex get _sex {
     final user = registry.get<DatabaseService>().users.user;
-    return user?.sex ?? Sex.male;
+    return user?.sex ?? Sex.MALE;
   }
 
   @override

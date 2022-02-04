@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/helpers/examination_status.dart';
-import 'package:loono/helpers/examination_types.dart';
+import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
+import 'package:loono_api/loono_api.dart';
 
 TextStyle earlyOrderStyles(CategorizedExamination examination) {
   var color = LoonoColors.black;
@@ -12,7 +12,8 @@ TextStyle earlyOrderStyles(CategorizedExamination examination) {
   final nextVisit = examination.examination.nextVisitDate;
   if (nextVisit != null && DateTime.now().isBefore(nextVisit)) {
     color = LoonoColors.green;
-  } else if (nextVisit == null || examination.status == const ExaminationStatus.newToSchedule()) {
+  } else if (nextVisit == null ||
+      examination.category == const ExaminationCategory.newToSchedule()) {
     color = LoonoColors.red;
     weight = FontWeight.w700;
   }
@@ -33,10 +34,10 @@ TextStyle preventiveInspectionStyles(CategorizedExamination examination) {
   return LoonoFonts.cardTitle.copyWith(color: color, fontWeight: weight);
 }
 
-String czechPreposition(BuildContext context, {required ExaminationType examinationType}) {
+String czechPreposition(BuildContext context, {required ExaminationTypeEnum examinationType}) {
   if ([
-    ExaminationType.COLONOSCOPY,
-    ExaminationType.MAMMOGRAM,
+    ExaminationTypeEnum.COLONOSCOPY,
+    ExaminationTypeEnum.MAMMOGRAM,
   ].contains(examinationType)) {
     return 'na';
   } else {
@@ -89,43 +90,49 @@ String getQuestionnaireSecondAnswer(
   );
 }
 
-String procedureQuestionTitle(BuildContext context, {required ExaminationType examinationType}) {
+String procedureQuestionTitle(
+  BuildContext context, {
+  required ExaminationTypeEnum examinationType,
+}) {
   var response = '';
   switch (examinationType) {
-    case ExaminationType.COLONOSCOPY:
+    case ExaminationTypeEnum.COLONOSCOPY:
       response = context.l10n.colonoscopy_question_highlight;
       break;
-    case ExaminationType.DENTIST:
+    case ExaminationTypeEnum.DENTIST:
       response = context.l10n.dentist_question_highlight;
       break;
-    case ExaminationType.DERMATOLOGIST:
+    case ExaminationTypeEnum.DERMATOLOGIST:
       response = context.l10n.dermatology_question_highlight;
       break;
-    case ExaminationType.GENERAL_PRACTITIONER:
+    case ExaminationTypeEnum.GENERAL_PRACTITIONER:
       response = context.l10n.practitioner_question_highlight;
       break;
-    case ExaminationType.GYNECOLOGIST:
+    case ExaminationTypeEnum.GYNECOLOGIST:
       response = context.l10n.gynecology_question_highlight;
       break;
-    case ExaminationType.MAMMOGRAM:
+    case ExaminationTypeEnum.MAMMOGRAM:
       response = context.l10n.mammogram_question_highlight;
       break;
-    case ExaminationType.OPHTHALMOLOGIST:
+    case ExaminationTypeEnum.OPHTHALMOLOGIST:
       response = context.l10n.oculist_question_highlight;
       break;
-    case ExaminationType.TESTICULAR_SELF:
+    case ExaminationTypeEnum.TESTICULAR_SELF:
       // TODO: Handle this case.
       break;
-    case ExaminationType.TOKS:
+    case ExaminationTypeEnum.TOKS:
       // TODO: Handle this case.
       break;
-    case ExaminationType.ULTRASOUND_BREAST:
+    case ExaminationTypeEnum.ULTRASOUND_BREAST:
       // TODO: Handle this case.
       break;
-    case ExaminationType.UROLOGIST:
+    case ExaminationTypeEnum.UROLOGIST:
       response = context.l10n.urology_question_highlight;
       break;
-    case ExaminationType.BREAST_SELF:
+    case ExaminationTypeEnum.BREAST_SELF:
+      // TODO: Handle this case.
+      break;
+    case ExaminationTypeEnum.VENEREAL_DISEASES:
       // TODO: Handle this case.
       break;
   }

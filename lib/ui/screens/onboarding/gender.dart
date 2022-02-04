@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
@@ -10,6 +9,7 @@ import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/onboarding/genders_container.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart';
 
 class OnboardingGenderScreen extends StatefulWidget {
   const OnboardingGenderScreen({Key? key}) : super(key: key);

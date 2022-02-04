@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/progress_dots.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
 import 'package:loono/ui/widgets/universal_doctor.dart';
+import 'package:loono_api/loono_api.dart';
 
 class UniversalDoctorScreen extends StatelessWidget {
   const UniversalDoctorScreen({
@@ -30,7 +30,7 @@ class UniversalDoctorScreen extends StatelessWidget {
   final String nextButton2Text;
   final VoidCallback nextCallback1;
   final VoidCallback nextCallback2;
-  final ExaminationType examinationType;
+  final ExaminationTypeEnum examinationType;
 
   @override
   Widget build(BuildContext context) {

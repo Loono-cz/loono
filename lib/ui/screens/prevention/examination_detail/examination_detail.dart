@@ -5,10 +5,8 @@ import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_types.dart';
-import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
-import 'package:loono/models/user.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/calendar_service.dart';
 import 'package:loono/services/database_service.dart';
@@ -21,6 +19,7 @@ import 'package:loono/ui/widgets/prevention/checkup_edit_modal.dart';
 import 'package:loono/ui/widgets/prevention/examination_progress_content.dart';
 import 'package:loono/ui/widgets/prevention/last_visit_sheet.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart';
 
 class ExaminationDetail extends StatelessWidget {
   ExaminationDetail({
@@ -38,7 +37,7 @@ class ExaminationDetail extends StatelessWidget {
     const Duration(days: 60),
   );
 
-  ExaminationType get _examinationType => categorizedExamination.examination.examinationType;
+  ExaminationTypeEnum get _examinationType => categorizedExamination.examination.examinationType;
 
   DateTime? get _nextVisitDate => categorizedExamination.examination.nextVisitDate;
 
@@ -46,7 +45,7 @@ class ExaminationDetail extends StatelessWidget {
 
   Sex get _sex {
     final user = registry.get<DatabaseService>().users.user;
-    return user?.sex ?? Sex.male;
+    return user?.sex ?? Sex.MALE;
   }
 
   String _intervalYears(BuildContext context) =>
@@ -283,7 +282,7 @@ class ExaminationDetail extends StatelessWidget {
             children: [
               Expanded(
                 child: LoonoButton(
-                  text: _sex == Sex.male
+                  text: _sex == Sex.MALE
                       ? l10n.checkup_confirmation_male
                       : l10n.checkup_confirmation_female,
                   onTap: () {

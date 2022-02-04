@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loono/helpers/examination_status.dart';
+import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/examination_detail.dart';
 import 'package:loono/ui/screens/prevention/questionnaire/schedule_examination.dart';
@@ -16,7 +16,7 @@ class ExaminationDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: categorizedExamination.status == const ExaminationStatus.unknownLastVisit()
+        child: categorizedExamination.category == const ExaminationCategory.unknownLastVisit()
             ? ScheduleExamination(
                 examinationRecord: categorizedExamination.examination,
               )

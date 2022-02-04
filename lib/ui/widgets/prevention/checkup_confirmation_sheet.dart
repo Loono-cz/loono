@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_types.dart';
-import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart';
 
-void showConfirmationSheet(BuildContext context, ExaminationType examinationType, Sex sex) {
+void showConfirmationSheet(BuildContext context, ExaminationTypeEnum examinationType, Sex sex) {
   final practitioner =
       procedureQuestionTitle(context, examinationType: examinationType).toLowerCase();
   final preposition = czechPreposition(context, examinationType: examinationType);
@@ -71,7 +71,7 @@ void showConfirmationSheet(BuildContext context, ExaminationType examinationType
                 /// As of now, API for completion doesnt exists. Should be completed in separate task.
                 LoonoButton(
                   text:
-                      '${l10n.yes}, ${sex == Sex.male ? l10n.checkup_confirmation_male.toLowerCase() : l10n.checkup_confirmation_female.toLowerCase()}',
+                      '${l10n.yes}, ${sex == Sex.MALE ? l10n.checkup_confirmation_male.toLowerCase() : l10n.checkup_confirmation_female.toLowerCase()}',
                   onTap: () => AutoRouter.of(context).navigate(
                     AchievementRoute(
                       header: 'TO DO: complete all rewards',

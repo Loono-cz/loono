@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'examination_status.dart';
+part of 'examination_category.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,8 +14,8 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$ExaminationStatusTearOff {
-  const _$ExaminationStatusTearOff();
+class _$ExaminationCategoryTearOff {
+  const _$ExaminationCategoryTearOff();
 
   ScheduledSoonOrOverdueExamination scheduledSoonOrOverdue() {
     return const ScheduledSoonOrOverdueExamination();
@@ -39,10 +39,10 @@ class _$ExaminationStatusTearOff {
 }
 
 /// @nodoc
-const $ExaminationStatus = _$ExaminationStatusTearOff();
+const $ExaminationCategory = _$ExaminationCategoryTearOff();
 
 /// @nodoc
-mixin _$ExaminationStatus {
+mixin _$ExaminationCategory {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() scheduledSoonOrOverdue,
@@ -106,20 +106,20 @@ mixin _$ExaminationStatus {
 }
 
 /// @nodoc
-abstract class $ExaminationStatusCopyWith<$Res> {
-  factory $ExaminationStatusCopyWith(
-          ExaminationStatus value, $Res Function(ExaminationStatus) then) =
-      _$ExaminationStatusCopyWithImpl<$Res>;
+abstract class $ExaminationCategoryCopyWith<$Res> {
+  factory $ExaminationCategoryCopyWith(
+          ExaminationCategory value, $Res Function(ExaminationCategory) then) =
+      _$ExaminationCategoryCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ExaminationStatusCopyWithImpl<$Res>
-    implements $ExaminationStatusCopyWith<$Res> {
-  _$ExaminationStatusCopyWithImpl(this._value, this._then);
+class _$ExaminationCategoryCopyWithImpl<$Res>
+    implements $ExaminationCategoryCopyWith<$Res> {
+  _$ExaminationCategoryCopyWithImpl(this._value, this._then);
 
-  final ExaminationStatus _value;
+  final ExaminationCategory _value;
   // ignore: unused_field
-  final $Res Function(ExaminationStatus) _then;
+  final $Res Function(ExaminationCategory) _then;
 }
 
 /// @nodoc
@@ -132,7 +132,7 @@ abstract class $ScheduledSoonOrOverdueExaminationCopyWith<$Res> {
 
 /// @nodoc
 class _$ScheduledSoonOrOverdueExaminationCopyWithImpl<$Res>
-    extends _$ExaminationStatusCopyWithImpl<$Res>
+    extends _$ExaminationCategoryCopyWithImpl<$Res>
     implements $ScheduledSoonOrOverdueExaminationCopyWith<$Res> {
   _$ScheduledSoonOrOverdueExaminationCopyWithImpl(
       ScheduledSoonOrOverdueExamination _value,
@@ -152,7 +152,7 @@ class _$ScheduledSoonOrOverdueExamination
 
   @override
   String toString() {
-    return 'ExaminationStatus.scheduledSoonOrOverdue()';
+    return 'ExaminationCategory.scheduledSoonOrOverdue()';
   }
 
   @override
@@ -249,7 +249,7 @@ class _$ScheduledSoonOrOverdueExamination
   }
 }
 
-abstract class ScheduledSoonOrOverdueExamination extends ExaminationStatus {
+abstract class ScheduledSoonOrOverdueExamination extends ExaminationCategory {
   const factory ScheduledSoonOrOverdueExamination() =
       _$ScheduledSoonOrOverdueExamination;
   const ScheduledSoonOrOverdueExamination._() : super._();
@@ -264,7 +264,7 @@ abstract class $NewToScheduleExaminationCopyWith<$Res> {
 
 /// @nodoc
 class _$NewToScheduleExaminationCopyWithImpl<$Res>
-    extends _$ExaminationStatusCopyWithImpl<$Res>
+    extends _$ExaminationCategoryCopyWithImpl<$Res>
     implements $NewToScheduleExaminationCopyWith<$Res> {
   _$NewToScheduleExaminationCopyWithImpl(NewToScheduleExamination _value,
       $Res Function(NewToScheduleExamination) _then)
@@ -282,7 +282,7 @@ class _$NewToScheduleExamination extends NewToScheduleExamination {
 
   @override
   String toString() {
-    return 'ExaminationStatus.newToSchedule()';
+    return 'ExaminationCategory.newToSchedule()';
   }
 
   @override
@@ -378,7 +378,7 @@ class _$NewToScheduleExamination extends NewToScheduleExamination {
   }
 }
 
-abstract class NewToScheduleExamination extends ExaminationStatus {
+abstract class NewToScheduleExamination extends ExaminationCategory {
   const factory NewToScheduleExamination() = _$NewToScheduleExamination;
   const NewToScheduleExamination._() : super._();
 }
@@ -393,7 +393,7 @@ abstract class $UnknownLastVisitExaminationCopyWith<$Res> {
 
 /// @nodoc
 class _$UnknownLastVisitExaminationCopyWithImpl<$Res>
-    extends _$ExaminationStatusCopyWithImpl<$Res>
+    extends _$ExaminationCategoryCopyWithImpl<$Res>
     implements $UnknownLastVisitExaminationCopyWith<$Res> {
   _$UnknownLastVisitExaminationCopyWithImpl(UnknownLastVisitExamination _value,
       $Res Function(UnknownLastVisitExamination) _then)
@@ -411,7 +411,7 @@ class _$UnknownLastVisitExamination extends UnknownLastVisitExamination {
 
   @override
   String toString() {
-    return 'ExaminationStatus.unknownLastVisit()';
+    return 'ExaminationCategory.unknownLastVisit()';
   }
 
   @override
@@ -507,7 +507,7 @@ class _$UnknownLastVisitExamination extends UnknownLastVisitExamination {
   }
 }
 
-abstract class UnknownLastVisitExamination extends ExaminationStatus {
+abstract class UnknownLastVisitExamination extends ExaminationCategory {
   const factory UnknownLastVisitExamination() = _$UnknownLastVisitExamination;
   const UnknownLastVisitExamination._() : super._();
 }
@@ -521,7 +521,7 @@ abstract class $ScheduledExaminationCopyWith<$Res> {
 
 /// @nodoc
 class _$ScheduledExaminationCopyWithImpl<$Res>
-    extends _$ExaminationStatusCopyWithImpl<$Res>
+    extends _$ExaminationCategoryCopyWithImpl<$Res>
     implements $ScheduledExaminationCopyWith<$Res> {
   _$ScheduledExaminationCopyWithImpl(
       ScheduledExamination _value, $Res Function(ScheduledExamination) _then)
@@ -538,7 +538,7 @@ class _$ScheduledExamination extends ScheduledExamination {
 
   @override
   String toString() {
-    return 'ExaminationStatus.scheduled()';
+    return 'ExaminationCategory.scheduled()';
   }
 
   @override
@@ -634,7 +634,7 @@ class _$ScheduledExamination extends ScheduledExamination {
   }
 }
 
-abstract class ScheduledExamination extends ExaminationStatus {
+abstract class ScheduledExamination extends ExaminationCategory {
   const factory ScheduledExamination() = _$ScheduledExamination;
   const ScheduledExamination._() : super._();
 }
@@ -648,7 +648,7 @@ abstract class $WaitingExaminationCopyWith<$Res> {
 
 /// @nodoc
 class _$WaitingExaminationCopyWithImpl<$Res>
-    extends _$ExaminationStatusCopyWithImpl<$Res>
+    extends _$ExaminationCategoryCopyWithImpl<$Res>
     implements $WaitingExaminationCopyWith<$Res> {
   _$WaitingExaminationCopyWithImpl(
       WaitingExamination _value, $Res Function(WaitingExamination) _then)
@@ -665,7 +665,7 @@ class _$WaitingExamination extends WaitingExamination {
 
   @override
   String toString() {
-    return 'ExaminationStatus.waiting()';
+    return 'ExaminationCategory.waiting()';
   }
 
   @override
@@ -761,7 +761,7 @@ class _$WaitingExamination extends WaitingExamination {
   }
 }
 
-abstract class WaitingExamination extends ExaminationStatus {
+abstract class WaitingExamination extends ExaminationCategory {
   const factory WaitingExamination() = _$WaitingExamination;
   const WaitingExamination._() : super._();
 }

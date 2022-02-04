@@ -5,8 +5,8 @@ import 'package:built_value/serializer.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:loono/helpers/examination_types.dart';
-import 'package:loono_api/loono_api.dart' show SimpleHealthcareProvider, standardSerializers;
+import 'package:loono_api/loono_api.dart'
+    show ExaminationTypeEnum, Sex, SimpleHealthcareProvider, standardSerializers;
 import 'package:moor/moor.dart';
 
 class CategoryDbConverter extends TypeConverter<BuiltList<String>, String> {
@@ -33,20 +33,36 @@ class CategoryDbConverter extends TypeConverter<BuiltList<String>, String> {
   }
 }
 
-class ExaminationTypeDbConverter extends TypeConverter<ExaminationType, String> {
-  const ExaminationTypeDbConverter();
+class ExaminationTypeEnumDbConverter extends TypeConverter<ExaminationTypeEnum, String> {
+  const ExaminationTypeEnumDbConverter();
 
   @override
-  ExaminationType? mapToDart(String? fromDb) {
+  ExaminationTypeEnum? mapToDart(String? fromDb) {
     if (fromDb == null) return null;
-    return ExaminationType.values
+    return ExaminationTypeEnum.values
         .singleWhereOrNull((examinationType) => describeEnum(examinationType) == fromDb);
   }
 
   @override
-  String? mapToSql(ExaminationType? value) {
+  String? mapToSql(ExaminationTypeEnum? value) {
     if (value == null) return null;
     return describeEnum(value);
+  }
+}
+
+class SexDbConverter extends TypeConverter<Sex, String> {
+  const SexDbConverter();
+
+  @override
+  Sex? mapToDart(String? fromDb) {
+    if (fromDb == null) return null;
+    return Sex.values.singleWhereOrNull((sex) => sex.name == fromDb);
+  }
+
+  @override
+  String? mapToSql(Sex? value) {
+    if (value == null) return null;
+    return value.name;
   }
 }
 

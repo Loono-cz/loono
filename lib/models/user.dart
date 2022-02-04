@@ -1,10 +1,11 @@
 import 'dart:convert';
 
 import 'package:loono/helpers/date_without_day.dart';
-import 'package:loono/helpers/sex_extensions.dart';
+import 'package:loono/helpers/type_converters.dart';
 import 'package:loono/models/achievement.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/utils/memoized_stream.dart';
+import 'package:loono_api/loono_api.dart' hide User;
 import 'package:moor/moor.dart';
 
 part 'user.g.dart';
@@ -20,7 +21,7 @@ class Users extends Table {
 
   TextColumn get id => text()();
 
-  IntColumn get sexRaw => integer().nullable()();
+  TextColumn get sex => text().map(const SexDbConverter()).nullable()();
 
   TextColumn get dateOfBirthRaw => text().nullable()();
 
@@ -80,7 +81,7 @@ class UsersDao extends DatabaseAccessor<AppDatabase> with _$UsersDaoMixin {
   }
 
   Future<void> updateSex(Sex sex) async {
-    await updateCurrentUser(UsersCompanion(sexRaw: Value(sex.index)));
+    await updateCurrentUser(UsersCompanion(sex: Value<Sex>(sex)));
   }
 
   Future<void> updateLatestMapUpdateCheck(DateTime date) async {
@@ -156,8 +157,6 @@ class UsersDao extends DatabaseAccessor<AppDatabase> with _$UsersDaoMixin {
 }
 
 extension UserExtension on User {
-  Sex? get sex => sexRaw == null ? null : Sex.values[sexRaw!];
-
   CcaDoctorVisit? get generalPracticionerCcaVisit => generalPracticionerCcaVisitRaw == null
       ? null
       : CcaDoctorVisit.values[generalPracticionerCcaVisitRaw!];

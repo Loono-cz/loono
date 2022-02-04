@@ -2,12 +2,12 @@ import 'dart:typed_data';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:loono/helpers/date_without_day.dart';
-import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/models/achievement.dart';
 import 'package:loono/models/user.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/firebase_storage_service.dart';
+import 'package:loono_api/loono_api.dart' hide User;
 import 'package:uuid/uuid.dart';
 
 // TODO: Connect with ApiService
