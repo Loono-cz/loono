@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:loono/constants.dart';
 import 'package:loono/repositories/healthcare_repository.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/map_state_sevice.dart';
@@ -13,8 +15,14 @@ import 'package:loono/utils/registry.dart';
 import 'package:provider/provider.dart';
 
 class FindDoctorScreen extends StatefulWidget {
-  FindDoctorScreen({Key? key}) : super(key: key);
+  FindDoctorScreen({
+    Key? key,
+    this.enableAppBar = false,
+    this.cancelRouteName = 'ExaminationDetailRoute',
+  }) : super(key: key);
 
+  final bool enableAppBar;
+  final String cancelRouteName;
   final Completer<GoogleMapController> mapController = Completer<GoogleMapController>();
   final healthcareProviderRepository = registry.get<HealthcareProviderRepository>();
   final mapStateService = MapStateService();
@@ -40,6 +48,18 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: widget.enableAppBar
+          ? AppBar(
+              backgroundColor: LoonoColors.bottomSheetPrevention,
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.close),
+                  onPressed: () =>
+                      AutoRouter.of(context).popUntilRouteWithName(widget.cancelRouteName),
+                ),
+              ],
+            )
+          : null,
       body: SafeArea(
         child: StreamBuilder<HealtCareSyncState>(
           stream: widget.healthcareProviderRepository.healtcareProvidersStream,

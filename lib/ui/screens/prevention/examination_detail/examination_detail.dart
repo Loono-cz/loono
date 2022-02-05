@@ -21,6 +21,7 @@ import 'package:loono/ui/widgets/prevention/checkup_confirmation_sheet.dart';
 import 'package:loono/ui/widgets/prevention/checkup_edit_modal.dart';
 import 'package:loono/ui/widgets/prevention/examination_progress_content.dart';
 import 'package:loono/ui/widgets/prevention/last_visit_sheet.dart';
+import 'package:loono/ui/widgets/prevention/show_order_checkup_sheet.dart';
 import 'package:loono/utils/registry.dart';
 
 class ExaminationDetail extends StatelessWidget {
@@ -286,15 +287,16 @@ class ExaminationDetail extends StatelessWidget {
               ].contains(categorizedExamination.status)) ...[
                 Expanded(
                   child: LoonoButton(
-                    text: 'objednat_se',
-                    onTap: () {},
+                    text: l10n.examination_detail_order_examination, //objednej se
+                    onTap: () => showOrderCheckupSheet(context, categorizedExamination),
                   ),
                 ),
                 const SizedBox(width: 19),
                 Expanded(
                   child: LoonoButton.light(
-                    text: 'mam_objednano',
-                    onTap: () {},
+                    text: l10n.examination_detail_set_examination_button, //mám objednáno
+                    onTap: () => AutoRouter.of(context)
+                        .push(NewDateRoute(categorizedExamination: categorizedExamination)),
                   ),
                 ),
               ] else if (categorizedExamination.status == const ExaminationStatus.waiting()) ...[
