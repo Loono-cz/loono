@@ -6,9 +6,23 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:loono/models/firebase_user.dart';
 import 'package:loono/services/auth/failures.dart';
 import 'package:loono/utils/crypto_utils.dart';
+import 'package:loono_api/loono_api.dart' as api;
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class AuthService {
+  AuthService({required api.LoonoApi api}) {
+    _api = api;
+    _auth.authStateChanges().listen((user) async {
+      if (user != null) {
+        await _refreshUserToken(user);
+      } else {
+        _clearUserToken();
+      }
+    });
+  }
+
+  late final api.LoonoApi _api;
+
   final _auth = FirebaseAuth.instance;
 
   final _googleSignIn = GoogleSignIn();
@@ -24,18 +38,8 @@ class AuthService {
 
   Stream<AuthUser?> get onAuthStateChanged => _auth.authStateChanges().map(_authUserFromFirebase);
 
-  AuthUser? _authUserFromFirebase(User? firebaseUser) {
-    final authUser = firebaseUser == null
-        ? null
-        : AuthUser(
-            uid: firebaseUser.uid,
-            name: firebaseUser.displayName,
-            email: firebaseUser.email,
-            avatarUrl: firebaseUser.photoURL,
-            isAnonymous: firebaseUser.isAnonymous,
-          );
-    return authUser;
-  }
+  AuthUser? _authUserFromFirebase(User? firebaseUser) =>
+      firebaseUser == null ? null : AuthUser(firebaseUser: firebaseUser);
 
   Future<Either<AuthFailure, AuthUser>> checkGoogleAccountExistsAndSignIn() async {
     GoogleSignInAccount? googleUser;
@@ -247,8 +251,18 @@ class AuthService {
   }
 
   Future<void> signOut() async {
+    _clearUserToken();
     await _auth.signOut();
     await _googleSignIn.signOut();
     await _facebookSignIn.logOut();
   }
+
+  // TODO: refresh token more often - maybe on each api call ? (https://cesko-digital.atlassian.net/browse/LOON-477)
+  Future<void> _refreshUserToken(User user) async {
+    final authUser = _authUserFromFirebase(user)!;
+    final token = await authUser.getIdToken();
+    _api.dio.options.headers['Authorization'] = 'Bearer $token';
+  }
+
+  void _clearUserToken() => _api.dio.options.headers.remove('Authorization');
 }

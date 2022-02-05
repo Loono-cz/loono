@@ -308,7 +308,7 @@
   "@early_ordering": {},
   "preventive_inspection": "Preventivní prohlídka",
   "@preventive_inspection": {},
-  "first_visit_awaiting": "Čeká tě první prohlídka",
+  "first_visit_awaiting": "Čeká tě\nprvní prohlídka",
   "@first_visit_awaiting": {},
   "more_than": "Více než",
   "@more_than": {},
