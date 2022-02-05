@@ -5,6 +5,7 @@ import 'package:loono/ui/screens/about_health/about_health.dart';
 import 'package:loono/ui/screens/find_doctor/find_doctor.dart';
 import 'package:loono/ui/screens/prevention/prevention.dart';
 
+/// Post-auth main screen.
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
 

@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/app_bar.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/button.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/carousel_content.dart';
@@ -30,7 +32,7 @@ class OnboardingSecondCarouselScreen extends StatelessWidget {
             button: CarouselButton(
               heightMultiplier: 0.14,
               text: context.l10n.continue_info,
-              onTap: onNext,
+              onTap: () => AutoRouter.of(context).push(const OnboardingWrapperRoute()),
             ),
             dataSourceText: context.l10n.carousel_content_2_data_source,
           ),

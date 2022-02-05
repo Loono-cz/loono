@@ -19,7 +19,15 @@ class OnboardingGenderScreen extends StatefulWidget {
 }
 
 class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
+  final _userRepository = registry.get<UserRepository>();
+
   Sex? activeButton;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _userRepository.createUser();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +68,7 @@ class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
                   enabled: activeButton != null,
                   onTap: activeButton == null
                       ? () {}
-                      : () async => registry.get<UserRepository>().updateSex(activeButton!),
+                      : () async => _userRepository.updateSex(activeButton!),
                 ),
               ),
               SizedBox(height: LoonoSizes.buttonBottomPadding(context)),

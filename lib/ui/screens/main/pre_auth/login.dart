@@ -90,10 +90,7 @@ class LoginScreen extends StatelessWidget {
             const Spacer(),
             TextButton(
               onPressed: () => AutoRouter.of(context).push(const OnboardingWrapperRoute()),
-              child: Text(
-                context.l10n.login_start_over_button,
-                style: LoonoFonts.paragraphFontStyle,
-              ),
+              child: const Text('Vytvořit nový účet', style: LoonoFonts.paragraphFontStyle),
             ),
             const Spacer(),
           ],

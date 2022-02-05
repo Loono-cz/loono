@@ -5,7 +5,7 @@ import 'package:built_value/serializer.dart';
 import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:loono_api/loono_api.dart'
-    show ExaminationTypeEnum, Sex, SimpleHealthcareProvider, standardSerializers;
+    show ExaminationStatus, ExaminationTypeEnum, Sex, SimpleHealthcareProvider, standardSerializers;
 import 'package:moor/moor.dart';
 
 class CategoryDbConverter extends TypeConverter<BuiltList<String>, String> {
@@ -44,6 +44,23 @@ class ExaminationTypeEnumDbConverter extends TypeConverter<ExaminationTypeEnum, 
 
   @override
   String? mapToSql(ExaminationTypeEnum? value) {
+    if (value == null) return null;
+    return value.name;
+  }
+}
+
+class ExaminationStatusDbConverter extends TypeConverter<ExaminationStatus, String> {
+  const ExaminationStatusDbConverter();
+
+  @override
+  ExaminationStatus? mapToDart(String? fromDb) {
+    if (fromDb == null) return null;
+    return ExaminationStatus.values
+        .singleWhereOrNull((examinationStatus) => examinationStatus.name == fromDb);
+  }
+
+  @override
+  String? mapToSql(ExaminationStatus? value) {
     if (value == null) return null;
     return value.name;
   }

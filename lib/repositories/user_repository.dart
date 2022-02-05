@@ -2,8 +2,6 @@ import 'dart:typed_data';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:loono/helpers/date_without_day.dart';
-import 'package:loono/models/achievement.dart';
-import 'package:loono/models/user.dart';
 import 'package:loono/services/api_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
@@ -49,30 +47,6 @@ class UserRepository {
     await _db.users.updateLatestMapServerUpdate(date);
   }
 
-  Future<void> updateGeneralPracticionerCcaVisit(CcaDoctorVisit ccaDoctorVisit) async {
-    await _db.users.updateGeneralPracticionerCcaVisit(ccaDoctorVisit);
-  }
-
-  Future<void> updateGeneralPracticionerVisitDate(DateWithoutDay dateWithoutDay) async {
-    await _db.users.updateGeneralPracticionerVisitDate(dateWithoutDay);
-  }
-
-  Future<void> updateGynecologyCcaVisit(CcaDoctorVisit ccaDoctorVisit) async {
-    await _db.users.updateGynecologyCcaVisit(ccaDoctorVisit);
-  }
-
-  Future<void> updateGynecologyVisitDate(DateWithoutDay dateWithoutDay) async {
-    await _db.users.updateGynecologyVisitDate(dateWithoutDay);
-  }
-
-  Future<void> updateDentistCcaVisit(CcaDoctorVisit ccaDoctorVisit) async {
-    await _db.users.updateDentistCcaVisit(ccaDoctorVisit);
-  }
-
-  Future<void> updateDentistVisitDate(DateWithoutDay dateWithoutDay) async {
-    await _db.users.updateDentistVisitDate(dateWithoutDay);
-  }
-
   Future<bool> updateNickname(String nickname) async {
     final apiResponse = await _apiService.updateAccountUser(nickname: nickname);
     final result = await apiResponse.map(
@@ -87,10 +61,6 @@ class UserRepository {
 
   Future<void> updateEmail(String email) async {
     await _db.users.updateEmail(email);
-  }
-
-  Future<void> updateAchievementCollection(Achievement achievement) async {
-    await _db.users.updateAchievementCollection(achievement);
   }
 
   // TODO: Error handling (https://cesko-digital.atlassian.net/browse/LOON-386)

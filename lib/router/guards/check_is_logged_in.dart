@@ -8,11 +8,12 @@ class CheckIsLoggedIn extends AutoRouteGuard {
 
   @override
   Future<void> onNavigation(NavigationResolver resolver, StackRouter router) async {
-    final currUser = await _authService.getCurrentUser();
-    if (currUser != null) {
+    // TODO: separate router so there is SplashScreen while getting current user
+    final currAuthUser = await _authService.getCurrentUser();
+    if (currAuthUser != null) {
       resolver.next();
     } else {
-      await router.push(const OnboardingWrapperRoute());
+      await router.push(const AppStartUpWrapperRoute());
     }
   }
 }
