@@ -59,10 +59,10 @@ import '../ui/screens/settings/open_settings.dart' as _i20;
 import '../ui/screens/settings/photo_cropped_result.dart' as _i27;
 import '../ui/screens/settings/points_help.dart' as _i29;
 import '../ui/screens/settings/update_profile.dart' as _i21;
-import '../ui/screens/settings/delete_account.dart' as _i51;
 import '../ui/screens/welcome.dart' as _i30;
 import '../ui/widgets/achievement_screen.dart' as _i12;
 import 'guards/check_is_logged_in.dart' as _i3;
+import '../ui/screens/settings/delete_account.dart' as _i51;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter(
