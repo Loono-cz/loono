@@ -50,6 +50,7 @@ class _VideoPlayerScreenState extends State<CustomVideoPlayer> {
       if (widget.autoplay) {
         _controller.play();
         widget.onLoaded?.call();
+        _controller.setVolume(0.0);
       }
     });
     _controller.setLooping(widget.looping);
