@@ -30,6 +30,7 @@ import 'package:loono/ui/screens/prevention/examination_detail/change_time_scree
 import 'package:loono/ui/screens/prevention/examination_detail/examination_screen.dart';
 import 'package:loono/ui/screens/prevention/questionnaire/date_picker_screen.dart';
 import 'package:loono/ui/screens/settings/camera_photo_taken.dart';
+import 'package:loono/ui/screens/settings/delete_account.dart';
 import 'package:loono/ui/screens/settings/edit_email.dart';
 import 'package:loono/ui/screens/settings/edit_nickname.dart';
 import 'package:loono/ui/screens/settings/edit_photo.dart';
@@ -134,6 +135,11 @@ const _settingsTransition = TransitionsBuilders.slideLeft;
         CustomRoute<void>(
           page: EditPhotoScreen,
           path: 'settings/update-profile/photo',
+          transitionsBuilder: _settingsTransition,
+        ),
+        CustomRoute<void>(
+          page: DeleteAccountScreen,
+          path: 'settings/update-profile/delete',
           transitionsBuilder: _settingsTransition,
         ),
         CustomRoute<void>(
