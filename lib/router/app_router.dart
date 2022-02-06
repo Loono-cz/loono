@@ -72,6 +72,16 @@ const _settingsTransition = TransitionsBuilders.slideLeft;
 )
 class $AppRouter {}
 
+const _appStartUpRouter = AutoRoute<void>(
+  path: 'app-start-up',
+  page: AppStartUpWrapperScreen,
+  children: [
+    AutoRoute<void>(page: SplashScreen, path: 'splash-screen'),
+    AutoRoute<void>(page: WelcomeScreen, path: 'welcome'),
+    _preAuthMainScreenRouter,
+  ],
+);
+
 /// Only Onboarding Form, Find a Doctor and About Health screens are accessible.
 const _preAuthRoutes = <AutoRoute>[
   _preAuthMainScreenRouter,
@@ -85,13 +95,18 @@ const _preAuthRoutes = <AutoRoute>[
   AutoRoute<void>(page: LogoutScreen, path: 'logout'),
 ];
 
-const _appStartUpRouter = AutoRoute<void>(
-  path: 'app-start-up',
-  page: AppStartUpWrapperScreen,
+/// Everything from the bottom navigation bar is accessible in post-auth screens.
+const _postAuthRouter = AutoRoute<void>(
+  page: EmptyRouterScreen,
+  path: 'main',
+  name: 'MainScreenRouter',
+  initial: true,
+  guards: [CheckIsLoggedIn],
   children: [
-    AutoRoute<void>(page: SplashScreen, path: 'splash-screen'),
-    AutoRoute<void>(page: WelcomeScreen, path: 'welcome'),
-    _preAuthMainScreenRouter,
+    AutoRoute<void>(page: MainScreen, path: ''),
+    ..._settingsRoutes,
+    ..._preventionRoutes,
+    _findDoctorRoute,
   ],
 );
 
@@ -113,21 +128,6 @@ const _preAuthPreventionRouter = AutoRoute<void>(
     AutoRoute<void>(page: StartNewQuestionnaireScreen, path: 'start-new-questionnaire'),
     AutoRoute<void>(page: ContinueOnboardingFormScreen, path: 'continue-onboarding-form'),
     AutoRoute<void>(page: OnboardingFormDoneScreen, path: 'onboarding-form-done'),
-  ],
-);
-
-/// Everything from the bottom navigation bar is accessible in post-auth screens.
-const _postAuthRouter = AutoRoute<void>(
-  page: EmptyRouterScreen,
-  path: 'main',
-  name: 'MainScreenRouter',
-  initial: true,
-  guards: [CheckIsLoggedIn],
-  children: [
-    AutoRoute<void>(page: MainScreen, path: ''),
-    ..._settingsRoutes,
-    ..._preventionRoutes,
-    _findDoctorRoute,
   ],
 );
 
