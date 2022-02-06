@@ -153,72 +153,76 @@ enum Casus { nomativ, genitiv, dativ }
 
 String examinationTypeCasus(
   BuildContext context, {
-  required ExaminationType examinationType,
+  required ExaminationTypeEnum examinationType,
   required Casus casus,
 }) {
   final l10n = context.l10n;
   switch (examinationType) {
-    case ExaminationType.BREAST_SELF:
+    case ExaminationTypeEnum.BREAST_SELF:
       if (casus == Casus.nomativ) return l10n.breastSelf_nomativ;
       if (casus == Casus.genitiv) return l10n.breastSelf_genitiv;
       if (casus == Casus.dativ) return l10n.breastSelf_dativ;
-      return '${ExaminationType.BREAST_SELF} unkown casus';
-    case ExaminationType.COLONOSCOPY:
+      return '${ExaminationTypeEnum.BREAST_SELF} unkown casus';
+    case ExaminationTypeEnum.COLONOSCOPY:
       if (casus == Casus.nomativ) return l10n.colonoscopy_nomativ;
       if (casus == Casus.genitiv) return l10n.colonoscopy_genitiv;
       if (casus == Casus.dativ) return l10n.colonoscopy_dativ;
-      return '${ExaminationType.COLONOSCOPY} unkown casus';
-    case ExaminationType.DENTIST:
+      return '${ExaminationTypeEnum.COLONOSCOPY} unkown casus';
+    case ExaminationTypeEnum.DENTIST:
       if (casus == Casus.nomativ) return l10n.dentist_nomativ;
       if (casus == Casus.genitiv) return l10n.dentist_genitiv;
       if (casus == Casus.dativ) return l10n.dentist_dativ;
-      return '${ExaminationType.DENTIST} unkown casus';
-    case ExaminationType.DERMATOLOGIST:
+      return '${ExaminationTypeEnum.DENTIST} unkown casus';
+    case ExaminationTypeEnum.DERMATOLOGIST:
       if (casus == Casus.nomativ) return l10n.dermatologist_nomativ;
       if (casus == Casus.genitiv) return l10n.dermatologist_genitiv;
       if (casus == Casus.dativ) return l10n.dermatologist_dativ;
-      return '${ExaminationType.DERMATOLOGIST} unkown casus';
-    case ExaminationType.GENERAL_PRACTITIONER:
+      return '${ExaminationTypeEnum.DERMATOLOGIST} unkown casus';
+    case ExaminationTypeEnum.GENERAL_PRACTITIONER:
       if (casus == Casus.nomativ) return l10n.generalPractitioner_nomativ;
       if (casus == Casus.genitiv) return l10n.generalPractitioner_genitiv;
       if (casus == Casus.dativ) return l10n.generalPractitioner_dativ;
-      return '${ExaminationType.GENERAL_PRACTITIONER} unkown casus';
-    case ExaminationType.GYNECOLOGIST:
+      return '${ExaminationTypeEnum.GENERAL_PRACTITIONER} unkown casus';
+    case ExaminationTypeEnum.GYNECOLOGIST:
       if (casus == Casus.nomativ) return l10n.gynecologist_nomativ;
       if (casus == Casus.genitiv) return l10n.gynecologist_genitiv;
       if (casus == Casus.dativ) return l10n.gynecologist_dativ;
-      return '${ExaminationType.GYNECOLOGIST} unkown casus';
-    case ExaminationType.MAMMOGRAM:
+      return '${ExaminationTypeEnum.GYNECOLOGIST} unkown casus';
+    case ExaminationTypeEnum.MAMMOGRAM:
       if (casus == Casus.nomativ) return l10n.mammogram_nomativ;
       if (casus == Casus.genitiv) return l10n.mammogram_genitiv;
       if (casus == Casus.dativ) return l10n.mammogram_dativ;
-      return '${ExaminationType.MAMMOGRAM} unkown casus';
-    case ExaminationType.OPHTHALMOLOGIST:
+      return '${ExaminationTypeEnum.MAMMOGRAM} unkown casus';
+    case ExaminationTypeEnum.OPHTHALMOLOGIST:
       if (casus == Casus.nomativ) return l10n.ophthalmologist_nomativ;
       if (casus == Casus.genitiv) return l10n.ophthalmologist_genitiv;
       if (casus == Casus.dativ) return l10n.ophthalmologist_dativ;
-      return '${ExaminationType.OPHTHALMOLOGIST} unkown casus';
-    case ExaminationType.TESTICULAR_SELF:
+      return '${ExaminationTypeEnum.OPHTHALMOLOGIST} unkown casus';
+    case ExaminationTypeEnum.TESTICULAR_SELF:
       if (casus == Casus.nomativ) return l10n.testicularSelf_nomativ;
       if (casus == Casus.genitiv) return l10n.testicularSelf_genitiv;
       if (casus == Casus.dativ) return l10n.testicularSelf_dativ;
-      return '${ExaminationType.TESTICULAR_SELF} unkown casus';
-    case ExaminationType.TOKS:
+      return '${ExaminationTypeEnum.TESTICULAR_SELF} unkown casus';
+    case ExaminationTypeEnum.TOKS:
       if (casus == Casus.nomativ) return l10n.toks_nomativ;
       if (casus == Casus.genitiv) return l10n.toks_genitiv;
       if (casus == Casus.dativ) return l10n.toks_dativ;
-      return '${ExaminationType.TOKS} unkown casus';
-    case ExaminationType.ULTRASOUND_BREAST:
+      return '${ExaminationTypeEnum.TOKS} unkown casus';
+    case ExaminationTypeEnum.ULTRASOUND_BREAST:
       if (casus == Casus.nomativ) return l10n.ultrasoundBreast_nomativ;
       if (casus == Casus.genitiv) return l10n.ultrasoundBreast_genitiv;
       if (casus == Casus.dativ) return l10n.ultrasoundBreast_dativ;
-      return '${ExaminationType.ULTRASOUND_BREAST} unkown casus';
-    case ExaminationType.UROLOGIST:
+      return '${ExaminationTypeEnum.ULTRASOUND_BREAST} unkown casus';
+    case ExaminationTypeEnum.UROLOGIST:
       if (casus == Casus.nomativ) return l10n.urologist_nomativ;
       if (casus == Casus.genitiv) return l10n.urologist_genitiv;
       if (casus == Casus.dativ) return l10n.urologist_dativ;
-      return '${ExaminationType.UROLOGIST} unkown casus';
+      return '${ExaminationTypeEnum.UROLOGIST} unkown casus';
+    case ExaminationTypeEnum.VENEREAL_DISEASES:
+      // TODO: Handle this case.
+      return '';
   }
+  return '${examinationType.name} unkown casus';
 }
 
 int daysBetween(DateTime from, DateTime to) {

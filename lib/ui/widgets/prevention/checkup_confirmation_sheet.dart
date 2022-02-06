@@ -47,7 +47,7 @@ void showConfirmationSheet(BuildContext context, ExaminationTypeEnum examination
             /// As of now, API for completion doesnt exists. Should be completed in separate task.
             LoonoButton(
               text:
-                  '${l10n.yes}, ${sex == Sex.male ? l10n.checkup_confirmation_male.toLowerCase() : l10n.checkup_confirmation_female.toLowerCase()}',
+                  '${l10n.yes}, ${sex == Sex.MALE ? l10n.checkup_confirmation_male.toLowerCase() : l10n.checkup_confirmation_female.toLowerCase()}',
               onTap: () => AutoRouter.of(context).navigate(
                 AchievementRoute(
                   header: 'TO DO: complete all rewards',
