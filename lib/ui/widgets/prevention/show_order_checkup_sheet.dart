@@ -9,7 +9,9 @@ import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/how/loon_botton_sheet.dart';
 
 void showOrderCheckupSheetStep1(
-    BuildContext context, CategorizedExamination categorizedExamination) {
+  BuildContext context,
+  CategorizedExamination categorizedExamination,
+) {
   final l10n = context.l10n;
   final examinationType = categorizedExamination.examination.examinationType;
   final autoRouter = AutoRouter.of(context);
