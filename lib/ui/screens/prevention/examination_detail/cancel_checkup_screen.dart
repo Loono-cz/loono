@@ -6,6 +6,7 @@ import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/repositories/examination_repository.dart';
+import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/prevention/recommendation_item.dart';
 import 'package:loono/utils/registry.dart';
@@ -72,13 +73,17 @@ class CancelCheckupScreen extends StatelessWidget {
               const SizedBox(
                 height: 60,
               ),
-              LoonoButton(
+              AsyncLoonoButton(
                 text: context.l10n.cancel_checkup,
-                onTap: () async {
+                asyncCallback: () =>
+                    registry.get<ExaminationRepository>().cancelExamination(examinationType),
+                onSuccess: () async {
                   await registry.get<CalendarRepository>().deleteEvent(examinationType);
-                  await registry.get<ExaminationRepository>().cancelExamination(examinationType);
                   await AutoRouter.of(context).pop();
                   showSnackBarSuccess(context, message: context.l10n.checkup_canceled);
+                },
+                onError: () {
+                  showSnackBarError(context, message: 'Něco se nepovedlo');
                 },
               ),
               const SizedBox(

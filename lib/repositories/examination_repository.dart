@@ -24,8 +24,14 @@ class ExaminationRepository {
     return records;
   }
 
-  Future<void> cancelExamination(ExaminationTypeEnum type) async {
-    final res = await _apiService.cancelExamination(type);
-    log(res.toString());
+  Future<bool> cancelExamination(ExaminationTypeEnum type) async {
+    final response = await _apiService.cancelExamination(type);
+    response.when(
+      success: (data) {
+        return true;
+      },
+      failure: (err) {},
+    );
+    return false;
   }
 }
