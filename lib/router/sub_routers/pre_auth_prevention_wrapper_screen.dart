@@ -37,7 +37,7 @@ class _PreAuthPreventionWrapperScreenState extends State<PreAuthPreventionWrappe
                     if (snapshot.hasData) {
                       if (examinationQuestionnaires != null) {
                         if (examinationQuestionnaires.isOnboardingDone) {
-                          return [const OnboardingFormDoneRoute()];
+                          return [OnboardingFormDoneRoute()];
                         }
 
                         if (examinationQuestionnaires.isOnboardingInProgress) {

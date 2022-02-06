@@ -91,7 +91,7 @@ class ExaminationQuestionnairesDao extends DatabaseAccessor<AppDatabase>
     );
   }
 
-  Future<void> setUnknownLastVisitDate(ExaminationTypeEnum examinationType) async {
+  Future<void> setDontKnowLastVisitDate(ExaminationTypeEnum examinationType) async {
     await updateQuestionnaire(
       examinationType,
       examinationQuestionnairesCompanion: ExaminationQuestionnairesCompanion(

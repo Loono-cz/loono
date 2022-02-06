@@ -35,6 +35,7 @@ class _AppStartUpWrapperScreenState extends State<AppStartUpWrapperScreen> {
                 }
               }
 
+              // placeholder till database gets initialized
               return [const SplashRoute()];
             },
           );

@@ -49,7 +49,7 @@ class LoginScreen extends StatelessWidget {
                   accountExistsResult.fold(
                     (failure) => showSnackBarError(context, message: failure.getMessage(context)),
                     (authUser) async {
-                      await _userRepository.createUser();
+                      await _userRepository.createUserIfNotExists();
                       await AutoRouter.of(context).push(const MainScreenRouter());
                     },
                   );
@@ -66,7 +66,7 @@ class LoginScreen extends StatelessWidget {
                   accountExistsResult.fold(
                     (failure) => showSnackBarError(context, message: failure.getMessage(context)),
                     (authUser) async {
-                      await _userRepository.createUser();
+                      await _userRepository.createUserIfNotExists();
                       await AutoRouter.of(context).push(const MainScreenRouter());
                     },
                   );
@@ -82,7 +82,10 @@ class LoginScreen extends StatelessWidget {
                       await _authService.checkFacebookAccountExistsAndSignIn();
                   accountExistsResult.fold(
                     (failure) => showSnackBarError(context, message: failure.getMessage(context)),
-                    (authUser) => AutoRouter.of(context).push(const MainScreenRouter()),
+                    (authUser) async {
+                      await _userRepository.createUserIfNotExists();
+                      await AutoRouter.of(context).push(const MainScreenRouter());
+                    },
                   );
                 },
               ),

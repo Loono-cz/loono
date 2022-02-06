@@ -33,7 +33,7 @@ class EmailScreen extends StatelessWidget {
           validator: Validators.email(context),
           onSubmit: (input) async {
             await _userRepository.updateEmail(input);
-            await AutoRouter.of(context).push(const MainScreenRouter());
+            await AutoRouter.of(context).push(const GamificationIntroductionRoute());
           },
         );
       },

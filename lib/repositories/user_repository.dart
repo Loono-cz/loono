@@ -27,6 +27,14 @@ class UserRepository {
     await _db.users.upsert(User(id: const Uuid().v4()));
   }
 
+  Future<void> createUserIfNotExists() async {
+    final users = await _db.users.getUser();
+    if (users.isEmpty) {
+      await _db.users.deleteAll();
+      await _db.users.upsert(User(id: const Uuid().v4()));
+    }
+  }
+
   Future<void> updateCurrentUser(UsersCompanion usersCompanion) async {
     await _db.users.updateCurrentUser(usersCompanion);
   }

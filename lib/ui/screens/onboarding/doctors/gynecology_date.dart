@@ -35,7 +35,7 @@ class _GynecologyDateScreenState extends State<GynecologyDateScreen> {
               DateWithoutDay(month: monthFromInt(selectedDate!.month), year: selectedDate!.year),
         );
       },
-      onSkipButtonPress: () async => _examinationsQuestionnairesDao.setUnknownLastVisitDate(_type),
+      onSkipButtonPress: () async => _examinationsQuestionnairesDao.setDontKnowLastVisitDate(_type),
     );
   }
 }

@@ -1,10 +1,19 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/helpers/ui_helpers.dart';
+import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/services/auth/auth_service.dart';
+import 'package:loono/services/auth/failures.dart';
 import 'package:loono/ui/widgets/social_login_button.dart';
+import 'package:loono/utils/registry.dart';
 
 class OnboardingFormDoneScreen extends StatelessWidget {
-  const OnboardingFormDoneScreen({Key? key}) : super(key: key);
+  OnboardingFormDoneScreen({Key? key}) : super(key: key);
+
+  final _authService = registry.get<AuthService>();
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +34,23 @@ class OnboardingFormDoneScreen extends StatelessWidget {
               const Text('✔ Vstupní dotazník máš úspěšně hotový'),
               const Spacer(),
               SocialLoginButton.apple(
-                onPressed: () {},
+                onPressed: () async {
+                  final authUserResult = await _authService.signInWithApple();
+                  authUserResult.fold(
+                    (failure) => showSnackBarError(context, message: failure.getMessage(context)),
+                    (authUser) => AutoRouter.of(context).push(NicknameRoute(authUser: authUser)),
+                  );
+                },
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 15),
               SocialLoginButton.google(
-                onPressed: () {},
+                onPressed: () async {
+                  final authUserResult = await _authService.signInWithGoogle();
+                  authUserResult.fold(
+                    (failure) => showSnackBarError(context, message: failure.getMessage(context)),
+                    (authUser) => AutoRouter.of(context).push(NicknameRoute(authUser: authUser)),
+                  );
+                },
               ),
               SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
             ],

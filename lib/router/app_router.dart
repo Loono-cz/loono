@@ -5,7 +5,6 @@ import 'package:loono/router/sub_routers/app_startup_wrapper_screen.dart';
 import 'package:loono/router/sub_routers/onboarding_wrapper_screen.dart';
 import 'package:loono/router/sub_routers/pre_auth_prevention_wrapper_screen.dart';
 import 'package:loono/ui/screens/about_health/about_health.dart';
-import 'package:loono/ui/screens/create_account.dart';
 import 'package:loono/ui/screens/dentist_achievement.dart';
 import 'package:loono/ui/screens/find_doctor/find_doctor.dart';
 import 'package:loono/ui/screens/general_practicioner_achievement.dart';
@@ -78,7 +77,6 @@ const _preAuthRoutes = <AutoRoute>[
   _onboardingQuestionnaireRouter,
   AutoRoute<void>(page: FillOnboardingFormLaterScreen, path: 'fill-form-later'),
   AutoRoute<void>(page: GamificationIntroductionScreen, path: 'gamification-introduction'),
-  AutoRoute<void>(page: CreateAccountScreen, path: 'create-account'),
   AutoRoute<void>(page: NicknameScreen, path: 'fallback-account/name'),
   AutoRoute<void>(page: EmailScreen, path: 'fallback-account/email'),
   _loginRoute,

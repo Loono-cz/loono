@@ -36,11 +36,11 @@ class _DentistDateScreenState extends State<DentistDateScreen> {
           dateWithoutDay:
               DateWithoutDay(month: monthFromInt(selectedDate!.month), year: selectedDate!.year),
         );
-        await AutoRouter.of(context).push(CreateAccountRoute());
+        await AutoRouter.of(context).push(PreAuthMainRoute());
       },
       onSkipButtonPress: () async {
-        await _examinationsQuestionnairesDao.setUnknownLastVisitDate(_type);
-        await AutoRouter.of(context).push(CreateAccountRoute());
+        await _examinationsQuestionnairesDao.setDontKnowLastVisitDate(_type);
+        await AutoRouter.of(context).push(PreAuthMainRoute());
       },
     );
   }

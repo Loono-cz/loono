@@ -45,7 +45,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     LoonoButton(
                       text: context.l10n.carousel_start,
                       onTap: () async {
-                        await _userRepository.createUser();
+                        await _userRepository.createUserIfNotExists();
                         await AutoRouter.of(context).push(const IntroCarouselRoute());
                       },
                     ),
@@ -54,7 +54,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     ),
                     TextButton(
                       onPressed: () async {
-                        await _userRepository.createUser();
+                        await _userRepository.createUserIfNotExists();
                         await AutoRouter.of(context)
                             .push(PreAuthMainRoute(overridenPreventionRoute: LoginRoute()));
                       },

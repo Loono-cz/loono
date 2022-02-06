@@ -32,7 +32,7 @@ class OnboardingSecondCarouselScreen extends StatelessWidget {
             button: CarouselButton(
               heightMultiplier: 0.14,
               text: context.l10n.continue_info,
-              onTap: () => AutoRouter.of(context).push(const OnboardingWrapperRoute()),
+              onTap: () => AutoRouter.of(context).push(PreAuthMainRoute()),
             ),
             dataSourceText: context.l10n.carousel_content_2_data_source,
           ),

@@ -99,7 +99,8 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                                   onboardingState: onboardingState,
                                   prevDoctorCcaVisit:
                                       generalPractitionerQuestionnaire?.ccaDoctorVisit,
-                                  prevDoctorDateVisit: generalPractitionerQuestionnaire?.date,
+                                  isPrevDatePickerFormFilled:
+                                      generalPractitionerQuestionnaire?.isDatePickerFormFilled,
                                   nextDoctorRoute: OnboardingGynecologyRoute(sex: sex),
                                 ),
                                 _dateOrAchievementOrNextDoctorRoute(
@@ -126,9 +127,9 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                                 prevDoctorCcaVisit: sex == Sex.MALE
                                     ? generalPractitionerQuestionnaire?.ccaDoctorVisit
                                     : gynecologistQuestionnaire?.ccaDoctorVisit,
-                                prevDoctorDateVisit: sex == Sex.MALE
-                                    ? generalPractitionerQuestionnaire?.date
-                                    : gynecologistQuestionnaire?.date,
+                                isPrevDatePickerFormFilled: sex == Sex.MALE
+                                    ? generalPractitionerQuestionnaire?.isDatePickerFormFilled
+                                    : gynecologistQuestionnaire?.isDatePickerFormFilled,
                                 nextDoctorRoute: OnboardingDentistRoute(sex: sex),
                               ),
                               _dateOrAchievementOrNextDoctorRoute(
@@ -165,11 +166,11 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
 PageRouteInfo? _nextDoctorOnlyRoute({
   required OnboardingStateService onboardingState,
   required CcaDoctorVisit? prevDoctorCcaVisit,
-  required DateTime? prevDoctorDateVisit,
+  required bool? isPrevDatePickerFormFilled,
   PageRouteInfo allowNotificationsRoute = const AllowNotificationsRoute(),
   required PageRouteInfo nextDoctorRoute,
 }) {
-  if (prevDoctorCcaVisit != null && prevDoctorDateVisit != null) {
+  if (prevDoctorCcaVisit != null && isPrevDatePickerFormFilled == true) {
     if (onboardingState.hasNotRequestedNotificationsPermission) {
       return allowNotificationsRoute;
     }

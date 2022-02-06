@@ -43,7 +43,7 @@ class OnboardingDentistScreen extends StatelessWidget {
               _type,
               ccaDoctorVisit: CcaDoctorVisit.moreThanXYearsOrIdk,
             );
-            await AutoRouter.of(context).push(CreateAccountRoute());
+            await AutoRouter.of(context).push(PreAuthMainRoute());
           },
         ),
       ),
