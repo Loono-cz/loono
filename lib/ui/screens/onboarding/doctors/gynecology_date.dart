@@ -10,8 +10,6 @@ import 'package:loono_api/loono_api.dart';
 class GynecologyDateScreen extends StatefulWidget {
   const GynecologyDateScreen({Key? key}) : super(key: key);
 
-  static const type = ExaminationType.GYNECOLOGIST;
-
   @override
   State<GynecologyDateScreen> createState() => _GynecologyDateScreenState();
 }

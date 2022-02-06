@@ -37,6 +37,8 @@ import 'package:loono/ui/screens/prevention/examination_detail/change_date_scree
 import 'package:loono/ui/screens/prevention/examination_detail/change_last_visit_screen.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/change_time_screen.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/examination_screen.dart';
+import 'package:loono/ui/screens/prevention/examination_detail/new_date_screen.dart';
+import 'package:loono/ui/screens/prevention/examination_detail/new_time_screen.dart';
 import 'package:loono/ui/screens/prevention/questionnaire/date_picker_screen.dart';
 import 'package:loono/ui/screens/settings/camera_photo_taken.dart';
 import 'package:loono/ui/screens/settings/edit_email.dart';
@@ -125,6 +127,7 @@ const _postAuthRouter = AutoRoute<void>(
     AutoRoute<void>(page: MainScreen, path: ''),
     ..._settingsRoutes,
     ..._preventionRoutes,
+    _findDoctorRoute,
   ],
 );
 
@@ -286,6 +289,16 @@ const _preventionRoutes = <AutoRoute>[
   CustomRoute<void>(
     page: ChangeLastVisitScreen,
     path: 'checkup/last-visit-update',
+    transitionsBuilder: _preventionTransition,
+  ),
+  CustomRoute<void>(
+    page: NewDateScreen,
+    path: 'checkup/set-date',
+    transitionsBuilder: _preventionTransition,
+  ),
+  CustomRoute<void>(
+    page: NewTimeScreen,
+    path: 'checkup/set-time',
     transitionsBuilder: _preventionTransition,
   ),
   CustomRoute<void>(
