@@ -17,12 +17,10 @@ import 'package:provider/provider.dart';
 class FindDoctorScreen extends StatefulWidget {
   FindDoctorScreen({
     Key? key,
-    this.enableAppBar = false,
-    this.cancelRouteName = 'ExaminationDetailRoute',
+    this.cancelRouteName,
   }) : super(key: key);
 
-  final bool enableAppBar;
-  final String cancelRouteName;
+  final PageRouteInfo? cancelRouteName;
   final Completer<GoogleMapController> mapController = Completer<GoogleMapController>();
   final healthcareProviderRepository = registry.get<HealthcareProviderRepository>();
   final mapStateService = MapStateService();
@@ -48,14 +46,14 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: widget.enableAppBar
+      appBar: widget.cancelRouteName != null
           ? AppBar(
               backgroundColor: LoonoColors.bottomSheetPrevention,
               actions: [
                 IconButton(
                   icon: const Icon(Icons.close),
-                  onPressed: () =>
-                      AutoRouter.of(context).popUntilRouteWithName(widget.cancelRouteName),
+                  onPressed: () => AutoRouter.of(context)
+                      .popUntilRouteWithName(widget.cancelRouteName!.routeName),
                 ),
               ],
             )

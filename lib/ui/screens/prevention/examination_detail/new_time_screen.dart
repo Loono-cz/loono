@@ -8,6 +8,7 @@ import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/calendar_repository.dart';
+import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/custom_time_picker.dart';
 import 'package:loono/utils/registry.dart';
@@ -50,6 +51,8 @@ class _NewTimeScreenState extends State<NewTimeScreen> {
     ).toLowerCase()}';
 
     final formattedNewDate = DateFormat('d. MMMM yyyy', 'cs-CZ').format(widget.newDate);
+    final cancelRoute =
+        ExaminationDetailRoute(categorizedExamination: widget.categorizedExamination);
 
     return Scaffold(
       backgroundColor: LoonoColors.bottomSheetPrevention,
@@ -66,7 +69,7 @@ class _NewTimeScreenState extends State<NewTimeScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.close),
-            onPressed: () => AutoRouter.of(context).popUntilRouteWithName('ExaminationDetailRoute'),
+            onPressed: () => AutoRouter.of(context).popUntilRouteWithName(cancelRoute.routeName),
           ),
         ],
       ),
@@ -107,7 +110,7 @@ class _NewTimeScreenState extends State<NewTimeScreen> {
                           newDate: newDate!,
                         );
                   }
-                  AutoRouter.of(context).popUntilRouteWithName('ExaminationDetailRoute');
+                  AutoRouter.of(context).popUntilRouteWithName(cancelRoute.routeName);
                   showSnackBarError(context, message: 'TODO: save to API\n$newDate');
                 },
               ),

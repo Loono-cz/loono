@@ -12,6 +12,7 @@ void showOrderCheckupSheet(BuildContext context, CategorizedExamination categori
   final l10n = context.l10n;
   final examinationType = categorizedExamination.examination.examinationType;
   final autoRouter = AutoRouter.of(context);
+  final cancelRoute = ExaminationDetailRoute(categorizedExamination: categorizedExamination);
   showModalBottomSheet<void>(
     context: context,
     shape: RoundedRectangleBorder(
@@ -45,7 +46,7 @@ void showOrderCheckupSheet(BuildContext context, CategorizedExamination categori
                 casus: Casus.genitiv,
                 examinationType: examinationType,
               ).toLowerCase()}',
-              onTap: () => autoRouter.push(FindDoctorRoute(enableAppBar: true)),
+              onTap: () => autoRouter.push(FindDoctorRoute(cancelRouteName: cancelRoute)),
             ),
           ],
         ),

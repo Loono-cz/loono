@@ -20,6 +20,7 @@ class OrderExaminationScreen extends StatelessWidget {
     final l10n = context.l10n;
     final examinationType = categorizedExamination.examination.examinationType;
     final autoRouter = AutoRouter.of(context);
+    final cancelRoute = ExaminationDetailRoute(categorizedExamination: categorizedExamination);
     return Scaffold(
       backgroundColor: LoonoColors.bottomSheetPrevention,
       body: SafeArea(
@@ -33,7 +34,8 @@ class OrderExaminationScreen extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   child: IconButton(
                     icon: const Icon(Icons.close),
-                    onPressed: () => AutoRouter.of(context).pop(),
+                    onPressed: () =>
+                        AutoRouter.of(context).popUntilRouteWithName(cancelRoute.routeName),
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -97,7 +99,7 @@ class OrderExaminationScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 30.0),
                   child: TextButton(
                     style: TextButton.styleFrom(minimumSize: const Size(double.maxFinite, 40)),
-                    onPressed: () => autoRouter.push(FindDoctorRoute(enableAppBar: true)),
+                    onPressed: () => autoRouter.push(FindDoctorRoute(cancelRouteName: cancelRoute)),
                     child: Text(
                       l10n.examination_dont_have_number_button,
                       style: const TextStyle(

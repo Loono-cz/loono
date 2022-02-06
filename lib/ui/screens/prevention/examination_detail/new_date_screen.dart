@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/sex_extensions.dart';
@@ -16,9 +17,11 @@ class NewDateScreen extends StatefulWidget {
   const NewDateScreen({
     Key? key,
     required this.categorizedExamination,
+    this.showCancelIcon = true,
   }) : super(key: key);
 
   final CategorizedExamination categorizedExamination;
+  final bool showCancelIcon;
 
   @override
   _NewDateScreenState createState() => _NewDateScreenState();
@@ -48,19 +51,26 @@ class _NewDateScreenState extends State<NewDateScreen> {
     final preposition = czechPreposition(context, examinationType: examinationType);
     final title1 =
         '${_sex == Sex.male ? l10n.checkup_new_date_title_male : l10n.checkup_new_date_title_female} $preposition ';
-
+    final cancelRoute =
+        ExaminationDetailRoute(categorizedExamination: widget.categorizedExamination);
     return Scaffold(
       backgroundColor: LoonoColors.bottomSheetPrevention,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: LoonoColors.black),
-        leading: const SizedBox.shrink(),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.close),
-            onPressed: () => AutoRouter.of(context).pop(),
+        leading: IconButton(
+          onPressed: () => AutoRouter.of(context).pop(),
+          icon: SvgPicture.asset(
+            'assets/icons/arrow_back.svg',
           ),
+        ),
+        actions: [
+          if (widget.showCancelIcon)
+            IconButton(
+              icon: const Icon(Icons.close),
+              onPressed: () => AutoRouter.of(context).popUntilRouteWithName(cancelRoute.routeName),
+            ),
         ],
       ),
       body: SafeArea(

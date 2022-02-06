@@ -128,9 +128,7 @@ class AppRouter extends _i1.RootStackRouter {
       return _i1.CustomPage<void>(
           routeData: routeData,
           child: _i11.FindDoctorScreen(
-              key: args.key,
-              enableAppBar: args.enableAppBar,
-              cancelRouteName: args.cancelRouteName),
+              key: args.key, cancelRouteName: args.cancelRouteName),
           opaque: true,
           barrierDismissible: false);
     },
@@ -236,7 +234,8 @@ class AppRouter extends _i1.RootStackRouter {
           routeData: routeData,
           child: _i20.NewDateScreen(
               key: args.key,
-              categorizedExamination: args.categorizedExamination),
+              categorizedExamination: args.categorizedExamination,
+              showCancelIcon: args.showCancelIcon),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -653,31 +652,21 @@ class MainRoute extends _i1.PageRouteInfo<void> {
 }
 
 class FindDoctorRoute extends _i1.PageRouteInfo<FindDoctorRouteArgs> {
-  FindDoctorRoute(
-      {_i2.Key? key,
-      bool enableAppBar = false,
-      String cancelRouteName = 'ExaminationDetailRoute'})
+  FindDoctorRoute({_i2.Key? key, _i1.PageRouteInfo<dynamic>? cancelRouteName})
       : super(name,
             path: 'find-doctor',
             args: FindDoctorRouteArgs(
-                key: key,
-                enableAppBar: enableAppBar,
-                cancelRouteName: cancelRouteName));
+                key: key, cancelRouteName: cancelRouteName));
 
   static const String name = 'FindDoctorRoute';
 }
 
 class FindDoctorRouteArgs {
-  const FindDoctorRouteArgs(
-      {this.key,
-      this.enableAppBar = false,
-      this.cancelRouteName = 'ExaminationDetailRoute'});
+  const FindDoctorRouteArgs({this.key, this.cancelRouteName});
 
   final _i2.Key? key;
 
-  final bool enableAppBar;
-
-  final String cancelRouteName;
+  final _i1.PageRouteInfo<dynamic>? cancelRouteName;
 }
 
 class ExaminationDetailRoute
@@ -903,21 +892,29 @@ class OrderExaminationRouteArgs {
 class NewDateRoute extends _i1.PageRouteInfo<NewDateRouteArgs> {
   NewDateRoute(
       {_i2.Key? key,
-      required _i49.CategorizedExamination categorizedExamination})
+      required _i49.CategorizedExamination categorizedExamination,
+      bool showCancelIcon = true})
       : super(name,
             path: 'checkup/set-date',
             args: NewDateRouteArgs(
-                key: key, categorizedExamination: categorizedExamination));
+                key: key,
+                categorizedExamination: categorizedExamination,
+                showCancelIcon: showCancelIcon));
 
   static const String name = 'NewDateRoute';
 }
 
 class NewDateRouteArgs {
-  const NewDateRouteArgs({this.key, required this.categorizedExamination});
+  const NewDateRouteArgs(
+      {this.key,
+      required this.categorizedExamination,
+      this.showCancelIcon = true});
 
   final _i2.Key? key;
 
   final _i49.CategorizedExamination categorizedExamination;
+
+  final bool showCancelIcon;
 }
 
 class NewTimeRoute extends _i1.PageRouteInfo<NewTimeRouteArgs> {
