@@ -31,7 +31,6 @@ import 'package:loono/ui/screens/prevention/examination_detail/change_time_scree
 import 'package:loono/ui/screens/prevention/examination_detail/examination_screen.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/new_date_screen.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/new_time_screen.dart';
-import 'package:loono/ui/screens/prevention/examination_detail/order_examination_screen.dart';
 import 'package:loono/ui/screens/prevention/questionnaire/date_picker_screen.dart';
 import 'package:loono/ui/screens/settings/camera_photo_taken.dart';
 import 'package:loono/ui/screens/settings/edit_email.dart';
@@ -106,11 +105,6 @@ const _settingsTransition = TransitionsBuilders.slideLeft;
         CustomRoute<void>(
           page: ChangeLastVisitScreen,
           path: 'checkup/last-visit-update',
-          transitionsBuilder: _preventionTransition,
-        ),
-        CustomRoute<void>(
-          page: OrderExaminationScreen,
-          path: 'checkup/order',
           transitionsBuilder: _preventionTransition,
         ),
         CustomRoute<void>(

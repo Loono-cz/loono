@@ -288,7 +288,7 @@ class ExaminationDetail extends StatelessWidget {
                 Expanded(
                   child: LoonoButton(
                     text: l10n.examination_detail_order_examination, //objednej se
-                    onTap: () => showOrderCheckupSheet(context, categorizedExamination),
+                    onTap: () => showOrderCheckupSheetStep1(context, categorizedExamination),
                   ),
                 ),
                 const SizedBox(width: 19),

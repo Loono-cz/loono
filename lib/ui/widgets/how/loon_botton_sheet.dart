@@ -32,9 +32,9 @@ class LoonBottomSheet extends StatelessWidget {
       child: Center(
         child: Padding(
           padding: const EdgeInsets.all(18.0),
-          child: Column(
-            mainAxisAlignment: mainAxisAlignment,
-            mainAxisSize: MainAxisSize.min,
+          child: ListView(
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
             children: [
               Align(
                 alignment: Alignment.centerRight,
