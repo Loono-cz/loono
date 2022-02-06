@@ -20,7 +20,7 @@ class PreventionScreen extends StatelessWidget {
                 child: const Text('SETTINGS'),
               ),
             ),
-            ExaminationsSheetOverlay(),
+            const ExaminationsSheetOverlay(),
           ],
         ),
       ),
