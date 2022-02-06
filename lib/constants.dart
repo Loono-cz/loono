@@ -64,12 +64,6 @@ class LoonoFonts {
     fontWeight: FontWeight.normal,
   );
 
-  static const headerFontStyleBold = TextStyle(
-    fontSize: 24,
-    color: LoonoColors.black,
-    fontWeight: FontWeight.bold,
-  );
-
   static const subtitleFontStyle = TextStyle(
     fontSize: 14,
     color: LoonoColors.black,

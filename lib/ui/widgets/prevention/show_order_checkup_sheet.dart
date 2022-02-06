@@ -133,10 +133,18 @@ void showOrderCheckupSheetStep2(
             ),
             const SizedBox(height: 50),
             TextButton(
-              style: TextButton.styleFrom(minimumSize: const Size(double.maxFinite, 40)),
-              onPressed: () => autoRouter.push(FindDoctorRoute(cancelRouteName: cancelRoute)),
+              style: TextButton.styleFrom(
+                minimumSize: const Size(double.maxFinite, 40),
+              ),
+              onPressed: () => autoRouter.push(
+                FindDoctorRoute(cancelRouteName: cancelRoute),
+              ),
               child: Text(
-                l10n.examination_dont_have_number_button,
+                '${l10n.examination_dont_have_number_button} ${examinationTypeCasus(
+                  context,
+                  casus: Casus.genitiv,
+                  examinationType: examinationType,
+                ).toLowerCase()}',
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 15,
