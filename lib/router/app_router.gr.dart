@@ -59,6 +59,7 @@ import '../ui/screens/settings/open_settings.dart' as _i20;
 import '../ui/screens/settings/photo_cropped_result.dart' as _i27;
 import '../ui/screens/settings/points_help.dart' as _i29;
 import '../ui/screens/settings/update_profile.dart' as _i21;
+import '../ui/screens/settings/delete_account.dart' as _i51;
 import '../ui/screens/welcome.dart' as _i30;
 import '../ui/widgets/achievement_screen.dart' as _i12;
 import 'guards/check_is_logged_in.dart' as _i3;
@@ -302,6 +303,15 @@ class AppRouter extends _i1.RootStackRouter {
           opaque: true,
           barrierDismissible: false);
     },
+    DeleteAccountRoute.name: (routeData) {
+      final args = routeData.argsAs<DeleteAccountRouteArgs>();
+      return _i1.CustomPage<void>(
+          routeData: routeData,
+          child: _i51.DeleteAccountScreen(key: args.key),
+          transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
+    },
     LeaderboardRoute.name: (routeData) {
       return _i1.CustomPage<void>(
           routeData: routeData,
@@ -469,6 +479,7 @@ class AppRouter extends _i1.RootStackRouter {
               path: 'settings/update-profile/photo/gallery-taken'),
           _i1.RouteConfig(PhotoCroppedResultRoute.name,
               path: 'settings/update-profile/photo/photo-cropped-result'),
+          _i1.RouteConfig(DeleteAccountRoute.name, path: 'settings/update-profile/delete'),
           _i1.RouteConfig(LeaderboardRoute.name, path: 'settings/leaderboard'),
           _i1.RouteConfig(PointsHelpRoute.name, path: 'settings/points-help')
         ]),
@@ -971,6 +982,19 @@ class PhotoCroppedResultRouteArgs {
   final _i2.Key? key;
 
   final _i49.Uint8List imageBytes;
+}
+
+class DeleteAccountRoute extends _i1.PageRouteInfo<DeleteAccountRouteArgs> {
+  DeleteAccountRoute({_i2.Key? key})
+      : super(name, path: 'settings/update-profile/delete', args: DeleteAccountRouteArgs(key: key));
+
+  static const String name = 'DeleteAccountRoute';
+}
+
+class DeleteAccountRouteArgs {
+  const DeleteAccountRouteArgs({this.key});
+
+  final _i2.Key? key;
 }
 
 class LeaderboardRoute extends _i1.PageRouteInfo<void> {
