@@ -9,7 +9,7 @@ part of 'database.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps, unnecessary_this
 class User extends DataClass implements Insertable<User> {
   final String id;
-  final int? sexRaw;
+  final Sex? sex;
   final String? dateOfBirthRaw;
   final int? generalPracticionerCcaVisitRaw;
   final String? generalPracticionerVisitDateRaw;
@@ -25,7 +25,7 @@ class User extends DataClass implements Insertable<User> {
   final String? achievementCollectionRaw;
   User(
       {required this.id,
-      this.sexRaw,
+      this.sex,
       this.dateOfBirthRaw,
       this.generalPracticionerCcaVisitRaw,
       this.generalPracticionerVisitDateRaw,
@@ -45,8 +45,8 @@ class User extends DataClass implements Insertable<User> {
     return User(
       id: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
-      sexRaw: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}sex_raw']),
+      sex: $UsersTable.$converter0.mapToDart(const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}sex'])),
       dateOfBirthRaw: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}date_of_birth_raw']),
       generalPracticionerCcaVisitRaw: const IntType().mapFromDatabaseResponse(
@@ -80,8 +80,9 @@ class User extends DataClass implements Insertable<User> {
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<String>(id);
-    if (!nullToAbsent || sexRaw != null) {
-      map['sex_raw'] = Variable<int?>(sexRaw);
+    if (!nullToAbsent || sex != null) {
+      final converter = $UsersTable.$converter0;
+      map['sex'] = Variable<String?>(converter.mapToSql(sex));
     }
     if (!nullToAbsent || dateOfBirthRaw != null) {
       map['date_of_birth_raw'] = Variable<String?>(dateOfBirthRaw);
@@ -133,8 +134,7 @@ class User extends DataClass implements Insertable<User> {
   UsersCompanion toCompanion(bool nullToAbsent) {
     return UsersCompanion(
       id: Value(id),
-      sexRaw:
-          sexRaw == null && nullToAbsent ? const Value.absent() : Value(sexRaw),
+      sex: sex == null && nullToAbsent ? const Value.absent() : Value(sex),
       dateOfBirthRaw: dateOfBirthRaw == null && nullToAbsent
           ? const Value.absent()
           : Value(dateOfBirthRaw),
@@ -183,7 +183,7 @@ class User extends DataClass implements Insertable<User> {
     serializer ??= moorRuntimeOptions.defaultSerializer;
     return User(
       id: serializer.fromJson<String>(json['id']),
-      sexRaw: serializer.fromJson<int?>(json['sexRaw']),
+      sex: serializer.fromJson<Sex?>(json['sex']),
       dateOfBirthRaw: serializer.fromJson<String?>(json['dateOfBirthRaw']),
       generalPracticionerCcaVisitRaw:
           serializer.fromJson<int?>(json['generalPracticionerCcaVisitRaw']),
@@ -211,7 +211,7 @@ class User extends DataClass implements Insertable<User> {
     serializer ??= moorRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'id': serializer.toJson<String>(id),
-      'sexRaw': serializer.toJson<int?>(sexRaw),
+      'sex': serializer.toJson<Sex?>(sex),
       'dateOfBirthRaw': serializer.toJson<String?>(dateOfBirthRaw),
       'generalPracticionerCcaVisitRaw':
           serializer.toJson<int?>(generalPracticionerCcaVisitRaw),
@@ -235,7 +235,7 @@ class User extends DataClass implements Insertable<User> {
 
   User copyWith(
           {String? id,
-          int? sexRaw,
+          Sex? sex,
           String? dateOfBirthRaw,
           int? generalPracticionerCcaVisitRaw,
           String? generalPracticionerVisitDateRaw,
@@ -251,7 +251,7 @@ class User extends DataClass implements Insertable<User> {
           String? achievementCollectionRaw}) =>
       User(
         id: id ?? this.id,
-        sexRaw: sexRaw ?? this.sexRaw,
+        sex: sex ?? this.sex,
         dateOfBirthRaw: dateOfBirthRaw ?? this.dateOfBirthRaw,
         generalPracticionerCcaVisitRaw: generalPracticionerCcaVisitRaw ??
             this.generalPracticionerCcaVisitRaw,
@@ -275,7 +275,7 @@ class User extends DataClass implements Insertable<User> {
   String toString() {
     return (StringBuffer('User(')
           ..write('id: $id, ')
-          ..write('sexRaw: $sexRaw, ')
+          ..write('sex: $sex, ')
           ..write('dateOfBirthRaw: $dateOfBirthRaw, ')
           ..write(
               'generalPracticionerCcaVisitRaw: $generalPracticionerCcaVisitRaw, ')
@@ -299,7 +299,7 @@ class User extends DataClass implements Insertable<User> {
   int get hashCode => $mrjf($mrjc(
       id.hashCode,
       $mrjc(
-          sexRaw.hashCode,
+          sex.hashCode,
           $mrjc(
               dateOfBirthRaw.hashCode,
               $mrjc(
@@ -333,7 +333,7 @@ class User extends DataClass implements Insertable<User> {
       identical(this, other) ||
       (other is User &&
           other.id == this.id &&
-          other.sexRaw == this.sexRaw &&
+          other.sex == this.sex &&
           other.dateOfBirthRaw == this.dateOfBirthRaw &&
           other.generalPracticionerCcaVisitRaw ==
               this.generalPracticionerCcaVisitRaw &&
@@ -353,7 +353,7 @@ class User extends DataClass implements Insertable<User> {
 
 class UsersCompanion extends UpdateCompanion<User> {
   final Value<String> id;
-  final Value<int?> sexRaw;
+  final Value<Sex?> sex;
   final Value<String?> dateOfBirthRaw;
   final Value<int?> generalPracticionerCcaVisitRaw;
   final Value<String?> generalPracticionerVisitDateRaw;
@@ -369,7 +369,7 @@ class UsersCompanion extends UpdateCompanion<User> {
   final Value<String?> achievementCollectionRaw;
   const UsersCompanion({
     this.id = const Value.absent(),
-    this.sexRaw = const Value.absent(),
+    this.sex = const Value.absent(),
     this.dateOfBirthRaw = const Value.absent(),
     this.generalPracticionerCcaVisitRaw = const Value.absent(),
     this.generalPracticionerVisitDateRaw = const Value.absent(),
@@ -386,7 +386,7 @@ class UsersCompanion extends UpdateCompanion<User> {
   });
   UsersCompanion.insert({
     required String id,
-    this.sexRaw = const Value.absent(),
+    this.sex = const Value.absent(),
     this.dateOfBirthRaw = const Value.absent(),
     this.generalPracticionerCcaVisitRaw = const Value.absent(),
     this.generalPracticionerVisitDateRaw = const Value.absent(),
@@ -403,7 +403,7 @@ class UsersCompanion extends UpdateCompanion<User> {
   }) : id = Value(id);
   static Insertable<User> custom({
     Expression<String>? id,
-    Expression<int?>? sexRaw,
+    Expression<Sex?>? sex,
     Expression<String?>? dateOfBirthRaw,
     Expression<int?>? generalPracticionerCcaVisitRaw,
     Expression<String?>? generalPracticionerVisitDateRaw,
@@ -420,7 +420,7 @@ class UsersCompanion extends UpdateCompanion<User> {
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
-      if (sexRaw != null) 'sex_raw': sexRaw,
+      if (sex != null) 'sex': sex,
       if (dateOfBirthRaw != null) 'date_of_birth_raw': dateOfBirthRaw,
       if (generalPracticionerCcaVisitRaw != null)
         'general_practicioner_cca_visit_raw': generalPracticionerCcaVisitRaw,
@@ -447,7 +447,7 @@ class UsersCompanion extends UpdateCompanion<User> {
 
   UsersCompanion copyWith(
       {Value<String>? id,
-      Value<int?>? sexRaw,
+      Value<Sex?>? sex,
       Value<String?>? dateOfBirthRaw,
       Value<int?>? generalPracticionerCcaVisitRaw,
       Value<String?>? generalPracticionerVisitDateRaw,
@@ -463,7 +463,7 @@ class UsersCompanion extends UpdateCompanion<User> {
       Value<String?>? achievementCollectionRaw}) {
     return UsersCompanion(
       id: id ?? this.id,
-      sexRaw: sexRaw ?? this.sexRaw,
+      sex: sex ?? this.sex,
       dateOfBirthRaw: dateOfBirthRaw ?? this.dateOfBirthRaw,
       generalPracticionerCcaVisitRaw:
           generalPracticionerCcaVisitRaw ?? this.generalPracticionerCcaVisitRaw,
@@ -491,8 +491,9 @@ class UsersCompanion extends UpdateCompanion<User> {
     if (id.present) {
       map['id'] = Variable<String>(id.value);
     }
-    if (sexRaw.present) {
-      map['sex_raw'] = Variable<int?>(sexRaw.value);
+    if (sex.present) {
+      final converter = $UsersTable.$converter0;
+      map['sex'] = Variable<String?>(converter.mapToSql(sex.value));
     }
     if (dateOfBirthRaw.present) {
       map['date_of_birth_raw'] = Variable<String?>(dateOfBirthRaw.value);
@@ -547,7 +548,7 @@ class UsersCompanion extends UpdateCompanion<User> {
   String toString() {
     return (StringBuffer('UsersCompanion(')
           ..write('id: $id, ')
-          ..write('sexRaw: $sexRaw, ')
+          ..write('sex: $sex, ')
           ..write('dateOfBirthRaw: $dateOfBirthRaw, ')
           ..write(
               'generalPracticionerCcaVisitRaw: $generalPracticionerCcaVisitRaw, ')
@@ -576,10 +577,11 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   late final GeneratedColumn<String?> id = GeneratedColumn<String?>(
       'id', aliasedName, false,
       typeName: 'TEXT', requiredDuringInsert: true);
-  final VerificationMeta _sexRawMeta = const VerificationMeta('sexRaw');
-  late final GeneratedColumn<int?> sexRaw = GeneratedColumn<int?>(
-      'sex_raw', aliasedName, true,
-      typeName: 'INTEGER', requiredDuringInsert: false);
+  final VerificationMeta _sexMeta = const VerificationMeta('sex');
+  late final GeneratedColumnWithTypeConverter<Sex, String?> sex =
+      GeneratedColumn<String?>('sex', aliasedName, true,
+              typeName: 'TEXT', requiredDuringInsert: false)
+          .withConverter<Sex>($UsersTable.$converter0);
   final VerificationMeta _dateOfBirthRawMeta =
       const VerificationMeta('dateOfBirthRaw');
   late final GeneratedColumn<String?> dateOfBirthRaw = GeneratedColumn<String?>(
@@ -648,7 +650,7 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   @override
   List<GeneratedColumn> get $columns => [
         id,
-        sexRaw,
+        sex,
         dateOfBirthRaw,
         generalPracticionerCcaVisitRaw,
         generalPracticionerVisitDateRaw,
@@ -677,10 +679,7 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
     } else if (isInserting) {
       context.missing(_idMeta);
     }
-    if (data.containsKey('sex_raw')) {
-      context.handle(_sexRawMeta,
-          sexRaw.isAcceptableOrUnknown(data['sex_raw']!, _sexRawMeta));
-    }
+    context.handle(_sexMeta, const VerificationResult.success());
     if (data.containsKey('date_of_birth_raw')) {
       context.handle(
           _dateOfBirthRawMeta,
@@ -773,6 +772,8 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   $UsersTable createAlias(String alias) {
     return $UsersTable(_db, alias);
   }
+
+  static TypeConverter<Sex, String> $converter0 = const SexDbConverter();
 }
 
 class HealthcareProvider extends DataClass
@@ -1314,7 +1315,7 @@ class $HealthcareProvidersTable extends HealthcareProviders
 }
 
 class CalendarEvent extends DataClass implements Insertable<CalendarEvent> {
-  final ExaminationType type;
+  final ExaminationTypeEnum type;
   final String deviceCalendarId;
   final String calendarEventId;
   final DateTime date;
@@ -1364,7 +1365,7 @@ class CalendarEvent extends DataClass implements Insertable<CalendarEvent> {
       {ValueSerializer? serializer}) {
     serializer ??= moorRuntimeOptions.defaultSerializer;
     return CalendarEvent(
-      type: serializer.fromJson<ExaminationType>(json['type']),
+      type: serializer.fromJson<ExaminationTypeEnum>(json['type']),
       deviceCalendarId: serializer.fromJson<String>(json['deviceCalendarId']),
       calendarEventId: serializer.fromJson<String>(json['calendarEventId']),
       date: serializer.fromJson<DateTime>(json['date']),
@@ -1374,7 +1375,7 @@ class CalendarEvent extends DataClass implements Insertable<CalendarEvent> {
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
     serializer ??= moorRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
-      'type': serializer.toJson<ExaminationType>(type),
+      'type': serializer.toJson<ExaminationTypeEnum>(type),
       'deviceCalendarId': serializer.toJson<String>(deviceCalendarId),
       'calendarEventId': serializer.toJson<String>(calendarEventId),
       'date': serializer.toJson<DateTime>(date),
@@ -1382,7 +1383,7 @@ class CalendarEvent extends DataClass implements Insertable<CalendarEvent> {
   }
 
   CalendarEvent copyWith(
-          {ExaminationType? type,
+          {ExaminationTypeEnum? type,
           String? deviceCalendarId,
           String? calendarEventId,
           DateTime? date}) =>
@@ -1419,7 +1420,7 @@ class CalendarEvent extends DataClass implements Insertable<CalendarEvent> {
 }
 
 class CalendarEventsCompanion extends UpdateCompanion<CalendarEvent> {
-  final Value<ExaminationType> type;
+  final Value<ExaminationTypeEnum> type;
   final Value<String> deviceCalendarId;
   final Value<String> calendarEventId;
   final Value<DateTime> date;
@@ -1430,7 +1431,7 @@ class CalendarEventsCompanion extends UpdateCompanion<CalendarEvent> {
     this.date = const Value.absent(),
   });
   CalendarEventsCompanion.insert({
-    required ExaminationType type,
+    required ExaminationTypeEnum type,
     required String deviceCalendarId,
     required String calendarEventId,
     required DateTime date,
@@ -1439,7 +1440,7 @@ class CalendarEventsCompanion extends UpdateCompanion<CalendarEvent> {
         calendarEventId = Value(calendarEventId),
         date = Value(date);
   static Insertable<CalendarEvent> custom({
-    Expression<ExaminationType>? type,
+    Expression<ExaminationTypeEnum>? type,
     Expression<String>? deviceCalendarId,
     Expression<String>? calendarEventId,
     Expression<DateTime>? date,
@@ -1453,7 +1454,7 @@ class CalendarEventsCompanion extends UpdateCompanion<CalendarEvent> {
   }
 
   CalendarEventsCompanion copyWith(
-      {Value<ExaminationType>? type,
+      {Value<ExaminationTypeEnum>? type,
       Value<String>? deviceCalendarId,
       Value<String>? calendarEventId,
       Value<DateTime>? date}) {
@@ -1502,10 +1503,10 @@ class $CalendarEventsTable extends CalendarEvents
   final String? _alias;
   $CalendarEventsTable(this._db, [this._alias]);
   final VerificationMeta _typeMeta = const VerificationMeta('type');
-  late final GeneratedColumnWithTypeConverter<ExaminationType, String?> type =
-      GeneratedColumn<String?>('type', aliasedName, false,
+  late final GeneratedColumnWithTypeConverter<ExaminationTypeEnum, String?>
+      type = GeneratedColumn<String?>('type', aliasedName, false,
               typeName: 'TEXT', requiredDuringInsert: true)
-          .withConverter<ExaminationType>($CalendarEventsTable.$converter0);
+          .withConverter<ExaminationTypeEnum>($CalendarEventsTable.$converter0);
   final VerificationMeta _deviceCalendarIdMeta =
       const VerificationMeta('deviceCalendarId');
   late final GeneratedColumn<String?> deviceCalendarId =
@@ -1571,8 +1572,8 @@ class $CalendarEventsTable extends CalendarEvents
     return $CalendarEventsTable(_db, alias);
   }
 
-  static TypeConverter<ExaminationType, String> $converter0 =
-      const ExaminationTypeDbConverter();
+  static TypeConverter<ExaminationTypeEnum, String> $converter0 =
+      const ExaminationTypeEnumDbConverter();
 }
 
 abstract class _$AppDatabase extends GeneratedDatabase {

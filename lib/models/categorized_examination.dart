@@ -1,17 +1,17 @@
+import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_extensions.dart';
-import 'package:loono/helpers/examination_status.dart';
 
 class CategorizedExamination {
   const CategorizedExamination({
     required this.examination,
-    required this.status,
+    required this.category,
   });
 
-  final ExaminationRecord examination;
-  final ExaminationStatus status;
+  final ExaminationRecordTemp examination;
+  final ExaminationCategory category;
 
   @override
   String toString() {
-    return 'CategorizedExamination{examination: $examination, status: $status}';
+    return 'CategorizedExamination{examination: $examination, category: $category}';
   }
 }

@@ -3,15 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
-import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
-import 'package:loono/models/user.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/custom_date_picker.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart';
 
 class NewDateScreen extends StatefulWidget {
   const NewDateScreen({
@@ -32,7 +31,7 @@ class _NewDateScreenState extends State<NewDateScreen> {
 
   Sex get _sex {
     final user = registry.get<DatabaseService>().users.user;
-    return user?.sex ?? Sex.male;
+    return user?.sex ?? Sex.MALE;
   }
 
   void onDateChanged(DateTime date) {
@@ -50,7 +49,7 @@ class _NewDateScreenState extends State<NewDateScreen> {
     final examinationType = widget.categorizedExamination.examination.examinationType;
     final preposition = czechPreposition(context, examinationType: examinationType);
     final title1 =
-        '${_sex == Sex.male ? l10n.checkup_new_date_title_male : l10n.checkup_new_date_title_female} $preposition ';
+        '${_sex == Sex.MALE ? l10n.checkup_new_date_title_male : l10n.checkup_new_date_title_female} $preposition ';
     final cancelRoute =
         ExaminationDetailRoute(categorizedExamination: widget.categorizedExamination);
     return Scaffold(

@@ -1,8 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/helpers/date_without_day.dart';
-import 'package:loono/helpers/examination_types.dart';
-import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/models/user.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
@@ -10,6 +8,7 @@ import 'package:loono/services/db/database.dart';
 import 'package:loono/services/notification_service.dart';
 import 'package:loono/services/onboarding_state_service.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart' hide User;
 import 'package:provider/provider.dart';
 
 class OnboardingWrapperScreen extends StatefulWidget {
@@ -64,10 +63,10 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                           _dateOrAchievementOrNextDoctorRoute(
                             onboardingState: onboardingState,
                             currDoctorCcaVisit: user.generalPracticionerCcaVisit,
-                            examinationType: ExaminationType.GENERAL_PRACTITIONER,
+                            examinationType: ExaminationTypeEnum.GENERAL_PRACTITIONER,
                             achievementRoute: const GeneralPracticionerAchievementRoute(),
                             dateRoute: const GeneralPractitionerDateRoute(),
-                            nextDoctorRoute: sex == Sex.female
+                            nextDoctorRoute: sex == Sex.FEMALE
                                 ? OnboardingGynecologyRoute(sex: sex) as PageRouteInfo<dynamic>
                                 : OnboardingDentistRoute(sex: sex),
                           ),
@@ -75,7 +74,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                       );
 
                       // Gynecology Route (female only)
-                      if (sex == Sex.female) {
+                      if (sex == Sex.FEMALE) {
                         flows.addAll(
                           [
                             _nextDoctorOnlyRoute(
@@ -87,7 +86,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                             _dateOrAchievementOrNextDoctorRoute(
                               onboardingState: onboardingState,
                               currDoctorCcaVisit: user.gynecologyCcaVisit,
-                              examinationType: ExaminationType.GYNECOLOGIST,
+                              examinationType: ExaminationTypeEnum.GYNECOLOGIST,
                               achievementRoute: const GynecologyAchievementRoute(),
                               dateRoute: const GynecologyDateRoute(),
                               nextDoctorRoute: OnboardingDentistRoute(sex: sex),
@@ -101,10 +100,10 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                         [
                           _nextDoctorOnlyRoute(
                             onboardingState: onboardingState,
-                            prevDoctorCcaVisit: sex == Sex.male
+                            prevDoctorCcaVisit: sex == Sex.MALE
                                 ? user.generalPracticionerCcaVisit
                                 : user.gynecologyCcaVisit,
-                            prevDoctorDateVisit: sex == Sex.male
+                            prevDoctorDateVisit: sex == Sex.MALE
                                 ? user.generalPracticionerVisitDate
                                 : user.gynecologyVisitDate,
                             nextDoctorRoute: OnboardingDentistRoute(sex: sex),
@@ -112,7 +111,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                           _dateOrAchievementOrNextDoctorRoute(
                             onboardingState: onboardingState,
                             currDoctorCcaVisit: user.dentistCcaVisit,
-                            examinationType: ExaminationType.DENTIST,
+                            examinationType: ExaminationTypeEnum.DENTIST,
                             achievementRoute: const DentistAchievementRoute(),
                             dateRoute: const DentistDateRoute(),
                             nextDoctorRoute: OnboardingDentistRoute(sex: sex),
@@ -151,7 +150,7 @@ PageRouteInfo<dynamic>? _nextDoctorOnlyRoute({
 PageRouteInfo<dynamic>? _dateOrAchievementOrNextDoctorRoute({
   required OnboardingStateService onboardingState,
   required CcaDoctorVisit? currDoctorCcaVisit,
-  required ExaminationType examinationType,
+  required ExaminationTypeEnum examinationType,
   required PageRouteInfo<dynamic> achievementRoute,
   required PageRouteInfo<dynamic> dateRoute,
   PageRouteInfo<dynamic> allowNotificationsRoute = const AllowNotificationsRoute(),

@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/date_without_day.dart';
-import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:loono/models/user.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
@@ -16,6 +14,7 @@ import 'package:loono/ui/widgets/settings/app_bar.dart';
 import 'package:loono/ui/widgets/settings/avatar.dart';
 import 'package:loono/ui/widgets/settings/update_profile_item.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart' hide User;
 
 class UpdateProfileScreen extends StatelessWidget {
   UpdateProfileScreen({Key? key}) : super(key: key);
@@ -23,14 +22,16 @@ class UpdateProfileScreen extends StatelessWidget {
   final _usersDao = registry.get<DatabaseService>().users;
 
   String _getUserSexValue(BuildContext context, {Sex? sex}) {
+    late final String value;
     switch (sex) {
-      case Sex.male:
-        return context.l10n.gender_male;
-      case Sex.female:
-        return context.l10n.gender_female;
-      default:
-        return '';
+      case Sex.MALE:
+        value = context.l10n.gender_male;
+        break;
+      case Sex.FEMALE:
+        value = context.l10n.gender_female;
+        break;
     }
+    return value;
   }
 
   DateWithoutDay? _getBirthdateDate(String? dateTimeRaw) {

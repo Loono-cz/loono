@@ -19,7 +19,7 @@ class CalendarListScreen extends StatefulWidget {
     required this.examinationRecord,
   }) : super(key: key);
 
-  final ExaminationRecord examinationRecord;
+  final ExaminationRecordTemp examinationRecord;
 
   @override
   State<CalendarListScreen> createState() => _CalendarListScreenState();
@@ -39,7 +39,7 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
 
   String? _calendarIdChoice;
 
-  ExaminationRecord get examinationRecord => widget.examinationRecord;
+  ExaminationRecordTemp get examinationRecord => widget.examinationRecord;
 
   DateTime? get nextVisitDate => examinationRecord.nextVisitDate;
 

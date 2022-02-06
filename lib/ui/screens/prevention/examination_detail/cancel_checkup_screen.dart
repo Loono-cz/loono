@@ -2,13 +2,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/prevention/recommendation_item.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart';
 
 class CancelCheckupScreen extends StatelessWidget {
   const CancelCheckupScreen({
@@ -18,7 +18,7 @@ class CancelCheckupScreen extends StatelessWidget {
     required this.title,
   }) : super(key: key);
 
-  final ExaminationType examinationType;
+  final ExaminationTypeEnum examinationType;
   final DateTime date;
   final String title;
 

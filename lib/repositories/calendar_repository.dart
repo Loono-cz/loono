@@ -5,6 +5,7 @@ import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/services/calendar_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
+import 'package:loono_api/loono_api.dart';
 import 'package:moor/moor.dart';
 import 'package:timezone/timezone.dart' as tz;
 
@@ -19,7 +20,7 @@ class CalendarRepository {
   final CalendarService _calendarService;
 
   Future<Event> _getDefaultCheckupEvent({
-    required ExaminationType examinationType,
+    required ExaminationTypeEnum examinationType,
     required String deviceCalendarId,
     String? deviceCalendarEventId,
     required DateTime startingDate,
@@ -30,12 +31,12 @@ class CalendarRepository {
       eventId: deviceCalendarEventId,
       start: tz.TZDateTime.from(startingDate, tz.getLocation(timezone)),
       end: tz.TZDateTime.from(startingDate.add(const Duration(hours: 1)), tz.getLocation(timezone)),
-      title: '${examinationType.name} - preventivní prohlídka [Loono]',
+      title: '${examinationType.l10n_name} - preventivní prohlídka [Loono]',
     );
   }
 
   Future<bool> createEvent(
-    ExaminationType examinationType, {
+    ExaminationTypeEnum examinationType, {
     required String deviceCalendarId,
     required DateTime startingDate,
   }) async {
@@ -63,7 +64,7 @@ class CalendarRepository {
   }
 
   Future<void> updateEventDate(
-    ExaminationType examinationType, {
+    ExaminationTypeEnum examinationType, {
     required DateTime newDate,
   }) async {
     final existingDbEvent = await _db.calendarEvents.get(examinationType);
@@ -88,7 +89,7 @@ class CalendarRepository {
     }
   }
 
-  Future<void> deleteEvent(ExaminationType examinationType) async {
+  Future<void> deleteEvent(ExaminationTypeEnum examinationType) async {
     final existingDbEvent = await _db.calendarEvents.get(examinationType);
     if (existingDbEvent != null) {
       await _db.calendarEvents.deleteEvent(examinationType);
@@ -108,7 +109,7 @@ class CalendarRepository {
   ///
   /// The use-case is when for example a user confirms a check-up visit, we want to keep the event
   /// in the device calendar so the user does not lose the track of it.
-  Future<void> deleteOnlyDbEvent(ExaminationType examinationType) async {
+  Future<void> deleteOnlyDbEvent(ExaminationTypeEnum examinationType) async {
     await _db.calendarEvents.deleteEvent(examinationType);
   }
 }

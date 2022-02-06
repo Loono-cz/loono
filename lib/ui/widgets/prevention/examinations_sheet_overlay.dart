@@ -2,8 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_extensions.dart';
-import 'package:loono/helpers/examination_status.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -18,12 +18,12 @@ class ExaminationsSheetOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox.expand(
-      child: FutureBuilder<List<ExaminationRecord>>(
+      child: FutureBuilder<List<ExaminationRecordTemp>>(
         future: _examinationRepository.getExaminationRecords(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final categorized = snapshot.data!
-                .map((e) => CategorizedExamination(examination: e, status: e.calculateStatus()))
+                .map((e) => CategorizedExamination(examination: e, category: e.calculateStatus()))
                 .toList();
 
             return DraggableScrollableSheet(
@@ -41,11 +41,11 @@ class ExaminationsSheetOverlay extends StatelessWidget {
                   ),
                   child: ListView.builder(
                     controller: scrollController,
-                    itemCount: examinationStatusOrdering.length,
+                    itemCount: examinationCategoriesOrdering.length,
                     itemBuilder: (context, index) {
-                      final examinationStatus = examinationStatusOrdering.elementAt(index);
+                      final examinationStatus = examinationCategoriesOrdering.elementAt(index);
                       final categorizedExaminations = categorized
-                          .where((e) => e.status == examinationStatus)
+                          .where((e) => e.category == examinationStatus)
                           .toList()
                         ..sortExaminations();
 
