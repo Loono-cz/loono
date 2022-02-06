@@ -143,6 +143,78 @@ String procedureQuestionTitle(BuildContext context, {required ExaminationType ex
   return response;
 }
 
+enum Casus { nomativ, genitiv, dativ }
+
+String examinationTypeCasus(
+  BuildContext context, {
+  required ExaminationType examinationType,
+  required Casus casus,
+}) {
+  final l10n = context.l10n;
+  switch (examinationType) {
+    case ExaminationType.BREAST_SELF:
+      if (casus == Casus.nomativ) return l10n.breastSelf_nomativ;
+      if (casus == Casus.genitiv) return l10n.breastSelf_genitiv;
+      if (casus == Casus.dativ) return l10n.breastSelf_dativ;
+      return '${ExaminationType.BREAST_SELF} unkown casus';
+    case ExaminationType.COLONOSCOPY:
+      if (casus == Casus.nomativ) return l10n.colonoscopy_nomativ;
+      if (casus == Casus.genitiv) return l10n.colonoscopy_genitiv;
+      if (casus == Casus.dativ) return l10n.colonoscopy_dativ;
+      return '${ExaminationType.COLONOSCOPY} unkown casus';
+    case ExaminationType.DENTIST:
+      if (casus == Casus.nomativ) return l10n.dentist_nomativ;
+      if (casus == Casus.genitiv) return l10n.dentist_genitiv;
+      if (casus == Casus.dativ) return l10n.dentist_dativ;
+      return '${ExaminationType.DENTIST} unkown casus';
+    case ExaminationType.DERMATOLOGIST:
+      if (casus == Casus.nomativ) return l10n.dermatologist_nomativ;
+      if (casus == Casus.genitiv) return l10n.dermatologist_genitiv;
+      if (casus == Casus.dativ) return l10n.dermatologist_dativ;
+      return '${ExaminationType.DERMATOLOGIST} unkown casus';
+    case ExaminationType.GENERAL_PRACTITIONER:
+      if (casus == Casus.nomativ) return l10n.generalPractitioner_nomativ;
+      if (casus == Casus.genitiv) return l10n.generalPractitioner_genitiv;
+      if (casus == Casus.dativ) return l10n.generalPractitioner_dativ;
+      return '${ExaminationType.GENERAL_PRACTITIONER} unkown casus';
+    case ExaminationType.GYNECOLOGIST:
+      if (casus == Casus.nomativ) return l10n.gynecologist_nomativ;
+      if (casus == Casus.genitiv) return l10n.gynecologist_genitiv;
+      if (casus == Casus.dativ) return l10n.gynecologist_dativ;
+      return '${ExaminationType.GYNECOLOGIST} unkown casus';
+    case ExaminationType.MAMMOGRAM:
+      if (casus == Casus.nomativ) return l10n.mammogram_nomativ;
+      if (casus == Casus.genitiv) return l10n.mammogram_genitiv;
+      if (casus == Casus.dativ) return l10n.mammogram_dativ;
+      return '${ExaminationType.MAMMOGRAM} unkown casus';
+    case ExaminationType.OPHTHALMOLOGIST:
+      if (casus == Casus.nomativ) return l10n.ophthalmologist_nomativ;
+      if (casus == Casus.genitiv) return l10n.ophthalmologist_genitiv;
+      if (casus == Casus.dativ) return l10n.ophthalmologist_dativ;
+      return '${ExaminationType.OPHTHALMOLOGIST} unkown casus';
+    case ExaminationType.TESTICULAR_SELF:
+      if (casus == Casus.nomativ) return l10n.testicularSelf_nomativ;
+      if (casus == Casus.genitiv) return l10n.testicularSelf_genitiv;
+      if (casus == Casus.dativ) return l10n.testicularSelf_dativ;
+      return '${ExaminationType.TESTICULAR_SELF} unkown casus';
+    case ExaminationType.TOKS:
+      if (casus == Casus.nomativ) return l10n.toks_nomativ;
+      if (casus == Casus.genitiv) return l10n.toks_genitiv;
+      if (casus == Casus.dativ) return l10n.toks_dativ;
+      return '${ExaminationType.TOKS} unkown casus';
+    case ExaminationType.ULTRASOUND_BREAST:
+      if (casus == Casus.nomativ) return l10n.ultrasoundBreast_nomativ;
+      if (casus == Casus.genitiv) return l10n.ultrasoundBreast_genitiv;
+      if (casus == Casus.dativ) return l10n.ultrasoundBreast_dativ;
+      return '${ExaminationType.ULTRASOUND_BREAST} unkown casus';
+    case ExaminationType.UROLOGIST:
+      if (casus == Casus.nomativ) return l10n.urologist_nomativ;
+      if (casus == Casus.genitiv) return l10n.urologist_genitiv;
+      if (casus == Casus.dativ) return l10n.urologist_dativ;
+      return '${ExaminationType.UROLOGIST} unkown casus';
+  }
+}
+
 int daysBetween(DateTime from, DateTime to) {
   from = DateTime(from.year, from.month, from.day);
   to = DateTime(to.year, to.month, to.day);

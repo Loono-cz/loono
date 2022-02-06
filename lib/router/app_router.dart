@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:loono/router/guards/check_is_logged_in.dart';
 import 'package:loono/ui/screens/create_account.dart';
 import 'package:loono/ui/screens/dentist_achievement.dart';
+import 'package:loono/ui/screens/find_doctor/find_doctor.dart';
 import 'package:loono/ui/screens/general_practicioner_achievement.dart';
 import 'package:loono/ui/screens/gynecology_achievement.dart';
 import 'package:loono/ui/screens/login.dart';
@@ -28,6 +29,8 @@ import 'package:loono/ui/screens/prevention/examination_detail/change_date_scree
 import 'package:loono/ui/screens/prevention/examination_detail/change_last_visit_screen.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/change_time_screen.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/examination_screen.dart';
+import 'package:loono/ui/screens/prevention/examination_detail/new_date_screen.dart';
+import 'package:loono/ui/screens/prevention/examination_detail/new_time_screen.dart';
 import 'package:loono/ui/screens/prevention/questionnaire/date_picker_screen.dart';
 import 'package:loono/ui/screens/settings/camera_photo_taken.dart';
 import 'package:loono/ui/screens/settings/edit_email.dart';
@@ -62,6 +65,11 @@ const _settingsTransition = TransitionsBuilders.slideLeft;
       children: [
         // Main
         AutoRoute<void>(page: MainScreen, path: ''),
+        // find_doctor
+        CustomRoute<void>(
+          page: FindDoctorScreen,
+          path: 'find-doctor',
+        ),
 
         // Prevention
         CustomRoute<void>(
@@ -97,6 +105,16 @@ const _settingsTransition = TransitionsBuilders.slideLeft;
         CustomRoute<void>(
           page: ChangeLastVisitScreen,
           path: 'checkup/last-visit-update',
+          transitionsBuilder: _preventionTransition,
+        ),
+        CustomRoute<void>(
+          page: NewDateScreen,
+          path: 'checkup/set-date',
+          transitionsBuilder: _preventionTransition,
+        ),
+        CustomRoute<void>(
+          page: NewTimeScreen,
+          path: 'checkup/set-time',
           transitionsBuilder: _preventionTransition,
         ),
         CustomRoute<void>(
