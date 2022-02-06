@@ -295,8 +295,12 @@ class ExaminationDetail extends StatelessWidget {
                 Expanded(
                   child: LoonoButton.light(
                     text: l10n.examination_detail_set_examination_button, //mám objednáno
-                    onTap: () => AutoRouter.of(context).push(NewDateRoute(
-                        categorizedExamination: categorizedExamination, showCancelIcon: false)),
+                    onTap: () => AutoRouter.of(context).push(
+                      NewDateRoute(
+                        categorizedExamination: categorizedExamination,
+                        showCancelIcon: false,
+                      ),
+                    ),
                   ),
                 ),
               ] else if (categorizedExamination.status == const ExaminationStatus.waiting()) ...[
