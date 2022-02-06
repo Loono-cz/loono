@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/examination_parser.dart';
 import 'package:loono/services/api_service.dart';

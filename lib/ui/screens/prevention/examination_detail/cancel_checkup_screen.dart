@@ -7,7 +7,6 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/ui/widgets/async_button.dart';
-import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/prevention/recommendation_item.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
