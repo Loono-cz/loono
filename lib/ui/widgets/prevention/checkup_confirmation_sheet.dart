@@ -8,6 +8,7 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/how/loon_botton_sheet.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
@@ -30,64 +31,34 @@ void showConfirmationSheet(BuildContext context, ExaminationTypeEnum examination
       borderRadius: BorderRadius.circular(15.0),
     ),
     builder: (BuildContext context) {
-      return Container(
-        height: 340,
-        decoration: const BoxDecoration(
-          color: LoonoColors.bottomSheetPrevention,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(15),
-            topRight: Radius.circular(15),
-          ),
-        ),
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.close),
-                      onPressed: () => AutoRouter.of(context).pop(),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  '${context.l10n.checkup_confirmation_title} $preposition $practitioner?',
-                  style: LoonoFonts.headerFontStyle,
-                ),
-                const SizedBox(
-                  height: 60,
-                ),
-
-                /// Leaving this here for testing. Button switch will be implemented in progress bar task
-                /// All achievement and assets not implemented yet. Should be completed in separate task.
-                /// As of now, API for completion doesnt exists. Should be completed in separate task.
-                LoonoButton(
-                  text:
-                      '${l10n.yes}, ${sex == Sex.MALE ? l10n.checkup_confirmation_male.toLowerCase() : l10n.checkup_confirmation_female.toLowerCase()}',
-                  onTap: () => AutoRouter.of(context).navigate(
-                    AchievementRoute(
-                      header: 'TO DO: complete all rewards',
-                      textLines: [context.l10n.award_desc],
-                      numberOfPoints: examinationType.awardPoints,
-                      itemPath: 'assets/icons/coat-practitioner.svg',
-                      onButtonTap: _completedAction,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 60,
-                ),
-              ],
+      return LoonBottomSheet(
+        child: Column(
+          children: <Widget>[
+            Text(
+              '${context.l10n.checkup_confirmation_title} $preposition $practitioner?',
+              style: LoonoFonts.headerFontStyle,
             ),
-          ),
+            const SizedBox(
+              height: 60,
+            ),
+
+            /// Leaving this here for testing. Button switch will be implemented in progress bar task
+            /// All achievement and assets not implemented yet. Should be completed in separate task.
+            /// As of now, API for completion doesnt exists. Should be completed in separate task.
+            LoonoButton(
+              text:
+                  '${l10n.yes}, ${sex == Sex.MALE ? l10n.checkup_confirmation_male.toLowerCase() : l10n.checkup_confirmation_female.toLowerCase()}',
+              onTap: () => AutoRouter.of(context).navigate(
+                AchievementRoute(
+                  header: 'TO DO: complete all rewards',
+                  textLines: [context.l10n.award_desc],
+                  numberOfPoints: examinationType.awardPoints,
+                  itemPath: 'assets/icons/coat-practitioner.svg',
+                  onButtonTap: _completedAction,
+                ),
+              ),
+            ),
+          ],
         ),
       );
     },
