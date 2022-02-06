@@ -30,12 +30,16 @@ extension SexLabelsExt on Sex {
   }
 
   String getNicknameHintLabel(BuildContext context) {
+    late final String label;
     switch (this) {
       case Sex.MALE:
-        return 'Adam';
+        label = 'Adam';
+        break;
       case Sex.FEMALE:
-        return 'Ema';
+        label = 'Ema';
+        break;
     }
+    return label;
   }
 }
 
