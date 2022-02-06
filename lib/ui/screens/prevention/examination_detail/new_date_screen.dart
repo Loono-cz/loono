@@ -77,14 +77,15 @@ class _NewDateScreenState extends State<NewDateScreen> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(title1, style: LoonoFonts.headerFontStyle),
               Text(
-                examinationTypeCasus(
+                '${examinationTypeCasus(
                   context,
                   casus: Casus.genitiv,
                   examinationType: examinationType,
-                ).toUpperCase(),
+                ).toUpperCase()}?',
                 style: LoonoFonts.headerFontStyleBold,
               ),
               const Spacer(),
@@ -106,9 +107,6 @@ class _NewDateScreenState extends State<NewDateScreen> {
                     newDate: _newDate!,
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 18,
               ),
               const SizedBox(
                 height: 18,

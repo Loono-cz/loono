@@ -117,9 +117,6 @@ class _NewTimeScreenState extends State<NewTimeScreen> {
               const SizedBox(
                 height: 18,
               ),
-              const SizedBox(
-                height: 18,
-              ),
             ],
           ),
         ),
