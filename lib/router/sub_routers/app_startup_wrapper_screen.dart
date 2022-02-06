@@ -29,7 +29,7 @@ class _AppStartUpWrapperScreenState extends State<AppStartUpWrapperScreen> {
               if (snapshot.hasData && snapshot.connectionState == ConnectionState.active) {
                 if (examinationQuestionnaires == null || examinationQuestionnaires.isEmpty) {
                   // first time opening app or onboarding questionnaire not started yet
-                  return [const WelcomeRoute()];
+                  return [WelcomeRoute()];
                 } else {
                   return [PreAuthMainRoute()];
                 }

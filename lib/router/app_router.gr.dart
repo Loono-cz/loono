@@ -146,8 +146,10 @@ class AppRouter extends _i1.RootStackRouter {
           routeData: routeData, child: const _i14.SplashScreen());
     },
     WelcomeRoute.name: (routeData) {
+      final args = routeData.argsAs<WelcomeRouteArgs>(
+          orElse: () => const WelcomeRouteArgs());
       return _i1.MaterialPageX<void>(
-          routeData: routeData, child: const _i15.WelcomeScreen());
+          routeData: routeData, child: _i15.WelcomeScreen(key: args.key));
     },
     PreAuthPreventionWrapperRoute.name: (routeData) {
       final args = routeData.argsAs<PreAuthPreventionWrapperRouteArgs>(
@@ -732,10 +734,17 @@ class SplashRoute extends _i1.PageRouteInfo<void> {
   static const String name = 'SplashRoute';
 }
 
-class WelcomeRoute extends _i1.PageRouteInfo<void> {
-  const WelcomeRoute() : super(name, path: 'welcome');
+class WelcomeRoute extends _i1.PageRouteInfo<WelcomeRouteArgs> {
+  WelcomeRoute({_i2.Key? key})
+      : super(name, path: 'welcome', args: WelcomeRouteArgs(key: key));
 
   static const String name = 'WelcomeRoute';
+}
+
+class WelcomeRouteArgs {
+  const WelcomeRouteArgs({this.key});
+
+  final _i2.Key? key;
 }
 
 class PreAuthPreventionWrapperRoute
