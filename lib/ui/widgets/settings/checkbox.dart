@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:loono/constants.dart';
 
-import '../../../constants.dart';
-
-class Checkbox_custom extends StatefulWidget {
-  ValueChanged<bool> whatIsChecked;
-
-  Checkbox_custom(
+class CheckboxCustom extends StatefulWidget {
+  const CheckboxCustom(
       {Key? key, required this.text, this.isChecked = false, required this.whatIsChecked})
       : super(key: key);
 
   final String text;
-  bool isChecked;
+  final bool isChecked;
+  final ValueChanged<bool> whatIsChecked;
 
   @override
-  _Checkbox_customState createState() => _Checkbox_customState();
+  _CheckboxCustomState createState() => _CheckboxCustomState();
 }
 
-class _Checkbox_customState extends State<Checkbox_custom> {
+class _CheckboxCustomState extends State<CheckboxCustom> {
+  set isChecked(bool isChecked) {}
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -52,7 +52,7 @@ class _Checkbox_customState extends State<Checkbox_custom> {
                       widget.whatIsChecked(value!);
                       setState(
                         () {
-                          widget.isChecked = value;
+                          isChecked = value;
                         },
                       );
                     },
@@ -60,10 +60,10 @@ class _Checkbox_customState extends State<Checkbox_custom> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 17),
+                padding: const EdgeInsets.only(left: 17),
                 child: Text(
                   widget.text,
-                  style: TextStyle(fontSize: 14),
+                  style: const TextStyle(fontSize: 14),
                 ),
               ),
             ],
