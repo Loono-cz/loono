@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 
 class CheckboxCustom extends StatefulWidget {
-  const CheckboxCustom(
-      {Key? key, required this.text, this.isChecked = false, required this.whatIsChecked})
-      : super(key: key);
+  const CheckboxCustom({
+    Key? key,
+    required this.text,
+    this.isChecked = false,
+    required this.whatIsChecked,
+  }) : super(key: key);
 
   final String text;
   final bool isChecked;
