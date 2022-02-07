@@ -9,6 +9,7 @@ import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/universal_doctor_screen.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart';
 
 class OnboardingDentistScreen extends StatelessWidget {
   OnboardingDentistScreen({Key? key, required this.sex}) : super(key: key);
@@ -17,7 +18,7 @@ class OnboardingDentistScreen extends StatelessWidget {
 
   final _userRepository = registry.get<UserRepository>();
 
-  static const _type = ExaminationType.DENTIST;
+  static const _type = ExaminationTypeEnum.DENTIST;
   static const _interval = 1;
 
   @override

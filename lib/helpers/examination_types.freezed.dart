@@ -64,6 +64,10 @@ class _$ExaminationTypeUnionTearOff {
   UrologistExaminationTypeUnion urologist() {
     return const UrologistExaminationTypeUnion();
   }
+
+  VenerealDiseasesExaminationTypeUnion venerealDiseases() {
+    return const VenerealDiseasesExaminationTypeUnion();
+  }
 }
 
 /// @nodoc
@@ -85,6 +89,7 @@ mixin _$ExaminationTypeUnion {
     required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
+    required TResult Function() venerealDiseases,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -101,6 +106,7 @@ mixin _$ExaminationTypeUnion {
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -117,6 +123,7 @@ mixin _$ExaminationTypeUnion {
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -141,6 +148,8 @@ mixin _$ExaminationTypeUnion {
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
+    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
+        venerealDiseases,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -160,6 +169,8 @@ mixin _$ExaminationTypeUnion {
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -179,6 +190,8 @@ mixin _$ExaminationTypeUnion {
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -256,6 +269,7 @@ class _$BreastSelfExaminationTypeUnion extends BreastSelfExaminationTypeUnion {
     required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
+    required TResult Function() venerealDiseases,
   }) {
     return breastSelf();
   }
@@ -275,6 +289,7 @@ class _$BreastSelfExaminationTypeUnion extends BreastSelfExaminationTypeUnion {
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
   }) {
     return breastSelf?.call();
   }
@@ -294,6 +309,7 @@ class _$BreastSelfExaminationTypeUnion extends BreastSelfExaminationTypeUnion {
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
     required TResult orElse(),
   }) {
     if (breastSelf != null) {
@@ -324,6 +340,8 @@ class _$BreastSelfExaminationTypeUnion extends BreastSelfExaminationTypeUnion {
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
+    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
+        venerealDiseases,
   }) {
     return breastSelf(this);
   }
@@ -346,6 +364,8 @@ class _$BreastSelfExaminationTypeUnion extends BreastSelfExaminationTypeUnion {
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
   }) {
     return breastSelf?.call(this);
   }
@@ -368,6 +388,8 @@ class _$BreastSelfExaminationTypeUnion extends BreastSelfExaminationTypeUnion {
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
     required TResult orElse(),
   }) {
     if (breastSelf != null) {
@@ -439,6 +461,7 @@ class _$ColonoscopyExaminationTypeUnion
     required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
+    required TResult Function() venerealDiseases,
   }) {
     return colonoscopy();
   }
@@ -458,6 +481,7 @@ class _$ColonoscopyExaminationTypeUnion
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
   }) {
     return colonoscopy?.call();
   }
@@ -477,6 +501,7 @@ class _$ColonoscopyExaminationTypeUnion
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
     required TResult orElse(),
   }) {
     if (colonoscopy != null) {
@@ -507,6 +532,8 @@ class _$ColonoscopyExaminationTypeUnion
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
+    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
+        venerealDiseases,
   }) {
     return colonoscopy(this);
   }
@@ -529,6 +556,8 @@ class _$ColonoscopyExaminationTypeUnion
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
   }) {
     return colonoscopy?.call(this);
   }
@@ -551,6 +580,8 @@ class _$ColonoscopyExaminationTypeUnion
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
     required TResult orElse(),
   }) {
     if (colonoscopy != null) {
@@ -620,6 +651,7 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
+    required TResult Function() venerealDiseases,
   }) {
     return dentist();
   }
@@ -639,6 +671,7 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
   }) {
     return dentist?.call();
   }
@@ -658,6 +691,7 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
     required TResult orElse(),
   }) {
     if (dentist != null) {
@@ -688,6 +722,8 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
+    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
+        venerealDiseases,
   }) {
     return dentist(this);
   }
@@ -710,6 +746,8 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
   }) {
     return dentist?.call(this);
   }
@@ -732,6 +770,8 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
     required TResult orElse(),
   }) {
     if (dentist != null) {
@@ -803,6 +843,7 @@ class _$DermatologistExaminationTypeUnion
     required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
+    required TResult Function() venerealDiseases,
   }) {
     return dermatologist();
   }
@@ -822,6 +863,7 @@ class _$DermatologistExaminationTypeUnion
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
   }) {
     return dermatologist?.call();
   }
@@ -841,6 +883,7 @@ class _$DermatologistExaminationTypeUnion
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
     required TResult orElse(),
   }) {
     if (dermatologist != null) {
@@ -871,6 +914,8 @@ class _$DermatologistExaminationTypeUnion
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
+    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
+        venerealDiseases,
   }) {
     return dermatologist(this);
   }
@@ -893,6 +938,8 @@ class _$DermatologistExaminationTypeUnion
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
   }) {
     return dermatologist?.call(this);
   }
@@ -915,6 +962,8 @@ class _$DermatologistExaminationTypeUnion
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
     required TResult orElse(),
   }) {
     if (dermatologist != null) {
@@ -988,6 +1037,7 @@ class _$GeneralPractitionerExaminationTypeUnion
     required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
+    required TResult Function() venerealDiseases,
   }) {
     return generalPractitioner();
   }
@@ -1007,6 +1057,7 @@ class _$GeneralPractitionerExaminationTypeUnion
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
   }) {
     return generalPractitioner?.call();
   }
@@ -1026,6 +1077,7 @@ class _$GeneralPractitionerExaminationTypeUnion
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
     required TResult orElse(),
   }) {
     if (generalPractitioner != null) {
@@ -1056,6 +1108,8 @@ class _$GeneralPractitionerExaminationTypeUnion
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
+    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
+        venerealDiseases,
   }) {
     return generalPractitioner(this);
   }
@@ -1078,6 +1132,8 @@ class _$GeneralPractitionerExaminationTypeUnion
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
   }) {
     return generalPractitioner?.call(this);
   }
@@ -1100,6 +1156,8 @@ class _$GeneralPractitionerExaminationTypeUnion
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
     required TResult orElse(),
   }) {
     if (generalPractitioner != null) {
@@ -1171,6 +1229,7 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
+    required TResult Function() venerealDiseases,
   }) {
     return mammogram();
   }
@@ -1190,6 +1249,7 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
   }) {
     return mammogram?.call();
   }
@@ -1209,6 +1269,7 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
     required TResult orElse(),
   }) {
     if (mammogram != null) {
@@ -1239,6 +1300,8 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
+    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
+        venerealDiseases,
   }) {
     return mammogram(this);
   }
@@ -1261,6 +1324,8 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
   }) {
     return mammogram?.call(this);
   }
@@ -1283,6 +1348,8 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
     required TResult orElse(),
   }) {
     if (mammogram != null) {
@@ -1355,6 +1422,7 @@ class _$GynecologistExaminationTypeUnion
     required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
+    required TResult Function() venerealDiseases,
   }) {
     return gynecologist();
   }
@@ -1374,6 +1442,7 @@ class _$GynecologistExaminationTypeUnion
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
   }) {
     return gynecologist?.call();
   }
@@ -1393,6 +1462,7 @@ class _$GynecologistExaminationTypeUnion
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
     required TResult orElse(),
   }) {
     if (gynecologist != null) {
@@ -1423,6 +1493,8 @@ class _$GynecologistExaminationTypeUnion
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
+    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
+        venerealDiseases,
   }) {
     return gynecologist(this);
   }
@@ -1445,6 +1517,8 @@ class _$GynecologistExaminationTypeUnion
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
   }) {
     return gynecologist?.call(this);
   }
@@ -1467,6 +1541,8 @@ class _$GynecologistExaminationTypeUnion
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
     required TResult orElse(),
   }) {
     if (gynecologist != null) {
@@ -1539,6 +1615,7 @@ class _$OphthalmologistExaminationTypeUnion
     required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
+    required TResult Function() venerealDiseases,
   }) {
     return ophthalmologist();
   }
@@ -1558,6 +1635,7 @@ class _$OphthalmologistExaminationTypeUnion
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
   }) {
     return ophthalmologist?.call();
   }
@@ -1577,6 +1655,7 @@ class _$OphthalmologistExaminationTypeUnion
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
     required TResult orElse(),
   }) {
     if (ophthalmologist != null) {
@@ -1607,6 +1686,8 @@ class _$OphthalmologistExaminationTypeUnion
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
+    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
+        venerealDiseases,
   }) {
     return ophthalmologist(this);
   }
@@ -1629,6 +1710,8 @@ class _$OphthalmologistExaminationTypeUnion
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
   }) {
     return ophthalmologist?.call(this);
   }
@@ -1651,6 +1734,8 @@ class _$OphthalmologistExaminationTypeUnion
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
     required TResult orElse(),
   }) {
     if (ophthalmologist != null) {
@@ -1724,6 +1809,7 @@ class _$TesticularSelfExaminationTypeUnion
     required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
+    required TResult Function() venerealDiseases,
   }) {
     return testicularSelf();
   }
@@ -1743,6 +1829,7 @@ class _$TesticularSelfExaminationTypeUnion
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
   }) {
     return testicularSelf?.call();
   }
@@ -1762,6 +1849,7 @@ class _$TesticularSelfExaminationTypeUnion
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
     required TResult orElse(),
   }) {
     if (testicularSelf != null) {
@@ -1792,6 +1880,8 @@ class _$TesticularSelfExaminationTypeUnion
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
+    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
+        venerealDiseases,
   }) {
     return testicularSelf(this);
   }
@@ -1814,6 +1904,8 @@ class _$TesticularSelfExaminationTypeUnion
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
   }) {
     return testicularSelf?.call(this);
   }
@@ -1836,6 +1928,8 @@ class _$TesticularSelfExaminationTypeUnion
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
     required TResult orElse(),
   }) {
     if (testicularSelf != null) {
@@ -1904,6 +1998,7 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
     required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
+    required TResult Function() venerealDiseases,
   }) {
     return toks();
   }
@@ -1923,6 +2018,7 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
   }) {
     return toks?.call();
   }
@@ -1942,6 +2038,7 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
     required TResult orElse(),
   }) {
     if (toks != null) {
@@ -1972,6 +2069,8 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
+    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
+        venerealDiseases,
   }) {
     return toks(this);
   }
@@ -1994,6 +2093,8 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
   }) {
     return toks?.call(this);
   }
@@ -2016,6 +2117,8 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
     required TResult orElse(),
   }) {
     if (toks != null) {
@@ -2087,6 +2190,7 @@ class _$UltrasoundBreastExaminationTypeUnion
     required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
+    required TResult Function() venerealDiseases,
   }) {
     return ultrasoundBreast();
   }
@@ -2106,6 +2210,7 @@ class _$UltrasoundBreastExaminationTypeUnion
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
   }) {
     return ultrasoundBreast?.call();
   }
@@ -2125,6 +2230,7 @@ class _$UltrasoundBreastExaminationTypeUnion
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
     required TResult orElse(),
   }) {
     if (ultrasoundBreast != null) {
@@ -2155,6 +2261,8 @@ class _$UltrasoundBreastExaminationTypeUnion
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
+    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
+        venerealDiseases,
   }) {
     return ultrasoundBreast(this);
   }
@@ -2177,6 +2285,8 @@ class _$UltrasoundBreastExaminationTypeUnion
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
   }) {
     return ultrasoundBreast?.call(this);
   }
@@ -2199,6 +2309,8 @@ class _$UltrasoundBreastExaminationTypeUnion
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
     required TResult orElse(),
   }) {
     if (ultrasoundBreast != null) {
@@ -2270,6 +2382,7 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
+    required TResult Function() venerealDiseases,
   }) {
     return urologist();
   }
@@ -2289,6 +2402,7 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
   }) {
     return urologist?.call();
   }
@@ -2308,6 +2422,7 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
     required TResult orElse(),
   }) {
     if (urologist != null) {
@@ -2338,6 +2453,8 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
+    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
+        venerealDiseases,
   }) {
     return urologist(this);
   }
@@ -2360,6 +2477,8 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
   }) {
     return urologist?.call(this);
   }
@@ -2382,6 +2501,8 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
     required TResult orElse(),
   }) {
     if (urologist != null) {
@@ -2395,4 +2516,198 @@ abstract class UrologistExaminationTypeUnion extends ExaminationTypeUnion {
   const factory UrologistExaminationTypeUnion() =
       _$UrologistExaminationTypeUnion;
   const UrologistExaminationTypeUnion._() : super._();
+}
+
+/// @nodoc
+abstract class $VenerealDiseasesExaminationTypeUnionCopyWith<$Res> {
+  factory $VenerealDiseasesExaminationTypeUnionCopyWith(
+          VenerealDiseasesExaminationTypeUnion value,
+          $Res Function(VenerealDiseasesExaminationTypeUnion) then) =
+      _$VenerealDiseasesExaminationTypeUnionCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$VenerealDiseasesExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    implements $VenerealDiseasesExaminationTypeUnionCopyWith<$Res> {
+  _$VenerealDiseasesExaminationTypeUnionCopyWithImpl(
+      VenerealDiseasesExaminationTypeUnion _value,
+      $Res Function(VenerealDiseasesExaminationTypeUnion) _then)
+      : super(_value, (v) => _then(v as VenerealDiseasesExaminationTypeUnion));
+
+  @override
+  VenerealDiseasesExaminationTypeUnion get _value =>
+      super._value as VenerealDiseasesExaminationTypeUnion;
+}
+
+/// @nodoc
+
+class _$VenerealDiseasesExaminationTypeUnion
+    extends VenerealDiseasesExaminationTypeUnion {
+  const _$VenerealDiseasesExaminationTypeUnion() : super._();
+
+  @override
+  String toString() {
+    return 'ExaminationTypeUnion.venerealDiseases()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is VenerealDiseasesExaminationTypeUnion);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() breastSelf,
+    required TResult Function() colonoscopy,
+    required TResult Function() dentist,
+    required TResult Function() dermatologist,
+    required TResult Function() generalPractitioner,
+    required TResult Function() mammogram,
+    required TResult Function() gynecologist,
+    required TResult Function() ophthalmologist,
+    required TResult Function() testicularSelf,
+    required TResult Function() toks,
+    required TResult Function() ultrasoundBreast,
+    required TResult Function() urologist,
+    required TResult Function() venerealDiseases,
+  }) {
+    return venerealDiseases();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? breastSelf,
+    TResult Function()? colonoscopy,
+    TResult Function()? dentist,
+    TResult Function()? dermatologist,
+    TResult Function()? generalPractitioner,
+    TResult Function()? mammogram,
+    TResult Function()? gynecologist,
+    TResult Function()? ophthalmologist,
+    TResult Function()? testicularSelf,
+    TResult Function()? toks,
+    TResult Function()? ultrasoundBreast,
+    TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
+  }) {
+    return venerealDiseases?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? breastSelf,
+    TResult Function()? colonoscopy,
+    TResult Function()? dentist,
+    TResult Function()? dermatologist,
+    TResult Function()? generalPractitioner,
+    TResult Function()? mammogram,
+    TResult Function()? gynecologist,
+    TResult Function()? ophthalmologist,
+    TResult Function()? testicularSelf,
+    TResult Function()? toks,
+    TResult Function()? ultrasoundBreast,
+    TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
+    required TResult orElse(),
+  }) {
+    if (venerealDiseases != null) {
+      return venerealDiseases();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BreastSelfExaminationTypeUnion value) breastSelf,
+    required TResult Function(ColonoscopyExaminationTypeUnion value)
+        colonoscopy,
+    required TResult Function(DentistExaminationTypeUnion value) dentist,
+    required TResult Function(DermatologistExaminationTypeUnion value)
+        dermatologist,
+    required TResult Function(GeneralPractitionerExaminationTypeUnion value)
+        generalPractitioner,
+    required TResult Function(MammogramExaminationTypeUnion value) mammogram,
+    required TResult Function(GynecologistExaminationTypeUnion value)
+        gynecologist,
+    required TResult Function(OphthalmologistExaminationTypeUnion value)
+        ophthalmologist,
+    required TResult Function(TesticularSelfExaminationTypeUnion value)
+        testicularSelf,
+    required TResult Function(ToksExaminationTypeUnion value) toks,
+    required TResult Function(UltrasoundBreastExaminationTypeUnion value)
+        ultrasoundBreast,
+    required TResult Function(UrologistExaminationTypeUnion value) urologist,
+    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
+        venerealDiseases,
+  }) {
+    return venerealDiseases(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
+    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult Function(DentistExaminationTypeUnion value)? dentist,
+    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+        generalPractitioner,
+    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)?
+        ophthalmologist,
+    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
+    TResult Function(ToksExaminationTypeUnion value)? toks,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+        ultrasoundBreast,
+    TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
+  }) {
+    return venerealDiseases?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
+    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult Function(DentistExaminationTypeUnion value)? dentist,
+    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+        generalPractitioner,
+    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)?
+        ophthalmologist,
+    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
+    TResult Function(ToksExaminationTypeUnion value)? toks,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+        ultrasoundBreast,
+    TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
+    required TResult orElse(),
+  }) {
+    if (venerealDiseases != null) {
+      return venerealDiseases(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class VenerealDiseasesExaminationTypeUnion
+    extends ExaminationTypeUnion {
+  const factory VenerealDiseasesExaminationTypeUnion() =
+      _$VenerealDiseasesExaminationTypeUnion;
+  const VenerealDiseasesExaminationTypeUnion._() : super._();
 }

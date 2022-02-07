@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono_api/loono_api.dart';
 
 class FAQPair {
   const FAQPair({
@@ -12,17 +13,17 @@ class FAQPair {
   final String answer;
 }
 
-List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
+List<FAQPair> faqContent(BuildContext context, ExaminationTypeEnum type) {
   final texts = context.l10n;
   var result = <FAQPair>[];
 
   /// NOTE: Not the shortest solution but allows full control over each question and answer
   /// and allows asymmetric content in the future
   switch (type) {
-    case ExaminationType.COLONOSCOPY:
+    case ExaminationTypeEnum.COLONOSCOPY:
       result = [
         FAQPair(
-          question: '${texts.what_is} ${type.name}?',
+          question: '${texts.what_is} ${type.l10n_name}?',
           answer: texts.faq_colonoscopy_answer,
         ),
         FAQPair(
@@ -47,10 +48,10 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
         ),
       ];
       break;
-    case ExaminationType.DENTIST:
+    case ExaminationTypeEnum.DENTIST:
       result = [
         FAQPair(
-          question: '${texts.who_is} ${type.name}?',
+          question: '${texts.who_is} ${type.l10n_name}?',
           answer: texts.faq_dentist_answer,
         ),
         FAQPair(
@@ -75,10 +76,10 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
         ),
       ];
       break;
-    case ExaminationType.DERMATOLOGIST:
+    case ExaminationTypeEnum.DERMATOLOGIST:
       result = [
         FAQPair(
-          question: '${texts.who_is} ${type.name}?',
+          question: '${texts.who_is} ${type.l10n_name}?',
           answer: texts.faq_dermatologist_answer,
         ),
         FAQPair(
@@ -103,10 +104,10 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
         ),
       ];
       break;
-    case ExaminationType.GENERAL_PRACTITIONER:
+    case ExaminationTypeEnum.GENERAL_PRACTITIONER:
       result = [
         FAQPair(
-          question: '${texts.who_is} ${type.name}?',
+          question: '${texts.who_is} ${type.l10n_name}?',
           answer: texts.faq_general_practitioner_answer,
         ),
         FAQPair(
@@ -131,10 +132,10 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
         ),
       ];
       break;
-    case ExaminationType.GYNECOLOGIST:
+    case ExaminationTypeEnum.GYNECOLOGIST:
       result = [
         FAQPair(
-          question: '${texts.who_is} ${type.name}?',
+          question: '${texts.who_is} ${type.l10n_name}?',
           answer: texts.faq_gynecologist_answer,
         ),
         FAQPair(
@@ -159,10 +160,10 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
         ),
       ];
       break;
-    case ExaminationType.MAMMOGRAM:
+    case ExaminationTypeEnum.MAMMOGRAM:
       result = [
         FAQPair(
-          question: '${texts.what_is} ${type.name}?',
+          question: '${texts.what_is} ${type.l10n_name}?',
           answer: texts.faq_mammogram_answer,
         ),
         FAQPair(
@@ -187,10 +188,10 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
         ),
       ];
       break;
-    case ExaminationType.OPHTHALMOLOGIST:
+    case ExaminationTypeEnum.OPHTHALMOLOGIST:
       result = [
         FAQPair(
-          question: '${texts.who_is} ${type.name}?',
+          question: '${texts.who_is} ${type.l10n_name}?',
           answer: texts.faq_ophthalmologist_answer,
         ),
         FAQPair(
@@ -216,10 +217,10 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
       ];
       break;
 
-    case ExaminationType.UROLOGIST:
+    case ExaminationTypeEnum.UROLOGIST:
       result = [
         FAQPair(
-          question: '${texts.who_is} ${type.name}?',
+          question: '${texts.who_is} ${type.l10n_name}?',
           answer: texts.faq_urologist_answer,
         ),
         FAQPair(
@@ -244,17 +245,20 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
         ),
       ];
       break;
-    case ExaminationType.BREAST_SELF:
+    case ExaminationTypeEnum.BREAST_SELF:
       // TODO: This case is not used yet
       break;
-    case ExaminationType.TESTICULAR_SELF:
+    case ExaminationTypeEnum.TESTICULAR_SELF:
       // TODO: This case is not used yet
       break;
-    case ExaminationType.TOKS:
+    case ExaminationTypeEnum.TOKS:
       // TODO: This case is not used yet
       break;
-    case ExaminationType.ULTRASOUND_BREAST:
+    case ExaminationTypeEnum.ULTRASOUND_BREAST:
       // TODO: This case is not used yet
+      break;
+    case ExaminationTypeEnum.VENEREAL_DISEASES:
+      // TODO: Handle this case.
       break;
   }
   return result;

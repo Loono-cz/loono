@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
-import 'package:loono/helpers/examination_status.dart';
 import 'package:loono/helpers/examination_types.dart';
-import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
-import 'package:loono/models/user.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/calendar_service.dart';
 import 'package:loono/services/database_service.dart';
@@ -21,7 +19,9 @@ import 'package:loono/ui/widgets/prevention/checkup_confirmation_sheet.dart';
 import 'package:loono/ui/widgets/prevention/checkup_edit_modal.dart';
 import 'package:loono/ui/widgets/prevention/examination_progress_content.dart';
 import 'package:loono/ui/widgets/prevention/last_visit_sheet.dart';
+import 'package:loono/ui/widgets/prevention/show_order_checkup_sheet.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart';
 
 class ExaminationDetail extends StatelessWidget {
   ExaminationDetail({
@@ -39,7 +39,7 @@ class ExaminationDetail extends StatelessWidget {
     const Duration(days: 60),
   );
 
-  ExaminationType get _examinationType => categorizedExamination.examination.examinationType;
+  ExaminationTypeEnum get _examinationType => categorizedExamination.examination.examinationType;
 
   DateTime? get _nextVisitDate => categorizedExamination.examination.nextVisitDate;
 
@@ -47,7 +47,7 @@ class ExaminationDetail extends StatelessWidget {
 
   Sex get _sex {
     final user = registry.get<DatabaseService>().users.user;
-    return user?.sex ?? Sex.male;
+    return user?.sex ?? Sex.MALE;
   }
 
   String _intervalYears(BuildContext context) =>
@@ -136,7 +136,7 @@ class ExaminationDetail extends StatelessWidget {
                       children: [
                         const SizedBox(height: 18),
                         Text(
-                          _examinationType.name.toUpperCase(),
+                          _examinationType.l10n_name.toUpperCase(),
                           style: LoonoFonts.headerFontStyle.copyWith(
                             color: LoonoColors.green,
                             fontWeight: FontWeight.w700,
@@ -200,7 +200,7 @@ class ExaminationDetail extends StatelessWidget {
                 padding: const EdgeInsets.all(4.0),
                 child: Text(
                   context.l10n.preventive_inspection,
-                  style: preventiveInspectionStyles(categorizedExamination.status),
+                  style: preventiveInspectionStyles(categorizedExamination.category),
                 ),
               ),
             ),
@@ -213,9 +213,9 @@ class ExaminationDetail extends StatelessWidget {
               // displays calendar button for the scheduled check-ups which did not happen yet
               if (_nextVisitDate != null &&
                   [
-                    const ExaminationStatus.scheduled(),
-                    const ExaminationStatus.scheduledSoonOrOverdue()
-                  ].contains(categorizedExamination.status)) ...[
+                    const ExaminationCategory.scheduled(),
+                    const ExaminationCategory.scheduledSoonOrOverdue()
+                  ].contains(categorizedExamination.category)) ...[
                 StreamBuilder<CalendarEvent?>(
                   stream: _calendarEventsDao.watch(_examinationType),
                   builder: (context, snapshot) {
@@ -253,7 +253,7 @@ class ExaminationDetail extends StatelessWidget {
                             else
                               Expanded(
                                 child: LoonoButton(
-                                  text: _sex == Sex.male
+                                  text: _sex == Sex.MALE
                                       ? l10n.checkup_confirmation_male
                                       : l10n.checkup_confirmation_female,
                                   onTap: () {
@@ -281,23 +281,29 @@ class ExaminationDetail extends StatelessWidget {
                   ),
                 ),
               ] else if ([
-                const ExaminationStatus.unknownLastVisit(),
-                const ExaminationStatus.newToSchedule()
-              ].contains(categorizedExamination.status)) ...[
+                const ExaminationCategory.unknownLastVisit(),
+                const ExaminationCategory.newToSchedule()
+              ].contains(categorizedExamination.category)) ...[
                 Expanded(
                   child: LoonoButton(
-                    text: 'objednat_se',
-                    onTap: () {},
+                    text: l10n.examination_detail_order_examination, //objednej se
+                    onTap: () => showOrderCheckupSheetStep1(context, categorizedExamination),
                   ),
                 ),
                 const SizedBox(width: 19),
                 Expanded(
                   child: LoonoButton.light(
-                    text: 'mam_objednano',
-                    onTap: () {},
+                    text: l10n.examination_detail_set_examination_button, //mám objednáno
+                    onTap: () => AutoRouter.of(context).push(
+                      NewDateRoute(
+                        categorizedExamination: categorizedExamination,
+                        showCancelIcon: false,
+                      ),
+                    ),
                   ),
                 ),
-              ] else if (categorizedExamination.status == const ExaminationStatus.waiting()) ...[
+              ] else if (categorizedExamination.category ==
+                  const ExaminationCategory.waiting()) ...[
                 Expanded(
                   /// tried connection the same calendar logic here as above, but calendar event didn't work
                   child: LoonoButton.light(

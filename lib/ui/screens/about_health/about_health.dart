@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:loono/utils/app_config.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutHealthScreen extends StatefulWidget {
   const AboutHealthScreen({Key? key}) : super(key: key);
@@ -60,6 +61,12 @@ class _AboutHealthScreenState extends State<AboutHealthScreen> {
             ),
             shouldOverrideUrlLoading: (controller, navigationAction) async {
               final uri = navigationAction.request.url!;
+
+              if (uri.host.contains('open.spotify.com')) {
+                if (await canLaunch(uri.toString())) {
+                  await launch(uri.toString());
+                }
+              }
 
               /// allow only "loono.cz" host and prevent clicks outside of loono.cz
               if (uri.host.contains('loono.cz')) {
