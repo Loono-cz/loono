@@ -20,8 +20,13 @@ class StartNewQuestionnaireScreen extends StatelessWidget {
             children: [
               SkipButton(
                 text: 'Už mám účet',
-                onPressed: () => AutoRouter.of(context)
-                    .push(PreAuthMainRoute(overridenPreventionRoute: LoginRoute())),
+                onPressed: () {
+                  if (AutoRouter.of(context).isRouteActive(PreAuthMainRoute().routeName)) {
+                    AutoRouter.of(context).popUntilRoot();
+                  }
+                  AutoRouter.of(context)
+                      .push(PreAuthMainRoute(overridenPreventionRoute: LoginRoute()));
+                },
               ),
               const SizedBox(height: 24),
               const Text(
