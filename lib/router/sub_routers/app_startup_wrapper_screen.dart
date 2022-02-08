@@ -35,6 +35,7 @@ class _AppStartUpWrapperScreenState extends State<AppStartUpWrapperScreen> {
                 }
               }
 
+              // TODO: Use native splash screen (https://cesko-digital.atlassian.net/browse/LOON-491)
               // placeholder till database gets initialized
               return [const SplashRoute()];
             },
