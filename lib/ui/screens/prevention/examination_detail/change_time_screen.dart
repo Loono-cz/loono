@@ -112,7 +112,7 @@ class _ChangeTimeScreenState extends State<ChangeTimeScreen> {
                   showSnackBarSuccess(context, message: context.l10n.checkup_reminder_toast);
                 },
                 onError: () {
-                  showSnackBarError(context, message: 'Něco se nepovedlo');
+                  showSnackBarError(context, message: context.l10n.something_went_wrong);
                 },
               ),
               const SizedBox(

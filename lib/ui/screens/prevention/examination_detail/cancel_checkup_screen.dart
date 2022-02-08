@@ -82,7 +82,7 @@ class CancelCheckupScreen extends StatelessWidget {
                   showSnackBarSuccess(context, message: context.l10n.checkup_canceled);
                 },
                 onError: () {
-                  showSnackBarError(context, message: 'Něco se nepovedlo');
+                  showSnackBarError(context, message: context.l10n.something_went_wrong);
                 },
               ),
               const SizedBox(

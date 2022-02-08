@@ -607,5 +607,7 @@
   "checkup_canceled": "Prohlídka byla zrušena",
   "@checkup_canceled": {},
   "checkup_reminder_toast": "Prohlídku ti včas připomeneme",
-  "@checkup_reminder_toast": {}
+  "@checkup_reminder_toast": {},
+  "something_went_wrong": "Něco se nepovedlo",
+  "@something_went_wrong": {}
 }
