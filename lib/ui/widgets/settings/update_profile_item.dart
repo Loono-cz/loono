@@ -16,7 +16,7 @@ class UpdateProfileItem extends StatefulWidget {
 
   final String label;
   final String value;
-  final PageRouteInfo<dynamic>? route;
+  final PageRouteInfo? route;
 
   /// If `false` then [BottomSheet] will be shown on tap.
   final bool enabled;

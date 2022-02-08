@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
-import 'package:loono/services/onboarding_state_service.dart';
 import 'package:loono/ui/widgets/button.dart';
-import 'package:provider/provider.dart';
+import 'package:loono/utils/registry.dart';
 
 class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({Key? key}) : super(key: key);
+  WelcomeScreen({Key? key}) : super(key: key);
+
+  final _userRepository = registry.get<UserRepository>();
 
   @override
   Widget build(BuildContext context) {
@@ -37,14 +39,19 @@ class WelcomeScreen extends StatelessWidget {
                   children: [
                     LoonoButton(
                       text: context.l10n.carousel_start,
-                      onTap: () => context.read<OnboardingStateService>().startIntro(),
+                      onTap: () async {
+                        await _userRepository.createUserIfNotExists();
+                        await AutoRouter.of(context).push(const IntroCarouselRoute());
+                      },
                     ),
                     const SizedBox(
                       height: 15,
                     ),
                     TextButton(
-                      onPressed: () {
-                        AutoRouter.of(context).push(LoginRoute());
+                      onPressed: () async {
+                        await _userRepository.createUserIfNotExists();
+                        await AutoRouter.of(context)
+                            .push(PreAuthMainRoute(overridenPreventionRoute: LoginRoute()));
                       },
                       child: Text(
                         context.l10n.carousel_have_account,
