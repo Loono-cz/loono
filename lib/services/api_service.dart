@@ -98,4 +98,25 @@ class ApiService {
           ),
     );
   }
+
+  Future<ApiResponse<ExaminationRecord>> updateExamination(
+    ExaminationTypeEnum type, {
+    String? uuid,
+    DateTime? newDate,
+    ExaminationStatus? status,
+    bool? firstExam,
+  }) async {
+    return _callApi(
+      () async => _api.getExaminationsApi().postExaminations(
+        examinationRecord: ExaminationRecord((record) {
+          record
+            ..uuid = uuid
+            ..type = type
+            ..date = newDate
+            ..status = status
+            ..firstExam = firstExam;
+        }),
+      ),
+    );
+  }
 }

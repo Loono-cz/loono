@@ -597,5 +597,7 @@
   "urologist_dativ": "Urologovi",
   "@urologist_dativ": {},
   "checkup_canceled": "Prohlídka byla zrušena",
-  "@checkup_canceled": {}
+  "@checkup_canceled": {},
+  "checkup_reminder_toast": "Prohlídku ti včas připomeneme",
+  "@checkup_reminder_toast": {}
 }
