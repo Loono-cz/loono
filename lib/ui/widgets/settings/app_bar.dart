@@ -7,7 +7,7 @@ import 'package:loono/router/app_router.gr.dart';
 AppBar settingsAppBar(
   BuildContext context, {
   bool showBackButton = true,
-  PageRouteInfo<dynamic> closeRoute = const MainScreenRouter(),
+  PageRouteInfo closeRoute = const MainScreenRouter(),
 }) {
   return AppBar(
     backgroundColor: Colors.transparent,

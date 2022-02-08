@@ -1,56 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/helpers/examination_types.dart';
-import 'package:loono/models/user.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/ui/widgets/loono_point.dart';
 import 'package:loono/utils/registry.dart';
-import 'package:loono_api/loono_api.dart' hide User;
 
 class PointsDisplay extends StatelessWidget {
   PointsDisplay({Key? key}) : super(key: key);
 
   final _usersDao = registry.get<DatabaseService>().users;
-
-  int _calculateTotalPoints(User? user) {
-    if (user == null) return 0;
-
-    var points = 0;
-    for (final examinationType in ExaminationTypeEnum.values) {
-      switch (examinationType) {
-        case ExaminationTypeEnum.GENERAL_PRACTITIONER:
-          points += _getAwardPoints(
-            examinationType: examinationType,
-            ccaDoctorVisit: user.generalPracticionerCcaVisit,
-          );
-          break;
-        case ExaminationTypeEnum.GYNECOLOGIST:
-          points += _getAwardPoints(
-            examinationType: examinationType,
-            ccaDoctorVisit: user.gynecologyCcaVisit,
-          );
-          break;
-        case ExaminationTypeEnum.DENTIST:
-          points += _getAwardPoints(
-            examinationType: examinationType,
-            ccaDoctorVisit: user.dentistCcaVisit,
-          );
-          break;
-        // TODO: Add the rest of ExaminationTypes once are added
-        default:
-          break;
-      }
-    }
-    return points;
-  }
-
-  int _getAwardPoints({
-    required ExaminationTypeEnum examinationType,
-    required CcaDoctorVisit? ccaDoctorVisit,
-  }) {
-    return ccaDoctorVisit == CcaDoctorVisit.inLastTwoYears ? examinationType.awardPoints : 0;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +20,9 @@ class PointsDisplay extends StatelessWidget {
         StreamBuilder<User?>(
           stream: _usersDao.watchUser(),
           builder: (context, snapshot) {
-            return Text(
-              _calculateTotalPoints(snapshot.data).toString(),
+            // TODO: points
+            return const Text(
+              '0',
               style: LoonoFonts.primaryColorStyle,
             );
           },
