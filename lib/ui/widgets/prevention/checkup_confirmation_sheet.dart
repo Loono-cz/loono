@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_types.dart';
-import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/repositories/examination_repository.dart';

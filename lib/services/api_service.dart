@@ -120,8 +120,10 @@ class ApiService {
     );
   }
 
-  Future<ApiResponse<ExaminationRecord>> confirmExamination(ExaminationTypeEnum type,
-      {ExaminationId? id}) async {
+  Future<ApiResponse<ExaminationRecord>> confirmExamination(
+    ExaminationTypeEnum type, {
+    ExaminationId? id,
+  }) async {
     return _callApi(
       () async => _api.getExaminationsApi().completeExamination(
             type: type.toString(),
