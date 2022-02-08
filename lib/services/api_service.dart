@@ -99,7 +99,7 @@ class ApiService {
     );
   }
 
-  Future<ApiResponse<ExaminationRecord>> updateExamination(
+  Future<ApiResponse<ExaminationRecord>> postExamination(
     ExaminationTypeEnum type, {
     String? uuid,
     DateTime? newDate,
@@ -112,11 +112,21 @@ class ApiService {
           record
             ..uuid = uuid
             ..type = type
-            ..date = newDate
+            ..date = newDate?.toUtc()
             ..status = status
             ..firstExam = firstExam;
         }),
       ),
+    );
+  }
+
+  Future<ApiResponse<ExaminationRecord>> confirmExamination(ExaminationTypeEnum type,
+      {ExaminationId? id}) async {
+    return _callApi(
+      () async => _api.getExaminationsApi().completeExamination(
+            type: type.toString(),
+            examinationId: id,
+          ),
     );
   }
 }

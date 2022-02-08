@@ -6,6 +6,7 @@ import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/calendar_repository.dart';
+import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/how/loon_botton_sheet.dart';
@@ -19,8 +20,10 @@ void showConfirmationSheet(BuildContext context, ExaminationTypeEnum examination
 
   Future<void> _completedAction() async {
     await registry.get<CalendarRepository>().deleteOnlyDbEvent(examinationType);
+
+    /// TODO: handle api calls in better way
+    await registry.get<ExaminationRepository>().confirmExamination(examinationType);
     AutoRouter.of(context).popUntilRouteWithName('ExaminationDetailRoute');
-    showSnackBarError(context, message: 'TODO: save to API');
   }
 
   final l10n = context.l10n;

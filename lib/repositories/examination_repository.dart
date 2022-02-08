@@ -33,20 +33,31 @@ class ExaminationRepository {
     return false;
   }
 
-  Future<bool> updateExamination(
+  Future<bool> postExamination(
     ExaminationTypeEnum type, {
     String? uuid,
     DateTime? newDate,
     ExaminationStatus? status,
     bool? firstExam,
   }) async {
-    final response = await _apiService.updateExamination(
+    final response = await _apiService.postExamination(
       type,
       uuid: uuid,
       newDate: newDate,
       status: status,
       firstExam: firstExam,
     );
+    response.when(
+      success: (data) {
+        return true;
+      },
+      failure: (err) {},
+    );
+    return false;
+  }
+
+  Future<bool> confirmExamination(ExaminationTypeEnum type, {ExaminationId? uuid}) async {
+    final response = await _apiService.confirmExamination(type, id: uuid);
     response.when(
       success: (data) {
         return true;

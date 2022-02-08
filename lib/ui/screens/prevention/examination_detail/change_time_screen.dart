@@ -100,7 +100,7 @@ class _ChangeTimeScreenState extends State<ChangeTimeScreen> {
               const Spacer(),
               AsyncLoonoButton(
                 text: context.l10n.action_save,
-                asyncCallback: () => registry.get<ExaminationRepository>().updateExamination(
+                asyncCallback: () => registry.get<ExaminationRepository>().postExamination(
                       examinationType,
                       newDate: newDate!,
                     ),
