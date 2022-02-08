@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/ui_helpers.dart';
+import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
@@ -19,7 +20,7 @@ class ContinueOnboardingFormScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SkipButton(
-                text: 'Už mám účet',
+                text: context.l10n.already_have_an_account_skip_button,
                 onPressed: () {
                   if (AutoRouter.of(context).isRouteActive(PreAuthMainRoute().routeName)) {
                     AutoRouter.of(context).popUntilRoot();
@@ -36,7 +37,7 @@ class ContinueOnboardingFormScreen extends StatelessWidget {
               ),
               const Spacer(),
               LoonoButton(
-                text: 'Dokončit dotazník',
+                text: context.l10n.continue_onboarding_form_button,
                 onTap: () => AutoRouter.of(context).push(const OnboardingWrapperRoute()),
               ),
               SizedBox(height: LoonoSizes.buttonBottomPadding(context)),

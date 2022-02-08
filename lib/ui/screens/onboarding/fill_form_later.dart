@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/ui_helpers.dart';
+import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
 
@@ -27,12 +28,12 @@ class FillOnboardingFormLaterScreen extends StatelessWidget {
                 ),
                 const Spacer(),
                 LoonoButton(
-                  text: 'Pokračovat v dotazníku',
+                  text: context.l10n.fill_form_later_button_1,
                   onTap: () => AutoRouter.of(context).popForced(),
                 ),
                 const SizedBox(height: 8),
                 LoonoButton.light(
-                  text: 'Dokončit později',
+                  text: context.l10n.fill_form_later_button_2,
                   onTap: () => AutoRouter.of(context).push(PreAuthMainRoute()),
                 ),
                 SizedBox(height: LoonoSizes.buttonBottomPadding(context)),

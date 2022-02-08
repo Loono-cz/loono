@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/ui_helpers.dart';
+import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
 
@@ -27,7 +28,7 @@ class GamificationIntroductionScreen extends StatelessWidget {
                 ),
                 const Spacer(),
                 LoonoButton(
-                  text: 'Preventivní prohlídky',
+                  text: context.l10n.gamification_introduction_button,
                   onTap: () => AutoRouter.of(context).push(const MainScreenRouter()),
                 ),
                 SizedBox(height: LoonoSizes.buttonBottomPadding(context)),

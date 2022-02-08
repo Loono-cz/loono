@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/helpers/ui_helpers.dart';
+import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/auth/failures.dart';
@@ -31,7 +32,7 @@ class OnboardingFormDoneScreen extends StatelessWidget {
                 style: LoonoFonts.bigFontStyle,
               ),
               const SizedBox(height: 24),
-              const Text('✔ Vstupní dotazník máš úspěšně hotový'),
+              Text('✔ ${context.l10n.onboarding_form_done_success_message}'),
               const Spacer(),
               SocialLoginButton.apple(
                 onPressed: () async {
