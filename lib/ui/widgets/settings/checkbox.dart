@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 
-class CheckboxCustom extends StatefulWidget {
+class CheckboxCustom extends StatelessWidget {
   const CheckboxCustom({
     Key? key,
     required this.text,
@@ -12,13 +12,6 @@ class CheckboxCustom extends StatefulWidget {
   final String text;
   final bool isChecked;
   final ValueChanged<bool> whatIsChecked;
-
-  @override
-  _CheckboxCustomState createState() => _CheckboxCustomState();
-}
-
-class _CheckboxCustomState extends State<CheckboxCustom> {
-  set isChecked(bool isChecked) {}
 
   @override
   Widget build(BuildContext context) {
@@ -50,14 +43,9 @@ class _CheckboxCustomState extends State<CheckboxCustom> {
                     ),
                     fillColor: MaterialStateProperty.all<Color>(Colors.white),
                     checkColor: LoonoColors.checkBoxMark,
-                    value: widget.isChecked,
+                    value: isChecked,
                     onChanged: (bool? value) {
-                      widget.whatIsChecked(value!);
-                      setState(
-                        () {
-                          isChecked = value;
-                        },
-                      );
+                      whatIsChecked(value!);
                     },
                   ),
                 ),
@@ -65,7 +53,7 @@ class _CheckboxCustomState extends State<CheckboxCustom> {
               Padding(
                 padding: const EdgeInsets.only(left: 17),
                 child: Text(
-                  widget.text,
+                  text,
                   style: const TextStyle(fontSize: 14),
                 ),
               ),

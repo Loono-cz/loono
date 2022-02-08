@@ -11,19 +11,18 @@ import 'package:loono/ui/widgets/settings/checkbox.dart';
 class DeleteAccountScreen extends StatefulWidget {
   const DeleteAccountScreen({
     Key? key,
-    this.onCancel,
   }) : super(key: key);
-
-  static late bool _isCheckedHistory = false;
-  static late bool _isCheckedBadge = false;
-  static late bool _isCheckedNotifications = false;
-  final VoidCallback? onCancel;
 
   @override
   _DeleteAccountScreenState createState() => _DeleteAccountScreenState();
 }
 
 class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
+  bool _isCheckedHistory = false;
+  bool _isCheckedBadge = false;
+  bool _isCheckedNotifications = false;
+  VoidCallback? onCancel;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,27 +44,36 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
               spacing: 40,
               children: [
                 CheckboxCustom(
-                  isChecked: DeleteAccountScreen._isCheckedHistory,
+                  isChecked: _isCheckedHistory,
                   text: context.l10n.settings_delete_account_check_box_delete_history,
                   whatIsChecked: (val) {
-                    DeleteAccountScreen._isCheckedHistory = val;
-                    setState(() {});
+                    setState(
+                      () {
+                        _isCheckedHistory = val;
+                      },
+                    );
                   },
                 ),
                 CheckboxCustom(
-                  isChecked: DeleteAccountScreen._isCheckedBadge,
+                  isChecked: _isCheckedBadge,
                   text: context.l10n.settings_delete_account_check_box_delete_badges,
                   whatIsChecked: (val) {
-                    DeleteAccountScreen._isCheckedBadge = val;
-                    setState(() {});
+                    setState(
+                      () {
+                        _isCheckedBadge = val;
+                      },
+                    );
                   },
                 ),
                 CheckboxCustom(
-                  isChecked: DeleteAccountScreen._isCheckedNotifications,
+                  isChecked: _isCheckedNotifications,
                   text: context.l10n.settings_delete_account_check_box_stop_notifications,
                   whatIsChecked: (val) {
-                    DeleteAccountScreen._isCheckedNotifications = val;
-                    setState(() {});
+                    setState(
+                      () {
+                        _isCheckedNotifications = val;
+                      },
+                    );
                   },
                 ),
               ],
@@ -89,21 +97,19 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                 width: 339,
                 child: LoonoButton(
                   onTap: () {
-                    if (DeleteAccountScreen._isCheckedBadge &
-                        DeleteAccountScreen._isCheckedNotifications &
-                        DeleteAccountScreen._isCheckedHistory) {
+                    if (_isCheckedBadge & _isCheckedNotifications & _isCheckedHistory) {
                       showCupertinoDialog<void>(
                         context: context,
                         builder: (BuildContext context) => CupertinoAlertDialog(
                           content: Text(
                             context.l10n.settings_delete_account_alert,
-                            style: const TextStyle(fontSize: 17),
+                            style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
                           ),
                           actions: <CupertinoDialogAction>[
                             CupertinoDialogAction(
                               child: Text(context.l10n.cancel),
                               onPressed: () {
-                                Navigator.pop(context);
+                                AutoRouter.of(context).pop();
                               },
                             ),
                             CupertinoDialogAction(
@@ -119,18 +125,16 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                       AutoRouter.of(context).pop();
                     }
                   },
-                  text: (!DeleteAccountScreen._isCheckedBadge ||
-                          !DeleteAccountScreen._isCheckedNotifications ||
-                          !DeleteAccountScreen._isCheckedHistory)
+                  // text: context.l10n.back,
+                  // if(_isCheckedBadge ||_isCheckedNotifications ||_isCheckedHistory)
+                  text: (!_isCheckedBadge || !_isCheckedNotifications || !_isCheckedHistory)
                       ? context.l10n.back
                       : context.l10n.remove_account_action,
                 ),
               ),
             ),
           ),
-          if (DeleteAccountScreen._isCheckedBadge &
-              DeleteAccountScreen._isCheckedNotifications &
-              DeleteAccountScreen._isCheckedHistory)
+          if (_isCheckedBadge & _isCheckedNotifications & _isCheckedHistory)
             Positioned(
               child: Align(
                 alignment: const Alignment(0.00, 0.85),
