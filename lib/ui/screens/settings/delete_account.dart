@@ -126,9 +126,7 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                       AutoRouter.of(context).pop();
                     }
                   },
-                  text: (!_areAllChecked)
-                      ? context.l10n.back
-                      : context.l10n.remove_account_action,
+                  text: (!_areAllChecked) ? context.l10n.back : context.l10n.remove_account_action,
                 ),
               ),
             ),
