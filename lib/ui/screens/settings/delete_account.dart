@@ -21,7 +21,8 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
   bool _isCheckedHistory = false;
   bool _isCheckedBadge = false;
   bool _isCheckedNotifications = false;
-  VoidCallback? onCancel;
+
+  bool get _areAllChecked => _isCheckedBadge & _isCheckedNotifications & _isCheckedHistory;
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +98,7 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                 width: 339,
                 child: LoonoButton(
                   onTap: () {
-                    if (_isCheckedBadge & _isCheckedNotifications & _isCheckedHistory) {
+                    if (_areAllChecked) {
                       showCupertinoDialog<void>(
                         context: context,
                         builder: (BuildContext context) => CupertinoAlertDialog(
@@ -125,16 +126,14 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                       AutoRouter.of(context).pop();
                     }
                   },
-                  // text: context.l10n.back,
-                  // if(_isCheckedBadge ||_isCheckedNotifications ||_isCheckedHistory)
-                  text: (!_isCheckedBadge || !_isCheckedNotifications || !_isCheckedHistory)
+                  text: (!_areAllChecked)
                       ? context.l10n.back
                       : context.l10n.remove_account_action,
                 ),
               ),
             ),
           ),
-          if (_isCheckedBadge & _isCheckedNotifications & _isCheckedHistory)
+          if (_areAllChecked)
             Positioned(
               child: Align(
                 alignment: const Alignment(0.00, 0.85),
