@@ -2,25 +2,25 @@
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/helpers/date_without_day.dart';
+import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_extensions.dart';
-import 'package:loono/helpers/examination_status.dart';
-import 'package:loono/helpers/examination_types.dart';
+import 'package:loono_api/loono_api.dart';
 
 void main() {
   group('ExaminationRecord status calculation', () {
     var now = DateTime(2021, 12, 4);
 
     group('scheduledSoonOrOverdue', () {
-      final examinations = <ExaminationRecord>[
-        ExaminationRecord(
-          examinationType: ExaminationType.GENERAL_PRACTITIONER,
+      final examinations = <ExaminationRecordTemp>[
+        ExaminationRecordTemp(
+          examinationType: ExaminationTypeEnum.GENERAL_PRACTITIONER,
           worth: 200,
           interval: 2,
           priority: 1,
           nextVisitDate: DateTime(2021, 12, 28, 11),
         ),
-        ExaminationRecord(
-          examinationType: ExaminationType.GYNECOLOGIST,
+        ExaminationRecordTemp(
+          examinationType: ExaminationTypeEnum.GYNECOLOGIST,
           worth: 300,
           interval: 1,
           priority: 3,
@@ -30,15 +30,15 @@ void main() {
 
       test('calculates the status correctly - examinations within 30 days window', () {
         final statuses = examinations.map((e) => e.calculateStatus(now));
-        expect(statuses, <ExaminationStatus>[
-          ExaminationStatus.scheduledSoonOrOverdue(),
-          ExaminationStatus.scheduledSoonOrOverdue(),
+        expect(statuses, <ExaminationCategory>[
+          ExaminationCategory.scheduledSoonOrOverdue(),
+          ExaminationCategory.scheduledSoonOrOverdue(),
         ]);
       });
 
       test('calculates correctly overdue examination', () {
-        final overdueExamination = ExaminationRecord(
-          examinationType: ExaminationType.DENTIST,
+        final overdueExamination = ExaminationRecordTemp(
+          examinationType: ExaminationTypeEnum.DENTIST,
           worth: 300,
           interval: 1,
           priority: 8,
@@ -46,20 +46,20 @@ void main() {
         );
 
         final status = overdueExamination.calculateStatus(now);
-        expect(status, ExaminationStatus.scheduledSoonOrOverdue());
+        expect(status, ExaminationCategory.scheduledSoonOrOverdue());
       });
     });
 
     group('unknownLastVisit', () {
-      final examinations = <ExaminationRecord>[
-        const ExaminationRecord(
-          examinationType: ExaminationType.OPHTHALMOLOGIST,
+      final examinations = <ExaminationRecordTemp>[
+        const ExaminationRecordTemp(
+          examinationType: ExaminationTypeEnum.OPHTHALMOLOGIST,
           worth: 100,
           interval: 2,
           priority: 9,
         ),
-        const ExaminationRecord(
-          examinationType: ExaminationType.COLONOSCOPY,
+        const ExaminationRecordTemp(
+          examinationType: ExaminationTypeEnum.COLONOSCOPY,
           worth: 1000,
           interval: 10,
           priority: 4,
@@ -68,16 +68,16 @@ void main() {
 
       test('calculates the status correctly - unknown last visit date', () {
         final statuses = examinations.map((e) => e.calculateStatus(now));
-        expect(statuses, <ExaminationStatus>[
-          ExaminationStatus.unknownLastVisit(),
-          ExaminationStatus.unknownLastVisit(),
+        expect(statuses, <ExaminationCategory>[
+          ExaminationCategory.unknownLastVisit(),
+          ExaminationCategory.unknownLastVisit(),
         ]);
       });
     });
 
     group('scheduled', () {
-      final examination = ExaminationRecord(
-        examinationType: ExaminationType.DERMATOLOGIST,
+      final examination = ExaminationRecordTemp(
+        examinationType: ExaminationTypeEnum.DERMATOLOGIST,
         worth: 200,
         interval: 1,
         priority: 6,
@@ -86,23 +86,23 @@ void main() {
 
       test('calculates the status correctly - examinations are more than 30 days from now', () {
         final status = examination.calculateStatus(now);
-        expect(status, ExaminationStatus.scheduled());
+        expect(status, ExaminationCategory.scheduled());
       });
     });
 
     group('waiting', () {
-      final examination = ExaminationRecord(
-        examinationType: ExaminationType.UROLOGIST,
+      final examination = ExaminationRecordTemp(
+        examinationType: ExaminationTypeEnum.UROLOGIST,
         worth: 500,
         interval: 2,
         priority: 2,
         lastVisitDate: DateWithoutDay(month: Months.september, year: 2021),
       );
 
-      final examinations = <ExaminationRecord>[
+      final examinations = <ExaminationRecordTemp>[
         examination,
-        ExaminationRecord(
-          examinationType: ExaminationType.MAMMOGRAM,
+        ExaminationRecordTemp(
+          examinationType: ExaminationTypeEnum.MAMMOGRAM,
           worth: 500,
           interval: 2,
           priority: 3,
@@ -112,9 +112,9 @@ void main() {
 
       test('calculates the status correctly - still waiting', () {
         final statuses = examinations.map((e) => e.calculateStatus(now));
-        expect(statuses, <ExaminationStatus>[
-          ExaminationStatus.waiting(),
-          ExaminationStatus.waiting(),
+        expect(statuses, <ExaminationCategory>[
+          ExaminationCategory.waiting(),
+          ExaminationCategory.waiting(),
         ]);
       });
 
@@ -124,19 +124,19 @@ void main() {
         // exact interval
         var newDate = DateTime(now.year + examination.interval, now.month);
         var status = examination.calculateStatus(newDate);
-        expect(status, ExaminationStatus.newToSchedule());
+        expect(status, ExaminationCategory.newToSchedule());
 
         // also after the interval
         newDate =
             DateTime(now.year + examination.interval, now.month + TO_SCHEDULE_MONTHS_TRANSFER);
         status = examination.calculateStatus(newDate);
-        expect(status, ExaminationStatus.newToSchedule());
+        expect(status, ExaminationCategory.newToSchedule());
 
         // also 2 months before exact interval
         newDate =
             DateTime(now.year + examination.interval, now.month - TO_SCHEDULE_MONTHS_TRANSFER);
         status = examination.calculateStatus(newDate);
-        expect(status, ExaminationStatus.newToSchedule());
+        expect(status, ExaminationCategory.newToSchedule());
 
         // but not 3 months before exact interval
         newDate = DateTime(
@@ -144,7 +144,7 @@ void main() {
           now.month - (TO_SCHEDULE_MONTHS_TRANSFER + 1),
         );
         status = examination.calculateStatus(newDate);
-        expect(status, ExaminationStatus.waiting());
+        expect(status, ExaminationCategory.waiting());
       });
     });
   });

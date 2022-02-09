@@ -2,22 +2,23 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_types.dart';
+import 'package:loono/helpers/onboarding_state_helpers.dart';
 import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:loono/models/user.dart';
-import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/universal_doctor_screen.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart';
 
 class OnboardingDentistScreen extends StatelessWidget {
   OnboardingDentistScreen({Key? key, required this.sex}) : super(key: key);
 
   final Sex sex;
 
-  final _userRepository = registry.get<UserRepository>();
+  final _examinationsQuestionnairesDao = registry.get<DatabaseService>().examinationQuestionnaires;
 
-  static const _type = ExaminationType.DENTIST;
+  static const _type = ExaminationTypeEnum.DENTIST;
   static const _interval = 1;
 
   @override
@@ -33,11 +34,16 @@ class OnboardingDentistScreen extends StatelessWidget {
           currentStep: sex.dentistStep,
           nextButton1Text: getQuestionnaireFirstAnswer(context, interval: _interval),
           nextButton2Text: getQuestionnaireSecondAnswer(context, interval: _interval),
-          nextCallback1: () async =>
-              _userRepository.updateDentistCcaVisit(CcaDoctorVisit.inLastTwoYears),
+          nextCallback1: () async => _examinationsQuestionnairesDao.updateCcaDoctorVisit(
+            _type,
+            ccaDoctorVisit: CcaDoctorVisit.inLastXYears,
+          ),
           nextCallback2: () async {
-            await _userRepository.updateDentistCcaVisit(CcaDoctorVisit.moreThanTwoYearsOrIdk);
-            await AutoRouter.of(context).push(CreateAccountRoute());
+            await _examinationsQuestionnairesDao.updateCcaDoctorVisit(
+              _type,
+              ccaDoctorVisit: CcaDoctorVisit.moreThanXYearsOrIdk,
+            );
+            await AutoRouter.of(context).push(PreAuthMainRoute());
           },
         ),
       ),

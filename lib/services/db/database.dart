@@ -1,11 +1,12 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:encrypted_moor/encrypted_moor.dart';
 import 'package:flutter/material.dart' as flutter;
-import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/helpers/type_converters.dart';
 import 'package:loono/models/calendar_event.dart';
+import 'package:loono/models/examination_questionnaire.dart';
 import 'package:loono/models/healthcare_provider.dart';
 import 'package:loono/models/user.dart';
+import 'package:loono_api/loono_api.dart';
 import 'package:moor/moor.dart';
 
 part 'database.g.dart';
@@ -15,11 +16,13 @@ part 'database.g.dart';
     Users,
     HealthcareProviders,
     CalendarEvents,
+    ExaminationQuestionnaires,
   ],
   daos: [
     UsersDao,
     HealthcareProvidersDao,
     CalendarEventsDao,
+    ExaminationQuestionnairesDao,
   ],
 )
 class AppDatabase extends _$AppDatabase {
