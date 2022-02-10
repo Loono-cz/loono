@@ -18,6 +18,7 @@ void main() {
           interval: 2,
           priority: 1,
           nextVisitDate: DateTime(2021, 12, 28, 11),
+          firstExam: false,
         ),
         ExaminationRecordTemp(
           examinationType: ExaminationTypeEnum.GYNECOLOGIST,
@@ -25,6 +26,7 @@ void main() {
           interval: 1,
           priority: 3,
           nextVisitDate: DateTime(2021, 12, 12, 10),
+          firstExam: false,
         ),
       ];
 
@@ -43,6 +45,7 @@ void main() {
           interval: 1,
           priority: 8,
           nextVisitDate: DateTime(2021, 10, 4, 7),
+          firstExam: false,
         );
 
         final status = overdueExamination.calculateStatus(now);
@@ -57,12 +60,14 @@ void main() {
           worth: 100,
           interval: 2,
           priority: 9,
+          firstExam: false,
         ),
         const ExaminationRecordTemp(
           examinationType: ExaminationTypeEnum.COLONOSCOPY,
           worth: 1000,
           interval: 10,
           priority: 4,
+          firstExam: false,
         ),
       ];
 
@@ -82,6 +87,7 @@ void main() {
         interval: 1,
         priority: 6,
         nextVisitDate: DateTime(2022, 3, 10, 13),
+        firstExam: false,
       );
 
       test('calculates the status correctly - examinations are more than 30 days from now', () {
@@ -97,6 +103,7 @@ void main() {
         interval: 2,
         priority: 2,
         lastVisitDate: DateWithoutDay(month: Months.september, year: 2021),
+        firstExam: false,
       );
 
       final examinations = <ExaminationRecordTemp>[
@@ -107,6 +114,7 @@ void main() {
           interval: 2,
           priority: 3,
           lastVisitDate: DateWithoutDay(month: Months.march, year: 2021),
+          firstExam: false,
         ),
       ];
 
