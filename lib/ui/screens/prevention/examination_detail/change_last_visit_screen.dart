@@ -4,15 +4,24 @@ import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/repositories/examination_repository.dart';
+import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/custom_date_picker.dart';
+import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart';
 
 class ChangeLastVisitScreen extends StatefulWidget {
-  const ChangeLastVisitScreen({Key? key, required this.originalDate, required this.title})
-      : super(key: key);
+  const ChangeLastVisitScreen({
+    Key? key,
+    required this.originalDate,
+    required this.title,
+    required this.examinationType,
+  }) : super(key: key);
 
   final DateTime originalDate;
   final String title;
+  final ExaminationTypeEnum examinationType;
 
   @override
   State<ChangeLastVisitScreen> createState() => _ChangeLastVisitScreenState();
@@ -41,7 +50,10 @@ class _ChangeLastVisitScreenState extends State<ChangeLastVisitScreen> {
         leading: const SizedBox.shrink(),
         actions: [
           IconButton(
-            icon: const Icon(Icons.close),
+            icon: const Icon(
+              Icons.close,
+              size: 32,
+            ),
             onPressed: () => AutoRouter.of(context).pop(),
           ),
         ],
@@ -66,11 +78,18 @@ class _ChangeLastVisitScreenState extends State<ChangeLastVisitScreen> {
                 ),
               ),
               const Spacer(),
-              LoonoButton(
+              AsyncLoonoButton(
                 text: context.l10n.action_save,
-                onTap: () {
-                  AutoRouter.of(context).pop();
-                  showSnackBarError(context, message: 'TODO: save to API\n$newDate');
+                asyncCallback: () => registry.get<ExaminationRepository>().postExamination(
+                      widget.examinationType,
+                      newDate: newDate,
+                    ),
+                onSuccess: () async {
+                  await AutoRouter.of(context).pop();
+                  showSnackBarSuccess(context, message: context.l10n.checkup_reminder_toast);
+                },
+                onError: () {
+                  showSnackBarError(context, message: context.l10n.something_went_wrong);
                 },
               ),
               const SizedBox(

@@ -65,7 +65,10 @@ class _ChangeTimeScreenState extends State<ChangeTimeScreen> {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.close),
+            icon: const Icon(
+              Icons.close,
+              size: 32,
+            ),
             onPressed: () => AutoRouter.of(context).popUntilRouteWithName('ExaminationDetailRoute'),
           ),
         ],

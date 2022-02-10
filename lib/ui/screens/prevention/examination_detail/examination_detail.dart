@@ -159,6 +159,7 @@ class ExaminationDetail extends StatelessWidget {
                                   ),
                                   title:
                                       '${l10n.change_last_visit_title} $preposition $practitioner',
+                                  examinationType: _examinationType,
                                 ),
                               );
                             } else {

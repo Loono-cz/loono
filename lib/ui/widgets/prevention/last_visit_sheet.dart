@@ -58,7 +58,7 @@ void showLastVisitSheet(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     IconButton(
-                      icon: const Icon(Icons.close),
+                      icon: const Icon(Icons.close, size: 32),
                       onPressed: () => AutoRouter.of(context).pop(),
                     ),
                   ],
@@ -85,6 +85,7 @@ void showLastVisitSheet(
                       ChangeLastVisitRoute(
                         originalDate: skippedDate,
                         title: title,
+                        examinationType: examinationType,
                       ),
                     );
                   },

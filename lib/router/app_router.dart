@@ -32,7 +32,6 @@ import 'package:loono/ui/screens/onboarding/gamification_introduction.dart';
 import 'package:loono/ui/screens/onboarding/gender.dart';
 import 'package:loono/ui/screens/prevention/calendar/calendar_list.dart';
 import 'package:loono/ui/screens/prevention/calendar/permission_info.dart';
-import 'package:loono/ui/screens/prevention/examination_detail/cancel_checkup_screen.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/change_date_screen.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/change_last_visit_screen.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/change_time_screen.dart';
@@ -279,11 +278,6 @@ const _preventionRoutes = <AutoRoute>[
   CustomRoute<void>(
     page: CalendarListScreen,
     path: 'calendar/list',
-    transitionsBuilder: _preventionTransition,
-  ),
-  CustomRoute<void>(
-    page: CancelCheckupScreen,
-    path: 'checkup/cancel',
     transitionsBuilder: _preventionTransition,
   ),
   CustomRoute<void>(

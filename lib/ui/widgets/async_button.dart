@@ -40,7 +40,8 @@ class _AsyncLoonoButtonState extends State<AsyncLoonoButton> {
   @override
   Widget build(BuildContext context) {
     return ExtendedInkWell(
-      onTap: widget.enabled
+      /// check if not loading to prevent spamming api
+      onTap: widget.enabled && !_isLoading
           ? () async {
               setState(() => _isLoading = true);
               final asyncResult = await widget.asyncCallback();
