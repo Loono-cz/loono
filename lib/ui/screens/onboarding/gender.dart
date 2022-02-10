@@ -19,6 +19,8 @@ class OnboardingGenderScreen extends StatefulWidget {
 }
 
 class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
+  final _userRepository = registry.get<UserRepository>();
+
   Sex? activeButton;
 
   @override
@@ -30,7 +32,9 @@ class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: Column(
             children: [
-              SkipButton(onPressed: () => AutoRouter.of(context).push(CreateAccountRoute())),
+              SkipButton(
+                onPressed: () => AutoRouter.of(context).push(const FillOnboardingFormLaterRoute()),
+              ),
               const SizedBox(
                 height: 70,
               ),
@@ -60,7 +64,7 @@ class _OnboardingGenderScreenState extends State<OnboardingGenderScreen> {
                   enabled: activeButton != null,
                   onTap: activeButton == null
                       ? () {}
-                      : () async => registry.get<UserRepository>().updateSex(activeButton!),
+                      : () async => _userRepository.updateSex(activeButton!),
                 ),
               ),
               SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
