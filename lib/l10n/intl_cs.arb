@@ -149,8 +149,6 @@
   "@onboarding_form_done_header": {},
   "onboarding_form_done_success_message": "Vstupní dotazník máš úspěšně hotový",
   "@onboarding_form_done_success_message": {},
-  "continue_onboarding_form_header": "Schází dokončit jen pár otázek na tvojí cestě za prevencí",
-  "@continue_onboarding_form_header": {},
   "login_create_new_account": "Vytvořit nový účet",
   "@login_create_new_account": {},
   "continue_onboarding_form_button": "Dokončit dotazník",
