@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/examination_repository.dart';
@@ -16,11 +17,15 @@ class ChangeLastVisitScreen extends StatefulWidget {
     required this.originalDate,
     required this.title,
     required this.examinationType,
+    required this.uuid,
+    required this.status,
   }) : super(key: key);
 
   final DateTime originalDate;
   final String title;
   final ExaminationTypeEnum examinationType;
+  final String? uuid;
+  final ExaminationCategory status;
 
   @override
   State<ChangeLastVisitScreen> createState() => _ChangeLastVisitScreenState();
@@ -40,6 +45,8 @@ class _ChangeLastVisitScreenState extends State<ChangeLastVisitScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.examinationType);
+    print(widget.status);
     return Scaffold(
       backgroundColor: LoonoColors.bottomSheetPrevention,
       appBar: AppBar(

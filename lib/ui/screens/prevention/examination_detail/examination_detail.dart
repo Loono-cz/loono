@@ -150,25 +150,37 @@ class ExaminationDetail extends StatelessWidget {
                         _calendarRow(
                           '${context.l10n.last_visit}:\n$lastVisit',
                           onTap: () {
-                            if (lastVisitDateWithoutDay != null) {
+                            if (lastVisitDateWithoutDay != null &&
+                                categorizedExamination.examination.id != null) {
                               AutoRouter.of(context).navigate(
                                 ChangeLastVisitRoute(
                                   originalDate: DateTime(
                                     lastVisitDateWithoutDay.year,
                                     lastVisitDateWithoutDay.month.index,
                                   ),
+                                  // refactor after api UUID and ID inconsistency fix
+                                  uuid: categorizedExamination.examination.id != null
+                                      ? categorizedExamination.examination.id.toString()
+                                      : null,
                                   title:
                                       '${l10n.change_last_visit_title} $preposition $practitioner',
                                   examinationType: _examinationType,
+                                  status: categorizedExamination.category,
                                 ),
                               );
                             } else {
                               showLastVisitSheet(
-                                context,
-                                _examinationType,
-                                _sex,
-                                categorizedExamination.examination.interval,
-                                lastVisitSkippedDate,
+                                context: context,
+                                // refactor after api UUID and ID inconsistency fix
+                                uuid: categorizedExamination.examination.id != null
+                                    ? categorizedExamination.examination.id.toString()
+                                    : null,
+                                examinationType: _examinationType,
+                                sex: _sex,
+                                examinationIntervalYears:
+                                    categorizedExamination.examination.interval,
+                                skippedDate: lastVisitSkippedDate,
+                                status: categorizedExamination.category,
                               );
                             }
                           },

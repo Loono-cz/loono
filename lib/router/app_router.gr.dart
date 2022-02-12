@@ -10,6 +10,7 @@ import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 import 'package:loono_api/loono_api.dart' as _i56;
 
+import '../helpers/examination_category.dart' as _i61;
 import '../helpers/examination_extensions.dart' as _i60;
 import '../models/categorized_examination.dart' as _i59;
 import '../models/firebase_user.dart' as _i55;
@@ -458,7 +459,9 @@ class AppRouter extends _i1.RootStackRouter {
               key: args.key,
               originalDate: args.originalDate,
               title: args.title,
-              examinationType: args.examinationType),
+              examinationType: args.examinationType,
+              uuid: args.uuid,
+              status: args.status),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -1265,14 +1268,18 @@ class ChangeLastVisitRoute extends _i1.PageRouteInfo<ChangeLastVisitRouteArgs> {
       {_i2.Key? key,
       required DateTime originalDate,
       required String title,
-      required _i56.ExaminationTypeEnum examinationType})
+      required _i56.ExaminationTypeEnum examinationType,
+      required String? uuid,
+      required _i61.ExaminationCategory status})
       : super(name,
             path: 'checkup/last-visit-update',
             args: ChangeLastVisitRouteArgs(
                 key: key,
                 originalDate: originalDate,
                 title: title,
-                examinationType: examinationType));
+                examinationType: examinationType,
+                uuid: uuid,
+                status: status));
 
   static const String name = 'ChangeLastVisitRoute';
 }
@@ -1282,7 +1289,9 @@ class ChangeLastVisitRouteArgs {
       {this.key,
       required this.originalDate,
       required this.title,
-      required this.examinationType});
+      required this.examinationType,
+      required this.uuid,
+      required this.status});
 
   final _i2.Key? key;
 
@@ -1291,6 +1300,10 @@ class ChangeLastVisitRouteArgs {
   final String title;
 
   final _i56.ExaminationTypeEnum examinationType;
+
+  final String? uuid;
+
+  final _i61.ExaminationCategory status;
 }
 
 class NewDateRoute extends _i1.PageRouteInfo<NewDateRouteArgs> {
