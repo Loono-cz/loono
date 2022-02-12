@@ -12,7 +12,6 @@ class PreventionScreen extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-            // TODO: Only user with created account can open Settings
             Align(
               alignment: Alignment.topLeft,
               child: TextButton(

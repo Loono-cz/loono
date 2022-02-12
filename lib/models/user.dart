@@ -25,6 +25,8 @@ class Users extends Table {
 
   TextColumn get profileImageUrl => text().nullable()();
 
+  TextColumn get defaultDeviceCalendarId => text().nullable()();
+
   DateTimeColumn get latestMapUpdateCheck => dateTime().nullable()();
 
   DateTimeColumn get latestMapUpdate => dateTime().nullable()();

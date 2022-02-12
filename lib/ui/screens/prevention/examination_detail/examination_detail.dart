@@ -6,8 +6,10 @@ import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_types.dart';
+import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
+import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/calendar_service.dart';
 import 'package:loono/services/database_service.dart';
@@ -29,8 +31,10 @@ class ExaminationDetail extends StatelessWidget {
     required this.categorizedExamination,
   }) : super(key: key);
 
+  final _calendarRepository = registry.get<CalendarRepository>();
   final _calendarService = registry.get<CalendarService>();
   final _calendarEventsDao = registry.get<DatabaseService>().calendarEvents;
+  final _usersDao = registry.get<DatabaseService>().users;
 
   final CategorizedExamination categorizedExamination;
 
@@ -231,11 +235,26 @@ class ExaminationDetail extends StatelessWidget {
                                     final hasPermissionsGranted =
                                         await _calendarService.hasPermissionsGranted();
                                     if (hasPermissionsGranted) {
-                                      await AutoRouter.of(context).push(
-                                        CalendarListRoute(
-                                          examinationRecord: categorizedExamination.examination,
-                                        ),
-                                      );
+                                      final defaultDeviceCalendarId =
+                                          _usersDao.user?.defaultDeviceCalendarId;
+                                      if (defaultDeviceCalendarId != null) {
+                                        // default device calendar id is set, do not display list of calendars
+                                        await _calendarRepository.createEvent(
+                                          _examinationType,
+                                          deviceCalendarId: defaultDeviceCalendarId,
+                                          startingDate: _nextVisitDate!,
+                                        );
+                                        showSnackBarSuccess(
+                                          context,
+                                          message: l10n.calendar_added_success_message,
+                                        );
+                                      } else {
+                                        await AutoRouter.of(context).push(
+                                          CalendarListRoute(
+                                            examinationRecord: categorizedExamination.examination,
+                                          ),
+                                        );
+                                      }
                                     } else {
                                       final result = await AutoRouter.of(context).push<bool>(
                                         CalendarPermissionInfoRoute(

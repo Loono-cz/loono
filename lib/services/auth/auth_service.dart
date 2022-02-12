@@ -12,10 +12,8 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 class AuthService {
   AuthService({required api.LoonoApi api}) {
     _api = api;
-    _auth.authStateChanges().listen((user) async {
-      if (user != null) {
-        await _refreshUserToken(user);
-      } else {
+    _auth.authStateChanges().listen((authUser) async {
+      if (authUser == null) {
         _clearUserToken();
       }
     });
@@ -258,8 +256,7 @@ class AuthService {
   }
 
   // TODO: refresh token more often - maybe on each api call ? (https://cesko-digital.atlassian.net/browse/LOON-477)
-  Future<void> _refreshUserToken(User user) async {
-    final authUser = _authUserFromFirebase(user)!;
+  Future<void> refreshUserToken(AuthUser authUser) async {
     final token = await authUser.getIdToken();
     _api.dio.options.headers['Authorization'] = 'Bearer $token';
   }
