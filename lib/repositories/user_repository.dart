@@ -2,13 +2,12 @@ import 'dart:typed_data';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:loono/helpers/date_without_day.dart';
-import 'package:loono/helpers/sex_extensions.dart';
-import 'package:loono/models/achievement.dart';
-import 'package:loono/models/user.dart';
 import 'package:loono/services/api_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/firebase_storage_service.dart';
+import 'package:loono_api/loono_api.dart' hide User;
+import 'package:moor/moor.dart';
 import 'package:uuid/uuid.dart';
 
 class UserRepository {
@@ -29,6 +28,14 @@ class UserRepository {
     await _db.users.upsert(User(id: const Uuid().v4()));
   }
 
+  Future<void> createUserIfNotExists() async {
+    final users = await _db.users.getUser();
+    if (users.isEmpty) {
+      await _db.users.deleteAll();
+      await _db.users.upsert(User(id: const Uuid().v4()));
+    }
+  }
+
   Future<void> updateCurrentUser(UsersCompanion usersCompanion) async {
     await _db.users.updateCurrentUser(usersCompanion);
   }
@@ -41,36 +48,16 @@ class UserRepository {
     await _db.users.updateDateOfBirth(dateWithoutDay);
   }
 
+  Future<void> updateDeviceCalendarId(String id) async {
+    await _db.users.updateCurrentUser(UsersCompanion(defaultDeviceCalendarId: Value<String>(id)));
+  }
+
   Future<void> updateLatestMapUpdateCheck(DateTime date) async {
     await _db.users.updateLatestMapUpdateCheck(date);
   }
 
   Future<void> updateLatestMapServerUpdate(DateTime date) async {
     await _db.users.updateLatestMapServerUpdate(date);
-  }
-
-  Future<void> updateGeneralPracticionerCcaVisit(CcaDoctorVisit ccaDoctorVisit) async {
-    await _db.users.updateGeneralPracticionerCcaVisit(ccaDoctorVisit);
-  }
-
-  Future<void> updateGeneralPracticionerVisitDate(DateWithoutDay dateWithoutDay) async {
-    await _db.users.updateGeneralPracticionerVisitDate(dateWithoutDay);
-  }
-
-  Future<void> updateGynecologyCcaVisit(CcaDoctorVisit ccaDoctorVisit) async {
-    await _db.users.updateGynecologyCcaVisit(ccaDoctorVisit);
-  }
-
-  Future<void> updateGynecologyVisitDate(DateWithoutDay dateWithoutDay) async {
-    await _db.users.updateGynecologyVisitDate(dateWithoutDay);
-  }
-
-  Future<void> updateDentistCcaVisit(CcaDoctorVisit ccaDoctorVisit) async {
-    await _db.users.updateDentistCcaVisit(ccaDoctorVisit);
-  }
-
-  Future<void> updateDentistVisitDate(DateWithoutDay dateWithoutDay) async {
-    await _db.users.updateDentistVisitDate(dateWithoutDay);
   }
 
   Future<bool> updateNickname(String nickname) async {
@@ -95,10 +82,6 @@ class UserRepository {
       failure: (_) async => false,
     );
     return result;
-  }
-
-  Future<void> updateAchievementCollection(Achievement achievement) async {
-    await _db.users.updateAchievementCollection(achievement);
   }
 
   // TODO: Error handling (https://cesko-digital.atlassian.net/browse/LOON-386)

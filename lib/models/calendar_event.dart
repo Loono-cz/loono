@@ -1,6 +1,6 @@
-import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/helpers/type_converters.dart';
 import 'package:loono/services/db/database.dart';
+import 'package:loono_api/loono_api.dart';
 import 'package:moor/moor.dart';
 
 part 'calendar_event.g.dart';
@@ -9,7 +9,7 @@ class CalendarEvents extends Table {
   @override
   Set<Column> get primaryKey => {type};
 
-  TextColumn get type => text().map(const ExaminationTypeDbConverter())();
+  TextColumn get type => text().map(const ExaminationTypeEnumDbConverter())();
 
   TextColumn get deviceCalendarId => text()();
 
@@ -22,17 +22,19 @@ class CalendarEvents extends Table {
 class CalendarEventsDao extends DatabaseAccessor<AppDatabase> with _$CalendarEventsDaoMixin {
   CalendarEventsDao(AppDatabase db) : super(db);
 
-  Future<CalendarEvent?> get(ExaminationType examinationType) => (select(calendarEvents)
+  Future<CalendarEvent?> get(ExaminationTypeEnum examinationType) => (select(calendarEvents)
         ..where(
-          (tbl) => tbl.type.equals(const ExaminationTypeDbConverter().mapToSql(examinationType)),
+          (tbl) =>
+              tbl.type.equals(const ExaminationTypeEnumDbConverter().mapToSql(examinationType)),
         ))
       .getSingleOrNull();
 
   Future<List<CalendarEvent>> getAll() => select(calendarEvents).get();
 
-  Stream<CalendarEvent?> watch(ExaminationType examinationType) => (select(calendarEvents)
+  Stream<CalendarEvent?> watch(ExaminationTypeEnum examinationType) => (select(calendarEvents)
         ..where(
-          (tbl) => tbl.type.equals(const ExaminationTypeDbConverter().mapToSql(examinationType)),
+          (tbl) =>
+              tbl.type.equals(const ExaminationTypeEnumDbConverter().mapToSql(examinationType)),
         ))
       .watchSingleOrNull();
 
@@ -43,20 +45,22 @@ class CalendarEventsDao extends DatabaseAccessor<AppDatabase> with _$CalendarEve
   }
 
   Future<void> updateEvent(
-    ExaminationType examinationType, {
+    ExaminationTypeEnum examinationType, {
     required CalendarEventsCompanion calendarEventsCompanion,
   }) async {
     await (update(calendarEvents)
           ..where(
-            (tbl) => tbl.type.equals(const ExaminationTypeDbConverter().mapToSql(examinationType)),
+            (tbl) =>
+                tbl.type.equals(const ExaminationTypeEnumDbConverter().mapToSql(examinationType)),
           ))
         .write(calendarEventsCompanion);
   }
 
-  Future<void> deleteEvent(ExaminationType examinationType) async {
+  Future<void> deleteEvent(ExaminationTypeEnum examinationType) async {
     await (delete(calendarEvents)
           ..where(
-            (tbl) => tbl.type.equals(const ExaminationTypeDbConverter().mapToSql(examinationType)),
+            (tbl) =>
+                tbl.type.equals(const ExaminationTypeEnumDbConverter().mapToSql(examinationType)),
           ))
         .go();
   }

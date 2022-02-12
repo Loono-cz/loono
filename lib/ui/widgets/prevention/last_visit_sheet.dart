@@ -2,15 +2,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
-import 'package:loono/helpers/examination_types.dart';
-import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono_api/loono_api.dart';
 
 void showLastVisitSheet(
   BuildContext context,
-  ExaminationType examinationType,
+  ExaminationTypeEnum examinationType,
   Sex sex,
   int examinationIntervalYears,
   DateTime skippedDate,
@@ -28,10 +27,10 @@ void showLastVisitSheet(
   final preposition = czechPreposition(context, examinationType: examinationType);
 
   final descriptionText =
-      sex == Sex.male ? l10n.last_checkup_sheet_text_male : l10n.last_checkup_sheet_text_female;
+      sex == Sex.MALE ? l10n.last_checkup_sheet_text_male : l10n.last_checkup_sheet_text_female;
 
   final title =
-      '${sex == Sex.male ? l10n.last_checkup_question_male : l10n.last_checkup_question_female} $preposition $practitioner?';
+      '${sex == Sex.MALE ? l10n.last_checkup_question_male : l10n.last_checkup_question_female} $preposition $practitioner?';
 
   showModalBottomSheet<void>(
     context: context,

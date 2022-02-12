@@ -11,6 +11,7 @@ import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/custom_date_picker.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart';
 
 class OnBoardingBirthdateScreen extends StatefulWidget {
   const OnBoardingBirthdateScreen({Key? key, required this.sex}) : super(key: key);
@@ -33,7 +34,9 @@ class _OnBoardingBirthdateScreenState extends State<OnBoardingBirthdateScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: Column(
             children: [
-              SkipButton(onPressed: () => AutoRouter.of(context).push(CreateAccountRoute())),
+              SkipButton(
+                onPressed: () => AutoRouter.of(context).push(const FillOnboardingFormLaterRoute()),
+              ),
               const SizedBox(
                 height: 70,
               ),
