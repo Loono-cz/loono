@@ -167,20 +167,8 @@ class User extends DataClass implements Insertable<User> {
   }
 
   @override
-  int get hashCode => $mrjf($mrjc(
-      id.hashCode,
-      $mrjc(
-          sex.hashCode,
-          $mrjc(
-              dateOfBirthRaw.hashCode,
-              $mrjc(
-                  nickname.hashCode,
-                  $mrjc(
-                      email.hashCode,
-                      $mrjc(
-                          profileImageUrl.hashCode,
-                          $mrjc(latestMapUpdateCheck.hashCode,
-                              latestMapUpdate.hashCode))))))));
+  int get hashCode => Object.hash(id, sex, dateOfBirthRaw, nickname, email,
+      profileImageUrl, latestMapUpdateCheck, latestMapUpdate);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -317,46 +305,55 @@ class UsersCompanion extends UpdateCompanion<User> {
 }
 
 class $UsersTable extends Users with TableInfo<$UsersTable, User> {
-  final GeneratedDatabase _db;
+  @override
+  final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $UsersTable(this._db, [this._alias]);
+  $UsersTable(this.attachedDatabase, [this._alias]);
   final VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
   late final GeneratedColumn<String?> id = GeneratedColumn<String?>(
       'id', aliasedName, false,
-      typeName: 'TEXT', requiredDuringInsert: true);
+      type: const StringType(), requiredDuringInsert: true);
   final VerificationMeta _sexMeta = const VerificationMeta('sex');
+  @override
   late final GeneratedColumnWithTypeConverter<Sex, String?> sex =
       GeneratedColumn<String?>('sex', aliasedName, true,
-              typeName: 'TEXT', requiredDuringInsert: false)
+              type: const StringType(), requiredDuringInsert: false)
           .withConverter<Sex>($UsersTable.$converter0);
   final VerificationMeta _dateOfBirthRawMeta =
       const VerificationMeta('dateOfBirthRaw');
+  @override
   late final GeneratedColumn<String?> dateOfBirthRaw = GeneratedColumn<String?>(
       'date_of_birth_raw', aliasedName, true,
-      typeName: 'TEXT', requiredDuringInsert: false);
+      type: const StringType(), requiredDuringInsert: false);
   final VerificationMeta _nicknameMeta = const VerificationMeta('nickname');
+  @override
   late final GeneratedColumn<String?> nickname = GeneratedColumn<String?>(
       'nickname', aliasedName, true,
-      typeName: 'TEXT', requiredDuringInsert: false);
+      type: const StringType(), requiredDuringInsert: false);
   final VerificationMeta _emailMeta = const VerificationMeta('email');
+  @override
   late final GeneratedColumn<String?> email = GeneratedColumn<String?>(
       'email', aliasedName, true,
-      typeName: 'TEXT', requiredDuringInsert: false);
+      type: const StringType(), requiredDuringInsert: false);
   final VerificationMeta _profileImageUrlMeta =
       const VerificationMeta('profileImageUrl');
+  @override
   late final GeneratedColumn<String?> profileImageUrl =
       GeneratedColumn<String?>('profile_image_url', aliasedName, true,
-          typeName: 'TEXT', requiredDuringInsert: false);
+          type: const StringType(), requiredDuringInsert: false);
   final VerificationMeta _latestMapUpdateCheckMeta =
       const VerificationMeta('latestMapUpdateCheck');
+  @override
   late final GeneratedColumn<DateTime?> latestMapUpdateCheck =
       GeneratedColumn<DateTime?>('latest_map_update_check', aliasedName, true,
-          typeName: 'INTEGER', requiredDuringInsert: false);
+          type: const IntType(), requiredDuringInsert: false);
   final VerificationMeta _latestMapUpdateMeta =
       const VerificationMeta('latestMapUpdate');
+  @override
   late final GeneratedColumn<DateTime?> latestMapUpdate =
       GeneratedColumn<DateTime?>('latest_map_update', aliasedName, true,
-          typeName: 'INTEGER', requiredDuringInsert: false);
+          type: const IntType(), requiredDuringInsert: false);
   @override
   List<GeneratedColumn> get $columns => [
         id,
@@ -422,13 +419,13 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
   User map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return User.fromData(data, _db,
+    return User.fromData(data, attachedDatabase,
         prefix: tablePrefix != null ? '$tablePrefix.' : null);
   }
 
   @override
   $UsersTable createAlias(String alias) {
-    return $UsersTable(_db, alias);
+    return $UsersTable(attachedDatabase, alias);
   }
 
   static TypeConverter<Sex, String> $converter0 = const SexDbConverter();
@@ -608,26 +605,8 @@ class HealthcareProvider extends DataClass
   }
 
   @override
-  int get hashCode => $mrjf($mrjc(
-      locationId.hashCode,
-      $mrjc(
-          institutionId.hashCode,
-          $mrjc(
-              title.hashCode,
-              $mrjc(
-                  category.hashCode,
-                  $mrjc(
-                      street.hashCode,
-                      $mrjc(
-                          houseNumber.hashCode,
-                          $mrjc(
-                              specialization.hashCode,
-                              $mrjc(
-                                  city.hashCode,
-                                  $mrjc(
-                                      postalCode.hashCode,
-                                      $mrjc(
-                                          lat.hashCode, lng.hashCode)))))))))));
+  int get hashCode => Object.hash(locationId, institutionId, title, category,
+      street, houseNumber, specialization, city, postalCode, lat, lng);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -808,58 +787,70 @@ class HealthcareProvidersCompanion extends UpdateCompanion<HealthcareProvider> {
 
 class $HealthcareProvidersTable extends HealthcareProviders
     with TableInfo<$HealthcareProvidersTable, HealthcareProvider> {
-  final GeneratedDatabase _db;
+  @override
+  final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $HealthcareProvidersTable(this._db, [this._alias]);
+  $HealthcareProvidersTable(this.attachedDatabase, [this._alias]);
   final VerificationMeta _locationIdMeta = const VerificationMeta('locationId');
+  @override
   late final GeneratedColumn<int?> locationId = GeneratedColumn<int?>(
       'location_id', aliasedName, false,
-      typeName: 'INTEGER', requiredDuringInsert: true);
+      type: const IntType(), requiredDuringInsert: true);
   final VerificationMeta _institutionIdMeta =
       const VerificationMeta('institutionId');
+  @override
   late final GeneratedColumn<int?> institutionId = GeneratedColumn<int?>(
       'institution_id', aliasedName, false,
-      typeName: 'INTEGER', requiredDuringInsert: true);
+      type: const IntType(), requiredDuringInsert: true);
   final VerificationMeta _titleMeta = const VerificationMeta('title');
+  @override
   late final GeneratedColumn<String?> title = GeneratedColumn<String?>(
       'title', aliasedName, false,
-      typeName: 'TEXT', requiredDuringInsert: true);
+      type: const StringType(), requiredDuringInsert: true);
   final VerificationMeta _categoryMeta = const VerificationMeta('category');
+  @override
   late final GeneratedColumnWithTypeConverter<BuiltList<String>, String?>
       category = GeneratedColumn<String?>('category', aliasedName, false,
-              typeName: 'TEXT', requiredDuringInsert: true)
+              type: const StringType(), requiredDuringInsert: true)
           .withConverter<BuiltList<String>>(
               $HealthcareProvidersTable.$converter0);
   final VerificationMeta _streetMeta = const VerificationMeta('street');
+  @override
   late final GeneratedColumn<String?> street = GeneratedColumn<String?>(
       'street', aliasedName, false,
-      typeName: 'TEXT', requiredDuringInsert: true);
+      type: const StringType(), requiredDuringInsert: true);
   final VerificationMeta _houseNumberMeta =
       const VerificationMeta('houseNumber');
+  @override
   late final GeneratedColumn<String?> houseNumber = GeneratedColumn<String?>(
       'house_number', aliasedName, false,
-      typeName: 'TEXT', requiredDuringInsert: true);
+      type: const StringType(), requiredDuringInsert: true);
   final VerificationMeta _specializationMeta =
       const VerificationMeta('specialization');
+  @override
   late final GeneratedColumn<String?> specialization = GeneratedColumn<String?>(
       'specialization', aliasedName, true,
-      typeName: 'TEXT', requiredDuringInsert: false);
+      type: const StringType(), requiredDuringInsert: false);
   final VerificationMeta _cityMeta = const VerificationMeta('city');
+  @override
   late final GeneratedColumn<String?> city = GeneratedColumn<String?>(
       'city', aliasedName, false,
-      typeName: 'TEXT', requiredDuringInsert: true);
+      type: const StringType(), requiredDuringInsert: true);
   final VerificationMeta _postalCodeMeta = const VerificationMeta('postalCode');
+  @override
   late final GeneratedColumn<String?> postalCode = GeneratedColumn<String?>(
       'postal_code', aliasedName, false,
-      typeName: 'TEXT', requiredDuringInsert: true);
+      type: const StringType(), requiredDuringInsert: true);
   final VerificationMeta _latMeta = const VerificationMeta('lat');
+  @override
   late final GeneratedColumn<double?> lat = GeneratedColumn<double?>(
       'lat', aliasedName, false,
-      typeName: 'REAL', requiredDuringInsert: true);
+      type: const RealType(), requiredDuringInsert: true);
   final VerificationMeta _lngMeta = const VerificationMeta('lng');
+  @override
   late final GeneratedColumn<double?> lng = GeneratedColumn<double?>(
       'lng', aliasedName, false,
-      typeName: 'REAL', requiredDuringInsert: true);
+      type: const RealType(), requiredDuringInsert: true);
   @override
   List<GeneratedColumn> get $columns => [
         locationId,
@@ -959,13 +950,13 @@ class $HealthcareProvidersTable extends HealthcareProviders
   Set<GeneratedColumn> get $primaryKey => {locationId, institutionId};
   @override
   HealthcareProvider map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return HealthcareProvider.fromData(data, _db,
+    return HealthcareProvider.fromData(data, attachedDatabase,
         prefix: tablePrefix != null ? '$tablePrefix.' : null);
   }
 
   @override
   $HealthcareProvidersTable createAlias(String alias) {
-    return $HealthcareProvidersTable(_db, alias);
+    return $HealthcareProvidersTable(attachedDatabase, alias);
   }
 
   static TypeConverter<BuiltList<String>, String> $converter0 =
@@ -1063,10 +1054,8 @@ class CalendarEvent extends DataClass implements Insertable<CalendarEvent> {
   }
 
   @override
-  int get hashCode => $mrjf($mrjc(
-      type.hashCode,
-      $mrjc(deviceCalendarId.hashCode,
-          $mrjc(calendarEventId.hashCode, date.hashCode))));
+  int get hashCode =>
+      Object.hash(type, deviceCalendarId, calendarEventId, date);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -1157,28 +1146,33 @@ class CalendarEventsCompanion extends UpdateCompanion<CalendarEvent> {
 
 class $CalendarEventsTable extends CalendarEvents
     with TableInfo<$CalendarEventsTable, CalendarEvent> {
-  final GeneratedDatabase _db;
+  @override
+  final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $CalendarEventsTable(this._db, [this._alias]);
+  $CalendarEventsTable(this.attachedDatabase, [this._alias]);
   final VerificationMeta _typeMeta = const VerificationMeta('type');
+  @override
   late final GeneratedColumnWithTypeConverter<ExaminationTypeEnum, String?>
       type = GeneratedColumn<String?>('type', aliasedName, false,
-              typeName: 'TEXT', requiredDuringInsert: true)
+              type: const StringType(), requiredDuringInsert: true)
           .withConverter<ExaminationTypeEnum>($CalendarEventsTable.$converter0);
   final VerificationMeta _deviceCalendarIdMeta =
       const VerificationMeta('deviceCalendarId');
+  @override
   late final GeneratedColumn<String?> deviceCalendarId =
       GeneratedColumn<String?>('device_calendar_id', aliasedName, false,
-          typeName: 'TEXT', requiredDuringInsert: true);
+          type: const StringType(), requiredDuringInsert: true);
   final VerificationMeta _calendarEventIdMeta =
       const VerificationMeta('calendarEventId');
+  @override
   late final GeneratedColumn<String?> calendarEventId =
       GeneratedColumn<String?>('calendar_event_id', aliasedName, false,
-          typeName: 'TEXT', requiredDuringInsert: true);
+          type: const StringType(), requiredDuringInsert: true);
   final VerificationMeta _dateMeta = const VerificationMeta('date');
+  @override
   late final GeneratedColumn<DateTime?> date = GeneratedColumn<DateTime?>(
       'date', aliasedName, false,
-      typeName: 'INTEGER', requiredDuringInsert: true);
+      type: const IntType(), requiredDuringInsert: true);
   @override
   List<GeneratedColumn> get $columns =>
       [type, deviceCalendarId, calendarEventId, date];
@@ -1221,13 +1215,13 @@ class $CalendarEventsTable extends CalendarEvents
   Set<GeneratedColumn> get $primaryKey => {type};
   @override
   CalendarEvent map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return CalendarEvent.fromData(data, _db,
+    return CalendarEvent.fromData(data, attachedDatabase,
         prefix: tablePrefix != null ? '$tablePrefix.' : null);
   }
 
   @override
   $CalendarEventsTable createAlias(String alias) {
-    return $CalendarEventsTable(_db, alias);
+    return $CalendarEventsTable(attachedDatabase, alias);
   }
 
   static TypeConverter<ExaminationTypeEnum, String> $converter0 =
@@ -1334,8 +1328,7 @@ class ExaminationQuestionnaire extends DataClass
   }
 
   @override
-  int get hashCode => $mrjf($mrjc(type.hashCode,
-      $mrjc(status.hashCode, $mrjc(date.hashCode, firstExam.hashCode))));
+  int get hashCode => Object.hash(type, status, date, firstExam);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -1425,32 +1418,37 @@ class ExaminationQuestionnairesCompanion
 
 class $ExaminationQuestionnairesTable extends ExaminationQuestionnaires
     with TableInfo<$ExaminationQuestionnairesTable, ExaminationQuestionnaire> {
-  final GeneratedDatabase _db;
+  @override
+  final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $ExaminationQuestionnairesTable(this._db, [this._alias]);
+  $ExaminationQuestionnairesTable(this.attachedDatabase, [this._alias]);
   final VerificationMeta _typeMeta = const VerificationMeta('type');
+  @override
   late final GeneratedColumnWithTypeConverter<ExaminationTypeEnum, String?>
       type = GeneratedColumn<String?>('type', aliasedName, false,
-              typeName: 'TEXT', requiredDuringInsert: true)
+              type: const StringType(), requiredDuringInsert: true)
           .withConverter<ExaminationTypeEnum>(
               $ExaminationQuestionnairesTable.$converter0);
   final VerificationMeta _statusMeta = const VerificationMeta('status');
+  @override
   late final GeneratedColumnWithTypeConverter<ExaminationStatus, String?>
       status = GeneratedColumn<String?>('status', aliasedName, false,
-              typeName: 'TEXT',
+              type: const StringType(),
               requiredDuringInsert: false,
               defaultValue: Constant(const ExaminationStatusDbConverter()
                   .mapToSql(ExaminationStatus.NEW)!))
           .withConverter<ExaminationStatus>(
               $ExaminationQuestionnairesTable.$converter1);
   final VerificationMeta _dateMeta = const VerificationMeta('date');
+  @override
   late final GeneratedColumn<DateTime?> date = GeneratedColumn<DateTime?>(
       'date', aliasedName, true,
-      typeName: 'INTEGER', requiredDuringInsert: false);
+      type: const IntType(), requiredDuringInsert: false);
   final VerificationMeta _firstExamMeta = const VerificationMeta('firstExam');
+  @override
   late final GeneratedColumn<bool?> firstExam = GeneratedColumn<bool?>(
       'first_exam', aliasedName, true,
-      typeName: 'INTEGER',
+      type: const BoolType(),
       requiredDuringInsert: false,
       defaultConstraints: 'CHECK (first_exam IN (0, 1))');
   @override
@@ -1483,13 +1481,13 @@ class $ExaminationQuestionnairesTable extends ExaminationQuestionnaires
   @override
   ExaminationQuestionnaire map(Map<String, dynamic> data,
       {String? tablePrefix}) {
-    return ExaminationQuestionnaire.fromData(data, _db,
+    return ExaminationQuestionnaire.fromData(data, attachedDatabase,
         prefix: tablePrefix != null ? '$tablePrefix.' : null);
   }
 
   @override
   $ExaminationQuestionnairesTable createAlias(String alias) {
-    return $ExaminationQuestionnairesTable(_db, alias);
+    return $ExaminationQuestionnairesTable(attachedDatabase, alias);
   }
 
   static TypeConverter<ExaminationTypeEnum, String> $converter0 =

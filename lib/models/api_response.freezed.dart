@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'api_response.dart';
@@ -140,14 +141,14 @@ class _$SuccessApiResponse<T> extends SuccessApiResponse<T> {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is SuccessApiResponse<T> &&
-            (identical(other.data, data) ||
-                const DeepCollectionEquality().equals(other.data, data)));
+        (other.runtimeType == runtimeType &&
+            other is SuccessApiResponse<T> &&
+            const DeepCollectionEquality().equals(other.data, data));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(data);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
   @JsonKey(ignore: true)
   @override
@@ -222,7 +223,7 @@ abstract class SuccessApiResponse<T> extends ApiResponse<T> {
   const factory SuccessApiResponse(T data) = _$SuccessApiResponse<T>;
   const SuccessApiResponse._() : super._();
 
-  T get data => throw _privateConstructorUsedError;
+  T get data;
   @JsonKey(ignore: true)
   $SuccessApiResponseCopyWith<T, SuccessApiResponse<T>> get copyWith =>
       throw _privateConstructorUsedError;
@@ -276,14 +277,14 @@ class _$FailureApiResponse<T> extends FailureApiResponse<T> {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is FailureApiResponse<T> &&
-            (identical(other.error, error) ||
-                const DeepCollectionEquality().equals(other.error, error)));
+        (other.runtimeType == runtimeType &&
+            other is FailureApiResponse<T> &&
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
@@ -358,7 +359,7 @@ abstract class FailureApiResponse<T> extends ApiResponse<T> {
   const factory FailureApiResponse(DioError error) = _$FailureApiResponse<T>;
   const FailureApiResponse._() : super._();
 
-  DioError get error => throw _privateConstructorUsedError;
+  DioError get error;
   @JsonKey(ignore: true)
   $FailureApiResponseCopyWith<T, FailureApiResponse<T>> get copyWith =>
       throw _privateConstructorUsedError;

@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'achievement.dart';
@@ -28,7 +29,7 @@ class _$AchievementTearOff {
     );
   }
 
-  Achievement fromJson(Map<String, Object> json) {
+  Achievement fromJson(Map<String, Object?> json) {
     return Achievement.fromJson(json);
   }
 }
@@ -129,7 +130,7 @@ class _$_Achievement implements _Achievement {
 
   @override
   final String id;
-  @JsonKey(defaultValue: 200)
+  @JsonKey()
   @override
   final int points;
 
@@ -141,18 +142,17 @@ class _$_Achievement implements _Achievement {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Achievement &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.points, points) ||
-                const DeepCollectionEquality().equals(other.points, points)));
+        (other.runtimeType == runtimeType &&
+            other is _Achievement &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.points, points));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(points);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(points));
 
   @JsonKey(ignore: true)
   @override
@@ -172,9 +172,9 @@ abstract class _Achievement implements Achievement {
       _$_Achievement.fromJson;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  int get points => throw _privateConstructorUsedError;
+  int get points;
   @override
   @JsonKey(ignore: true)
   _$AchievementCopyWith<_Achievement> get copyWith =>
