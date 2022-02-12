@@ -21,7 +21,8 @@ class UpdateProfileScreen extends StatelessWidget {
 
   final _usersDao = registry.get<DatabaseService>().users;
 
-  String _getUserSexValue(BuildContext context, {required Sex sex}) {
+  String _getUserSexValue(BuildContext context, {required Sex? sex}) {
+    if (sex == null) return '';
     late final String value;
     switch (sex) {
       case Sex.MALE:
@@ -106,7 +107,7 @@ class UpdateProfileScreen extends StatelessWidget {
                     itemSpacing,
                     UpdateProfileItem(
                       label: context.l10n.update_profile_sex,
-                      value: _getUserSexValue(context, sex: user?.sex ?? Sex.MALE),
+                      value: _getUserSexValue(context, sex: user?.sex),
                       route: null,
                       enabled: false,
                     ),
@@ -148,9 +149,8 @@ class UpdateProfileScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 32.0),
                           TextButton(
-                            onPressed: () {
-                              // TODO: Remove account
-                            },
+                            onPressed: () =>
+                                AutoRouter.of(context).push(const DeleteAccountRoute()),
                             child: Text(
                               context.l10n.remove_account_action,
                               style: LoonoFonts.fontStyle.copyWith(color: LoonoColors.redButton),

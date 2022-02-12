@@ -55,6 +55,23 @@ class ApiService {
     return _callApi(() async => _api.getAccountApi().getAccount());
   }
 
+  Future<ApiResponse<Account>> updateAccountSettings({
+    bool appointmentReminderEmailsOptIn = true,
+    bool leaderboardAnonymizationOptIn = false,
+    bool newsletterOptIn = false,
+  }) async {
+    return _callApi(
+      () async => _api.getAccountApi().updateAccountSettings(
+        settings: Settings((b) {
+          b
+            ..appointmentReminderEmailsOptIn = appointmentReminderEmailsOptIn
+            ..leaderboardAnonymizationOptIn = leaderboardAnonymizationOptIn
+            ..newsletterOptIn = newsletterOptIn;
+        }),
+      ),
+    );
+  }
+
   Future<ApiResponse<Account>> updateAccountUser({
     Sex? sex,
     int? birthdateYear,

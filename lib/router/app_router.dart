@@ -40,6 +40,7 @@ import 'package:loono/ui/screens/prevention/examination_detail/new_date_screen.d
 import 'package:loono/ui/screens/prevention/examination_detail/new_time_screen.dart';
 import 'package:loono/ui/screens/prevention/questionnaire/date_picker_screen.dart';
 import 'package:loono/ui/screens/settings/camera_photo_taken.dart';
+import 'package:loono/ui/screens/settings/delete_account.dart';
 import 'package:loono/ui/screens/settings/edit_email.dart';
 import 'package:loono/ui/screens/settings/edit_nickname.dart';
 import 'package:loono/ui/screens/settings/edit_photo.dart';
@@ -225,6 +226,11 @@ const _settingsRoutes = <AutoRoute>[
   CustomRoute<void>(
     page: EditPhotoScreen,
     path: 'settings/update-profile/photo',
+    transitionsBuilder: _settingsTransition,
+  ),
+  CustomRoute<void>(
+    page: DeleteAccountScreen,
+    path: 'settings/update-profile/delete',
     transitionsBuilder: _settingsTransition,
   ),
   CustomRoute<void>(
