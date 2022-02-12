@@ -14,6 +14,7 @@ class User extends DataClass implements Insertable<User> {
   final String? nickname;
   final String? email;
   final String? profileImageUrl;
+  final String? defaultDeviceCalendarId;
   final DateTime? latestMapUpdateCheck;
   final DateTime? latestMapUpdate;
   User(
@@ -23,6 +24,7 @@ class User extends DataClass implements Insertable<User> {
       this.nickname,
       this.email,
       this.profileImageUrl,
+      this.defaultDeviceCalendarId,
       this.latestMapUpdateCheck,
       this.latestMapUpdate});
   factory User.fromData(Map<String, dynamic> data, GeneratedDatabase db,
@@ -41,6 +43,8 @@ class User extends DataClass implements Insertable<User> {
           .mapFromDatabaseResponse(data['${effectivePrefix}email']),
       profileImageUrl: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}profile_image_url']),
+      defaultDeviceCalendarId: const StringType().mapFromDatabaseResponse(
+          data['${effectivePrefix}default_device_calendar_id']),
       latestMapUpdateCheck: const DateTimeType().mapFromDatabaseResponse(
           data['${effectivePrefix}latest_map_update_check']),
       latestMapUpdate: const DateTimeType()
@@ -67,6 +71,10 @@ class User extends DataClass implements Insertable<User> {
     if (!nullToAbsent || profileImageUrl != null) {
       map['profile_image_url'] = Variable<String?>(profileImageUrl);
     }
+    if (!nullToAbsent || defaultDeviceCalendarId != null) {
+      map['default_device_calendar_id'] =
+          Variable<String?>(defaultDeviceCalendarId);
+    }
     if (!nullToAbsent || latestMapUpdateCheck != null) {
       map['latest_map_update_check'] =
           Variable<DateTime?>(latestMapUpdateCheck);
@@ -92,6 +100,9 @@ class User extends DataClass implements Insertable<User> {
       profileImageUrl: profileImageUrl == null && nullToAbsent
           ? const Value.absent()
           : Value(profileImageUrl),
+      defaultDeviceCalendarId: defaultDeviceCalendarId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(defaultDeviceCalendarId),
       latestMapUpdateCheck: latestMapUpdateCheck == null && nullToAbsent
           ? const Value.absent()
           : Value(latestMapUpdateCheck),
@@ -111,6 +122,8 @@ class User extends DataClass implements Insertable<User> {
       nickname: serializer.fromJson<String?>(json['nickname']),
       email: serializer.fromJson<String?>(json['email']),
       profileImageUrl: serializer.fromJson<String?>(json['profileImageUrl']),
+      defaultDeviceCalendarId:
+          serializer.fromJson<String?>(json['defaultDeviceCalendarId']),
       latestMapUpdateCheck:
           serializer.fromJson<DateTime?>(json['latestMapUpdateCheck']),
       latestMapUpdate: serializer.fromJson<DateTime?>(json['latestMapUpdate']),
@@ -126,6 +139,8 @@ class User extends DataClass implements Insertable<User> {
       'nickname': serializer.toJson<String?>(nickname),
       'email': serializer.toJson<String?>(email),
       'profileImageUrl': serializer.toJson<String?>(profileImageUrl),
+      'defaultDeviceCalendarId':
+          serializer.toJson<String?>(defaultDeviceCalendarId),
       'latestMapUpdateCheck':
           serializer.toJson<DateTime?>(latestMapUpdateCheck),
       'latestMapUpdate': serializer.toJson<DateTime?>(latestMapUpdate),
@@ -139,6 +154,7 @@ class User extends DataClass implements Insertable<User> {
           String? nickname,
           String? email,
           String? profileImageUrl,
+          String? defaultDeviceCalendarId,
           DateTime? latestMapUpdateCheck,
           DateTime? latestMapUpdate}) =>
       User(
@@ -148,6 +164,8 @@ class User extends DataClass implements Insertable<User> {
         nickname: nickname ?? this.nickname,
         email: email ?? this.email,
         profileImageUrl: profileImageUrl ?? this.profileImageUrl,
+        defaultDeviceCalendarId:
+            defaultDeviceCalendarId ?? this.defaultDeviceCalendarId,
         latestMapUpdateCheck: latestMapUpdateCheck ?? this.latestMapUpdateCheck,
         latestMapUpdate: latestMapUpdate ?? this.latestMapUpdate,
       );
@@ -160,6 +178,7 @@ class User extends DataClass implements Insertable<User> {
           ..write('nickname: $nickname, ')
           ..write('email: $email, ')
           ..write('profileImageUrl: $profileImageUrl, ')
+          ..write('defaultDeviceCalendarId: $defaultDeviceCalendarId, ')
           ..write('latestMapUpdateCheck: $latestMapUpdateCheck, ')
           ..write('latestMapUpdate: $latestMapUpdate')
           ..write(')'))
@@ -179,8 +198,10 @@ class User extends DataClass implements Insertable<User> {
                       email.hashCode,
                       $mrjc(
                           profileImageUrl.hashCode,
-                          $mrjc(latestMapUpdateCheck.hashCode,
-                              latestMapUpdate.hashCode))))))));
+                          $mrjc(
+                              defaultDeviceCalendarId.hashCode,
+                              $mrjc(latestMapUpdateCheck.hashCode,
+                                  latestMapUpdate.hashCode)))))))));
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -191,6 +212,7 @@ class User extends DataClass implements Insertable<User> {
           other.nickname == this.nickname &&
           other.email == this.email &&
           other.profileImageUrl == this.profileImageUrl &&
+          other.defaultDeviceCalendarId == this.defaultDeviceCalendarId &&
           other.latestMapUpdateCheck == this.latestMapUpdateCheck &&
           other.latestMapUpdate == this.latestMapUpdate);
 }
@@ -202,6 +224,7 @@ class UsersCompanion extends UpdateCompanion<User> {
   final Value<String?> nickname;
   final Value<String?> email;
   final Value<String?> profileImageUrl;
+  final Value<String?> defaultDeviceCalendarId;
   final Value<DateTime?> latestMapUpdateCheck;
   final Value<DateTime?> latestMapUpdate;
   const UsersCompanion({
@@ -211,6 +234,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     this.nickname = const Value.absent(),
     this.email = const Value.absent(),
     this.profileImageUrl = const Value.absent(),
+    this.defaultDeviceCalendarId = const Value.absent(),
     this.latestMapUpdateCheck = const Value.absent(),
     this.latestMapUpdate = const Value.absent(),
   });
@@ -221,6 +245,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     this.nickname = const Value.absent(),
     this.email = const Value.absent(),
     this.profileImageUrl = const Value.absent(),
+    this.defaultDeviceCalendarId = const Value.absent(),
     this.latestMapUpdateCheck = const Value.absent(),
     this.latestMapUpdate = const Value.absent(),
   }) : id = Value(id);
@@ -231,6 +256,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     Expression<String?>? nickname,
     Expression<String?>? email,
     Expression<String?>? profileImageUrl,
+    Expression<String?>? defaultDeviceCalendarId,
     Expression<DateTime?>? latestMapUpdateCheck,
     Expression<DateTime?>? latestMapUpdate,
   }) {
@@ -241,6 +267,8 @@ class UsersCompanion extends UpdateCompanion<User> {
       if (nickname != null) 'nickname': nickname,
       if (email != null) 'email': email,
       if (profileImageUrl != null) 'profile_image_url': profileImageUrl,
+      if (defaultDeviceCalendarId != null)
+        'default_device_calendar_id': defaultDeviceCalendarId,
       if (latestMapUpdateCheck != null)
         'latest_map_update_check': latestMapUpdateCheck,
       if (latestMapUpdate != null) 'latest_map_update': latestMapUpdate,
@@ -254,6 +282,7 @@ class UsersCompanion extends UpdateCompanion<User> {
       Value<String?>? nickname,
       Value<String?>? email,
       Value<String?>? profileImageUrl,
+      Value<String?>? defaultDeviceCalendarId,
       Value<DateTime?>? latestMapUpdateCheck,
       Value<DateTime?>? latestMapUpdate}) {
     return UsersCompanion(
@@ -263,6 +292,8 @@ class UsersCompanion extends UpdateCompanion<User> {
       nickname: nickname ?? this.nickname,
       email: email ?? this.email,
       profileImageUrl: profileImageUrl ?? this.profileImageUrl,
+      defaultDeviceCalendarId:
+          defaultDeviceCalendarId ?? this.defaultDeviceCalendarId,
       latestMapUpdateCheck: latestMapUpdateCheck ?? this.latestMapUpdateCheck,
       latestMapUpdate: latestMapUpdate ?? this.latestMapUpdate,
     );
@@ -290,6 +321,10 @@ class UsersCompanion extends UpdateCompanion<User> {
     if (profileImageUrl.present) {
       map['profile_image_url'] = Variable<String?>(profileImageUrl.value);
     }
+    if (defaultDeviceCalendarId.present) {
+      map['default_device_calendar_id'] =
+          Variable<String?>(defaultDeviceCalendarId.value);
+    }
     if (latestMapUpdateCheck.present) {
       map['latest_map_update_check'] =
           Variable<DateTime?>(latestMapUpdateCheck.value);
@@ -309,6 +344,7 @@ class UsersCompanion extends UpdateCompanion<User> {
           ..write('nickname: $nickname, ')
           ..write('email: $email, ')
           ..write('profileImageUrl: $profileImageUrl, ')
+          ..write('defaultDeviceCalendarId: $defaultDeviceCalendarId, ')
           ..write('latestMapUpdateCheck: $latestMapUpdateCheck, ')
           ..write('latestMapUpdate: $latestMapUpdate')
           ..write(')'))
@@ -347,6 +383,11 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   late final GeneratedColumn<String?> profileImageUrl =
       GeneratedColumn<String?>('profile_image_url', aliasedName, true,
           typeName: 'TEXT', requiredDuringInsert: false);
+  final VerificationMeta _defaultDeviceCalendarIdMeta =
+      const VerificationMeta('defaultDeviceCalendarId');
+  late final GeneratedColumn<String?> defaultDeviceCalendarId =
+      GeneratedColumn<String?>('default_device_calendar_id', aliasedName, true,
+          typeName: 'TEXT', requiredDuringInsert: false);
   final VerificationMeta _latestMapUpdateCheckMeta =
       const VerificationMeta('latestMapUpdateCheck');
   late final GeneratedColumn<DateTime?> latestMapUpdateCheck =
@@ -365,6 +406,7 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
         nickname,
         email,
         profileImageUrl,
+        defaultDeviceCalendarId,
         latestMapUpdateCheck,
         latestMapUpdate
       ];
@@ -402,6 +444,13 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
           _profileImageUrlMeta,
           profileImageUrl.isAcceptableOrUnknown(
               data['profile_image_url']!, _profileImageUrlMeta));
+    }
+    if (data.containsKey('default_device_calendar_id')) {
+      context.handle(
+          _defaultDeviceCalendarIdMeta,
+          defaultDeviceCalendarId.isAcceptableOrUnknown(
+              data['default_device_calendar_id']!,
+              _defaultDeviceCalendarIdMeta));
     }
     if (data.containsKey('latest_map_update_check')) {
       context.handle(

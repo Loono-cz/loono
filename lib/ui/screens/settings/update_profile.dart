@@ -148,7 +148,8 @@ class UpdateProfileScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 32.0),
                           TextButton(
-                            onPressed: () => AutoRouter.of(context).push(DeleteAccountRoute()),
+                            onPressed: () =>
+                                AutoRouter.of(context).push(const DeleteAccountRoute()),
                             child: Text(
                               context.l10n.remove_account_action,
                               style: LoonoFonts.fontStyle.copyWith(color: LoonoColors.redButton),

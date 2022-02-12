@@ -7,6 +7,7 @@ import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/firebase_storage_service.dart';
 import 'package:loono_api/loono_api.dart' hide User;
+import 'package:moor/moor.dart';
 import 'package:uuid/uuid.dart';
 
 class UserRepository {
@@ -45,6 +46,10 @@ class UserRepository {
 
   Future<void> updateDateOfBirth(DateWithoutDay dateWithoutDay) async {
     await _db.users.updateDateOfBirth(dateWithoutDay);
+  }
+
+  Future<void> updateDeviceCalendarId(String id) async {
+    await _db.users.updateCurrentUser(UsersCompanion(defaultDeviceCalendarId: Value<String>(id)));
   }
 
   Future<void> updateLatestMapUpdateCheck(DateTime date) async {
