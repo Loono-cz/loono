@@ -95,3 +95,17 @@ flutter:
     - assets/icons/prevention/
     - assets/icons/prevention/doctors/
     - assets/intro_video.mp4
+    - assets/badges/
+    - assets/badges/body/
+    - assets/badges/goggles-man/
+    - assets/badges/goggles-woman/
+    - assets/badges/armour-woman/
+    - assets/badges/headband/
+    - assets/badges/boots/
+    - assets/badges/belt-man/
+    - assets/badges/belt-woman/
+    - assets/badges/cloak/
+    - assets/badges/cloak-buckle/
+    - assets/badges/gloves-man/
+    - assets/badges/gloves-woman/
+    - assets/badges/shield/
