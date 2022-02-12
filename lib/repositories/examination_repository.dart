@@ -22,15 +22,18 @@ class ExaminationRepository {
     return records;
   }
 
-  Future<bool> cancelExamination(ExaminationTypeEnum type) async {
-    final response = await _apiService.cancelExamination(type);
-    response.when(
+  Future<bool> cancelExamination(ExaminationTypeEnum type, String uuid) async {
+    final response = await _apiService.cancelExamination(type, uuid);
+    var res = false;
+    response.map(
       success: (data) {
-        return true;
+        res = true;
       },
-      failure: (err) {},
+      failure: (err) {
+        res = false;
+      },
     );
-    return false;
+    return res;
   }
 
   Future<bool> postExamination(
@@ -47,23 +50,25 @@ class ExaminationRepository {
       status: status,
       firstExam: firstExam,
     );
-    response.when(
+    var res = false;
+    response.map(
       success: (data) {
-        return true;
+        res = true;
       },
       failure: (err) {},
     );
-    return false;
+    return res;
   }
 
-  Future<bool> confirmExamination(ExaminationTypeEnum type, {ExaminationId? uuid}) async {
+  Future<bool> confirmExamination(ExaminationTypeEnum type, {String? uuid}) async {
     final response = await _apiService.confirmExamination(type, id: uuid);
+    var res = false;
     response.when(
       success: (data) {
-        return true;
+        res = true;
       },
       failure: (err) {},
     );
-    return false;
+    return res;
   }
 }

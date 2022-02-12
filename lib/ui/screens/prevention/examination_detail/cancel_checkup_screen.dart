@@ -17,11 +17,13 @@ class CancelCheckupScreen extends StatelessWidget {
     required this.examinationType,
     required this.date,
     required this.title,
+    required this.id,
   }) : super(key: key);
 
   final ExaminationTypeEnum examinationType;
   final DateTime date;
   final String title;
+  final String id;
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +77,7 @@ class CancelCheckupScreen extends StatelessWidget {
               AsyncLoonoButton(
                 text: context.l10n.cancel_checkup,
                 asyncCallback: () =>
-                    registry.get<ExaminationRepository>().cancelExamination(examinationType),
+                    registry.get<ExaminationRepository>().cancelExamination(examinationType, id),
                 onSuccess: () async {
                   await registry.get<CalendarRepository>().deleteEvent(examinationType);
                   await AutoRouter.of(context).pop();

@@ -13,7 +13,12 @@ import 'package:loono/ui/widgets/how/loon_botton_sheet.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
-void showConfirmationSheet(BuildContext context, ExaminationTypeEnum examinationType, Sex sex) {
+void showConfirmationSheet(
+  BuildContext context,
+  ExaminationTypeEnum examinationType,
+  Sex sex,
+  String? uuid,
+) {
   final practitioner =
       procedureQuestionTitle(context, examinationType: examinationType).toLowerCase();
   final preposition = czechPreposition(context, examinationType: examinationType);
@@ -46,7 +51,7 @@ void showConfirmationSheet(BuildContext context, ExaminationTypeEnum examination
             AsyncLoonoButton(
               text:
                   '${l10n.yes}, ${sex == Sex.MALE ? l10n.checkup_confirmation_male.toLowerCase() : l10n.checkup_confirmation_female.toLowerCase()}',
-              asyncCallback: () => _api.confirmExamination(examinationType),
+              asyncCallback: () => _api.confirmExamination(examinationType, uuid: uuid),
               onSuccess: () async {
                 await _calendar.deleteOnlyDbEvent(examinationType);
                 await AutoRouter.of(context).navigate(

@@ -45,8 +45,6 @@ class _ChangeLastVisitScreenState extends State<ChangeLastVisitScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.examinationType);
-    print(widget.status);
     return Scaffold(
       backgroundColor: LoonoColors.bottomSheetPrevention,
       appBar: AppBar(
@@ -86,10 +84,9 @@ class _ChangeLastVisitScreenState extends State<ChangeLastVisitScreen> {
               const Spacer(),
               AsyncLoonoButton(
                 text: context.l10n.action_save,
-                asyncCallback: () => registry.get<ExaminationRepository>().postExamination(
-                      widget.examinationType,
-                      newDate: newDate,
-                    ),
+                asyncCallback: () => registry
+                    .get<ExaminationRepository>()
+                    .postExamination(widget.examinationType, newDate: newDate, uuid: widget.uuid),
                 onSuccess: () async {
                   await AutoRouter.of(context).pop();
                   showSnackBarSuccess(context, message: context.l10n.checkup_reminder_toast);

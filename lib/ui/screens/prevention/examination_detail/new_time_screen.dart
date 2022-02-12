@@ -7,11 +7,9 @@ import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
-import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/async_button.dart';
-import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/custom_time_picker.dart';
 import 'package:loono/utils/registry.dart';
 
@@ -110,8 +108,7 @@ class _NewTimeScreenState extends State<NewTimeScreen> {
                       newDate: newDate!,
                     ),
                 onSuccess: () async {
-                  /// TODO: create calendar event here?
-                  await AutoRouter.of(context).pop();
+                  AutoRouter.of(context).popUntilRouteWithName('ExaminationDetailRoute');
                   showSnackBarSuccess(context, message: context.l10n.checkup_reminder_toast);
                 },
                 onError: () {

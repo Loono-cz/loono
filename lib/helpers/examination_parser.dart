@@ -10,7 +10,7 @@ List<ExaminationRecordTemp> parseExaminations(BuiltList<PreventionStatus> record
   return records
       .map(
         (item) => ExaminationRecordTemp(
-          id: item.id,
+          id: item.uuid,
           examinationType: item.examinationType,
           worth: 200,
           interval: item.intervalYears,

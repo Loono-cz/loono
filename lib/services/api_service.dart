@@ -91,10 +91,16 @@ class ApiService {
     );
   }
 
-  Future<ApiResponse<ExaminationRecord>> cancelExamination(ExaminationTypeEnum type) async {
+  Future<ApiResponse<ExaminationRecord>> cancelExamination(
+    ExaminationTypeEnum type,
+    String uuid,
+  ) async {
     return _callApi(
       () async => _api.getExaminationsApi().cancelExamination(
             type: type.toString(),
+            examinationId: ExaminationId((id) {
+              id.uuid = uuid;
+            }),
           ),
     );
   }
@@ -122,12 +128,14 @@ class ApiService {
 
   Future<ApiResponse<ExaminationRecord>> confirmExamination(
     ExaminationTypeEnum type, {
-    ExaminationId? id,
+    String? id,
   }) async {
     return _callApi(
       () async => _api.getExaminationsApi().completeExamination(
             type: type.toString(),
-            examinationId: id,
+            examinationId: ExaminationId((newId) {
+              newId.uuid = id;
+            }),
           ),
     );
   }

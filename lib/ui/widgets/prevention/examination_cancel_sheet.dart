@@ -16,6 +16,7 @@ void showCancelExaminationSheet({
   required ExaminationTypeEnum examinationType,
   required String title,
   required DateTime date,
+  required String id,
 }) {
   final l10n = context.l10n;
 
@@ -82,7 +83,7 @@ void showCancelExaminationSheet({
               AsyncLoonoButton(
                 text: l10n.cancel_checkup,
                 asyncCallback: () =>
-                    registry.get<ExaminationRepository>().cancelExamination(examinationType),
+                    registry.get<ExaminationRepository>().cancelExamination(examinationType, id),
                 onSuccess: () async {
                   await registry.get<CalendarRepository>().deleteEvent(examinationType);
                   await AutoRouter.of(context).pop();

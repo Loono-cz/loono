@@ -18,10 +18,12 @@ class ChangeTimeScreen extends StatefulWidget {
     Key? key,
     required this.categorizedExamination,
     required this.newDate,
+    required this.uuid,
   }) : super(key: key);
 
   final CategorizedExamination categorizedExamination;
   final DateTime newDate;
+  final String? uuid;
 
   @override
   State<ChangeTimeScreen> createState() => _ChangeTimeScreenState();
@@ -106,12 +108,13 @@ class _ChangeTimeScreenState extends State<ChangeTimeScreen> {
                 asyncCallback: () => registry.get<ExaminationRepository>().postExamination(
                       examinationType,
                       newDate: newDate!,
+                      uuid: widget.uuid,
                     ),
                 onSuccess: () async {
                   await registry
                       .get<CalendarRepository>()
                       .updateEventDate(examinationType, newDate: newDate!);
-                  await AutoRouter.of(context).pop();
+                  AutoRouter.of(context).popUntilRouteWithName('ExaminationDetailRoute');
                   showSnackBarSuccess(context, message: context.l10n.checkup_reminder_toast);
                 },
                 onError: () {

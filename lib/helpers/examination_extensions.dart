@@ -90,7 +90,7 @@ class ExaminationRecordTemp {
     required this.firstExam,
   });
 
-  final int? id;
+  final String? id;
   final ExaminationTypeEnum examinationType;
   final int worth;
   final int currentStreak;
@@ -143,7 +143,7 @@ final fakeExaminationData = <ExaminationRecordTemp>[
 
   //
   const ExaminationRecordTemp(
-    id: 0,
+    id: '1234567',
     examinationType: ExaminationTypeEnum.OPHTHALMOLOGIST,
     worth: 100,
     interval: 2,
@@ -151,7 +151,6 @@ final fakeExaminationData = <ExaminationRecordTemp>[
     firstExam: false,
   ),
   const ExaminationRecordTemp(
-    id: 0,
     examinationType: ExaminationTypeEnum.COLONOSCOPY,
     worth: 1000,
     interval: 10,
@@ -159,9 +158,7 @@ final fakeExaminationData = <ExaminationRecordTemp>[
     firstExam: false,
   ),
 
-  //
   ExaminationRecordTemp(
-    id: 0,
     examinationType: ExaminationTypeEnum.UROLOGIST,
     worth: 500,
     interval: 2,
@@ -170,7 +167,6 @@ final fakeExaminationData = <ExaminationRecordTemp>[
     firstExam: false,
   ),
   ExaminationRecordTemp(
-    id: 0,
     examinationType: ExaminationTypeEnum.MAMMOGRAM,
     worth: 500,
     interval: 2,

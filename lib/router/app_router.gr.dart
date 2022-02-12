@@ -508,7 +508,8 @@ class AppRouter extends _i1.RootStackRouter {
           child: _i54.ChangeTimeScreen(
               key: args.key,
               categorizedExamination: args.categorizedExamination,
-              newDate: args.newDate),
+              newDate: args.newDate,
+              uuid: args.uuid),
           transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -1384,24 +1385,31 @@ class ChangeTimeRoute extends _i1.PageRouteInfo<ChangeTimeRouteArgs> {
   ChangeTimeRoute(
       {_i2.Key? key,
       required _i59.CategorizedExamination categorizedExamination,
-      required DateTime newDate})
+      required DateTime newDate,
+      required String? uuid})
       : super(name,
             path: 'checkup/change-time',
             args: ChangeTimeRouteArgs(
                 key: key,
                 categorizedExamination: categorizedExamination,
-                newDate: newDate));
+                newDate: newDate,
+                uuid: uuid));
 
   static const String name = 'ChangeTimeRoute';
 }
 
 class ChangeTimeRouteArgs {
   const ChangeTimeRouteArgs(
-      {this.key, required this.categorizedExamination, required this.newDate});
+      {this.key,
+      required this.categorizedExamination,
+      required this.newDate,
+      required this.uuid});
 
   final _i2.Key? key;
 
   final _i59.CategorizedExamination categorizedExamination;
 
   final DateTime newDate;
+
+  final String? uuid;
 }

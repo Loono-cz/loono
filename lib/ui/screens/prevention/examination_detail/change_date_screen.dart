@@ -87,6 +87,7 @@ class _ChangeDateScreenState extends State<ChangeDateScreen> {
                     ChangeTimeRoute(
                       categorizedExamination: widget.categorizedExamination,
                       newDate: newDate!,
+                      uuid: widget.categorizedExamination.examination.id,
                     ),
                   );
                 },

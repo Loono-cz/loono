@@ -159,9 +159,7 @@ class ExaminationDetail extends StatelessWidget {
                                     lastVisitDateWithoutDay.month.index,
                                   ),
                                   // refactor after api UUID and ID inconsistency fix
-                                  uuid: categorizedExamination.examination.id != null
-                                      ? categorizedExamination.examination.id.toString()
-                                      : null,
+                                  uuid: categorizedExamination.examination.id,
                                   title:
                                       '${l10n.change_last_visit_title} $preposition $practitioner',
                                   examinationType: _examinationType,
@@ -172,9 +170,7 @@ class ExaminationDetail extends StatelessWidget {
                               showLastVisitSheet(
                                 context: context,
                                 // refactor after api UUID and ID inconsistency fix
-                                uuid: categorizedExamination.examination.id != null
-                                    ? categorizedExamination.examination.id.toString()
-                                    : null,
+                                uuid: categorizedExamination.examination.id,
                                 examinationType: _examinationType,
                                 sex: _sex,
                                 examinationIntervalYears:
@@ -274,6 +270,7 @@ class ExaminationDetail extends StatelessWidget {
                                       context,
                                       categorizedExamination.examination.examinationType,
                                       _sex,
+                                      categorizedExamination.examination.id,
                                     );
                                   },
                                 ),
