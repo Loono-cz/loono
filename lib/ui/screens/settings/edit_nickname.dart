@@ -30,8 +30,7 @@ class EditNicknameScreen extends StatelessWidget {
       validator: Validators.nickname(context),
       onSubmit: (input) async => registry.get<UserRepository>().updateNickname(input),
       onSuccess: () => AutoRouter.of(context).pop(),
-      // TODO:
-      onError: () => showSnackBarError(context, message: 'Error'),
+      onError: () => showSnackBarError(context, message: context.l10n.something_went_wrong),
     );
   }
 }
