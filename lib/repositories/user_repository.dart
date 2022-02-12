@@ -1,8 +1,11 @@
+import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/services/api_service.dart';
+import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/firebase_storage_service.dart';
@@ -15,13 +18,52 @@ class UserRepository {
     required ApiService apiService,
     required DatabaseService databaseService,
     required FirebaseStorageService firebaseStorageService,
+    required AuthService authService,
   })  : _apiService = apiService,
+        _authService = authService,
         _db = databaseService,
-        _firebaseStorageService = firebaseStorageService;
+        _firebaseStorageService = firebaseStorageService {
+    _authService.onAuthStateChanged.listen((authUser) async {
+      if (authUser != null) {
+        debugPrint('log: SYNCING WITH API');
+        await _authService.refreshUserToken(authUser);
+        unawaited(_sync());
+      }
+    });
+  }
 
   final ApiService _apiService;
+  final AuthService _authService;
   final DatabaseService _db;
   final FirebaseStorageService _firebaseStorageService;
+
+  Future<void> _sync() async {
+    final account = await _apiService.getAccount();
+    await account.whenOrNull(
+      success: (data) async {
+        final usersDao = _db.users;
+
+        await usersDao.updateNickname(data.user.nickname);
+        if (data.user.birthdateYear != null && data.user.birthdateMonth != null) {
+          await usersDao.updateDateOfBirth(
+            DateWithoutDay(
+              month: monthFromInt(data.user.birthdateMonth!),
+              year: data.user.birthdateYear!,
+            ),
+          );
+        }
+        if (data.user.sex != null) {
+          await usersDao.updateSex(data.user.sex!);
+        }
+        if (data.user.preferredEmail != null) {
+          await usersDao.updateEmail(data.user.preferredEmail!);
+        }
+        if (data.user.profileImageUrl != null) {
+          await usersDao.updateProfileImageUrl(data.user.profileImageUrl!);
+        }
+      },
+    );
+  }
 
   Future<void> createUser() async {
     await _db.users.deleteAll();

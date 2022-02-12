@@ -21,7 +21,8 @@ class UpdateProfileScreen extends StatelessWidget {
 
   final _usersDao = registry.get<DatabaseService>().users;
 
-  String _getUserSexValue(BuildContext context, {required Sex sex}) {
+  String _getUserSexValue(BuildContext context, {required Sex? sex}) {
+    if (sex == null) return '';
     late final String value;
     switch (sex) {
       case Sex.MALE:
@@ -106,7 +107,7 @@ class UpdateProfileScreen extends StatelessWidget {
                     itemSpacing,
                     UpdateProfileItem(
                       label: context.l10n.update_profile_sex,
-                      value: _getUserSexValue(context, sex: user?.sex ?? Sex.MALE),
+                      value: _getUserSexValue(context, sex: user?.sex),
                       route: null,
                       enabled: false,
                     ),
