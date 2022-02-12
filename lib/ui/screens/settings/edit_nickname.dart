@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/nickname_hint_resolver.dart';
+import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/helpers/validators.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
@@ -27,11 +28,9 @@ class EditNicknameScreen extends StatelessWidget {
       filled: true,
       keyboardType: TextInputType.name,
       validator: Validators.nickname(context),
-      onSubmit: (input) async {
-        await registry.get<UserRepository>().updateNickname(input);
-        await AutoRouter.of(context).pop();
-        return null;
-      },
+      onSubmit: (input) async => registry.get<UserRepository>().updateNickname(input),
+      onSuccess: () => AutoRouter.of(context).pop(),
+      onError: () => showSnackBarError(context, message: context.l10n.something_went_wrong),
     );
   }
 }

@@ -28,17 +28,9 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.682822084991-1339pn73ln6d433lif52f9jp0k65e7en</string>
-                <string>fb612670189927823</string>
 			</array>
 		</dict>
-
 	</array>
-    <key>FacebookAppID</key>
-    <string>612670189927823</string>
-    <key>FacebookClientToken</key>
-    <string>52d470dab8873a0295efcca39ded09c5</string>
-    <key>FacebookDisplayName</key>
-    <string>Loono</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
@@ -48,10 +40,6 @@
 		<string>https</string>
 		<string>mailto</string>
 		<string>tel</string>
-        <string>fbapi</string>
-        <string>fb-messenger-share-api</string>
-        <string>fbauth2</string>
-        <string>fbshareextension</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

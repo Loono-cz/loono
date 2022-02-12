@@ -113,8 +113,16 @@ class UserRepository {
     return result;
   }
 
-  Future<void> updateEmail(String email) async {
-    await _db.users.updateEmail(email);
+  Future<bool> updateEmail(String email) async {
+    final apiResponse = await _apiService.updateAccountUser(preferredEmail: email);
+    final result = await apiResponse.map(
+      success: (_) async {
+        await _db.users.updateEmail(email);
+        return true;
+      },
+      failure: (_) async => false,
+    );
+    return result;
   }
 
   // TODO: Error handling (https://cesko-digital.atlassian.net/browse/LOON-386)
@@ -132,8 +140,15 @@ class UserRepository {
       settableMetadata: SettableMetadata(contentType: 'image/png'),
     );
     if (downloadUrl != null) {
-      await _db.users.updateProfileImageUrl(downloadUrl);
-      return true;
+      final apiResponse = await _apiService.updateAccountUser(profileImageUrl: downloadUrl);
+      final result = await apiResponse.map(
+        success: (_) async {
+          await _db.users.updateProfileImageUrl(downloadUrl);
+          return true;
+        },
+        failure: (_) async => false,
+      );
+      return result;
     }
     return false;
   }
@@ -146,8 +161,15 @@ class UserRepository {
       ref: await _firebaseStorageService.userPhotoRef,
     );
     if (result == true) {
-      await _db.users.updateProfileImageUrl(null);
-      return true;
+      final apiResponse = await _apiService.updateAccountUser(profileImageUrl: null);
+      final result = await apiResponse.map(
+        success: (_) async {
+          await _db.users.updateProfileImageUrl(null);
+          return true;
+        },
+        failure: (_) async => false,
+      );
+      return result;
     }
     return false;
   }
