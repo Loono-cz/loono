@@ -166,21 +166,6 @@ class AuthService {
         : Right(_authUserFromFirebase(userCredential.user)!);
   }
 
-  Future<Either<AuthFailure, AuthUser>> signInAnonymously() async {
-    final UserCredential? userCredential;
-    try {
-      userCredential = await _auth.signInAnonymously();
-    } on FirebaseException catch (e) {
-      if (e.code == 'network-request-failed') return const Left(AuthFailure.network());
-      return const Left(AuthFailure.unknown());
-    } catch (_) {
-      return const Left(AuthFailure.unknown());
-    }
-    return userCredential.user == null
-        ? const Left(AuthFailure.unknown())
-        : Right(_authUserFromFirebase(userCredential.user)!);
-  }
-
   Future<void> signOut() async {
     _clearUserToken();
     await _auth.signOut();
