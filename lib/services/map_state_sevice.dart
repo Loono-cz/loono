@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_cluster_manager/google_maps_cluster_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:loono/models/healthcare_item_place.dart';
-import 'package:loono/services/db/database.dart';
 import 'package:loono/utils/map_utils.dart';
+import 'package:loono_api/loono_api.dart';
 
 //ignore: prefer_mixin
 class MapStateService with ChangeNotifier {
@@ -14,18 +14,18 @@ class MapStateService with ChangeNotifier {
 
   late final ClusterManager clusterManager;
 
-  final List<HealthcareProvider> _allHealthcareProviders = <HealthcareProvider>[];
+  final List<SimpleHealthcareProvider> _allHealthcareProviders = <SimpleHealthcareProvider>[];
 
   /// Currently selected or visible healthcare providers.
-  final List<HealthcareProvider> _currHealthcareProviders = <HealthcareProvider>[];
+  final List<SimpleHealthcareProvider> _currHealthcareProviders = <SimpleHealthcareProvider>[];
 
   final Set<Marker> _markers = <Marker>{};
 
   LatLngBounds? visibleRegion;
 
-  List<HealthcareProvider> get allHealthcareProviders => _allHealthcareProviders;
+  List<SimpleHealthcareProvider> get allHealthcareProviders => _allHealthcareProviders;
 
-  List<HealthcareProvider> get currHealthcareProviders => _currHealthcareProviders;
+  List<SimpleHealthcareProvider> get currHealthcareProviders => _currHealthcareProviders;
 
   Set<Marker> get markers => _markers;
 
@@ -43,7 +43,7 @@ class MapStateService with ChangeNotifier {
     }
   }
 
-  void addAll(List<HealthcareProvider> healthcareProviders) {
+  void addAll(List<SimpleHealthcareProvider> healthcareProviders) {
     _allHealthcareProviders.addAll(healthcareProviders);
     clusterManager.setItems(allHealthcareProviders.map((e) => HealthcareItemPlace(e)).toList());
     _applyFilter();
@@ -58,7 +58,7 @@ class MapStateService with ChangeNotifier {
   }
 
   // TODO: combine queries
-  Iterable<HealthcareProvider> searchByTitle(String query) {
+  Iterable<SimpleHealthcareProvider> searchByTitle(String query) {
     return _allHealthcareProviders.where((healthcareProvider) {
       return removeDiacritics(healthcareProvider.title.toLowerCase())
           .contains(removeDiacritics(query).toLowerCase());
