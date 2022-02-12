@@ -619,5 +619,7 @@
   "ultrasoundBreast_dativ": "Ultrazvuku prsu",
   "@ultrasoundBreast_dativ": {},
   "urologist_dativ": "Urologovi",
-  "@urologist_dativ": {}
+  "@urologist_dativ": {},
+ "something_went_wrong": "Něco se nepovedlo",
+  "@something_went_wrong": {}
 }
