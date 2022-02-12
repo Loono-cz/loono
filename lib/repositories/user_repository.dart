@@ -6,6 +6,7 @@ import 'package:loono/services/api_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/firebase_storage_service.dart';
+import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart' hide User;
 import 'package:uuid/uuid.dart';
 
@@ -53,6 +54,18 @@ class UserRepository {
 
   Future<void> updateLatestMapServerUpdate(DateTime date) async {
     await _db.users.updateLatestMapServerUpdate(date);
+  }
+
+  Future<bool> deleteAccount() async {
+    final apiResponse = await _apiService.deleteAccount();
+    final result = await apiResponse.map(
+        success: (_) async {
+          await registry.get<DatabaseService>().clearDb();
+          return true;
+        },
+        failure: (_) async => false,
+    );
+    return result;
   }
 
   Future<bool> updateNickname(String nickname) async {

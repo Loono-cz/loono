@@ -54,6 +54,11 @@ class ApiService {
     return _callApi(() async => _api.getAccountApi().getAccount());
   }
 
+  Future<ApiResponse<void>> deleteAccount() async{
+    final response = await _callApi(() async=> _api.getAccountApi().deleteAccount());
+    return response;
+  }
+
   Future<ApiResponse<Account>> updateAccountUser({
     Sex? sex,
     int? birthdateYear,

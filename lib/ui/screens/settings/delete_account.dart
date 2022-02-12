@@ -1,13 +1,18 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/settings/app_bar.dart';
 import 'package:loono/ui/widgets/settings/checkbox.dart';
+import 'package:loono/utils/registry.dart';
 
 class DeleteAccountScreen extends StatefulWidget {
   const DeleteAccountScreen({
@@ -116,10 +121,10 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                             ),
                             CupertinoDialogAction(
                               child: Text(context.l10n.settings_delete_account_delete),
-                              onPressed: () {
-                                // TODO: Call API to delete account.
-                                AutoRouter.of(context).push(AfterDeletionRoute());
-                                AutoRouter.of(context).pop();
+                              onPressed: () async {
+                                unawaited(AutoRouter.of(context).push(AfterDeletionRoute()));
+                                await AutoRouter.of(context).pop();
+                                await registry.get<UserRepository>().deleteAccount();
                               },
                             ),
                           ],
