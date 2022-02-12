@@ -20,7 +20,7 @@ class PhotoTakenContent extends StatefulWidget {
   }) : super(key: key);
 
   final Uint8List imageBytes;
-  final PageRouteInfo<dynamic>? closeRoute;
+  final PageRouteInfo? closeRoute;
   final bool showBackButton;
   final VoidCallback? onSecondaryButtonTap;
   final String secondaryButtonText;

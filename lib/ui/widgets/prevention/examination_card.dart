@@ -25,7 +25,7 @@ class ExaminationCard extends StatelessWidget {
       .inDays;
 
   Widget get _title => Text(
-        categorizedExamination.examination.examinationType.name,
+        categorizedExamination.examination.examinationType.l10n_name,
         style: LoonoFonts.cardTitle,
       );
 
@@ -50,7 +50,7 @@ class ExaminationCard extends StatelessWidget {
           onTap: onTap,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: categorizedExamination.status.when(
+            children: categorizedExamination.category.when(
               scheduledSoonOrOverdue: () => _scheduledContent(isSoonOrOverdue: true),
               newToSchedule: () => _makeAppointmentContent(context, isNew: true),
               unknownLastVisit: () => _makeAppointmentContent(context),

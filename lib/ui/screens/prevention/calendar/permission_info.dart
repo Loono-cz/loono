@@ -16,7 +16,7 @@ class CalendarPermissionInfoScreen extends StatelessWidget {
     required this.examinationRecord,
   }) : super(key: key);
 
-  final ExaminationRecord examinationRecord;
+  final ExaminationRecordTemp examinationRecord;
 
   @override
   Widget build(BuildContext context) {

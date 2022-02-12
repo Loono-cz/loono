@@ -3,12 +3,13 @@ import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/onboarding_state_service.dart';
 import 'package:loono/ui/widgets/achievement_screen.dart';
+import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
 class GeneralPracticionerAchievementScreen extends StatelessWidget {
   const GeneralPracticionerAchievementScreen({Key? key}) : super(key: key);
 
-  static const type = ExaminationType.GENERAL_PRACTITIONER;
+  static const type = ExaminationTypeEnum.GENERAL_PRACTITIONER;
 
   @override
   Widget build(BuildContext context) {
