@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:loono/models/firebase_user.dart';
 import 'package:loono/services/auth/failures.dart';
@@ -26,8 +25,6 @@ class AuthService {
   final _auth = FirebaseAuth.instance;
 
   final _googleSignIn = GoogleSignIn();
-
-  final _facebookSignIn = FacebookAuth.instance;
 
   Future<AuthUser?> getCurrentUser() async => _authUserFromFirebase(_auth.currentUser);
 
