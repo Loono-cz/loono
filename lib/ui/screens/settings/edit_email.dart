@@ -28,10 +28,10 @@ class EditEmailScreen extends StatelessWidget {
       filled: true,
       keyboardType: TextInputType.emailAddress,
       validator: Validators.email(context),
-      onSubmit: (input) async => registry.get<UserRepository>().updateEmail(input),
-      onSuccess: () => AutoRouter.of(context).pop(),
-      // TODO:
-      onError: () => showSnackBarError(context, message: 'Error'),
+      onSubmit: (input) async {
+        await registry.get<UserRepository>().updateEmail(input);
+        await AutoRouter.of(context).pop();
+      },
     );
   }
 }
