@@ -5,7 +5,6 @@ import 'dart:convert';
 import 'package:archive/archive.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:loono/helpers/type_converters.dart';
 import 'package:loono/models/healthcare_provider.dart';
 import 'package:loono/services/api_service.dart';

@@ -30,6 +30,7 @@ class EditNicknameScreen extends StatelessWidget {
       onSubmit: (input) async {
         await registry.get<UserRepository>().updateNickname(input);
         await AutoRouter.of(context).pop();
+        return null;
       },
     );
   }

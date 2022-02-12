@@ -176,6 +176,7 @@ PageRouteInfo? _nextDoctorOnlyRoute({
     }
     return nextDoctorRoute;
   }
+  return null;
 }
 
 PageRouteInfo? _dateOrAchievementOrNextDoctorRoute({
@@ -205,4 +206,5 @@ PageRouteInfo? _dateOrAchievementOrNextDoctorRoute({
       return nextDoctorRoute;
     }
   }
+  return null;
 }
