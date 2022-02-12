@@ -1,5 +1,5 @@
 {
-  "@@locale": "cs",
+  "@@locale" : "cs",
   "carousel_start": "Začít",
   "@carousel_start": {},
   "carousel_welcome_dialog": "Chraň své zdraví\nvčasnou prevencí",
@@ -81,8 +81,6 @@
   "@sign_in_with_apple": {},
   "sign_in_with_google_account": "Přihlásit pomocí Google účtu",
   "@sign_in_with_google_account": {},
-  "sign_in_with_facebook_account": "Pokračovat pomocí Facebooku",
-  "@sign_in_with_facebook_account": {},
   "by_logging_in_you_agree_to_the_terms_of_privacy": "Přihlášením souhlasíš s",
   "@by_logging_in_you_agree_to_the_terms_of_privacy": {},
   "by_logging_in_you_agree_to_the_terms_of_privacy_highlight": "Podmínkami užívání a Zásadami zpracování osobních údajů",
@@ -625,5 +623,7 @@
   "ultrasoundBreast_dativ": "Ultrazvuku prsu",
   "@ultrasoundBreast_dativ": {},
   "urologist_dativ": "Urologovi",
-  "@urologist_dativ": {}
+  "@urologist_dativ": {},
+ "something_went_wrong": "Něco se nepovedlo",
+  "@something_went_wrong": {}
 }

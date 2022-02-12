@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:loono/models/firebase_user.dart';
 import 'package:loono/services/auth/failures.dart';
@@ -12,10 +11,8 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 class AuthService {
   AuthService({required api.LoonoApi api}) {
     _api = api;
-    _auth.authStateChanges().listen((user) async {
-      if (user != null) {
-        await _refreshUserToken(user);
-      } else {
+    _auth.authStateChanges().listen((authUser) async {
+      if (authUser == null) {
         _clearUserToken();
       }
     });
@@ -26,8 +23,6 @@ class AuthService {
   final _auth = FirebaseAuth.instance;
 
   final _googleSignIn = GoogleSignIn();
-
-  final _facebookSignIn = FacebookAuth.instance;
 
   Future<AuthUser?> getCurrentUser() async => _authUserFromFirebase(_auth.currentUser);
 
@@ -93,72 +88,6 @@ class AuthService {
     // account exists, sign in
     final authResult = await signInWithApple(appleCredential.identityToken);
     return authResult;
-  }
-
-  Future<Either<AuthFailure, AuthUser>> checkFacebookAccountExistsAndSignIn() async {
-    LoginResult facebookLogin;
-    try {
-      facebookLogin = await _facebookSignIn.login(permissions: ['email']);
-    } on PlatformException catch (e) {
-      if (e.code == 'network_error') return const Left(AuthFailure.network());
-      return const Left(AuthFailure.unknown());
-    } catch (_) {
-      return const Left(AuthFailure.unknown());
-    }
-
-    // if facebookUser login status not successful, signIn was interrupted/cancelled
-    if (facebookLogin.status != LoginStatus.success) {
-      return const Left(AuthFailure.noMessage());
-    }
-    // fetch FB user email and details
-    final facebookUser = await _facebookSignIn.getUserData();
-    final dynamic email =
-        facebookUser.entries.firstWhere((element) => element.key == 'email').value;
-
-    if (email == null) {
-      // email not found - to debug: check if FB account has an email address
-      // https://github.com/darwin-morocho/flutter-facebook-auth/issues/45
-      return const Left(AuthFailure.noMessage());
-    }
-
-    final signInMethods = await _auth.fetchSignInMethodsForEmail(email.toString());
-    if (signInMethods.isEmpty) {
-      await _facebookSignIn.logOut();
-      return Left(AuthFailure.accountNotExists(email.toString()));
-    }
-
-    // account exists, sign in
-    final authResult = await signInWithFacebook(facebookLogin);
-    return authResult;
-  }
-
-  Future<Either<AuthFailure, AuthUser>> signInWithFacebook([LoginResult? loginData]) async {
-    OAuthCredential? facebookAuthCredential;
-    if (loginData == null) {
-      try {
-        // Trigger the sign-in flow
-        final facebookLogin = await _facebookSignIn.login(permissions: ['email']);
-
-        // Create a credential from the access token
-        facebookAuthCredential = FacebookAuthProvider.credential(facebookLogin.accessToken!.token);
-      } on PlatformException catch (e) {
-        if (e.code == 'network_error') return const Left(AuthFailure.network());
-        return const Left(AuthFailure.unknown());
-      } catch (_) {
-        return const Left(AuthFailure.unknown());
-      }
-    } else {
-      // Create a credential from passed access token
-      facebookAuthCredential = FacebookAuthProvider.credential(loginData.accessToken!.token);
-    }
-
-    UserCredential userCredential;
-    try {
-      userCredential = await _auth.signInWithCredential(facebookAuthCredential);
-      return Right(_authUserFromFirebase(userCredential.user)!);
-    } catch (_) {
-      return const Left(AuthFailure.unknown());
-    }
   }
 
   Future<Either<AuthFailure, AuthUser>> signInWithGoogle() async {
@@ -235,31 +164,14 @@ class AuthService {
         : Right(_authUserFromFirebase(userCredential.user)!);
   }
 
-  Future<Either<AuthFailure, AuthUser>> signInAnonymously() async {
-    final UserCredential? userCredential;
-    try {
-      userCredential = await _auth.signInAnonymously();
-    } on FirebaseException catch (e) {
-      if (e.code == 'network-request-failed') return const Left(AuthFailure.network());
-      return const Left(AuthFailure.unknown());
-    } catch (_) {
-      return const Left(AuthFailure.unknown());
-    }
-    return userCredential.user == null
-        ? const Left(AuthFailure.unknown())
-        : Right(_authUserFromFirebase(userCredential.user)!);
-  }
-
   Future<void> signOut() async {
     _clearUserToken();
     await _auth.signOut();
     await _googleSignIn.signOut();
-    await _facebookSignIn.logOut();
   }
 
   // TODO: refresh token more often - maybe on each api call ? (https://cesko-digital.atlassian.net/browse/LOON-477)
-  Future<void> _refreshUserToken(User user) async {
-    final authUser = _authUserFromFirebase(user)!;
+  Future<void> refreshUserToken(AuthUser authUser) async {
     final token = await authUser.getIdToken();
     _api.dio.options.headers['Authorization'] = 'Bearer $token';
   }
