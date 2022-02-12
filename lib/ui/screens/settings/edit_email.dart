@@ -28,17 +28,9 @@ class EditEmailScreen extends StatelessWidget {
       filled: true,
       keyboardType: TextInputType.emailAddress,
       validator: Validators.email(context),
-<<<<<<< HEAD
-      onSubmit: (input) async {
-        await registry.get<UserRepository>().updateEmail(input);
-        await AutoRouter.of(context).pop();
-        return null;
-      },
-=======
       onSubmit: (input) async => registry.get<UserRepository>().updateEmail(input),
       onSuccess: () => AutoRouter.of(context).pop(),
       onError: () => showSnackBarError(context, message: context.l10n.something_went_wrong),
->>>>>>> master
     );
   }
 }
