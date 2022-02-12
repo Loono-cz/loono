@@ -95,72 +95,6 @@ class AuthService {
     return authResult;
   }
 
-  Future<Either<AuthFailure, AuthUser>> checkFacebookAccountExistsAndSignIn() async {
-    LoginResult facebookLogin;
-    try {
-      facebookLogin = await _facebookSignIn.login(permissions: ['email']);
-    } on PlatformException catch (e) {
-      if (e.code == 'network_error') return const Left(AuthFailure.network());
-      return const Left(AuthFailure.unknown());
-    } catch (_) {
-      return const Left(AuthFailure.unknown());
-    }
-
-    // if facebookUser login status not successful, signIn was interrupted/cancelled
-    if (facebookLogin.status != LoginStatus.success) {
-      return const Left(AuthFailure.noMessage());
-    }
-    // fetch FB user email and details
-    final facebookUser = await _facebookSignIn.getUserData();
-    final dynamic email =
-        facebookUser.entries.firstWhere((element) => element.key == 'email').value;
-
-    if (email == null) {
-      // email not found - to debug: check if FB account has an email address
-      // https://github.com/darwin-morocho/flutter-facebook-auth/issues/45
-      return const Left(AuthFailure.noMessage());
-    }
-
-    final signInMethods = await _auth.fetchSignInMethodsForEmail(email.toString());
-    if (signInMethods.isEmpty) {
-      await _facebookSignIn.logOut();
-      return Left(AuthFailure.accountNotExists(email.toString()));
-    }
-
-    // account exists, sign in
-    final authResult = await signInWithFacebook(facebookLogin);
-    return authResult;
-  }
-
-  Future<Either<AuthFailure, AuthUser>> signInWithFacebook([LoginResult? loginData]) async {
-    OAuthCredential? facebookAuthCredential;
-    if (loginData == null) {
-      try {
-        // Trigger the sign-in flow
-        final facebookLogin = await _facebookSignIn.login(permissions: ['email']);
-
-        // Create a credential from the access token
-        facebookAuthCredential = FacebookAuthProvider.credential(facebookLogin.accessToken!.token);
-      } on PlatformException catch (e) {
-        if (e.code == 'network_error') return const Left(AuthFailure.network());
-        return const Left(AuthFailure.unknown());
-      } catch (_) {
-        return const Left(AuthFailure.unknown());
-      }
-    } else {
-      // Create a credential from passed access token
-      facebookAuthCredential = FacebookAuthProvider.credential(loginData.accessToken!.token);
-    }
-
-    UserCredential userCredential;
-    try {
-      userCredential = await _auth.signInWithCredential(facebookAuthCredential);
-      return Right(_authUserFromFirebase(userCredential.user)!);
-    } catch (_) {
-      return const Left(AuthFailure.unknown());
-    }
-  }
-
   Future<Either<AuthFailure, AuthUser>> signInWithGoogle() async {
     GoogleSignInAccount? googleUser;
     try {
@@ -254,7 +188,6 @@ class AuthService {
     _clearUserToken();
     await _auth.signOut();
     await _googleSignIn.signOut();
-    await _facebookSignIn.logOut();
   }
 
   // TODO: refresh token more often - maybe on each api call ? (https://cesko-digital.atlassian.net/browse/LOON-477)
