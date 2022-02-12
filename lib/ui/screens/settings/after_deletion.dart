@@ -18,11 +18,6 @@ class AfterDeletionScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              LoonoButton(
-                text: context.l10n.settings_after_deletion_deleted,
-                onTap: () {},
-                enabledColor: LoonoColors.greenSuccess,
-              ),
               const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.only(left: 18.0),

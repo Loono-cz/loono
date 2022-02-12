@@ -105,14 +105,14 @@ class UserRepository {
 
   Future<bool> deleteAccount() async {
     final apiResponse = await _apiService.deleteAccount();
-    final result = await apiResponse.map(
+    await apiResponse.map(
       success: (_) async {
         await registry.get<DatabaseService>().clearDb();
         return true;
       },
       failure: (_) async => false,
     );
-    return result;
+    return false;
   }
 
   Future<bool> updateNickname(String nickname) async {
