@@ -76,6 +76,7 @@ import 'sub_routers/app_startup_wrapper_screen.dart' as _i4;
 import 'sub_routers/onboarding_wrapper_screen.dart' as _i7;
 import 'sub_routers/pre_auth_prevention_wrapper_screen.dart' as _i16;
 import '../ui/screens/settings/delete_account.dart' as _i51;
+import '../ui/screens/settings/after_deletion.dart' as _i52;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter(
@@ -386,6 +387,15 @@ class AppRouter extends _i1.RootStackRouter {
           opaque: true,
           barrierDismissible: false);
     },
+    AfterDeletionRoute.name: (routeData) {
+      final args = routeData.argsAs<AfterDeletionRouteArgs>();
+      return _i1.CustomPage<void>(
+          routeData: routeData,
+          child: _i52.AfterDeletionScreen(key: args.key),
+          transitionsBuilder: _i1.TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
+    },
     LeaderboardRoute.name: (routeData) {
       return _i1.CustomPage<void>(
           routeData: routeData,
@@ -635,6 +645,8 @@ class AppRouter extends _i1.RootStackRouter {
           _i1.RouteConfig(PhotoCroppedResultRoute.name,
               path: 'settings/update-profile/photo/photo-cropped-result'),
           _i1.RouteConfig(DeleteAccountRoute.name, path: 'settings/update-profile/delete'),
+          _i1.RouteConfig(AfterDeletionRoute.name,
+              path: 'settings/update-profile/delete/after-deletion'),
           _i1.RouteConfig(LeaderboardRoute.name, path: 'settings/leaderboard'),
           _i1.RouteConfig(PointsHelpRoute.name, path: 'settings/points-help'),
           _i1.RouteConfig(ExaminationDetailRoute.name,
@@ -1140,6 +1152,21 @@ class DeleteAccountRoute extends _i1.PageRouteInfo<DeleteAccountRouteArgs> {
 
 class DeleteAccountRouteArgs {
   const DeleteAccountRouteArgs({this.key});
+
+  final _i2.Key? key;
+}
+
+class AfterDeletionRoute extends _i1.PageRouteInfo<AfterDeletionRouteArgs> {
+  AfterDeletionRoute({_i2.Key? key})
+      : super(name,
+      path: 'settings/update-profile/delete/after-deletion',
+      args: AfterDeletionRouteArgs(key: key));
+
+  static const String name = 'AfterDeletionRoute';
+}
+
+class AfterDeletionRouteArgs {
+  const AfterDeletionRouteArgs({this.key});
 
   final _i2.Key? key;
 }
