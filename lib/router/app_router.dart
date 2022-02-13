@@ -1,4 +1,3 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:loono/router/guards/check_is_logged_in.dart';
 import 'package:loono/router/sub_routers/app_startup_wrapper_screen.dart';
