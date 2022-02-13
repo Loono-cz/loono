@@ -46,7 +46,13 @@ class HealthcareProviderRepository {
   /// If the data are up to date, returns cached healthcare providers data.
   Future<void> checkAndUpdateIfNeeded() async {
     await _waitForExistingUser();
+    // check whether the check is already running
+    if (_lastStreamValue != null &&
+        _lastStreamValue != HealtCareSyncState.completed &&
+        _lastStreamValue != HealtCareSyncState.error) return;
+
     _emitStreamValue(HealtCareSyncState.started);
+    debugPrint('HEALTHCARE_PROVIDERS: check started');
     final localLatestUpdateCheck = _db.users.user?.latestMapUpdateCheck;
     final localLatestUpdate = _db.users.user?.latestMapUpdate;
     final serverLatestUpdate = await _getServerLatestUpdate(localLatestUpdateCheck);
