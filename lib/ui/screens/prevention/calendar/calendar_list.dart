@@ -13,6 +13,7 @@ import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/services/calendar_service.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart';
 
 class CalendarListScreen extends StatefulWidget {
   const CalendarListScreen({
@@ -20,7 +21,7 @@ class CalendarListScreen extends StatefulWidget {
     required this.examinationRecord,
   }) : super(key: key);
 
-  final ExaminationRecordTemp examinationRecord;
+  final PreventionStatus examinationRecord;
 
   @override
   State<CalendarListScreen> createState() => _CalendarListScreenState();
@@ -41,9 +42,9 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
 
   String? _calendarIdChoice;
 
-  ExaminationRecordTemp get examinationRecord => widget.examinationRecord;
+  PreventionStatus get examinationRecord => widget.examinationRecord;
 
-  DateTime? get nextVisitDate => examinationRecord.nextVisitDate;
+  DateTime? get nextVisitDate => examinationRecord.plannedDate;
 
   @override
   Widget build(BuildContext context) {

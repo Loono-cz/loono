@@ -9,6 +9,7 @@ import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/prevention/examination_card.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart';
 
 class ExaminationsSheetOverlay extends StatefulWidget {
   const ExaminationsSheetOverlay({Key? key}) : super(key: key);
@@ -25,14 +26,19 @@ class _ExaminationsSheetOverlayState extends State<ExaminationsSheetOverlay> {
   @override
   Widget build(BuildContext context) {
     return SizedBox.expand(
-      child: FutureBuilder<List<ExaminationRecordTemp>>(
+      child: FutureBuilder<List<PreventionStatus>>(
         future: useFakeData
             ? Future(() => fakeExaminationData)
             : _examinationRepository.getExaminationRecords(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final categorized = snapshot.data!
-                .map((e) => CategorizedExamination(examination: e, category: e.calculateStatus()))
+                .map(
+                  (e) => CategorizedExamination(
+                    examination: e,
+                    category: e.calculateStatus(),
+                  ),
+                )
                 .toList();
 
             return DraggableScrollableSheet(

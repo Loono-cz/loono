@@ -10,8 +10,7 @@ import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 import 'package:loono_api/loono_api.dart' as _i57;
 
-import '../helpers/examination_category.dart' as _i62;
-import '../helpers/examination_extensions.dart' as _i61;
+import '../helpers/examination_category.dart' as _i61;
 import '../models/categorized_examination.dart' as _i60;
 import '../models/firebase_user.dart' as _i56;
 import '../services/db/database.dart' as _i58;
@@ -1245,7 +1244,7 @@ class DatePickerRouteArgs {
 class CalendarPermissionInfoRoute
     extends _i1.PageRouteInfo<CalendarPermissionInfoRouteArgs> {
   CalendarPermissionInfoRoute(
-      {_i2.Key? key, required _i61.ExaminationRecordTemp examinationRecord})
+      {_i2.Key? key, required _i57.PreventionStatus examinationRecord})
       : super(name,
             path: 'calendar/permission',
             args: CalendarPermissionInfoRouteArgs(
@@ -1260,12 +1259,12 @@ class CalendarPermissionInfoRouteArgs {
 
   final _i2.Key? key;
 
-  final _i61.ExaminationRecordTemp examinationRecord;
+  final _i57.PreventionStatus examinationRecord;
 }
 
 class CalendarListRoute extends _i1.PageRouteInfo<CalendarListRouteArgs> {
   CalendarListRoute(
-      {_i2.Key? key, required _i61.ExaminationRecordTemp examinationRecord})
+      {_i2.Key? key, required _i57.PreventionStatus examinationRecord})
       : super(name,
             path: 'calendar/list',
             args: CalendarListRouteArgs(
@@ -1279,7 +1278,7 @@ class CalendarListRouteArgs {
 
   final _i2.Key? key;
 
-  final _i61.ExaminationRecordTemp examinationRecord;
+  final _i57.PreventionStatus examinationRecord;
 }
 
 class ChangeLastVisitRoute extends _i1.PageRouteInfo<ChangeLastVisitRouteArgs> {
@@ -1289,7 +1288,7 @@ class ChangeLastVisitRoute extends _i1.PageRouteInfo<ChangeLastVisitRouteArgs> {
       required String title,
       required _i57.ExaminationTypeEnum examinationType,
       required String? uuid,
-      required _i62.ExaminationCategory status})
+      required _i61.ExaminationCategory status})
       : super(name,
             path: 'checkup/last-visit-update',
             args: ChangeLastVisitRouteArgs(
@@ -1322,7 +1321,7 @@ class ChangeLastVisitRouteArgs {
 
   final String? uuid;
 
-  final _i62.ExaminationCategory status;
+  final _i61.ExaminationCategory status;
 }
 
 class NewDateRoute extends _i1.PageRouteInfo<NewDateRouteArgs> {

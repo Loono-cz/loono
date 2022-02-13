@@ -20,15 +20,15 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
       actions: <CupertinoActionSheetAction>[
         CupertinoActionSheetAction(
           isDestructiveAction: true,
-          onPressed: examination.examination.id != null
+          onPressed: examination.examination.uuid != null
               ? () {
                   AutoRouter.of(modalContext).pop();
                   showCancelExaminationSheet(
                     context: pageContext,
-                    id: examination.examination.id!,
+                    id: examination.examination.uuid!,
                     examinationType: examinationType,
                     title: '${pageContext.l10n.checkup_cancel_question} $preposition $procedure?',
-                    date: examination.examination.nextVisitDate ?? DateTime.now(),
+                    date: examination.examination.plannedDate ?? DateTime.now(),
                   );
                 }
               : () {

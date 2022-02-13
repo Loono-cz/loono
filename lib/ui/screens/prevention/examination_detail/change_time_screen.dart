@@ -52,7 +52,7 @@ class _ChangeTimeScreenState extends State<ChangeTimeScreen> {
     final preposition = czechPreposition(context, examinationType: examinationType);
 
     final formattedOriginalDate = DateFormat('d. MMMM yyyy, kk:mm', 'cs-CZ')
-        .format(widget.categorizedExamination.examination.nextVisitDate!);
+        .format(widget.categorizedExamination.examination.plannedDate!);
 
     final formattedNewDate = DateFormat('d. MMMM yyyy', 'cs-CZ').format(widget.newDate);
 
@@ -143,23 +143,14 @@ class _ChangeTimeScreenState extends State<ChangeTimeScreen> {
                           .get<CalendarRepository>()
                           .updateEventDate(examinationType, newDate: newDate!);
                       AutoRouter.of(context).popUntilRouteWithName('MainRoute');
-                      await AutoRouter.of(context).navigate(
+                      /*await AutoRouter.of(context).navigate(
                         ExaminationDetailRoute(
                           categorizedExamination: CategorizedExamination(
-                            examination: ExaminationRecordTemp(
-                              id: res.data.uuid,
-                              examinationType: res.data.type,
-                              firstExam: res.data.firstExam ?? false,
-                              interval: 2,
-                              worth: 200,
-                              currentStreak: 0,
-                              nextVisitDate: res.data.date,
-                              priority: 1,
-                            ),
+                            examination: res.data.,
                             category: ExaminationCategory.scheduledSoonOrOverdue(),
                           ),
                         ),
-                      );
+                      );*/
                       showSnackBarSuccess(context, message: context.l10n.checkup_reminder_toast);
                     },
                     failure: (err) {

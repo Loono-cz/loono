@@ -8,19 +8,19 @@ import 'package:loono_api/loono_api.dart';
 const int MONTHS_IN_YEAR = 12;
 const int TO_SCHEDULE_MONTHS_TRANSFER = 2;
 
-extension ExaminationRecordExt on ExaminationRecordTemp {
+extension PreventionStatusExt on PreventionStatus {
   ExaminationCategory calculateStatus([DateTime? dateTimeNow]) {
     final now = dateTimeNow ?? DateTime.now();
 
     // STATUS: waiting or newToSchedule
-    if (nextVisitDate == null && lastVisitDate != null) {
-      final lastVisitDateWithoutDay = lastVisitDate!;
+    if (plannedDate == null && lastConfirmedDate != null) {
+      final lastVisitDateWithoutDay = lastConfirmedDate!;
       final lastVisitDateTime =
-          DateTime(lastVisitDateWithoutDay.year, lastVisitDateWithoutDay.month.index + 1);
+          DateTime(lastVisitDateWithoutDay.year, lastVisitDateWithoutDay.month);
 
       // if last visit date is before: CURRENT_MONTH - (INTERVAL - 2 months)
-      final subtractedWaitingDate =
-          DateTime(now.year, now.month - (interval * MONTHS_IN_YEAR - TO_SCHEDULE_MONTHS_TRANSFER));
+      final subtractedWaitingDate = DateTime(
+          now.year, now.month - (intervalYears * MONTHS_IN_YEAR - TO_SCHEDULE_MONTHS_TRANSFER));
       // then waiting time has ended, move to "TO BE SCHEDULED"
       if (lastVisitDateTime.isBefore(subtractedWaitingDate) ||
           lastVisitDateTime.isAtSameMomentAs(subtractedWaitingDate)) {
@@ -31,8 +31,8 @@ extension ExaminationRecordExt on ExaminationRecordTemp {
     }
 
     // STATUS: scheduled or scheduledSoonOrOverdue
-    if (nextVisitDate != null) {
-      final diffInDaysFromNow = nextVisitDate!.difference(now).inDays;
+    if (plannedDate != null) {
+      final diffInDaysFromNow = plannedDate!.difference(now).inDays;
       // if it is more than 30 days before the check-up visit the status is "SCHEDULED"
       if (diffInDaysFromNow > 30) return const ExaminationCategory.scheduled();
       // else 30 days or equal before check-up visit the status is "SCHEDULED_SOON_OR_OVERDUE"
@@ -49,27 +49,27 @@ extension CategorizedExaminationListExt on List<CategorizedExamination> {
     if (isEmpty) return;
     first.category.when(
       scheduledSoonOrOverdue: () =>
-          sort((a, b) => b.examination.nextVisitDate!.compareTo(a.examination.nextVisitDate!)),
+          sort((a, b) => b.examination.plannedDate!.compareTo(a.examination.plannedDate!)),
       newToSchedule: () => sort((a, b) {
-        final lastVisitDateWithoutDayA = a.examination.lastVisitDate!;
-        final lastVisitDateWithoutDayB = b.examination.lastVisitDate!;
+        final lastVisitDateWithoutDayA = a.examination.lastConfirmedDate!;
+        final lastVisitDateWithoutDayB = b.examination.lastConfirmedDate!;
         final lastVisitDateTimeA =
-            DateTime(lastVisitDateWithoutDayA.year, lastVisitDateWithoutDayA.month.index + 1);
+            DateTime(lastVisitDateWithoutDayA.year, lastVisitDateWithoutDayA.month);
         final lastVisitDateTimeB =
-            DateTime(lastVisitDateWithoutDayB.year, lastVisitDateWithoutDayB.month.index + 1);
+            DateTime(lastVisitDateWithoutDayB.year, lastVisitDateWithoutDayB.month);
         return lastVisitDateTimeA.compareTo(lastVisitDateTimeB);
       }),
       unknownLastVisit: () =>
           sort((a, b) => a.examination.priority.compareTo(b.examination.priority)),
       scheduled: () =>
-          sort((a, b) => a.examination.nextVisitDate!.compareTo(b.examination.nextVisitDate!)),
+          sort((a, b) => a.examination.plannedDate!.compareTo(b.examination.plannedDate!)),
       waiting: () => sort((a, b) {
-        final lastVisitDateWithoutDayA = a.examination.lastVisitDate!;
-        final lastVisitDateWithoutDayB = b.examination.lastVisitDate!;
+        final lastVisitDateWithoutDayA = a.examination.lastConfirmedDate!;
+        final lastVisitDateWithoutDayB = b.examination.lastConfirmedDate!;
         final lastVisitDateTimeA =
-            DateTime(lastVisitDateWithoutDayA.year, lastVisitDateWithoutDayA.month.index + 1);
+            DateTime(lastVisitDateWithoutDayA.year, lastVisitDateWithoutDayA.month);
         final lastVisitDateTimeB =
-            DateTime(lastVisitDateWithoutDayB.year, lastVisitDateWithoutDayB.month.index + 1);
+            DateTime(lastVisitDateWithoutDayB.year, lastVisitDateWithoutDayB.month);
         return lastVisitDateTimeA.compareTo(lastVisitDateTimeB);
       }),
     );
@@ -106,9 +106,33 @@ class ExaminationRecordTemp {
   }
 }
 
-final fakeExaminationData = <ExaminationRecordTemp>[
+final fakeExaminationData = <PreventionStatus>[
   //
-  ExaminationRecordTemp(
+  PreventionStatus(
+    (prevention) => prevention
+      ..plannedDate = DateTime(2021, 12, 28, 11)
+      ..firstExam = false
+      ..examinationType = ExaminationTypeEnum.GENERAL_PRACTITIONER
+      ..priority = 1
+      ..intervalYears = 4,
+  ),
+  PreventionStatus(
+    (prevention) => prevention
+      ..plannedDate = DateTime(2021, 12, 28, 11)
+      ..firstExam = false
+      ..examinationType = ExaminationTypeEnum.BREAST_SELF
+      ..priority = 1
+      ..intervalYears = 4,
+  ),
+  PreventionStatus(
+    (prevention) => prevention
+      ..plannedDate = DateTime(2021, 12, 28, 11)
+      ..firstExam = false
+      ..examinationType = ExaminationTypeEnum.GYNECOLOGIST
+      ..priority = 3
+      ..intervalYears = 1,
+  ),
+  /*ExaminationRecordTemp(
     examinationType: ExaminationTypeEnum.GENERAL_PRACTITIONER,
     worth: 200,
     interval: 2,
@@ -173,5 +197,5 @@ final fakeExaminationData = <ExaminationRecordTemp>[
     priority: 3,
     lastVisitDate: DateWithoutDay(month: Months.march, year: 2021),
     firstExam: false,
-  ),
+  ),*/
 ];

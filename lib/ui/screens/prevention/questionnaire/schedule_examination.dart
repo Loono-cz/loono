@@ -18,13 +18,13 @@ class ScheduleExamination extends StatelessWidget {
     required this.examinationRecord,
   }) : super(key: key);
 
-  final ExaminationRecordTemp examinationRecord;
+  final PreventionStatus examinationRecord;
 
   final _appRouter = registry.get<AppRouter>();
 
   ExaminationTypeEnum get _examinationType => examinationRecord.examinationType;
 
-  int get _interval => examinationRecord.interval;
+  int get _interval => examinationRecord.intervalYears;
 
   Sex get _sex {
     final user = registry.get<DatabaseService>().users.user;
@@ -63,7 +63,7 @@ class ScheduleExamination extends StatelessWidget {
                           'TODO',
                           'TODO',
                         ],
-                        numberOfPoints: examinationRecord.worth,
+                        numberOfPoints: examinationRecord.count,
                         itemPath: 'assets/icons/coat-practitioner.svg',
                         onButtonTap: () {
                           _appRouter.navigate(

@@ -13,12 +13,14 @@ class ExaminationRepository {
 
   final ApiService _apiService;
 
-  Future<List<ExaminationRecordTemp>> getExaminationRecords() async {
-    var records = <ExaminationRecordTemp>[];
+  Future<List<PreventionStatus>> getExaminationRecords() async {
+    //var records = <ExaminationRecordTemp>[];
+    var records = <PreventionStatus>[];
     final response = await _apiService.getExaminations();
     response.when(
       success: (data) {
-        records = parseExaminations(data);
+        //records = parseExaminations(data);
+        records = data.toList();
       },
       failure: (err) {},
     );
