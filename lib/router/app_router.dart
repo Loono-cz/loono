@@ -266,7 +266,6 @@ const _settingsRoutes = <AutoRoute>[
   ),
 ];
 
-
 const _preventionRoutes = <AutoRoute>[
   CustomRoute<void>(
     page: ExaminationDetailScreen,
