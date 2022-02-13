@@ -130,8 +130,10 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                                   await AutoRouter.of(context).push(const AfterDeletionRoute());
                                 } else {
                                   await AutoRouter.of(context).pop();
-                                  showSnackBarError(context,
-                                      message: context.l10n.something_went_wrong);
+                                  showSnackBarError(
+                                    context,
+                                    message: context.l10n.something_went_wrong,
+                                  );
                                 }
                               },
                             ),
