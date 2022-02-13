@@ -622,6 +622,8 @@
   "@ultrasoundBreast_dativ": {},
   "urologist_dativ": "Urologovi",
   "@urologist_dativ": {},
- "something_went_wrong": "Něco se nepovedlo",
-  "@something_went_wrong": {}
+  "something_went_wrong": "Něco se nepovedlo",
+  "@something_went_wrong": {},
+  "self_examination_educational_button": "Vyšetřila jsem se",
+  "@self_examination_educational_button": {}
 }

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/helpers/ui_helpers.dart';
+import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -48,7 +49,7 @@ class EducationalVideoScreen extends StatelessWidget {
                 player,
                 const SizedBox(height: 48),
                 LoonoButton(
-                  text: 'Vyšetřila jsem se',
+                  text: context.l10n.self_examination_educational_button,
                   onTap: () => AutoRouter.of(context).pop(),
                 ),
                 SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
