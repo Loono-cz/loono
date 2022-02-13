@@ -556,9 +556,10 @@ class AppRouter extends _i11.RootStackRouter {
           barrierDismissible: false);
     },
     EducationalVideoRoute.name: (routeData) {
+      final args = routeData.argsAs<EducationalVideoRouteArgs>();
       return _i11.CustomPage<void>(
           routeData: routeData,
-          child: const _i56.EducationalVideoScreen(),
+          child: _i56.EducationalVideoScreen(key: args.key, sex: args.sex),
           transitionsBuilder: _i11.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -1857,12 +1858,27 @@ class SelfExaminationDetailRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i56.EducationalVideoScreen]
-class EducationalVideoRoute extends _i11.PageRouteInfo<void> {
-  const EducationalVideoRoute()
+class EducationalVideoRoute
+    extends _i11.PageRouteInfo<EducationalVideoRouteArgs> {
+  EducationalVideoRoute({_i60.Key? key, required _i63.Sex sex})
       : super(EducationalVideoRoute.name,
-            path: 'self-examination/detail/educational-video');
+            path: 'self-examination/detail/educational-video',
+            args: EducationalVideoRouteArgs(key: key, sex: sex));
 
   static const String name = 'EducationalVideoRoute';
+}
+
+class EducationalVideoRouteArgs {
+  const EducationalVideoRouteArgs({this.key, required this.sex});
+
+  final _i60.Key? key;
+
+  final _i63.Sex sex;
+
+  @override
+  String toString() {
+    return 'EducationalVideoRouteArgs{key: $key, sex: $sex}';
+  }
 }
 
 /// generated route for
