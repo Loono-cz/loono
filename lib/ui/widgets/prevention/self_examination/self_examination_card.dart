@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/services/database_service.dart';
+import 'package:loono/services/db/database.dart';
 import 'package:loono/ui/widgets/loono_point.dart';
+import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart' show Sex;
 
 // TODO:
 class SelfExaminationCard extends StatelessWidget {
@@ -12,27 +16,36 @@ class SelfExaminationCard extends StatelessWidget {
 
   final now = DateTime.now();
 
-  final VoidCallback? onTap;
+  final void Function(Sex)? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-      elevation: 0.0,
-      child: SizedBox(
-        height: 120.0,
-        child: InkWell(
-          onTap: onTap,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: _scheduledContent(),
+    return StreamBuilder<User?>(
+      stream: registry.get<DatabaseService>().users.watchUser(),
+      builder: (context, snap) {
+        if (snap.data == null) return const SizedBox.shrink();
+        final sex = snap.data!.sex!;
+        return Card(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+          elevation: 0.0,
+          child: SizedBox(
+            height: 120.0,
+            child: InkWell(
+              onTap: () {
+                onTap?.call(sex);
+              },
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: _scheduledContent(sex),
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
-  List<Widget> _scheduledContent() {
+  List<Widget> _scheduledContent(Sex sex) {
     return <Widget>[
       Expanded(
         child: ListTile(

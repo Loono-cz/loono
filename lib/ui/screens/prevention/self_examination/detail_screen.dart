@@ -4,10 +4,11 @@ import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/prevention/self_examination/how_it_went_sheet.dart';
+import 'package:loono_api/loono_api.dart';
 
-// TODO:
 class SelfExaminationDetailScreen extends StatelessWidget {
-  const SelfExaminationDetailScreen({Key? key}) : super(key: key);
+  const SelfExaminationDetailScreen({Key? key, required this.sex}) : super(key: key);
+  final Sex sex;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                   Expanded(
                     child: LoonoButton.light(
                       text: 'Jak se vyšetřit',
-                      onTap: () => AutoRouter.of(context).push(const EducationalVideoRoute()),
+                      onTap: () => AutoRouter.of(context).push(EducationalVideoRoute(sex: sex)),
                     ),
                   ),
                 ],
