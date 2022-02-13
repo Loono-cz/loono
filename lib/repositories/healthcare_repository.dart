@@ -40,7 +40,7 @@ class HealthcareProviderRepository {
     debugPrint('HEALTHCARE_PROVIDERS STREAM VALUE $state ');
   }
 
-  /// Updates [HealthcareProviders] with new [SimpleHealthcareProvider] data if the current local
+  /// Updates [SimpleHealthcareProvider] with new data if the current local
   /// data are not up to date or not fetched yet.
   ///
   /// If the data are up to date, returns cached healthcare providers data.
