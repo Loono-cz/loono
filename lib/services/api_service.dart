@@ -95,9 +95,8 @@ class ApiService {
   }
 
   Future<ApiResponse<void>> deleteAccount() async {
-    final response = await _callApi(
+    return _callApi(
       () async => _api.getAccountApi().deleteAccount(),
     );
-    return response;
   }
 }

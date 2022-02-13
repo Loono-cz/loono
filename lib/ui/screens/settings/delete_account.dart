@@ -120,13 +120,19 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                             CupertinoDialogAction(
                               child: Text(context.l10n.settings_delete_account_delete),
                               onPressed: () async {
-                                showSnackBarSuccess(
-                                  context,
-                                  message: context.l10n.settings_after_deletion_deleted,
-                                );
-                                await AutoRouter.of(context).pop();
-                                await AutoRouter.of(context).push(const AfterDeletionRoute());
-                                await registry.get<UserRepository>().deleteAccount();
+                                final res = await registry.get<UserRepository>().deleteAccount();
+                                if (res) {
+                                  showSnackBarSuccess(
+                                    context,
+                                    message: context.l10n.settings_after_deletion_deleted,
+                                  );
+                                  await AutoRouter.of(context).pop();
+                                  await AutoRouter.of(context).push(const AfterDeletionRoute());
+                                } else {
+                                  await AutoRouter.of(context).pop();
+                                  showSnackBarError(context,
+                                      message: context.l10n.something_went_wrong);
+                                }
                               },
                             ),
                           ],
