@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -7,6 +9,7 @@ import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/ui/widgets/async_button.dart';
+import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/custom_date_picker.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
@@ -82,7 +85,7 @@ class _ChangeLastVisitScreenState extends State<ChangeLastVisitScreen> {
                 ),
               ),
               const Spacer(),
-              AsyncLoonoButton(
+              /*AsyncLoonoButton(
                 text: context.l10n.action_save,
                 asyncCallback: () => registry
                     .get<ExaminationRepository>()
@@ -93,6 +96,25 @@ class _ChangeLastVisitScreenState extends State<ChangeLastVisitScreen> {
                 },
                 onError: () {
                   showSnackBarError(context, message: context.l10n.something_went_wrong);
+                },
+              ),*/
+              LoonoButton(
+                text: context.l10n.action_save,
+                onTap: () async {
+                  final response = await registry.get<ExaminationRepository>().postExamination(
+                        widget.examinationType,
+                        newDate: newDate,
+                        uuid: widget.uuid,
+                      );
+                  await response.map(
+                    success: (res) async {
+                      await AutoRouter.of(context).pop();
+                      showSnackBarSuccess(context, message: context.l10n.checkup_reminder_toast);
+                    },
+                    failure: (err) async {
+                      showSnackBarError(context, message: context.l10n.something_went_wrong);
+                    },
+                  );
                 },
               ),
               const SizedBox(

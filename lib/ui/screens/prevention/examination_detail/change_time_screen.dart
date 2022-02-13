@@ -3,13 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
+import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/repositories/examination_repository.dart';
-import 'package:loono/ui/widgets/async_button.dart';
+import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/custom_time_picker.dart';
 import 'package:loono/utils/registry.dart';
 
@@ -103,7 +106,7 @@ class _ChangeTimeScreenState extends State<ChangeTimeScreen> {
                 ),
               ),
               const Spacer(),
-              AsyncLoonoButton(
+              /*AsyncLoonoButton(
                 text: context.l10n.action_save,
                 asyncCallback: () => registry.get<ExaminationRepository>().postExamination(
                       examinationType,
@@ -114,11 +117,55 @@ class _ChangeTimeScreenState extends State<ChangeTimeScreen> {
                   await registry
                       .get<CalendarRepository>()
                       .updateEventDate(examinationType, newDate: newDate!);
-                  AutoRouter.of(context).popUntilRouteWithName('ExaminationDetailRoute');
+                  AutoRouter.of(context).popUntilRouteWithName('MainRoute');
+                  await AutoRouter.of(context).navigate(
+                    ExaminationDetailRoute(
+                      categorizedExamination: e,
+                    ),
+                  );
                   showSnackBarSuccess(context, message: context.l10n.checkup_reminder_toast);
                 },
                 onError: () {
                   showSnackBarError(context, message: context.l10n.something_went_wrong);
+                },
+              ),*/
+              LoonoButton(
+                text: context.l10n.action_save,
+                onTap: () async {
+                  final response = await registry.get<ExaminationRepository>().postExamination(
+                        examinationType,
+                        newDate: newDate!,
+                        uuid: widget.uuid,
+                      );
+                  await response.map(
+                    success: (res) async {
+                      await registry
+                          .get<CalendarRepository>()
+                          .updateEventDate(examinationType, newDate: newDate!);
+                      AutoRouter.of(context).popUntilRouteWithName('MainRoute');
+                      await AutoRouter.of(context).navigate(
+                        ExaminationDetailRoute(
+                          categorizedExamination: CategorizedExamination(
+                            examination: ExaminationRecordTemp(
+                              id: res.data.uuid,
+                              examinationType: res.data.type,
+                              firstExam: res.data.firstExam ?? false,
+                              interval: 2,
+                              worth: 200,
+                              currentStreak: 0,
+                              nextVisitDate: res.data.date,
+                              priority: 1,
+                            ),
+                            category: ExaminationCategory.scheduledSoonOrOverdue(),
+                          ),
+                        ),
+                      );
+                      showSnackBarSuccess(context, message: context.l10n.checkup_reminder_toast);
+                    },
+                    failure: (err) {
+                      showSnackBarError(context, message: context.l10n.something_went_wrong);
+                    },
+                  );
                 },
               ),
               const SizedBox(

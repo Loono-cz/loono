@@ -9,6 +9,7 @@ class PreventionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(AutoRouter.of(context).current.name);
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -21,7 +22,7 @@ class PreventionScreen extends StatelessWidget {
               ),
             ),
             const BadgeComposer(),
-            ExaminationsSheetOverlay(),
+            const ExaminationsSheetOverlay(),
           ],
         ),
       ),

@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/examination_parser.dart';
+import 'package:loono/models/api_response.dart';
 import 'package:loono/services/api_service.dart';
 import 'package:loono_api/loono_api.dart';
 
@@ -36,7 +39,7 @@ class ExaminationRepository {
     return res;
   }
 
-  Future<bool> postExamination(
+  Future<ApiResponse<ExaminationRecord>> postExamination(
     ExaminationTypeEnum type, {
     String? uuid,
     DateTime? newDate,
@@ -50,14 +53,8 @@ class ExaminationRepository {
       status: status,
       firstExam: firstExam,
     );
-    var res = false;
-    response.map(
-      success: (data) {
-        res = true;
-      },
-      failure: (err) {},
-    );
-    return res;
+    log(response.runtimeType.toString());
+    return response;
   }
 
   Future<bool> confirmExamination(ExaminationTypeEnum type, {String? uuid}) async {
