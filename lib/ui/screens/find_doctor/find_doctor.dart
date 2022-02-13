@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/repositories/healthcare_repository.dart';
-import 'package:loono/services/database_service.dart';
 import 'package:loono/services/map_state_sevice.dart';
 import 'package:loono/ui/widgets/find_doctor/bottom_sheet_overlay.dart';
 import 'package:loono/ui/widgets/find_doctor/map_preview.dart';
@@ -33,9 +32,10 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
   bool _isHealtCareProvidersInMapService = false;
 
   Future<void> _setHealtcareProviders() async {
-    final db = registry.get<DatabaseService>();
-    final healtcareProviders = await db.healthcareProviders.getAll();
-    if (healtcareProviders.isNotEmpty) {
+    final healtcareProviders =
+        await registry.get<HealthcareProviderRepository>().getHealthcareProviders();
+
+    if (healtcareProviders != null && healtcareProviders.isNotEmpty) {
       widget.mapStateService.addAll(healtcareProviders);
       setState(() {
         _isHealtCareProvidersInMapService = true;

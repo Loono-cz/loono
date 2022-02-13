@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/story_page.dart';
 import 'package:video_player/video_player.dart';
 

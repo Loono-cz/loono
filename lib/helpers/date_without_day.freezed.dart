@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'date_without_day.dart';
@@ -28,7 +29,7 @@ class _$DateWithoutDayTearOff {
     );
   }
 
-  DateWithoutDay fromJson(Map<String, Object> json) {
+  DateWithoutDay fromJson(Map<String, Object?> json) {
     return DateWithoutDay.fromJson(json);
   }
 }
@@ -142,18 +143,17 @@ class _$_DateWithoutDay implements _DateWithoutDay {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _DateWithoutDay &&
-            (identical(other.month, month) ||
-                const DeepCollectionEquality().equals(other.month, month)) &&
-            (identical(other.year, year) ||
-                const DeepCollectionEquality().equals(other.year, year)));
+        (other.runtimeType == runtimeType &&
+            other is _DateWithoutDay &&
+            const DeepCollectionEquality().equals(other.month, month) &&
+            const DeepCollectionEquality().equals(other.year, year));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(month) ^
-      const DeepCollectionEquality().hash(year);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(month),
+      const DeepCollectionEquality().hash(year));
 
   @JsonKey(ignore: true)
   @override
@@ -174,9 +174,9 @@ abstract class _DateWithoutDay implements DateWithoutDay {
       _$_DateWithoutDay.fromJson;
 
   @override
-  Months get month => throw _privateConstructorUsedError;
+  Months get month;
   @override
-  int get year => throw _privateConstructorUsedError;
+  int get year;
   @override
   @JsonKey(ignore: true)
   _$DateWithoutDayCopyWith<_DateWithoutDay> get copyWith =>
