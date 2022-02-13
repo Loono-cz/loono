@@ -34,8 +34,7 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                   Expanded(
                     child: LoonoButton.light(
                       text: 'Jak se vyšetřit', //mám objednáno
-                      onTap: () =>
-                          AutoRouter.of(context).push(EducationalVideoRoute(sex: Sex.MALE)),
+                      onTap: () => AutoRouter.of(context).push(EducationalVideoRoute(sex: sex)),
                     ),
                   ),
                 ],
