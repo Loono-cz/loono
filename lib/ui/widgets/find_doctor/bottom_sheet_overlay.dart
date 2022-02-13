@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/services/db/database.dart';
 import 'package:loono/services/map_state_sevice.dart';
+import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
 class MapSheetOverlay extends StatelessWidget {
@@ -10,7 +10,7 @@ class MapSheetOverlay extends StatelessWidget {
     required this.onItemTap,
   }) : super(key: key);
 
-  final ValueChanged<HealthcareProvider>? onItemTap;
+  final ValueChanged<SimpleHealthcareProvider>? onItemTap;
 
   @override
   Widget build(BuildContext context) {

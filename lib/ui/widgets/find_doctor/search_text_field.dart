@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:loono/services/db/database.dart';
 import 'package:loono/services/map_state_sevice.dart';
+import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
 class SearchTextField extends StatelessWidget {
@@ -10,7 +10,7 @@ class SearchTextField extends StatelessWidget {
     required this.onItemTap,
   }) : super(key: key);
 
-  final ValueChanged<HealthcareProvider>? onItemTap;
+  final ValueChanged<SimpleHealthcareProvider>? onItemTap;
 
   @override
   Widget build(BuildContext context) {
@@ -30,17 +30,17 @@ class SearchTextField extends StatelessWidget {
         hideOnEmpty: true,
         suggestionsCallback: (query) {
           // TODO: multi search query
-          if (query.isEmpty) return <HealthcareProvider>[];
+          if (query.isEmpty) return <SimpleHealthcareProvider>[];
           return context.read<MapStateService>().searchByTitle(query);
         },
-        itemBuilder: (context, HealthcareProvider healthcareProvider) {
+        itemBuilder: (context, SimpleHealthcareProvider healthcareProvider) {
           return ListTile(
             leading: const Icon(Icons.person),
             title: Text((healthcareProvider.title) + (' (${healthcareProvider.city})')),
             subtitle: Text(healthcareProvider.category.join(', ')),
           );
         },
-        onSuggestionSelected: (HealthcareProvider suggestion) => onItemTap?.call(suggestion),
+        onSuggestionSelected: (SimpleHealthcareProvider suggestion) => onItemTap?.call(suggestion),
       ),
     );
   }
