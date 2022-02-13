@@ -39,6 +39,11 @@ import 'package:loono/ui/screens/prevention/examination_detail/examination_scree
 import 'package:loono/ui/screens/prevention/examination_detail/new_date_screen.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/new_time_screen.dart';
 import 'package:loono/ui/screens/prevention/questionnaire/date_picker_screen.dart';
+import 'package:loono/ui/screens/prevention/self_examination/detail_screen.dart';
+import 'package:loono/ui/screens/prevention/self_examination/educational_screen.dart';
+import 'package:loono/ui/screens/prevention/self_examination/has_finding_screen.dart';
+import 'package:loono/ui/screens/prevention/self_examination/no_finding_screen.dart';
+import 'package:loono/ui/screens/prevention/self_examination/progress_screen.dart';
 import 'package:loono/ui/screens/settings/camera_photo_taken.dart';
 import 'package:loono/ui/screens/settings/delete_account.dart';
 import 'package:loono/ui/screens/settings/edit_email.dart';
@@ -106,6 +111,7 @@ const _postAuthRouter = AutoRoute<void>(
     AutoRoute<void>(page: MainScreen, path: ''),
     ..._settingsRoutes,
     ..._preventionRoutes,
+    ..._selfExaminationRoutes,
     _findDoctorRoute,
   ],
 );
@@ -314,6 +320,34 @@ const _preventionRoutes = <AutoRoute>[
   CustomRoute<void>(
     page: ChangeTimeScreen,
     path: 'checkup/change-time',
+    transitionsBuilder: _preventionTransition,
+  ),
+];
+
+const _selfExaminationRoutes = <AutoRoute>[
+  CustomRoute<void>(
+    page: SelfExaminationDetailScreen,
+    path: 'self-examination/detail',
+    transitionsBuilder: _preventionTransition,
+  ),
+  CustomRoute<void>(
+    page: EducationalVideoScreen,
+    path: 'self-examination/detail/educational-video',
+    transitionsBuilder: _preventionTransition,
+  ),
+  CustomRoute<void>(
+    page: HasFindingScreen,
+    path: 'self-examination/detail/has-finding',
+    transitionsBuilder: _preventionTransition,
+  ),
+  CustomRoute<void>(
+    page: NoFindingScreen,
+    path: 'self-examination/detail/no-finding',
+    transitionsBuilder: _preventionTransition,
+  ),
+  CustomRoute<void>(
+    page: ProgressRewardScreen,
+    path: 'self-examination/detail/progress-reward',
     transitionsBuilder: _preventionTransition,
   ),
 ];

@@ -47,7 +47,7 @@ extension ExaminationRecordExt on ExaminationRecordTemp {
 extension CategorizedExaminationListExt on List<CategorizedExamination> {
   void sortExaminations() {
     if (isEmpty) return;
-    first.category.when(
+    first.category.whenOrNull(
       scheduledSoonOrOverdue: () =>
           sort((a, b) => b.examination.nextVisitDate!.compareTo(a.examination.nextVisitDate!)),
       newToSchedule: () => sort((a, b) {
