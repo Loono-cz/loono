@@ -32,7 +32,7 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                   const SizedBox(width: 19),
                   Expanded(
                     child: LoonoButton.light(
-                      text: 'Jak se vyšetřit', //mám objednáno
+                      text: 'Jak se vyšetřit',
                       onTap: () => AutoRouter.of(context).push(const EducationalVideoRoute()),
                     ),
                   ),
