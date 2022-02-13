@@ -23,7 +23,7 @@ class GeneralPracticionerAchievementScreen extends StatelessWidget {
           onButtonTap: () =>
               context.read<OnboardingStateService>().obtainAchievementForExamination(type),
           numberOfPoints: type.awardPoints,
-          itemPath: 'assets/icons/coat-practitioner.svg',
+          itemPath: 'assets/badges/achievement/cloak-level_1.svg',
         ),
       ),
     );

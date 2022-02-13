@@ -23,7 +23,7 @@ class GynecologyAchievementScreen extends StatelessWidget {
           onButtonTap: () =>
               context.read<OnboardingStateService>().obtainAchievementForExamination(type),
           numberOfPoints: type.awardPoints,
-          itemPath: 'assets/icons/belt-man-gynecologist.svg',
+          itemPath: 'assets/badges/achievement/belt-woman-level_1.svg',
         ),
       ),
     );
