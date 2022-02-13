@@ -19,12 +19,11 @@ class GeneralPracticionerAchievementScreen extends StatelessWidget {
           header: context.l10n.achievement_coat_practitioner_header,
           textLines: [
             context.l10n.achievement_general_practitioner_text_1,
-            '${context.l10n.achievement_keep_it_up_text}...',
           ],
           onButtonTap: () =>
               context.read<OnboardingStateService>().obtainAchievementForExamination(type),
           numberOfPoints: type.awardPoints,
-          itemPath: 'assets/icons/coat-practitioner.svg',
+          itemPath: 'assets/badges/achievement/cloak-level_1.svg',
         ),
       ),
     );
