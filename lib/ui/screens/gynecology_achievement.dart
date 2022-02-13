@@ -19,7 +19,6 @@ class GynecologyAchievementScreen extends StatelessWidget {
           header: context.l10n.achievement_belt_gynecologist_header,
           textLines: [
             context.l10n.achievement_gynecology_text_1,
-            '${context.l10n.achievement_keep_it_up_text}!',
           ],
           onButtonTap: () =>
               context.read<OnboardingStateService>().obtainAchievementForExamination(type),
