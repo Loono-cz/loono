@@ -94,6 +94,7 @@ flutter:
     - assets/icons/
     - assets/icons/prevention/
     - assets/icons/prevention/doctors/
+    - assets/icons/prevention/self_examination/
     - assets/intro_video.mp4
     - assets/badges/
     - assets/badges/body/

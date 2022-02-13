@@ -8,6 +8,7 @@ import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/prevention/examination_card.dart';
+import 'package:loono/ui/widgets/prevention/self_examination/self_examination_card.dart';
 import 'package:loono/utils/registry.dart';
 
 class ExaminationsSheetOverlay extends StatelessWidget {
@@ -52,7 +53,15 @@ class ExaminationsSheetOverlay extends StatelessWidget {
                       return categorizedExaminations.isEmpty
                           ? Column(
                               children: [
-                                if (index == 0) _buildHandle(context),
+                                if (index == 0) ...[
+                                  _buildHandle(context),
+                                  // TODO: Temp
+                                  SelfExaminationCard(
+                                    onTap: () => AutoRouter.of(context).navigate(
+                                      const SelfExaminationDetailRoute(),
+                                    ),
+                                  ),
+                                ],
                                 const SizedBox.shrink(),
                               ],
                             )
