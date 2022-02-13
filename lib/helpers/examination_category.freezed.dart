@@ -164,7 +164,8 @@ class _$SelfExamination extends SelfExamination {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is SelfExamination);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is SelfExamination);
   }
 
   @override
