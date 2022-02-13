@@ -93,4 +93,8 @@ class ApiService {
       ),
     );
   }
+
+  Future<ApiResponse<Leaderboard>> getLeaderboard() {
+    return _callApi(() async => _api.getLeaderboardApi().getLeaderboard());
+  }
 }

@@ -3,13 +3,29 @@ import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/services/api_service.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/loono_point.dart';
 import 'package:loono/ui/widgets/settings/app_bar.dart';
 import 'package:loono/ui/widgets/settings/avatar.dart';
+import 'package:loono/utils/registry.dart';
 
-class LeaderboardScreen extends StatelessWidget {
+class LeaderboardScreen extends StatefulWidget {
   const LeaderboardScreen({Key? key}) : super(key: key);
+
+  @override
+  State<LeaderboardScreen> createState() => _LeaderboardScreenState();
+}
+
+class _LeaderboardScreenState extends State<LeaderboardScreen> {
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    registry.get<ApiService>().getLeaderboard();
+  }
 
   @override
   Widget build(BuildContext context) {
