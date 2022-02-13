@@ -1,9 +1,11 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/ui/screens/about_health/about_health.dart';
+import 'package:loono/ui/screens/find_doctor/find_doctor.dart';
+import 'package:loono/ui/screens/prevention/prevention.dart';
 
+/// Post-auth main screen.
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
 
@@ -14,19 +16,10 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _pages = <Widget>[
-    Text(
-      'Screen: Já',
-      style: LoonoFonts.headerFontStyle,
-    ),
-    Text(
-      'Screen: Najít lékaře',
-      style: LoonoFonts.headerFontStyle,
-    ),
-    Text(
-      'Screen: Objev zdraví',
-      style: LoonoFonts.headerFontStyle,
-    ),
+  static final List<Widget> _pages = <Widget>[
+    const PreventionScreen(),
+    FindDoctorScreen(),
+    const AboutHealthScreen(),
   ];
 
   void _onItemTapped(int index) => setState(() => _selectedIndex = index);
@@ -34,29 +27,10 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async => false,
+      /// index 2 has its own WillPopScope for webview navigation. This prevents pop event override
+      onWillPop: _selectedIndex == 2 ? null : () async => false,
       child: Scaffold(
-        body: SafeArea(
-          child: Column(
-            children: [
-              // TODO: Only user with created account can open Settings
-              Align(
-                alignment: Alignment.topLeft,
-                child: TextButton(
-                  onPressed: () {
-                    AutoRouter.of(context).push(OpenSettingsRoute());
-                    // AutoRouter.of(context)
-                    //     .push(const MainScreenRouter(children: [OpenSettingsRoute()]));
-                  },
-                  child: const Text('SETTINGS'),
-                ),
-              ),
-              Center(
-                child: _pages.elementAt(_selectedIndex),
-              ),
-            ],
-          ),
-        ),
+        body: _pages.elementAt(_selectedIndex),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _selectedIndex,
           selectedItemColor: LoonoColors.primaryEnabled,
@@ -64,7 +38,7 @@ class _MainScreenState extends State<MainScreen> {
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: const Icon(Icons.person),
-              label: context.l10n.main_menu_item_me,
+              label: context.l10n.main_menu_item_prevention,
             ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.search),
@@ -72,7 +46,7 @@ class _MainScreenState extends State<MainScreen> {
             ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.lightbulb_outline),
-              label: context.l10n.main_menu_item_explore,
+              label: context.l10n.main_menu_item_about_health,
             ),
           ],
         ),

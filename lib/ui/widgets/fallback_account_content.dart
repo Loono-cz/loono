@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/async_button.dart';
 
-typedef SubmitCallback = void Function(String input);
+typedef SubmitCallback = Future<bool?> Function(String input);
 
 class FallbackAccountContent extends StatefulWidget {
   const FallbackAccountContent({
@@ -18,7 +18,9 @@ class FallbackAccountContent extends StatefulWidget {
     this.keyboardType,
     this.autovalidateMode = AutovalidateMode.disabled,
     this.onChanged,
-    this.onSubmit,
+    required this.onSubmit,
+    this.onSuccess,
+    this.onError,
     this.buttonText,
     this.filled,
   }) : super(key: key);
@@ -40,7 +42,10 @@ class FallbackAccountContent extends StatefulWidget {
 
   /// Callback is called on Button click or onFieldSubmitted from keyboard,
   /// if the user input is valid.
-  final SubmitCallback? onSubmit;
+  final SubmitCallback onSubmit;
+
+  final VoidCallback? onSuccess;
+  final VoidCallback? onError;
 
   @override
   _FallbackAccountContentState createState() => _FallbackAccountContentState();
@@ -50,10 +55,12 @@ class _FallbackAccountContentState extends State<FallbackAccountContent> {
   late final TextEditingController _textEditingController;
   final _formKey = GlobalKey<FormState>();
 
-  void validateAndSubmit() {
+  Future<bool> validateAndSubmit() async {
     if (_formKey.currentState?.validate() == true) {
-      widget.onSubmit?.call(_textEditingController.text);
+      final submitResult = await widget.onSubmit.call(_textEditingController.text);
+      return submitResult ?? true;
     }
+    return false;
   }
 
   @override
@@ -84,9 +91,11 @@ class _FallbackAccountContentState extends State<FallbackAccountContent> {
               _buildForm(),
               if (widget.description.isNotEmpty) ..._buildDescription(),
               const Spacer(),
-              LoonoButton(
+              AsyncLoonoButton(
                 text: widget.buttonText ?? context.l10n.confirm_info,
-                onTap: validateAndSubmit,
+                asyncCallback: validateAndSubmit,
+                onSuccess: widget.onSuccess,
+                onError: widget.onError,
               ),
               const SizedBox(height: 18.0),
             ],
@@ -138,9 +147,12 @@ class _FallbackAccountContentState extends State<FallbackAccountContent> {
         style: const TextStyle(fontSize: 24.0, color: LoonoColors.black),
         decoration: InputDecoration(
           hintText: widget.hint,
+          hintStyle: const TextStyle(fontSize: 24.0, color: LoonoColors.grey),
           focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-                color: LoonoColors.primaryEnabled, width: widget.filled == true ? 4.0 : 2.0),
+              color: LoonoColors.primaryEnabled,
+              width: widget.filled == true ? 4.0 : 2.0,
+            ),
             borderRadius: widget.filled == true
                 ? const BorderRadius.all(Radius.circular(10.0))
                 : const BorderRadius.only(

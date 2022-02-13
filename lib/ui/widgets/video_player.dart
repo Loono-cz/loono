@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/story_page.dart';
 import 'package:video_player/video_player.dart';
 
@@ -50,6 +49,7 @@ class _VideoPlayerScreenState extends State<CustomVideoPlayer> {
       if (widget.autoplay) {
         _controller.play();
         widget.onLoaded?.call();
+        _controller.setVolume(0.0);
       }
     });
     _controller.setLooping(widget.looping);

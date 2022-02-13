@@ -2,7 +2,6 @@ import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/models/firebase_user.dart';
-import 'package:loono/models/user.dart';
 import 'package:loono/services/db/database.dart';
 
 String getHintText(BuildContext context, {required User? user}) {

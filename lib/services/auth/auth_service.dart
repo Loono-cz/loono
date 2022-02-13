@@ -5,30 +5,36 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:loono/models/firebase_user.dart';
 import 'package:loono/services/auth/failures.dart';
 import 'package:loono/utils/crypto_utils.dart';
+import 'package:loono_api/loono_api.dart' as api;
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class AuthService {
+  AuthService({required api.LoonoApi api}) {
+    _api = api;
+    _auth.authStateChanges().listen((authUser) async {
+      if (authUser == null) {
+        _clearUserToken();
+      }
+    });
+  }
+
+  late final api.LoonoApi _api;
+
   final _auth = FirebaseAuth.instance;
 
   final _googleSignIn = GoogleSignIn();
 
   Future<AuthUser?> getCurrentUser() async => _authUserFromFirebase(_auth.currentUser);
 
-  Stream<AuthUser?> get onAuthStateChanged =>
-      _auth.authStateChanges().map((firebaseUser) => _authUserFromFirebase(firebaseUser));
-
-  AuthUser? _authUserFromFirebase(User? firebaseUser) {
-    final authUser = firebaseUser == null
-        ? null
-        : AuthUser(
-            uid: firebaseUser.uid,
-            name: firebaseUser.displayName,
-            email: firebaseUser.email,
-            avatarUrl: firebaseUser.photoURL,
-            isAnonymous: firebaseUser.isAnonymous,
-          );
-    return authUser;
+  Future<String?> get userUid async {
+    final user = await getCurrentUser();
+    return user?.uid;
   }
+
+  Stream<AuthUser?> get onAuthStateChanged => _auth.authStateChanges().map(_authUserFromFirebase);
+
+  AuthUser? _authUserFromFirebase(User? firebaseUser) =>
+      firebaseUser == null ? null : AuthUser(firebaseUser: firebaseUser);
 
   Future<Either<AuthFailure, AuthUser>> checkGoogleAccountExistsAndSignIn() async {
     GoogleSignInAccount? googleUser;
@@ -85,7 +91,6 @@ class AuthService {
   }
 
   Future<Either<AuthFailure, AuthUser>> signInWithGoogle() async {
-    // TODO: better error handling
     GoogleSignInAccount? googleUser;
     try {
       googleUser = await _googleSignIn.signIn();
@@ -117,7 +122,6 @@ class AuthService {
   }
 
   Future<Either<AuthFailure, AuthUser>> signInWithApple([String? idToken]) async {
-    // TODO: better error handling
     // To prevent replay attacks with the credential returned from Apple, we
     // include a nonce in the credential request. When signing in with
     // Firebase, the nonce in the id token returned by Apple, is expected to
@@ -160,23 +164,17 @@ class AuthService {
         : Right(_authUserFromFirebase(userCredential.user)!);
   }
 
-  Future<Either<AuthFailure, AuthUser>> signInAnonymously() async {
-    final UserCredential? userCredential;
-    try {
-      userCredential = await _auth.signInAnonymously();
-    } on FirebaseException catch (e) {
-      if (e.code == 'network-request-failed') return const Left(AuthFailure.network());
-      return const Left(AuthFailure.unknown());
-    } catch (_) {
-      return const Left(AuthFailure.unknown());
-    }
-    return userCredential.user == null
-        ? const Left(AuthFailure.unknown())
-        : Right(_authUserFromFirebase(userCredential.user)!);
-  }
-
   Future<void> signOut() async {
+    _clearUserToken();
     await _auth.signOut();
     await _googleSignIn.signOut();
   }
+
+  // TODO: refresh token more often - maybe on each api call ? (https://cesko-digital.atlassian.net/browse/LOON-477)
+  Future<void> refreshUserToken(AuthUser authUser) async {
+    final token = await authUser.getIdToken();
+    _api.dio.options.headers['Authorization'] = 'Bearer $token';
+  }
+
+  void _clearUserToken() => _api.dio.options.headers.remove('Authorization');
 }

@@ -20,7 +20,7 @@ class PhotoTakenContent extends StatefulWidget {
   }) : super(key: key);
 
   final Uint8List imageBytes;
-  final PageRouteInfo<dynamic>? closeRoute;
+  final PageRouteInfo? closeRoute;
   final bool showBackButton;
   final VoidCallback? onSecondaryButtonTap;
   final String secondaryButtonText;
@@ -96,7 +96,7 @@ class _PhotoTakenContentState extends State<PhotoTakenContent> {
                 LoonoButton(
                   enabled: isLoading == false && isCropping == false,
                   text: context.l10n.continue_info,
-                  onTap: () => cropController.crop(),
+                  onTap: cropController.crop,
                 ),
                 const SizedBox(height: 30),
                 TextButton(

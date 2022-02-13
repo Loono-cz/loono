@@ -1,18 +1,13 @@
 import 'dart:convert';
 
 import 'package:loono/helpers/date_without_day.dart';
-import 'package:loono/helpers/sex_extensions.dart';
-import 'package:loono/models/achievement.dart';
+import 'package:loono/helpers/type_converters.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/utils/memoized_stream.dart';
+import 'package:loono_api/loono_api.dart' hide User;
 import 'package:moor/moor.dart';
 
 part 'user.g.dart';
-
-enum CcaDoctorVisit {
-  inLastTwoYears,
-  moreThanTwoYearsOrIdk,
-}
 
 class Users extends Table {
   @override
@@ -20,19 +15,21 @@ class Users extends Table {
 
   TextColumn get id => text()();
 
-  IntColumn get sexRaw => integer().nullable()();
+  TextColumn get sex => text().map(const SexDbConverter()).nullable()();
+
   TextColumn get dateOfBirthRaw => text().nullable()();
-  IntColumn get generalPracticionerCcaVisitRaw => integer().nullable()();
-  TextColumn get generalPracticionerVisitDateRaw => text().nullable()();
-  IntColumn get gynecologyCcaVisitRaw => integer().nullable()();
-  TextColumn get gynecologyVisitDateRaw => text().nullable()();
-  IntColumn get dentistCcaVisitRaw => integer().nullable()();
-  TextColumn get dentistVisitDateRaw => text().nullable()();
 
   TextColumn get nickname => text().nullable()();
+
   TextColumn get email => text().nullable()();
 
-  TextColumn get achievementCollectionRaw => text().nullable()();
+  TextColumn get profileImageUrl => text().nullable()();
+
+  TextColumn get defaultDeviceCalendarId => text().nullable()();
+
+  DateTimeColumn get latestMapUpdateCheck => dateTime().nullable()();
+
+  DateTimeColumn get latestMapUpdate => dateTime().nullable()();
 }
 
 @UseDao(tables: [Users])
@@ -42,6 +39,7 @@ class UsersDao extends DatabaseAccessor<AppDatabase> with _$UsersDaoMixin {
   }
 
   late final MemoizedStream<User?> userStream;
+
   User? get user => userStream.lastItem;
 
   Stream<User?> watchUser() {
@@ -65,93 +63,32 @@ class UsersDao extends DatabaseAccessor<AppDatabase> with _$UsersDaoMixin {
   }
 
   Future<void> updateSex(Sex sex) async {
-    await updateCurrentUser(UsersCompanion(sexRaw: Value(sex.index)));
+    await updateCurrentUser(UsersCompanion(sex: Value<Sex>(sex)));
+  }
+
+  Future<void> updateLatestMapUpdateCheck(DateTime date) async {
+    await updateCurrentUser(UsersCompanion(latestMapUpdateCheck: Value(date)));
+  }
+
+  Future<void> updateLatestMapServerUpdate(DateTime date) async {
+    await updateCurrentUser(UsersCompanion(latestMapUpdate: Value(date)));
   }
 
   Future<void> updateDateOfBirth(DateWithoutDay dateWithoutDay) async {
     await updateCurrentUser(
-        UsersCompanion(dateOfBirthRaw: Value(jsonEncode(dateWithoutDay.toJson()))));
-  }
-
-  Future<void> updateGeneralPracticionerCcaVisit(CcaDoctorVisit ccaDoctorVisit) async {
-    await updateCurrentUser(
-        UsersCompanion(generalPracticionerCcaVisitRaw: Value(ccaDoctorVisit.index)));
-  }
-
-  Future<void> updateGeneralPracticionerVisitDate(DateWithoutDay dateWithoutDay) async {
-    await updateCurrentUser(UsersCompanion(
-        generalPracticionerVisitDateRaw: Value(jsonEncode(dateWithoutDay.toJson()))));
-  }
-
-  Future<void> updateGynecologyCcaVisit(CcaDoctorVisit ccaDoctorVisit) async {
-    await updateCurrentUser(UsersCompanion(gynecologyCcaVisitRaw: Value(ccaDoctorVisit.index)));
-  }
-
-  Future<void> updateGynecologyVisitDate(DateWithoutDay dateWithoutDay) async {
-    await updateCurrentUser(
-        UsersCompanion(gynecologyVisitDateRaw: Value(jsonEncode(dateWithoutDay.toJson()))));
-  }
-
-  Future<void> updateDentistCcaVisit(CcaDoctorVisit ccaDoctorVisit) async {
-    await updateCurrentUser(UsersCompanion(dentistCcaVisitRaw: Value(ccaDoctorVisit.index)));
-  }
-
-  Future<void> updateDentistVisitDate(DateWithoutDay dateWithoutDay) async {
-    await updateCurrentUser(
-        UsersCompanion(dentistVisitDateRaw: Value(jsonEncode(dateWithoutDay.toJson()))));
+      UsersCompanion(dateOfBirthRaw: Value(jsonEncode(dateWithoutDay.toJson()))),
+    );
   }
 
   Future<void> updateNickname(String nickname) async {
     await updateCurrentUser(UsersCompanion(nickname: Value(nickname)));
   }
 
+  Future<void> updateProfileImageUrl(String? url) async {
+    await updateCurrentUser(UsersCompanion(profileImageUrl: Value(url)));
+  }
+
   Future<void> updateEmail(String email) async {
     await updateCurrentUser(UsersCompanion(email: Value(email)));
-  }
-
-  Future<void> updateAchievementCollection(Achievement achievement) async {
-    final currCollection = user?.achievementCollection;
-    final updatedCollection = <Achievement>{};
-    if (currCollection == null) {
-      updatedCollection.add(achievement);
-    } else {
-      updatedCollection.addAll([...currCollection, achievement]);
-    }
-    await updateCurrentUser(
-        UsersCompanion(achievementCollectionRaw: Value(jsonEncode(updatedCollection.toList()))));
-  }
-}
-
-extension UserExtension on User {
-  Sex? get sex => sexRaw == null ? null : Sex.values[sexRaw!];
-
-  CcaDoctorVisit? get generalPracticionerCcaVisit => generalPracticionerCcaVisitRaw == null
-      ? null
-      : CcaDoctorVisit.values[generalPracticionerCcaVisitRaw!];
-
-  CcaDoctorVisit? get gynecologyCcaVisit =>
-      gynecologyCcaVisitRaw == null ? null : CcaDoctorVisit.values[gynecologyCcaVisitRaw!];
-
-  CcaDoctorVisit? get dentistCcaVisit =>
-      dentistCcaVisitRaw == null ? null : CcaDoctorVisit.values[dentistCcaVisitRaw!];
-
-  DateWithoutDay? get generalPracticionerVisitDate => generalPracticionerVisitDateRaw == null
-      ? null
-      : DateWithoutDay.fromJson(
-          jsonDecode(generalPracticionerVisitDateRaw!) as Map<String, dynamic>);
-
-  DateWithoutDay? get gynecologyVisitDate => gynecologyVisitDateRaw == null
-      ? null
-      : DateWithoutDay.fromJson(jsonDecode(gynecologyVisitDateRaw!) as Map<String, dynamic>);
-
-  DateWithoutDay? get dentistVisitDate => dentistVisitDateRaw == null
-      ? null
-      : DateWithoutDay.fromJson(jsonDecode(dentistVisitDateRaw!) as Map<String, dynamic>);
-
-  Set<Achievement>? get achievementCollection {
-    if (achievementCollectionRaw == null) return null;
-    final decodedList = jsonDecode(achievementCollectionRaw!) as List<dynamic>;
-    return List<Achievement>.from(
-        decodedList.map((item) => Achievement.fromJson(item as Map<String, dynamic>))).toSet();
   }
 }

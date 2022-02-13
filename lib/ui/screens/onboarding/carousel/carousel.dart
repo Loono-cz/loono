@@ -1,6 +1,7 @@
+// ignore_for_file: unnecessary_lambdas
+
 import 'package:flutter/material.dart';
 import 'package:loono/ui/screens/onboarding/carousel/carousel_second.dart';
-import 'package:loono/ui/screens/onboarding/carousel/carousel_third.dart';
 import 'package:loono/ui/widgets/intro_video.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/indicator_row.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/story_page.dart';
@@ -8,14 +9,14 @@ import 'package:loono/ui/widgets/onboarding/carousel/tap_area.dart';
 
 const _pageAnimDuration = Duration(milliseconds: 400);
 
-class OnboardingCarouselScreen extends StatefulWidget {
-  const OnboardingCarouselScreen({Key? key}) : super(key: key);
+class IntroCarouselScreen extends StatefulWidget {
+  const IntroCarouselScreen({Key? key}) : super(key: key);
 
   @override
-  _OnboardingCarouselScreenState createState() => _OnboardingCarouselScreenState();
+  _IntroCarouselScreenState createState() => _IntroCarouselScreenState();
 }
 
-class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
+class _IntroCarouselScreenState extends State<IntroCarouselScreen> {
   final PageController pageController = PageController();
 
   final StoryPageState storyStateController = StoryPageState();
@@ -36,10 +37,7 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
           duration: const Duration(milliseconds: 12700),
           autoplay: false,
         ),
-        StoryPage(
-          content: OnboardingSecondCarouselScreen(onBack: animToPrevStory, onNext: animToNextStory),
-        ),
-        StoryPage(content: OnboardingThirdCarouselScreen(onBack: animToPrevStory)),
+        StoryPage(content: OnboardingSecondCarouselScreen(onBack: animToPrevStory)),
       ];
 
   List<StoryPage> get stories => _allStories.where((story) => story.indicatorVisible).toList();
@@ -74,11 +72,17 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
 
   void jumpToNextStory() => pageController.jumpToPage(currentPageIndex + 1);
 
-  void animToPrevStory() => pageController.animateToPage(currentPageIndex - 1,
-      duration: _pageAnimDuration, curve: Curves.linearToEaseOut.flipped);
+  void animToPrevStory() => pageController.animateToPage(
+        currentPageIndex - 1,
+        duration: _pageAnimDuration,
+        curve: Curves.linearToEaseOut.flipped,
+      );
 
-  void animToNextStory() => pageController.animateToPage(currentPageIndex + 1,
-      duration: _pageAnimDuration, curve: Curves.linearToEaseOut);
+  void animToNextStory() => pageController.animateToPage(
+        currentPageIndex + 1,
+        duration: _pageAnimDuration,
+        curve: Curves.linearToEaseOut,
+      );
 
   StoryPage get currentStory => _allStories[currentPageIndex];
 

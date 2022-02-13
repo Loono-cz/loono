@@ -1,15 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:loono/models/user.dart';
+import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/auth/auth_service.dart';
-import 'package:loono/services/auth/failures.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/button.dart';
-import 'package:loono/ui/widgets/confirmation_dialog.dart';
 import 'package:loono/utils/registry.dart';
 
 class LogoutScreen extends StatefulWidget {
@@ -20,17 +18,16 @@ class LogoutScreen extends StatefulWidget {
 }
 
 class _LogoutScreenState extends State<LogoutScreen> {
-  late AuthService _authService;
-  late UsersDao _usersDao;
+  final _authService = registry.get<AuthService>();
+  final _userRepository = registry.get<UserRepository>();
 
   @override
   void initState() {
     super.initState();
-    _authService = registry.get<AuthService>();
-    _usersDao = registry.get<DatabaseService>().users;
-
     _authService.signOut();
-    _usersDao.deleteAll();
+    registry.get<DatabaseService>().clearDb();
+    // clears saved user avatar and other app's temp data
+    registry.get<DefaultCacheManager>().emptyCache();
     // TODO: Calling this after adding the firebase_messaging package in order to delete a fcm token
     // FirebaseMessaging.instance.deleteToken()
   }
@@ -38,6 +35,7 @@ class _LogoutScreenState extends State<LogoutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: LoonoColors.settingsBackground,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(18.0),
@@ -63,29 +61,17 @@ class _LogoutScreenState extends State<LogoutScreen> {
               ),
               LoonoButton(
                 text: context.l10n.login,
-                onTap: () => AutoRouter.of(context).push(LoginRoute()),
+                onTap: () async {
+                  await _userRepository.createUser();
+                  await AutoRouter.of(context).push(PreAuthMainRoute());
+                },
               ),
               const SizedBox(height: 20),
-              LoonoButton(
+              LoonoButton.light(
                 text: context.l10n.use_app_without_account,
-                enabled: false,
-                textColor: LoonoColors.black,
                 onTap: () async {
-                  final authUserResult = await _authService.signInAnonymously();
-                  authUserResult.fold(
-                    (failure) {
-                      failure.maybeWhen(
-                        network: (_) => showConfirmationDialog(
-                          context,
-                          onConfirm: () => AutoRouter.of(context).pop(),
-                          confirmationButtonLabel: context.l10n.ok_action,
-                          content: context.l10n.create_account_anonymous_login_connection_error,
-                        ),
-                        orElse: () => showSnackBarError(context, message: failure.getMessage(context)),
-                      );
-                    },
-                    (authUser) => AutoRouter.of(context).push(NicknameRoute()),
-                  );
+                  await _userRepository.createUser();
+                  await AutoRouter.of(context).push(PreAuthMainRoute());
                 },
               ),
             ],

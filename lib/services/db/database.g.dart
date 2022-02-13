@@ -9,91 +9,58 @@ part of 'database.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps, unnecessary_this
 class User extends DataClass implements Insertable<User> {
   final String id;
-  final int? sexRaw;
+  final Sex? sex;
   final String? dateOfBirthRaw;
-  final int? generalPracticionerCcaVisitRaw;
-  final String? generalPracticionerVisitDateRaw;
-  final int? gynecologyCcaVisitRaw;
-  final String? gynecologyVisitDateRaw;
-  final int? dentistCcaVisitRaw;
-  final String? dentistVisitDateRaw;
   final String? nickname;
   final String? email;
-  final String? achievementCollectionRaw;
+  final String? profileImageUrl;
+  final String? defaultDeviceCalendarId;
+  final DateTime? latestMapUpdateCheck;
+  final DateTime? latestMapUpdate;
   User(
       {required this.id,
-      this.sexRaw,
+      this.sex,
       this.dateOfBirthRaw,
-      this.generalPracticionerCcaVisitRaw,
-      this.generalPracticionerVisitDateRaw,
-      this.gynecologyCcaVisitRaw,
-      this.gynecologyVisitDateRaw,
-      this.dentistCcaVisitRaw,
-      this.dentistVisitDateRaw,
       this.nickname,
       this.email,
-      this.achievementCollectionRaw});
+      this.profileImageUrl,
+      this.defaultDeviceCalendarId,
+      this.latestMapUpdateCheck,
+      this.latestMapUpdate});
   factory User.fromData(Map<String, dynamic> data, GeneratedDatabase db,
       {String? prefix}) {
     final effectivePrefix = prefix ?? '';
     return User(
       id: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
-      sexRaw: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}sex_raw']),
+      sex: $UsersTable.$converter0.mapToDart(const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}sex'])),
       dateOfBirthRaw: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}date_of_birth_raw']),
-      generalPracticionerCcaVisitRaw: const IntType().mapFromDatabaseResponse(
-          data['${effectivePrefix}general_practicioner_cca_visit_raw']),
-      generalPracticionerVisitDateRaw: const StringType()
-          .mapFromDatabaseResponse(
-              data['${effectivePrefix}general_practicioner_visit_date_raw']),
-      gynecologyCcaVisitRaw: const IntType().mapFromDatabaseResponse(
-          data['${effectivePrefix}gynecology_cca_visit_raw']),
-      gynecologyVisitDateRaw: const StringType().mapFromDatabaseResponse(
-          data['${effectivePrefix}gynecology_visit_date_raw']),
-      dentistCcaVisitRaw: const IntType().mapFromDatabaseResponse(
-          data['${effectivePrefix}dentist_cca_visit_raw']),
-      dentistVisitDateRaw: const StringType().mapFromDatabaseResponse(
-          data['${effectivePrefix}dentist_visit_date_raw']),
       nickname: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}nickname']),
       email: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}email']),
-      achievementCollectionRaw: const StringType().mapFromDatabaseResponse(
-          data['${effectivePrefix}achievement_collection_raw']),
+      profileImageUrl: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}profile_image_url']),
+      defaultDeviceCalendarId: const StringType().mapFromDatabaseResponse(
+          data['${effectivePrefix}default_device_calendar_id']),
+      latestMapUpdateCheck: const DateTimeType().mapFromDatabaseResponse(
+          data['${effectivePrefix}latest_map_update_check']),
+      latestMapUpdate: const DateTimeType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}latest_map_update']),
     );
   }
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<String>(id);
-    if (!nullToAbsent || sexRaw != null) {
-      map['sex_raw'] = Variable<int?>(sexRaw);
+    if (!nullToAbsent || sex != null) {
+      final converter = $UsersTable.$converter0;
+      map['sex'] = Variable<String?>(converter.mapToSql(sex));
     }
     if (!nullToAbsent || dateOfBirthRaw != null) {
       map['date_of_birth_raw'] = Variable<String?>(dateOfBirthRaw);
-    }
-    if (!nullToAbsent || generalPracticionerCcaVisitRaw != null) {
-      map['general_practicioner_cca_visit_raw'] =
-          Variable<int?>(generalPracticionerCcaVisitRaw);
-    }
-    if (!nullToAbsent || generalPracticionerVisitDateRaw != null) {
-      map['general_practicioner_visit_date_raw'] =
-          Variable<String?>(generalPracticionerVisitDateRaw);
-    }
-    if (!nullToAbsent || gynecologyCcaVisitRaw != null) {
-      map['gynecology_cca_visit_raw'] = Variable<int?>(gynecologyCcaVisitRaw);
-    }
-    if (!nullToAbsent || gynecologyVisitDateRaw != null) {
-      map['gynecology_visit_date_raw'] =
-          Variable<String?>(gynecologyVisitDateRaw);
-    }
-    if (!nullToAbsent || dentistCcaVisitRaw != null) {
-      map['dentist_cca_visit_raw'] = Variable<int?>(dentistCcaVisitRaw);
-    }
-    if (!nullToAbsent || dentistVisitDateRaw != null) {
-      map['dentist_visit_date_raw'] = Variable<String?>(dentistVisitDateRaw);
     }
     if (!nullToAbsent || nickname != null) {
       map['nickname'] = Variable<String?>(nickname);
@@ -101,9 +68,19 @@ class User extends DataClass implements Insertable<User> {
     if (!nullToAbsent || email != null) {
       map['email'] = Variable<String?>(email);
     }
-    if (!nullToAbsent || achievementCollectionRaw != null) {
-      map['achievement_collection_raw'] =
-          Variable<String?>(achievementCollectionRaw);
+    if (!nullToAbsent || profileImageUrl != null) {
+      map['profile_image_url'] = Variable<String?>(profileImageUrl);
+    }
+    if (!nullToAbsent || defaultDeviceCalendarId != null) {
+      map['default_device_calendar_id'] =
+          Variable<String?>(defaultDeviceCalendarId);
+    }
+    if (!nullToAbsent || latestMapUpdateCheck != null) {
+      map['latest_map_update_check'] =
+          Variable<DateTime?>(latestMapUpdateCheck);
+    }
+    if (!nullToAbsent || latestMapUpdate != null) {
+      map['latest_map_update'] = Variable<DateTime?>(latestMapUpdate);
     }
     return map;
   }
@@ -111,39 +88,27 @@ class User extends DataClass implements Insertable<User> {
   UsersCompanion toCompanion(bool nullToAbsent) {
     return UsersCompanion(
       id: Value(id),
-      sexRaw:
-          sexRaw == null && nullToAbsent ? const Value.absent() : Value(sexRaw),
+      sex: sex == null && nullToAbsent ? const Value.absent() : Value(sex),
       dateOfBirthRaw: dateOfBirthRaw == null && nullToAbsent
           ? const Value.absent()
           : Value(dateOfBirthRaw),
-      generalPracticionerCcaVisitRaw:
-          generalPracticionerCcaVisitRaw == null && nullToAbsent
-              ? const Value.absent()
-              : Value(generalPracticionerCcaVisitRaw),
-      generalPracticionerVisitDateRaw:
-          generalPracticionerVisitDateRaw == null && nullToAbsent
-              ? const Value.absent()
-              : Value(generalPracticionerVisitDateRaw),
-      gynecologyCcaVisitRaw: gynecologyCcaVisitRaw == null && nullToAbsent
-          ? const Value.absent()
-          : Value(gynecologyCcaVisitRaw),
-      gynecologyVisitDateRaw: gynecologyVisitDateRaw == null && nullToAbsent
-          ? const Value.absent()
-          : Value(gynecologyVisitDateRaw),
-      dentistCcaVisitRaw: dentistCcaVisitRaw == null && nullToAbsent
-          ? const Value.absent()
-          : Value(dentistCcaVisitRaw),
-      dentistVisitDateRaw: dentistVisitDateRaw == null && nullToAbsent
-          ? const Value.absent()
-          : Value(dentistVisitDateRaw),
       nickname: nickname == null && nullToAbsent
           ? const Value.absent()
           : Value(nickname),
       email:
           email == null && nullToAbsent ? const Value.absent() : Value(email),
-      achievementCollectionRaw: achievementCollectionRaw == null && nullToAbsent
+      profileImageUrl: profileImageUrl == null && nullToAbsent
           ? const Value.absent()
-          : Value(achievementCollectionRaw),
+          : Value(profileImageUrl),
+      defaultDeviceCalendarId: defaultDeviceCalendarId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(defaultDeviceCalendarId),
+      latestMapUpdateCheck: latestMapUpdateCheck == null && nullToAbsent
+          ? const Value.absent()
+          : Value(latestMapUpdateCheck),
+      latestMapUpdate: latestMapUpdate == null && nullToAbsent
+          ? const Value.absent()
+          : Value(latestMapUpdate),
     );
   }
 
@@ -152,23 +117,16 @@ class User extends DataClass implements Insertable<User> {
     serializer ??= moorRuntimeOptions.defaultSerializer;
     return User(
       id: serializer.fromJson<String>(json['id']),
-      sexRaw: serializer.fromJson<int?>(json['sexRaw']),
+      sex: serializer.fromJson<Sex?>(json['sex']),
       dateOfBirthRaw: serializer.fromJson<String?>(json['dateOfBirthRaw']),
-      generalPracticionerCcaVisitRaw:
-          serializer.fromJson<int?>(json['generalPracticionerCcaVisitRaw']),
-      generalPracticionerVisitDateRaw:
-          serializer.fromJson<String?>(json['generalPracticionerVisitDateRaw']),
-      gynecologyCcaVisitRaw:
-          serializer.fromJson<int?>(json['gynecologyCcaVisitRaw']),
-      gynecologyVisitDateRaw:
-          serializer.fromJson<String?>(json['gynecologyVisitDateRaw']),
-      dentistCcaVisitRaw: serializer.fromJson<int?>(json['dentistCcaVisitRaw']),
-      dentistVisitDateRaw:
-          serializer.fromJson<String?>(json['dentistVisitDateRaw']),
       nickname: serializer.fromJson<String?>(json['nickname']),
       email: serializer.fromJson<String?>(json['email']),
-      achievementCollectionRaw:
-          serializer.fromJson<String?>(json['achievementCollectionRaw']),
+      profileImageUrl: serializer.fromJson<String?>(json['profileImageUrl']),
+      defaultDeviceCalendarId:
+          serializer.fromJson<String?>(json['defaultDeviceCalendarId']),
+      latestMapUpdateCheck:
+          serializer.fromJson<DateTime?>(json['latestMapUpdateCheck']),
+      latestMapUpdate: serializer.fromJson<DateTime?>(json['latestMapUpdate']),
     );
   }
   @override
@@ -176,231 +134,162 @@ class User extends DataClass implements Insertable<User> {
     serializer ??= moorRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'id': serializer.toJson<String>(id),
-      'sexRaw': serializer.toJson<int?>(sexRaw),
+      'sex': serializer.toJson<Sex?>(sex),
       'dateOfBirthRaw': serializer.toJson<String?>(dateOfBirthRaw),
-      'generalPracticionerCcaVisitRaw':
-          serializer.toJson<int?>(generalPracticionerCcaVisitRaw),
-      'generalPracticionerVisitDateRaw':
-          serializer.toJson<String?>(generalPracticionerVisitDateRaw),
-      'gynecologyCcaVisitRaw': serializer.toJson<int?>(gynecologyCcaVisitRaw),
-      'gynecologyVisitDateRaw':
-          serializer.toJson<String?>(gynecologyVisitDateRaw),
-      'dentistCcaVisitRaw': serializer.toJson<int?>(dentistCcaVisitRaw),
-      'dentistVisitDateRaw': serializer.toJson<String?>(dentistVisitDateRaw),
       'nickname': serializer.toJson<String?>(nickname),
       'email': serializer.toJson<String?>(email),
-      'achievementCollectionRaw':
-          serializer.toJson<String?>(achievementCollectionRaw),
+      'profileImageUrl': serializer.toJson<String?>(profileImageUrl),
+      'defaultDeviceCalendarId':
+          serializer.toJson<String?>(defaultDeviceCalendarId),
+      'latestMapUpdateCheck':
+          serializer.toJson<DateTime?>(latestMapUpdateCheck),
+      'latestMapUpdate': serializer.toJson<DateTime?>(latestMapUpdate),
     };
   }
 
   User copyWith(
           {String? id,
-          int? sexRaw,
+          Sex? sex,
           String? dateOfBirthRaw,
-          int? generalPracticionerCcaVisitRaw,
-          String? generalPracticionerVisitDateRaw,
-          int? gynecologyCcaVisitRaw,
-          String? gynecologyVisitDateRaw,
-          int? dentistCcaVisitRaw,
-          String? dentistVisitDateRaw,
           String? nickname,
           String? email,
-          String? achievementCollectionRaw}) =>
+          String? profileImageUrl,
+          String? defaultDeviceCalendarId,
+          DateTime? latestMapUpdateCheck,
+          DateTime? latestMapUpdate}) =>
       User(
         id: id ?? this.id,
-        sexRaw: sexRaw ?? this.sexRaw,
+        sex: sex ?? this.sex,
         dateOfBirthRaw: dateOfBirthRaw ?? this.dateOfBirthRaw,
-        generalPracticionerCcaVisitRaw: generalPracticionerCcaVisitRaw ??
-            this.generalPracticionerCcaVisitRaw,
-        generalPracticionerVisitDateRaw: generalPracticionerVisitDateRaw ??
-            this.generalPracticionerVisitDateRaw,
-        gynecologyCcaVisitRaw:
-            gynecologyCcaVisitRaw ?? this.gynecologyCcaVisitRaw,
-        gynecologyVisitDateRaw:
-            gynecologyVisitDateRaw ?? this.gynecologyVisitDateRaw,
-        dentistCcaVisitRaw: dentistCcaVisitRaw ?? this.dentistCcaVisitRaw,
-        dentistVisitDateRaw: dentistVisitDateRaw ?? this.dentistVisitDateRaw,
         nickname: nickname ?? this.nickname,
         email: email ?? this.email,
-        achievementCollectionRaw:
-            achievementCollectionRaw ?? this.achievementCollectionRaw,
+        profileImageUrl: profileImageUrl ?? this.profileImageUrl,
+        defaultDeviceCalendarId:
+            defaultDeviceCalendarId ?? this.defaultDeviceCalendarId,
+        latestMapUpdateCheck: latestMapUpdateCheck ?? this.latestMapUpdateCheck,
+        latestMapUpdate: latestMapUpdate ?? this.latestMapUpdate,
       );
   @override
   String toString() {
     return (StringBuffer('User(')
           ..write('id: $id, ')
-          ..write('sexRaw: $sexRaw, ')
+          ..write('sex: $sex, ')
           ..write('dateOfBirthRaw: $dateOfBirthRaw, ')
-          ..write(
-              'generalPracticionerCcaVisitRaw: $generalPracticionerCcaVisitRaw, ')
-          ..write(
-              'generalPracticionerVisitDateRaw: $generalPracticionerVisitDateRaw, ')
-          ..write('gynecologyCcaVisitRaw: $gynecologyCcaVisitRaw, ')
-          ..write('gynecologyVisitDateRaw: $gynecologyVisitDateRaw, ')
-          ..write('dentistCcaVisitRaw: $dentistCcaVisitRaw, ')
-          ..write('dentistVisitDateRaw: $dentistVisitDateRaw, ')
           ..write('nickname: $nickname, ')
           ..write('email: $email, ')
-          ..write('achievementCollectionRaw: $achievementCollectionRaw')
+          ..write('profileImageUrl: $profileImageUrl, ')
+          ..write('defaultDeviceCalendarId: $defaultDeviceCalendarId, ')
+          ..write('latestMapUpdateCheck: $latestMapUpdateCheck, ')
+          ..write('latestMapUpdate: $latestMapUpdate')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => $mrjf($mrjc(
-      id.hashCode,
-      $mrjc(
-          sexRaw.hashCode,
-          $mrjc(
-              dateOfBirthRaw.hashCode,
-              $mrjc(
-                  generalPracticionerCcaVisitRaw.hashCode,
-                  $mrjc(
-                      generalPracticionerVisitDateRaw.hashCode,
-                      $mrjc(
-                          gynecologyCcaVisitRaw.hashCode,
-                          $mrjc(
-                              gynecologyVisitDateRaw.hashCode,
-                              $mrjc(
-                                  dentistCcaVisitRaw.hashCode,
-                                  $mrjc(
-                                      dentistVisitDateRaw.hashCode,
-                                      $mrjc(
-                                          nickname.hashCode,
-                                          $mrjc(
-                                              email.hashCode,
-                                              achievementCollectionRaw
-                                                  .hashCode))))))))))));
+  int get hashCode => Object.hash(
+      id,
+      sex,
+      dateOfBirthRaw,
+      nickname,
+      email,
+      profileImageUrl,
+      defaultDeviceCalendarId,
+      latestMapUpdateCheck,
+      latestMapUpdate);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is User &&
           other.id == this.id &&
-          other.sexRaw == this.sexRaw &&
+          other.sex == this.sex &&
           other.dateOfBirthRaw == this.dateOfBirthRaw &&
-          other.generalPracticionerCcaVisitRaw ==
-              this.generalPracticionerCcaVisitRaw &&
-          other.generalPracticionerVisitDateRaw ==
-              this.generalPracticionerVisitDateRaw &&
-          other.gynecologyCcaVisitRaw == this.gynecologyCcaVisitRaw &&
-          other.gynecologyVisitDateRaw == this.gynecologyVisitDateRaw &&
-          other.dentistCcaVisitRaw == this.dentistCcaVisitRaw &&
-          other.dentistVisitDateRaw == this.dentistVisitDateRaw &&
           other.nickname == this.nickname &&
           other.email == this.email &&
-          other.achievementCollectionRaw == this.achievementCollectionRaw);
+          other.profileImageUrl == this.profileImageUrl &&
+          other.defaultDeviceCalendarId == this.defaultDeviceCalendarId &&
+          other.latestMapUpdateCheck == this.latestMapUpdateCheck &&
+          other.latestMapUpdate == this.latestMapUpdate);
 }
 
 class UsersCompanion extends UpdateCompanion<User> {
   final Value<String> id;
-  final Value<int?> sexRaw;
+  final Value<Sex?> sex;
   final Value<String?> dateOfBirthRaw;
-  final Value<int?> generalPracticionerCcaVisitRaw;
-  final Value<String?> generalPracticionerVisitDateRaw;
-  final Value<int?> gynecologyCcaVisitRaw;
-  final Value<String?> gynecologyVisitDateRaw;
-  final Value<int?> dentistCcaVisitRaw;
-  final Value<String?> dentistVisitDateRaw;
   final Value<String?> nickname;
   final Value<String?> email;
-  final Value<String?> achievementCollectionRaw;
+  final Value<String?> profileImageUrl;
+  final Value<String?> defaultDeviceCalendarId;
+  final Value<DateTime?> latestMapUpdateCheck;
+  final Value<DateTime?> latestMapUpdate;
   const UsersCompanion({
     this.id = const Value.absent(),
-    this.sexRaw = const Value.absent(),
+    this.sex = const Value.absent(),
     this.dateOfBirthRaw = const Value.absent(),
-    this.generalPracticionerCcaVisitRaw = const Value.absent(),
-    this.generalPracticionerVisitDateRaw = const Value.absent(),
-    this.gynecologyCcaVisitRaw = const Value.absent(),
-    this.gynecologyVisitDateRaw = const Value.absent(),
-    this.dentistCcaVisitRaw = const Value.absent(),
-    this.dentistVisitDateRaw = const Value.absent(),
     this.nickname = const Value.absent(),
     this.email = const Value.absent(),
-    this.achievementCollectionRaw = const Value.absent(),
+    this.profileImageUrl = const Value.absent(),
+    this.defaultDeviceCalendarId = const Value.absent(),
+    this.latestMapUpdateCheck = const Value.absent(),
+    this.latestMapUpdate = const Value.absent(),
   });
   UsersCompanion.insert({
     required String id,
-    this.sexRaw = const Value.absent(),
+    this.sex = const Value.absent(),
     this.dateOfBirthRaw = const Value.absent(),
-    this.generalPracticionerCcaVisitRaw = const Value.absent(),
-    this.generalPracticionerVisitDateRaw = const Value.absent(),
-    this.gynecologyCcaVisitRaw = const Value.absent(),
-    this.gynecologyVisitDateRaw = const Value.absent(),
-    this.dentistCcaVisitRaw = const Value.absent(),
-    this.dentistVisitDateRaw = const Value.absent(),
     this.nickname = const Value.absent(),
     this.email = const Value.absent(),
-    this.achievementCollectionRaw = const Value.absent(),
+    this.profileImageUrl = const Value.absent(),
+    this.defaultDeviceCalendarId = const Value.absent(),
+    this.latestMapUpdateCheck = const Value.absent(),
+    this.latestMapUpdate = const Value.absent(),
   }) : id = Value(id);
   static Insertable<User> custom({
     Expression<String>? id,
-    Expression<int?>? sexRaw,
+    Expression<Sex?>? sex,
     Expression<String?>? dateOfBirthRaw,
-    Expression<int?>? generalPracticionerCcaVisitRaw,
-    Expression<String?>? generalPracticionerVisitDateRaw,
-    Expression<int?>? gynecologyCcaVisitRaw,
-    Expression<String?>? gynecologyVisitDateRaw,
-    Expression<int?>? dentistCcaVisitRaw,
-    Expression<String?>? dentistVisitDateRaw,
     Expression<String?>? nickname,
     Expression<String?>? email,
-    Expression<String?>? achievementCollectionRaw,
+    Expression<String?>? profileImageUrl,
+    Expression<String?>? defaultDeviceCalendarId,
+    Expression<DateTime?>? latestMapUpdateCheck,
+    Expression<DateTime?>? latestMapUpdate,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
-      if (sexRaw != null) 'sex_raw': sexRaw,
+      if (sex != null) 'sex': sex,
       if (dateOfBirthRaw != null) 'date_of_birth_raw': dateOfBirthRaw,
-      if (generalPracticionerCcaVisitRaw != null)
-        'general_practicioner_cca_visit_raw': generalPracticionerCcaVisitRaw,
-      if (generalPracticionerVisitDateRaw != null)
-        'general_practicioner_visit_date_raw': generalPracticionerVisitDateRaw,
-      if (gynecologyCcaVisitRaw != null)
-        'gynecology_cca_visit_raw': gynecologyCcaVisitRaw,
-      if (gynecologyVisitDateRaw != null)
-        'gynecology_visit_date_raw': gynecologyVisitDateRaw,
-      if (dentistCcaVisitRaw != null)
-        'dentist_cca_visit_raw': dentistCcaVisitRaw,
-      if (dentistVisitDateRaw != null)
-        'dentist_visit_date_raw': dentistVisitDateRaw,
       if (nickname != null) 'nickname': nickname,
       if (email != null) 'email': email,
-      if (achievementCollectionRaw != null)
-        'achievement_collection_raw': achievementCollectionRaw,
+      if (profileImageUrl != null) 'profile_image_url': profileImageUrl,
+      if (defaultDeviceCalendarId != null)
+        'default_device_calendar_id': defaultDeviceCalendarId,
+      if (latestMapUpdateCheck != null)
+        'latest_map_update_check': latestMapUpdateCheck,
+      if (latestMapUpdate != null) 'latest_map_update': latestMapUpdate,
     });
   }
 
   UsersCompanion copyWith(
       {Value<String>? id,
-      Value<int?>? sexRaw,
+      Value<Sex?>? sex,
       Value<String?>? dateOfBirthRaw,
-      Value<int?>? generalPracticionerCcaVisitRaw,
-      Value<String?>? generalPracticionerVisitDateRaw,
-      Value<int?>? gynecologyCcaVisitRaw,
-      Value<String?>? gynecologyVisitDateRaw,
-      Value<int?>? dentistCcaVisitRaw,
-      Value<String?>? dentistVisitDateRaw,
       Value<String?>? nickname,
       Value<String?>? email,
-      Value<String?>? achievementCollectionRaw}) {
+      Value<String?>? profileImageUrl,
+      Value<String?>? defaultDeviceCalendarId,
+      Value<DateTime?>? latestMapUpdateCheck,
+      Value<DateTime?>? latestMapUpdate}) {
     return UsersCompanion(
       id: id ?? this.id,
-      sexRaw: sexRaw ?? this.sexRaw,
+      sex: sex ?? this.sex,
       dateOfBirthRaw: dateOfBirthRaw ?? this.dateOfBirthRaw,
-      generalPracticionerCcaVisitRaw:
-          generalPracticionerCcaVisitRaw ?? this.generalPracticionerCcaVisitRaw,
-      generalPracticionerVisitDateRaw: generalPracticionerVisitDateRaw ??
-          this.generalPracticionerVisitDateRaw,
-      gynecologyCcaVisitRaw:
-          gynecologyCcaVisitRaw ?? this.gynecologyCcaVisitRaw,
-      gynecologyVisitDateRaw:
-          gynecologyVisitDateRaw ?? this.gynecologyVisitDateRaw,
-      dentistCcaVisitRaw: dentistCcaVisitRaw ?? this.dentistCcaVisitRaw,
-      dentistVisitDateRaw: dentistVisitDateRaw ?? this.dentistVisitDateRaw,
       nickname: nickname ?? this.nickname,
       email: email ?? this.email,
-      achievementCollectionRaw:
-          achievementCollectionRaw ?? this.achievementCollectionRaw,
+      profileImageUrl: profileImageUrl ?? this.profileImageUrl,
+      defaultDeviceCalendarId:
+          defaultDeviceCalendarId ?? this.defaultDeviceCalendarId,
+      latestMapUpdateCheck: latestMapUpdateCheck ?? this.latestMapUpdateCheck,
+      latestMapUpdate: latestMapUpdate ?? this.latestMapUpdate,
     );
   }
 
@@ -410,34 +299,12 @@ class UsersCompanion extends UpdateCompanion<User> {
     if (id.present) {
       map['id'] = Variable<String>(id.value);
     }
-    if (sexRaw.present) {
-      map['sex_raw'] = Variable<int?>(sexRaw.value);
+    if (sex.present) {
+      final converter = $UsersTable.$converter0;
+      map['sex'] = Variable<String?>(converter.mapToSql(sex.value));
     }
     if (dateOfBirthRaw.present) {
       map['date_of_birth_raw'] = Variable<String?>(dateOfBirthRaw.value);
-    }
-    if (generalPracticionerCcaVisitRaw.present) {
-      map['general_practicioner_cca_visit_raw'] =
-          Variable<int?>(generalPracticionerCcaVisitRaw.value);
-    }
-    if (generalPracticionerVisitDateRaw.present) {
-      map['general_practicioner_visit_date_raw'] =
-          Variable<String?>(generalPracticionerVisitDateRaw.value);
-    }
-    if (gynecologyCcaVisitRaw.present) {
-      map['gynecology_cca_visit_raw'] =
-          Variable<int?>(gynecologyCcaVisitRaw.value);
-    }
-    if (gynecologyVisitDateRaw.present) {
-      map['gynecology_visit_date_raw'] =
-          Variable<String?>(gynecologyVisitDateRaw.value);
-    }
-    if (dentistCcaVisitRaw.present) {
-      map['dentist_cca_visit_raw'] = Variable<int?>(dentistCcaVisitRaw.value);
-    }
-    if (dentistVisitDateRaw.present) {
-      map['dentist_visit_date_raw'] =
-          Variable<String?>(dentistVisitDateRaw.value);
     }
     if (nickname.present) {
       map['nickname'] = Variable<String?>(nickname.value);
@@ -445,9 +312,19 @@ class UsersCompanion extends UpdateCompanion<User> {
     if (email.present) {
       map['email'] = Variable<String?>(email.value);
     }
-    if (achievementCollectionRaw.present) {
-      map['achievement_collection_raw'] =
-          Variable<String?>(achievementCollectionRaw.value);
+    if (profileImageUrl.present) {
+      map['profile_image_url'] = Variable<String?>(profileImageUrl.value);
+    }
+    if (defaultDeviceCalendarId.present) {
+      map['default_device_calendar_id'] =
+          Variable<String?>(defaultDeviceCalendarId.value);
+    }
+    if (latestMapUpdateCheck.present) {
+      map['latest_map_update_check'] =
+          Variable<DateTime?>(latestMapUpdateCheck.value);
+    }
+    if (latestMapUpdate.present) {
+      map['latest_map_update'] = Variable<DateTime?>(latestMapUpdate.value);
     }
     return map;
   }
@@ -456,100 +333,86 @@ class UsersCompanion extends UpdateCompanion<User> {
   String toString() {
     return (StringBuffer('UsersCompanion(')
           ..write('id: $id, ')
-          ..write('sexRaw: $sexRaw, ')
+          ..write('sex: $sex, ')
           ..write('dateOfBirthRaw: $dateOfBirthRaw, ')
-          ..write(
-              'generalPracticionerCcaVisitRaw: $generalPracticionerCcaVisitRaw, ')
-          ..write(
-              'generalPracticionerVisitDateRaw: $generalPracticionerVisitDateRaw, ')
-          ..write('gynecologyCcaVisitRaw: $gynecologyCcaVisitRaw, ')
-          ..write('gynecologyVisitDateRaw: $gynecologyVisitDateRaw, ')
-          ..write('dentistCcaVisitRaw: $dentistCcaVisitRaw, ')
-          ..write('dentistVisitDateRaw: $dentistVisitDateRaw, ')
           ..write('nickname: $nickname, ')
           ..write('email: $email, ')
-          ..write('achievementCollectionRaw: $achievementCollectionRaw')
+          ..write('profileImageUrl: $profileImageUrl, ')
+          ..write('defaultDeviceCalendarId: $defaultDeviceCalendarId, ')
+          ..write('latestMapUpdateCheck: $latestMapUpdateCheck, ')
+          ..write('latestMapUpdate: $latestMapUpdate')
           ..write(')'))
         .toString();
   }
 }
 
 class $UsersTable extends Users with TableInfo<$UsersTable, User> {
-  final GeneratedDatabase _db;
+  @override
+  final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $UsersTable(this._db, [this._alias]);
+  $UsersTable(this.attachedDatabase, [this._alias]);
   final VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
   late final GeneratedColumn<String?> id = GeneratedColumn<String?>(
       'id', aliasedName, false,
-      typeName: 'TEXT', requiredDuringInsert: true);
-  final VerificationMeta _sexRawMeta = const VerificationMeta('sexRaw');
-  late final GeneratedColumn<int?> sexRaw = GeneratedColumn<int?>(
-      'sex_raw', aliasedName, true,
-      typeName: 'INTEGER', requiredDuringInsert: false);
+      type: const StringType(), requiredDuringInsert: true);
+  final VerificationMeta _sexMeta = const VerificationMeta('sex');
+  @override
+  late final GeneratedColumnWithTypeConverter<Sex, String?> sex =
+      GeneratedColumn<String?>('sex', aliasedName, true,
+              type: const StringType(), requiredDuringInsert: false)
+          .withConverter<Sex>($UsersTable.$converter0);
   final VerificationMeta _dateOfBirthRawMeta =
       const VerificationMeta('dateOfBirthRaw');
+  @override
   late final GeneratedColumn<String?> dateOfBirthRaw = GeneratedColumn<String?>(
       'date_of_birth_raw', aliasedName, true,
-      typeName: 'TEXT', requiredDuringInsert: false);
-  final VerificationMeta _generalPracticionerCcaVisitRawMeta =
-      const VerificationMeta('generalPracticionerCcaVisitRaw');
-  late final GeneratedColumn<int?> generalPracticionerCcaVisitRaw =
-      GeneratedColumn<int?>(
-          'general_practicioner_cca_visit_raw', aliasedName, true,
-          typeName: 'INTEGER', requiredDuringInsert: false);
-  final VerificationMeta _generalPracticionerVisitDateRawMeta =
-      const VerificationMeta('generalPracticionerVisitDateRaw');
-  late final GeneratedColumn<String?> generalPracticionerVisitDateRaw =
-      GeneratedColumn<String?>(
-          'general_practicioner_visit_date_raw', aliasedName, true,
-          typeName: 'TEXT', requiredDuringInsert: false);
-  final VerificationMeta _gynecologyCcaVisitRawMeta =
-      const VerificationMeta('gynecologyCcaVisitRaw');
-  late final GeneratedColumn<int?> gynecologyCcaVisitRaw =
-      GeneratedColumn<int?>('gynecology_cca_visit_raw', aliasedName, true,
-          typeName: 'INTEGER', requiredDuringInsert: false);
-  final VerificationMeta _gynecologyVisitDateRawMeta =
-      const VerificationMeta('gynecologyVisitDateRaw');
-  late final GeneratedColumn<String?> gynecologyVisitDateRaw =
-      GeneratedColumn<String?>('gynecology_visit_date_raw', aliasedName, true,
-          typeName: 'TEXT', requiredDuringInsert: false);
-  final VerificationMeta _dentistCcaVisitRawMeta =
-      const VerificationMeta('dentistCcaVisitRaw');
-  late final GeneratedColumn<int?> dentistCcaVisitRaw = GeneratedColumn<int?>(
-      'dentist_cca_visit_raw', aliasedName, true,
-      typeName: 'INTEGER', requiredDuringInsert: false);
-  final VerificationMeta _dentistVisitDateRawMeta =
-      const VerificationMeta('dentistVisitDateRaw');
-  late final GeneratedColumn<String?> dentistVisitDateRaw =
-      GeneratedColumn<String?>('dentist_visit_date_raw', aliasedName, true,
-          typeName: 'TEXT', requiredDuringInsert: false);
+      type: const StringType(), requiredDuringInsert: false);
   final VerificationMeta _nicknameMeta = const VerificationMeta('nickname');
+  @override
   late final GeneratedColumn<String?> nickname = GeneratedColumn<String?>(
       'nickname', aliasedName, true,
-      typeName: 'TEXT', requiredDuringInsert: false);
+      type: const StringType(), requiredDuringInsert: false);
   final VerificationMeta _emailMeta = const VerificationMeta('email');
+  @override
   late final GeneratedColumn<String?> email = GeneratedColumn<String?>(
       'email', aliasedName, true,
-      typeName: 'TEXT', requiredDuringInsert: false);
-  final VerificationMeta _achievementCollectionRawMeta =
-      const VerificationMeta('achievementCollectionRaw');
-  late final GeneratedColumn<String?> achievementCollectionRaw =
-      GeneratedColumn<String?>('achievement_collection_raw', aliasedName, true,
-          typeName: 'TEXT', requiredDuringInsert: false);
+      type: const StringType(), requiredDuringInsert: false);
+  final VerificationMeta _profileImageUrlMeta =
+      const VerificationMeta('profileImageUrl');
+  @override
+  late final GeneratedColumn<String?> profileImageUrl =
+      GeneratedColumn<String?>('profile_image_url', aliasedName, true,
+          type: const StringType(), requiredDuringInsert: false);
+  final VerificationMeta _defaultDeviceCalendarIdMeta =
+      const VerificationMeta('defaultDeviceCalendarId');
+  @override
+  late final GeneratedColumn<String?> defaultDeviceCalendarId =
+      GeneratedColumn<String?>('default_device_calendar_id', aliasedName, true,
+          type: const StringType(), requiredDuringInsert: false);
+  final VerificationMeta _latestMapUpdateCheckMeta =
+      const VerificationMeta('latestMapUpdateCheck');
+  @override
+  late final GeneratedColumn<DateTime?> latestMapUpdateCheck =
+      GeneratedColumn<DateTime?>('latest_map_update_check', aliasedName, true,
+          type: const IntType(), requiredDuringInsert: false);
+  final VerificationMeta _latestMapUpdateMeta =
+      const VerificationMeta('latestMapUpdate');
+  @override
+  late final GeneratedColumn<DateTime?> latestMapUpdate =
+      GeneratedColumn<DateTime?>('latest_map_update', aliasedName, true,
+          type: const IntType(), requiredDuringInsert: false);
   @override
   List<GeneratedColumn> get $columns => [
         id,
-        sexRaw,
+        sex,
         dateOfBirthRaw,
-        generalPracticionerCcaVisitRaw,
-        generalPracticionerVisitDateRaw,
-        gynecologyCcaVisitRaw,
-        gynecologyVisitDateRaw,
-        dentistCcaVisitRaw,
-        dentistVisitDateRaw,
         nickname,
         email,
-        achievementCollectionRaw
+        profileImageUrl,
+        defaultDeviceCalendarId,
+        latestMapUpdateCheck,
+        latestMapUpdate
       ];
   @override
   String get aliasedName => _alias ?? 'users';
@@ -565,53 +428,12 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
     } else if (isInserting) {
       context.missing(_idMeta);
     }
-    if (data.containsKey('sex_raw')) {
-      context.handle(_sexRawMeta,
-          sexRaw.isAcceptableOrUnknown(data['sex_raw']!, _sexRawMeta));
-    }
+    context.handle(_sexMeta, const VerificationResult.success());
     if (data.containsKey('date_of_birth_raw')) {
       context.handle(
           _dateOfBirthRawMeta,
           dateOfBirthRaw.isAcceptableOrUnknown(
               data['date_of_birth_raw']!, _dateOfBirthRawMeta));
-    }
-    if (data.containsKey('general_practicioner_cca_visit_raw')) {
-      context.handle(
-          _generalPracticionerCcaVisitRawMeta,
-          generalPracticionerCcaVisitRaw.isAcceptableOrUnknown(
-              data['general_practicioner_cca_visit_raw']!,
-              _generalPracticionerCcaVisitRawMeta));
-    }
-    if (data.containsKey('general_practicioner_visit_date_raw')) {
-      context.handle(
-          _generalPracticionerVisitDateRawMeta,
-          generalPracticionerVisitDateRaw.isAcceptableOrUnknown(
-              data['general_practicioner_visit_date_raw']!,
-              _generalPracticionerVisitDateRawMeta));
-    }
-    if (data.containsKey('gynecology_cca_visit_raw')) {
-      context.handle(
-          _gynecologyCcaVisitRawMeta,
-          gynecologyCcaVisitRaw.isAcceptableOrUnknown(
-              data['gynecology_cca_visit_raw']!, _gynecologyCcaVisitRawMeta));
-    }
-    if (data.containsKey('gynecology_visit_date_raw')) {
-      context.handle(
-          _gynecologyVisitDateRawMeta,
-          gynecologyVisitDateRaw.isAcceptableOrUnknown(
-              data['gynecology_visit_date_raw']!, _gynecologyVisitDateRawMeta));
-    }
-    if (data.containsKey('dentist_cca_visit_raw')) {
-      context.handle(
-          _dentistCcaVisitRawMeta,
-          dentistCcaVisitRaw.isAcceptableOrUnknown(
-              data['dentist_cca_visit_raw']!, _dentistCcaVisitRawMeta));
-    }
-    if (data.containsKey('dentist_visit_date_raw')) {
-      context.handle(
-          _dentistVisitDateRawMeta,
-          dentistVisitDateRaw.isAcceptableOrUnknown(
-              data['dentist_visit_date_raw']!, _dentistVisitDateRawMeta));
     }
     if (data.containsKey('nickname')) {
       context.handle(_nicknameMeta,
@@ -621,12 +443,30 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
       context.handle(
           _emailMeta, email.isAcceptableOrUnknown(data['email']!, _emailMeta));
     }
-    if (data.containsKey('achievement_collection_raw')) {
+    if (data.containsKey('profile_image_url')) {
       context.handle(
-          _achievementCollectionRawMeta,
-          achievementCollectionRaw.isAcceptableOrUnknown(
-              data['achievement_collection_raw']!,
-              _achievementCollectionRawMeta));
+          _profileImageUrlMeta,
+          profileImageUrl.isAcceptableOrUnknown(
+              data['profile_image_url']!, _profileImageUrlMeta));
+    }
+    if (data.containsKey('default_device_calendar_id')) {
+      context.handle(
+          _defaultDeviceCalendarIdMeta,
+          defaultDeviceCalendarId.isAcceptableOrUnknown(
+              data['default_device_calendar_id']!,
+              _defaultDeviceCalendarIdMeta));
+    }
+    if (data.containsKey('latest_map_update_check')) {
+      context.handle(
+          _latestMapUpdateCheckMeta,
+          latestMapUpdateCheck.isAcceptableOrUnknown(
+              data['latest_map_update_check']!, _latestMapUpdateCheckMeta));
+    }
+    if (data.containsKey('latest_map_update')) {
+      context.handle(
+          _latestMapUpdateMeta,
+          latestMapUpdate.isAcceptableOrUnknown(
+              data['latest_map_update']!, _latestMapUpdateMeta));
     }
     return context;
   }
@@ -635,22 +475,565 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
   User map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return User.fromData(data, _db,
+    return User.fromData(data, attachedDatabase,
         prefix: tablePrefix != null ? '$tablePrefix.' : null);
   }
 
   @override
   $UsersTable createAlias(String alias) {
-    return $UsersTable(_db, alias);
+    return $UsersTable(attachedDatabase, alias);
   }
+
+  static TypeConverter<Sex, String> $converter0 = const SexDbConverter();
+}
+
+class CalendarEvent extends DataClass implements Insertable<CalendarEvent> {
+  final ExaminationTypeEnum type;
+  final String deviceCalendarId;
+  final String calendarEventId;
+  final DateTime date;
+  CalendarEvent(
+      {required this.type,
+      required this.deviceCalendarId,
+      required this.calendarEventId,
+      required this.date});
+  factory CalendarEvent.fromData(
+      Map<String, dynamic> data, GeneratedDatabase db,
+      {String? prefix}) {
+    final effectivePrefix = prefix ?? '';
+    return CalendarEvent(
+      type: $CalendarEventsTable.$converter0.mapToDart(const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}type']))!,
+      deviceCalendarId: const StringType().mapFromDatabaseResponse(
+          data['${effectivePrefix}device_calendar_id'])!,
+      calendarEventId: const StringType().mapFromDatabaseResponse(
+          data['${effectivePrefix}calendar_event_id'])!,
+      date: const DateTimeType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}date'])!,
+    );
+  }
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    {
+      final converter = $CalendarEventsTable.$converter0;
+      map['type'] = Variable<String>(converter.mapToSql(type)!);
+    }
+    map['device_calendar_id'] = Variable<String>(deviceCalendarId);
+    map['calendar_event_id'] = Variable<String>(calendarEventId);
+    map['date'] = Variable<DateTime>(date);
+    return map;
+  }
+
+  CalendarEventsCompanion toCompanion(bool nullToAbsent) {
+    return CalendarEventsCompanion(
+      type: Value(type),
+      deviceCalendarId: Value(deviceCalendarId),
+      calendarEventId: Value(calendarEventId),
+      date: Value(date),
+    );
+  }
+
+  factory CalendarEvent.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= moorRuntimeOptions.defaultSerializer;
+    return CalendarEvent(
+      type: serializer.fromJson<ExaminationTypeEnum>(json['type']),
+      deviceCalendarId: serializer.fromJson<String>(json['deviceCalendarId']),
+      calendarEventId: serializer.fromJson<String>(json['calendarEventId']),
+      date: serializer.fromJson<DateTime>(json['date']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= moorRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'type': serializer.toJson<ExaminationTypeEnum>(type),
+      'deviceCalendarId': serializer.toJson<String>(deviceCalendarId),
+      'calendarEventId': serializer.toJson<String>(calendarEventId),
+      'date': serializer.toJson<DateTime>(date),
+    };
+  }
+
+  CalendarEvent copyWith(
+          {ExaminationTypeEnum? type,
+          String? deviceCalendarId,
+          String? calendarEventId,
+          DateTime? date}) =>
+      CalendarEvent(
+        type: type ?? this.type,
+        deviceCalendarId: deviceCalendarId ?? this.deviceCalendarId,
+        calendarEventId: calendarEventId ?? this.calendarEventId,
+        date: date ?? this.date,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('CalendarEvent(')
+          ..write('type: $type, ')
+          ..write('deviceCalendarId: $deviceCalendarId, ')
+          ..write('calendarEventId: $calendarEventId, ')
+          ..write('date: $date')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(type, deviceCalendarId, calendarEventId, date);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is CalendarEvent &&
+          other.type == this.type &&
+          other.deviceCalendarId == this.deviceCalendarId &&
+          other.calendarEventId == this.calendarEventId &&
+          other.date == this.date);
+}
+
+class CalendarEventsCompanion extends UpdateCompanion<CalendarEvent> {
+  final Value<ExaminationTypeEnum> type;
+  final Value<String> deviceCalendarId;
+  final Value<String> calendarEventId;
+  final Value<DateTime> date;
+  const CalendarEventsCompanion({
+    this.type = const Value.absent(),
+    this.deviceCalendarId = const Value.absent(),
+    this.calendarEventId = const Value.absent(),
+    this.date = const Value.absent(),
+  });
+  CalendarEventsCompanion.insert({
+    required ExaminationTypeEnum type,
+    required String deviceCalendarId,
+    required String calendarEventId,
+    required DateTime date,
+  })  : type = Value(type),
+        deviceCalendarId = Value(deviceCalendarId),
+        calendarEventId = Value(calendarEventId),
+        date = Value(date);
+  static Insertable<CalendarEvent> custom({
+    Expression<ExaminationTypeEnum>? type,
+    Expression<String>? deviceCalendarId,
+    Expression<String>? calendarEventId,
+    Expression<DateTime>? date,
+  }) {
+    return RawValuesInsertable({
+      if (type != null) 'type': type,
+      if (deviceCalendarId != null) 'device_calendar_id': deviceCalendarId,
+      if (calendarEventId != null) 'calendar_event_id': calendarEventId,
+      if (date != null) 'date': date,
+    });
+  }
+
+  CalendarEventsCompanion copyWith(
+      {Value<ExaminationTypeEnum>? type,
+      Value<String>? deviceCalendarId,
+      Value<String>? calendarEventId,
+      Value<DateTime>? date}) {
+    return CalendarEventsCompanion(
+      type: type ?? this.type,
+      deviceCalendarId: deviceCalendarId ?? this.deviceCalendarId,
+      calendarEventId: calendarEventId ?? this.calendarEventId,
+      date: date ?? this.date,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (type.present) {
+      final converter = $CalendarEventsTable.$converter0;
+      map['type'] = Variable<String>(converter.mapToSql(type.value)!);
+    }
+    if (deviceCalendarId.present) {
+      map['device_calendar_id'] = Variable<String>(deviceCalendarId.value);
+    }
+    if (calendarEventId.present) {
+      map['calendar_event_id'] = Variable<String>(calendarEventId.value);
+    }
+    if (date.present) {
+      map['date'] = Variable<DateTime>(date.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('CalendarEventsCompanion(')
+          ..write('type: $type, ')
+          ..write('deviceCalendarId: $deviceCalendarId, ')
+          ..write('calendarEventId: $calendarEventId, ')
+          ..write('date: $date')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $CalendarEventsTable extends CalendarEvents
+    with TableInfo<$CalendarEventsTable, CalendarEvent> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $CalendarEventsTable(this.attachedDatabase, [this._alias]);
+  final VerificationMeta _typeMeta = const VerificationMeta('type');
+  @override
+  late final GeneratedColumnWithTypeConverter<ExaminationTypeEnum, String?>
+      type = GeneratedColumn<String?>('type', aliasedName, false,
+              type: const StringType(), requiredDuringInsert: true)
+          .withConverter<ExaminationTypeEnum>($CalendarEventsTable.$converter0);
+  final VerificationMeta _deviceCalendarIdMeta =
+      const VerificationMeta('deviceCalendarId');
+  @override
+  late final GeneratedColumn<String?> deviceCalendarId =
+      GeneratedColumn<String?>('device_calendar_id', aliasedName, false,
+          type: const StringType(), requiredDuringInsert: true);
+  final VerificationMeta _calendarEventIdMeta =
+      const VerificationMeta('calendarEventId');
+  @override
+  late final GeneratedColumn<String?> calendarEventId =
+      GeneratedColumn<String?>('calendar_event_id', aliasedName, false,
+          type: const StringType(), requiredDuringInsert: true);
+  final VerificationMeta _dateMeta = const VerificationMeta('date');
+  @override
+  late final GeneratedColumn<DateTime?> date = GeneratedColumn<DateTime?>(
+      'date', aliasedName, false,
+      type: const IntType(), requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns =>
+      [type, deviceCalendarId, calendarEventId, date];
+  @override
+  String get aliasedName => _alias ?? 'calendar_events';
+  @override
+  String get actualTableName => 'calendar_events';
+  @override
+  VerificationContext validateIntegrity(Insertable<CalendarEvent> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    context.handle(_typeMeta, const VerificationResult.success());
+    if (data.containsKey('device_calendar_id')) {
+      context.handle(
+          _deviceCalendarIdMeta,
+          deviceCalendarId.isAcceptableOrUnknown(
+              data['device_calendar_id']!, _deviceCalendarIdMeta));
+    } else if (isInserting) {
+      context.missing(_deviceCalendarIdMeta);
+    }
+    if (data.containsKey('calendar_event_id')) {
+      context.handle(
+          _calendarEventIdMeta,
+          calendarEventId.isAcceptableOrUnknown(
+              data['calendar_event_id']!, _calendarEventIdMeta));
+    } else if (isInserting) {
+      context.missing(_calendarEventIdMeta);
+    }
+    if (data.containsKey('date')) {
+      context.handle(
+          _dateMeta, date.isAcceptableOrUnknown(data['date']!, _dateMeta));
+    } else if (isInserting) {
+      context.missing(_dateMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {type};
+  @override
+  CalendarEvent map(Map<String, dynamic> data, {String? tablePrefix}) {
+    return CalendarEvent.fromData(data, attachedDatabase,
+        prefix: tablePrefix != null ? '$tablePrefix.' : null);
+  }
+
+  @override
+  $CalendarEventsTable createAlias(String alias) {
+    return $CalendarEventsTable(attachedDatabase, alias);
+  }
+
+  static TypeConverter<ExaminationTypeEnum, String> $converter0 =
+      const ExaminationTypeEnumDbConverter();
+}
+
+class ExaminationQuestionnaire extends DataClass
+    implements Insertable<ExaminationQuestionnaire> {
+  final ExaminationTypeEnum type;
+  final ExaminationStatus status;
+  final DateTime? date;
+  final bool? firstExam;
+  ExaminationQuestionnaire(
+      {required this.type, required this.status, this.date, this.firstExam});
+  factory ExaminationQuestionnaire.fromData(
+      Map<String, dynamic> data, GeneratedDatabase db,
+      {String? prefix}) {
+    final effectivePrefix = prefix ?? '';
+    return ExaminationQuestionnaire(
+      type: $ExaminationQuestionnairesTable.$converter0.mapToDart(
+          const StringType()
+              .mapFromDatabaseResponse(data['${effectivePrefix}type']))!,
+      status: $ExaminationQuestionnairesTable.$converter1.mapToDart(
+          const StringType()
+              .mapFromDatabaseResponse(data['${effectivePrefix}status']))!,
+      date: const DateTimeType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}date']),
+      firstExam: const BoolType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}first_exam']),
+    );
+  }
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    {
+      final converter = $ExaminationQuestionnairesTable.$converter0;
+      map['type'] = Variable<String>(converter.mapToSql(type)!);
+    }
+    {
+      final converter = $ExaminationQuestionnairesTable.$converter1;
+      map['status'] = Variable<String>(converter.mapToSql(status)!);
+    }
+    if (!nullToAbsent || date != null) {
+      map['date'] = Variable<DateTime?>(date);
+    }
+    if (!nullToAbsent || firstExam != null) {
+      map['first_exam'] = Variable<bool?>(firstExam);
+    }
+    return map;
+  }
+
+  ExaminationQuestionnairesCompanion toCompanion(bool nullToAbsent) {
+    return ExaminationQuestionnairesCompanion(
+      type: Value(type),
+      status: Value(status),
+      date: date == null && nullToAbsent ? const Value.absent() : Value(date),
+      firstExam: firstExam == null && nullToAbsent
+          ? const Value.absent()
+          : Value(firstExam),
+    );
+  }
+
+  factory ExaminationQuestionnaire.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= moorRuntimeOptions.defaultSerializer;
+    return ExaminationQuestionnaire(
+      type: serializer.fromJson<ExaminationTypeEnum>(json['type']),
+      status: serializer.fromJson<ExaminationStatus>(json['status']),
+      date: serializer.fromJson<DateTime?>(json['date']),
+      firstExam: serializer.fromJson<bool?>(json['firstExam']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= moorRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'type': serializer.toJson<ExaminationTypeEnum>(type),
+      'status': serializer.toJson<ExaminationStatus>(status),
+      'date': serializer.toJson<DateTime?>(date),
+      'firstExam': serializer.toJson<bool?>(firstExam),
+    };
+  }
+
+  ExaminationQuestionnaire copyWith(
+          {ExaminationTypeEnum? type,
+          ExaminationStatus? status,
+          DateTime? date,
+          bool? firstExam}) =>
+      ExaminationQuestionnaire(
+        type: type ?? this.type,
+        status: status ?? this.status,
+        date: date ?? this.date,
+        firstExam: firstExam ?? this.firstExam,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('ExaminationQuestionnaire(')
+          ..write('type: $type, ')
+          ..write('status: $status, ')
+          ..write('date: $date, ')
+          ..write('firstExam: $firstExam')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(type, status, date, firstExam);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is ExaminationQuestionnaire &&
+          other.type == this.type &&
+          other.status == this.status &&
+          other.date == this.date &&
+          other.firstExam == this.firstExam);
+}
+
+class ExaminationQuestionnairesCompanion
+    extends UpdateCompanion<ExaminationQuestionnaire> {
+  final Value<ExaminationTypeEnum> type;
+  final Value<ExaminationStatus> status;
+  final Value<DateTime?> date;
+  final Value<bool?> firstExam;
+  const ExaminationQuestionnairesCompanion({
+    this.type = const Value.absent(),
+    this.status = const Value.absent(),
+    this.date = const Value.absent(),
+    this.firstExam = const Value.absent(),
+  });
+  ExaminationQuestionnairesCompanion.insert({
+    required ExaminationTypeEnum type,
+    this.status = const Value.absent(),
+    this.date = const Value.absent(),
+    this.firstExam = const Value.absent(),
+  }) : type = Value(type);
+  static Insertable<ExaminationQuestionnaire> custom({
+    Expression<ExaminationTypeEnum>? type,
+    Expression<ExaminationStatus>? status,
+    Expression<DateTime?>? date,
+    Expression<bool?>? firstExam,
+  }) {
+    return RawValuesInsertable({
+      if (type != null) 'type': type,
+      if (status != null) 'status': status,
+      if (date != null) 'date': date,
+      if (firstExam != null) 'first_exam': firstExam,
+    });
+  }
+
+  ExaminationQuestionnairesCompanion copyWith(
+      {Value<ExaminationTypeEnum>? type,
+      Value<ExaminationStatus>? status,
+      Value<DateTime?>? date,
+      Value<bool?>? firstExam}) {
+    return ExaminationQuestionnairesCompanion(
+      type: type ?? this.type,
+      status: status ?? this.status,
+      date: date ?? this.date,
+      firstExam: firstExam ?? this.firstExam,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (type.present) {
+      final converter = $ExaminationQuestionnairesTable.$converter0;
+      map['type'] = Variable<String>(converter.mapToSql(type.value)!);
+    }
+    if (status.present) {
+      final converter = $ExaminationQuestionnairesTable.$converter1;
+      map['status'] = Variable<String>(converter.mapToSql(status.value)!);
+    }
+    if (date.present) {
+      map['date'] = Variable<DateTime?>(date.value);
+    }
+    if (firstExam.present) {
+      map['first_exam'] = Variable<bool?>(firstExam.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ExaminationQuestionnairesCompanion(')
+          ..write('type: $type, ')
+          ..write('status: $status, ')
+          ..write('date: $date, ')
+          ..write('firstExam: $firstExam')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $ExaminationQuestionnairesTable extends ExaminationQuestionnaires
+    with TableInfo<$ExaminationQuestionnairesTable, ExaminationQuestionnaire> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $ExaminationQuestionnairesTable(this.attachedDatabase, [this._alias]);
+  final VerificationMeta _typeMeta = const VerificationMeta('type');
+  @override
+  late final GeneratedColumnWithTypeConverter<ExaminationTypeEnum, String?>
+      type = GeneratedColumn<String?>('type', aliasedName, false,
+              type: const StringType(), requiredDuringInsert: true)
+          .withConverter<ExaminationTypeEnum>(
+              $ExaminationQuestionnairesTable.$converter0);
+  final VerificationMeta _statusMeta = const VerificationMeta('status');
+  @override
+  late final GeneratedColumnWithTypeConverter<ExaminationStatus, String?>
+      status = GeneratedColumn<String?>('status', aliasedName, false,
+              type: const StringType(),
+              requiredDuringInsert: false,
+              defaultValue: Constant(const ExaminationStatusDbConverter()
+                  .mapToSql(ExaminationStatus.NEW)!))
+          .withConverter<ExaminationStatus>(
+              $ExaminationQuestionnairesTable.$converter1);
+  final VerificationMeta _dateMeta = const VerificationMeta('date');
+  @override
+  late final GeneratedColumn<DateTime?> date = GeneratedColumn<DateTime?>(
+      'date', aliasedName, true,
+      type: const IntType(), requiredDuringInsert: false);
+  final VerificationMeta _firstExamMeta = const VerificationMeta('firstExam');
+  @override
+  late final GeneratedColumn<bool?> firstExam = GeneratedColumn<bool?>(
+      'first_exam', aliasedName, true,
+      type: const BoolType(),
+      requiredDuringInsert: false,
+      defaultConstraints: 'CHECK (first_exam IN (0, 1))');
+  @override
+  List<GeneratedColumn> get $columns => [type, status, date, firstExam];
+  @override
+  String get aliasedName => _alias ?? 'examination_questionnaires';
+  @override
+  String get actualTableName => 'examination_questionnaires';
+  @override
+  VerificationContext validateIntegrity(
+      Insertable<ExaminationQuestionnaire> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    context.handle(_typeMeta, const VerificationResult.success());
+    context.handle(_statusMeta, const VerificationResult.success());
+    if (data.containsKey('date')) {
+      context.handle(
+          _dateMeta, date.isAcceptableOrUnknown(data['date']!, _dateMeta));
+    }
+    if (data.containsKey('first_exam')) {
+      context.handle(_firstExamMeta,
+          firstExam.isAcceptableOrUnknown(data['first_exam']!, _firstExamMeta));
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {type};
+  @override
+  ExaminationQuestionnaire map(Map<String, dynamic> data,
+      {String? tablePrefix}) {
+    return ExaminationQuestionnaire.fromData(data, attachedDatabase,
+        prefix: tablePrefix != null ? '$tablePrefix.' : null);
+  }
+
+  @override
+  $ExaminationQuestionnairesTable createAlias(String alias) {
+    return $ExaminationQuestionnairesTable(attachedDatabase, alias);
+  }
+
+  static TypeConverter<ExaminationTypeEnum, String> $converter0 =
+      const ExaminationTypeEnumDbConverter();
+  static TypeConverter<ExaminationStatus, String> $converter1 =
+      const ExaminationStatusDbConverter();
 }
 
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
   late final $UsersTable users = $UsersTable(this);
+  late final $CalendarEventsTable calendarEvents = $CalendarEventsTable(this);
+  late final $ExaminationQuestionnairesTable examinationQuestionnaires =
+      $ExaminationQuestionnairesTable(this);
   late final UsersDao usersDao = UsersDao(this as AppDatabase);
+  late final CalendarEventsDao calendarEventsDao =
+      CalendarEventsDao(this as AppDatabase);
+  late final ExaminationQuestionnairesDao examinationQuestionnairesDao =
+      ExaminationQuestionnairesDao(this as AppDatabase);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [users];
+  List<DatabaseSchemaEntity> get allSchemaEntities =>
+      [users, calendarEvents, examinationQuestionnaires];
 }
