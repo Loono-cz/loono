@@ -34,6 +34,7 @@ class EmailScreen extends StatelessWidget {
           onSubmit: (input) async {
             await _userRepository.updateEmail(input);
             await AutoRouter.of(context).push(const GamificationIntroductionRoute());
+            return null;
           },
         );
       },

@@ -9,6 +9,7 @@ class Validators {
       if (input == null || !EmailValidator.validate(input)) {
         return context.l10n.email_validator_wrong_input;
       }
+      return null;
     };
   }
 
@@ -18,6 +19,7 @@ class Validators {
         return context.l10n.nickname_validator_empty_input;
       }
       if (input.length > 250) return context.l10n.nickname_validator_too_long_input;
+      return null;
     };
   }
 }

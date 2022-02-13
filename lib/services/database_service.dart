@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loono/models/calendar_event.dart';
 import 'package:loono/models/examination_questionnaire.dart';
-import 'package:loono/models/healthcare_provider.dart';
 import 'package:loono/models/user.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:path_provider/path_provider.dart';
@@ -9,7 +8,6 @@ import 'package:path_provider/path_provider.dart';
 class DatabaseService {
   late AppDatabase _engine;
   late final UsersDao users;
-  late final HealthcareProvidersDao healthcareProviders;
   late final CalendarEventsDao calendarEvents;
   late final ExaminationQuestionnairesDao examinationQuestionnaires;
 
@@ -21,7 +19,6 @@ class DatabaseService {
     }
     _engine = AppDatabase('app.db', key);
     users = _engine.usersDao;
-    healthcareProviders = _engine.healthcareProvidersDao;
     calendarEvents = _engine.calendarEventsDao;
     examinationQuestionnaires = _engine.examinationQuestionnairesDao;
   }

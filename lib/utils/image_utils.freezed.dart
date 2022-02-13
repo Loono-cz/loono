@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'image_utils.dart';
@@ -169,7 +170,8 @@ class _$UnknownError extends UnknownError {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is UnknownError);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is UnknownError);
   }
 
   @override
@@ -304,7 +306,8 @@ class _$NoMessageError extends NoMessageError {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is NoMessageError);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is NoMessageError);
   }
 
   @override
@@ -457,15 +460,15 @@ class _$PermissionDenied extends PermissionDenied {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is PermissionDenied &&
-            (identical(other.permission, permission) ||
-                const DeepCollectionEquality()
-                    .equals(other.permission, permission)));
+        (other.runtimeType == runtimeType &&
+            other is PermissionDenied &&
+            const DeepCollectionEquality()
+                .equals(other.permission, permission));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(permission);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(permission));
 
   @JsonKey(ignore: true)
   @override
@@ -571,7 +574,7 @@ abstract class PermissionDenied extends ImageError {
       _$PermissionDenied;
   const PermissionDenied._() : super._();
 
-  RequiredImagePermission get permission => throw _privateConstructorUsedError;
+  RequiredImagePermission get permission;
   @JsonKey(ignore: true)
   $PermissionDeniedCopyWith<PermissionDenied> get copyWith =>
       throw _privateConstructorUsedError;
@@ -627,15 +630,15 @@ class _$PermissionPermanentlyDenied extends PermissionPermanentlyDenied {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is PermissionPermanentlyDenied &&
-            (identical(other.permission, permission) ||
-                const DeepCollectionEquality()
-                    .equals(other.permission, permission)));
+        (other.runtimeType == runtimeType &&
+            other is PermissionPermanentlyDenied &&
+            const DeepCollectionEquality()
+                .equals(other.permission, permission));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(permission);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(permission));
 
   @JsonKey(ignore: true)
   @override
@@ -742,7 +745,7 @@ abstract class PermissionPermanentlyDenied extends ImageError {
       RequiredImagePermission permission) = _$PermissionPermanentlyDenied;
   const PermissionPermanentlyDenied._() : super._();
 
-  RequiredImagePermission get permission => throw _privateConstructorUsedError;
+  RequiredImagePermission get permission;
   @JsonKey(ignore: true)
   $PermissionPermanentlyDeniedCopyWith<PermissionPermanentlyDenied>
       get copyWith => throw _privateConstructorUsedError;
@@ -778,7 +781,8 @@ class _$NetworkError extends NetworkError {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is NetworkError);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is NetworkError);
   }
 
   @override
@@ -914,7 +918,8 @@ class _$SizeExceededError extends SizeExceededError {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is SizeExceededError);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is SizeExceededError);
   }
 
   @override

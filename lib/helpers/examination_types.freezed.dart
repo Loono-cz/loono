@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'examination_types.dart';
@@ -248,7 +249,9 @@ class _$BreastSelfExaminationTypeUnion extends BreastSelfExaminationTypeUnion {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is BreastSelfExaminationTypeUnion);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is BreastSelfExaminationTypeUnion);
   }
 
   @override
@@ -440,7 +443,9 @@ class _$ColonoscopyExaminationTypeUnion
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is ColonoscopyExaminationTypeUnion);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ColonoscopyExaminationTypeUnion);
   }
 
   @override
@@ -630,7 +635,9 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is DentistExaminationTypeUnion);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is DentistExaminationTypeUnion);
   }
 
   @override
@@ -822,7 +829,8 @@ class _$DermatologistExaminationTypeUnion
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is DermatologistExaminationTypeUnion);
+        (other.runtimeType == runtimeType &&
+            other is DermatologistExaminationTypeUnion);
   }
 
   @override
@@ -1016,7 +1024,8 @@ class _$GeneralPractitionerExaminationTypeUnion
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is GeneralPractitionerExaminationTypeUnion);
+        (other.runtimeType == runtimeType &&
+            other is GeneralPractitionerExaminationTypeUnion);
   }
 
   @override
@@ -1208,7 +1217,9 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is MammogramExaminationTypeUnion);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is MammogramExaminationTypeUnion);
   }
 
   @override
@@ -1401,7 +1412,8 @@ class _$GynecologistExaminationTypeUnion
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is GynecologistExaminationTypeUnion);
+        (other.runtimeType == runtimeType &&
+            other is GynecologistExaminationTypeUnion);
   }
 
   @override
@@ -1594,7 +1606,8 @@ class _$OphthalmologistExaminationTypeUnion
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is OphthalmologistExaminationTypeUnion);
+        (other.runtimeType == runtimeType &&
+            other is OphthalmologistExaminationTypeUnion);
   }
 
   @override
@@ -1788,7 +1801,8 @@ class _$TesticularSelfExaminationTypeUnion
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is TesticularSelfExaminationTypeUnion);
+        (other.runtimeType == runtimeType &&
+            other is TesticularSelfExaminationTypeUnion);
   }
 
   @override
@@ -1977,7 +1991,8 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is ToksExaminationTypeUnion);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is ToksExaminationTypeUnion);
   }
 
   @override
@@ -2169,7 +2184,8 @@ class _$UltrasoundBreastExaminationTypeUnion
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is UltrasoundBreastExaminationTypeUnion);
+        (other.runtimeType == runtimeType &&
+            other is UltrasoundBreastExaminationTypeUnion);
   }
 
   @override
@@ -2361,7 +2377,9 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is UrologistExaminationTypeUnion);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is UrologistExaminationTypeUnion);
   }
 
   @override
@@ -2554,7 +2572,8 @@ class _$VenerealDiseasesExaminationTypeUnion
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is VenerealDiseasesExaminationTypeUnion);
+        (other.runtimeType == runtimeType &&
+            other is VenerealDiseasesExaminationTypeUnion);
   }
 
   @override
