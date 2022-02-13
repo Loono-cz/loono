@@ -548,9 +548,10 @@ class AppRouter extends _i11.RootStackRouter {
           barrierDismissible: false);
     },
     SelfExaminationDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<SelfExaminationDetailRouteArgs>();
       return _i11.CustomPage<void>(
           routeData: routeData,
-          child: const _i55.SelfExaminationDetailScreen(),
+          child: _i55.SelfExaminationDetailScreen(key: args.key, sex: args.sex),
           transitionsBuilder: _i11.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -1849,11 +1850,27 @@ class ChangeTimeRouteArgs {
 
 /// generated route for
 /// [_i55.SelfExaminationDetailScreen]
-class SelfExaminationDetailRoute extends _i11.PageRouteInfo<void> {
-  const SelfExaminationDetailRoute()
-      : super(SelfExaminationDetailRoute.name, path: 'self-examination/detail');
+class SelfExaminationDetailRoute
+    extends _i11.PageRouteInfo<SelfExaminationDetailRouteArgs> {
+  SelfExaminationDetailRoute({_i60.Key? key, required _i63.Sex sex})
+      : super(SelfExaminationDetailRoute.name,
+            path: 'self-examination/detail',
+            args: SelfExaminationDetailRouteArgs(key: key, sex: sex));
 
   static const String name = 'SelfExaminationDetailRoute';
+}
+
+class SelfExaminationDetailRouteArgs {
+  const SelfExaminationDetailRouteArgs({this.key, required this.sex});
+
+  final _i60.Key? key;
+
+  final _i63.Sex sex;
+
+  @override
+  String toString() {
+    return 'SelfExaminationDetailRouteArgs{key: $key, sex: $sex}';
+  }
 }
 
 /// generated route for

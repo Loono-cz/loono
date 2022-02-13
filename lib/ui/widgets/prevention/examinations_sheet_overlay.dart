@@ -57,8 +57,8 @@ class ExaminationsSheetOverlay extends StatelessWidget {
                                   _buildHandle(context),
                                   // TODO: Temp
                                   SelfExaminationCard(
-                                    onTap: () => AutoRouter.of(context).navigate(
-                                      const SelfExaminationDetailRoute(),
+                                    onTap: (sex) => AutoRouter.of(context).navigate(
+                                      SelfExaminationDetailRoute(sex: sex),
                                     ),
                                   ),
                                 ],
