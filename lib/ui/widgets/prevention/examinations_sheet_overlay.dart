@@ -21,15 +21,11 @@ class ExaminationsSheetOverlay extends StatefulWidget {
 class _ExaminationsSheetOverlayState extends State<ExaminationsSheetOverlay> {
   final _examinationRepository = registry.get<ExaminationRepository>();
 
-  bool useFakeData = false;
-
   @override
   Widget build(BuildContext context) {
     return SizedBox.expand(
       child: FutureBuilder<List<PreventionStatus>>(
-        future: useFakeData
-            ? Future(() => fakeExaminationData)
-            : _examinationRepository.getExaminationRecords(),
+        future: _examinationRepository.getExaminationRecords(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final categorized = snapshot.data!
@@ -125,11 +121,8 @@ class _ExaminationsSheetOverlayState extends State<ExaminationsSheetOverlay> {
 
   Widget _buildHandle(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const SizedBox(
-          width: 59,
-        ),
         Center(
           child: Padding(
             padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
@@ -139,27 +132,6 @@ class _ExaminationsSheetOverlayState extends State<ExaminationsSheetOverlay> {
               color: Colors.white,
             ),
           ),
-        ),
-
-        /// debug switch to change between live and fake data
-        Column(
-          children: [
-            Switch.adaptive(
-              activeColor: LoonoColors.primary,
-              value: !useFakeData,
-              onChanged: (val) {
-                setState(() {
-                  useFakeData = !val;
-                });
-              },
-            ),
-            Text(
-              'data: ${useFakeData ? 'fake' : 'api'}',
-              style: const TextStyle(
-                fontSize: 9,
-              ),
-            )
-          ],
         ),
       ],
     );

@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
-import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
@@ -106,29 +104,6 @@ class _ChangeTimeScreenState extends State<ChangeTimeScreen> {
                 ),
               ),
               const Spacer(),
-              /*AsyncLoonoButton(
-                text: context.l10n.action_save,
-                asyncCallback: () => registry.get<ExaminationRepository>().postExamination(
-                      examinationType,
-                      newDate: newDate!,
-                      uuid: widget.uuid,
-                    ),
-                onSuccess: () async {
-                  await registry
-                      .get<CalendarRepository>()
-                      .updateEventDate(examinationType, newDate: newDate!);
-                  AutoRouter.of(context).popUntilRouteWithName('MainRoute');
-                  await AutoRouter.of(context).navigate(
-                    ExaminationDetailRoute(
-                      categorizedExamination: e,
-                    ),
-                  );
-                  showSnackBarSuccess(context, message: context.l10n.checkup_reminder_toast);
-                },
-                onError: () {
-                  showSnackBarError(context, message: context.l10n.something_went_wrong);
-                },
-              ),*/
               LoonoButton(
                 text: context.l10n.action_save,
                 onTap: () async {
@@ -143,14 +118,15 @@ class _ChangeTimeScreenState extends State<ChangeTimeScreen> {
                           .get<CalendarRepository>()
                           .updateEventDate(examinationType, newDate: newDate!);
                       AutoRouter.of(context).popUntilRouteWithName('MainRoute');
-                      /*await AutoRouter.of(context).navigate(
+                      await AutoRouter.of(context).navigate(
                         ExaminationDetailRoute(
                           categorizedExamination: CategorizedExamination(
-                            examination: res.data.,
-                            category: ExaminationCategory.scheduledSoonOrOverdue(),
+                            /// replace examination whne updated on BE from ExaminationRecord to PreventionStatus
+                            examination: widget.categorizedExamination.examination,
+                            category: widget.categorizedExamination.category,
                           ),
                         ),
-                      );*/
+                      );
                       showSnackBarSuccess(context, message: context.l10n.checkup_reminder_toast);
                     },
                     failure: (err) {

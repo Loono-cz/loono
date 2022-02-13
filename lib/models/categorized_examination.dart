@@ -1,5 +1,4 @@
 import 'package:loono/helpers/examination_category.dart';
-import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono_api/loono_api.dart';
 
 class CategorizedExamination {

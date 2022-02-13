@@ -1,7 +1,5 @@
 import 'dart:developer';
 
-import 'package:loono/helpers/examination_extensions.dart';
-import 'package:loono/helpers/examination_parser.dart';
 import 'package:loono/models/api_response.dart';
 import 'package:loono/services/api_service.dart';
 import 'package:loono_api/loono_api.dart';
@@ -14,12 +12,10 @@ class ExaminationRepository {
   final ApiService _apiService;
 
   Future<List<PreventionStatus>> getExaminationRecords() async {
-    //var records = <ExaminationRecordTemp>[];
     var records = <PreventionStatus>[];
     final response = await _apiService.getExaminations();
     response.when(
       success: (data) {
-        //records = parseExaminations(data);
         records = data.toList();
       },
       failure: (err) {},

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -11,7 +9,6 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
-import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/custom_time_picker.dart';
 import 'package:loono/utils/registry.dart';
@@ -127,14 +124,11 @@ class _NewTimeScreenState extends State<NewTimeScreen> {
                       );
                   response.map(
                     success: (res) {
-                      print("success");
-                      //AutoRouter.of(context).popUntilRouteWithName('ExaminationDetailRoute');
-                      //showSnackBarSuccess(context, message: context.l10n.checkup_reminder_toast);
+                      AutoRouter.of(context).popUntilRouteWithName('MainRoute');
+                      showSnackBarSuccess(context, message: context.l10n.checkup_reminder_toast);
                     },
                     failure: (err) {
-                      print("error");
-                      //log(err.error.message);
-                      //showSnackBarError(context, message: context.l10n.something_went_wrong);
+                      showSnackBarError(context, message: context.l10n.something_went_wrong);
                     },
                   );
                 },
