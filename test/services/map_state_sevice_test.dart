@@ -1,22 +1,23 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:loono/services/db/database.dart';
 import 'package:loono/services/map_state_sevice.dart';
+import 'package:loono_api/loono_api.dart';
 
-HealthcareProvider createHealthcareProvider({
+SimpleHealthcareProvider createHealthcareProvider({
   String? title,
 }) {
-  return HealthcareProvider(
-    locationId: 0,
-    institutionId: 0,
-    title: title ?? '',
-    category: BuiltList.from(<String>[]),
-    street: '',
-    houseNumber: '',
-    city: '',
-    postalCode: '',
-    lat: 0,
-    lng: 0,
+  return SimpleHealthcareProvider(
+    (b) => b
+      ..locationId = 0
+      ..institutionId = 0
+      ..title = title ?? ''
+      ..category = ListBuilder()
+      ..street = ''
+      ..houseNumber = ''
+      ..city = ''
+      ..postalCode = ''
+      ..lat = 0
+      ..lng = 0,
   );
 }
 
