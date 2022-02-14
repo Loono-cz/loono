@@ -124,7 +124,7 @@ class _NewTimeScreenState extends State<NewTimeScreen> {
                       );
                   response.map(
                     success: (res) {
-                      AutoRouter.of(context).popUntilRouteWithName('MainRoute');
+                      AutoRouter.of(context).popUntilRouteWithName(const MainRoute().routeName);
                       showSnackBarSuccess(context, message: context.l10n.checkup_reminder_toast);
                     },
                     failure: (err) {

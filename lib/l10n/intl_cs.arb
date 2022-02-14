@@ -1,5 +1,5 @@
 {
-  "@@locale" : "cs",
+  "@@locale": "cs",
   "carousel_start": "Začít",
   "@carousel_start": {},
   "carousel_welcome_dialog": "Chraň své zdraví\nvčasnou prevencí",
@@ -624,8 +624,6 @@
   "@checkup_canceled": {},
   "checkup_reminder_toast": "Prohlídku ti včas připomeneme",
   "@checkup_reminder_toast": {},
-  "something_went_wrong": "Něco se nepovedlo",
-  "@something_went_wrong": {},
   "something_went_wrong": "Něco se nepovedlo",
   "@something_went_wrong": {},
   "self_examination_educational_button": "Vyšetřila jsem se",

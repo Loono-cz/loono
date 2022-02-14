@@ -72,7 +72,10 @@ class _ChangeTimeScreenState extends State<ChangeTimeScreen> {
               Icons.close,
               size: 32,
             ),
-            onPressed: () => AutoRouter.of(context).popUntilRouteWithName('ExaminationDetailRoute'),
+            onPressed: () => AutoRouter.of(context).popUntilRouteWithName(
+              ExaminationDetailRoute(categorizedExamination: widget.categorizedExamination)
+                  .routeName,
+            ),
           ),
         ],
       ),
@@ -117,7 +120,7 @@ class _ChangeTimeScreenState extends State<ChangeTimeScreen> {
                       await registry
                           .get<CalendarRepository>()
                           .updateEventDate(examinationType, newDate: newDate!);
-                      AutoRouter.of(context).popUntilRouteWithName('MainRoute');
+                      AutoRouter.of(context).popUntilRouteWithName(const MainRoute().routeName);
                       await AutoRouter.of(context).navigate(
                         ExaminationDetailRoute(
                           categorizedExamination: CategorizedExamination(

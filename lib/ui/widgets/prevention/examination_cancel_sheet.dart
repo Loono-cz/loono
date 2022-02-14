@@ -6,6 +6,7 @@ import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/repositories/examination_repository.dart';
+import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/prevention/recommendation_item.dart';
 import 'package:loono/utils/registry.dart';
@@ -86,7 +87,7 @@ void showCancelExaminationSheet({
                     registry.get<ExaminationRepository>().cancelExamination(examinationType, id),
                 onSuccess: () async {
                   await registry.get<CalendarRepository>().deleteEvent(examinationType);
-                  AutoRouter.of(context).popUntilRouteWithName('MainRoute');
+                  AutoRouter.of(context).popUntilRouteWithName(const MainRoute().routeName);
                   showSnackBarSuccess(context, message: l10n.checkup_canceled);
                 },
                 onError: () async {

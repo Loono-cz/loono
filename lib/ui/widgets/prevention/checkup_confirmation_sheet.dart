@@ -24,7 +24,7 @@ void showConfirmationSheet(
   final preposition = czechPreposition(context, examinationType: examinationType);
 
   Future<void> _completedAction() async {
-    AutoRouter.of(context).popUntilRouteWithName('MainRoute');
+    AutoRouter.of(context).popUntilRouteWithName(const MainRoute().routeName);
   }
 
   final l10n = context.l10n;
