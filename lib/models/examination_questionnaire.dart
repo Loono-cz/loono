@@ -107,8 +107,7 @@ class ExaminationQuestionnairesDao extends DatabaseAccessor<AppDatabase>
   }) async {
     await (update(examinationQuestionnaires)
           ..where(
-            (tbl) =>
-                tbl.type.equals(const ExaminationTypeDbConverter().mapToSql(examinationType)),
+            (tbl) => tbl.type.equals(const ExaminationTypeDbConverter().mapToSql(examinationType)),
           ))
         .write(examinationQuestionnairesCompanion);
   }
