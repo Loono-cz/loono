@@ -9,7 +9,7 @@ import 'package:loono_api/loono_api.dart';
 TextStyle earlyOrderStyles(CategorizedExamination examination) {
   var color = LoonoColors.black;
   var weight = FontWeight.w400;
-  final nextVisit = examination.examination.nextVisitDate;
+  final nextVisit = examination.examination.plannedDate;
 
   if (nextVisit != null &&
       [
@@ -234,9 +234,9 @@ int daysBetween(DateTime from, DateTime to) {
 }
 
 double upperArcProgress(CategorizedExamination examination) {
-  final nextVisit = examination.examination.nextVisitDate;
+  final nextVisit = examination.examination.plannedDate;
   final category = examination.category;
-  final interval = examination.examination.interval;
+  final interval = examination.examination.intervalYears;
   if ([
         const ExaminationCategory.scheduled(),
         const ExaminationCategory.scheduledSoonOrOverdue(),
@@ -258,10 +258,10 @@ double upperArcProgress(CategorizedExamination examination) {
 }
 
 double lowerArcProgress(CategorizedExamination examination) {
-  final nextVisit = examination.examination.nextVisitDate;
-  final lastVisit = examination.examination.lastVisitDate;
+  final nextVisit = examination.examination.plannedDate;
+  final lastVisit = examination.examination.lastConfirmedDate;
   final category = examination.category;
-  final interval = examination.examination.interval;
+  final interval = examination.examination.intervalYears;
 
   if (category == const ExaminationCategory.scheduledSoonOrOverdue() && nextVisit != null) {
     final intervalDays = daysBetween(
@@ -276,11 +276,11 @@ double lowerArcProgress(CategorizedExamination examination) {
     return (afterScheduledDays / intervalDays).clamp(0, 1);
   } else if (category == const ExaminationCategory.waiting() && lastVisit != null) {
     final intervalDays = daysBetween(
-      DateTime(lastVisit.year, lastVisit.month.index + 1),
-      DateTime(lastVisit.year + interval, lastVisit.month.index + 1),
+      DateTime(lastVisit.year, lastVisit.month),
+      DateTime(lastVisit.year + interval, lastVisit.month),
     );
     final afterLastVisitDays = daysBetween(
-      DateTime(lastVisit.year, lastVisit.month.index + 1),
+      DateTime(lastVisit.year, lastVisit.month),
       DateTime.now(),
     );
     return (afterLastVisitDays / intervalDays).clamp(0, 1);
@@ -289,7 +289,7 @@ double lowerArcProgress(CategorizedExamination examination) {
 }
 
 bool isOverdue(CategorizedExamination examination) {
-  final nextVisit = examination.examination.nextVisitDate;
+  final nextVisit = examination.examination.plannedDate;
   if (nextVisit != null) {
     return examination.category == const ExaminationCategory.scheduledSoonOrOverdue() &&
         DateTime.now().isAfter(nextVisit);

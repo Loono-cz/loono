@@ -21,7 +21,7 @@ class PreventionScreen extends StatelessWidget {
               ),
             ),
             const BadgeComposer(),
-            ExaminationsSheetOverlay(),
+            const ExaminationsSheetOverlay(),
           ],
         ),
       ),

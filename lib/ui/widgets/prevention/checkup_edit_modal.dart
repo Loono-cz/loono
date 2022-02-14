@@ -8,6 +8,7 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/ui/widgets/prevention/examination_cancel_sheet.dart';
 import 'package:loono/ui/widgets/prevention/datepicker_sheet.dart';
 import 'package:loono/utils/registry.dart';
 
@@ -35,16 +36,20 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
       actions: <CupertinoActionSheetAction>[
         CupertinoActionSheetAction(
           isDestructiveAction: true,
-          onPressed: () {
-            AutoRouter.of(modalContext).pop();
-            AutoRouter.of(pageContext).navigate(
-              CancelCheckupRoute(
-                examinationType: examinationType,
-                title: '${pageContext.l10n.checkup_cancel_question} $preposition $procedure?',
-                date: examination.examination.nextVisitDate ?? DateTime.now(),
-              ),
-            );
-          },
+          onPressed: examination.examination.uuid != null
+              ? () {
+                  AutoRouter.of(modalContext).pop();
+                  showCancelExaminationSheet(
+                    context: pageContext,
+                    id: examination.examination.uuid!,
+                    examinationType: examinationType,
+                    title: '${pageContext.l10n.checkup_cancel_question} $preposition $procedure?',
+                    date: examination.examination.plannedDate ?? DateTime.now(),
+                  );
+                }
+              : () {
+                  showSnackBarError(pageContext, message: 'unknown id');
+                },
           child: Text(pageContext.l10n.cancel_checkup),
         ),
         CupertinoActionSheetAction(

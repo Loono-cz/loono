@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:typed_data';
 
+import 'package:built_collection/built_collection.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/models/api_params.dart';
@@ -91,6 +92,68 @@ class ApiService {
             ..profileImageUrl = profileImageUrl;
         }),
       ),
+    );
+  }
+
+  Future<ApiResponse<BuiltList<PreventionStatus>>> getExaminations({ApiParams? params}) async {
+    return _callApi(
+      () async => _api.getExaminationsApi().getExaminations(
+            cancelToken: params?.cancelToken,
+            extra: params?.extra,
+            headers: params?.headers,
+            onReceiveProgress: params?.onReceiveProgress,
+            onSendProgress: params?.onSendProgress,
+            validateStatus: params?.validateStatus,
+          ),
+    );
+  }
+
+  Future<ApiResponse<ExaminationRecord>> cancelExamination(
+    ExaminationTypeEnum type,
+    String uuid,
+  ) async {
+    return _callApi(
+      () async => _api.getExaminationsApi().cancelExamination(
+            type: type.toString(),
+            examinationId: ExaminationId((id) {
+              id.uuid = uuid;
+            }),
+          ),
+    );
+  }
+
+  Future<ApiResponse<ExaminationRecord>> postExamination(
+    ExaminationTypeEnum type, {
+    String? uuid,
+    DateTime? newDate,
+    ExaminationStatus? status,
+    bool? firstExam,
+  }) async {
+    return _callApi(
+      () async => _api.getExaminationsApi().postExaminations(
+        examinationRecord: ExaminationRecord((record) {
+          record
+            ..uuid = uuid
+            ..type = type
+            ..date = newDate?.toUtc()
+            ..status = status
+            ..firstExam = firstExam;
+        }),
+      ),
+    );
+  }
+
+  Future<ApiResponse<ExaminationRecord>> confirmExamination(
+    ExaminationTypeEnum type, {
+    String? id,
+  }) async {
+    return _callApi(
+      () async => _api.getExaminationsApi().completeExamination(
+            type: type.toString(),
+            examinationId: ExaminationId((newId) {
+              newId.uuid = id;
+            }),
+          ),
     );
   }
 }

@@ -102,7 +102,11 @@ Future<void> setup(AppFlavors flavor) async {
       authService: registry.get<AuthService>(),
     ),
   );
-  registry.registerSingleton<ExaminationRepository>(const ExaminationRepository());
+  registry.registerSingleton<ExaminationRepository>(
+    ExaminationRepository(
+      apiService: registry.get<ApiService>(),
+    ),
+  );
   registry.registerSingleton<HealthcareProviderRepository>(
     HealthcareProviderRepository(
       apiService: registry.get<ApiService>(),

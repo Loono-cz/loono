@@ -1,9 +1,66 @@
-import 'package:loono/helpers/examination_extensions.dart';
+import 'dart:developer';
+
+import 'package:loono/models/api_response.dart';
+import 'package:loono/services/api_service.dart';
+import 'package:loono_api/loono_api.dart';
 
 class ExaminationRepository {
-  const ExaminationRepository();
+  const ExaminationRepository({
+    required ApiService apiService,
+  }) : _apiService = apiService;
 
-  Future<List<ExaminationRecordTemp>> getExaminationRecords() async {
-    return fakeExaminationData;
+  final ApiService _apiService;
+
+  Future<List<PreventionStatus>> getExaminationRecords() async {
+    var records = <PreventionStatus>[];
+    final response = await _apiService.getExaminations();
+    response.when(
+      success: (data) {
+        records = data.toList();
+      },
+      failure: (err) {},
+    );
+    return records;
+  }
+
+  Future<bool> cancelExamination(ExaminationTypeEnum type, String uuid) async {
+    final response = await _apiService.cancelExamination(type, uuid);
+    var res = false;
+    response.map(
+      success: (data) {
+        res = true;
+      },
+      failure: (err) {
+        res = false;
+      },
+    );
+    return res;
+  }
+
+  Future<ApiResponse<ExaminationRecord>> postExamination(
+    ExaminationTypeEnum type, {
+    String? uuid,
+    DateTime? newDate,
+    ExaminationStatus? status,
+    bool? firstExam,
+  }) async {
+    final response = await _apiService.postExamination(
+      type,
+      uuid: uuid,
+      newDate: newDate,
+      status: status,
+      firstExam: firstExam,
+    );
+    log(response.runtimeType.toString());
+    return response;
+  }
+
+  Future<ApiResponse<ExaminationRecord>> confirmExamination(
+    ExaminationTypeEnum type, {
+    String? uuid,
+  }) async {
+    final response = await _apiService.confirmExamination(type, id: uuid);
+    log(response.runtimeType.toString());
+    return response;
   }
 }

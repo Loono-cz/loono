@@ -10,21 +10,32 @@ import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/prevention/examination_card.dart';
 import 'package:loono/ui/widgets/prevention/self_examination/self_examination_card.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart';
 
-class ExaminationsSheetOverlay extends StatelessWidget {
-  ExaminationsSheetOverlay({Key? key}) : super(key: key);
+class ExaminationsSheetOverlay extends StatefulWidget {
+  const ExaminationsSheetOverlay({Key? key}) : super(key: key);
 
+  @override
+  State<ExaminationsSheetOverlay> createState() => _ExaminationsSheetOverlayState();
+}
+
+class _ExaminationsSheetOverlayState extends State<ExaminationsSheetOverlay> {
   final _examinationRepository = registry.get<ExaminationRepository>();
 
   @override
   Widget build(BuildContext context) {
     return SizedBox.expand(
-      child: FutureBuilder<List<ExaminationRecordTemp>>(
+      child: FutureBuilder<List<PreventionStatus>>(
         future: _examinationRepository.getExaminationRecords(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final categorized = snapshot.data!
-                .map((e) => CategorizedExamination(examination: e, category: e.calculateStatus()))
+                .map(
+                  (e) => CategorizedExamination(
+                    examination: e,
+                    category: e.calculateStatus(),
+                  ),
+                )
                 .toList();
 
             return DraggableScrollableSheet(
@@ -118,15 +129,20 @@ class ExaminationsSheetOverlay extends StatelessWidget {
   }
 
   Widget _buildHandle(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
-        child: Container(
-          width: MediaQuery.of(context).size.width / 3,
-          height: 4.0,
-          color: Colors.white,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Center(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
+            child: Container(
+              width: MediaQuery.of(context).size.width / 3,
+              height: 4.0,
+              color: Colors.white,
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 }
