@@ -74,17 +74,19 @@ class CancelCheckupScreen extends StatelessWidget {
               const SizedBox(
                 height: 60,
               ),
-              AsyncLoonoButton(
+              AsyncLoonoApiButton(
                 text: context.l10n.cancel_checkup,
-                asyncCallback: () =>
-                    registry.get<ExaminationRepository>().cancelExamination(examinationType, id),
-                onSuccess: () async {
-                  await registry.get<CalendarRepository>().deleteEvent(examinationType);
-                  AutoRouter.of(context).popUntilRouteWithName('MainRoute');
-                  showSnackBarSuccess(context, message: context.l10n.checkup_canceled);
-                },
-                onError: () {
-                  showSnackBarError(context, message: context.l10n.something_went_wrong);
+                asyncCallback: () async {
+                  final response = await registry
+                      .get<ExaminationRepository>()
+                      .cancelExamination(examinationType, id);
+                  if (response) {
+                    await registry.get<CalendarRepository>().deleteEvent(examinationType);
+                    AutoRouter.of(context).popUntilRouteWithName('MainRoute');
+                    showSnackBarSuccess(context, message: context.l10n.checkup_canceled);
+                  } else {
+                    showSnackBarError(context, message: context.l10n.something_went_wrong);
+                  }
                 },
               ),
               const SizedBox(

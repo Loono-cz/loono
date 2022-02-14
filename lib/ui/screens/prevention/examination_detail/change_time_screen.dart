@@ -10,7 +10,7 @@ import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
-import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/custom_time_picker.dart';
 import 'package:loono/utils/registry.dart';
 
@@ -104,9 +104,9 @@ class _ChangeTimeScreenState extends State<ChangeTimeScreen> {
                 ),
               ),
               const Spacer(),
-              LoonoButton(
+              AsyncLoonoApiButton(
                 text: context.l10n.action_save,
-                onTap: () async {
+                asyncCallback: () async {
                   final response = await registry.get<ExaminationRepository>().postExamination(
                         examinationType,
                         newDate: newDate!,
@@ -121,7 +121,7 @@ class _ChangeTimeScreenState extends State<ChangeTimeScreen> {
                       await AutoRouter.of(context).navigate(
                         ExaminationDetailRoute(
                           categorizedExamination: CategorizedExamination(
-                            /// replace examination whne updated on BE from ExaminationRecord to PreventionStatus
+                            /// replace examination when updated on BE from ExaminationRecord to PreventionStatus
                             examination: widget.categorizedExamination.examination,
                             category: widget.categorizedExamination.category,
                           ),

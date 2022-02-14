@@ -55,15 +55,12 @@ class ExaminationRepository {
     return response;
   }
 
-  Future<bool> confirmExamination(ExaminationTypeEnum type, {String? uuid}) async {
+  Future<ApiResponse<ExaminationRecord>> confirmExamination(
+    ExaminationTypeEnum type, {
+    String? uuid,
+  }) async {
     final response = await _apiService.confirmExamination(type, id: uuid);
-    var res = false;
-    response.when(
-      success: (data) {
-        res = true;
-      },
-      failure: (err) {},
-    );
-    return res;
+    log(response.runtimeType.toString());
+    return response;
   }
 }

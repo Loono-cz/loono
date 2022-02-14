@@ -24,7 +24,7 @@ void showConfirmationSheet(
   final preposition = czechPreposition(context, examinationType: examinationType);
 
   Future<void> _completedAction() async {
-    AutoRouter.of(context).popUntilRouteWithName('ExaminationDetailRoute');
+    AutoRouter.of(context).popUntilRouteWithName('MainRoute');
   }
 
   final l10n = context.l10n;
@@ -48,25 +48,29 @@ void showConfirmationSheet(
             const SizedBox(
               height: 60,
             ),
-            AsyncLoonoButton(
+            AsyncLoonoApiButton(
               text:
                   '${l10n.yes}, ${sex == Sex.MALE ? l10n.checkup_confirmation_male.toLowerCase() : l10n.checkup_confirmation_female.toLowerCase()}',
-              asyncCallback: () => _api.confirmExamination(examinationType, uuid: uuid),
-              onSuccess: () async {
-                await _calendar.deleteOnlyDbEvent(examinationType);
-                await AutoRouter.of(context).navigate(
-                  AchievementRoute(
-                    header: 'TO DO: complete all rewards',
-                    textLines: [l10n.award_desc],
-                    numberOfPoints: examinationType.awardPoints,
-                    itemPath: 'assets/badges/achievement/cloak-level_1.svg',
-                    onButtonTap: _completedAction,
-                  ),
+              asyncCallback: () async {
+                final response = await _api.confirmExamination(examinationType, uuid: uuid);
+                await response.map(
+                  success: (data) async {
+                    await _calendar.deleteOnlyDbEvent(examinationType);
+                    await AutoRouter.of(context).navigate(
+                      AchievementRoute(
+                        header: 'TO DO: complete all rewards',
+                        textLines: [l10n.award_desc],
+                        numberOfPoints: examinationType.awardPoints,
+                        itemPath: 'assets/badges/achievement/cloak-level_1.svg',
+                        onButtonTap: _completedAction,
+                      ),
+                    );
+                  },
+                  failure: (error) async {
+                    await AutoRouter.of(context).pop();
+                    showSnackBarError(context, message: context.l10n.something_went_wrong);
+                  },
                 );
-              },
-              onError: () {
-                AutoRouter.of(context).pop();
-                showSnackBarError(context, message: context.l10n.something_went_wrong);
               },
             )
           ],

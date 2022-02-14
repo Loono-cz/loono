@@ -86,7 +86,7 @@ void showCancelExaminationSheet({
                     registry.get<ExaminationRepository>().cancelExamination(examinationType, id),
                 onSuccess: () async {
                   await registry.get<CalendarRepository>().deleteEvent(examinationType);
-                  await AutoRouter.of(context).pop();
+                  AutoRouter.of(context).popUntilRouteWithName('MainRoute');
                   showSnackBarSuccess(context, message: l10n.checkup_canceled);
                 },
                 onError: () async {
