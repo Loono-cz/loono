@@ -48,7 +48,7 @@ extension PreventionStatusExt on PreventionStatus {
 extension CategorizedExaminationListExt on List<CategorizedExamination> {
   void sortExaminations() {
     if (isEmpty) return;
-    first.category.when(
+    first.category.whenOrNull(
       scheduledSoonOrOverdue: () =>
           sort((a, b) => b.examination.plannedDate!.compareTo(a.examination.plannedDate!)),
       newToSchedule: () => sort((a, b) {

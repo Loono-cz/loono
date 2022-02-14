@@ -74,6 +74,7 @@ dependencies:
   url_launcher: ^6.0.9
   uuid: ^3.0.4
   video_player: ^2.1.10
+  youtube_player_flutter: ^8.0.0
 
 dev_dependencies:
   auto_route_generator: ^3.2.1
@@ -94,6 +95,7 @@ flutter:
     - assets/icons/
     - assets/icons/prevention/
     - assets/icons/prevention/doctors/
+    - assets/icons/prevention/self_examination/
     - assets/intro_video.mp4
     - assets/badges/
     - assets/badges/body/
@@ -109,3 +111,4 @@ flutter:
     - assets/badges/gloves-man/
     - assets/badges/gloves-woman/
     - assets/badges/shield/
+    - assets/badges/achievement/

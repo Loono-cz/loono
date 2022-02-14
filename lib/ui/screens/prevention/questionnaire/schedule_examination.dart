@@ -62,8 +62,8 @@ class ScheduleExamination extends StatelessWidget {
                           'TODO',
                           'TODO',
                         ],
-                        numberOfPoints: examinationRecord.count,
-                        itemPath: 'assets/icons/coat-practitioner.svg',
+                        numberOfPoints: examinationRecord.worth,
+                        itemPath: 'assets/badges/achievement/cloak-level_1.svg',
                         onButtonTap: () {
                           _appRouter.navigate(
                             MainScreenRouter(

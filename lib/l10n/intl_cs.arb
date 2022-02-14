@@ -119,13 +119,11 @@
   "@achievement_belt_gynecologist_header": {},
   "achievement_headband_dentist_header": "Čelenku od Zubaře",
   "@achievement_headband_dentist_header": {},
-  "achievement_keep_it_up_text": "Jen tak dál",
-  "@achievement_keep_it_up_text": {},
-  "achievement_general_practitioner_text_1": "Pravidelná prohlídka ti dodá klid. A taky máš velkou šanci odhalit závažná onemocnění včas.",
+  "achievement_general_practitioner_text_1": "Vybavení pro svého superhrdinu získáváš dokončením preventivních prohlídek.",
   "@achievement_general_practitioner_text_1": {},
-  "achievement_gynecology_text_1": "Jsi poctivější než polovina žen v Česku. Tato prohlídka je důležitá pro včasné odhalení rakoviny děložního čípku a jiných obtíží.",
+  "achievement_gynecology_text_1": "Vybavení pro svého superhrdinu získáváš dokončením preventivních prohlídek.",
   "@achievement_gynecology_text_1": {},
-  "achievement_dentist_text_1": "Zubní prohlídka ti dává jistotu, že je v tvé ústní dutině vše v pořádku a neděje se v ní nic skrytého, co by časem mohlo zbytečně bolet.",
+  "achievement_dentist_text_1": "Vybavení pro svého superhrdinu získáváš dokončením preventivních prohlídek.",
   "@achievement_dentist_text_1": {},
   "check_up_body_text": "Kdy naposledy to bylo? Stačí přibližně.",
   "@check_up_body_text": {},
@@ -627,5 +625,9 @@
   "checkup_reminder_toast": "Prohlídku ti včas připomeneme",
   "@checkup_reminder_toast": {},
   "something_went_wrong": "Něco se nepovedlo",
-  "@something_went_wrong": {}
+  "@something_went_wrong": {},
+  "something_went_wrong": "Něco se nepovedlo",
+  "@something_went_wrong": {},
+  "self_examination_educational_button": "Vyšetřila jsem se",
+  "@self_examination_educational_button": {}
 }
