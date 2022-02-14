@@ -21,7 +21,7 @@ class CancelCheckupScreen extends StatelessWidget {
     required this.id,
   }) : super(key: key);
 
-  final ExaminationTypeEnum examinationType;
+  final ExaminationType examinationType;
   final DateTime date;
   final String title;
   final String id;

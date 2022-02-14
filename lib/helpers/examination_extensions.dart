@@ -7,7 +7,7 @@ import 'package:loono_api/loono_api.dart';
 const int MONTHS_IN_YEAR = 12;
 const int TO_SCHEDULE_MONTHS_TRANSFER = 2;
 
-extension PreventionStatusExt on PreventionStatus {
+extension ExaminationPreventionStatusExt on ExaminationPreventionStatus {
   ExaminationCategory calculateStatus([DateTime? dateTimeNow]) {
     final now = dateTimeNow ?? DateTime.now();
 

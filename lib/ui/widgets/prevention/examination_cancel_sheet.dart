@@ -14,7 +14,7 @@ import 'package:loono_api/loono_api.dart';
 
 void showCancelExaminationSheet({
   required BuildContext context,
-  required ExaminationTypeEnum examinationType,
+  required ExaminationType examinationType,
   required String title,
   required DateTime date,
   required String id,

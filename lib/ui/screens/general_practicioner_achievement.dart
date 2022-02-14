@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 class GeneralPracticionerAchievementScreen extends StatelessWidget {
   const GeneralPracticionerAchievementScreen({Key? key}) : super(key: key);
 
-  static const type = ExaminationTypeEnum.GENERAL_PRACTITIONER;
+  static const type = ExaminationType.GENERAL_PRACTITIONER;
 
   @override
   Widget build(BuildContext context) {

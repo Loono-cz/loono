@@ -11,7 +11,7 @@ import 'package:loono_api/loono_api.dart';
 void showLastVisitSheet({
   required BuildContext context,
   required String? uuid,
-  required ExaminationTypeEnum examinationType,
+  required ExaminationType examinationType,
   required Sex sex,
   required int examinationIntervalYears,
   required DateTime skippedDate,

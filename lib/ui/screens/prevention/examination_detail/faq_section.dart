@@ -8,7 +8,7 @@ import 'package:loono_api/loono_api.dart';
 class FaqSection extends StatelessWidget {
   const FaqSection({Key? key, required this.examinationType}) : super(key: key);
 
-  final ExaminationTypeEnum examinationType;
+  final ExaminationType examinationType;
 
   @override
   Widget build(BuildContext context) {

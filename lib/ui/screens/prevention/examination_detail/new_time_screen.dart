@@ -7,7 +7,7 @@ import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
-import 'package:loono/repositories/examination_repository.dart';
+import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/custom_time_picker.dart';
@@ -118,19 +118,14 @@ class _NewTimeScreenState extends State<NewTimeScreen> {
               LoonoButton(
                 text: context.l10n.action_save,
                 onTap: () async {
-                  final response = await registry.get<ExaminationRepository>().postExamination(
-                        examinationType,
-                        newDate: newDate!,
-                      );
-                  response.map(
-                    success: (res) {
-                      AutoRouter.of(context).popUntilRouteWithName(const MainRoute().routeName);
-                      showSnackBarSuccess(context, message: context.l10n.checkup_reminder_toast);
-                    },
-                    failure: (err) {
-                      showSnackBarError(context, message: context.l10n.something_went_wrong);
-                    },
-                  );
+                  if (newDate != null) {
+                    await registry.get<CalendarRepository>().updateEventDate(
+                          examinationType,
+                          newDate: newDate!,
+                        );
+                  }
+                  AutoRouter.of(context).popUntilRouteWithName(cancelRoute.routeName);
+                  showSnackBarError(context, message: 'TODO: save to API\n$newDate');
                 },
               ),
               const SizedBox(

@@ -1588,7 +1588,8 @@ class DatePickerRouteArgs {
 class CalendarPermissionInfoRoute
     extends _i11.PageRouteInfo<CalendarPermissionInfoRouteArgs> {
   CalendarPermissionInfoRoute(
-      {_i59.Key? key, required _i62.PreventionStatus examinationRecord})
+      {_i59.Key? key,
+      required _i62.ExaminationPreventionStatus examinationRecord})
       : super(CalendarPermissionInfoRoute.name,
             path: 'calendar/permission',
             args: CalendarPermissionInfoRouteArgs(
@@ -1603,7 +1604,7 @@ class CalendarPermissionInfoRouteArgs {
 
   final _i59.Key? key;
 
-  final _i62.PreventionStatus examinationRecord;
+  final _i62.ExaminationPreventionStatus examinationRecord;
 
   @override
   String toString() {
@@ -1615,7 +1616,8 @@ class CalendarPermissionInfoRouteArgs {
 /// [_i48.CalendarListScreen]
 class CalendarListRoute extends _i11.PageRouteInfo<CalendarListRouteArgs> {
   CalendarListRoute(
-      {_i59.Key? key, required _i62.PreventionStatus examinationRecord})
+      {_i59.Key? key,
+      required _i62.ExaminationPreventionStatus examinationRecord})
       : super(CalendarListRoute.name,
             path: 'calendar/list',
             args: CalendarListRouteArgs(
@@ -1629,7 +1631,7 @@ class CalendarListRouteArgs {
 
   final _i59.Key? key;
 
-  final _i62.PreventionStatus examinationRecord;
+  final _i62.ExaminationPreventionStatus examinationRecord;
 
   @override
   String toString() {
@@ -1645,7 +1647,7 @@ class ChangeLastVisitRoute
       {_i59.Key? key,
       required DateTime originalDate,
       required String title,
-      required _i62.ExaminationTypeEnum examinationType,
+      required _i62.ExaminationType examinationType,
       required String? uuid,
       required _i66.ExaminationCategory status})
       : super(ChangeLastVisitRoute.name,
@@ -1676,7 +1678,7 @@ class ChangeLastVisitRouteArgs {
 
   final String title;
 
-  final _i62.ExaminationTypeEnum examinationType;
+  final _i62.ExaminationType examinationType;
 
   final String? uuid;
 
