@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
-import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/helpers/snackbar_message.dart';
@@ -18,13 +17,13 @@ class ScheduleExamination extends StatelessWidget {
     required this.examinationRecord,
   }) : super(key: key);
 
-  final ExaminationRecordTemp examinationRecord;
+  final PreventionStatus examinationRecord;
 
   final _appRouter = registry.get<AppRouter>();
 
   ExaminationTypeEnum get _examinationType => examinationRecord.examinationType;
 
-  int get _interval => examinationRecord.interval;
+  int get _interval => examinationRecord.intervalYears;
 
   Sex get _sex {
     final user = registry.get<DatabaseService>().users.user;
@@ -63,7 +62,7 @@ class ScheduleExamination extends StatelessWidget {
                           'TODO',
                           'TODO',
                         ],
-                        numberOfPoints: examinationRecord.worth,
+                        numberOfPoints: 200,
                         itemPath: 'assets/badges/achievement/cloak-level_1.svg',
                         onButtonTap: () {
                           _appRouter.navigate(

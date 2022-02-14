@@ -41,7 +41,7 @@ class _ChangeDateScreenState extends State<ChangeDateScreen> {
     final preposition = czechPreposition(context, examinationType: examinationType);
 
     final formattedDate = DateFormat('d. MMMM yyyy, kk:mm', 'cs-CZ')
-        .format(widget.categorizedExamination.examination.nextVisitDate!);
+        .format(widget.categorizedExamination.examination.plannedDate!);
 
     return Scaffold(
       backgroundColor: LoonoColors.bottomSheetPrevention,
@@ -52,7 +52,10 @@ class _ChangeDateScreenState extends State<ChangeDateScreen> {
         leading: const SizedBox.shrink(),
         actions: [
           IconButton(
-            icon: const Icon(Icons.close),
+            icon: const Icon(
+              Icons.close,
+              size: 32,
+            ),
             onPressed: () => AutoRouter.of(context).pop(),
           ),
         ],
@@ -84,6 +87,7 @@ class _ChangeDateScreenState extends State<ChangeDateScreen> {
                     ChangeTimeRoute(
                       categorizedExamination: widget.categorizedExamination,
                       newDate: newDate!,
+                      uuid: widget.categorizedExamination.examination.uuid,
                     ),
                   );
                 },

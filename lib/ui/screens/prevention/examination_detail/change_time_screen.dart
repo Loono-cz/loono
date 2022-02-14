@@ -8,7 +8,9 @@ import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/calendar_repository.dart';
-import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/repositories/examination_repository.dart';
+import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/custom_time_picker.dart';
 import 'package:loono/utils/registry.dart';
 
@@ -17,10 +19,12 @@ class ChangeTimeScreen extends StatefulWidget {
     Key? key,
     required this.categorizedExamination,
     required this.newDate,
+    required this.uuid,
   }) : super(key: key);
 
   final CategorizedExamination categorizedExamination;
   final DateTime newDate;
+  final String? uuid;
 
   @override
   State<ChangeTimeScreen> createState() => _ChangeTimeScreenState();
@@ -46,7 +50,7 @@ class _ChangeTimeScreenState extends State<ChangeTimeScreen> {
     final preposition = czechPreposition(context, examinationType: examinationType);
 
     final formattedOriginalDate = DateFormat('d. MMMM yyyy, kk:mm', 'cs-CZ')
-        .format(widget.categorizedExamination.examination.nextVisitDate!);
+        .format(widget.categorizedExamination.examination.plannedDate!);
 
     final formattedNewDate = DateFormat('d. MMMM yyyy', 'cs-CZ').format(widget.newDate);
 
@@ -64,8 +68,14 @@ class _ChangeTimeScreenState extends State<ChangeTimeScreen> {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.close),
-            onPressed: () => AutoRouter.of(context).popUntilRouteWithName('ExaminationDetailRoute'),
+            icon: const Icon(
+              Icons.close,
+              size: 32,
+            ),
+            onPressed: () => AutoRouter.of(context).popUntilRouteWithName(
+              ExaminationDetailRoute(categorizedExamination: widget.categorizedExamination)
+                  .routeName,
+            ),
           ),
         ],
       ),
@@ -97,17 +107,35 @@ class _ChangeTimeScreenState extends State<ChangeTimeScreen> {
                 ),
               ),
               const Spacer(),
-              LoonoButton(
+              AsyncLoonoApiButton(
                 text: context.l10n.action_save,
-                onTap: () async {
-                  if (newDate != null) {
-                    await registry.get<CalendarRepository>().updateEventDate(
-                          examinationType,
-                          newDate: newDate!,
-                        );
-                  }
-                  AutoRouter.of(context).popUntilRouteWithName('ExaminationDetailRoute');
-                  showSnackBarError(context, message: 'TODO: save to API\n$newDate');
+                asyncCallback: () async {
+                  final response = await registry.get<ExaminationRepository>().postExamination(
+                        examinationType,
+                        newDate: newDate!,
+                        uuid: widget.uuid,
+                      );
+                  await response.map(
+                    success: (res) async {
+                      await registry
+                          .get<CalendarRepository>()
+                          .updateEventDate(examinationType, newDate: newDate!);
+                      AutoRouter.of(context).popUntilRouteWithName(const MainRoute().routeName);
+                      await AutoRouter.of(context).navigate(
+                        ExaminationDetailRoute(
+                          categorizedExamination: CategorizedExamination(
+                            /// replace examination when updated on BE from ExaminationRecord to PreventionStatus
+                            examination: widget.categorizedExamination.examination,
+                            category: widget.categorizedExamination.category,
+                          ),
+                        ),
+                      );
+                      showSnackBarSuccess(context, message: context.l10n.checkup_reminder_toast);
+                    },
+                    failure: (err) {
+                      showSnackBarError(context, message: context.l10n.something_went_wrong);
+                    },
+                  );
                 },
               ),
               const SizedBox(

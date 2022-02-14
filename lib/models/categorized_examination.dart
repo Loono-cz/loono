@@ -1,5 +1,5 @@
 import 'package:loono/helpers/examination_category.dart';
-import 'package:loono/helpers/examination_extensions.dart';
+import 'package:loono_api/loono_api.dart';
 
 class CategorizedExamination {
   const CategorizedExamination({
@@ -7,7 +7,7 @@ class CategorizedExamination {
     required this.category,
   });
 
-  final ExaminationRecordTemp examination;
+  final PreventionStatus examination;
   final ExaminationCategory category;
 
   @override
