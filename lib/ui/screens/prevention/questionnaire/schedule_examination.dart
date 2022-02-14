@@ -62,7 +62,7 @@ class ScheduleExamination extends StatelessWidget {
                           'TODO',
                           'TODO',
                         ],
-                        numberOfPoints: examinationRecord.worth,
+                        numberOfPoints: 200,
                         itemPath: 'assets/badges/achievement/cloak-level_1.svg',
                         onButtonTap: () {
                           _appRouter.navigate(
