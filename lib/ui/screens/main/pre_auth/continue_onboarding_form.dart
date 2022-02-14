@@ -25,8 +25,10 @@ class ContinueOnboardingFormScreen extends StatelessWidget {
                   if (AutoRouter.of(context).isRouteActive(PreAuthMainRoute().routeName)) {
                     AutoRouter.of(context).popUntilRoot();
                   }
-                  AutoRouter.of(context)
-                      .push(PreAuthMainRoute(overridenPreventionRoute: LoginRoute()));
+                  AutoRouter.of(context).replaceAll([
+                    LoginRoute(),
+                    PreAuthMainRoute(overridenPreventionRoute: LoginRoute()),
+                  ]);
                 },
               ),
               const SizedBox(height: 24),
