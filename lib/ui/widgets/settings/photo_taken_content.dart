@@ -37,74 +37,71 @@ class _PhotoTakenContentState extends State<PhotoTakenContent> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
-      child: Scaffold(
-        appBar: settingsAppBar(
-          context,
-          showBackButton: widget.showBackButton,
-        ),
-        backgroundColor: LoonoColors.settingsBackground,
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(18),
-            child: Column(
-              children: [
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(context.l10n.photo_header, style: const TextStyle(fontSize: 24)),
-                ),
-                const Spacer(),
-                Theme(
-                  data: ThemeData(
-                    progressIndicatorTheme: const ProgressIndicatorThemeData(
-                      color: LoonoColors.primaryEnabled,
-                    ),
-                  ),
-                  child: Flexible(
-                    flex: 8,
-                    child: isCropping
-                        ? const Center(child: CircularProgressIndicator())
-                        : Crop(
-                            initialSize: 0.75,
-                            baseColor: LoonoColors.settingsBackground,
-                            maskColor: LoonoColors.settingsBackground.withAlpha(125),
-                            image: widget.imageBytes,
-                            withCircleUi: true,
-                            controller: cropController,
-                            onStatusChanged: (status) {
-                              if (status == CropStatus.ready) {
-                                setState(() {
-                                  isLoading = false;
-                                  isCropping = false;
-                                });
-                              }
-                              if (status == CropStatus.cropping) {
-                                setState(() {
-                                  isLoading = true;
-                                  isCropping = true;
-                                });
-                              }
-                            },
-                            onCropped: (imageBytes) => AutoRouter.of(context)
-                                .push(PhotoCroppedResultRoute(imageBytes: imageBytes)),
-                          ),
+    return Scaffold(
+      appBar: settingsAppBar(
+        context,
+        showBackButton: widget.showBackButton,
+      ),
+      backgroundColor: LoonoColors.settingsBackground,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(18),
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text(context.l10n.photo_header, style: const TextStyle(fontSize: 24)),
+              ),
+              const Spacer(),
+              Theme(
+                data: ThemeData(
+                  progressIndicatorTheme: const ProgressIndicatorThemeData(
+                    color: LoonoColors.primaryEnabled,
                   ),
                 ),
-                const Spacer(),
-                LoonoButton(
-                  enabled: isLoading == false && isCropping == false,
-                  text: context.l10n.continue_info,
-                  onTap: cropController.crop,
+                child: Flexible(
+                  flex: 8,
+                  child: isCropping
+                      ? const Center(child: CircularProgressIndicator())
+                      : Crop(
+                          initialSize: 0.75,
+                          baseColor: LoonoColors.settingsBackground,
+                          maskColor: LoonoColors.settingsBackground.withAlpha(125),
+                          image: widget.imageBytes,
+                          withCircleUi: true,
+                          controller: cropController,
+                          onStatusChanged: (status) {
+                            if (status == CropStatus.ready) {
+                              setState(() {
+                                isLoading = false;
+                                isCropping = false;
+                              });
+                            }
+                            if (status == CropStatus.cropping) {
+                              setState(() {
+                                isLoading = true;
+                                isCropping = true;
+                              });
+                            }
+                          },
+                          onCropped: (imageBytes) => AutoRouter.of(context)
+                              .push(PhotoCroppedResultRoute(imageBytes: imageBytes)),
+                        ),
                 ),
-                const SizedBox(height: 30),
-                TextButton(
-                  onPressed: widget.onSecondaryButtonTap,
-                  child: Text(widget.secondaryButtonText, style: LoonoFonts.fontStyle),
-                ),
-                const Spacer(),
-              ],
-            ),
+              ),
+              const Spacer(),
+              LoonoButton(
+                enabled: isLoading == false && isCropping == false,
+                text: context.l10n.continue_info,
+                onTap: cropController.crop,
+              ),
+              const SizedBox(height: 30),
+              TextButton(
+                onPressed: widget.onSecondaryButtonTap,
+                child: Text(widget.secondaryButtonText, style: LoonoFonts.fontStyle),
+              ),
+              const Spacer(),
+            ],
           ),
         ),
       ),

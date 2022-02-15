@@ -4,14 +4,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/screens/settings/edit_photo.dart';
 import 'package:loono/ui/screens/settings/leaderboard.dart';
 import 'package:loono/ui/screens/settings/open_settings.dart';
-import 'package:loono/ui/screens/settings/photo_cropped_result.dart';
 import 'package:loono/ui/screens/settings/points_help.dart';
 import 'package:loono/ui/screens/settings/update_profile.dart';
-import 'package:loono/ui/widgets/settings/photo_taken_content.dart';
 
 enum SettingsPage {
   main,
@@ -24,8 +21,6 @@ enum SettingsPage {
 }
 
 void showSettingsSheet(BuildContext context) {
-  final l10n = context.l10n;
-
   showModalBottomSheet<void>(
     context: context,
     shape: RoundedRectangleBorder(

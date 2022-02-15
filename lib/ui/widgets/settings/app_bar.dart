@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/router/app_router.gr.dart';
 
 AppBar settingsAppBar(
   BuildContext context, {
@@ -27,7 +26,7 @@ AppBar settingsAppBar(
         padding: const EdgeInsets.only(right: 15.0),
         child: IconButton(
           icon: const Icon(Icons.close, size: 37),
-          onPressed: () => AutoRouter.of(context).pop(),
+          onPressed: () => AutoRouter.of(context).popForced(),
         ),
       ),
     ],
