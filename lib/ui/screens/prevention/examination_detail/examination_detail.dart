@@ -10,6 +10,7 @@ import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/calendar_repository.dart';
+import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/calendar_service.dart';
 import 'package:loono/services/database_service.dart';
@@ -19,6 +20,7 @@ import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/prevention/calendar_permission_sheet.dart';
 import 'package:loono/ui/widgets/prevention/checkup_confirmation_sheet.dart';
 import 'package:loono/ui/widgets/prevention/checkup_edit_modal.dart';
+import 'package:loono/ui/widgets/prevention/datepicker_sheet.dart';
 import 'package:loono/ui/widgets/prevention/examination_progress_content.dart';
 import 'package:loono/ui/widgets/prevention/last_visit_sheet.dart';
 import 'package:loono/ui/widgets/prevention/show_order_checkup_sheet.dart';
@@ -86,6 +88,22 @@ class ExaminationDetail extends StatelessWidget {
     final practitioner =
         procedureQuestionTitle(context, examinationType: _examinationType).toLowerCase();
     final preposition = czechPreposition(context, examinationType: _examinationType);
+
+    /// not ideal in build method but need context
+    Future<void> _onPostNewCheckupSubmit({required DateTime date}) async {
+      final response = await registry.get<ExaminationRepository>().postExamination(
+            _examinationType,
+            newDate: date,
+          );
+      response.map(
+        success: (res) {
+          showSnackBarSuccess(context, message: context.l10n.checkup_reminder_toast);
+        },
+        failure: (err) {
+          showSnackBarError(context, message: context.l10n.something_went_wrong);
+        },
+      );
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -316,18 +334,34 @@ class ExaminationDetail extends StatelessWidget {
                 Expanded(
                   child: LoonoButton(
                     text: l10n.examination_detail_order_examination, //objednej se
-                    onTap: () => showOrderCheckupSheetStep1(context, categorizedExamination),
+                    onTap: () => showOrderCheckupSheetStep1(
+                      context,
+                      categorizedExamination,
+                      _onPostNewCheckupSubmit,
+                      _sex,
+                    ),
                   ),
                 ),
                 const SizedBox(width: 19),
                 Expanded(
                   child: LoonoButton.light(
                     text: l10n.examination_detail_set_examination_button, //mám objednáno
-                    onTap: () => AutoRouter.of(context).push(
-                      NewDateRoute(
-                        categorizedExamination: categorizedExamination,
-                        showCancelIcon: false,
-                      ),
+                    onTap: () => showDatePickerSheet(
+                      context: context,
+                      categorizedExamination: categorizedExamination,
+                      onSubmit: _onPostNewCheckupSubmit,
+                      firstStepTitle:
+                          '${_sex == Sex.MALE ? l10n.checkup_new_date_title_male : l10n.checkup_new_date_title_female} $preposition ${examinationTypeCasus(
+                        context,
+                        casus: Casus.genitiv,
+                        examinationType: _examinationType,
+                      ).toUpperCase()}?',
+                      secondStepTitle:
+                          '${l10n.checkup_new_time_title} $preposition ${examinationTypeCasus(
+                        context,
+                        casus: Casus.nomativ,
+                        examinationType: _examinationType,
+                      ).toLowerCase()}',
                     ),
                   ),
                 ),

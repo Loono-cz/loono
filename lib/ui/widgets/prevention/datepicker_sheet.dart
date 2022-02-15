@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/l10n/ext.dart';
@@ -101,9 +100,6 @@ class _DatePickerContentState extends State<_DatePickerContent> {
         procedureQuestionTitle(context, examinationType: examinationType).toLowerCase();
     final preposition = czechPreposition(context, examinationType: examinationType);
 
-    final formattedDate = DateFormat('d. MMMM yyyy, kk:mm', 'cs-CZ')
-        .format(widget.categorizedExamination.examination.nextVisitDate!);
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
@@ -174,8 +170,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
         const SizedBox(
           height: 18,
         ),
-        if (widget.additionalBottomText != null)
-          Text('${widget.additionalBottomText}: $formattedDate'),
+        if (widget.additionalBottomText != null) Text(widget.additionalBottomText!),
         const SizedBox(
           height: 18,
         ),

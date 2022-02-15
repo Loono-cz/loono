@@ -7,9 +7,8 @@ import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/calendar_repository.dart';
-import 'package:loono/router/app_router.gr.dart';
-import 'package:loono/ui/widgets/prevention/examination_cancel_sheet.dart';
 import 'package:loono/ui/widgets/prevention/datepicker_sheet.dart';
+import 'package:loono/ui/widgets/prevention/examination_cancel_sheet.dart';
 import 'package:loono/utils/registry.dart';
 
 void showEditModal(BuildContext pageContext, CategorizedExamination examination) {
@@ -28,7 +27,7 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
   }
 
   final formattedDate =
-      DateFormat('d. MMMM yyyy, kk:mm', 'cs-CZ').format(examination.examination.nextVisitDate!);
+      DateFormat('d. MMMM yyyy, kk:mm', 'cs-CZ').format(examination.examination.plannedDate!);
 
   showCupertinoModalPopup<void>(
     context: pageContext,

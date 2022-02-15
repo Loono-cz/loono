@@ -78,6 +78,8 @@ class CancelCheckupScreen extends StatelessWidget {
               AsyncLoonoApiButton(
                 text: context.l10n.cancel_checkup,
                 asyncCallback: () async {
+                  print(examinationType.name);
+                  print(id);
                   final response = await registry
                       .get<ExaminationRepository>()
                       .cancelExamination(examinationType, id);

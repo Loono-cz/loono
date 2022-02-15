@@ -31,12 +31,8 @@ import 'package:loono/ui/screens/onboarding/gamification_introduction.dart';
 import 'package:loono/ui/screens/onboarding/gender.dart';
 import 'package:loono/ui/screens/prevention/calendar/calendar_list.dart';
 import 'package:loono/ui/screens/prevention/calendar/permission_info.dart';
-import 'package:loono/ui/screens/prevention/examination_detail/change_date_screen.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/change_last_visit_screen.dart';
-import 'package:loono/ui/screens/prevention/examination_detail/change_time_screen.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/examination_screen.dart';
-import 'package:loono/ui/screens/prevention/examination_detail/new_date_screen.dart';
-import 'package:loono/ui/screens/prevention/examination_detail/new_time_screen.dart';
 import 'package:loono/ui/screens/prevention/questionnaire/date_picker_screen.dart';
 import 'package:loono/ui/screens/prevention/self_examination/detail_screen.dart';
 import 'package:loono/ui/screens/prevention/self_examination/educational_screen.dart';
@@ -294,26 +290,6 @@ const _preventionRoutes = <AutoRoute>[
   CustomRoute<void>(
     page: ChangeLastVisitScreen,
     path: 'checkup/last-visit-update',
-    transitionsBuilder: _preventionTransition,
-  ),
-  CustomRoute<void>(
-    page: NewDateScreen,
-    path: 'checkup/set-date',
-    transitionsBuilder: _preventionTransition,
-  ),
-  CustomRoute<void>(
-    page: NewTimeScreen,
-    path: 'checkup/set-time',
-    transitionsBuilder: _preventionTransition,
-  ),
-  CustomRoute<void>(
-    page: ChangeDateScreen,
-    path: 'checkup/change-date',
-    transitionsBuilder: _preventionTransition,
-  ),
-  CustomRoute<void>(
-    page: ChangeTimeScreen,
-    path: 'checkup/change-time',
     transitionsBuilder: _preventionTransition,
   ),
 ];
