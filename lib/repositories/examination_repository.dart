@@ -11,19 +11,19 @@ class ExaminationRepository {
 
   final ApiService _apiService;
 
-  Future<List<PreventionStatus>> getExaminationRecords() async {
-    var records = <PreventionStatus>[];
+  Future<PreventionStatus?> getExaminationRecords() async {
     final response = await _apiService.getExaminations();
-    response.when(
-      success: (data) {
-        records = data.toList();
+    return response.map(
+      success: (success) {
+        return success.data;
       },
-      failure: (err) {},
+      failure: (err) {
+        return null;
+      },
     );
-    return records;
   }
 
-  Future<bool> cancelExamination(ExaminationTypeEnum type, String uuid) async {
+  Future<bool> cancelExamination(ExaminationType type, String uuid) async {
     final response = await _apiService.cancelExamination(type, uuid);
     var res = false;
     response.map(
@@ -38,7 +38,7 @@ class ExaminationRepository {
   }
 
   Future<ApiResponse<ExaminationRecord>> postExamination(
-    ExaminationTypeEnum type, {
+    ExaminationType type, {
     String? uuid,
     DateTime? newDate,
     ExaminationStatus? status,
@@ -56,7 +56,7 @@ class ExaminationRepository {
   }
 
   Future<ApiResponse<ExaminationRecord>> confirmExamination(
-    ExaminationTypeEnum type, {
+    ExaminationType type, {
     String? uuid,
   }) async {
     final response = await _apiService.confirmExamination(type, id: uuid);

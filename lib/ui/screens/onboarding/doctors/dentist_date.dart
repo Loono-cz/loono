@@ -19,7 +19,7 @@ class DentistDateScreen extends StatefulWidget {
 class _DentistDateScreenState extends State<DentistDateScreen> {
   final _examinationsQuestionnairesDao = registry.get<DatabaseService>().examinationQuestionnaires;
 
-  static const _type = ExaminationTypeEnum.DENTIST;
+  static const _type = ExaminationType.DENTIST;
 
   DateTime? selectedDate;
 

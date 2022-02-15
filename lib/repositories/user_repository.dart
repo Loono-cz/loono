@@ -42,7 +42,9 @@ class UserRepository {
       success: (data) async {
         final usersDao = _db.users;
 
-        await usersDao.updateNickname(data.user.nickname);
+        if (data.user.nickname != null) {
+          await usersDao.updateNickname(data.user.nickname!);
+        }
         if (data.user.birthdateYear != null && data.user.birthdateMonth != null) {
           await usersDao.updateDateOfBirth(
             DateWithoutDay(

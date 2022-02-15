@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:typed_data';
 
-import 'package:built_collection/built_collection.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/models/api_params.dart';
@@ -95,7 +94,7 @@ class ApiService {
     );
   }
 
-  Future<ApiResponse<BuiltList<PreventionStatus>>> getExaminations({ApiParams? params}) async {
+  Future<ApiResponse<PreventionStatus>> getExaminations({ApiParams? params}) async {
     return _callApi(
       () async => _api.getExaminationsApi().getExaminations(
             cancelToken: params?.cancelToken,
@@ -109,7 +108,7 @@ class ApiService {
   }
 
   Future<ApiResponse<ExaminationRecord>> cancelExamination(
-    ExaminationTypeEnum type,
+    ExaminationType type,
     String uuid,
   ) async {
     return _callApi(
@@ -123,7 +122,7 @@ class ApiService {
   }
 
   Future<ApiResponse<ExaminationRecord>> postExamination(
-    ExaminationTypeEnum type, {
+    ExaminationType type, {
     String? uuid,
     DateTime? newDate,
     ExaminationStatus? status,
@@ -144,7 +143,7 @@ class ApiService {
   }
 
   Future<ApiResponse<ExaminationRecord>> confirmExamination(
-    ExaminationTypeEnum type, {
+    ExaminationType type, {
     String? id,
   }) async {
     return _callApi(

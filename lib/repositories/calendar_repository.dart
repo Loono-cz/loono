@@ -20,7 +20,7 @@ class CalendarRepository {
   final CalendarService _calendarService;
 
   Future<Event> _getDefaultCheckupEvent({
-    required ExaminationTypeEnum examinationType,
+    required ExaminationType examinationType,
     required String deviceCalendarId,
     String? deviceCalendarEventId,
     required DateTime startingDate,
@@ -36,7 +36,7 @@ class CalendarRepository {
   }
 
   Future<bool> createEvent(
-    ExaminationTypeEnum examinationType, {
+    ExaminationType examinationType, {
     required String deviceCalendarId,
     required DateTime startingDate,
   }) async {
@@ -64,7 +64,7 @@ class CalendarRepository {
   }
 
   Future<void> updateEventDate(
-    ExaminationTypeEnum examinationType, {
+    ExaminationType examinationType, {
     required DateTime newDate,
   }) async {
     final existingDbEvent = await _db.calendarEvents.get(examinationType);
@@ -89,7 +89,7 @@ class CalendarRepository {
     }
   }
 
-  Future<void> deleteEvent(ExaminationTypeEnum examinationType) async {
+  Future<void> deleteEvent(ExaminationType examinationType) async {
     final existingDbEvent = await _db.calendarEvents.get(examinationType);
     if (existingDbEvent != null) {
       await _db.calendarEvents.deleteEvent(examinationType);
@@ -109,7 +109,7 @@ class CalendarRepository {
   ///
   /// The use-case is when for example a user confirms a check-up visit, we want to keep the event
   /// in the device calendar so the user does not lose the track of it.
-  Future<void> deleteOnlyDbEvent(ExaminationTypeEnum examinationType) async {
+  Future<void> deleteOnlyDbEvent(ExaminationType examinationType) async {
     await _db.calendarEvents.deleteEvent(examinationType);
   }
 }

@@ -15,7 +15,7 @@ import 'package:loono_api/loono_api.dart';
 
 void showConfirmationSheet(
   BuildContext context,
-  ExaminationTypeEnum examinationType,
+  ExaminationType examinationType,
   Sex sex,
   String? uuid,
 ) {

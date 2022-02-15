@@ -7,7 +7,7 @@ class CategorizedExamination {
     required this.category,
   });
 
-  final PreventionStatus examination;
+  final ExaminationPreventionStatus examination;
   final ExaminationCategory category;
 
   @override

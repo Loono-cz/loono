@@ -17,7 +17,7 @@ class GeneralPractitionerDateScreen extends StatefulWidget {
 class _GeneralPractitionerDateScreenState extends State<GeneralPractitionerDateScreen> {
   final _examinationsQuestionnairesDao = registry.get<DatabaseService>().examinationQuestionnaires;
 
-  static const _type = ExaminationTypeEnum.GENERAL_PRACTITIONER;
+  static const _type = ExaminationType.GENERAL_PRACTITIONER;
 
   DateTime? selectedDate;
 

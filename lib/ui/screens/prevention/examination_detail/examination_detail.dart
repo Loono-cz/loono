@@ -43,7 +43,7 @@ class ExaminationDetail extends StatelessWidget {
     const Duration(days: 60),
   );
 
-  ExaminationTypeEnum get _examinationType => categorizedExamination.examination.examinationType;
+  ExaminationType get _examinationType => categorizedExamination.examination.examinationType;
 
   DateTime? get _nextVisitDate => categorizedExamination.examination.plannedDate;
 
@@ -154,8 +154,7 @@ class ExaminationDetail extends StatelessWidget {
                         _calendarRow(
                           '${context.l10n.last_visit}:\n$lastVisit',
                           onTap: () {
-                            if (lastVisitDateWithoutDay != null &&
-                                categorizedExamination.examination.uuid != null) {
+                            if (lastVisitDateWithoutDay != null) {
                               AutoRouter.of(context).navigate(
                                 ChangeLastVisitRoute(
                                   originalDate: DateTime(

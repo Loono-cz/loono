@@ -13,17 +13,17 @@ class OnboardingStateService extends ChangeNotifier {
 
   final NotificationService notificationService;
 
-  final _obtainedExaminationAchievements = <ExaminationTypeEnum>{};
+  final _obtainedExaminationAchievements = <ExaminationType>{};
 
   // on Android notifications are allowed by default
   NotificationPermissionState _notificationPermissionState = Platform.isIOS
       ? NotificationPermissionState.notRequested
       : NotificationPermissionState.requested;
 
-  bool containsAchievement(ExaminationTypeEnum examination) =>
+  bool containsAchievement(ExaminationType examination) =>
       _obtainedExaminationAchievements.contains(examination);
 
-  void obtainAchievementForExamination(ExaminationTypeEnum examination) {
+  void obtainAchievementForExamination(ExaminationType examination) {
     if (!_obtainedExaminationAchievements.contains(examination)) {
       _obtainedExaminationAchievements.add(examination);
       notifyListeners();
