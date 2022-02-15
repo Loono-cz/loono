@@ -23,7 +23,7 @@ class SearchTextField extends StatelessWidget {
             border: OutlineInputBorder(),
             fillColor: Colors.white,
             filled: true,
-            hintText: 'Zadej adresu, jméno lékaře nebo odbornost',
+            hintText: 'Zadej město',
           ),
         ),
         debounceDuration: const Duration(milliseconds: 300),
