@@ -36,12 +36,14 @@ class LoonBottomSheet extends StatelessWidget {
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             children: [
-              Align(
-                alignment: Alignment.centerRight,
-                child: IconButton(
-                  icon: const Icon(Icons.close),
-                  onPressed: () => AutoRouter.of(context).pop(),
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.close, size: 32),
+                    onPressed: () => AutoRouter.of(context).pop(),
+                  ),
+                ],
               ),
               SizedBox(
                 height: topSpace,

@@ -43,9 +43,9 @@ class ExaminationDetail extends StatelessWidget {
     const Duration(days: 60),
   );
 
-  ExaminationTypeEnum get _examinationType => categorizedExamination.examination.examinationType;
+  ExaminationType get _examinationType => categorizedExamination.examination.examinationType;
 
-  DateTime? get _nextVisitDate => categorizedExamination.examination.nextVisitDate;
+  DateTime? get _nextVisitDate => categorizedExamination.examination.plannedDate;
 
   Widget get _doctorAsset => SvgPicture.asset(_examinationType.assetPath, width: 180);
 
@@ -55,7 +55,7 @@ class ExaminationDetail extends StatelessWidget {
   }
 
   String _intervalYears(BuildContext context) =>
-      '${categorizedExamination.examination.interval.toString()} ${categorizedExamination.examination.interval > 1 ? context.l10n.years : context.l10n.year}';
+      '${categorizedExamination.examination.intervalYears.toString()} ${categorizedExamination.examination.intervalYears > 1 ? context.l10n.years : context.l10n.year}';
 
   Widget _calendarRow(String text, {VoidCallback? onTap}) => GestureDetector(
         onTap: onTap,
@@ -75,11 +75,11 @@ class ExaminationDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final lastVisitDateWithoutDay = categorizedExamination.examination.lastVisitDate;
+    final lastVisitDateWithoutDay = categorizedExamination.examination.lastConfirmedDate;
 
     final lastVisit = lastVisitDateWithoutDay != null
         ? DateFormat.yMMMM('cs-CZ').format(
-            DateTime(lastVisitDateWithoutDay.year, lastVisitDateWithoutDay.month.index + 1),
+            DateTime(lastVisitDateWithoutDay.year, lastVisitDateWithoutDay.month),
           )
         : context.l10n.never;
 
@@ -159,19 +159,27 @@ class ExaminationDetail extends StatelessWidget {
                                 ChangeLastVisitRoute(
                                   originalDate: DateTime(
                                     lastVisitDateWithoutDay.year,
-                                    lastVisitDateWithoutDay.month.index,
+                                    lastVisitDateWithoutDay.month,
                                   ),
+                                  // refactor after api UUID and ID inconsistency fix
+                                  uuid: categorizedExamination.examination.uuid,
                                   title:
                                       '${l10n.change_last_visit_title} $preposition $practitioner',
+                                  examinationType: _examinationType,
+                                  status: categorizedExamination.category,
                                 ),
                               );
                             } else {
                               showLastVisitSheet(
-                                context,
-                                _examinationType,
-                                _sex,
-                                categorizedExamination.examination.interval,
-                                lastVisitSkippedDate,
+                                context: context,
+                                // refactor after api UUID and ID inconsistency fix
+                                uuid: categorizedExamination.examination.uuid,
+                                examinationType: _examinationType,
+                                sex: _sex,
+                                examinationIntervalYears:
+                                    categorizedExamination.examination.intervalYears,
+                                skippedDate: lastVisitSkippedDate,
+                                status: categorizedExamination.category,
                               );
                             }
                           },
@@ -280,6 +288,7 @@ class ExaminationDetail extends StatelessWidget {
                                       context,
                                       categorizedExamination.examination.examinationType,
                                       _sex,
+                                      categorizedExamination.examination.uuid,
                                     );
                                   },
                                 ),

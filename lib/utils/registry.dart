@@ -23,6 +23,7 @@ import 'package:loono/services/calendar_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/firebase_storage_service.dart';
 import 'package:loono/services/notification_service.dart';
+import 'package:loono/services/save_directories.dart';
 import 'package:loono/utils/app_config.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -74,6 +75,8 @@ Future<void> setup(AppFlavors flavor) async {
   await registry.get<NotificationService>().init();
 
   // services
+  registry.registerSingleton<SaveDirectories>(SaveDirectories());
+  await registry.get<SaveDirectories>().init();
   registry.registerSingleton<AuthService>(AuthService(api: registry.get<LoonoApi>()));
   registry.registerSingleton<DatabaseService>(DatabaseService());
   registry.registerSingleton<FirebaseStorageService>(
@@ -99,7 +102,11 @@ Future<void> setup(AppFlavors flavor) async {
       authService: registry.get<AuthService>(),
     ),
   );
-  registry.registerSingleton<ExaminationRepository>(const ExaminationRepository());
+  registry.registerSingleton<ExaminationRepository>(
+    ExaminationRepository(
+      apiService: registry.get<ApiService>(),
+    ),
+  );
   registry.registerSingleton<HealthcareProviderRepository>(
     HealthcareProviderRepository(
       apiService: registry.get<ApiService>(),

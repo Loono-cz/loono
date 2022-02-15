@@ -1,19 +1,22 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono_api/loono_api.dart';
 
-void showLastVisitSheet(
-  BuildContext context,
-  ExaminationTypeEnum examinationType,
-  Sex sex,
-  int examinationIntervalYears,
-  DateTime skippedDate,
-) {
+void showLastVisitSheet({
+  required BuildContext context,
+  required String? uuid,
+  required ExaminationType examinationType,
+  required Sex sex,
+  required int examinationIntervalYears,
+  required DateTime skippedDate,
+  required ExaminationCategory status,
+}) {
   final l10n = context.l10n;
 
   final notificationDate = DateTime(
@@ -58,7 +61,7 @@ void showLastVisitSheet(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     IconButton(
-                      icon: const Icon(Icons.close),
+                      icon: const Icon(Icons.close, size: 32),
                       onPressed: () => AutoRouter.of(context).pop(),
                     ),
                   ],
@@ -83,8 +86,11 @@ void showLastVisitSheet(
                     AutoRouter.of(modalContext).pop();
                     AutoRouter.of(context).navigate(
                       ChangeLastVisitRoute(
+                        uuid: uuid,
                         originalDate: skippedDate,
                         title: title,
+                        examinationType: examinationType,
+                        status: status,
                       ),
                     );
                   },

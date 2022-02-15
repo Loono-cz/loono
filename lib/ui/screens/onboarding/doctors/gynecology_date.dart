@@ -17,7 +17,7 @@ class GynecologyDateScreen extends StatefulWidget {
 class _GynecologyDateScreenState extends State<GynecologyDateScreen> {
   final _examinationsQuestionnairesDao = registry.get<DatabaseService>().examinationQuestionnaires;
 
-  static const _type = ExaminationTypeEnum.GYNECOLOGIST;
+  static const _type = ExaminationType.GYNECOLOGIST;
 
   DateTime? selectedDate;
 

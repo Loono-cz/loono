@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
@@ -36,8 +35,10 @@ class OnboardingFormDoneScreen extends StatelessWidget {
                         if (AutoRouter.of(context).isRouteActive(PreAuthMainRoute().routeName)) {
                           AutoRouter.of(context).popUntilRoot();
                         }
-                        AutoRouter.of(context)
-                            .push(PreAuthMainRoute(overridenPreventionRoute: LoginRoute()));
+                        AutoRouter.of(context).replaceAll([
+                          LoginRoute(),
+                          PreAuthMainRoute(overridenPreventionRoute: LoginRoute()),
+                        ]);
                       },
                     ),
                     const SizedBox(height: 24),
