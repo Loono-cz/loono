@@ -18,10 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$ExaminationTypeUnionTearOff {
   const _$ExaminationTypeUnionTearOff();
 
-  BreastSelfExaminationTypeUnion breastSelf() {
-    return const BreastSelfExaminationTypeUnion();
-  }
-
   ColonoscopyExaminationTypeUnion colonoscopy() {
     return const ColonoscopyExaminationTypeUnion();
   }
@@ -50,10 +46,6 @@ class _$ExaminationTypeUnionTearOff {
     return const OphthalmologistExaminationTypeUnion();
   }
 
-  TesticularSelfExaminationTypeUnion testicularSelf() {
-    return const TesticularSelfExaminationTypeUnion();
-  }
-
   ToksExaminationTypeUnion toks() {
     return const ToksExaminationTypeUnion();
   }
@@ -78,7 +70,6 @@ const $ExaminationTypeUnion = _$ExaminationTypeUnionTearOff();
 mixin _$ExaminationTypeUnion {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() breastSelf,
     required TResult Function() colonoscopy,
     required TResult Function() dentist,
     required TResult Function() dermatologist,
@@ -86,7 +77,6 @@ mixin _$ExaminationTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() testicularSelf,
     required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
@@ -95,7 +85,6 @@ mixin _$ExaminationTypeUnion {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? breastSelf,
     TResult Function()? colonoscopy,
     TResult Function()? dentist,
     TResult Function()? dermatologist,
@@ -103,7 +92,6 @@ mixin _$ExaminationTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
@@ -112,7 +100,6 @@ mixin _$ExaminationTypeUnion {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? breastSelf,
     TResult Function()? colonoscopy,
     TResult Function()? dentist,
     TResult Function()? dermatologist,
@@ -120,7 +107,6 @@ mixin _$ExaminationTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
@@ -130,7 +116,6 @@ mixin _$ExaminationTypeUnion {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BreastSelfExaminationTypeUnion value) breastSelf,
     required TResult Function(ColonoscopyExaminationTypeUnion value)
         colonoscopy,
     required TResult Function(DentistExaminationTypeUnion value) dentist,
@@ -143,8 +128,6 @@ mixin _$ExaminationTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(TesticularSelfExaminationTypeUnion value)
-        testicularSelf,
     required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
@@ -155,7 +138,6 @@ mixin _$ExaminationTypeUnion {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
@@ -165,7 +147,6 @@ mixin _$ExaminationTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
     TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
@@ -176,7 +157,6 @@ mixin _$ExaminationTypeUnion {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
@@ -186,7 +166,6 @@ mixin _$ExaminationTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
     TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
@@ -213,199 +192,6 @@ class _$ExaminationTypeUnionCopyWithImpl<$Res>
   final ExaminationTypeUnion _value;
   // ignore: unused_field
   final $Res Function(ExaminationTypeUnion) _then;
-}
-
-/// @nodoc
-abstract class $BreastSelfExaminationTypeUnionCopyWith<$Res> {
-  factory $BreastSelfExaminationTypeUnionCopyWith(
-          BreastSelfExaminationTypeUnion value,
-          $Res Function(BreastSelfExaminationTypeUnion) then) =
-      _$BreastSelfExaminationTypeUnionCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$BreastSelfExaminationTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
-    implements $BreastSelfExaminationTypeUnionCopyWith<$Res> {
-  _$BreastSelfExaminationTypeUnionCopyWithImpl(
-      BreastSelfExaminationTypeUnion _value,
-      $Res Function(BreastSelfExaminationTypeUnion) _then)
-      : super(_value, (v) => _then(v as BreastSelfExaminationTypeUnion));
-
-  @override
-  BreastSelfExaminationTypeUnion get _value =>
-      super._value as BreastSelfExaminationTypeUnion;
-}
-
-/// @nodoc
-
-class _$BreastSelfExaminationTypeUnion extends BreastSelfExaminationTypeUnion {
-  const _$BreastSelfExaminationTypeUnion() : super._();
-
-  @override
-  String toString() {
-    return 'ExaminationTypeUnion.breastSelf()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is BreastSelfExaminationTypeUnion);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() breastSelf,
-    required TResult Function() colonoscopy,
-    required TResult Function() dentist,
-    required TResult Function() dermatologist,
-    required TResult Function() generalPractitioner,
-    required TResult Function() mammogram,
-    required TResult Function() gynecologist,
-    required TResult Function() ophthalmologist,
-    required TResult Function() testicularSelf,
-    required TResult Function() toks,
-    required TResult Function() ultrasoundBreast,
-    required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
-  }) {
-    return breastSelf();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? breastSelf,
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
-    TResult Function()? toks,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
-  }) {
-    return breastSelf?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? breastSelf,
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
-    TResult Function()? toks,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
-    required TResult orElse(),
-  }) {
-    if (breastSelf != null) {
-      return breastSelf();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(BreastSelfExaminationTypeUnion value) breastSelf,
-    required TResult Function(ColonoscopyExaminationTypeUnion value)
-        colonoscopy,
-    required TResult Function(DentistExaminationTypeUnion value) dentist,
-    required TResult Function(DermatologistExaminationTypeUnion value)
-        dermatologist,
-    required TResult Function(GeneralPractitionerExaminationTypeUnion value)
-        generalPractitioner,
-    required TResult Function(MammogramExaminationTypeUnion value) mammogram,
-    required TResult Function(GynecologistExaminationTypeUnion value)
-        gynecologist,
-    required TResult Function(OphthalmologistExaminationTypeUnion value)
-        ophthalmologist,
-    required TResult Function(TesticularSelfExaminationTypeUnion value)
-        testicularSelf,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
-    required TResult Function(UltrasoundBreastExaminationTypeUnion value)
-        ultrasoundBreast,
-    required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
-  }) {
-    return breastSelf(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
-  }) {
-    return breastSelf?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
-    required TResult orElse(),
-  }) {
-    if (breastSelf != null) {
-      return breastSelf(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class BreastSelfExaminationTypeUnion extends ExaminationTypeUnion {
-  const factory BreastSelfExaminationTypeUnion() =
-      _$BreastSelfExaminationTypeUnion;
-  const BreastSelfExaminationTypeUnion._() : super._();
 }
 
 /// @nodoc
@@ -454,7 +240,6 @@ class _$ColonoscopyExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() breastSelf,
     required TResult Function() colonoscopy,
     required TResult Function() dentist,
     required TResult Function() dermatologist,
@@ -462,7 +247,6 @@ class _$ColonoscopyExaminationTypeUnion
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() testicularSelf,
     required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
@@ -474,7 +258,6 @@ class _$ColonoscopyExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? breastSelf,
     TResult Function()? colonoscopy,
     TResult Function()? dentist,
     TResult Function()? dermatologist,
@@ -482,7 +265,6 @@ class _$ColonoscopyExaminationTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
@@ -494,7 +276,6 @@ class _$ColonoscopyExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? breastSelf,
     TResult Function()? colonoscopy,
     TResult Function()? dentist,
     TResult Function()? dermatologist,
@@ -502,7 +283,6 @@ class _$ColonoscopyExaminationTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
@@ -518,7 +298,6 @@ class _$ColonoscopyExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BreastSelfExaminationTypeUnion value) breastSelf,
     required TResult Function(ColonoscopyExaminationTypeUnion value)
         colonoscopy,
     required TResult Function(DentistExaminationTypeUnion value) dentist,
@@ -531,8 +310,6 @@ class _$ColonoscopyExaminationTypeUnion
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(TesticularSelfExaminationTypeUnion value)
-        testicularSelf,
     required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
@@ -546,7 +323,6 @@ class _$ColonoscopyExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
@@ -556,7 +332,6 @@ class _$ColonoscopyExaminationTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
     TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
@@ -570,7 +345,6 @@ class _$ColonoscopyExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
@@ -580,7 +354,6 @@ class _$ColonoscopyExaminationTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
     TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
@@ -646,7 +419,6 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() breastSelf,
     required TResult Function() colonoscopy,
     required TResult Function() dentist,
     required TResult Function() dermatologist,
@@ -654,7 +426,6 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() testicularSelf,
     required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
@@ -666,7 +437,6 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? breastSelf,
     TResult Function()? colonoscopy,
     TResult Function()? dentist,
     TResult Function()? dermatologist,
@@ -674,7 +444,6 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
@@ -686,7 +455,6 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? breastSelf,
     TResult Function()? colonoscopy,
     TResult Function()? dentist,
     TResult Function()? dermatologist,
@@ -694,7 +462,6 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
@@ -710,7 +477,6 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BreastSelfExaminationTypeUnion value) breastSelf,
     required TResult Function(ColonoscopyExaminationTypeUnion value)
         colonoscopy,
     required TResult Function(DentistExaminationTypeUnion value) dentist,
@@ -723,8 +489,6 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(TesticularSelfExaminationTypeUnion value)
-        testicularSelf,
     required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
@@ -738,7 +502,6 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
@@ -748,7 +511,6 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
     TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
@@ -762,7 +524,6 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
@@ -772,7 +533,6 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
     TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
@@ -839,7 +599,6 @@ class _$DermatologistExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() breastSelf,
     required TResult Function() colonoscopy,
     required TResult Function() dentist,
     required TResult Function() dermatologist,
@@ -847,7 +606,6 @@ class _$DermatologistExaminationTypeUnion
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() testicularSelf,
     required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
@@ -859,7 +617,6 @@ class _$DermatologistExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? breastSelf,
     TResult Function()? colonoscopy,
     TResult Function()? dentist,
     TResult Function()? dermatologist,
@@ -867,7 +624,6 @@ class _$DermatologistExaminationTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
@@ -879,7 +635,6 @@ class _$DermatologistExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? breastSelf,
     TResult Function()? colonoscopy,
     TResult Function()? dentist,
     TResult Function()? dermatologist,
@@ -887,7 +642,6 @@ class _$DermatologistExaminationTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
@@ -903,7 +657,6 @@ class _$DermatologistExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BreastSelfExaminationTypeUnion value) breastSelf,
     required TResult Function(ColonoscopyExaminationTypeUnion value)
         colonoscopy,
     required TResult Function(DentistExaminationTypeUnion value) dentist,
@@ -916,8 +669,6 @@ class _$DermatologistExaminationTypeUnion
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(TesticularSelfExaminationTypeUnion value)
-        testicularSelf,
     required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
@@ -931,7 +682,6 @@ class _$DermatologistExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
@@ -941,7 +691,6 @@ class _$DermatologistExaminationTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
     TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
@@ -955,7 +704,6 @@ class _$DermatologistExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
@@ -965,7 +713,6 @@ class _$DermatologistExaminationTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
     TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
@@ -1034,7 +781,6 @@ class _$GeneralPractitionerExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() breastSelf,
     required TResult Function() colonoscopy,
     required TResult Function() dentist,
     required TResult Function() dermatologist,
@@ -1042,7 +788,6 @@ class _$GeneralPractitionerExaminationTypeUnion
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() testicularSelf,
     required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
@@ -1054,7 +799,6 @@ class _$GeneralPractitionerExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? breastSelf,
     TResult Function()? colonoscopy,
     TResult Function()? dentist,
     TResult Function()? dermatologist,
@@ -1062,7 +806,6 @@ class _$GeneralPractitionerExaminationTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
@@ -1074,7 +817,6 @@ class _$GeneralPractitionerExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? breastSelf,
     TResult Function()? colonoscopy,
     TResult Function()? dentist,
     TResult Function()? dermatologist,
@@ -1082,7 +824,6 @@ class _$GeneralPractitionerExaminationTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
@@ -1098,7 +839,6 @@ class _$GeneralPractitionerExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BreastSelfExaminationTypeUnion value) breastSelf,
     required TResult Function(ColonoscopyExaminationTypeUnion value)
         colonoscopy,
     required TResult Function(DentistExaminationTypeUnion value) dentist,
@@ -1111,8 +851,6 @@ class _$GeneralPractitionerExaminationTypeUnion
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(TesticularSelfExaminationTypeUnion value)
-        testicularSelf,
     required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
@@ -1126,7 +864,6 @@ class _$GeneralPractitionerExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
@@ -1136,7 +873,6 @@ class _$GeneralPractitionerExaminationTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
     TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
@@ -1150,7 +886,6 @@ class _$GeneralPractitionerExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
@@ -1160,7 +895,6 @@ class _$GeneralPractitionerExaminationTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
     TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
@@ -1228,7 +962,6 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() breastSelf,
     required TResult Function() colonoscopy,
     required TResult Function() dentist,
     required TResult Function() dermatologist,
@@ -1236,7 +969,6 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() testicularSelf,
     required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
@@ -1248,7 +980,6 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? breastSelf,
     TResult Function()? colonoscopy,
     TResult Function()? dentist,
     TResult Function()? dermatologist,
@@ -1256,7 +987,6 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
@@ -1268,7 +998,6 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? breastSelf,
     TResult Function()? colonoscopy,
     TResult Function()? dentist,
     TResult Function()? dermatologist,
@@ -1276,7 +1005,6 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
@@ -1292,7 +1020,6 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BreastSelfExaminationTypeUnion value) breastSelf,
     required TResult Function(ColonoscopyExaminationTypeUnion value)
         colonoscopy,
     required TResult Function(DentistExaminationTypeUnion value) dentist,
@@ -1305,8 +1032,6 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(TesticularSelfExaminationTypeUnion value)
-        testicularSelf,
     required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
@@ -1320,7 +1045,6 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
@@ -1330,7 +1054,6 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
     TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
@@ -1344,7 +1067,6 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
@@ -1354,7 +1076,6 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
     TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
@@ -1422,7 +1143,6 @@ class _$GynecologistExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() breastSelf,
     required TResult Function() colonoscopy,
     required TResult Function() dentist,
     required TResult Function() dermatologist,
@@ -1430,7 +1150,6 @@ class _$GynecologistExaminationTypeUnion
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() testicularSelf,
     required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
@@ -1442,7 +1161,6 @@ class _$GynecologistExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? breastSelf,
     TResult Function()? colonoscopy,
     TResult Function()? dentist,
     TResult Function()? dermatologist,
@@ -1450,7 +1168,6 @@ class _$GynecologistExaminationTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
@@ -1462,7 +1179,6 @@ class _$GynecologistExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? breastSelf,
     TResult Function()? colonoscopy,
     TResult Function()? dentist,
     TResult Function()? dermatologist,
@@ -1470,7 +1186,6 @@ class _$GynecologistExaminationTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
@@ -1486,7 +1201,6 @@ class _$GynecologistExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BreastSelfExaminationTypeUnion value) breastSelf,
     required TResult Function(ColonoscopyExaminationTypeUnion value)
         colonoscopy,
     required TResult Function(DentistExaminationTypeUnion value) dentist,
@@ -1499,8 +1213,6 @@ class _$GynecologistExaminationTypeUnion
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(TesticularSelfExaminationTypeUnion value)
-        testicularSelf,
     required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
@@ -1514,7 +1226,6 @@ class _$GynecologistExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
@@ -1524,7 +1235,6 @@ class _$GynecologistExaminationTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
     TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
@@ -1538,7 +1248,6 @@ class _$GynecologistExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
@@ -1548,7 +1257,6 @@ class _$GynecologistExaminationTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
     TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
@@ -1616,7 +1324,6 @@ class _$OphthalmologistExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() breastSelf,
     required TResult Function() colonoscopy,
     required TResult Function() dentist,
     required TResult Function() dermatologist,
@@ -1624,7 +1331,6 @@ class _$OphthalmologistExaminationTypeUnion
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() testicularSelf,
     required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
@@ -1636,7 +1342,6 @@ class _$OphthalmologistExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? breastSelf,
     TResult Function()? colonoscopy,
     TResult Function()? dentist,
     TResult Function()? dermatologist,
@@ -1644,7 +1349,6 @@ class _$OphthalmologistExaminationTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
@@ -1656,7 +1360,6 @@ class _$OphthalmologistExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? breastSelf,
     TResult Function()? colonoscopy,
     TResult Function()? dentist,
     TResult Function()? dermatologist,
@@ -1664,7 +1367,6 @@ class _$OphthalmologistExaminationTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
@@ -1680,7 +1382,6 @@ class _$OphthalmologistExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BreastSelfExaminationTypeUnion value) breastSelf,
     required TResult Function(ColonoscopyExaminationTypeUnion value)
         colonoscopy,
     required TResult Function(DentistExaminationTypeUnion value) dentist,
@@ -1693,8 +1394,6 @@ class _$OphthalmologistExaminationTypeUnion
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(TesticularSelfExaminationTypeUnion value)
-        testicularSelf,
     required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
@@ -1708,7 +1407,6 @@ class _$OphthalmologistExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
@@ -1718,7 +1416,6 @@ class _$OphthalmologistExaminationTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
     TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
@@ -1732,7 +1429,6 @@ class _$OphthalmologistExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
@@ -1742,7 +1438,6 @@ class _$OphthalmologistExaminationTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
     TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
@@ -1763,200 +1458,6 @@ abstract class OphthalmologistExaminationTypeUnion
   const factory OphthalmologistExaminationTypeUnion() =
       _$OphthalmologistExaminationTypeUnion;
   const OphthalmologistExaminationTypeUnion._() : super._();
-}
-
-/// @nodoc
-abstract class $TesticularSelfExaminationTypeUnionCopyWith<$Res> {
-  factory $TesticularSelfExaminationTypeUnionCopyWith(
-          TesticularSelfExaminationTypeUnion value,
-          $Res Function(TesticularSelfExaminationTypeUnion) then) =
-      _$TesticularSelfExaminationTypeUnionCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$TesticularSelfExaminationTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
-    implements $TesticularSelfExaminationTypeUnionCopyWith<$Res> {
-  _$TesticularSelfExaminationTypeUnionCopyWithImpl(
-      TesticularSelfExaminationTypeUnion _value,
-      $Res Function(TesticularSelfExaminationTypeUnion) _then)
-      : super(_value, (v) => _then(v as TesticularSelfExaminationTypeUnion));
-
-  @override
-  TesticularSelfExaminationTypeUnion get _value =>
-      super._value as TesticularSelfExaminationTypeUnion;
-}
-
-/// @nodoc
-
-class _$TesticularSelfExaminationTypeUnion
-    extends TesticularSelfExaminationTypeUnion {
-  const _$TesticularSelfExaminationTypeUnion() : super._();
-
-  @override
-  String toString() {
-    return 'ExaminationTypeUnion.testicularSelf()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is TesticularSelfExaminationTypeUnion);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() breastSelf,
-    required TResult Function() colonoscopy,
-    required TResult Function() dentist,
-    required TResult Function() dermatologist,
-    required TResult Function() generalPractitioner,
-    required TResult Function() mammogram,
-    required TResult Function() gynecologist,
-    required TResult Function() ophthalmologist,
-    required TResult Function() testicularSelf,
-    required TResult Function() toks,
-    required TResult Function() ultrasoundBreast,
-    required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
-  }) {
-    return testicularSelf();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? breastSelf,
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
-    TResult Function()? toks,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
-  }) {
-    return testicularSelf?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? breastSelf,
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
-    TResult Function()? toks,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
-    required TResult orElse(),
-  }) {
-    if (testicularSelf != null) {
-      return testicularSelf();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(BreastSelfExaminationTypeUnion value) breastSelf,
-    required TResult Function(ColonoscopyExaminationTypeUnion value)
-        colonoscopy,
-    required TResult Function(DentistExaminationTypeUnion value) dentist,
-    required TResult Function(DermatologistExaminationTypeUnion value)
-        dermatologist,
-    required TResult Function(GeneralPractitionerExaminationTypeUnion value)
-        generalPractitioner,
-    required TResult Function(MammogramExaminationTypeUnion value) mammogram,
-    required TResult Function(GynecologistExaminationTypeUnion value)
-        gynecologist,
-    required TResult Function(OphthalmologistExaminationTypeUnion value)
-        ophthalmologist,
-    required TResult Function(TesticularSelfExaminationTypeUnion value)
-        testicularSelf,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
-    required TResult Function(UltrasoundBreastExaminationTypeUnion value)
-        ultrasoundBreast,
-    required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
-  }) {
-    return testicularSelf(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
-  }) {
-    return testicularSelf?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
-    required TResult orElse(),
-  }) {
-    if (testicularSelf != null) {
-      return testicularSelf(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class TesticularSelfExaminationTypeUnion extends ExaminationTypeUnion {
-  const factory TesticularSelfExaminationTypeUnion() =
-      _$TesticularSelfExaminationTypeUnion;
-  const TesticularSelfExaminationTypeUnion._() : super._();
 }
 
 /// @nodoc
@@ -2001,7 +1502,6 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() breastSelf,
     required TResult Function() colonoscopy,
     required TResult Function() dentist,
     required TResult Function() dermatologist,
@@ -2009,7 +1509,6 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() testicularSelf,
     required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
@@ -2021,7 +1520,6 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? breastSelf,
     TResult Function()? colonoscopy,
     TResult Function()? dentist,
     TResult Function()? dermatologist,
@@ -2029,7 +1527,6 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
@@ -2041,7 +1538,6 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? breastSelf,
     TResult Function()? colonoscopy,
     TResult Function()? dentist,
     TResult Function()? dermatologist,
@@ -2049,7 +1545,6 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
@@ -2065,7 +1560,6 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BreastSelfExaminationTypeUnion value) breastSelf,
     required TResult Function(ColonoscopyExaminationTypeUnion value)
         colonoscopy,
     required TResult Function(DentistExaminationTypeUnion value) dentist,
@@ -2078,8 +1572,6 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(TesticularSelfExaminationTypeUnion value)
-        testicularSelf,
     required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
@@ -2093,7 +1585,6 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
@@ -2103,7 +1594,6 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
     TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
@@ -2117,7 +1607,6 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
@@ -2127,7 +1616,6 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
     TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
@@ -2194,7 +1682,6 @@ class _$UltrasoundBreastExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() breastSelf,
     required TResult Function() colonoscopy,
     required TResult Function() dentist,
     required TResult Function() dermatologist,
@@ -2202,7 +1689,6 @@ class _$UltrasoundBreastExaminationTypeUnion
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() testicularSelf,
     required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
@@ -2214,7 +1700,6 @@ class _$UltrasoundBreastExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? breastSelf,
     TResult Function()? colonoscopy,
     TResult Function()? dentist,
     TResult Function()? dermatologist,
@@ -2222,7 +1707,6 @@ class _$UltrasoundBreastExaminationTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
@@ -2234,7 +1718,6 @@ class _$UltrasoundBreastExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? breastSelf,
     TResult Function()? colonoscopy,
     TResult Function()? dentist,
     TResult Function()? dermatologist,
@@ -2242,7 +1725,6 @@ class _$UltrasoundBreastExaminationTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
@@ -2258,7 +1740,6 @@ class _$UltrasoundBreastExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BreastSelfExaminationTypeUnion value) breastSelf,
     required TResult Function(ColonoscopyExaminationTypeUnion value)
         colonoscopy,
     required TResult Function(DentistExaminationTypeUnion value) dentist,
@@ -2271,8 +1752,6 @@ class _$UltrasoundBreastExaminationTypeUnion
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(TesticularSelfExaminationTypeUnion value)
-        testicularSelf,
     required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
@@ -2286,7 +1765,6 @@ class _$UltrasoundBreastExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
@@ -2296,7 +1774,6 @@ class _$UltrasoundBreastExaminationTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
     TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
@@ -2310,7 +1787,6 @@ class _$UltrasoundBreastExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
@@ -2320,7 +1796,6 @@ class _$UltrasoundBreastExaminationTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
     TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
@@ -2388,7 +1863,6 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() breastSelf,
     required TResult Function() colonoscopy,
     required TResult Function() dentist,
     required TResult Function() dermatologist,
@@ -2396,7 +1870,6 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() testicularSelf,
     required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
@@ -2408,7 +1881,6 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? breastSelf,
     TResult Function()? colonoscopy,
     TResult Function()? dentist,
     TResult Function()? dermatologist,
@@ -2416,7 +1888,6 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
@@ -2428,7 +1899,6 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? breastSelf,
     TResult Function()? colonoscopy,
     TResult Function()? dentist,
     TResult Function()? dermatologist,
@@ -2436,7 +1906,6 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
@@ -2452,7 +1921,6 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BreastSelfExaminationTypeUnion value) breastSelf,
     required TResult Function(ColonoscopyExaminationTypeUnion value)
         colonoscopy,
     required TResult Function(DentistExaminationTypeUnion value) dentist,
@@ -2465,8 +1933,6 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(TesticularSelfExaminationTypeUnion value)
-        testicularSelf,
     required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
@@ -2480,7 +1946,6 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
@@ -2490,7 +1955,6 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
     TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
@@ -2504,7 +1968,6 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
@@ -2514,7 +1977,6 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
     TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
@@ -2582,7 +2044,6 @@ class _$VenerealDiseasesExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() breastSelf,
     required TResult Function() colonoscopy,
     required TResult Function() dentist,
     required TResult Function() dermatologist,
@@ -2590,7 +2051,6 @@ class _$VenerealDiseasesExaminationTypeUnion
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() testicularSelf,
     required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
@@ -2602,7 +2062,6 @@ class _$VenerealDiseasesExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? breastSelf,
     TResult Function()? colonoscopy,
     TResult Function()? dentist,
     TResult Function()? dermatologist,
@@ -2610,7 +2069,6 @@ class _$VenerealDiseasesExaminationTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
@@ -2622,7 +2080,6 @@ class _$VenerealDiseasesExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? breastSelf,
     TResult Function()? colonoscopy,
     TResult Function()? dentist,
     TResult Function()? dermatologist,
@@ -2630,7 +2087,6 @@ class _$VenerealDiseasesExaminationTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? testicularSelf,
     TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
@@ -2646,7 +2102,6 @@ class _$VenerealDiseasesExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(BreastSelfExaminationTypeUnion value) breastSelf,
     required TResult Function(ColonoscopyExaminationTypeUnion value)
         colonoscopy,
     required TResult Function(DentistExaminationTypeUnion value) dentist,
@@ -2659,8 +2114,6 @@ class _$VenerealDiseasesExaminationTypeUnion
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(TesticularSelfExaminationTypeUnion value)
-        testicularSelf,
     required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
@@ -2674,7 +2127,6 @@ class _$VenerealDiseasesExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
@@ -2684,7 +2136,6 @@ class _$VenerealDiseasesExaminationTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
     TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
@@ -2698,7 +2149,6 @@ class _$VenerealDiseasesExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(BreastSelfExaminationTypeUnion value)? breastSelf,
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
@@ -2708,7 +2158,6 @@ class _$VenerealDiseasesExaminationTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicularSelf,
     TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
@@ -2729,4 +2178,306 @@ abstract class VenerealDiseasesExaminationTypeUnion
   const factory VenerealDiseasesExaminationTypeUnion() =
       _$VenerealDiseasesExaminationTypeUnion;
   const VenerealDiseasesExaminationTypeUnion._() : super._();
+}
+
+/// @nodoc
+class _$SelfExaminationTypeUnionTearOff {
+  const _$SelfExaminationTypeUnionTearOff();
+
+  BrestSelfExaminationTypeUnion breast() {
+    return const BrestSelfExaminationTypeUnion();
+  }
+
+  TesticularSelfExaminationTypeUnion testicular() {
+    return const TesticularSelfExaminationTypeUnion();
+  }
+}
+
+/// @nodoc
+const $SelfExaminationTypeUnion = _$SelfExaminationTypeUnionTearOff();
+
+/// @nodoc
+mixin _$SelfExaminationTypeUnion {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() breast,
+    required TResult Function() testicular,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? breast,
+    TResult Function()? testicular,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? breast,
+    TResult Function()? testicular,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BrestSelfExaminationTypeUnion value) breast,
+    required TResult Function(TesticularSelfExaminationTypeUnion value)
+        testicular,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(BrestSelfExaminationTypeUnion value)? breast,
+    TResult Function(TesticularSelfExaminationTypeUnion value)? testicular,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BrestSelfExaminationTypeUnion value)? breast,
+    TResult Function(TesticularSelfExaminationTypeUnion value)? testicular,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SelfExaminationTypeUnionCopyWith<$Res> {
+  factory $SelfExaminationTypeUnionCopyWith(SelfExaminationTypeUnion value,
+          $Res Function(SelfExaminationTypeUnion) then) =
+      _$SelfExaminationTypeUnionCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$SelfExaminationTypeUnionCopyWithImpl<$Res>
+    implements $SelfExaminationTypeUnionCopyWith<$Res> {
+  _$SelfExaminationTypeUnionCopyWithImpl(this._value, this._then);
+
+  final SelfExaminationTypeUnion _value;
+  // ignore: unused_field
+  final $Res Function(SelfExaminationTypeUnion) _then;
+}
+
+/// @nodoc
+abstract class $BrestSelfExaminationTypeUnionCopyWith<$Res> {
+  factory $BrestSelfExaminationTypeUnionCopyWith(
+          BrestSelfExaminationTypeUnion value,
+          $Res Function(BrestSelfExaminationTypeUnion) then) =
+      _$BrestSelfExaminationTypeUnionCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$BrestSelfExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$SelfExaminationTypeUnionCopyWithImpl<$Res>
+    implements $BrestSelfExaminationTypeUnionCopyWith<$Res> {
+  _$BrestSelfExaminationTypeUnionCopyWithImpl(
+      BrestSelfExaminationTypeUnion _value,
+      $Res Function(BrestSelfExaminationTypeUnion) _then)
+      : super(_value, (v) => _then(v as BrestSelfExaminationTypeUnion));
+
+  @override
+  BrestSelfExaminationTypeUnion get _value =>
+      super._value as BrestSelfExaminationTypeUnion;
+}
+
+/// @nodoc
+
+class _$BrestSelfExaminationTypeUnion extends BrestSelfExaminationTypeUnion {
+  const _$BrestSelfExaminationTypeUnion() : super._();
+
+  @override
+  String toString() {
+    return 'SelfExaminationTypeUnion.breast()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is BrestSelfExaminationTypeUnion);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() breast,
+    required TResult Function() testicular,
+  }) {
+    return breast();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? breast,
+    TResult Function()? testicular,
+  }) {
+    return breast?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? breast,
+    TResult Function()? testicular,
+    required TResult orElse(),
+  }) {
+    if (breast != null) {
+      return breast();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BrestSelfExaminationTypeUnion value) breast,
+    required TResult Function(TesticularSelfExaminationTypeUnion value)
+        testicular,
+  }) {
+    return breast(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(BrestSelfExaminationTypeUnion value)? breast,
+    TResult Function(TesticularSelfExaminationTypeUnion value)? testicular,
+  }) {
+    return breast?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BrestSelfExaminationTypeUnion value)? breast,
+    TResult Function(TesticularSelfExaminationTypeUnion value)? testicular,
+    required TResult orElse(),
+  }) {
+    if (breast != null) {
+      return breast(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class BrestSelfExaminationTypeUnion extends SelfExaminationTypeUnion {
+  const factory BrestSelfExaminationTypeUnion() =
+      _$BrestSelfExaminationTypeUnion;
+  const BrestSelfExaminationTypeUnion._() : super._();
+}
+
+/// @nodoc
+abstract class $TesticularSelfExaminationTypeUnionCopyWith<$Res> {
+  factory $TesticularSelfExaminationTypeUnionCopyWith(
+          TesticularSelfExaminationTypeUnion value,
+          $Res Function(TesticularSelfExaminationTypeUnion) then) =
+      _$TesticularSelfExaminationTypeUnionCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$TesticularSelfExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$SelfExaminationTypeUnionCopyWithImpl<$Res>
+    implements $TesticularSelfExaminationTypeUnionCopyWith<$Res> {
+  _$TesticularSelfExaminationTypeUnionCopyWithImpl(
+      TesticularSelfExaminationTypeUnion _value,
+      $Res Function(TesticularSelfExaminationTypeUnion) _then)
+      : super(_value, (v) => _then(v as TesticularSelfExaminationTypeUnion));
+
+  @override
+  TesticularSelfExaminationTypeUnion get _value =>
+      super._value as TesticularSelfExaminationTypeUnion;
+}
+
+/// @nodoc
+
+class _$TesticularSelfExaminationTypeUnion
+    extends TesticularSelfExaminationTypeUnion {
+  const _$TesticularSelfExaminationTypeUnion() : super._();
+
+  @override
+  String toString() {
+    return 'SelfExaminationTypeUnion.testicular()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is TesticularSelfExaminationTypeUnion);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() breast,
+    required TResult Function() testicular,
+  }) {
+    return testicular();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? breast,
+    TResult Function()? testicular,
+  }) {
+    return testicular?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? breast,
+    TResult Function()? testicular,
+    required TResult orElse(),
+  }) {
+    if (testicular != null) {
+      return testicular();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BrestSelfExaminationTypeUnion value) breast,
+    required TResult Function(TesticularSelfExaminationTypeUnion value)
+        testicular,
+  }) {
+    return testicular(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(BrestSelfExaminationTypeUnion value)? breast,
+    TResult Function(TesticularSelfExaminationTypeUnion value)? testicular,
+  }) {
+    return testicular?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BrestSelfExaminationTypeUnion value)? breast,
+    TResult Function(TesticularSelfExaminationTypeUnion value)? testicular,
+    required TResult orElse(),
+  }) {
+    if (testicular != null) {
+      return testicular(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TesticularSelfExaminationTypeUnion
+    extends SelfExaminationTypeUnion {
+  const factory TesticularSelfExaminationTypeUnion() =
+      _$TesticularSelfExaminationTypeUnion;
+  const TesticularSelfExaminationTypeUnion._() : super._();
 }

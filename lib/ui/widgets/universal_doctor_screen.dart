@@ -30,7 +30,7 @@ class UniversalDoctorScreen extends StatelessWidget {
   final String nextButton2Text;
   final VoidCallback nextCallback1;
   final VoidCallback nextCallback2;
-  final ExaminationTypeEnum examinationType;
+  final ExaminationType examinationType;
 
   @override
   Widget build(BuildContext context) {

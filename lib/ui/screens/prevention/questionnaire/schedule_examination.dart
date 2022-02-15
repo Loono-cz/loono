@@ -17,11 +17,11 @@ class ScheduleExamination extends StatelessWidget {
     required this.examinationRecord,
   }) : super(key: key);
 
-  final PreventionStatus examinationRecord;
+  final ExaminationPreventionStatus examinationRecord;
 
   final _appRouter = registry.get<AppRouter>();
 
-  ExaminationTypeEnum get _examinationType => examinationRecord.examinationType;
+  ExaminationType get _examinationType => examinationRecord.examinationType;
 
   int get _interval => examinationRecord.intervalYears;
 

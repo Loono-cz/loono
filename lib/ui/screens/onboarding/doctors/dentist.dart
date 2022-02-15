@@ -18,7 +18,7 @@ class OnboardingDentistScreen extends StatelessWidget {
 
   final _examinationsQuestionnairesDao = registry.get<DatabaseService>().examinationQuestionnaires;
 
-  static const _type = ExaminationTypeEnum.DENTIST;
+  static const _type = ExaminationType.DENTIST;
   static const _interval = 1;
 
   @override

@@ -5,13 +5,13 @@ import 'package:loono_api/loono_api.dart';
 
 part 'examination_types.freezed.dart';
 
-extension ExaminationTypeEnumExt on ExaminationTypeEnum {
+extension ExaminationTypeExt on ExaminationType {
   int get awardPoints {
     switch (this) {
-      case ExaminationTypeEnum.GENERAL_PRACTITIONER:
-      case ExaminationTypeEnum.GYNECOLOGIST:
+      case ExaminationType.GENERAL_PRACTITIONER:
+      case ExaminationType.GYNECOLOGIST:
         return 200;
-      case ExaminationTypeEnum.DENTIST:
+      case ExaminationType.DENTIST:
         return 300;
       // TODO: Add the rest of ExaminationTypes
       default:
@@ -22,43 +22,37 @@ extension ExaminationTypeEnumExt on ExaminationTypeEnum {
   ExaminationTypeUnion get mapToUnion {
     late final ExaminationTypeUnion examinationTypeUnion;
     switch (this) {
-      case ExaminationTypeEnum.BREAST_SELF:
-        examinationTypeUnion = const ExaminationTypeUnion.breastSelf();
-        break;
-      case ExaminationTypeEnum.COLONOSCOPY:
+      case ExaminationType.COLONOSCOPY:
         examinationTypeUnion = const ExaminationTypeUnion.colonoscopy();
         break;
-      case ExaminationTypeEnum.DENTIST:
+      case ExaminationType.DENTIST:
         examinationTypeUnion = const ExaminationTypeUnion.dentist();
         break;
-      case ExaminationTypeEnum.DERMATOLOGIST:
+      case ExaminationType.DERMATOLOGIST:
         examinationTypeUnion = const ExaminationTypeUnion.dermatologist();
         break;
-      case ExaminationTypeEnum.GENERAL_PRACTITIONER:
+      case ExaminationType.GENERAL_PRACTITIONER:
         examinationTypeUnion = const ExaminationTypeUnion.generalPractitioner();
         break;
-      case ExaminationTypeEnum.GYNECOLOGIST:
+      case ExaminationType.GYNECOLOGIST:
         examinationTypeUnion = const ExaminationTypeUnion.gynecologist();
         break;
-      case ExaminationTypeEnum.MAMMOGRAM:
+      case ExaminationType.MAMMOGRAM:
         examinationTypeUnion = const ExaminationTypeUnion.mammogram();
         break;
-      case ExaminationTypeEnum.OPHTHALMOLOGIST:
+      case ExaminationType.OPHTHALMOLOGIST:
         examinationTypeUnion = const ExaminationTypeUnion.ophthalmologist();
         break;
-      case ExaminationTypeEnum.TESTICULAR_SELF:
-        examinationTypeUnion = const ExaminationTypeUnion.testicularSelf();
-        break;
-      case ExaminationTypeEnum.TOKS:
+      case ExaminationType.TOKS:
         examinationTypeUnion = const ExaminationTypeUnion.toks();
         break;
-      case ExaminationTypeEnum.ULTRASOUND_BREAST:
+      case ExaminationType.ULTRASOUND_BREAST:
         examinationTypeUnion = const ExaminationTypeUnion.ultrasoundBreast();
         break;
-      case ExaminationTypeEnum.UROLOGIST:
+      case ExaminationType.UROLOGIST:
         examinationTypeUnion = const ExaminationTypeUnion.urologist();
         break;
-      case ExaminationTypeEnum.VENEREAL_DISEASES:
+      case ExaminationType.VENEREAL_DISEASES:
         examinationTypeUnion = const ExaminationTypeUnion.venerealDiseases();
         break;
     }
@@ -67,7 +61,6 @@ extension ExaminationTypeEnumExt on ExaminationTypeEnum {
 
   // ignore: non_constant_identifier_names
   String get l10n_name => mapToUnion.when(
-        breastSelf: () => 'Samovyšetření prsa',
         colonoscopy: () => 'Koloskopie',
         dentist: () => 'Zubař',
         dermatologist: () => 'Dermatolog',
@@ -75,7 +68,6 @@ extension ExaminationTypeEnumExt on ExaminationTypeEnum {
         mammogram: () => 'Mamograf',
         gynecologist: () => 'Gynekolog',
         ophthalmologist: () => 'Oční',
-        testicularSelf: () => 'Samovyšetření varlata',
         toks: () => 'Toks',
         ultrasoundBreast: () => 'Ultrazvuk prsu',
         urologist: () => 'Urolog',
@@ -89,11 +81,36 @@ extension ExaminationTypeEnumExt on ExaminationTypeEnum {
   }
 }
 
+extension SelfExaminationTypeExt on SelfExaminationType {
+  SelfExaminationTypeUnion get mapToUnion {
+    late final SelfExaminationTypeUnion selfExaminationTypeUnion;
+    switch (this) {
+      case SelfExaminationType.BREAST:
+        selfExaminationTypeUnion = const SelfExaminationTypeUnion.breast();
+        break;
+      case SelfExaminationType.TESTICULAR:
+        selfExaminationTypeUnion = const SelfExaminationTypeUnion.testicular();
+        break;
+    }
+    return selfExaminationTypeUnion;
+  }
+
+  // ignore: non_constant_identifier_names
+  String get l10n_name => mapToUnion.when(
+        breast: () => 'Samovyšetření prsa',
+        testicular: () => 'Samovyšetření varlata',
+      );
+
+  String get assetPath {
+    const basePath = 'assets/icons/prevention/self_examination/';
+    final doctor = mapToUnion.toString().split('.').last.replaceFirst('()', '.svg');
+    return '$basePath$doctor';
+  }
+}
+
 @freezed
 class ExaminationTypeUnion with _$ExaminationTypeUnion {
   const ExaminationTypeUnion._();
-
-  const factory ExaminationTypeUnion.breastSelf() = BreastSelfExaminationTypeUnion;
 
   const factory ExaminationTypeUnion.colonoscopy() = ColonoscopyExaminationTypeUnion;
 
@@ -110,8 +127,6 @@ class ExaminationTypeUnion with _$ExaminationTypeUnion {
 
   const factory ExaminationTypeUnion.ophthalmologist() = OphthalmologistExaminationTypeUnion;
 
-  const factory ExaminationTypeUnion.testicularSelf() = TesticularSelfExaminationTypeUnion;
-
   const factory ExaminationTypeUnion.toks() = ToksExaminationTypeUnion;
 
   const factory ExaminationTypeUnion.ultrasoundBreast() = UltrasoundBreastExaminationTypeUnion;
@@ -119,4 +134,13 @@ class ExaminationTypeUnion with _$ExaminationTypeUnion {
   const factory ExaminationTypeUnion.urologist() = UrologistExaminationTypeUnion;
 
   const factory ExaminationTypeUnion.venerealDiseases() = VenerealDiseasesExaminationTypeUnion;
+}
+
+@freezed
+class SelfExaminationTypeUnion with _$SelfExaminationTypeUnion {
+  const SelfExaminationTypeUnion._();
+
+  const factory SelfExaminationTypeUnion.breast() = BrestSelfExaminationTypeUnion;
+
+  const factory SelfExaminationTypeUnion.testicular() = TesticularSelfExaminationTypeUnion;
 }

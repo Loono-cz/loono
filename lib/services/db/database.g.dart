@@ -488,7 +488,7 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
 }
 
 class CalendarEvent extends DataClass implements Insertable<CalendarEvent> {
-  final ExaminationTypeEnum type;
+  final ExaminationType type;
   final String deviceCalendarId;
   final String calendarEventId;
   final DateTime date;
@@ -538,7 +538,7 @@ class CalendarEvent extends DataClass implements Insertable<CalendarEvent> {
       {ValueSerializer? serializer}) {
     serializer ??= moorRuntimeOptions.defaultSerializer;
     return CalendarEvent(
-      type: serializer.fromJson<ExaminationTypeEnum>(json['type']),
+      type: serializer.fromJson<ExaminationType>(json['type']),
       deviceCalendarId: serializer.fromJson<String>(json['deviceCalendarId']),
       calendarEventId: serializer.fromJson<String>(json['calendarEventId']),
       date: serializer.fromJson<DateTime>(json['date']),
@@ -548,7 +548,7 @@ class CalendarEvent extends DataClass implements Insertable<CalendarEvent> {
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
     serializer ??= moorRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
-      'type': serializer.toJson<ExaminationTypeEnum>(type),
+      'type': serializer.toJson<ExaminationType>(type),
       'deviceCalendarId': serializer.toJson<String>(deviceCalendarId),
       'calendarEventId': serializer.toJson<String>(calendarEventId),
       'date': serializer.toJson<DateTime>(date),
@@ -556,7 +556,7 @@ class CalendarEvent extends DataClass implements Insertable<CalendarEvent> {
   }
 
   CalendarEvent copyWith(
-          {ExaminationTypeEnum? type,
+          {ExaminationType? type,
           String? deviceCalendarId,
           String? calendarEventId,
           DateTime? date}) =>
@@ -591,7 +591,7 @@ class CalendarEvent extends DataClass implements Insertable<CalendarEvent> {
 }
 
 class CalendarEventsCompanion extends UpdateCompanion<CalendarEvent> {
-  final Value<ExaminationTypeEnum> type;
+  final Value<ExaminationType> type;
   final Value<String> deviceCalendarId;
   final Value<String> calendarEventId;
   final Value<DateTime> date;
@@ -602,7 +602,7 @@ class CalendarEventsCompanion extends UpdateCompanion<CalendarEvent> {
     this.date = const Value.absent(),
   });
   CalendarEventsCompanion.insert({
-    required ExaminationTypeEnum type,
+    required ExaminationType type,
     required String deviceCalendarId,
     required String calendarEventId,
     required DateTime date,
@@ -611,7 +611,7 @@ class CalendarEventsCompanion extends UpdateCompanion<CalendarEvent> {
         calendarEventId = Value(calendarEventId),
         date = Value(date);
   static Insertable<CalendarEvent> custom({
-    Expression<ExaminationTypeEnum>? type,
+    Expression<ExaminationType>? type,
     Expression<String>? deviceCalendarId,
     Expression<String>? calendarEventId,
     Expression<DateTime>? date,
@@ -625,7 +625,7 @@ class CalendarEventsCompanion extends UpdateCompanion<CalendarEvent> {
   }
 
   CalendarEventsCompanion copyWith(
-      {Value<ExaminationTypeEnum>? type,
+      {Value<ExaminationType>? type,
       Value<String>? deviceCalendarId,
       Value<String>? calendarEventId,
       Value<DateTime>? date}) {
@@ -676,10 +676,10 @@ class $CalendarEventsTable extends CalendarEvents
   $CalendarEventsTable(this.attachedDatabase, [this._alias]);
   final VerificationMeta _typeMeta = const VerificationMeta('type');
   @override
-  late final GeneratedColumnWithTypeConverter<ExaminationTypeEnum, String?>
-      type = GeneratedColumn<String?>('type', aliasedName, false,
+  late final GeneratedColumnWithTypeConverter<ExaminationType, String?> type =
+      GeneratedColumn<String?>('type', aliasedName, false,
               type: const StringType(), requiredDuringInsert: true)
-          .withConverter<ExaminationTypeEnum>($CalendarEventsTable.$converter0);
+          .withConverter<ExaminationType>($CalendarEventsTable.$converter0);
   final VerificationMeta _deviceCalendarIdMeta =
       const VerificationMeta('deviceCalendarId');
   @override
@@ -748,13 +748,13 @@ class $CalendarEventsTable extends CalendarEvents
     return $CalendarEventsTable(attachedDatabase, alias);
   }
 
-  static TypeConverter<ExaminationTypeEnum, String> $converter0 =
-      const ExaminationTypeEnumDbConverter();
+  static TypeConverter<ExaminationType, String> $converter0 =
+      const ExaminationTypeDbConverter();
 }
 
 class ExaminationQuestionnaire extends DataClass
     implements Insertable<ExaminationQuestionnaire> {
-  final ExaminationTypeEnum type;
+  final ExaminationType type;
   final ExaminationStatus status;
   final DateTime? date;
   final bool? firstExam;
@@ -812,7 +812,7 @@ class ExaminationQuestionnaire extends DataClass
       {ValueSerializer? serializer}) {
     serializer ??= moorRuntimeOptions.defaultSerializer;
     return ExaminationQuestionnaire(
-      type: serializer.fromJson<ExaminationTypeEnum>(json['type']),
+      type: serializer.fromJson<ExaminationType>(json['type']),
       status: serializer.fromJson<ExaminationStatus>(json['status']),
       date: serializer.fromJson<DateTime?>(json['date']),
       firstExam: serializer.fromJson<bool?>(json['firstExam']),
@@ -822,7 +822,7 @@ class ExaminationQuestionnaire extends DataClass
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
     serializer ??= moorRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
-      'type': serializer.toJson<ExaminationTypeEnum>(type),
+      'type': serializer.toJson<ExaminationType>(type),
       'status': serializer.toJson<ExaminationStatus>(status),
       'date': serializer.toJson<DateTime?>(date),
       'firstExam': serializer.toJson<bool?>(firstExam),
@@ -830,7 +830,7 @@ class ExaminationQuestionnaire extends DataClass
   }
 
   ExaminationQuestionnaire copyWith(
-          {ExaminationTypeEnum? type,
+          {ExaminationType? type,
           ExaminationStatus? status,
           DateTime? date,
           bool? firstExam}) =>
@@ -865,7 +865,7 @@ class ExaminationQuestionnaire extends DataClass
 
 class ExaminationQuestionnairesCompanion
     extends UpdateCompanion<ExaminationQuestionnaire> {
-  final Value<ExaminationTypeEnum> type;
+  final Value<ExaminationType> type;
   final Value<ExaminationStatus> status;
   final Value<DateTime?> date;
   final Value<bool?> firstExam;
@@ -876,13 +876,13 @@ class ExaminationQuestionnairesCompanion
     this.firstExam = const Value.absent(),
   });
   ExaminationQuestionnairesCompanion.insert({
-    required ExaminationTypeEnum type,
+    required ExaminationType type,
     this.status = const Value.absent(),
     this.date = const Value.absent(),
     this.firstExam = const Value.absent(),
   }) : type = Value(type);
   static Insertable<ExaminationQuestionnaire> custom({
-    Expression<ExaminationTypeEnum>? type,
+    Expression<ExaminationType>? type,
     Expression<ExaminationStatus>? status,
     Expression<DateTime?>? date,
     Expression<bool?>? firstExam,
@@ -896,7 +896,7 @@ class ExaminationQuestionnairesCompanion
   }
 
   ExaminationQuestionnairesCompanion copyWith(
-      {Value<ExaminationTypeEnum>? type,
+      {Value<ExaminationType>? type,
       Value<ExaminationStatus>? status,
       Value<DateTime?>? date,
       Value<bool?>? firstExam}) {
@@ -948,10 +948,10 @@ class $ExaminationQuestionnairesTable extends ExaminationQuestionnaires
   $ExaminationQuestionnairesTable(this.attachedDatabase, [this._alias]);
   final VerificationMeta _typeMeta = const VerificationMeta('type');
   @override
-  late final GeneratedColumnWithTypeConverter<ExaminationTypeEnum, String?>
-      type = GeneratedColumn<String?>('type', aliasedName, false,
+  late final GeneratedColumnWithTypeConverter<ExaminationType, String?> type =
+      GeneratedColumn<String?>('type', aliasedName, false,
               type: const StringType(), requiredDuringInsert: true)
-          .withConverter<ExaminationTypeEnum>(
+          .withConverter<ExaminationType>(
               $ExaminationQuestionnairesTable.$converter0);
   final VerificationMeta _statusMeta = const VerificationMeta('status');
   @override
@@ -1014,8 +1014,8 @@ class $ExaminationQuestionnairesTable extends ExaminationQuestionnaires
     return $ExaminationQuestionnairesTable(attachedDatabase, alias);
   }
 
-  static TypeConverter<ExaminationTypeEnum, String> $converter0 =
-      const ExaminationTypeEnumDbConverter();
+  static TypeConverter<ExaminationType, String> $converter0 =
+      const ExaminationTypeDbConverter();
   static TypeConverter<ExaminationStatus, String> $converter1 =
       const ExaminationStatusDbConverter();
 }
