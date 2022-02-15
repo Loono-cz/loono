@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
@@ -62,61 +63,71 @@ class _SettingsContentState extends State<_SettingsContent> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.9,
-      decoration: const BoxDecoration(
-        color: LoonoColors.beigeLighter,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(15),
-          topRight: Radius.circular(15),
+    return WillPopScope(
+      onWillPop: () async {
+        if (navigationStack.length > 1) {
+          goBack();
+          return false;
+        } else {
+          return true;
+        }
+      },
+      child: Container(
+        height: MediaQuery.of(context).size.height * 0.9,
+        decoration: const BoxDecoration(
+          color: LoonoColors.beigeLighter,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(15),
+            topRight: Radius.circular(15),
+          ),
         ),
-      ),
-      child: Center(
-        child: Column(
-          children: <Widget>[
-            const SizedBox(height: 18),
-            Row(
-              children: [
-                if (navigationStack.last != SettingsPage.main)
-                  IconButton(
-                    onPressed: goBack,
-                    icon: SvgPicture.asset(
-                      'assets/icons/arrow_back.svg',
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              const SizedBox(height: 18),
+              Row(
+                children: [
+                  if (navigationStack.lastOrNull != SettingsPage.main)
+                    IconButton(
+                      onPressed: goBack,
+                      icon: SvgPicture.asset(
+                        'assets/icons/arrow_back.svg',
+                      ),
                     ),
+                  const Spacer(),
+                  IconButton(
+                    icon: const Icon(Icons.close, size: 32),
+                    onPressed: () {
+                      AutoRouter.of(context).pop();
+                    },
                   ),
-                const Spacer(),
-                IconButton(
-                  icon: const Icon(Icons.close, size: 32),
-                  onPressed: () {
-                    AutoRouter.of(context).pop();
-                  },
-                ),
-              ],
-            ),
-            const SizedBox(height: 18),
+                ],
+              ),
+              const SizedBox(height: 18),
 
-            /// TODO: This works but might get refactor in the future
-            if (navigationStack.last == SettingsPage.main)
-              OpenSettingsScreen(
-                changePage: changePage,
-              ),
-            if (navigationStack.last == SettingsPage.edit)
-              UpdateProfileScreen(
-                changePage: changePage,
-              ),
-            if (navigationStack.last == SettingsPage.points)
-              PointsHelpScreen(
-                changePage: changePage,
-              ),
-            if (navigationStack.last == SettingsPage.leaderboard)
-              LeaderboardScreen(
-                changePage: changePage,
-              ),
-            if (navigationStack.last == SettingsPage.photo)
-              EditPhotoScreen(
-                changePage: changePage,
-              ),
-          ],
+              /// TODO: This works but might get refactor in the future
+              if (navigationStack.last == SettingsPage.main)
+                OpenSettingsScreen(
+                  changePage: changePage,
+                ),
+              if (navigationStack.last == SettingsPage.edit)
+                UpdateProfileScreen(
+                  changePage: changePage,
+                ),
+              if (navigationStack.last == SettingsPage.points)
+                PointsHelpScreen(
+                  changePage: changePage,
+                ),
+              if (navigationStack.last == SettingsPage.leaderboard)
+                LeaderboardScreen(
+                  changePage: changePage,
+                ),
+              if (navigationStack.last == SettingsPage.photo)
+                EditPhotoScreen(
+                  changePage: changePage,
+                ),
+            ],
+          ),
         ),
       ),
     );
