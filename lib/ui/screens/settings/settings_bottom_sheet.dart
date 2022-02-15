@@ -98,7 +98,7 @@ class _SettingsContentState extends State<_SettingsContent> {
                   IconButton(
                     icon: const Icon(Icons.close, size: 32),
                     onPressed: () {
-                      AutoRouter.of(context).pop();
+                      AutoRouter.of(context).popForced();
                     },
                   ),
                 ],
