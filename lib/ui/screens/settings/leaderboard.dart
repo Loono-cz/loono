@@ -84,14 +84,14 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
   Widget _getLeaderboardList() {
     switch (_fetchState) {
       case FetchState.loading:
-        return CircularProgressIndicator();
+        return const CircularProgressIndicator();
       case FetchState.error:
-        return SizedBox.shrink();
+        return const SizedBox.shrink();
       case FetchState.loaded:
         return Flexible(
           child: ListView(
             children: [
-              ..._leaderboardData!.top!.asMap().entries.map(
+              ..._leaderboardData!.top.asMap().entries.map(
                     (e) => LeaderboardTile(
                       position: e.key,
                       user: e.value,
@@ -102,7 +102,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                 indent: MediaQuery.of(context).size.width / 4,
                 endIndent: MediaQuery.of(context).size.width / 4,
               ),
-              ..._leaderboardData!.peers!.asMap().entries.map(
+              ..._leaderboardData!.peers.asMap().entries.map(
                     (e) => LeaderboardTile(
                       position: e.key,
                       user: e.value,
