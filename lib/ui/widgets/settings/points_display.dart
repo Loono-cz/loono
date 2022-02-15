@@ -21,9 +21,11 @@ class PointsDisplay extends StatelessWidget {
           stream: _usersDao.watchUser(),
           builder: (context, snapshot) {
             // TODO: points
-            return const Text(
+            return Text(
               '0',
-              style: LoonoFonts.primaryColorStyle,
+              style: LoonoFonts.primaryColorStyle.copyWith(
+                color: LoonoColors.primaryEnabled,
+              ),
             );
           },
         ),
