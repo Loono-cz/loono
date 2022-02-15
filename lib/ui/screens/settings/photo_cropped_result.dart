@@ -47,7 +47,7 @@ class _PhotoCroppedResultScreenState extends State<PhotoCroppedResultScreen> {
         progressIndicator: const CircularProgressIndicator(color: LoonoColors.primaryEnabled),
         opacity: 0.5,
         child: Scaffold(
-          appBar: settingsAppBar(context, closeRoute: EditPhotoRoute()),
+          appBar: settingsAppBar(context),
           backgroundColor: LoonoColors.settingsBackground,
           body: SafeArea(
             child: Padding(
@@ -78,10 +78,10 @@ class _PhotoCroppedResultScreenState extends State<PhotoCroppedResultScreen> {
                       if (photoUploadResult) {
                         // TODO: Should we await .push here?
                         // ignore: unawaited_futures
-                        AutoRouter.of(context).pushAndPopUntil(
+                        /*AutoRouter.of(context).pushAndPopUntil(
                           EditPhotoRoute(imageBytes: widget.imageBytes),
                           predicate: (route) => route.settings.name == UpdateProfileRoute.name,
-                        );
+                        );*/
                         showFlushBarSuccess(
                           context,
                           context.l10n.photo_changed_success,

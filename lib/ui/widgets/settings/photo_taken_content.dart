@@ -43,7 +43,6 @@ class _PhotoTakenContentState extends State<PhotoTakenContent> {
         appBar: settingsAppBar(
           context,
           showBackButton: widget.showBackButton,
-          closeRoute: widget.closeRoute ?? EditPhotoRoute(),
         ),
         backgroundColor: LoonoColors.settingsBackground,
         body: SafeArea(

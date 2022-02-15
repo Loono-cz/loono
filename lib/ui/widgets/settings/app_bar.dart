@@ -7,7 +7,6 @@ import 'package:loono/router/app_router.gr.dart';
 AppBar settingsAppBar(
   BuildContext context, {
   bool showBackButton = true,
-  PageRouteInfo closeRoute = const MainScreenRouter(),
 }) {
   return AppBar(
     backgroundColor: Colors.transparent,
@@ -28,7 +27,7 @@ AppBar settingsAppBar(
         padding: const EdgeInsets.only(right: 15.0),
         child: IconButton(
           icon: const Icon(Icons.close, size: 37),
-          onPressed: () => AutoRouter.of(context).navigate(closeRoute),
+          onPressed: () => AutoRouter.of(context).pop(),
         ),
       ),
     ],
