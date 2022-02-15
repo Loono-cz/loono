@@ -25,11 +25,11 @@ class _ExaminationsSheetOverlayState extends State<ExaminationsSheetOverlay> {
   @override
   Widget build(BuildContext context) {
     return SizedBox.expand(
-      child: FutureBuilder<List<PreventionStatus>>(
+      child: FutureBuilder<PreventionStatus?>(
         future: _examinationRepository.getExaminationRecords(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            final categorized = snapshot.data!
+          if (snapshot.hasData && snapshot.data != null) {
+            final categorized = snapshot.data!.examinations
                 .map(
                   (e) => CategorizedExamination(
                     examination: e,

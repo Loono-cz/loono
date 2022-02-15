@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 class GynecologyAchievementScreen extends StatelessWidget {
   const GynecologyAchievementScreen({Key? key}) : super(key: key);
 
-  static const type = ExaminationTypeEnum.GYNECOLOGIST;
+  static const type = ExaminationType.GYNECOLOGIST;
 
   @override
   Widget build(BuildContext context) {

@@ -11,7 +11,7 @@ class ExaminationQuestionnaires extends Table {
   @override
   Set<Column> get primaryKey => {type};
 
-  TextColumn get type => text().map(const ExaminationTypeEnumDbConverter())();
+  TextColumn get type => text().map(const ExaminationTypeDbConverter())();
 
   TextColumn get status => text().map(const ExaminationStatusDbConverter()).withDefault(
         Constant(const ExaminationStatusDbConverter().mapToSql(ExaminationStatus.NEW)!),
@@ -27,27 +27,27 @@ class ExaminationQuestionnairesDao extends DatabaseAccessor<AppDatabase>
     with _$ExaminationQuestionnairesDaoMixin {
   ExaminationQuestionnairesDao(AppDatabase db) : super(db);
 
-  Future<ExaminationQuestionnaire?> get(ExaminationTypeEnum examinationType) =>
+  Future<ExaminationQuestionnaire?> get(ExaminationType examinationType) =>
       (select(examinationQuestionnaires)
             ..where(
               (tbl) =>
-                  tbl.type.equals(const ExaminationTypeEnumDbConverter().mapToSql(examinationType)),
+                  tbl.type.equals(const ExaminationTypeDbConverter().mapToSql(examinationType)),
             ))
           .getSingleOrNull();
 
   Future<List<ExaminationQuestionnaire>> getAll() => select(examinationQuestionnaires).get();
 
-  Stream<ExaminationQuestionnaire?> watch(ExaminationTypeEnum examinationType) =>
+  Stream<ExaminationQuestionnaire?> watch(ExaminationType examinationType) =>
       (select(examinationQuestionnaires)
             ..where(
               (tbl) =>
-                  tbl.type.equals(const ExaminationTypeEnumDbConverter().mapToSql(examinationType)),
+                  tbl.type.equals(const ExaminationTypeDbConverter().mapToSql(examinationType)),
             ))
           .watchSingleOrNull();
 
   Stream<List<ExaminationQuestionnaire>> watchAll() => select(examinationQuestionnaires).watch();
 
-  Future<void> createQuestionnaire(ExaminationTypeEnum examinationType) async {
+  Future<void> createQuestionnaire(ExaminationType examinationType) async {
     await into(examinationQuestionnaires).insert(
       ExaminationQuestionnairesCompanion.insert(type: examinationType),
       mode: InsertMode.replace,
@@ -55,7 +55,7 @@ class ExaminationQuestionnairesDao extends DatabaseAccessor<AppDatabase>
   }
 
   Future<void> updateCcaDoctorVisit(
-    ExaminationTypeEnum examinationType, {
+    ExaminationType examinationType, {
     required CcaDoctorVisit ccaDoctorVisit,
   }) async {
     switch (ccaDoctorVisit) {
@@ -79,7 +79,7 @@ class ExaminationQuestionnairesDao extends DatabaseAccessor<AppDatabase>
   }
 
   Future<void> updateLastVisitDate(
-    ExaminationTypeEnum examinationType, {
+    ExaminationType examinationType, {
     required DateWithoutDay dateWithoutDay,
   }) async {
     await updateQuestionnaire(
@@ -91,7 +91,7 @@ class ExaminationQuestionnairesDao extends DatabaseAccessor<AppDatabase>
     );
   }
 
-  Future<void> setDontKnowLastVisitDate(ExaminationTypeEnum examinationType) async {
+  Future<void> setDontKnowLastVisitDate(ExaminationType examinationType) async {
     await updateQuestionnaire(
       examinationType,
       examinationQuestionnairesCompanion: ExaminationQuestionnairesCompanion(
@@ -102,13 +102,12 @@ class ExaminationQuestionnairesDao extends DatabaseAccessor<AppDatabase>
   }
 
   Future<void> updateQuestionnaire(
-    ExaminationTypeEnum examinationType, {
+    ExaminationType examinationType, {
     required ExaminationQuestionnairesCompanion examinationQuestionnairesCompanion,
   }) async {
     await (update(examinationQuestionnaires)
           ..where(
-            (tbl) =>
-                tbl.type.equals(const ExaminationTypeEnumDbConverter().mapToSql(examinationType)),
+            (tbl) => tbl.type.equals(const ExaminationTypeDbConverter().mapToSql(examinationType)),
           ))
         .write(examinationQuestionnairesCompanion);
   }

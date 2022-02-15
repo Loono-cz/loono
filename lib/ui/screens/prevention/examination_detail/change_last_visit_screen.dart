@@ -23,7 +23,7 @@ class ChangeLastVisitScreen extends StatefulWidget {
 
   final DateTime originalDate;
   final String title;
-  final ExaminationTypeEnum examinationType;
+  final ExaminationType examinationType;
   final String? uuid;
   final ExaminationCategory status;
 
