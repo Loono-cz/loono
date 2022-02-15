@@ -49,11 +49,7 @@ import 'package:loono/ui/screens/settings/edit_email.dart';
 import 'package:loono/ui/screens/settings/edit_nickname.dart';
 import 'package:loono/ui/screens/settings/edit_photo.dart';
 import 'package:loono/ui/screens/settings/gallery_photo_taken.dart';
-import 'package:loono/ui/screens/settings/leaderboard.dart';
-import 'package:loono/ui/screens/settings/open_settings.dart';
 import 'package:loono/ui/screens/settings/photo_cropped_result.dart';
-import 'package:loono/ui/screens/settings/points_help.dart';
-import 'package:loono/ui/screens/settings/update_profile.dart';
 import 'package:loono/ui/screens/splash_screen.dart';
 import 'package:loono/ui/screens/welcome.dart';
 import 'package:loono/ui/widgets/achievement_screen.dart';
@@ -61,7 +57,6 @@ import 'package:loono/ui/widgets/achievement_screen.dart';
 const _onboardingTransition = TransitionsBuilders.slideLeft;
 const _preventionTransition = TransitionsBuilders.slideLeft;
 
-const _openSettingsTransition = TransitionsBuilders.slideBottom;
 const _settingsTransition = TransitionsBuilders.slideLeft;
 
 // After editing this, run:
@@ -209,16 +204,6 @@ const _onboardingQuestionnaireRouter = AutoRoute<void>(
 
 const _settingsRoutes = <AutoRoute>[
   CustomRoute<void>(
-    page: OpenSettingsScreen,
-    path: 'settings',
-    transitionsBuilder: _openSettingsTransition,
-  ),
-  CustomRoute<void>(
-    page: UpdateProfileScreen,
-    path: 'settings/update-profile',
-    transitionsBuilder: _settingsTransition,
-  ),
-  CustomRoute<void>(
     page: EditNicknameScreen,
     path: 'settings/update-profile/nickname',
     transitionsBuilder: _settingsTransition,
@@ -251,16 +236,6 @@ const _settingsRoutes = <AutoRoute>[
   CustomRoute<void>(
     page: PhotoCroppedResultScreen,
     path: 'settings/update-profile/photo/photo-cropped-result',
-    transitionsBuilder: _settingsTransition,
-  ),
-  CustomRoute<void>(
-    page: LeaderboardScreen,
-    path: 'settings/leaderboard',
-    transitionsBuilder: _settingsTransition,
-  ),
-  CustomRoute<void>(
-    page: PointsHelpScreen,
-    path: 'settings/points-help',
     transitionsBuilder: _settingsTransition,
   ),
 ];
