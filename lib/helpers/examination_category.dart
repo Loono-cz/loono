@@ -6,6 +6,7 @@ part 'examination_category.freezed.dart';
 
 /// Ordering for the [ExaminationsSheetOverlay] check-up list component.
 const examinationCategoriesOrdering = <ExaminationCategory>[
+  ExaminationCategory.selfExamination(),
   ExaminationCategory.scheduledSoonOrOverdue(),
   ExaminationCategory.newToSchedule(),
   ExaminationCategory.unknownLastVisit(),
@@ -18,6 +19,7 @@ extension ExaminationStatusExt on ExaminationCategory {
   String getHeaderMessage(BuildContext context) {
     return when(
       scheduledSoonOrOverdue: () => 'běž na prohlídku',
+      selfExamination: () => 'vyšetři se',
       newToSchedule: () => 'objednej se',
       unknownLastVisit: () => 'další prohlídky',
       scheduled: () => 'připomeneme ti prohlídku',
@@ -31,6 +33,8 @@ extension ExaminationStatusExt on ExaminationCategory {
 @freezed
 class ExaminationCategory with _$ExaminationCategory {
   const ExaminationCategory._();
+
+  const factory ExaminationCategory.selfExamination() = SelfExamination;
 
   /// Closely related to [ScheduledExamination] category.
   ///

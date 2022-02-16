@@ -24,10 +24,9 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
   Future<void> _createOnboardingExaminationQuestionnaires() async {
     final existingQuestionnaires = await _examinationQuestionnairesDao.getAll();
     if (existingQuestionnaires.isEmpty) {
-      await _examinationQuestionnairesDao
-          .createQuestionnaire(ExaminationTypeEnum.GENERAL_PRACTITIONER);
-      await _examinationQuestionnairesDao.createQuestionnaire(ExaminationTypeEnum.GYNECOLOGIST);
-      await _examinationQuestionnairesDao.createQuestionnaire(ExaminationTypeEnum.DENTIST);
+      await _examinationQuestionnairesDao.createQuestionnaire(ExaminationType.GENERAL_PRACTITIONER);
+      await _examinationQuestionnairesDao.createQuestionnaire(ExaminationType.GYNECOLOGIST);
+      await _examinationQuestionnairesDao.createQuestionnaire(ExaminationType.DENTIST);
     }
   }
 
@@ -77,7 +76,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                                 onboardingState: onboardingState,
                                 currDoctorCcaVisit:
                                     generalPractitionerQuestionnaire?.ccaDoctorVisit,
-                                examinationType: ExaminationTypeEnum.GENERAL_PRACTITIONER,
+                                examinationType: ExaminationType.GENERAL_PRACTITIONER,
                                 achievementRoute: const GeneralPracticionerAchievementRoute(),
                                 dateRoute: const GeneralPractitionerDateRoute(),
                                 isDatePickerFormFilled:
@@ -106,7 +105,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                                 _dateOrAchievementOrNextDoctorRoute(
                                   onboardingState: onboardingState,
                                   currDoctorCcaVisit: gynecologistQuestionnaire?.ccaDoctorVisit,
-                                  examinationType: ExaminationTypeEnum.GYNECOLOGIST,
+                                  examinationType: ExaminationType.GYNECOLOGIST,
                                   achievementRoute: const GynecologyAchievementRoute(),
                                   dateRoute: const GynecologyDateRoute(),
                                   isDatePickerFormFilled:
@@ -135,7 +134,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                               _dateOrAchievementOrNextDoctorRoute(
                                 onboardingState: onboardingState,
                                 currDoctorCcaVisit: dentistQuestionnaire?.ccaDoctorVisit,
-                                examinationType: ExaminationTypeEnum.DENTIST,
+                                examinationType: ExaminationType.DENTIST,
                                 achievementRoute: const DentistAchievementRoute(),
                                 dateRoute: const DentistDateRoute(),
                                 isDatePickerFormFilled:
@@ -176,12 +175,13 @@ PageRouteInfo? _nextDoctorOnlyRoute({
     }
     return nextDoctorRoute;
   }
+  return null;
 }
 
 PageRouteInfo? _dateOrAchievementOrNextDoctorRoute({
   required OnboardingStateService onboardingState,
   required CcaDoctorVisit? currDoctorCcaVisit,
-  required ExaminationTypeEnum examinationType,
+  required ExaminationType examinationType,
   required PageRouteInfo achievementRoute,
   required PageRouteInfo dateRoute,
   required bool? isDatePickerFormFilled,
@@ -205,4 +205,5 @@ PageRouteInfo? _dateOrAchievementOrNextDoctorRoute({
       return nextDoctorRoute;
     }
   }
+  return null;
 }

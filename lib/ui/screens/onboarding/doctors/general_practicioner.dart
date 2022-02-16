@@ -16,7 +16,7 @@ class OnboardingGeneralPracticionerScreen extends StatelessWidget {
 
   final _examinationsQuestionnairesDao = registry.get<DatabaseService>().examinationQuestionnaires;
 
-  static const _type = ExaminationTypeEnum.GENERAL_PRACTITIONER;
+  static const _type = ExaminationType.GENERAL_PRACTITIONER;
   static const _interval = 2;
 
   @override

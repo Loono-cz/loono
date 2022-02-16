@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'failures.dart';
@@ -160,14 +161,14 @@ class _$UnknownFailure extends UnknownFailure {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is UnknownFailure &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is UnknownFailure &&
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override
@@ -253,7 +254,7 @@ abstract class UnknownFailure extends AuthFailure {
   const factory UnknownFailure([String? message]) = _$UnknownFailure;
   const UnknownFailure._() : super._();
 
-  String? get message => throw _privateConstructorUsedError;
+  String? get message;
   @JsonKey(ignore: true)
   $UnknownFailureCopyWith<UnknownFailure> get copyWith =>
       throw _privateConstructorUsedError;
@@ -290,7 +291,8 @@ class _$NoMessageFailure extends NoMessageFailure {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is NoMessageFailure);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is NoMessageFailure);
   }
 
   @override
@@ -424,14 +426,14 @@ class _$AccountNotExists extends AccountNotExists {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is AccountNotExists &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)));
+        (other.runtimeType == runtimeType &&
+            other is AccountNotExists &&
+            const DeepCollectionEquality().equals(other.email, email));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(email);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(email));
 
   @JsonKey(ignore: true)
   @override
@@ -517,7 +519,7 @@ abstract class AccountNotExists extends AuthFailure {
   const factory AccountNotExists([String? email]) = _$AccountNotExists;
   const AccountNotExists._() : super._();
 
-  String? get email => throw _privateConstructorUsedError;
+  String? get email;
   @JsonKey(ignore: true)
   $AccountNotExistsCopyWith<AccountNotExists> get copyWith =>
       throw _privateConstructorUsedError;
@@ -570,14 +572,14 @@ class _$NetworkFailure extends NetworkFailure {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is NetworkFailure &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is NetworkFailure &&
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override
@@ -663,7 +665,7 @@ abstract class NetworkFailure extends AuthFailure {
   const factory NetworkFailure([String? message]) = _$NetworkFailure;
   const NetworkFailure._() : super._();
 
-  String? get message => throw _privateConstructorUsedError;
+  String? get message;
   @JsonKey(ignore: true)
   $NetworkFailureCopyWith<NetworkFailure> get copyWith =>
       throw _privateConstructorUsedError;

@@ -2,13 +2,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/calendar_service.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart';
 
 class CalendarPermissionInfoScreen extends StatelessWidget {
   const CalendarPermissionInfoScreen({
@@ -16,7 +16,7 @@ class CalendarPermissionInfoScreen extends StatelessWidget {
     required this.examinationRecord,
   }) : super(key: key);
 
-  final ExaminationRecordTemp examinationRecord;
+  final ExaminationPreventionStatus examinationRecord;
 
   @override
   Widget build(BuildContext context) {

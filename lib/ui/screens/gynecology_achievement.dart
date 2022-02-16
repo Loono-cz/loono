@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 class GynecologyAchievementScreen extends StatelessWidget {
   const GynecologyAchievementScreen({Key? key}) : super(key: key);
 
-  static const type = ExaminationTypeEnum.GYNECOLOGIST;
+  static const type = ExaminationType.GYNECOLOGIST;
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +19,11 @@ class GynecologyAchievementScreen extends StatelessWidget {
           header: context.l10n.achievement_belt_gynecologist_header,
           textLines: [
             context.l10n.achievement_gynecology_text_1,
-            '${context.l10n.achievement_keep_it_up_text}!',
           ],
           onButtonTap: () =>
               context.read<OnboardingStateService>().obtainAchievementForExamination(type),
           numberOfPoints: type.awardPoints,
-          itemPath: 'assets/icons/belt-gynecologist.svg',
+          itemPath: 'assets/badges/achievement/belt-woman-level_1.svg',
         ),
       ),
     );

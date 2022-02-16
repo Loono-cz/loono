@@ -100,7 +100,7 @@ class _LoonoAvatarWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(3.0),
+      padding: const EdgeInsets.all(7.0),
       decoration: const BoxDecoration(
         shape: BoxShape.circle,
         color: LoonoColors.leaderboardPrimary,

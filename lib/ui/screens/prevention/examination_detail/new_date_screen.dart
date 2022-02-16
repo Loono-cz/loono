@@ -85,7 +85,9 @@ class _NewDateScreenState extends State<NewDateScreen> {
                   casus: Casus.genitiv,
                   examinationType: examinationType,
                 ).toUpperCase()}?',
-                style: LoonoFonts.headerFontStyleBold,
+                style: LoonoFonts.headerFontStyle.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const Spacer(),
               Center(

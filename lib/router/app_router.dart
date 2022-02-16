@@ -1,4 +1,3 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:loono/router/guards/check_is_logged_in.dart';
 import 'package:loono/router/sub_routers/app_startup_wrapper_screen.dart';
@@ -32,7 +31,6 @@ import 'package:loono/ui/screens/onboarding/gamification_introduction.dart';
 import 'package:loono/ui/screens/onboarding/gender.dart';
 import 'package:loono/ui/screens/prevention/calendar/calendar_list.dart';
 import 'package:loono/ui/screens/prevention/calendar/permission_info.dart';
-import 'package:loono/ui/screens/prevention/examination_detail/cancel_checkup_screen.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/change_date_screen.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/change_last_visit_screen.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/change_time_screen.dart';
@@ -40,17 +38,18 @@ import 'package:loono/ui/screens/prevention/examination_detail/examination_scree
 import 'package:loono/ui/screens/prevention/examination_detail/new_date_screen.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/new_time_screen.dart';
 import 'package:loono/ui/screens/prevention/questionnaire/date_picker_screen.dart';
+import 'package:loono/ui/screens/prevention/self_examination/detail_screen.dart';
+import 'package:loono/ui/screens/prevention/self_examination/educational_screen.dart';
+import 'package:loono/ui/screens/prevention/self_examination/has_finding_screen.dart';
+import 'package:loono/ui/screens/prevention/self_examination/no_finding_screen.dart';
+import 'package:loono/ui/screens/prevention/self_examination/progress_screen.dart';
 import 'package:loono/ui/screens/settings/camera_photo_taken.dart';
 import 'package:loono/ui/screens/settings/delete_account.dart';
 import 'package:loono/ui/screens/settings/edit_email.dart';
 import 'package:loono/ui/screens/settings/edit_nickname.dart';
 import 'package:loono/ui/screens/settings/edit_photo.dart';
 import 'package:loono/ui/screens/settings/gallery_photo_taken.dart';
-import 'package:loono/ui/screens/settings/leaderboard.dart';
-import 'package:loono/ui/screens/settings/open_settings.dart';
 import 'package:loono/ui/screens/settings/photo_cropped_result.dart';
-import 'package:loono/ui/screens/settings/points_help.dart';
-import 'package:loono/ui/screens/settings/update_profile.dart';
 import 'package:loono/ui/screens/splash_screen.dart';
 import 'package:loono/ui/screens/welcome.dart';
 import 'package:loono/ui/widgets/achievement_screen.dart';
@@ -58,7 +57,6 @@ import 'package:loono/ui/widgets/achievement_screen.dart';
 const _onboardingTransition = TransitionsBuilders.slideLeft;
 const _preventionTransition = TransitionsBuilders.slideLeft;
 
-const _openSettingsTransition = TransitionsBuilders.slideBottom;
 const _settingsTransition = TransitionsBuilders.slideLeft;
 
 // After editing this, run:
@@ -107,6 +105,7 @@ const _postAuthRouter = AutoRoute<void>(
     AutoRoute<void>(page: MainScreen, path: ''),
     ..._settingsRoutes,
     ..._preventionRoutes,
+    ..._selfExaminationRoutes,
     _findDoctorRoute,
   ],
 );
@@ -205,16 +204,6 @@ const _onboardingQuestionnaireRouter = AutoRoute<void>(
 
 const _settingsRoutes = <AutoRoute>[
   CustomRoute<void>(
-    page: OpenSettingsScreen,
-    path: 'settings',
-    transitionsBuilder: _openSettingsTransition,
-  ),
-  CustomRoute<void>(
-    page: UpdateProfileScreen,
-    path: 'settings/update-profile',
-    transitionsBuilder: _settingsTransition,
-  ),
-  CustomRoute<void>(
     page: EditNicknameScreen,
     path: 'settings/update-profile/nickname',
     transitionsBuilder: _settingsTransition,
@@ -249,16 +238,6 @@ const _settingsRoutes = <AutoRoute>[
     path: 'settings/update-profile/photo/photo-cropped-result',
     transitionsBuilder: _settingsTransition,
   ),
-  CustomRoute<void>(
-    page: LeaderboardScreen,
-    path: 'settings/leaderboard',
-    transitionsBuilder: _settingsTransition,
-  ),
-  CustomRoute<void>(
-    page: PointsHelpScreen,
-    path: 'settings/points-help',
-    transitionsBuilder: _settingsTransition,
-  ),
 ];
 
 const _preventionRoutes = <AutoRoute>[
@@ -288,11 +267,6 @@ const _preventionRoutes = <AutoRoute>[
     transitionsBuilder: _preventionTransition,
   ),
   CustomRoute<void>(
-    page: CancelCheckupScreen,
-    path: 'checkup/cancel',
-    transitionsBuilder: _preventionTransition,
-  ),
-  CustomRoute<void>(
     page: ChangeLastVisitScreen,
     path: 'checkup/last-visit-update',
     transitionsBuilder: _preventionTransition,
@@ -315,6 +289,34 @@ const _preventionRoutes = <AutoRoute>[
   CustomRoute<void>(
     page: ChangeTimeScreen,
     path: 'checkup/change-time',
+    transitionsBuilder: _preventionTransition,
+  ),
+];
+
+const _selfExaminationRoutes = <AutoRoute>[
+  CustomRoute<void>(
+    page: SelfExaminationDetailScreen,
+    path: 'self-examination/detail',
+    transitionsBuilder: _preventionTransition,
+  ),
+  CustomRoute<void>(
+    page: EducationalVideoScreen,
+    path: 'self-examination/detail/educational-video',
+    transitionsBuilder: _preventionTransition,
+  ),
+  CustomRoute<void>(
+    page: HasFindingScreen,
+    path: 'self-examination/detail/has-finding',
+    transitionsBuilder: _preventionTransition,
+  ),
+  CustomRoute<void>(
+    page: NoFindingScreen,
+    path: 'self-examination/detail/no-finding',
+    transitionsBuilder: _preventionTransition,
+  ),
+  CustomRoute<void>(
+    page: ProgressRewardScreen,
+    path: 'self-examination/detail/progress-reward',
     transitionsBuilder: _preventionTransition,
   ),
 ];

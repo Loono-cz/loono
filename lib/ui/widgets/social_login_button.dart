@@ -5,7 +5,7 @@ import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/extend_inkwell.dart';
 
-enum SocialLoginButtonType { apple, google, facebook }
+enum SocialLoginButtonType { apple, google }
 
 extension SocialLoginButtonTypeExt on SocialLoginButtonType {
   String getButtonText(BuildContext context) {
@@ -14,8 +14,6 @@ extension SocialLoginButtonTypeExt on SocialLoginButtonType {
         return context.l10n.sign_in_with_apple;
       case SocialLoginButtonType.google:
         return context.l10n.sign_in_with_google_account;
-      case SocialLoginButtonType.facebook:
-        return context.l10n.sign_in_with_facebook_account;
     }
   }
 }
@@ -41,16 +39,6 @@ class SocialLoginButton extends StatelessWidget {
         buttonColor = LoonoColors.googleLogInBlue,
         super(key: key);
 
-  const SocialLoginButton.facebook({
-    Key? key,
-    required this.onPressed,
-    this.text,
-  })  : socialLoginButtonType = SocialLoginButtonType.facebook,
-        border = const Border.fromBorderSide(BorderSide(color: LoonoColors.facebookLogInBlue)),
-        assetLogoPath = 'assets/icons/facebook-logo.svg',
-        buttonColor = LoonoColors.facebookLogInBlue,
-        super(key: key);
-
   final SocialLoginButtonType socialLoginButtonType;
   final VoidCallback onPressed;
   final BoxBorder border;
@@ -63,7 +51,6 @@ class SocialLoginButton extends StatelessWidget {
     return ExtendedInkWell(
       onTap: onPressed,
       splashColor: buttonColor.withOpacity(0.15),
-      borderRadius: BorderRadius.circular(10),
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),

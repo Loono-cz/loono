@@ -35,6 +35,7 @@ class _LogoutScreenState extends State<LogoutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: LoonoColors.settingsBackground,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(18.0),

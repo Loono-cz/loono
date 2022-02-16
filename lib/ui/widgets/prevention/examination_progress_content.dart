@@ -17,12 +17,12 @@ class ExaminationProgressContent extends StatelessWidget {
 
   bool get _isToday {
     final now = DateTime.now();
-    final visit = categorizedExamination.examination.nextVisitDate!;
+    final visit = categorizedExamination.examination.plannedDate!;
     return now.day == visit.day && now.month == visit.month && now.year == visit.year;
   }
 
   String _intervalYears(BuildContext context) =>
-      '${categorizedExamination.examination.interval.toString()} ${categorizedExamination.examination.interval > 1 ? context.l10n.years : context.l10n.year}';
+      '${categorizedExamination.examination.intervalYears.toString()} ${categorizedExamination.examination.intervalYears > 1 ? context.l10n.years : context.l10n.year}';
 
   /// get correct combination of text font styles and colors
   Widget _progressBarContent(BuildContext context) {
@@ -38,7 +38,7 @@ class ExaminationProgressContent extends StatelessWidget {
     ].contains(categorizedExamination.category)) {
       /// awaiting new checkup
       return _earlyCheckupContent(context);
-    } else if (categorizedExamination.examination.lastVisitDate != null) {
+    } else if (categorizedExamination.examination.lastConfirmedDate != null) {
       /// examination long overdue
       return Text(
         '${context.l10n.more_than} ${_intervalYears(context)} ${context.l10n.since_last_visit}',
@@ -64,12 +64,12 @@ class ExaminationProgressContent extends StatelessWidget {
   Widget _scheduledVisitContent(BuildContext context) {
     final now = DateTime.now();
     final visitTime =
-        DateFormat('hh:mm', 'cs-CZ').format(categorizedExamination.examination.nextVisitDate!);
+        DateFormat('hh:mm', 'cs-CZ').format(categorizedExamination.examination.plannedDate!);
     final visitTimePreposition =
-        categorizedExamination.examination.nextVisitDate!.hour > 11 ? 've' : 'v';
+        categorizedExamination.examination.plannedDate!.hour > 11 ? 've' : 'v';
     final visitDate = DateFormat('dd. MMMM yyyy', 'cs-CZ')
-        .format(categorizedExamination.examination.nextVisitDate!);
-    final isAfterVisit = now.isAfter(categorizedExamination.examination.nextVisitDate!);
+        .format(categorizedExamination.examination.plannedDate!);
+    final isAfterVisit = now.isAfter(categorizedExamination.examination.plannedDate!);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -93,10 +93,10 @@ class ExaminationProgressContent extends StatelessWidget {
   }
 
   Widget _earlyCheckupContent(BuildContext context) {
-    final lastDateVisit = categorizedExamination.examination.lastVisitDate!;
+    final lastDateVisit = categorizedExamination.examination.lastConfirmedDate!;
     final newWaitToDateTime = DateTime(
-      lastDateVisit.year + categorizedExamination.examination.interval,
-      lastDateVisit.month.index + 1,
+      lastDateVisit.year + categorizedExamination.examination.intervalYears,
+      lastDateVisit.month,
     );
     final formattedDate = DateFormat.yMMMM('cs-CZ').format(newWaitToDateTime);
     return Column(

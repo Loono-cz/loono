@@ -13,14 +13,14 @@ class FAQPair {
   final String answer;
 }
 
-List<FAQPair> faqContent(BuildContext context, ExaminationTypeEnum type) {
+List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
   final texts = context.l10n;
   var result = <FAQPair>[];
 
   /// NOTE: Not the shortest solution but allows full control over each question and answer
   /// and allows asymmetric content in the future
   switch (type) {
-    case ExaminationTypeEnum.COLONOSCOPY:
+    case ExaminationType.COLONOSCOPY:
       result = [
         FAQPair(
           question: '${texts.what_is} ${type.l10n_name}?',
@@ -48,7 +48,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationTypeEnum type) {
         ),
       ];
       break;
-    case ExaminationTypeEnum.DENTIST:
+    case ExaminationType.DENTIST:
       result = [
         FAQPair(
           question: '${texts.who_is} ${type.l10n_name}?',
@@ -76,7 +76,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationTypeEnum type) {
         ),
       ];
       break;
-    case ExaminationTypeEnum.DERMATOLOGIST:
+    case ExaminationType.DERMATOLOGIST:
       result = [
         FAQPair(
           question: '${texts.who_is} ${type.l10n_name}?',
@@ -104,7 +104,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationTypeEnum type) {
         ),
       ];
       break;
-    case ExaminationTypeEnum.GENERAL_PRACTITIONER:
+    case ExaminationType.GENERAL_PRACTITIONER:
       result = [
         FAQPair(
           question: '${texts.who_is} ${type.l10n_name}?',
@@ -132,7 +132,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationTypeEnum type) {
         ),
       ];
       break;
-    case ExaminationTypeEnum.GYNECOLOGIST:
+    case ExaminationType.GYNECOLOGIST:
       result = [
         FAQPair(
           question: '${texts.who_is} ${type.l10n_name}?',
@@ -160,7 +160,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationTypeEnum type) {
         ),
       ];
       break;
-    case ExaminationTypeEnum.MAMMOGRAM:
+    case ExaminationType.MAMMOGRAM:
       result = [
         FAQPair(
           question: '${texts.what_is} ${type.l10n_name}?',
@@ -188,7 +188,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationTypeEnum type) {
         ),
       ];
       break;
-    case ExaminationTypeEnum.OPHTHALMOLOGIST:
+    case ExaminationType.OPHTHALMOLOGIST:
       result = [
         FAQPair(
           question: '${texts.who_is} ${type.l10n_name}?',
@@ -217,7 +217,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationTypeEnum type) {
       ];
       break;
 
-    case ExaminationTypeEnum.UROLOGIST:
+    case ExaminationType.UROLOGIST:
       result = [
         FAQPair(
           question: '${texts.who_is} ${type.l10n_name}?',
@@ -245,19 +245,13 @@ List<FAQPair> faqContent(BuildContext context, ExaminationTypeEnum type) {
         ),
       ];
       break;
-    case ExaminationTypeEnum.BREAST_SELF:
+    case ExaminationType.TOKS:
       // TODO: This case is not used yet
       break;
-    case ExaminationTypeEnum.TESTICULAR_SELF:
+    case ExaminationType.ULTRASOUND_BREAST:
       // TODO: This case is not used yet
       break;
-    case ExaminationTypeEnum.TOKS:
-      // TODO: This case is not used yet
-      break;
-    case ExaminationTypeEnum.ULTRASOUND_BREAST:
-      // TODO: This case is not used yet
-      break;
-    case ExaminationTypeEnum.VENEREAL_DISEASES:
+    case ExaminationType.VENEREAL_DISEASES:
       // TODO: Handle this case.
       break;
   }

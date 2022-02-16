@@ -1,12 +1,15 @@
-import 'dart:typed_data';
+import 'dart:async';
 
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/services/api_service.dart';
+import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/firebase_storage_service.dart';
 import 'package:loono_api/loono_api.dart' hide User;
+import 'package:moor/moor.dart';
 import 'package:uuid/uuid.dart';
 
 class UserRepository {
@@ -14,13 +17,54 @@ class UserRepository {
     required ApiService apiService,
     required DatabaseService databaseService,
     required FirebaseStorageService firebaseStorageService,
+    required AuthService authService,
   })  : _apiService = apiService,
+        _authService = authService,
         _db = databaseService,
-        _firebaseStorageService = firebaseStorageService;
+        _firebaseStorageService = firebaseStorageService {
+    _authService.onAuthStateChanged.listen((authUser) async {
+      if (authUser != null) {
+        debugPrint('log: SYNCING WITH API');
+        await _authService.refreshUserToken(authUser);
+        unawaited(_sync());
+      }
+    });
+  }
 
   final ApiService _apiService;
+  final AuthService _authService;
   final DatabaseService _db;
   final FirebaseStorageService _firebaseStorageService;
+
+  Future<void> _sync() async {
+    final account = await _apiService.getAccount();
+    await account.whenOrNull(
+      success: (data) async {
+        final usersDao = _db.users;
+
+        if (data.user.nickname != null) {
+          await usersDao.updateNickname(data.user.nickname!);
+        }
+        if (data.user.birthdateYear != null && data.user.birthdateMonth != null) {
+          await usersDao.updateDateOfBirth(
+            DateWithoutDay(
+              month: monthFromInt(data.user.birthdateMonth!),
+              year: data.user.birthdateYear!,
+            ),
+          );
+        }
+        if (data.user.sex != null) {
+          await usersDao.updateSex(data.user.sex!);
+        }
+        if (data.user.preferredEmail != null) {
+          await usersDao.updateEmail(data.user.preferredEmail!);
+        }
+        if (data.user.profileImageUrl != null) {
+          await usersDao.updateProfileImageUrl(data.user.profileImageUrl!);
+        }
+      },
+    );
+  }
 
   Future<void> createUser() async {
     await _db.users.deleteAll();
@@ -47,6 +91,10 @@ class UserRepository {
     await _db.users.updateDateOfBirth(dateWithoutDay);
   }
 
+  Future<void> updateDeviceCalendarId(String id) async {
+    await _db.users.updateCurrentUser(UsersCompanion(defaultDeviceCalendarId: Value<String>(id)));
+  }
+
   Future<void> updateLatestMapUpdateCheck(DateTime date) async {
     await _db.users.updateLatestMapUpdateCheck(date);
   }
@@ -67,8 +115,16 @@ class UserRepository {
     return result;
   }
 
-  Future<void> updateEmail(String email) async {
-    await _db.users.updateEmail(email);
+  Future<bool> updateEmail(String email) async {
+    final apiResponse = await _apiService.updateAccountUser(preferredEmail: email);
+    final result = await apiResponse.map(
+      success: (_) async {
+        await _db.users.updateEmail(email);
+        return true;
+      },
+      failure: (_) async => false,
+    );
+    return result;
   }
 
   // TODO: Error handling (https://cesko-digital.atlassian.net/browse/LOON-386)
@@ -86,8 +142,15 @@ class UserRepository {
       settableMetadata: SettableMetadata(contentType: 'image/png'),
     );
     if (downloadUrl != null) {
-      await _db.users.updateProfileImageUrl(downloadUrl);
-      return true;
+      final apiResponse = await _apiService.updateAccountUser(profileImageUrl: downloadUrl);
+      final result = await apiResponse.map(
+        success: (_) async {
+          await _db.users.updateProfileImageUrl(downloadUrl);
+          return true;
+        },
+        failure: (_) async => false,
+      );
+      return result;
     }
     return false;
   }
@@ -100,8 +163,15 @@ class UserRepository {
       ref: await _firebaseStorageService.userPhotoRef,
     );
     if (result == true) {
-      await _db.users.updateProfileImageUrl(null);
-      return true;
+      final apiResponse = await _apiService.updateAccountUser(profileImageUrl: null);
+      final result = await apiResponse.map(
+        success: (_) async {
+          await _db.users.updateProfileImageUrl(null);
+          return true;
+        },
+        failure: (_) async => false,
+      );
+      return result;
     }
     return false;
   }

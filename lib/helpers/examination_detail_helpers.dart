@@ -9,7 +9,7 @@ import 'package:loono_api/loono_api.dart';
 TextStyle earlyOrderStyles(CategorizedExamination examination) {
   var color = LoonoColors.black;
   var weight = FontWeight.w400;
-  final nextVisit = examination.examination.nextVisitDate;
+  final nextVisit = examination.examination.plannedDate;
 
   if (nextVisit != null &&
       [
@@ -44,10 +44,10 @@ TextStyle preventiveInspectionStyles(ExaminationCategory category) {
   return LoonoFonts.cardTitle.copyWith(color: color, fontWeight: weight);
 }
 
-String czechPreposition(BuildContext context, {required ExaminationTypeEnum examinationType}) {
+String czechPreposition(BuildContext context, {required ExaminationType examinationType}) {
   if ([
-    ExaminationTypeEnum.COLONOSCOPY,
-    ExaminationTypeEnum.MAMMOGRAM,
+    ExaminationType.COLONOSCOPY,
+    ExaminationType.MAMMOGRAM,
   ].contains(examinationType)) {
     return 'na';
   } else {
@@ -102,47 +102,41 @@ String getQuestionnaireSecondAnswer(
 
 String procedureQuestionTitle(
   BuildContext context, {
-  required ExaminationTypeEnum examinationType,
+  required ExaminationType examinationType,
 }) {
   var response = '';
   switch (examinationType) {
-    case ExaminationTypeEnum.COLONOSCOPY:
+    case ExaminationType.COLONOSCOPY:
       response = context.l10n.colonoscopy_question_highlight;
       break;
-    case ExaminationTypeEnum.DENTIST:
+    case ExaminationType.DENTIST:
       response = context.l10n.dentist_question_highlight;
       break;
-    case ExaminationTypeEnum.DERMATOLOGIST:
+    case ExaminationType.DERMATOLOGIST:
       response = context.l10n.dermatology_question_highlight;
       break;
-    case ExaminationTypeEnum.GENERAL_PRACTITIONER:
+    case ExaminationType.GENERAL_PRACTITIONER:
       response = context.l10n.practitioner_question_highlight;
       break;
-    case ExaminationTypeEnum.GYNECOLOGIST:
+    case ExaminationType.GYNECOLOGIST:
       response = context.l10n.gynecology_question_highlight;
       break;
-    case ExaminationTypeEnum.MAMMOGRAM:
+    case ExaminationType.MAMMOGRAM:
       response = context.l10n.mammogram_question_highlight;
       break;
-    case ExaminationTypeEnum.OPHTHALMOLOGIST:
+    case ExaminationType.OPHTHALMOLOGIST:
       response = context.l10n.oculist_question_highlight;
       break;
-    case ExaminationTypeEnum.TESTICULAR_SELF:
+    case ExaminationType.TOKS:
       // TODO: Handle this case.
       break;
-    case ExaminationTypeEnum.TOKS:
+    case ExaminationType.ULTRASOUND_BREAST:
       // TODO: Handle this case.
       break;
-    case ExaminationTypeEnum.ULTRASOUND_BREAST:
-      // TODO: Handle this case.
-      break;
-    case ExaminationTypeEnum.UROLOGIST:
+    case ExaminationType.UROLOGIST:
       response = context.l10n.urology_question_highlight;
       break;
-    case ExaminationTypeEnum.BREAST_SELF:
-      // TODO: Handle this case.
-      break;
-    case ExaminationTypeEnum.VENEREAL_DISEASES:
+    case ExaminationType.VENEREAL_DISEASES:
       // TODO: Handle this case.
       break;
   }
@@ -153,76 +147,87 @@ enum Casus { nomativ, genitiv, dativ }
 
 String examinationTypeCasus(
   BuildContext context, {
-  required ExaminationTypeEnum examinationType,
+  required ExaminationType examinationType,
   required Casus casus,
 }) {
   final l10n = context.l10n;
   switch (examinationType) {
-    case ExaminationTypeEnum.BREAST_SELF:
-      if (casus == Casus.nomativ) return l10n.breastSelf_nomativ;
-      if (casus == Casus.genitiv) return l10n.breastSelf_genitiv;
-      if (casus == Casus.dativ) return l10n.breastSelf_dativ;
-      return '${ExaminationTypeEnum.BREAST_SELF} unkown casus';
-    case ExaminationTypeEnum.COLONOSCOPY:
+    case ExaminationType.COLONOSCOPY:
       if (casus == Casus.nomativ) return l10n.colonoscopy_nomativ;
       if (casus == Casus.genitiv) return l10n.colonoscopy_genitiv;
       if (casus == Casus.dativ) return l10n.colonoscopy_dativ;
-      return '${ExaminationTypeEnum.COLONOSCOPY} unkown casus';
-    case ExaminationTypeEnum.DENTIST:
+      return '${ExaminationType.COLONOSCOPY} unkown casus';
+    case ExaminationType.DENTIST:
       if (casus == Casus.nomativ) return l10n.dentist_nomativ;
       if (casus == Casus.genitiv) return l10n.dentist_genitiv;
       if (casus == Casus.dativ) return l10n.dentist_dativ;
-      return '${ExaminationTypeEnum.DENTIST} unkown casus';
-    case ExaminationTypeEnum.DERMATOLOGIST:
+      return '${ExaminationType.DENTIST} unkown casus';
+    case ExaminationType.DERMATOLOGIST:
       if (casus == Casus.nomativ) return l10n.dermatologist_nomativ;
       if (casus == Casus.genitiv) return l10n.dermatologist_genitiv;
       if (casus == Casus.dativ) return l10n.dermatologist_dativ;
-      return '${ExaminationTypeEnum.DERMATOLOGIST} unkown casus';
-    case ExaminationTypeEnum.GENERAL_PRACTITIONER:
+      return '${ExaminationType.DERMATOLOGIST} unkown casus';
+    case ExaminationType.GENERAL_PRACTITIONER:
       if (casus == Casus.nomativ) return l10n.generalPractitioner_nomativ;
       if (casus == Casus.genitiv) return l10n.generalPractitioner_genitiv;
       if (casus == Casus.dativ) return l10n.generalPractitioner_dativ;
-      return '${ExaminationTypeEnum.GENERAL_PRACTITIONER} unkown casus';
-    case ExaminationTypeEnum.GYNECOLOGIST:
+      return '${ExaminationType.GENERAL_PRACTITIONER} unkown casus';
+    case ExaminationType.GYNECOLOGIST:
       if (casus == Casus.nomativ) return l10n.gynecologist_nomativ;
       if (casus == Casus.genitiv) return l10n.gynecologist_genitiv;
       if (casus == Casus.dativ) return l10n.gynecologist_dativ;
-      return '${ExaminationTypeEnum.GYNECOLOGIST} unkown casus';
-    case ExaminationTypeEnum.MAMMOGRAM:
+      return '${ExaminationType.GYNECOLOGIST} unkown casus';
+    case ExaminationType.MAMMOGRAM:
       if (casus == Casus.nomativ) return l10n.mammogram_nomativ;
       if (casus == Casus.genitiv) return l10n.mammogram_genitiv;
       if (casus == Casus.dativ) return l10n.mammogram_dativ;
-      return '${ExaminationTypeEnum.MAMMOGRAM} unkown casus';
-    case ExaminationTypeEnum.OPHTHALMOLOGIST:
+      return '${ExaminationType.MAMMOGRAM} unkown casus';
+    case ExaminationType.OPHTHALMOLOGIST:
       if (casus == Casus.nomativ) return l10n.ophthalmologist_nomativ;
       if (casus == Casus.genitiv) return l10n.ophthalmologist_genitiv;
       if (casus == Casus.dativ) return l10n.ophthalmologist_dativ;
-      return '${ExaminationTypeEnum.OPHTHALMOLOGIST} unkown casus';
-    case ExaminationTypeEnum.TESTICULAR_SELF:
-      if (casus == Casus.nomativ) return l10n.testicularSelf_nomativ;
-      if (casus == Casus.genitiv) return l10n.testicularSelf_genitiv;
-      if (casus == Casus.dativ) return l10n.testicularSelf_dativ;
-      return '${ExaminationTypeEnum.TESTICULAR_SELF} unkown casus';
-    case ExaminationTypeEnum.TOKS:
+      return '${ExaminationType.OPHTHALMOLOGIST} unkown casus';
+    case ExaminationType.TOKS:
       if (casus == Casus.nomativ) return l10n.toks_nomativ;
       if (casus == Casus.genitiv) return l10n.toks_genitiv;
       if (casus == Casus.dativ) return l10n.toks_dativ;
-      return '${ExaminationTypeEnum.TOKS} unkown casus';
-    case ExaminationTypeEnum.ULTRASOUND_BREAST:
+      return '${ExaminationType.TOKS} unkown casus';
+    case ExaminationType.ULTRASOUND_BREAST:
       if (casus == Casus.nomativ) return l10n.ultrasoundBreast_nomativ;
       if (casus == Casus.genitiv) return l10n.ultrasoundBreast_genitiv;
       if (casus == Casus.dativ) return l10n.ultrasoundBreast_dativ;
-      return '${ExaminationTypeEnum.ULTRASOUND_BREAST} unkown casus';
-    case ExaminationTypeEnum.UROLOGIST:
+      return '${ExaminationType.ULTRASOUND_BREAST} unkown casus';
+    case ExaminationType.UROLOGIST:
       if (casus == Casus.nomativ) return l10n.urologist_nomativ;
       if (casus == Casus.genitiv) return l10n.urologist_genitiv;
       if (casus == Casus.dativ) return l10n.urologist_dativ;
-      return '${ExaminationTypeEnum.UROLOGIST} unkown casus';
-    case ExaminationTypeEnum.VENEREAL_DISEASES:
+      return '${ExaminationType.UROLOGIST} unkown casus';
+    case ExaminationType.VENEREAL_DISEASES:
       // TODO: Handle this case.
       return '';
   }
   return '${examinationType.name} unkown casus';
+}
+
+String selfExaminationTypeCasus(
+  BuildContext context, {
+  required SelfExaminationType selfExaminationType,
+  required Casus casus,
+}) {
+  final l10n = context.l10n;
+  switch (selfExaminationType) {
+    case SelfExaminationType.BREAST:
+      if (casus == Casus.nomativ) return l10n.breastSelf_nomativ;
+      if (casus == Casus.genitiv) return l10n.breastSelf_genitiv;
+      if (casus == Casus.dativ) return l10n.breastSelf_dativ;
+      return '${SelfExaminationType.BREAST} unkown casus';
+    case SelfExaminationType.TESTICULAR:
+      if (casus == Casus.nomativ) return l10n.testicularSelf_nomativ;
+      if (casus == Casus.genitiv) return l10n.testicularSelf_genitiv;
+      if (casus == Casus.dativ) return l10n.testicularSelf_dativ;
+      return '${SelfExaminationType.TESTICULAR} unkown casus';
+  }
+  return '${selfExaminationType.name} unkown casus';
 }
 
 int daysBetween(DateTime from, DateTime to) {
@@ -234,9 +239,9 @@ int daysBetween(DateTime from, DateTime to) {
 }
 
 double upperArcProgress(CategorizedExamination examination) {
-  final nextVisit = examination.examination.nextVisitDate;
+  final nextVisit = examination.examination.plannedDate;
   final category = examination.category;
-  final interval = examination.examination.interval;
+  final interval = examination.examination.intervalYears;
   if ([
         const ExaminationCategory.scheduled(),
         const ExaminationCategory.scheduledSoonOrOverdue(),
@@ -258,10 +263,10 @@ double upperArcProgress(CategorizedExamination examination) {
 }
 
 double lowerArcProgress(CategorizedExamination examination) {
-  final nextVisit = examination.examination.nextVisitDate;
-  final lastVisit = examination.examination.lastVisitDate;
+  final nextVisit = examination.examination.plannedDate;
+  final lastVisit = examination.examination.lastConfirmedDate;
   final category = examination.category;
-  final interval = examination.examination.interval;
+  final interval = examination.examination.intervalYears;
 
   if (category == const ExaminationCategory.scheduledSoonOrOverdue() && nextVisit != null) {
     final intervalDays = daysBetween(
@@ -276,11 +281,11 @@ double lowerArcProgress(CategorizedExamination examination) {
     return (afterScheduledDays / intervalDays).clamp(0, 1);
   } else if (category == const ExaminationCategory.waiting() && lastVisit != null) {
     final intervalDays = daysBetween(
-      DateTime(lastVisit.year, lastVisit.month.index + 1),
-      DateTime(lastVisit.year + interval, lastVisit.month.index + 1),
+      DateTime(lastVisit.year, lastVisit.month),
+      DateTime(lastVisit.year + interval, lastVisit.month),
     );
     final afterLastVisitDays = daysBetween(
-      DateTime(lastVisit.year, lastVisit.month.index + 1),
+      DateTime(lastVisit.year, lastVisit.month),
       DateTime.now(),
     );
     return (afterLastVisitDays / intervalDays).clamp(0, 1);
@@ -289,7 +294,7 @@ double lowerArcProgress(CategorizedExamination examination) {
 }
 
 bool isOverdue(CategorizedExamination examination) {
-  final nextVisit = examination.examination.nextVisitDate;
+  final nextVisit = examination.examination.plannedDate;
   if (nextVisit != null) {
     return examination.category == const ExaminationCategory.scheduledSoonOrOverdue() &&
         DateTime.now().isAfter(nextVisit);

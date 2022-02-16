@@ -54,6 +54,23 @@ class ApiService {
     return _callApi(() async => _api.getAccountApi().getAccount());
   }
 
+  Future<ApiResponse<Account>> updateAccountSettings({
+    bool appointmentReminderEmailsOptIn = true,
+    bool leaderboardAnonymizationOptIn = false,
+    bool newsletterOptIn = false,
+  }) async {
+    return _callApi(
+      () async => _api.getAccountApi().updateAccountSettings(
+        settings: Settings((b) {
+          b
+            ..appointmentReminderEmailsOptIn = appointmentReminderEmailsOptIn
+            ..leaderboardAnonymizationOptIn = leaderboardAnonymizationOptIn
+            ..newsletterOptIn = newsletterOptIn;
+        }),
+      ),
+    );
+  }
+
   Future<ApiResponse<Account>> updateAccountUser({
     Sex? sex,
     int? birthdateYear,
@@ -74,6 +91,68 @@ class ApiService {
             ..profileImageUrl = profileImageUrl;
         }),
       ),
+    );
+  }
+
+  Future<ApiResponse<PreventionStatus>> getExaminations({ApiParams? params}) async {
+    return _callApi(
+      () async => _api.getExaminationsApi().getExaminations(
+            cancelToken: params?.cancelToken,
+            extra: params?.extra,
+            headers: params?.headers,
+            onReceiveProgress: params?.onReceiveProgress,
+            onSendProgress: params?.onSendProgress,
+            validateStatus: params?.validateStatus,
+          ),
+    );
+  }
+
+  Future<ApiResponse<ExaminationRecord>> cancelExamination(
+    ExaminationType type,
+    String uuid,
+  ) async {
+    return _callApi(
+      () async => _api.getExaminationsApi().cancelExamination(
+            type: type.toString(),
+            examinationId: ExaminationId((id) {
+              id.uuid = uuid;
+            }),
+          ),
+    );
+  }
+
+  Future<ApiResponse<ExaminationRecord>> postExamination(
+    ExaminationType type, {
+    String? uuid,
+    DateTime? newDate,
+    ExaminationStatus? status,
+    bool? firstExam,
+  }) async {
+    return _callApi(
+      () async => _api.getExaminationsApi().postExaminations(
+        examinationRecord: ExaminationRecord((record) {
+          record
+            ..uuid = uuid
+            ..type = type
+            ..date = newDate?.toUtc()
+            ..status = status
+            ..firstExam = firstExam;
+        }),
+      ),
+    );
+  }
+
+  Future<ApiResponse<ExaminationRecord>> confirmExamination(
+    ExaminationType type, {
+    String? id,
+  }) async {
+    return _callApi(
+      () async => _api.getExaminationsApi().completeExamination(
+            type: type.toString(),
+            examinationId: ExaminationId((newId) {
+              newId.uuid = id;
+            }),
+          ),
     );
   }
 }

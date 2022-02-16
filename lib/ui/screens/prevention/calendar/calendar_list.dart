@@ -4,14 +4,15 @@ import 'package:auto_route/auto_route.dart';
 import 'package:device_calendar/device_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/calendar_repository.dart';
+import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/services/calendar_service.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart';
 
 class CalendarListScreen extends StatefulWidget {
   const CalendarListScreen({
@@ -19,7 +20,7 @@ class CalendarListScreen extends StatefulWidget {
     required this.examinationRecord,
   }) : super(key: key);
 
-  final ExaminationRecordTemp examinationRecord;
+  final ExaminationPreventionStatus examinationRecord;
 
   @override
   State<CalendarListScreen> createState() => _CalendarListScreenState();
@@ -28,6 +29,7 @@ class CalendarListScreen extends StatefulWidget {
 class _CalendarListScreenState extends State<CalendarListScreen> {
   final _calendarRepository = registry.get<CalendarRepository>();
   final _calendarService = registry.get<CalendarService>();
+  final _userRepository = registry.get<UserRepository>();
 
   late final Future<UnmodifiableListView<Calendar>> _deviceCalendarsFuture;
 
@@ -39,9 +41,9 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
 
   String? _calendarIdChoice;
 
-  ExaminationRecordTemp get examinationRecord => widget.examinationRecord;
+  ExaminationPreventionStatus get examinationRecord => widget.examinationRecord;
 
-  DateTime? get nextVisitDate => examinationRecord.nextVisitDate;
+  DateTime? get nextVisitDate => examinationRecord.plannedDate;
 
   @override
   Widget build(BuildContext context) {
@@ -141,6 +143,7 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
                     startingDate: nextVisitDate!,
                   );
                   if (result) {
+                    await _userRepository.updateDeviceCalendarId(_calendarIdChoice!);
                     showSnackBarSuccess(
                       context,
                       message: l10n.calendar_added_success_message,

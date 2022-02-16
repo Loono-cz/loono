@@ -50,8 +50,12 @@ class WelcomeScreen extends StatelessWidget {
                     TextButton(
                       onPressed: () async {
                         await _userRepository.createUserIfNotExists();
-                        await AutoRouter.of(context)
-                            .push(PreAuthMainRoute(overridenPreventionRoute: LoginRoute()));
+
+                        // ignore: unawaited_futures
+                        AutoRouter.of(context).replaceAll([
+                          LoginRoute(),
+                          PreAuthMainRoute(overridenPreventionRoute: LoginRoute()),
+                        ]);
                       },
                       child: Text(
                         context.l10n.carousel_have_account,
