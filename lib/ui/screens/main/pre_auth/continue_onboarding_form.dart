@@ -36,13 +36,15 @@ class ContinueOnboardingFormScreen extends StatelessWidget {
                       if (AutoRouter.of(context).isRouteActive(PreAuthMainRoute().routeName)) {
                         AutoRouter.of(context).popUntilRoot();
                       }
-                      AutoRouter.of(context)
-                          .push(PreAuthMainRoute(overridenPreventionRoute: LoginRoute()));
+                      AutoRouter.of(context).replaceAll([
+                        LoginRoute(),
+                        PreAuthMainRoute(overridenPreventionRoute: LoginRoute()),
+                      ]);
                     },
                   ),
                   Text(
                     l10n.continue_onboarding_title,
-                    style: const TextStyle(fontSize: 30),
+                    style: const TextStyle(fontSize: 24),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -77,7 +79,7 @@ class ContinueOnboardingFormScreen extends StatelessWidget {
                 children: [
                   Text(
                     l10n.continue_onboarding_text,
-                    style: const TextStyle(fontSize: 14),
+                    style: const TextStyle(fontSize: 18),
                   ),
                   const SizedBox(height: 80),
                   LoonoButton(

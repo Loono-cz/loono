@@ -38,7 +38,7 @@ class FillOnboardingFormLaterScreen extends StatelessWidget {
                     children: [
                       Text(
                         l10n.fill_formLater_title,
-                        style: const TextStyle(fontSize: 30),
+                        style: const TextStyle(fontSize: 24),
                       ),
                       const SizedBox(height: 20),
                       Text(
