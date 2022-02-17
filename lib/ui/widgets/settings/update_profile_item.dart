@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/l10n/ext.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UpdateProfileItem extends StatefulWidget {
@@ -175,12 +174,13 @@ class PopUpState extends State<PopUp> {
                         Row(
                           children: [
                             Expanded(
-                                child: Text(
-                              '${widget.messageTitle}',
-                              style: const TextStyle(
-                                fontSize: 24,
+                              child: Text(
+                                '${widget.messageTitle}',
+                                style: const TextStyle(
+                                  fontSize: 24,
+                                ),
                               ),
-                            )),
+                            ),
                           ],
                         ),
                         const SizedBox(height: 20.0),
