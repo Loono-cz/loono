@@ -203,7 +203,7 @@ class ExaminationCard extends StatelessWidget {
       children: [
         const LoonoPointIcon(),
         const SizedBox(width: 7.0),
-        Text(categorizedExamination.examination.count.toString(), style: LoonoFonts.cardSubtitle),
+        Text(categorizedExamination.examination.points.toString(), style: LoonoFonts.cardSubtitle),
       ],
     );
   }

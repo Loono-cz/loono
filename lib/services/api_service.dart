@@ -40,7 +40,7 @@ class ApiService {
     return _callApi(() async => _api.getProvidersApi().getProvidersLastupdate());
   }
 
-  Future<ApiResponse<HealthcareProviderDetail>> getProvidersDetailByIds(
+  Future<ApiResponse<HealthcareProviderDetailList>> getProvidersDetailByIds(
     HealthcareProviderIdList idList,
   ) async {
     return _callApi(
@@ -113,11 +113,10 @@ class ApiService {
   ) async {
     return _callApi(
       () async => _api.getExaminationsApi().cancelExamination(
-            type: type.toString(),
-            examinationId: ExaminationId((id) {
-              id.uuid = uuid;
-            }),
-          ),
+        examinationId: ExaminationId((id) {
+          id.uuid = uuid;
+        }),
+      ),
     );
   }
 
@@ -160,11 +159,10 @@ class ApiService {
   }) async {
     return _callApi(
       () async => _api.getExaminationsApi().completeExamination(
-            type: type.toString(),
-            examinationId: ExaminationId((newId) {
-              newId.uuid = id;
-            }),
-          ),
+        examinationId: ExaminationId((newId) {
+          newId.uuid = id;
+        }),
+      ),
     );
   }
 }
