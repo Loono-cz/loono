@@ -4,6 +4,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/map_variables.dart';
+import 'package:loono/models/search_result.dart';
 import 'package:loono/repositories/healthcare_repository.dart';
 import 'package:loono/services/map_state_sevice.dart';
 import 'package:loono/ui/widgets/find_doctor/bottom_sheet_overlay.dart';
@@ -74,11 +76,11 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                   MapPreview(mapController: widget.mapController),
                   if (_isHealtCareProvidersInMapService)
                     SearchTextField(
-                      onItemTap: (healthcareProvider) async => animateToPos(
+                      onItemTap: (searchResult) async => animateToPos(
                         widget.mapController,
                         cameraPosition: CameraPosition(
-                          target: LatLng(healthcareProvider.lat, healthcareProvider.lng),
-                          zoom: 17.0,
+                          target: LatLng(searchResult.data.lat, searchResult.data.lng),
+                          zoom: searchResult.zoomLevel,
                         ),
                       ),
                     ),
@@ -88,7 +90,7 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                         widget.mapController,
                         cameraPosition: CameraPosition(
                           target: LatLng(healthcareProvider.lat, healthcareProvider.lng),
-                          zoom: 17.0,
+                          zoom: MapVariables.DOCTOR_DETAIL_ZOOM,
                         ),
                       ),
                     ),

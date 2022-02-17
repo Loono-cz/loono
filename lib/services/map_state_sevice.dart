@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_cluster_manager/google_maps_cluster_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:loono/models/healthcare_item_place.dart';
+import 'package:loono/models/search_result.dart';
 import 'package:loono/utils/map_utils.dart';
 import 'package:loono_api/loono_api.dart';
 
@@ -57,12 +58,29 @@ class MapStateService with ChangeNotifier {
     notifyListeners();
   }
 
-  // TODO: combine queries
-  Iterable<SimpleHealthcareProvider> searchByTitle(String query) {
-    return _allHealthcareProviders.where((healthcareProvider) {
-      return removeDiacritics(healthcareProvider.title.toLowerCase())
+  Iterable<SearchResult> search(String query) {
+    final uniqueCitiesMap = <String, SimpleHealthcareProvider>{};
+    final titles = <SimpleHealthcareProvider>[];
+    for (final healthcareProvider in _allHealthcareProviders) {
+      final isCityMatching = removeDiacritics(healthcareProvider.city.toLowerCase())
           .contains(removeDiacritics(query).toLowerCase());
-    });
+      if (isCityMatching) {
+        uniqueCitiesMap[healthcareProvider.city] = healthcareProvider;
+      }
+
+      final isTitleMatching = removeDiacritics(healthcareProvider.title.toLowerCase())
+          .contains(removeDiacritics(query).toLowerCase());
+      if (isTitleMatching) {
+        titles.add(healthcareProvider);
+      }
+    }
+    final cities =
+        uniqueCitiesMap.values.map((e) => SearchResult(data: e, searchType: SearchType.city));
+    debugPrint('-------\nSEARCH QUERY: $query\nTITLES: ${titles.length}\nCITIES: ${cities.length}');
+    return [
+      ...cities,
+      ...titles.map((e) => SearchResult(data: e, searchType: SearchType.title)),
+    ];
   }
 
   void _applyFilter() {

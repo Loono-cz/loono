@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:loono/models/search_result.dart';
 import 'package:loono/services/map_state_sevice.dart';
-import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
 class SearchTextField extends StatelessWidget {
@@ -10,7 +10,7 @@ class SearchTextField extends StatelessWidget {
     required this.onItemTap,
   }) : super(key: key);
 
-  final ValueChanged<SimpleHealthcareProvider>? onItemTap;
+  final ValueChanged<SearchResult>? onItemTap;
 
   @override
   Widget build(BuildContext context) {
@@ -23,24 +23,25 @@ class SearchTextField extends StatelessWidget {
             border: OutlineInputBorder(),
             fillColor: Colors.white,
             filled: true,
-            hintText: 'Zadej adresu, jméno lékaře nebo odbornost',
+            hintText: 'Zadej město',
           ),
         ),
         debounceDuration: const Duration(milliseconds: 300),
         hideOnEmpty: true,
         suggestionsCallback: (query) {
-          // TODO: multi search query
-          if (query.isEmpty) return <SimpleHealthcareProvider>[];
-          return context.read<MapStateService>().searchByTitle(query);
+          if (query.isEmpty) return <SearchResult>[];
+          return context.read<MapStateService>().search(query);
         },
-        itemBuilder: (context, SimpleHealthcareProvider healthcareProvider) {
+        itemBuilder: (context, SearchResult searchResult) {
           return ListTile(
-            leading: const Icon(Icons.person),
-            title: Text((healthcareProvider.title) + (' (${healthcareProvider.city})')),
-            subtitle: Text(healthcareProvider.category.join(', ')),
+            leading: Icon(searchResult.icon),
+            title: Text(searchResult.text),
+            subtitle: searchResult.searchType == SearchType.title
+                ? Text(searchResult.data.category.join(', '))
+                : null,
           );
         },
-        onSuggestionSelected: (SimpleHealthcareProvider suggestion) => onItemTap?.call(suggestion),
+        onSuggestionSelected: (SearchResult suggestion) => onItemTap?.call(suggestion),
       ),
     );
   }
