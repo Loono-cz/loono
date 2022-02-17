@@ -111,6 +111,8 @@ class UpdateProfileScreen extends StatelessWidget {
                     value: _getUserSexValue(context, sex: user?.sex),
                     route: null,
                     enabled: false,
+                    messageTitle: context.l10n.update_profile_can_not_edit_sex_title,
+                    messageText: context.l10n.update_profile_can_not_edit_sex_message,
                   ),
                   itemSpacing,
                   UpdateProfileItem(
@@ -118,6 +120,8 @@ class UpdateProfileScreen extends StatelessWidget {
                     value: _getBirthdateValue(birthDateWithoutDay),
                     route: null,
                     enabled: false,
+                    messageTitle: context.l10n.update_profile_can_not_edit_birthday_title,
+                    messageText: context.l10n.update_profile_can_not_edit_birthday_message,
                   ),
                   const SizedBox(height: 80.0),
                   Align(

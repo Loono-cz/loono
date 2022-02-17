@@ -82,8 +82,7 @@ class ScheduleExamination extends StatelessWidget {
                                   },
                                   onContinueButtonPress: (pickedDate) async {
                                     // TODO: save to api, navigate to updated ExaminationDetail
-                                    /*showSnackBarError(context, message: 'TODO: save to API');
-                                    _appRouter.navigate(const MainScreenRouter());*/
+
                                     final response =
                                         await registry.get<ExaminationRepository>().postExamination(
                                               _examinationType,
