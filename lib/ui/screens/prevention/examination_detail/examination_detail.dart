@@ -18,6 +18,7 @@ import 'package:loono/services/db/database.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/faq_section.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/prevention/calendar_permission_sheet.dart';
+import 'package:loono/ui/widgets/prevention/change_last_visit_sheet.dart';
 import 'package:loono/ui/widgets/prevention/checkup_confirmation_sheet.dart';
 import 'package:loono/ui/widgets/prevention/checkup_edit_modal.dart';
 import 'package:loono/ui/widgets/prevention/datepicker_sheet.dart';
@@ -39,11 +40,6 @@ class ExaminationDetail extends StatelessWidget {
   final _usersDao = registry.get<DatabaseService>().users;
 
   final CategorizedExamination categorizedExamination;
-
-  /// TODO: replace skipped date for "posledni prohlidka: nevim" from db or api
-  final lastVisitSkippedDate = DateTime.now().subtract(
-    const Duration(days: 60),
-  );
 
   ExaminationType get _examinationType => categorizedExamination.examination.examinationType;
 
@@ -172,32 +168,19 @@ class ExaminationDetail extends StatelessWidget {
                         _calendarRow(
                           '${context.l10n.last_visit}:\n$lastVisit',
                           onTap: () {
-                            if (lastVisitDateWithoutDay != null) {
-                              AutoRouter.of(context).navigate(
-                                ChangeLastVisitRoute(
-                                  originalDate: DateTime(
-                                    lastVisitDateWithoutDay.year,
-                                    lastVisitDateWithoutDay.month,
-                                  ),
-                                  // refactor after api UUID and ID inconsistency fix
-                                  uuid: categorizedExamination.examination.uuid,
-                                  title:
-                                      '${l10n.change_last_visit_title} $preposition $practitioner',
-                                  examinationType: _examinationType,
-                                  status: categorizedExamination.category,
-                                ),
+                            if (categorizedExamination.examination.lastConfirmedDate != null) {
+                              final title =
+                                  '${_sex == Sex.MALE ? l10n.last_checkup_question_male : l10n.last_checkup_question_female} $preposition $practitioner?';
+                              showChangeLastVisitSheet(
+                                context: context,
+                                title: title,
+                                examination: categorizedExamination,
                               );
                             } else {
                               showLastVisitSheet(
                                 context: context,
-                                // refactor after api UUID and ID inconsistency fix
-                                uuid: categorizedExamination.examination.uuid,
-                                examinationType: _examinationType,
+                                examination: categorizedExamination,
                                 sex: _sex,
-                                examinationIntervalYears:
-                                    categorizedExamination.examination.intervalYears,
-                                skippedDate: lastVisitSkippedDate,
-                                status: categorizedExamination.category,
                               );
                             }
                           },
@@ -224,6 +207,7 @@ class ExaminationDetail extends StatelessWidget {
             ),
             ExaminationProgressContent(
               categorizedExamination: categorizedExamination,
+              sex: _sex,
             ),
             Expanded(
               child: Padding(

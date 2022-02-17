@@ -7,7 +7,9 @@ import 'package:loono/models/firebase_user.dart';
 import 'package:loono/repositories/healthcare_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/auth/auth_service.dart';
+import 'package:loono/services/examinations_service.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:provider/provider.dart';
 
 class Loono extends StatelessWidget {
   const Loono({Key? key}) : super(key: key);
@@ -32,13 +34,20 @@ class Loono extends StatelessWidget {
           _healthcareProviderRepository.checkAndUpdateIfNeeded();
         }
 
-        return MaterialApp.router(
-          title: 'Loono',
-          color: Colors.deepOrange,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
-          routerDelegate: AutoRouterDelegate(_appRouter),
-          routeInformationParser: _appRouter.defaultRouteParser(),
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider<ExaminationsProvider>(
+              create: (_) => ExaminationsProvider(),
+            ),
+          ],
+          child: MaterialApp.router(
+            title: 'Loono',
+            color: Colors.deepOrange,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            routerDelegate: AutoRouterDelegate(_appRouter),
+            routeInformationParser: _appRouter.defaultRouteParser(),
+          ),
         );
       },
     );

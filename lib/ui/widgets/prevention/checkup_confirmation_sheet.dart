@@ -48,6 +48,8 @@ void showConfirmationSheet(
             const SizedBox(
               height: 60,
             ),
+
+            /// old api implementation, needs api update
             AsyncLoonoApiButton(
               text:
                   '${l10n.yes}, ${sex == Sex.MALE ? l10n.checkup_confirmation_male.toLowerCase() : l10n.checkup_confirmation_female.toLowerCase()}',

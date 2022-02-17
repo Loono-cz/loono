@@ -3,12 +3,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
+import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/calendar_repository.dart';
+import 'package:loono/repositories/examination_repository.dart';
+import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/widgets/prevention/datepicker_sheet.dart';
 import 'package:loono/ui/widgets/prevention/examination_cancel_sheet.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:provider/provider.dart';
 
 void showEditModal(BuildContext pageContext, CategorizedExamination examination) {
   final examinationType = examination.examination.examinationType;
@@ -17,12 +21,25 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
       procedureQuestionTitle(pageContext, examinationType: examinationType).toLowerCase();
 
   Future<void> onChangeSubmit({required DateTime date}) async {
-    await registry.get<CalendarRepository>().updateEventDate(
+    final response = await registry.get<ExaminationRepository>().postExamination(
           examinationType,
           newDate: date,
+          uuid: examination.examination.uuid,
         );
-    AutoRouter.of(pageContext).popUntilRouteWithName('ExaminationDetailRoute');
-    showSnackBarError(pageContext, message: 'TODO: save to API\n$date');
+    await response.map(
+      success: (res) async {
+        await Provider.of<ExaminationsProvider>(pageContext, listen: false).fetchExaminations();
+        await registry.get<CalendarRepository>().updateEventDate(
+              examinationType,
+              newDate: date,
+            );
+        AutoRouter.of(pageContext).popUntilRouteWithName('ExaminationDetailRoute');
+        showSnackBarSuccess(pageContext, message: pageContext.l10n.checkup_reminder_toast);
+      },
+      failure: (err) async {
+        showSnackBarError(pageContext, message: pageContext.l10n.something_went_wrong);
+      },
+    );
   }
 
   final formattedDate =

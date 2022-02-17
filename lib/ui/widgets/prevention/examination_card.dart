@@ -65,7 +65,7 @@ class ExaminationCard extends StatelessWidget {
   }
 
   List<Widget> _scheduledContent({bool isSoonOrOverdue = false}) {
-    final nextVisitDate = categorizedExamination.examination.plannedDate!;
+    final nextVisitDate = categorizedExamination.examination.plannedDate!.toLocal();
     final diffDays = _diffInDays(nextVisitDate);
     final diffText = now.isAfter(nextVisitDate)
         ? 'byl/a jsi na prohlídce?'
@@ -187,7 +187,7 @@ class ExaminationCard extends StatelessWidget {
 
   Widget dateRow() {
     final formattedDate = DateFormat('d. M. yyyy kk:mm', 'cs-CZ')
-        .format(categorizedExamination.examination.plannedDate!);
+        .format(categorizedExamination.examination.plannedDate!.toLocal());
 
     return Row(
       children: [

@@ -35,7 +35,9 @@ void showSettingsSheet(BuildContext context) {
 }
 
 class _SettingsContent extends StatefulWidget {
-  const _SettingsContent({Key? key}) : super(key: key);
+  const _SettingsContent({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _SettingsContentState createState() => _SettingsContentState();

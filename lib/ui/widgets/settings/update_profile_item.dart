@@ -46,7 +46,7 @@ class _UpdateProfileItemState extends State<UpdateProfileItem> {
             readOnly: true,
             onTap: () => widget.enabled
                 ? (widget.route == null ? null : AutoRouter.of(context).push(widget.route!))
-                : _showInfoSheet(),
+                : _showMaterialDialog(),
             decoration: InputDecoration(
               hintText: widget.value,
               hintStyle: const TextStyle(fontSize: 16, color: Colors.black),
@@ -62,17 +62,26 @@ class _UpdateProfileItemState extends State<UpdateProfileItem> {
     );
   }
 
-  void _showInfoSheet() {
-    const textStyle = TextStyle(color: LoonoColors.black, height: 1.5);
-
-    _closeSheet();
-    sheetController = Scaffold.of(context).showBottomSheet<dynamic>(
-      (context) {
-        return FractionallySizedBox(
-          heightFactor: MediaQuery.of(context).size.height > 750 ? 0.32 : 0.39,
+  void _showMaterialDialog() {
+    showDialog<void>(
+      context: context,
+      builder: (context) {
+        return Dialog(
+          insetPadding: EdgeInsets.only(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            top: MediaQuery.of(context).size.height * 0.7,
+          ),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(10.0),
+            ),
+          ),
           child: Container(
+            width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.2),
+              color: LoonoColors.primary,
               borderRadius: BorderRadius.circular(10.0),
             ),
             child: Padding(
@@ -80,10 +89,16 @@ class _UpdateProfileItemState extends State<UpdateProfileItem> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Align(
                     alignment: Alignment.centerRight,
                     child: IconButton(
-                      icon: const Icon(Icons.close),
+                      icon: const Icon(
+                        Icons.close,
+                        size: 32,
+                      ),
                       onPressed: () => AutoRouter.of(context).pop(),
                     ),
                   ),
@@ -94,13 +109,15 @@ class _UpdateProfileItemState extends State<UpdateProfileItem> {
                         const SizedBox(height: 22.0),
                         RichText(
                           text: TextSpan(
+                            style: const TextStyle(color: Colors.black, fontSize: 14),
                             text:
                                 '${widget.label} ${context.l10n.update_profile_can_not_edit_message} ',
-                            style: textStyle,
                             children: [
                               TextSpan(
                                 text: LoonoStrings.contactEmail,
-                                style: textStyle.copyWith(decoration: TextDecoration.underline),
+                                style: const TextStyle(
+                                  decoration: TextDecoration.underline,
+                                ),
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () async {
                                     final emailLaunchUri = Uri(
@@ -112,7 +129,9 @@ class _UpdateProfileItemState extends State<UpdateProfileItem> {
                                     }
                                   },
                               ),
-                              const TextSpan(text: '.', style: textStyle),
+                              const TextSpan(
+                                text: '.',
+                              ),
                             ],
                           ),
                         ),
@@ -126,12 +145,5 @@ class _UpdateProfileItemState extends State<UpdateProfileItem> {
         );
       },
     );
-  }
-
-  void _closeSheet() {
-    if (sheetController != null) {
-      sheetController!.close();
-      sheetController = null;
-    }
   }
 }

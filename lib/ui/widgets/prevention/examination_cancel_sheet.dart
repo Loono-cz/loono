@@ -81,18 +81,21 @@ void showCancelExaminationSheet({
               const SizedBox(
                 height: 60,
               ),
-              AsyncLoonoButton(
-                text: l10n.cancel_checkup,
-                asyncCallback: () =>
-                    registry.get<ExaminationRepository>().cancelExamination(examinationType, id),
-                onSuccess: () async {
-                  await registry.get<CalendarRepository>().deleteEvent(examinationType);
-                  AutoRouter.of(context).popUntilRouteWithName(const MainRoute().routeName);
-                  showSnackBarSuccess(context, message: l10n.checkup_canceled);
-                },
-                onError: () async {
-                  await AutoRouter.of(context).pop();
-                  showSnackBarError(context, message: l10n.something_went_wrong);
+
+              /// old api implementation, needs api update
+              AsyncLoonoApiButton(
+                text: context.l10n.cancel_checkup,
+                asyncCallback: () async {
+                  final response = await registry
+                      .get<ExaminationRepository>()
+                      .cancelExamination(examinationType, id);
+                  if (response) {
+                    await registry.get<CalendarRepository>().deleteEvent(examinationType);
+                    AutoRouter.of(context).popUntilRouteWithName(const MainRoute().routeName);
+                    showSnackBarSuccess(context, message: context.l10n.checkup_canceled);
+                  } else {
+                    showSnackBarError(context, message: context.l10n.something_went_wrong);
+                  }
                 },
               ),
               const SizedBox(

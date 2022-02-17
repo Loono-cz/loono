@@ -128,13 +128,25 @@ class ApiService {
     ExaminationStatus? status,
     bool? firstExam,
   }) async {
+    DateTime? utcNewDate;
+    if (newDate != null) {
+      utcNewDate = DateTime.utc(
+        newDate.year,
+        newDate.month,
+        newDate.day,
+        newDate.hour,
+        newDate.minute,
+        newDate.second,
+      );
+    }
+
     return _callApi(
       () async => _api.getExaminationsApi().postExaminations(
         examinationRecord: ExaminationRecord((record) {
           record
             ..uuid = uuid
             ..type = type
-            ..date = newDate?.toUtc()
+            ..date = utcNewDate
             ..status = status
             ..firstExam = firstExam;
         }),

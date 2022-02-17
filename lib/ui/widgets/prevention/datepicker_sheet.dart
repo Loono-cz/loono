@@ -100,6 +100,8 @@ class _DatePickerContentState extends State<_DatePickerContent> {
         procedureQuestionTitle(context, examinationType: examinationType).toLowerCase();
     final preposition = czechPreposition(context, examinationType: examinationType);
 
+    final originalDate = widget.categorizedExamination.examination.plannedDate;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
@@ -146,6 +148,9 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                   yearsBeforeActual: DateTime.now().year - 1900,
                   yearsOverActual: 2,
                   allowDays: true,
+                  defaultDay: originalDate?.day,
+                  defaultMonth: originalDate?.month,
+                  defaultYear: originalDate?.year,
                 )
               : CustomTimePicker(
                   valueChanged: onTimeChanged,

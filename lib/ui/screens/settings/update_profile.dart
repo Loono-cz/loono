@@ -17,7 +17,10 @@ import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart' hide User;
 
 class UpdateProfileScreen extends StatelessWidget {
-  UpdateProfileScreen({Key? key, required this.changePage}) : super(key: key);
+  UpdateProfileScreen({
+    Key? key,
+    required this.changePage,
+  }) : super(key: key);
   final Function(SettingsPage) changePage;
 
   final _usersDao = registry.get<DatabaseService>().users;
