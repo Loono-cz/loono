@@ -29,7 +29,8 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    Provider.of<ExaminationsProvider>(context, listen: false).fetchExaminations();
+    WidgetsBinding.instance?.addPostFrameCallback(
+        (_) => Provider.of<ExaminationsProvider>(context, listen: false).fetchExaminations());
   }
 
   @override
