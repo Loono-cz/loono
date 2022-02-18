@@ -3,14 +3,9 @@ import 'package:loono/ui/screens/settings/settings_bottom_sheet.dart';
 import 'package:loono/ui/widgets/badges/badge_composer.dart';
 import 'package:loono/ui/widgets/prevention/examinations_sheet_overlay.dart';
 
-class PreventionScreen extends StatefulWidget {
+class PreventionScreen extends StatelessWidget {
   const PreventionScreen({Key? key}) : super(key: key);
 
-  @override
-  State<PreventionScreen> createState() => _PreventionScreenState();
-}
-
-class _PreventionScreenState extends State<PreventionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
