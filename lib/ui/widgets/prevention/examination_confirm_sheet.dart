@@ -61,10 +61,10 @@ void showConfirmationSheet(
                   uuid: uuid,
                 );
                 await response.map(
-                  success: (data) async {
+                  success: (res) async {
                     await _calendar.deleteOnlyDbEvent(examinationType);
-                    await Provider.of<ExaminationsProvider>(context, listen: false)
-                        .fetchExaminations();
+                    Provider.of<ExaminationsProvider>(context, listen: false)
+                        .updateExaminationsRecord(res.data);
                     await AutoRouter.of(context).navigate(
                       AchievementRoute(
                         header: 'TO DO: complete all rewards',

@@ -6,7 +6,6 @@ import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/repositories/examination_repository.dart';
-import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/prevention/recommendation_item.dart';
@@ -91,16 +90,19 @@ void showCancelExaminationSheet({
                   final response = await registry
                       .get<ExaminationRepository>()
                       .cancelExamination(examinationType, id);
-                  if (response) {
-                    await registry.get<CalendarRepository>().deleteEvent(examinationType);
-                    await Provider.of<ExaminationsProvider>(context, listen: false)
-                        .fetchExaminations();
-                    AutoRouter.of(context).popUntilRouteWithName(const MainRoute().routeName);
-                    showSnackBarSuccess(context, message: context.l10n.checkup_canceled);
-                  } else {
-                    await AutoRouter.of(context).pop();
-                    showSnackBarError(context, message: context.l10n.something_went_wrong);
-                  }
+                  await response.map(
+                    success: (res) async {
+                      await registry.get<CalendarRepository>().deleteEvent(examinationType);
+                      Provider.of<ExaminationsProvider>(context, listen: false)
+                          .updateExaminationsRecord(res.data);
+                      await AutoRouter.of(context).pop();
+                      showSnackBarSuccess(context, message: context.l10n.checkup_canceled);
+                    },
+                    failure: (err) async {
+                      await AutoRouter.of(context).pop();
+                      showSnackBarError(context, message: context.l10n.something_went_wrong);
+                    },
+                  );
                 },
               ),
               const SizedBox(
