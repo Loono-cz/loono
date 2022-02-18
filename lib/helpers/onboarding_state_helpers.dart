@@ -68,7 +68,6 @@ extension OnboardingExaminationQuestionnairesExt on List<ExaminationQuestionnair
     if (dentistQuestionnaire?.ccaDoctorVisit != null) {
       currentProgress += getStepProgress();
     }
-    debugPrint('onboardingFormsCount: $onboardingFormsCount --- currentProgress: $currentProgress');
     return currentProgress;
   }
 }
