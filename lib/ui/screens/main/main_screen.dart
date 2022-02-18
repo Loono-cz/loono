@@ -30,7 +30,8 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback(
-        (_) => Provider.of<ExaminationsProvider>(context, listen: false).fetchExaminations());
+      (_) => Provider.of<ExaminationsProvider>(context, listen: false).fetchExaminations(),
+    );
   }
 
   @override
