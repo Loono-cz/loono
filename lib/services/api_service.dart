@@ -40,7 +40,7 @@ class ApiService {
     return _callApi(() async => _api.getProvidersApi().getProvidersLastupdate());
   }
 
-  Future<ApiResponse<HealthcareProviderDetail>> getProvidersDetailByIds(
+  Future<ApiResponse<HealthcareProviderDetailList>> getProvidersDetailByIds(
     HealthcareProviderIdList idList,
   ) async {
     return _callApi(
@@ -113,11 +113,10 @@ class ApiService {
   ) async {
     return _callApi(
       () async => _api.getExaminationsApi().cancelExamination(
-            type: type.toString(),
-            examinationId: ExaminationId((id) {
-              id.uuid = uuid;
-            }),
-          ),
+        examinationId: ExaminationId((id) {
+          id.uuid = uuid;
+        }),
+      ),
     );
   }
 
@@ -128,13 +127,25 @@ class ApiService {
     ExaminationStatus? status,
     bool? firstExam,
   }) async {
+    DateTime? utcNewDate;
+    if (newDate != null) {
+      utcNewDate = DateTime.utc(
+        newDate.year,
+        newDate.month,
+        newDate.day,
+        newDate.hour,
+        newDate.minute,
+        newDate.second,
+      );
+    }
+
     return _callApi(
       () async => _api.getExaminationsApi().postExaminations(
         examinationRecord: ExaminationRecord((record) {
           record
             ..uuid = uuid
             ..type = type
-            ..date = newDate?.toUtc()
+            ..date = utcNewDate
             ..status = status
             ..firstExam = firstExam;
         }),
@@ -148,11 +159,10 @@ class ApiService {
   }) async {
     return _callApi(
       () async => _api.getExaminationsApi().completeExamination(
-            type: type.toString(),
-            examinationId: ExaminationId((newId) {
-              newId.uuid = id;
-            }),
-          ),
+        examinationId: ExaminationId((newId) {
+          newId.uuid = id;
+        }),
+      ),
     );
   }
 }

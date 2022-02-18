@@ -5,12 +5,12 @@ import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/models/categorized_examination.dart';
-import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/widgets/prevention/examination_card.dart';
 import 'package:loono/ui/widgets/prevention/self_examination/self_examination_card.dart';
-import 'package:loono/utils/registry.dart';
-import 'package:loono_api/loono_api.dart';
+
+import 'package:provider/provider.dart';
 
 class ExaminationsSheetOverlay extends StatefulWidget {
   const ExaminationsSheetOverlay({Key? key}) : super(key: key);
@@ -20,29 +20,31 @@ class ExaminationsSheetOverlay extends StatefulWidget {
 }
 
 class _ExaminationsSheetOverlayState extends State<ExaminationsSheetOverlay> {
-  final _examinationRepository = registry.get<ExaminationRepository>();
-
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FutureBuilder<PreventionStatus?>(
-        future: _examinationRepository.getExaminationRecords(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData && snapshot.data != null) {
-            final categorized = snapshot.data!.examinations
-                .map(
-                  (e) => CategorizedExamination(
-                    examination: e,
-                    category: e.calculateStatus(),
-                  ),
-                )
-                .toList();
+    final examinationsProvider = Provider.of<ExaminationsProvider>(context, listen: true);
 
-            return DraggableScrollableSheet(
+    return SizedBox.expand(
+      child: examinationsProvider.loading
+          ? const Center(child: CircularProgressIndicator())
+          : DraggableScrollableSheet(
               initialChildSize: 0.4,
               maxChildSize: 0.75,
               minChildSize: 0.15,
               builder: (context, scrollController) {
+                if (examinationsProvider.examinations == null) {
+                  return const Center(
+                    child: Text('žádné záznamy'),
+                  );
+                }
+                final categorized = examinationsProvider.examinations!.examinations
+                    .map(
+                      (e) => CategorizedExamination(
+                        examination: e,
+                        category: e.calculateStatus(),
+                      ),
+                    )
+                    .toList();
                 return Container(
                   decoration: const BoxDecoration(
                     color: LoonoColors.bottomSheetPrevention,
@@ -120,11 +122,7 @@ class _ExaminationsSheetOverlayState extends State<ExaminationsSheetOverlay> {
                   ),
                 );
               },
-            );
-          }
-          return const Center(child: CircularProgressIndicator());
-        },
-      ),
+            ),
     );
   }
 
