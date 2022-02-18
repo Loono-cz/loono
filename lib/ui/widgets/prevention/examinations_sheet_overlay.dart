@@ -33,7 +33,9 @@ class _ExaminationsSheetOverlayState extends State<ExaminationsSheetOverlay> {
               minChildSize: 0.15,
               builder: (context, scrollController) {
                 if (examinationsProvider.examinations == null) {
-                  return const Text('žádné záznamy');
+                  return const Center(
+                    child: Text('žádné záznamy'),
+                  );
                 }
                 final categorized = examinationsProvider.examinations!.examinations
                     .map(

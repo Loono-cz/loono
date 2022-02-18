@@ -111,6 +111,7 @@ class PopUpState extends State<PopUp> {
       Tween<double>(begin: widget.screenHeight, end: widget.screenHeight - 300);
   late Animation<double> marginTopAnimation;
   late AnimationStatus animationStatus;
+  double dragStart = 0;
 
   @override
   void initState() {
@@ -121,7 +122,7 @@ class PopUpState extends State<PopUp> {
         animationStatus = widget.controller.status;
 
         if (animationStatus == AnimationStatus.dismissed) {
-          Navigator.of(context).pop();
+          AutoRouter.of(context).pop();
         }
 
         if (mounted) {
@@ -138,6 +139,25 @@ class PopUpState extends State<PopUp> {
       child: GestureDetector(
         onTap: () {
           widget.controller.reverse();
+        },
+        onPanDown: (drag) {
+          setState(() {
+            dragStart = drag.globalPosition.dy;
+          });
+          widget.controller.value = 1;
+        },
+        onPanUpdate: (drag) {
+          widget.controller.value = widget.screenHeight / (widget.screenHeight + drag.delta.dy);
+        },
+        onPanEnd: (drag) {
+          setState(() {
+            dragStart = 0;
+          });
+          if (drag.velocity.pixelsPerSecond.dy > 0) {
+            widget.controller.reverse();
+          } else {
+            widget.controller.forward();
+          }
         },
         child: Material(
           color: Colors.transparent,

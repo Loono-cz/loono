@@ -10,7 +10,7 @@ import 'package:loono/ui/widgets/how/loon_botton_sheet.dart';
 import 'package:loono/ui/widgets/prevention/datepicker_sheet.dart';
 import 'package:loono_api/loono_api.dart';
 
-void showOrderCheckupSheetStep1(
+void showNewCheckupSheetStep1(
   BuildContext context,
   CategorizedExamination categorizedExamination,
   Future<void> Function({required DateTime date}) onSubmit,
@@ -42,8 +42,8 @@ void showOrderCheckupSheetStep1(
                 examinationType: examinationType,
               ).toLowerCase()}',
               onTap: () {
-                Navigator.of(context).pop();
-                showOrderCheckupSheetStep2(context, categorizedExamination, onSubmit, sex);
+                AutoRouter.of(context).pop();
+                showNewCheckupSheetStep2(context, categorizedExamination, onSubmit, sex);
               },
             ),
             const SizedBox(height: 20),
@@ -62,7 +62,7 @@ void showOrderCheckupSheetStep1(
   );
 }
 
-void showOrderCheckupSheetStep2(
+void showNewCheckupSheetStep2(
   BuildContext context,
   CategorizedExamination categorizedExamination,
   Future<void> Function({required DateTime date}) onSubmit,

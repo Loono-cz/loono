@@ -100,8 +100,8 @@ class _ModalContent extends StatelessWidget {
               const Spacer(),
               LoonoButton(
                 text: l10n.last_checkup_sheet_button,
-                onTap: () {
-                  AutoRouter.of(context).pop();
+                onTap: () async {
+                  await AutoRouter.of(context).pop();
                   showChangeLastVisitSheet(
                     context: context,
                     title: title,

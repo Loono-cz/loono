@@ -6,10 +6,6 @@ import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
 class ExaminationsProvider extends ChangeNotifier {
-  ExaminationsProvider() {
-    fetchExaminations();
-  }
-
   PreventionStatus? examinations;
   bool loading = false;
 
@@ -19,9 +15,37 @@ class ExaminationsProvider extends ChangeNotifier {
     loading = true;
     notifyListeners();
 
-    examinations = await registry.get<ExaminationRepository>().getExaminationRecords();
+    final response = await registry.get<ExaminationRepository>().getExaminationRecords();
+    if (response != null) {
+      examinations = response;
+      notifyListeners();
+    }
     loading = false;
+  }
 
+  void clearExaminations() {
+    examinations = null;
     notifyListeners();
+  }
+
+  void updateExaminationsRecord(ExaminationRecord record) {
+    final indexToUpdate =
+        examinations?.examinations.indexWhere((examination) => examination.uuid == record.uuid);
+    if (indexToUpdate != null) {
+      final updatedItem = examinations?.examinations.elementAt(indexToUpdate).rebuild(
+            (item) => item
+              ..uuid = record.uuid
+              ..examinationType = record.type
+              ..plannedDate = record.date
+              ..state = record.status
+              ..firstExam = record.firstExam,
+          );
+
+      final builder = examinations?.toBuilder();
+      builder?.examinations.removeAt(indexToUpdate);
+      builder?.examinations.add(updatedItem!);
+      examinations = builder?.build();
+      notifyListeners();
+    }
   }
 }

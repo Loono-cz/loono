@@ -7,10 +7,12 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/prevention/recommendation_item.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
+import 'package:provider/provider.dart';
 
 void showCancelExaminationSheet({
   required BuildContext context,
@@ -91,9 +93,12 @@ void showCancelExaminationSheet({
                       .cancelExamination(examinationType, id);
                   if (response) {
                     await registry.get<CalendarRepository>().deleteEvent(examinationType);
+                    await Provider.of<ExaminationsProvider>(context, listen: false)
+                        .fetchExaminations();
                     AutoRouter.of(context).popUntilRouteWithName(const MainRoute().routeName);
                     showSnackBarSuccess(context, message: context.l10n.checkup_canceled);
                   } else {
+                    await AutoRouter.of(context).pop();
                     showSnackBarError(context, message: context.l10n.something_went_wrong);
                   }
                 },

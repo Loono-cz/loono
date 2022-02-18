@@ -28,7 +28,8 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
         );
     await response.map(
       success: (res) async {
-        await Provider.of<ExaminationsProvider>(pageContext, listen: false).fetchExaminations();
+        Provider.of<ExaminationsProvider>(pageContext, listen: false)
+            .updateExaminationsRecord(res.data);
         await registry.get<CalendarRepository>().updateEventDate(
               examinationType,
               newDate: date,

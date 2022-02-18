@@ -19,12 +19,12 @@ import 'package:loono/ui/screens/prevention/examination_detail/faq_section.dart'
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/prevention/calendar_permission_sheet.dart';
 import 'package:loono/ui/widgets/prevention/change_last_visit_sheet.dart';
-import 'package:loono/ui/widgets/prevention/checkup_confirmation_sheet.dart';
-import 'package:loono/ui/widgets/prevention/checkup_edit_modal.dart';
 import 'package:loono/ui/widgets/prevention/datepicker_sheet.dart';
+import 'package:loono/ui/widgets/prevention/examination_confirm_sheet.dart';
+import 'package:loono/ui/widgets/prevention/examination_edit_modal.dart';
+import 'package:loono/ui/widgets/prevention/examination_new_sheet.dart';
 import 'package:loono/ui/widgets/prevention/examination_progress_content.dart';
 import 'package:loono/ui/widgets/prevention/last_visit_sheet.dart';
-import 'package:loono/ui/widgets/prevention/show_order_checkup_sheet.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
@@ -317,7 +317,7 @@ class ExaminationDetail extends StatelessWidget {
                 Expanded(
                   child: LoonoButton(
                     text: l10n.examination_detail_order_examination, //objednej se
-                    onTap: () => showOrderCheckupSheetStep1(
+                    onTap: () => showNewCheckupSheetStep1(
                       context,
                       categorizedExamination,
                       _onPostNewCheckupSubmit,

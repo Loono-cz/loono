@@ -9,12 +9,14 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
+import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/screens/settings/settings_bottom_sheet.dart';
 import 'package:loono/ui/widgets/confirmation_dialog.dart';
 import 'package:loono/ui/widgets/settings/avatar.dart';
 import 'package:loono/ui/widgets/settings/update_profile_item.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart' hide User;
+import 'package:provider/provider.dart';
 
 class UpdateProfileScreen extends StatelessWidget {
   UpdateProfileScreen({
@@ -131,11 +133,15 @@ class UpdateProfileScreen extends StatelessWidget {
                           onPressed: () async {
                             showConfirmationDialog(
                               context,
-                              onConfirm: () => AutoRouter.of(context).pushAndPopUntil(
-                                // TODO: After updating a routes do logout processes here instead of in LogoutScreen
-                                const LogoutRoute(),
-                                predicate: (_) => false,
-                              ),
+                              onConfirm: () {
+                                AutoRouter.of(context).pushAndPopUntil(
+                                  // TODO: After updating a routes do logout processes here instead of in LogoutScreen
+                                  const LogoutRoute(),
+                                  predicate: (_) => false,
+                                );
+                                Provider.of<ExaminationsProvider>(context, listen: false)
+                                    .clearExaminations();
+                              },
                               onCancel: () => AutoRouter.of(context).pop(),
                               content: context.l10n.logout_confirmation_dialog_content,
                             );
@@ -154,7 +160,11 @@ class UpdateProfileScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 32.0),
                         TextButton(
-                          onPressed: () => AutoRouter.of(context).push(const DeleteAccountRoute()),
+                          onPressed: () {
+                            AutoRouter.of(context).push(const DeleteAccountRoute());
+                            Provider.of<ExaminationsProvider>(context, listen: false)
+                                .clearExaminations();
+                          },
                           child: Text(
                             context.l10n.remove_account_action,
                             style: LoonoFonts.fontStyle.copyWith(color: LoonoColors.redButton),

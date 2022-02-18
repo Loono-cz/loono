@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/screens/about_health/about_health.dart';
 import 'package:loono/ui/screens/find_doctor/find_doctor.dart';
 import 'package:loono/ui/screens/prevention/prevention.dart';
+import 'package:provider/provider.dart';
 
 /// Post-auth main screen.
 class MainScreen extends StatefulWidget {
@@ -23,6 +25,12 @@ class _MainScreenState extends State<MainScreen> {
   ];
 
   void _onItemTapped(int index) => setState(() => _selectedIndex = index);
+
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<ExaminationsProvider>(context, listen: false).fetchExaminations();
+  }
 
   @override
   Widget build(BuildContext context) {

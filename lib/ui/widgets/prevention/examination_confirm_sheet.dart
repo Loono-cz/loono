@@ -8,10 +8,12 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/how/loon_botton_sheet.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
+import 'package:provider/provider.dart';
 
 void showConfirmationSheet(
   BuildContext context,
@@ -54,10 +56,15 @@ void showConfirmationSheet(
               text:
                   '${l10n.yes}, ${sex == Sex.MALE ? l10n.checkup_confirmation_male.toLowerCase() : l10n.checkup_confirmation_female.toLowerCase()}',
               asyncCallback: () async {
-                final response = await _api.confirmExamination(examinationType, uuid: uuid);
+                final response = await _api.confirmExamination(
+                  examinationType,
+                  uuid: uuid,
+                );
                 await response.map(
                   success: (data) async {
                     await _calendar.deleteOnlyDbEvent(examinationType);
+                    await Provider.of<ExaminationsProvider>(context, listen: false)
+                        .fetchExaminations();
                     await AutoRouter.of(context).navigate(
                       AchievementRoute(
                         header: 'TO DO: complete all rewards',

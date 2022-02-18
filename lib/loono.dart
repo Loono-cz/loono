@@ -34,12 +34,8 @@ class Loono extends StatelessWidget {
           _healthcareProviderRepository.checkAndUpdateIfNeeded();
         }
 
-        return MultiProvider(
-          providers: [
-            ChangeNotifierProvider<ExaminationsProvider>(
-              create: (_) => ExaminationsProvider(),
-            ),
-          ],
+        return ChangeNotifierProvider(
+          create: (_) => ExaminationsProvider(),
           child: MaterialApp.router(
             title: 'Loono',
             color: Colors.deepOrange,
