@@ -1,6 +1,5 @@
 // ignore_for_file: constant_identifier_names
 import 'package:collection/collection.dart';
-import 'package:flutter/foundation.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono_api/loono_api.dart' hide User;
 
