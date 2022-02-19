@@ -658,7 +658,6 @@
   "@self_examination_done_female": {},
   "how_to_self_examination": "Jak se vyšetřit",
   "@how_to_self_examination": {},
-
   "self_faq_breast_steps_answer_part_1": "1. Nepanikař",
   "@self_faq_breast_steps_answer_part_1": {},
   "self_faq_breast_steps_answer_part_2": "Klid, jsme tu s tebou. Nestyď se, nehledej rady na internetu, ale začni jednat!\n\n",
@@ -677,7 +676,6 @@
   "@self_faq_breast_steps_answer_part_8": {},
   "self_faq_breast_steps_answer_part_9": ". Pokud si stále nevíš rady, napiš nám na ",
   "@self_faq_breast_steps_answer_part_9": {},
-
   "self_faq_breast_changes_question": "Jaké změny na prsou mám hledat?",
   "@self_faq_breast_changes_question": {},
   "self_faq_breast_changes_answer": "Při vyšetření si všímej těchto změn:",
@@ -722,7 +720,6 @@
   "@self_faq_testicular_tile_desc_bump": {},
   "self_faq_testicular_tile_desc_skin": "Změny\nna kůži",
   "@self_faq_testicular_tile_desc_skin": {},
-
   "self_faq_breast_tile_desc_shape": "Změny\ntvaru prsu",
   "@self_faq_breast_tile_desc_shape": {},
   "self_faq_breast_tile_desc_nipple": "Změny tvaru\nbradavky",

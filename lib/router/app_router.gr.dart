@@ -925,7 +925,7 @@ class StartNewQuestionnaireRoute extends _i11.PageRouteInfo<void> {
 /// [_i18.ContinueOnboardingFormScreen]
 class ContinueOnboardingFormRoute
     extends _i11.PageRouteInfo<ContinueOnboardingFormRouteArgs> {
-  ContinueOnboardingFormRoute({_i55.Key? key})
+  ContinueOnboardingFormRoute({_i51.Key? key})
       : super(ContinueOnboardingFormRoute.name,
             path: 'continue-onboarding-form',
             args: ContinueOnboardingFormRouteArgs(key: key));
@@ -936,7 +936,7 @@ class ContinueOnboardingFormRoute
 class ContinueOnboardingFormRouteArgs {
   const ContinueOnboardingFormRouteArgs({this.key});
 
-  final _i55.Key? key;
+  final _i51.Key? key;
 
   @override
   String toString() {
