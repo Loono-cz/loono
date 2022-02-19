@@ -103,8 +103,8 @@ extension SelfExaminationTypeExt on SelfExaminationType {
 
   String get assetPath {
     const basePath = 'assets/icons/prevention/self_examination/';
-    final doctor = mapToUnion.toString().split('.').last.replaceFirst('()', '.svg');
-    return '$basePath$doctor';
+    final selfExamination = mapToUnion.toString().split('.').last.replaceFirst('()', '.svg');
+    return '$basePath$selfExamination';
   }
 }
 

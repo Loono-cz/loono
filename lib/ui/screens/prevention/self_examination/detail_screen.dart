@@ -7,8 +7,14 @@ import 'package:loono/ui/widgets/prevention/self_examination/how_it_went_sheet.d
 import 'package:loono_api/loono_api.dart';
 
 class SelfExaminationDetailScreen extends StatelessWidget {
-  const SelfExaminationDetailScreen({Key? key, required this.sex}) : super(key: key);
+  const SelfExaminationDetailScreen({
+    Key? key,
+    required this.sex,
+    required this.selfExamination,
+  }) : super(key: key);
+
   final Sex sex;
+  final SelfExaminationPreventionStatus selfExamination;
 
   @override
   Widget build(BuildContext context) {

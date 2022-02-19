@@ -1,15 +1,17 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_extensions.dart';
+import 'package:loono/helpers/self_examination_category.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/widgets/prevention/examination_card.dart';
 import 'package:loono/ui/widgets/prevention/self_examination/self_examination_card.dart';
-
+import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
 class ExaminationsSheetOverlay extends StatefulWidget {
@@ -45,6 +47,7 @@ class _ExaminationsSheetOverlayState extends State<ExaminationsSheetOverlay> {
                       ),
                     )
                     .toList();
+
                 return Container(
                   decoration: const BoxDecoration(
                     color: LoonoColors.bottomSheetPrevention,
@@ -56,6 +59,7 @@ class _ExaminationsSheetOverlayState extends State<ExaminationsSheetOverlay> {
                   child: ListView.builder(
                     controller: scrollController,
                     itemCount: examinationCategoriesOrdering.length,
+                    cacheExtent: 1000,
                     itemBuilder: (context, index) {
                       final examinationStatus = examinationCategoriesOrdering.elementAt(index);
                       final categorizedExaminations = categorized
@@ -63,66 +67,125 @@ class _ExaminationsSheetOverlayState extends State<ExaminationsSheetOverlay> {
                           .toList()
                         ..sortExaminations();
 
-                      return categorizedExaminations.isEmpty
-                          ? Column(
-                              children: [
-                                if (index == 0) ...[
-                                  _buildHandle(context),
-                                  // TODO: Temp
-                                  SelfExaminationCard(
-                                    onTap: (sex) => AutoRouter.of(context).navigate(
-                                      SelfExaminationDetailRoute(sex: sex),
-                                    ),
-                                  ),
-                                ],
-                                const SizedBox.shrink(),
-                              ],
+                      return Column(
+                        children: [
+                          if (index == 0) ...[
+                            _buildHandle(context),
+                            _buildSelfExaminationCategory(
+                              context,
+                              CardPosition.first,
+                              examinationsProvider.examinations!.selfexaminations,
+                            ),
+                          ],
+                          if (categorizedExaminations.isNotEmpty)
+                            _buildExaminationCategory(
+                              context,
+                              examinationStatus.getHeaderMessage(context),
+                              categorizedExaminations,
                             )
-                          : Column(
-                              children: [
-                                if (index == 0) _buildHandle(context),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(left: 6),
-                                        child: Text(
-                                          examinationStatus.getHeaderMessage(context),
-                                          style: LoonoFonts.cardSubtitle.copyWith(
-                                            color: LoonoColors.black,
-                                          ),
-                                        ),
-                                      ),
-                                      Column(
-                                        children: categorizedExaminations
-                                            .mapIndexed(
-                                              (index, e) => Padding(
-                                                padding: const EdgeInsets.symmetric(vertical: 6),
-                                                child: ExaminationCard(
-                                                  index: index,
-                                                  categorizedExamination: e,
-                                                  onTap: () => AutoRouter.of(context).navigate(
-                                                    ExaminationDetailRoute(
-                                                      categorizedExamination: e,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            )
-                                            .toList(),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            );
+                          else
+                            const SizedBox.shrink(),
+                          if (index == examinationCategoriesOrdering.length - 1)
+                            _buildSelfExaminationCategory(
+                              context,
+                              CardPosition.last,
+                              examinationsProvider.examinations!.selfexaminations,
+                            ),
+                        ],
+                      );
                     },
                   ),
                 );
               },
             ),
+    );
+  }
+
+  Widget _buildExaminationCategory(
+    BuildContext context,
+    String header,
+    List<CategorizedExamination> categorizedExaminations,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildCategoryHeader(header),
+          Column(
+            children: categorizedExaminations
+                .mapIndexed(
+                  (index, e) => Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 6),
+                    child: ExaminationCard(
+                      index: index,
+                      categorizedExamination: e,
+                      onTap: () => AutoRouter.of(context).navigate(
+                        ExaminationDetailRoute(
+                          categorizedExamination: e,
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSelfExaminationCategory(
+    BuildContext context,
+    CardPosition cardPosition,
+    BuiltList<SelfExaminationPreventionStatus> selfExaminations,
+  ) {
+    if (selfExaminations.isEmpty) return const SizedBox.shrink();
+    final positionedExaminations = selfExaminations.where(
+      (selfExamination) => selfExamination.calculateStatus().position == cardPosition,
+    );
+    if (positionedExaminations.isEmpty) return const SizedBox.shrink();
+    final header = positionedExaminations.first.calculateStatus().getHeaderMessage();
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildCategoryHeader(header),
+          Column(
+            children: selfExaminations
+                .map(
+                  (selfExamination) => Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 6),
+                    child: SelfExaminationCard(
+                      onTap: (sex) => AutoRouter.of(context).navigate(
+                        SelfExaminationDetailRoute(
+                          sex: sex,
+                          selfExamination: selfExamination,
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCategoryHeader(String header) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 6),
+      child: Text(
+        header,
+        style: const TextStyle(
+          color: LoonoColors.black,
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+          fontStyle: FontStyle.italic,
+        ),
+      ),
     );
   }
 

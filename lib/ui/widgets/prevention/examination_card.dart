@@ -56,7 +56,6 @@ class ExaminationCard extends StatelessWidget {
               unknownLastVisit: () => _makeAppointmentContent(context),
               scheduled: _scheduledContent,
               waiting: _waitingContent,
-              selfExamination: () => [const SizedBox.shrink()],
             ),
           ),
         ),

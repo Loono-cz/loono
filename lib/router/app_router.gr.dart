@@ -448,7 +448,10 @@ class AppRouter extends _i11.RootStackRouter {
       final args = routeData.argsAs<SelfExaminationDetailRouteArgs>();
       return _i11.CustomPage<void>(
           routeData: routeData,
-          child: _i46.SelfExaminationDetailScreen(key: args.key, sex: args.sex),
+          child: _i46.SelfExaminationDetailScreen(
+              key: args.key,
+              sex: args.sex,
+              selfExamination: args.selfExamination),
           transitionsBuilder: _i11.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -1545,24 +1548,31 @@ class ChangeLastVisitRouteArgs {
 /// [_i46.SelfExaminationDetailScreen]
 class SelfExaminationDetailRoute
     extends _i11.PageRouteInfo<SelfExaminationDetailRouteArgs> {
-  SelfExaminationDetailRoute({_i51.Key? key, required _i54.Sex sex})
+  SelfExaminationDetailRoute(
+      {_i51.Key? key,
+      required _i54.Sex sex,
+      required _i54.SelfExaminationPreventionStatus selfExamination})
       : super(SelfExaminationDetailRoute.name,
             path: 'self-examination/detail',
-            args: SelfExaminationDetailRouteArgs(key: key, sex: sex));
+            args: SelfExaminationDetailRouteArgs(
+                key: key, sex: sex, selfExamination: selfExamination));
 
   static const String name = 'SelfExaminationDetailRoute';
 }
 
 class SelfExaminationDetailRouteArgs {
-  const SelfExaminationDetailRouteArgs({this.key, required this.sex});
+  const SelfExaminationDetailRouteArgs(
+      {this.key, required this.sex, required this.selfExamination});
 
   final _i51.Key? key;
 
   final _i54.Sex sex;
 
+  final _i54.SelfExaminationPreventionStatus selfExamination;
+
   @override
   String toString() {
-    return 'SelfExaminationDetailRouteArgs{key: $key, sex: $sex}';
+    return 'SelfExaminationDetailRouteArgs{key: $key, sex: $sex, selfExamination: $selfExamination}';
   }
 }
 
