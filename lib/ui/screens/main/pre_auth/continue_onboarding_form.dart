@@ -37,7 +37,9 @@ class ContinueOnboardingFormScreen extends StatelessWidget {
                       if (AutoRouter.of(context).isRouteActive(PreAuthMainRoute().routeName)) {
                         AutoRouter.of(context).popUntilRoot();
                       }
+                      // a hacky way till https://github.com/Milad-Akarie/auto_route_library/issues/496 is solved
                       AutoRouter.of(context).replaceAll([
+                        const OnboardingWrapperRoute(),
                         LoginRoute(),
                         PreAuthMainRoute(overridenPreventionRoute: LoginRoute()),
                       ]);
