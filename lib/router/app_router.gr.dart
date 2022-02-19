@@ -183,9 +183,11 @@ class AppRouter extends _i11.RootStackRouter {
           child: const _i17.StartNewQuestionnaireScreen());
     },
     ContinueOnboardingFormRoute.name: (routeData) {
+      final args = routeData.argsAs<ContinueOnboardingFormRouteArgs>(
+          orElse: () => const ContinueOnboardingFormRouteArgs());
       return _i11.MaterialPageX<void>(
           routeData: routeData,
-          child: const _i18.ContinueOnboardingFormScreen());
+          child: _i18.ContinueOnboardingFormScreen(key: args.key));
     },
     OnboardingFormDoneRoute.name: (routeData) {
       final args = routeData.argsAs<OnboardingFormDoneRouteArgs>(
@@ -918,12 +920,25 @@ class StartNewQuestionnaireRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i18.ContinueOnboardingFormScreen]
-class ContinueOnboardingFormRoute extends _i11.PageRouteInfo<void> {
-  const ContinueOnboardingFormRoute()
+class ContinueOnboardingFormRoute
+    extends _i11.PageRouteInfo<ContinueOnboardingFormRouteArgs> {
+  ContinueOnboardingFormRoute({_i55.Key? key})
       : super(ContinueOnboardingFormRoute.name,
-            path: 'continue-onboarding-form');
+            path: 'continue-onboarding-form',
+            args: ContinueOnboardingFormRouteArgs(key: key));
 
   static const String name = 'ContinueOnboardingFormRoute';
+}
+
+class ContinueOnboardingFormRouteArgs {
+  const ContinueOnboardingFormRouteArgs({this.key});
+
+  final _i55.Key? key;
+
+  @override
+  String toString() {
+    return 'ContinueOnboardingFormRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
