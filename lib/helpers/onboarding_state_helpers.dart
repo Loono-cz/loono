@@ -1,6 +1,5 @@
 // ignore_for_file: constant_identifier_names
 import 'package:collection/collection.dart';
-import 'package:flutter/foundation.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono_api/loono_api.dart' hide User;
 
@@ -68,7 +67,6 @@ extension OnboardingExaminationQuestionnairesExt on List<ExaminationQuestionnair
     if (dentistQuestionnaire?.ccaDoctorVisit != null) {
       currentProgress += getStepProgress();
     }
-    debugPrint('onboardingFormsCount: $onboardingFormsCount --- currentProgress: $currentProgress');
     return currentProgress;
   }
 }
