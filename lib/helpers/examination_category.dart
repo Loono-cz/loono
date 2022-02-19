@@ -20,8 +20,8 @@ extension ExaminationStatusExt on ExaminationCategory {
       scheduledSoonOrOverdue: () => 'Běž na prohlídku',
       newToSchedule: () => 'Objednej se',
       unknownLastVisit: () => 'Další prohlídky',
-      scheduled: () => 'Připomenu ti',
-      waiting: () => 'Připomenu ti',
+      scheduled: () => 'Připomenu ti prohlídku',
+      waiting: () => 'Připomenu ti objednání',
     );
   }
 }

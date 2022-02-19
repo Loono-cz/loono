@@ -158,6 +158,8 @@ class _ExaminationsSheetOverlayState extends State<ExaminationsSheetOverlay> {
                   (selfExamination) => Padding(
                     padding: const EdgeInsets.symmetric(vertical: 6),
                     child: SelfExaminationCard(
+                      // TODO: different route based on the category
+                      selfExamination: selfExamination,
                       onTap: (sex) => AutoRouter.of(context).navigate(
                         SelfExaminationDetailRoute(
                           sex: sex,

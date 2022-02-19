@@ -98,7 +98,7 @@ extension SelfExaminationTypeExt on SelfExaminationType {
   // ignore: non_constant_identifier_names
   String get l10n_name => mapToUnion.when(
         breast: () => 'Samovyšetření prsa',
-        testicular: () => 'Samovyšetření varlata',
+        testicular: () => 'Samovyšetření varlat',
       );
 
   String get assetPath {

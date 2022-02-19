@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:loono/ui/widgets/prevention/examinations_sheet_overlay.dart';
 
