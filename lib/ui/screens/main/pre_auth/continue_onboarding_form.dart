@@ -24,6 +24,7 @@ class ContinueOnboardingFormScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: ListView(
+          physics: const ClampingScrollPhysics(),
           children: [
             Container(
               color: const Color.fromRGBO(241, 249, 249, 1),

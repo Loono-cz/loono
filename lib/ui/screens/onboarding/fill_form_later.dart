@@ -31,6 +31,7 @@ class FillOnboardingFormLaterScreen extends StatelessWidget {
               ],
             ),
             ListView(
+              physics: const ClampingScrollPhysics(),
               children: [
                 Padding(
                   padding: EdgeInsets.only(top: 40, right: size.width * 0.2, left: 18),
