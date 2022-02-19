@@ -79,7 +79,7 @@ class SelfExaminationCard extends StatelessWidget {
           bottomRight: Radius.circular(10),
         ),
         child: SvgPicture.asset(
-          'assets/icons/prevention/self_examination/breastSelf.svg',
+          'assets/icons/prevention/self_examination/breast.svg',
           width: 100,
         ),
       );
