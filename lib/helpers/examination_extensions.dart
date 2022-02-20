@@ -1,11 +1,13 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:loono/helpers/examination_category.dart';
+import 'package:loono/helpers/self_examination_category.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono_api/loono_api.dart';
 
 const int MONTHS_IN_YEAR = 12;
 const int TO_SCHEDULE_MONTHS_TRANSFER = 2;
+const int SELF_EXAMINATION_ACTIVE_CARD_INTERVAL_IN_HOURS = 72;
 
 extension ExaminationPreventionStatusExt on ExaminationPreventionStatus {
   ExaminationCategory calculateStatus([DateTime? dateTimeNow]) {
@@ -42,6 +44,28 @@ extension ExaminationPreventionStatusExt on ExaminationPreventionStatus {
 
     // else fallback to STATUS: unknownLastVisit
     return const ExaminationCategory.unknownLastVisit();
+  }
+}
+
+extension SelfExaminationPreventionStatusExt on SelfExaminationPreventionStatus {
+  SelfExaminationCategory calculateStatus([DateTime? dateTimeNow]) {
+    final now = dateTimeNow ?? DateTime.now();
+
+    if (history.isEmpty) {
+      return const SelfExaminationCategory.first();
+    }
+
+    if (plannedDate != null) {
+      if (plannedDate!.toDateTime().difference(now).inHours.abs() <=
+          SELF_EXAMINATION_ACTIVE_CARD_INTERVAL_IN_HOURS) {
+        return const SelfExaminationCategory.active();
+      } else {
+        return const SelfExaminationCategory.waiting();
+      }
+    }
+
+    // TODO: Handle has finding + waiting for result. Need this info from API?
+    return const SelfExaminationCategory.hasFinding();
   }
 }
 
