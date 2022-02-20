@@ -43,12 +43,12 @@ class UserRepository {
         final usersDao = _db.users;
 
         await usersDao.updateNickname(data.nickname);
-          await usersDao.updateDateOfBirth(
-            DateWithoutDay(
+        await usersDao.updateDateOfBirth(
+          DateWithoutDay(
             year: data.birthdate.year,
             month: monthFromInt(data.birthdate.month),
-            ),
-          );
+          ),
+        );
         await usersDao.updateSex(data.sex);
         await usersDao.updateEmail(data.prefferedEmail);
         if (data.profileImageUrl != null) {

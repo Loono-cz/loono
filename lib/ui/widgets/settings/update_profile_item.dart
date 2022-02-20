@@ -140,16 +140,17 @@ class PopUpState extends State<PopUp> {
         onTap: () {
           widget.controller.reverse();
         },
-        onPanDown: (drag) {
+        onVerticalDragStart: (drag) {
           setState(() {
             dragStart = drag.globalPosition.dy;
           });
           widget.controller.value = 1;
         },
-        onPanUpdate: (drag) {
-          widget.controller.value = widget.screenHeight / (widget.screenHeight + drag.delta.dy);
+        onVerticalDragUpdate: (drag) {
+          widget.controller.value = (widget.screenHeight - 300) /
+              ((widget.screenHeight - 300) - (dragStart - drag.globalPosition.dy));
         },
-        onPanEnd: (drag) {
+        onVerticalDragEnd: (drag) {
           setState(() {
             dragStart = 0;
           });

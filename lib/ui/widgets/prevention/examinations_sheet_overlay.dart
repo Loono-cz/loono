@@ -45,6 +45,7 @@ class _ExaminationsSheetOverlayState extends State<ExaminationsSheetOverlay> {
                       ),
                     )
                     .toList();
+
                 return Container(
                   decoration: const BoxDecoration(
                     color: LoonoColors.bottomSheetPrevention,
@@ -68,12 +69,21 @@ class _ExaminationsSheetOverlayState extends State<ExaminationsSheetOverlay> {
                               children: [
                                 if (index == 0) ...[
                                   _buildHandle(context),
-                                  // TODO: Temp
-                                  SelfExaminationCard(
-                                    onTap: (sex) => AutoRouter.of(context).navigate(
-                                      SelfExaminationDetailRoute(sex: sex),
+                                  if (examinationsProvider.examinations?.selfexaminations != null)
+                                    Column(
+                                      children: examinationsProvider.examinations!.selfexaminations
+                                          .map(
+                                            (selfExamination) => SelfExaminationCard(
+                                              onTap: (sex) => AutoRouter.of(context).navigate(
+                                                SelfExaminationDetailRoute(
+                                                  sex: sex,
+                                                  selfExamination: selfExamination,
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                          .toList(),
                                     ),
-                                  ),
                                 ],
                                 const SizedBox.shrink(),
                               ],
