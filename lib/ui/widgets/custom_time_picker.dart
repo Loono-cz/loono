@@ -11,8 +11,8 @@ class CustomTimePicker extends StatefulWidget {
     Key? key,
     required this.valueChanged,
     required this.defaultDate,
-    this.defaultHour = 9,
-    this.defaultMinute = 0,
+    this.defaultHour,
+    this.defaultMinute,
     this.filled = false,
   }) : super(key: key);
 
@@ -29,8 +29,9 @@ class CustomTimePicker extends StatefulWidget {
 class _CustomTimePickerState extends State<CustomTimePicker> {
   late int _selectedHourIndex = 0;
   late int _selectedMinuteIndex = 0;
-  late final int _defaultHour = widget.defaultHour!;
-  late final int _defaultMinute = widget.defaultMinute!;
+  late final int _defaultHour = widget.defaultHour ?? 9;
+  late final int _defaultMinute = widget.defaultMinute ?? 0;
+
   late DateTime timePickerDate = widget.defaultDate;
 
   @override
