@@ -9,6 +9,7 @@ import 'package:loono/ui/widgets/loono_point.dart';
 import 'package:loono/ui/widgets/settings/leaderboard_tile.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
+import 'package:collection/collection.dart';
 
 enum FetchState { loading, loaded, error }
 
@@ -102,9 +103,13 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                 indent: MediaQuery.of(context).size.width / 4,
                 endIndent: MediaQuery.of(context).size.width / 4,
               ),
-              ..._leaderboardData!.peers.asMap().entries.map(
-                    (e) => LeaderboardTile(
-                      position: e.key + 1,
+              ..._leaderboardData!.peers.asMap().entries.mapIndexed(
+                    (i, e) => LeaderboardTile(
+                      position: e.value.isThisMe == true
+                          ? _leaderboardData!.myOrder
+                          : (i == 0
+                              ? _leaderboardData!.myOrder - 1
+                              : _leaderboardData!.myOrder + 1),
                       user: e.value,
                     ),
                   ),
