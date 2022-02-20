@@ -41,7 +41,7 @@ class _PreAuthPreventionWrapperScreenState extends State<PreAuthPreventionWrappe
                         }
 
                         if (examinationQuestionnaires.isOnboardingInProgress) {
-                          return [const ContinueOnboardingFormRoute()];
+                          return [ContinueOnboardingFormRoute()];
                         }
                       }
 
