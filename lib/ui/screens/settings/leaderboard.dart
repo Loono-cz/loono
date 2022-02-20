@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/snackbar_message.dart';
@@ -9,7 +10,6 @@ import 'package:loono/ui/widgets/loono_point.dart';
 import 'package:loono/ui/widgets/settings/leaderboard_tile.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
-import 'package:collection/collection.dart';
 
 enum FetchState { loading, loaded, error }
 
