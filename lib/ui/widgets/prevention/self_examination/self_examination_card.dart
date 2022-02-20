@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/examination_types.dart';
+import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart' as db;
 import 'package:loono/ui/widgets/loono_point.dart';
@@ -43,20 +44,27 @@ class SelfExaminationCard extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: selfExamination.calculateStatus().map(
-                      first: (_) => _cardContent(subtitle: 'Začni se samovyšetřením dnes'),
-                      active: (_) =>
-                          _dateCardContent(subtitle: 'Vyšetři se dnes', hasPriority: true),
+                      first: (_) => _cardContent(
+                        subtitle: context.l10n.start_with_self_examination_card_subtitle,
+                      ),
+                      active: (_) => _dateCardContent(
+                        subtitle: context.l10n.active_self_examination_card_subtitle,
+                        hasPriority: true,
+                      ),
                       waiting: (_) {
                         final formattedDate = DateFormat('d. M. yyyy', 'cs-CZ')
                             .format(selfExamination.plannedDate!.toDateTime().toLocal());
                         return _dateCardContent(
-                          subtitle: 'Příští $formattedDate',
+                          subtitle:
+                              '${context.l10n.waiting_self_examination_card_subtitle} $formattedDate',
                         );
                       },
                       // TODO: Handle this case
                       hasFinding: (_) => [const SizedBox.shrink()],
-                      hasFindingExpectingResult: (_) =>
-                          _cardContent(subtitle: 'Jak ti dopadla návštěva u lékaře?'),
+                      hasFindingExpectingResult: (_) => _cardContent(
+                        subtitle:
+                            context.l10n.has_finding_expecting_result_examination_card_subtitle,
+                      ),
                     ),
               ),
             ),

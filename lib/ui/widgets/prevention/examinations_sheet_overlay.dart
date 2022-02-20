@@ -59,7 +59,7 @@ class _ExaminationsSheetOverlayState extends State<ExaminationsSheetOverlay> {
                   child: ListView.builder(
                     controller: scrollController,
                     itemCount: examinationCategoriesOrdering.length,
-                    cacheExtent: 1000,
+                    // TODO: set cacheExtent to prevent card repositioning
                     itemBuilder: (context, index) {
                       final examinationStatus = examinationCategoriesOrdering.elementAt(index);
                       final categorizedExaminations = categorized
@@ -145,7 +145,7 @@ class _ExaminationsSheetOverlayState extends State<ExaminationsSheetOverlay> {
       (selfExamination) => selfExamination.calculateStatus().position == cardPosition,
     );
     if (positionedExaminations.isEmpty) return const SizedBox.shrink();
-    final header = positionedExaminations.first.calculateStatus().getHeaderMessage();
+    final header = positionedExaminations.first.calculateStatus().getHeaderMessage(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(

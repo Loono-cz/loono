@@ -1,18 +1,18 @@
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/prevention/examinations_sheet_overlay.dart';
 
 part 'self_examination_category.freezed.dart';
 
 extension SelfExaminationStatusExt on SelfExaminationCategory {
-  String getHeaderMessage() {
-    return when(
-      first: () => 'Vyšetři se',
-      active: () => 'Vyšetři se',
-      waiting: () => 'Připomenu ti vyšetření',
-      hasFinding: () => 'Připomenu ti vyšetření',
-      hasFindingExpectingResult: () => 'Řekni nám výsledek',
-    );
-  }
+  String getHeaderMessage(BuildContext context) => when(
+        first: () => context.l10n.do_self_examination,
+        active: () => context.l10n.do_self_examination,
+        waiting: () => context.l10n.will_remind_you_self_examination,
+        hasFinding: () => context.l10n.will_remind_you_self_examination,
+        hasFindingExpectingResult: () => context.l10n.tell_us_result_self_examination,
+      );
 }
 
 /// Self Examination categories are based on
