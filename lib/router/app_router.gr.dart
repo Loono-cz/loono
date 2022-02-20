@@ -115,11 +115,9 @@ class AppRouter extends _i11.RootStackRouter {
           child: const _i5.FillOnboardingFormLaterScreen());
     },
     GamificationIntroductionRoute.name: (routeData) {
-      final args = routeData.argsAs<GamificationIntroductionRouteArgs>();
       return _i11.MaterialPageX<void>(
           routeData: routeData,
-          child: _i6.GamificationIntroductionScreen(
-              key: args.key, nickname: args.nickname, email: args.email));
+          child: const _i6.GamificationIntroductionScreen());
     },
     NicknameRoute.name: (routeData) {
       final args = routeData.argsAs<NicknameRouteArgs>(
@@ -129,11 +127,11 @@ class AppRouter extends _i11.RootStackRouter {
           child: _i7.NicknameScreen(key: args.key, authUser: args.authUser));
     },
     EmailRoute.name: (routeData) {
-      final args = routeData.argsAs<EmailRouteArgs>();
+      final args = routeData.argsAs<EmailRouteArgs>(
+          orElse: () => const EmailRouteArgs());
       return _i11.MaterialPageX<void>(
           routeData: routeData,
-          child: _i8.EmailScreen(
-              key: args.key, authUser: args.authUser, nickname: args.nickname));
+          child: _i8.EmailScreen(key: args.key, authUser: args.authUser));
     },
     LoginRoute.name: (routeData) {
       final args = routeData.argsAs<LoginRouteArgs>(
@@ -726,32 +724,12 @@ class FillOnboardingFormLaterRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.GamificationIntroductionScreen]
-class GamificationIntroductionRoute
-    extends _i11.PageRouteInfo<GamificationIntroductionRouteArgs> {
-  GamificationIntroductionRoute(
-      {_i51.Key? key, required String nickname, required String email})
+class GamificationIntroductionRoute extends _i11.PageRouteInfo<void> {
+  const GamificationIntroductionRoute()
       : super(GamificationIntroductionRoute.name,
-            path: 'gamification-introduction',
-            args: GamificationIntroductionRouteArgs(
-                key: key, nickname: nickname, email: email));
+            path: 'gamification-introduction');
 
   static const String name = 'GamificationIntroductionRoute';
-}
-
-class GamificationIntroductionRouteArgs {
-  const GamificationIntroductionRouteArgs(
-      {this.key, required this.nickname, required this.email});
-
-  final _i51.Key? key;
-
-  final String nickname;
-
-  final String email;
-
-  @override
-  String toString() {
-    return 'GamificationIntroductionRouteArgs{key: $key, nickname: $nickname, email: $email}';
-  }
 }
 
 /// generated route for
@@ -781,27 +759,24 @@ class NicknameRouteArgs {
 /// generated route for
 /// [_i8.EmailScreen]
 class EmailRoute extends _i11.PageRouteInfo<EmailRouteArgs> {
-  EmailRoute({_i51.Key? key, _i53.AuthUser? authUser, required String nickname})
+  EmailRoute({_i51.Key? key, _i53.AuthUser? authUser})
       : super(EmailRoute.name,
             path: 'fallback-account/email',
-            args: EmailRouteArgs(
-                key: key, authUser: authUser, nickname: nickname));
+            args: EmailRouteArgs(key: key, authUser: authUser));
 
   static const String name = 'EmailRoute';
 }
 
 class EmailRouteArgs {
-  const EmailRouteArgs({this.key, this.authUser, required this.nickname});
+  const EmailRouteArgs({this.key, this.authUser});
 
   final _i51.Key? key;
 
   final _i53.AuthUser? authUser;
 
-  final String nickname;
-
   @override
   String toString() {
-    return 'EmailRouteArgs{key: $key, authUser: $authUser, nickname: $nickname}';
+    return 'EmailRouteArgs{key: $key, authUser: $authUser}';
   }
 }
 

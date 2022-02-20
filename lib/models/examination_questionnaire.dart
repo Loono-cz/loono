@@ -62,8 +62,8 @@ class ExaminationQuestionnairesDao extends DatabaseAccessor<AppDatabase>
       case CcaDoctorVisit.inLastXYears:
         await updateQuestionnaire(
           examinationType,
-          examinationQuestionnairesCompanion: ExaminationQuestionnairesCompanion(
-            date: Value<DateTime>(DateTime.now()),
+          examinationQuestionnairesCompanion: const ExaminationQuestionnairesCompanion(
+            status: Value<ExaminationStatus>(ExaminationStatus.CONFIRMED),
           ),
         );
         break;
@@ -86,7 +86,6 @@ class ExaminationQuestionnairesDao extends DatabaseAccessor<AppDatabase>
       examinationType,
       examinationQuestionnairesCompanion: ExaminationQuestionnairesCompanion(
         date: Value<DateTime>(DateTime(dateWithoutDay.year, dateWithoutDay.month.index + 1)),
-        firstExam: const Value<bool>(false),
       ),
     );
   }
@@ -96,7 +95,6 @@ class ExaminationQuestionnairesDao extends DatabaseAccessor<AppDatabase>
       examinationType,
       examinationQuestionnairesCompanion: ExaminationQuestionnairesCompanion(
         date: Value<DateTime>(DateTime.now()),
-        firstExam: const Value<bool>(true),
       ),
     );
   }

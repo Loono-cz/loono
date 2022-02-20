@@ -1,10 +1,8 @@
-import 'dart:convert';
-
 import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/helpers/type_converters.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/utils/memoized_stream.dart';
-import 'package:loono_api/loono_api.dart' hide User;
+import 'package:loono_api/loono_api.dart';
 import 'package:moor/moor.dart';
 
 part 'user.g.dart';
@@ -17,7 +15,7 @@ class Users extends Table {
 
   TextColumn get sex => text().map(const SexDbConverter()).nullable()();
 
-  TextColumn get dateOfBirthRaw => text().nullable()();
+  TextColumn get dateOfBirth => text().map(const DateOfBirthConverter()).nullable()();
 
   TextColumn get nickname => text().nullable()();
 
@@ -76,7 +74,7 @@ class UsersDao extends DatabaseAccessor<AppDatabase> with _$UsersDaoMixin {
 
   Future<void> updateDateOfBirth(DateWithoutDay dateWithoutDay) async {
     await updateCurrentUser(
-      UsersCompanion(dateOfBirthRaw: Value(jsonEncode(dateWithoutDay.toJson()))),
+      UsersCompanion(dateOfBirth: Value<DateWithoutDay>(dateWithoutDay)),
     );
   }
 

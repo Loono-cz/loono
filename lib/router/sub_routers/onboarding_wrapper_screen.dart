@@ -7,7 +7,7 @@ import 'package:loono/services/db/database.dart';
 import 'package:loono/services/notification_service.dart';
 import 'package:loono/services/onboarding_state_service.dart';
 import 'package:loono/utils/registry.dart';
-import 'package:loono_api/loono_api.dart' hide User;
+import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
 class OnboardingWrapperScreen extends StatefulWidget {
@@ -65,7 +65,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                       if (user != null && sex != null) {
                         onboardingFlow.add(OnBoardingBirthdateRoute(sex: sex));
 
-                        if (user.dateOfBirthRaw != null && examinationQuestionnaires != null) {
+                        if (user.dateOfBirth != null && examinationQuestionnaires != null) {
                           // GeneralPractitioner Route
                           final generalPractitionerQuestionnaire =
                               examinationQuestionnaires.generalPractitionerQuestionnaire;
