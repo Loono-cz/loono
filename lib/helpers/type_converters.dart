@@ -99,7 +99,6 @@ class DateOfBirthConverter extends TypeConverter<DateWithoutDay, String> {
   }
 }
 
-
 class SimpleHealthcareListConverter
     extends JsonConverter<BuiltList<SimpleHealthcareProvider>, String> {
   const SimpleHealthcareListConverter();
