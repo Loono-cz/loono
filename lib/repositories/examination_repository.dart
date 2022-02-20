@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:loono/models/api_response.dart';
 import 'package:loono/services/api_service.dart';
 import 'package:loono_api/loono_api.dart';
@@ -23,18 +21,12 @@ class ExaminationRepository {
     );
   }
 
-  Future<bool> cancelExamination(ExaminationType type, String uuid) async {
+  Future<ApiResponse<ExaminationRecord>> cancelExamination(
+    ExaminationType type,
+    String uuid,
+  ) async {
     final response = await _apiService.cancelExamination(type, uuid);
-    var res = false;
-    response.map(
-      success: (data) {
-        res = true;
-      },
-      failure: (err) {
-        res = false;
-      },
-    );
-    return res;
+    return response;
   }
 
   Future<ApiResponse<ExaminationRecord>> postExamination(
@@ -51,7 +43,6 @@ class ExaminationRepository {
       status: status,
       firstExam: firstExam,
     );
-    log(response.runtimeType.toString());
     return response;
   }
 
@@ -60,7 +51,6 @@ class ExaminationRepository {
     String? uuid,
   }) async {
     final response = await _apiService.confirmExamination(type, id: uuid);
-    log(response.runtimeType.toString());
     return response;
   }
 }

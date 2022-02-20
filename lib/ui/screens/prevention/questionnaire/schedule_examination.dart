@@ -5,11 +5,15 @@ import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/helpers/snackbar_message.dart';
+import 'package:loono/l10n/ext.dart';
+import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
+import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/widgets/universal_doctor.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
+import 'package:provider/provider.dart';
 
 class ScheduleExamination extends StatelessWidget {
   ScheduleExamination({
@@ -76,10 +80,35 @@ class ScheduleExamination extends StatelessWidget {
                                     showSnackBarError(context, message: 'TODO: save to API');
                                     _appRouter.navigate(const MainScreenRouter());
                                   },
-                                  onContinueButtonPress: (pickedDate) {
+                                  onContinueButtonPress: (pickedDate) async {
                                     // TODO: save to api, navigate to updated ExaminationDetail
-                                    showSnackBarError(context, message: 'TODO: save to API');
-                                    _appRouter.navigate(const MainScreenRouter());
+
+                                    final response =
+                                        await registry.get<ExaminationRepository>().postExamination(
+                                              _examinationType,
+                                              newDate: pickedDate,
+                                            );
+                                    response.map(
+                                      success: (res) {
+                                        Provider.of<ExaminationsProvider>(context, listen: false)
+                                            .fetchExaminations();
+                                        _appRouter.navigate(const MainScreenRouter());
+
+                                        showSnackBarSuccess(
+                                          context,
+                                          message: context.l10n.checkup_reminder_toast,
+                                        );
+                                      },
+                                      failure: (err) {
+                                        Provider.of<ExaminationsProvider>(context, listen: false)
+                                            .fetchExaminations();
+                                        _appRouter.navigate(const MainScreenRouter());
+                                        showSnackBarError(
+                                          context,
+                                          message: context.l10n.something_went_wrong,
+                                        );
+                                      },
+                                    );
                                   },
                                 ),
                               ],

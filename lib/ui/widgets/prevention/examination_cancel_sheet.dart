@@ -6,11 +6,12 @@ import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/repositories/examination_repository.dart';
-import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/prevention/recommendation_item.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
+import 'package:provider/provider.dart';
 
 void showCancelExaminationSheet({
   required BuildContext context,
@@ -81,18 +82,27 @@ void showCancelExaminationSheet({
               const SizedBox(
                 height: 60,
               ),
-              AsyncLoonoButton(
-                text: l10n.cancel_checkup,
-                asyncCallback: () =>
-                    registry.get<ExaminationRepository>().cancelExamination(examinationType, id),
-                onSuccess: () async {
-                  await registry.get<CalendarRepository>().deleteEvent(examinationType);
-                  AutoRouter.of(context).popUntilRouteWithName(const MainRoute().routeName);
-                  showSnackBarSuccess(context, message: l10n.checkup_canceled);
-                },
-                onError: () async {
-                  await AutoRouter.of(context).pop();
-                  showSnackBarError(context, message: l10n.something_went_wrong);
+
+              /// old api implementation, needs api update
+              AsyncLoonoApiButton(
+                text: context.l10n.cancel_checkup,
+                asyncCallback: () async {
+                  final response = await registry
+                      .get<ExaminationRepository>()
+                      .cancelExamination(examinationType, id);
+                  await response.map(
+                    success: (res) async {
+                      await registry.get<CalendarRepository>().deleteEvent(examinationType);
+                      Provider.of<ExaminationsProvider>(context, listen: false)
+                          .updateExaminationsRecord(res.data);
+                      await AutoRouter.of(context).pop();
+                      showSnackBarSuccess(context, message: context.l10n.checkup_canceled);
+                    },
+                    failure: (err) async {
+                      await AutoRouter.of(context).pop();
+                      showSnackBarError(context, message: context.l10n.something_went_wrong);
+                    },
+                  );
                 },
               ),
               const SizedBox(
