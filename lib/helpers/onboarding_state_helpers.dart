@@ -60,9 +60,6 @@ extension OnboardingExaminationQuestionnairesExt on List<ExaminationQuestionnair
     if (gynecologistQuestionnaire?.ccaDoctorVisit != null) {
       currentProgress += getStepProgress();
     }
-    if (dentistQuestionnaire?.ccaDoctorVisit != null) {
-      currentProgress += getStepProgress();
-    }
     return currentProgress;
   }
 }
