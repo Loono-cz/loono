@@ -42,25 +42,17 @@ class UserRepository {
       success: (data) async {
         final usersDao = _db.users;
 
-        if (data.user.nickname != null) {
-          await usersDao.updateNickname(data.user.nickname!);
-        }
-        if (data.user.birthdateYear != null && data.user.birthdateMonth != null) {
+        await usersDao.updateNickname(data.nickname);
           await usersDao.updateDateOfBirth(
             DateWithoutDay(
-              month: monthFromInt(data.user.birthdateMonth!),
-              year: data.user.birthdateYear!,
+            year: data.birthdate.year,
+            month: monthFromInt(data.birthdate.month),
             ),
           );
-        }
-        if (data.user.sex != null) {
-          await usersDao.updateSex(data.user.sex!);
-        }
-        if (data.user.preferredEmail != null) {
-          await usersDao.updateEmail(data.user.preferredEmail!);
-        }
-        if (data.user.profileImageUrl != null) {
-          await usersDao.updateProfileImageUrl(data.user.profileImageUrl!);
+        await usersDao.updateSex(data.sex);
+        await usersDao.updateEmail(data.prefferedEmail);
+        if (data.profileImageUrl != null) {
+          await usersDao.updateProfileImageUrl(data.profileImageUrl!);
         }
       },
     );
@@ -116,7 +108,7 @@ class UserRepository {
   }
 
   Future<bool> updateEmail(String email) async {
-    final apiResponse = await _apiService.updateAccountUser(preferredEmail: email);
+    final apiResponse = await _apiService.updateAccountUser(prefferedEmail: email);
     final result = await apiResponse.map(
       success: (_) async {
         await _db.users.updateEmail(email);
