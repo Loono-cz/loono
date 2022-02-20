@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:typed_data';
 
+import 'package:built_collection/built_collection.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/models/api_params.dart';
 import 'package:loono/models/api_response.dart';
 import 'package:loono_api/loono_api.dart';
@@ -68,6 +70,27 @@ class ApiService {
             ..profileImageUrl = profileImageUrl;
         }),
       ),
+    );
+  }
+
+  Future<ApiResponse<Account>> onboardUser({
+    required Sex sex,
+    required DateWithoutDay birthdate,
+    required BuiltList<ExaminationRecord> examinations,
+    required String nickname,
+    required String preferredEmail,
+  }) async {
+    return _callApi(
+      () async => _api.getAccountApi().postAccountOnboard(
+            accountOnboarding: AccountOnboarding(
+              (b) => b
+                ..sex = sex
+                ..nickname = nickname
+                ..preferredEmail = preferredEmail
+                ..examinations = examinations.toBuilder()
+                ..birthdate = Date(birthdate.year, birthdate.month.index + 1, 1),
+            ),
+          ),
     );
   }
 

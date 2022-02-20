@@ -65,7 +65,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                       if (user != null && sex != null) {
                         onboardingFlow.add(OnBoardingBirthdateRoute(sex: sex));
 
-                        if (user.dateOfBirthRaw != null && examinationQuestionnaires != null) {
+                        if (user.dateOfBirth != null && examinationQuestionnaires != null) {
                           // GeneralPractitioner Route
                           final generalPractitionerQuestionnaire =
                               examinationQuestionnaires.generalPractitionerQuestionnaire;

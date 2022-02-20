@@ -30,12 +30,8 @@ extension OnboardingExaminationQuestionnairesExt on List<ExaminationQuestionnair
       return OnboardingProgressStatus.NOT_STARTED;
     }
 
-    final lastVisitDate = lastOnboardingQuestionnaire.date;
-    if (lastVisitDate != null && lastOnboardingQuestionnaire.firstExam != null) {
-      return OnboardingProgressStatus.DONE;
-    }
-
-    if (lastOnboardingQuestionnaire.status == ExaminationStatus.UNKNOWN) {
+    if (lastOnboardingQuestionnaire.status == ExaminationStatus.UNKNOWN ||
+        lastOnboardingQuestionnaire.isDatePickerFormFilled) {
       return OnboardingProgressStatus.DONE;
     }
 
@@ -57,14 +53,11 @@ extension OnboardingExaminationQuestionnairesExt on List<ExaminationQuestionnair
       if (user.sex == Sex.FEMALE) onboardingFormsCount++;
       currentProgress += getStepProgress();
     }
-    if (user.dateOfBirthRaw != null) currentProgress += getStepProgress();
+    if (user.dateOfBirth != null) currentProgress += getStepProgress();
     if (generalPractitionerQuestionnaire?.ccaDoctorVisit != null) {
       currentProgress += getStepProgress();
     }
     if (gynecologistQuestionnaire?.ccaDoctorVisit != null) {
-      currentProgress += getStepProgress();
-    }
-    if (dentistQuestionnaire?.ccaDoctorVisit != null) {
       currentProgress += getStepProgress();
     }
     return currentProgress;
@@ -73,9 +66,7 @@ extension OnboardingExaminationQuestionnairesExt on List<ExaminationQuestionnair
 
 extension OnboardingExaminationQuestionnaireExt on ExaminationQuestionnaire {
   CcaDoctorVisit? get ccaDoctorVisit {
-    final lastVisitDate = date;
-
-    if (lastVisitDate != null) {
+    if (status == ExaminationStatus.CONFIRMED) {
       return CcaDoctorVisit.inLastXYears;
     }
 
@@ -89,7 +80,7 @@ extension OnboardingExaminationQuestionnaireExt on ExaminationQuestionnaire {
   bool get isDatePickerFormFilled {
     final lastVisitDate = date;
 
-    if (lastVisitDate != null && firstExam != null) {
+    if (lastVisitDate != null) {
       return true;
     }
 

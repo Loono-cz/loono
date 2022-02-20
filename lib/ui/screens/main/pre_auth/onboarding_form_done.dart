@@ -1,20 +1,31 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/onboarding_state_helpers.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/models/api_response.dart';
+import 'package:loono/models/firebase_user.dart';
 import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/services/api_service.dart';
 import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/auth/failures.dart';
+import 'package:loono/services/database_service.dart';
+import 'package:loono/services/db/database.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
 import 'package:loono/ui/widgets/social_login_button.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart';
 
 class OnboardingFormDoneScreen extends StatelessWidget {
   OnboardingFormDoneScreen({Key? key}) : super(key: key);
 
+  final _apiService = registry.get<ApiService>();
   final _authService = registry.get<AuthService>();
+  final _examinationQuestionnairesDao = registry.get<DatabaseService>().examinationQuestionnaires;
+  final _usersDao = registry.get<DatabaseService>().users;
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +107,17 @@ class OnboardingFormDoneScreen extends StatelessWidget {
                   final authUserResult = await _authService.signInWithApple();
                   authUserResult.fold(
                     (failure) => showSnackBarError(context, message: failure.getMessage(context)),
-                    (authUser) => AutoRouter.of(context).push(NicknameRoute(authUser: authUser)),
+                    (authUser) async {
+                      final user = _usersDao.user;
+                      final examinationQuestionnaires =
+                          await _examinationQuestionnairesDao.getAll();
+                      if (user == null || examinationQuestionnaires.isEmpty) {
+                        showSnackBarError(context, message: context.l10n.something_went_wrong);
+                        return;
+                      }
+                      await _onboardUser(authUser, user, examinationQuestionnaires);
+                      await AutoRouter.of(context).push(NicknameRoute(authUser: authUser));
+                    },
                   );
                 },
               ),
@@ -109,7 +130,17 @@ class OnboardingFormDoneScreen extends StatelessWidget {
                   final authUserResult = await _authService.signInWithGoogle();
                   authUserResult.fold(
                     (failure) => showSnackBarError(context, message: failure.getMessage(context)),
-                    (authUser) => AutoRouter.of(context).push(NicknameRoute(authUser: authUser)),
+                    (authUser) async {
+                      final user = _usersDao.user;
+                      final examinationQuestionnaires =
+                          await _examinationQuestionnairesDao.getAll();
+                      if (user == null || examinationQuestionnaires.isEmpty) {
+                        showSnackBarError(context, message: context.l10n.something_went_wrong);
+                        return;
+                      }
+                      await _onboardUser(authUser, user, examinationQuestionnaires);
+                      await AutoRouter.of(context).push(NicknameRoute(authUser: authUser));
+                    },
                   );
                 },
               ),
@@ -135,6 +166,40 @@ class OnboardingFormDoneScreen extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Future<ApiResponse<Account>> _onboardUser(
+    AuthUser authUser,
+    User user,
+    List<ExaminationQuestionnaire> examinationQuestionnaires,
+  ) {
+    final generalPractitioner = examinationQuestionnaires.generalPractitionerQuestionnaire;
+    final gynecologist = examinationQuestionnaires.gynecologistQuestionnaire;
+    final dentist = examinationQuestionnaires.dentistQuestionnaire;
+    final onboardingQuestionnaires = [
+      generalPractitioner,
+      if (user.sex == Sex.FEMALE) gynecologist,
+      dentist,
+    ].whereType<ExaminationQuestionnaire>();
+
+    return _apiService.onboardUser(
+      sex: user.sex!,
+      birthdate: user.dateOfBirth!,
+      examinations: BuiltList.from(
+        <ExaminationRecord>[
+          for (final questionnaire in onboardingQuestionnaires)
+            ExaminationRecord((b) {
+              b
+                ..status = questionnaire.status
+                ..date = questionnaire.date?.toUtc()
+                ..firstExam = true
+                ..type = questionnaire.type;
+            })
+        ],
+      ),
+      nickname: authUser.name ?? '',
+      preferredEmail: authUser.email ?? '',
     );
   }
 }

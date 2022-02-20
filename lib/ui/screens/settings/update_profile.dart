@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -41,13 +39,6 @@ class UpdateProfileScreen extends StatelessWidget {
     return value;
   }
 
-  DateWithoutDay? _getBirthdateDate(String? dateTimeRaw) {
-    if (dateTimeRaw == null) return null;
-    final dateTimeMap = jsonDecode(dateTimeRaw) as Map<String, dynamic>;
-    final dateWithoutDay = DateWithoutDay.fromJson(dateTimeMap);
-    return dateWithoutDay;
-  }
-
   String _getBirthdateValue(DateWithoutDay? dateWithoutDay) {
     if (dateWithoutDay == null) return '';
     final date = DateTime(dateWithoutDay.year, dateWithoutDay.month.index + 1);
@@ -64,7 +55,7 @@ class UpdateProfileScreen extends StatelessWidget {
         stream: _usersDao.watchUser(),
         builder: (context, snapshot) {
           final user = snapshot.data;
-          final birthDateWithoutDay = _getBirthdateDate(user?.dateOfBirthRaw);
+          final birthDateWithoutDay = user?.dateOfBirth;
 
           return SingleChildScrollView(
             child: Padding(

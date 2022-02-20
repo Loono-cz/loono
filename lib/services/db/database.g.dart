@@ -10,7 +10,7 @@ part of 'database.dart';
 class User extends DataClass implements Insertable<User> {
   final String id;
   final Sex? sex;
-  final String? dateOfBirthRaw;
+  final DateWithoutDay? dateOfBirth;
   final String? nickname;
   final String? email;
   final String? profileImageUrl;
@@ -20,7 +20,7 @@ class User extends DataClass implements Insertable<User> {
   User(
       {required this.id,
       this.sex,
-      this.dateOfBirthRaw,
+      this.dateOfBirth,
       this.nickname,
       this.email,
       this.profileImageUrl,
@@ -35,8 +35,8 @@ class User extends DataClass implements Insertable<User> {
           .mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
       sex: $UsersTable.$converter0.mapToDart(const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}sex'])),
-      dateOfBirthRaw: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}date_of_birth_raw']),
+      dateOfBirth: $UsersTable.$converter1.mapToDart(const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}date_of_birth'])),
       nickname: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}nickname']),
       email: const StringType()
@@ -59,8 +59,9 @@ class User extends DataClass implements Insertable<User> {
       final converter = $UsersTable.$converter0;
       map['sex'] = Variable<String?>(converter.mapToSql(sex));
     }
-    if (!nullToAbsent || dateOfBirthRaw != null) {
-      map['date_of_birth_raw'] = Variable<String?>(dateOfBirthRaw);
+    if (!nullToAbsent || dateOfBirth != null) {
+      final converter = $UsersTable.$converter1;
+      map['date_of_birth'] = Variable<String?>(converter.mapToSql(dateOfBirth));
     }
     if (!nullToAbsent || nickname != null) {
       map['nickname'] = Variable<String?>(nickname);
@@ -89,9 +90,9 @@ class User extends DataClass implements Insertable<User> {
     return UsersCompanion(
       id: Value(id),
       sex: sex == null && nullToAbsent ? const Value.absent() : Value(sex),
-      dateOfBirthRaw: dateOfBirthRaw == null && nullToAbsent
+      dateOfBirth: dateOfBirth == null && nullToAbsent
           ? const Value.absent()
-          : Value(dateOfBirthRaw),
+          : Value(dateOfBirth),
       nickname: nickname == null && nullToAbsent
           ? const Value.absent()
           : Value(nickname),
@@ -118,7 +119,7 @@ class User extends DataClass implements Insertable<User> {
     return User(
       id: serializer.fromJson<String>(json['id']),
       sex: serializer.fromJson<Sex?>(json['sex']),
-      dateOfBirthRaw: serializer.fromJson<String?>(json['dateOfBirthRaw']),
+      dateOfBirth: serializer.fromJson<DateWithoutDay?>(json['dateOfBirth']),
       nickname: serializer.fromJson<String?>(json['nickname']),
       email: serializer.fromJson<String?>(json['email']),
       profileImageUrl: serializer.fromJson<String?>(json['profileImageUrl']),
@@ -135,7 +136,7 @@ class User extends DataClass implements Insertable<User> {
     return <String, dynamic>{
       'id': serializer.toJson<String>(id),
       'sex': serializer.toJson<Sex?>(sex),
-      'dateOfBirthRaw': serializer.toJson<String?>(dateOfBirthRaw),
+      'dateOfBirth': serializer.toJson<DateWithoutDay?>(dateOfBirth),
       'nickname': serializer.toJson<String?>(nickname),
       'email': serializer.toJson<String?>(email),
       'profileImageUrl': serializer.toJson<String?>(profileImageUrl),
@@ -150,7 +151,7 @@ class User extends DataClass implements Insertable<User> {
   User copyWith(
           {String? id,
           Sex? sex,
-          String? dateOfBirthRaw,
+          DateWithoutDay? dateOfBirth,
           String? nickname,
           String? email,
           String? profileImageUrl,
@@ -160,7 +161,7 @@ class User extends DataClass implements Insertable<User> {
       User(
         id: id ?? this.id,
         sex: sex ?? this.sex,
-        dateOfBirthRaw: dateOfBirthRaw ?? this.dateOfBirthRaw,
+        dateOfBirth: dateOfBirth ?? this.dateOfBirth,
         nickname: nickname ?? this.nickname,
         email: email ?? this.email,
         profileImageUrl: profileImageUrl ?? this.profileImageUrl,
@@ -174,7 +175,7 @@ class User extends DataClass implements Insertable<User> {
     return (StringBuffer('User(')
           ..write('id: $id, ')
           ..write('sex: $sex, ')
-          ..write('dateOfBirthRaw: $dateOfBirthRaw, ')
+          ..write('dateOfBirth: $dateOfBirth, ')
           ..write('nickname: $nickname, ')
           ..write('email: $email, ')
           ..write('profileImageUrl: $profileImageUrl, ')
@@ -189,7 +190,7 @@ class User extends DataClass implements Insertable<User> {
   int get hashCode => Object.hash(
       id,
       sex,
-      dateOfBirthRaw,
+      dateOfBirth,
       nickname,
       email,
       profileImageUrl,
@@ -202,7 +203,7 @@ class User extends DataClass implements Insertable<User> {
       (other is User &&
           other.id == this.id &&
           other.sex == this.sex &&
-          other.dateOfBirthRaw == this.dateOfBirthRaw &&
+          other.dateOfBirth == this.dateOfBirth &&
           other.nickname == this.nickname &&
           other.email == this.email &&
           other.profileImageUrl == this.profileImageUrl &&
@@ -214,7 +215,7 @@ class User extends DataClass implements Insertable<User> {
 class UsersCompanion extends UpdateCompanion<User> {
   final Value<String> id;
   final Value<Sex?> sex;
-  final Value<String?> dateOfBirthRaw;
+  final Value<DateWithoutDay?> dateOfBirth;
   final Value<String?> nickname;
   final Value<String?> email;
   final Value<String?> profileImageUrl;
@@ -224,7 +225,7 @@ class UsersCompanion extends UpdateCompanion<User> {
   const UsersCompanion({
     this.id = const Value.absent(),
     this.sex = const Value.absent(),
-    this.dateOfBirthRaw = const Value.absent(),
+    this.dateOfBirth = const Value.absent(),
     this.nickname = const Value.absent(),
     this.email = const Value.absent(),
     this.profileImageUrl = const Value.absent(),
@@ -235,7 +236,7 @@ class UsersCompanion extends UpdateCompanion<User> {
   UsersCompanion.insert({
     required String id,
     this.sex = const Value.absent(),
-    this.dateOfBirthRaw = const Value.absent(),
+    this.dateOfBirth = const Value.absent(),
     this.nickname = const Value.absent(),
     this.email = const Value.absent(),
     this.profileImageUrl = const Value.absent(),
@@ -246,7 +247,7 @@ class UsersCompanion extends UpdateCompanion<User> {
   static Insertable<User> custom({
     Expression<String>? id,
     Expression<Sex?>? sex,
-    Expression<String?>? dateOfBirthRaw,
+    Expression<DateWithoutDay?>? dateOfBirth,
     Expression<String?>? nickname,
     Expression<String?>? email,
     Expression<String?>? profileImageUrl,
@@ -257,7 +258,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (sex != null) 'sex': sex,
-      if (dateOfBirthRaw != null) 'date_of_birth_raw': dateOfBirthRaw,
+      if (dateOfBirth != null) 'date_of_birth': dateOfBirth,
       if (nickname != null) 'nickname': nickname,
       if (email != null) 'email': email,
       if (profileImageUrl != null) 'profile_image_url': profileImageUrl,
@@ -272,7 +273,7 @@ class UsersCompanion extends UpdateCompanion<User> {
   UsersCompanion copyWith(
       {Value<String>? id,
       Value<Sex?>? sex,
-      Value<String?>? dateOfBirthRaw,
+      Value<DateWithoutDay?>? dateOfBirth,
       Value<String?>? nickname,
       Value<String?>? email,
       Value<String?>? profileImageUrl,
@@ -282,7 +283,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     return UsersCompanion(
       id: id ?? this.id,
       sex: sex ?? this.sex,
-      dateOfBirthRaw: dateOfBirthRaw ?? this.dateOfBirthRaw,
+      dateOfBirth: dateOfBirth ?? this.dateOfBirth,
       nickname: nickname ?? this.nickname,
       email: email ?? this.email,
       profileImageUrl: profileImageUrl ?? this.profileImageUrl,
@@ -303,8 +304,10 @@ class UsersCompanion extends UpdateCompanion<User> {
       final converter = $UsersTable.$converter0;
       map['sex'] = Variable<String?>(converter.mapToSql(sex.value));
     }
-    if (dateOfBirthRaw.present) {
-      map['date_of_birth_raw'] = Variable<String?>(dateOfBirthRaw.value);
+    if (dateOfBirth.present) {
+      final converter = $UsersTable.$converter1;
+      map['date_of_birth'] =
+          Variable<String?>(converter.mapToSql(dateOfBirth.value));
     }
     if (nickname.present) {
       map['nickname'] = Variable<String?>(nickname.value);
@@ -334,7 +337,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     return (StringBuffer('UsersCompanion(')
           ..write('id: $id, ')
           ..write('sex: $sex, ')
-          ..write('dateOfBirthRaw: $dateOfBirthRaw, ')
+          ..write('dateOfBirth: $dateOfBirth, ')
           ..write('nickname: $nickname, ')
           ..write('email: $email, ')
           ..write('profileImageUrl: $profileImageUrl, ')
@@ -362,12 +365,13 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
       GeneratedColumn<String?>('sex', aliasedName, true,
               type: const StringType(), requiredDuringInsert: false)
           .withConverter<Sex>($UsersTable.$converter0);
-  final VerificationMeta _dateOfBirthRawMeta =
-      const VerificationMeta('dateOfBirthRaw');
+  final VerificationMeta _dateOfBirthMeta =
+      const VerificationMeta('dateOfBirth');
   @override
-  late final GeneratedColumn<String?> dateOfBirthRaw = GeneratedColumn<String?>(
-      'date_of_birth_raw', aliasedName, true,
-      type: const StringType(), requiredDuringInsert: false);
+  late final GeneratedColumnWithTypeConverter<DateWithoutDay, String?>
+      dateOfBirth = GeneratedColumn<String?>('date_of_birth', aliasedName, true,
+              type: const StringType(), requiredDuringInsert: false)
+          .withConverter<DateWithoutDay>($UsersTable.$converter1);
   final VerificationMeta _nicknameMeta = const VerificationMeta('nickname');
   @override
   late final GeneratedColumn<String?> nickname = GeneratedColumn<String?>(
@@ -406,7 +410,7 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   List<GeneratedColumn> get $columns => [
         id,
         sex,
-        dateOfBirthRaw,
+        dateOfBirth,
         nickname,
         email,
         profileImageUrl,
@@ -429,12 +433,7 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
       context.missing(_idMeta);
     }
     context.handle(_sexMeta, const VerificationResult.success());
-    if (data.containsKey('date_of_birth_raw')) {
-      context.handle(
-          _dateOfBirthRawMeta,
-          dateOfBirthRaw.isAcceptableOrUnknown(
-              data['date_of_birth_raw']!, _dateOfBirthRawMeta));
-    }
+    context.handle(_dateOfBirthMeta, const VerificationResult.success());
     if (data.containsKey('nickname')) {
       context.handle(_nicknameMeta,
           nickname.isAcceptableOrUnknown(data['nickname']!, _nicknameMeta));
@@ -485,6 +484,8 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   }
 
   static TypeConverter<Sex, String> $converter0 = const SexDbConverter();
+  static TypeConverter<DateWithoutDay, String> $converter1 =
+      const DateOfBirthConverter();
 }
 
 class CalendarEvent extends DataClass implements Insertable<CalendarEvent> {
