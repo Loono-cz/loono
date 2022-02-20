@@ -133,11 +133,13 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                           height: 40,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            color: selfExamination.history.last.name == 'COMPLETED'
+                            color: selfExamination.history.last.name ==
+                                    SelfExaminationStatus.COMPLETED.name
                                 ? LoonoColors.greenSuccess
                                 : LoonoColors.grey,
                           ),
-                          child: selfExamination.history.last.name == 'COMPLETED'
+                          child: selfExamination.history.last.name ==
+                                  SelfExaminationStatus.COMPLETED.name
                               ? const Icon(
                                   Icons.done,
                                   color: Colors.white,
