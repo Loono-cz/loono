@@ -5,7 +5,7 @@ import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
-import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/custom_date_picker.dart';
 import 'package:loono/ui/widgets/custom_time_picker.dart';
 
@@ -100,7 +100,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
         procedureQuestionTitle(context, examinationType: examinationType).toLowerCase();
     final preposition = czechPreposition(context, examinationType: examinationType);
 
-    final originalDate = widget.categorizedExamination.examination.plannedDate;
+    final originalDate = widget.categorizedExamination.examination.plannedDate?.toLocal();
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -155,15 +155,26 @@ class _DatePickerContentState extends State<_DatePickerContent> {
               : CustomTimePicker(
                   valueChanged: onTimeChanged,
                   defaultDate: newDate!,
-                  defaultHour: 12,
+                  defaultHour: originalDate?.hour,
+                  defaultMinute: originalDate?.minute,
                 ),
         ),
         const Spacer(),
-        LoonoButton(
+        AsyncLoonoApiButton(
           text: isFirstStep ? context.l10n.continue_info : context.l10n.action_save,
           enabled: newDate != null,
-          onTap: () async {
+          asyncCallback: () async {
             if (isFirstStep) {
+              if (originalDate != null) {
+                /// preset original date
+                newDate = DateTime(
+                  newDate!.year,
+                  newDate!.month,
+                  newDate!.day,
+                  originalDate.hour.clamp(0, 23),
+                  originalDate.minute.clamp(0, 55),
+                );
+              }
               setState(() {
                 isFirstStep = false;
               });
