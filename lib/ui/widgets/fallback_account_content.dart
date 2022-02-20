@@ -55,12 +55,12 @@ class _FallbackAccountContentState extends State<FallbackAccountContent> {
   late final TextEditingController _textEditingController;
   final _formKey = GlobalKey<FormState>();
 
-  Future<bool> validateAndSubmit() async {
+  Future<bool?> validateAndSubmit() async {
     if (_formKey.currentState?.validate() == true) {
       final submitResult = await widget.onSubmit.call(_textEditingController.text);
-      return submitResult ?? true;
+      return submitResult;
     }
-    return false;
+    return null;
   }
 
   @override

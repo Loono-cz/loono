@@ -7,10 +7,14 @@ import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/how/loon_botton_sheet.dart';
+import 'package:loono/ui/widgets/prevention/datepicker_sheet.dart';
+import 'package:loono_api/loono_api.dart';
 
-void showOrderCheckupSheetStep1(
+void showNewCheckupSheetStep1(
   BuildContext context,
   CategorizedExamination categorizedExamination,
+  Future<void> Function({required DateTime date}) onSubmit,
+  Sex sex,
 ) {
   final l10n = context.l10n;
   final examinationType = categorizedExamination.examination.examinationType;
@@ -38,8 +42,8 @@ void showOrderCheckupSheetStep1(
                 examinationType: examinationType,
               ).toLowerCase()}',
               onTap: () {
-                Navigator.of(context).pop();
-                showOrderCheckupSheetStep2(context, categorizedExamination);
+                AutoRouter.of(context).pop();
+                showNewCheckupSheetStep2(context, categorizedExamination, onSubmit, sex);
               },
             ),
             const SizedBox(height: 20),
@@ -58,14 +62,18 @@ void showOrderCheckupSheetStep1(
   );
 }
 
-void showOrderCheckupSheetStep2(
+void showNewCheckupSheetStep2(
   BuildContext context,
   CategorizedExamination categorizedExamination,
+  Future<void> Function({required DateTime date}) onSubmit,
+  Sex sex,
 ) {
   final l10n = context.l10n;
   final examinationType = categorizedExamination.examination.examinationType;
   final autoRouter = AutoRouter.of(context);
   final cancelRoute = ExaminationDetailRoute(categorizedExamination: categorizedExamination);
+  final preposition = czechPreposition(context, examinationType: examinationType);
+
   showModalBottomSheet<void>(
     context: context,
     isScrollControlled: true,
@@ -127,16 +135,38 @@ void showOrderCheckupSheetStep2(
             const SizedBox(height: 20),
             LoonoButton(
               text: l10n.examination_i_have_appointment_button,
-              onTap: () => autoRouter.push(
-                NewDateRoute(categorizedExamination: categorizedExamination),
+              onTap: () => showDatePickerSheet(
+                context: context,
+                categorizedExamination: categorizedExamination,
+                onSubmit: onSubmit,
+                firstStepTitle:
+                    '${sex == Sex.MALE ? l10n.checkup_new_date_title_male : l10n.checkup_new_date_title_female} $preposition ${examinationTypeCasus(
+                  context,
+                  casus: Casus.genitiv,
+                  examinationType: examinationType,
+                ).toUpperCase()}?',
+                secondStepTitle:
+                    '${l10n.checkup_new_time_title} $preposition ${examinationTypeCasus(
+                  context,
+                  casus: Casus.nomativ,
+                  examinationType: examinationType,
+                ).toLowerCase()}',
               ),
             ),
             const SizedBox(height: 50),
             TextButton(
-              style: TextButton.styleFrom(minimumSize: const Size(double.maxFinite, 40)),
-              onPressed: () => autoRouter.push(FindDoctorRoute(cancelRouteName: cancelRoute)),
+              style: TextButton.styleFrom(
+                minimumSize: const Size(double.maxFinite, 40),
+              ),
+              onPressed: () => autoRouter.push(
+                FindDoctorRoute(cancelRouteName: cancelRoute),
+              ),
               child: Text(
-                l10n.examination_dont_have_number_button,
+                '${l10n.examination_dont_have_number_button} ${examinationTypeCasus(
+                  context,
+                  casus: Casus.genitiv,
+                  examinationType: examinationType,
+                ).toLowerCase()}',
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 15,

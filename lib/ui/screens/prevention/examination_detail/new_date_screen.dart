@@ -85,7 +85,9 @@ class _NewDateScreenState extends State<NewDateScreen> {
                   casus: Casus.genitiv,
                   examinationType: examinationType,
                 ).toUpperCase()}?',
-                style: LoonoFonts.headerFontStyleBold,
+                style: LoonoFonts.headerFontStyle.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const Spacer(),
               Center(
@@ -100,12 +102,7 @@ class _NewDateScreenState extends State<NewDateScreen> {
               LoonoButton(
                 text: context.l10n.continue_info,
                 enabled: _newDate != null,
-                onTap: () => AutoRouter.of(context).push(
-                  NewTimeRoute(
-                    categorizedExamination: widget.categorizedExamination,
-                    newDate: _newDate!,
-                  ),
-                ),
+                onTap: () => AutoRouter.of(context).pop(),
               ),
               const SizedBox(
                 height: 18,

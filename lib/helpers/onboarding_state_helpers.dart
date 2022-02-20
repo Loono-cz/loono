@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono_api/loono_api.dart';
 
-const LAST_ONBOARDING_QUESTIONNAIRE = ExaminationTypeEnum.DENTIST;
+const LAST_ONBOARDING_QUESTIONNAIRE = ExaminationType.DENTIST;
 
 enum OnboardingProgressStatus { NOT_STARTED, IN_PROGRESS, DONE }
 
@@ -14,14 +14,14 @@ extension OnboardingExaminationQuestionnairesExt on List<ExaminationQuestionnair
       firstWhereOrNull((questionnaire) => questionnaire.type == LAST_ONBOARDING_QUESTIONNAIRE);
 
   ExaminationQuestionnaire? get generalPractitionerQuestionnaire => firstWhereOrNull(
-        (questionnaire) => questionnaire.type == ExaminationTypeEnum.GENERAL_PRACTITIONER,
+        (questionnaire) => questionnaire.type == ExaminationType.GENERAL_PRACTITIONER,
       );
 
   ExaminationQuestionnaire? get gynecologistQuestionnaire =>
-      firstWhereOrNull((questionnaire) => questionnaire.type == ExaminationTypeEnum.GYNECOLOGIST);
+      firstWhereOrNull((questionnaire) => questionnaire.type == ExaminationType.GYNECOLOGIST);
 
   ExaminationQuestionnaire? get dentistQuestionnaire =>
-      firstWhereOrNull((questionnaire) => questionnaire.type == ExaminationTypeEnum.DENTIST);
+      firstWhereOrNull((questionnaire) => questionnaire.type == ExaminationType.DENTIST);
 
   OnboardingProgressStatus get onboardingStatusState {
     final lastOnboardingQuestionnaire = this.lastOnboardingQuestionnaire;
@@ -30,12 +30,8 @@ extension OnboardingExaminationQuestionnairesExt on List<ExaminationQuestionnair
       return OnboardingProgressStatus.NOT_STARTED;
     }
 
-    final lastVisitDate = lastOnboardingQuestionnaire.date;
-    if (lastVisitDate != null && lastOnboardingQuestionnaire.firstExam != null) {
-      return OnboardingProgressStatus.DONE;
-    }
-
-    if (lastOnboardingQuestionnaire.status == ExaminationStatus.UNKNOWN) {
+    if (lastOnboardingQuestionnaire.status == ExaminationStatus.UNKNOWN ||
+        lastOnboardingQuestionnaire.isDatePickerFormFilled) {
       return OnboardingProgressStatus.DONE;
     }
 
@@ -45,13 +41,32 @@ extension OnboardingExaminationQuestionnairesExt on List<ExaminationQuestionnair
   bool get isOnboardingDone => onboardingStatusState == OnboardingProgressStatus.DONE;
 
   bool get isOnboardingInProgress => onboardingStatusState == OnboardingProgressStatus.IN_PROGRESS;
+
+  double getOnboardingProgress(User? user) {
+    var currentProgress = 0.0;
+    if (isEmpty || user == null) return currentProgress;
+    const max = 1.0;
+    var onboardingFormsCount = 4; // sex, birthdate, general_practitioner, (gynecologist), dentist
+    double getStepProgress() => max / onboardingFormsCount;
+
+    if (user.sex != null) {
+      if (user.sex == Sex.FEMALE) onboardingFormsCount++;
+      currentProgress += getStepProgress();
+    }
+    if (user.dateOfBirth != null) currentProgress += getStepProgress();
+    if (generalPractitionerQuestionnaire?.ccaDoctorVisit != null) {
+      currentProgress += getStepProgress();
+    }
+    if (gynecologistQuestionnaire?.ccaDoctorVisit != null) {
+      currentProgress += getStepProgress();
+    }
+    return currentProgress;
+  }
 }
 
 extension OnboardingExaminationQuestionnaireExt on ExaminationQuestionnaire {
   CcaDoctorVisit? get ccaDoctorVisit {
-    final lastVisitDate = date;
-
-    if (lastVisitDate != null) {
+    if (status == ExaminationStatus.CONFIRMED) {
       return CcaDoctorVisit.inLastXYears;
     }
 
@@ -65,7 +80,7 @@ extension OnboardingExaminationQuestionnaireExt on ExaminationQuestionnaire {
   bool get isDatePickerFormFilled {
     final lastVisitDate = date;
 
-    if (lastVisitDate != null && firstExam != null) {
+    if (lastVisitDate != null) {
       return true;
     }
 

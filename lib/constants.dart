@@ -29,6 +29,7 @@ class LoonoColors {
   static const bottomSheetPrevention = Color.fromRGBO(250, 200, 167, 1);
   static const faqBackgroundBlue = Color.fromRGBO(237, 248, 252, 1);
   static const checkBoxMark = Color.fromRGBO(190, 87, 19, 1);
+  static const primaryWashed = Color.fromRGBO(203, 167, 142, 1);
 
   static const rainbow = <Color>[
     Color.fromARGB(255, 230, 87, 86),
@@ -62,12 +63,6 @@ class LoonoFonts {
     fontSize: 24,
     color: LoonoColors.black,
     fontWeight: FontWeight.normal,
-  );
-
-  static const headerFontStyleBold = TextStyle(
-    fontSize: 24,
-    color: LoonoColors.black,
-    fontWeight: FontWeight.bold,
   );
 
   static const subtitleFontStyle = TextStyle(

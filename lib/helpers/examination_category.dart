@@ -17,12 +17,12 @@ const examinationCategoriesOrdering = <ExaminationCategory>[
 extension ExaminationStatusExt on ExaminationCategory {
   String getHeaderMessage(BuildContext context) {
     return when(
-      scheduledSoonOrOverdue: () => 'běž na prohlídku',
-      newToSchedule: () => 'objednej se',
-      unknownLastVisit: () => 'další prohlídky',
-      scheduled: () => 'připomeneme ti prohlídku',
-      waiting: () => 'připomeneme ti objednání',
-    ).toUpperCase();
+      scheduledSoonOrOverdue: () => 'Běž na prohlídku',
+      newToSchedule: () => 'Objednej se',
+      unknownLastVisit: () => 'Další prohlídky',
+      scheduled: () => 'Připomenu ti prohlídku',
+      waiting: () => 'Připomenu ti objednání',
+    );
   }
 }
 

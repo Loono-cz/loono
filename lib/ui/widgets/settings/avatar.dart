@@ -13,7 +13,7 @@ const double _defaultAvatarSize = 50.0;
 class LoonoAvatar extends StatelessWidget {
   /// Loads user's avatar from the cache.
   ///
-  /// If the user does not have an avatar yet, the [_DefaultLoonoCircleAvatar] one will
+  /// If the user does not have an avatar yet, the [DefaultLoonoCircleAvatar] one will
   /// be loaded instead.
   LoonoAvatar({Key? key, this.radius = _defaultAvatarSize}) : super(key: key);
 
@@ -23,13 +23,13 @@ class LoonoAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _LoonoAvatarWrapper(
+    return LoonoAvatarWrapper(
       child: StreamBuilder<User?>(
         stream: _usersDao.watchUser(),
         builder: (context, snapshot) {
           final user = snapshot.data;
           return user?.profileImageUrl == null
-              ? _DefaultLoonoCircleAvatar(radius: radius)
+              ? DefaultLoonoCircleAvatar(radius: radius)
               : CachedNetworkImage(
                   imageUrl: user!.profileImageUrl!,
                   imageBuilder: (_, imageProvider) => CircleAvatar(
@@ -41,7 +41,7 @@ class LoonoAvatar extends StatelessWidget {
                     child: CircularProgressIndicator(color: LoonoColors.primaryEnabled),
                   ),
                   errorWidget: (context, url, dynamic error) =>
-                      _DefaultLoonoCircleAvatar(radius: radius),
+                      DefaultLoonoCircleAvatar(radius: radius),
                 );
         },
       ),
@@ -72,7 +72,7 @@ class CustomLoonoAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _LoonoAvatarWrapper(
+    return LoonoAvatarWrapper(
       child: CircleAvatar(
         radius: radius,
         backgroundColor: Colors.white,
@@ -83,7 +83,7 @@ class CustomLoonoAvatar extends StatelessWidget {
                 borderRadius: BorderRadius.circular(30.0),
                 child: Image.network(
                   url!,
-                  errorBuilder: (_, __, ___) => _DefaultLoonoCircleAvatar(radius: radius),
+                  errorBuilder: (_, __, ___) => DefaultLoonoCircleAvatar(radius: radius),
                 ),
               ),
       ),
@@ -91,16 +91,16 @@ class CustomLoonoAvatar extends StatelessWidget {
   }
 }
 
-class _LoonoAvatarWrapper extends StatelessWidget {
+class LoonoAvatarWrapper extends StatelessWidget {
   /// Wraps a widget with Loono styled border.
-  const _LoonoAvatarWrapper({Key? key, required this.child}) : super(key: key);
+  const LoonoAvatarWrapper({Key? key, required this.child}) : super(key: key);
 
   final Widget child;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(3.0),
+      padding: const EdgeInsets.all(7.0),
       decoration: const BoxDecoration(
         shape: BoxShape.circle,
         color: LoonoColors.leaderboardPrimary,
@@ -110,8 +110,8 @@ class _LoonoAvatarWrapper extends StatelessWidget {
   }
 }
 
-class _DefaultLoonoCircleAvatar extends StatelessWidget {
-  const _DefaultLoonoCircleAvatar({Key? key, required this.radius}) : super(key: key);
+class DefaultLoonoCircleAvatar extends StatelessWidget {
+  const DefaultLoonoCircleAvatar({Key? key, required this.radius}) : super(key: key);
 
   final double radius;
 

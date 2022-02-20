@@ -11,13 +11,15 @@ class CustomTimePicker extends StatefulWidget {
     Key? key,
     required this.valueChanged,
     required this.defaultDate,
-    this.defaultHour = 9,
+    this.defaultHour,
+    this.defaultMinute,
     this.filled = false,
   }) : super(key: key);
 
   final ValueChanged<DateTime> valueChanged;
   final DateTime defaultDate;
-  final int defaultHour;
+  final int? defaultHour;
+  final int? defaultMinute;
   final bool filled;
 
   @override
@@ -27,7 +29,9 @@ class CustomTimePicker extends StatefulWidget {
 class _CustomTimePickerState extends State<CustomTimePicker> {
   late int _selectedHourIndex = 0;
   late int _selectedMinuteIndex = 0;
-  late final int _defaultHour = widget.defaultHour;
+  late final int _defaultHour = widget.defaultHour ?? 9;
+  late final int _defaultMinute = widget.defaultMinute ?? 0;
+
   late DateTime timePickerDate = widget.defaultDate;
 
   @override
@@ -86,7 +90,12 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
   List<int> get _timePickerMinutes {
     final minutes = [for (var i = 0; i <= 55; i += 5) i];
 
-    return minutes;
+    final roundedDefaultMinute = (_defaultMinute.clamp(0, 55) / 5).round() * 5;
+
+    final minutesShifted = minutes.sublist(minutes.indexOf(roundedDefaultMinute), minutes.length) +
+        minutes.sublist(0, minutes.indexOf(roundedDefaultMinute));
+
+    return minutesShifted;
   }
 
   Widget _datePickerColumn({required ColumnType forType}) {

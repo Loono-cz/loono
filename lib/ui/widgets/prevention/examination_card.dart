@@ -64,7 +64,7 @@ class ExaminationCard extends StatelessWidget {
   }
 
   List<Widget> _scheduledContent({bool isSoonOrOverdue = false}) {
-    final nextVisitDate = categorizedExamination.examination.nextVisitDate!;
+    final nextVisitDate = categorizedExamination.examination.plannedDate!.toLocal();
     final diffDays = _diffInDays(nextVisitDate);
     final diffText = now.isAfter(nextVisitDate)
         ? 'byl/a jsi na prohlídce?'
@@ -140,10 +140,10 @@ class ExaminationCard extends StatelessWidget {
   }
 
   List<Widget> _waitingContent() {
-    final lastDateVisit = categorizedExamination.examination.lastVisitDate!;
+    final lastDateVisit = categorizedExamination.examination.lastConfirmedDate!;
     final newWaitToDateTime = DateTime(
-      lastDateVisit.year + categorizedExamination.examination.interval,
-      lastDateVisit.month.index + 1,
+      lastDateVisit.year + categorizedExamination.examination.intervalYears,
+      lastDateVisit.month,
     );
     final formattedDate = DateFormat.yMMMM('cs-CZ').format(newWaitToDateTime);
 
@@ -186,7 +186,7 @@ class ExaminationCard extends StatelessWidget {
 
   Widget dateRow() {
     final formattedDate = DateFormat('d. M. yyyy kk:mm', 'cs-CZ')
-        .format(categorizedExamination.examination.nextVisitDate!);
+        .format(categorizedExamination.examination.plannedDate!.toLocal());
 
     return Row(
       children: [
@@ -202,7 +202,7 @@ class ExaminationCard extends StatelessWidget {
       children: [
         const LoonoPointIcon(),
         const SizedBox(width: 7.0),
-        Text(categorizedExamination.examination.worth.toString(), style: LoonoFonts.cardSubtitle),
+        Text(categorizedExamination.examination.points.toString(), style: LoonoFonts.cardSubtitle),
       ],
     );
   }

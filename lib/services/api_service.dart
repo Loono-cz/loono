@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:typed_data';
 
+import 'package:built_collection/built_collection.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/models/api_params.dart';
 import 'package:loono/models/api_response.dart';
 import 'package:loono_api/loono_api.dart';
@@ -40,7 +42,7 @@ class ApiService {
     return _callApi(() async => _api.getProvidersApi().getProvidersLastupdate());
   }
 
-  Future<ApiResponse<HealthcareProviderDetail>> getProvidersDetailByIds(
+  Future<ApiResponse<HealthcareProviderDetailList>> getProvidersDetailByIds(
     HealthcareProviderIdList idList,
   ) async {
     return _callApi(
@@ -54,44 +56,118 @@ class ApiService {
     return _callApi(() async => _api.getAccountApi().getAccount());
   }
 
-  Future<ApiResponse<Account>> updateAccountSettings({
-    bool appointmentReminderEmailsOptIn = true,
-    bool leaderboardAnonymizationOptIn = false,
-    bool newsletterOptIn = false,
+  Future<ApiResponse<Account>> updateAccountUser({
+    String? nickname,
+    String? prefferedEmail,
+    String? profileImageUrl,
   }) async {
     return _callApi(
-      () async => _api.getAccountApi().updateAccountSettings(
-        settings: Settings((b) {
+      () async => _api.getAccountApi().postAccount(
+        accountUpdate: AccountUpdate((b) {
           b
-            ..appointmentReminderEmailsOptIn = appointmentReminderEmailsOptIn
-            ..leaderboardAnonymizationOptIn = leaderboardAnonymizationOptIn
-            ..newsletterOptIn = newsletterOptIn;
+            ..nickname = nickname
+            ..prefferedEmail = prefferedEmail
+            ..profileImageUrl = profileImageUrl;
         }),
       ),
     );
   }
 
-  Future<ApiResponse<Account>> updateAccountUser({
-    Sex? sex,
-    int? birthdateYear,
-    int? birthdateMonth,
-    String? nickname,
-    String? preferredEmail,
-    String? profileImageUrl,
+  Future<ApiResponse<Account>> onboardUser({
+    required Sex sex,
+    required DateWithoutDay birthdate,
+    required BuiltList<ExaminationRecord> examinations,
+    required String nickname,
+    required String preferredEmail,
   }) async {
     return _callApi(
-      () async => _api.getAccountApi().updateAccountUser(
-        userPatch: UserPatch((b) {
-          b
-            ..sex = sex
-            ..birthdateYear = birthdateYear
-            ..birthdateMonth = birthdateMonth
-            ..nickname = nickname
-            ..preferredEmail = preferredEmail
-            ..profileImageUrl = profileImageUrl;
+      () async => _api.getAccountApi().postAccountOnboard(
+            accountOnboarding: AccountOnboarding(
+              (b) => b
+                ..sex = sex
+                ..nickname = nickname
+                ..preferredEmail = preferredEmail
+                ..examinations = examinations.toBuilder()
+                ..birthdate = Date(birthdate.year, birthdate.month.index + 1, 1),
+            ),
+          ),
+    );
+  }
+
+  Future<ApiResponse<PreventionStatus>> getExaminations({ApiParams? params}) async {
+    return _callApi(
+      () async => _api.getExaminationsApi().getExaminations(
+            cancelToken: params?.cancelToken,
+            extra: params?.extra,
+            headers: params?.headers,
+            onReceiveProgress: params?.onReceiveProgress,
+            onSendProgress: params?.onSendProgress,
+            validateStatus: params?.validateStatus,
+          ),
+    );
+  }
+
+  Future<ApiResponse<ExaminationRecord>> cancelExamination(
+    ExaminationType type,
+    String uuid,
+  ) async {
+    return _callApi(
+      () async => _api.getExaminationsApi().cancelExamination(
+        examinationId: ExaminationId((id) {
+          id.uuid = uuid;
         }),
       ),
     );
+  }
+
+  Future<ApiResponse<ExaminationRecord>> postExamination(
+    ExaminationType type, {
+    String? uuid,
+    DateTime? newDate,
+    ExaminationStatus? status,
+    bool? firstExam,
+  }) async {
+    DateTime? utcNewDate;
+    if (newDate != null) {
+      utcNewDate = DateTime.utc(
+        newDate.year,
+        newDate.month,
+        newDate.day,
+        newDate.hour,
+        newDate.minute,
+        newDate.second,
+      );
+    }
+
+    return _callApi(
+      () async => _api.getExaminationsApi().postExaminations(
+        examinationRecord: ExaminationRecord((record) {
+          record
+            ..uuid = uuid
+            ..type = type
+            ..date = utcNewDate
+            ..status = status
+            ..firstExam = firstExam;
+        }),
+      ),
+    );
+  }
+
+  Future<ApiResponse<ExaminationRecord>> confirmExamination(
+    ExaminationType type, {
+    String? id,
+  }) async {
+    return _callApi(
+      () async => _api.getExaminationsApi().completeExamination(
+        examinationId: ExaminationId((newId) {
+          newId.uuid = id;
+        }),
+      ),
+    );
+  }
+
+  Future<ApiResponse<Leaderboard>> getLeaderboard() {
+    return _callApi(() async => _api.getLeaderboardApi().getLeaderboard(leaderboardSize: 6));
   }
 
   Future<ApiResponse<void>> deleteAccount() async {

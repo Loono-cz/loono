@@ -39,7 +39,8 @@ class _AsyncLoonoButtonState extends State<AsyncLoonoButton> {
   @override
   Widget build(BuildContext context) {
     return ExtendedInkWell(
-      onTap: widget.enabled
+      /// check if not loading to prevent spamming api
+      onTap: widget.enabled && !_isLoading
           ? () async {
               setState(() => _isLoading = true);
               final asyncResult = await widget.asyncCallback();
@@ -49,6 +50,68 @@ class _AsyncLoonoButtonState extends State<AsyncLoonoButton> {
               } else if (asyncResult == false) {
                 widget.onError?.call();
               }
+            }
+          : null,
+      splashColor: widget.enabled ? null : Colors.transparent,
+      materialColor: widget.enabled ? LoonoColors.primaryEnabled : LoonoColors.primaryDisabled,
+      borderRadius: BorderRadius.circular(10.0),
+      child: SizedBox(
+        height: 65.0,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Visibility(
+              visible: _isLoading,
+              child: const Flexible(child: CircularProgressIndicator(color: Colors.white)),
+            ),
+            Expanded(
+              child: Align(
+                child: Text(
+                  widget.text,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.button?.copyWith(
+                        color: widget.textColor ?? Colors.white,
+                      ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class AsyncLoonoApiButton extends StatefulWidget {
+  const AsyncLoonoApiButton({
+    Key? key,
+    required this.text,
+    required this.asyncCallback,
+    this.enabled = true,
+    this.textColor,
+  }) : super(key: key);
+  final Future<dynamic> Function() asyncCallback;
+
+  final String text;
+  final bool enabled;
+  final Color? textColor;
+
+  @override
+  _AsyncLoonoApiButtonState createState() => _AsyncLoonoApiButtonState();
+}
+
+class _AsyncLoonoApiButtonState extends State<AsyncLoonoApiButton> {
+  bool _isLoading = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return ExtendedInkWell(
+      /// check if not loading to prevent spamming api
+      onTap: widget.enabled && !_isLoading
+          ? () async {
+              setState(() => _isLoading = true);
+              await widget.asyncCallback();
+              setState(() => _isLoading = false);
             }
           : null,
       splashColor: widget.enabled ? null : Colors.transparent,

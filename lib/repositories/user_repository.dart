@@ -9,7 +9,7 @@ import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/firebase_storage_service.dart';
 import 'package:loono/utils/registry.dart';
-import 'package:loono_api/loono_api.dart' hide User;
+import 'package:loono_api/loono_api.dart';
 import 'package:moor/moor.dart';
 import 'package:uuid/uuid.dart';
 
@@ -43,23 +43,17 @@ class UserRepository {
       success: (data) async {
         final usersDao = _db.users;
 
-        await usersDao.updateNickname(data.user.nickname);
-        if (data.user.birthdateYear != null && data.user.birthdateMonth != null) {
-          await usersDao.updateDateOfBirth(
-            DateWithoutDay(
-              month: monthFromInt(data.user.birthdateMonth!),
-              year: data.user.birthdateYear!,
-            ),
-          );
-        }
-        if (data.user.sex != null) {
-          await usersDao.updateSex(data.user.sex!);
-        }
-        if (data.user.preferredEmail != null) {
-          await usersDao.updateEmail(data.user.preferredEmail!);
-        }
-        if (data.user.profileImageUrl != null) {
-          await usersDao.updateProfileImageUrl(data.user.profileImageUrl!);
+        await usersDao.updateNickname(data.nickname);
+        await usersDao.updateDateOfBirth(
+          DateWithoutDay(
+            year: data.birthdate.year,
+            month: monthFromInt(data.birthdate.month),
+          ),
+        );
+        await usersDao.updateSex(data.sex);
+        await usersDao.updateEmail(data.prefferedEmail);
+        if (data.profileImageUrl != null) {
+          await usersDao.updateProfileImageUrl(data.profileImageUrl!);
         }
       },
     );
@@ -128,7 +122,7 @@ class UserRepository {
   }
 
   Future<bool> updateEmail(String email) async {
-    final apiResponse = await _apiService.updateAccountUser(preferredEmail: email);
+    final apiResponse = await _apiService.updateAccountUser(prefferedEmail: email);
     final result = await apiResponse.map(
       success: (_) async {
         await _db.users.updateEmail(email);
