@@ -54,40 +54,19 @@ class ApiService {
     return _callApi(() async => _api.getAccountApi().getAccount());
   }
 
-  Future<ApiResponse<Account>> updateAccountSettings({
-    bool appointmentReminderEmailsOptIn = true,
-    bool leaderboardAnonymizationOptIn = false,
-    bool newsletterOptIn = false,
-  }) async {
-    return _callApi(
-      () async => _api.getAccountApi().updateAccountSettings(
-        settings: Settings((b) {
-          b
-            ..appointmentReminderEmailsOptIn = appointmentReminderEmailsOptIn
-            ..leaderboardAnonymizationOptIn = leaderboardAnonymizationOptIn
-            ..newsletterOptIn = newsletterOptIn;
-        }),
-      ),
-    );
-  }
-
   Future<ApiResponse<Account>> updateAccountUser({
-    Sex? sex,
-    int? birthdateYear,
-    int? birthdateMonth,
+    required String uid,
     String? nickname,
-    String? preferredEmail,
+    String? prefferedEmail,
     String? profileImageUrl,
   }) async {
     return _callApi(
-      () async => _api.getAccountApi().updateAccountUser(
-        userPatch: UserPatch((b) {
+          () async => _api.getAccountApi().postAccount(
+        accountUpdate: AccountUpdate((b) {
           b
-            ..sex = sex
-            ..birthdateYear = birthdateYear
-            ..birthdateMonth = birthdateMonth
+            ..uid = uid
             ..nickname = nickname
-            ..preferredEmail = preferredEmail
+            ..prefferedEmail = prefferedEmail
             ..profileImageUrl = profileImageUrl;
         }),
       ),
@@ -167,6 +146,6 @@ class ApiService {
   }
 
   Future<ApiResponse<Leaderboard>> getLeaderboard() {
-    return _callApi(() async => _api.getLeaderboardApi().getLeaderboard());
+    return _callApi(() async => _api.getLeaderboardApi().getLeaderboard(leaderboardSize: 6));
   }
 }

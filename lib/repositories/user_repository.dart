@@ -36,31 +36,26 @@ class UserRepository {
   final DatabaseService _db;
   final FirebaseStorageService _firebaseStorageService;
 
+  String? get uid => _db.users.user?.id;
+
   Future<void> _sync() async {
     final account = await _apiService.getAccount();
     await account.whenOrNull(
       success: (data) async {
         final usersDao = _db.users;
 
-        if (data.user.nickname != null) {
-          await usersDao.updateNickname(data.user.nickname!);
-        }
-        if (data.user.birthdateYear != null && data.user.birthdateMonth != null) {
-          await usersDao.updateDateOfBirth(
-            DateWithoutDay(
-              month: monthFromInt(data.user.birthdateMonth!),
-              year: data.user.birthdateYear!,
-            ),
-          );
-        }
-        if (data.user.sex != null) {
-          await usersDao.updateSex(data.user.sex!);
-        }
-        if (data.user.preferredEmail != null) {
-          await usersDao.updateEmail(data.user.preferredEmail!);
-        }
-        if (data.user.profileImageUrl != null) {
-          await usersDao.updateProfileImageUrl(data.user.profileImageUrl!);
+        await usersDao.updateCurrentUser(UsersCompanion(id: Value<String>(data.uid)));
+        await usersDao.updateNickname(data.nickname);
+        await usersDao.updateDateOfBirth(
+          DateWithoutDay(
+            year: data.birthdate.year,
+            month: monthFromInt(data.birthdate.month),
+          ),
+        );
+        await usersDao.updateSex(data.sex);
+        await usersDao.updateEmail(data.prefferedEmail);
+        if (data.profileImageUrl != null) {
+          await usersDao.updateProfileImageUrl(data.profileImageUrl!);
         }
       },
     );
@@ -104,7 +99,8 @@ class UserRepository {
   }
 
   Future<bool> updateNickname(String nickname) async {
-    final apiResponse = await _apiService.updateAccountUser(nickname: nickname);
+    if (uid == null) return false;
+    final apiResponse = await _apiService.updateAccountUser(nickname: nickname, uid: uid!);
     final result = await apiResponse.map(
       success: (_) async {
         await _db.users.updateNickname(nickname);
@@ -116,7 +112,8 @@ class UserRepository {
   }
 
   Future<bool> updateEmail(String email) async {
-    final apiResponse = await _apiService.updateAccountUser(preferredEmail: email);
+    if (uid == null) return false;
+    final apiResponse = await _apiService.updateAccountUser(prefferedEmail: email, uid: uid!);
     final result = await apiResponse.map(
       success: (_) async {
         await _db.users.updateEmail(email);
@@ -136,13 +133,14 @@ class UserRepository {
   ///
   /// Returns `true` if the operation was successful.
   Future<bool> updateUserPhoto(Uint8List imageBytes) async {
+    if (uid == null) return false;
     final downloadUrl = await _firebaseStorageService.uploadData(
       imageBytes,
       ref: await _firebaseStorageService.userPhotoRef,
       settableMetadata: SettableMetadata(contentType: 'image/png'),
     );
     if (downloadUrl != null) {
-      final apiResponse = await _apiService.updateAccountUser(profileImageUrl: downloadUrl);
+      final apiResponse = await _apiService.updateAccountUser(profileImageUrl: downloadUrl, uid: uid!);
       final result = await apiResponse.map(
         success: (_) async {
           await _db.users.updateProfileImageUrl(downloadUrl);
@@ -159,11 +157,12 @@ class UserRepository {
   ///
   /// Returns `true` if the operation was successful.
   Future<bool> deleteUserPhoto() async {
+    if (uid == null) return false;
     final result = await _firebaseStorageService.deleteData(
       ref: await _firebaseStorageService.userPhotoRef,
     );
     if (result == true) {
-      final apiResponse = await _apiService.updateAccountUser(profileImageUrl: null);
+      final apiResponse = await _apiService.updateAccountUser(profileImageUrl: null, uid: uid!);
       final result = await apiResponse.map(
         success: (_) async {
           await _db.users.updateProfileImageUrl(null);
