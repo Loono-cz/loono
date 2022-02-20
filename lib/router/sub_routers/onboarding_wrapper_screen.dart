@@ -7,7 +7,7 @@ import 'package:loono/services/db/database.dart';
 import 'package:loono/services/notification_service.dart';
 import 'package:loono/services/onboarding_state_service.dart';
 import 'package:loono/utils/registry.dart';
-import 'package:loono_api/loono_api.dart' hide User;
+import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
 class OnboardingWrapperScreen extends StatefulWidget {
