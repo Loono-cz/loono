@@ -15,7 +15,7 @@ import 'package:loono/ui/widgets/confirmation_dialog.dart';
 import 'package:loono/ui/widgets/settings/avatar.dart';
 import 'package:loono/ui/widgets/settings/update_profile_item.dart';
 import 'package:loono/utils/registry.dart';
-import 'package:loono_api/loono_api.dart' hide User;
+import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
 class UpdateProfileScreen extends StatelessWidget {
