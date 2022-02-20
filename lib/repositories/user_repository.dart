@@ -8,7 +8,7 @@ import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/firebase_storage_service.dart';
-import 'package:loono_api/loono_api.dart' hide User;
+import 'package:loono_api/loono_api.dart';
 import 'package:moor/moor.dart';
 import 'package:uuid/uuid.dart';
 
@@ -36,15 +36,12 @@ class UserRepository {
   final DatabaseService _db;
   final FirebaseStorageService _firebaseStorageService;
 
-  String? get uid => _db.users.user?.id;
-
   Future<void> _sync() async {
     final account = await _apiService.getAccount();
     await account.whenOrNull(
       success: (data) async {
         final usersDao = _db.users;
 
-        await usersDao.updateCurrentUser(UsersCompanion(id: Value<String>(data.uid)));
         await usersDao.updateNickname(data.nickname);
         await usersDao.updateDateOfBirth(
           DateWithoutDay(
@@ -99,8 +96,7 @@ class UserRepository {
   }
 
   Future<bool> updateNickname(String nickname) async {
-    if (uid == null) return false;
-    final apiResponse = await _apiService.updateAccountUser(nickname: nickname, uid: uid!);
+    final apiResponse = await _apiService.updateAccountUser(nickname: nickname);
     final result = await apiResponse.map(
       success: (_) async {
         await _db.users.updateNickname(nickname);
@@ -112,8 +108,7 @@ class UserRepository {
   }
 
   Future<bool> updateEmail(String email) async {
-    if (uid == null) return false;
-    final apiResponse = await _apiService.updateAccountUser(prefferedEmail: email, uid: uid!);
+    final apiResponse = await _apiService.updateAccountUser(prefferedEmail: email);
     final result = await apiResponse.map(
       success: (_) async {
         await _db.users.updateEmail(email);
@@ -133,14 +128,13 @@ class UserRepository {
   ///
   /// Returns `true` if the operation was successful.
   Future<bool> updateUserPhoto(Uint8List imageBytes) async {
-    if (uid == null) return false;
     final downloadUrl = await _firebaseStorageService.uploadData(
       imageBytes,
       ref: await _firebaseStorageService.userPhotoRef,
       settableMetadata: SettableMetadata(contentType: 'image/png'),
     );
     if (downloadUrl != null) {
-      final apiResponse = await _apiService.updateAccountUser(profileImageUrl: downloadUrl, uid: uid!);
+      final apiResponse = await _apiService.updateAccountUser(profileImageUrl: downloadUrl);
       final result = await apiResponse.map(
         success: (_) async {
           await _db.users.updateProfileImageUrl(downloadUrl);
@@ -157,12 +151,11 @@ class UserRepository {
   ///
   /// Returns `true` if the operation was successful.
   Future<bool> deleteUserPhoto() async {
-    if (uid == null) return false;
     final result = await _firebaseStorageService.deleteData(
       ref: await _firebaseStorageService.userPhotoRef,
     );
     if (result == true) {
-      final apiResponse = await _apiService.updateAccountUser(profileImageUrl: null, uid: uid!);
+      final apiResponse = await _apiService.updateAccountUser(profileImageUrl: null);
       final result = await apiResponse.map(
         success: (_) async {
           await _db.users.updateProfileImageUrl(null);

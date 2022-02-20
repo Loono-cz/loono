@@ -93,7 +93,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
             children: [
               ..._leaderboardData!.top.asMap().entries.map(
                     (e) => LeaderboardTile(
-                      position: e.key,
+                      position: e.key + 1,
                       user: e.value,
                     ),
                   ),
@@ -104,7 +104,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
               ),
               ..._leaderboardData!.peers.asMap().entries.map(
                     (e) => LeaderboardTile(
-                      position: e.key,
+                      position: e.key + 1,
                       user: e.value,
                     ),
                   ),

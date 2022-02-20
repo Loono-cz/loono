@@ -55,16 +55,14 @@ class ApiService {
   }
 
   Future<ApiResponse<Account>> updateAccountUser({
-    required String uid,
     String? nickname,
     String? prefferedEmail,
     String? profileImageUrl,
   }) async {
     return _callApi(
-          () async => _api.getAccountApi().postAccount(
+      () async => _api.getAccountApi().postAccount(
         accountUpdate: AccountUpdate((b) {
           b
-            ..uid = uid
             ..nickname = nickname
             ..prefferedEmail = prefferedEmail
             ..profileImageUrl = profileImageUrl;
