@@ -51,7 +51,6 @@ import 'package:loono/ui/screens/splash_screen.dart';
 import 'package:loono/ui/screens/welcome.dart';
 import 'package:loono/ui/widgets/achievement_screen.dart';
 
-
 const _onboardingTransition = TransitionsBuilders.slideLeft;
 const _preventionTransition = TransitionsBuilders.slideLeft;
 
