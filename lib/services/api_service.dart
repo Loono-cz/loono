@@ -7,10 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/models/api_params.dart';
 import 'package:loono/models/api_response.dart';
+
 import 'package:loono_api/loono_api.dart';
 
 class ApiService {
-  const ApiService({required LoonoApi api}) : _api = api;
+  const ApiService({
+    required LoonoApi api,
+  }) : _api = api;
 
   final LoonoApi _api;
 
