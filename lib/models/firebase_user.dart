@@ -17,4 +17,6 @@ class AuthUser {
 
   Future<String> getIdToken({bool forceRefresh = false}) async =>
       _firebaseUser.getIdToken(forceRefresh);
+
+  Future<void> delete() async => _firebaseUser.delete();
 }
