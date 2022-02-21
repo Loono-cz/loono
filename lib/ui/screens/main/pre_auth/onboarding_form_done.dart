@@ -115,8 +115,15 @@ class OnboardingFormDoneScreen extends StatelessWidget {
                         showSnackBarError(context, message: context.l10n.something_went_wrong);
                         return;
                       }
-                      await _onboardUser(authUser, user, examinationQuestionnaires);
-                      await AutoRouter.of(context).push(NicknameRoute(authUser: authUser));
+                      final result = await _onboardUser(authUser, user, examinationQuestionnaires);
+                      result.when(
+                        success: (_) =>
+                            AutoRouter.of(context).push(NicknameRoute(authUser: authUser)),
+                        // TODO: we have to handle case if the server is down - user account will be created on Firebase but no information will be saved to BE.
+                        // User can then login in but will not see any data.
+                        failure: (_) =>
+                            showSnackBarError(context, message: context.l10n.something_went_wrong),
+                      );
                     },
                   );
                 },
@@ -138,8 +145,13 @@ class OnboardingFormDoneScreen extends StatelessWidget {
                         showSnackBarError(context, message: context.l10n.something_went_wrong);
                         return;
                       }
-                      await _onboardUser(authUser, user, examinationQuestionnaires);
-                      await AutoRouter.of(context).push(NicknameRoute(authUser: authUser));
+                      final result = await _onboardUser(authUser, user, examinationQuestionnaires);
+                      result.when(
+                        success: (_) =>
+                            AutoRouter.of(context).push(NicknameRoute(authUser: authUser)),
+                        failure: (_) =>
+                            showSnackBarError(context, message: context.l10n.something_went_wrong),
+                      );
                     },
                   );
                 },
