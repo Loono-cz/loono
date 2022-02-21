@@ -101,8 +101,6 @@ class ExaminationDetail extends StatelessWidget {
       );
     }
 
-    print(categorizedExamination.category);
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [

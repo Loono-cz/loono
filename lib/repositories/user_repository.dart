@@ -11,7 +11,6 @@ import 'package:loono/services/firebase_storage_service.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:moor/moor.dart';
 import 'package:uuid/uuid.dart';
-import 'package:built_collection/built_collection.dart';
 
 class UserRepository {
   UserRepository({
