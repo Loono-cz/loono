@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
@@ -111,12 +112,16 @@ class OnboardingFormDoneScreen extends StatelessWidget {
                       final user = _usersDao.user;
                       final examinationQuestionnaires =
                           await _examinationQuestionnairesDao.getAll();
-                      if (user == null || examinationQuestionnaires.isEmpty) {
-                        showSnackBarError(context, message: context.l10n.something_went_wrong);
-                        return;
-                      }
-                      await _onboardUser(authUser, user, examinationQuestionnaires);
-                      await AutoRouter.of(context).push(NicknameRoute(authUser: authUser));
+                      final result = await _onboardUser(authUser, user, examinationQuestionnaires);
+                      await result.when(
+                        success: (_) =>
+                            AutoRouter.of(context).push(NicknameRoute(authUser: authUser)),
+                        failure: (_) async {
+                          showSnackBarError(context, message: context.l10n.something_went_wrong);
+                          // delete account so user can not login without saving info to server first
+                          await authUser.delete();
+                        },
+                      );
                     },
                   );
                 },
@@ -134,12 +139,15 @@ class OnboardingFormDoneScreen extends StatelessWidget {
                       final user = _usersDao.user;
                       final examinationQuestionnaires =
                           await _examinationQuestionnairesDao.getAll();
-                      if (user == null || examinationQuestionnaires.isEmpty) {
-                        showSnackBarError(context, message: context.l10n.something_went_wrong);
-                        return;
-                      }
-                      await _onboardUser(authUser, user, examinationQuestionnaires);
-                      await AutoRouter.of(context).push(NicknameRoute(authUser: authUser));
+                      final result = await _onboardUser(authUser, user, examinationQuestionnaires);
+                      await result.when(
+                        success: (_) =>
+                            AutoRouter.of(context).push(NicknameRoute(authUser: authUser)),
+                        failure: (_) async {
+                          showSnackBarError(context, message: context.l10n.something_went_wrong);
+                          await authUser.delete();
+                        },
+                      );
                     },
                   );
                 },
@@ -171,9 +179,12 @@ class OnboardingFormDoneScreen extends StatelessWidget {
 
   Future<ApiResponse<Account>> _onboardUser(
     AuthUser authUser,
-    User user,
+    User? user,
     List<ExaminationQuestionnaire> examinationQuestionnaires,
-  ) {
+  ) async {
+    if (user == null || examinationQuestionnaires.isEmpty) {
+      return ApiResponse.failure(DioError(requestOptions: RequestOptions(path: '')));
+    }
     final generalPractitioner = examinationQuestionnaires.generalPractitionerQuestionnaire;
     final gynecologist = examinationQuestionnaires.gynecologistQuestionnaire;
     final dentist = examinationQuestionnaires.dentistQuestionnaire;
