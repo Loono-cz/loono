@@ -2,10 +2,15 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
-import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/repositories/examination_repository.dart';
+import 'package:loono/services/examinations_service.dart';
+import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/custom_date_picker.dart';
+import 'package:loono/utils/registry.dart';
+import 'package:provider/provider.dart';
 
 void showChangeLastVisitSheet({
   required BuildContext context,
@@ -108,10 +113,30 @@ class _DatePickerContentState extends State<_DatePickerContent> {
           ),
         ),
         const Spacer(),
-        LoonoButton(
+        AsyncLoonoApiButton(
           text: context.l10n.action_save,
           enabled: newDate != null,
-          onTap: () async {},
+          asyncCallback: () async {
+            /// code anchor: #postChangeLastExamiantion
+            final response = await registry.get<ExaminationRepository>().postExamination(
+                  widget.categorizedExamination.examination.examinationType,
+                  newDate: newDate,
+                  uuid: widget.categorizedExamination.examination.uuid,
+                  status: widget.categorizedExamination.examination.state,
+                  firstExam: true,
+                );
+
+            await response.map(
+              success: (res) async {
+                Provider.of<ExaminationsProvider>(context, listen: false)
+                    .updateExaminationsRecord(res.data);
+                await AutoRouter.of(context).pop();
+              },
+              failure: (err) async {
+                showSnackBarError(context, message: context.l10n.something_went_wrong);
+              },
+            );
+          },
         ),
         const SizedBox(
           height: 18,

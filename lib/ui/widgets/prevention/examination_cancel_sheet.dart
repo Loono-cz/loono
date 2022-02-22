@@ -82,14 +82,12 @@ void showCancelExaminationSheet({
               const SizedBox(
                 height: 60,
               ),
-
-              /// old api implementation, needs api update
               AsyncLoonoApiButton(
                 text: context.l10n.cancel_checkup,
                 asyncCallback: () async {
-                  final response = await registry
-                      .get<ExaminationRepository>()
-                      .cancelExamination(examinationType, id);
+                  /// code anchor: #postCancelExamiantion
+                  final response =
+                      await registry.get<ExaminationRepository>().cancelExamination(id);
                   await response.map(
                     success: (res) async {
                       await registry.get<CalendarRepository>().deleteEvent(examinationType);
