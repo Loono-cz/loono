@@ -1,4 +1,3 @@
-import 'package:built_collection/built_collection.dart';
 import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/helpers/type_converters.dart';
 import 'package:loono/services/db/database.dart';
@@ -29,8 +28,6 @@ class Users extends Table {
   DateTimeColumn get latestMapUpdateCheck => dateTime().nullable()();
 
   DateTimeColumn get latestMapUpdate => dateTime().nullable()();
-
-  TextColumn get badges => text().map(const BadgeListConverter()).nullable()();
 }
 
 @UseDao(tables: [Users])
@@ -91,9 +88,5 @@ class UsersDao extends DatabaseAccessor<AppDatabase> with _$UsersDaoMixin {
 
   Future<void> updateEmail(String email) async {
     await updateCurrentUser(UsersCompanion(email: Value(email)));
-  }
-
-  Future<void> updateBadges(BuiltList<Badge> badges) async {
-    await updateCurrentUser(UsersCompanion(badges: Value<BuiltList<Badge>>(badges)));
   }
 }

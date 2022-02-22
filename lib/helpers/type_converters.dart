@@ -5,13 +5,7 @@ import 'package:built_value/serializer.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono_api/loono_api.dart'
-    show
-        Badge,
-        ExaminationStatus,
-        ExaminationType,
-        Sex,
-        SimpleHealthcareProvider,
-        standardSerializers;
+    show ExaminationStatus, ExaminationType, Sex, SimpleHealthcareProvider, standardSerializers;
 import 'package:moor/moor.dart';
 
 class CategoryDbConverter extends TypeConverter<BuiltList<String>, String> {
@@ -124,31 +118,6 @@ class SimpleHealthcareListConverter
       standardSerializers.serialize(
         object,
         specifiedType: const FullType(BuiltList, [FullType(SimpleHealthcareProvider)]),
-      ),
-    );
-  }
-}
-
-class BadgeListConverter extends TypeConverter<BuiltList<Badge>, String> {
-  const BadgeListConverter();
-
-  @override
-  BuiltList<Badge>? mapToDart(String? fromDb) {
-    if (fromDb == null) return null;
-    return standardSerializers.deserialize(
-          jsonDecode(fromDb),
-          specifiedType: const FullType(BuiltList, [FullType(Badge)]),
-        ) as BuiltList<Badge>? ??
-        BuiltList.of(<Badge>[]);
-  }
-
-  @override
-  String? mapToSql(BuiltList<Badge>? value) {
-    if (value == null) return null;
-    return jsonEncode(
-      standardSerializers.serialize(
-        value,
-        specifiedType: const FullType(BuiltList, [FullType(Badge)]),
       ),
     );
   }

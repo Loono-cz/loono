@@ -168,11 +168,6 @@ class ExaminationDetail extends StatelessWidget {
                         _calendarRow(
                           '${context.l10n.last_visit}:\n$lastVisit',
                           onTap: () {
-                            /// must be first exam and no planned examination should exist
-                            if (!categorizedExamination.examination.firstExam &&
-                                categorizedExamination.examination.plannedDate != null) return;
-
-                            /// if "nevim", open question sheet else allow to change date
                             if (categorizedExamination.examination.lastConfirmedDate != null) {
                               final title =
                                   '${_sex == Sex.MALE ? l10n.last_checkup_question_male : l10n.last_checkup_question_female} $preposition $practitioner?';
