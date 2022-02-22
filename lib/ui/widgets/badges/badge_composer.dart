@@ -17,6 +17,8 @@ class BadgeComposer extends StatefulWidget {
 class _BadgeComposerState extends State<BadgeComposer> {
   final _usersDao = registry.get<DatabaseService>().users;
 
+  static const supportedBadgeLevels = 5;
+
   Widget _getGoogles(Sex sex, int level) {
     return level > 0
         ? SvgPicture.asset(
@@ -108,12 +110,12 @@ class _BadgeComposerState extends State<BadgeComposer> {
 
                 int _levelOf(BadgeType type) {
                   final level = badges.firstWhereOrNull((e) => e.type == type)?.level;
-                  if (level != null && level > 5) {
+                  if (level != null && level > supportedBadgeLevels) {
                     debugPrint(
-                      '⚠️ debug hint: app currently supports only 5 levels of badge assets ⚠️',
+                      '⚠️ debug hint: app currently supports only $supportedBadgeLevels levels of badge assets ⚠️',
                     );
                   }
-                  return level?.clamp(0, 5) ?? 0;
+                  return level?.clamp(0, supportedBadgeLevels) ?? 0;
                 }
 
                 return SizedBox(
