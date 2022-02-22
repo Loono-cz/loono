@@ -17,6 +17,8 @@ class BadgeComposer extends StatefulWidget {
 class _BadgeComposerState extends State<BadgeComposer> {
   final _usersDao = registry.get<DatabaseService>().users;
 
+  static const supportedBadgeLevels = 5;
+
   Widget _getGoogles(Sex sex, int level) {
     return level > 0
         ? SvgPicture.asset(
@@ -103,35 +105,42 @@ class _BadgeComposerState extends State<BadgeComposer> {
             StreamBuilder<User?>(
               stream: _usersDao.watchUser(),
               builder: (context, snapshot) {
-                final sex = snapshot.data?.sex ?? Sex.FEMALE;
+                final sex = snapshot.data?.sex;
                 final badges = snapshot.data?.badges ?? BuiltList(<Badge>[]);
 
                 int _levelOf(BadgeType type) {
-                  return badges.firstWhereOrNull((e) => e.type == type)?.level ?? 0;
+                  final level = badges.firstWhereOrNull((e) => e.type == type)?.level;
+                  if (level != null && level > supportedBadgeLevels) {
+                    debugPrint(
+                      '⚠️ debug hint: app currently supports only $supportedBadgeLevels levels of badge assets ⚠️',
+                    );
+                  }
+                  return level?.clamp(0, supportedBadgeLevels) ?? 0;
                 }
 
                 return SizedBox(
                   width: 180,
                   height: 300,
-                  child: Stack(
-                    key: ValueKey(sex),
-                    children: [
-                      _getCloak(_levelOf(BadgeType.COAT)),
-                      SvgPicture.asset(
-                        sex == Sex.MALE
-                            ? 'assets/badges/body/man.svg'
-                            : 'assets/badges/body/woman.svg',
-                      ),
-                      _getHeadband(_levelOf(BadgeType.HEADBAND)),
-                      _getGoogles(sex, _levelOf(BadgeType.GLASSES)),
-                      _getBoots(_levelOf(BadgeType.SHOES)),
-                      if (sex == Sex.FEMALE) _getArmour(_levelOf(BadgeType.TOP)),
-                      _getBelt(sex, _levelOf(BadgeType.BELT)),
-                      _getCloakBuckle(_levelOf(BadgeType.COAT)),
-                      _getGloves(sex, _levelOf(BadgeType.GLOVES)),
-                      _getShield(_levelOf(BadgeType.SHIELD)),
-                    ],
-                  ),
+                  child: sex != null
+                      ? Stack(
+                          children: [
+                            _getCloak(_levelOf(BadgeType.COAT)),
+                            SvgPicture.asset(
+                              sex == Sex.MALE
+                                  ? 'assets/badges/body/man.svg'
+                                  : 'assets/badges/body/woman.svg',
+                            ),
+                            _getHeadband(_levelOf(BadgeType.HEADBAND)),
+                            _getGoogles(sex, _levelOf(BadgeType.GLASSES)),
+                            _getBoots(_levelOf(BadgeType.SHOES)),
+                            if (sex == Sex.FEMALE) _getArmour(_levelOf(BadgeType.TOP)),
+                            _getBelt(sex, _levelOf(BadgeType.BELT)),
+                            _getCloakBuckle(_levelOf(BadgeType.COAT)),
+                            _getGloves(sex, _levelOf(BadgeType.GLOVES)),
+                            _getShield(_levelOf(BadgeType.SHIELD)),
+                          ],
+                        )
+                      : const SizedBox(),
                 );
               },
             ),

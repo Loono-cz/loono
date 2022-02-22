@@ -21,10 +21,12 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
       procedureQuestionTitle(pageContext, examinationType: examinationType).toLowerCase();
 
   Future<void> onChangeSubmit({required DateTime date}) async {
+    /// code anchor: #postChangeExamiantion
     final response = await registry.get<ExaminationRepository>().postExamination(
           examinationType,
           newDate: date,
           uuid: examination.examination.uuid,
+          firstExam: false,
         );
     await response.map(
       success: (res) async {
