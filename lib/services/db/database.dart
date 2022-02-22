@@ -1,3 +1,4 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:encrypted_moor/encrypted_moor.dart';
 import 'package:flutter/material.dart' as flutter;
 import 'package:loono/helpers/date_without_day.dart';

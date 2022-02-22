@@ -54,6 +54,7 @@ class UserRepository {
         if (data.profileImageUrl != null) {
           await usersDao.updateProfileImageUrl(data.profileImageUrl!);
         }
+        await usersDao.updateBadges(data.badges);
       },
     );
   }
