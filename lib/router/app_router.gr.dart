@@ -341,9 +341,10 @@ class AppRouter extends _i11.RootStackRouter {
           barrierDismissible: false);
     },
     AfterDeletionRoute.name: (routeData) {
+      final args = routeData.argsAs<AfterDeletionRouteArgs>();
       return _i11.CustomPage<void>(
           routeData: routeData,
-          child: const _i37.AfterDeletionScreen(),
+          child: _i37.AfterDeletionScreen(key: args.key, sex: args.sex),
           transitionsBuilder: _i11.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -1251,12 +1252,26 @@ class DeleteAccountRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i37.AfterDeletionScreen]
-class AfterDeletionRoute extends _i11.PageRouteInfo<void> {
-  const AfterDeletionRoute()
+class AfterDeletionRoute extends _i11.PageRouteInfo<AfterDeletionRouteArgs> {
+  AfterDeletionRoute({_i52.Key? key, required _i55.Sex sex})
       : super(AfterDeletionRoute.name,
-            path: 'settings/update-profile/delete/after-deletion');
+            path: 'settings/update-profile/delete/after-deletion',
+            args: AfterDeletionRouteArgs(key: key, sex: sex));
 
   static const String name = 'AfterDeletionRoute';
+}
+
+class AfterDeletionRouteArgs {
+  const AfterDeletionRouteArgs({this.key, required this.sex});
+
+  final _i52.Key? key;
+
+  final _i55.Sex sex;
+
+  @override
+  String toString() {
+    return 'AfterDeletionRouteArgs{key: $key, sex: $sex}';
+  }
 }
 
 /// generated route for

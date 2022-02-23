@@ -3,18 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
-import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/button.dart';
-import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
 class AfterDeletionScreen extends StatelessWidget {
-  const AfterDeletionScreen({Key? key}) : super(key: key);
-
-  Sex get _sex {
-    final user = registry.get<DatabaseService>().users.user;
-    return user?.sex ?? Sex.MALE;
-  }
+  const AfterDeletionScreen({Key? key, required this.sex}) : super(key: key);
+  final Sex sex;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +24,7 @@ class AfterDeletionScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 18.0),
                 child: Text(
-                  _sex == Sex.MALE
+                  sex == Sex.MALE
                       ? context.l10n.settings_after_deletion_what_we_can_do_male
                       : context.l10n.settings_after_deletion_what_we_can_do_female,
                   style: LoonoFonts.headerFontStyle,
@@ -41,7 +35,7 @@ class AfterDeletionScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 18.0),
                   child: Text(
-                    _sex == Sex.MALE
+                    sex == Sex.MALE
                         ? context.l10n.settings_after_deletion_give_as_feetback_male
                         : context.l10n.settings_after_deletion_give_as_feetback_female,
                     style: LoonoFonts.paragraphFontStyle,
