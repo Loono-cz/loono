@@ -20,9 +20,8 @@ class PointsDisplay extends StatelessWidget {
         StreamBuilder<User?>(
           stream: _usersDao.watchUser(),
           builder: (context, snapshot) {
-            // TODO: points
             return Text(
-              '0',
+              snapshot.data?.points.toString() ?? '0',
               style: LoonoFonts.primaryColorStyle.copyWith(
                 color: LoonoColors.primaryEnabled,
               ),
