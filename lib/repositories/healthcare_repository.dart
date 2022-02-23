@@ -29,8 +29,10 @@ class HealthcareProviderRepository {
   static const int UPDATE_CHECK_INTERVAL_IN_DAYS = 21;
 
   final _streamController = StreamController<HealtCareSyncState>.broadcast();
+
   Stream<HealtCareSyncState> get healtcareProvidersStream => _streamController.stream;
   HealtCareSyncState? _lastStreamValue;
+
   HealtCareSyncState? get lastStreamValue => _lastStreamValue;
 
   void _emitStreamValue(HealtCareSyncState state) {

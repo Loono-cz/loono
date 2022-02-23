@@ -17,6 +17,7 @@ class User extends DataClass implements Insertable<User> {
   final String? defaultDeviceCalendarId;
   final DateTime? latestMapUpdateCheck;
   final DateTime? latestMapUpdate;
+  final int points;
   final BuiltList<Badge>? badges;
   User(
       {required this.id,
@@ -28,6 +29,7 @@ class User extends DataClass implements Insertable<User> {
       this.defaultDeviceCalendarId,
       this.latestMapUpdateCheck,
       this.latestMapUpdate,
+      required this.points,
       this.badges});
   factory User.fromData(Map<String, dynamic> data, GeneratedDatabase db,
       {String? prefix}) {
@@ -51,6 +53,8 @@ class User extends DataClass implements Insertable<User> {
           data['${effectivePrefix}latest_map_update_check']),
       latestMapUpdate: const DateTimeType()
           .mapFromDatabaseResponse(data['${effectivePrefix}latest_map_update']),
+      points: const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}points'])!,
       badges: $UsersTable.$converter2.mapToDart(const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}badges'])),
     );
@@ -87,6 +91,7 @@ class User extends DataClass implements Insertable<User> {
     if (!nullToAbsent || latestMapUpdate != null) {
       map['latest_map_update'] = Variable<DateTime?>(latestMapUpdate);
     }
+    map['points'] = Variable<int>(points);
     if (!nullToAbsent || badges != null) {
       final converter = $UsersTable.$converter2;
       map['badges'] = Variable<String?>(converter.mapToSql(badges));
@@ -118,6 +123,7 @@ class User extends DataClass implements Insertable<User> {
       latestMapUpdate: latestMapUpdate == null && nullToAbsent
           ? const Value.absent()
           : Value(latestMapUpdate),
+      points: Value(points),
       badges:
           badges == null && nullToAbsent ? const Value.absent() : Value(badges),
     );
@@ -138,6 +144,7 @@ class User extends DataClass implements Insertable<User> {
       latestMapUpdateCheck:
           serializer.fromJson<DateTime?>(json['latestMapUpdateCheck']),
       latestMapUpdate: serializer.fromJson<DateTime?>(json['latestMapUpdate']),
+      points: serializer.fromJson<int>(json['points']),
       badges: serializer.fromJson<BuiltList<Badge>?>(json['badges']),
     );
   }
@@ -156,6 +163,7 @@ class User extends DataClass implements Insertable<User> {
       'latestMapUpdateCheck':
           serializer.toJson<DateTime?>(latestMapUpdateCheck),
       'latestMapUpdate': serializer.toJson<DateTime?>(latestMapUpdate),
+      'points': serializer.toJson<int>(points),
       'badges': serializer.toJson<BuiltList<Badge>?>(badges),
     };
   }
@@ -170,6 +178,7 @@ class User extends DataClass implements Insertable<User> {
           String? defaultDeviceCalendarId,
           DateTime? latestMapUpdateCheck,
           DateTime? latestMapUpdate,
+          int? points,
           BuiltList<Badge>? badges}) =>
       User(
         id: id ?? this.id,
@@ -182,6 +191,7 @@ class User extends DataClass implements Insertable<User> {
             defaultDeviceCalendarId ?? this.defaultDeviceCalendarId,
         latestMapUpdateCheck: latestMapUpdateCheck ?? this.latestMapUpdateCheck,
         latestMapUpdate: latestMapUpdate ?? this.latestMapUpdate,
+        points: points ?? this.points,
         badges: badges ?? this.badges,
       );
   @override
@@ -196,6 +206,7 @@ class User extends DataClass implements Insertable<User> {
           ..write('defaultDeviceCalendarId: $defaultDeviceCalendarId, ')
           ..write('latestMapUpdateCheck: $latestMapUpdateCheck, ')
           ..write('latestMapUpdate: $latestMapUpdate, ')
+          ..write('points: $points, ')
           ..write('badges: $badges')
           ..write(')'))
         .toString();
@@ -212,6 +223,7 @@ class User extends DataClass implements Insertable<User> {
       defaultDeviceCalendarId,
       latestMapUpdateCheck,
       latestMapUpdate,
+      points,
       badges);
   @override
   bool operator ==(Object other) =>
@@ -226,6 +238,7 @@ class User extends DataClass implements Insertable<User> {
           other.defaultDeviceCalendarId == this.defaultDeviceCalendarId &&
           other.latestMapUpdateCheck == this.latestMapUpdateCheck &&
           other.latestMapUpdate == this.latestMapUpdate &&
+          other.points == this.points &&
           other.badges == this.badges);
 }
 
@@ -239,6 +252,7 @@ class UsersCompanion extends UpdateCompanion<User> {
   final Value<String?> defaultDeviceCalendarId;
   final Value<DateTime?> latestMapUpdateCheck;
   final Value<DateTime?> latestMapUpdate;
+  final Value<int> points;
   final Value<BuiltList<Badge>?> badges;
   const UsersCompanion({
     this.id = const Value.absent(),
@@ -250,6 +264,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     this.defaultDeviceCalendarId = const Value.absent(),
     this.latestMapUpdateCheck = const Value.absent(),
     this.latestMapUpdate = const Value.absent(),
+    this.points = const Value.absent(),
     this.badges = const Value.absent(),
   });
   UsersCompanion.insert({
@@ -262,6 +277,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     this.defaultDeviceCalendarId = const Value.absent(),
     this.latestMapUpdateCheck = const Value.absent(),
     this.latestMapUpdate = const Value.absent(),
+    this.points = const Value.absent(),
     this.badges = const Value.absent(),
   }) : id = Value(id);
   static Insertable<User> custom({
@@ -274,6 +290,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     Expression<String?>? defaultDeviceCalendarId,
     Expression<DateTime?>? latestMapUpdateCheck,
     Expression<DateTime?>? latestMapUpdate,
+    Expression<int>? points,
     Expression<BuiltList<Badge>?>? badges,
   }) {
     return RawValuesInsertable({
@@ -288,6 +305,7 @@ class UsersCompanion extends UpdateCompanion<User> {
       if (latestMapUpdateCheck != null)
         'latest_map_update_check': latestMapUpdateCheck,
       if (latestMapUpdate != null) 'latest_map_update': latestMapUpdate,
+      if (points != null) 'points': points,
       if (badges != null) 'badges': badges,
     });
   }
@@ -302,6 +320,7 @@ class UsersCompanion extends UpdateCompanion<User> {
       Value<String?>? defaultDeviceCalendarId,
       Value<DateTime?>? latestMapUpdateCheck,
       Value<DateTime?>? latestMapUpdate,
+      Value<int>? points,
       Value<BuiltList<Badge>?>? badges}) {
     return UsersCompanion(
       id: id ?? this.id,
@@ -314,6 +333,7 @@ class UsersCompanion extends UpdateCompanion<User> {
           defaultDeviceCalendarId ?? this.defaultDeviceCalendarId,
       latestMapUpdateCheck: latestMapUpdateCheck ?? this.latestMapUpdateCheck,
       latestMapUpdate: latestMapUpdate ?? this.latestMapUpdate,
+      points: points ?? this.points,
       badges: badges ?? this.badges,
     );
   }
@@ -353,6 +373,9 @@ class UsersCompanion extends UpdateCompanion<User> {
     if (latestMapUpdate.present) {
       map['latest_map_update'] = Variable<DateTime?>(latestMapUpdate.value);
     }
+    if (points.present) {
+      map['points'] = Variable<int>(points.value);
+    }
     if (badges.present) {
       final converter = $UsersTable.$converter2;
       map['badges'] = Variable<String?>(converter.mapToSql(badges.value));
@@ -372,6 +395,7 @@ class UsersCompanion extends UpdateCompanion<User> {
           ..write('defaultDeviceCalendarId: $defaultDeviceCalendarId, ')
           ..write('latestMapUpdateCheck: $latestMapUpdateCheck, ')
           ..write('latestMapUpdate: $latestMapUpdate, ')
+          ..write('points: $points, ')
           ..write('badges: $badges')
           ..write(')'))
         .toString();
@@ -435,6 +459,13 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   late final GeneratedColumn<DateTime?> latestMapUpdate =
       GeneratedColumn<DateTime?>('latest_map_update', aliasedName, true,
           type: const IntType(), requiredDuringInsert: false);
+  final VerificationMeta _pointsMeta = const VerificationMeta('points');
+  @override
+  late final GeneratedColumn<int?> points = GeneratedColumn<int?>(
+      'points', aliasedName, false,
+      type: const IntType(),
+      requiredDuringInsert: false,
+      defaultValue: const Constant(0));
   final VerificationMeta _badgesMeta = const VerificationMeta('badges');
   @override
   late final GeneratedColumnWithTypeConverter<BuiltList<Badge>, String?>
@@ -452,6 +483,7 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
         defaultDeviceCalendarId,
         latestMapUpdateCheck,
         latestMapUpdate,
+        points,
         badges
       ];
   @override
@@ -502,6 +534,10 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
           _latestMapUpdateMeta,
           latestMapUpdate.isAcceptableOrUnknown(
               data['latest_map_update']!, _latestMapUpdateMeta));
+    }
+    if (data.containsKey('points')) {
+      context.handle(_pointsMeta,
+          points.isAcceptableOrUnknown(data['points']!, _pointsMeta));
     }
     context.handle(_badgesMeta, const VerificationResult.success());
     return context;

@@ -1,9 +1,6 @@
-import 'package:built_collection/built_collection.dart';
-import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/helpers/type_converters.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/utils/memoized_stream.dart';
-import 'package:loono_api/loono_api.dart';
 import 'package:moor/moor.dart';
 
 part 'user.g.dart';
@@ -29,6 +26,8 @@ class Users extends Table {
   DateTimeColumn get latestMapUpdateCheck => dateTime().nullable()();
 
   DateTimeColumn get latestMapUpdate => dateTime().nullable()();
+
+  IntColumn get points => integer().withDefault(const Constant(0))();
 
   TextColumn get badges => text().map(const BadgeListConverter()).nullable()();
 }
@@ -63,37 +62,11 @@ class UsersDao extends DatabaseAccessor<AppDatabase> with _$UsersDaoMixin {
     await into(users).insertOnConflictUpdate(user);
   }
 
-  Future<void> updateSex(Sex sex) async {
-    await updateCurrentUser(UsersCompanion(sex: Value<Sex>(sex)));
-  }
-
   Future<void> updateLatestMapUpdateCheck(DateTime date) async {
     await updateCurrentUser(UsersCompanion(latestMapUpdateCheck: Value(date)));
   }
 
   Future<void> updateLatestMapServerUpdate(DateTime date) async {
     await updateCurrentUser(UsersCompanion(latestMapUpdate: Value(date)));
-  }
-
-  Future<void> updateDateOfBirth(DateWithoutDay dateWithoutDay) async {
-    await updateCurrentUser(
-      UsersCompanion(dateOfBirth: Value<DateWithoutDay>(dateWithoutDay)),
-    );
-  }
-
-  Future<void> updateNickname(String nickname) async {
-    await updateCurrentUser(UsersCompanion(nickname: Value(nickname)));
-  }
-
-  Future<void> updateProfileImageUrl(String? url) async {
-    await updateCurrentUser(UsersCompanion(profileImageUrl: Value(url)));
-  }
-
-  Future<void> updateEmail(String email) async {
-    await updateCurrentUser(UsersCompanion(email: Value(email)));
-  }
-
-  Future<void> updateBadges(BuiltList<Badge> badges) async {
-    await updateCurrentUser(UsersCompanion(badges: Value<BuiltList<Badge>>(badges)));
   }
 }
