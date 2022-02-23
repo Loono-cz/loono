@@ -50,16 +50,12 @@ void showConfirmationSheet(
             const SizedBox(
               height: 60,
             ),
-
-            /// old api implementation, needs api update
             AsyncLoonoApiButton(
               text:
                   '${l10n.yes}, ${sex == Sex.MALE ? l10n.checkup_confirmation_male.toLowerCase() : l10n.checkup_confirmation_female.toLowerCase()}',
               asyncCallback: () async {
-                final response = await _api.confirmExamination(
-                  examinationType,
-                  uuid: uuid,
-                );
+                /// code anchor: #postConfirmExamiantion
+                final response = await _api.confirmExamination(uuid);
                 await response.map(
                   success: (res) async {
                     await _calendar.deleteOnlyDbEvent(examinationType);

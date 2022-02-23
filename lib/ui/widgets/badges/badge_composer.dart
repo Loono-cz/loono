@@ -21,9 +21,9 @@ class _BadgeComposerState extends State<BadgeComposer> {
   bool showGloves = true;
   bool showShield = true;
 
-  bool showControls = false;
+  static const supportedBadgeLevels = 5;
 
-  Widget _getGoogles() {
+  Widget _getGoogles(Sex sex, int level) {
     return level > 0
         ? SvgPicture.asset(
             'assets/badges/goggles-${sex == Sex.MALE ? 'man' : 'woman'}/level_$level.svg',
@@ -106,156 +106,48 @@ class _BadgeComposerState extends State<BadgeComposer> {
             const SizedBox(
               height: 40,
             ),
-            SizedBox(
-              width: 180,
-              height: 300,
-              child: Stack(
-                key: ValueKey(sex),
-                children: [
-                  if (showCloak) _getCloak(),
-                  SvgPicture.asset(
-                    sex == Sex.MALE ? 'assets/badges/body/man.svg' : 'assets/badges/body/woman.svg',
-                  ),
-                  if (showHeadband) _getHeadband(),
-                  if (showGoogles) _getGoogles(),
-                  if (showBoots) _getBoots(),
-                  if (sex == Sex.FEMALE && showArmour) _getArmour(),
-                  if (showBelt) _getBelt(),
-                  if (showCloak) _getCloakBuckle(),
-                  if (showGloves) _getGloves(),
-                  if (showShield) _getShield(),
-                ],
-              ),
+            StreamBuilder<User?>(
+              stream: _usersDao.watchUser(),
+              builder: (context, snapshot) {
+                final sex = snapshot.data?.sex;
+                final badges = snapshot.data?.badges ?? BuiltList(<Badge>[]);
+
+                int _levelOf(BadgeType type) {
+                  final level = badges.firstWhereOrNull((e) => e.type == type)?.level;
+                  if (level != null && level > supportedBadgeLevels) {
+                    debugPrint(
+                      '⚠️ debug hint: app currently supports only $supportedBadgeLevels levels of badge assets ⚠️',
+                    );
+                  }
+                  return level?.clamp(0, supportedBadgeLevels) ?? 0;
+                }
+
+                return SizedBox(
+                  width: 180,
+                  height: 300,
+                  child: sex != null
+                      ? Stack(
+                          children: [
+                            _getCloak(_levelOf(BadgeType.COAT)),
+                            SvgPicture.asset(
+                              sex == Sex.MALE
+                                  ? 'assets/badges/body/man.svg'
+                                  : 'assets/badges/body/woman.svg',
+                            ),
+                            _getHeadband(_levelOf(BadgeType.HEADBAND)),
+                            _getGoogles(sex, _levelOf(BadgeType.GLASSES)),
+                            _getBoots(_levelOf(BadgeType.SHOES)),
+                            if (sex == Sex.FEMALE) _getArmour(_levelOf(BadgeType.TOP)),
+                            _getBelt(sex, _levelOf(BadgeType.BELT)),
+                            _getCloakBuckle(_levelOf(BadgeType.COAT)),
+                            _getGloves(sex, _levelOf(BadgeType.GLOVES)),
+                            _getShield(_levelOf(BadgeType.SHIELD)),
+                          ],
+                        )
+                      : const SizedBox(),
+                );
+              },
             ),
-            Row(
-              children: [
-                const Text('controls'),
-                Switch(
-                  value: showControls,
-                  onChanged: (value) {
-                    setState(() {
-                      showControls = value;
-                    });
-                  },
-                ),
-              ],
-            ),
-            if (showControls)
-              Column(
-                children: [
-                  Row(
-                    children: [
-                      Switch(
-                        value: sex == Sex.FEMALE,
-                        onChanged: (value) {
-                          setState(() {
-                            sex = value ? Sex.FEMALE : Sex.MALE;
-                          });
-                        },
-                      ),
-                      Slider(
-                        value: level.toDouble(),
-                        max: 5,
-                        divisions: 5,
-                        label: level.round().toString(),
-                        onChanged: (double value) {
-                          setState(() {
-                            level = value.toInt();
-                          });
-                        },
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Switch(
-                        value: showGoogles,
-                        onChanged: (value) {
-                          setState(() {
-                            showGoogles = value;
-                          });
-                        },
-                      ),
-                      const Text('Goggles'),
-                      Switch(
-                        value: showArmour,
-                        onChanged: (value) {
-                          setState(() {
-                            showArmour = value;
-                          });
-                        },
-                      ),
-                      const Text('Armour')
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Switch(
-                        value: showHeadband,
-                        onChanged: (value) {
-                          setState(() {
-                            showHeadband = value;
-                          });
-                        },
-                      ),
-                      const Text('Headband'),
-                      Switch(
-                        value: showBelt,
-                        onChanged: (value) {
-                          setState(() {
-                            showBelt = value;
-                          });
-                        },
-                      ),
-                      const Text('Belt')
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Switch(
-                        value: showBoots,
-                        onChanged: (value) {
-                          setState(() {
-                            showBoots = value;
-                          });
-                        },
-                      ),
-                      const Text('Boots'),
-                      Switch(
-                        value: showCloak,
-                        onChanged: (value) {
-                          setState(() {
-                            showCloak = value;
-                          });
-                        },
-                      ),
-                      const Text('Cloak'),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Switch(
-                        value: showGloves,
-                        onChanged: (value) {
-                          setState(() {
-                            showGloves = value;
-                          });
-                        },
-                      ),
-                      const Text('Gloves'),
-                      Switch(
-                        value: showShield,
-                        onChanged: (value) {
-                          setState(() {
-                            showShield = value;
-                          });
-                        },
-                      ),
-                      const Text('Shield'),
-                    ],
-                  ),
-                ],
-              ),
           ],
         ),
       ],
