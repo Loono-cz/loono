@@ -4,8 +4,9 @@ import 'package:loono/constants.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/how/loon_botton_sheet.dart';
+import 'package:loono_api/loono_api.dart';
 
-void showHowItWentSheet(BuildContext context) {
+void showHowItWentSheet(BuildContext context, Sex sex) {
   showModalBottomSheet<void>(
     context: context,
     shape: RoundedRectangleBorder(
@@ -30,7 +31,8 @@ void showHowItWentSheet(BuildContext context) {
             const SizedBox(height: 20),
             LoonoButton.light(
               text: 'Něco jsem našla',
-              onTap: () => AutoRouter.of(context).push(const HasFindingRoute()),
+              onTap: () =>
+                  AutoRouter.of(context).push(HasFindingRoute(sex: sex)),
             ),
           ],
         ),

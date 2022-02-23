@@ -299,8 +299,12 @@ class AppRouter extends _i11.RootStackRouter {
           barrierDismissible: false);
     },
     MainRoute.name: (routeData) {
+      final args =
+          routeData.argsAs<MainRouteArgs>(orElse: () => const MainRouteArgs());
       return _i11.MaterialPageX<void>(
-          routeData: routeData, child: const _i32.MainScreen());
+          routeData: routeData,
+          child: _i32.MainScreen(
+              key: args.key, selectedIndex: args.selectedIndex));
     },
     EditNicknameRoute.name: (routeData) {
       final args = routeData.argsAs<EditNicknameRouteArgs>();
@@ -476,9 +480,10 @@ class AppRouter extends _i11.RootStackRouter {
           barrierDismissible: false);
     },
     HasFindingRoute.name: (routeData) {
+      final args = routeData.argsAs<HasFindingRouteArgs>();
       return _i11.CustomPage<void>(
           routeData: routeData,
-          child: const _i49.HasFindingScreen(),
+          child: _i49.HasFindingScreen(key: args.key, sex: args.sex),
           transitionsBuilder: _i11.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -1156,10 +1161,26 @@ class DentistDateRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i32.MainScreen]
-class MainRoute extends _i11.PageRouteInfo<void> {
-  const MainRoute() : super(MainRoute.name, path: '');
+class MainRoute extends _i11.PageRouteInfo<MainRouteArgs> {
+  MainRoute({_i52.Key? key, int selectedIndex = 0})
+      : super(MainRoute.name,
+            path: '',
+            args: MainRouteArgs(key: key, selectedIndex: selectedIndex));
 
   static const String name = 'MainRoute';
+}
+
+class MainRouteArgs {
+  const MainRouteArgs({this.key, this.selectedIndex = 0});
+
+  final _i52.Key? key;
+
+  final int selectedIndex;
+
+  @override
+  String toString() {
+    return 'MainRouteArgs{key: $key, selectedIndex: $selectedIndex}';
+  }
 }
 
 /// generated route for
@@ -1640,12 +1661,26 @@ class EducationalVideoRouteArgs {
 
 /// generated route for
 /// [_i49.HasFindingScreen]
-class HasFindingRoute extends _i11.PageRouteInfo<void> {
-  const HasFindingRoute()
+class HasFindingRoute extends _i11.PageRouteInfo<HasFindingRouteArgs> {
+  HasFindingRoute({_i52.Key? key, required _i55.Sex sex})
       : super(HasFindingRoute.name,
-            path: 'self-examination/detail/has-finding');
+            path: 'self-examination/detail/has-finding',
+            args: HasFindingRouteArgs(key: key, sex: sex));
 
   static const String name = 'HasFindingRoute';
+}
+
+class HasFindingRouteArgs {
+  const HasFindingRouteArgs({this.key, required this.sex});
+
+  final _i52.Key? key;
+
+  final _i55.Sex sex;
+
+  @override
+  String toString() {
+    return 'HasFindingRouteArgs{key: $key, sex: $sex}';
+  }
 }
 
 /// generated route for

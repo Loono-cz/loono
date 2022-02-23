@@ -262,7 +262,7 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                                     selfExamination.plannedDate?.toDateTime() as DateTime,
                                   )),
                           onTap: () {
-                            showHowItWentSheet(context);
+                            showHowItWentSheet(context, sex);
                           },
                         ),
                       ),
