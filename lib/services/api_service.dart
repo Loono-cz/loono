@@ -170,4 +170,10 @@ class ApiService {
   Future<ApiResponse<Leaderboard>> getLeaderboard() {
     return _callApi(() async => _api.getLeaderboardApi().getLeaderboard(leaderboardSize: 6));
   }
+
+  Future<ApiResponse<void>> deleteAccount() async {
+    return _callApi(
+      () async => _api.getAccountApi().deleteAccount(),
+    );
+  }
 }

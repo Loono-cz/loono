@@ -39,6 +39,7 @@ import 'package:loono/ui/screens/prevention/self_examination/educational_screen.
 import 'package:loono/ui/screens/prevention/self_examination/has_finding_screen.dart';
 import 'package:loono/ui/screens/prevention/self_examination/no_finding_screen.dart';
 import 'package:loono/ui/screens/prevention/self_examination/progress_screen.dart';
+import 'package:loono/ui/screens/settings/after_deletion.dart';
 import 'package:loono/ui/screens/settings/camera_photo_taken.dart';
 import 'package:loono/ui/screens/settings/delete_account.dart';
 import 'package:loono/ui/screens/settings/edit_email.dart';
@@ -217,6 +218,11 @@ const _settingsRoutes = <AutoRoute>[
   CustomRoute<void>(
     page: DeleteAccountScreen,
     path: 'settings/update-profile/delete',
+    transitionsBuilder: _settingsTransition,
+  ),
+  CustomRoute<void>(
+    page: AfterDeletionScreen,
+    path: 'settings/update-profile/delete/after-deletion',
     transitionsBuilder: _settingsTransition,
   ),
   CustomRoute<void>(

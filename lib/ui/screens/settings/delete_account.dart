@@ -3,10 +3,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/repositories/user_repository.dart';
+import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/settings/app_bar.dart';
 import 'package:loono/ui/widgets/settings/checkbox.dart';
+import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart';
 
 class DeleteAccountScreen extends StatefulWidget {
   const DeleteAccountScreen({
@@ -23,6 +29,11 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
   bool _isCheckedNotifications = false;
 
   bool get _areAllChecked => _isCheckedBadge & _isCheckedNotifications & _isCheckedHistory;
+
+  Sex get _sex {
+    final user = registry.get<DatabaseService>().users.user;
+    return user?.sex ?? Sex.MALE;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,6 +110,7 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                 child: LoonoButton(
                   onTap: () {
                     if (_areAllChecked) {
+                      final gender = _sex;
                       showCupertinoDialog<void>(
                         context: context,
                         builder: (BuildContext context) => CupertinoAlertDialog(
@@ -115,10 +127,25 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                             ),
                             CupertinoDialogAction(
                               child: Text(context.l10n.settings_delete_account_delete),
-                              onPressed: () {
-                                // TODO: Call API to delete account.
+                              onPressed: () async {
+                                final res = await registry.get<UserRepository>().deleteAccount();
+                                if (res) {
+                                  showSnackBarSuccess(
+                                    context,
+                                    message: context.l10n.settings_after_deletion_deleted,
+                                  );
+                                  await AutoRouter.of(context).pop();
+                                  await AutoRouter.of(context)
+                                      .push(AfterDeletionRoute(sex: gender));
+                                } else {
+                                  await AutoRouter.of(context).pop();
+                                  showSnackBarError(
+                                    context,
+                                    message: context.l10n.something_went_wrong,
+                                  );
+                                }
                               },
-                            )
+                            ),
                           ],
                         ),
                       );
