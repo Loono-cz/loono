@@ -27,7 +27,7 @@ class UserRepository {
       if (authUser != null) {
         debugPrint('log: SYNCING WITH API');
         await _authService.refreshUserToken(authUser);
-        unawaited(_sync());
+        unawaited(sync());
       }
     });
   }
@@ -37,7 +37,7 @@ class UserRepository {
   final DatabaseService _db;
   final FirebaseStorageService _firebaseStorageService;
 
-  Future<void> _sync() async {
+  Future<void> sync() async {
     final account = await _apiService.getAccount();
     await account.whenOrNull(
       success: (data) async {

@@ -76,6 +76,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
               text: context.l10n.leaderboard_points_help_button,
               onTap: () => widget.changePage(SettingsPage.points),
             ),
+            const SizedBox(height: 40.0),
           ],
         ),
       ),

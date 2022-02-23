@@ -7,6 +7,7 @@ import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/repositories/examination_repository.dart';
+import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/widgets/async_button.dart';
@@ -26,6 +27,7 @@ void showConfirmationSheet(
   final preposition = czechPreposition(context, examinationType: examinationType);
 
   Future<void> _completedAction() async {
+    await registry.get<UserRepository>().sync();
     AutoRouter.of(context).popUntilRouteWithName(const MainRoute().routeName);
   }
 
