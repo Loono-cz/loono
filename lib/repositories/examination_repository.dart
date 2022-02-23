@@ -22,9 +22,10 @@ class ExaminationRepository {
   }
 
   Future<ApiResponse<ExaminationRecord>> cancelExamination(
+    ExaminationType type,
     String uuid,
   ) async {
-    final response = await _apiService.cancelExamination(uuid);
+    final response = await _apiService.cancelExamination(type, uuid);
     return response;
   }
 
@@ -46,9 +47,10 @@ class ExaminationRepository {
   }
 
   Future<ApiResponse<ExaminationRecord>> confirmExamination(
+    ExaminationType type, {
     String? uuid,
-  ) async {
-    final response = await _apiService.confirmExamination(uuid);
+  }) async {
+    final response = await _apiService.confirmExamination(type, id: uuid);
     return response;
   }
 }

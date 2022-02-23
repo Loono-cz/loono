@@ -37,12 +37,8 @@ class LoonoAvatar extends StatelessWidget {
                     backgroundColor: Colors.white,
                     foregroundImage: imageProvider,
                   ),
-                  placeholder: (context, url) => Center(
-                    child: SizedBox(
-                      height: radius,
-                      width: radius,
-                      child: const CircularProgressIndicator(color: LoonoColors.primaryEnabled),
-                    ),
+                  placeholder: (context, url) => const Center(
+                    child: CircularProgressIndicator(color: LoonoColors.primaryEnabled),
                   ),
                   errorWidget: (context, url, dynamic error) =>
                       DefaultLoonoCircleAvatar(radius: radius),

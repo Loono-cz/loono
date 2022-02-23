@@ -108,6 +108,7 @@ class ApiService {
   }
 
   Future<ApiResponse<ExaminationRecord>> cancelExamination(
+    ExaminationType type,
     String uuid,
   ) async {
     return _callApi(
@@ -153,8 +154,9 @@ class ApiService {
   }
 
   Future<ApiResponse<ExaminationRecord>> confirmExamination(
+    ExaminationType type, {
     String? id,
-  ) async {
+  }) async {
     return _callApi(
       () async => _api.getExaminationsApi().completeExamination(
         examinationId: ExaminationId((newId) {

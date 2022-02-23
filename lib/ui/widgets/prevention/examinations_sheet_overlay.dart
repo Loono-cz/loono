@@ -35,17 +35,8 @@ class _ExaminationsSheetOverlayState extends State<ExaminationsSheetOverlay> {
               minChildSize: 0.15,
               builder: (context, scrollController) {
                 if (examinationsProvider.examinations == null) {
-                  return Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Text('žádné záznamy'),
-                        TextButton(
-                          onPressed: examinationsProvider.fetchExaminations,
-                          child: const Text('zkusit znovu'),
-                        ),
-                      ],
-                    ),
+                  return const Center(
+                    child: Text('žádné záznamy'),
                   );
                 }
                 final categorized = examinationsProvider.examinations!.examinations

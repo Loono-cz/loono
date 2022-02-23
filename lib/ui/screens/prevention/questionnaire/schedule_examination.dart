@@ -75,52 +75,33 @@ class ScheduleExamination extends StatelessWidget {
                                 DatePickerRoute(
                                   assetPath: _examinationType.assetPath,
                                   title: _examinationType.l10n_name,
-                                  onSkipButtonPress: (date) async {
-                                    /// code anchor: #postFirstNewExaminationUnknownDate
-                                    final response =
-                                        await registry.get<ExaminationRepository>().postExamination(
-                                              _examinationType,
-                                              uuid: examinationRecord.uuid,
-                                              firstExam: true,
-                                              status: ExaminationStatus.UNKNOWN,
-                                              newDate: date,
-                                            );
-                                    response.map(
-                                      success: (res) {
-                                        Provider.of<ExaminationsProvider>(context, listen: false)
-                                            .updateExaminationsRecord(res.data);
-                                        _appRouter.navigate(const MainScreenRouter());
-                                      },
-                                      failure: (err) {
-                                        _appRouter.navigate(const MainScreenRouter());
-                                        showSnackBarError(
-                                          context,
-                                          message: context.l10n.something_went_wrong,
-                                        );
-                                      },
-                                    );
+                                  onSkipButtonPress: (date) {
+                                    // TODO: save to api, navigate to updated ExaminationDetail
+                                    showSnackBarError(context, message: 'TODO: save to API');
+                                    _appRouter.navigate(const MainScreenRouter());
                                   },
                                   onContinueButtonPress: (pickedDate) async {
-                                    /// code anchor: #postFirstNewExaminationKnownDate
+                                    // TODO: save to api, navigate to updated ExaminationDetail
+
                                     final response =
                                         await registry.get<ExaminationRepository>().postExamination(
                                               _examinationType,
-                                              uuid: examinationRecord.uuid,
-                                              firstExam: true,
-                                              status: ExaminationStatus.CONFIRMED,
                                               newDate: pickedDate,
                                             );
                                     response.map(
                                       success: (res) {
                                         Provider.of<ExaminationsProvider>(context, listen: false)
-                                            .updateExaminationsRecord(res.data);
+                                            .fetchExaminations();
                                         _appRouter.navigate(const MainScreenRouter());
+
                                         showSnackBarSuccess(
                                           context,
                                           message: context.l10n.checkup_reminder_toast,
                                         );
                                       },
                                       failure: (err) {
+                                        Provider.of<ExaminationsProvider>(context, listen: false)
+                                            .fetchExaminations();
                                         _appRouter.navigate(const MainScreenRouter());
                                         showSnackBarError(
                                           context,
@@ -139,25 +120,10 @@ class ScheduleExamination extends StatelessWidget {
                   ),
                 );
               },
-              nextCallback2: () async {
-                /// code anchor: #postFirstNewExaminationMore
-                final response = await registry.get<ExaminationRepository>().postExamination(
-                      _examinationType,
-                      uuid: examinationRecord.uuid,
-                      firstExam: true,
-                      status: ExaminationStatus.UNKNOWN,
-                    );
-                await response.map(
-                  success: (res) async {
-                    Provider.of<ExaminationsProvider>(context, listen: false)
-                        .updateExaminationsRecord(res.data);
-                    await _appRouter.navigate(const MainScreenRouter());
-                  },
-                  failure: (error) async {
-                    await _appRouter.pop();
-                    showSnackBarError(context, message: context.l10n.something_went_wrong);
-                  },
-                );
+              nextCallback2: () {
+                // TODO: save to api, navigate to updated ExaminationDetail
+                showSnackBarError(context, message: 'TODO: save to API');
+                _appRouter.navigate(const MainScreenRouter());
               },
             ),
           ),

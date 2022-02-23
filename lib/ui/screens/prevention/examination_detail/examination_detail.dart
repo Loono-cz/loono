@@ -15,7 +15,6 @@ import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/calendar_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
-import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/faq_section.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/prevention/calendar_permission_sheet.dart';
@@ -28,7 +27,6 @@ import 'package:loono/ui/widgets/prevention/examination_progress_content.dart';
 import 'package:loono/ui/widgets/prevention/last_visit_sheet.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
-import 'package:provider/provider.dart';
 
 class ExaminationDetail extends StatelessWidget {
   ExaminationDetail({
@@ -89,22 +87,12 @@ class ExaminationDetail extends StatelessWidget {
 
     /// not ideal in build method but need context
     Future<void> _onPostNewCheckupSubmit({required DateTime date}) async {
-      /// code anchor: #postNewExamination
       final response = await registry.get<ExaminationRepository>().postExamination(
             _examinationType,
             newDate: date,
-            uuid: categorizedExamination.examination.uuid,
-            firstExam: false,
-            status: ExaminationStatus.NEW,
           );
-
       response.map(
         success: (res) {
-          Provider.of<ExaminationsProvider>(context, listen: false)
-              .updateExaminationsRecord(res.data);
-          AutoRouter.of(context).popUntilRouteWithName(
-            ExaminationDetailRoute(categorizedExamination: categorizedExamination).routeName,
-          );
           showSnackBarSuccess(context, message: context.l10n.checkup_reminder_toast);
         },
         failure: (err) {

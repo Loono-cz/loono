@@ -5,7 +5,6 @@ import 'dart:io';
 import 'package:device_calendar/device_calendar.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
-import 'package:dio_smart_retry/dio_smart_retry.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
@@ -67,22 +66,7 @@ Future<void> setup(AppFlavors flavor) async {
     flavor: flavor,
   );
 
-  final dio = Dio(defaultDioOptions);
-  dio.interceptors.add(
-    RetryInterceptor(
-      dio: dio,
-      logPrint: print,
-      retries: 3,
-      retryDelays: const [
-        // set delays between retries
-        Duration(seconds: 1),
-        Duration(seconds: 2),
-        Duration(seconds: 3),
-      ],
-    ),
-  );
-
-  registry.registerSingleton<LoonoApi>(LoonoApi(dio: dio));
+  registry.registerSingleton<LoonoApi>(LoonoApi(dio: Dio(defaultDioOptions)));
 
   registry.registerLazySingleton<GlobalKey<NavigatorState>>(() => GlobalKey());
   registry.registerLazySingleton<AppConfig>(() => config);
