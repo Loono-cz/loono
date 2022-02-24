@@ -51,4 +51,26 @@ class ExaminationRepository {
     final response = await _apiService.confirmExamination(uuid);
     return response;
   }
+
+  Future<ApiResponse<SelfExaminationCompletionInformation>> confirmSelfExamination(
+    SelfExaminationType type, {
+    required SelfExaminationResult result,
+  }) async {
+    final response = await _apiService.confirmSelfExamination(
+      type,
+      result: result,
+    );
+    return response;
+  }
+
+  Future<ApiResponse<SelfExaminationFindingResponse>> resultSelfExamination(
+    SelfExaminationType type, {
+    required SelfExaminationResult result,
+  }) async {
+    final response = await _apiService.resultSelfExamination(
+      type,
+      result: result,
+    );
+    return response;
+  }
 }

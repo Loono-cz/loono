@@ -48,6 +48,7 @@ extension ExaminationPreventionStatusExt on ExaminationPreventionStatus {
 }
 
 extension SelfExaminationPreventionStatusExt on SelfExaminationPreventionStatus {
+  // TODO: statuses might not be correct yet, confirmations needed
   SelfExaminationCategory calculateStatus([DateTime? dateTimeNow]) {
     final now = dateTimeNow ?? DateTime.now();
 
@@ -55,17 +56,27 @@ extension SelfExaminationPreventionStatusExt on SelfExaminationPreventionStatus 
       return const SelfExaminationCategory.first();
     }
 
-    if (plannedDate != null) {
-      if (plannedDate!.toDateTime().difference(now).inHours.abs() <=
-          SELF_EXAMINATION_ACTIVE_CARD_INTERVAL_IN_HOURS) {
-        return const SelfExaminationCategory.active();
-      } else {
-        return const SelfExaminationCategory.waiting();
+    if (history.first == SelfExaminationStatus.WAITING_FOR_RESULT) {
+      // TODO: what about hasFinding status
+      return const SelfExaminationCategory.hasFindingExpectingResult();
+    }
+
+    if (history.first == SelfExaminationStatus.WAITING_FOR_CHECKUP) {
+      return const SelfExaminationCategory.waiting();
+    }
+
+    if (history.first == SelfExaminationStatus.PLANNED) {
+      if (plannedDate != null) {
+        if (plannedDate!.toDateTime().difference(now).inHours.abs() <=
+            SELF_EXAMINATION_ACTIVE_CARD_INTERVAL_IN_HOURS) {
+          return const SelfExaminationCategory.active();
+        } else {
+          return const SelfExaminationCategory.waiting();
+        }
       }
     }
 
-    // TODO: Handle has finding + waiting for result. Need this info from API?
-    return const SelfExaminationCategory.hasFinding();
+    return const SelfExaminationCategory.waiting();
   }
 }
 
