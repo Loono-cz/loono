@@ -31,8 +31,7 @@ class User extends DataClass implements Insertable<User> {
       this.latestMapUpdate,
       required this.points,
       this.badges});
-  factory User.fromData(Map<String, dynamic> data, GeneratedDatabase db,
-      {String? prefix}) {
+  factory User.fromData(Map<String, dynamic> data, {String? prefix}) {
     final effectivePrefix = prefix ?? '';
     return User(
       id: const StringType()
@@ -547,7 +546,7 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
   User map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return User.fromData(data, attachedDatabase,
+    return User.fromData(data,
         prefix: tablePrefix != null ? '$tablePrefix.' : null);
   }
 
@@ -573,9 +572,7 @@ class CalendarEvent extends DataClass implements Insertable<CalendarEvent> {
       required this.deviceCalendarId,
       required this.calendarEventId,
       required this.date});
-  factory CalendarEvent.fromData(
-      Map<String, dynamic> data, GeneratedDatabase db,
-      {String? prefix}) {
+  factory CalendarEvent.fromData(Map<String, dynamic> data, {String? prefix}) {
     final effectivePrefix = prefix ?? '';
     return CalendarEvent(
       type: $CalendarEventsTable.$converter0.mapToDart(const StringType()
@@ -815,7 +812,7 @@ class $CalendarEventsTable extends CalendarEvents
   Set<GeneratedColumn> get $primaryKey => {type};
   @override
   CalendarEvent map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return CalendarEvent.fromData(data, attachedDatabase,
+    return CalendarEvent.fromData(data,
         prefix: tablePrefix != null ? '$tablePrefix.' : null);
   }
 
@@ -836,8 +833,7 @@ class ExaminationQuestionnaire extends DataClass
   final bool? firstExam;
   ExaminationQuestionnaire(
       {required this.type, required this.status, this.date, this.firstExam});
-  factory ExaminationQuestionnaire.fromData(
-      Map<String, dynamic> data, GeneratedDatabase db,
+  factory ExaminationQuestionnaire.fromData(Map<String, dynamic> data,
       {String? prefix}) {
     final effectivePrefix = prefix ?? '';
     return ExaminationQuestionnaire(
@@ -1081,7 +1077,7 @@ class $ExaminationQuestionnairesTable extends ExaminationQuestionnaires
   @override
   ExaminationQuestionnaire map(Map<String, dynamic> data,
       {String? tablePrefix}) {
-    return ExaminationQuestionnaire.fromData(data, attachedDatabase,
+    return ExaminationQuestionnaire.fromData(data,
         prefix: tablePrefix != null ? '$tablePrefix.' : null);
   }
 
