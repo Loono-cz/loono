@@ -100,7 +100,8 @@ mixin _$AuthFailure {
 
 /// @nodoc
 abstract class $AuthFailureCopyWith<$Res> {
-  factory $AuthFailureCopyWith(AuthFailure value, $Res Function(AuthFailure) then) =
+  factory $AuthFailureCopyWith(
+          AuthFailure value, $Res Function(AuthFailure) then) =
       _$AuthFailureCopyWithImpl<$Res>;
 }
 
@@ -115,7 +116,8 @@ class _$AuthFailureCopyWithImpl<$Res> implements $AuthFailureCopyWith<$Res> {
 
 /// @nodoc
 abstract class $UnknownFailureCopyWith<$Res> {
-  factory $UnknownFailureCopyWith(UnknownFailure value, $Res Function(UnknownFailure) then) =
+  factory $UnknownFailureCopyWith(
+          UnknownFailure value, $Res Function(UnknownFailure) then) =
       _$UnknownFailureCopyWithImpl<$Res>;
   $Res call({String? message});
 }
@@ -123,7 +125,8 @@ abstract class $UnknownFailureCopyWith<$Res> {
 /// @nodoc
 class _$UnknownFailureCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
     implements $UnknownFailureCopyWith<$Res> {
-  _$UnknownFailureCopyWithImpl(UnknownFailure _value, $Res Function(UnknownFailure) _then)
+  _$UnknownFailureCopyWithImpl(
+      UnknownFailure _value, $Res Function(UnknownFailure) _then)
       : super(_value, (v) => _then(v as UnknownFailure));
 
   @override
@@ -164,7 +167,8 @@ class _$UnknownFailure extends UnknownFailure {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override
@@ -252,19 +256,23 @@ abstract class UnknownFailure extends AuthFailure {
 
   String? get message;
   @JsonKey(ignore: true)
-  $UnknownFailureCopyWith<UnknownFailure> get copyWith => throw _privateConstructorUsedError;
+  $UnknownFailureCopyWith<UnknownFailure> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $NoMessageFailureCopyWith<$Res> {
-  factory $NoMessageFailureCopyWith(NoMessageFailure value, $Res Function(NoMessageFailure) then) =
+  factory $NoMessageFailureCopyWith(
+          NoMessageFailure value, $Res Function(NoMessageFailure) then) =
       _$NoMessageFailureCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$NoMessageFailureCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
+class _$NoMessageFailureCopyWithImpl<$Res>
+    extends _$AuthFailureCopyWithImpl<$Res>
     implements $NoMessageFailureCopyWith<$Res> {
-  _$NoMessageFailureCopyWithImpl(NoMessageFailure _value, $Res Function(NoMessageFailure) _then)
+  _$NoMessageFailureCopyWithImpl(
+      NoMessageFailure _value, $Res Function(NoMessageFailure) _then)
       : super(_value, (v) => _then(v as NoMessageFailure));
 
   @override
@@ -372,15 +380,18 @@ abstract class NoMessageFailure extends AuthFailure {
 
 /// @nodoc
 abstract class $AccountNotExistsCopyWith<$Res> {
-  factory $AccountNotExistsCopyWith(AccountNotExists value, $Res Function(AccountNotExists) then) =
+  factory $AccountNotExistsCopyWith(
+          AccountNotExists value, $Res Function(AccountNotExists) then) =
       _$AccountNotExistsCopyWithImpl<$Res>;
   $Res call({String? email});
 }
 
 /// @nodoc
-class _$AccountNotExistsCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
+class _$AccountNotExistsCopyWithImpl<$Res>
+    extends _$AuthFailureCopyWithImpl<$Res>
     implements $AccountNotExistsCopyWith<$Res> {
-  _$AccountNotExistsCopyWithImpl(AccountNotExists _value, $Res Function(AccountNotExists) _then)
+  _$AccountNotExistsCopyWithImpl(
+      AccountNotExists _value, $Res Function(AccountNotExists) _then)
       : super(_value, (v) => _then(v as AccountNotExists));
 
   @override
@@ -421,7 +432,8 @@ class _$AccountNotExists extends AccountNotExists {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(email));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(email));
 
   @JsonKey(ignore: true)
   @override
@@ -509,12 +521,14 @@ abstract class AccountNotExists extends AuthFailure {
 
   String? get email;
   @JsonKey(ignore: true)
-  $AccountNotExistsCopyWith<AccountNotExists> get copyWith => throw _privateConstructorUsedError;
+  $AccountNotExistsCopyWith<AccountNotExists> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $NetworkFailureCopyWith<$Res> {
-  factory $NetworkFailureCopyWith(NetworkFailure value, $Res Function(NetworkFailure) then) =
+  factory $NetworkFailureCopyWith(
+          NetworkFailure value, $Res Function(NetworkFailure) then) =
       _$NetworkFailureCopyWithImpl<$Res>;
   $Res call({String? message});
 }
@@ -522,7 +536,8 @@ abstract class $NetworkFailureCopyWith<$Res> {
 /// @nodoc
 class _$NetworkFailureCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
     implements $NetworkFailureCopyWith<$Res> {
-  _$NetworkFailureCopyWithImpl(NetworkFailure _value, $Res Function(NetworkFailure) _then)
+  _$NetworkFailureCopyWithImpl(
+      NetworkFailure _value, $Res Function(NetworkFailure) _then)
       : super(_value, (v) => _then(v as NetworkFailure));
 
   @override
@@ -563,7 +578,8 @@ class _$NetworkFailure extends NetworkFailure {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override
@@ -651,5 +667,6 @@ abstract class NetworkFailure extends AuthFailure {
 
   String? get message;
   @JsonKey(ignore: true)
-  $NetworkFailureCopyWith<NetworkFailure> get copyWith => throw _privateConstructorUsedError;
+  $NetworkFailureCopyWith<NetworkFailure> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -44,12 +44,14 @@ mixin _$Achievement {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AchievementCopyWith<Achievement> get copyWith => throw _privateConstructorUsedError;
+  $AchievementCopyWith<Achievement> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $AchievementCopyWith<$Res> {
-  factory $AchievementCopyWith(Achievement value, $Res Function(Achievement) then) =
+  factory $AchievementCopyWith(
+          Achievement value, $Res Function(Achievement) then) =
       _$AchievementCopyWithImpl<$Res>;
   $Res call({String id, int points});
 }
@@ -81,8 +83,10 @@ class _$AchievementCopyWithImpl<$Res> implements $AchievementCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$AchievementCopyWith<$Res> implements $AchievementCopyWith<$Res> {
-  factory _$AchievementCopyWith(_Achievement value, $Res Function(_Achievement) then) =
+abstract class _$AchievementCopyWith<$Res>
+    implements $AchievementCopyWith<$Res> {
+  factory _$AchievementCopyWith(
+          _Achievement value, $Res Function(_Achievement) then) =
       __$AchievementCopyWithImpl<$Res>;
   @override
   $Res call({String id, int points});
@@ -91,7 +95,8 @@ abstract class _$AchievementCopyWith<$Res> implements $AchievementCopyWith<$Res>
 /// @nodoc
 class __$AchievementCopyWithImpl<$Res> extends _$AchievementCopyWithImpl<$Res>
     implements _$AchievementCopyWith<$Res> {
-  __$AchievementCopyWithImpl(_Achievement _value, $Res Function(_Achievement) _then)
+  __$AchievementCopyWithImpl(
+      _Achievement _value, $Res Function(_Achievement) _then)
       : super(_value, (v) => _then(v as _Achievement));
 
   @override
@@ -120,7 +125,8 @@ class __$AchievementCopyWithImpl<$Res> extends _$AchievementCopyWithImpl<$Res>
 class _$_Achievement implements _Achievement {
   _$_Achievement({required this.id, this.points = 200});
 
-  factory _$_Achievement.fromJson(Map<String, dynamic> json) => _$$_AchievementFromJson(json);
+  factory _$_Achievement.fromJson(Map<String, dynamic> json) =>
+      _$$_AchievementFromJson(json);
 
   @override
   final String id;
@@ -143,7 +149,9 @@ class _$_Achievement implements _Achievement {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(id),
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(points));
 
   @JsonKey(ignore: true)
@@ -160,7 +168,8 @@ class _$_Achievement implements _Achievement {
 abstract class _Achievement implements Achievement {
   factory _Achievement({required String id, int points}) = _$_Achievement;
 
-  factory _Achievement.fromJson(Map<String, dynamic> json) = _$_Achievement.fromJson;
+  factory _Achievement.fromJson(Map<String, dynamic> json) =
+      _$_Achievement.fromJson;
 
   @override
   String get id;
@@ -168,5 +177,6 @@ abstract class _Achievement implements Achievement {
   int get points;
   @override
   @JsonKey(ignore: true)
-  _$AchievementCopyWith<_Achievement> get copyWith => throw _privateConstructorUsedError;
+  _$AchievementCopyWith<_Achievement> get copyWith =>
+      throw _privateConstructorUsedError;
 }
