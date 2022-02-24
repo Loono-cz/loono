@@ -74,16 +74,19 @@ mixin _$ExaminationCategory {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ScheduledSoonOrOverdueExamination value) scheduledSoonOrOverdue,
+    required TResult Function(ScheduledSoonOrOverdueExamination value)
+        scheduledSoonOrOverdue,
     required TResult Function(NewToScheduleExamination value) newToSchedule,
-    required TResult Function(UnknownLastVisitExamination value) unknownLastVisit,
+    required TResult Function(UnknownLastVisitExamination value)
+        unknownLastVisit,
     required TResult Function(ScheduledExamination value) scheduled,
     required TResult Function(WaitingExamination value) waiting,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ScheduledSoonOrOverdueExamination value)? scheduledSoonOrOverdue,
+    TResult Function(ScheduledSoonOrOverdueExamination value)?
+        scheduledSoonOrOverdue,
     TResult Function(NewToScheduleExamination value)? newToSchedule,
     TResult Function(UnknownLastVisitExamination value)? unknownLastVisit,
     TResult Function(ScheduledExamination value)? scheduled,
@@ -92,7 +95,8 @@ mixin _$ExaminationCategory {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ScheduledSoonOrOverdueExamination value)? scheduledSoonOrOverdue,
+    TResult Function(ScheduledSoonOrOverdueExamination value)?
+        scheduledSoonOrOverdue,
     TResult Function(NewToScheduleExamination value)? newToSchedule,
     TResult Function(UnknownLastVisitExamination value)? unknownLastVisit,
     TResult Function(ScheduledExamination value)? scheduled,
@@ -110,7 +114,8 @@ abstract class $ExaminationCategoryCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ExaminationCategoryCopyWithImpl<$Res> implements $ExaminationCategoryCopyWith<$Res> {
+class _$ExaminationCategoryCopyWithImpl<$Res>
+    implements $ExaminationCategoryCopyWith<$Res> {
   _$ExaminationCategoryCopyWithImpl(this._value, this._then);
 
   final ExaminationCategory _value;
@@ -120,7 +125,8 @@ class _$ExaminationCategoryCopyWithImpl<$Res> implements $ExaminationCategoryCop
 
 /// @nodoc
 abstract class $ScheduledSoonOrOverdueExaminationCopyWith<$Res> {
-  factory $ScheduledSoonOrOverdueExaminationCopyWith(ScheduledSoonOrOverdueExamination value,
+  factory $ScheduledSoonOrOverdueExaminationCopyWith(
+          ScheduledSoonOrOverdueExamination value,
           $Res Function(ScheduledSoonOrOverdueExamination) then) =
       _$ScheduledSoonOrOverdueExaminationCopyWithImpl<$Res>;
 }
@@ -129,17 +135,20 @@ abstract class $ScheduledSoonOrOverdueExaminationCopyWith<$Res> {
 class _$ScheduledSoonOrOverdueExaminationCopyWithImpl<$Res>
     extends _$ExaminationCategoryCopyWithImpl<$Res>
     implements $ScheduledSoonOrOverdueExaminationCopyWith<$Res> {
-  _$ScheduledSoonOrOverdueExaminationCopyWithImpl(ScheduledSoonOrOverdueExamination _value,
+  _$ScheduledSoonOrOverdueExaminationCopyWithImpl(
+      ScheduledSoonOrOverdueExamination _value,
       $Res Function(ScheduledSoonOrOverdueExamination) _then)
       : super(_value, (v) => _then(v as ScheduledSoonOrOverdueExamination));
 
   @override
-  ScheduledSoonOrOverdueExamination get _value => super._value as ScheduledSoonOrOverdueExamination;
+  ScheduledSoonOrOverdueExamination get _value =>
+      super._value as ScheduledSoonOrOverdueExamination;
 }
 
 /// @nodoc
 
-class _$ScheduledSoonOrOverdueExamination extends ScheduledSoonOrOverdueExamination {
+class _$ScheduledSoonOrOverdueExamination
+    extends ScheduledSoonOrOverdueExamination {
   const _$ScheduledSoonOrOverdueExamination() : super._();
 
   @override
@@ -150,7 +159,8 @@ class _$ScheduledSoonOrOverdueExamination extends ScheduledSoonOrOverdueExaminat
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is ScheduledSoonOrOverdueExamination);
+        (other.runtimeType == runtimeType &&
+            other is ScheduledSoonOrOverdueExamination);
   }
 
   @override
@@ -199,9 +209,11 @@ class _$ScheduledSoonOrOverdueExamination extends ScheduledSoonOrOverdueExaminat
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ScheduledSoonOrOverdueExamination value) scheduledSoonOrOverdue,
+    required TResult Function(ScheduledSoonOrOverdueExamination value)
+        scheduledSoonOrOverdue,
     required TResult Function(NewToScheduleExamination value) newToSchedule,
-    required TResult Function(UnknownLastVisitExamination value) unknownLastVisit,
+    required TResult Function(UnknownLastVisitExamination value)
+        unknownLastVisit,
     required TResult Function(ScheduledExamination value) scheduled,
     required TResult Function(WaitingExamination value) waiting,
   }) {
@@ -211,7 +223,8 @@ class _$ScheduledSoonOrOverdueExamination extends ScheduledSoonOrOverdueExaminat
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ScheduledSoonOrOverdueExamination value)? scheduledSoonOrOverdue,
+    TResult Function(ScheduledSoonOrOverdueExamination value)?
+        scheduledSoonOrOverdue,
     TResult Function(NewToScheduleExamination value)? newToSchedule,
     TResult Function(UnknownLastVisitExamination value)? unknownLastVisit,
     TResult Function(ScheduledExamination value)? scheduled,
@@ -223,7 +236,8 @@ class _$ScheduledSoonOrOverdueExamination extends ScheduledSoonOrOverdueExaminat
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ScheduledSoonOrOverdueExamination value)? scheduledSoonOrOverdue,
+    TResult Function(ScheduledSoonOrOverdueExamination value)?
+        scheduledSoonOrOverdue,
     TResult Function(NewToScheduleExamination value)? newToSchedule,
     TResult Function(UnknownLastVisitExamination value)? unknownLastVisit,
     TResult Function(ScheduledExamination value)? scheduled,
@@ -238,26 +252,29 @@ class _$ScheduledSoonOrOverdueExamination extends ScheduledSoonOrOverdueExaminat
 }
 
 abstract class ScheduledSoonOrOverdueExamination extends ExaminationCategory {
-  const factory ScheduledSoonOrOverdueExamination() = _$ScheduledSoonOrOverdueExamination;
+  const factory ScheduledSoonOrOverdueExamination() =
+      _$ScheduledSoonOrOverdueExamination;
   const ScheduledSoonOrOverdueExamination._() : super._();
 }
 
 /// @nodoc
 abstract class $NewToScheduleExaminationCopyWith<$Res> {
-  factory $NewToScheduleExaminationCopyWith(
-          NewToScheduleExamination value, $Res Function(NewToScheduleExamination) then) =
+  factory $NewToScheduleExaminationCopyWith(NewToScheduleExamination value,
+          $Res Function(NewToScheduleExamination) then) =
       _$NewToScheduleExaminationCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$NewToScheduleExaminationCopyWithImpl<$Res> extends _$ExaminationCategoryCopyWithImpl<$Res>
+class _$NewToScheduleExaminationCopyWithImpl<$Res>
+    extends _$ExaminationCategoryCopyWithImpl<$Res>
     implements $NewToScheduleExaminationCopyWith<$Res> {
-  _$NewToScheduleExaminationCopyWithImpl(
-      NewToScheduleExamination _value, $Res Function(NewToScheduleExamination) _then)
+  _$NewToScheduleExaminationCopyWithImpl(NewToScheduleExamination _value,
+      $Res Function(NewToScheduleExamination) _then)
       : super(_value, (v) => _then(v as NewToScheduleExamination));
 
   @override
-  NewToScheduleExamination get _value => super._value as NewToScheduleExamination;
+  NewToScheduleExamination get _value =>
+      super._value as NewToScheduleExamination;
 }
 
 /// @nodoc
@@ -322,9 +339,11 @@ class _$NewToScheduleExamination extends NewToScheduleExamination {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ScheduledSoonOrOverdueExamination value) scheduledSoonOrOverdue,
+    required TResult Function(ScheduledSoonOrOverdueExamination value)
+        scheduledSoonOrOverdue,
     required TResult Function(NewToScheduleExamination value) newToSchedule,
-    required TResult Function(UnknownLastVisitExamination value) unknownLastVisit,
+    required TResult Function(UnknownLastVisitExamination value)
+        unknownLastVisit,
     required TResult Function(ScheduledExamination value) scheduled,
     required TResult Function(WaitingExamination value) waiting,
   }) {
@@ -334,7 +353,8 @@ class _$NewToScheduleExamination extends NewToScheduleExamination {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ScheduledSoonOrOverdueExamination value)? scheduledSoonOrOverdue,
+    TResult Function(ScheduledSoonOrOverdueExamination value)?
+        scheduledSoonOrOverdue,
     TResult Function(NewToScheduleExamination value)? newToSchedule,
     TResult Function(UnknownLastVisitExamination value)? unknownLastVisit,
     TResult Function(ScheduledExamination value)? scheduled,
@@ -346,7 +366,8 @@ class _$NewToScheduleExamination extends NewToScheduleExamination {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ScheduledSoonOrOverdueExamination value)? scheduledSoonOrOverdue,
+    TResult Function(ScheduledSoonOrOverdueExamination value)?
+        scheduledSoonOrOverdue,
     TResult Function(NewToScheduleExamination value)? newToSchedule,
     TResult Function(UnknownLastVisitExamination value)? unknownLastVisit,
     TResult Function(ScheduledExamination value)? scheduled,
@@ -368,7 +389,8 @@ abstract class NewToScheduleExamination extends ExaminationCategory {
 /// @nodoc
 abstract class $UnknownLastVisitExaminationCopyWith<$Res> {
   factory $UnknownLastVisitExaminationCopyWith(
-          UnknownLastVisitExamination value, $Res Function(UnknownLastVisitExamination) then) =
+          UnknownLastVisitExamination value,
+          $Res Function(UnknownLastVisitExamination) then) =
       _$UnknownLastVisitExaminationCopyWithImpl<$Res>;
 }
 
@@ -376,12 +398,13 @@ abstract class $UnknownLastVisitExaminationCopyWith<$Res> {
 class _$UnknownLastVisitExaminationCopyWithImpl<$Res>
     extends _$ExaminationCategoryCopyWithImpl<$Res>
     implements $UnknownLastVisitExaminationCopyWith<$Res> {
-  _$UnknownLastVisitExaminationCopyWithImpl(
-      UnknownLastVisitExamination _value, $Res Function(UnknownLastVisitExamination) _then)
+  _$UnknownLastVisitExaminationCopyWithImpl(UnknownLastVisitExamination _value,
+      $Res Function(UnknownLastVisitExamination) _then)
       : super(_value, (v) => _then(v as UnknownLastVisitExamination));
 
   @override
-  UnknownLastVisitExamination get _value => super._value as UnknownLastVisitExamination;
+  UnknownLastVisitExamination get _value =>
+      super._value as UnknownLastVisitExamination;
 }
 
 /// @nodoc
@@ -397,7 +420,8 @@ class _$UnknownLastVisitExamination extends UnknownLastVisitExamination {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is UnknownLastVisitExamination);
+        (other.runtimeType == runtimeType &&
+            other is UnknownLastVisitExamination);
   }
 
   @override
@@ -446,9 +470,11 @@ class _$UnknownLastVisitExamination extends UnknownLastVisitExamination {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ScheduledSoonOrOverdueExamination value) scheduledSoonOrOverdue,
+    required TResult Function(ScheduledSoonOrOverdueExamination value)
+        scheduledSoonOrOverdue,
     required TResult Function(NewToScheduleExamination value) newToSchedule,
-    required TResult Function(UnknownLastVisitExamination value) unknownLastVisit,
+    required TResult Function(UnknownLastVisitExamination value)
+        unknownLastVisit,
     required TResult Function(ScheduledExamination value) scheduled,
     required TResult Function(WaitingExamination value) waiting,
   }) {
@@ -458,7 +484,8 @@ class _$UnknownLastVisitExamination extends UnknownLastVisitExamination {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ScheduledSoonOrOverdueExamination value)? scheduledSoonOrOverdue,
+    TResult Function(ScheduledSoonOrOverdueExamination value)?
+        scheduledSoonOrOverdue,
     TResult Function(NewToScheduleExamination value)? newToSchedule,
     TResult Function(UnknownLastVisitExamination value)? unknownLastVisit,
     TResult Function(ScheduledExamination value)? scheduled,
@@ -470,7 +497,8 @@ class _$UnknownLastVisitExamination extends UnknownLastVisitExamination {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ScheduledSoonOrOverdueExamination value)? scheduledSoonOrOverdue,
+    TResult Function(ScheduledSoonOrOverdueExamination value)?
+        scheduledSoonOrOverdue,
     TResult Function(NewToScheduleExamination value)? newToSchedule,
     TResult Function(UnknownLastVisitExamination value)? unknownLastVisit,
     TResult Function(ScheduledExamination value)? scheduled,
@@ -491,13 +519,14 @@ abstract class UnknownLastVisitExamination extends ExaminationCategory {
 
 /// @nodoc
 abstract class $ScheduledExaminationCopyWith<$Res> {
-  factory $ScheduledExaminationCopyWith(
-          ScheduledExamination value, $Res Function(ScheduledExamination) then) =
+  factory $ScheduledExaminationCopyWith(ScheduledExamination value,
+          $Res Function(ScheduledExamination) then) =
       _$ScheduledExaminationCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ScheduledExaminationCopyWithImpl<$Res> extends _$ExaminationCategoryCopyWithImpl<$Res>
+class _$ScheduledExaminationCopyWithImpl<$Res>
+    extends _$ExaminationCategoryCopyWithImpl<$Res>
     implements $ScheduledExaminationCopyWith<$Res> {
   _$ScheduledExaminationCopyWithImpl(
       ScheduledExamination _value, $Res Function(ScheduledExamination) _then)
@@ -569,9 +598,11 @@ class _$ScheduledExamination extends ScheduledExamination {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ScheduledSoonOrOverdueExamination value) scheduledSoonOrOverdue,
+    required TResult Function(ScheduledSoonOrOverdueExamination value)
+        scheduledSoonOrOverdue,
     required TResult Function(NewToScheduleExamination value) newToSchedule,
-    required TResult Function(UnknownLastVisitExamination value) unknownLastVisit,
+    required TResult Function(UnknownLastVisitExamination value)
+        unknownLastVisit,
     required TResult Function(ScheduledExamination value) scheduled,
     required TResult Function(WaitingExamination value) waiting,
   }) {
@@ -581,7 +612,8 @@ class _$ScheduledExamination extends ScheduledExamination {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ScheduledSoonOrOverdueExamination value)? scheduledSoonOrOverdue,
+    TResult Function(ScheduledSoonOrOverdueExamination value)?
+        scheduledSoonOrOverdue,
     TResult Function(NewToScheduleExamination value)? newToSchedule,
     TResult Function(UnknownLastVisitExamination value)? unknownLastVisit,
     TResult Function(ScheduledExamination value)? scheduled,
@@ -593,7 +625,8 @@ class _$ScheduledExamination extends ScheduledExamination {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ScheduledSoonOrOverdueExamination value)? scheduledSoonOrOverdue,
+    TResult Function(ScheduledSoonOrOverdueExamination value)?
+        scheduledSoonOrOverdue,
     TResult Function(NewToScheduleExamination value)? newToSchedule,
     TResult Function(UnknownLastVisitExamination value)? unknownLastVisit,
     TResult Function(ScheduledExamination value)? scheduled,
@@ -620,7 +653,8 @@ abstract class $WaitingExaminationCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$WaitingExaminationCopyWithImpl<$Res> extends _$ExaminationCategoryCopyWithImpl<$Res>
+class _$WaitingExaminationCopyWithImpl<$Res>
+    extends _$ExaminationCategoryCopyWithImpl<$Res>
     implements $WaitingExaminationCopyWith<$Res> {
   _$WaitingExaminationCopyWithImpl(
       WaitingExamination _value, $Res Function(WaitingExamination) _then)
@@ -692,9 +726,11 @@ class _$WaitingExamination extends WaitingExamination {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ScheduledSoonOrOverdueExamination value) scheduledSoonOrOverdue,
+    required TResult Function(ScheduledSoonOrOverdueExamination value)
+        scheduledSoonOrOverdue,
     required TResult Function(NewToScheduleExamination value) newToSchedule,
-    required TResult Function(UnknownLastVisitExamination value) unknownLastVisit,
+    required TResult Function(UnknownLastVisitExamination value)
+        unknownLastVisit,
     required TResult Function(ScheduledExamination value) scheduled,
     required TResult Function(WaitingExamination value) waiting,
   }) {
@@ -704,7 +740,8 @@ class _$WaitingExamination extends WaitingExamination {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ScheduledSoonOrOverdueExamination value)? scheduledSoonOrOverdue,
+    TResult Function(ScheduledSoonOrOverdueExamination value)?
+        scheduledSoonOrOverdue,
     TResult Function(NewToScheduleExamination value)? newToSchedule,
     TResult Function(UnknownLastVisitExamination value)? unknownLastVisit,
     TResult Function(ScheduledExamination value)? scheduled,
@@ -716,7 +753,8 @@ class _$WaitingExamination extends WaitingExamination {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ScheduledSoonOrOverdueExamination value)? scheduledSoonOrOverdue,
+    TResult Function(ScheduledSoonOrOverdueExamination value)?
+        scheduledSoonOrOverdue,
     TResult Function(NewToScheduleExamination value)? newToSchedule,
     TResult Function(UnknownLastVisitExamination value)? unknownLastVisit,
     TResult Function(ScheduledExamination value)? scheduled,
