@@ -1,7 +1,7 @@
+import 'package:drift/drift.dart';
 import 'package:loono/helpers/type_converters.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/utils/memoized_stream.dart';
-import 'package:moor/moor.dart';
 
 part 'user.g.dart';
 
@@ -32,7 +32,7 @@ class Users extends Table {
   TextColumn get badges => text().map(const BadgeListConverter()).nullable()();
 }
 
-@UseDao(tables: [Users])
+@DriftAccessor(tables: [Users])
 class UsersDao extends DatabaseAccessor<AppDatabase> with _$UsersDaoMixin {
   UsersDao(AppDatabase db) : super(db) {
     userStream = MemoizedStream(watchUser());

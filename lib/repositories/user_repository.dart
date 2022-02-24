@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:built_collection/built_collection.dart';
+import 'package:drift/drift.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:loono/helpers/date_without_day.dart';
@@ -10,7 +11,6 @@ import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/firebase_storage_service.dart';
 import 'package:loono_api/loono_api.dart';
-import 'package:moor/moor.dart';
 import 'package:uuid/uuid.dart';
 
 class UserRepository {

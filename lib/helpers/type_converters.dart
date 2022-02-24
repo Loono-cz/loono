@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/serializer.dart';
+import 'package:drift/drift.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono_api/loono_api.dart'
@@ -12,7 +13,6 @@ import 'package:loono_api/loono_api.dart'
         Sex,
         SimpleHealthcareProvider,
         standardSerializers;
-import 'package:moor/moor.dart';
 
 class CategoryDbConverter extends TypeConverter<BuiltList<String>, String> {
   const CategoryDbConverter();

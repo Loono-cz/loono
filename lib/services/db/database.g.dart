@@ -131,7 +131,7 @@ class User extends DataClass implements Insertable<User> {
 
   factory User.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
-    serializer ??= moorRuntimeOptions.defaultSerializer;
+    serializer ??= driftRuntimeOptions.defaultSerializer;
     return User(
       id: serializer.fromJson<String>(json['id']),
       sex: serializer.fromJson<Sex?>(json['sex']),
@@ -150,7 +150,7 @@ class User extends DataClass implements Insertable<User> {
   }
   @override
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= moorRuntimeOptions.defaultSerializer;
+    serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'id': serializer.toJson<String>(id),
       'sex': serializer.toJson<Sex?>(sex),
@@ -612,7 +612,7 @@ class CalendarEvent extends DataClass implements Insertable<CalendarEvent> {
 
   factory CalendarEvent.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
-    serializer ??= moorRuntimeOptions.defaultSerializer;
+    serializer ??= driftRuntimeOptions.defaultSerializer;
     return CalendarEvent(
       type: serializer.fromJson<ExaminationType>(json['type']),
       deviceCalendarId: serializer.fromJson<String>(json['deviceCalendarId']),
@@ -622,7 +622,7 @@ class CalendarEvent extends DataClass implements Insertable<CalendarEvent> {
   }
   @override
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= moorRuntimeOptions.defaultSerializer;
+    serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'type': serializer.toJson<ExaminationType>(type),
       'deviceCalendarId': serializer.toJson<String>(deviceCalendarId),
@@ -886,7 +886,7 @@ class ExaminationQuestionnaire extends DataClass
 
   factory ExaminationQuestionnaire.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
-    serializer ??= moorRuntimeOptions.defaultSerializer;
+    serializer ??= driftRuntimeOptions.defaultSerializer;
     return ExaminationQuestionnaire(
       type: serializer.fromJson<ExaminationType>(json['type']),
       status: serializer.fromJson<ExaminationStatus>(json['status']),
@@ -896,7 +896,7 @@ class ExaminationQuestionnaire extends DataClass
   }
   @override
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= moorRuntimeOptions.defaultSerializer;
+    serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'type': serializer.toJson<ExaminationType>(type),
       'status': serializer.toJson<ExaminationStatus>(status),
