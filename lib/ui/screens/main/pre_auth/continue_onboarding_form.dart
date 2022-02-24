@@ -34,7 +34,7 @@ class ContinueOnboardingFormScreen extends StatelessWidget {
                   SkipButton(
                     text: l10n.already_have_an_account_skip_button,
                     onPressed: () {
-                      if (AutoRouter.of(context).isRouteActive(PreAuthMainRoute().routeName)) {
+                      if (AutoRouter.of(context).isRouteActive(PreAuthMainRoute.name)) {
                         AutoRouter.of(context).popUntilRoot();
                       }
                       // a hacky way till https://github.com/Milad-Akarie/auto_route_library/issues/496 is solved
