@@ -65,8 +65,8 @@ class UsersDao extends DatabaseAccessor<AppDatabase> with _$UsersDaoMixin {
     await update(users).write(usersCompanion);
   }
 
-  Future<void> upsert(UsersCompanion usersCompanion) async {
-    await into(users).insertOnConflictUpdate(usersCompanion);
+  Future<void> insert(UsersCompanion usersCompanion) async {
+    await into(users).insert(usersCompanion);
   }
 
   Future<void> updateLatestMapUpdateCheck(DateTime date) async {

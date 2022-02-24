@@ -62,7 +62,7 @@ class UserRepository {
 
   Future<void> createUser() async {
     await _db.users.deleteAll();
-    await _db.users.upsert(UsersCompanion.insert());
+    await _db.users.insert(UsersCompanion.insert());
   }
 
   Future<void> createUserIfNotExists() async {
