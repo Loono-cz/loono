@@ -29,30 +29,26 @@ class User extends DataClass implements Insertable<User> {
       this.latestMapUpdateCheck,
       this.latestMapUpdate,
       this.badges});
-  factory User.fromData(Map<String, dynamic> data, GeneratedDatabase db,
-      {String? prefix}) {
+  factory User.fromData(Map<String, dynamic> data, GeneratedDatabase db, {String? prefix}) {
     final effectivePrefix = prefix ?? '';
     return User(
-      id: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
-      sex: $UsersTable.$converter0.mapToDart(const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}sex'])),
-      dateOfBirth: $UsersTable.$converter1.mapToDart(const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}date_of_birth'])),
-      nickname: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}nickname']),
-      email: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}email']),
-      profileImageUrl: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}profile_image_url']),
-      defaultDeviceCalendarId: const StringType().mapFromDatabaseResponse(
-          data['${effectivePrefix}default_device_calendar_id']),
-      latestMapUpdateCheck: const DateTimeType().mapFromDatabaseResponse(
-          data['${effectivePrefix}latest_map_update_check']),
-      latestMapUpdate: const DateTimeType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}latest_map_update']),
-      badges: $UsersTable.$converter2.mapToDart(const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}badges'])),
+      id: const StringType().mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
+      sex: $UsersTable.$converter0
+          .mapToDart(const StringType().mapFromDatabaseResponse(data['${effectivePrefix}sex'])),
+      dateOfBirth: $UsersTable.$converter1.mapToDart(
+          const StringType().mapFromDatabaseResponse(data['${effectivePrefix}date_of_birth'])),
+      nickname: const StringType().mapFromDatabaseResponse(data['${effectivePrefix}nickname']),
+      email: const StringType().mapFromDatabaseResponse(data['${effectivePrefix}email']),
+      profileImageUrl:
+          const StringType().mapFromDatabaseResponse(data['${effectivePrefix}profile_image_url']),
+      defaultDeviceCalendarId: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}default_device_calendar_id']),
+      latestMapUpdateCheck: const DateTimeType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}latest_map_update_check']),
+      latestMapUpdate:
+          const DateTimeType().mapFromDatabaseResponse(data['${effectivePrefix}latest_map_update']),
+      badges: $UsersTable.$converter2
+          .mapToDart(const StringType().mapFromDatabaseResponse(data['${effectivePrefix}badges'])),
     );
   }
   @override
@@ -77,12 +73,10 @@ class User extends DataClass implements Insertable<User> {
       map['profile_image_url'] = Variable<String?>(profileImageUrl);
     }
     if (!nullToAbsent || defaultDeviceCalendarId != null) {
-      map['default_device_calendar_id'] =
-          Variable<String?>(defaultDeviceCalendarId);
+      map['default_device_calendar_id'] = Variable<String?>(defaultDeviceCalendarId);
     }
     if (!nullToAbsent || latestMapUpdateCheck != null) {
-      map['latest_map_update_check'] =
-          Variable<DateTime?>(latestMapUpdateCheck);
+      map['latest_map_update_check'] = Variable<DateTime?>(latestMapUpdateCheck);
     }
     if (!nullToAbsent || latestMapUpdate != null) {
       map['latest_map_update'] = Variable<DateTime?>(latestMapUpdate);
@@ -98,33 +92,24 @@ class User extends DataClass implements Insertable<User> {
     return UsersCompanion(
       id: Value(id),
       sex: sex == null && nullToAbsent ? const Value.absent() : Value(sex),
-      dateOfBirth: dateOfBirth == null && nullToAbsent
-          ? const Value.absent()
-          : Value(dateOfBirth),
-      nickname: nickname == null && nullToAbsent
-          ? const Value.absent()
-          : Value(nickname),
-      email:
-          email == null && nullToAbsent ? const Value.absent() : Value(email),
-      profileImageUrl: profileImageUrl == null && nullToAbsent
-          ? const Value.absent()
-          : Value(profileImageUrl),
+      dateOfBirth: dateOfBirth == null && nullToAbsent ? const Value.absent() : Value(dateOfBirth),
+      nickname: nickname == null && nullToAbsent ? const Value.absent() : Value(nickname),
+      email: email == null && nullToAbsent ? const Value.absent() : Value(email),
+      profileImageUrl:
+          profileImageUrl == null && nullToAbsent ? const Value.absent() : Value(profileImageUrl),
       defaultDeviceCalendarId: defaultDeviceCalendarId == null && nullToAbsent
           ? const Value.absent()
           : Value(defaultDeviceCalendarId),
       latestMapUpdateCheck: latestMapUpdateCheck == null && nullToAbsent
           ? const Value.absent()
           : Value(latestMapUpdateCheck),
-      latestMapUpdate: latestMapUpdate == null && nullToAbsent
-          ? const Value.absent()
-          : Value(latestMapUpdate),
-      badges:
-          badges == null && nullToAbsent ? const Value.absent() : Value(badges),
+      latestMapUpdate:
+          latestMapUpdate == null && nullToAbsent ? const Value.absent() : Value(latestMapUpdate),
+      badges: badges == null && nullToAbsent ? const Value.absent() : Value(badges),
     );
   }
 
-  factory User.fromJson(Map<String, dynamic> json,
-      {ValueSerializer? serializer}) {
+  factory User.fromJson(Map<String, dynamic> json, {ValueSerializer? serializer}) {
     serializer ??= moorRuntimeOptions.defaultSerializer;
     return User(
       id: serializer.fromJson<String>(json['id']),
@@ -133,10 +118,8 @@ class User extends DataClass implements Insertable<User> {
       nickname: serializer.fromJson<String?>(json['nickname']),
       email: serializer.fromJson<String?>(json['email']),
       profileImageUrl: serializer.fromJson<String?>(json['profileImageUrl']),
-      defaultDeviceCalendarId:
-          serializer.fromJson<String?>(json['defaultDeviceCalendarId']),
-      latestMapUpdateCheck:
-          serializer.fromJson<DateTime?>(json['latestMapUpdateCheck']),
+      defaultDeviceCalendarId: serializer.fromJson<String?>(json['defaultDeviceCalendarId']),
+      latestMapUpdateCheck: serializer.fromJson<DateTime?>(json['latestMapUpdateCheck']),
       latestMapUpdate: serializer.fromJson<DateTime?>(json['latestMapUpdate']),
       badges: serializer.fromJson<BuiltList<Badge>?>(json['badges']),
     );
@@ -151,10 +134,8 @@ class User extends DataClass implements Insertable<User> {
       'nickname': serializer.toJson<String?>(nickname),
       'email': serializer.toJson<String?>(email),
       'profileImageUrl': serializer.toJson<String?>(profileImageUrl),
-      'defaultDeviceCalendarId':
-          serializer.toJson<String?>(defaultDeviceCalendarId),
-      'latestMapUpdateCheck':
-          serializer.toJson<DateTime?>(latestMapUpdateCheck),
+      'defaultDeviceCalendarId': serializer.toJson<String?>(defaultDeviceCalendarId),
+      'latestMapUpdateCheck': serializer.toJson<DateTime?>(latestMapUpdateCheck),
       'latestMapUpdate': serializer.toJson<DateTime?>(latestMapUpdate),
       'badges': serializer.toJson<BuiltList<Badge>?>(badges),
     };
@@ -178,8 +159,7 @@ class User extends DataClass implements Insertable<User> {
         nickname: nickname ?? this.nickname,
         email: email ?? this.email,
         profileImageUrl: profileImageUrl ?? this.profileImageUrl,
-        defaultDeviceCalendarId:
-            defaultDeviceCalendarId ?? this.defaultDeviceCalendarId,
+        defaultDeviceCalendarId: defaultDeviceCalendarId ?? this.defaultDeviceCalendarId,
         latestMapUpdateCheck: latestMapUpdateCheck ?? this.latestMapUpdateCheck,
         latestMapUpdate: latestMapUpdate ?? this.latestMapUpdate,
         badges: badges ?? this.badges,
@@ -202,17 +182,8 @@ class User extends DataClass implements Insertable<User> {
   }
 
   @override
-  int get hashCode => Object.hash(
-      id,
-      sex,
-      dateOfBirth,
-      nickname,
-      email,
-      profileImageUrl,
-      defaultDeviceCalendarId,
-      latestMapUpdateCheck,
-      latestMapUpdate,
-      badges);
+  int get hashCode => Object.hash(id, sex, dateOfBirth, nickname, email, profileImageUrl,
+      defaultDeviceCalendarId, latestMapUpdateCheck, latestMapUpdate, badges);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -283,10 +254,8 @@ class UsersCompanion extends UpdateCompanion<User> {
       if (nickname != null) 'nickname': nickname,
       if (email != null) 'email': email,
       if (profileImageUrl != null) 'profile_image_url': profileImageUrl,
-      if (defaultDeviceCalendarId != null)
-        'default_device_calendar_id': defaultDeviceCalendarId,
-      if (latestMapUpdateCheck != null)
-        'latest_map_update_check': latestMapUpdateCheck,
+      if (defaultDeviceCalendarId != null) 'default_device_calendar_id': defaultDeviceCalendarId,
+      if (latestMapUpdateCheck != null) 'latest_map_update_check': latestMapUpdateCheck,
       if (latestMapUpdate != null) 'latest_map_update': latestMapUpdate,
       if (badges != null) 'badges': badges,
     });
@@ -310,8 +279,7 @@ class UsersCompanion extends UpdateCompanion<User> {
       nickname: nickname ?? this.nickname,
       email: email ?? this.email,
       profileImageUrl: profileImageUrl ?? this.profileImageUrl,
-      defaultDeviceCalendarId:
-          defaultDeviceCalendarId ?? this.defaultDeviceCalendarId,
+      defaultDeviceCalendarId: defaultDeviceCalendarId ?? this.defaultDeviceCalendarId,
       latestMapUpdateCheck: latestMapUpdateCheck ?? this.latestMapUpdateCheck,
       latestMapUpdate: latestMapUpdate ?? this.latestMapUpdate,
       badges: badges ?? this.badges,
@@ -330,8 +298,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     }
     if (dateOfBirth.present) {
       final converter = $UsersTable.$converter1;
-      map['date_of_birth'] =
-          Variable<String?>(converter.mapToSql(dateOfBirth.value));
+      map['date_of_birth'] = Variable<String?>(converter.mapToSql(dateOfBirth.value));
     }
     if (nickname.present) {
       map['nickname'] = Variable<String?>(nickname.value);
@@ -343,12 +310,10 @@ class UsersCompanion extends UpdateCompanion<User> {
       map['profile_image_url'] = Variable<String?>(profileImageUrl.value);
     }
     if (defaultDeviceCalendarId.present) {
-      map['default_device_calendar_id'] =
-          Variable<String?>(defaultDeviceCalendarId.value);
+      map['default_device_calendar_id'] = Variable<String?>(defaultDeviceCalendarId.value);
     }
     if (latestMapUpdateCheck.present) {
-      map['latest_map_update_check'] =
-          Variable<DateTime?>(latestMapUpdateCheck.value);
+      map['latest_map_update_check'] = Variable<DateTime?>(latestMapUpdateCheck.value);
     }
     if (latestMapUpdate.present) {
       map['latest_map_update'] = Variable<DateTime?>(latestMapUpdate.value);
@@ -385,20 +350,18 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   $UsersTable(this.attachedDatabase, [this._alias]);
   final VerificationMeta _idMeta = const VerificationMeta('id');
   @override
-  late final GeneratedColumn<String?> id = GeneratedColumn<String?>(
-      'id', aliasedName, false,
+  late final GeneratedColumn<String?> id = GeneratedColumn<String?>('id', aliasedName, false,
       type: const StringType(), requiredDuringInsert: true);
   final VerificationMeta _sexMeta = const VerificationMeta('sex');
   @override
-  late final GeneratedColumnWithTypeConverter<Sex, String?> sex =
-      GeneratedColumn<String?>('sex', aliasedName, true,
-              type: const StringType(), requiredDuringInsert: false)
-          .withConverter<Sex>($UsersTable.$converter0);
-  final VerificationMeta _dateOfBirthMeta =
-      const VerificationMeta('dateOfBirth');
+  late final GeneratedColumnWithTypeConverter<Sex, String?> sex = GeneratedColumn<String?>(
+          'sex', aliasedName, true,
+          type: const StringType(), requiredDuringInsert: false)
+      .withConverter<Sex>($UsersTable.$converter0);
+  final VerificationMeta _dateOfBirthMeta = const VerificationMeta('dateOfBirth');
   @override
-  late final GeneratedColumnWithTypeConverter<DateWithoutDay, String?>
-      dateOfBirth = GeneratedColumn<String?>('date_of_birth', aliasedName, true,
+  late final GeneratedColumnWithTypeConverter<DateWithoutDay, String?> dateOfBirth =
+      GeneratedColumn<String?>('date_of_birth', aliasedName, true,
               type: const StringType(), requiredDuringInsert: false)
           .withConverter<DateWithoutDay>($UsersTable.$converter1);
   final VerificationMeta _nicknameMeta = const VerificationMeta('nickname');
@@ -408,37 +371,33 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
       type: const StringType(), requiredDuringInsert: false);
   final VerificationMeta _emailMeta = const VerificationMeta('email');
   @override
-  late final GeneratedColumn<String?> email = GeneratedColumn<String?>(
-      'email', aliasedName, true,
+  late final GeneratedColumn<String?> email = GeneratedColumn<String?>('email', aliasedName, true,
       type: const StringType(), requiredDuringInsert: false);
-  final VerificationMeta _profileImageUrlMeta =
-      const VerificationMeta('profileImageUrl');
+  final VerificationMeta _profileImageUrlMeta = const VerificationMeta('profileImageUrl');
   @override
-  late final GeneratedColumn<String?> profileImageUrl =
-      GeneratedColumn<String?>('profile_image_url', aliasedName, true,
-          type: const StringType(), requiredDuringInsert: false);
+  late final GeneratedColumn<String?> profileImageUrl = GeneratedColumn<String?>(
+      'profile_image_url', aliasedName, true,
+      type: const StringType(), requiredDuringInsert: false);
   final VerificationMeta _defaultDeviceCalendarIdMeta =
       const VerificationMeta('defaultDeviceCalendarId');
   @override
-  late final GeneratedColumn<String?> defaultDeviceCalendarId =
-      GeneratedColumn<String?>('default_device_calendar_id', aliasedName, true,
-          type: const StringType(), requiredDuringInsert: false);
-  final VerificationMeta _latestMapUpdateCheckMeta =
-      const VerificationMeta('latestMapUpdateCheck');
+  late final GeneratedColumn<String?> defaultDeviceCalendarId = GeneratedColumn<String?>(
+      'default_device_calendar_id', aliasedName, true,
+      type: const StringType(), requiredDuringInsert: false);
+  final VerificationMeta _latestMapUpdateCheckMeta = const VerificationMeta('latestMapUpdateCheck');
   @override
-  late final GeneratedColumn<DateTime?> latestMapUpdateCheck =
-      GeneratedColumn<DateTime?>('latest_map_update_check', aliasedName, true,
-          type: const IntType(), requiredDuringInsert: false);
-  final VerificationMeta _latestMapUpdateMeta =
-      const VerificationMeta('latestMapUpdate');
+  late final GeneratedColumn<DateTime?> latestMapUpdateCheck = GeneratedColumn<DateTime?>(
+      'latest_map_update_check', aliasedName, true,
+      type: const IntType(), requiredDuringInsert: false);
+  final VerificationMeta _latestMapUpdateMeta = const VerificationMeta('latestMapUpdate');
   @override
-  late final GeneratedColumn<DateTime?> latestMapUpdate =
-      GeneratedColumn<DateTime?>('latest_map_update', aliasedName, true,
-          type: const IntType(), requiredDuringInsert: false);
+  late final GeneratedColumn<DateTime?> latestMapUpdate = GeneratedColumn<DateTime?>(
+      'latest_map_update', aliasedName, true,
+      type: const IntType(), requiredDuringInsert: false);
   final VerificationMeta _badgesMeta = const VerificationMeta('badges');
   @override
-  late final GeneratedColumnWithTypeConverter<BuiltList<Badge>, String?>
-      badges = GeneratedColumn<String?>('badges', aliasedName, true,
+  late final GeneratedColumnWithTypeConverter<BuiltList<Badge>, String?> badges =
+      GeneratedColumn<String?>('badges', aliasedName, true,
               type: const StringType(), requiredDuringInsert: false)
           .withConverter<BuiltList<Badge>>($UsersTable.$converter2);
   @override
@@ -459,8 +418,7 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   @override
   String get actualTableName => 'users';
   @override
-  VerificationContext validateIntegrity(Insertable<User> instance,
-      {bool isInserting = false}) {
+  VerificationContext validateIntegrity(Insertable<User> instance, {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
@@ -471,25 +429,21 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
     context.handle(_sexMeta, const VerificationResult.success());
     context.handle(_dateOfBirthMeta, const VerificationResult.success());
     if (data.containsKey('nickname')) {
-      context.handle(_nicknameMeta,
-          nickname.isAcceptableOrUnknown(data['nickname']!, _nicknameMeta));
+      context.handle(
+          _nicknameMeta, nickname.isAcceptableOrUnknown(data['nickname']!, _nicknameMeta));
     }
     if (data.containsKey('email')) {
-      context.handle(
-          _emailMeta, email.isAcceptableOrUnknown(data['email']!, _emailMeta));
+      context.handle(_emailMeta, email.isAcceptableOrUnknown(data['email']!, _emailMeta));
     }
     if (data.containsKey('profile_image_url')) {
-      context.handle(
-          _profileImageUrlMeta,
-          profileImageUrl.isAcceptableOrUnknown(
-              data['profile_image_url']!, _profileImageUrlMeta));
+      context.handle(_profileImageUrlMeta,
+          profileImageUrl.isAcceptableOrUnknown(data['profile_image_url']!, _profileImageUrlMeta));
     }
     if (data.containsKey('default_device_calendar_id')) {
       context.handle(
           _defaultDeviceCalendarIdMeta,
           defaultDeviceCalendarId.isAcceptableOrUnknown(
-              data['default_device_calendar_id']!,
-              _defaultDeviceCalendarIdMeta));
+              data['default_device_calendar_id']!, _defaultDeviceCalendarIdMeta));
     }
     if (data.containsKey('latest_map_update_check')) {
       context.handle(
@@ -498,10 +452,8 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
               data['latest_map_update_check']!, _latestMapUpdateCheckMeta));
     }
     if (data.containsKey('latest_map_update')) {
-      context.handle(
-          _latestMapUpdateMeta,
-          latestMapUpdate.isAcceptableOrUnknown(
-              data['latest_map_update']!, _latestMapUpdateMeta));
+      context.handle(_latestMapUpdateMeta,
+          latestMapUpdate.isAcceptableOrUnknown(data['latest_map_update']!, _latestMapUpdateMeta));
     }
     context.handle(_badgesMeta, const VerificationResult.success());
     return context;
@@ -521,10 +473,8 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   }
 
   static TypeConverter<Sex, String> $converter0 = const SexDbConverter();
-  static TypeConverter<DateWithoutDay, String> $converter1 =
-      const DateOfBirthConverter();
-  static TypeConverter<BuiltList<Badge>, String> $converter2 =
-      const BadgeListConverter();
+  static TypeConverter<DateWithoutDay, String> $converter1 = const DateOfBirthConverter();
+  static TypeConverter<BuiltList<Badge>, String> $converter2 = const BadgeListConverter();
 }
 
 class CalendarEvent extends DataClass implements Insertable<CalendarEvent> {
@@ -537,19 +487,17 @@ class CalendarEvent extends DataClass implements Insertable<CalendarEvent> {
       required this.deviceCalendarId,
       required this.calendarEventId,
       required this.date});
-  factory CalendarEvent.fromData(
-      Map<String, dynamic> data, GeneratedDatabase db,
+  factory CalendarEvent.fromData(Map<String, dynamic> data, GeneratedDatabase db,
       {String? prefix}) {
     final effectivePrefix = prefix ?? '';
     return CalendarEvent(
-      type: $CalendarEventsTable.$converter0.mapToDart(const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}type']))!,
-      deviceCalendarId: const StringType().mapFromDatabaseResponse(
-          data['${effectivePrefix}device_calendar_id'])!,
-      calendarEventId: const StringType().mapFromDatabaseResponse(
-          data['${effectivePrefix}calendar_event_id'])!,
-      date: const DateTimeType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}date'])!,
+      type: $CalendarEventsTable.$converter0
+          .mapToDart(const StringType().mapFromDatabaseResponse(data['${effectivePrefix}type']))!,
+      deviceCalendarId:
+          const StringType().mapFromDatabaseResponse(data['${effectivePrefix}device_calendar_id'])!,
+      calendarEventId:
+          const StringType().mapFromDatabaseResponse(data['${effectivePrefix}calendar_event_id'])!,
+      date: const DateTimeType().mapFromDatabaseResponse(data['${effectivePrefix}date'])!,
     );
   }
   @override
@@ -574,8 +522,7 @@ class CalendarEvent extends DataClass implements Insertable<CalendarEvent> {
     );
   }
 
-  factory CalendarEvent.fromJson(Map<String, dynamic> json,
-      {ValueSerializer? serializer}) {
+  factory CalendarEvent.fromJson(Map<String, dynamic> json, {ValueSerializer? serializer}) {
     serializer ??= moorRuntimeOptions.defaultSerializer;
     return CalendarEvent(
       type: serializer.fromJson<ExaminationType>(json['type']),
@@ -618,8 +565,7 @@ class CalendarEvent extends DataClass implements Insertable<CalendarEvent> {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(type, deviceCalendarId, calendarEventId, date);
+  int get hashCode => Object.hash(type, deviceCalendarId, calendarEventId, date);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -720,26 +666,23 @@ class $CalendarEventsTable extends CalendarEvents
       GeneratedColumn<String?>('type', aliasedName, false,
               type: const StringType(), requiredDuringInsert: true)
           .withConverter<ExaminationType>($CalendarEventsTable.$converter0);
-  final VerificationMeta _deviceCalendarIdMeta =
-      const VerificationMeta('deviceCalendarId');
+  final VerificationMeta _deviceCalendarIdMeta = const VerificationMeta('deviceCalendarId');
   @override
-  late final GeneratedColumn<String?> deviceCalendarId =
-      GeneratedColumn<String?>('device_calendar_id', aliasedName, false,
-          type: const StringType(), requiredDuringInsert: true);
-  final VerificationMeta _calendarEventIdMeta =
-      const VerificationMeta('calendarEventId');
+  late final GeneratedColumn<String?> deviceCalendarId = GeneratedColumn<String?>(
+      'device_calendar_id', aliasedName, false,
+      type: const StringType(), requiredDuringInsert: true);
+  final VerificationMeta _calendarEventIdMeta = const VerificationMeta('calendarEventId');
   @override
-  late final GeneratedColumn<String?> calendarEventId =
-      GeneratedColumn<String?>('calendar_event_id', aliasedName, false,
-          type: const StringType(), requiredDuringInsert: true);
+  late final GeneratedColumn<String?> calendarEventId = GeneratedColumn<String?>(
+      'calendar_event_id', aliasedName, false,
+      type: const StringType(), requiredDuringInsert: true);
   final VerificationMeta _dateMeta = const VerificationMeta('date');
   @override
   late final GeneratedColumn<DateTime?> date = GeneratedColumn<DateTime?>(
       'date', aliasedName, false,
       type: const IntType(), requiredDuringInsert: true);
   @override
-  List<GeneratedColumn> get $columns =>
-      [type, deviceCalendarId, calendarEventId, date];
+  List<GeneratedColumn> get $columns => [type, deviceCalendarId, calendarEventId, date];
   @override
   String get aliasedName => _alias ?? 'calendar_events';
   @override
@@ -759,16 +702,13 @@ class $CalendarEventsTable extends CalendarEvents
       context.missing(_deviceCalendarIdMeta);
     }
     if (data.containsKey('calendar_event_id')) {
-      context.handle(
-          _calendarEventIdMeta,
-          calendarEventId.isAcceptableOrUnknown(
-              data['calendar_event_id']!, _calendarEventIdMeta));
+      context.handle(_calendarEventIdMeta,
+          calendarEventId.isAcceptableOrUnknown(data['calendar_event_id']!, _calendarEventIdMeta));
     } else if (isInserting) {
       context.missing(_calendarEventIdMeta);
     }
     if (data.containsKey('date')) {
-      context.handle(
-          _dateMeta, date.isAcceptableOrUnknown(data['date']!, _dateMeta));
+      context.handle(_dateMeta, date.isAcceptableOrUnknown(data['date']!, _dateMeta));
     } else if (isInserting) {
       context.missing(_dateMeta);
     }
@@ -788,33 +728,25 @@ class $CalendarEventsTable extends CalendarEvents
     return $CalendarEventsTable(attachedDatabase, alias);
   }
 
-  static TypeConverter<ExaminationType, String> $converter0 =
-      const ExaminationTypeDbConverter();
+  static TypeConverter<ExaminationType, String> $converter0 = const ExaminationTypeDbConverter();
 }
 
-class ExaminationQuestionnaire extends DataClass
-    implements Insertable<ExaminationQuestionnaire> {
+class ExaminationQuestionnaire extends DataClass implements Insertable<ExaminationQuestionnaire> {
   final ExaminationType type;
   final ExaminationStatus status;
   final DateTime? date;
   final bool? firstExam;
-  ExaminationQuestionnaire(
-      {required this.type, required this.status, this.date, this.firstExam});
-  factory ExaminationQuestionnaire.fromData(
-      Map<String, dynamic> data, GeneratedDatabase db,
+  ExaminationQuestionnaire({required this.type, required this.status, this.date, this.firstExam});
+  factory ExaminationQuestionnaire.fromData(Map<String, dynamic> data, GeneratedDatabase db,
       {String? prefix}) {
     final effectivePrefix = prefix ?? '';
     return ExaminationQuestionnaire(
-      type: $ExaminationQuestionnairesTable.$converter0.mapToDart(
-          const StringType()
-              .mapFromDatabaseResponse(data['${effectivePrefix}type']))!,
-      status: $ExaminationQuestionnairesTable.$converter1.mapToDart(
-          const StringType()
-              .mapFromDatabaseResponse(data['${effectivePrefix}status']))!,
-      date: const DateTimeType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}date']),
-      firstExam: const BoolType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}first_exam']),
+      type: $ExaminationQuestionnairesTable.$converter0
+          .mapToDart(const StringType().mapFromDatabaseResponse(data['${effectivePrefix}type']))!,
+      status: $ExaminationQuestionnairesTable.$converter1
+          .mapToDart(const StringType().mapFromDatabaseResponse(data['${effectivePrefix}status']))!,
+      date: const DateTimeType().mapFromDatabaseResponse(data['${effectivePrefix}date']),
+      firstExam: const BoolType().mapFromDatabaseResponse(data['${effectivePrefix}first_exam']),
     );
   }
   @override
@@ -842,9 +774,7 @@ class ExaminationQuestionnaire extends DataClass
       type: Value(type),
       status: Value(status),
       date: date == null && nullToAbsent ? const Value.absent() : Value(date),
-      firstExam: firstExam == null && nullToAbsent
-          ? const Value.absent()
-          : Value(firstExam),
+      firstExam: firstExam == null && nullToAbsent ? const Value.absent() : Value(firstExam),
     );
   }
 
@@ -870,10 +800,7 @@ class ExaminationQuestionnaire extends DataClass
   }
 
   ExaminationQuestionnaire copyWith(
-          {ExaminationType? type,
-          ExaminationStatus? status,
-          DateTime? date,
-          bool? firstExam}) =>
+          {ExaminationType? type, ExaminationStatus? status, DateTime? date, bool? firstExam}) =>
       ExaminationQuestionnaire(
         type: type ?? this.type,
         status: status ?? this.status,
@@ -903,8 +830,7 @@ class ExaminationQuestionnaire extends DataClass
           other.firstExam == this.firstExam);
 }
 
-class ExaminationQuestionnairesCompanion
-    extends UpdateCompanion<ExaminationQuestionnaire> {
+class ExaminationQuestionnairesCompanion extends UpdateCompanion<ExaminationQuestionnaire> {
   final Value<ExaminationType> type;
   final Value<ExaminationStatus> status;
   final Value<DateTime?> date;
@@ -991,22 +917,19 @@ class $ExaminationQuestionnairesTable extends ExaminationQuestionnaires
   late final GeneratedColumnWithTypeConverter<ExaminationType, String?> type =
       GeneratedColumn<String?>('type', aliasedName, false,
               type: const StringType(), requiredDuringInsert: true)
-          .withConverter<ExaminationType>(
-              $ExaminationQuestionnairesTable.$converter0);
+          .withConverter<ExaminationType>($ExaminationQuestionnairesTable.$converter0);
   final VerificationMeta _statusMeta = const VerificationMeta('status');
   @override
-  late final GeneratedColumnWithTypeConverter<ExaminationStatus, String?>
-      status = GeneratedColumn<String?>('status', aliasedName, false,
+  late final GeneratedColumnWithTypeConverter<ExaminationStatus, String?> status =
+      GeneratedColumn<String?>('status', aliasedName, false,
               type: const StringType(),
               requiredDuringInsert: false,
-              defaultValue: Constant(const ExaminationStatusDbConverter()
-                  .mapToSql(ExaminationStatus.NEW)!))
-          .withConverter<ExaminationStatus>(
-              $ExaminationQuestionnairesTable.$converter1);
+              defaultValue:
+                  Constant(const ExaminationStatusDbConverter().mapToSql(ExaminationStatus.NEW)!))
+          .withConverter<ExaminationStatus>($ExaminationQuestionnairesTable.$converter1);
   final VerificationMeta _dateMeta = const VerificationMeta('date');
   @override
-  late final GeneratedColumn<DateTime?> date = GeneratedColumn<DateTime?>(
-      'date', aliasedName, true,
+  late final GeneratedColumn<DateTime?> date = GeneratedColumn<DateTime?>('date', aliasedName, true,
       type: const IntType(), requiredDuringInsert: false);
   final VerificationMeta _firstExamMeta = const VerificationMeta('firstExam');
   @override
@@ -1022,20 +945,18 @@ class $ExaminationQuestionnairesTable extends ExaminationQuestionnaires
   @override
   String get actualTableName => 'examination_questionnaires';
   @override
-  VerificationContext validateIntegrity(
-      Insertable<ExaminationQuestionnaire> instance,
+  VerificationContext validateIntegrity(Insertable<ExaminationQuestionnaire> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
     context.handle(_typeMeta, const VerificationResult.success());
     context.handle(_statusMeta, const VerificationResult.success());
     if (data.containsKey('date')) {
-      context.handle(
-          _dateMeta, date.isAcceptableOrUnknown(data['date']!, _dateMeta));
+      context.handle(_dateMeta, date.isAcceptableOrUnknown(data['date']!, _dateMeta));
     }
     if (data.containsKey('first_exam')) {
-      context.handle(_firstExamMeta,
-          firstExam.isAcceptableOrUnknown(data['first_exam']!, _firstExamMeta));
+      context.handle(
+          _firstExamMeta, firstExam.isAcceptableOrUnknown(data['first_exam']!, _firstExamMeta));
     }
     return context;
   }
@@ -1043,8 +964,7 @@ class $ExaminationQuestionnairesTable extends ExaminationQuestionnaires
   @override
   Set<GeneratedColumn> get $primaryKey => {type};
   @override
-  ExaminationQuestionnaire map(Map<String, dynamic> data,
-      {String? tablePrefix}) {
+  ExaminationQuestionnaire map(Map<String, dynamic> data, {String? tablePrefix}) {
     return ExaminationQuestionnaire.fromData(data, attachedDatabase,
         prefix: tablePrefix != null ? '$tablePrefix.' : null);
   }
@@ -1054,8 +974,7 @@ class $ExaminationQuestionnairesTable extends ExaminationQuestionnaires
     return $ExaminationQuestionnairesTable(attachedDatabase, alias);
   }
 
-  static TypeConverter<ExaminationType, String> $converter0 =
-      const ExaminationTypeDbConverter();
+  static TypeConverter<ExaminationType, String> $converter0 = const ExaminationTypeDbConverter();
   static TypeConverter<ExaminationStatus, String> $converter1 =
       const ExaminationStatusDbConverter();
 }
@@ -1067,8 +986,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $ExaminationQuestionnairesTable examinationQuestionnaires =
       $ExaminationQuestionnairesTable(this);
   late final UsersDao usersDao = UsersDao(this as AppDatabase);
-  late final CalendarEventsDao calendarEventsDao =
-      CalendarEventsDao(this as AppDatabase);
+  late final CalendarEventsDao calendarEventsDao = CalendarEventsDao(this as AppDatabase);
   late final ExaminationQuestionnairesDao examinationQuestionnairesDao =
       ExaminationQuestionnairesDao(this as AppDatabase);
   @override

@@ -31,8 +31,7 @@ void showHowItWentSheet(BuildContext context, Sex sex) {
             const SizedBox(height: 20),
             LoonoButton.light(
               text: 'Něco jsem našla',
-              onTap: () =>
-                  AutoRouter.of(context).push(HasFindingRoute(sex: sex)),
+              onTap: () => AutoRouter.of(context).push(HasFindingRoute(sex: sex)),
             ),
           ],
         ),

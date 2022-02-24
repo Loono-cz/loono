@@ -59,11 +59,9 @@ class HasFindingScreen extends StatelessWidget {
                           Column(
                             children: [
                               Padding(
-                                padding:
-                                const EdgeInsets.symmetric(vertical: 20),
+                                padding: const EdgeInsets.symmetric(vertical: 20),
                                 child: Text(
-                                  context
-                                      .l10n.self_examination_has_finding_title,
+                                  context.l10n.self_examination_has_finding_title,
                                   style: LoonoFonts.headerFontStyle.copyWith(
                                     color: LoonoColors.green,
                                     fontWeight: FontWeight.w700,
@@ -74,28 +72,24 @@ class HasFindingScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    context.l10n
-                                        .self_examination_has_finding_part_1_title,
+                                    context.l10n.self_examination_has_finding_part_1_title,
                                     style: LoonoFonts.paragraphFontStyle
                                         .copyWith(fontWeight: FontWeight.bold),
                                   ),
                                   Text(
-                                    context.l10n
-                                        .self_examination_has_finding_part_1_desc,
+                                    context.l10n.self_examination_has_finding_part_1_desc,
                                     style: LoonoFonts.paragraphFontStyle,
                                   ),
                                   Text(
-                                    context.l10n
-                                        .self_examination_has_finding_part_2_title,
+                                    context.l10n.self_examination_has_finding_part_2_title,
                                     style: LoonoFonts.paragraphFontStyle
                                         .copyWith(fontWeight: FontWeight.bold),
                                   ),
                                   Text(
                                     sex == Sex.MALE
-                                        ? context.l10n
-                                        .self_examination_has_finding_part_2_desc_male
-                                        : context.l10n
-                                        .self_examination_has_finding_part_2_desc_female,
+                                        ? context.l10n.self_examination_has_finding_part_2_desc_male
+                                        : context
+                                            .l10n.self_examination_has_finding_part_2_desc_female,
                                     style: LoonoFonts.paragraphFontStyle,
                                   ),
                                   if (sex == Sex.FEMALE)
@@ -114,8 +108,8 @@ class HasFindingScreen extends StatelessWidget {
                                               ),
                                               recognizer: TapGestureRecognizer()
                                                 ..onTap = () => launch(
-                                                  'https://www.mamo.cz',
-                                                ),
+                                                      'https://www.mamo.cz',
+                                                    ),
                                             )
                                           ],
                                         ),
@@ -127,17 +121,14 @@ class HasFindingScreen extends StatelessWidget {
                                     ),
                                     child: Text(
                                       sex == Sex.MALE
-                                          ? context.l10n
-                                          .self_examination_has_finding_part_3_male
-                                          : context.l10n
-                                          .self_examination_has_finding_part_3_female,
+                                          ? context.l10n.self_examination_has_finding_part_3_male
+                                          : context.l10n.self_examination_has_finding_part_3_female,
                                       style: LoonoFonts.paragraphFontStyle,
                                     ),
                                   ),
                                   RichText(
                                     text: TextSpan(
-                                      text: context.l10n
-                                          .self_examination_has_finding_part_4,
+                                      text: context.l10n.self_examination_has_finding_part_4,
                                       style: LoonoFonts.paragraphFontStyle,
                                       children: [
                                         TextSpan(
@@ -147,18 +138,18 @@ class HasFindingScreen extends StatelessWidget {
                                             color: LoonoColors.primary,
                                           ),
                                           recognizer: TapGestureRecognizer()
-                                            ..onTap = () =>
-                                                AutoRouter.of(context).replace(
-                                                    MainRoute(
-                                                        selectedIndex: 1,),),
+                                            ..onTap = () => AutoRouter.of(context).replace(
+                                                  MainRoute(
+                                                    selectedIndex: 1,
+                                                  ),
+                                                ),
                                         )
                                       ],
                                     ),
                                   ),
                                   RichText(
                                     text: TextSpan(
-                                      text: context.l10n
-                                          .self_examination_has_finding_part_5,
+                                      text: context.l10n.self_examination_has_finding_part_5,
                                       style: LoonoFonts.paragraphFontStyle,
                                       children: [
                                         TextSpan(
@@ -168,8 +159,8 @@ class HasFindingScreen extends StatelessWidget {
                                           ),
                                           recognizer: TapGestureRecognizer()
                                             ..onTap = () => launch(
-                                              'mailto:loono@gmail.com',
-                                            ),
+                                                  'mailto:loono@gmail.com',
+                                                ),
                                         )
                                       ],
                                     ),
@@ -180,8 +171,8 @@ class HasFindingScreen extends StatelessWidget {
                                 padding: const EdgeInsets.only(top: 20),
                                 child: LoonoButton.light(
                                   text: context.l10n.main_menu_item_find_doc,
-                                  onTap: () => AutoRouter.of(context)
-                                      .replace(MainRoute(selectedIndex: 1)),
+                                  onTap: () =>
+                                      AutoRouter.of(context).replace(MainRoute(selectedIndex: 1)),
                                 ),
                               )
                             ],
