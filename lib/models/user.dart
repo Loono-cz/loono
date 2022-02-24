@@ -1,19 +1,24 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:drift/drift.dart';
 import 'package:loono/helpers/type_converters.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/utils/memoized_stream.dart';
+import 'package:loono_api/loono_api.dart';
+import 'package:uuid/uuid.dart';
 
 part 'user.g.dart';
+
+const uuid = Uuid();
 
 class Users extends Table {
   @override
   Set<Column> get primaryKey => {id};
 
-  TextColumn get id => text()();
+  TextColumn get id => text().clientDefault(() => uuid.v4())();
 
   TextColumn get sex => text().map(const SexDbConverter()).nullable()();
 
-  TextColumn get dateOfBirth => text().map(const DateOfBirthConverter()).nullable()();
+  TextColumn get dateOfBirth => text().map(const DateOfBirthDbConverter()).nullable()();
 
   TextColumn get nickname => text().nullable()();
 
@@ -29,7 +34,9 @@ class Users extends Table {
 
   IntColumn get points => integer().withDefault(const Constant(0))();
 
-  TextColumn get badges => text().map(const BadgeListConverter()).nullable()();
+  TextColumn get badges => text()
+      .map(const BadgeListDbConverter())
+      .withDefault(Constant(const BadgeListDbConverter().mapToSql(BuiltList.of(<Badge>[]))!))();
 }
 
 @DriftAccessor(tables: [Users])
@@ -58,8 +65,8 @@ class UsersDao extends DatabaseAccessor<AppDatabase> with _$UsersDaoMixin {
     await update(users).write(usersCompanion);
   }
 
-  Future<void> upsert(User user) async {
-    await into(users).insertOnConflictUpdate(user);
+  Future<void> upsert(UsersCompanion usersCompanion) async {
+    await into(users).insertOnConflictUpdate(usersCompanion);
   }
 
   Future<void> updateLatestMapUpdateCheck(DateTime date) async {

@@ -88,8 +88,8 @@ class SexDbConverter extends TypeConverter<Sex, String> {
   }
 }
 
-class DateOfBirthConverter extends TypeConverter<DateWithoutDay, String> {
-  const DateOfBirthConverter();
+class DateOfBirthDbConverter extends TypeConverter<DateWithoutDay, String> {
+  const DateOfBirthDbConverter();
 
   @override
   DateWithoutDay? mapToDart(String? fromDb) {
@@ -129,8 +129,8 @@ class SimpleHealthcareListConverter
   }
 }
 
-class BadgeListConverter extends TypeConverter<BuiltList<Badge>, String> {
-  const BadgeListConverter();
+class BadgeListDbConverter extends TypeConverter<BuiltList<Badge>, String> {
+  const BadgeListDbConverter();
 
   @override
   BuiltList<Badge>? mapToDart(String? fromDb) {

@@ -11,7 +11,6 @@ import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/firebase_storage_service.dart';
 import 'package:loono_api/loono_api.dart';
-import 'package:uuid/uuid.dart';
 
 class UserRepository {
   UserRepository({
@@ -63,7 +62,7 @@ class UserRepository {
 
   Future<void> createUser() async {
     await _db.users.deleteAll();
-    await _db.users.upsert(User(id: const Uuid().v4(), points: 0));
+    await _db.users.upsert(UsersCompanion.insert());
   }
 
   Future<void> createUserIfNotExists() async {
@@ -89,14 +88,6 @@ class UserRepository {
 
   Future<void> updateDeviceCalendarId(String id) async {
     await _db.users.updateCurrentUser(UsersCompanion(defaultDeviceCalendarId: Value<String>(id)));
-  }
-
-  Future<void> updateLatestMapUpdateCheck(DateTime date) async {
-    await _db.users.updateCurrentUser(UsersCompanion(latestMapUpdateCheck: Value(date)));
-  }
-
-  Future<void> updateLatestMapServerUpdate(DateTime date) async {
-    await _db.users.updateCurrentUser(UsersCompanion(latestMapUpdate: Value(date)));
   }
 
   Future<bool> deleteAccount() async {
