@@ -26,7 +26,7 @@ class UserRepository {
     _authService.onAuthStateChanged.listen((authUser) async {
       if (authUser != null) {
         debugPrint('log: SYNCING WITH API');
-        await _authService.refreshUserToken(authUser);
+        await _authService.refreshUserToken();
         unawaited(sync());
       }
     });
