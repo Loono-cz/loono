@@ -34,8 +34,7 @@ class _MainScreenState extends State<MainScreen> {
     _selectedIndex = widget.selectedIndex;
 
     WidgetsBinding.instance?.addPostFrameCallback(
-      (_) => Provider.of<ExaminationsProvider>(context, listen: false)
-          .fetchExaminations(),
+      (_) => Provider.of<ExaminationsProvider>(context, listen: false).fetchExaminations(),
     );
   }
 

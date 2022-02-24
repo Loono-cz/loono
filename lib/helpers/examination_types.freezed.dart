@@ -116,24 +116,17 @@ mixin _$ExaminationTypeUnion {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ColonoscopyExaminationTypeUnion value)
-        colonoscopy,
+    required TResult Function(ColonoscopyExaminationTypeUnion value) colonoscopy,
     required TResult Function(DentistExaminationTypeUnion value) dentist,
-    required TResult Function(DermatologistExaminationTypeUnion value)
-        dermatologist,
-    required TResult Function(GeneralPractitionerExaminationTypeUnion value)
-        generalPractitioner,
+    required TResult Function(DermatologistExaminationTypeUnion value) dermatologist,
+    required TResult Function(GeneralPractitionerExaminationTypeUnion value) generalPractitioner,
     required TResult Function(MammogramExaminationTypeUnion value) mammogram,
-    required TResult Function(GynecologistExaminationTypeUnion value)
-        gynecologist,
-    required TResult Function(OphthalmologistExaminationTypeUnion value)
-        ophthalmologist,
+    required TResult Function(GynecologistExaminationTypeUnion value) gynecologist,
+    required TResult Function(OphthalmologistExaminationTypeUnion value) ophthalmologist,
     required TResult Function(ToksExaminationTypeUnion value) toks,
-    required TResult Function(UltrasoundBreastExaminationTypeUnion value)
-        ultrasoundBreast,
+    required TResult Function(UltrasoundBreastExaminationTypeUnion value) ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
+    required TResult Function(VenerealDiseasesExaminationTypeUnion value) venerealDiseases,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -141,18 +134,14 @@ mixin _$ExaminationTypeUnion {
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)? generalPractitioner,
     TResult Function(MammogramExaminationTypeUnion value)? mammogram,
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)? ophthalmologist,
     TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)? ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)? venerealDiseases,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -160,18 +149,14 @@ mixin _$ExaminationTypeUnion {
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)? generalPractitioner,
     TResult Function(MammogramExaminationTypeUnion value)? mammogram,
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)? ophthalmologist,
     TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)? ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)? venerealDiseases,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -179,14 +164,13 @@ mixin _$ExaminationTypeUnion {
 
 /// @nodoc
 abstract class $ExaminationTypeUnionCopyWith<$Res> {
-  factory $ExaminationTypeUnionCopyWith(ExaminationTypeUnion value,
-          $Res Function(ExaminationTypeUnion) then) =
+  factory $ExaminationTypeUnionCopyWith(
+          ExaminationTypeUnion value, $Res Function(ExaminationTypeUnion) then) =
       _$ExaminationTypeUnionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ExaminationTypeUnionCopyWithImpl<$Res>
-    implements $ExaminationTypeUnionCopyWith<$Res> {
+class _$ExaminationTypeUnionCopyWithImpl<$Res> implements $ExaminationTypeUnionCopyWith<$Res> {
   _$ExaminationTypeUnionCopyWithImpl(this._value, this._then);
 
   final ExaminationTypeUnion _value;
@@ -196,8 +180,7 @@ class _$ExaminationTypeUnionCopyWithImpl<$Res>
 
 /// @nodoc
 abstract class $ColonoscopyExaminationTypeUnionCopyWith<$Res> {
-  factory $ColonoscopyExaminationTypeUnionCopyWith(
-          ColonoscopyExaminationTypeUnion value,
+  factory $ColonoscopyExaminationTypeUnionCopyWith(ColonoscopyExaminationTypeUnion value,
           $Res Function(ColonoscopyExaminationTypeUnion) then) =
       _$ColonoscopyExaminationTypeUnionCopyWithImpl<$Res>;
 }
@@ -207,19 +190,16 @@ class _$ColonoscopyExaminationTypeUnionCopyWithImpl<$Res>
     extends _$ExaminationTypeUnionCopyWithImpl<$Res>
     implements $ColonoscopyExaminationTypeUnionCopyWith<$Res> {
   _$ColonoscopyExaminationTypeUnionCopyWithImpl(
-      ColonoscopyExaminationTypeUnion _value,
-      $Res Function(ColonoscopyExaminationTypeUnion) _then)
+      ColonoscopyExaminationTypeUnion _value, $Res Function(ColonoscopyExaminationTypeUnion) _then)
       : super(_value, (v) => _then(v as ColonoscopyExaminationTypeUnion));
 
   @override
-  ColonoscopyExaminationTypeUnion get _value =>
-      super._value as ColonoscopyExaminationTypeUnion;
+  ColonoscopyExaminationTypeUnion get _value => super._value as ColonoscopyExaminationTypeUnion;
 }
 
 /// @nodoc
 
-class _$ColonoscopyExaminationTypeUnion
-    extends ColonoscopyExaminationTypeUnion {
+class _$ColonoscopyExaminationTypeUnion extends ColonoscopyExaminationTypeUnion {
   const _$ColonoscopyExaminationTypeUnion() : super._();
 
   @override
@@ -230,8 +210,7 @@ class _$ColonoscopyExaminationTypeUnion
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is ColonoscopyExaminationTypeUnion);
+        (other.runtimeType == runtimeType && other is ColonoscopyExaminationTypeUnion);
   }
 
   @override
@@ -298,24 +277,17 @@ class _$ColonoscopyExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ColonoscopyExaminationTypeUnion value)
-        colonoscopy,
+    required TResult Function(ColonoscopyExaminationTypeUnion value) colonoscopy,
     required TResult Function(DentistExaminationTypeUnion value) dentist,
-    required TResult Function(DermatologistExaminationTypeUnion value)
-        dermatologist,
-    required TResult Function(GeneralPractitionerExaminationTypeUnion value)
-        generalPractitioner,
+    required TResult Function(DermatologistExaminationTypeUnion value) dermatologist,
+    required TResult Function(GeneralPractitionerExaminationTypeUnion value) generalPractitioner,
     required TResult Function(MammogramExaminationTypeUnion value) mammogram,
-    required TResult Function(GynecologistExaminationTypeUnion value)
-        gynecologist,
-    required TResult Function(OphthalmologistExaminationTypeUnion value)
-        ophthalmologist,
+    required TResult Function(GynecologistExaminationTypeUnion value) gynecologist,
+    required TResult Function(OphthalmologistExaminationTypeUnion value) ophthalmologist,
     required TResult Function(ToksExaminationTypeUnion value) toks,
-    required TResult Function(UltrasoundBreastExaminationTypeUnion value)
-        ultrasoundBreast,
+    required TResult Function(UltrasoundBreastExaminationTypeUnion value) ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
+    required TResult Function(VenerealDiseasesExaminationTypeUnion value) venerealDiseases,
   }) {
     return colonoscopy(this);
   }
@@ -326,18 +298,14 @@ class _$ColonoscopyExaminationTypeUnion
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)? generalPractitioner,
     TResult Function(MammogramExaminationTypeUnion value)? mammogram,
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)? ophthalmologist,
     TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)? ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)? venerealDiseases,
   }) {
     return colonoscopy?.call(this);
   }
@@ -348,18 +316,14 @@ class _$ColonoscopyExaminationTypeUnion
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)? generalPractitioner,
     TResult Function(MammogramExaminationTypeUnion value)? mammogram,
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)? ophthalmologist,
     TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)? ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)? venerealDiseases,
     required TResult orElse(),
   }) {
     if (colonoscopy != null) {
@@ -370,16 +334,14 @@ class _$ColonoscopyExaminationTypeUnion
 }
 
 abstract class ColonoscopyExaminationTypeUnion extends ExaminationTypeUnion {
-  const factory ColonoscopyExaminationTypeUnion() =
-      _$ColonoscopyExaminationTypeUnion;
+  const factory ColonoscopyExaminationTypeUnion() = _$ColonoscopyExaminationTypeUnion;
   const ColonoscopyExaminationTypeUnion._() : super._();
 }
 
 /// @nodoc
 abstract class $DentistExaminationTypeUnionCopyWith<$Res> {
   factory $DentistExaminationTypeUnionCopyWith(
-          DentistExaminationTypeUnion value,
-          $Res Function(DentistExaminationTypeUnion) then) =
+          DentistExaminationTypeUnion value, $Res Function(DentistExaminationTypeUnion) then) =
       _$DentistExaminationTypeUnionCopyWithImpl<$Res>;
 }
 
@@ -387,13 +349,12 @@ abstract class $DentistExaminationTypeUnionCopyWith<$Res> {
 class _$DentistExaminationTypeUnionCopyWithImpl<$Res>
     extends _$ExaminationTypeUnionCopyWithImpl<$Res>
     implements $DentistExaminationTypeUnionCopyWith<$Res> {
-  _$DentistExaminationTypeUnionCopyWithImpl(DentistExaminationTypeUnion _value,
-      $Res Function(DentistExaminationTypeUnion) _then)
+  _$DentistExaminationTypeUnionCopyWithImpl(
+      DentistExaminationTypeUnion _value, $Res Function(DentistExaminationTypeUnion) _then)
       : super(_value, (v) => _then(v as DentistExaminationTypeUnion));
 
   @override
-  DentistExaminationTypeUnion get _value =>
-      super._value as DentistExaminationTypeUnion;
+  DentistExaminationTypeUnion get _value => super._value as DentistExaminationTypeUnion;
 }
 
 /// @nodoc
@@ -409,8 +370,7 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is DentistExaminationTypeUnion);
+        (other.runtimeType == runtimeType && other is DentistExaminationTypeUnion);
   }
 
   @override
@@ -477,24 +437,17 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ColonoscopyExaminationTypeUnion value)
-        colonoscopy,
+    required TResult Function(ColonoscopyExaminationTypeUnion value) colonoscopy,
     required TResult Function(DentistExaminationTypeUnion value) dentist,
-    required TResult Function(DermatologistExaminationTypeUnion value)
-        dermatologist,
-    required TResult Function(GeneralPractitionerExaminationTypeUnion value)
-        generalPractitioner,
+    required TResult Function(DermatologistExaminationTypeUnion value) dermatologist,
+    required TResult Function(GeneralPractitionerExaminationTypeUnion value) generalPractitioner,
     required TResult Function(MammogramExaminationTypeUnion value) mammogram,
-    required TResult Function(GynecologistExaminationTypeUnion value)
-        gynecologist,
-    required TResult Function(OphthalmologistExaminationTypeUnion value)
-        ophthalmologist,
+    required TResult Function(GynecologistExaminationTypeUnion value) gynecologist,
+    required TResult Function(OphthalmologistExaminationTypeUnion value) ophthalmologist,
     required TResult Function(ToksExaminationTypeUnion value) toks,
-    required TResult Function(UltrasoundBreastExaminationTypeUnion value)
-        ultrasoundBreast,
+    required TResult Function(UltrasoundBreastExaminationTypeUnion value) ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
+    required TResult Function(VenerealDiseasesExaminationTypeUnion value) venerealDiseases,
   }) {
     return dentist(this);
   }
@@ -505,18 +458,14 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)? generalPractitioner,
     TResult Function(MammogramExaminationTypeUnion value)? mammogram,
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)? ophthalmologist,
     TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)? ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)? venerealDiseases,
   }) {
     return dentist?.call(this);
   }
@@ -527,18 +476,14 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)? generalPractitioner,
     TResult Function(MammogramExaminationTypeUnion value)? mammogram,
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)? ophthalmologist,
     TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)? ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)? venerealDiseases,
     required TResult orElse(),
   }) {
     if (dentist != null) {
@@ -555,8 +500,7 @@ abstract class DentistExaminationTypeUnion extends ExaminationTypeUnion {
 
 /// @nodoc
 abstract class $DermatologistExaminationTypeUnionCopyWith<$Res> {
-  factory $DermatologistExaminationTypeUnionCopyWith(
-          DermatologistExaminationTypeUnion value,
+  factory $DermatologistExaminationTypeUnionCopyWith(DermatologistExaminationTypeUnion value,
           $Res Function(DermatologistExaminationTypeUnion) then) =
       _$DermatologistExaminationTypeUnionCopyWithImpl<$Res>;
 }
@@ -565,20 +509,17 @@ abstract class $DermatologistExaminationTypeUnionCopyWith<$Res> {
 class _$DermatologistExaminationTypeUnionCopyWithImpl<$Res>
     extends _$ExaminationTypeUnionCopyWithImpl<$Res>
     implements $DermatologistExaminationTypeUnionCopyWith<$Res> {
-  _$DermatologistExaminationTypeUnionCopyWithImpl(
-      DermatologistExaminationTypeUnion _value,
+  _$DermatologistExaminationTypeUnionCopyWithImpl(DermatologistExaminationTypeUnion _value,
       $Res Function(DermatologistExaminationTypeUnion) _then)
       : super(_value, (v) => _then(v as DermatologistExaminationTypeUnion));
 
   @override
-  DermatologistExaminationTypeUnion get _value =>
-      super._value as DermatologistExaminationTypeUnion;
+  DermatologistExaminationTypeUnion get _value => super._value as DermatologistExaminationTypeUnion;
 }
 
 /// @nodoc
 
-class _$DermatologistExaminationTypeUnion
-    extends DermatologistExaminationTypeUnion {
+class _$DermatologistExaminationTypeUnion extends DermatologistExaminationTypeUnion {
   const _$DermatologistExaminationTypeUnion() : super._();
 
   @override
@@ -589,8 +530,7 @@ class _$DermatologistExaminationTypeUnion
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is DermatologistExaminationTypeUnion);
+        (other.runtimeType == runtimeType && other is DermatologistExaminationTypeUnion);
   }
 
   @override
@@ -657,24 +597,17 @@ class _$DermatologistExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ColonoscopyExaminationTypeUnion value)
-        colonoscopy,
+    required TResult Function(ColonoscopyExaminationTypeUnion value) colonoscopy,
     required TResult Function(DentistExaminationTypeUnion value) dentist,
-    required TResult Function(DermatologistExaminationTypeUnion value)
-        dermatologist,
-    required TResult Function(GeneralPractitionerExaminationTypeUnion value)
-        generalPractitioner,
+    required TResult Function(DermatologistExaminationTypeUnion value) dermatologist,
+    required TResult Function(GeneralPractitionerExaminationTypeUnion value) generalPractitioner,
     required TResult Function(MammogramExaminationTypeUnion value) mammogram,
-    required TResult Function(GynecologistExaminationTypeUnion value)
-        gynecologist,
-    required TResult Function(OphthalmologistExaminationTypeUnion value)
-        ophthalmologist,
+    required TResult Function(GynecologistExaminationTypeUnion value) gynecologist,
+    required TResult Function(OphthalmologistExaminationTypeUnion value) ophthalmologist,
     required TResult Function(ToksExaminationTypeUnion value) toks,
-    required TResult Function(UltrasoundBreastExaminationTypeUnion value)
-        ultrasoundBreast,
+    required TResult Function(UltrasoundBreastExaminationTypeUnion value) ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
+    required TResult Function(VenerealDiseasesExaminationTypeUnion value) venerealDiseases,
   }) {
     return dermatologist(this);
   }
@@ -685,18 +618,14 @@ class _$DermatologistExaminationTypeUnion
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)? generalPractitioner,
     TResult Function(MammogramExaminationTypeUnion value)? mammogram,
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)? ophthalmologist,
     TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)? ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)? venerealDiseases,
   }) {
     return dermatologist?.call(this);
   }
@@ -707,18 +636,14 @@ class _$DermatologistExaminationTypeUnion
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)? generalPractitioner,
     TResult Function(MammogramExaminationTypeUnion value)? mammogram,
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)? ophthalmologist,
     TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)? ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)? venerealDiseases,
     required TResult orElse(),
   }) {
     if (dermatologist != null) {
@@ -729,8 +654,7 @@ class _$DermatologistExaminationTypeUnion
 }
 
 abstract class DermatologistExaminationTypeUnion extends ExaminationTypeUnion {
-  const factory DermatologistExaminationTypeUnion() =
-      _$DermatologistExaminationTypeUnion;
+  const factory DermatologistExaminationTypeUnion() = _$DermatologistExaminationTypeUnion;
   const DermatologistExaminationTypeUnion._() : super._();
 }
 
@@ -749,8 +673,7 @@ class _$GeneralPractitionerExaminationTypeUnionCopyWithImpl<$Res>
   _$GeneralPractitionerExaminationTypeUnionCopyWithImpl(
       GeneralPractitionerExaminationTypeUnion _value,
       $Res Function(GeneralPractitionerExaminationTypeUnion) _then)
-      : super(
-            _value, (v) => _then(v as GeneralPractitionerExaminationTypeUnion));
+      : super(_value, (v) => _then(v as GeneralPractitionerExaminationTypeUnion));
 
   @override
   GeneralPractitionerExaminationTypeUnion get _value =>
@@ -759,8 +682,7 @@ class _$GeneralPractitionerExaminationTypeUnionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GeneralPractitionerExaminationTypeUnion
-    extends GeneralPractitionerExaminationTypeUnion {
+class _$GeneralPractitionerExaminationTypeUnion extends GeneralPractitionerExaminationTypeUnion {
   const _$GeneralPractitionerExaminationTypeUnion() : super._();
 
   @override
@@ -771,8 +693,7 @@ class _$GeneralPractitionerExaminationTypeUnion
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is GeneralPractitionerExaminationTypeUnion);
+        (other.runtimeType == runtimeType && other is GeneralPractitionerExaminationTypeUnion);
   }
 
   @override
@@ -839,24 +760,17 @@ class _$GeneralPractitionerExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ColonoscopyExaminationTypeUnion value)
-        colonoscopy,
+    required TResult Function(ColonoscopyExaminationTypeUnion value) colonoscopy,
     required TResult Function(DentistExaminationTypeUnion value) dentist,
-    required TResult Function(DermatologistExaminationTypeUnion value)
-        dermatologist,
-    required TResult Function(GeneralPractitionerExaminationTypeUnion value)
-        generalPractitioner,
+    required TResult Function(DermatologistExaminationTypeUnion value) dermatologist,
+    required TResult Function(GeneralPractitionerExaminationTypeUnion value) generalPractitioner,
     required TResult Function(MammogramExaminationTypeUnion value) mammogram,
-    required TResult Function(GynecologistExaminationTypeUnion value)
-        gynecologist,
-    required TResult Function(OphthalmologistExaminationTypeUnion value)
-        ophthalmologist,
+    required TResult Function(GynecologistExaminationTypeUnion value) gynecologist,
+    required TResult Function(OphthalmologistExaminationTypeUnion value) ophthalmologist,
     required TResult Function(ToksExaminationTypeUnion value) toks,
-    required TResult Function(UltrasoundBreastExaminationTypeUnion value)
-        ultrasoundBreast,
+    required TResult Function(UltrasoundBreastExaminationTypeUnion value) ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
+    required TResult Function(VenerealDiseasesExaminationTypeUnion value) venerealDiseases,
   }) {
     return generalPractitioner(this);
   }
@@ -867,18 +781,14 @@ class _$GeneralPractitionerExaminationTypeUnion
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)? generalPractitioner,
     TResult Function(MammogramExaminationTypeUnion value)? mammogram,
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)? ophthalmologist,
     TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)? ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)? venerealDiseases,
   }) {
     return generalPractitioner?.call(this);
   }
@@ -889,18 +799,14 @@ class _$GeneralPractitionerExaminationTypeUnion
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)? generalPractitioner,
     TResult Function(MammogramExaminationTypeUnion value)? mammogram,
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)? ophthalmologist,
     TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)? ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)? venerealDiseases,
     required TResult orElse(),
   }) {
     if (generalPractitioner != null) {
@@ -910,8 +816,7 @@ class _$GeneralPractitionerExaminationTypeUnion
   }
 }
 
-abstract class GeneralPractitionerExaminationTypeUnion
-    extends ExaminationTypeUnion {
+abstract class GeneralPractitionerExaminationTypeUnion extends ExaminationTypeUnion {
   const factory GeneralPractitionerExaminationTypeUnion() =
       _$GeneralPractitionerExaminationTypeUnion;
   const GeneralPractitionerExaminationTypeUnion._() : super._();
@@ -920,8 +825,7 @@ abstract class GeneralPractitionerExaminationTypeUnion
 /// @nodoc
 abstract class $MammogramExaminationTypeUnionCopyWith<$Res> {
   factory $MammogramExaminationTypeUnionCopyWith(
-          MammogramExaminationTypeUnion value,
-          $Res Function(MammogramExaminationTypeUnion) then) =
+          MammogramExaminationTypeUnion value, $Res Function(MammogramExaminationTypeUnion) then) =
       _$MammogramExaminationTypeUnionCopyWithImpl<$Res>;
 }
 
@@ -930,13 +834,11 @@ class _$MammogramExaminationTypeUnionCopyWithImpl<$Res>
     extends _$ExaminationTypeUnionCopyWithImpl<$Res>
     implements $MammogramExaminationTypeUnionCopyWith<$Res> {
   _$MammogramExaminationTypeUnionCopyWithImpl(
-      MammogramExaminationTypeUnion _value,
-      $Res Function(MammogramExaminationTypeUnion) _then)
+      MammogramExaminationTypeUnion _value, $Res Function(MammogramExaminationTypeUnion) _then)
       : super(_value, (v) => _then(v as MammogramExaminationTypeUnion));
 
   @override
-  MammogramExaminationTypeUnion get _value =>
-      super._value as MammogramExaminationTypeUnion;
+  MammogramExaminationTypeUnion get _value => super._value as MammogramExaminationTypeUnion;
 }
 
 /// @nodoc
@@ -952,8 +854,7 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is MammogramExaminationTypeUnion);
+        (other.runtimeType == runtimeType && other is MammogramExaminationTypeUnion);
   }
 
   @override
@@ -1020,24 +921,17 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ColonoscopyExaminationTypeUnion value)
-        colonoscopy,
+    required TResult Function(ColonoscopyExaminationTypeUnion value) colonoscopy,
     required TResult Function(DentistExaminationTypeUnion value) dentist,
-    required TResult Function(DermatologistExaminationTypeUnion value)
-        dermatologist,
-    required TResult Function(GeneralPractitionerExaminationTypeUnion value)
-        generalPractitioner,
+    required TResult Function(DermatologistExaminationTypeUnion value) dermatologist,
+    required TResult Function(GeneralPractitionerExaminationTypeUnion value) generalPractitioner,
     required TResult Function(MammogramExaminationTypeUnion value) mammogram,
-    required TResult Function(GynecologistExaminationTypeUnion value)
-        gynecologist,
-    required TResult Function(OphthalmologistExaminationTypeUnion value)
-        ophthalmologist,
+    required TResult Function(GynecologistExaminationTypeUnion value) gynecologist,
+    required TResult Function(OphthalmologistExaminationTypeUnion value) ophthalmologist,
     required TResult Function(ToksExaminationTypeUnion value) toks,
-    required TResult Function(UltrasoundBreastExaminationTypeUnion value)
-        ultrasoundBreast,
+    required TResult Function(UltrasoundBreastExaminationTypeUnion value) ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
+    required TResult Function(VenerealDiseasesExaminationTypeUnion value) venerealDiseases,
   }) {
     return mammogram(this);
   }
@@ -1048,18 +942,14 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)? generalPractitioner,
     TResult Function(MammogramExaminationTypeUnion value)? mammogram,
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)? ophthalmologist,
     TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)? ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)? venerealDiseases,
   }) {
     return mammogram?.call(this);
   }
@@ -1070,18 +960,14 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)? generalPractitioner,
     TResult Function(MammogramExaminationTypeUnion value)? mammogram,
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)? ophthalmologist,
     TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)? ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)? venerealDiseases,
     required TResult orElse(),
   }) {
     if (mammogram != null) {
@@ -1092,15 +978,13 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
 }
 
 abstract class MammogramExaminationTypeUnion extends ExaminationTypeUnion {
-  const factory MammogramExaminationTypeUnion() =
-      _$MammogramExaminationTypeUnion;
+  const factory MammogramExaminationTypeUnion() = _$MammogramExaminationTypeUnion;
   const MammogramExaminationTypeUnion._() : super._();
 }
 
 /// @nodoc
 abstract class $GynecologistExaminationTypeUnionCopyWith<$Res> {
-  factory $GynecologistExaminationTypeUnionCopyWith(
-          GynecologistExaminationTypeUnion value,
+  factory $GynecologistExaminationTypeUnionCopyWith(GynecologistExaminationTypeUnion value,
           $Res Function(GynecologistExaminationTypeUnion) then) =
       _$GynecologistExaminationTypeUnionCopyWithImpl<$Res>;
 }
@@ -1109,20 +993,17 @@ abstract class $GynecologistExaminationTypeUnionCopyWith<$Res> {
 class _$GynecologistExaminationTypeUnionCopyWithImpl<$Res>
     extends _$ExaminationTypeUnionCopyWithImpl<$Res>
     implements $GynecologistExaminationTypeUnionCopyWith<$Res> {
-  _$GynecologistExaminationTypeUnionCopyWithImpl(
-      GynecologistExaminationTypeUnion _value,
+  _$GynecologistExaminationTypeUnionCopyWithImpl(GynecologistExaminationTypeUnion _value,
       $Res Function(GynecologistExaminationTypeUnion) _then)
       : super(_value, (v) => _then(v as GynecologistExaminationTypeUnion));
 
   @override
-  GynecologistExaminationTypeUnion get _value =>
-      super._value as GynecologistExaminationTypeUnion;
+  GynecologistExaminationTypeUnion get _value => super._value as GynecologistExaminationTypeUnion;
 }
 
 /// @nodoc
 
-class _$GynecologistExaminationTypeUnion
-    extends GynecologistExaminationTypeUnion {
+class _$GynecologistExaminationTypeUnion extends GynecologistExaminationTypeUnion {
   const _$GynecologistExaminationTypeUnion() : super._();
 
   @override
@@ -1133,8 +1014,7 @@ class _$GynecologistExaminationTypeUnion
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is GynecologistExaminationTypeUnion);
+        (other.runtimeType == runtimeType && other is GynecologistExaminationTypeUnion);
   }
 
   @override
@@ -1201,24 +1081,17 @@ class _$GynecologistExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ColonoscopyExaminationTypeUnion value)
-        colonoscopy,
+    required TResult Function(ColonoscopyExaminationTypeUnion value) colonoscopy,
     required TResult Function(DentistExaminationTypeUnion value) dentist,
-    required TResult Function(DermatologistExaminationTypeUnion value)
-        dermatologist,
-    required TResult Function(GeneralPractitionerExaminationTypeUnion value)
-        generalPractitioner,
+    required TResult Function(DermatologistExaminationTypeUnion value) dermatologist,
+    required TResult Function(GeneralPractitionerExaminationTypeUnion value) generalPractitioner,
     required TResult Function(MammogramExaminationTypeUnion value) mammogram,
-    required TResult Function(GynecologistExaminationTypeUnion value)
-        gynecologist,
-    required TResult Function(OphthalmologistExaminationTypeUnion value)
-        ophthalmologist,
+    required TResult Function(GynecologistExaminationTypeUnion value) gynecologist,
+    required TResult Function(OphthalmologistExaminationTypeUnion value) ophthalmologist,
     required TResult Function(ToksExaminationTypeUnion value) toks,
-    required TResult Function(UltrasoundBreastExaminationTypeUnion value)
-        ultrasoundBreast,
+    required TResult Function(UltrasoundBreastExaminationTypeUnion value) ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
+    required TResult Function(VenerealDiseasesExaminationTypeUnion value) venerealDiseases,
   }) {
     return gynecologist(this);
   }
@@ -1229,18 +1102,14 @@ class _$GynecologistExaminationTypeUnion
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)? generalPractitioner,
     TResult Function(MammogramExaminationTypeUnion value)? mammogram,
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)? ophthalmologist,
     TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)? ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)? venerealDiseases,
   }) {
     return gynecologist?.call(this);
   }
@@ -1251,18 +1120,14 @@ class _$GynecologistExaminationTypeUnion
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)? generalPractitioner,
     TResult Function(MammogramExaminationTypeUnion value)? mammogram,
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)? ophthalmologist,
     TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)? ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)? venerealDiseases,
     required TResult orElse(),
   }) {
     if (gynecologist != null) {
@@ -1273,15 +1138,13 @@ class _$GynecologistExaminationTypeUnion
 }
 
 abstract class GynecologistExaminationTypeUnion extends ExaminationTypeUnion {
-  const factory GynecologistExaminationTypeUnion() =
-      _$GynecologistExaminationTypeUnion;
+  const factory GynecologistExaminationTypeUnion() = _$GynecologistExaminationTypeUnion;
   const GynecologistExaminationTypeUnion._() : super._();
 }
 
 /// @nodoc
 abstract class $OphthalmologistExaminationTypeUnionCopyWith<$Res> {
-  factory $OphthalmologistExaminationTypeUnionCopyWith(
-          OphthalmologistExaminationTypeUnion value,
+  factory $OphthalmologistExaminationTypeUnionCopyWith(OphthalmologistExaminationTypeUnion value,
           $Res Function(OphthalmologistExaminationTypeUnion) then) =
       _$OphthalmologistExaminationTypeUnionCopyWithImpl<$Res>;
 }
@@ -1290,8 +1153,7 @@ abstract class $OphthalmologistExaminationTypeUnionCopyWith<$Res> {
 class _$OphthalmologistExaminationTypeUnionCopyWithImpl<$Res>
     extends _$ExaminationTypeUnionCopyWithImpl<$Res>
     implements $OphthalmologistExaminationTypeUnionCopyWith<$Res> {
-  _$OphthalmologistExaminationTypeUnionCopyWithImpl(
-      OphthalmologistExaminationTypeUnion _value,
+  _$OphthalmologistExaminationTypeUnionCopyWithImpl(OphthalmologistExaminationTypeUnion _value,
       $Res Function(OphthalmologistExaminationTypeUnion) _then)
       : super(_value, (v) => _then(v as OphthalmologistExaminationTypeUnion));
 
@@ -1302,8 +1164,7 @@ class _$OphthalmologistExaminationTypeUnionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$OphthalmologistExaminationTypeUnion
-    extends OphthalmologistExaminationTypeUnion {
+class _$OphthalmologistExaminationTypeUnion extends OphthalmologistExaminationTypeUnion {
   const _$OphthalmologistExaminationTypeUnion() : super._();
 
   @override
@@ -1314,8 +1175,7 @@ class _$OphthalmologistExaminationTypeUnion
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is OphthalmologistExaminationTypeUnion);
+        (other.runtimeType == runtimeType && other is OphthalmologistExaminationTypeUnion);
   }
 
   @override
@@ -1382,24 +1242,17 @@ class _$OphthalmologistExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ColonoscopyExaminationTypeUnion value)
-        colonoscopy,
+    required TResult Function(ColonoscopyExaminationTypeUnion value) colonoscopy,
     required TResult Function(DentistExaminationTypeUnion value) dentist,
-    required TResult Function(DermatologistExaminationTypeUnion value)
-        dermatologist,
-    required TResult Function(GeneralPractitionerExaminationTypeUnion value)
-        generalPractitioner,
+    required TResult Function(DermatologistExaminationTypeUnion value) dermatologist,
+    required TResult Function(GeneralPractitionerExaminationTypeUnion value) generalPractitioner,
     required TResult Function(MammogramExaminationTypeUnion value) mammogram,
-    required TResult Function(GynecologistExaminationTypeUnion value)
-        gynecologist,
-    required TResult Function(OphthalmologistExaminationTypeUnion value)
-        ophthalmologist,
+    required TResult Function(GynecologistExaminationTypeUnion value) gynecologist,
+    required TResult Function(OphthalmologistExaminationTypeUnion value) ophthalmologist,
     required TResult Function(ToksExaminationTypeUnion value) toks,
-    required TResult Function(UltrasoundBreastExaminationTypeUnion value)
-        ultrasoundBreast,
+    required TResult Function(UltrasoundBreastExaminationTypeUnion value) ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
+    required TResult Function(VenerealDiseasesExaminationTypeUnion value) venerealDiseases,
   }) {
     return ophthalmologist(this);
   }
@@ -1410,18 +1263,14 @@ class _$OphthalmologistExaminationTypeUnion
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)? generalPractitioner,
     TResult Function(MammogramExaminationTypeUnion value)? mammogram,
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)? ophthalmologist,
     TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)? ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)? venerealDiseases,
   }) {
     return ophthalmologist?.call(this);
   }
@@ -1432,18 +1281,14 @@ class _$OphthalmologistExaminationTypeUnion
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)? generalPractitioner,
     TResult Function(MammogramExaminationTypeUnion value)? mammogram,
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)? ophthalmologist,
     TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)? ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)? venerealDiseases,
     required TResult orElse(),
   }) {
     if (ophthalmologist != null) {
@@ -1453,31 +1298,27 @@ class _$OphthalmologistExaminationTypeUnion
   }
 }
 
-abstract class OphthalmologistExaminationTypeUnion
-    extends ExaminationTypeUnion {
-  const factory OphthalmologistExaminationTypeUnion() =
-      _$OphthalmologistExaminationTypeUnion;
+abstract class OphthalmologistExaminationTypeUnion extends ExaminationTypeUnion {
+  const factory OphthalmologistExaminationTypeUnion() = _$OphthalmologistExaminationTypeUnion;
   const OphthalmologistExaminationTypeUnion._() : super._();
 }
 
 /// @nodoc
 abstract class $ToksExaminationTypeUnionCopyWith<$Res> {
-  factory $ToksExaminationTypeUnionCopyWith(ToksExaminationTypeUnion value,
-          $Res Function(ToksExaminationTypeUnion) then) =
+  factory $ToksExaminationTypeUnionCopyWith(
+          ToksExaminationTypeUnion value, $Res Function(ToksExaminationTypeUnion) then) =
       _$ToksExaminationTypeUnionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ToksExaminationTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+class _$ToksExaminationTypeUnionCopyWithImpl<$Res> extends _$ExaminationTypeUnionCopyWithImpl<$Res>
     implements $ToksExaminationTypeUnionCopyWith<$Res> {
-  _$ToksExaminationTypeUnionCopyWithImpl(ToksExaminationTypeUnion _value,
-      $Res Function(ToksExaminationTypeUnion) _then)
+  _$ToksExaminationTypeUnionCopyWithImpl(
+      ToksExaminationTypeUnion _value, $Res Function(ToksExaminationTypeUnion) _then)
       : super(_value, (v) => _then(v as ToksExaminationTypeUnion));
 
   @override
-  ToksExaminationTypeUnion get _value =>
-      super._value as ToksExaminationTypeUnion;
+  ToksExaminationTypeUnion get _value => super._value as ToksExaminationTypeUnion;
 }
 
 /// @nodoc
@@ -1560,24 +1401,17 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ColonoscopyExaminationTypeUnion value)
-        colonoscopy,
+    required TResult Function(ColonoscopyExaminationTypeUnion value) colonoscopy,
     required TResult Function(DentistExaminationTypeUnion value) dentist,
-    required TResult Function(DermatologistExaminationTypeUnion value)
-        dermatologist,
-    required TResult Function(GeneralPractitionerExaminationTypeUnion value)
-        generalPractitioner,
+    required TResult Function(DermatologistExaminationTypeUnion value) dermatologist,
+    required TResult Function(GeneralPractitionerExaminationTypeUnion value) generalPractitioner,
     required TResult Function(MammogramExaminationTypeUnion value) mammogram,
-    required TResult Function(GynecologistExaminationTypeUnion value)
-        gynecologist,
-    required TResult Function(OphthalmologistExaminationTypeUnion value)
-        ophthalmologist,
+    required TResult Function(GynecologistExaminationTypeUnion value) gynecologist,
+    required TResult Function(OphthalmologistExaminationTypeUnion value) ophthalmologist,
     required TResult Function(ToksExaminationTypeUnion value) toks,
-    required TResult Function(UltrasoundBreastExaminationTypeUnion value)
-        ultrasoundBreast,
+    required TResult Function(UltrasoundBreastExaminationTypeUnion value) ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
+    required TResult Function(VenerealDiseasesExaminationTypeUnion value) venerealDiseases,
   }) {
     return toks(this);
   }
@@ -1588,18 +1422,14 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)? generalPractitioner,
     TResult Function(MammogramExaminationTypeUnion value)? mammogram,
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)? ophthalmologist,
     TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)? ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)? venerealDiseases,
   }) {
     return toks?.call(this);
   }
@@ -1610,18 +1440,14 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)? generalPractitioner,
     TResult Function(MammogramExaminationTypeUnion value)? mammogram,
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)? ophthalmologist,
     TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)? ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)? venerealDiseases,
     required TResult orElse(),
   }) {
     if (toks != null) {
@@ -1638,8 +1464,7 @@ abstract class ToksExaminationTypeUnion extends ExaminationTypeUnion {
 
 /// @nodoc
 abstract class $UltrasoundBreastExaminationTypeUnionCopyWith<$Res> {
-  factory $UltrasoundBreastExaminationTypeUnionCopyWith(
-          UltrasoundBreastExaminationTypeUnion value,
+  factory $UltrasoundBreastExaminationTypeUnionCopyWith(UltrasoundBreastExaminationTypeUnion value,
           $Res Function(UltrasoundBreastExaminationTypeUnion) then) =
       _$UltrasoundBreastExaminationTypeUnionCopyWithImpl<$Res>;
 }
@@ -1648,8 +1473,7 @@ abstract class $UltrasoundBreastExaminationTypeUnionCopyWith<$Res> {
 class _$UltrasoundBreastExaminationTypeUnionCopyWithImpl<$Res>
     extends _$ExaminationTypeUnionCopyWithImpl<$Res>
     implements $UltrasoundBreastExaminationTypeUnionCopyWith<$Res> {
-  _$UltrasoundBreastExaminationTypeUnionCopyWithImpl(
-      UltrasoundBreastExaminationTypeUnion _value,
+  _$UltrasoundBreastExaminationTypeUnionCopyWithImpl(UltrasoundBreastExaminationTypeUnion _value,
       $Res Function(UltrasoundBreastExaminationTypeUnion) _then)
       : super(_value, (v) => _then(v as UltrasoundBreastExaminationTypeUnion));
 
@@ -1660,8 +1484,7 @@ class _$UltrasoundBreastExaminationTypeUnionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UltrasoundBreastExaminationTypeUnion
-    extends UltrasoundBreastExaminationTypeUnion {
+class _$UltrasoundBreastExaminationTypeUnion extends UltrasoundBreastExaminationTypeUnion {
   const _$UltrasoundBreastExaminationTypeUnion() : super._();
 
   @override
@@ -1672,8 +1495,7 @@ class _$UltrasoundBreastExaminationTypeUnion
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is UltrasoundBreastExaminationTypeUnion);
+        (other.runtimeType == runtimeType && other is UltrasoundBreastExaminationTypeUnion);
   }
 
   @override
@@ -1740,24 +1562,17 @@ class _$UltrasoundBreastExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ColonoscopyExaminationTypeUnion value)
-        colonoscopy,
+    required TResult Function(ColonoscopyExaminationTypeUnion value) colonoscopy,
     required TResult Function(DentistExaminationTypeUnion value) dentist,
-    required TResult Function(DermatologistExaminationTypeUnion value)
-        dermatologist,
-    required TResult Function(GeneralPractitionerExaminationTypeUnion value)
-        generalPractitioner,
+    required TResult Function(DermatologistExaminationTypeUnion value) dermatologist,
+    required TResult Function(GeneralPractitionerExaminationTypeUnion value) generalPractitioner,
     required TResult Function(MammogramExaminationTypeUnion value) mammogram,
-    required TResult Function(GynecologistExaminationTypeUnion value)
-        gynecologist,
-    required TResult Function(OphthalmologistExaminationTypeUnion value)
-        ophthalmologist,
+    required TResult Function(GynecologistExaminationTypeUnion value) gynecologist,
+    required TResult Function(OphthalmologistExaminationTypeUnion value) ophthalmologist,
     required TResult Function(ToksExaminationTypeUnion value) toks,
-    required TResult Function(UltrasoundBreastExaminationTypeUnion value)
-        ultrasoundBreast,
+    required TResult Function(UltrasoundBreastExaminationTypeUnion value) ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
+    required TResult Function(VenerealDiseasesExaminationTypeUnion value) venerealDiseases,
   }) {
     return ultrasoundBreast(this);
   }
@@ -1768,18 +1583,14 @@ class _$UltrasoundBreastExaminationTypeUnion
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)? generalPractitioner,
     TResult Function(MammogramExaminationTypeUnion value)? mammogram,
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)? ophthalmologist,
     TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)? ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)? venerealDiseases,
   }) {
     return ultrasoundBreast?.call(this);
   }
@@ -1790,18 +1601,14 @@ class _$UltrasoundBreastExaminationTypeUnion
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)? generalPractitioner,
     TResult Function(MammogramExaminationTypeUnion value)? mammogram,
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)? ophthalmologist,
     TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)? ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)? venerealDiseases,
     required TResult orElse(),
   }) {
     if (ultrasoundBreast != null) {
@@ -1811,18 +1618,15 @@ class _$UltrasoundBreastExaminationTypeUnion
   }
 }
 
-abstract class UltrasoundBreastExaminationTypeUnion
-    extends ExaminationTypeUnion {
-  const factory UltrasoundBreastExaminationTypeUnion() =
-      _$UltrasoundBreastExaminationTypeUnion;
+abstract class UltrasoundBreastExaminationTypeUnion extends ExaminationTypeUnion {
+  const factory UltrasoundBreastExaminationTypeUnion() = _$UltrasoundBreastExaminationTypeUnion;
   const UltrasoundBreastExaminationTypeUnion._() : super._();
 }
 
 /// @nodoc
 abstract class $UrologistExaminationTypeUnionCopyWith<$Res> {
   factory $UrologistExaminationTypeUnionCopyWith(
-          UrologistExaminationTypeUnion value,
-          $Res Function(UrologistExaminationTypeUnion) then) =
+          UrologistExaminationTypeUnion value, $Res Function(UrologistExaminationTypeUnion) then) =
       _$UrologistExaminationTypeUnionCopyWithImpl<$Res>;
 }
 
@@ -1831,13 +1635,11 @@ class _$UrologistExaminationTypeUnionCopyWithImpl<$Res>
     extends _$ExaminationTypeUnionCopyWithImpl<$Res>
     implements $UrologistExaminationTypeUnionCopyWith<$Res> {
   _$UrologistExaminationTypeUnionCopyWithImpl(
-      UrologistExaminationTypeUnion _value,
-      $Res Function(UrologistExaminationTypeUnion) _then)
+      UrologistExaminationTypeUnion _value, $Res Function(UrologistExaminationTypeUnion) _then)
       : super(_value, (v) => _then(v as UrologistExaminationTypeUnion));
 
   @override
-  UrologistExaminationTypeUnion get _value =>
-      super._value as UrologistExaminationTypeUnion;
+  UrologistExaminationTypeUnion get _value => super._value as UrologistExaminationTypeUnion;
 }
 
 /// @nodoc
@@ -1853,8 +1655,7 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is UrologistExaminationTypeUnion);
+        (other.runtimeType == runtimeType && other is UrologistExaminationTypeUnion);
   }
 
   @override
@@ -1921,24 +1722,17 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ColonoscopyExaminationTypeUnion value)
-        colonoscopy,
+    required TResult Function(ColonoscopyExaminationTypeUnion value) colonoscopy,
     required TResult Function(DentistExaminationTypeUnion value) dentist,
-    required TResult Function(DermatologistExaminationTypeUnion value)
-        dermatologist,
-    required TResult Function(GeneralPractitionerExaminationTypeUnion value)
-        generalPractitioner,
+    required TResult Function(DermatologistExaminationTypeUnion value) dermatologist,
+    required TResult Function(GeneralPractitionerExaminationTypeUnion value) generalPractitioner,
     required TResult Function(MammogramExaminationTypeUnion value) mammogram,
-    required TResult Function(GynecologistExaminationTypeUnion value)
-        gynecologist,
-    required TResult Function(OphthalmologistExaminationTypeUnion value)
-        ophthalmologist,
+    required TResult Function(GynecologistExaminationTypeUnion value) gynecologist,
+    required TResult Function(OphthalmologistExaminationTypeUnion value) ophthalmologist,
     required TResult Function(ToksExaminationTypeUnion value) toks,
-    required TResult Function(UltrasoundBreastExaminationTypeUnion value)
-        ultrasoundBreast,
+    required TResult Function(UltrasoundBreastExaminationTypeUnion value) ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
+    required TResult Function(VenerealDiseasesExaminationTypeUnion value) venerealDiseases,
   }) {
     return urologist(this);
   }
@@ -1949,18 +1743,14 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)? generalPractitioner,
     TResult Function(MammogramExaminationTypeUnion value)? mammogram,
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)? ophthalmologist,
     TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)? ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)? venerealDiseases,
   }) {
     return urologist?.call(this);
   }
@@ -1971,18 +1761,14 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)? generalPractitioner,
     TResult Function(MammogramExaminationTypeUnion value)? mammogram,
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)? ophthalmologist,
     TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)? ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)? venerealDiseases,
     required TResult orElse(),
   }) {
     if (urologist != null) {
@@ -1993,15 +1779,13 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
 }
 
 abstract class UrologistExaminationTypeUnion extends ExaminationTypeUnion {
-  const factory UrologistExaminationTypeUnion() =
-      _$UrologistExaminationTypeUnion;
+  const factory UrologistExaminationTypeUnion() = _$UrologistExaminationTypeUnion;
   const UrologistExaminationTypeUnion._() : super._();
 }
 
 /// @nodoc
 abstract class $VenerealDiseasesExaminationTypeUnionCopyWith<$Res> {
-  factory $VenerealDiseasesExaminationTypeUnionCopyWith(
-          VenerealDiseasesExaminationTypeUnion value,
+  factory $VenerealDiseasesExaminationTypeUnionCopyWith(VenerealDiseasesExaminationTypeUnion value,
           $Res Function(VenerealDiseasesExaminationTypeUnion) then) =
       _$VenerealDiseasesExaminationTypeUnionCopyWithImpl<$Res>;
 }
@@ -2010,8 +1794,7 @@ abstract class $VenerealDiseasesExaminationTypeUnionCopyWith<$Res> {
 class _$VenerealDiseasesExaminationTypeUnionCopyWithImpl<$Res>
     extends _$ExaminationTypeUnionCopyWithImpl<$Res>
     implements $VenerealDiseasesExaminationTypeUnionCopyWith<$Res> {
-  _$VenerealDiseasesExaminationTypeUnionCopyWithImpl(
-      VenerealDiseasesExaminationTypeUnion _value,
+  _$VenerealDiseasesExaminationTypeUnionCopyWithImpl(VenerealDiseasesExaminationTypeUnion _value,
       $Res Function(VenerealDiseasesExaminationTypeUnion) _then)
       : super(_value, (v) => _then(v as VenerealDiseasesExaminationTypeUnion));
 
@@ -2022,8 +1805,7 @@ class _$VenerealDiseasesExaminationTypeUnionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$VenerealDiseasesExaminationTypeUnion
-    extends VenerealDiseasesExaminationTypeUnion {
+class _$VenerealDiseasesExaminationTypeUnion extends VenerealDiseasesExaminationTypeUnion {
   const _$VenerealDiseasesExaminationTypeUnion() : super._();
 
   @override
@@ -2034,8 +1816,7 @@ class _$VenerealDiseasesExaminationTypeUnion
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is VenerealDiseasesExaminationTypeUnion);
+        (other.runtimeType == runtimeType && other is VenerealDiseasesExaminationTypeUnion);
   }
 
   @override
@@ -2102,24 +1883,17 @@ class _$VenerealDiseasesExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ColonoscopyExaminationTypeUnion value)
-        colonoscopy,
+    required TResult Function(ColonoscopyExaminationTypeUnion value) colonoscopy,
     required TResult Function(DentistExaminationTypeUnion value) dentist,
-    required TResult Function(DermatologistExaminationTypeUnion value)
-        dermatologist,
-    required TResult Function(GeneralPractitionerExaminationTypeUnion value)
-        generalPractitioner,
+    required TResult Function(DermatologistExaminationTypeUnion value) dermatologist,
+    required TResult Function(GeneralPractitionerExaminationTypeUnion value) generalPractitioner,
     required TResult Function(MammogramExaminationTypeUnion value) mammogram,
-    required TResult Function(GynecologistExaminationTypeUnion value)
-        gynecologist,
-    required TResult Function(OphthalmologistExaminationTypeUnion value)
-        ophthalmologist,
+    required TResult Function(GynecologistExaminationTypeUnion value) gynecologist,
+    required TResult Function(OphthalmologistExaminationTypeUnion value) ophthalmologist,
     required TResult Function(ToksExaminationTypeUnion value) toks,
-    required TResult Function(UltrasoundBreastExaminationTypeUnion value)
-        ultrasoundBreast,
+    required TResult Function(UltrasoundBreastExaminationTypeUnion value) ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
+    required TResult Function(VenerealDiseasesExaminationTypeUnion value) venerealDiseases,
   }) {
     return venerealDiseases(this);
   }
@@ -2130,18 +1904,14 @@ class _$VenerealDiseasesExaminationTypeUnion
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)? generalPractitioner,
     TResult Function(MammogramExaminationTypeUnion value)? mammogram,
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)? ophthalmologist,
     TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)? ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)? venerealDiseases,
   }) {
     return venerealDiseases?.call(this);
   }
@@ -2152,18 +1922,14 @@ class _$VenerealDiseasesExaminationTypeUnion
     TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
     TResult Function(DentistExaminationTypeUnion value)? dentist,
     TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)? generalPractitioner,
     TResult Function(MammogramExaminationTypeUnion value)? mammogram,
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)? ophthalmologist,
     TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)? ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)? venerealDiseases,
     required TResult orElse(),
   }) {
     if (venerealDiseases != null) {
@@ -2173,10 +1939,8 @@ class _$VenerealDiseasesExaminationTypeUnion
   }
 }
 
-abstract class VenerealDiseasesExaminationTypeUnion
-    extends ExaminationTypeUnion {
-  const factory VenerealDiseasesExaminationTypeUnion() =
-      _$VenerealDiseasesExaminationTypeUnion;
+abstract class VenerealDiseasesExaminationTypeUnion extends ExaminationTypeUnion {
+  const factory VenerealDiseasesExaminationTypeUnion() = _$VenerealDiseasesExaminationTypeUnion;
   const VenerealDiseasesExaminationTypeUnion._() : super._();
 }
 
@@ -2220,8 +1984,7 @@ mixin _$SelfExaminationTypeUnion {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(BrestSelfExaminationTypeUnion value) breast,
-    required TResult Function(TesticularSelfExaminationTypeUnion value)
-        testicular,
+    required TResult Function(TesticularSelfExaminationTypeUnion value) testicular,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -2241,8 +2004,8 @@ mixin _$SelfExaminationTypeUnion {
 
 /// @nodoc
 abstract class $SelfExaminationTypeUnionCopyWith<$Res> {
-  factory $SelfExaminationTypeUnionCopyWith(SelfExaminationTypeUnion value,
-          $Res Function(SelfExaminationTypeUnion) then) =
+  factory $SelfExaminationTypeUnionCopyWith(
+          SelfExaminationTypeUnion value, $Res Function(SelfExaminationTypeUnion) then) =
       _$SelfExaminationTypeUnionCopyWithImpl<$Res>;
 }
 
@@ -2259,8 +2022,7 @@ class _$SelfExaminationTypeUnionCopyWithImpl<$Res>
 /// @nodoc
 abstract class $BrestSelfExaminationTypeUnionCopyWith<$Res> {
   factory $BrestSelfExaminationTypeUnionCopyWith(
-          BrestSelfExaminationTypeUnion value,
-          $Res Function(BrestSelfExaminationTypeUnion) then) =
+          BrestSelfExaminationTypeUnion value, $Res Function(BrestSelfExaminationTypeUnion) then) =
       _$BrestSelfExaminationTypeUnionCopyWithImpl<$Res>;
 }
 
@@ -2269,13 +2031,11 @@ class _$BrestSelfExaminationTypeUnionCopyWithImpl<$Res>
     extends _$SelfExaminationTypeUnionCopyWithImpl<$Res>
     implements $BrestSelfExaminationTypeUnionCopyWith<$Res> {
   _$BrestSelfExaminationTypeUnionCopyWithImpl(
-      BrestSelfExaminationTypeUnion _value,
-      $Res Function(BrestSelfExaminationTypeUnion) _then)
+      BrestSelfExaminationTypeUnion _value, $Res Function(BrestSelfExaminationTypeUnion) _then)
       : super(_value, (v) => _then(v as BrestSelfExaminationTypeUnion));
 
   @override
-  BrestSelfExaminationTypeUnion get _value =>
-      super._value as BrestSelfExaminationTypeUnion;
+  BrestSelfExaminationTypeUnion get _value => super._value as BrestSelfExaminationTypeUnion;
 }
 
 /// @nodoc
@@ -2291,8 +2051,7 @@ class _$BrestSelfExaminationTypeUnion extends BrestSelfExaminationTypeUnion {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is BrestSelfExaminationTypeUnion);
+        (other.runtimeType == runtimeType && other is BrestSelfExaminationTypeUnion);
   }
 
   @override
@@ -2333,8 +2092,7 @@ class _$BrestSelfExaminationTypeUnion extends BrestSelfExaminationTypeUnion {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(BrestSelfExaminationTypeUnion value) breast,
-    required TResult Function(TesticularSelfExaminationTypeUnion value)
-        testicular,
+    required TResult Function(TesticularSelfExaminationTypeUnion value) testicular,
   }) {
     return breast(this);
   }
@@ -2363,15 +2121,13 @@ class _$BrestSelfExaminationTypeUnion extends BrestSelfExaminationTypeUnion {
 }
 
 abstract class BrestSelfExaminationTypeUnion extends SelfExaminationTypeUnion {
-  const factory BrestSelfExaminationTypeUnion() =
-      _$BrestSelfExaminationTypeUnion;
+  const factory BrestSelfExaminationTypeUnion() = _$BrestSelfExaminationTypeUnion;
   const BrestSelfExaminationTypeUnion._() : super._();
 }
 
 /// @nodoc
 abstract class $TesticularSelfExaminationTypeUnionCopyWith<$Res> {
-  factory $TesticularSelfExaminationTypeUnionCopyWith(
-          TesticularSelfExaminationTypeUnion value,
+  factory $TesticularSelfExaminationTypeUnionCopyWith(TesticularSelfExaminationTypeUnion value,
           $Res Function(TesticularSelfExaminationTypeUnion) then) =
       _$TesticularSelfExaminationTypeUnionCopyWithImpl<$Res>;
 }
@@ -2380,8 +2136,7 @@ abstract class $TesticularSelfExaminationTypeUnionCopyWith<$Res> {
 class _$TesticularSelfExaminationTypeUnionCopyWithImpl<$Res>
     extends _$SelfExaminationTypeUnionCopyWithImpl<$Res>
     implements $TesticularSelfExaminationTypeUnionCopyWith<$Res> {
-  _$TesticularSelfExaminationTypeUnionCopyWithImpl(
-      TesticularSelfExaminationTypeUnion _value,
+  _$TesticularSelfExaminationTypeUnionCopyWithImpl(TesticularSelfExaminationTypeUnion _value,
       $Res Function(TesticularSelfExaminationTypeUnion) _then)
       : super(_value, (v) => _then(v as TesticularSelfExaminationTypeUnion));
 
@@ -2392,8 +2147,7 @@ class _$TesticularSelfExaminationTypeUnionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TesticularSelfExaminationTypeUnion
-    extends TesticularSelfExaminationTypeUnion {
+class _$TesticularSelfExaminationTypeUnion extends TesticularSelfExaminationTypeUnion {
   const _$TesticularSelfExaminationTypeUnion() : super._();
 
   @override
@@ -2404,8 +2158,7 @@ class _$TesticularSelfExaminationTypeUnion
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is TesticularSelfExaminationTypeUnion);
+        (other.runtimeType == runtimeType && other is TesticularSelfExaminationTypeUnion);
   }
 
   @override
@@ -2446,8 +2199,7 @@ class _$TesticularSelfExaminationTypeUnion
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(BrestSelfExaminationTypeUnion value) breast,
-    required TResult Function(TesticularSelfExaminationTypeUnion value)
-        testicular,
+    required TResult Function(TesticularSelfExaminationTypeUnion value) testicular,
   }) {
     return testicular(this);
   }
@@ -2475,9 +2227,7 @@ class _$TesticularSelfExaminationTypeUnion
   }
 }
 
-abstract class TesticularSelfExaminationTypeUnion
-    extends SelfExaminationTypeUnion {
-  const factory TesticularSelfExaminationTypeUnion() =
-      _$TesticularSelfExaminationTypeUnion;
+abstract class TesticularSelfExaminationTypeUnion extends SelfExaminationTypeUnion {
+  const factory TesticularSelfExaminationTypeUnion() = _$TesticularSelfExaminationTypeUnion;
   const TesticularSelfExaminationTypeUnion._() : super._();
 }

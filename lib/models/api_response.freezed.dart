@@ -78,14 +78,12 @@ mixin _$ApiResponse<T> {
 
 /// @nodoc
 abstract class $ApiResponseCopyWith<T, $Res> {
-  factory $ApiResponseCopyWith(
-          ApiResponse<T> value, $Res Function(ApiResponse<T>) then) =
+  factory $ApiResponseCopyWith(ApiResponse<T> value, $Res Function(ApiResponse<T>) then) =
       _$ApiResponseCopyWithImpl<T, $Res>;
 }
 
 /// @nodoc
-class _$ApiResponseCopyWithImpl<T, $Res>
-    implements $ApiResponseCopyWith<T, $Res> {
+class _$ApiResponseCopyWithImpl<T, $Res> implements $ApiResponseCopyWith<T, $Res> {
   _$ApiResponseCopyWithImpl(this._value, this._then);
 
   final ApiResponse<T> _value;
@@ -95,15 +93,14 @@ class _$ApiResponseCopyWithImpl<T, $Res>
 
 /// @nodoc
 abstract class $SuccessApiResponseCopyWith<T, $Res> {
-  factory $SuccessApiResponseCopyWith(SuccessApiResponse<T> value,
-          $Res Function(SuccessApiResponse<T>) then) =
+  factory $SuccessApiResponseCopyWith(
+          SuccessApiResponse<T> value, $Res Function(SuccessApiResponse<T>) then) =
       _$SuccessApiResponseCopyWithImpl<T, $Res>;
   $Res call({T data});
 }
 
 /// @nodoc
-class _$SuccessApiResponseCopyWithImpl<T, $Res>
-    extends _$ApiResponseCopyWithImpl<T, $Res>
+class _$SuccessApiResponseCopyWithImpl<T, $Res> extends _$ApiResponseCopyWithImpl<T, $Res>
     implements $SuccessApiResponseCopyWith<T, $Res> {
   _$SuccessApiResponseCopyWithImpl(
       SuccessApiResponse<T> _value, $Res Function(SuccessApiResponse<T>) _then)
@@ -147,14 +144,12 @@ class _$SuccessApiResponse<T> extends SuccessApiResponse<T> {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
+  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
   @JsonKey(ignore: true)
   @override
   $SuccessApiResponseCopyWith<T, SuccessApiResponse<T>> get copyWith =>
-      _$SuccessApiResponseCopyWithImpl<T, SuccessApiResponse<T>>(
-          this, _$identity);
+      _$SuccessApiResponseCopyWithImpl<T, SuccessApiResponse<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -231,15 +226,14 @@ abstract class SuccessApiResponse<T> extends ApiResponse<T> {
 
 /// @nodoc
 abstract class $FailureApiResponseCopyWith<T, $Res> {
-  factory $FailureApiResponseCopyWith(FailureApiResponse<T> value,
-          $Res Function(FailureApiResponse<T>) then) =
+  factory $FailureApiResponseCopyWith(
+          FailureApiResponse<T> value, $Res Function(FailureApiResponse<T>) then) =
       _$FailureApiResponseCopyWithImpl<T, $Res>;
   $Res call({DioError error});
 }
 
 /// @nodoc
-class _$FailureApiResponseCopyWithImpl<T, $Res>
-    extends _$ApiResponseCopyWithImpl<T, $Res>
+class _$FailureApiResponseCopyWithImpl<T, $Res> extends _$ApiResponseCopyWithImpl<T, $Res>
     implements $FailureApiResponseCopyWith<T, $Res> {
   _$FailureApiResponseCopyWithImpl(
       FailureApiResponse<T> _value, $Res Function(FailureApiResponse<T>) _then)
@@ -283,14 +277,12 @@ class _$FailureApiResponse<T> extends FailureApiResponse<T> {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
+  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
   $FailureApiResponseCopyWith<T, FailureApiResponse<T>> get copyWith =>
-      _$FailureApiResponseCopyWithImpl<T, FailureApiResponse<T>>(
-          this, _$identity);
+      _$FailureApiResponseCopyWithImpl<T, FailureApiResponse<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs

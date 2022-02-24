@@ -88,8 +88,7 @@ mixin _$SelfExaminationCategory {
     TResult Function(ActiveSelfExamination value)? active,
     TResult Function(WaitingSelfExamination value)? waiting,
     TResult Function(HasFindingSelfExamination value)? hasFinding,
-    TResult Function(HasFindingExpectingResultSelfExamination value)?
-        hasFindingExpectingResult,
+    TResult Function(HasFindingExpectingResultSelfExamination value)? hasFindingExpectingResult,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -98,8 +97,7 @@ mixin _$SelfExaminationCategory {
     TResult Function(ActiveSelfExamination value)? active,
     TResult Function(WaitingSelfExamination value)? waiting,
     TResult Function(HasFindingSelfExamination value)? hasFinding,
-    TResult Function(HasFindingExpectingResultSelfExamination value)?
-        hasFindingExpectingResult,
+    TResult Function(HasFindingExpectingResultSelfExamination value)? hasFindingExpectingResult,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -107,8 +105,8 @@ mixin _$SelfExaminationCategory {
 
 /// @nodoc
 abstract class $SelfExaminationCategoryCopyWith<$Res> {
-  factory $SelfExaminationCategoryCopyWith(SelfExaminationCategory value,
-          $Res Function(SelfExaminationCategory) then) =
+  factory $SelfExaminationCategoryCopyWith(
+          SelfExaminationCategory value, $Res Function(SelfExaminationCategory) then) =
       _$SelfExaminationCategoryCopyWithImpl<$Res>;
 }
 
@@ -124,14 +122,13 @@ class _$SelfExaminationCategoryCopyWithImpl<$Res>
 
 /// @nodoc
 abstract class $FirstSelfExaminationCopyWith<$Res> {
-  factory $FirstSelfExaminationCopyWith(FirstSelfExamination value,
-          $Res Function(FirstSelfExamination) then) =
+  factory $FirstSelfExaminationCopyWith(
+          FirstSelfExamination value, $Res Function(FirstSelfExamination) then) =
       _$FirstSelfExaminationCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$FirstSelfExaminationCopyWithImpl<$Res>
-    extends _$SelfExaminationCategoryCopyWithImpl<$Res>
+class _$FirstSelfExaminationCopyWithImpl<$Res> extends _$SelfExaminationCategoryCopyWithImpl<$Res>
     implements $FirstSelfExaminationCopyWith<$Res> {
   _$FirstSelfExaminationCopyWithImpl(
       FirstSelfExamination _value, $Res Function(FirstSelfExamination) _then)
@@ -220,8 +217,7 @@ class _$FirstSelfExamination extends FirstSelfExamination {
     TResult Function(ActiveSelfExamination value)? active,
     TResult Function(WaitingSelfExamination value)? waiting,
     TResult Function(HasFindingSelfExamination value)? hasFinding,
-    TResult Function(HasFindingExpectingResultSelfExamination value)?
-        hasFindingExpectingResult,
+    TResult Function(HasFindingExpectingResultSelfExamination value)? hasFindingExpectingResult,
   }) {
     return first?.call(this);
   }
@@ -233,8 +229,7 @@ class _$FirstSelfExamination extends FirstSelfExamination {
     TResult Function(ActiveSelfExamination value)? active,
     TResult Function(WaitingSelfExamination value)? waiting,
     TResult Function(HasFindingSelfExamination value)? hasFinding,
-    TResult Function(HasFindingExpectingResultSelfExamination value)?
-        hasFindingExpectingResult,
+    TResult Function(HasFindingExpectingResultSelfExamination value)? hasFindingExpectingResult,
     required TResult orElse(),
   }) {
     if (first != null) {
@@ -251,14 +246,13 @@ abstract class FirstSelfExamination extends SelfExaminationCategory {
 
 /// @nodoc
 abstract class $ActiveSelfExaminationCopyWith<$Res> {
-  factory $ActiveSelfExaminationCopyWith(ActiveSelfExamination value,
-          $Res Function(ActiveSelfExamination) then) =
+  factory $ActiveSelfExaminationCopyWith(
+          ActiveSelfExamination value, $Res Function(ActiveSelfExamination) then) =
       _$ActiveSelfExaminationCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ActiveSelfExaminationCopyWithImpl<$Res>
-    extends _$SelfExaminationCategoryCopyWithImpl<$Res>
+class _$ActiveSelfExaminationCopyWithImpl<$Res> extends _$SelfExaminationCategoryCopyWithImpl<$Res>
     implements $ActiveSelfExaminationCopyWith<$Res> {
   _$ActiveSelfExaminationCopyWithImpl(
       ActiveSelfExamination _value, $Res Function(ActiveSelfExamination) _then)
@@ -347,8 +341,7 @@ class _$ActiveSelfExamination extends ActiveSelfExamination {
     TResult Function(ActiveSelfExamination value)? active,
     TResult Function(WaitingSelfExamination value)? waiting,
     TResult Function(HasFindingSelfExamination value)? hasFinding,
-    TResult Function(HasFindingExpectingResultSelfExamination value)?
-        hasFindingExpectingResult,
+    TResult Function(HasFindingExpectingResultSelfExamination value)? hasFindingExpectingResult,
   }) {
     return active?.call(this);
   }
@@ -360,8 +353,7 @@ class _$ActiveSelfExamination extends ActiveSelfExamination {
     TResult Function(ActiveSelfExamination value)? active,
     TResult Function(WaitingSelfExamination value)? waiting,
     TResult Function(HasFindingSelfExamination value)? hasFinding,
-    TResult Function(HasFindingExpectingResultSelfExamination value)?
-        hasFindingExpectingResult,
+    TResult Function(HasFindingExpectingResultSelfExamination value)? hasFindingExpectingResult,
     required TResult orElse(),
   }) {
     if (active != null) {
@@ -378,17 +370,16 @@ abstract class ActiveSelfExamination extends SelfExaminationCategory {
 
 /// @nodoc
 abstract class $WaitingSelfExaminationCopyWith<$Res> {
-  factory $WaitingSelfExaminationCopyWith(WaitingSelfExamination value,
-          $Res Function(WaitingSelfExamination) then) =
+  factory $WaitingSelfExaminationCopyWith(
+          WaitingSelfExamination value, $Res Function(WaitingSelfExamination) then) =
       _$WaitingSelfExaminationCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$WaitingSelfExaminationCopyWithImpl<$Res>
-    extends _$SelfExaminationCategoryCopyWithImpl<$Res>
+class _$WaitingSelfExaminationCopyWithImpl<$Res> extends _$SelfExaminationCategoryCopyWithImpl<$Res>
     implements $WaitingSelfExaminationCopyWith<$Res> {
-  _$WaitingSelfExaminationCopyWithImpl(WaitingSelfExamination _value,
-      $Res Function(WaitingSelfExamination) _then)
+  _$WaitingSelfExaminationCopyWithImpl(
+      WaitingSelfExamination _value, $Res Function(WaitingSelfExamination) _then)
       : super(_value, (v) => _then(v as WaitingSelfExamination));
 
   @override
@@ -474,8 +465,7 @@ class _$WaitingSelfExamination extends WaitingSelfExamination {
     TResult Function(ActiveSelfExamination value)? active,
     TResult Function(WaitingSelfExamination value)? waiting,
     TResult Function(HasFindingSelfExamination value)? hasFinding,
-    TResult Function(HasFindingExpectingResultSelfExamination value)?
-        hasFindingExpectingResult,
+    TResult Function(HasFindingExpectingResultSelfExamination value)? hasFindingExpectingResult,
   }) {
     return waiting?.call(this);
   }
@@ -487,8 +477,7 @@ class _$WaitingSelfExamination extends WaitingSelfExamination {
     TResult Function(ActiveSelfExamination value)? active,
     TResult Function(WaitingSelfExamination value)? waiting,
     TResult Function(HasFindingSelfExamination value)? hasFinding,
-    TResult Function(HasFindingExpectingResultSelfExamination value)?
-        hasFindingExpectingResult,
+    TResult Function(HasFindingExpectingResultSelfExamination value)? hasFindingExpectingResult,
     required TResult orElse(),
   }) {
     if (waiting != null) {
@@ -505,8 +494,8 @@ abstract class WaitingSelfExamination extends SelfExaminationCategory {
 
 /// @nodoc
 abstract class $HasFindingSelfExaminationCopyWith<$Res> {
-  factory $HasFindingSelfExaminationCopyWith(HasFindingSelfExamination value,
-          $Res Function(HasFindingSelfExamination) then) =
+  factory $HasFindingSelfExaminationCopyWith(
+          HasFindingSelfExamination value, $Res Function(HasFindingSelfExamination) then) =
       _$HasFindingSelfExaminationCopyWithImpl<$Res>;
 }
 
@@ -514,13 +503,12 @@ abstract class $HasFindingSelfExaminationCopyWith<$Res> {
 class _$HasFindingSelfExaminationCopyWithImpl<$Res>
     extends _$SelfExaminationCategoryCopyWithImpl<$Res>
     implements $HasFindingSelfExaminationCopyWith<$Res> {
-  _$HasFindingSelfExaminationCopyWithImpl(HasFindingSelfExamination _value,
-      $Res Function(HasFindingSelfExamination) _then)
+  _$HasFindingSelfExaminationCopyWithImpl(
+      HasFindingSelfExamination _value, $Res Function(HasFindingSelfExamination) _then)
       : super(_value, (v) => _then(v as HasFindingSelfExamination));
 
   @override
-  HasFindingSelfExamination get _value =>
-      super._value as HasFindingSelfExamination;
+  HasFindingSelfExamination get _value => super._value as HasFindingSelfExamination;
 }
 
 /// @nodoc
@@ -536,8 +524,7 @@ class _$HasFindingSelfExamination extends HasFindingSelfExamination {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is HasFindingSelfExamination);
+        (other.runtimeType == runtimeType && other is HasFindingSelfExamination);
   }
 
   @override
@@ -603,8 +590,7 @@ class _$HasFindingSelfExamination extends HasFindingSelfExamination {
     TResult Function(ActiveSelfExamination value)? active,
     TResult Function(WaitingSelfExamination value)? waiting,
     TResult Function(HasFindingSelfExamination value)? hasFinding,
-    TResult Function(HasFindingExpectingResultSelfExamination value)?
-        hasFindingExpectingResult,
+    TResult Function(HasFindingExpectingResultSelfExamination value)? hasFindingExpectingResult,
   }) {
     return hasFinding?.call(this);
   }
@@ -616,8 +602,7 @@ class _$HasFindingSelfExamination extends HasFindingSelfExamination {
     TResult Function(ActiveSelfExamination value)? active,
     TResult Function(WaitingSelfExamination value)? waiting,
     TResult Function(HasFindingSelfExamination value)? hasFinding,
-    TResult Function(HasFindingExpectingResultSelfExamination value)?
-        hasFindingExpectingResult,
+    TResult Function(HasFindingExpectingResultSelfExamination value)? hasFindingExpectingResult,
     required TResult orElse(),
   }) {
     if (hasFinding != null) {
@@ -647,8 +632,7 @@ class _$HasFindingExpectingResultSelfExaminationCopyWithImpl<$Res>
   _$HasFindingExpectingResultSelfExaminationCopyWithImpl(
       HasFindingExpectingResultSelfExamination _value,
       $Res Function(HasFindingExpectingResultSelfExamination) _then)
-      : super(_value,
-            (v) => _then(v as HasFindingExpectingResultSelfExamination));
+      : super(_value, (v) => _then(v as HasFindingExpectingResultSelfExamination));
 
   @override
   HasFindingExpectingResultSelfExamination get _value =>
@@ -657,8 +641,7 @@ class _$HasFindingExpectingResultSelfExaminationCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$HasFindingExpectingResultSelfExamination
-    extends HasFindingExpectingResultSelfExamination {
+class _$HasFindingExpectingResultSelfExamination extends HasFindingExpectingResultSelfExamination {
   const _$HasFindingExpectingResultSelfExamination() : super._();
 
   @override
@@ -669,8 +652,7 @@ class _$HasFindingExpectingResultSelfExamination
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is HasFindingExpectingResultSelfExamination);
+        (other.runtimeType == runtimeType && other is HasFindingExpectingResultSelfExamination);
   }
 
   @override
@@ -736,8 +718,7 @@ class _$HasFindingExpectingResultSelfExamination
     TResult Function(ActiveSelfExamination value)? active,
     TResult Function(WaitingSelfExamination value)? waiting,
     TResult Function(HasFindingSelfExamination value)? hasFinding,
-    TResult Function(HasFindingExpectingResultSelfExamination value)?
-        hasFindingExpectingResult,
+    TResult Function(HasFindingExpectingResultSelfExamination value)? hasFindingExpectingResult,
   }) {
     return hasFindingExpectingResult?.call(this);
   }
@@ -749,8 +730,7 @@ class _$HasFindingExpectingResultSelfExamination
     TResult Function(ActiveSelfExamination value)? active,
     TResult Function(WaitingSelfExamination value)? waiting,
     TResult Function(HasFindingSelfExamination value)? hasFinding,
-    TResult Function(HasFindingExpectingResultSelfExamination value)?
-        hasFindingExpectingResult,
+    TResult Function(HasFindingExpectingResultSelfExamination value)? hasFindingExpectingResult,
     required TResult orElse(),
   }) {
     if (hasFindingExpectingResult != null) {
@@ -760,8 +740,7 @@ class _$HasFindingExpectingResultSelfExamination
   }
 }
 
-abstract class HasFindingExpectingResultSelfExamination
-    extends SelfExaminationCategory {
+abstract class HasFindingExpectingResultSelfExamination extends SelfExaminationCategory {
   const factory HasFindingExpectingResultSelfExamination() =
       _$HasFindingExpectingResultSelfExamination;
   const HasFindingExpectingResultSelfExamination._() : super._();

@@ -32,8 +32,7 @@ class _$ImageErrorTearOff {
     );
   }
 
-  PermissionPermanentlyDenied permissionPermanentlyDenied(
-      RequiredImagePermission permission) {
+  PermissionPermanentlyDenied permissionPermanentlyDenied(RequiredImagePermission permission) {
     return PermissionPermanentlyDenied(
       permission,
     );
@@ -57,10 +56,8 @@ mixin _$ImageError {
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
     required TResult Function() noMessage,
-    required TResult Function(RequiredImagePermission permission)
-        permissionDenied,
-    required TResult Function(RequiredImagePermission permission)
-        permissionPermanentlyDenied,
+    required TResult Function(RequiredImagePermission permission) permissionDenied,
+    required TResult Function(RequiredImagePermission permission) permissionPermanentlyDenied,
     required TResult Function() network,
     required TResult Function() sizeExceeded,
   }) =>
@@ -70,8 +67,7 @@ mixin _$ImageError {
     TResult Function()? unknown,
     TResult Function()? noMessage,
     TResult Function(RequiredImagePermission permission)? permissionDenied,
-    TResult Function(RequiredImagePermission permission)?
-        permissionPermanentlyDenied,
+    TResult Function(RequiredImagePermission permission)? permissionPermanentlyDenied,
     TResult Function()? network,
     TResult Function()? sizeExceeded,
   }) =>
@@ -81,8 +77,7 @@ mixin _$ImageError {
     TResult Function()? unknown,
     TResult Function()? noMessage,
     TResult Function(RequiredImagePermission permission)? permissionDenied,
-    TResult Function(RequiredImagePermission permission)?
-        permissionPermanentlyDenied,
+    TResult Function(RequiredImagePermission permission)? permissionPermanentlyDenied,
     TResult Function()? network,
     TResult Function()? sizeExceeded,
     required TResult orElse(),
@@ -93,8 +88,7 @@ mixin _$ImageError {
     required TResult Function(UnknownError value) unknown,
     required TResult Function(NoMessageError value) noMessage,
     required TResult Function(PermissionDenied value) permissionDenied,
-    required TResult Function(PermissionPermanentlyDenied value)
-        permissionPermanentlyDenied,
+    required TResult Function(PermissionPermanentlyDenied value) permissionPermanentlyDenied,
     required TResult Function(NetworkError value) network,
     required TResult Function(SizeExceededError value) sizeExceeded,
   }) =>
@@ -104,8 +98,7 @@ mixin _$ImageError {
     TResult Function(UnknownError value)? unknown,
     TResult Function(NoMessageError value)? noMessage,
     TResult Function(PermissionDenied value)? permissionDenied,
-    TResult Function(PermissionPermanentlyDenied value)?
-        permissionPermanentlyDenied,
+    TResult Function(PermissionPermanentlyDenied value)? permissionPermanentlyDenied,
     TResult Function(NetworkError value)? network,
     TResult Function(SizeExceededError value)? sizeExceeded,
   }) =>
@@ -115,8 +108,7 @@ mixin _$ImageError {
     TResult Function(UnknownError value)? unknown,
     TResult Function(NoMessageError value)? noMessage,
     TResult Function(PermissionDenied value)? permissionDenied,
-    TResult Function(PermissionPermanentlyDenied value)?
-        permissionPermanentlyDenied,
+    TResult Function(PermissionPermanentlyDenied value)? permissionPermanentlyDenied,
     TResult Function(NetworkError value)? network,
     TResult Function(SizeExceededError value)? sizeExceeded,
     required TResult orElse(),
@@ -126,8 +118,7 @@ mixin _$ImageError {
 
 /// @nodoc
 abstract class $ImageErrorCopyWith<$Res> {
-  factory $ImageErrorCopyWith(
-          ImageError value, $Res Function(ImageError) then) =
+  factory $ImageErrorCopyWith(ImageError value, $Res Function(ImageError) then) =
       _$ImageErrorCopyWithImpl<$Res>;
 }
 
@@ -142,16 +133,14 @@ class _$ImageErrorCopyWithImpl<$Res> implements $ImageErrorCopyWith<$Res> {
 
 /// @nodoc
 abstract class $UnknownErrorCopyWith<$Res> {
-  factory $UnknownErrorCopyWith(
-          UnknownError value, $Res Function(UnknownError) then) =
+  factory $UnknownErrorCopyWith(UnknownError value, $Res Function(UnknownError) then) =
       _$UnknownErrorCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class _$UnknownErrorCopyWithImpl<$Res> extends _$ImageErrorCopyWithImpl<$Res>
     implements $UnknownErrorCopyWith<$Res> {
-  _$UnknownErrorCopyWithImpl(
-      UnknownError _value, $Res Function(UnknownError) _then)
+  _$UnknownErrorCopyWithImpl(UnknownError _value, $Res Function(UnknownError) _then)
       : super(_value, (v) => _then(v as UnknownError));
 
   @override
@@ -170,8 +159,7 @@ class _$UnknownError extends UnknownError {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is UnknownError);
+    return identical(this, other) || (other.runtimeType == runtimeType && other is UnknownError);
   }
 
   @override
@@ -182,10 +170,8 @@ class _$UnknownError extends UnknownError {
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
     required TResult Function() noMessage,
-    required TResult Function(RequiredImagePermission permission)
-        permissionDenied,
-    required TResult Function(RequiredImagePermission permission)
-        permissionPermanentlyDenied,
+    required TResult Function(RequiredImagePermission permission) permissionDenied,
+    required TResult Function(RequiredImagePermission permission) permissionPermanentlyDenied,
     required TResult Function() network,
     required TResult Function() sizeExceeded,
   }) {
@@ -198,8 +184,7 @@ class _$UnknownError extends UnknownError {
     TResult Function()? unknown,
     TResult Function()? noMessage,
     TResult Function(RequiredImagePermission permission)? permissionDenied,
-    TResult Function(RequiredImagePermission permission)?
-        permissionPermanentlyDenied,
+    TResult Function(RequiredImagePermission permission)? permissionPermanentlyDenied,
     TResult Function()? network,
     TResult Function()? sizeExceeded,
   }) {
@@ -212,8 +197,7 @@ class _$UnknownError extends UnknownError {
     TResult Function()? unknown,
     TResult Function()? noMessage,
     TResult Function(RequiredImagePermission permission)? permissionDenied,
-    TResult Function(RequiredImagePermission permission)?
-        permissionPermanentlyDenied,
+    TResult Function(RequiredImagePermission permission)? permissionPermanentlyDenied,
     TResult Function()? network,
     TResult Function()? sizeExceeded,
     required TResult orElse(),
@@ -230,8 +214,7 @@ class _$UnknownError extends UnknownError {
     required TResult Function(UnknownError value) unknown,
     required TResult Function(NoMessageError value) noMessage,
     required TResult Function(PermissionDenied value) permissionDenied,
-    required TResult Function(PermissionPermanentlyDenied value)
-        permissionPermanentlyDenied,
+    required TResult Function(PermissionPermanentlyDenied value) permissionPermanentlyDenied,
     required TResult Function(NetworkError value) network,
     required TResult Function(SizeExceededError value) sizeExceeded,
   }) {
@@ -244,8 +227,7 @@ class _$UnknownError extends UnknownError {
     TResult Function(UnknownError value)? unknown,
     TResult Function(NoMessageError value)? noMessage,
     TResult Function(PermissionDenied value)? permissionDenied,
-    TResult Function(PermissionPermanentlyDenied value)?
-        permissionPermanentlyDenied,
+    TResult Function(PermissionPermanentlyDenied value)? permissionPermanentlyDenied,
     TResult Function(NetworkError value)? network,
     TResult Function(SizeExceededError value)? sizeExceeded,
   }) {
@@ -258,8 +240,7 @@ class _$UnknownError extends UnknownError {
     TResult Function(UnknownError value)? unknown,
     TResult Function(NoMessageError value)? noMessage,
     TResult Function(PermissionDenied value)? permissionDenied,
-    TResult Function(PermissionPermanentlyDenied value)?
-        permissionPermanentlyDenied,
+    TResult Function(PermissionPermanentlyDenied value)? permissionPermanentlyDenied,
     TResult Function(NetworkError value)? network,
     TResult Function(SizeExceededError value)? sizeExceeded,
     required TResult orElse(),
@@ -278,16 +259,14 @@ abstract class UnknownError extends ImageError {
 
 /// @nodoc
 abstract class $NoMessageErrorCopyWith<$Res> {
-  factory $NoMessageErrorCopyWith(
-          NoMessageError value, $Res Function(NoMessageError) then) =
+  factory $NoMessageErrorCopyWith(NoMessageError value, $Res Function(NoMessageError) then) =
       _$NoMessageErrorCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class _$NoMessageErrorCopyWithImpl<$Res> extends _$ImageErrorCopyWithImpl<$Res>
     implements $NoMessageErrorCopyWith<$Res> {
-  _$NoMessageErrorCopyWithImpl(
-      NoMessageError _value, $Res Function(NoMessageError) _then)
+  _$NoMessageErrorCopyWithImpl(NoMessageError _value, $Res Function(NoMessageError) _then)
       : super(_value, (v) => _then(v as NoMessageError));
 
   @override
@@ -306,8 +285,7 @@ class _$NoMessageError extends NoMessageError {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is NoMessageError);
+    return identical(this, other) || (other.runtimeType == runtimeType && other is NoMessageError);
   }
 
   @override
@@ -318,10 +296,8 @@ class _$NoMessageError extends NoMessageError {
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
     required TResult Function() noMessage,
-    required TResult Function(RequiredImagePermission permission)
-        permissionDenied,
-    required TResult Function(RequiredImagePermission permission)
-        permissionPermanentlyDenied,
+    required TResult Function(RequiredImagePermission permission) permissionDenied,
+    required TResult Function(RequiredImagePermission permission) permissionPermanentlyDenied,
     required TResult Function() network,
     required TResult Function() sizeExceeded,
   }) {
@@ -334,8 +310,7 @@ class _$NoMessageError extends NoMessageError {
     TResult Function()? unknown,
     TResult Function()? noMessage,
     TResult Function(RequiredImagePermission permission)? permissionDenied,
-    TResult Function(RequiredImagePermission permission)?
-        permissionPermanentlyDenied,
+    TResult Function(RequiredImagePermission permission)? permissionPermanentlyDenied,
     TResult Function()? network,
     TResult Function()? sizeExceeded,
   }) {
@@ -348,8 +323,7 @@ class _$NoMessageError extends NoMessageError {
     TResult Function()? unknown,
     TResult Function()? noMessage,
     TResult Function(RequiredImagePermission permission)? permissionDenied,
-    TResult Function(RequiredImagePermission permission)?
-        permissionPermanentlyDenied,
+    TResult Function(RequiredImagePermission permission)? permissionPermanentlyDenied,
     TResult Function()? network,
     TResult Function()? sizeExceeded,
     required TResult orElse(),
@@ -366,8 +340,7 @@ class _$NoMessageError extends NoMessageError {
     required TResult Function(UnknownError value) unknown,
     required TResult Function(NoMessageError value) noMessage,
     required TResult Function(PermissionDenied value) permissionDenied,
-    required TResult Function(PermissionPermanentlyDenied value)
-        permissionPermanentlyDenied,
+    required TResult Function(PermissionPermanentlyDenied value) permissionPermanentlyDenied,
     required TResult Function(NetworkError value) network,
     required TResult Function(SizeExceededError value) sizeExceeded,
   }) {
@@ -380,8 +353,7 @@ class _$NoMessageError extends NoMessageError {
     TResult Function(UnknownError value)? unknown,
     TResult Function(NoMessageError value)? noMessage,
     TResult Function(PermissionDenied value)? permissionDenied,
-    TResult Function(PermissionPermanentlyDenied value)?
-        permissionPermanentlyDenied,
+    TResult Function(PermissionPermanentlyDenied value)? permissionPermanentlyDenied,
     TResult Function(NetworkError value)? network,
     TResult Function(SizeExceededError value)? sizeExceeded,
   }) {
@@ -394,8 +366,7 @@ class _$NoMessageError extends NoMessageError {
     TResult Function(UnknownError value)? unknown,
     TResult Function(NoMessageError value)? noMessage,
     TResult Function(PermissionDenied value)? permissionDenied,
-    TResult Function(PermissionPermanentlyDenied value)?
-        permissionPermanentlyDenied,
+    TResult Function(PermissionPermanentlyDenied value)? permissionPermanentlyDenied,
     TResult Function(NetworkError value)? network,
     TResult Function(SizeExceededError value)? sizeExceeded,
     required TResult orElse(),
@@ -414,18 +385,15 @@ abstract class NoMessageError extends ImageError {
 
 /// @nodoc
 abstract class $PermissionDeniedCopyWith<$Res> {
-  factory $PermissionDeniedCopyWith(
-          PermissionDenied value, $Res Function(PermissionDenied) then) =
+  factory $PermissionDeniedCopyWith(PermissionDenied value, $Res Function(PermissionDenied) then) =
       _$PermissionDeniedCopyWithImpl<$Res>;
   $Res call({RequiredImagePermission permission});
 }
 
 /// @nodoc
-class _$PermissionDeniedCopyWithImpl<$Res>
-    extends _$ImageErrorCopyWithImpl<$Res>
+class _$PermissionDeniedCopyWithImpl<$Res> extends _$ImageErrorCopyWithImpl<$Res>
     implements $PermissionDeniedCopyWith<$Res> {
-  _$PermissionDeniedCopyWithImpl(
-      PermissionDenied _value, $Res Function(PermissionDenied) _then)
+  _$PermissionDeniedCopyWithImpl(PermissionDenied _value, $Res Function(PermissionDenied) _then)
       : super(_value, (v) => _then(v as PermissionDenied));
 
   @override
@@ -462,13 +430,11 @@ class _$PermissionDenied extends PermissionDenied {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is PermissionDenied &&
-            const DeepCollectionEquality()
-                .equals(other.permission, permission));
+            const DeepCollectionEquality().equals(other.permission, permission));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(permission));
+  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(permission));
 
   @JsonKey(ignore: true)
   @override
@@ -480,10 +446,8 @@ class _$PermissionDenied extends PermissionDenied {
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
     required TResult Function() noMessage,
-    required TResult Function(RequiredImagePermission permission)
-        permissionDenied,
-    required TResult Function(RequiredImagePermission permission)
-        permissionPermanentlyDenied,
+    required TResult Function(RequiredImagePermission permission) permissionDenied,
+    required TResult Function(RequiredImagePermission permission) permissionPermanentlyDenied,
     required TResult Function() network,
     required TResult Function() sizeExceeded,
   }) {
@@ -496,8 +460,7 @@ class _$PermissionDenied extends PermissionDenied {
     TResult Function()? unknown,
     TResult Function()? noMessage,
     TResult Function(RequiredImagePermission permission)? permissionDenied,
-    TResult Function(RequiredImagePermission permission)?
-        permissionPermanentlyDenied,
+    TResult Function(RequiredImagePermission permission)? permissionPermanentlyDenied,
     TResult Function()? network,
     TResult Function()? sizeExceeded,
   }) {
@@ -510,8 +473,7 @@ class _$PermissionDenied extends PermissionDenied {
     TResult Function()? unknown,
     TResult Function()? noMessage,
     TResult Function(RequiredImagePermission permission)? permissionDenied,
-    TResult Function(RequiredImagePermission permission)?
-        permissionPermanentlyDenied,
+    TResult Function(RequiredImagePermission permission)? permissionPermanentlyDenied,
     TResult Function()? network,
     TResult Function()? sizeExceeded,
     required TResult orElse(),
@@ -528,8 +490,7 @@ class _$PermissionDenied extends PermissionDenied {
     required TResult Function(UnknownError value) unknown,
     required TResult Function(NoMessageError value) noMessage,
     required TResult Function(PermissionDenied value) permissionDenied,
-    required TResult Function(PermissionPermanentlyDenied value)
-        permissionPermanentlyDenied,
+    required TResult Function(PermissionPermanentlyDenied value) permissionPermanentlyDenied,
     required TResult Function(NetworkError value) network,
     required TResult Function(SizeExceededError value) sizeExceeded,
   }) {
@@ -542,8 +503,7 @@ class _$PermissionDenied extends PermissionDenied {
     TResult Function(UnknownError value)? unknown,
     TResult Function(NoMessageError value)? noMessage,
     TResult Function(PermissionDenied value)? permissionDenied,
-    TResult Function(PermissionPermanentlyDenied value)?
-        permissionPermanentlyDenied,
+    TResult Function(PermissionPermanentlyDenied value)? permissionPermanentlyDenied,
     TResult Function(NetworkError value)? network,
     TResult Function(SizeExceededError value)? sizeExceeded,
   }) {
@@ -556,8 +516,7 @@ class _$PermissionDenied extends PermissionDenied {
     TResult Function(UnknownError value)? unknown,
     TResult Function(NoMessageError value)? noMessage,
     TResult Function(PermissionDenied value)? permissionDenied,
-    TResult Function(PermissionPermanentlyDenied value)?
-        permissionPermanentlyDenied,
+    TResult Function(PermissionPermanentlyDenied value)? permissionPermanentlyDenied,
     TResult Function(NetworkError value)? network,
     TResult Function(SizeExceededError value)? sizeExceeded,
     required TResult orElse(),
@@ -570,36 +529,31 @@ class _$PermissionDenied extends PermissionDenied {
 }
 
 abstract class PermissionDenied extends ImageError {
-  const factory PermissionDenied(RequiredImagePermission permission) =
-      _$PermissionDenied;
+  const factory PermissionDenied(RequiredImagePermission permission) = _$PermissionDenied;
   const PermissionDenied._() : super._();
 
   RequiredImagePermission get permission;
   @JsonKey(ignore: true)
-  $PermissionDeniedCopyWith<PermissionDenied> get copyWith =>
-      throw _privateConstructorUsedError;
+  $PermissionDeniedCopyWith<PermissionDenied> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $PermissionPermanentlyDeniedCopyWith<$Res> {
   factory $PermissionPermanentlyDeniedCopyWith(
-          PermissionPermanentlyDenied value,
-          $Res Function(PermissionPermanentlyDenied) then) =
+          PermissionPermanentlyDenied value, $Res Function(PermissionPermanentlyDenied) then) =
       _$PermissionPermanentlyDeniedCopyWithImpl<$Res>;
   $Res call({RequiredImagePermission permission});
 }
 
 /// @nodoc
-class _$PermissionPermanentlyDeniedCopyWithImpl<$Res>
-    extends _$ImageErrorCopyWithImpl<$Res>
+class _$PermissionPermanentlyDeniedCopyWithImpl<$Res> extends _$ImageErrorCopyWithImpl<$Res>
     implements $PermissionPermanentlyDeniedCopyWith<$Res> {
-  _$PermissionPermanentlyDeniedCopyWithImpl(PermissionPermanentlyDenied _value,
-      $Res Function(PermissionPermanentlyDenied) _then)
+  _$PermissionPermanentlyDeniedCopyWithImpl(
+      PermissionPermanentlyDenied _value, $Res Function(PermissionPermanentlyDenied) _then)
       : super(_value, (v) => _then(v as PermissionPermanentlyDenied));
 
   @override
-  PermissionPermanentlyDenied get _value =>
-      super._value as PermissionPermanentlyDenied;
+  PermissionPermanentlyDenied get _value => super._value as PermissionPermanentlyDenied;
 
   @override
   $Res call({
@@ -632,29 +586,24 @@ class _$PermissionPermanentlyDenied extends PermissionPermanentlyDenied {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is PermissionPermanentlyDenied &&
-            const DeepCollectionEquality()
-                .equals(other.permission, permission));
+            const DeepCollectionEquality().equals(other.permission, permission));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(permission));
+  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(permission));
 
   @JsonKey(ignore: true)
   @override
-  $PermissionPermanentlyDeniedCopyWith<PermissionPermanentlyDenied>
-      get copyWith => _$PermissionPermanentlyDeniedCopyWithImpl<
-          PermissionPermanentlyDenied>(this, _$identity);
+  $PermissionPermanentlyDeniedCopyWith<PermissionPermanentlyDenied> get copyWith =>
+      _$PermissionPermanentlyDeniedCopyWithImpl<PermissionPermanentlyDenied>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
     required TResult Function() noMessage,
-    required TResult Function(RequiredImagePermission permission)
-        permissionDenied,
-    required TResult Function(RequiredImagePermission permission)
-        permissionPermanentlyDenied,
+    required TResult Function(RequiredImagePermission permission) permissionDenied,
+    required TResult Function(RequiredImagePermission permission) permissionPermanentlyDenied,
     required TResult Function() network,
     required TResult Function() sizeExceeded,
   }) {
@@ -667,8 +616,7 @@ class _$PermissionPermanentlyDenied extends PermissionPermanentlyDenied {
     TResult Function()? unknown,
     TResult Function()? noMessage,
     TResult Function(RequiredImagePermission permission)? permissionDenied,
-    TResult Function(RequiredImagePermission permission)?
-        permissionPermanentlyDenied,
+    TResult Function(RequiredImagePermission permission)? permissionPermanentlyDenied,
     TResult Function()? network,
     TResult Function()? sizeExceeded,
   }) {
@@ -681,8 +629,7 @@ class _$PermissionPermanentlyDenied extends PermissionPermanentlyDenied {
     TResult Function()? unknown,
     TResult Function()? noMessage,
     TResult Function(RequiredImagePermission permission)? permissionDenied,
-    TResult Function(RequiredImagePermission permission)?
-        permissionPermanentlyDenied,
+    TResult Function(RequiredImagePermission permission)? permissionPermanentlyDenied,
     TResult Function()? network,
     TResult Function()? sizeExceeded,
     required TResult orElse(),
@@ -699,8 +646,7 @@ class _$PermissionPermanentlyDenied extends PermissionPermanentlyDenied {
     required TResult Function(UnknownError value) unknown,
     required TResult Function(NoMessageError value) noMessage,
     required TResult Function(PermissionDenied value) permissionDenied,
-    required TResult Function(PermissionPermanentlyDenied value)
-        permissionPermanentlyDenied,
+    required TResult Function(PermissionPermanentlyDenied value) permissionPermanentlyDenied,
     required TResult Function(NetworkError value) network,
     required TResult Function(SizeExceededError value) sizeExceeded,
   }) {
@@ -713,8 +659,7 @@ class _$PermissionPermanentlyDenied extends PermissionPermanentlyDenied {
     TResult Function(UnknownError value)? unknown,
     TResult Function(NoMessageError value)? noMessage,
     TResult Function(PermissionDenied value)? permissionDenied,
-    TResult Function(PermissionPermanentlyDenied value)?
-        permissionPermanentlyDenied,
+    TResult Function(PermissionPermanentlyDenied value)? permissionPermanentlyDenied,
     TResult Function(NetworkError value)? network,
     TResult Function(SizeExceededError value)? sizeExceeded,
   }) {
@@ -727,8 +672,7 @@ class _$PermissionPermanentlyDenied extends PermissionPermanentlyDenied {
     TResult Function(UnknownError value)? unknown,
     TResult Function(NoMessageError value)? noMessage,
     TResult Function(PermissionDenied value)? permissionDenied,
-    TResult Function(PermissionPermanentlyDenied value)?
-        permissionPermanentlyDenied,
+    TResult Function(PermissionPermanentlyDenied value)? permissionPermanentlyDenied,
     TResult Function(NetworkError value)? network,
     TResult Function(SizeExceededError value)? sizeExceeded,
     required TResult orElse(),
@@ -741,28 +685,26 @@ class _$PermissionPermanentlyDenied extends PermissionPermanentlyDenied {
 }
 
 abstract class PermissionPermanentlyDenied extends ImageError {
-  const factory PermissionPermanentlyDenied(
-      RequiredImagePermission permission) = _$PermissionPermanentlyDenied;
+  const factory PermissionPermanentlyDenied(RequiredImagePermission permission) =
+      _$PermissionPermanentlyDenied;
   const PermissionPermanentlyDenied._() : super._();
 
   RequiredImagePermission get permission;
   @JsonKey(ignore: true)
-  $PermissionPermanentlyDeniedCopyWith<PermissionPermanentlyDenied>
-      get copyWith => throw _privateConstructorUsedError;
+  $PermissionPermanentlyDeniedCopyWith<PermissionPermanentlyDenied> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $NetworkErrorCopyWith<$Res> {
-  factory $NetworkErrorCopyWith(
-          NetworkError value, $Res Function(NetworkError) then) =
+  factory $NetworkErrorCopyWith(NetworkError value, $Res Function(NetworkError) then) =
       _$NetworkErrorCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class _$NetworkErrorCopyWithImpl<$Res> extends _$ImageErrorCopyWithImpl<$Res>
     implements $NetworkErrorCopyWith<$Res> {
-  _$NetworkErrorCopyWithImpl(
-      NetworkError _value, $Res Function(NetworkError) _then)
+  _$NetworkErrorCopyWithImpl(NetworkError _value, $Res Function(NetworkError) _then)
       : super(_value, (v) => _then(v as NetworkError));
 
   @override
@@ -781,8 +723,7 @@ class _$NetworkError extends NetworkError {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is NetworkError);
+    return identical(this, other) || (other.runtimeType == runtimeType && other is NetworkError);
   }
 
   @override
@@ -793,10 +734,8 @@ class _$NetworkError extends NetworkError {
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
     required TResult Function() noMessage,
-    required TResult Function(RequiredImagePermission permission)
-        permissionDenied,
-    required TResult Function(RequiredImagePermission permission)
-        permissionPermanentlyDenied,
+    required TResult Function(RequiredImagePermission permission) permissionDenied,
+    required TResult Function(RequiredImagePermission permission) permissionPermanentlyDenied,
     required TResult Function() network,
     required TResult Function() sizeExceeded,
   }) {
@@ -809,8 +748,7 @@ class _$NetworkError extends NetworkError {
     TResult Function()? unknown,
     TResult Function()? noMessage,
     TResult Function(RequiredImagePermission permission)? permissionDenied,
-    TResult Function(RequiredImagePermission permission)?
-        permissionPermanentlyDenied,
+    TResult Function(RequiredImagePermission permission)? permissionPermanentlyDenied,
     TResult Function()? network,
     TResult Function()? sizeExceeded,
   }) {
@@ -823,8 +761,7 @@ class _$NetworkError extends NetworkError {
     TResult Function()? unknown,
     TResult Function()? noMessage,
     TResult Function(RequiredImagePermission permission)? permissionDenied,
-    TResult Function(RequiredImagePermission permission)?
-        permissionPermanentlyDenied,
+    TResult Function(RequiredImagePermission permission)? permissionPermanentlyDenied,
     TResult Function()? network,
     TResult Function()? sizeExceeded,
     required TResult orElse(),
@@ -841,8 +778,7 @@ class _$NetworkError extends NetworkError {
     required TResult Function(UnknownError value) unknown,
     required TResult Function(NoMessageError value) noMessage,
     required TResult Function(PermissionDenied value) permissionDenied,
-    required TResult Function(PermissionPermanentlyDenied value)
-        permissionPermanentlyDenied,
+    required TResult Function(PermissionPermanentlyDenied value) permissionPermanentlyDenied,
     required TResult Function(NetworkError value) network,
     required TResult Function(SizeExceededError value) sizeExceeded,
   }) {
@@ -855,8 +791,7 @@ class _$NetworkError extends NetworkError {
     TResult Function(UnknownError value)? unknown,
     TResult Function(NoMessageError value)? noMessage,
     TResult Function(PermissionDenied value)? permissionDenied,
-    TResult Function(PermissionPermanentlyDenied value)?
-        permissionPermanentlyDenied,
+    TResult Function(PermissionPermanentlyDenied value)? permissionPermanentlyDenied,
     TResult Function(NetworkError value)? network,
     TResult Function(SizeExceededError value)? sizeExceeded,
   }) {
@@ -869,8 +804,7 @@ class _$NetworkError extends NetworkError {
     TResult Function(UnknownError value)? unknown,
     TResult Function(NoMessageError value)? noMessage,
     TResult Function(PermissionDenied value)? permissionDenied,
-    TResult Function(PermissionPermanentlyDenied value)?
-        permissionPermanentlyDenied,
+    TResult Function(PermissionPermanentlyDenied value)? permissionPermanentlyDenied,
     TResult Function(NetworkError value)? network,
     TResult Function(SizeExceededError value)? sizeExceeded,
     required TResult orElse(),
@@ -895,11 +829,9 @@ abstract class $SizeExceededErrorCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SizeExceededErrorCopyWithImpl<$Res>
-    extends _$ImageErrorCopyWithImpl<$Res>
+class _$SizeExceededErrorCopyWithImpl<$Res> extends _$ImageErrorCopyWithImpl<$Res>
     implements $SizeExceededErrorCopyWith<$Res> {
-  _$SizeExceededErrorCopyWithImpl(
-      SizeExceededError _value, $Res Function(SizeExceededError) _then)
+  _$SizeExceededErrorCopyWithImpl(SizeExceededError _value, $Res Function(SizeExceededError) _then)
       : super(_value, (v) => _then(v as SizeExceededError));
 
   @override
@@ -930,10 +862,8 @@ class _$SizeExceededError extends SizeExceededError {
   TResult when<TResult extends Object?>({
     required TResult Function() unknown,
     required TResult Function() noMessage,
-    required TResult Function(RequiredImagePermission permission)
-        permissionDenied,
-    required TResult Function(RequiredImagePermission permission)
-        permissionPermanentlyDenied,
+    required TResult Function(RequiredImagePermission permission) permissionDenied,
+    required TResult Function(RequiredImagePermission permission) permissionPermanentlyDenied,
     required TResult Function() network,
     required TResult Function() sizeExceeded,
   }) {
@@ -946,8 +876,7 @@ class _$SizeExceededError extends SizeExceededError {
     TResult Function()? unknown,
     TResult Function()? noMessage,
     TResult Function(RequiredImagePermission permission)? permissionDenied,
-    TResult Function(RequiredImagePermission permission)?
-        permissionPermanentlyDenied,
+    TResult Function(RequiredImagePermission permission)? permissionPermanentlyDenied,
     TResult Function()? network,
     TResult Function()? sizeExceeded,
   }) {
@@ -960,8 +889,7 @@ class _$SizeExceededError extends SizeExceededError {
     TResult Function()? unknown,
     TResult Function()? noMessage,
     TResult Function(RequiredImagePermission permission)? permissionDenied,
-    TResult Function(RequiredImagePermission permission)?
-        permissionPermanentlyDenied,
+    TResult Function(RequiredImagePermission permission)? permissionPermanentlyDenied,
     TResult Function()? network,
     TResult Function()? sizeExceeded,
     required TResult orElse(),
@@ -978,8 +906,7 @@ class _$SizeExceededError extends SizeExceededError {
     required TResult Function(UnknownError value) unknown,
     required TResult Function(NoMessageError value) noMessage,
     required TResult Function(PermissionDenied value) permissionDenied,
-    required TResult Function(PermissionPermanentlyDenied value)
-        permissionPermanentlyDenied,
+    required TResult Function(PermissionPermanentlyDenied value) permissionPermanentlyDenied,
     required TResult Function(NetworkError value) network,
     required TResult Function(SizeExceededError value) sizeExceeded,
   }) {
@@ -992,8 +919,7 @@ class _$SizeExceededError extends SizeExceededError {
     TResult Function(UnknownError value)? unknown,
     TResult Function(NoMessageError value)? noMessage,
     TResult Function(PermissionDenied value)? permissionDenied,
-    TResult Function(PermissionPermanentlyDenied value)?
-        permissionPermanentlyDenied,
+    TResult Function(PermissionPermanentlyDenied value)? permissionPermanentlyDenied,
     TResult Function(NetworkError value)? network,
     TResult Function(SizeExceededError value)? sizeExceeded,
   }) {
@@ -1006,8 +932,7 @@ class _$SizeExceededError extends SizeExceededError {
     TResult Function(UnknownError value)? unknown,
     TResult Function(NoMessageError value)? noMessage,
     TResult Function(PermissionDenied value)? permissionDenied,
-    TResult Function(PermissionPermanentlyDenied value)?
-        permissionPermanentlyDenied,
+    TResult Function(PermissionPermanentlyDenied value)? permissionPermanentlyDenied,
     TResult Function(NetworkError value)? network,
     TResult Function(SizeExceededError value)? sizeExceeded,
     required TResult orElse(),
