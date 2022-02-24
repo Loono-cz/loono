@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:built_collection/built_collection.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:loono/helpers/date_without_day.dart';
@@ -8,7 +9,6 @@ import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/firebase_storage_service.dart';
-import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:moor/moor.dart';
 import 'package:uuid/uuid.dart';
@@ -27,7 +27,7 @@ class UserRepository {
       if (authUser != null) {
         debugPrint('log: SYNCING WITH API');
         await _authService.refreshUserToken(authUser);
-        unawaited(_sync());
+        unawaited(sync());
       }
     });
   }
@@ -37,39 +37,39 @@ class UserRepository {
   final DatabaseService _db;
   final FirebaseStorageService _firebaseStorageService;
 
-  Future<void> _sync() async {
+  Future<void> sync() async {
     final account = await _apiService.getAccount();
     await account.whenOrNull(
       success: (data) async {
-        final usersDao = _db.users;
-
-        await usersDao.updateNickname(data.nickname);
-        await usersDao.updateDateOfBirth(
-          DateWithoutDay(
-            year: data.birthdate.year,
-            month: monthFromInt(data.birthdate.month),
+        await _db.users.updateCurrentUser(
+          UsersCompanion(
+            nickname: Value<String>(data.nickname),
+            dateOfBirth: Value<DateWithoutDay>(
+              DateWithoutDay(
+                year: data.birthdate.year,
+                month: monthFromInt(data.birthdate.month),
+              ),
+            ),
+            sex: Value<Sex>(data.sex),
+            email: Value<String>(data.prefferedEmail),
+            profileImageUrl: Value<String?>(data.profileImageUrl),
+            points: Value<int>(data.points),
+            badges: Value<BuiltList<Badge>>(data.badges),
           ),
         );
-        await usersDao.updateSex(data.sex);
-        await usersDao.updateEmail(data.prefferedEmail);
-        if (data.profileImageUrl != null) {
-          await usersDao.updateProfileImageUrl(data.profileImageUrl!);
-        }
-        await usersDao.updateBadges(data.badges);
       },
     );
   }
 
   Future<void> createUser() async {
     await _db.users.deleteAll();
-    await _db.users.upsert(User(id: const Uuid().v4()));
+    await _db.users.upsert(User(id: const Uuid().v4(), points: 0));
   }
 
   Future<void> createUserIfNotExists() async {
     final users = await _db.users.getUser();
     if (users.isEmpty) {
-      await _db.users.deleteAll();
-      await _db.users.upsert(User(id: const Uuid().v4()));
+      await createUser();
     }
   }
 
@@ -78,11 +78,13 @@ class UserRepository {
   }
 
   Future<void> updateSex(Sex sex) async {
-    await _db.users.updateSex(sex);
+    await _db.users.updateCurrentUser(UsersCompanion(sex: Value<Sex>(sex)));
   }
 
   Future<void> updateDateOfBirth(DateWithoutDay dateWithoutDay) async {
-    await _db.users.updateDateOfBirth(dateWithoutDay);
+    await _db.users.updateCurrentUser(
+      UsersCompanion(dateOfBirth: Value<DateWithoutDay>(dateWithoutDay)),
+    );
   }
 
   Future<void> updateDeviceCalendarId(String id) async {
@@ -90,18 +92,17 @@ class UserRepository {
   }
 
   Future<void> updateLatestMapUpdateCheck(DateTime date) async {
-    await _db.users.updateLatestMapUpdateCheck(date);
+    await _db.users.updateCurrentUser(UsersCompanion(latestMapUpdateCheck: Value(date)));
   }
 
   Future<void> updateLatestMapServerUpdate(DateTime date) async {
-    await _db.users.updateLatestMapServerUpdate(date);
+    await _db.users.updateCurrentUser(UsersCompanion(latestMapUpdate: Value(date)));
   }
 
   Future<bool> deleteAccount() async {
     final apiResponse = await _apiService.deleteAccount();
     return apiResponse.map(
       success: (_) async {
-        await registry.get<DatabaseService>().clearDb();
         return true;
       },
       failure: (_) async {
@@ -114,7 +115,7 @@ class UserRepository {
     final apiResponse = await _apiService.updateAccountUser(nickname: nickname);
     final result = await apiResponse.map(
       success: (_) async {
-        await _db.users.updateNickname(nickname);
+        await _db.users.updateCurrentUser(UsersCompanion(nickname: Value(nickname)));
         return true;
       },
       failure: (_) async => false,
@@ -126,7 +127,7 @@ class UserRepository {
     final apiResponse = await _apiService.updateAccountUser(prefferedEmail: email);
     final result = await apiResponse.map(
       success: (_) async {
-        await _db.users.updateEmail(email);
+        await _db.users.updateCurrentUser(UsersCompanion(email: Value(email)));
         return true;
       },
       failure: (_) async => false,
@@ -152,7 +153,7 @@ class UserRepository {
       final apiResponse = await _apiService.updateAccountUser(profileImageUrl: downloadUrl);
       final result = await apiResponse.map(
         success: (_) async {
-          await _db.users.updateProfileImageUrl(downloadUrl);
+          await _db.users.updateCurrentUser(UsersCompanion(profileImageUrl: Value(downloadUrl)));
           return true;
         },
         failure: (_) async => false,
@@ -173,7 +174,7 @@ class UserRepository {
       final apiResponse = await _apiService.updateAccountUser(profileImageUrl: null);
       final result = await apiResponse.map(
         success: (_) async {
-          await _db.users.updateProfileImageUrl(null);
+          await _db.users.updateCurrentUser(const UsersCompanion(profileImageUrl: Value(null)));
           return true;
         },
         failure: (_) async => false,

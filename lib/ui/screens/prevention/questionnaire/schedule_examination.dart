@@ -7,6 +7,7 @@ import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/examination_repository.dart';
+import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/examinations_service.dart';
@@ -66,7 +67,7 @@ class ScheduleExamination extends StatelessWidget {
                           'TODO',
                           'TODO',
                         ],
-                        numberOfPoints: 200,
+                        numberOfPoints: examinationRecord.points,
                         itemPath: 'assets/badges/achievement/cloak-level_1.svg',
                         onButtonTap: () {
                           _appRouter.navigate(
@@ -89,6 +90,7 @@ class ScheduleExamination extends StatelessWidget {
                                       success: (res) {
                                         Provider.of<ExaminationsProvider>(context, listen: false)
                                             .updateExaminationsRecord(res.data);
+                                        registry.get<UserRepository>().sync();
                                         _appRouter.navigate(const MainScreenRouter());
                                       },
                                       failure: (err) {
@@ -114,6 +116,7 @@ class ScheduleExamination extends StatelessWidget {
                                       success: (res) {
                                         Provider.of<ExaminationsProvider>(context, listen: false)
                                             .updateExaminationsRecord(res.data);
+                                        registry.get<UserRepository>().sync();
                                         _appRouter.navigate(const MainScreenRouter());
                                         showSnackBarSuccess(
                                           context,

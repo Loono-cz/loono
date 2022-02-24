@@ -9,6 +9,7 @@ import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/examinations_service.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
 class Loono extends StatelessWidget {
@@ -25,7 +26,9 @@ class Loono extends StatelessWidget {
       stream: _auth.onAuthStateChanged,
       builder: (context, snapshot) {
         final authUser = snapshot.data;
-        if (authUser == null && !_appRouter.isPathActive('logout')) {
+        if (authUser == null &&
+            !_appRouter.isPathActive('logout') &&
+            !_appRouter.isRouteActive(AfterDeletionRoute(sex: Sex.MALE).routeName)) {
           SchedulerBinding.instance?.addPostFrameCallback((_) {
             _appRouter.removeWhere((_) => true);
             // ignore: cascade_invocations
