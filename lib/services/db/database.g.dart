@@ -18,7 +18,7 @@ class User extends DataClass implements Insertable<User> {
   final DateTime? latestMapUpdateCheck;
   final DateTime? latestMapUpdate;
   final int points;
-  final BuiltList<Badge>? badges;
+  final BuiltList<Badge> badges;
   User(
       {required this.id,
       this.sex,
@@ -30,9 +30,8 @@ class User extends DataClass implements Insertable<User> {
       this.latestMapUpdateCheck,
       this.latestMapUpdate,
       required this.points,
-      this.badges});
-  factory User.fromData(Map<String, dynamic> data, GeneratedDatabase db,
-      {String? prefix}) {
+      required this.badges});
+  factory User.fromData(Map<String, dynamic> data, {String? prefix}) {
     final effectivePrefix = prefix ?? '';
     return User(
       id: const StringType()
@@ -56,7 +55,7 @@ class User extends DataClass implements Insertable<User> {
       points: const IntType()
           .mapFromDatabaseResponse(data['${effectivePrefix}points'])!,
       badges: $UsersTable.$converter2.mapToDart(const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}badges'])),
+          .mapFromDatabaseResponse(data['${effectivePrefix}badges']))!,
     );
   }
   @override
@@ -92,9 +91,9 @@ class User extends DataClass implements Insertable<User> {
       map['latest_map_update'] = Variable<DateTime?>(latestMapUpdate);
     }
     map['points'] = Variable<int>(points);
-    if (!nullToAbsent || badges != null) {
+    {
       final converter = $UsersTable.$converter2;
-      map['badges'] = Variable<String?>(converter.mapToSql(badges));
+      map['badges'] = Variable<String>(converter.mapToSql(badges)!);
     }
     return map;
   }
@@ -124,14 +123,13 @@ class User extends DataClass implements Insertable<User> {
           ? const Value.absent()
           : Value(latestMapUpdate),
       points: Value(points),
-      badges:
-          badges == null && nullToAbsent ? const Value.absent() : Value(badges),
+      badges: Value(badges),
     );
   }
 
   factory User.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
-    serializer ??= moorRuntimeOptions.defaultSerializer;
+    serializer ??= driftRuntimeOptions.defaultSerializer;
     return User(
       id: serializer.fromJson<String>(json['id']),
       sex: serializer.fromJson<Sex?>(json['sex']),
@@ -145,12 +143,12 @@ class User extends DataClass implements Insertable<User> {
           serializer.fromJson<DateTime?>(json['latestMapUpdateCheck']),
       latestMapUpdate: serializer.fromJson<DateTime?>(json['latestMapUpdate']),
       points: serializer.fromJson<int>(json['points']),
-      badges: serializer.fromJson<BuiltList<Badge>?>(json['badges']),
+      badges: serializer.fromJson<BuiltList<Badge>>(json['badges']),
     );
   }
   @override
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= moorRuntimeOptions.defaultSerializer;
+    serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'id': serializer.toJson<String>(id),
       'sex': serializer.toJson<Sex?>(sex),
@@ -164,7 +162,7 @@ class User extends DataClass implements Insertable<User> {
           serializer.toJson<DateTime?>(latestMapUpdateCheck),
       'latestMapUpdate': serializer.toJson<DateTime?>(latestMapUpdate),
       'points': serializer.toJson<int>(points),
-      'badges': serializer.toJson<BuiltList<Badge>?>(badges),
+      'badges': serializer.toJson<BuiltList<Badge>>(badges),
     };
   }
 
@@ -253,7 +251,7 @@ class UsersCompanion extends UpdateCompanion<User> {
   final Value<DateTime?> latestMapUpdateCheck;
   final Value<DateTime?> latestMapUpdate;
   final Value<int> points;
-  final Value<BuiltList<Badge>?> badges;
+  final Value<BuiltList<Badge>> badges;
   const UsersCompanion({
     this.id = const Value.absent(),
     this.sex = const Value.absent(),
@@ -268,7 +266,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     this.badges = const Value.absent(),
   });
   UsersCompanion.insert({
-    required String id,
+    this.id = const Value.absent(),
     this.sex = const Value.absent(),
     this.dateOfBirth = const Value.absent(),
     this.nickname = const Value.absent(),
@@ -279,7 +277,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     this.latestMapUpdate = const Value.absent(),
     this.points = const Value.absent(),
     this.badges = const Value.absent(),
-  }) : id = Value(id);
+  });
   static Insertable<User> custom({
     Expression<String>? id,
     Expression<Sex?>? sex,
@@ -291,7 +289,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     Expression<DateTime?>? latestMapUpdateCheck,
     Expression<DateTime?>? latestMapUpdate,
     Expression<int>? points,
-    Expression<BuiltList<Badge>?>? badges,
+    Expression<BuiltList<Badge>>? badges,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -321,7 +319,7 @@ class UsersCompanion extends UpdateCompanion<User> {
       Value<DateTime?>? latestMapUpdateCheck,
       Value<DateTime?>? latestMapUpdate,
       Value<int>? points,
-      Value<BuiltList<Badge>?>? badges}) {
+      Value<BuiltList<Badge>>? badges}) {
     return UsersCompanion(
       id: id ?? this.id,
       sex: sex ?? this.sex,
@@ -378,7 +376,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     }
     if (badges.present) {
       final converter = $UsersTable.$converter2;
-      map['badges'] = Variable<String?>(converter.mapToSql(badges.value));
+      map['badges'] = Variable<String>(converter.mapToSql(badges.value)!);
     }
     return map;
   }
@@ -411,7 +409,9 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   @override
   late final GeneratedColumn<String?> id = GeneratedColumn<String?>(
       'id', aliasedName, false,
-      type: const StringType(), requiredDuringInsert: true);
+      type: const StringType(),
+      requiredDuringInsert: false,
+      clientDefault: () => uuid.v4());
   final VerificationMeta _sexMeta = const VerificationMeta('sex');
   @override
   late final GeneratedColumnWithTypeConverter<Sex, String?> sex =
@@ -469,8 +469,11 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   final VerificationMeta _badgesMeta = const VerificationMeta('badges');
   @override
   late final GeneratedColumnWithTypeConverter<BuiltList<Badge>, String?>
-      badges = GeneratedColumn<String?>('badges', aliasedName, true,
-              type: const StringType(), requiredDuringInsert: false)
+      badges = GeneratedColumn<String?>('badges', aliasedName, false,
+              type: const StringType(),
+              requiredDuringInsert: false,
+              defaultValue: Constant(const BadgeListDbConverter()
+                  .mapToSql(BuiltList.of(<Badge>[]))!))
           .withConverter<BuiltList<Badge>>($UsersTable.$converter2);
   @override
   List<GeneratedColumn> get $columns => [
@@ -497,8 +500,6 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
-    } else if (isInserting) {
-      context.missing(_idMeta);
     }
     context.handle(_sexMeta, const VerificationResult.success());
     context.handle(_dateOfBirthMeta, const VerificationResult.success());
@@ -547,7 +548,7 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
   User map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return User.fromData(data, attachedDatabase,
+    return User.fromData(data,
         prefix: tablePrefix != null ? '$tablePrefix.' : null);
   }
 
@@ -558,9 +559,9 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
 
   static TypeConverter<Sex, String> $converter0 = const SexDbConverter();
   static TypeConverter<DateWithoutDay, String> $converter1 =
-      const DateOfBirthConverter();
+      const DateOfBirthDbConverter();
   static TypeConverter<BuiltList<Badge>, String> $converter2 =
-      const BadgeListConverter();
+      const BadgeListDbConverter();
 }
 
 class CalendarEvent extends DataClass implements Insertable<CalendarEvent> {
@@ -573,9 +574,7 @@ class CalendarEvent extends DataClass implements Insertable<CalendarEvent> {
       required this.deviceCalendarId,
       required this.calendarEventId,
       required this.date});
-  factory CalendarEvent.fromData(
-      Map<String, dynamic> data, GeneratedDatabase db,
-      {String? prefix}) {
+  factory CalendarEvent.fromData(Map<String, dynamic> data, {String? prefix}) {
     final effectivePrefix = prefix ?? '';
     return CalendarEvent(
       type: $CalendarEventsTable.$converter0.mapToDart(const StringType()
@@ -612,7 +611,7 @@ class CalendarEvent extends DataClass implements Insertable<CalendarEvent> {
 
   factory CalendarEvent.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
-    serializer ??= moorRuntimeOptions.defaultSerializer;
+    serializer ??= driftRuntimeOptions.defaultSerializer;
     return CalendarEvent(
       type: serializer.fromJson<ExaminationType>(json['type']),
       deviceCalendarId: serializer.fromJson<String>(json['deviceCalendarId']),
@@ -622,7 +621,7 @@ class CalendarEvent extends DataClass implements Insertable<CalendarEvent> {
   }
   @override
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= moorRuntimeOptions.defaultSerializer;
+    serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'type': serializer.toJson<ExaminationType>(type),
       'deviceCalendarId': serializer.toJson<String>(deviceCalendarId),
@@ -815,7 +814,7 @@ class $CalendarEventsTable extends CalendarEvents
   Set<GeneratedColumn> get $primaryKey => {type};
   @override
   CalendarEvent map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return CalendarEvent.fromData(data, attachedDatabase,
+    return CalendarEvent.fromData(data,
         prefix: tablePrefix != null ? '$tablePrefix.' : null);
   }
 
@@ -836,8 +835,7 @@ class ExaminationQuestionnaire extends DataClass
   final bool? firstExam;
   ExaminationQuestionnaire(
       {required this.type, required this.status, this.date, this.firstExam});
-  factory ExaminationQuestionnaire.fromData(
-      Map<String, dynamic> data, GeneratedDatabase db,
+  factory ExaminationQuestionnaire.fromData(Map<String, dynamic> data,
       {String? prefix}) {
     final effectivePrefix = prefix ?? '';
     return ExaminationQuestionnaire(
@@ -886,7 +884,7 @@ class ExaminationQuestionnaire extends DataClass
 
   factory ExaminationQuestionnaire.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
-    serializer ??= moorRuntimeOptions.defaultSerializer;
+    serializer ??= driftRuntimeOptions.defaultSerializer;
     return ExaminationQuestionnaire(
       type: serializer.fromJson<ExaminationType>(json['type']),
       status: serializer.fromJson<ExaminationStatus>(json['status']),
@@ -896,7 +894,7 @@ class ExaminationQuestionnaire extends DataClass
   }
   @override
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= moorRuntimeOptions.defaultSerializer;
+    serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'type': serializer.toJson<ExaminationType>(type),
       'status': serializer.toJson<ExaminationStatus>(status),
@@ -1081,7 +1079,7 @@ class $ExaminationQuestionnairesTable extends ExaminationQuestionnaires
   @override
   ExaminationQuestionnaire map(Map<String, dynamic> data,
       {String? tablePrefix}) {
-    return ExaminationQuestionnaire.fromData(data, attachedDatabase,
+    return ExaminationQuestionnaire.fromData(data,
         prefix: tablePrefix != null ? '$tablePrefix.' : null);
   }
 

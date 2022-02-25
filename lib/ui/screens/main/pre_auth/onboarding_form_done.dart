@@ -44,7 +44,7 @@ class OnboardingFormDoneScreen extends StatelessWidget {
                     SkipButton(
                       text: context.l10n.already_have_an_account_skip_button,
                       onPressed: () {
-                        if (AutoRouter.of(context).isRouteActive(PreAuthMainRoute().routeName)) {
+                        if (AutoRouter.of(context).isRouteActive(PreAuthMainRoute.name)) {
                           AutoRouter.of(context).popUntilRoot();
                         }
                         AutoRouter.of(context).replaceAll([

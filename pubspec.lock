@@ -324,14 +324,14 @@ packages:
     source: hosted
     version: "1.1.0"
   drift:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: drift
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.4.0"
   drift_dev:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: drift_dev
       url: "https://pub.dartlang.org"
@@ -348,8 +348,8 @@ packages:
     dependency: "direct main"
     description:
       path: "extras/encryption"
-      ref: "8f9e2a9edbc6e4fa4d8dfa1dea9c54aec2b38044"
-      resolved-ref: "8f9e2a9edbc6e4fa4d8dfa1dea9c54aec2b38044"
+      ref: fd0764594dc70b04f5ea5dcd18aa2213abbbce12
+      resolved-ref: fd0764594dc70b04f5ea5dcd18aa2213abbbce12
       url: "https://github.com/simolus3/moor.git"
     source: git
     version: "1.0.0"
@@ -845,19 +845,12 @@ packages:
     source: hosted
     version: "0.1.0-nullsafety-1"
   moor:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: moor
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.6.1+1"
-  moor_generator:
-    dependency: "direct dev"
-    description:
-      name: moor_generator
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.6.0+1"
   nested:
     dependency: transitive
     description:
@@ -929,7 +922,7 @@ packages:
     source: hosted
     version: "1.0.4"
   path:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path
       url: "https://pub.dartlang.org"
@@ -1192,6 +1185,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.5.1"
+  sqlite3_flutter_libs:
+    dependency: "direct main"
+    description:
+      name: sqlite3_flutter_libs
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.3"
   sqlparser:
     dependency: transitive
     description:
@@ -1331,7 +1331,7 @@ packages:
       name: url_launcher_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.8"
+    version: "2.0.6"
   url_launcher_windows:
     dependency: transitive
     description:
@@ -1439,4 +1439,4 @@ packages:
     version: "8.0.0"
 sdks:
   dart: ">=2.15.0 <3.0.0"
-  flutter: ">=2.10.0"
+  flutter: ">=2.8.0"

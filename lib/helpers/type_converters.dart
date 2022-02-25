@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/serializer.dart';
+import 'package:drift/drift.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono_api/loono_api.dart'
@@ -12,7 +13,6 @@ import 'package:loono_api/loono_api.dart'
         Sex,
         SimpleHealthcareProvider,
         standardSerializers;
-import 'package:moor/moor.dart';
 
 class CategoryDbConverter extends TypeConverter<BuiltList<String>, String> {
   const CategoryDbConverter();
@@ -88,8 +88,8 @@ class SexDbConverter extends TypeConverter<Sex, String> {
   }
 }
 
-class DateOfBirthConverter extends TypeConverter<DateWithoutDay, String> {
-  const DateOfBirthConverter();
+class DateOfBirthDbConverter extends TypeConverter<DateWithoutDay, String> {
+  const DateOfBirthDbConverter();
 
   @override
   DateWithoutDay? mapToDart(String? fromDb) {
@@ -129,8 +129,8 @@ class SimpleHealthcareListConverter
   }
 }
 
-class BadgeListConverter extends TypeConverter<BuiltList<Badge>, String> {
-  const BadgeListConverter();
+class BadgeListDbConverter extends TypeConverter<BuiltList<Badge>, String> {
+  const BadgeListDbConverter();
 
   @override
   BuiltList<Badge>? mapToDart(String? fromDb) {

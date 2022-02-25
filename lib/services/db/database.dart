@@ -1,4 +1,5 @@
 import 'package:built_collection/built_collection.dart';
+import 'package:drift/drift.dart';
 import 'package:encrypted_moor/encrypted_moor.dart';
 import 'package:flutter/material.dart' as flutter;
 import 'package:loono/helpers/date_without_day.dart';
@@ -7,11 +8,10 @@ import 'package:loono/models/calendar_event.dart';
 import 'package:loono/models/examination_questionnaire.dart';
 import 'package:loono/models/user.dart';
 import 'package:loono_api/loono_api.dart';
-import 'package:moor/moor.dart';
 
 part 'database.g.dart';
 
-@UseMoor(
+@DriftDatabase(
   tables: [
     Users,
     CalendarEvents,
