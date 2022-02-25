@@ -27,86 +27,87 @@ class _ExaminationsSheetOverlayState extends State<ExaminationsSheetOverlay> {
     final examinationsProvider = Provider.of<ExaminationsProvider>(context, listen: true);
 
     return SizedBox.expand(
-      child: examinationsProvider.loading
-          ? const Center(child: CircularProgressIndicator())
-          : DraggableScrollableSheet(
-              initialChildSize: 0.4,
-              maxChildSize: 0.75,
-              minChildSize: 0.15,
-              builder: (context, scrollController) {
-                if (examinationsProvider.examinations == null) {
-                  return Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Text('žádné záznamy'),
-                        TextButton(
-                          onPressed: examinationsProvider.fetchExaminations,
-                          child: const Text('zkusit znovu'),
-                        ),
-                      ],
-                    ),
-                  );
-                }
-                final categorized = examinationsProvider.examinations!.examinations
-                    .map(
-                      (e) => CategorizedExamination(
-                        examination: e,
-                        category: e.calculateStatus(),
+      child: DraggableScrollableSheet(
+        initialChildSize: 0.4,
+        maxChildSize: 0.75,
+        minChildSize: 0.15,
+        builder: (context, scrollController) {
+          if (examinationsProvider.loading && examinationsProvider.examinations == null) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (examinationsProvider.examinations == null) {
+            return Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text('žádné záznamy'),
+                  TextButton(
+                    onPressed: examinationsProvider.fetchExaminations,
+                    child: const Text('zkusit znovu'),
+                  ),
+                ],
+              ),
+            );
+          }
+
+          final categorized = examinationsProvider.examinations!.examinations
+              .map(
+                (e) => CategorizedExamination(
+                  examination: e,
+                  category: e.calculateStatus(),
+                ),
+              )
+              .toList();
+
+          return Container(
+            decoration: const BoxDecoration(
+              color: LoonoColors.bottomSheetPrevention,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(12),
+                topRight: Radius.circular(12),
+              ),
+            ),
+            child: ListView.builder(
+              controller: scrollController,
+              itemCount: examinationCategoriesOrdering.length,
+              // TODO: set cacheExtent to prevent card repositioning
+              itemBuilder: (context, index) {
+                final examinationStatus = examinationCategoriesOrdering.elementAt(index);
+                final categorizedExaminations = categorized
+                    .where((e) => e.category == examinationStatus)
+                    .toList()
+                  ..sortExaminations();
+
+                return Column(
+                  children: [
+                    if (index == 0) ...[
+                      _buildHandle(context),
+                      _buildSelfExaminationCategory(
+                        context,
+                        CardPosition.first,
+                        examinationsProvider.examinations!.selfexaminations,
                       ),
-                    )
-                    .toList();
-
-                return Container(
-                  decoration: const BoxDecoration(
-                    color: LoonoColors.bottomSheetPrevention,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(12),
-                      topRight: Radius.circular(12),
-                    ),
-                  ),
-                  child: ListView.builder(
-                    controller: scrollController,
-                    itemCount: examinationCategoriesOrdering.length,
-                    // TODO: set cacheExtent to prevent card repositioning
-                    itemBuilder: (context, index) {
-                      final examinationStatus = examinationCategoriesOrdering.elementAt(index);
-                      final categorizedExaminations = categorized
-                          .where((e) => e.category == examinationStatus)
-                          .toList()
-                        ..sortExaminations();
-
-                      return Column(
-                        children: [
-                          if (index == 0) ...[
-                            _buildHandle(context),
-                            _buildSelfExaminationCategory(
-                              context,
-                              CardPosition.first,
-                              examinationsProvider.examinations!.selfexaminations,
-                            ),
-                          ],
-                          if (categorizedExaminations.isNotEmpty)
-                            _buildExaminationCategory(
-                              context,
-                              examinationStatus.getHeaderMessage(context),
-                              categorizedExaminations,
-                            )
-                          else
-                            const SizedBox.shrink(),
-                          if (index == examinationCategoriesOrdering.length - 1)
-                            _buildSelfExaminationCategory(
-                              context,
-                              CardPosition.last,
-                              examinationsProvider.examinations!.selfexaminations,
-                            ),
-                        ],
-                      );
-                    },
-                  ),
+                    ],
+                    if (categorizedExaminations.isNotEmpty)
+                      _buildExaminationCategory(
+                        context,
+                        examinationStatus.getHeaderMessage(context),
+                        categorizedExaminations,
+                      )
+                    else
+                      const SizedBox.shrink(),
+                    if (index == examinationCategoriesOrdering.length - 1)
+                      _buildSelfExaminationCategory(
+                        context,
+                        CardPosition.last,
+                        examinationsProvider.examinations!.selfexaminations,
+                      ),
+                  ],
                 );
               },
             ),
+          );
+        },
+      ),
     );
   }
 

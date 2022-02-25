@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:loono/repositories/examination_repository.dart';
+import 'package:loono/services/api_service.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
@@ -15,12 +15,19 @@ class ExaminationsProvider extends ChangeNotifier {
     loading = true;
     notifyListeners();
 
-    final response = await registry.get<ExaminationRepository>().getExaminationRecords();
-    if (response != null) {
-      examinations = response;
-      notifyListeners();
-    }
-    loading = false;
+    await registry.get<ApiService>().getExaminations().then((res) {
+      res.map(
+        success: (exams) {
+          examinations = exams.data;
+          loading = false;
+        },
+        failure: (err) {
+          loading = false;
+        },
+      );
+    });
+
+    notifyListeners();
   }
 
   void clearExaminations() {

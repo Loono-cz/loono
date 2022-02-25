@@ -39,8 +39,8 @@ class LoonoAvatar extends StatelessWidget {
                   ),
                   placeholder: (context, url) => Center(
                     child: SizedBox(
-                      height: radius,
-                      width: radius,
+                      height: radius * 2,
+                      width: radius * 2,
                       child: const CircularProgressIndicator(color: LoonoColors.primaryEnabled),
                     ),
                   ),
