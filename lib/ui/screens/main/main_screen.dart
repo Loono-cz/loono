@@ -14,7 +14,9 @@ import 'package:provider/provider.dart';
 
 /// Post-auth main screen.
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  const MainScreen({Key? key, this.selectedIndex = 0}) : super(key: key);
+
+  final int selectedIndex;
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -37,6 +39,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
+    _selectedIndex = widget.selectedIndex;
     final examinationsProvider = Provider.of<ExaminationsProvider>(context, listen: false);
 
     WidgetsBinding.instance?.addPostFrameCallback(
