@@ -39,6 +39,7 @@ class EmailScreen extends StatelessWidget {
         return FallbackAccountContent(
           title: context.l10n.fallback_account_email,
           initialText: socialLoginAccount.email,
+          buttonText: context.l10n.create_new_account,
           hint: '${getHintText(context, user: snapshot.data).toLowerCase()}@seznam.cz',
           description: context.l10n.fallback_account_email_desc,
           keyboardType: TextInputType.emailAddress,
