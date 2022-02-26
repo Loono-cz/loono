@@ -61,7 +61,7 @@ class AuthService {
     }
 
     // account exists, sign in
-    final authResult = await signInWithGoogle();
+    final authResult = await signInWithGoogle(googleUser);
     return authResult;
   }
 
