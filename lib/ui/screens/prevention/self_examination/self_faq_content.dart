@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/router/app_router.gr.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -153,8 +154,11 @@ List<SelfFAQPair> selfFaqContent(BuildContext context, SelfExaminationType type)
                       style: const TextStyle(decoration: TextDecoration.underline),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () async {
-                          /// TODO: navigate to find doctor screen
-                          await AutoRouter.of(context).pop();
+                          await AutoRouter.of(context).navigate(
+                            MainRoute(
+                              selectedIndex: 1,
+                            ),
+                          );
                         },
                     ),
                     TextSpan(text: texts.self_faq_breast_steps_answer_part_9),

@@ -171,10 +171,12 @@ class AuthService {
   }
 
   // TODO: refresh token more often - maybe on each api call ? (https://cesko-digital.atlassian.net/browse/LOON-477)
-  Future<void> refreshUserToken(AuthUser authUser) async {
-    final token = await authUser.getIdToken();
-    //log(token);
-    _api.dio.options.headers['Authorization'] = 'Bearer $token';
+  Future<String?> refreshUserToken() async {
+    final token = await _auth.currentUser?.getIdToken();
+    if (token != null) {
+      _api.dio.options.headers['Authorization'] = 'Bearer $token';
+    }
+    return token;
   }
 
   void _clearUserToken() => _api.dio.options.headers.remove('Authorization');

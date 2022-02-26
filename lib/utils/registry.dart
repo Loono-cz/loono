@@ -1,5 +1,6 @@
 // ignore_for_file: cascade_invocations
 
+import 'dart:async';
 import 'dart:io';
 
 import 'package:device_calendar/device_calendar.dart';
@@ -79,6 +80,17 @@ Future<void> setup(AppFlavors flavor) async {
         Duration(seconds: 2),
         Duration(seconds: 3),
       ],
+    ),
+  );
+
+  dio.interceptors.add(
+    InterceptorsWrapper(
+      onError: (e, handler) async {
+        if (e.response?.statusCode == 401) {
+          await registry.get<AuthService>().signOut();
+        }
+        handler.next(e);
+      },
     ),
   );
 

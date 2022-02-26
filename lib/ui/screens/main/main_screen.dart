@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
@@ -6,6 +9,7 @@ import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/screens/about_health/about_health.dart';
 import 'package:loono/ui/screens/find_doctor/find_doctor.dart';
 import 'package:loono/ui/screens/prevention/prevention.dart';
+import 'package:loono/ui/widgets/no_connection_message.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:provider/provider.dart';
 
@@ -21,6 +25,9 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
+  StreamSubscription? subscription;
+
+  bool connectivityLocked = true;
 
   static final List<Widget> _pages = <Widget>[
     const PreventionScreen(),
@@ -30,15 +37,54 @@ class _MainScreenState extends State<MainScreen> {
 
   void _onItemTapped(int index) => setState(() => _selectedIndex = index);
 
+  final noConnectionMessage = noConnectionFlushbar();
+
+  void evalConnectivity(ConnectivityResult result) {
+    if (result == ConnectivityResult.none) {
+      noConnectionMessage.show(context);
+    } else {
+      noConnectionMessage.dismiss(context);
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     _selectedIndex = widget.selectedIndex;
+    final examinationsProvider = Provider.of<ExaminationsProvider>(context, listen: false);
 
     WidgetsBinding.instance?.addPostFrameCallback(
-      (_) => Provider.of<ExaminationsProvider>(context, listen: false).fetchExaminations(),
+      (_) => examinationsProvider.fetchExaminations(),
     );
     registry.get<UserRepository>().sync();
+
+    /// lock connectivity for the first 300ms to prevent multiple api calls on init
+    Future<void>.delayed(const Duration(milliseconds: 300), () {
+      setState(() {
+        connectivityLocked = false;
+      });
+    });
+
+    Connectivity().checkConnectivity().then(
+          evalConnectivity,
+        );
+
+    subscription = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
+      evalConnectivity(result);
+
+      /// fetch examinations after network reconnection
+      if (result != ConnectivityResult.none &&
+          examinationsProvider.examinations == null &&
+          !connectivityLocked) {
+        examinationsProvider.fetchExaminations();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    subscription?.cancel();
   }
 
   @override
