@@ -28,9 +28,9 @@ class _$AuthFailureTearOff {
     return const NoMessageFailure();
   }
 
-  AccountNotExists accountNotExists([String? email]) {
+  AccountNotExists accountNotExists(SocialLoginAccount socialLoginAccount) {
     return AccountNotExists(
-      email,
+      socialLoginAccount,
     );
   }
 
@@ -50,7 +50,8 @@ mixin _$AuthFailure {
   TResult when<TResult extends Object?>({
     required TResult Function(String? message) unknown,
     required TResult Function() noMessage,
-    required TResult Function(String? email) accountNotExists,
+    required TResult Function(SocialLoginAccount socialLoginAccount)
+        accountNotExists,
     required TResult Function(String? message) network,
   }) =>
       throw _privateConstructorUsedError;
@@ -58,7 +59,7 @@ mixin _$AuthFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? message)? unknown,
     TResult Function()? noMessage,
-    TResult Function(String? email)? accountNotExists,
+    TResult Function(SocialLoginAccount socialLoginAccount)? accountNotExists,
     TResult Function(String? message)? network,
   }) =>
       throw _privateConstructorUsedError;
@@ -66,7 +67,7 @@ mixin _$AuthFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? unknown,
     TResult Function()? noMessage,
-    TResult Function(String? email)? accountNotExists,
+    TResult Function(SocialLoginAccount socialLoginAccount)? accountNotExists,
     TResult Function(String? message)? network,
     required TResult orElse(),
   }) =>
@@ -180,7 +181,8 @@ class _$UnknownFailure extends UnknownFailure {
   TResult when<TResult extends Object?>({
     required TResult Function(String? message) unknown,
     required TResult Function() noMessage,
-    required TResult Function(String? email) accountNotExists,
+    required TResult Function(SocialLoginAccount socialLoginAccount)
+        accountNotExists,
     required TResult Function(String? message) network,
   }) {
     return unknown(message);
@@ -191,7 +193,7 @@ class _$UnknownFailure extends UnknownFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? message)? unknown,
     TResult Function()? noMessage,
-    TResult Function(String? email)? accountNotExists,
+    TResult Function(SocialLoginAccount socialLoginAccount)? accountNotExists,
     TResult Function(String? message)? network,
   }) {
     return unknown?.call(message);
@@ -202,7 +204,7 @@ class _$UnknownFailure extends UnknownFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? unknown,
     TResult Function()? noMessage,
-    TResult Function(String? email)? accountNotExists,
+    TResult Function(SocialLoginAccount socialLoginAccount)? accountNotExists,
     TResult Function(String? message)? network,
     required TResult orElse(),
   }) {
@@ -303,7 +305,8 @@ class _$NoMessageFailure extends NoMessageFailure {
   TResult when<TResult extends Object?>({
     required TResult Function(String? message) unknown,
     required TResult Function() noMessage,
-    required TResult Function(String? email) accountNotExists,
+    required TResult Function(SocialLoginAccount socialLoginAccount)
+        accountNotExists,
     required TResult Function(String? message) network,
   }) {
     return noMessage();
@@ -314,7 +317,7 @@ class _$NoMessageFailure extends NoMessageFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? message)? unknown,
     TResult Function()? noMessage,
-    TResult Function(String? email)? accountNotExists,
+    TResult Function(SocialLoginAccount socialLoginAccount)? accountNotExists,
     TResult Function(String? message)? network,
   }) {
     return noMessage?.call();
@@ -325,7 +328,7 @@ class _$NoMessageFailure extends NoMessageFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? unknown,
     TResult Function()? noMessage,
-    TResult Function(String? email)? accountNotExists,
+    TResult Function(SocialLoginAccount socialLoginAccount)? accountNotExists,
     TResult Function(String? message)? network,
     required TResult orElse(),
   }) {
@@ -383,7 +386,7 @@ abstract class $AccountNotExistsCopyWith<$Res> {
   factory $AccountNotExistsCopyWith(
           AccountNotExists value, $Res Function(AccountNotExists) then) =
       _$AccountNotExistsCopyWithImpl<$Res>;
-  $Res call({String? email});
+  $Res call({SocialLoginAccount socialLoginAccount});
 }
 
 /// @nodoc
@@ -399,13 +402,13 @@ class _$AccountNotExistsCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? email = freezed,
+    Object? socialLoginAccount = freezed,
   }) {
     return _then(AccountNotExists(
-      email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
+      socialLoginAccount == freezed
+          ? _value.socialLoginAccount
+          : socialLoginAccount // ignore: cast_nullable_to_non_nullable
+              as SocialLoginAccount,
     ));
   }
 }
@@ -413,14 +416,14 @@ class _$AccountNotExistsCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AccountNotExists extends AccountNotExists {
-  const _$AccountNotExists([this.email]) : super._();
+  const _$AccountNotExists(this.socialLoginAccount) : super._();
 
   @override
-  final String? email;
+  final SocialLoginAccount socialLoginAccount;
 
   @override
   String toString() {
-    return 'AuthFailure.accountNotExists(email: $email)';
+    return 'AuthFailure.accountNotExists(socialLoginAccount: $socialLoginAccount)';
   }
 
   @override
@@ -428,12 +431,13 @@ class _$AccountNotExists extends AccountNotExists {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is AccountNotExists &&
-            const DeepCollectionEquality().equals(other.email, email));
+            const DeepCollectionEquality()
+                .equals(other.socialLoginAccount, socialLoginAccount));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(email));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(socialLoginAccount));
 
   @JsonKey(ignore: true)
   @override
@@ -445,10 +449,11 @@ class _$AccountNotExists extends AccountNotExists {
   TResult when<TResult extends Object?>({
     required TResult Function(String? message) unknown,
     required TResult Function() noMessage,
-    required TResult Function(String? email) accountNotExists,
+    required TResult Function(SocialLoginAccount socialLoginAccount)
+        accountNotExists,
     required TResult Function(String? message) network,
   }) {
-    return accountNotExists(email);
+    return accountNotExists(socialLoginAccount);
   }
 
   @override
@@ -456,10 +461,10 @@ class _$AccountNotExists extends AccountNotExists {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? message)? unknown,
     TResult Function()? noMessage,
-    TResult Function(String? email)? accountNotExists,
+    TResult Function(SocialLoginAccount socialLoginAccount)? accountNotExists,
     TResult Function(String? message)? network,
   }) {
-    return accountNotExists?.call(email);
+    return accountNotExists?.call(socialLoginAccount);
   }
 
   @override
@@ -467,12 +472,12 @@ class _$AccountNotExists extends AccountNotExists {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? unknown,
     TResult Function()? noMessage,
-    TResult Function(String? email)? accountNotExists,
+    TResult Function(SocialLoginAccount socialLoginAccount)? accountNotExists,
     TResult Function(String? message)? network,
     required TResult orElse(),
   }) {
     if (accountNotExists != null) {
-      return accountNotExists(email);
+      return accountNotExists(socialLoginAccount);
     }
     return orElse();
   }
@@ -516,10 +521,11 @@ class _$AccountNotExists extends AccountNotExists {
 }
 
 abstract class AccountNotExists extends AuthFailure {
-  const factory AccountNotExists([String? email]) = _$AccountNotExists;
+  const factory AccountNotExists(SocialLoginAccount socialLoginAccount) =
+      _$AccountNotExists;
   const AccountNotExists._() : super._();
 
-  String? get email;
+  SocialLoginAccount get socialLoginAccount;
   @JsonKey(ignore: true)
   $AccountNotExistsCopyWith<AccountNotExists> get copyWith =>
       throw _privateConstructorUsedError;
@@ -591,7 +597,8 @@ class _$NetworkFailure extends NetworkFailure {
   TResult when<TResult extends Object?>({
     required TResult Function(String? message) unknown,
     required TResult Function() noMessage,
-    required TResult Function(String? email) accountNotExists,
+    required TResult Function(SocialLoginAccount socialLoginAccount)
+        accountNotExists,
     required TResult Function(String? message) network,
   }) {
     return network(message);
@@ -602,7 +609,7 @@ class _$NetworkFailure extends NetworkFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? message)? unknown,
     TResult Function()? noMessage,
-    TResult Function(String? email)? accountNotExists,
+    TResult Function(SocialLoginAccount socialLoginAccount)? accountNotExists,
     TResult Function(String? message)? network,
   }) {
     return network?.call(message);
@@ -613,7 +620,7 @@ class _$NetworkFailure extends NetworkFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? unknown,
     TResult Function()? noMessage,
-    TResult Function(String? email)? accountNotExists,
+    TResult Function(SocialLoginAccount socialLoginAccount)? accountNotExists,
     TResult Function(String? message)? network,
     required TResult orElse(),
   }) {

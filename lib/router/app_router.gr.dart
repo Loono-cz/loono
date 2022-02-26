@@ -18,7 +18,7 @@ import 'package:loono_api/loono_api.dart' as _i55;
 
 import '../helpers/examination_category.dart' as _i60;
 import '../models/categorized_examination.dart' as _i59;
-import '../models/firebase_user.dart' as _i54;
+import '../models/social_login_account.dart' as _i54;
 import '../services/db/database.dart' as _i56;
 import '../ui/screens/about_health/about_health.dart' as _i16;
 import '../ui/screens/dentist_achievement.dart' as _i30;
@@ -121,18 +121,18 @@ class AppRouter extends _i11.RootStackRouter {
           child: const _i6.GamificationIntroductionScreen());
     },
     NicknameRoute.name: (routeData) {
-      final args = routeData.argsAs<NicknameRouteArgs>(
-          orElse: () => const NicknameRouteArgs());
+      final args = routeData.argsAs<NicknameRouteArgs>();
       return _i11.MaterialPageX<void>(
           routeData: routeData,
-          child: _i7.NicknameScreen(key: args.key, authUser: args.authUser));
+          child: _i7.NicknameScreen(
+              key: args.key, socialLoginAccount: args.socialLoginAccount));
     },
     EmailRoute.name: (routeData) {
-      final args = routeData.argsAs<EmailRouteArgs>(
-          orElse: () => const EmailRouteArgs());
+      final args = routeData.argsAs<EmailRouteArgs>();
       return _i11.MaterialPageX<void>(
           routeData: routeData,
-          child: _i8.EmailScreen(key: args.key, authUser: args.authUser));
+          child: _i8.EmailScreen(
+              key: args.key, socialLoginAccount: args.socialLoginAccount));
     },
     LoginRoute.name: (routeData) {
       final args = routeData.argsAs<LoginRouteArgs>(
@@ -756,48 +756,52 @@ class GamificationIntroductionRoute extends _i11.PageRouteInfo<void> {
 /// generated route for
 /// [_i7.NicknameScreen]
 class NicknameRoute extends _i11.PageRouteInfo<NicknameRouteArgs> {
-  NicknameRoute({_i52.Key? key, _i54.AuthUser? authUser})
+  NicknameRoute(
+      {_i52.Key? key, required _i54.SocialLoginAccount socialLoginAccount})
       : super(NicknameRoute.name,
             path: 'fallback-account/name',
-            args: NicknameRouteArgs(key: key, authUser: authUser));
+            args: NicknameRouteArgs(
+                key: key, socialLoginAccount: socialLoginAccount));
 
   static const String name = 'NicknameRoute';
 }
 
 class NicknameRouteArgs {
-  const NicknameRouteArgs({this.key, this.authUser});
+  const NicknameRouteArgs({this.key, required this.socialLoginAccount});
 
   final _i52.Key? key;
 
-  final _i54.AuthUser? authUser;
+  final _i54.SocialLoginAccount socialLoginAccount;
 
   @override
   String toString() {
-    return 'NicknameRouteArgs{key: $key, authUser: $authUser}';
+    return 'NicknameRouteArgs{key: $key, socialLoginAccount: $socialLoginAccount}';
   }
 }
 
 /// generated route for
 /// [_i8.EmailScreen]
 class EmailRoute extends _i11.PageRouteInfo<EmailRouteArgs> {
-  EmailRoute({_i52.Key? key, _i54.AuthUser? authUser})
+  EmailRoute(
+      {_i52.Key? key, required _i54.SocialLoginAccount socialLoginAccount})
       : super(EmailRoute.name,
             path: 'fallback-account/email',
-            args: EmailRouteArgs(key: key, authUser: authUser));
+            args: EmailRouteArgs(
+                key: key, socialLoginAccount: socialLoginAccount));
 
   static const String name = 'EmailRoute';
 }
 
 class EmailRouteArgs {
-  const EmailRouteArgs({this.key, this.authUser});
+  const EmailRouteArgs({this.key, required this.socialLoginAccount});
 
   final _i52.Key? key;
 
-  final _i54.AuthUser? authUser;
+  final _i54.SocialLoginAccount socialLoginAccount;
 
   @override
   String toString() {
-    return 'EmailRouteArgs{key: $key, authUser: $authUser}';
+    return 'EmailRouteArgs{key: $key, socialLoginAccount: $socialLoginAccount}';
   }
 }
 

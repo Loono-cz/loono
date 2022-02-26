@@ -1,8 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:loono/models/firebase_user.dart';
+import 'package:loono/models/social_login_account.dart';
 import 'package:loono/services/auth/failures.dart';
 import 'package:loono/utils/crypto_utils.dart';
 import 'package:loono_api/loono_api.dart' as api;
@@ -37,6 +39,9 @@ class AuthService {
       firebaseUser == null ? null : AuthUser(firebaseUser: firebaseUser);
 
   Future<Either<AuthFailure, AuthUser>> checkGoogleAccountExistsAndSignIn() async {
+    // clear existing saved account from Google account picker
+    await _googleSignIn.signOut();
+
     GoogleSignInAccount? googleUser;
     try {
       googleUser = await _googleSignIn.signIn();
@@ -52,8 +57,7 @@ class AuthService {
 
     final signInMethods = await _auth.fetchSignInMethodsForEmail(googleUser.email);
     if (signInMethods.isEmpty) {
-      await _googleSignIn.signOut();
-      return Left(AuthFailure.accountNotExists(googleUser.email));
+      return Left(AuthFailure.accountNotExists(SocialLoginAccount.google(googleUser)));
     }
 
     // account exists, sign in
@@ -62,27 +66,13 @@ class AuthService {
   }
 
   Future<Either<AuthFailure, AuthUser>> checkAppleAccountExistsAndSignIn() async {
-    final rawNonce = generateNonce();
-    final nonce = sha256ofString(rawNonce);
-
-    AuthorizationCredentialAppleID? appleCredential;
-    try {
-      appleCredential = await SignInWithApple.getAppleIDCredential(
-        scopes: [
-          AppleIDAuthorizationScopes.email,
-          AppleIDAuthorizationScopes.fullName,
-        ],
-        nonce: nonce,
-      );
-    } catch (_) {
-      return const Left(AuthFailure.unknown());
-    }
-
+    final appleCredential = await getAppleCredential();
+    if (appleCredential == null) return const Left(AuthFailure.unknown());
     if (appleCredential.email == null) return const Left(AuthFailure.unknown());
 
     final signInMethods = await _auth.fetchSignInMethodsForEmail(appleCredential.email!);
     if (signInMethods.isEmpty) {
-      return Left(AuthFailure.accountNotExists(appleCredential.email));
+      return Left(AuthFailure.accountNotExists(SocialLoginAccount.apple(appleCredential)));
     }
 
     // account exists, sign in
@@ -90,15 +80,23 @@ class AuthService {
     return authResult;
   }
 
-  Future<Either<AuthFailure, AuthUser>> signInWithGoogle() async {
-    GoogleSignInAccount? googleUser;
-    try {
-      googleUser = await _googleSignIn.signIn();
-    } on PlatformException catch (e) {
-      if (e.code == 'network_error') return const Left(AuthFailure.network());
-      return const Left(AuthFailure.unknown());
-    } catch (_) {
-      return const Left(AuthFailure.unknown());
+  Future<Either<AuthFailure, AuthUser>> signInWithGoogle([
+    GoogleSignInAccount? newGoogleUser,
+  ]) async {
+    if (newGoogleUser == null) {
+      await _googleSignIn.signOut();
+    }
+
+    var googleUser = newGoogleUser;
+    if (newGoogleUser == null) {
+      try {
+        googleUser = await _googleSignIn.signIn();
+      } on PlatformException catch (e) {
+        if (e.code == 'network_error') return const Left(AuthFailure.network());
+        return const Left(AuthFailure.unknown());
+      } catch (_) {
+        return const Left(AuthFailure.unknown());
+      }
     }
 
     // if googleUser is null, signIn was interrupted/cancelled
@@ -162,6 +160,25 @@ class AuthService {
     return userCredential.user == null
         ? const Left(AuthFailure.unknown())
         : Right(_authUserFromFirebase(userCredential.user)!);
+  }
+
+  Future<AuthorizationCredentialAppleID?> getAppleCredential() async {
+    final rawNonce = generateNonce();
+    final nonce = sha256ofString(rawNonce);
+
+    AuthorizationCredentialAppleID? appleCredential;
+    try {
+      appleCredential = await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
+        nonce: nonce,
+      );
+    } catch (o) {
+      debugPrint(o.toString());
+    }
+    return appleCredential;
   }
 
   Future<void> signOut() async {

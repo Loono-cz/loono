@@ -29,7 +29,7 @@ class GamificationIntroductionScreen extends StatelessWidget {
                 const Spacer(),
                 LoonoButton(
                   text: context.l10n.gamification_introduction_button,
-                  onTap: () => AutoRouter.of(context).push(const MainScreenRouter()),
+                  onTap: () => AutoRouter.of(context).replaceAll([const MainScreenRouter()]),
                 ),
                 SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
               ],
