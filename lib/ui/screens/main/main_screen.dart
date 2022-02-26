@@ -9,6 +9,7 @@ import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/screens/about_health/about_health.dart';
 import 'package:loono/ui/screens/find_doctor/find_doctor.dart';
 import 'package:loono/ui/screens/prevention/prevention.dart';
+import 'package:loono/ui/widgets/no_connection_message.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:provider/provider.dart';
 
@@ -36,6 +37,16 @@ class _MainScreenState extends State<MainScreen> {
 
   void _onItemTapped(int index) => setState(() => _selectedIndex = index);
 
+  final noConnectionMessage = noConnectionFlushbar();
+
+  void evalConnectivity(ConnectivityResult result) {
+    if (result == ConnectivityResult.none) {
+      noConnectionMessage.show(context);
+    } else {
+      noConnectionMessage.dismiss(context);
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -54,8 +65,14 @@ class _MainScreenState extends State<MainScreen> {
       });
     });
 
-    /// fetch examinations after network reconnection
+    Connectivity().checkConnectivity().then(
+          evalConnectivity,
+        );
+
     subscription = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
+      evalConnectivity(result);
+
+      /// fetch examinations after network reconnection
       if (result != ConnectivityResult.none &&
           examinationsProvider.examinations == null &&
           !connectivityLocked) {

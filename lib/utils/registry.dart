@@ -3,7 +3,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:device_calendar/device_calendar.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
@@ -14,8 +13,6 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:loono/helpers/interceptors/dio_connectivity_request_retrier.dart';
-import 'package:loono/helpers/interceptors/retry_interceptor.dart';
 import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/repositories/healthcare_repository.dart';
@@ -92,16 +89,8 @@ Future<void> setup(AppFlavors flavor) async {
         if (e.response?.statusCode == 401) {
           await registry.get<AuthService>().signOut();
         }
+        handler.next(e);
       },
-    ),
-  );
-
-  dio.interceptors.add(
-    RetryOnConnectionChangeInterceptor(
-      requestRetrier: DioConnectivityRequestRetrier(
-        dio: dio,
-        connectivity: Connectivity(),
-      ),
     ),
   );
 
