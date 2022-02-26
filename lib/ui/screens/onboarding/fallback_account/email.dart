@@ -55,9 +55,8 @@ class EmailScreen extends StatelessWidget {
 
                 final result = await _callOnboardUser(authUser, user, examinationQuestionnaires);
                 await result.when(
-                  success: (_) async {
-                    await AutoRouter.of(context).push(const GamificationIntroductionRoute());
-                  },
+                  success: (_) async =>
+                      AutoRouter.of(context).replaceAll([const GamificationIntroductionRoute()]),
                   failure: (_) async {
                     showSnackBarError(context, message: context.l10n.something_went_wrong);
                     // delete account so user can not login without saving info to server first
@@ -105,8 +104,8 @@ class EmailScreen extends StatelessWidget {
             })
         ],
       ),
-      nickname: authUser.name ?? '',
-      preferredEmail: authUser.email ?? '',
+      nickname: user.nickname ?? '',
+      preferredEmail: user.email ?? '',
     );
   }
 }
