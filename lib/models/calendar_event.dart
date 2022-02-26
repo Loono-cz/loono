@@ -1,7 +1,7 @@
+import 'package:drift/drift.dart';
 import 'package:loono/helpers/type_converters.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono_api/loono_api.dart';
-import 'package:moor/moor.dart';
 
 part 'calendar_event.g.dart';
 
@@ -18,7 +18,7 @@ class CalendarEvents extends Table {
   DateTimeColumn get date => dateTime()();
 }
 
-@UseDao(tables: [CalendarEvents])
+@DriftAccessor(tables: [CalendarEvents])
 class CalendarEventsDao extends DatabaseAccessor<AppDatabase> with _$CalendarEventsDaoMixin {
   CalendarEventsDao(AppDatabase db) : super(db);
 

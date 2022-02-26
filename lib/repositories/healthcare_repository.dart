@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:archive/archive.dart';
+import 'package:drift/drift.dart';
 import 'package:flutter/foundation.dart';
 import 'package:loono/helpers/type_converters.dart';
 import 'package:loono/services/api_service.dart';
@@ -10,7 +11,6 @@ import 'package:loono/services/database_service.dart';
 import 'package:loono/services/save_directories.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
-import 'package:moor/moor.dart';
 
 enum HealtCareSyncState { started, fetching, parsing, storing, completed, error }
 

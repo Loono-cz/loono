@@ -1,9 +1,9 @@
+import 'package:drift/drift.dart';
 import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/helpers/onboarding_state_helpers.dart';
 import 'package:loono/helpers/type_converters.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono_api/loono_api.dart';
-import 'package:moor/moor.dart';
 
 part 'examination_questionnaire.g.dart';
 
@@ -22,7 +22,7 @@ class ExaminationQuestionnaires extends Table {
   BoolColumn get firstExam => boolean().nullable()();
 }
 
-@UseDao(tables: [ExaminationQuestionnaires])
+@DriftAccessor(tables: [ExaminationQuestionnaires])
 class ExaminationQuestionnairesDao extends DatabaseAccessor<AppDatabase>
     with _$ExaminationQuestionnairesDaoMixin {
   ExaminationQuestionnairesDao(AppDatabase db) : super(db);
