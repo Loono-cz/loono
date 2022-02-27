@@ -47,11 +47,14 @@ class ExaminationQuestionnairesDao extends DatabaseAccessor<AppDatabase>
 
   Stream<List<ExaminationQuestionnaire>> watchAll() => select(examinationQuestionnaires).watch();
 
-  Future<void> createQuestionnaire(ExaminationType examinationType) async {
-    await into(examinationQuestionnaires).insert(
-      ExaminationQuestionnairesCompanion.insert(type: examinationType),
-      mode: InsertMode.replace,
-    );
+  Future<void> createQuestionnaires(List<ExaminationType> examinationTypes) async {
+    await batch((b) {
+      b.insertAll(
+        examinationQuestionnaires,
+        examinationTypes.map((type) => ExaminationQuestionnairesCompanion.insert(type: type)),
+        mode: InsertMode.replace,
+      );
+    });
   }
 
   Future<void> updateCcaDoctorVisit(

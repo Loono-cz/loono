@@ -25,9 +25,11 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
     final existingQuestionnaires = await _examinationQuestionnairesDao.getAll();
     if (existingQuestionnaires.isEmpty) {
       _shouldShowNotificationScreen = true;
-      await _examinationQuestionnairesDao.createQuestionnaire(ExaminationType.GENERAL_PRACTITIONER);
-      await _examinationQuestionnairesDao.createQuestionnaire(ExaminationType.GYNECOLOGIST);
-      await _examinationQuestionnairesDao.createQuestionnaire(ExaminationType.DENTIST);
+      await _examinationQuestionnairesDao.createQuestionnaires([
+        ExaminationType.GENERAL_PRACTITIONER,
+        ExaminationType.GYNECOLOGIST,
+        ExaminationType.DENTIST,
+      ]);
     }
   }
 
