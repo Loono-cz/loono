@@ -19,7 +19,7 @@ class ContinueOnboardingFormScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const horizontalPadding = 18.0;
+    const horizontalPadding = 20.0;
     final l10n = context.l10n;
     return Scaffold(
       body: SafeArea(
@@ -47,14 +47,14 @@ class ContinueOnboardingFormScreen extends StatelessWidget {
                   ),
                   Text(
                     l10n.continue_onboarding_title,
-                    style: const TextStyle(fontSize: 24),
+                    style: LoonoFonts.headerFontStyle,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Row(
                         children: [
-                          _buildOnboardingFromProgressIndicator(),
+                          _buildOnboardingFormProgressIndicator(),
                           const SizedBox(width: 10),
                           Text(
                             l10n.continue_onboarding_form_button,
@@ -82,7 +82,7 @@ class ContinueOnboardingFormScreen extends StatelessWidget {
                 children: [
                   Text(
                     l10n.continue_onboarding_text,
-                    style: const TextStyle(fontSize: 18),
+                    style: LoonoFonts.paragraphFontStyle,
                   ),
                   const SizedBox(height: 80),
                   LoonoButton(
@@ -98,7 +98,7 @@ class ContinueOnboardingFormScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildOnboardingFromProgressIndicator() {
+  Widget _buildOnboardingFormProgressIndicator() {
     return StreamBuilder<User?>(
       stream: _usersDao.watchUser(),
       builder: (context, snapshot) {
@@ -109,6 +109,7 @@ class ContinueOnboardingFormScreen extends StatelessWidget {
             final progress = snapshot.data?.getOnboardingProgress(user);
             return CircularProgressIndicator(
               value: progress ?? 0,
+              strokeWidth: 2.25,
               color: LoonoColors.primaryEnabled,
               backgroundColor: LoonoColors.primaryLight,
             );
