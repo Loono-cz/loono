@@ -59,6 +59,8 @@ class ExaminationQuestionnairesDao extends DatabaseAccessor<AppDatabase>
     required CcaDoctorVisit ccaDoctorVisit,
   }) async {
     switch (ccaDoctorVisit) {
+
+      /// code anchor: #postCancelExamiantion
       case CcaDoctorVisit.inLastXYears:
         await updateQuestionnaire(
           examinationType,
@@ -67,6 +69,8 @@ class ExaminationQuestionnairesDao extends DatabaseAccessor<AppDatabase>
           ),
         );
         break;
+
+      /// part of anchor: #postFirstNewExaminationKnownDate
       case CcaDoctorVisit.moreThanXYearsOrIdk:
         await updateQuestionnaire(
           examinationType,
@@ -90,11 +94,13 @@ class ExaminationQuestionnairesDao extends DatabaseAccessor<AppDatabase>
     );
   }
 
+  /// code anchor: #postFirstNewExaminationUnknownDate
   Future<void> setDontKnowLastVisitDate(ExaminationType examinationType) async {
     await updateQuestionnaire(
       examinationType,
       examinationQuestionnairesCompanion: ExaminationQuestionnairesCompanion(
         date: Value<DateTime>(DateTime.now()),
+        status: const Value<ExaminationStatus>(ExaminationStatus.UNKNOWN),
       ),
     );
   }
