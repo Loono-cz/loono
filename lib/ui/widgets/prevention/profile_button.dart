@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/services/database_service.dart';
@@ -28,34 +27,9 @@ class ProfileButton extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        border: Border.all(
-                          width: 3,
-                          color: LoonoColors.primary,
-                        ),
-                      ),
-                      child: user?.profileImageUrl == null
-                          ? const DefaultLoonoCircleAvatar(radius: radius)
-                          : CachedNetworkImage(
-                              imageUrl: user!.profileImageUrl!,
-                              imageBuilder: (_, imageProvider) => CircleAvatar(
-                                radius: radius,
-                                backgroundColor: Colors.white,
-                                foregroundImage: imageProvider,
-                              ),
-                              placeholder: (context, url) => const Center(
-                                child: SizedBox(
-                                  height: radius * 2,
-                                  width: radius * 2,
-                                  child:
-                                      CircularProgressIndicator(color: LoonoColors.primaryEnabled),
-                                ),
-                              ),
-                              errorWidget: (context, url, dynamic error) =>
-                                  const DefaultLoonoCircleAvatar(radius: radius),
-                            ),
+                    LoonoAvatar(
+                      radius: radius,
+                      borderWidth: 3,
                     ),
                     const SizedBox(
                       width: 7,
