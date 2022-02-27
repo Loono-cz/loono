@@ -35,31 +35,34 @@ class ProfileButton extends StatelessWidget {
                       width: 7,
                     ),
                     if (user?.points != null && user?.nickname != null)
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '${user?.nickname}',
-                            style: LoonoFonts.headerFontStyle.copyWith(
-                              color: LoonoColors.grey,
+                      Flexible(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '${user?.nickname}',
+                              style: LoonoFonts.headerFontStyle.copyWith(
+                                color: LoonoColors.grey,
+                              ),
                             ),
-                          ),
-                          Row(
-                            children: [
-                              const LoonoPointIcon(color: LoonoColors.primaryEnabled, width: 16.0),
-                              const SizedBox(
-                                width: 7,
-                              ),
-                              Text(
-                                '${user?.points}',
-                                style: LoonoFonts.subtitleFontStyle.copyWith(
-                                  color: LoonoColors.primaryEnabled,
+                            Row(
+                              children: [
+                                const LoonoPointIcon(
+                                    color: LoonoColors.primaryEnabled, width: 16.0),
+                                const SizedBox(
+                                  width: 7,
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                                Text(
+                                  '${user?.points}',
+                                  style: LoonoFonts.subtitleFontStyle.copyWith(
+                                    color: LoonoColors.primaryEnabled,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                   ],
                 ),

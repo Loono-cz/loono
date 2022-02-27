@@ -15,6 +15,7 @@ import 'package:loono/services/api_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/ui/widgets/fallback_account_content.dart';
+import 'package:loono/ui/widgets/onboarding/app_bar.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:moor/moor.dart';
@@ -37,6 +38,7 @@ class EmailScreen extends StatelessWidget {
       stream: _usersDao.watchUser(),
       builder: (context, snapshot) {
         return FallbackAccountContent(
+          appBar: createAccountAppBar(context, step: 2),
           title: context.l10n.fallback_account_email,
           initialText: socialLoginAccount.email,
           buttonText: context.l10n.create_new_account,
