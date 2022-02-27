@@ -102,9 +102,7 @@ class ExaminationDetail extends StatelessWidget {
         success: (res) {
           Provider.of<ExaminationsProvider>(context, listen: false)
               .updateExaminationsRecord(res.data);
-          AutoRouter.of(context).popUntilRouteWithName(
-            ExaminationDetailRoute(categorizedExamination: categorizedExamination).routeName,
-          );
+          AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
           showSnackBarSuccess(context, message: context.l10n.checkup_reminder_toast);
         },
         failure: (err) {

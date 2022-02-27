@@ -1,4 +1,5 @@
 import 'package:device_calendar/device_calendar.dart';
+import 'package:drift/drift.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:loono/helpers/examination_types.dart';
@@ -6,7 +7,6 @@ import 'package:loono/services/calendar_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono_api/loono_api.dart';
-import 'package:moor/moor.dart';
 import 'package:timezone/timezone.dart' as tz;
 
 class CalendarRepository {
