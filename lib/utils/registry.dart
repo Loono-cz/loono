@@ -85,6 +85,10 @@ Future<void> setup(AppFlavors flavor) async {
 
   dio.interceptors.add(
     InterceptorsWrapper(
+      onRequest: (options, handler) {
+        final disableRetryForUrl = ['/account/onboard'].contains(options.path);
+        handler.next(options..disableRetry = disableRetryForUrl);
+      },
       onError: (e, handler) async {
         if (e.response?.statusCode == 401) {
           await registry.get<AuthService>().signOut();
