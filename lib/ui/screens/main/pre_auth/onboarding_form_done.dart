@@ -37,15 +37,14 @@ class OnboardingFormDoneScreen extends StatelessWidget {
                     SkipButton(
                       text: context.l10n.already_have_an_account_skip_button,
                       onPressed: () {
-                        AutoRouter.of(context).push(GamificationIntroductionRoute());
-                        // if (AutoRouter.of(context).isRouteActive(PreAuthMainRoute.name)) {
-                        //   AutoRouter.of(context).popUntilRoot();
-                        // }
-                        // AutoRouter.of(context).replaceAll([
-                        //   const OnboardingWrapperRoute(),
-                        //   LoginRoute(),
-                        //   PreAuthMainRoute(overridenPreventionRoute: LoginRoute()),
-                        // ]);
+                        if (AutoRouter.of(context).isRouteActive(PreAuthMainRoute.name)) {
+                          AutoRouter.of(context).popUntilRoot();
+                        }
+                        AutoRouter.of(context).replaceAll([
+                          const OnboardingWrapperRoute(),
+                          LoginRoute(),
+                          PreAuthMainRoute(overridenPreventionRoute: LoginRoute()),
+                        ]);
                       },
                     ),
                     const SizedBox(height: 24),

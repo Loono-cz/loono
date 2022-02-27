@@ -63,7 +63,8 @@ class ExaminationQuestionnairesDao extends DatabaseAccessor<AppDatabase>
   }) async {
     switch (ccaDoctorVisit) {
 
-      /// code anchor: #postCancelExamiantion
+      /// code anchor: #postFirstNewExaminationKnownDate,
+      /// date is specified in [updateLastVisitDate] function
       case CcaDoctorVisit.inLastXYears:
         await updateQuestionnaire(
           examinationType,
@@ -73,7 +74,7 @@ class ExaminationQuestionnairesDao extends DatabaseAccessor<AppDatabase>
         );
         break;
 
-      /// part of anchor: #postFirstNewExaminationKnownDate
+      /// part of anchor: #postFirstNewExaminationMore
       case CcaDoctorVisit.moreThanXYearsOrIdk:
         await updateQuestionnaire(
           examinationType,
