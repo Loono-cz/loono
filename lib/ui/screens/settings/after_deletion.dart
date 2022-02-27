@@ -63,9 +63,7 @@ class _AfterDeletionScreenState extends State<AfterDeletionScreen> {
               const SizedBox(height: 20),
               LoonoButton.light(
                 text: context.l10n.login_create_new_account,
-                onTap: () {
-                  AutoRouter.of(context).push(const AppStartUpWrapperRoute());
-                },
+                onTap: () => AutoRouter.of(context).replaceAll([const AppStartUpWrapperRoute()]),
               ),
               const SizedBox(height: 122),
             ],
