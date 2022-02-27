@@ -49,7 +49,9 @@ class ProfileButton extends StatelessWidget {
                             Row(
                               children: [
                                 const LoonoPointIcon(
-                                    color: LoonoColors.primaryEnabled, width: 16.0),
+                                  color: LoonoColors.primaryEnabled,
+                                  width: 16.0,
+                                ),
                                 const SizedBox(
                                   width: 7,
                                 ),

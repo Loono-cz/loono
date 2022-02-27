@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:dio/dio.dart';
@@ -10,6 +12,7 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/api_response.dart';
 import 'package:loono/models/firebase_user.dart';
 import 'package:loono/models/social_login_account.dart';
+import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/api_service.dart';
 import 'package:loono/services/database_service.dart';
@@ -31,6 +34,7 @@ class EmailScreen extends StatelessWidget {
   final _apiService = registry.get<ApiService>();
   final _examinationQuestionnairesDao = registry.get<DatabaseService>().examinationQuestionnaires;
   final _usersDao = registry.get<DatabaseService>().users;
+  final _userRepository = registry.get<UserRepository>();
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +61,10 @@ class EmailScreen extends StatelessWidget {
 
                 final result = await _callOnboardUser(authUser, user, examinationQuestionnaires);
                 await result.when(
-                  success: (_) async =>
-                      AutoRouter.of(context).replaceAll([const GamificationIntroductionRoute()]),
+                  success: (account) async {
+                    await _userRepository.updateCurrentUserFromAccount(account);
+                    await AutoRouter.of(context).replaceAll([GamificationIntroductionRoute()]);
+                  },
                   failure: (_) async {
                     showSnackBarError(context, message: context.l10n.something_went_wrong);
                     // delete account so user can not login without saving info to server first

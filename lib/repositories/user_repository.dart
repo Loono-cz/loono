@@ -40,23 +40,27 @@ class UserRepository {
     final account = await _apiService.getAccount();
     await account.whenOrNull(
       success: (data) async {
-        await _db.users.updateCurrentUser(
-          UsersCompanion(
-            nickname: Value<String>(data.nickname),
-            dateOfBirth: Value<DateWithoutDay>(
-              DateWithoutDay(
-                year: data.birthdate.year,
-                month: monthFromInt(data.birthdate.month),
-              ),
-            ),
-            sex: Value<Sex>(data.sex),
-            email: Value<String>(data.prefferedEmail),
-            profileImageUrl: Value<String?>(data.profileImageUrl),
-            points: Value<int>(data.points),
-            badges: Value<BuiltList<Badge>>(data.badges),
-          ),
-        );
+        await updateCurrentUserFromAccount(data);
       },
+    );
+  }
+
+  Future<void> updateCurrentUserFromAccount(Account data) async {
+    await _db.users.updateCurrentUser(
+      UsersCompanion(
+        nickname: Value<String>(data.nickname),
+        dateOfBirth: Value<DateWithoutDay>(
+          DateWithoutDay(
+            year: data.birthdate.year,
+            month: monthFromInt(data.birthdate.month),
+          ),
+        ),
+        sex: Value<Sex>(data.sex),
+        email: Value<String>(data.prefferedEmail),
+        profileImageUrl: Value<String?>(data.profileImageUrl),
+        points: Value<int>(data.points),
+        badges: Value<BuiltList<Badge>>(data.badges),
+      ),
     );
   }
 

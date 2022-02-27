@@ -116,9 +116,11 @@ class AppRouter extends _i11.RootStackRouter {
           child: const _i5.FillOnboardingFormLaterScreen());
     },
     GamificationIntroductionRoute.name: (routeData) {
+      final args = routeData.argsAs<GamificationIntroductionRouteArgs>(
+          orElse: () => const GamificationIntroductionRouteArgs());
       return _i11.MaterialPageX<void>(
           routeData: routeData,
-          child: const _i6.GamificationIntroductionScreen());
+          child: _i6.GamificationIntroductionScreen(key: args.key));
     },
     NicknameRoute.name: (routeData) {
       final args = routeData.argsAs<NicknameRouteArgs>();
@@ -745,12 +747,25 @@ class FillOnboardingFormLaterRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.GamificationIntroductionScreen]
-class GamificationIntroductionRoute extends _i11.PageRouteInfo<void> {
-  const GamificationIntroductionRoute()
+class GamificationIntroductionRoute
+    extends _i11.PageRouteInfo<GamificationIntroductionRouteArgs> {
+  GamificationIntroductionRoute({_i52.Key? key})
       : super(GamificationIntroductionRoute.name,
-            path: 'gamification-introduction');
+            path: 'gamification-introduction',
+            args: GamificationIntroductionRouteArgs(key: key));
 
   static const String name = 'GamificationIntroductionRoute';
+}
+
+class GamificationIntroductionRouteArgs {
+  const GamificationIntroductionRouteArgs({this.key});
+
+  final _i52.Key? key;
+
+  @override
+  String toString() {
+    return 'GamificationIntroductionRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
