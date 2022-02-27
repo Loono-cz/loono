@@ -8,6 +8,7 @@ import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/ui/widgets/fallback_account_content.dart';
+import 'package:loono/ui/widgets/onboarding/app_bar.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:moor/moor.dart';
 
@@ -27,6 +28,7 @@ class NicknameScreen extends StatelessWidget {
       stream: _usersDao.watchUser(),
       builder: (context, snapshot) {
         return FallbackAccountContent(
+          appBar: createAccountAppBar(context, step: 1),
           title: context.l10n.fallback_account_name,
           initialText: socialLoginAccount.nickname,
           hint: getHintText(context, user: snapshot.data),

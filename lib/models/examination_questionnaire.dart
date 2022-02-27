@@ -47,11 +47,14 @@ class ExaminationQuestionnairesDao extends DatabaseAccessor<AppDatabase>
 
   Stream<List<ExaminationQuestionnaire>> watchAll() => select(examinationQuestionnaires).watch();
 
-  Future<void> createQuestionnaire(ExaminationType examinationType) async {
-    await into(examinationQuestionnaires).insert(
-      ExaminationQuestionnairesCompanion.insert(type: examinationType),
-      mode: InsertMode.replace,
-    );
+  Future<void> createQuestionnaires(List<ExaminationType> examinationTypes) async {
+    await batch((b) {
+      b.insertAll(
+        examinationQuestionnaires,
+        examinationTypes.map((type) => ExaminationQuestionnairesCompanion.insert(type: type)),
+        mode: InsertMode.replace,
+      );
+    });
   }
 
   Future<void> updateCcaDoctorVisit(
@@ -59,6 +62,9 @@ class ExaminationQuestionnairesDao extends DatabaseAccessor<AppDatabase>
     required CcaDoctorVisit ccaDoctorVisit,
   }) async {
     switch (ccaDoctorVisit) {
+
+      /// code anchor: #postFirstNewExaminationKnownDate,
+      /// date is specified in [updateLastVisitDate] function
       case CcaDoctorVisit.inLastXYears:
         await updateQuestionnaire(
           examinationType,
@@ -67,6 +73,8 @@ class ExaminationQuestionnairesDao extends DatabaseAccessor<AppDatabase>
           ),
         );
         break;
+
+      /// part of anchor: #postFirstNewExaminationMore
       case CcaDoctorVisit.moreThanXYearsOrIdk:
         await updateQuestionnaire(
           examinationType,
@@ -90,11 +98,13 @@ class ExaminationQuestionnairesDao extends DatabaseAccessor<AppDatabase>
     );
   }
 
+  /// code anchor: #postFirstNewExaminationUnknownDate
   Future<void> setDontKnowLastVisitDate(ExaminationType examinationType) async {
     await updateQuestionnaire(
       examinationType,
       examinationQuestionnairesCompanion: ExaminationQuestionnairesCompanion(
         date: Value<DateTime>(DateTime.now()),
+        status: const Value<ExaminationStatus>(ExaminationStatus.UNKNOWN),
       ),
     );
   }

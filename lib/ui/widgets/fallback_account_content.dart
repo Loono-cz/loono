@@ -5,6 +5,9 @@ import 'package:loono/ui/widgets/async_button.dart';
 
 typedef SubmitCallback = Future<bool?> Function(String input);
 
+// ignore: constant_identifier_names
+const MAX_ALLOWED_INPUT_FORM_LENGTH = 255;
+
 class FallbackAccountContent extends StatefulWidget {
   const FallbackAccountContent({
     Key? key,
@@ -141,6 +144,7 @@ class _FallbackAccountContentState extends State<FallbackAccountContent> {
       key: _formKey,
       child: TextFormField(
         controller: _textEditingController,
+        maxLength: MAX_ALLOWED_INPUT_FORM_LENGTH,
         onFieldSubmitted: (_) => validateAndSubmit(),
         onChanged: widget.onChanged,
         cursorColor: LoonoColors.black,
@@ -148,6 +152,7 @@ class _FallbackAccountContentState extends State<FallbackAccountContent> {
         decoration: InputDecoration(
           hintText: widget.hint,
           hintStyle: const TextStyle(fontSize: 24.0, color: LoonoColors.grey),
+          counterStyle: LoonoFonts.paragraphFontStyle.copyWith(color: LoonoColors.primaryEnabled),
           focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(
               color: LoonoColors.primaryEnabled,

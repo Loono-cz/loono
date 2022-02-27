@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/onboarding_state_service.dart';
 import 'package:loono/ui/widgets/button.dart';
@@ -18,15 +19,17 @@ class AllowNotificationsScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: Column(
             children: [
-              const SizedBox(height: 27.0),
+              const SizedBox(height: 20.0),
               SkipButton(
-                text: context.l10n.skip,
-                onPressed: () =>
-                    context.read<OnboardingStateService>().notificationsPermissionRequested(),
+                text: context.l10n.skip_notification,
+                onPressed: () => context.read<OnboardingStateService>().skipPermissionRequest(),
               ),
-              const SizedBox(height: 48.0),
-              SvgPicture.asset('assets/icons/notification_bell.svg', width: 128.0),
-              const SizedBox(height: 53.15),
+              const Spacer(),
+              SvgPicture.asset(
+                'assets/icons/notification_bells.svg',
+                width: MediaQuery.of(context).size.width * 0.5,
+              ),
+              const Spacer(),
               Text(
                 context.l10n.notification_allow_desc,
                 textAlign: TextAlign.center,
@@ -35,12 +38,9 @@ class AllowNotificationsScreen extends StatelessWidget {
               const Spacer(),
               LoonoButton(
                 text: context.l10n.notification_allow_button,
-                onTap: () {
-                  // TODO: Display and handle allow notification dialog (iOS only)
-                  context.read<OnboardingStateService>().notificationsPermissionRequested();
-                },
+                onTap: () async => context.read<OnboardingStateService>().promptPermission(),
               ),
-              const SizedBox(height: 122.0),
+              SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
             ],
           ),
         ),

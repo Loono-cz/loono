@@ -41,6 +41,7 @@ class OnboardingFormDoneScreen extends StatelessWidget {
                           AutoRouter.of(context).popUntilRoot();
                         }
                         AutoRouter.of(context).replaceAll([
+                          const OnboardingWrapperRoute(),
                           LoginRoute(),
                           PreAuthMainRoute(overridenPreventionRoute: LoginRoute()),
                         ]);

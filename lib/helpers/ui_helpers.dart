@@ -2,8 +2,10 @@
 import 'package:flutter/material.dart';
 
 class LoonoSizes {
+  static bool isScreenSmall(BuildContext context) => MediaQuery.of(context).size.height <= 750;
+
   static double buttonBottomPadding(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
-    return screenHeight > 750 ? screenHeight * 0.15 : screenHeight * 0.075;
+    return isScreenSmall(context) ? screenHeight * 0.075 : screenHeight * 0.15;
   }
 }

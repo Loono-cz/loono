@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:loono/services/notification_service.dart';
 import 'package:loono_api/loono_api.dart';
 
-enum NotificationPermissionState { notRequested, requested }
+enum NotificationPermissionState { notRequestedYet, requested, skipped, didNotGrant }
 
 class OnboardingStateService extends ChangeNotifier {
   OnboardingStateService({
@@ -17,7 +17,7 @@ class OnboardingStateService extends ChangeNotifier {
 
   // on Android notifications are allowed by default
   NotificationPermissionState _notificationPermissionState = Platform.isIOS
-      ? NotificationPermissionState.notRequested
+      ? NotificationPermissionState.notRequestedYet
       : NotificationPermissionState.requested;
 
   bool containsAchievement(ExaminationType examination) =>
@@ -30,22 +30,26 @@ class OnboardingStateService extends ChangeNotifier {
     }
   }
 
-  bool get hasNotRequestedNotificationsPermission =>
-      _notificationPermissionState == NotificationPermissionState.notRequested;
+  // we did not ask the user yet
+  bool get hasNotRequestedNotificationsPermissionYet =>
+      _notificationPermissionState == NotificationPermissionState.notRequestedYet;
 
-  // TODO: Maybe hide this option for Android users in the UI?
   // TODO: User might decline the permission. Handle this possible state.
   /// Prompt iOS users for notification permissions.
   /// When user declines the permission we cannot request it again. This should
   /// be represented in the UI.
-  Future<void> notificationsPermissionRequested() async {
+  Future<void> promptPermission() async {
     final permissionGranted = await notificationService.promptPermissions();
     if (permissionGranted) {
       _notificationPermissionState = NotificationPermissionState.requested;
-      notifyListeners();
     } else {
-      _notificationPermissionState = NotificationPermissionState.notRequested;
-      notifyListeners();
+      _notificationPermissionState = NotificationPermissionState.didNotGrant;
     }
+    notifyListeners();
+  }
+
+  void skipPermissionRequest() {
+    _notificationPermissionState = NotificationPermissionState.skipped;
+    notifyListeners();
   }
 }
