@@ -18,9 +18,16 @@ class LeaderboardTile extends StatelessWidget {
           Text('$position.'),
           const SizedBox(width: 10.0),
           if (user.profileImageUrl != null)
-            CustomLoonoAvatar.network(radius: 27, url: user.profileImageUrl)
+            CustomLoonoAvatar.network(
+              radius: 27,
+              url: user.profileImageUrl,
+              borderWidth: 3,
+            )
           else
-            const LoonoAvatarWrapper(child: DefaultLoonoCircleAvatar(radius: 27)),
+            const LoonoAvatarWrapper(
+              borderWidth: 3,
+              child: DefaultLoonoCircleAvatar(radius: 27),
+            ),
           const SizedBox(width: 10.0),
           Text(user.name),
         ],

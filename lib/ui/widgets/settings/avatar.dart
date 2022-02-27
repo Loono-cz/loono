@@ -15,15 +15,17 @@ class LoonoAvatar extends StatelessWidget {
   ///
   /// If the user does not have an avatar yet, the [DefaultLoonoCircleAvatar] one will
   /// be loaded instead.
-  LoonoAvatar({Key? key, this.radius = _defaultAvatarSize}) : super(key: key);
+  LoonoAvatar({Key? key, this.radius = _defaultAvatarSize, this.borderWidth}) : super(key: key);
 
   final _usersDao = registry.get<DatabaseService>().users;
 
   final double radius;
+  final double? borderWidth;
 
   @override
   Widget build(BuildContext context) {
     return LoonoAvatarWrapper(
+      borderWidth: borderWidth,
       child: StreamBuilder<User?>(
         stream: _usersDao.watchUser(),
         builder: (context, snapshot) {
@@ -59,6 +61,7 @@ class CustomLoonoAvatar extends StatelessWidget {
     Key? key,
     this.radius = _defaultAvatarSize,
     required this.url,
+    this.borderWidth,
   })  : imageBytes = null,
         super(key: key);
 
@@ -67,16 +70,19 @@ class CustomLoonoAvatar extends StatelessWidget {
     Key? key,
     this.radius = _defaultAvatarSize,
     required this.imageBytes,
+    this.borderWidth,
   })  : url = null,
         super(key: key);
 
   final double radius;
   final Uint8List? imageBytes;
   final String? url;
+  final double? borderWidth;
 
   @override
   Widget build(BuildContext context) {
     return LoonoAvatarWrapper(
+      borderWidth: borderWidth,
       child: CircleAvatar(
         radius: radius,
         backgroundColor: Colors.white,
@@ -97,14 +103,15 @@ class CustomLoonoAvatar extends StatelessWidget {
 
 class LoonoAvatarWrapper extends StatelessWidget {
   /// Wraps a widget with Loono styled border.
-  const LoonoAvatarWrapper({Key? key, required this.child}) : super(key: key);
+  const LoonoAvatarWrapper({Key? key, required this.child, this.borderWidth}) : super(key: key);
 
   final Widget child;
+  final double? borderWidth;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(7.0),
+      padding: EdgeInsets.all(borderWidth ?? 7.0),
       decoration: const BoxDecoration(
         shape: BoxShape.circle,
         color: LoonoColors.leaderboardPrimary,
