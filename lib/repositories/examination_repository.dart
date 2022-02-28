@@ -51,6 +51,7 @@ class ExaminationRepository {
     return response;
   }
 
+  /// if the user had a finding, this is the POST api for the result from the undergone doctor examination
   Future<ApiResponse<SelfExaminationFindingResponse>> resultSelfExamination(
     SelfExaminationType type, {
     required SelfExaminationResult result,

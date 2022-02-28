@@ -173,12 +173,11 @@ class ApiService {
     return _callApi(
       () async => _api.getExaminationsApi().confirmSelfExamination(
             selfType: type.name,
-            body: result.name,
+            selfExaminationResult: result,
           ),
     );
   }
 
-  /// if the user had a finding, this is the POST api for the result from the undergone doctor examination
   Future<ApiResponse<SelfExaminationFindingResponse>> resultSelfExamination(
     SelfExaminationType type, {
     required SelfExaminationResult result,
@@ -186,7 +185,7 @@ class ApiService {
     return _callApi(
       () async => _api.getExaminationsApi().resultSelfExamination(
             selfType: type.name,
-            body: result.name,
+            selfExaminationResult: result,
           ),
     );
   }
