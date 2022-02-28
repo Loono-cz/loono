@@ -153,13 +153,11 @@ List<SelfFAQPair> selfFaqContent(BuildContext context, SelfExaminationType type)
                       text: texts.self_faq_breast_steps_answer_part_8,
                       style: const TextStyle(decoration: TextDecoration.underline),
                       recognizer: TapGestureRecognizer()
-                        ..onTap = () async {
-                          await AutoRouter.of(context).navigate(
-                            MainRoute(
-                              selectedIndex: 1,
+                        ..onTap = () => AutoRouter.of(context).navigate(
+                              MainRoute(
+                                selectedIndex: 1,
+                              ),
                             ),
-                          );
-                        },
                     ),
                     TextSpan(text: texts.self_faq_breast_steps_answer_part_9),
                     TextSpan(
