@@ -95,12 +95,26 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                       ),
                     ),
                   if (!_isHealtCareProvidersInMapService)
-                    Container(
-                      padding: const EdgeInsets.all(20),
-                      height: 70,
-                      width: double.infinity,
-                      color: Colors.green,
-                      child: const Text('loading indicator placeholder'),
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(10.0),
+                            child: const LinearProgressIndicator(
+                              backgroundColor: Color.fromRGBO(104, 170, 123, 1),
+                              color: LoonoColors.greenSuccess,
+                              minHeight: 70,
+                              value: null,
+                            ),
+                          ),
+                          Text(
+                            'Načítám informace o lékařích ...',
+                            style: LoonoFonts.cardTitle.copyWith(color: Colors.white),
+                          ),
+                        ],
+                      ),
                     ),
                 ],
               ),
