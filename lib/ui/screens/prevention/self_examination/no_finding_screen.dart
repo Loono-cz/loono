@@ -69,11 +69,14 @@ class NoFindingScreen extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 58),
-              child: LoonoButton(text: context.l10n.continue_info, onTap: (){
-                Navigator.pop(context);
-                Navigator.pop(context);
-                Navigator.pop(context);
-              },),
+              child: LoonoButton(
+                text: context.l10n.continue_info,
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                },
+              ),
             ),
           ],
         ),
