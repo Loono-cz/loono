@@ -6,13 +6,7 @@ import 'package:drift/drift.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono_api/loono_api.dart'
-    show
-        Badge,
-        ExaminationStatus,
-        ExaminationType,
-        Sex,
-        SimpleHealthcareProvider,
-        standardSerializers;
+    show Badge, ExaminationStatus, ExaminationType, Sex, standardSerializers;
 
 class CategoryDbConverter extends TypeConverter<BuiltList<String>, String> {
   const CategoryDbConverter();
