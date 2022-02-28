@@ -105,30 +105,6 @@ class DateOfBirthDbConverter extends TypeConverter<DateWithoutDay, String> {
   }
 }
 
-class SimpleHealthcareListConverter
-    extends JsonConverter<BuiltList<SimpleHealthcareProvider>, String> {
-  const SimpleHealthcareListConverter();
-
-  @override
-  BuiltList<SimpleHealthcareProvider> fromJson(String json) {
-    return standardSerializers.deserialize(
-          jsonDecode(json),
-          specifiedType: const FullType(BuiltList, [FullType(SimpleHealthcareProvider)]),
-        ) as BuiltList<SimpleHealthcareProvider>? ??
-        BuiltList.of(<SimpleHealthcareProvider>[]);
-  }
-
-  @override
-  String toJson(BuiltList<SimpleHealthcareProvider> object) {
-    return jsonEncode(
-      standardSerializers.serialize(
-        object,
-        specifiedType: const FullType(BuiltList, [FullType(SimpleHealthcareProvider)]),
-      ),
-    );
-  }
-}
-
 class BadgeListDbConverter extends TypeConverter<BuiltList<Badge>, String> {
   const BadgeListDbConverter();
 
