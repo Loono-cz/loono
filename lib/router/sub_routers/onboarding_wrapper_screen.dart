@@ -24,9 +24,12 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
   Future<void> _createOnboardingExaminationQuestionnaires() async {
     final existingQuestionnaires = await _examinationQuestionnairesDao.getAll();
     if (existingQuestionnaires.isEmpty) {
-      await _examinationQuestionnairesDao.createQuestionnaire(ExaminationType.GENERAL_PRACTITIONER);
-      await _examinationQuestionnairesDao.createQuestionnaire(ExaminationType.GYNECOLOGIST);
-      await _examinationQuestionnairesDao.createQuestionnaire(ExaminationType.DENTIST);
+      _shouldShowNotificationScreen = true;
+      await _examinationQuestionnairesDao.createQuestionnaires([
+        ExaminationType.GENERAL_PRACTITIONER,
+        ExaminationType.GYNECOLOGIST,
+        ExaminationType.DENTIST,
+      ]);
     }
   }
 
@@ -35,6 +38,10 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
     super.initState();
     _createOnboardingExaminationQuestionnaires();
   }
+
+  // we want to show this screen only once and not again if the user decide to come back to
+  // the questionnaire (OnboardingState Provider lives only during app lifecycle)
+  bool _shouldShowNotificationScreen = false;
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +81,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                               OnboardingGeneralPracticionerRoute(sex: sex),
                               _dateOrAchievementOrNextDoctorRoute(
                                 onboardingState: onboardingState,
+                                shouldShowAllowNotificationScreen: _shouldShowNotificationScreen,
                                 currDoctorCcaVisit:
                                     generalPractitionerQuestionnaire?.ccaDoctorVisit,
                                 examinationType: ExaminationType.GENERAL_PRACTITIONER,
@@ -96,6 +104,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                               [
                                 _nextDoctorOnlyRoute(
                                   onboardingState: onboardingState,
+                                  shouldShowAllowNotificationScreen: _shouldShowNotificationScreen,
                                   prevDoctorCcaVisit:
                                       generalPractitionerQuestionnaire?.ccaDoctorVisit,
                                   isPrevDatePickerFormFilled:
@@ -104,6 +113,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                                 ),
                                 _dateOrAchievementOrNextDoctorRoute(
                                   onboardingState: onboardingState,
+                                  shouldShowAllowNotificationScreen: _shouldShowNotificationScreen,
                                   currDoctorCcaVisit: gynecologistQuestionnaire?.ccaDoctorVisit,
                                   examinationType: ExaminationType.GYNECOLOGIST,
                                   achievementRoute: const GynecologyAchievementRoute(),
@@ -123,6 +133,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                             [
                               _nextDoctorOnlyRoute(
                                 onboardingState: onboardingState,
+                                shouldShowAllowNotificationScreen: _shouldShowNotificationScreen,
                                 prevDoctorCcaVisit: sex == Sex.MALE
                                     ? generalPractitionerQuestionnaire?.ccaDoctorVisit
                                     : gynecologistQuestionnaire?.ccaDoctorVisit,
@@ -133,6 +144,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                               ),
                               _dateOrAchievementOrNextDoctorRoute(
                                 onboardingState: onboardingState,
+                                shouldShowAllowNotificationScreen: _shouldShowNotificationScreen,
                                 currDoctorCcaVisit: dentistQuestionnaire?.ccaDoctorVisit,
                                 examinationType: ExaminationType.DENTIST,
                                 achievementRoute: const DentistAchievementRoute(),
@@ -166,12 +178,13 @@ PageRouteInfo? _nextDoctorOnlyRoute({
   required OnboardingStateService onboardingState,
   required CcaDoctorVisit? prevDoctorCcaVisit,
   required bool? isPrevDatePickerFormFilled,
-  PageRouteInfo allowNotificationsRoute = const AllowNotificationsRoute(),
+  required bool shouldShowAllowNotificationScreen,
   required PageRouteInfo nextDoctorRoute,
 }) {
   if (prevDoctorCcaVisit != null && isPrevDatePickerFormFilled == true) {
-    if (onboardingState.hasNotRequestedNotificationsPermission) {
-      return allowNotificationsRoute;
+    if (onboardingState.hasNotRequestedNotificationsPermissionYet &&
+        shouldShowAllowNotificationScreen) {
+      return const AllowNotificationsRoute();
     }
     return nextDoctorRoute;
   }
@@ -185,7 +198,7 @@ PageRouteInfo? _dateOrAchievementOrNextDoctorRoute({
   required PageRouteInfo achievementRoute,
   required PageRouteInfo dateRoute,
   required bool? isDatePickerFormFilled,
-  PageRouteInfo allowNotificationsRoute = const AllowNotificationsRoute(),
+  required bool shouldShowAllowNotificationScreen,
   required PageRouteInfo nextDoctorRoute,
 }) {
   if (currDoctorCcaVisit != null) {
@@ -194,8 +207,9 @@ PageRouteInfo? _dateOrAchievementOrNextDoctorRoute({
         return achievementRoute;
       } else {
         if (isDatePickerFormFilled == true) {
-          if (onboardingState.hasNotRequestedNotificationsPermission) {
-            return allowNotificationsRoute;
+          if (onboardingState.hasNotRequestedNotificationsPermissionYet &&
+              shouldShowAllowNotificationScreen) {
+            return const AllowNotificationsRoute();
           }
           return nextDoctorRoute;
         }

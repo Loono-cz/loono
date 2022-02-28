@@ -9,18 +9,6 @@ class ExaminationRepository {
 
   final ApiService _apiService;
 
-  Future<PreventionStatus?> getExaminationRecords() async {
-    final response = await _apiService.getExaminations();
-    return response.map(
-      success: (success) {
-        return success.data;
-      },
-      failure: (err) {
-        return null;
-      },
-    );
-  }
-
   Future<ApiResponse<ExaminationRecord>> cancelExamination(
     String uuid,
   ) async {

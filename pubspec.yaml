@@ -14,6 +14,7 @@ dependencies:
   built_value: ^8.1.3
   cached_network_image: ^3.1.0+1
   collection: ^1.15.0
+  connectivity_plus: ^2.2.1
   crop_your_image: ^0.6.0+1
   crypto: ^3.0.1
   cupertino_icons: ^1.0.2
@@ -23,12 +24,13 @@ dependencies:
   diacritic: ^0.1.3
   dio: ^4.0.0
   dio_smart_retry: ^1.1.0
+  drift: ^1.4.0
   email_validator: ^2.0.1
   encrypted_moor:
     git:
       url: https://github.com/simolus3/moor.git
       path: extras/encryption
-      ref: 8f9e2a9edbc6e4fa4d8dfa1dea9c54aec2b38044
+      ref: fd0764594dc70b04f5ea5dcd18aa2213abbbce12
   firebase_auth: ^3.1.2
   firebase_core: ^1.2.0
   firebase_crashlytics: ^2.0.7
@@ -64,13 +66,14 @@ dependencies:
       path: dart
       ref: d6aa78333cc86ed6936cb18c41ca60ff5dcb95d6
   modal_progress_hud_nsn: ^0.1.0-nullsafety-1
-  moor: ^4.1.0
   onesignal_flutter: ^3.2.4
   package_info_plus: ^1.3.0
-  path_provider: ^2.0.2
+  path: ^1.8.0
+  path_provider: ^2.0.9
   permission_handler: ^8.2.5
   provider: ^6.0.1
   sign_in_with_apple: ^3.2.0
+  sqlite3_flutter_libs: ^0.5.3
   timezone: ^0.8.0
   url_launcher: ^6.0.9
   uuid: ^3.0.4
@@ -79,13 +82,13 @@ dependencies:
 
 dev_dependencies:
   auto_route_generator: ^3.2.1
-  build_runner: ^2.0.4
+  build_runner: ^2.1.7
+  drift_dev: ^1.4.0
   flutter_lints: ^1.0.4
   flutter_test:
     sdk: flutter
   freezed: ^1.1.1
   json_serializable: ^6.1.4
-  moor_generator: ^4.1.0
 
 flutter:
   uses-material-design: true

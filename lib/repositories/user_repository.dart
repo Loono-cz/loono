@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:built_collection/built_collection.dart';
+import 'package:drift/drift.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:loono/helpers/date_without_day.dart';
@@ -10,8 +11,6 @@ import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/firebase_storage_service.dart';
 import 'package:loono_api/loono_api.dart';
-import 'package:moor/moor.dart';
-import 'package:uuid/uuid.dart';
 
 class UserRepository {
   UserRepository({
@@ -26,7 +25,7 @@ class UserRepository {
     _authService.onAuthStateChanged.listen((authUser) async {
       if (authUser != null) {
         debugPrint('log: SYNCING WITH API');
-        await _authService.refreshUserToken(authUser);
+        await _authService.refreshUserToken();
         unawaited(sync());
       }
     });
@@ -41,29 +40,33 @@ class UserRepository {
     final account = await _apiService.getAccount();
     await account.whenOrNull(
       success: (data) async {
-        await _db.users.updateCurrentUser(
-          UsersCompanion(
-            nickname: Value<String>(data.nickname),
-            dateOfBirth: Value<DateWithoutDay>(
-              DateWithoutDay(
-                year: data.birthdate.year,
-                month: monthFromInt(data.birthdate.month),
-              ),
-            ),
-            sex: Value<Sex>(data.sex),
-            email: Value<String>(data.prefferedEmail),
-            profileImageUrl: Value<String?>(data.profileImageUrl),
-            points: Value<int>(data.points),
-            badges: Value<BuiltList<Badge>>(data.badges),
-          ),
-        );
+        await updateCurrentUserFromAccount(data);
       },
+    );
+  }
+
+  Future<void> updateCurrentUserFromAccount(Account data) async {
+    await _db.users.updateCurrentUser(
+      UsersCompanion(
+        nickname: Value<String>(data.nickname),
+        dateOfBirth: Value<DateWithoutDay>(
+          DateWithoutDay(
+            year: data.birthdate.year,
+            month: monthFromInt(data.birthdate.month),
+          ),
+        ),
+        sex: Value<Sex>(data.sex),
+        email: Value<String>(data.prefferedEmail),
+        profileImageUrl: Value<String?>(data.profileImageUrl),
+        points: Value<int>(data.points),
+        badges: Value<BuiltList<Badge>>(data.badges),
+      ),
     );
   }
 
   Future<void> createUser() async {
     await _db.users.deleteAll();
-    await _db.users.upsert(User(id: const Uuid().v4(), points: 0));
+    await _db.users.insert(UsersCompanion.insert());
   }
 
   Future<void> createUserIfNotExists() async {
@@ -89,14 +92,6 @@ class UserRepository {
 
   Future<void> updateDeviceCalendarId(String id) async {
     await _db.users.updateCurrentUser(UsersCompanion(defaultDeviceCalendarId: Value<String>(id)));
-  }
-
-  Future<void> updateLatestMapUpdateCheck(DateTime date) async {
-    await _db.users.updateCurrentUser(UsersCompanion(latestMapUpdateCheck: Value(date)));
-  }
-
-  Future<void> updateLatestMapServerUpdate(DateTime date) async {
-    await _db.users.updateCurrentUser(UsersCompanion(latestMapUpdate: Value(date)));
   }
 
   Future<bool> deleteAccount() async {

@@ -70,7 +70,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
               ],
             ),
             const SizedBox(height: 20.0),
-            _getLeaderboardList(),
+            Expanded(child: _getLeaderboardList()),
             const SizedBox(height: 20.0),
             LoonoButton.light(
               text: context.l10n.leaderboard_points_help_button,
@@ -86,7 +86,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
   Widget _getLeaderboardList() {
     switch (_fetchState) {
       case FetchState.loading:
-        return const CircularProgressIndicator();
+        return const Center(child: CircularProgressIndicator());
       case FetchState.error:
         return const SizedBox.shrink();
       case FetchState.loaded:

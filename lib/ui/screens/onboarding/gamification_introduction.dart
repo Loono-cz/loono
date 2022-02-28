@@ -1,13 +1,22 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/services/database_service.dart';
+import 'package:loono/services/db/database.dart';
+import 'package:loono/ui/widgets/badges/badge_composer.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/loono_point.dart';
+import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart';
 
 class GamificationIntroductionScreen extends StatelessWidget {
-  const GamificationIntroductionScreen({Key? key}) : super(key: key);
+  GamificationIntroductionScreen({Key? key}) : super(key: key);
+
+  final _usersDao = registry.get<DatabaseService>().users;
 
   @override
   Widget build(BuildContext context) {
@@ -17,24 +26,86 @@ class GamificationIntroductionScreen extends StatelessWidget {
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.only(top: 18, left: 18, right: 18),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(height: 24),
-                const Text(
-                  'Superhrdinka Ema\n\nTODO: screen UI',
-                  textAlign: TextAlign.center,
-                  style: LoonoFonts.bigFontStyle,
-                ),
-                const Spacer(),
-                LoonoButton(
-                  text: context.l10n.gamification_introduction_button,
-                  onTap: () => AutoRouter.of(context).push(const MainScreenRouter()),
-                ),
-                SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
-              ],
+            child: StreamBuilder<User?>(
+              stream: _usersDao.watchUser(),
+              builder: (context, snapshot) {
+                final user = snapshot.data;
+                final sex = user?.sex;
+
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 24),
+                    Text(
+                      '${sex == Sex.MALE ? context.l10n.gamification_introduction_header_male : context.l10n.gamification_introduction_header_female} ${user?.nickname ?? (sex?.getNicknameHintLabel(context)) ?? ''}',
+                      textAlign: TextAlign.center,
+                      style: LoonoFonts.headerFontStyle,
+                    ),
+                    const SizedBox(height: 18),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const LoonoPointIcon(color: LoonoColors.primaryEnabled, width: 16.0),
+                        const SizedBox(width: 7),
+                        Text(
+                          '${user?.points ?? 0} ${context.l10n.gamification_introduction_points.toUpperCase()}',
+                          style: LoonoFonts.subtitleFontStyle.copyWith(
+                            color: LoonoColors.primaryEnabled,
+                            fontSize: 11,
+                          ),
+                        ),
+                      ],
+                    ),
+                    if (LoonoSizes.isScreenSmall(context))
+                      Expanded(
+                        child: ListView(
+                          shrinkWrap: true,
+                          children: [
+                            const BadgeComposer(topPadding: 0),
+                            const SizedBox(height: 10),
+                            _buildDescContainer(context),
+                            const SizedBox(height: 20),
+                            LoonoButton(
+                              text: context.l10n.gamification_introduction_button,
+                              onTap: () =>
+                                  AutoRouter.of(context).replaceAll([const MainScreenRouter()]),
+                            ),
+                            SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
+                          ],
+                        ),
+                      )
+                    else ...[
+                      const BadgeComposer(topPadding: 0),
+                      const SizedBox(height: 10),
+                      _buildDescContainer(context),
+                      const Spacer(),
+                      LoonoButton(
+                        text: context.l10n.gamification_introduction_button,
+                        onTap: () => AutoRouter.of(context).replaceAll([const MainScreenRouter()]),
+                      ),
+                      const Spacer(flex: 2),
+                    ],
+                  ],
+                );
+              },
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDescContainer(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: LoonoColors.bottomSheetPrevention,
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(18.0),
+        child: Text(
+          context.l10n.gamification_introduction_desc,
+          style: LoonoFonts.paragraphFontStyle,
         ),
       ),
     );

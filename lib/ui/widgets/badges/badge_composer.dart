@@ -8,7 +8,12 @@ import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
 class BadgeComposer extends StatefulWidget {
-  const BadgeComposer({Key? key}) : super(key: key);
+  const BadgeComposer({
+    Key? key,
+    this.topPadding = 40,
+  }) : super(key: key);
+
+  final double topPadding;
 
   @override
   _BadgeComposerState createState() => _BadgeComposerState();
@@ -99,8 +104,8 @@ class _BadgeComposerState extends State<BadgeComposer> {
         Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const SizedBox(
-              height: 40,
+            SizedBox(
+              height: widget.topPadding,
             ),
             StreamBuilder<User?>(
               stream: _usersDao.watchUser(),

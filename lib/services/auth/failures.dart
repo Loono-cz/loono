@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/models/social_login_account.dart';
 
 part 'failures.freezed.dart';
 
@@ -9,8 +10,10 @@ extension AuthFailureMessageExt on AuthFailure {
     return when(
       unknown: (message) => message ?? context.l10n.auth_unknown_failure_message,
       noMessage: () => '',
-      accountNotExists: (email) =>
-          '${context.l10n.auth_account_not_exists_message} ${email == null ? '' : '($email).'}',
+      accountNotExists: (socialAccount) {
+        final email = socialAccount.email;
+        return '${context.l10n.auth_account_not_exists_message} ${email == null ? '' : '($email).'}';
+      },
       network: (message) => message ?? context.l10n.auth_network_failure_message,
     );
   }
@@ -24,7 +27,8 @@ class AuthFailure with _$AuthFailure {
 
   const factory AuthFailure.noMessage() = NoMessageFailure;
 
-  const factory AuthFailure.accountNotExists([String? email]) = AccountNotExists;
+  const factory AuthFailure.accountNotExists(SocialLoginAccount socialLoginAccount) =
+      AccountNotExists;
 
   const factory AuthFailure.network([String? message]) = NetworkFailure;
 }

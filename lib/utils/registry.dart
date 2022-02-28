@@ -1,5 +1,6 @@
 // ignore_for_file: cascade_invocations
 
+import 'dart:async';
 import 'dart:io';
 
 import 'package:device_calendar/device_calendar.dart';
@@ -36,6 +37,8 @@ final defaultDioOptions = BaseOptions(
   connectTimeout: 5000,
   receiveTimeout: 8000,
 );
+
+const retryBlacklist = ['/account/onboard', '/leaderboard'];
 
 Future<void> setup(AppFlavors flavor) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -79,6 +82,21 @@ Future<void> setup(AppFlavors flavor) async {
         Duration(seconds: 2),
         Duration(seconds: 3),
       ],
+    ),
+  );
+
+  dio.interceptors.add(
+    InterceptorsWrapper(
+      onRequest: (options, handler) {
+        final isDisableRetryUrl = retryBlacklist.contains(options.path);
+        handler.next(options..disableRetry = isDisableRetryUrl);
+      },
+      onError: (e, handler) async {
+        if (e.response?.statusCode == 401) {
+          await registry.get<AuthService>().signOut();
+        }
+        handler.next(e);
+      },
     ),
   );
 

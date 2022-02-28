@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
@@ -39,12 +40,12 @@ class FillOnboardingFormLaterScreen extends StatelessWidget {
                     children: [
                       Text(
                         l10n.fill_formLater_title,
-                        style: const TextStyle(fontSize: 24),
+                        style: LoonoFonts.headerFontStyle,
                       ),
                       const SizedBox(height: 20),
                       Text(
                         l10n.fill_formLater_text,
-                        style: const TextStyle(fontSize: 18),
+                        style: LoonoFonts.paragraphFontStyle,
                       ),
                     ],
                   ),

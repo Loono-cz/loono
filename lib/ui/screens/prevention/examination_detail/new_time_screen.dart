@@ -115,7 +115,7 @@ class _NewTimeScreenState extends State<NewTimeScreen> {
                             examinationType,
                             newDate: newDate!,
                           );
-                      AutoRouter.of(context).popUntilRouteWithName(MainRoute().routeName);
+                      AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
                       showSnackBarSuccess(context, message: context.l10n.checkup_reminder_toast);
                     },
                     failure: (err) {
