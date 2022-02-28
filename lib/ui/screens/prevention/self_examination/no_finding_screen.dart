@@ -4,7 +4,6 @@ import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/button.dart';
 
-
 class NoFindingScreen extends StatelessWidget {
   const NoFindingScreen({Key? key}) : super(key: key);
 
