@@ -38,6 +38,8 @@ final defaultDioOptions = BaseOptions(
   receiveTimeout: 8000,
 );
 
+const retryBlacklist = ['/account/onboard', '/leaderboard'];
+
 Future<void> setup(AppFlavors flavor) async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -86,8 +88,8 @@ Future<void> setup(AppFlavors flavor) async {
   dio.interceptors.add(
     InterceptorsWrapper(
       onRequest: (options, handler) {
-        final disableRetryForUrl = ['/account/onboard'].contains(options.path);
-        handler.next(options..disableRetry = disableRetryForUrl);
+        final isDisableRetryUrl = retryBlacklist.contains(options.path);
+        handler.next(options..disableRetry = isDisableRetryUrl);
       },
       onError: (e, handler) async {
         if (e.response?.statusCode == 401) {
