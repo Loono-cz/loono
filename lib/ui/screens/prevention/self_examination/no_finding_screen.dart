@@ -1,11 +1,15 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
 
 class NoFindingScreen extends StatelessWidget {
-  const NoFindingScreen({Key? key}) : super(key: key);
+  const NoFindingScreen({Key? key, required this.points}) : super(key: key);
+
+  final int points;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +30,7 @@ class NoFindingScreen extends StatelessWidget {
                 context.l10n.no_finding_getting,
                 style: const TextStyle(
                   fontSize: 14,
-                  color: Color(0xFF635D58),
+                  color: LoonoColors.grey,
                 ),
               ),
             ),
@@ -44,7 +48,7 @@ class NoFindingScreen extends StatelessWidget {
                 context.l10n.no_finding_desc,
                 style: const TextStyle(
                   fontSize: 14,
-                  color: Color(0xFF635D58),
+                  color: LoonoColors.grey,
                 ),
               ),
             ),
@@ -56,9 +60,9 @@ class NoFindingScreen extends StatelessWidget {
                   width: 30,
                   child: SvgPicture.asset('assets/icons/logo-loono.svg'),
                 ),
-                const Text(
-                  '50',
-                  style: TextStyle(
+                Text(
+                  points.toString(),
+                  style: const TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.w700,
                     color: LoonoColors.primaryEnabled,
@@ -71,9 +75,7 @@ class NoFindingScreen extends StatelessWidget {
               child: LoonoButton(
                 text: context.l10n.continue_info,
                 onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pop(context);
-                  Navigator.pop(context);
+                  AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
                 },
               ),
             ),
