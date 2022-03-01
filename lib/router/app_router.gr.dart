@@ -491,9 +491,10 @@ class AppRouter extends _i11.RootStackRouter {
           barrierDismissible: false);
     },
     NoFindingRoute.name: (routeData) {
+      final args = routeData.argsAs<NoFindingRouteArgs>();
       return _i11.CustomPage<void>(
           routeData: routeData,
-          child: const _i50.NoFindingScreen(),
+          child: _i50.NoFindingScreen(key: args.key, points: args.points),
           transitionsBuilder: _i11.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -1704,11 +1705,26 @@ class HasFindingRouteArgs {
 
 /// generated route for
 /// [_i50.NoFindingScreen]
-class NoFindingRoute extends _i11.PageRouteInfo<void> {
-  const NoFindingRoute()
-      : super(NoFindingRoute.name, path: 'self-examination/detail/no-finding');
+class NoFindingRoute extends _i11.PageRouteInfo<NoFindingRouteArgs> {
+  NoFindingRoute({_i52.Key? key, required int points})
+      : super(NoFindingRoute.name,
+            path: 'self-examination/detail/no-finding',
+            args: NoFindingRouteArgs(key: key, points: points));
 
   static const String name = 'NoFindingRoute';
+}
+
+class NoFindingRouteArgs {
+  const NoFindingRouteArgs({this.key, required this.points});
+
+  final _i52.Key? key;
+
+  final int points;
+
+  @override
+  String toString() {
+    return 'NoFindingRouteArgs{key: $key, points: $points}';
+  }
 }
 
 /// generated route for

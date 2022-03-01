@@ -6,7 +6,7 @@ import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/how/loon_botton_sheet.dart';
 import 'package:loono_api/loono_api.dart';
 
-void showHowItWentSheet(BuildContext context, Sex sex) {
+void showHowItWentSheet(BuildContext context, Sex sex, int points) {
   showModalBottomSheet<void>(
     context: context,
     shape: RoundedRectangleBorder(
@@ -25,7 +25,7 @@ void showHowItWentSheet(BuildContext context, Sex sex) {
             LoonoButton.light(
               text: 'Je to v pořádku',
               onTap: () {
-                AutoRouter.of(context).push(const NoFindingRoute());
+                AutoRouter.of(context).push(NoFindingRoute(points: points));
               },
             ),
             const SizedBox(height: 20),
