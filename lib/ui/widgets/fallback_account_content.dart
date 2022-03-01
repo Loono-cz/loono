@@ -66,6 +66,23 @@ class _FallbackAccountContentState extends State<FallbackAccountContent> {
     return null;
   }
 
+  UnderlineInputBorder customInputDecoration(
+    Color color,
+  ) {
+    return UnderlineInputBorder(
+      borderSide: BorderSide(
+        color: color,
+        width: widget.filled == true ? 4.0 : 2.0,
+      ),
+      borderRadius: widget.filled == true
+          ? const BorderRadius.all(Radius.circular(10.0))
+          : const BorderRadius.only(
+              topLeft: Radius.circular(4.0),
+              topRight: Radius.circular(4.0),
+            ),
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -150,21 +167,15 @@ class _FallbackAccountContentState extends State<FallbackAccountContent> {
         cursorColor: LoonoColors.black,
         style: const TextStyle(fontSize: 24.0, color: LoonoColors.black),
         decoration: InputDecoration(
+          errorBorder: customInputDecoration(LoonoColors.errorColor),
+          focusedErrorBorder: customInputDecoration(LoonoColors.errorColor),
+          errorStyle: const TextStyle(
+            color: LoonoColors.errorColor,
+          ),
           hintText: widget.hint,
           hintStyle: const TextStyle(fontSize: 24.0, color: LoonoColors.grey),
           counterStyle: LoonoFonts.paragraphFontStyle.copyWith(color: LoonoColors.primaryEnabled),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: LoonoColors.primaryEnabled,
-              width: widget.filled == true ? 4.0 : 2.0,
-            ),
-            borderRadius: widget.filled == true
-                ? const BorderRadius.all(Radius.circular(10.0))
-                : const BorderRadius.only(
-                    topLeft: Radius.circular(4.0),
-                    topRight: Radius.circular(4.0),
-                  ),
-          ),
+          focusedBorder: customInputDecoration(LoonoColors.primaryEnabled),
           filled: widget.filled,
           fillColor: widget.filled == true ? Colors.white : null,
         ),
