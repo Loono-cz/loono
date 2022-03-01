@@ -43,6 +43,7 @@ dependencies:
   flutter_inappwebview: ^5.3.2
   flutter_localizations:
     sdk: flutter
+  flutter_native_splash: ^2.0.5
   flutter_native_timezone: ^2.0.0
   flutter_svg: ^1.0.3
   flutter_typeahead: ^3.2.4
