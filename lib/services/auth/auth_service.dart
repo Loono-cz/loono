@@ -66,7 +66,8 @@ class AuthService {
   }
 
   Future<Either<AuthFailure, AuthUser>> checkAppleAccountExistsAndSignIn() async {
-    final appleCredential = await getAppleCredential();
+    final nonce = getNonce();
+    final appleCredential = await getAppleCredential(nonce);
     if (appleCredential == null) return const Left(AuthFailure.unknown());
     if (appleCredential.email == null) return const Left(AuthFailure.unknown());
 
@@ -76,19 +77,19 @@ class AuthService {
     }
 
     // account exists, sign in
-    final authResult = await signInWithApple(appleCredential.identityToken);
+    final authResult = await signInWithApple(appleCredential.identityToken, nonce);
     return authResult;
   }
 
   Future<Either<AuthFailure, AuthUser>> signInWithGoogle([
-    GoogleSignInAccount? newGoogleUser,
+    GoogleSignInAccount? existingGoogleUser,
   ]) async {
-    if (newGoogleUser == null) {
+    if (existingGoogleUser == null) {
       await _googleSignIn.signOut();
     }
 
-    var googleUser = newGoogleUser;
-    if (newGoogleUser == null) {
+    var googleUser = existingGoogleUser;
+    if (existingGoogleUser == null) {
       try {
         googleUser = await _googleSignIn.signIn();
       } on PlatformException catch (e) {
@@ -119,17 +120,19 @@ class AuthService {
         : Right(_authUserFromFirebase(userCredential.user)!);
   }
 
-  Future<Either<AuthFailure, AuthUser>> signInWithApple([String? idToken]) async {
+  Future<Either<AuthFailure, AuthUser>> signInWithApple([
+    String? existingIdToken,
+    String? existingNonce,
+  ]) async {
     // To prevent replay attacks with the credential returned from Apple, we
     // include a nonce in the credential request. When signing in with
     // Firebase, the nonce in the id token returned by Apple, is expected to
     // match the sha256 hash of `rawNonce`.
 
     AuthorizationCredentialAppleID? appleCredential;
-    final rawNonce = generateNonce();
-    final nonce = sha256ofString(rawNonce);
+    final nonce = existingNonce ?? getNonce();
 
-    if (idToken == null) {
+    if (existingIdToken == null) {
       try {
         appleCredential = await SignInWithApple.getAppleIDCredential(
           scopes: [
@@ -147,8 +150,8 @@ class AuthService {
     }
 
     final oauthCredential = OAuthProvider('apple.com').credential(
-      idToken: idToken ?? appleCredential?.identityToken,
-      rawNonce: rawNonce,
+      idToken: existingIdToken ?? appleCredential?.identityToken,
+      rawNonce: nonce,
     );
 
     UserCredential? userCredential;
@@ -162,9 +165,8 @@ class AuthService {
         : Right(_authUserFromFirebase(userCredential.user)!);
   }
 
-  Future<AuthorizationCredentialAppleID?> getAppleCredential() async {
-    final rawNonce = generateNonce();
-    final nonce = sha256ofString(rawNonce);
+  Future<AuthorizationCredentialAppleID?> getAppleCredential([String? existingNonce]) async {
+    final nonce = existingNonce ?? getNonce();
 
     AuthorizationCredentialAppleID? appleCredential;
     try {
