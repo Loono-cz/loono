@@ -9,7 +9,14 @@ import 'package:loono/ui/widgets/skip_button.dart';
 import 'package:provider/provider.dart';
 
 class AllowNotificationsScreen extends StatelessWidget {
-  const AllowNotificationsScreen({Key? key}) : super(key: key);
+  const AllowNotificationsScreen({
+    Key? key,
+    this.onSkipTap,
+    this.onContinueTap,
+  }) : super(key: key);
+
+  final VoidCallback? onSkipTap;
+  final VoidCallback? onContinueTap;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +29,8 @@ class AllowNotificationsScreen extends StatelessWidget {
               const SizedBox(height: 20.0),
               SkipButton(
                 text: context.l10n.skip_notification,
-                onPressed: () => context.read<OnboardingStateService>().skipPermissionRequest(),
+                onPressed: onSkipTap ??
+                    () => context.read<OnboardingStateService>().skipPermissionRequest(),
               ),
               const Spacer(),
               SvgPicture.asset(
@@ -38,7 +46,8 @@ class AllowNotificationsScreen extends StatelessWidget {
               const Spacer(),
               LoonoButton(
                 text: context.l10n.notification_allow_button,
-                onTap: () async => context.read<OnboardingStateService>().promptPermission(),
+                onTap: onContinueTap ??
+                    () async => context.read<OnboardingStateService>().promptPermission(),
               ),
               SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
             ],
