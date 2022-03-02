@@ -30,9 +30,13 @@ void showNewCheckupSheetStep1(
         sheetHeight: 400,
         child: Column(
           children: <Widget>[
-            Text(
-              l10n.examination_detail_order_examination,
-              style: LoonoFonts.headerFontStyle,
+            Row(
+              children: [
+                Text(
+                  l10n.examination_detail_order_examination,
+                  style: LoonoFonts.headerFontStyle,
+                ),
+              ],
             ),
             const SizedBox(height: 60),
             LoonoButton.light(
@@ -42,7 +46,7 @@ void showNewCheckupSheetStep1(
                 examinationType: examinationType,
               ).toLowerCase()}',
               onTap: () {
-                AutoRouter.of(context).pop();
+                AutoRouter.of(context).popForced();
                 showNewCheckupSheetStep2(context, categorizedExamination, onSubmit, sex);
               },
             ),
@@ -135,23 +139,26 @@ void showNewCheckupSheetStep2(
             const SizedBox(height: 20),
             LoonoButton(
               text: l10n.examination_i_have_appointment_button,
-              onTap: () => showDatePickerSheet(
-                context: context,
-                categorizedExamination: categorizedExamination,
-                onSubmit: onSubmit,
-                firstStepTitle:
-                    '${sex == Sex.MALE ? l10n.checkup_new_date_title_male : l10n.checkup_new_date_title_female} $preposition ${examinationTypeCasus(
-                  context,
-                  casus: Casus.genitiv,
-                  examinationType: examinationType,
-                ).toUpperCase()}?',
-                secondStepTitle:
-                    '${l10n.checkup_new_time_title} $preposition ${examinationTypeCasus(
-                  context,
-                  casus: Casus.nomativ,
-                  examinationType: examinationType,
-                ).toLowerCase()}',
-              ),
+              onTap: () {
+                AutoRouter.of(context).popForced();
+                showDatePickerSheet(
+                  context: context,
+                  categorizedExamination: categorizedExamination,
+                  onSubmit: onSubmit,
+                  firstStepTitle:
+                      '${sex == Sex.MALE ? l10n.checkup_new_date_title_male : l10n.checkup_new_date_title_female} $preposition ${examinationTypeCasus(
+                    context,
+                    casus: Casus.genitiv,
+                    examinationType: examinationType,
+                  ).toUpperCase()}?',
+                  secondStepTitle:
+                      '${l10n.checkup_new_time_title} $preposition ${examinationTypeCasus(
+                    context,
+                    casus: Casus.nomativ,
+                    examinationType: examinationType,
+                  ).toLowerCase()}',
+                );
+              },
             ),
             const SizedBox(height: 50),
             TextButton(
