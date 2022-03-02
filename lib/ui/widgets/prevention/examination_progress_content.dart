@@ -35,7 +35,8 @@ class ExaminationProgressContent extends StatelessWidget {
     ].contains(categorizedExamination.category)) {
       /// known next visit
       return _scheduledVisitContent(context);
-    } else if ([const ExaminationCategory.waiting()].contains(categorizedExamination.category)) {
+    } else if (const ExaminationCategory.waiting() == categorizedExamination.category ||
+        categorizedExamination.examination.state == ExaminationStatus.CONFIRMED) {
       /// awaiting new checkup
       return _earlyCheckupContent(context);
     } else if (categorizedExamination.examination.lastConfirmedDate != null) {
@@ -49,10 +50,6 @@ class ExaminationProgressContent extends StatelessWidget {
         ),
       );
     } else {
-      if (categorizedExamination.examination.state == ExaminationStatus.CONFIRMED) {
-        return _earlyCheckupContent(context);
-      }
-
       /// first examination
       return Text(
         context.l10n.first_visit_awaiting,
