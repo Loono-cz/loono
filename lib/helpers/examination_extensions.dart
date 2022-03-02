@@ -32,7 +32,7 @@ extension ExaminationPreventionStatusExt on ExaminationPreventionStatus {
       return const ExaminationCategory.waiting();
     }
 
-    if (state == ExaminationStatus.UNKNOWN) {
+    if (state == ExaminationStatus.UNKNOWN || state == ExaminationStatus.CANCELED) {
       return const ExaminationCategory.newToSchedule();
     }
 
