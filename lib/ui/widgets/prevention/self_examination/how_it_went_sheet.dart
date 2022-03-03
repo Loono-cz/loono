@@ -48,7 +48,7 @@ void showHowItWentSheet(BuildContext context, Sex sex, int points) {
                 await registry.get<ApiService>().confirmSelfExamination(
                   SelfExaminationType.TESTICULAR,
                   result: SelfExaminationResult((b) {
-                    b.result = SelfExaminationResultResultEnum.NOT_OK;
+                    b.result = SelfExaminationResultResultEnum.FINDING;
                   }),
                 );
                 await Provider.of<ExaminationsProvider>(context, listen: false).fetchExaminations();
