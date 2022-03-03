@@ -35,10 +35,8 @@ class ExaminationProgressContent extends StatelessWidget {
     ].contains(categorizedExamination.category)) {
       /// known next visit
       return _scheduledVisitContent(context);
-    } else if ([
-      const ExaminationCategory.newToSchedule(),
-      const ExaminationCategory.waiting(),
-    ].contains(categorizedExamination.category)) {
+    } else if (const ExaminationCategory.waiting() == categorizedExamination.category ||
+        categorizedExamination.examination.state == ExaminationStatus.CONFIRMED) {
       /// awaiting new checkup
       return _earlyCheckupContent(context);
     } else if (categorizedExamination.examination.lastConfirmedDate != null) {

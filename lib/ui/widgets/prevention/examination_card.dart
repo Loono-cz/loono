@@ -140,7 +140,7 @@ class ExaminationCard extends StatelessWidget {
   }
 
   List<Widget> _waitingContent() {
-    final lastDateVisit = categorizedExamination.examination.lastConfirmedDate!;
+    final lastDateVisit = categorizedExamination.examination.lastConfirmedDate!.toLocal();
     final newWaitToDateTime = DateTime(
       lastDateVisit.year + categorizedExamination.examination.intervalYears,
       lastDateVisit.month,
@@ -185,7 +185,7 @@ class ExaminationCard extends StatelessWidget {
   }
 
   Widget dateRow() {
-    final formattedDate = DateFormat('d. M. yyyy kk:mm', 'cs-CZ')
+    final formattedDate = DateFormat('d. M. yyyy hh:mm', 'cs-CZ')
         .format(categorizedExamination.examination.plannedDate!.toLocal());
 
     return Row(
