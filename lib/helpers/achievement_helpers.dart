@@ -44,41 +44,42 @@ String getAchievementTitle(BuildContext context, ExaminationType type) {
 }
 
 String getAchievementAssetPath(ExaminationType type) {
-  var path = '';
+  var name = '';
+  const path = 'assets/badges/achievement/';
   switch (type) {
     case ExaminationType.COLONOSCOPY:
-      path = 'assets/badges/achievement/boots_level_1.svg';
+      name = 'boots_level_1.svg';
       break;
     case ExaminationType.DENTIST:
-      path = 'assets/badges/achievement/headband_level_1.svg';
+      name = 'headband_level_1.svg';
       break;
     case ExaminationType.DERMATOLOGIST:
-      path = 'assets/badges/achievement/gloves_level_1.svg';
+      name = 'gloves_level_1.svg';
       break;
     case ExaminationType.GENERAL_PRACTITIONER:
-      path = 'assets/badges/achievement/cloak_level_1.svg';
+      name = 'cloak_level_1.svg';
       break;
     case ExaminationType.GYNECOLOGIST:
-      path = 'assets/badges/achievement/belt_level_1.svg';
+      name = 'belt_level_1.svg';
       break;
     case ExaminationType.MAMMOGRAM:
-      path = 'assets/badges/achievement/armour_level_1.svg';
+      name = 'armour_level_1.svg';
       break;
     case ExaminationType.OPHTHALMOLOGIST:
-      path = 'assets/badges/achievement/goggles_level_1.svg';
+      name = 'goggles_level_1.svg';
       break;
     case ExaminationType.TOKS:
-      path = 'assets/badges/achievement/boots_level_1.svg';
+      name = 'boots_level_1.svg';
       break;
     case ExaminationType.ULTRASOUND_BREAST:
       // TODO: Handle this case.
       break;
     case ExaminationType.UROLOGIST:
-      path = 'assets/badges/achievement/belt_level_1.svg';
+      name = 'belt_level_1.svg';
       break;
     case ExaminationType.VENEREAL_DISEASES:
       // TODO: Handle this case.
       break;
   }
-  return path;
+  return path + name;
 }
