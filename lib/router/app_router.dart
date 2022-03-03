@@ -47,7 +47,6 @@ import 'package:loono/ui/screens/settings/edit_nickname.dart';
 import 'package:loono/ui/screens/settings/edit_photo.dart';
 import 'package:loono/ui/screens/settings/gallery_photo_taken.dart';
 import 'package:loono/ui/screens/settings/photo_cropped_result.dart';
-import 'package:loono/ui/screens/splash_screen.dart';
 import 'package:loono/ui/screens/welcome.dart';
 import 'package:loono/ui/widgets/achievement_screen.dart';
 
@@ -72,7 +71,6 @@ const _appStartUpRouter = AutoRoute<void>(
   path: 'app-start-up',
   page: AppStartUpWrapperScreen,
   children: [
-    AutoRoute<void>(page: SplashScreen, path: 'splash-screen'),
     AutoRoute<void>(page: WelcomeScreen, path: 'welcome'),
     _preAuthMainScreenRouter,
   ],

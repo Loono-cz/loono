@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
@@ -27,6 +28,8 @@ class _AppStartUpWrapperScreenState extends State<AppStartUpWrapperScreen> {
           return AutoRouter.declarative(
             routes: (context) {
               if (snapshot.hasData && snapshot.connectionState == ConnectionState.active) {
+                // Remove the splash screen after we've got data and proceed routing.
+                FlutterNativeSplash.remove();
                 if (examinationQuestionnaires == null || examinationQuestionnaires.isEmpty) {
                   // first time opening app or onboarding questionnaire not started yet
                   return [WelcomeRoute()];
@@ -35,9 +38,10 @@ class _AppStartUpWrapperScreenState extends State<AppStartUpWrapperScreen> {
                 }
               }
 
-              // TODO: Use native splash screen (https://cesko-digital.atlassian.net/browse/LOON-491)
-              // placeholder till database gets initialized
-              return [const SplashRoute()];
+              // In this case, we're waiting till database gets initialized.
+              // The splash screen is still displayed, so we don't need to
+              // return any routes.
+              return [];
             },
           );
         },
