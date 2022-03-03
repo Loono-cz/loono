@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/utils/registry.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 
 class CheckIsLoggedIn extends AutoRouteGuard {
