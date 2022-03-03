@@ -44,7 +44,7 @@ class MapStateService with ChangeNotifier {
     }
   }
 
-  void addAll(List<SimpleHealthcareProvider> healthcareProviders) {
+  void addAll(Iterable<SimpleHealthcareProvider> healthcareProviders) {
     _allHealthcareProviders.addAll(healthcareProviders);
     clusterManager.setItems(allHealthcareProviders.map((e) => HealthcareItemPlace(e)).toList());
     _applyFilter();

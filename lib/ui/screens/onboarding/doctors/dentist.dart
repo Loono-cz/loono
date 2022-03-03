@@ -1,11 +1,9 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/helpers/onboarding_state_helpers.dart';
 import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/universal_doctor_screen.dart';
 import 'package:loono/utils/registry.dart';
@@ -43,7 +41,7 @@ class OnboardingDentistScreen extends StatelessWidget {
               _type,
               ccaDoctorVisit: CcaDoctorVisit.moreThanXYearsOrIdk,
             );
-            await AutoRouter.of(context).push(PreAuthMainRoute());
+            await pushNotificationOrPreAuthMainScreen(context);
           },
         ),
       ),

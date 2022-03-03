@@ -30,6 +30,7 @@ class LoonoColors {
   static const faqBackgroundBlue = Color.fromRGBO(237, 248, 252, 1);
   static const checkBoxMark = Color.fromRGBO(190, 87, 19, 1);
   static const primaryWashed = Color.fromRGBO(203, 167, 142, 1);
+  static const errorColor = Color.fromRGBO(194, 63, 56, 1);
 
   static const rainbow = <Color>[
     Color.fromARGB(255, 230, 87, 86),

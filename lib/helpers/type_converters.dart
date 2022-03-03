@@ -6,13 +6,7 @@ import 'package:drift/drift.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono_api/loono_api.dart'
-    show
-        Badge,
-        ExaminationStatus,
-        ExaminationType,
-        Sex,
-        SimpleHealthcareProvider,
-        standardSerializers;
+    show Badge, ExaminationStatus, ExaminationType, Sex, standardSerializers;
 
 class CategoryDbConverter extends TypeConverter<BuiltList<String>, String> {
   const CategoryDbConverter();
@@ -102,30 +96,6 @@ class DateOfBirthDbConverter extends TypeConverter<DateWithoutDay, String> {
   String? mapToSql(DateWithoutDay? value) {
     if (value == null) return null;
     return jsonEncode(value.toJson());
-  }
-}
-
-class SimpleHealthcareListConverter
-    extends JsonConverter<BuiltList<SimpleHealthcareProvider>, String> {
-  const SimpleHealthcareListConverter();
-
-  @override
-  BuiltList<SimpleHealthcareProvider> fromJson(String json) {
-    return standardSerializers.deserialize(
-          jsonDecode(json),
-          specifiedType: const FullType(BuiltList, [FullType(SimpleHealthcareProvider)]),
-        ) as BuiltList<SimpleHealthcareProvider>? ??
-        BuiltList.of(<SimpleHealthcareProvider>[]);
-  }
-
-  @override
-  String toJson(BuiltList<SimpleHealthcareProvider> object) {
-    return jsonEncode(
-      standardSerializers.serialize(
-        object,
-        specifiedType: const FullType(BuiltList, [FullType(SimpleHealthcareProvider)]),
-      ),
-    );
   }
 }
 

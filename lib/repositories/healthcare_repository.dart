@@ -1,11 +1,11 @@
 // ignore_for_file: constant_identifier_names
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:archive/archive.dart';
 import 'package:drift/drift.dart';
 import 'package:flutter/foundation.dart';
-import 'package:loono/helpers/type_converters.dart';
 import 'package:loono/services/api_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/save_directories.dart';
@@ -71,11 +71,16 @@ class HealthcareProviderRepository {
     _emitStreamValue(HealtCareSyncState.completed);
   }
 
-  Future<List<SimpleHealthcareProvider>?> getHealthcareProviders() async {
+  Future<Iterable<SimpleHealthcareProvider>?> getHealthcareProviders() async {
     if (!_providersFile.existsSync()) return null;
     final content = await _providersFile.readAsString();
-    final list = const SimpleHealthcareListConverter().fromJson(content).toList();
-    return list;
+    final list = (json.decode(content) as Iterable<dynamic>).map(
+      (dynamic e) => standardSerializers.deserializeWith(
+        SimpleHealthcareProvider.serializer,
+        e,
+      ),
+    );
+    return list.whereType<SimpleHealthcareProvider>();
   }
 
   Future<void> _waitForExistingUser() async {
@@ -135,7 +140,7 @@ class HealthcareProviderRepository {
     DateTime? serverLatestUpdate,
   ) async {
     _emitStreamValue(HealtCareSyncState.storing);
-    await _providersFile.writeAsBytes(data);
+    await _providersFile.writeAsString(utf8.decode(data));
     await _db.users.updateLatestMapServerUpdate(serverLatestUpdate ?? DateTime.now());
     await _db.users.updateLatestMapUpdateCheck(DateTime.now());
   }

@@ -32,7 +32,7 @@ extension ExaminationPreventionStatusExt on ExaminationPreventionStatus {
       return const ExaminationCategory.waiting();
     }
 
-    if (state == ExaminationStatus.UNKNOWN) {
+    if (state == ExaminationStatus.UNKNOWN || state == ExaminationStatus.CANCELED) {
       return const ExaminationCategory.newToSchedule();
     }
 
@@ -89,6 +89,9 @@ extension CategorizedExaminationListExt on List<CategorizedExamination> {
       scheduledSoonOrOverdue: () =>
           sort((a, b) => b.examination.plannedDate!.compareTo(a.examination.plannedDate!)),
       newToSchedule: () => sort((a, b) {
+        if (a.examination.lastConfirmedDate == null || b.examination.lastConfirmedDate == null) {
+          return -1;
+        }
         final lastVisitDateWithoutDayA = a.examination.lastConfirmedDate!;
         final lastVisitDateWithoutDayB = b.examination.lastConfirmedDate!;
         final lastVisitDateTimeA =

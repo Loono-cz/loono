@@ -10,7 +10,7 @@ import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
-void showHowItWentSheet(BuildContext context, Sex sex) {
+void showHowItWentSheet(BuildContext context, Sex sex, int points) {
   showModalBottomSheet<void>(
     context: context,
     shape: RoundedRectangleBorder(
@@ -37,7 +37,7 @@ void showHowItWentSheet(BuildContext context, Sex sex) {
                   }),
                 );
                 await Provider.of<ExaminationsProvider>(context, listen: false).fetchExaminations();
-                await AutoRouter.of(context).push(const NoFindingRoute());
+                await AutoRouter.of(context).push(NoFindingRoute(points: points));
               },
             ),
             const SizedBox(height: 20),
