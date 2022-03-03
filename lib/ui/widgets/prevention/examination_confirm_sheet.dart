@@ -68,7 +68,7 @@ void showConfirmationSheet(
                         header: 'TO DO: complete all rewards',
                         textLines: [l10n.award_desc],
                         numberOfPoints: examinationType.awardPoints,
-                        itemPath: 'assets/badges/achievement/cloak-level_1.svg',
+                        itemPath: 'assets/badges/achievement/cloak_level_1.svg',
                         onButtonTap: _completedAction,
                       ),
                     );

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:loono/helpers/achievement_helpers.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/helpers/sex_extensions.dart';
@@ -51,7 +52,7 @@ class ScheduleExamination extends StatelessWidget {
           ),
           Expanded(
             child: UniversalDoctor(
-              examinationType: examinationRecord.examinationType,
+              examinationType: _examinationType,
               question: _sex.getUniversalDoctorLabel(context),
               questionHeader: procedureQuestionTitle(context, examinationType: _examinationType),
               assetPath: examinationRecord.examinationType.assetPath,
@@ -62,13 +63,10 @@ class ScheduleExamination extends StatelessWidget {
                   MainScreenRouter(
                     children: [
                       AchievementRoute(
-                        header: 'TODO',
-                        textLines: const [
-                          'TODO',
-                          'TODO',
-                        ],
+                        header: getAchievementTitle(context, _examinationType),
+                        textLines: [context.l10n.achievement_description_subtitle],
                         numberOfPoints: examinationRecord.points,
-                        itemPath: 'assets/badges/achievement/cloak-level_1.svg',
+                        itemPath: getAchievementAssetPath(_examinationType),
                         onButtonTap: () {
                           _appRouter.navigate(
                             MainScreenRouter(

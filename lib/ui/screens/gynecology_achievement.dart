@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loono/helpers/achievement_helpers.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/onboarding_state_service.dart';
@@ -23,7 +24,7 @@ class GynecologyAchievementScreen extends StatelessWidget {
           onButtonTap: () =>
               context.read<OnboardingStateService>().obtainAchievementForExamination(type),
           numberOfPoints: type.awardPoints,
-          itemPath: 'assets/badges/achievement/belt-woman-level_1.svg',
+          itemPath: getAchievementAssetPath(type),
         ),
       ),
     );
