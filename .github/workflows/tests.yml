@@ -31,7 +31,7 @@ jobs:
       - name: Update build.gradle file
         # removing these lines
         run: |
-          sed -e '/signingConfigs {/,+31d;' ./android/app/build.gradle
+          sed -e '/signingConfigs {/,+29d;' ./android/app/build.gradle
 
       - name: Run integration tests
         uses: reactivecircus/android-emulator-runner@v2
