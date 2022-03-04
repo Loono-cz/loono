@@ -6,7 +6,7 @@ on: [ push, pull_request ]
 
 jobs:
   android_nexus:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
