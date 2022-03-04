@@ -6,7 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: dart-lang/setup-dart@v1
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '2.10.1'
@@ -31,7 +30,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: dart-lang/setup-dart@v1
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '2.10.1'
@@ -66,23 +64,3 @@ jobs:
           # (Optional) The working directory to run the Dart analyzer in
           # (defaults to `./`).
           working-directory: ./
-
-#  test:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v2
-#      - uses: dart-lang/setup-dart@v1
-#      - uses: subosito/flutter-action@v2
-#        with:
-#          flutter-version: '2.5.3'
-#          channel: 'stable'
-#
-#      - name: Install dependencies
-#        run: flutter pub get
-#
-#      - name: Copy .env.example into .env file
-#        run: |
-#          cp ./assets/.env.example ./assets/.env
-#
-#      - name: Run tests flutter
-#        run: flutter test
