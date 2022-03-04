@@ -327,11 +327,12 @@ class ExaminationDetail extends StatelessWidget {
                 ),
               ] else if ([
                 const ExaminationCategory.unknownLastVisit(),
-                const ExaminationCategory.newToSchedule()
+                const ExaminationCategory.newToSchedule(),
+                const ExaminationCategory.waiting()
               ].contains(categorizedExamination.category)) ...[
                 Expanded(
                   child: LoonoButton(
-                    text: l10n.examination_detail_order_examination, //objednej se
+                    text: l10n.examination_detail_order_examination, //objednat se
                     onTap: () => showNewCheckupSheetStep1(
                       context,
                       categorizedExamination,
@@ -361,22 +362,6 @@ class ExaminationDetail extends StatelessWidget {
                         examinationType: _examinationType,
                       ).toLowerCase()}',
                     ),
-                  ),
-                ),
-              ] else if (categorizedExamination.category ==
-                  const ExaminationCategory.waiting()) ...[
-                Expanded(
-                  /// tried connection the same calendar logic here as above, but calendar event didn't work
-                  child: LoonoButton.light(
-                    text: 'pridat_do_kalendare',
-                    onTap: () {},
-                  ),
-                ),
-                const SizedBox(width: 19),
-                Expanded(
-                  child: LoonoButton.light(
-                    text: 'mam_objednano',
-                    onTap: () {},
                   ),
                 ),
               ]

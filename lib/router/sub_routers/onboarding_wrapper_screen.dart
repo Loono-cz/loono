@@ -184,7 +184,7 @@ PageRouteInfo? _nextDoctorOnlyRoute({
   if (prevDoctorCcaVisit != null && isPrevDatePickerFormFilled == true) {
     if (onboardingState.hasNotRequestedNotificationsPermissionYet &&
         shouldShowAllowNotificationScreen) {
-      return const AllowNotificationsRoute();
+      return AllowNotificationsRoute();
     }
     return nextDoctorRoute;
   }
@@ -209,7 +209,7 @@ PageRouteInfo? _dateOrAchievementOrNextDoctorRoute({
         if (isDatePickerFormFilled == true) {
           if (onboardingState.hasNotRequestedNotificationsPermissionYet &&
               shouldShowAllowNotificationScreen) {
-            return const AllowNotificationsRoute();
+            return AllowNotificationsRoute();
           }
           return nextDoctorRoute;
         }

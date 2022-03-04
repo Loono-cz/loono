@@ -42,17 +42,20 @@ class SelfExaminationDetailScreen extends StatelessWidget {
   double _selfExaminationProgress() {
     if (selfExamination.plannedDate?.toDateTime() != null) {
       final date = selfExamination.plannedDate?.toDateTime() as DateTime;
-      final planedDate = selfExamination.plannedDate?.toDateTime().millisecondsSinceEpoch;
+      final planedDate = date.millisecondsSinceEpoch;
       final startDate = DateTime(date.year, date.month - 1, date.day).millisecondsSinceEpoch;
       final todayDate = DateTime.now().millisecondsSinceEpoch;
-      final total = planedDate! - startDate;
+      final total = planedDate - startDate;
       final current = todayDate - startDate;
-      final percentage = (current / total) * 100;
+      final percentage = current / total;
       return percentage.clamp(0, 1);
     } else {
       return 0;
     }
   }
+
+  SelfExaminationStatus get _lastResultWithoutPlanned =>
+      selfExamination.history.lastWhere((item) => item != SelfExaminationStatus.PLANNED);
 
   @override
   Widget build(BuildContext context) {
@@ -133,13 +136,11 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                           height: 40,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            color: selfExamination.history.last.name ==
-                                    SelfExaminationStatus.COMPLETED.name
+                            color: _lastResultWithoutPlanned == SelfExaminationStatus.COMPLETED
                                 ? LoonoColors.greenSuccess
                                 : LoonoColors.grey,
                           ),
-                          child: selfExamination.history.last.name ==
-                                  SelfExaminationStatus.COMPLETED.name
+                          child: _lastResultWithoutPlanned == SelfExaminationStatus.COMPLETED
                               ? const Icon(
                                   Icons.done,
                                   color: Colors.white,

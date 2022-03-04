@@ -59,7 +59,7 @@ class SelfExaminationCard extends StatelessWidget {
                               '${context.l10n.waiting_self_examination_card_subtitle} $formattedDate',
                         );
                       },
-                      // TODO: Handle this case
+                      // should get visible after 56 days, as hasFindingExpectingResult status
                       hasFinding: (_) => [const SizedBox.shrink()],
                       hasFindingExpectingResult: (_) => _cardContent(
                         subtitle:

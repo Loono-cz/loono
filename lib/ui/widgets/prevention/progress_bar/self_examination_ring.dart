@@ -21,7 +21,7 @@ class SelfExaminationRing extends CustomPainter {
     /// Draw top base ring
     final topBaseArc = Paint()
       ..strokeWidth = 8
-      ..color = progress > .9 ? LoonoColors.redButton : backgroundColor
+      ..color = progress > .87 ? LoonoColors.redButton : backgroundColor
       ..style = PaintingStyle.stroke;
 
     canvas.drawArc(
