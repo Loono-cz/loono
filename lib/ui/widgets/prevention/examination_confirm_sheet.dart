@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/achievement_helpers.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/helpers/snackbar_message.dart';
@@ -65,10 +66,10 @@ void showConfirmationSheet(
                         .updateExaminationsRecord(res.data);
                     await AutoRouter.of(context).navigate(
                       AchievementRoute(
-                        header: 'TO DO: complete all rewards',
+                        header: getAchievementTitle(context, examinationType),
                         textLines: [l10n.award_desc],
                         numberOfPoints: examinationType.awardPoints,
-                        itemPath: 'assets/badges/achievement/cloak-level_1.svg',
+                        itemPath: getAchievementAssetPath(examinationType),
                         onButtonTap: _completedAction,
                       ),
                     );
