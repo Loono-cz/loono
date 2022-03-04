@@ -592,6 +592,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_native_splash:
+    dependency: "direct main"
+    description:
+      name: flutter_native_splash
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.5"
   flutter_native_timezone:
     dependency: "direct main"
     description:
@@ -875,8 +882,8 @@ packages:
     dependency: "direct main"
     description:
       path: dart
-      ref: a608f34eafdd86e5771a806cbea6b95d22c329ba
-      resolved-ref: a608f34eafdd86e5771a806cbea6b95d22c329ba
+      ref: "316b5ddf8149c75cb9f9910ed94a3758af758fcb"
+      resolved-ref: "316b5ddf8149c75cb9f9910ed94a3758af758fcb"
       url: "https://github.com/cesko-digital/loono-api.git"
     source: git
     version: "1.0.0"

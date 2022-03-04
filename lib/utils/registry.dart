@@ -46,6 +46,7 @@ Future<void> setup({
   Dio? dioOverride,
   GoogleSignIn? googleSignIn,
   FirebaseAuth? firebaseAuth,
+  Map<String, String>? envOverride,
   required AppFlavors flavor,
 }) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -71,7 +72,7 @@ Future<void> setup({
   }
 
   final config = AppConfig(
-    env: dotenv.env,
+    env: envOverride ?? dotenv.env,
     packageInfo: appInfo,
     platformVersion: osVersion,
     flavor: flavor,

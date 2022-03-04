@@ -22,6 +22,7 @@ Future<void> main({
     dioOverride: dio,
     googleSignIn: googleSignIn,
     firebaseAuth: firebaseAuth,
+    envOverride: env,
     flavor: AppFlavors.dev,
   );
   runApp(const Loono(defaultLocale: 'cs'));
