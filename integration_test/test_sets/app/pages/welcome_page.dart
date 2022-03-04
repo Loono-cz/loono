@@ -15,7 +15,7 @@ class WelcomePage {
   Future<void> clickStartButton() async {
     await tester.tap(startBtn);
     await tester.pumpAndSettle();
-    await tester.pump(const Duration(seconds: 4));
+    await tester.pump(const Duration(seconds: 8));
   }
 
   Future<void> clickLoginButton() async {
