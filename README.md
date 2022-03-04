@@ -17,7 +17,7 @@ Notes
 - Currently app supports only Czech language, all texts used within the app should be located in `lib/l10n/intl_cs.arb`. Supporting new languages can be made by adding new language arb file.
 - Internalization is done by [flutter_internalization](https://flutter.dev/docs/development/accessibility-and-localization/internationalization) plugin
 
-# Integration Tests
+## Integration Tests
 - Make sure to clear app's data before running the tests.
 - To test on an emulator or on a real iOS / Android device, first connect the device and run the following command from the root of the project:
 `flutter test integration_test/test_sets/onboarding/test_cases/male_onboarding_flow_test.dart --flavor dev`

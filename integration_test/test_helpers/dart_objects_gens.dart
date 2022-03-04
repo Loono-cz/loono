@@ -148,7 +148,6 @@ Leaderboard createLeaderboardObject({
       ..top = BuiltList.of(top).toBuilder()
       ..peers = BuiltList.of(peers).toBuilder()
       ..myOrder = myOrder;
-    ;
   });
 }
 
