@@ -5,7 +5,7 @@ on: [ push, pull_request ]
 #    branches: [master]
 
 jobs:
-  android_nexus:
+  android:
     runs-on: macos-latest
 
     steps:
@@ -41,6 +41,32 @@ jobs:
           arch: x86_64
           target: default
           script: flutter test integration_test --flavor dev
+
+  ios:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '2.10.1'
+          channel: 'stable'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Copy .env.example into .env file
+        run: |
+          cp ./assets/.env.example ./assets/.env
+
+      - name: Start Simulator
+        uses: futureware-tech/simulator-action@v1
+        with:
+            model: "iPhone 11"
+
+      - name: Run integration tests
+        run: flutter test integration_test --flavor dev
 
 #  test:
 #    runs-on: ubuntu-latest
