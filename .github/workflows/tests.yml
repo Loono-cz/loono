@@ -27,6 +27,12 @@ jobs:
         run: |
           cp ./assets/.env.example ./assets/.env
 
+      # otherwise failing with an error: "path may not be null or empty string. path='null'" (https://stackoverflow.com/a/57515614)
+      - name: Update build.gradle file
+        # removing these lines
+        run: |
+          sed -e '/signingConfigs {/,+31d;' ./android/app/build.gradle
+
       - name: Run integration tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
