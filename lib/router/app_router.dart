@@ -47,7 +47,6 @@ import 'package:loono/ui/screens/settings/edit_nickname.dart';
 import 'package:loono/ui/screens/settings/edit_photo.dart';
 import 'package:loono/ui/screens/settings/gallery_photo_taken.dart';
 import 'package:loono/ui/screens/settings/photo_cropped_result.dart';
-import 'package:loono/ui/screens/splash_screen.dart';
 import 'package:loono/ui/screens/welcome.dart';
 import 'package:loono/ui/widgets/achievement_screen.dart';
 
@@ -72,7 +71,6 @@ const _appStartUpRouter = AutoRoute<void>(
   path: 'app-start-up',
   page: AppStartUpWrapperScreen,
   children: [
-    AutoRoute<void>(page: SplashScreen, path: 'splash-screen'),
     AutoRoute<void>(page: WelcomeScreen, path: 'welcome'),
     _preAuthMainScreenRouter,
   ],
@@ -83,6 +81,7 @@ const _preAuthRoutes = <AutoRoute>[
   _preAuthMainScreenRouter,
   AutoRoute<void>(page: IntroCarouselScreen, path: 'intro-carousel'),
   _onboardingQuestionnaireRouter,
+  _allowNotificationRoute,
   AutoRoute<void>(page: FillOnboardingFormLaterScreen, path: 'fill-form-later'),
   AutoRoute<void>(page: GamificationIntroductionScreen, path: 'gamification-introduction'),
   AutoRoute<void>(page: NicknameScreen, path: 'fallback-account/name'),
@@ -104,6 +103,7 @@ const _postAuthRouter = AutoRoute<void>(
     ..._preventionRoutes,
     ..._selfExaminationRoutes,
     _findDoctorRoute,
+    _aboutHealthRoute,
   ],
 );
 
@@ -129,6 +129,11 @@ const _preAuthPreventionRouter = AutoRoute<void>(
 );
 
 const _loginRoute = AutoRoute<void>(page: LoginScreen, path: 'login');
+const _allowNotificationRoute = CustomRoute<void>(
+  page: AllowNotificationsScreen,
+  path: 'allow-notifications',
+  transitionsBuilder: _onboardingTransition,
+);
 const _findDoctorRoute = AutoRoute<void>(page: FindDoctorScreen, path: 'find-doctor');
 const _aboutHealthRoute = AutoRoute<void>(page: AboutHealthScreen, path: 'about-health');
 
@@ -161,11 +166,7 @@ const _onboardingQuestionnaireRouter = AutoRoute<void>(
       path: 'doctor/general-practitioner-date',
       transitionsBuilder: _onboardingTransition,
     ),
-    CustomRoute<void>(
-      page: AllowNotificationsScreen,
-      path: 'allow-notifications',
-      transitionsBuilder: _onboardingTransition,
-    ),
+    _allowNotificationRoute,
     CustomRoute<void>(
       page: OnboardingGynecologyScreen,
       path: 'doctor/gynecology',

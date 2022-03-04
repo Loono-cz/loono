@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/models/api_params.dart';
 import 'package:loono/models/api_response.dart';
-
 import 'package:loono_api/loono_api.dart';
 
 class ApiService {
@@ -164,6 +163,30 @@ class ApiService {
           newId.uuid = id;
         }),
       ),
+    );
+  }
+
+  Future<ApiResponse<SelfExaminationCompletionInformation>> confirmSelfExamination(
+    SelfExaminationType type, {
+    required SelfExaminationResult result,
+  }) async {
+    return _callApi(
+      () async => _api.getExaminationsApi().confirmSelfExamination(
+            selfType: type.name,
+            selfExaminationResult: result,
+          ),
+    );
+  }
+
+  Future<ApiResponse<SelfExaminationFindingResponse>> resultSelfExamination(
+    SelfExaminationType type, {
+    required SelfExaminationResult result,
+  }) async {
+    return _callApi(
+      () async => _api.getExaminationsApi().resultSelfExamination(
+            selfType: type.name,
+            selfExaminationResult: result,
+          ),
     );
   }
 
