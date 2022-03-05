@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/screens/about_health/about_health.dart';
 import 'package:loono/ui/screens/find_doctor/find_doctor.dart';
 import 'package:loono/ui/screens/prevention/prevention.dart';
+import 'package:loono/ui/widgets/custom_bottom_sheet.dart';
 import 'package:loono/ui/widgets/no_connection_message.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:provider/provider.dart';
@@ -94,22 +94,24 @@ class _MainScreenState extends State<MainScreen> {
       onWillPop: _selectedIndex == 2 ? null : () async => false,
       child: Scaffold(
         body: _pages.elementAt(_selectedIndex),
-        bottomNavigationBar: BottomNavigationBar(
+        bottomNavigationBar: CustomNavigationBar(
           currentIndex: _selectedIndex,
-          selectedItemColor: LoonoColors.primaryEnabled,
           onTap: _onItemTapped,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.person),
+          items: [
+            CustomNavigationBarItem(
               label: context.l10n.main_menu_item_prevention,
+              iconPath: 'assets/icons/tabs/prevention.svg',
+              iconPathActive: 'assets/icons/tabs/prevention_active.svg',
             ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.search),
+            CustomNavigationBarItem(
               label: context.l10n.main_menu_item_find_doc,
+              iconPath: 'assets/icons/tabs/find_doctor.svg',
+              iconPathActive: 'assets/icons/tabs/find_doctor_active.svg',
             ),
-            BottomNavigationBarItem(
-              icon: const Icon(Icons.lightbulb_outline),
+            CustomNavigationBarItem(
               label: context.l10n.main_menu_item_about_health,
+              iconPath: 'assets/icons/tabs/explore.svg',
+              iconPathActive: 'assets/icons/tabs/explore_active.svg',
             ),
           ],
         ),
