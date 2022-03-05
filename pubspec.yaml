@@ -98,6 +98,7 @@ flutter:
   assets:
     - assets/.env
     - assets/icons/
+    - assets/icons/tabs/
     - assets/icons/prevention/
     - assets/icons/prevention/doctors/
     - assets/icons/prevention/findings/

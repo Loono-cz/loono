@@ -71,6 +71,7 @@ Future<void> setup(AppFlavors flavor) async {
   );
 
   final dio = Dio(defaultDioOptions);
+  dio.options.headers['app-version'] = appInfo.version;
   dio.interceptors.add(
     RetryInterceptor(
       dio: dio,
