@@ -80,7 +80,7 @@ Future<void> setup({
 
   final dio = dioOverride ?? Dio(defaultDioOptions);
   if (dioOverride == null) {
-    dio.interceptors.add(
+    dio.options.headers['app-version'] = appInfo.version;dio.interceptors.add(
       RetryInterceptor(
         dio: dio,
         logPrint: print,
