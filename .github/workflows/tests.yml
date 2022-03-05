@@ -15,8 +15,31 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '2.10.1'
+          channel: 'stable'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Copy .env.example into .env file
+        run: |
+          cp ./assets/.env.example ./assets/.env
+
+      # otherwise failing with an error: "path may not be null or empty string. path='null'" (https://stackoverflow.com/a/57515614)
+      - name: Update build.gradle file
+        # removing these lines
+        run: |
+          sed -i -e '/signingConfigs {/,+29d;' ./android/app/build.gradle
+
       - name: Gradle cache
         uses: gradle/gradle-build-action@v2
+
+      # slightly speed ups the test startup (as it caches something)
+      - name: Build apk
+        run: |
+          flutter build apk --debug --flavor dev
 
       - name: AVD cache
         uses: actions/cache@v2
@@ -32,14 +55,6 @@ jobs:
         with:
           java-version: 11
 
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '2.10.1'
-          channel: 'stable'
-
-      - name: Install dependencies
-        run: flutter pub get
-
       - name: Create AVD and generate snapshot for caching
         if: steps.avd-cache.outputs.cache-hit != 'true'
         uses: reactivecircus/android-emulator-runner@v2
@@ -52,21 +67,6 @@ jobs:
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
           script: echo "Generated AVD snapshot for caching."
-
-      - name: Copy .env.example into .env file
-        run: |
-          cp ./assets/.env.example ./assets/.env
-
-      # otherwise failing with an error: "path may not be null or empty string. path='null'" (https://stackoverflow.com/a/57515614)
-      - name: Update build.gradle file
-        # removing these lines
-        run: |
-          sed -i -e '/signingConfigs {/,+29d;' ./android/app/build.gradle
-
-      # slightly speed ups the test startup (as it caches something)
-      - name: Build apk
-        run: |
-          flutter build apk --debug --flavor dev
 
       - name: Run integration tests
         uses: reactivecircus/android-emulator-runner@v2
