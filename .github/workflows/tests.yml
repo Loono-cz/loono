@@ -1,11 +1,12 @@
 name: Continuous Integration / integration tests
-on:
-  push:
-    branches: [master]
+on: [ push, pull_request ]
+#on:
+#  push:
+#    branches: [master]
 
 jobs:
   android:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         api-level: [29]
