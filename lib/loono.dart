@@ -12,7 +12,9 @@ import 'package:loono/utils/registry.dart';
 import 'package:provider/provider.dart';
 
 class Loono extends StatelessWidget {
-  const Loono({Key? key}) : super(key: key);
+  const Loono({Key? key, this.defaultLocale}) : super(key: key);
+
+  final String? defaultLocale;
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +45,7 @@ class Loono extends StatelessWidget {
             color: Colors.deepOrange,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
+            locale: defaultLocale != null ? Locale(defaultLocale!) : null,
             routerDelegate: AutoRouterDelegate(_appRouter),
             routeInformationParser: _appRouter.defaultRouteParser(),
           ),
