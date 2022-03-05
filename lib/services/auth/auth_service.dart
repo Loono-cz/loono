@@ -75,7 +75,9 @@ class AuthService {
     final nonce = getNonce();
     final appleCredential = await getAppleCredential(nonce);
     if (appleCredential == null) return const Left(AuthFailure.unknown());
-    if (appleCredential.email == null) return const Left(AuthFailure.unknown());
+    if (appleCredential.email == null) {
+      return Left(AuthFailure.accountNotExists(SocialLoginAccount.apple(appleCredential)));
+    }
 
     final signInMethods = await _auth.fetchSignInMethodsForEmail(appleCredential.email!);
     if (signInMethods.isEmpty) {
