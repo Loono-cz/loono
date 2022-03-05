@@ -9,7 +9,7 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        api-level: [31]
+        api-level: [29]
         target: [default]
 
     steps:
@@ -36,6 +36,7 @@ jobs:
         if: steps.avd-cache.outputs.cache-hit != 'true'
         uses: reactivecircus/android-emulator-runner@v2
         with:
+          profile: pixel_3_xl
           api-level: ${{ matrix.api-level }}
           target: ${{ matrix.target }}
           arch: x86_64
@@ -70,11 +71,12 @@ jobs:
       - name: Run integration tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          profile: Nexus 6
+          profile: pixel_3_xl
           target: ${{ matrix.target }}
           api-level: ${{ matrix.api-level }}
           arch: x86_64
           force-avd-creation: false
+          disable-animations: false
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           script: flutter test integration_test --flavor dev
 

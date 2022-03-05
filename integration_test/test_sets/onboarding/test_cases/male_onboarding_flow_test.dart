@@ -8,13 +8,13 @@ import 'package:loono/ui/screens/main/pre_auth/login.dart';
 import 'package:loono/ui/screens/main/pre_auth/onboarding_form_done.dart';
 import 'package:loono/ui/screens/main/pre_auth/start_new_questionnaire.dart';
 import 'package:loono/ui/screens/onboarding/birthdate.dart';
+import 'package:loono/ui/screens/onboarding/carousel/carousel.dart';
 import 'package:loono/ui/screens/onboarding/carousel/carousel_second.dart';
 import 'package:loono/ui/screens/onboarding/doctors/dentist.dart';
 import 'package:loono/ui/screens/onboarding/doctors/dentist_date.dart';
 import 'package:loono/ui/screens/onboarding/doctors/general_practicioner.dart';
 import 'package:loono/ui/screens/onboarding/fill_form_later.dart';
 import 'package:loono/ui/screens/onboarding/gender.dart';
-import 'package:loono/ui/widgets/intro_video.dart';
 
 import '../../../setup.dart' as app;
 import '../../app/pages/login_page.dart';
@@ -56,7 +56,7 @@ void main() {
 
         // navigate to StartNewQuestionnaireScreen through Carousel screens
         await welcomePage.clickStartButton();
-        expect(find.byType(IntroVideo), findsOneWidget);
+        expect(find.byType(IntroCarouselScreen), findsOneWidget);
 
         await introVideoPage.clickContinueBtn();
         expect(find.byType(OnboardingSecondCarouselScreen), findsOneWidget);

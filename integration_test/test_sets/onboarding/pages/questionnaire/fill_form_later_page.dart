@@ -14,12 +14,12 @@ class FillFormLaterPage {
   Future<void> clickContinueFormButton() async {
     await tester.tap(continueFormButton);
     await tester.pumpAndSettle();
-    await tester.pump(const Duration(seconds: 1));
+    await tester.pump(const Duration(seconds: 2));
   }
 
   Future<void> clickFillLaterFormButton() async {
     await tester.tap(fillLaterBtn);
     await tester.pumpAndSettle();
-    await tester.pump(const Duration(seconds: 1));
+    await tester.pump(const Duration(seconds: 2));
   }
 }

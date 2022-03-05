@@ -16,6 +16,6 @@ class QuestionnaireBirthDatePage {
   Future<void> clickContinueButton() async {
     await tester.tap(continueBtn);
     await tester.pumpAndSettle();
-    await tester.pump(const Duration(seconds: 1));
+    await tester.pump(const Duration(seconds: 2));
   }
 }
