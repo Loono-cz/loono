@@ -86,7 +86,7 @@ void showNewCheckupSheetStep2(
     ),
     builder: (BuildContext context) {
       return LoonBottomSheet(
-        sheetHeight: 567,
+        sheetHeight: 470,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -160,27 +160,6 @@ void showNewCheckupSheetStep2(
                 );
               },
             ),
-            const SizedBox(height: 50),
-            TextButton(
-              style: TextButton.styleFrom(
-                minimumSize: const Size(double.maxFinite, 40),
-              ),
-              onPressed: () => autoRouter.push(
-                FindDoctorRoute(cancelRouteName: cancelRoute),
-              ),
-              child: Text(
-                '${l10n.examination_dont_have_number_button} ${examinationTypeCasus(
-                  context,
-                  casus: Casus.genitiv,
-                  examinationType: examinationType,
-                ).toLowerCase()}',
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 15,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-            )
           ],
         ),
       );
