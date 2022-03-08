@@ -74,8 +74,6 @@ void showNewCheckupSheetStep2(
 ) {
   final l10n = context.l10n;
   final examinationType = categorizedExamination.examination.examinationType;
-  final autoRouter = AutoRouter.of(context);
-  final cancelRoute = ExaminationDetailRoute(categorizedExamination: categorizedExamination);
   final preposition = czechPreposition(context, examinationType: examinationType);
 
   showModalBottomSheet<void>(
