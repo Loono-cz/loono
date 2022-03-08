@@ -31,7 +31,7 @@ dependencies:
       url: https://github.com/simolus3/moor.git
       path: extras/encryption
       ref: fd0764594dc70b04f5ea5dcd18aa2213abbbce12
-  firebase_auth: ^3.1.2
+  firebase_auth: ^3.3.9
   firebase_core: ^1.2.0
   firebase_crashlytics: ^2.0.7
   firebase_storage: ^10.1.0
@@ -52,7 +52,7 @@ dependencies:
   get_it: ^7.2.0
   google_maps_cluster_manager: ^3.0.0+1
   google_maps_flutter: ^2.1.0
-  google_sign_in: ^5.1.1
+  google_sign_in: ^5.2.4
 
   # TODO: Investigate the number of crash occurrences on Xiaomi models https://github.com/flutter/flutter/issues/66322
   #   - possible solution:
@@ -84,11 +84,16 @@ dependencies:
 dev_dependencies:
   auto_route_generator: ^3.2.1
   build_runner: ^2.1.7
+  charlatan: ^0.1.0
   drift_dev: ^1.4.0
+  firebase_auth_platform_interface: ^6.2.1
   flutter_lints: ^1.0.4
   flutter_test:
     sdk: flutter
   freezed: ^1.1.1
+  google_sign_in_platform_interface: ^2.1.2
+  integration_test:
+    sdk: flutter
   json_serializable: ^6.1.4
 
 flutter:

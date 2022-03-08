@@ -11,8 +11,14 @@ import 'package:loono_api/loono_api.dart' as api;
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class AuthService {
-  AuthService({required api.LoonoApi api}) {
+  AuthService({
+    required api.LoonoApi api,
+    required FirebaseAuth firebaseAuth,
+    required GoogleSignIn googleSignIn,
+  }) {
     _api = api;
+    _auth = firebaseAuth;
+    _googleSignIn = googleSignIn;
     _auth.authStateChanges().listen((authUser) async {
       if (authUser == null) {
         _clearUserToken();
@@ -22,9 +28,9 @@ class AuthService {
 
   late final api.LoonoApi _api;
 
-  final _auth = FirebaseAuth.instance;
+  late final FirebaseAuth _auth;
 
-  final _googleSignIn = GoogleSignIn();
+  late final GoogleSignIn _googleSignIn;
 
   Future<AuthUser?> getCurrentUser() async => _authUserFromFirebase(_auth.currentUser);
 
@@ -69,7 +75,9 @@ class AuthService {
     final nonce = getNonce();
     final appleCredential = await getAppleCredential(nonce);
     if (appleCredential == null) return const Left(AuthFailure.unknown());
-    if (appleCredential.email == null) return const Left(AuthFailure.unknown());
+    if (appleCredential.email == null) {
+      return Left(AuthFailure.accountNotExists(SocialLoginAccount.apple(appleCredential)));
+    }
 
     final signInMethods = await _auth.fetchSignInMethodsForEmail(appleCredential.email!);
     if (signInMethods.isEmpty) {

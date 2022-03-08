@@ -7,11 +7,13 @@ import 'package:device_calendar/device_calendar.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_smart_retry/dio_smart_retry.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/repositories/examination_repository.dart';
@@ -40,7 +42,13 @@ final defaultDioOptions = BaseOptions(
 
 const retryBlacklist = ['/account/onboard', '/leaderboard'];
 
-Future<void> setup(AppFlavors flavor) async {
+Future<void> setup({
+  Dio? dioOverride,
+  GoogleSignIn? googleSignIn,
+  FirebaseAuth? firebaseAuth,
+  Map<String, String>? envOverride,
+  required AppFlavors flavor,
+}) async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
@@ -64,27 +72,29 @@ Future<void> setup(AppFlavors flavor) async {
   }
 
   final config = AppConfig(
-    env: dotenv.env,
+    env: envOverride ?? dotenv.env,
     packageInfo: appInfo,
     platformVersion: osVersion,
     flavor: flavor,
   );
 
-  final dio = Dio(defaultDioOptions);
-  dio.options.headers['app-version'] = appInfo.version;
-  dio.interceptors.add(
-    RetryInterceptor(
-      dio: dio,
-      logPrint: print,
-      retries: 3,
-      retryDelays: const [
-        // set delays between retries
-        Duration(seconds: 1),
-        Duration(seconds: 2),
-        Duration(seconds: 3),
-      ],
-    ),
-  );
+  final dio = dioOverride ?? Dio(defaultDioOptions);
+  if (dioOverride == null) {
+    dio.options.headers['app-version'] = appInfo.version;
+    dio.interceptors.add(
+      RetryInterceptor(
+        dio: dio,
+        logPrint: print,
+        retries: 3,
+        retryDelays: const [
+          // set delays between retries
+          Duration(seconds: 1),
+          Duration(seconds: 2),
+          Duration(seconds: 3),
+        ],
+      ),
+    );
+  }
 
   dio.interceptors.add(
     InterceptorsWrapper(
@@ -112,7 +122,13 @@ Future<void> setup(AppFlavors flavor) async {
   // services
   registry.registerSingleton<SaveDirectories>(SaveDirectories());
   await registry.get<SaveDirectories>().init();
-  registry.registerSingleton<AuthService>(AuthService(api: registry.get<LoonoApi>()));
+  registry.registerSingleton<AuthService>(
+    AuthService(
+      api: registry.get<LoonoApi>(),
+      firebaseAuth: firebaseAuth ?? FirebaseAuth.instance,
+      googleSignIn: googleSignIn ?? GoogleSignIn(),
+    ),
+  );
   registry.registerSingleton<DatabaseService>(DatabaseService());
   registry.registerSingleton<FirebaseStorageService>(
     FirebaseStorageService(

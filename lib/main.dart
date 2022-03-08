@@ -5,7 +5,7 @@ import 'package:loono/utils/app_config.dart';
 import 'package:loono/utils/registry.dart';
 
 Future<void> main() async {
-  await setup(AppFlavors.dev);
+  await setup(flavor: AppFlavors.dev);
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const Loono());

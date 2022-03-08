@@ -23,64 +23,68 @@ class OpenSettingsScreen extends StatelessWidget {
         stream: _usersDao.watchUser(),
         builder: (context, snapshot) {
           final userNickname = snapshot.data?.nickname;
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                LoonoAvatar(radius: 60.0),
-                const SizedBox(height: 24.0),
-                if (userNickname != null)
-                  Column(
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18.0),
+              child: Column(
+                children: [
+                  LoonoAvatar(radius: 60.0),
+                  const SizedBox(height: 24.0),
+                  if (userNickname != null)
+                    Column(
+                      children: [
+                        Text(
+                          userNickname,
+                          style: const TextStyle(fontSize: 24),
+                        ),
+                        const SizedBox(height: 24.0),
+                      ],
+                    ),
+                  LoonoButton.light(
+                    text: context.l10n.settings_edit_account_button,
+                    onTap: () {
+                      changePage(SettingsPage.edit);
+                    },
+                  ),
+                  const SizedBox(height: 104.0),
+                  PointsDisplay(),
+                  const SizedBox(height: 12.0),
+                  Text(
+                    context.l10n.points_your_points_desc.toUpperCase(),
+                    style: const TextStyle(
+                      fontSize: 11,
+                      color: LoonoColors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 48.0),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        userNickname,
-                        style: const TextStyle(fontSize: 24),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.43,
+                        child: LoonoButton.light(
+                          text: context.l10n.settings_user_points_help_button,
+                          onTap: () {
+                            changePage(SettingsPage.points);
+                          },
+                        ),
                       ),
-                      const SizedBox(height: 24.0),
+                      SizedBox(width: MediaQuery.of(context).size.width * 0.02),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.43,
+                        child: LoonoButton.light(
+                          text: context.l10n.leaderboard,
+                          onTap: () {
+                            changePage(SettingsPage.leaderboard);
+                          },
+                        ),
+                      )
                     ],
                   ),
-                LoonoButton.light(
-                  text: context.l10n.settings_edit_account_button,
-                  onTap: () {
-                    changePage(SettingsPage.edit);
-                  },
-                ),
-                const SizedBox(height: 104.0),
-                PointsDisplay(),
-                const SizedBox(height: 12.0),
-                Text(
-                  context.l10n.points_your_points_desc.toUpperCase(),
-                  style: const TextStyle(
-                    fontSize: 11,
-                    color: LoonoColors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 48.0),
-                Row(
-                  children: [
-                    Expanded(
-                      child: LoonoButton.light(
-                        text: context.l10n.settings_user_points_help_button,
-                        onTap: () {
-                          changePage(SettingsPage.points);
-                        },
-                      ),
-                    ),
-                    const SizedBox(width: 8.0),
-                    Expanded(
-                      child: LoonoButton.light(
-                        text: context.l10n.leaderboard,
-                        onTap: () {
-                          changePage(SettingsPage.leaderboard);
-                        },
-                      ),
-                    )
-                  ],
-                ),
-                Expanded(
-                  child: Align(
+                  const SizedBox(height: 60.0),
+                  Align(
                     alignment: Alignment.bottomCenter,
                     child: FutureBuilder<PackageInfo>(
                       future: PackageInfo.fromPlatform(),
@@ -90,9 +94,9 @@ class OpenSettingsScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 20.0),
-              ],
+                  const SizedBox(height: 20.0),
+                ],
+              ),
             ),
           );
         },
