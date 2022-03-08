@@ -6,6 +6,7 @@ import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/utils/app_clear.dart';
 import 'package:loono_api/loono_api.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AfterDeletionScreen extends StatefulWidget {
   const AfterDeletionScreen({Key? key, required this.sex}) : super(key: key);
@@ -57,7 +58,7 @@ class _AfterDeletionScreenState extends State<AfterDeletionScreen> {
               LoonoButton(
                 text: context.l10n.settings_after_deletion_send_as_email,
                 onTap: () {
-                  // TODO: Send email.
+                  launch('mailto:info@loono.cz');
                 },
               ),
               const SizedBox(height: 20),
