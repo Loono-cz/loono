@@ -4,7 +4,6 @@ import 'package:loono/ui/screens/main/pre_auth/login.dart';
 import 'package:loono/ui/screens/welcome.dart';
 import 'package:loono_api/loono_api.dart';
 
-import '../../../setup.dart';
 import '../pages/login_page.dart';
 import '../pages/welcome_page.dart';
 import '../test_data/default_test_data.dart';
@@ -14,7 +13,7 @@ import '../test_data/default_test_data.dart';
 ///
 
 // positive case
-Future<void> loginFlow({required WidgetTester tester}) async {
+Future<void> loginFlow({required WidgetTester tester, required Charlatan charlatan}) async {
   final welcomePage = WelcomePage(tester);
   final loginPage = LoginPage(tester);
 

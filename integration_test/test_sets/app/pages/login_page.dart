@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/widgets/social_login_button.dart';
 
+import '../../../test_helpers/widget_tester_extensions.dart';
+
 class LoginPage {
   LoginPage(this.tester);
 
@@ -27,7 +29,6 @@ class LoginPage {
 
   Future<void> clickCreateNewAccountButton() async {
     await tester.tap(createNewAccountBtn);
-    await tester.pumpAndSettle();
-    await tester.pump(const Duration(seconds: 6));
+    await tester.pumpSettleAndWait(seconds: 6);
   }
 }
