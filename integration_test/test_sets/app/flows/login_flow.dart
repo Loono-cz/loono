@@ -7,6 +7,7 @@ import 'package:loono_api/loono_api.dart';
 import '../pages/login_page.dart';
 import '../pages/welcome_page.dart';
 import '../test_data/default_test_data.dart';
+import '../test_data/fake_healthcare_provider_response.dart';
 
 ///
 /// Flows that can be reused in other test cases.
@@ -18,7 +19,7 @@ Future<void> loginFlow({required WidgetTester tester, required Charlatan charlat
   final loginPage = LoginPage(tester);
 
   charlatan
-    ..whenGet('/providers/all', (_) => CharlatanHttpResponse(statusCode: 404))
+    ..whenGet('/providers/all', (_) => HEALTHCARE_PROVIDER_ENCODED)
     ..whenGet(
       '/account',
       (_) => standardSerializers.serializeWith(Account.serializer, defaultAccount),

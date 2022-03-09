@@ -18,6 +18,7 @@ import 'package:loono/ui/screens/onboarding/gender.dart';
 import '../../../../setup.dart' as app;
 import '../../../app/pages/login_page.dart';
 import '../../../app/pages/welcome_page.dart';
+import '../../../app/test_data/fake_healthcare_provider_response.dart';
 import '../../pages/continue_questionnaire_page.dart';
 import '../../pages/intro_video_page.dart';
 import '../../pages/questionnaire/achievement_page.dart';
@@ -34,6 +35,8 @@ Future<void> run({required WidgetTester tester, required Charlatan charlatan}) a
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   await app.runMockApp(charlatan: charlatan);
+  charlatan.whenGet('/providers/all', (_) => HEALTHCARE_PROVIDER_ENCODED);
+
   await tester.pumpAndSettle();
   await tester.pump(const Duration(seconds: 3));
 
