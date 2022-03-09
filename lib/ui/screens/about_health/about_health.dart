@@ -1,9 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:loono/utils/app_config.dart';
-import 'package:loono/utils/registry.dart';
+import 'package:loono/helpers/map_variables.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutHealthScreen extends StatefulWidget {
@@ -15,17 +12,6 @@ class AboutHealthScreen extends StatefulWidget {
 
 class _AboutHealthScreenState extends State<AboutHealthScreen> {
   InAppWebViewController? webViewController;
-
-  bool _useHybridComposition() {
-    final platform = registry.get<AppConfig>().platformVersion;
-    if (Platform.isAndroid && platform.contains('Android ')) {
-      final version = int.parse(platform.replaceAll('Android ', ''));
-
-      /// use hybrid composition for android api level >= 29 (android 10 +)
-      return version >= 29;
-    }
-    return false;
-  }
 
   Future<bool> _handleBackGesture() async {
     if (webViewController != null && await webViewController!.canGoBack()) {
@@ -53,7 +39,7 @@ class _AboutHealthScreenState extends State<AboutHealthScreen> {
                 mediaPlaybackRequiresUserGesture: false,
               ),
               android: AndroidInAppWebViewOptions(
-                useHybridComposition: _useHybridComposition(),
+                useHybridComposition: useHybridComposition(),
               ),
               ios: IOSInAppWebViewOptions(
                 allowsInlineMediaPlayback: true,
