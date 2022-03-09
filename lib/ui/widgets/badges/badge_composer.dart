@@ -50,9 +50,38 @@ class _BadgeComposerState extends State<BadgeComposer> {
 
   Widget _getBelt(Sex sex, int level) {
     return level > 0
-        ? SvgPicture.asset(
-            'assets/badges/belt-${sex == Sex.MALE ? 'man' : 'woman'}/level_$level.svg',
-          )
+        ? SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              SvgPicture.asset(
+                  'assets/badges/belt-${sex == Sex.MALE ? 'man' : 'woman'}/level_$level.svg',
+                ),
+              Positioned(
+                  left: (MediaQuery.of(context).size.width/2)+45,
+                  child: Column(
+                    children: [
+                      Container(
+                          constraints: const BoxConstraints(maxWidth: 100),
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Text(
+                              'Opasek od gynekologa'.toUpperCase(),
+                              style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w700,
+                              ),
+                          ),
+                      ),
+                      SvgPicture.asset(
+                        'assets/badges/lines/belt_line.svg',
+                      )
+                    ],
+                  ),
+              ),
+            ],
+          ),
+        )
         : const SizedBox();
   }
 
@@ -124,10 +153,11 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 }
 
                 return SizedBox(
-                  width: 180,
+                  width: MediaQuery.of(context).size.width,
                   height: 300,
                   child: sex != null
                       ? Stack(
+                        alignment: Alignment.center,
                           children: [
                             _getCloak(_levelOf(BadgeType.COAT)),
                             SvgPicture.asset(
