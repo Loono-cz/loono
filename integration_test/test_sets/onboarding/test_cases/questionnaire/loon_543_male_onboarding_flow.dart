@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:charlatan/charlatan.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
@@ -18,10 +16,8 @@ import 'package:loono/ui/screens/onboarding/fill_form_later.dart';
 import 'package:loono/ui/screens/onboarding/gender.dart';
 
 import '../../../../setup.dart' as app;
-import '../../../../test_helpers/post_app_clear.dart';
 import '../../../app/pages/login_page.dart';
 import '../../../app/pages/welcome_page.dart';
-import '../../../app_test.dart';
 import '../../pages/continue_questionnaire_page.dart';
 import '../../pages/intro_video_page.dart';
 import '../../pages/questionnaire/achievement_page.dart';
@@ -34,107 +30,92 @@ import '../../pages/second_carousel_page.dart';
 import '../../pages/start_new_questionnaire_page.dart';
 
 /// [Test case link](https://cesko-digital.atlassian.net/browse/LOON-543)
-void main() {
+Future<void> run({required WidgetTester tester, required Charlatan charlatan}) async {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  setUp(() {
-    charlatan = Charlatan();
-  });
+  await app.runMockApp(charlatan: charlatan);
+  await tester.pumpAndSettle();
+  await tester.pump(const Duration(seconds: 3));
 
-  tearDown(() async {
-    await postAppClear();
-  });
+  final welcomePage = WelcomePage(tester);
+  final introVideoPage = IntroVideoPage(tester);
+  final secondCarouselPage = SecondCarouselPage(tester);
+  final startNewQuestionnairePage = StartNewQuestionnairePage(tester);
+  final continueQuestionnairePage = ContinueQuestionnairePage(tester);
+  final loginPage = LoginPage(tester);
+  final fillFormLaterPage = FillFormLaterPage(tester);
+  final questionnaireGenderPage = QuestionnaireGenderPage(tester);
+  final questionnaireBirthDatePage = QuestionnaireBirthDatePage(tester);
+  final questionnaireDoctorCcaLastVisitPage = QuestionnaireDoctorCcaLastVisitPage(tester);
+  final questionnaireAchievementPage = QuestionnaireAchievementPage(tester);
+  final questionnaireDoctorDatePickerPage = QuestionnaireDoctorDatePickerPage(tester);
 
-  testWidgets(
-    'TC(LOON_543): (Male) Onboarding Questionnaire - no account',
-    (WidgetTester tester) async {
-      await app.runMockApp(charlatan: charlatan);
-      await tester.pumpAndSettle();
-      await tester.pump(const Duration(seconds: 3));
+  // navigate to StartNewQuestionnaireScreen through Carousel screens
+  await welcomePage.clickStartButton();
+  expect(find.byType(IntroCarouselScreen), findsOneWidget);
 
-      final welcomePage = WelcomePage(tester);
-      final introVideoPage = IntroVideoPage(tester);
-      final secondCarouselPage = SecondCarouselPage(tester);
-      final startNewQuestionnairePage = StartNewQuestionnairePage(tester);
-      final continueQuestionnairePage = ContinueQuestionnairePage(tester);
-      final loginPage = LoginPage(tester);
-      final fillFormLaterPage = FillFormLaterPage(tester);
-      final questionnaireGenderPage = QuestionnaireGenderPage(tester);
-      final questionnaireBirthDatePage = QuestionnaireBirthDatePage(tester);
-      final questionnaireDoctorCcaLastVisitPage = QuestionnaireDoctorCcaLastVisitPage(tester);
-      final questionnaireAchievementPage = QuestionnaireAchievementPage(tester);
-      final questionnaireDoctorDatePickerPage = QuestionnaireDoctorDatePickerPage(tester);
+  await introVideoPage.clickContinueBtn();
+  expect(find.byType(OnboardingSecondCarouselScreen), findsOneWidget);
 
-      // navigate to StartNewQuestionnaireScreen through Carousel screens
-      await welcomePage.clickStartButton();
-      expect(find.byType(IntroCarouselScreen), findsOneWidget);
+  await secondCarouselPage.clickContinueBtn();
+  expect(find.byType(StartNewQuestionnaireScreen), findsOneWidget);
 
-      await introVideoPage.clickContinueBtn();
-      expect(find.byType(OnboardingSecondCarouselScreen), findsOneWidget);
+  // check route 'Už mám účet' is working
+  await startNewQuestionnairePage.clickAlreadyHaveAnAccountButton();
+  expect(find.byType(LoginScreen), findsOneWidget);
 
-      await secondCarouselPage.clickContinueBtn();
-      expect(find.byType(StartNewQuestionnaireScreen), findsOneWidget);
+  // start questionnaire
+  await loginPage.clickCreateNewAccountButton();
+  expect(find.byType(OnboardingGenderScreen), findsOneWidget);
 
-      // check route 'Už mám účet' is working
-      await startNewQuestionnairePage.clickAlreadyHaveAnAccountButton();
-      expect(find.byType(LoginScreen), findsOneWidget);
+  // skip onboarding form
+  await questionnaireGenderPage.clickSkipQuestionnaireButton();
+  expect(find.byType(FillOnboardingFormLaterScreen), findsOneWidget);
+  await fillFormLaterPage.clickFillFormLaterButton();
+  expect(find.byType(ContinueOnboardingFormScreen), findsOneWidget);
 
-      // start questionnaire
-      await loginPage.clickCreateNewAccountButton();
-      expect(find.byType(OnboardingGenderScreen), findsOneWidget);
+  // check questionnaire progress on the PreAuthMainScreen, should not have any / should be 0
+  expect(continueQuestionnairePage.hasProgressBarAnyProgress(), false);
+  expect(continueQuestionnairePage.isProgressBarValueEqualTo(0), true);
 
-      // skip onboarding form
-      await questionnaireGenderPage.clickSkipQuestionnaireButton();
-      expect(find.byType(FillOnboardingFormLaterScreen), findsOneWidget);
-      await fillFormLaterPage.clickFillFormLaterButton();
-      expect(find.byType(ContinueOnboardingFormScreen), findsOneWidget);
+  // continue onboarding form, should return to Gender Screen
+  await continueQuestionnairePage.clickContinueFormButton();
+  expect(find.byType(OnboardingGenderScreen), findsOneWidget);
 
-      // check questionnaire progress on the PreAuthMainScreen, should not have any / should be 0
-      expect(continueQuestionnairePage.hasProgressBarAnyProgress(), false);
-      expect(continueQuestionnairePage.isProgressBarValueEqualTo(0), true);
+  // choose and pick MALE, should transition to Birthdate screen
+  expect(questionnaireGenderPage.isContinueButtonDisabled(), true);
+  await questionnaireGenderPage.chooseMaleGender();
+  expect(questionnaireGenderPage.isContinueButtonDisabled(), false);
+  await questionnaireGenderPage.clickContinueButton();
+  expect(find.byType(OnBoardingBirthdateScreen), findsOneWidget);
+  expect(find.text('Kdy ses narodil?'), findsOneWidget);
 
-      // continue onboarding form, should return to Gender Screen
-      await continueQuestionnairePage.clickContinueFormButton();
-      expect(find.byType(OnboardingGenderScreen), findsOneWidget);
+  // skip onboarding form, progress bar should have now progress
+  await questionnaireBirthDatePage.clickSkipQuestionnaireButton();
+  expect(find.byType(FillOnboardingFormLaterScreen), findsOneWidget);
+  await fillFormLaterPage.clickFillFormLaterButton();
+  expect(find.byType(ContinueOnboardingFormScreen), findsOneWidget);
+  expect(continueQuestionnairePage.hasProgressBarAnyProgress(), true);
 
-      // choose and pick MALE, should transition to Birthdate screen
-      expect(questionnaireGenderPage.isContinueButtonDisabled(), true);
-      await questionnaireGenderPage.chooseMaleGender();
-      expect(questionnaireGenderPage.isContinueButtonDisabled(), false);
-      await questionnaireGenderPage.clickContinueButton();
-      expect(find.byType(OnBoardingBirthdateScreen), findsOneWidget);
-      expect(find.text('Kdy ses narodil?'), findsOneWidget);
+  // continue onboarding form, should return to BirthDate screen
+  await continueQuestionnairePage.clickContinueFormButton();
+  expect(find.byType(OnBoardingBirthdateScreen), findsOneWidget);
 
-      // skip onboarding form, progress bar should have now progress
-      await questionnaireBirthDatePage.clickSkipQuestionnaireButton();
-      expect(find.byType(FillOnboardingFormLaterScreen), findsOneWidget);
-      await fillFormLaterPage.clickFillFormLaterButton();
-      expect(find.byType(ContinueOnboardingFormScreen), findsOneWidget);
-      expect(continueQuestionnairePage.hasProgressBarAnyProgress(), true);
+  await questionnaireBirthDatePage.clickContinueButton();
+  expect(find.byType(OnboardingGeneralPracticionerScreen), findsOneWidget);
 
-      // continue onboarding form, should return to BirthDate screen
-      await continueQuestionnairePage.clickContinueFormButton();
-      expect(find.byType(OnBoardingBirthdateScreen), findsOneWidget);
+  // "more than X years" button should transition to next doctor
+  await questionnaireDoctorCcaLastVisitPage.clickMoreThanXYearsOrIdkButton();
+  expect(find.byType(OnboardingDentistScreen), findsOneWidget);
 
-      await questionnaireBirthDatePage.clickContinueButton();
-      expect(find.byType(OnboardingGeneralPracticionerScreen), findsOneWidget);
+  // "in last X years" should transition to achievement screen, date picker screen
+  await questionnaireDoctorCcaLastVisitPage.clickInLastXYearsButton();
+  expect(find.byType(DentistAchievementScreen), findsOneWidget);
+  await questionnaireAchievementPage.clickContinueButton();
+  expect(find.byType(DentistDateScreen), findsOneWidget);
+  await questionnaireDoctorDatePickerPage.clickContinueButton();
 
-      // "more than X years" button should transition to next doctor
-      await questionnaireDoctorCcaLastVisitPage.clickMoreThanXYearsOrIdkButton();
-      expect(find.byType(OnboardingDentistScreen), findsOneWidget);
-
-      // "in last X years" should transition to achievement screen, date picker screen
-      await questionnaireDoctorCcaLastVisitPage.clickInLastXYearsButton();
-      expect(find.byType(DentistAchievementScreen), findsOneWidget);
-      await questionnaireAchievementPage.clickContinueButton();
-      expect(find.byType(DentistDateScreen), findsOneWidget);
-      await questionnaireDoctorDatePickerPage.clickContinueButton();
-
-      // final route, onboarding is completed 🎉
-      // TODO: check saved values in DB
-      expect(find.byType(OnboardingFormDoneScreen), findsOneWidget);
-    },
-    // TODO: on iOS there is slightly different routing in the onboarding form
-    skip: Platform.isIOS,
-  );
+  // final route, onboarding is completed 🎉
+  // TODO: check saved values in DB
+  expect(find.byType(OnboardingFormDoneScreen), findsOneWidget);
 }

@@ -16,7 +16,6 @@ Future<void> main({
   Map<String, String>? env,
 }) async {
   assert(dio != null && env != null);
-  await registry.reset();
   await setup(
     dioOverride: dio,
     googleSignIn: googleSignIn,

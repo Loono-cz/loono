@@ -14,7 +14,9 @@ extension WidgetTesterExt on WidgetTester {
     } else if (EXEC_MODE == 'fast') {
       pumpDurMillisecs = durMillisecs ~/ 2;
     } else if (EXEC_MODE == 'very_fast') {
-      pumpDurMillisecs = durMillisecs ~/ 3;
+      pumpDurMillisecs = durMillisecs ~/ 4;
+    } else if (EXEC_MODE == 'super_fast') {
+      pumpDurMillisecs = durMillisecs ~/ 10;
     } else {
       pumpDurMillisecs = durMillisecs;
     }
