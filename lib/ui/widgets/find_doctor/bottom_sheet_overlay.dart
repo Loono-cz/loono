@@ -1,16 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/services/map_state_sevice.dart';
+import 'package:loono/ui/widgets/find_doctor/doctor_detail_sheet.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
+
+class Somet extends StatelessWidget {
+  const Somet({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
 
 class MapSheetOverlay extends StatelessWidget {
   const MapSheetOverlay({
     Key? key,
     required this.onItemTap,
+    required this.sheetController,
   }) : super(key: key);
 
   final ValueChanged<SimpleHealthcareProvider>? onItemTap;
+  final DraggableScrollableController sheetController;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +32,7 @@ class MapSheetOverlay extends StatelessWidget {
       initialChildSize: 0.4,
       maxChildSize: 0.75,
       minChildSize: 0.15,
+      controller: sheetController,
       builder: (context, scrollController) {
         return Container(
           decoration: const BoxDecoration(
@@ -69,7 +82,17 @@ class MapSheetOverlay extends StatelessWidget {
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                       elevation: 0.0,
                       child: InkWell(
-                        onTap: () => onItemTap?.call(item),
+                        onTap: () async {
+                          final lastSheetPosition = sheetController.size;
+                          sheetController.jumpTo(0);
+                          onItemTap?.call(item);
+                          await showDoctorDetailSheet(context: context, doctor: item);
+                          await sheetController.animateTo(
+                            lastSheetPosition,
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.easeInOut,
+                          );
+                        },
                         child: SizedBox(
                           width: MediaQuery.of(context).size.width,
                           height: 120.0,

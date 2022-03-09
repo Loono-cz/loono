@@ -32,6 +32,7 @@ class FindDoctorScreen extends StatefulWidget {
 
 class _FindDoctorScreenState extends State<FindDoctorScreen> {
   bool _isHealtCareProvidersInMapService = false;
+  final _sheetController = DraggableScrollableController();
 
   Future<void> _setHealtcareProviders() async {
     final healtcareProviders =
@@ -93,6 +94,7 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                           zoom: MapVariables.DOCTOR_DETAIL_ZOOM,
                         ),
                       ),
+                      sheetController: _sheetController,
                     ),
                   if (!_isHealtCareProvidersInMapService)
                     Padding(
