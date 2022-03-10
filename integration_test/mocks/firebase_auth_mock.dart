@@ -56,3 +56,9 @@ Future<FirebaseAuth> mockFirebaseAuth() async {
 
   return FirebaseAuth.instance;
 }
+
+void tearDownFirebaseAuth() {
+  firebaseAuthChannel.setMockMethodCallHandler((MethodCall methodCall) {
+    return null;
+  });
+}

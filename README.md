@@ -19,10 +19,11 @@ Notes
 
 ## Integration Tests
 - **Make sure to <ins>clear the app's</ins> data before running the tests.** (Android)
-- To test on an emulator or on a real iOS / Android device, first connect the device and run the following command from the root of the project:
-`flutter test integration_test/test_sets/onboarding/test_cases/male_onboarding_flow_test.dart --flavor dev`
-- Or, you can run all integration tests in a folder with:
-`flutter test integration_test --flavor dev`
+- To run all tests on an emulator or on a real iOS / Android device, first connect the device and run the following command from the root of the project:
+`flutter test integration_test --flavor dev --dart-define=EXEC_MODE=slow`
+- Or, you can run a specific TC or a group with:
+`flutter test integration_test\test_sets\app_test.dart --plain-name "TC(LOON_437): Logout (straight path)" --flavor dev`
+- You can specify the speed of the tests execution. Since emulators are slow (especially on CI), it is recommended to leave it on default (now _'slow'_). If you're running on a real device, you can speed up the process with defining for example '_'very_fast'_ value: `--dart-define=EXEC_MODE=very_fast`. Other allowed values {very_slow, slow, fast, very_fast}.
 - Since the app is in active development, tests are expected to fail often. No need to fix them right away.
 - Conventions:
     - test case implementation is inspired by POM (Page Object Model) design pattern

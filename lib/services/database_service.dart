@@ -26,4 +26,10 @@ class DatabaseService {
   Future<void> clearDb() {
     return _engine.deleteAllData();
   }
+
+  /// Should be used only in testing!!
+  @visibleForTesting
+  Future<void> closeDb() async {
+    await _engine.close();
+  }
 }

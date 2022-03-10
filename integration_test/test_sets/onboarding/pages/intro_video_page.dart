@@ -1,6 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/widgets/button.dart';
 
+import '../../../test_helpers/widget_tester_extensions.dart';
+
 class IntroVideoPage {
   IntroVideoPage(this.tester);
 
@@ -18,7 +20,6 @@ class IntroVideoPage {
 
   Future<void> clickContinueBtn() async {
     await tester.tap(continueBtn);
-    await tester.pumpAndSettle();
-    await tester.pump(const Duration(seconds: 1));
+    await tester.pumpSettleAndWait(seconds: 1);
   }
 }

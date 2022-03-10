@@ -31,7 +31,7 @@ class SelfExaminationCard extends StatelessWidget {
       stream: registry.get<DatabaseService>().users.watchUser(),
       builder: (context, snap) {
         if (snap.data == null) return const SizedBox.shrink();
-        final sex = snap.data!.sex!;
+        final sex = snap.data!.sex ?? Sex.MALE;
         return Card(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           elevation: 0.0,
