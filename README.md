@@ -23,7 +23,7 @@ Notes
 `flutter test integration_test --flavor dev --dart-define=EXEC_MODE=slow`
 - Or, you can run a specific TC or a group with:
 `flutter test integration_test\test_sets\app_test.dart --plain-name "TC(LOON_437): Logout (straight path)" --flavor dev`
-- You can specify the speed of the tests execution. Since emulators are slow (especially on CI), it is recommended to leave it on default (now _'slow'_). If you're running on a real device, you can speed up the process with defining for example '_'very_fast'_ value: `--dart-define=EXEC_MODE=very_fast`. Other allowed values {very_slow, slow, fast, very_fast, super_fast}.
+- You can specify the speed of the tests execution. Since emulators are slow (especially on CI), it is recommended to leave it on default (now _'slow'_). If you're running on a real device, you can speed up the process with defining for example '_'very_fast'_ value: `--dart-define=EXEC_MODE=very_fast`. Other allowed values {very_slow, slow, fast, very_fast}.
 - Since the app is in active development, tests are expected to fail often. No need to fix them right away.
 - Conventions:
     - test case implementation is inspired by POM (Page Object Model) design pattern
