@@ -24,104 +24,331 @@ class _BadgeComposerState extends State<BadgeComposer> {
 
   static const supportedBadgeLevels = 5;
 
+
   Widget _getGoogles(Sex sex, int level) {
     return level > 0
-        ? SvgPicture.asset(
+        ? SizedBox(
+      width: MediaQuery.of(context).size.width,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          SvgPicture.asset(
             'assets/badges/goggles-${sex == Sex.MALE ? 'man' : 'woman'}/level_$level.svg',
-          )
+          ),
+          Positioned(
+            top: 50,
+            left: (MediaQuery.of(context).size.width/2)-150,
+            child: Column(
+              children: [
+                Container(
+                  constraints: const BoxConstraints(maxWidth: 110),
+                  padding: const EdgeInsets.only(right: 10),
+                  child: Text(
+                    'BRÝLE OD OČNÍHO LÉKAŘE'.toUpperCase(),
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                SvgPicture.asset(
+                  'assets/badges/lines/googles_line.svg',
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    )
         : const SizedBox();
   }
 
   Widget _getHeadband(int level) {
     return level > 0
-        ? SvgPicture.asset(
+        ? SizedBox(
+      width: MediaQuery.of(context).size.width,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          SvgPicture.asset(
             'assets/badges/headband/level_$level.svg',
-          )
+          ),
+          Positioned(
+            top: 30,
+            left: (MediaQuery.of(context).size.width/2)+30,
+            child: Column(
+              children: [
+                Container(
+                  constraints: const BoxConstraints(maxWidth: 120),
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Text(
+                    'Čelenka od Zubního lékaře'.toUpperCase(),
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                SvgPicture.asset(
+                  'assets/badges/lines/headband_line.svg',
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    )
         : const SizedBox();
   }
 
   Widget _getBoots(int level) {
     return level > 0
-        ? SvgPicture.asset(
+        ? SizedBox(
+      width: MediaQuery.of(context).size.width,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          SvgPicture.asset(
             'assets/badges/boots/level_$level.svg',
-          )
+          ),
+          Positioned(
+            left: (MediaQuery.of(context).size.width/2)-170,
+            top: 260,
+            child: Column(
+              children: [
+                Container(
+                  constraints: const BoxConstraints(maxWidth: 130),
+                  padding: const EdgeInsets.only(right: 10),
+                  child: Text(
+                    'BOTY Z KOLOSKOPIE'.toUpperCase(),
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                SvgPicture.asset(
+                  'assets/badges/lines/boots_line.svg',
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    )
         : const SizedBox();
   }
 
   Widget _getBelt(Sex sex, int level) {
     return level > 0
         ? SizedBox(
-          width: MediaQuery.of(context).size.width,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              SvgPicture.asset(
-                  'assets/badges/belt-${sex == Sex.MALE ? 'man' : 'woman'}/level_$level.svg',
-                ),
-              Positioned(
-                  left: (MediaQuery.of(context).size.width/2)+45,
-                  child: Column(
-                    children: [
-                      Container(
-                          constraints: const BoxConstraints(maxWidth: 100),
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Text(
-                              'Opasek od gynekologa'.toUpperCase(),
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w700,
-                              ),
-                          ),
-                      ),
-                      SvgPicture.asset(
-                        'assets/badges/lines/belt_line.svg',
-                      )
-                    ],
-                  ),
-              ),
-            ],
+      width: MediaQuery.of(context).size.width,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          SvgPicture.asset(
+            'assets/badges/belt-${sex == Sex.MALE ? 'man' : 'woman'}/level_$level.svg',
           ),
-        )
+          Positioned(
+            left: (MediaQuery.of(context).size.width/2)+40,
+            child: Column(
+              children: [
+                Container(
+                  constraints: const BoxConstraints(maxWidth: 100),
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Text(
+                    'Opasek od gynekologa'.toUpperCase(),
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                SvgPicture.asset(
+                  'assets/badges/lines/belt_line.svg',
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    )
         : const SizedBox();
   }
 
   Widget _getArmour(int level) {
     return level > 0
-        ? SvgPicture.asset(
+        ? SizedBox(
+      width: MediaQuery.of(context).size.width,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          SvgPicture.asset(
             'assets/badges/armour-woman/level_$level.svg',
-          )
+          ),
+        ],
+      ),
+    )
         : const SizedBox();
   }
 
   Widget _getCloak(int level) {
     return level > 0
-        ? SvgPicture.asset(
+        ? SizedBox(
+      width: MediaQuery.of(context).size.width,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          SvgPicture.asset(
             'assets/badges/cloak/level_$level.svg',
-          )
+          ),
+          Positioned(
+            top: 240,
+            left: (MediaQuery.of(context).size.width/2)+30,
+            child: Stack(
+              children: [
+                Container(
+                  constraints: const BoxConstraints(maxWidth: 150),
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Text(
+                    'PLÁŠŤ od PRAKTICKÉHO LÉKAŘE'.toUpperCase(),
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                SvgPicture.asset(
+                  'assets/badges/lines/cloak_line.svg',
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    )
         : const SizedBox();
   }
 
   Widget _getCloakBuckle(int level) {
     return level > 0
-        ? SvgPicture.asset(
+        ? SizedBox(
+      width: MediaQuery.of(context).size.width,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          SvgPicture.asset(
             'assets/badges/cloak-buckle/level_$level.svg',
-          )
+          ),
+          Positioned(
+            top: 90,
+            left: (MediaQuery.of(context).size.width/2)-160,
+            child: Column(
+              children: [
+                Container(
+                  constraints: const BoxConstraints(maxWidth: 130),
+                  padding: const EdgeInsets.only(right: 10),
+                  child: Text(
+                    'TOP z mamografu'.toUpperCase(),
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                SvgPicture.asset(
+                  'assets/badges/lines/buckle_line.svg',
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    )
         : const SizedBox();
   }
 
   Widget _getGloves(Sex sex, int level) {
     return level > 0
-        ? SvgPicture.asset(
+        ? SizedBox(
+      width: MediaQuery.of(context).size.width,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          SvgPicture.asset(
             'assets/badges/gloves-${sex == Sex.MALE ? 'man' : 'woman'}/level_$level.svg',
-          )
+          ),
+          Positioned(
+            top: 180,
+            left: (MediaQuery.of(context).size.width/2)+40,
+            child: Stack(
+              children: [
+                Container(
+                  constraints: const BoxConstraints(maxWidth: 120),
+                  height: 35,
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Text(
+                    'RUKAVICE od DERMATOLOGA'.toUpperCase(),
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 20,
+                  child: SvgPicture.asset(
+                    'assets/badges/lines/gloves_line.svg',
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    )
         : const SizedBox();
   }
 
   Widget _getShield(int level) {
     return level > 0
-        ? SvgPicture.asset(
+        ? SizedBox(
+      width: MediaQuery.of(context).size.width,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          SvgPicture.asset(
             'assets/badges/shield/level_$level.svg',
-          )
+          ),
+          Positioned(
+            top: 210,
+            left: (MediaQuery.of(context).size.width/2)-180,
+            child: Stack(
+              children: [
+                Container(
+                  constraints: const BoxConstraints(maxWidth: 120),
+                  height: 35,
+                  padding: const EdgeInsets.only(right: 10),
+                  child: Text(
+                    'ŠTÍT SAMOVYŠETŘENÍ'.toUpperCase(),
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 20,
+                  child: SvgPicture.asset(
+                    'assets/badges/lines/shield_line.svg',
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    )
         : const SizedBox();
   }
 
