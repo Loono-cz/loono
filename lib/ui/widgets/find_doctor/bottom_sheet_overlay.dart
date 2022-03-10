@@ -5,15 +5,6 @@ import 'package:loono/ui/widgets/find_doctor/doctor_detail_sheet.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
-class Somet extends StatelessWidget {
-  const Somet({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
-
 class MapSheetOverlay extends StatelessWidget {
   const MapSheetOverlay({
     Key? key,

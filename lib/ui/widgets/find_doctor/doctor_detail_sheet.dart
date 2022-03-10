@@ -1,9 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/ui/widgets/extend_inkwell.dart';
+import 'package:loono/l10n/ext.dart';
+import 'package:loono/models/api_response.dart';
+import 'package:loono/services/api_service.dart';
+import 'package:loono/ui/widgets/find_doctor/contact_button.dart';
+import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 Future<void> showDoctorDetailSheet({
   required BuildContext context,
@@ -32,6 +36,9 @@ Future<void> showDoctorDetailSheet({
                     child: Text(
                       '${doctor.specialization?.toUpperCase()}',
                       style: LoonoFonts.cardSubtitle.copyWith(color: LoonoColors.grey),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 5,
+                      softWrap: false,
                     ),
                   ),
                 IconButton(
@@ -66,61 +73,111 @@ Future<void> showDoctorDetailSheet({
             const SizedBox(
               height: 20,
             ),
-            _ActionButton(
-              text: 'TODO: missing phone',
-              iconPath: 'assets/icons/prevention/phone.svg',
-              action: () {},
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            _ActionButton(
-              text: 'TODO: missing email',
-              iconPath: 'assets/icons/prevention/email.svg',
-              action: () {},
-            ),
+            FutureBuilder(
+              future: registry.get<ApiService>().postProviderDetail(
+                providersIds: [
+                  HealthcareProviderId((p) {
+                    p
+                      ..institutionId = doctor.institutionId
+                      ..locationId = doctor.locationId;
+                  })
+                ],
+              ),
+              builder: (
+                BuildContext context,
+                AsyncSnapshot<ApiResponse<HealthcareProviderDetailList>> snapshot,
+              ) {
+                if (snapshot.hasData) {
+                  HealthcareProviderDetail? detail;
+                  snapshot.data?.map(
+                    success: (res) {
+                      detail = res.data.healthcareProvidersDetails.first;
+                    },
+                    failure: (err) {},
+                  );
+                  final hasPhoneNumber =
+                      detail?.phoneNumber != null && detail!.phoneNumber!.isNotEmpty;
+                  final hasEmail = detail?.email != null && detail!.email!.isNotEmpty;
+
+                  /// sometimes there is list of contacts so here we take only the first one
+                  final firstEmail = detail?.email?.split(',').first;
+                  final firstPhoneNumber = detail?.phoneNumber?.split(',').first;
+
+                  return Expanded(
+                    child: Column(
+                      children: [
+                        if (hasPhoneNumber)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 20.0),
+                            child: ContactButton(
+                              text: '$firstPhoneNumber',
+                              iconPath: 'assets/icons/prevention/phone.svg',
+                              action: () async {
+                                final phoneLaunchUri = Uri(
+                                  scheme: 'tel',
+                                  path: firstPhoneNumber,
+                                );
+                                if (await canLaunch(phoneLaunchUri.toString())) {
+                                  await launch(phoneLaunchUri.toString());
+                                }
+                              },
+                            ),
+                          ),
+                        if (hasEmail)
+                          ContactButton(
+                            text: '$firstEmail',
+                            iconPath: 'assets/icons/prevention/email.svg',
+                            action: () async {
+                              final emailLaunchUri = Uri(
+                                scheme: 'mailto',
+                                path: firstEmail,
+                              );
+                              if (await canLaunch(emailLaunchUri.toString())) {
+                                await launch(emailLaunchUri.toString());
+                              }
+                            },
+                          ),
+                        if (!hasPhoneNumber && !hasEmail)
+                          Flexible(
+                            child: Column(
+                              children: [
+                                const Spacer(),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: LoonoColors.primaryWashed,
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  height: 54,
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Text(context.l10n.doctor_no_contact),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 25,
+                                )
+                              ],
+                            ),
+                          )
+                      ],
+                    ),
+                  );
+                } else if (snapshot.hasError) {
+                  return Text(context.l10n.doctor_contact_error);
+                } else {
+                  return const Flexible(
+                    child: Center(child: CircularProgressIndicator.adaptive()),
+                  );
+                }
+              },
+            )
           ],
         ),
       );
     },
   );
-}
-
-class _ActionButton extends StatelessWidget {
-  const _ActionButton({Key? key, required this.text, required this.iconPath, required this.action})
-      : super(key: key);
-
-  final String text;
-  final String iconPath;
-  final VoidCallback action;
-
-  @override
-  Widget build(BuildContext context) {
-    return ExtendedInkWell(
-      onTap: action,
-      splashColor: null,
-      materialColor: LoonoColors.buttonLight,
-      borderRadius: BorderRadius.circular(10.0),
-      child: SizedBox(
-        height: 65.0,
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: SvgPicture.asset(
-                iconPath,
-                width: 26,
-                color: LoonoColors.primaryEnabled,
-              ),
-            ),
-            Text(
-              text,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.button?.copyWith(color: Colors.black),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }

@@ -52,8 +52,8 @@ Future<Marker> Function(Cluster<HealthcareItemPlace>) get markerBuilder => (clus
       return Marker(
         markerId: MarkerId(cluster.getId()),
         position: cluster.location,
-        onTap: () {
-          //
+        onTap: () async {
+          // TODO: open doctor detail from here
         },
         infoWindow: cluster.isMultiple
             ? InfoWindow.noText
