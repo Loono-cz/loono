@@ -1,6 +1,7 @@
 import 'package:charlatan/charlatan.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:integration_test/integration_test.dart';
 
 import '../../../../setup.dart' as app;
 import '../../../app/flows/login_flow.dart';
@@ -11,6 +12,8 @@ Future<void> run({
   required Charlatan charlatan,
   required FirebaseAuth firebaseAuth,
 }) async {
+  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+
   await app.runMockApp(firebaseAuthOverride: firebaseAuth, charlatan: charlatan);
   await loginFlow(tester: tester, charlatan: charlatan);
   // TODO

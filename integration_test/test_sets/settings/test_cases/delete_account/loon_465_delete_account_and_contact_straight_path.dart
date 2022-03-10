@@ -22,6 +22,7 @@ Future<void> run({
   required FirebaseAuth firebaseAuth,
 }) async {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+
   await app.runMockApp(firebaseAuthOverride: firebaseAuth, charlatan: charlatan);
   await loginFlow(tester: tester, charlatan: charlatan);
 
@@ -72,7 +73,7 @@ Future<void> run({
   charlatan.whenDelete('/account', (_) => CharlatanHttpResponse(statusCode: 200));
   await deleteAccountPage.confirmDeleteAccountDialog();
   expect(find.byType(AfterDeletionScreen), findsOneWidget);
-  expect(find.textContaining('Tvůj účet jsme smazali'), findsOneWidget);
+  expect(find.textContaining('Co můžeme udělat pro to, aby ses'), findsOneWidget);
   // TODO: verify launch with email method was called (via method channel handler)?
   // await afterDeletionPage.clickSendEmailButton();
 }

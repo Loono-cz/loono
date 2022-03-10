@@ -6,6 +6,8 @@ import '../mocks/firebase_auth_mock.dart';
 import '../mocks/google_sign_in_mock.dart';
 
 Future<void> postAppClear() async {
+  await mockFirebaseAuth();
+  mockGoogleSignIn();
   await appClear();
   await registry.get<DatabaseService>().closeDb();
   await registry.reset();

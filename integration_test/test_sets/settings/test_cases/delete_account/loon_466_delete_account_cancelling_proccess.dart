@@ -20,6 +20,7 @@ Future<void> run({
   required FirebaseAuth firebaseAuth,
 }) async {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+
   await app.runMockApp(firebaseAuthOverride: firebaseAuth, charlatan: charlatan);
   await loginFlow(tester: tester, charlatan: charlatan);
 

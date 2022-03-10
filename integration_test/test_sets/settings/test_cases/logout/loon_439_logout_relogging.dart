@@ -2,6 +2,7 @@ import 'package:charlatan/charlatan.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:integration_test/integration_test.dart';
 import 'package:loono/ui/screens/logout.dart';
 import 'package:loono/ui/screens/main/main_screen.dart';
 import 'package:loono/ui/screens/main/pre_auth/login.dart';
@@ -22,6 +23,8 @@ Future<void> run({
   required Charlatan charlatan,
   required FirebaseAuth firebaseAuth,
 }) async {
+  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+
   await app.runMockApp(firebaseAuthOverride: firebaseAuth, charlatan: charlatan);
   await loginFlow(tester: tester, charlatan: charlatan);
 
