@@ -15,8 +15,12 @@ class _PreventionScreenState extends State<PreventionScreen> {
   double? extentFromTop;
 
   void convertExtent(double? extent) {
-    setState(() {
-      extentFromTop = extent;
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      if (mounted) {
+        setState(() {
+          extentFromTop = extent;
+        });
+      }
     });
   }
 

@@ -56,6 +56,7 @@ class _AfterDeletionScreenState extends State<AfterDeletionScreen> {
                 ),
               ),
               LoonoButton(
+                key: const Key('afterDeletionPage_button_sendEmail'),
                 text: context.l10n.settings_after_deletion_send_as_email,
                 onTap: () {
                   launch('mailto:info@loono.cz');

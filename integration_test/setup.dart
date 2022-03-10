@@ -9,8 +9,6 @@ import 'package:loono/loono.dart';
 import 'package:loono/utils/app_config.dart';
 import 'package:loono/utils/registry.dart';
 
-final charlatan = Charlatan();
-
 Future<void> main({
   Dio? dio,
   FirebaseAuth? firebaseAuth,
@@ -32,6 +30,7 @@ Future<void> main({
 Future<void> runMockApp({
   FirebaseAuth? firebaseAuthOverride,
   GoogleSignIn? googleSignIn,
+  required Charlatan charlatan,
 }) async {
   final env = {
     'API_URL': 'https://test.loono.cz/',

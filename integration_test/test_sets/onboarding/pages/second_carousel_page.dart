@@ -1,6 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/widgets/button.dart';
 
+import '../../../test_helpers/widget_tester_extensions.dart';
+
 class SecondCarouselPage {
   SecondCarouselPage(this.tester);
 
@@ -12,7 +14,6 @@ class SecondCarouselPage {
   /// Page methods
   Future<void> clickContinueBtn() async {
     await tester.tap(continueBtn);
-    await tester.pumpAndSettle();
-    await tester.pump(const Duration(seconds: 2));
+    await tester.pumpSettleAndWait(seconds: 2);
   }
 }

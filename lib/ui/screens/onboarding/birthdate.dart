@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/helpers/sex_extensions.dart';
+import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
@@ -24,6 +25,23 @@ class OnBoardingBirthdateScreen extends StatefulWidget {
 
 class _OnBoardingBirthdateScreenState extends State<OnBoardingBirthdateScreen> {
   DateTime? selectedDate;
+
+  int _calculateAge(DateTime birthDate) {
+    final currentDate = DateTime.now();
+    var age = currentDate.year - birthDate.year;
+    final month1 = currentDate.month;
+    final month2 = birthDate.month;
+    if (month2 > month1) {
+      age--;
+    } else if (month1 == month2) {
+      final day1 = currentDate.day;
+      final day2 = birthDate.day;
+      if (day2 > day1) {
+        age--;
+      }
+    }
+    return age;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,12 +98,19 @@ class _OnBoardingBirthdateScreenState extends State<OnBoardingBirthdateScreen> {
                 text: context.l10n.continue_info,
                 onTap: () async {
                   if (selectedDate != null) {
-                    await registry.get<UserRepository>().updateDateOfBirth(
-                          DateWithoutDay(
-                            month: monthFromInt(selectedDate!.month),
-                            year: selectedDate!.year,
-                          ),
-                        );
+                    if (_calculateAge(selectedDate!) > 19) {
+                      await registry.get<UserRepository>().updateDateOfBirth(
+                            DateWithoutDay(
+                              month: monthFromInt(selectedDate!.month),
+                              year: selectedDate!.year,
+                            ),
+                          );
+                    } else {
+                      showSnackBarError(
+                        context,
+                        message: 'Prevence je zatím pro starší 19 let',
+                      );
+                    }
                   }
                 },
               ),

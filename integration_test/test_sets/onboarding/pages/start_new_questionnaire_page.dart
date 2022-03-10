@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:loono/ui/widgets/button.dart';
+
+import '../../../test_helpers/widget_tester_extensions.dart';
 
 class StartNewQuestionnairePage {
   StartNewQuestionnairePage(this.tester);
@@ -8,18 +11,16 @@ class StartNewQuestionnairePage {
 
   /// Page finders
   final Finder alreadyHaveAnAccountBtn = find.widgetWithText(TextButton, 'Už mám účet');
-  final Finder fillFormBtn = find.widgetWithText(TextButton, 'Vyplnit vstupní dotazník');
+  final Finder fillFormBtn = find.widgetWithText(LoonoButton, 'Vyplnit vstupní dotazník');
 
   /// Page methods
-  Future<void> clickAlreadyHavenAnAccountButton() async {
+  Future<void> clickAlreadyHaveAnAccountButton() async {
     await tester.tap(alreadyHaveAnAccountBtn);
-    await tester.pumpAndSettle();
-    await tester.pump(const Duration(seconds: 2));
+    await tester.pumpSettleAndWait(seconds: 2);
   }
 
   Future<void> clickFillFormButton() async {
     await tester.tap(fillFormBtn);
-    await tester.pumpAndSettle();
-    await tester.pump(const Duration(seconds: 2));
+    await tester.pumpSettleAndWait(seconds: 2);
   }
 }

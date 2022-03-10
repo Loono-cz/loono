@@ -30,3 +30,9 @@ void mockGoogleSignIn() {
     return Future<dynamic>.value(googleSignInResponses[methodCall.method]);
   });
 }
+
+void tearDownGoogleSignIn() {
+  googleSignInMethodChannel.setMockMethodCallHandler((MethodCall methodCall) {
+    return null;
+  });
+}

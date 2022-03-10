@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../test_helpers/common_shared_finders.dart';
+import '../../../../test_helpers/widget_tester_extensions.dart';
 
 class QuestionnaireDoctorCcaLastVisitPage {
   QuestionnaireDoctorCcaLastVisitPage(this.tester);
@@ -15,13 +16,11 @@ class QuestionnaireDoctorCcaLastVisitPage {
   /// Page methods
   Future<void> clickInLastXYearsButton() async {
     await tester.tap(inLastXYearsBtn);
-    await tester.pumpAndSettle();
-    await tester.pump(const Duration(seconds: 1));
+    await tester.pumpSettleAndWait(seconds: 1);
   }
 
   Future<void> clickMoreThanXYearsOrIdkButton() async {
     await tester.tap(moreThanXYearsOrIdkButton);
-    await tester.pumpAndSettle();
-    await tester.pump(const Duration(seconds: 1));
+    await tester.pumpSettleAndWait(seconds: 1);
   }
 }

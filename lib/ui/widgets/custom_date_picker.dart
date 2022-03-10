@@ -44,6 +44,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
     _selectedDayIndex + 1,
   );
   final FixedExtentScrollController _dayController = FixedExtentScrollController();
+  final FixedExtentScrollController _yearController = FixedExtentScrollController();
 
   @override
   void initState() {
@@ -158,10 +159,15 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
             : _selectedYearIndex;
 
     return SizedBox(
+      key: Key('customDatePicker_${forType.name}'),
       width: MediaQuery.of(context).size.width / (widget.allowDays ? 4 : 3),
       child: ListWheelScrollView.useDelegate(
         physics: const FixedExtentScrollPhysics(),
-        controller: forType == ColumnType.day ? _dayController : null,
+        controller: forType == ColumnType.day
+            ? _dayController
+            : forType == ColumnType.year
+                ? _yearController
+                : null,
         itemExtent: _itemHeight,
         childDelegate: ListWheelChildLoopingListDelegate(
           children: items.keys.map(
