@@ -47,7 +47,7 @@ post_install do |installer|
         '$(inherited)',
 
         ## dart: PermissionGroup.calendar
-        # 'PERMISSION_EVENTS=1',
+        'PERMISSION_EVENTS=1',
 
         ## dart: PermissionGroup.reminders
         # 'PERMISSION_REMINDERS=1',
