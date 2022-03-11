@@ -25,7 +25,7 @@ class GamificationIntroductionScreen extends StatelessWidget {
       child: Scaffold(
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.only(top: 18, left: 18, right: 18),
+            padding: const EdgeInsets.only(top: 18),
             child: StreamBuilder<User?>(
               stream: _usersDao.watchUser(),
               builder: (context, snapshot) {
@@ -37,7 +37,10 @@ class GamificationIntroductionScreen extends StatelessWidget {
                   children: [
                     const SizedBox(height: 24),
                     Text(
-                      '${sex == Sex.MALE ? context.l10n.gamification_introduction_header_male : context.l10n.gamification_introduction_header_female} ${user?.nickname ?? (sex?.getNicknameHintLabel(context)) ?? ''}',
+                      '${sex == Sex.MALE
+                          ? context.l10n.gamification_introduction_header_male
+                          : context.l10n.gamification_introduction_header_female} ${user?.nickname
+                          ?? (sex?.getNicknameHintLabel(context)) ?? ''}',
                       textAlign: TextAlign.center,
                       style: LoonoFonts.headerFontStyle,
                     ),
@@ -63,12 +66,19 @@ class GamificationIntroductionScreen extends StatelessWidget {
                           children: [
                             const BadgeComposer(topPadding: 0),
                             const SizedBox(height: 10),
-                            _buildDescContainer(context),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 18),
+                              child: _buildDescContainer(context),
+                            ),
                             const SizedBox(height: 20),
-                            LoonoButton(
-                              text: context.l10n.gamification_introduction_button,
-                              onTap: () =>
-                                  AutoRouter.of(context).replaceAll([const MainScreenRouter()]),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 18),
+                              child: LoonoButton(
+                                text: context.l10n.gamification_introduction_button,
+                                onTap: () => AutoRouter.of(context).replaceAll(
+                                    [const MainScreenRouter()],
+                                ),
+                              ),
                             ),
                             SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
                           ],
@@ -77,11 +87,17 @@ class GamificationIntroductionScreen extends StatelessWidget {
                     else ...[
                       const BadgeComposer(topPadding: 0),
                       const SizedBox(height: 10),
-                      _buildDescContainer(context),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 18),
+                        child: _buildDescContainer(context),
+                      ),
                       const Spacer(),
-                      LoonoButton(
-                        text: context.l10n.gamification_introduction_button,
-                        onTap: () => AutoRouter.of(context).replaceAll([const MainScreenRouter()]),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 18),
+                        child: LoonoButton(
+                          text: context.l10n.gamification_introduction_button,
+                          onTap: () => AutoRouter.of(context).replaceAll([const MainScreenRouter()]),
+                        ),
                       ),
                       const Spacer(flex: 2),
                     ],
