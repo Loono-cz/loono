@@ -1,6 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/widgets/settings/avatar.dart';
 
+import '../../../test_helpers/widget_tester_extensions.dart';
+
 class PreventionMainPage {
   PreventionMainPage(this.tester);
 
@@ -12,7 +14,6 @@ class PreventionMainPage {
   /// Page methods
   Future<void> clickProfileAvatar() async {
     await tester.tap(profileAvatar);
-    await tester.pumpAndSettle();
-    await tester.pump(const Duration(seconds: 1));
+    await tester.pumpSettleAndWait(seconds: 1);
   }
 }

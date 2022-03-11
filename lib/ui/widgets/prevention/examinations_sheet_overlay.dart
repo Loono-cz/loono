@@ -159,7 +159,12 @@ class ExaminationsSheetOverlay extends StatelessWidget {
   ) {
     if (selfExaminations.isEmpty) return const SizedBox.shrink();
     final positionedExaminations = selfExaminations.where(
-      (selfExamination) => selfExamination.calculateStatus().position == cardPosition,
+      (selfExamination) {
+        final selfExamCategory = selfExamination.calculateStatus();
+        // also filter out self exams where we're waiting for check up
+        return selfExamCategory.position == cardPosition &&
+            selfExamCategory != const SelfExaminationCategory.hasFinding();
+      },
     );
     if (positionedExaminations.isEmpty) return const SizedBox.shrink();
     final header = positionedExaminations.first.calculateStatus().getHeaderMessage(context);

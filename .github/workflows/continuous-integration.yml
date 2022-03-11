@@ -1,15 +1,22 @@
 name: Continuous Integration
 on: [ push, pull_request ]
 
+env:
+  flutter_version: '2.10.1'
+
 jobs:
   format:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v2
+
+      - name: Flutter SDK cache
+        uses: subosito/flutter-action@v2
         with:
-          flutter-version: '2.10.1'
-          channel: 'stable'
+          flutter-version: ${{ env.flutter_version }}
+          cache: true
+          cache-key: ${{ runner.OS }}-flutter-${{ env.flutter_version }}
+          cache-path: ${{ runner.tool_cache }}/flutter
 
       - name: Install dependencies
         run: flutter pub get
@@ -30,10 +37,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v2
+
+      - name: Flutter SDK cache
+        uses: subosito/flutter-action@v2
         with:
-          flutter-version: '2.10.1'
-          channel: 'stable'
+          flutter-version: ${{ env.flutter_version }}
+          cache: true
+          cache-key: ${{ runner.OS }}-flutter-${{ env.flutter_version }}
+          cache-path: ${{ runner.tool_cache }}/flutter
 
       - name: Install dependencies
         run: flutter pub get
@@ -44,23 +55,8 @@ jobs:
 
       - uses: invertase/github-action-dart-analyzer@v1
         with:
-          # (Optional) Treat info level issues as fatal.
           fatal-infos: true
-
-          # (Optional) Treat warning level issues as fatal
-          # (defaults to true).
           fatal-warnings: true
-
-          # (Optional) Whether to add annotations to GitHub actions summary / PR
-          # review files.
-          # (defaults to true).
           annotate: true
-
-          # (Optional) If set to true only annotations will be created and the
-          # GitHub action itself will not fail on Dart analyzer problems.
-          # (defaults to false).
           annotate-only: false
-
-          # (Optional) The working directory to run the Dart analyzer in
-          # (defaults to `./`).
           working-directory: ./

@@ -42,6 +42,16 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
       backgroundColor: LoonoColors.settingsBackground,
       body: Stack(
         children: [
+          Positioned(
+            child: Align(
+              alignment: FractionalOffset.bottomCenter,
+              child: SizedBox(
+                height: 407,
+                width: 297,
+                child: SvgPicture.asset('assets/icons/delete_account_illustration.svg'),
+              ),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.only(top: 34.0, left: 17),
             child: Text(
@@ -55,50 +65,34 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
               direction: Axis.vertical,
               spacing: 40,
               children: [
-                CheckboxCustom(
-                  isChecked: _isCheckedHistory,
-                  text: context.l10n.settings_delete_account_check_box_delete_history,
-                  whatIsChecked: (val) {
-                    setState(
-                      () {
-                        _isCheckedHistory = val;
-                      },
-                    );
-                  },
+                GestureDetector(
+                  onTap: () => setState(() => _isCheckedHistory = !_isCheckedHistory),
+                  child: CheckboxCustom(
+                    key: const Key('deleteAccountPage_checkBox_deleteCheckups'),
+                    isChecked: _isCheckedHistory,
+                    text: context.l10n.settings_delete_account_check_box_delete_history,
+                    whatIsChecked: (val) => setState(() => _isCheckedHistory = val),
+                  ),
                 ),
-                CheckboxCustom(
-                  isChecked: _isCheckedBadge,
-                  text: context.l10n.settings_delete_account_check_box_delete_badges,
-                  whatIsChecked: (val) {
-                    setState(
-                      () {
-                        _isCheckedBadge = val;
-                      },
-                    );
-                  },
+                GestureDetector(
+                  onTap: () => setState(() => _isCheckedBadge = !_isCheckedBadge),
+                  child: CheckboxCustom(
+                    key: const Key('deleteAccountPage_checkBox_deleteBadges'),
+                    isChecked: _isCheckedBadge,
+                    text: context.l10n.settings_delete_account_check_box_delete_badges,
+                    whatIsChecked: (val) => setState(() => _isCheckedBadge = val),
+                  ),
                 ),
-                CheckboxCustom(
-                  isChecked: _isCheckedNotifications,
-                  text: context.l10n.settings_delete_account_check_box_stop_notifications,
-                  whatIsChecked: (val) {
-                    setState(
-                      () {
-                        _isCheckedNotifications = val;
-                      },
-                    );
-                  },
+                GestureDetector(
+                  onTap: () => setState(() => _isCheckedNotifications = !_isCheckedNotifications),
+                  child: CheckboxCustom(
+                    key: const Key('deleteAccountPage_checkBox_stopNotifications'),
+                    isChecked: _isCheckedNotifications,
+                    text: context.l10n.settings_delete_account_check_box_stop_notifications,
+                    whatIsChecked: (val) => setState(() => _isCheckedNotifications = val),
+                  ),
                 ),
               ],
-            ),
-          ),
-          Positioned(
-            child: Align(
-              alignment: FractionalOffset.bottomCenter,
-              child: SizedBox(
-                height: 407,
-                width: 297,
-                child: SvgPicture.asset('assets/icons/delete_account_illustration.svg'),
-              ),
             ),
           ),
           Positioned(
@@ -120,12 +114,14 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                           ),
                           actions: <CupertinoDialogAction>[
                             CupertinoDialogAction(
-                              child: Text(context.l10n.cancel),
+                              key: const Key('deleteAccountPage_confirmationDialog_cancelBtn'),
                               onPressed: () {
                                 AutoRouter.of(context).pop();
                               },
+                              child: Text(context.l10n.cancel),
                             ),
                             CupertinoDialogAction(
+                              key: const Key('deleteAccountPage_confirmationDialog_yesBtn'),
                               child: Text(context.l10n.settings_delete_account_delete),
                               onPressed: () async {
                                 final res = await registry.get<UserRepository>().deleteAccount();

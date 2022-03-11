@@ -3,6 +3,9 @@ on:
   push:
     branches: [master]
 
+env:
+  flutter_version: '2.10.1'
+
 jobs:
   android:
     runs-on: macos-latest
@@ -14,10 +17,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: subosito/flutter-action@v2
+      - name: Flutter SDK cache
+        uses: subosito/flutter-action@v2
         with:
-          flutter-version: '2.10.1'
-          channel: 'stable'
+          flutter-version: ${{ env.flutter_version }}
+          cache: true
+          cache-key: ${{ runner.OS }}-flutter-${{ env.flutter_version }}
+          cache-path: ${{ runner.tool_cache }}/flutter
 
       - name: Install dependencies
         run: flutter pub get
@@ -64,7 +70,7 @@ jobs:
           arch: x86_64
           force-avd-creation: false
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
-          disable-animations: false
+          disable-animations: true
           script: echo "Generated AVD snapshot for caching."
 
       - name: Run integration tests
@@ -75,9 +81,9 @@ jobs:
           api-level: ${{ matrix.api-level }}
           arch: x86_64
           force-avd-creation: false
-          disable-animations: false
+          disable-animations: true
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
-          script: flutter test integration_test --flavor dev
+          script: flutter test integration_test --flavor dev --dart-define=EXEC_MODE=very_fast
 
   ios:
     # TODO: it's timeouting...
@@ -86,10 +92,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: subosito/flutter-action@v2
+      - name: Flutter SDK cache
+        uses: subosito/flutter-action@v2
         with:
-          flutter-version: '2.10.1'
-          channel: 'stable'
+          flutter-version: ${{ env.flutter_version }}
+          cache: true
+          cache-key: ${{ runner.OS }}-flutter-${{ env.flutter_version }}
+          cache-path: ${{ runner.tool_cache }}/flutter
 
       - name: Install dependencies
         run: flutter pub get
