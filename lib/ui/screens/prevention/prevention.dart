@@ -10,7 +10,7 @@ class PreventionScreen extends StatelessWidget {
   final ValueNotifier<double?> extentFromTop = ValueNotifier<double?>(null);
 
   void convertExtent(double? extent) {
-    extentFromTop.value = extent;
+    WidgetsBinding.instance?.addPostFrameCallback((_) => extentFromTop.value = extent);
   }
 
   @override
