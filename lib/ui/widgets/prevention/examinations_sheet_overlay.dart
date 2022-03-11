@@ -15,16 +15,11 @@ import 'package:loono/ui/widgets/prevention/self_examination/self_examination_ca
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
-class ExaminationsSheetOverlay extends StatefulWidget {
+class ExaminationsSheetOverlay extends StatelessWidget {
   const ExaminationsSheetOverlay({Key? key, required this.convertExtent}) : super(key: key);
 
   final Function(double?) convertExtent;
 
-  @override
-  State<ExaminationsSheetOverlay> createState() => _ExaminationsSheetOverlayState();
-}
-
-class _ExaminationsSheetOverlayState extends State<ExaminationsSheetOverlay> {
   @override
   Widget build(BuildContext context) {
     final examinationsProvider = Provider.of<ExaminationsProvider>(context, listen: true);
@@ -32,7 +27,7 @@ class _ExaminationsSheetOverlayState extends State<ExaminationsSheetOverlay> {
     return SizedBox.expand(
       child: NotificationListener<DraggableScrollableNotification>(
         onNotification: (notification) {
-          //widget.convertExtent(notification.extent);
+          convertExtent(notification.extent);
           return false;
         },
         child: DraggableScrollableSheet(
@@ -66,52 +61,55 @@ class _ExaminationsSheetOverlayState extends State<ExaminationsSheetOverlay> {
                 )
                 .toList();
 
-            return Container(
-              decoration: const BoxDecoration(
-                color: LoonoColors.bottomSheetPrevention,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(12),
-                  topRight: Radius.circular(12),
+            return AvatarBubbleNotifier(
+              convertExtent: convertExtent,
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: LoonoColors.bottomSheetPrevention,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(12),
+                    topRight: Radius.circular(12),
+                  ),
                 ),
-              ),
-              child: ListView.builder(
-                controller: scrollController,
-                itemCount: examinationCategoriesOrdering.length,
-                // TODO: set cacheExtent to prevent card repositioning
-                itemBuilder: (context, index) {
-                  final examinationStatus = examinationCategoriesOrdering.elementAt(index);
-                  final categorizedExaminations = categorized
-                      .where((e) => e.category == examinationStatus)
-                      .toList()
-                    ..sortExaminations();
+                child: ListView.builder(
+                  controller: scrollController,
+                  itemCount: examinationCategoriesOrdering.length,
+                  // TODO: set cacheExtent to prevent card repositioning
+                  itemBuilder: (context, index) {
+                    final examinationStatus = examinationCategoriesOrdering.elementAt(index);
+                    final categorizedExaminations = categorized
+                        .where((e) => e.category == examinationStatus)
+                        .toList()
+                      ..sortExaminations();
 
-                  return Column(
-                    children: [
-                      if (index == 0) ...[
-                        _buildHandle(context),
-                        _buildSelfExaminationCategory(
-                          context,
-                          CardPosition.first,
-                          examinationsProvider.examinations!.selfexaminations,
-                        ),
+                    return Column(
+                      children: [
+                        if (index == 0) ...[
+                          _buildHandle(context),
+                          _buildSelfExaminationCategory(
+                            context,
+                            CardPosition.first,
+                            examinationsProvider.examinations!.selfexaminations,
+                          ),
+                        ],
+                        if (categorizedExaminations.isNotEmpty)
+                          _buildExaminationCategory(
+                            context,
+                            examinationStatus.getHeaderMessage(context),
+                            categorizedExaminations,
+                          )
+                        else
+                          const SizedBox.shrink(),
+                        if (index == examinationCategoriesOrdering.length - 1)
+                          _buildSelfExaminationCategory(
+                            context,
+                            CardPosition.last,
+                            examinationsProvider.examinations!.selfexaminations,
+                          ),
                       ],
-                      if (categorizedExaminations.isNotEmpty)
-                        _buildExaminationCategory(
-                          context,
-                          examinationStatus.getHeaderMessage(context),
-                          categorizedExaminations,
-                        )
-                      else
-                        const SizedBox.shrink(),
-                      if (index == examinationCategoriesOrdering.length - 1)
-                        _buildSelfExaminationCategory(
-                          context,
-                          CardPosition.last,
-                          examinationsProvider.examinations!.selfexaminations,
-                        ),
-                    ],
-                  );
-                },
+                    );
+                  },
+                ),
               ),
             );
           },

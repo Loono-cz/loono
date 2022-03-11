@@ -35,9 +35,9 @@ class DrawTriangle extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final path = Path()
-      ..moveTo(leftOffset + 70, 300)
-      ..lineTo(leftOffset, topOffset)
-      ..lineTo(leftOffset + 35, topOffset)
+      ..moveTo(leftOffset + 65, (topOffset - 100).clamp(150, 1000))
+      ..lineTo(leftOffset, topOffset.clamp(250, 1000))
+      ..lineTo(leftOffset + 35, topOffset.clamp(250, 1000))
       ..close();
     canvas.drawPath(
       path,

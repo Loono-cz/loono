@@ -30,7 +30,7 @@ class _MainScreenState extends State<MainScreen> {
   bool connectivityLocked = true;
 
   static final List<Widget> _pages = <Widget>[
-    const PreventionScreen(),
+    PreventionScreen(),
     FindDoctorScreen(),
     const AboutHealthScreen(),
   ];
