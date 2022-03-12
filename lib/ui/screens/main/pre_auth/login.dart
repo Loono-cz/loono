@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' as s;
 import 'package:flutter_svg/svg.dart';
@@ -13,6 +12,7 @@ import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/auth/failures.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/social_login_button.dart';
+import 'package:loono/utils/app_config.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:yaml/yaml.dart';
 
@@ -31,7 +31,7 @@ class LoginScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Spacer(flex: 4),
-            if (kDebugMode)
+            if (registry.get<AppConfig>().flavor == AppFlavors.dev)
               TextButton(
                 onPressed: () async {
                   final data = await s.rootBundle.loadString('assets/supported_apis.yaml');
@@ -64,7 +64,7 @@ class LoginScreen extends StatelessWidget {
                     },
                   );
                 },
-                child: const Text('switch api'),
+                child: const Text('switch api (dev flavour only)'),
               ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18.0),

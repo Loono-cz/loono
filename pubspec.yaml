@@ -102,6 +102,7 @@ flutter:
   generate: true
 
   assets:
+    - assets/
     - assets/.env
     - assets/icons/
     - assets/icons/tabs/
