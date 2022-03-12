@@ -12,7 +12,7 @@ class EducationalVideoScreen extends StatelessWidget {
 
   String _getVideoIdFromSex() {
     if (sex == Sex.FEMALE) {
-      return 'HHJpDtxuXZQ';
+      return 'xfkSnGt9U80';
     } else {
       return 'HHJpDtxuXZQ';
     }
