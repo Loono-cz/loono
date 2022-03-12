@@ -5,6 +5,7 @@ import 'dart:io';
 
 import 'package:device_calendar/device_calendar.dart';
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_smart_retry/dio_smart_retry.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -79,6 +80,14 @@ Future<void> setup({
   );
 
   final dio = dioOverride ?? Dio(defaultDioOptions);
+
+  /// Ignore api certificate - remove this asap when server has set
+  (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (HttpClient client) {
+    client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+    return client;
+  };
+  // remove end
+
   if (dioOverride == null) {
     dio.options.headers['app-version'] = appInfo.version;
     dio.interceptors.add(

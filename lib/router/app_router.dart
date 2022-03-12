@@ -1,10 +1,12 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:loono/models/search_result.dart';
 import 'package:loono/router/guards/check_is_logged_in.dart';
 import 'package:loono/router/sub_routers/app_startup_wrapper_screen.dart';
 import 'package:loono/router/sub_routers/onboarding_wrapper_screen.dart';
 import 'package:loono/router/sub_routers/pre_auth_prevention_wrapper_screen.dart';
 import 'package:loono/ui/screens/about_health/about_health.dart';
 import 'package:loono/ui/screens/dentist_achievement.dart';
+import 'package:loono/ui/screens/find_doctor/doctor_search_detail.dart';
 import 'package:loono/ui/screens/find_doctor/find_doctor.dart';
 import 'package:loono/ui/screens/general_practicioner_achievement.dart';
 import 'package:loono/ui/screens/gynecology_achievement.dart';
@@ -52,6 +54,7 @@ import 'package:loono/ui/widgets/achievement_screen.dart';
 
 const _onboardingTransition = TransitionsBuilders.slideLeft;
 const _preventionTransition = TransitionsBuilders.slideLeft;
+const _findDoctorTransition = TransitionsBuilders.slideLeft;
 
 const _settingsTransition = TransitionsBuilders.slideLeft;
 
@@ -102,7 +105,7 @@ const _postAuthRouter = AutoRoute<void>(
     ..._settingsRoutes,
     ..._preventionRoutes,
     ..._selfExaminationRoutes,
-    _findDoctorRoute,
+    ..._findDoctorRoutes,
     _aboutHealthRoute,
   ],
 );
@@ -112,7 +115,7 @@ const _preAuthMainScreenRouter = AutoRoute<void>(
   page: PreAuthMainScreen,
   children: [
     _preAuthPreventionRouter,
-    _findDoctorRoute,
+    ..._findDoctorRoutes,
     _aboutHealthRoute,
   ],
 );
@@ -134,8 +137,16 @@ const _allowNotificationRoute = CustomRoute<void>(
   path: 'allow-notifications',
   transitionsBuilder: _onboardingTransition,
 );
-const _findDoctorRoute = AutoRoute<void>(page: FindDoctorScreen, path: 'find-doctor');
 const _aboutHealthRoute = AutoRoute<void>(page: AboutHealthScreen, path: 'about-health');
+
+const _findDoctorRoutes = <AutoRoute>[
+  AutoRoute<void>(page: FindDoctorScreen, path: 'find-doctor'),
+  CustomRoute<SearchResult>(
+    page: DoctorSearchDetailScreen,
+    path: 'find-doctor/search/detail',
+    transitionsBuilder: _findDoctorTransition,
+  ),
+];
 
 const _onboardingQuestionnaireRouter = AutoRoute<void>(
   page: OnboardingWrapperScreen,
