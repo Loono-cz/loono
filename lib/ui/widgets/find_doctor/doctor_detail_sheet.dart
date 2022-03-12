@@ -32,7 +32,7 @@ class DoctorDetailSheet extends StatelessWidget {
                     '${doctor.specialization?.toUpperCase()}',
                     style: LoonoFonts.cardSubtitle.copyWith(color: LoonoColors.grey),
                     overflow: TextOverflow.ellipsis,
-                    maxLines: 5,
+                    maxLines: 3,
                     softWrap: false,
                   ),
                 ),
