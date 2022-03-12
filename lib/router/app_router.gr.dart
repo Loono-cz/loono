@@ -476,7 +476,10 @@ class AppRouter extends _i12.RootStackRouter {
       final args = routeData.argsAs<EducationalVideoRouteArgs>();
       return _i12.CustomPage<void>(
           routeData: routeData,
-          child: _i47.EducationalVideoScreen(key: args.key, sex: args.sex),
+          child: _i47.EducationalVideoScreen(
+              key: args.key,
+              sex: args.sex,
+              selfExamination: args.selfExamination),
           transitionsBuilder: _i12.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -1675,24 +1678,31 @@ class SelfExaminationDetailRouteArgs {
 /// [_i47.EducationalVideoScreen]
 class EducationalVideoRoute
     extends _i12.PageRouteInfo<EducationalVideoRouteArgs> {
-  EducationalVideoRoute({_i51.Key? key, required _i54.Sex sex})
+  EducationalVideoRoute(
+      {_i51.Key? key,
+      required _i54.Sex sex,
+      required _i54.SelfExaminationPreventionStatus selfExamination})
       : super(EducationalVideoRoute.name,
             path: 'self-examination/detail/educational-video',
-            args: EducationalVideoRouteArgs(key: key, sex: sex));
+            args: EducationalVideoRouteArgs(
+                key: key, sex: sex, selfExamination: selfExamination));
 
   static const String name = 'EducationalVideoRoute';
 }
 
 class EducationalVideoRouteArgs {
-  const EducationalVideoRouteArgs({this.key, required this.sex});
+  const EducationalVideoRouteArgs(
+      {this.key, required this.sex, required this.selfExamination});
 
   final _i51.Key? key;
 
   final _i54.Sex sex;
 
+  final _i54.SelfExaminationPreventionStatus selfExamination;
+
   @override
   String toString() {
-    return 'EducationalVideoRouteArgs{key: $key, sex: $sex}';
+    return 'EducationalVideoRouteArgs{key: $key, sex: $sex, selfExamination: $selfExamination}';
   }
 }
 
