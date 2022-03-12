@@ -1,18 +1,26 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:loono/helpers/examination_extensions.dart';
+import 'package:loono/helpers/self_examination_category.dart';
 import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/prevention/self_examination/how_it_went_sheet.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class EducationalVideoScreen extends StatelessWidget {
-  const EducationalVideoScreen({Key? key, required this.sex}) : super(key: key);
+  const EducationalVideoScreen({
+    Key? key,
+    required this.sex,
+    required this.selfExamination,
+  }) : super(key: key);
   final Sex sex;
+  final SelfExaminationPreventionStatus selfExamination;
 
   String _getVideoIdFromSex() {
     if (sex == Sex.FEMALE) {
-      return 'HHJpDtxuXZQ';
+      return 'xfkSnGt9U80';
     } else {
       return 'HHJpDtxuXZQ';
     }
@@ -48,10 +56,15 @@ class EducationalVideoScreen extends StatelessWidget {
                 const SizedBox(height: 24),
                 player,
                 const SizedBox(height: 48),
-                LoonoButton(
-                  text: context.l10n.self_examination_educational_button,
-                  onTap: () => AutoRouter.of(context).pop(),
-                ),
+                if (selfExamination.calculateStatus() !=
+                    const SelfExaminationCategory.hasFindingExpectingResult())
+                  LoonoButton(
+                    text: context.l10n.self_examination_educational_button,
+                    onTap: () async {
+                      await AutoRouter.of(context).pop();
+                      showHowItWentSheet(context, sex, selfExamination.points);
+                    },
+                  ),
                 SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
               ],
             ),
