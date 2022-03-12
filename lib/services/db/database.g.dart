@@ -17,6 +17,7 @@ class User extends DataClass implements Insertable<User> {
   final String? defaultDeviceCalendarId;
   final DateTime? latestMapUpdateCheck;
   final DateTime? latestMapUpdate;
+  final List<SimpleHealthcareProvider> searchHistory;
   final int points;
   final BuiltList<Badge> badges;
   User(
@@ -29,6 +30,7 @@ class User extends DataClass implements Insertable<User> {
       this.defaultDeviceCalendarId,
       this.latestMapUpdateCheck,
       this.latestMapUpdate,
+      required this.searchHistory,
       required this.points,
       required this.badges});
   factory User.fromData(Map<String, dynamic> data, {String? prefix}) {
@@ -52,9 +54,11 @@ class User extends DataClass implements Insertable<User> {
           data['${effectivePrefix}latest_map_update_check']),
       latestMapUpdate: const DateTimeType()
           .mapFromDatabaseResponse(data['${effectivePrefix}latest_map_update']),
+      searchHistory: $UsersTable.$converter2.mapToDart(const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}search_history']))!,
       points: const IntType()
           .mapFromDatabaseResponse(data['${effectivePrefix}points'])!,
-      badges: $UsersTable.$converter2.mapToDart(const StringType()
+      badges: $UsersTable.$converter3.mapToDart(const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}badges']))!,
     );
   }
@@ -90,9 +94,14 @@ class User extends DataClass implements Insertable<User> {
     if (!nullToAbsent || latestMapUpdate != null) {
       map['latest_map_update'] = Variable<DateTime?>(latestMapUpdate);
     }
-    map['points'] = Variable<int>(points);
     {
       final converter = $UsersTable.$converter2;
+      map['search_history'] =
+          Variable<String>(converter.mapToSql(searchHistory)!);
+    }
+    map['points'] = Variable<int>(points);
+    {
+      final converter = $UsersTable.$converter3;
       map['badges'] = Variable<String>(converter.mapToSql(badges)!);
     }
     return map;
@@ -122,6 +131,7 @@ class User extends DataClass implements Insertable<User> {
       latestMapUpdate: latestMapUpdate == null && nullToAbsent
           ? const Value.absent()
           : Value(latestMapUpdate),
+      searchHistory: Value(searchHistory),
       points: Value(points),
       badges: Value(badges),
     );
@@ -142,6 +152,8 @@ class User extends DataClass implements Insertable<User> {
       latestMapUpdateCheck:
           serializer.fromJson<DateTime?>(json['latestMapUpdateCheck']),
       latestMapUpdate: serializer.fromJson<DateTime?>(json['latestMapUpdate']),
+      searchHistory: serializer
+          .fromJson<List<SimpleHealthcareProvider>>(json['searchHistory']),
       points: serializer.fromJson<int>(json['points']),
       badges: serializer.fromJson<BuiltList<Badge>>(json['badges']),
     );
@@ -161,6 +173,8 @@ class User extends DataClass implements Insertable<User> {
       'latestMapUpdateCheck':
           serializer.toJson<DateTime?>(latestMapUpdateCheck),
       'latestMapUpdate': serializer.toJson<DateTime?>(latestMapUpdate),
+      'searchHistory':
+          serializer.toJson<List<SimpleHealthcareProvider>>(searchHistory),
       'points': serializer.toJson<int>(points),
       'badges': serializer.toJson<BuiltList<Badge>>(badges),
     };
@@ -176,6 +190,7 @@ class User extends DataClass implements Insertable<User> {
           String? defaultDeviceCalendarId,
           DateTime? latestMapUpdateCheck,
           DateTime? latestMapUpdate,
+          List<SimpleHealthcareProvider>? searchHistory,
           int? points,
           BuiltList<Badge>? badges}) =>
       User(
@@ -189,6 +204,7 @@ class User extends DataClass implements Insertable<User> {
             defaultDeviceCalendarId ?? this.defaultDeviceCalendarId,
         latestMapUpdateCheck: latestMapUpdateCheck ?? this.latestMapUpdateCheck,
         latestMapUpdate: latestMapUpdate ?? this.latestMapUpdate,
+        searchHistory: searchHistory ?? this.searchHistory,
         points: points ?? this.points,
         badges: badges ?? this.badges,
       );
@@ -204,6 +220,7 @@ class User extends DataClass implements Insertable<User> {
           ..write('defaultDeviceCalendarId: $defaultDeviceCalendarId, ')
           ..write('latestMapUpdateCheck: $latestMapUpdateCheck, ')
           ..write('latestMapUpdate: $latestMapUpdate, ')
+          ..write('searchHistory: $searchHistory, ')
           ..write('points: $points, ')
           ..write('badges: $badges')
           ..write(')'))
@@ -221,6 +238,7 @@ class User extends DataClass implements Insertable<User> {
       defaultDeviceCalendarId,
       latestMapUpdateCheck,
       latestMapUpdate,
+      searchHistory,
       points,
       badges);
   @override
@@ -236,6 +254,7 @@ class User extends DataClass implements Insertable<User> {
           other.defaultDeviceCalendarId == this.defaultDeviceCalendarId &&
           other.latestMapUpdateCheck == this.latestMapUpdateCheck &&
           other.latestMapUpdate == this.latestMapUpdate &&
+          other.searchHistory == this.searchHistory &&
           other.points == this.points &&
           other.badges == this.badges);
 }
@@ -250,6 +269,7 @@ class UsersCompanion extends UpdateCompanion<User> {
   final Value<String?> defaultDeviceCalendarId;
   final Value<DateTime?> latestMapUpdateCheck;
   final Value<DateTime?> latestMapUpdate;
+  final Value<List<SimpleHealthcareProvider>> searchHistory;
   final Value<int> points;
   final Value<BuiltList<Badge>> badges;
   const UsersCompanion({
@@ -262,6 +282,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     this.defaultDeviceCalendarId = const Value.absent(),
     this.latestMapUpdateCheck = const Value.absent(),
     this.latestMapUpdate = const Value.absent(),
+    this.searchHistory = const Value.absent(),
     this.points = const Value.absent(),
     this.badges = const Value.absent(),
   });
@@ -275,6 +296,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     this.defaultDeviceCalendarId = const Value.absent(),
     this.latestMapUpdateCheck = const Value.absent(),
     this.latestMapUpdate = const Value.absent(),
+    this.searchHistory = const Value.absent(),
     this.points = const Value.absent(),
     this.badges = const Value.absent(),
   });
@@ -288,6 +310,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     Expression<String?>? defaultDeviceCalendarId,
     Expression<DateTime?>? latestMapUpdateCheck,
     Expression<DateTime?>? latestMapUpdate,
+    Expression<List<SimpleHealthcareProvider>>? searchHistory,
     Expression<int>? points,
     Expression<BuiltList<Badge>>? badges,
   }) {
@@ -303,6 +326,7 @@ class UsersCompanion extends UpdateCompanion<User> {
       if (latestMapUpdateCheck != null)
         'latest_map_update_check': latestMapUpdateCheck,
       if (latestMapUpdate != null) 'latest_map_update': latestMapUpdate,
+      if (searchHistory != null) 'search_history': searchHistory,
       if (points != null) 'points': points,
       if (badges != null) 'badges': badges,
     });
@@ -318,6 +342,7 @@ class UsersCompanion extends UpdateCompanion<User> {
       Value<String?>? defaultDeviceCalendarId,
       Value<DateTime?>? latestMapUpdateCheck,
       Value<DateTime?>? latestMapUpdate,
+      Value<List<SimpleHealthcareProvider>>? searchHistory,
       Value<int>? points,
       Value<BuiltList<Badge>>? badges}) {
     return UsersCompanion(
@@ -331,6 +356,7 @@ class UsersCompanion extends UpdateCompanion<User> {
           defaultDeviceCalendarId ?? this.defaultDeviceCalendarId,
       latestMapUpdateCheck: latestMapUpdateCheck ?? this.latestMapUpdateCheck,
       latestMapUpdate: latestMapUpdate ?? this.latestMapUpdate,
+      searchHistory: searchHistory ?? this.searchHistory,
       points: points ?? this.points,
       badges: badges ?? this.badges,
     );
@@ -371,11 +397,16 @@ class UsersCompanion extends UpdateCompanion<User> {
     if (latestMapUpdate.present) {
       map['latest_map_update'] = Variable<DateTime?>(latestMapUpdate.value);
     }
+    if (searchHistory.present) {
+      final converter = $UsersTable.$converter2;
+      map['search_history'] =
+          Variable<String>(converter.mapToSql(searchHistory.value)!);
+    }
     if (points.present) {
       map['points'] = Variable<int>(points.value);
     }
     if (badges.present) {
-      final converter = $UsersTable.$converter2;
+      final converter = $UsersTable.$converter3;
       map['badges'] = Variable<String>(converter.mapToSql(badges.value)!);
     }
     return map;
@@ -393,6 +424,7 @@ class UsersCompanion extends UpdateCompanion<User> {
           ..write('defaultDeviceCalendarId: $defaultDeviceCalendarId, ')
           ..write('latestMapUpdateCheck: $latestMapUpdateCheck, ')
           ..write('latestMapUpdate: $latestMapUpdate, ')
+          ..write('searchHistory: $searchHistory, ')
           ..write('points: $points, ')
           ..write('badges: $badges')
           ..write(')'))
@@ -459,6 +491,17 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   late final GeneratedColumn<DateTime?> latestMapUpdate =
       GeneratedColumn<DateTime?>('latest_map_update', aliasedName, true,
           type: const IntType(), requiredDuringInsert: false);
+  final VerificationMeta _searchHistoryMeta =
+      const VerificationMeta('searchHistory');
+  @override
+  late final GeneratedColumnWithTypeConverter<List<SimpleHealthcareProvider>,
+      String?> searchHistory = GeneratedColumn<String?>(
+          'search_history', aliasedName, false,
+          type: const StringType(),
+          requiredDuringInsert: false,
+          defaultValue: Constant(const SearchHistoryDbConverter()
+              .mapToSql(<SimpleHealthcareProvider>[])!))
+      .withConverter<List<SimpleHealthcareProvider>>($UsersTable.$converter2);
   final VerificationMeta _pointsMeta = const VerificationMeta('points');
   @override
   late final GeneratedColumn<int?> points = GeneratedColumn<int?>(
@@ -474,7 +517,7 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
               requiredDuringInsert: false,
               defaultValue: Constant(const BadgeListDbConverter()
                   .mapToSql(BuiltList.of(<Badge>[]))!))
-          .withConverter<BuiltList<Badge>>($UsersTable.$converter2);
+          .withConverter<BuiltList<Badge>>($UsersTable.$converter3);
   @override
   List<GeneratedColumn> get $columns => [
         id,
@@ -486,6 +529,7 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
         defaultDeviceCalendarId,
         latestMapUpdateCheck,
         latestMapUpdate,
+        searchHistory,
         points,
         badges
       ];
@@ -536,6 +580,7 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
           latestMapUpdate.isAcceptableOrUnknown(
               data['latest_map_update']!, _latestMapUpdateMeta));
     }
+    context.handle(_searchHistoryMeta, const VerificationResult.success());
     if (data.containsKey('points')) {
       context.handle(_pointsMeta,
           points.isAcceptableOrUnknown(data['points']!, _pointsMeta));
@@ -560,7 +605,9 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   static TypeConverter<Sex, String> $converter0 = const SexDbConverter();
   static TypeConverter<DateWithoutDay, String> $converter1 =
       const DateOfBirthDbConverter();
-  static TypeConverter<BuiltList<Badge>, String> $converter2 =
+  static TypeConverter<List<SimpleHealthcareProvider>, String> $converter2 =
+      const SearchHistoryDbConverter();
+  static TypeConverter<BuiltList<Badge>, String> $converter3 =
       const BadgeListDbConverter();
 }
 
