@@ -66,7 +66,8 @@ class MapStateService with ChangeNotifier {
 
   void search(String query) {
     final uniqueCitiesMap = <String, SimpleHealthcareProvider>{};
-    final addresses = <SimpleHealthcareProvider>[];
+    final uniqueAddressesMap = <String, SimpleHealthcareProvider>{};
+
     for (final healthcareProvider in _allHealthcareProviders) {
       final isCityMatching = removeDiacritics(healthcareProvider.city.toLowerCase())
           .contains(removeDiacritics(query).toLowerCase());
@@ -79,24 +80,31 @@ class MapStateService with ChangeNotifier {
           : removeDiacritics(healthcareProvider.street!.toLowerCase())
               .contains(removeDiacritics(query).toLowerCase());
       if (isAddressMatching) {
-        addresses.add(healthcareProvider);
+        uniqueAddressesMap['${healthcareProvider.city}-${healthcareProvider.street}'] =
+            healthcareProvider;
       }
     }
+
     final cities =
         uniqueCitiesMap.values.map((e) => SearchResult(data: e, searchType: SearchType.city));
+    final addresses =
+        uniqueAddressesMap.values.map((e) => SearchResult(data: e, searchType: SearchType.address));
     debugPrint(
-      '-------\nSEARCH QUERY: $query\nTITLES: ${addresses.length}\nCITIES: ${cities.length}',
+      '-------\nSEARCH QUERY: $query\nTITLES: ${uniqueAddressesMap.length}\nCITIES: ${cities.length}',
     );
 
     final results = [
       ...cities,
-      ...addresses.map((e) => SearchResult(data: e, searchType: SearchType.address)),
+      ...addresses,
     ];
     searchResults.replaceRange(0, searchResults.length, results);
     notifyListeners();
   }
 
-  void clearSearchResults() => searchResults.clear();
+  void clearSearchResults() {
+    searchResults.clear();
+    notifyListeners();
+  }
 
   void _applyFilter() {
     _currHealthcareProviders.replaceRange(

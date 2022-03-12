@@ -52,7 +52,7 @@ extension SearchResultExt on SearchResult {
   double get zoomLevel {
     switch (searchType) {
       case SearchType.address:
-        return MapVariables.DOCTOR_DETAIL_ZOOM;
+        return 15;
       case SearchType.city:
         return MapVariables.DEFAULT_ZOOM;
     }
