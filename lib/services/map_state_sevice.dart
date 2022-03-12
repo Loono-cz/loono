@@ -26,6 +26,10 @@ class MapStateService with ChangeNotifier {
 
   LatLngBounds? visibleRegion;
 
+  List<SearchResult> searchResults = <SearchResult>[];
+
+  bool isInSearchResult = false;
+
   List<SimpleHealthcareProvider> get allHealthcareProviders => _allHealthcareProviders;
 
   List<SimpleHealthcareProvider> get currHealthcareProviders => _currHealthcareProviders;
@@ -60,9 +64,9 @@ class MapStateService with ChangeNotifier {
     notifyListeners();
   }
 
-  Iterable<SearchResult> search(String query) {
+  void search(String query) {
     final uniqueCitiesMap = <String, SimpleHealthcareProvider>{};
-    final titles = <SimpleHealthcareProvider>[];
+    final addresses = <SimpleHealthcareProvider>[];
     for (final healthcareProvider in _allHealthcareProviders) {
       final isCityMatching = removeDiacritics(healthcareProvider.city.toLowerCase())
           .contains(removeDiacritics(query).toLowerCase());
@@ -70,20 +74,29 @@ class MapStateService with ChangeNotifier {
         uniqueCitiesMap[healthcareProvider.city] = healthcareProvider;
       }
 
-      final isTitleMatching = removeDiacritics(healthcareProvider.title.toLowerCase())
-          .contains(removeDiacritics(query).toLowerCase());
-      if (isTitleMatching) {
-        titles.add(healthcareProvider);
+      final isAddressMatching = healthcareProvider.street == null
+          ? false
+          : removeDiacritics(healthcareProvider.street!.toLowerCase())
+              .contains(removeDiacritics(query).toLowerCase());
+      if (isAddressMatching) {
+        addresses.add(healthcareProvider);
       }
     }
     final cities =
         uniqueCitiesMap.values.map((e) => SearchResult(data: e, searchType: SearchType.city));
-    debugPrint('-------\nSEARCH QUERY: $query\nTITLES: ${titles.length}\nCITIES: ${cities.length}');
-    return [
+    debugPrint(
+      '-------\nSEARCH QUERY: $query\nTITLES: ${addresses.length}\nCITIES: ${cities.length}',
+    );
+
+    final results = [
       ...cities,
-      ...titles.map((e) => SearchResult(data: e, searchType: SearchType.title)),
+      ...addresses.map((e) => SearchResult(data: e, searchType: SearchType.address)),
     ];
+    searchResults.replaceRange(0, searchResults.length, results);
+    notifyListeners();
   }
+
+  void clearSearchResults() => searchResults.clear();
 
   void _applyFilter() {
     _currHealthcareProviders.replaceRange(

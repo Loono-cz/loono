@@ -6,7 +6,13 @@ import 'package:drift/drift.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono_api/loono_api.dart'
-    show Badge, ExaminationStatus, ExaminationType, Sex, standardSerializers;
+    show
+        Badge,
+        ExaminationStatus,
+        ExaminationType,
+        Sex,
+        SimpleHealthcareProvider,
+        standardSerializers;
 
 class CategoryDbConverter extends TypeConverter<BuiltList<String>, String> {
   const CategoryDbConverter();
@@ -121,5 +127,29 @@ class BadgeListDbConverter extends TypeConverter<BuiltList<Badge>, String> {
         specifiedType: const FullType(BuiltList, [FullType(Badge)]),
       ),
     );
+  }
+}
+
+class SearchHistoryDbConverter extends TypeConverter<List<SimpleHealthcareProvider>, String> {
+  const SearchHistoryDbConverter();
+
+  @override
+  List<SimpleHealthcareProvider>? mapToDart(String? fromDb) {
+    if (fromDb == null) return null;
+    final list = (json.decode(fromDb) as Iterable<dynamic>).map(
+      (dynamic e) => standardSerializers.fromJson(
+        SimpleHealthcareProvider.serializer,
+        e as String,
+      ),
+    );
+    return list.whereType<SimpleHealthcareProvider>().toList();
+  }
+
+  @override
+  String? mapToSql(List<SimpleHealthcareProvider>? value) {
+    if (value == null) return null;
+    return jsonEncode(
+      value.map((e) => standardSerializers.toJson(SimpleHealthcareProvider.serializer, e)).toList(),
+    ).toString();
   }
 }

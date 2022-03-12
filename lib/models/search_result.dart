@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:loono/helpers/map_variables.dart';
 import 'package:loono_api/loono_api.dart';
 
-enum SearchType { title, city }
+enum SearchType { city, address }
 
 class SearchResult {
   const SearchResult({
@@ -31,17 +31,19 @@ class SearchResult {
 extension SearchResultExt on SearchResult {
   String get text {
     switch (searchType) {
-      case SearchType.title:
-        return data.title;
       case SearchType.city:
         return data.city;
+      case SearchType.address:
+        final doctor = data;
+        final address = doctor.street == null ? '' : '${doctor.street}, ${doctor.city}';
+        return address;
     }
   }
 
   IconData get icon {
     switch (searchType) {
-      case SearchType.title:
-        return Icons.person;
+      case SearchType.address:
+        return Icons.add_location;
       case SearchType.city:
         return Icons.add_location;
     }
@@ -49,7 +51,7 @@ extension SearchResultExt on SearchResult {
 
   double get zoomLevel {
     switch (searchType) {
-      case SearchType.title:
+      case SearchType.address:
         return MapVariables.DOCTOR_DETAIL_ZOOM;
       case SearchType.city:
         return MapVariables.DEFAULT_ZOOM;
