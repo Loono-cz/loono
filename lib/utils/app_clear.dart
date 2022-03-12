@@ -4,10 +4,12 @@ import 'package:loono/services/database_service.dart';
 import 'package:loono/services/notification_service.dart';
 import 'package:loono/utils/registry.dart';
 
-Future<void> appClear() async {
+Future<void> appClear({bool deletingAccount = false}) async {
   await registry.get<AuthService>().signOut();
   await registry.get<DatabaseService>().clearDb();
   // clears saved user avatar and other app's temp data
   await registry.get<DefaultCacheManager>().emptyCache();
-  await registry.get<NotificationService>().removeId();
+  if (deletingAccount) {
+    await registry.get<NotificationService>().removeId();
+  }
 }
