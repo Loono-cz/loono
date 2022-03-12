@@ -79,6 +79,7 @@ dependencies:
   url_launcher: ^6.0.9
   uuid: ^3.0.4
   video_player: ^2.1.10
+  yaml: ^3.1.0
   youtube_player_flutter: ^8.0.0
 
 dev_dependencies:
@@ -101,6 +102,7 @@ flutter:
   generate: true
 
   assets:
+    - assets/
     - assets/.env
     - assets/icons/
     - assets/icons/tabs/

@@ -271,7 +271,9 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                       Expanded(
                         child: LoonoButton.light(
                           text: context.l10n.how_to_self_examination,
-                          onTap: () => AutoRouter.of(context).push(EducationalVideoRoute(sex: sex)),
+                          onTap: () => AutoRouter.of(context).push(
+                            EducationalVideoRoute(sex: sex, selfExamination: selfExamination),
+                          ),
                         ),
                       ),
                     ],
