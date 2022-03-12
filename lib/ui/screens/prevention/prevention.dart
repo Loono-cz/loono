@@ -4,24 +4,13 @@ import 'package:loono/ui/widgets/badges/badge_composer.dart';
 import 'package:loono/ui/widgets/prevention/examinations_sheet_overlay.dart';
 import 'package:loono/ui/widgets/prevention/profile_button.dart';
 
-class PreventionScreen extends StatefulWidget {
-  const PreventionScreen({Key? key}) : super(key: key);
+class PreventionScreen extends StatelessWidget {
+  PreventionScreen({Key? key}) : super(key: key);
 
-  @override
-  State<PreventionScreen> createState() => _PreventionScreenState();
-}
-
-class _PreventionScreenState extends State<PreventionScreen> {
-  double? extentFromTop;
+  final ValueNotifier<double?> extentFromTop = ValueNotifier<double?>(null);
 
   void convertExtent(double? extent) {
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
-      if (mounted) {
-        setState(() {
-          extentFromTop = extent;
-        });
-      }
-    });
+    WidgetsBinding.instance?.addPostFrameCallback((_) => extentFromTop.value = extent);
   }
 
   @override
@@ -30,10 +19,17 @@ class _PreventionScreenState extends State<PreventionScreen> {
       body: SafeArea(
         child: Stack(
           children: [
-            if (extentFromTop != null)
-              AvatarBubbleArrow(
-                extent: extentFromTop!,
-              ),
+            ValueListenableBuilder(
+              valueListenable: extentFromTop,
+              builder: (context, double? value, child) {
+                if (value != null) {
+                  return AvatarBubbleArrow(
+                    extent: value,
+                  );
+                }
+                return const SizedBox();
+              },
+            ),
             const ProfileButton(),
             const BadgeComposer(),
             ExaminationsSheetOverlay(

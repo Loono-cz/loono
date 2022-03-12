@@ -15,16 +15,11 @@ import 'package:loono/ui/widgets/prevention/self_examination/self_examination_ca
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
-class ExaminationsSheetOverlay extends StatefulWidget {
+class ExaminationsSheetOverlay extends StatelessWidget {
   const ExaminationsSheetOverlay({Key? key, required this.convertExtent}) : super(key: key);
 
   final Function(double?) convertExtent;
 
-  @override
-  State<ExaminationsSheetOverlay> createState() => _ExaminationsSheetOverlayState();
-}
-
-class _ExaminationsSheetOverlayState extends State<ExaminationsSheetOverlay> {
   @override
   Widget build(BuildContext context) {
     final examinationsProvider = Provider.of<ExaminationsProvider>(context, listen: true);
@@ -32,7 +27,7 @@ class _ExaminationsSheetOverlayState extends State<ExaminationsSheetOverlay> {
     return SizedBox.expand(
       child: NotificationListener<DraggableScrollableNotification>(
         onNotification: (notification) {
-          widget.convertExtent(notification.extent);
+          convertExtent(notification.extent);
           return false;
         },
         child: DraggableScrollableSheet(
@@ -67,7 +62,7 @@ class _ExaminationsSheetOverlayState extends State<ExaminationsSheetOverlay> {
                 .toList();
 
             return AvatarBubbleNotifier(
-              convertExtent: widget.convertExtent,
+              convertExtent: convertExtent,
               child: Container(
                 decoration: const BoxDecoration(
                   color: LoonoColors.bottomSheetPrevention,

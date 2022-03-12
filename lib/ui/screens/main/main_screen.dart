@@ -8,7 +8,7 @@ import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/screens/about_health/about_health.dart';
 import 'package:loono/ui/screens/find_doctor/find_doctor.dart';
 import 'package:loono/ui/screens/prevention/prevention.dart';
-import 'package:loono/ui/widgets/custom_bottom_sheet.dart';
+import 'package:loono/ui/widgets/custom_navigation_bar.dart';
 import 'package:loono/ui/widgets/no_connection_message.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:provider/provider.dart';
@@ -30,7 +30,7 @@ class _MainScreenState extends State<MainScreen> {
   bool connectivityLocked = true;
 
   static final List<Widget> _pages = <Widget>[
-    const PreventionScreen(),
+    PreventionScreen(),
     FindDoctorScreen(),
     const AboutHealthScreen(),
   ];
