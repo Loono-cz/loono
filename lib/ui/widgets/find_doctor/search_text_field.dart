@@ -21,6 +21,7 @@ class SearchTextField extends StatelessWidget {
           if (result != null && result is SearchResult) onItemTap?.call(result);
         },
         autofocus: false,
+        readOnly: true,
         decoration: const InputDecoration(
           border: OutlineInputBorder(),
           fillColor: Colors.white,

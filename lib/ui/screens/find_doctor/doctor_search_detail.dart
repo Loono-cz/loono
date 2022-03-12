@@ -47,6 +47,7 @@ class _DoctorSearchDetailScreenState extends State<DoctorSearchDetailScreen> {
           child: Column(
             children: [
               TextFormField(
+                autofocus: true,
                 controller: textEditingController,
                 onChanged: (input) {
                   if (input.isNotEmpty) {
