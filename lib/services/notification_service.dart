@@ -17,6 +17,14 @@ class NotificationService {
     OneSignal.shared.setPermissionObserver(_onPermissionStateChanges);
   }
 
+  Future<void> setUserId(String userId) async {
+    await OneSignal.shared.setExternalUserId(userId);
+  }
+
+  Future<void> removeId() async {
+    await OneSignal.shared.removeExternalUserId();
+  }
+
   /// Watch notification permission state. Useful only on iOS.
   Stream<OSNotificationPermission> subscribePermissionState() {
     return _permissionController.stream.distinct();
