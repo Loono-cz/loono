@@ -17,6 +17,7 @@ class DoctorSearchDetailScreen extends StatefulWidget {
 }
 
 class _DoctorSearchDetailScreenState extends State<DoctorSearchDetailScreen> {
+  final textEditingController = TextEditingController();
   late final MapStateService mapStateService;
 
   final _usersDao = registry.get<DatabaseService>().users;
@@ -46,16 +47,30 @@ class _DoctorSearchDetailScreenState extends State<DoctorSearchDetailScreen> {
           child: Column(
             children: [
               TextFormField(
+                autofocus: true,
+                controller: textEditingController,
                 onChanged: (input) {
-                  mapStateService.search(input);
+                  if (input.isNotEmpty) {
+                    mapStateService.search(input);
+                  }
                   setState(() {
                     _searchQuery = input;
                   });
                 },
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   fillColor: Colors.white,
-                  prefixIcon: Icon(Icons.search),
-                  suffixIcon: Icon(Icons.close),
+                  iconColor: LoonoColors.primaryEnabled,
+                  focusColor: LoonoColors.primaryEnabled,
+                  focusedBorder: customInputDecoration(color: LoonoColors.primaryEnabled),
+                  enabledBorder: customInputDecoration(color: LoonoColors.primaryEnabled),
+                  prefixIcon: const Icon(Icons.search, color: LoonoColors.primaryEnabled),
+                  suffixIcon: GestureDetector(
+                    onTap: () {
+                      textEditingController.text = '';
+                      mapStateService.clearSearchResults();
+                    },
+                    child: const Icon(Icons.close, color: LoonoColors.primaryEnabled),
+                  ),
                   filled: true,
                   hintText: 'Zadej odbornost nebo adresu',
                 ),
@@ -135,17 +150,24 @@ class _DoctorSearchDetailScreenState extends State<DoctorSearchDetailScreen> {
         FocusManager.instance.primaryFocus?.unfocus();
         switch (searchResult.searchType) {
           case SearchType.address:
-            mapStateService.setDoctorDetail(searchResult.data);
             await _usersDao.addSearchHistoryItem(searchResult.data);
-            await AutoRouter.of(context).pop();
             break;
           case SearchType.city:
-            await AutoRouter.of(context).pop(searchResult);
             break;
         }
+        await AutoRouter.of(context).pop(searchResult);
       },
       title: Text(searchResult.text),
       dense: true,
+    );
+  }
+
+  UnderlineInputBorder customInputDecoration({required Color color}) {
+    return UnderlineInputBorder(
+      borderSide: BorderSide(
+        color: color,
+        width: 2.0,
+      ),
     );
   }
 }
