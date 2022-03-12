@@ -74,6 +74,7 @@ class AuthService {
   Future<Either<AuthFailure, AuthUser>> checkAppleAccountExistsAndSignIn() async {
     final nonce = getNonce();
     final appleCredential = await getAppleCredential(nonce);
+
     if (appleCredential == null) return const Left(AuthFailure.unknown());
     if (appleCredential.email == null) {
       return Left(AuthFailure.accountNotExists(SocialLoginAccount.apple(appleCredential)));
@@ -207,4 +208,8 @@ class AuthService {
   }
 
   void _clearUserToken() => _api.dio.options.headers.remove('Authorization');
+
+  Future<void> switchApi(String newUrl) async {
+    _api.dio.options.baseUrl = newUrl;
+  }
 }
