@@ -7,6 +7,7 @@ import 'package:google_maps_cluster_manager/google_maps_cluster_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/models/healthcare_item_place.dart';
+import 'package:loono_api/loono_api.dart';
 
 Future<void> animateToPos(
   Completer<GoogleMapController> mapController, {
@@ -43,7 +44,10 @@ Future<Position> determinePosition() async {
   return Geolocator.getCurrentPosition();
 }
 
-Future<Marker> Function(Cluster<HealthcareItemPlace>) get markerBuilder => (cluster) async {
+Future<Marker> Function(
+  Cluster<HealthcareItemPlace>,
+  Function(SimpleHealthcareProvider?) setDoctor,
+) get markerBuilder => (cluster, setDoctor) async {
       final icon = await getMarkerBitmap(
         cluster.isMultiple ? 125 : 75,
         text: cluster.isMultiple ? cluster.count.toString() : null,
@@ -52,9 +56,7 @@ Future<Marker> Function(Cluster<HealthcareItemPlace>) get markerBuilder => (clus
       return Marker(
         markerId: MarkerId(cluster.getId()),
         position: cluster.location,
-        onTap: () async {
-          // TODO: open doctor detail from here
-        },
+        onTap: () => setDoctor(cluster.items.first.healthcareProvider),
         infoWindow: cluster.isMultiple
             ? InfoWindow.noText
             : InfoWindow(

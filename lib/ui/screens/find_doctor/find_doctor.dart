@@ -9,6 +9,7 @@ import 'package:loono/models/search_result.dart';
 import 'package:loono/repositories/healthcare_repository.dart';
 import 'package:loono/services/map_state_sevice.dart';
 import 'package:loono/ui/widgets/find_doctor/bottom_sheet_overlay.dart';
+import 'package:loono/ui/widgets/find_doctor/doctor_detail_sheet.dart';
 import 'package:loono/ui/widgets/find_doctor/map_preview.dart';
 import 'package:loono/ui/widgets/find_doctor/search_text_field.dart';
 import 'package:loono/utils/map_utils.dart';
@@ -24,30 +25,33 @@ class FindDoctorScreen extends StatefulWidget {
   final PageRouteInfo? cancelRouteName;
   final Completer<GoogleMapController> mapController = Completer<GoogleMapController>();
   final healthcareProviderRepository = registry.get<HealthcareProviderRepository>();
-  final mapStateService = MapStateService();
 
   @override
   State<FindDoctorScreen> createState() => _FindDoctorScreenState();
 }
 
 class _FindDoctorScreenState extends State<FindDoctorScreen> {
-  bool _isHealtCareProvidersInMapService = false;
+  bool _isHealthCareProvidersInMapService = false;
   final _sheetController = DraggableScrollableController();
 
-  Future<void> _setHealtcareProviders() async {
-    final healtcareProviders =
+  //final mapStateService = MapStateService();
+
+  Future<void> _setHealthcareProviders(MapStateService mapStateService) async {
+    final healthcareProviders =
         await registry.get<HealthcareProviderRepository>().getHealthcareProviders();
 
-    if (healtcareProviders != null && healtcareProviders.isNotEmpty) {
-      widget.mapStateService.addAll(healtcareProviders);
+    if (healthcareProviders != null && healthcareProviders.isNotEmpty) {
+      mapStateService.addAll(healthcareProviders);
       setState(() {
-        _isHealtCareProvidersInMapService = true;
+        _isHealthCareProvidersInMapService = true;
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final mapStateService = Provider.of<MapStateService>(context, listen: true);
+
     return Scaffold(
       appBar: widget.cancelRouteName != null
           ? AppBar(
@@ -67,15 +71,15 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
           initialData: widget.healthcareProviderRepository.lastStreamValue,
           builder: (context, snapshot) {
             if (snapshot.data == HealtCareSyncState.completed &&
-                !_isHealtCareProvidersInMapService) {
-              _setHealtcareProviders();
+                !_isHealthCareProvidersInMapService) {
+              _setHealthcareProviders(mapStateService);
             }
             return ChangeNotifierProvider.value(
-              value: widget.mapStateService,
+              value: mapStateService,
               child: Stack(
                 children: [
                   MapPreview(mapController: widget.mapController),
-                  if (_isHealtCareProvidersInMapService)
+                  if (_isHealthCareProvidersInMapService)
                     SearchTextField(
                       onItemTap: (searchResult) async => animateToPos(
                         widget.mapController,
@@ -85,7 +89,7 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                         ),
                       ),
                     ),
-                  if (_isHealtCareProvidersInMapService)
+                  if (_isHealthCareProvidersInMapService)
                     MapSheetOverlay(
                       onItemTap: (healthcareProvider) async => animateToPos(
                         widget.mapController,
@@ -95,8 +99,9 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                         ),
                       ),
                       sheetController: _sheetController,
+                      mapStateService: mapStateService,
                     ),
-                  if (!_isHealtCareProvidersInMapService)
+                  if (!_isHealthCareProvidersInMapService)
                     Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Stack(
@@ -116,6 +121,32 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                             style: LoonoFonts.cardTitle.copyWith(color: Colors.white),
                           ),
                         ],
+                      ),
+                    ),
+                  if (mapStateService.doctorDetail != null)
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Container(
+                        width: double.infinity,
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Colors.white,
+                              LoonoColors.greenLight,
+                            ],
+                          ),
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(10.0),
+                            topLeft: Radius.circular(10.0),
+                          ),
+                        ),
+                        height: 370,
+                        child: DoctorDetailSheet(
+                          doctor: mapStateService.doctorDetail!,
+                          closeDetail: () => mapStateService.setDoctorDetail(null),
+                        ),
                       ),
                     ),
                 ],

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/services/map_state_sevice.dart';
-import 'package:loono/ui/widgets/find_doctor/doctor_detail_sheet.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
@@ -10,10 +9,12 @@ class MapSheetOverlay extends StatelessWidget {
     Key? key,
     required this.onItemTap,
     required this.sheetController,
+    required this.mapStateService,
   }) : super(key: key);
 
   final ValueChanged<SimpleHealthcareProvider>? onItemTap;
   final DraggableScrollableController sheetController;
+  final MapStateService mapStateService;
 
   @override
   Widget build(BuildContext context) {
@@ -74,15 +75,9 @@ class MapSheetOverlay extends StatelessWidget {
                       elevation: 0.0,
                       child: InkWell(
                         onTap: () async {
-                          final lastSheetPosition = sheetController.size;
-                          sheetController.jumpTo(0);
+                          sheetController.jumpTo(0.4);
                           onItemTap?.call(item);
-                          await showDoctorDetailSheet(context: context, doctor: item);
-                          await sheetController.animateTo(
-                            lastSheetPosition,
-                            duration: const Duration(milliseconds: 300),
-                            curve: Curves.easeInOut,
-                          );
+                          mapStateService.setDoctorDetail(item);
                         },
                         child: SizedBox(
                           width: MediaQuery.of(context).size.width,
