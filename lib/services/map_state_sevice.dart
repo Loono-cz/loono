@@ -22,6 +22,8 @@ class MapStateService with ChangeNotifier {
 
   final Set<Marker> _markers = <Marker>{};
 
+  SimpleHealthcareProvider? doctorDetail;
+
   LatLngBounds? visibleRegion;
 
   List<SimpleHealthcareProvider> get allHealthcareProviders => _allHealthcareProviders;
@@ -33,7 +35,7 @@ class MapStateService with ChangeNotifier {
   ClusterManager _initClusterManager() => ClusterManager<HealthcareItemPlace>(
         <HealthcareItemPlace>[],
         updateMarkers,
-        markerBuilder: markerBuilder,
+        markerBuilder: (cluster) => markerBuilder(cluster, setDoctorDetail),
       );
 
   void setVisibleRegion(LatLngBounds latLngBounds) {
@@ -96,5 +98,10 @@ class MapStateService with ChangeNotifier {
         },
       ),
     );
+  }
+
+  void setDoctorDetail(SimpleHealthcareProvider? detail) {
+    doctorDetail = detail;
+    notifyListeners();
   }
 }

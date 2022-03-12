@@ -199,4 +199,23 @@ class ApiService {
       () async => _api.getAccountApi().deleteAccount(),
     );
   }
+
+  Future<ApiResponse<HealthcareProviderDetailList>> postProviderDetail({
+    ApiParams? params,
+    required List<HealthcareProviderId> providersIds,
+  }) async {
+    return _callApi(
+      () async => _api.getProvidersApi().postProvidersDetail(
+            healthcareProviderIdList: HealthcareProviderIdList((list) {
+              list.providersIds = BuiltList.of(providersIds).toBuilder();
+            }),
+            headers: params?.headers,
+            cancelToken: params?.cancelToken,
+            extra: params?.extra,
+            onReceiveProgress: params?.onReceiveProgress,
+            onSendProgress: params?.onSendProgress,
+            validateStatus: params?.validateStatus,
+          ),
+    );
+  }
 }

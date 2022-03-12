@@ -8,9 +8,13 @@ class MapSheetOverlay extends StatelessWidget {
   const MapSheetOverlay({
     Key? key,
     required this.onItemTap,
+    required this.sheetController,
+    required this.mapStateService,
   }) : super(key: key);
 
   final ValueChanged<SimpleHealthcareProvider>? onItemTap;
+  final DraggableScrollableController sheetController;
+  final MapStateService mapStateService;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +24,7 @@ class MapSheetOverlay extends StatelessWidget {
       initialChildSize: 0.4,
       maxChildSize: 0.75,
       minChildSize: 0.15,
+      controller: sheetController,
       builder: (context, scrollController) {
         return Container(
           decoration: const BoxDecoration(
@@ -69,7 +74,11 @@ class MapSheetOverlay extends StatelessWidget {
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                       elevation: 0.0,
                       child: InkWell(
-                        onTap: () => onItemTap?.call(item),
+                        onTap: () async {
+                          sheetController.jumpTo(0.4);
+                          onItemTap?.call(item);
+                          mapStateService.setDoctorDetail(item);
+                        },
                         child: SizedBox(
                           width: MediaQuery.of(context).size.width,
                           height: 120.0,
