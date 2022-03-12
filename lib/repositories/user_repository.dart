@@ -10,6 +10,7 @@ import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/firebase_storage_service.dart';
+import 'package:loono/services/notification_service.dart';
 import 'package:loono_api/loono_api.dart';
 
 class UserRepository {
@@ -18,6 +19,7 @@ class UserRepository {
     required DatabaseService databaseService,
     required FirebaseStorageService firebaseStorageService,
     required AuthService authService,
+    required NotificationService notificationService,
   })  : _apiService = apiService,
         _authService = authService,
         _db = databaseService,
@@ -27,6 +29,7 @@ class UserRepository {
         debugPrint('log: SYNCING WITH API');
         await _authService.refreshUserToken();
         unawaited(sync());
+        unawaited(notificationService.setUserId(authUser.uid));
       }
     });
   }

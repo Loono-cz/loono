@@ -20,7 +20,7 @@ class _AfterDeletionScreenState extends State<AfterDeletionScreen> {
   @override
   void initState() {
     super.initState();
-    appClear();
+    appClear(deletingAccount: true);
   }
 
   @override

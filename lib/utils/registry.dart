@@ -162,6 +162,7 @@ Future<void> setup({
       databaseService: registry.get<DatabaseService>(),
       firebaseStorageService: registry.get<FirebaseStorageService>(),
       authService: registry.get<AuthService>(),
+      notificationService: registry.get<NotificationService>(),
     ),
   );
   registry.registerSingleton<ExaminationRepository>(
