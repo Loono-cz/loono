@@ -2,20 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 
 class AvatarBubbleArrow extends StatelessWidget {
-  const AvatarBubbleArrow({Key? key, required this.extent}) : super(key: key);
+  const AvatarBubbleArrow({Key? key, required this.extent, required this.height}) : super(key: key);
 
   final double extent;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height -
-        AppBar().preferredSize.height -
-        MediaQuery.of(context).padding.top -
-        MediaQuery.of(context).padding.bottom -
-        80;
     final width = MediaQuery.of(context).size.width;
     final topOffset = height - (height * extent);
-    final leftOffset = (width - 180) * 0.22; // 180 is avatar width
+    final leftOffset = (width - 180) * 0.15; // 180 is avatar width
     return SizedBox(
       width: double.infinity,
       height: double.infinity,
@@ -31,13 +27,14 @@ class DrawTriangle extends CustomPainter {
 
   double topOffset;
   double leftOffset;
+  final double maxOffset = 2000;
 
   @override
   void paint(Canvas canvas, Size size) {
     final path = Path()
-      ..moveTo(leftOffset + 65, (topOffset - 100).clamp(150, 1000))
-      ..lineTo(leftOffset, topOffset.clamp(250, 1000))
-      ..lineTo(leftOffset + 35, topOffset.clamp(250, 1000))
+      ..moveTo(leftOffset + 80, (topOffset - 85).clamp(150, maxOffset))
+      ..lineTo(leftOffset, (topOffset + 50).clamp(250, maxOffset))
+      ..lineTo(leftOffset + 42, (topOffset + 50).clamp(250, maxOffset))
       ..close();
     canvas.drawPath(
       path,
