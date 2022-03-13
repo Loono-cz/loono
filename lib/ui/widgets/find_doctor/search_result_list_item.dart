@@ -53,7 +53,9 @@ class SearchResultListItem extends StatelessWidget {
         if (healthcareProvider != null) {
           await _userRepository.addSearchHistoryItem(healthcareProvider);
         }
-        context.read<MapStateService>().setDoctorDetail(null);
+        context.read<MapStateService>()
+          ..setDoctorDetail(null)
+          ..setSpecialization(null);
         await AutoRouter.of(context).pop(searchResult);
       },
     );

@@ -25,6 +25,8 @@ class MapStateService with ChangeNotifier {
 
   SimpleHealthcareProvider? doctorDetail;
 
+  SearchResult? currentSpecialization;
+
   LatLngBounds? visibleRegion;
 
   List<SearchResult> searchResults = <SearchResult>[];
@@ -32,11 +34,11 @@ class MapStateService with ChangeNotifier {
   Iterable<SearchResult> get specializationSearchResults =>
       List.of(searchResults.where((e) => e.searchType == SearchType.specialization));
 
-  bool isInSearchResult = false;
-
   List<SimpleHealthcareProvider> get allHealthcareProviders => _allHealthcareProviders;
 
-  List<SimpleHealthcareProvider> get currHealthcareProviders => _currHealthcareProviders;
+  List<SimpleHealthcareProvider> get currHealthcareProviders => currentSpecialization != null
+      ? _currHealthcareProviders.where(_hasSpecialization).toList()
+      : _currHealthcareProviders;
 
   Set<Marker> get markers => _markers;
 
@@ -154,5 +156,27 @@ class MapStateService with ChangeNotifier {
   void setDoctorDetail(SimpleHealthcareProvider? detail) {
     doctorDetail = detail;
     notifyListeners();
+  }
+
+  void setSpecialization(SearchResult? searchResult) {
+    currentSpecialization = searchResult;
+    if (searchResult == null) {
+      clusterManager.setItems(allHealthcareProviders.map((e) => HealthcareItemPlace(e)).toList());
+    } else {
+      clusterManager.setItems(
+        allHealthcareProviders
+            .where(_hasSpecialization)
+            .map((e) => HealthcareItemPlace(e))
+            .toList(),
+      );
+    }
+    notifyListeners();
+  }
+
+  bool _hasSpecialization(SimpleHealthcareProvider provider) {
+    if (currentSpecialization == null) return false;
+    if (currentSpecialization!.overriddenText == null) return false;
+    return provider.specialization != null &&
+        provider.specialization!.contains(currentSpecialization!.overriddenText!);
   }
 }

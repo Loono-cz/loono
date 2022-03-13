@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/search_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/search_result.dart';
 import 'package:loono/services/map_state_sevice.dart';
@@ -26,10 +27,6 @@ class _DoctorSearchDetailScreenState extends State<DoctorSearchDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const extraIconPadding = 6.0;
-    const defaultIconSize = 18.0 + extraIconPadding;
-    final textFormIconConstraints = BoxConstraints.loose(const Size.square(defaultIconSize));
-
     final mapState = context.watch<MapStateService>();
     return Scaffold(
       backgroundColor: Colors.white,
@@ -68,8 +65,8 @@ class _DoctorSearchDetailScreenState extends State<DoctorSearchDetailScreen> {
                   focusColor: LoonoColors.primaryEnabled,
                   focusedBorder: _customInputDecoration(color: LoonoColors.primaryEnabled),
                   enabledBorder: _customInputDecoration(color: LoonoColors.primaryEnabled),
-                  prefixIconConstraints: textFormIconConstraints,
-                  suffixIconConstraints: textFormIconConstraints,
+                  prefixIconConstraints: searchIconConstraints,
+                  suffixIconConstraints: searchIconConstraints,
                   prefixIcon: const SearchTextFieldIcon(),
                   suffixIcon: _isSearchQueryEmpty
                       ? const SizedBox.shrink()
@@ -114,10 +111,12 @@ class _DoctorSearchDetailScreenState extends State<DoctorSearchDetailScreen> {
                                 spacing: 4,
                                 children: mapState.specializationSearchResults
                                     .map(
-                                      (e) => ActionChip(
-                                        label: Text(e.text),
+                                      (specialization) => ActionChip(
+                                        label: Text(specialization.text),
                                         onPressed: () {
-                                          //
+                                          // TODO: save to history
+                                          mapState.setSpecialization(specialization);
+                                          AutoRouter.of(context).pop();
                                         },
                                       ),
                                     )
