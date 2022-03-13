@@ -183,7 +183,8 @@ class UserRepository {
     }
     return false;
   }
-  Future<BuiltList<Badge>?> getBadges() async{
+
+  Future<BuiltList<Badge>?> getBadges() async {
     final account = await _apiService.getAccount();
     return account.map(
       success: (data) {
