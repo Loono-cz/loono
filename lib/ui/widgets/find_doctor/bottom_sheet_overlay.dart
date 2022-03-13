@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/map_variables.dart';
 import 'package:loono/services/map_state_sevice.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
@@ -21,9 +22,9 @@ class MapSheetOverlay extends StatelessWidget {
     final mapState = context.watch<MapStateService>();
 
     return DraggableScrollableSheet(
-      initialChildSize: 0.4,
-      maxChildSize: 0.75,
-      minChildSize: 0.15,
+      initialChildSize: MapVariables.MIN_SHEET_SIZE,
+      minChildSize: MapVariables.MIN_SHEET_SIZE,
+      maxChildSize: MapVariables.MAX_SHEET_SIZE,
       controller: sheetController,
       builder: (context, scrollController) {
         return Container(
@@ -75,7 +76,7 @@ class MapSheetOverlay extends StatelessWidget {
                       elevation: 0.0,
                       child: InkWell(
                         onTap: () async {
-                          sheetController.jumpTo(0.4);
+                          sheetController.jumpTo(MapVariables.DOCTOR_DETAIL_SHEET_SIZE);
                           onItemTap?.call(item);
                           mapStateService.setDoctorDetail(item);
                         },

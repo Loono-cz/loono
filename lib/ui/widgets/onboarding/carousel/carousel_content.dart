@@ -1,39 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/text_highlighter.dart';
 import 'package:loono/l10n/ext.dart';
-
-class TextHighlighter {
-  const TextHighlighter({this.text, this.highlight = false});
-
-  final String? text;
-  final bool highlight;
-
-  static List<TextHighlighter> parse(String input, {required String highlightPattern}) {
-    final numMatch = RegExp(highlightPattern).firstMatch(input);
-    if (numMatch == null) {
-      return [TextHighlighter(text: input)];
-    }
-
-    final numMatchString = numMatch.group(0)!;
-    if (numMatch.start == 0) {
-      return [
-        TextHighlighter(text: numMatchString, highlight: true),
-        TextHighlighter(text: input.substring(numMatchString.length)),
-      ];
-    } else if (input.endsWith(numMatchString)) {
-      return [
-        TextHighlighter(text: input.substring(0, numMatch.start)),
-        TextHighlighter(text: numMatchString, highlight: true),
-      ];
-    } else {
-      return [
-        TextHighlighter(text: input.substring(0, numMatch.start)),
-        TextHighlighter(text: numMatchString, highlight: true),
-        TextHighlighter(text: input.substring(numMatch.end)),
-      ];
-    }
-  }
-}
 
 class CarouselStatContent extends StatelessWidget {
   const CarouselStatContent({

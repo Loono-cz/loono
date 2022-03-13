@@ -90,6 +90,7 @@ const _preAuthRoutes = <AutoRoute>[
   AutoRoute<void>(page: NicknameScreen, path: 'fallback-account/name'),
   AutoRoute<void>(page: EmailScreen, path: 'fallback-account/email'),
   _loginRoute,
+  ..._findDoctorRoutes,
   AutoRoute<void>(page: LogoutScreen, path: 'logout'),
 ];
 

@@ -181,4 +181,20 @@ class UserRepository {
     }
     return false;
   }
+
+  Future<void> addSearchHistoryItem(SimpleHealthcareProvider item) async {
+    final currHistory = _db.users.user?.searchHistory;
+    if (currHistory == null) return;
+    final updatedHistory = List.of(currHistory);
+    if (updatedHistory.contains(item)) {
+      final removedItem = updatedHistory.removeAt(updatedHistory.indexOf(item));
+      updatedHistory.insert(0, removedItem);
+    } else {
+      updatedHistory.insert(0, item);
+    }
+    if (updatedHistory.length > 15) {
+      updatedHistory.removeRange(11, updatedHistory.length);
+    }
+    await updateCurrentUser(UsersCompanion(searchHistory: Value(updatedHistory)));
+  }
 }

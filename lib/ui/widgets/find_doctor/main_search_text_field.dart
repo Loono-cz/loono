@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/search_result.dart';
 import 'package:loono/router/app_router.gr.dart';
 
@@ -18,15 +19,17 @@ class SearchTextField extends StatelessWidget {
       child: TextFormField(
         onTap: () async {
           final result = await AutoRouter.of(context).push(const DoctorSearchDetailRoute());
-          if (result != null && result is SearchResult) onItemTap?.call(result);
+          if (result != null && result is SearchResult) {
+            onItemTap?.call(result);
+          }
         },
         autofocus: false,
         readOnly: true,
-        decoration: const InputDecoration(
-          border: OutlineInputBorder(),
+        decoration: InputDecoration(
+          border: const OutlineInputBorder(),
           fillColor: Colors.white,
           filled: true,
-          hintText: 'Zadej odbornost nebo adresu',
+          hintText: context.l10n.find_doctor_search_hint,
         ),
       ),
     );

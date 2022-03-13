@@ -80,17 +80,4 @@ class UsersDao extends DatabaseAccessor<AppDatabase> with _$UsersDaoMixin {
   Future<void> updateLatestMapServerUpdate(DateTime date) async {
     await updateCurrentUser(UsersCompanion(latestMapUpdate: Value(date)));
   }
-
-  Future<void> addSearchHistoryItem(SimpleHealthcareProvider item) async {
-    final currHistory = user?.searchHistory;
-    if (currHistory == null) return;
-    final updatedHistory = List.of(currHistory);
-    if (!updatedHistory.contains(item)) {
-      updatedHistory.insert(0, item);
-      if (updatedHistory.length > 15) {
-        updatedHistory.removeRange(11, updatedHistory.length);
-      }
-      await updateCurrentUser(UsersCompanion(searchHistory: Value(updatedHistory)));
-    }
-  }
 }

@@ -6,10 +6,18 @@ import 'package:loono/utils/app_config.dart';
 import 'package:loono/utils/registry.dart';
 
 class MapVariables {
+  static const DOCTOR_DETAIL_SHEET_SIZE = 0.4;
+
+  static const MIN_SHEET_SIZE = 0.15;
+
+  static const MAX_SHEET_SIZE = 0.75;
+
   /// Prague, main train station
   static const LatLng INITIAL_COORDS = LatLng(50.08308000648528, 14.435443582943789);
 
   static const double DEFAULT_ZOOM = 13.0;
+
+  static const double STREET_ZOOM = 16.5;
 
   static const double DOCTOR_DETAIL_ZOOM = 17.0;
 }

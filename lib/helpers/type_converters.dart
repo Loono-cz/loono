@@ -130,6 +130,21 @@ class BadgeListDbConverter extends TypeConverter<BuiltList<Badge>, String> {
   }
 }
 
+class SimpleHealthcareProviderJsonConverter
+    implements JsonConverter<SimpleHealthcareProvider?, String> {
+  const SimpleHealthcareProviderJsonConverter();
+
+  @override
+  SimpleHealthcareProvider? fromJson(String json) {
+    return standardSerializers.fromJson(SimpleHealthcareProvider.serializer, json);
+  }
+
+  @override
+  String toJson(SimpleHealthcareProvider? object) {
+    return standardSerializers.toJson(SimpleHealthcareProvider.serializer, object);
+  }
+}
+
 class SearchHistoryDbConverter extends TypeConverter<List<SimpleHealthcareProvider>, String> {
   const SearchHistoryDbConverter();
 
