@@ -11,11 +11,13 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/repositories/examination_repository.dart';
+import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/calendar_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/examinations_service.dart';
+import 'package:loono/ui/screens/prevention/examination_detail/examination_badges.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/faq_section.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/prevention/calendar_permission_sheet.dart';
@@ -40,6 +42,7 @@ class ExaminationDetail extends StatelessWidget {
   final _calendarService = registry.get<CalendarService>();
   final _calendarEventsDao = registry.get<DatabaseService>().calendarEvents;
   final _usersDao = registry.get<DatabaseService>().users;
+  final _getBadges = registry.get<UserRepository>().getBadges();
 
   final CategorizedExamination categorizedExamination;
 
@@ -367,6 +370,11 @@ class ExaminationDetail extends StatelessWidget {
               ]
             ],
           ),
+        ),
+        ExaminationBadges(
+          examinationType: _examinationType,
+          categorizedExamination: categorizedExamination,
+          badges: _getBadges,
         ),
         const SizedBox(
           height: 40,

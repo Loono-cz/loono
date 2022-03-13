@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:drift/drift.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:loono/helpers/date_without_day.dart';
+import 'package:loono/models/api_response.dart';
 import 'package:loono/services/api_service.dart';
 import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/database_service.dart';
@@ -180,5 +182,17 @@ class UserRepository {
       return result;
     }
     return false;
+  }
+  Future<BuiltList<Badge>?> getBadges() async{
+    final account = await _apiService.getAccount();
+    return account.map(
+      success: (data) {
+        return data.data.badges;
+      },
+      failure: (FailureApiResponse<Account> value) {
+        log(value.error.toString());
+        return null;
+      },
+    );
   }
 }
