@@ -31,7 +31,7 @@ class _MainScreenState extends State<MainScreen> {
 
   static final List<Widget> _pages = <Widget>[
     PreventionScreen(),
-    FindDoctorScreen(),
+    const FindDoctorScreen(),
     const AboutHealthScreen(),
   ];
 

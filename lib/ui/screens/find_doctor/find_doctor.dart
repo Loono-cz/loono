@@ -10,31 +10,31 @@ import 'package:loono/repositories/healthcare_repository.dart';
 import 'package:loono/services/map_state_sevice.dart';
 import 'package:loono/ui/widgets/find_doctor/bottom_sheet_overlay.dart';
 import 'package:loono/ui/widgets/find_doctor/doctor_detail_sheet.dart';
+import 'package:loono/ui/widgets/find_doctor/main_search_text_field.dart';
 import 'package:loono/ui/widgets/find_doctor/map_preview.dart';
-import 'package:loono/ui/widgets/find_doctor/search_text_field.dart';
 import 'package:loono/utils/map_utils.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:provider/provider.dart';
 
 class FindDoctorScreen extends StatefulWidget {
-  FindDoctorScreen({
+  const FindDoctorScreen({
     Key? key,
     this.cancelRouteName,
   }) : super(key: key);
 
   final PageRouteInfo? cancelRouteName;
-  final Completer<GoogleMapController> mapController = Completer<GoogleMapController>();
-  final healthcareProviderRepository = registry.get<HealthcareProviderRepository>();
 
   @override
   State<FindDoctorScreen> createState() => _FindDoctorScreenState();
 }
 
 class _FindDoctorScreenState extends State<FindDoctorScreen> {
-  bool _isHealthCareProvidersInMapService = false;
+  final _mapController = Completer<GoogleMapController>();
   final _sheetController = DraggableScrollableController();
 
-  //final mapStateService = MapStateService();
+  final healthcareProviderRepository = registry.get<HealthcareProviderRepository>();
+
+  bool _isHealthCareProvidersInMapService = false;
 
   Future<void> _setHealthcareProviders(MapStateService mapStateService) async {
     final healthcareProviders =
@@ -67,8 +67,8 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
           : null,
       body: SafeArea(
         child: StreamBuilder<HealtCareSyncState>(
-          stream: widget.healthcareProviderRepository.healtcareProvidersStream,
-          initialData: widget.healthcareProviderRepository.lastStreamValue,
+          stream: healthcareProviderRepository.healtcareProvidersStream,
+          initialData: healthcareProviderRepository.lastStreamValue,
           builder: (context, snapshot) {
             if (snapshot.data == HealtCareSyncState.completed &&
                 !_isHealthCareProvidersInMapService) {
@@ -78,21 +78,26 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
               value: mapStateService,
               child: Stack(
                 children: [
-                  MapPreview(mapController: widget.mapController),
+                  MapPreview(mapController: _mapController),
                   if (_isHealthCareProvidersInMapService)
                     SearchTextField(
-                      onItemTap: (searchResult) async => animateToPos(
-                        widget.mapController,
-                        cameraPosition: CameraPosition(
-                          target: LatLng(searchResult.data.lat, searchResult.data.lng),
-                          zoom: searchResult.zoomLevel,
-                        ),
-                      ),
+                      onItemTap: (searchResult) async {
+                        final provider = searchResult.data;
+                        if (provider == null) return;
+                        await animateToPos(
+                          _mapController,
+                          cameraPosition: CameraPosition(
+                            target: LatLng(provider.lat, provider.lng),
+                            zoom: searchResult.zoomLevel,
+                          ),
+                        );
+                        _sheetController.jumpTo(MapVariables.MIN_SHEET_SIZE);
+                      },
                     ),
                   if (_isHealthCareProvidersInMapService)
                     MapSheetOverlay(
                       onItemTap: (healthcareProvider) async => animateToPos(
-                        widget.mapController,
+                        _mapController,
                         cameraPosition: CameraPosition(
                           target: LatLng(healthcareProvider.lat, healthcareProvider.lng),
                           zoom: MapVariables.DOCTOR_DETAIL_ZOOM,

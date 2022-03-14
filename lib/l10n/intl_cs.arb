@@ -817,5 +817,9 @@
   "doctor_no_contact": "Lékař nevyplnil kontakt.",
   "@doctor_no_contact": {},
   "doctor_contact_error": "Nepovedlo se načíst kontakt.",
-  "@doctor_contact_error": {}
+  "@doctor_contact_error": {},
+  "find_doctor_search_hint": "Zadej adresu, nebo odbornost lékaře",
+  "@find_doctor_search_hint": {},
+  "find_doctor_search_search_history_title": "poslední hledání",
+  "@find_doctor_search_search_history_title": {}
 }
