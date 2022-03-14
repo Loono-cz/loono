@@ -13,6 +13,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
@@ -30,6 +31,7 @@ import 'package:loono/services/firebase_storage_service.dart';
 import 'package:loono/services/notification_service.dart';
 import 'package:loono/services/save_directories.dart';
 import 'package:loono/utils/app_config.dart';
+import 'package:loono/utils/picture_precaching.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -189,4 +191,11 @@ Future<void> setup({
   // utils
   registry.registerLazySingleton<ImagePicker>(() => ImagePicker());
   registry.registerLazySingleton<DefaultCacheManager>(() => DefaultCacheManager());
+
+  // picture caching
+  await precacheImagesFromList(welcomeSplashes);
+
+  // splash screen
+  final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 }
