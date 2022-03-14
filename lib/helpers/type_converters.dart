@@ -153,7 +153,7 @@ class SearchHistoryDbConverter extends TypeConverter<List<SearchResult>, String>
   List<SearchResult>? mapToDart(String? fromDb) {
     if (fromDb == null) return null;
     final list = (json.decode(fromDb) as Iterable<dynamic>).map(
-          (dynamic e) => SearchResult.fromJson(e as Map<String, dynamic>),
+      (dynamic e) => SearchResult.fromJson(e as Map<String, dynamic>),
     );
     return list.toList();
   }
@@ -165,7 +165,8 @@ class SearchHistoryDbConverter extends TypeConverter<List<SearchResult>, String>
   }
 }
 
-class SimpleHealthcareProviderListConverter extends TypeConverter<List<SimpleHealthcareProvider>, String> {
+class SimpleHealthcareProviderListConverter
+    extends TypeConverter<List<SimpleHealthcareProvider>, String> {
   const SimpleHealthcareProviderListConverter();
 
   @override
