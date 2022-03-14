@@ -1,6 +1,7 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:drift/drift.dart';
 import 'package:loono/helpers/type_converters.dart';
+import 'package:loono/models/search_result.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/utils/memoized_stream.dart';
 import 'package:loono_api/loono_api.dart';
@@ -33,7 +34,7 @@ class Users extends Table {
   DateTimeColumn get latestMapUpdate => dateTime().nullable()();
 
   TextColumn get searchHistory => text().map(const SearchHistoryDbConverter()).withDefault(
-        Constant(const SearchHistoryDbConverter().mapToSql(<SimpleHealthcareProvider>[])!),
+        Constant(const SearchHistoryDbConverter().mapToSql(<SearchResult>[])!),
       )();
 
   IntColumn get points => integer().withDefault(const Constant(0))();

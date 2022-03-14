@@ -5,6 +5,8 @@ import 'package:drift/drift.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:loono/helpers/date_without_day.dart';
+import 'package:loono/helpers/search_helpers.dart';
+import 'package:loono/models/search_result.dart';
 import 'package:loono/services/api_service.dart';
 import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/database_service.dart';
@@ -182,7 +184,8 @@ class UserRepository {
     return false;
   }
 
-  Future<void> addSearchHistoryItem(SimpleHealthcareProvider item) async {
+  Future<void> addSearchHistoryItem(SearchResult item) async {
+    if (item.data == null) return;
     final currHistory = _db.users.user?.searchHistory;
     if (currHistory == null) return;
     final updatedHistory = List.of(currHistory);
@@ -192,8 +195,15 @@ class UserRepository {
     } else {
       updatedHistory.insert(0, item);
     }
-    if (updatedHistory.length > 15) {
-      updatedHistory.removeRange(11, updatedHistory.length);
+
+    // take max 3 specializations & put them at the beginning
+    final specializations = List.of(updatedHistory).where(isSpecialization).take(3);
+    updatedHistory
+      ..removeWhere(isSpecialization)
+      ..insertAll(0, specializations);
+
+    if (updatedHistory.length > 20) {
+      updatedHistory.removeRange(14, updatedHistory.length);
     }
     await updateCurrentUser(UsersCompanion(searchHistory: Value(updatedHistory)));
   }

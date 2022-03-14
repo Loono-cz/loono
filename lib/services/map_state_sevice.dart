@@ -18,25 +18,25 @@ class MapStateService with ChangeNotifier {
 
   final List<SimpleHealthcareProvider> _allHealthcareProviders = <SimpleHealthcareProvider>[];
 
-  /// Currently selected or visible healthcare providers.
   final List<SimpleHealthcareProvider> _currHealthcareProviders = <SimpleHealthcareProvider>[];
 
   final Set<Marker> _markers = <Marker>{};
 
   SimpleHealthcareProvider? doctorDetail;
 
-  SearchResult? currentSpecialization;
+  SearchResult? currSpecialization;
 
   LatLngBounds? visibleRegion;
 
   List<SearchResult> searchResults = <SearchResult>[];
 
-  Iterable<SearchResult> get specializationSearchResults =>
-      List.of(searchResults.where((e) => e.searchType == SearchType.specialization));
-
   List<SimpleHealthcareProvider> get allHealthcareProviders => _allHealthcareProviders;
 
-  List<SimpleHealthcareProvider> get currHealthcareProviders => currentSpecialization != null
+  /// Currently selected or visible healthcare providers.
+  ///
+  /// If [currSpecialization] is not null it displays only providers with the currently selected
+  /// specialization.
+  List<SimpleHealthcareProvider> get currHealthcareProviders => currSpecialization != null
       ? _currHealthcareProviders.where(_hasSpecialization).toList()
       : _currHealthcareProviders;
 
@@ -84,16 +84,16 @@ class MapStateService with ChangeNotifier {
         uniqueCitiesMap[healthcareProvider.city] = healthcareProvider;
       }
 
-      final specialization = healthcareProvider.specialization;
-      final isSpecializationMatching = query.length < 3 || specialization == null
-          ? false
-          : removeDiacritics(specialization.toLowerCase()).contains(normalizedQuery);
-      if (isSpecializationMatching) {
-        final spec = specialization!
-            .substring(removeDiacritics(specialization.toLowerCase()).indexOf(normalizedQuery));
-        final hasMultipleSpecializations = spec.contains(',');
-        final singleSpec = hasMultipleSpecializations ? spec.substring(0, spec.indexOf(',')) : spec;
-        uniqueSpecializationsMap[singleSpec] = healthcareProvider;
+      bool matchesQuery(String specialization) =>
+          removeDiacritics(specialization).toLowerCase().contains(normalizedQuery);
+      final specializations = healthcareProvider.category;
+      final hasSpecializationMatch =
+          specializations.isNotEmpty ? specializations.any(matchesQuery) : false;
+      if (hasSpecializationMatch) {
+        final matchedSpecs = specializations.where(matchesQuery);
+        for (final spec in matchedSpecs) {
+          uniqueSpecializationsMap[spec] = healthcareProvider;
+        }
       }
 
       final isAddressMatching = healthcareProvider.street == null
@@ -125,9 +125,9 @@ class MapStateService with ChangeNotifier {
     );
 
     final results = [
+      ...specializations,
       ...cities,
       ...addresses,
-      ...specializations,
     ];
     searchResults.replaceRange(0, searchResults.length, results);
     notifyListeners();
@@ -159,7 +159,7 @@ class MapStateService with ChangeNotifier {
   }
 
   void setSpecialization(SearchResult? searchResult) {
-    currentSpecialization = searchResult;
+    currSpecialization = searchResult;
     if (searchResult == null) {
       clusterManager.setItems(allHealthcareProviders.map((e) => HealthcareItemPlace(e)).toList());
     } else {
@@ -174,9 +174,8 @@ class MapStateService with ChangeNotifier {
   }
 
   bool _hasSpecialization(SimpleHealthcareProvider provider) {
-    if (currentSpecialization == null) return false;
-    if (currentSpecialization!.overriddenText == null) return false;
-    return provider.specialization != null &&
-        provider.specialization!.contains(currentSpecialization!.overriddenText!);
+    if (currSpecialization == null) return false;
+    if (provider.category.isEmpty) return false;
+    return provider.category.any((e) => e.contains(currSpecialization!.text));
   }
 }

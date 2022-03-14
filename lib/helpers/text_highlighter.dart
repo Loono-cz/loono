@@ -12,12 +12,12 @@ class TextHighlighter {
   static List<TextHighlighter> parse(
     String input, {
     required String highlightPattern,
-    bool isInputNormalized = false,
+    bool shouldNormalize = false,
   }) {
     final numMatch = RegExp(
-      highlightPattern,
-      caseSensitive: !isInputNormalized,
-    ).firstMatch(isInputNormalized ? removeDiacritics(input) : input);
+      shouldNormalize ? removeDiacritics(highlightPattern).toLowerCase() : highlightPattern,
+      caseSensitive: !shouldNormalize,
+    ).firstMatch(shouldNormalize ? removeDiacritics(input).toLowerCase() : input);
     if (numMatch == null) {
       return [TextHighlighter(text: input)];
     }

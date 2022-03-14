@@ -17,7 +17,7 @@ class User extends DataClass implements Insertable<User> {
   final String? defaultDeviceCalendarId;
   final DateTime? latestMapUpdateCheck;
   final DateTime? latestMapUpdate;
-  final List<SimpleHealthcareProvider> searchHistory;
+  final List<SearchResult> searchHistory;
   final int points;
   final BuiltList<Badge> badges;
   User(
@@ -152,8 +152,8 @@ class User extends DataClass implements Insertable<User> {
       latestMapUpdateCheck:
           serializer.fromJson<DateTime?>(json['latestMapUpdateCheck']),
       latestMapUpdate: serializer.fromJson<DateTime?>(json['latestMapUpdate']),
-      searchHistory: serializer
-          .fromJson<List<SimpleHealthcareProvider>>(json['searchHistory']),
+      searchHistory:
+          serializer.fromJson<List<SearchResult>>(json['searchHistory']),
       points: serializer.fromJson<int>(json['points']),
       badges: serializer.fromJson<BuiltList<Badge>>(json['badges']),
     );
@@ -173,8 +173,7 @@ class User extends DataClass implements Insertable<User> {
       'latestMapUpdateCheck':
           serializer.toJson<DateTime?>(latestMapUpdateCheck),
       'latestMapUpdate': serializer.toJson<DateTime?>(latestMapUpdate),
-      'searchHistory':
-          serializer.toJson<List<SimpleHealthcareProvider>>(searchHistory),
+      'searchHistory': serializer.toJson<List<SearchResult>>(searchHistory),
       'points': serializer.toJson<int>(points),
       'badges': serializer.toJson<BuiltList<Badge>>(badges),
     };
@@ -190,7 +189,7 @@ class User extends DataClass implements Insertable<User> {
           String? defaultDeviceCalendarId,
           DateTime? latestMapUpdateCheck,
           DateTime? latestMapUpdate,
-          List<SimpleHealthcareProvider>? searchHistory,
+          List<SearchResult>? searchHistory,
           int? points,
           BuiltList<Badge>? badges}) =>
       User(
@@ -269,7 +268,7 @@ class UsersCompanion extends UpdateCompanion<User> {
   final Value<String?> defaultDeviceCalendarId;
   final Value<DateTime?> latestMapUpdateCheck;
   final Value<DateTime?> latestMapUpdate;
-  final Value<List<SimpleHealthcareProvider>> searchHistory;
+  final Value<List<SearchResult>> searchHistory;
   final Value<int> points;
   final Value<BuiltList<Badge>> badges;
   const UsersCompanion({
@@ -310,7 +309,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     Expression<String?>? defaultDeviceCalendarId,
     Expression<DateTime?>? latestMapUpdateCheck,
     Expression<DateTime?>? latestMapUpdate,
-    Expression<List<SimpleHealthcareProvider>>? searchHistory,
+    Expression<List<SearchResult>>? searchHistory,
     Expression<int>? points,
     Expression<BuiltList<Badge>>? badges,
   }) {
@@ -342,7 +341,7 @@ class UsersCompanion extends UpdateCompanion<User> {
       Value<String?>? defaultDeviceCalendarId,
       Value<DateTime?>? latestMapUpdateCheck,
       Value<DateTime?>? latestMapUpdate,
-      Value<List<SimpleHealthcareProvider>>? searchHistory,
+      Value<List<SearchResult>>? searchHistory,
       Value<int>? points,
       Value<BuiltList<Badge>>? badges}) {
     return UsersCompanion(
@@ -494,14 +493,14 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   final VerificationMeta _searchHistoryMeta =
       const VerificationMeta('searchHistory');
   @override
-  late final GeneratedColumnWithTypeConverter<List<SimpleHealthcareProvider>,
-      String?> searchHistory = GeneratedColumn<String?>(
-          'search_history', aliasedName, false,
-          type: const StringType(),
-          requiredDuringInsert: false,
-          defaultValue: Constant(const SearchHistoryDbConverter()
-              .mapToSql(<SimpleHealthcareProvider>[])!))
-      .withConverter<List<SimpleHealthcareProvider>>($UsersTable.$converter2);
+  late final GeneratedColumnWithTypeConverter<List<SearchResult>, String?>
+      searchHistory = GeneratedColumn<String?>(
+              'search_history', aliasedName, false,
+              type: const StringType(),
+              requiredDuringInsert: false,
+              defaultValue: Constant(
+                  const SearchHistoryDbConverter().mapToSql(<SearchResult>[])!))
+          .withConverter<List<SearchResult>>($UsersTable.$converter2);
   final VerificationMeta _pointsMeta = const VerificationMeta('points');
   @override
   late final GeneratedColumn<int?> points = GeneratedColumn<int?>(
@@ -605,7 +604,7 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   static TypeConverter<Sex, String> $converter0 = const SexDbConverter();
   static TypeConverter<DateWithoutDay, String> $converter1 =
       const DateOfBirthDbConverter();
-  static TypeConverter<List<SimpleHealthcareProvider>, String> $converter2 =
+  static TypeConverter<List<SearchResult>, String> $converter2 =
       const SearchHistoryDbConverter();
   static TypeConverter<BuiltList<Badge>, String> $converter3 =
       const BadgeListDbConverter();

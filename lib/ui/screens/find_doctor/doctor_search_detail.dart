@@ -4,11 +4,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/search_helpers.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:loono/models/search_result.dart';
 import 'package:loono/services/map_state_sevice.dart';
 import 'package:loono/ui/widgets/find_doctor/search_detail_search_history_list.dart';
-import 'package:loono/ui/widgets/find_doctor/search_result_list_item.dart';
+import 'package:loono/ui/widgets/find_doctor/search_results_list.dart';
 import 'package:loono/ui/widgets/find_doctor/search_text_field_icon.dart';
+import 'package:loono/ui/widgets/scrollbar.dart';
 import 'package:provider/provider.dart';
 
 class DoctorSearchDetailScreen extends StatefulWidget {
@@ -63,10 +63,10 @@ class _DoctorSearchDetailScreenState extends State<DoctorSearchDetailScreen> {
                   fillColor: Colors.white,
                   iconColor: LoonoColors.primaryEnabled,
                   focusColor: LoonoColors.primaryEnabled,
-                  focusedBorder: _customInputDecoration(color: LoonoColors.primaryEnabled),
-                  enabledBorder: _customInputDecoration(color: LoonoColors.primaryEnabled),
-                  prefixIconConstraints: searchIconConstraints,
-                  suffixIconConstraints: searchIconConstraints,
+                  focusedBorder: customSearchInputDecoration(color: LoonoColors.primaryEnabled),
+                  enabledBorder: customSearchInputDecoration(color: LoonoColors.primaryEnabled),
+                  prefixIconConstraints: getSearchIconConstraints(),
+                  suffixIconConstraints: getSearchIconConstraints(),
                   prefixIcon: const SearchTextFieldIcon(),
                   suffixIcon: _isSearchQueryEmpty
                       ? const SizedBox.shrink()
@@ -86,75 +86,21 @@ class _DoctorSearchDetailScreenState extends State<DoctorSearchDetailScreen> {
               ),
             ),
             if (_isSearchQueryEmpty)
-              Expanded(child: SearchHistoryList())
+              Expanded(child: SearchHistoryList(searchQuery: _searchQueryText))
             else
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(4, 20, 28, 0),
-                  child: Theme(
-                    data: Theme.of(context).copyWith(
-                      scrollbarTheme: Theme.of(context).scrollbarTheme.copyWith(
-                            thumbColor: MaterialStateProperty.all(LoonoColors.primaryWashed),
-                            trackColor: MaterialStateProperty.all(LoonoColors.beigeLighter),
-                            trackBorderColor: MaterialStateProperty.all(Colors.transparent),
-                            trackVisibility: MaterialStateProperty.all(true),
-                          ),
-                    ),
-                    child: Column(
-                      children: [
-                        if (_searchQueryText.length > 2 &&
-                            mapState.specializationSearchResults.isNotEmpty)
-                          Flexible(
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(10, 0, 10, 40),
-                              child: Wrap(
-                                spacing: 4,
-                                children: mapState.specializationSearchResults
-                                    .map(
-                                      (specialization) => ActionChip(
-                                        label: Text(specialization.text),
-                                        onPressed: () {
-                                          // TODO: save to history
-                                          mapState.setSpecialization(specialization);
-                                          AutoRouter.of(context).pop();
-                                        },
-                                      ),
-                                    )
-                                    .toList(),
-                              ),
-                            ),
-                          ),
-                        Expanded(
-                          child: Scrollbar(
-                            isAlwaysShown: true,
-                            child: ListView.builder(
-                              itemCount: mapState.searchResults.length,
-                              itemBuilder: (context, index) {
-                                final searchResult = mapState.searchResults[index];
-                                return SearchResultListItem(
-                                  searchResult: searchResult,
-                                  searchQuery: _searchQueryText,
-                                );
-                              },
-                            ),
-                          ),
-                        ),
-                      ],
+                  child: LoonoScrollbar(
+                    child: SearchResultsList(
+                      searchResults: mapState.searchResults,
+                      searchQueryText: _searchQueryText,
                     ),
                   ),
                 ),
               ),
           ],
         ),
-      ),
-    );
-  }
-
-  UnderlineInputBorder _customInputDecoration({required Color color}) {
-    return UnderlineInputBorder(
-      borderSide: BorderSide(
-        color: color,
-        width: 2.0,
       ),
     );
   }

@@ -6,10 +6,12 @@ class SearchTextFieldIcon extends StatelessWidget {
     Key? key,
     this.assetPath = 'assets/icons/find_doctor/search.svg',
     this.padding = const EdgeInsets.only(right: 6),
+    this.iconWidth,
   }) : super(key: key);
 
   final String assetPath;
   final EdgeInsets padding;
+  final double? iconWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class SearchTextFieldIcon extends StatelessWidget {
       padding: padding,
       child: Align(
         alignment: Alignment.bottomCenter,
-        child: SvgPicture.asset(assetPath),
+        child: SvgPicture.asset(assetPath, width: iconWidth),
       ),
     );
   }

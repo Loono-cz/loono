@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:loono/constants.dart';
 import 'package:loono/helpers/search_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/search_result.dart';
@@ -18,8 +19,10 @@ class SearchTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const iconWidth = 24.0;
+    const inputBorder = OutlineInputBorder();
     final specialization =
-        context.select<MapStateService, SearchResult?>((value) => value.currentSpecialization);
+        context.select<MapStateService, SearchResult?>((value) => value.currSpecialization);
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -32,22 +35,37 @@ class SearchTextField extends StatelessWidget {
         },
         autofocus: false,
         readOnly: true,
+        textAlignVertical: TextAlignVertical.bottom,
         decoration: InputDecoration(
-          border: const OutlineInputBorder(),
+          border: customSearchInputDecoration(
+            color: LoonoColors.primaryEnabled,
+            inputBorder: inputBorder,
+          ),
           fillColor: Colors.white,
           filled: true,
+          iconColor: LoonoColors.primaryEnabled,
+          focusColor: LoonoColors.primaryEnabled,
+          focusedBorder: customSearchInputDecoration(
+            color: LoonoColors.primaryEnabled,
+            inputBorder: inputBorder,
+          ),
+          enabledBorder: customSearchInputDecoration(
+            color: LoonoColors.primaryEnabled,
+            inputBorder: inputBorder,
+          ),
           hintText: specialization == null
               ? context.l10n.find_doctor_search_hint
               : specialization.overriddenText ?? '',
-          suffixIconConstraints: searchIconConstraints,
+          suffixIconConstraints: getSearchIconConstraints(iconSize: iconWidth),
+          prefixIconConstraints: getSearchIconConstraints(iconSize: iconWidth),
+          prefixIcon: const SearchTextFieldIcon(),
           suffixIcon: specialization == null
               ? null
               : GestureDetector(
-                  onTap: () {
-                    context.read<MapStateService>().setSpecialization(null);
-                  },
+                  onTap: () => context.read<MapStateService>().setSpecialization(null),
                   child: const SearchTextFieldIcon(
                     assetPath: 'assets/icons/find_doctor/search_clear.svg',
+                    iconWidth: iconWidth,
                   ),
                 ),
         ),
