@@ -37,10 +37,7 @@ class GamificationIntroductionScreen extends StatelessWidget {
                   children: [
                     const SizedBox(height: 24),
                     Text(
-                      '${sex == Sex.MALE
-                          ? context.l10n.gamification_introduction_header_male
-                          : context.l10n.gamification_introduction_header_female} ${user?.nickname
-                          ?? (sex?.getNicknameHintLabel(context)) ?? ''}',
+                      '${sex == Sex.MALE ? context.l10n.gamification_introduction_header_male : context.l10n.gamification_introduction_header_female} ${user?.nickname ?? (sex?.getNicknameHintLabel(context)) ?? ''}',
                       textAlign: TextAlign.center,
                       style: LoonoFonts.headerFontStyle,
                     ),
@@ -76,7 +73,7 @@ class GamificationIntroductionScreen extends StatelessWidget {
                               child: LoonoButton(
                                 text: context.l10n.gamification_introduction_button,
                                 onTap: () => AutoRouter.of(context).replaceAll(
-                                    [const MainScreenRouter()],
+                                  [const MainScreenRouter()],
                                 ),
                               ),
                             ),
@@ -96,7 +93,8 @@ class GamificationIntroductionScreen extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 18),
                         child: LoonoButton(
                           text: context.l10n.gamification_introduction_button,
-                          onTap: () => AutoRouter.of(context).replaceAll([const MainScreenRouter()]),
+                          onTap: () =>
+                              AutoRouter.of(context).replaceAll([const MainScreenRouter()]),
                         ),
                       ),
                       const Spacer(flex: 2),
