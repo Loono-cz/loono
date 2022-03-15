@@ -374,7 +374,6 @@ class ExaminationDetail extends StatelessWidget {
         ExaminationBadges(
           examinationType: _examinationType,
           categorizedExamination: categorizedExamination,
-          badges: _getBadges,
         ),
         const SizedBox(
           height: 40,

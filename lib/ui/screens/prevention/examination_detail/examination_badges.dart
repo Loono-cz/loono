@@ -5,6 +5,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
+import 'package:loono/repositories/user_repository.dart';
+import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
 class ExaminationBadges extends StatelessWidget {
@@ -12,12 +14,10 @@ class ExaminationBadges extends StatelessWidget {
     Key? key,
     required this.examinationType,
     required this.categorizedExamination,
-    required this.badges,
   }) : super(key: key);
 
   final ExaminationType examinationType;
   final CategorizedExamination categorizedExamination;
-  final Future<BuiltList<Badge>?> badges;
 
   bool get isPlannedDate => categorizedExamination.examination.plannedDate != null;
 
@@ -48,7 +48,7 @@ class ExaminationBadges extends StatelessWidget {
       case 'GLOVES':
         return 'rukavice';
       case 'HEADBAND':
-        return 'čelenka';
+        return 'čelenku';
       case 'GLASSES':
         return 'brýle';
       case 'SHIELD':
@@ -59,6 +59,68 @@ class ExaminationBadges extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool _showGreenBadge(Badge? data, int index) {
+      final recommendedIntervalTransferToDate = DateTime(
+        actualDate.year,
+        actualDate.month - recommendedIntervalInMonthsMinusTwoMonths,
+        actualDate.day,
+      );
+
+      /**
+          if (isLastConfirmedDateOlder < 0)
+          "is older than";
+          else if (isLastConfirmedDateOlder == 0)
+          "is the same time as";
+          else
+          "is newer (not older) than";
+       */
+      final isLastConfirmedDateOlder =
+          lastConfirmedDate.compareTo(recommendedIntervalTransferToDate);
+
+      if (categorizedExamination.examination.state.name == 'CONFIRMED' &&
+          !isPlannedDate &&
+          ((isLastConfirmedDateOlder == 1) || (isLastConfirmedDateOlder == 0)) &&
+          index + 1 == data?.level) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    bool _showRedBadge(Badge? data, [int? index]) {
+      final recommendedIntervalTransferToDateMinusTwoMonths = DateTime(
+        actualDate.year,
+        actualDate.month - recommendedIntervalInMonthsMinusTwoMonths,
+        actualDate.day,
+      );
+      final isLastConfirmedDateOlderMinusTwoMonths =
+          lastConfirmedDate.compareTo(recommendedIntervalTransferToDateMinusTwoMonths);
+      final recommendedIntervalTransferToDate =
+          DateTime(actualDate.year, actualDate.month - recommendedIntervalInMonths, actualDate.day);
+      final isLastConfirmedDateOlder =
+          lastConfirmedDate.compareTo(recommendedIntervalTransferToDate);
+      if (!isPlannedDate &&
+          isLastConfirmedDateOlderMinusTwoMonths < 0 &&
+          isLastConfirmedDateOlder > 0 &&
+          ((index == null) || (index + 1 == data?.level))) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    bool _showPointsText(Badge? data) {
+      final comparedDateMinusRecommendedInterval =
+          DateTime(actualDate.year, actualDate.month - recommendedIntervalInMonths, actualDate.day);
+      final isLastConfirmedDateOlder =
+          lastConfirmedDate.compareTo(comparedDateMinusRecommendedInterval);
+      if (isPlannedDate || isLastConfirmedDateOlder == 1) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
     return Padding(
       padding: const EdgeInsets.only(left: 18.0, right: 18.0),
       child: Container(
@@ -68,9 +130,13 @@ class ExaminationBadges extends StatelessWidget {
           ),
           color: LoonoColors.greenLight,
         ),
-        child: FutureBuilder<Badge?>(
-          future: _currentBadge(),
+        child: FutureBuilder<BuiltList<Badge>?>(
+          // future: _currentBadge(),
+          future: registry.get<UserRepository>().getBadges(),
           builder: (context, snapshot) {
+            final badge = snapshot.data?.firstWhere(
+              (element) => element.type.name == categorizedExamination.examination.badge.name,
+            );
             return Column(
               children: [
                 const SizedBox(
@@ -103,7 +169,7 @@ class ExaminationBadges extends StatelessWidget {
                             child: Column(
                               children: [
                                 b.Badge(
-                                  showBadge: _showRedBadge(snapshot.data, index),
+                                  showBadge: _showRedBadge(badge, index),
                                   badgeColor: LoonoColors.red,
                                   position: b.BadgePosition.topStart(top: -10, start: 27),
                                   padding: const EdgeInsets.all(4),
@@ -118,7 +184,7 @@ class ExaminationBadges extends StatelessWidget {
                                         radius: 35,
                                         backgroundColor: Colors.white,
                                         child: b.Badge(
-                                          showBadge: _showGreenBadge(snapshot.data, index),
+                                          showBadge: _showGreenBadge(badge, index),
                                           badgeColor: LoonoColors.green,
                                           padding: const EdgeInsets.all(4),
                                           badgeContent: const Icon(
@@ -129,16 +195,16 @@ class ExaminationBadges extends StatelessWidget {
                                           position: b.BadgePosition.bottomEnd(bottom: -8, end: -24),
                                           child: Image.asset(
                                             'assets/badges_examination/${examinationType.toString().toLowerCase()}'
-                                            '/level_${snapshot.data?.type.name == categorizedExamination.examination.badge.name && snapshot.data!.level >= index + 1 ? '${index + 1}.png' : '${index + 1}_disabled.png'}',
+                                            '/level_${badge?.type.name == categorizedExamination.examination.badge.name && badge!.level >= index + 1 ? '${index + 1}.png' : '${index + 1}_disabled.png'}',
                                           ),
                                         ),
                                       ),
-                                      if (_showRedBadge(snapshot.data, index))
+                                      if (_showRedBadge(badge, index))
                                         SvgPicture.asset('assets/icons/ellipse.svg'),
                                     ],
                                   ),
                                 ),
-                                if (snapshot.data != null && snapshot.data!.level >= index + 1)
+                                if (snapshot.data != null && badge!.level >= index + 1)
                                   Padding(
                                     padding: const EdgeInsets.only(top: 6.0),
                                     child: Row(
@@ -170,7 +236,7 @@ class ExaminationBadges extends StatelessWidget {
                     ),
                   ),
                 ),
-                if (_showRedBadge(snapshot.data))
+                if (_showRedBadge(badge))
                   Padding(
                     padding: const EdgeInsets.only(left: 18.0, bottom: 20),
                     child: Column(
@@ -203,9 +269,9 @@ class ExaminationBadges extends StatelessWidget {
                       ],
                     ),
                   ),
-                if (_showPointsText(snapshot.data))
+                if (_showPointsText(badge))
                   Padding(
-                    padding: const EdgeInsets.only(left: 18.0, bottom: 20),
+                    padding: const EdgeInsets.only(left: 10.0, bottom: 20),
                     child: Column(
                       children: [
                         Padding(
@@ -259,78 +325,5 @@ class ExaminationBadges extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Future<Badge?> _currentBadge() async {
-    return badges.then(
-      (value) {
-        for (final element in value!) {
-          if (element.type.name == categorizedExamination.examination.badge.name) {
-            return element;
-          }
-        }
-        return null;
-      },
-    );
-  }
-
-  bool _showGreenBadge(Badge? data, int index) {
-    final recommendedIntervalTransferToDate = DateTime(
-      actualDate.year,
-      actualDate.month - recommendedIntervalInMonthsMinusTwoMonths,
-      actualDate.day,
-    );
-
-    /**
-        if (isLastConfirmedDateOlder < 0)
-        "is older than";
-        else if (isLastConfirmedDateOlder == 0)
-        "is the same time as";
-        else
-        "is newer (not older) than";
-     */
-    final isLastConfirmedDateOlder = lastConfirmedDate.compareTo(recommendedIntervalTransferToDate);
-
-    if (categorizedExamination.examination.state.name == 'CONFIRMED' &&
-        !isPlannedDate &&
-        ((isLastConfirmedDateOlder == 1) || (isLastConfirmedDateOlder == 0)) &&
-        index + 1 == data?.level) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  bool _showRedBadge(Badge? data, [int? index]) {
-    final recommendedIntervalTransferToDateMinusTwoMonths = DateTime(
-      actualDate.year,
-      actualDate.month - recommendedIntervalInMonthsMinusTwoMonths,
-      actualDate.day,
-    );
-    final isLastConfirmedDateOlderMinusTwoMonths =
-        lastConfirmedDate.compareTo(recommendedIntervalTransferToDateMinusTwoMonths);
-    final recommendedIntervalTransferToDate =
-        DateTime(actualDate.year, actualDate.month - recommendedIntervalInMonths, actualDate.day);
-    final isLastConfirmedDateOlder = lastConfirmedDate.compareTo(recommendedIntervalTransferToDate);
-    if (!isPlannedDate &&
-        isLastConfirmedDateOlderMinusTwoMonths < 0 &&
-        isLastConfirmedDateOlder > 0 &&
-        ((index == null) || (index + 1 == data?.level))) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  bool _showPointsText(Badge? data) {
-    final comparedDateMinusRecommendedInterval =
-        DateTime(actualDate.year, actualDate.month - recommendedIntervalInMonths, actualDate.day);
-    final isLastConfirmedDateOlder =
-        lastConfirmedDate.compareTo(comparedDateMinusRecommendedInterval);
-    if (isPlannedDate || isLastConfirmedDateOlder == 1) {
-      return true;
-    } else {
-      return false;
-    }
   }
 }
