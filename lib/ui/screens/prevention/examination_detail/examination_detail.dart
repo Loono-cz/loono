@@ -11,7 +11,6 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/repositories/examination_repository.dart';
-import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/calendar_service.dart';
 import 'package:loono/services/database_service.dart';
@@ -42,7 +41,6 @@ class ExaminationDetail extends StatelessWidget {
   final _calendarService = registry.get<CalendarService>();
   final _calendarEventsDao = registry.get<DatabaseService>().calendarEvents;
   final _usersDao = registry.get<DatabaseService>().users;
-  final _getBadges = registry.get<UserRepository>().getBadges();
 
   final CategorizedExamination categorizedExamination;
 
