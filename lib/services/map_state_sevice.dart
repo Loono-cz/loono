@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:diacritic/diacritic.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_cluster_manager/google_maps_cluster_manager.dart';
@@ -17,22 +18,27 @@ class MapStateService with ChangeNotifier {
 
   final List<SimpleHealthcareProvider> _allHealthcareProviders = <SimpleHealthcareProvider>[];
 
-  /// Currently selected or visible healthcare providers.
   final List<SimpleHealthcareProvider> _currHealthcareProviders = <SimpleHealthcareProvider>[];
 
   final Set<Marker> _markers = <Marker>{};
 
   SimpleHealthcareProvider? doctorDetail;
 
+  SearchResult? currSpecialization;
+
   LatLngBounds? visibleRegion;
 
   List<SearchResult> searchResults = <SearchResult>[];
 
-  bool isInSearchResult = false;
-
   List<SimpleHealthcareProvider> get allHealthcareProviders => _allHealthcareProviders;
 
-  List<SimpleHealthcareProvider> get currHealthcareProviders => _currHealthcareProviders;
+  /// Currently selected or visible healthcare providers.
+  ///
+  /// If [currSpecialization] is not null it displays only providers with the currently selected
+  /// specialization.
+  List<SimpleHealthcareProvider> get currHealthcareProviders => currSpecialization != null
+      ? _currHealthcareProviders.where(_hasSpecialization).toList()
+      : _currHealthcareProviders;
 
   Set<Marker> get markers => _markers;
 
@@ -65,35 +71,61 @@ class MapStateService with ChangeNotifier {
   }
 
   void search(String query) {
+    final normalizedQuery = removeDiacritics(query).toLowerCase();
+
     final uniqueCitiesMap = <String, SimpleHealthcareProvider>{};
     final uniqueAddressesMap = <String, SimpleHealthcareProvider>{};
+    final uniqueSpecializationsMap = <String, SimpleHealthcareProvider>{};
 
     for (final healthcareProvider in _allHealthcareProviders) {
-      final isCityMatching = removeDiacritics(healthcareProvider.city.toLowerCase())
-          .contains(removeDiacritics(query).toLowerCase());
+      final isCityMatching =
+          removeDiacritics(healthcareProvider.city.toLowerCase()).contains(normalizedQuery);
       if (isCityMatching) {
         uniqueCitiesMap[healthcareProvider.city] = healthcareProvider;
       }
 
+      bool matchesQuery(String specialization) =>
+          removeDiacritics(specialization).toLowerCase().contains(normalizedQuery);
+      final specializations = healthcareProvider.category;
+      final hasSpecializationMatch =
+          specializations.isNotEmpty ? specializations.any(matchesQuery) : false;
+      if (hasSpecializationMatch) {
+        final matchedSpecs = specializations.where(matchesQuery);
+        for (final spec in matchedSpecs) {
+          uniqueSpecializationsMap[spec] = healthcareProvider;
+        }
+      }
+
       final isAddressMatching = healthcareProvider.street == null
           ? false
-          : removeDiacritics(healthcareProvider.street!.toLowerCase())
-              .contains(removeDiacritics(query).toLowerCase());
+          : removeDiacritics(healthcareProvider.street!.toLowerCase()).contains(normalizedQuery);
       if (isAddressMatching) {
         uniqueAddressesMap['${healthcareProvider.city}-${healthcareProvider.street}'] =
             healthcareProvider;
       }
     }
 
-    final cities =
-        uniqueCitiesMap.values.map((e) => SearchResult(data: e, searchType: SearchType.city));
-    final addresses =
-        uniqueAddressesMap.values.map((e) => SearchResult(data: e, searchType: SearchType.address));
+    final cities = uniqueCitiesMap.values
+        .map((e) => SearchResult(data: e, searchType: SearchType.city))
+        .sorted((a, b) => compareNatural(a.text, b.text));
+    final addresses = uniqueAddressesMap.values
+        .map((e) => SearchResult(data: e, searchType: SearchType.address))
+        .sorted((a, b) => compareNatural(a.text, b.text));
+    final specializations = uniqueSpecializationsMap.entries
+        .map(
+          (entry) => SearchResult(
+            data: entry.value,
+            searchType: SearchType.specialization,
+            overriddenText: entry.key,
+          ),
+        )
+        .sorted((a, b) => compareNatural(a.text, b.text));
     debugPrint(
-      '-------\nSEARCH QUERY: $query\nTITLES: ${uniqueAddressesMap.length}\nCITIES: ${cities.length}',
+      '-------\nSEARCH QUERY: $query\nADDRESSES: ${uniqueAddressesMap.length}\nCITIES: ${cities.length}\nSPECS: ${specializations.length}',
     );
 
     final results = [
+      ...specializations,
       ...cities,
       ...addresses,
     ];
@@ -124,5 +156,26 @@ class MapStateService with ChangeNotifier {
   void setDoctorDetail(SimpleHealthcareProvider? detail) {
     doctorDetail = detail;
     notifyListeners();
+  }
+
+  void setSpecialization(SearchResult? searchResult) {
+    currSpecialization = searchResult;
+    if (searchResult == null) {
+      clusterManager.setItems(allHealthcareProviders.map((e) => HealthcareItemPlace(e)).toList());
+    } else {
+      clusterManager.setItems(
+        allHealthcareProviders
+            .where(_hasSpecialization)
+            .map((e) => HealthcareItemPlace(e))
+            .toList(),
+      );
+    }
+    notifyListeners();
+  }
+
+  bool _hasSpecialization(SimpleHealthcareProvider provider) {
+    if (currSpecialization == null) return false;
+    if (provider.category.isEmpty) return false;
+    return provider.category.any((e) => e.contains(currSpecialization!.text));
   }
 }

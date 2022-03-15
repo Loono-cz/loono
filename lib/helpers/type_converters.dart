@@ -5,6 +5,7 @@ import 'package:built_value/serializer.dart';
 import 'package:drift/drift.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:loono/helpers/date_without_day.dart';
+import 'package:loono/models/search_result.dart';
 import 'package:loono_api/loono_api.dart'
     show
         Badge,
@@ -130,8 +131,43 @@ class BadgeListDbConverter extends TypeConverter<BuiltList<Badge>, String> {
   }
 }
 
-class SearchHistoryDbConverter extends TypeConverter<List<SimpleHealthcareProvider>, String> {
+class SimpleHealthcareProviderJsonConverter
+    implements JsonConverter<SimpleHealthcareProvider?, String> {
+  const SimpleHealthcareProviderJsonConverter();
+
+  @override
+  SimpleHealthcareProvider? fromJson(String json) {
+    return standardSerializers.fromJson(SimpleHealthcareProvider.serializer, json);
+  }
+
+  @override
+  String toJson(SimpleHealthcareProvider? object) {
+    return standardSerializers.toJson(SimpleHealthcareProvider.serializer, object);
+  }
+}
+
+class SearchHistoryDbConverter extends TypeConverter<List<SearchResult>, String> {
   const SearchHistoryDbConverter();
+
+  @override
+  List<SearchResult>? mapToDart(String? fromDb) {
+    if (fromDb == null) return null;
+    final list = (json.decode(fromDb) as Iterable<dynamic>).map(
+      (dynamic e) => SearchResult.fromJson(e as Map<String, dynamic>),
+    );
+    return list.toList();
+  }
+
+  @override
+  String? mapToSql(List<SearchResult>? value) {
+    if (value == null) return null;
+    return jsonEncode(value.map((e) => e.toJson()).toList()).toString();
+  }
+}
+
+class SimpleHealthcareProviderListConverter
+    extends TypeConverter<List<SimpleHealthcareProvider>, String> {
+  const SimpleHealthcareProviderListConverter();
 
   @override
   List<SimpleHealthcareProvider>? mapToDart(String? fromDb) {

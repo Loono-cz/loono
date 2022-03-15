@@ -6,6 +6,7 @@ import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/helpers/type_converters.dart';
 import 'package:loono/models/calendar_event.dart';
 import 'package:loono/models/examination_questionnaire.dart';
+import 'package:loono/models/search_result.dart';
 import 'package:loono/models/user.dart';
 import 'package:loono_api/loono_api.dart';
 

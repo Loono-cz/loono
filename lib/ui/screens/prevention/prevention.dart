@@ -10,32 +10,39 @@ class PreventionScreen extends StatelessWidget {
   final ValueNotifier<double?> extentFromTop = ValueNotifier<double?>(null);
 
   void convertExtent(double? extent) {
-    WidgetsBinding.instance?.addPostFrameCallback((_) => extentFromTop.value = extent);
+    Future.delayed(Duration.zero, () async {
+      extentFromTop.value = extent;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Stack(
-          children: [
-            ValueListenableBuilder(
-              valueListenable: extentFromTop,
-              builder: (context, double? value, child) {
-                if (value != null) {
-                  return AvatarBubbleArrow(
-                    extent: value,
-                  );
-                }
-                return const SizedBox();
-              },
-            ),
-            const ProfileButton(),
-            const BadgeComposer(),
-            ExaminationsSheetOverlay(
-              convertExtent: convertExtent,
-            ),
-          ],
+        child: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            return Stack(
+              children: [
+                const BadgeComposer(),
+                ValueListenableBuilder(
+                  valueListenable: extentFromTop,
+                  builder: (context, double? value, child) {
+                    if (value != null) {
+                      return AvatarBubbleArrow(
+                        extent: value,
+                        height: constraints.maxHeight,
+                      );
+                    }
+                    return const SizedBox();
+                  },
+                ),
+                ExaminationsSheetOverlay(
+                  convertExtent: convertExtent,
+                ),
+                const ProfileButton(),
+              ],
+            );
+          },
         ),
       ),
     );

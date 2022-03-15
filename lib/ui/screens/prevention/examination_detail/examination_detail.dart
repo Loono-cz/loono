@@ -84,7 +84,7 @@ class ExaminationDetail extends StatelessWidget {
         ? DateFormat.yMMMM('cs-CZ').format(
             DateTime(lastVisitDateWithoutDay.year, lastVisitDateWithoutDay.month),
           )
-        : context.l10n.never;
+        : context.l10n.skip_idk;
 
     final practitioner =
         procedureQuestionTitle(context, examinationType: _examinationType).toLowerCase();

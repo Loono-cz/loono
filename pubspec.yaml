@@ -96,7 +96,7 @@ dev_dependencies:
   google_sign_in_platform_interface: ^2.1.2
   integration_test:
     sdk: flutter
-  json_serializable: ^6.1.4
+  json_serializable: ^6.1.5
 
 flutter:
   uses-material-design: true
@@ -107,6 +107,7 @@ flutter:
     - assets/.env
     - assets/icons/
     - assets/icons/tabs/
+    - assets/icons/find_doctor/
     - assets/icons/prevention/
     - assets/icons/prevention/doctors/
     - assets/icons/prevention/findings/
