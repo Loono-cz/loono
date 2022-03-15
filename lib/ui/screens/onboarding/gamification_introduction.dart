@@ -82,7 +82,7 @@ class GamificationIntroductionScreen extends StatelessWidget {
                         ),
                       )
                     else ...[
-                      const BadgeComposer(topPadding: 0),
+                      const BadgeComposer(topPadding: 0, showDescription: true),
                       const SizedBox(height: 10),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 18),

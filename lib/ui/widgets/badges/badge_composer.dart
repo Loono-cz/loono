@@ -11,9 +11,11 @@ import 'package:loono_api/loono_api.dart';
 class BadgeComposer extends StatefulWidget {
   const BadgeComposer({
     Key? key,
+    this.showDescription = false,
     this.topPadding = 40,
   }) : super(key: key);
 
+  final bool showDescription;
   final double topPadding;
 
   @override
@@ -35,6 +37,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 SvgPicture.asset(
                   'assets/badges/goggles-${sex == Sex.MALE ? 'man' : 'woman'}/level_$level.svg',
                 ),
+                if (widget.showDescription)
                 Positioned(
                   top: 50,
                   left: (MediaQuery.of(context).size.width / 2) - 150,
@@ -73,6 +76,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 SvgPicture.asset(
                   'assets/badges/headband/level_$level.svg',
                 ),
+                if (widget.showDescription)
                 Positioned(
                   top: 30,
                   left: (MediaQuery.of(context).size.width / 2) + 30,
@@ -111,6 +115,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 SvgPicture.asset(
                   'assets/badges/boots/level_$level.svg',
                 ),
+                if (widget.showDescription)
                 Positioned(
                   left: (MediaQuery.of(context).size.width / 2) - 170,
                   top: 260,
@@ -149,6 +154,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 SvgPicture.asset(
                   'assets/badges/belt-${sex == Sex.MALE ? 'man' : 'woman'}/level_$level.svg',
                 ),
+                if (widget.showDescription)
                 Positioned(
                   left: (MediaQuery.of(context).size.width / 2) + 40,
                   child: Column(
@@ -188,6 +194,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 SvgPicture.asset(
                   'assets/badges/armour-woman/level_$level.svg',
                 ),
+                if (widget.showDescription)
                 Positioned(
                   top: 90,
                   left: (MediaQuery.of(context).size.width / 2) - 160,
@@ -226,6 +233,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 SvgPicture.asset(
                   'assets/badges/cloak/level_$level.svg',
                 ),
+                if (widget.showDescription)
                 Positioned(
                   top: 240,
                   left: (MediaQuery.of(context).size.width / 2) + 30,
@@ -275,6 +283,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 SvgPicture.asset(
                   'assets/badges/gloves-${sex == Sex.MALE ? 'man' : 'woman'}/level_$level.svg',
                 ),
+                if (widget.showDescription)
                 Positioned(
                   top: 180,
                   left: (MediaQuery.of(context).size.width / 2) + 40,
@@ -317,6 +326,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 SvgPicture.asset(
                   'assets/badges/shield/level_$level.svg',
                 ),
+                if (widget.showDescription)
                 Positioned(
                   top: 210,
                   left: (MediaQuery.of(context).size.width / 2) - 180,
