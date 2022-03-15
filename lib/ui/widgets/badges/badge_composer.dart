@@ -38,28 +38,28 @@ class _BadgeComposerState extends State<BadgeComposer> {
                   'assets/badges/goggles-${sex == Sex.MALE ? 'man' : 'woman'}/level_$level.svg',
                 ),
                 if (widget.showDescription)
-                Positioned(
-                  top: 50,
-                  left: (MediaQuery.of(context).size.width / 2) - 150,
-                  child: Column(
-                    children: [
-                      Container(
-                        constraints: const BoxConstraints(maxWidth: 110),
-                        padding: const EdgeInsets.only(right: 10),
-                        child: Text(
-                          context.l10n.badge_googles_desc.toUpperCase(),
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
+                  Positioned(
+                    top: 50,
+                    left: (MediaQuery.of(context).size.width / 2) - 150,
+                    child: Column(
+                      children: [
+                        Container(
+                          constraints: const BoxConstraints(maxWidth: 110),
+                          padding: const EdgeInsets.only(right: 10),
+                          child: Text(
+                            context.l10n.badge_googles_desc.toUpperCase(),
+                            style: const TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
                         ),
-                      ),
-                      SvgPicture.asset(
-                        'assets/badges/lines/googles_line.svg',
-                      )
-                    ],
+                        SvgPicture.asset(
+                          'assets/badges/lines/googles_line.svg',
+                        )
+                      ],
+                    ),
                   ),
-                ),
               ],
             ),
           )
@@ -77,28 +77,28 @@ class _BadgeComposerState extends State<BadgeComposer> {
                   'assets/badges/headband/level_$level.svg',
                 ),
                 if (widget.showDescription)
-                Positioned(
-                  top: 30,
-                  left: (MediaQuery.of(context).size.width / 2) + 30,
-                  child: Column(
-                    children: [
-                      Container(
-                        constraints: const BoxConstraints(maxWidth: 120),
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Text(
-                          context.l10n.badge_headband_desc.toUpperCase(),
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
+                  Positioned(
+                    top: 30,
+                    left: (MediaQuery.of(context).size.width / 2) + 30,
+                    child: Column(
+                      children: [
+                        Container(
+                          constraints: const BoxConstraints(maxWidth: 120),
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Text(
+                            context.l10n.badge_headband_desc.toUpperCase(),
+                            style: const TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
                         ),
-                      ),
-                      SvgPicture.asset(
-                        'assets/badges/lines/headband_line.svg',
-                      )
-                    ],
+                        SvgPicture.asset(
+                          'assets/badges/lines/headband_line.svg',
+                        )
+                      ],
+                    ),
                   ),
-                ),
               ],
             ),
           )
@@ -116,28 +116,28 @@ class _BadgeComposerState extends State<BadgeComposer> {
                   'assets/badges/boots/level_$level.svg',
                 ),
                 if (widget.showDescription)
-                Positioned(
-                  left: (MediaQuery.of(context).size.width / 2) - 170,
-                  top: 260,
-                  child: Column(
-                    children: [
-                      Container(
-                        constraints: const BoxConstraints(maxWidth: 130),
-                        padding: const EdgeInsets.only(right: 10),
-                        child: Text(
-                          context.l10n.badge_boots_desc.toUpperCase(),
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
+                  Positioned(
+                    left: (MediaQuery.of(context).size.width / 2) - 170,
+                    top: 260,
+                    child: Column(
+                      children: [
+                        Container(
+                          constraints: const BoxConstraints(maxWidth: 130),
+                          padding: const EdgeInsets.only(right: 10),
+                          child: Text(
+                            context.l10n.badge_boots_desc.toUpperCase(),
+                            style: const TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
                         ),
-                      ),
-                      SvgPicture.asset(
-                        'assets/badges/lines/boots_line.svg',
-                      )
-                    ],
+                        SvgPicture.asset(
+                          'assets/badges/lines/boots_line.svg',
+                        )
+                      ],
+                    ),
                   ),
-                ),
               ],
             ),
           )
@@ -155,29 +155,29 @@ class _BadgeComposerState extends State<BadgeComposer> {
                   'assets/badges/belt-${sex == Sex.MALE ? 'man' : 'woman'}/level_$level.svg',
                 ),
                 if (widget.showDescription)
-                Positioned(
-                  left: (MediaQuery.of(context).size.width / 2) + 40,
-                  child: Column(
-                    children: [
-                      Container(
-                        constraints: const BoxConstraints(maxWidth: 100),
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Text(
-                          sex == Sex.FEMALE
-                              ? context.l10n.badge_belt_female_desc.toUpperCase()
-                              : context.l10n.badge_belt_male_desc.toUpperCase(),
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
+                  Positioned(
+                    left: (MediaQuery.of(context).size.width / 2) + 40,
+                    child: Column(
+                      children: [
+                        Container(
+                          constraints: const BoxConstraints(maxWidth: 100),
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Text(
+                            sex == Sex.FEMALE
+                                ? context.l10n.badge_belt_female_desc.toUpperCase()
+                                : context.l10n.badge_belt_male_desc.toUpperCase(),
+                            style: const TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
                         ),
-                      ),
-                      SvgPicture.asset(
-                        'assets/badges/lines/belt_line.svg',
-                      )
-                    ],
+                        SvgPicture.asset(
+                          'assets/badges/lines/belt_line.svg',
+                        )
+                      ],
+                    ),
                   ),
-                ),
               ],
             ),
           )
@@ -195,28 +195,28 @@ class _BadgeComposerState extends State<BadgeComposer> {
                   'assets/badges/armour-woman/level_$level.svg',
                 ),
                 if (widget.showDescription)
-                Positioned(
-                  top: 90,
-                  left: (MediaQuery.of(context).size.width / 2) - 160,
-                  child: Column(
-                    children: [
-                      Container(
-                        constraints: const BoxConstraints(maxWidth: 130),
-                        padding: const EdgeInsets.only(right: 10),
-                        child: Text(
-                          context.l10n.badge_buckle_desc.toUpperCase(),
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
+                  Positioned(
+                    top: 90,
+                    left: (MediaQuery.of(context).size.width / 2) - 160,
+                    child: Column(
+                      children: [
+                        Container(
+                          constraints: const BoxConstraints(maxWidth: 130),
+                          padding: const EdgeInsets.only(right: 10),
+                          child: Text(
+                            context.l10n.badge_buckle_desc.toUpperCase(),
+                            style: const TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
                         ),
-                      ),
-                      SvgPicture.asset(
-                        'assets/badges/lines/buckle_line.svg',
-                      )
-                    ],
+                        SvgPicture.asset(
+                          'assets/badges/lines/buckle_line.svg',
+                        )
+                      ],
+                    ),
                   ),
-                ),
               ],
             ),
           )
@@ -234,28 +234,28 @@ class _BadgeComposerState extends State<BadgeComposer> {
                   'assets/badges/cloak/level_$level.svg',
                 ),
                 if (widget.showDescription)
-                Positioned(
-                  top: 240,
-                  left: (MediaQuery.of(context).size.width / 2) + 30,
-                  child: Stack(
-                    children: [
-                      Container(
-                        constraints: const BoxConstraints(maxWidth: 150),
-                        padding: const EdgeInsets.only(left: 20),
-                        child: Text(
-                          context.l10n.badge_cloak_desc.toUpperCase(),
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
+                  Positioned(
+                    top: 240,
+                    left: (MediaQuery.of(context).size.width / 2) + 30,
+                    child: Stack(
+                      children: [
+                        Container(
+                          constraints: const BoxConstraints(maxWidth: 150),
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Text(
+                            context.l10n.badge_cloak_desc.toUpperCase(),
+                            style: const TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
                         ),
-                      ),
-                      SvgPicture.asset(
-                        'assets/badges/lines/cloak_line.svg',
-                      )
-                    ],
+                        SvgPicture.asset(
+                          'assets/badges/lines/cloak_line.svg',
+                        )
+                      ],
+                    ),
                   ),
-                ),
               ],
             ),
           )
@@ -284,32 +284,32 @@ class _BadgeComposerState extends State<BadgeComposer> {
                   'assets/badges/gloves-${sex == Sex.MALE ? 'man' : 'woman'}/level_$level.svg',
                 ),
                 if (widget.showDescription)
-                Positioned(
-                  top: 180,
-                  left: (MediaQuery.of(context).size.width / 2) + 40,
-                  child: Stack(
-                    children: [
-                      Container(
-                        constraints: const BoxConstraints(maxWidth: 120),
-                        height: 35,
-                        padding: const EdgeInsets.only(left: 20),
-                        child: Text(
-                          context.l10n.badge_gloves_desc.toUpperCase(),
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
+                  Positioned(
+                    top: 180,
+                    left: (MediaQuery.of(context).size.width / 2) + 40,
+                    child: Stack(
+                      children: [
+                        Container(
+                          constraints: const BoxConstraints(maxWidth: 120),
+                          height: 35,
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Text(
+                            context.l10n.badge_gloves_desc.toUpperCase(),
+                            style: const TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
                         ),
-                      ),
-                      Positioned(
-                        top: 20,
-                        child: SvgPicture.asset(
-                          'assets/badges/lines/gloves_line.svg',
-                        ),
-                      )
-                    ],
+                        Positioned(
+                          top: 20,
+                          child: SvgPicture.asset(
+                            'assets/badges/lines/gloves_line.svg',
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
               ],
             ),
           )
@@ -327,32 +327,32 @@ class _BadgeComposerState extends State<BadgeComposer> {
                   'assets/badges/shield/level_$level.svg',
                 ),
                 if (widget.showDescription)
-                Positioned(
-                  top: 210,
-                  left: (MediaQuery.of(context).size.width / 2) - 180,
-                  child: Stack(
-                    children: [
-                      Container(
-                        constraints: const BoxConstraints(maxWidth: 120),
-                        height: 35,
-                        padding: const EdgeInsets.only(right: 10),
-                        child: Text(
-                          context.l10n.badge_shield_desc.toUpperCase(),
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
+                  Positioned(
+                    top: 210,
+                    left: (MediaQuery.of(context).size.width / 2) - 180,
+                    child: Stack(
+                      children: [
+                        Container(
+                          constraints: const BoxConstraints(maxWidth: 120),
+                          height: 35,
+                          padding: const EdgeInsets.only(right: 10),
+                          child: Text(
+                            context.l10n.badge_shield_desc.toUpperCase(),
+                            style: const TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
                         ),
-                      ),
-                      Positioned(
-                        top: 20,
-                        child: SvgPicture.asset(
-                          'assets/badges/lines/shield_line.svg',
-                        ),
-                      )
-                    ],
+                        Positioned(
+                          top: 20,
+                          child: SvgPicture.asset(
+                            'assets/badges/lines/shield_line.svg',
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
               ],
             ),
           )
