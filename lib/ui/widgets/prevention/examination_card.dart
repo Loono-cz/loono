@@ -185,7 +185,7 @@ class ExaminationCard extends StatelessWidget {
   }
 
   Widget dateRow() {
-    final formattedDate = DateFormat('d. M. yyyy hh:mm', 'cs-CZ')
+    final formattedDate = DateFormat('d. M. yyyy HH:mm', 'cs-CZ')
         .format(categorizedExamination.examination.plannedDate!.toLocal());
 
     return Row(
