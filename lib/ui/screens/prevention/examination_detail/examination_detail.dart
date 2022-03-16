@@ -16,6 +16,7 @@ import 'package:loono/services/calendar_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/examinations_service.dart';
+import 'package:loono/ui/screens/prevention/examination_detail/examination_badges.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/faq_section.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/prevention/calendar_permission_sheet.dart';
@@ -367,6 +368,10 @@ class ExaminationDetail extends StatelessWidget {
               ]
             ],
           ),
+        ),
+        ExaminationBadges(
+          examinationType: _examinationType,
+          categorizedExamination: categorizedExamination,
         ),
         const SizedBox(
           height: 40,
