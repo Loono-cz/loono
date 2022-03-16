@@ -57,70 +57,68 @@ class ExaminationBadges extends StatelessWidget {
     return badgeEN;
   }
 
+  bool _showGreenBadge(Badge? data, int index) {
+    final recommendedIntervalTransferToDate = DateTime(
+      actualDate.year,
+      actualDate.month - recommendedIntervalInMonthsMinusTwoMonths,
+      actualDate.day,
+    );
+
+    /**
+        if (isLastConfirmedDateOlder < 0)
+        "is older than";
+        else if (isLastConfirmedDateOlder == 0)
+        "is the same time as";
+        else
+        "is newer (not older) than";
+     */
+    final isLastConfirmedDateOlder = lastConfirmedDate.compareTo(recommendedIntervalTransferToDate);
+
+    if (categorizedExamination.examination.state.name == 'CONFIRMED' &&
+        !isPlannedDate &&
+        ((isLastConfirmedDateOlder == 1) || (isLastConfirmedDateOlder == 0)) &&
+        index + 1 == data?.level) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool _showRedBadge(Badge? data, [int? index]) {
+    final recommendedIntervalTransferToDateMinusTwoMonths = DateTime(
+      actualDate.year,
+      actualDate.month - recommendedIntervalInMonthsMinusTwoMonths,
+      actualDate.day,
+    );
+    final isLastConfirmedDateOlderMinusTwoMonths =
+        lastConfirmedDate.compareTo(recommendedIntervalTransferToDateMinusTwoMonths);
+    final recommendedIntervalTransferToDate =
+        DateTime(actualDate.year, actualDate.month - recommendedIntervalInMonths, actualDate.day);
+    final isLastConfirmedDateOlder = lastConfirmedDate.compareTo(recommendedIntervalTransferToDate);
+    if (!isPlannedDate &&
+        isLastConfirmedDateOlderMinusTwoMonths < 0 &&
+        isLastConfirmedDateOlder > 0 &&
+        ((index == null) || (index + 1 == data?.level))) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool _showPointsText(Badge? data) {
+    final comparedDateMinusRecommendedInterval =
+        DateTime(actualDate.year, actualDate.month - recommendedIntervalInMonths, actualDate.day);
+    final isLastConfirmedDateOlder =
+        lastConfirmedDate.compareTo(comparedDateMinusRecommendedInterval);
+    if (isPlannedDate || isLastConfirmedDateOlder == 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    bool _showGreenBadge(Badge? data, int index) {
-      final recommendedIntervalTransferToDate = DateTime(
-        actualDate.year,
-        actualDate.month - recommendedIntervalInMonthsMinusTwoMonths,
-        actualDate.day,
-      );
-
-      /**
-          if (isLastConfirmedDateOlder < 0)
-          "is older than";
-          else if (isLastConfirmedDateOlder == 0)
-          "is the same time as";
-          else
-          "is newer (not older) than";
-       */
-      final isLastConfirmedDateOlder =
-          lastConfirmedDate.compareTo(recommendedIntervalTransferToDate);
-
-      if (categorizedExamination.examination.state.name == 'CONFIRMED' &&
-          !isPlannedDate &&
-          ((isLastConfirmedDateOlder == 1) || (isLastConfirmedDateOlder == 0)) &&
-          index + 1 == data?.level) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-
-    bool _showRedBadge(Badge? data, [int? index]) {
-      final recommendedIntervalTransferToDateMinusTwoMonths = DateTime(
-        actualDate.year,
-        actualDate.month - recommendedIntervalInMonthsMinusTwoMonths,
-        actualDate.day,
-      );
-      final isLastConfirmedDateOlderMinusTwoMonths =
-          lastConfirmedDate.compareTo(recommendedIntervalTransferToDateMinusTwoMonths);
-      final recommendedIntervalTransferToDate =
-          DateTime(actualDate.year, actualDate.month - recommendedIntervalInMonths, actualDate.day);
-      final isLastConfirmedDateOlder =
-          lastConfirmedDate.compareTo(recommendedIntervalTransferToDate);
-      if (!isPlannedDate &&
-          isLastConfirmedDateOlderMinusTwoMonths < 0 &&
-          isLastConfirmedDateOlder > 0 &&
-          ((index == null) || (index + 1 == data?.level))) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-
-    bool _showPointsText(Badge? data) {
-      final comparedDateMinusRecommendedInterval =
-          DateTime(actualDate.year, actualDate.month - recommendedIntervalInMonths, actualDate.day);
-      final isLastConfirmedDateOlder =
-          lastConfirmedDate.compareTo(comparedDateMinusRecommendedInterval);
-      if (isPlannedDate || isLastConfirmedDateOlder == 1) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-
     return Padding(
       padding: const EdgeInsets.only(left: 18.0, right: 18.0),
       child: Container(
@@ -131,7 +129,6 @@ class ExaminationBadges extends StatelessWidget {
           color: LoonoColors.greenLight,
         ),
         child: FutureBuilder<BuiltList<Badge>?>(
-          // future: _currentBadge(),
           future: registry.get<UserRepository>().getBadges(),
           builder: (context, snapshot) {
             final badge = snapshot.data?.firstWhere(
