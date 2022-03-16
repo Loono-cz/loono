@@ -45,7 +45,7 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
     );
   }
 
-  final formattedDate = DateFormat('d. MMMM yyyy, hh:mm', 'cs-CZ')
+  final formattedDate = DateFormat('d. MMMM yyyy, HH:mm', 'cs-CZ')
       .format(examination.examination.plannedDate!.toLocal());
 
   showCupertinoModalPopup<void>(
