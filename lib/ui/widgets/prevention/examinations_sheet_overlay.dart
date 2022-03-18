@@ -38,16 +38,19 @@ class ExaminationsSheetOverlay extends StatelessWidget {
             if (examinationsProvider.loading && examinationsProvider.examinations == null) {
               return const Center(child: CircularProgressIndicator());
             } else if (examinationsProvider.examinations == null) {
-              return Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Text('žádné záznamy'),
-                    TextButton(
-                      onPressed: examinationsProvider.fetchExaminations,
-                      child: const Text('zkusit znovu'),
-                    ),
-                  ],
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 60),
+                child: Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Text('žádné záznamy'),
+                      TextButton(
+                        onPressed: examinationsProvider.fetchExaminations,
+                        child: const Text('zkusit znovu'),
+                      ),
+                    ],
+                  ),
                 ),
               );
             }
