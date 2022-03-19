@@ -29,10 +29,11 @@ class UpdateProfileItem extends StatefulWidget {
 }
 
 class _UpdateProfileItemState extends State<UpdateProfileItem> with TickerProviderStateMixin {
+  AnimationController? _popUpAnimController;
   PersistentBottomSheetController? sheetController;
 
   void showPopup() {
-    final controller =
+    _popUpAnimController =
         AnimationController(duration: const Duration(milliseconds: 200), vsync: this);
     final screenHeight = MediaQuery.of(context).size.height;
     showDialog<void>(
@@ -40,13 +41,22 @@ class _UpdateProfileItemState extends State<UpdateProfileItem> with TickerProvid
       barrierColor: Colors.black38,
       useSafeArea: false,
       builder: (_) => PopUp(
-        controller: controller,
+        controller: _popUpAnimController!,
         label: widget.label,
         screenHeight: screenHeight,
         messageText: widget.messageText,
         messageTitle: widget.messageTitle,
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    if (_popUpAnimController != null) {
+      _popUpAnimController!.dispose();
+      _popUpAnimController = null;
+    }
+    super.dispose();
   }
 
   @override
@@ -248,11 +258,5 @@ class PopUpState extends State<PopUp> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    widget.controller.dispose();
-    super.dispose();
   }
 }

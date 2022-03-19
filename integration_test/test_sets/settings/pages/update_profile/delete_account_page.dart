@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/settings/checkbox.dart';
 
-import '../../../test_helpers/widget_tester_extensions.dart';
+import '../../../../test_helpers/widget_tester_extensions.dart';
 
 class DeleteAccountPage {
   DeleteAccountPage(this.tester);
@@ -47,21 +47,22 @@ class DeleteAccountPage {
 
   Future<void> clickDeleteAccountButton() async {
     await tester.tap(deleteAccountBtn);
-    await tester.pumpSettleAndWait(seconds: 2);
+    await tester.pumpAndSettle();
   }
 
   Future<void> cancelDeleteAccountDialog() async {
     await tester.tap(cancelBtnDeleteAccountDialog);
-    await tester.pumpSettleAndWait(seconds: 2);
+    await tester.pumpAndSettle();
   }
 
   Future<void> confirmDeleteAccountDialog() async {
     await tester.tap(yesBtnDeleteAccountDialog);
-    await tester.pumpSettleAndWait(seconds: 5);
+    await tester.pumpAndSettle();
+    await tester.pumpUntilNotVisible(yesBtnDeleteAccountDialog);
   }
 
   Future<void> clickCloseScreenButton() async {
     await tester.tap(closeScreenBtn);
-    await tester.pumpSettleAndWait(seconds: 2);
+    await tester.pumpAndSettle();
   }
 }
