@@ -59,6 +59,7 @@ class _DoctorSearchDetailScreenState extends State<DoctorSearchDetailScreen> {
                     mapState.search(input);
                   }
                 },
+                cursorColor: LoonoColors.black,
                 decoration: InputDecoration(
                   fillColor: Colors.white,
                   iconColor: LoonoColors.primaryEnabled,

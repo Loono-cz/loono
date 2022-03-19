@@ -29,7 +29,19 @@ class LeaderboardTile extends StatelessWidget {
               child: DefaultLoonoCircleAvatar(radius: 27),
             ),
           const SizedBox(width: 10.0),
-          Text(user.name),
+          Flexible(child: Text(user.name)),
+          if (user.isThisMe == true) ...[
+            const SizedBox(width: 10.0),
+            Container(
+              key: const Key('leaderboardPage_leaderboardTile_isThisMeCircle'),
+              width: 10,
+              height: 10,
+              decoration: const BoxDecoration(
+                color: LoonoColors.primaryEnabled,
+                shape: BoxShape.circle,
+              ),
+            ),
+          ],
         ],
       ),
       trailing: Text(

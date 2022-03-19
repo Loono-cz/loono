@@ -1,6 +1,7 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/ui/widgets/custom_navigation_bar.dart';
 
 Flushbar noConnectionFlushbar() {
   return Flushbar<dynamic>(
@@ -16,8 +17,8 @@ Flushbar noConnectionFlushbar() {
     message: 'Prosím zkontroluj své připojení k síti',
     backgroundColor: LoonoColors.red,
     flushbarStyle: FlushbarStyle.FLOATING,
-    flushbarPosition: FlushbarPosition.TOP,
+    flushbarPosition: FlushbarPosition.BOTTOM,
     borderRadius: BorderRadius.circular(12),
-    margin: const EdgeInsets.all(8.0),
+    margin: const EdgeInsets.fromLTRB(8, 8, 8, BOTTOM_NAV_BAR_HEIGHT + 10),
   );
 }
