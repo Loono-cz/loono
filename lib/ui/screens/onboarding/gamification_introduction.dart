@@ -61,7 +61,7 @@ class GamificationIntroductionScreen extends StatelessWidget {
                         child: ListView(
                           shrinkWrap: true,
                           children: [
-                            const BadgeComposer(topPadding: 0),
+                            const BadgeComposer(),
                             const SizedBox(height: 10),
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 18),
@@ -82,7 +82,7 @@ class GamificationIntroductionScreen extends StatelessWidget {
                         ),
                       )
                     else ...[
-                      const BadgeComposer(topPadding: 0, showDescription: true),
+                      const BadgeComposer(),
                       const SizedBox(height: 10),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 18),

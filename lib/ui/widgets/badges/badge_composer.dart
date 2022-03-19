@@ -11,12 +11,10 @@ import 'package:loono_api/loono_api.dart';
 class BadgeComposer extends StatefulWidget {
   const BadgeComposer({
     Key? key,
-    this.showDescription = false,
-    this.topPadding = 40,
+    this.showDescription = true,
   }) : super(key: key);
 
   final bool showDescription;
-  final double topPadding;
 
   @override
   _BadgeComposerState createState() => _BadgeComposerState();
@@ -364,56 +362,48 @@ class _BadgeComposerState extends State<BadgeComposer> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            SizedBox(
-              height: widget.topPadding,
-            ),
-            StreamBuilder<User?>(
-              stream: _usersDao.watchUser(),
-              builder: (context, snapshot) {
-                final sex = snapshot.data?.sex;
-                final badges = snapshot.data?.badges ?? BuiltList(<Badge>[]);
+        StreamBuilder<User?>(
+          stream: _usersDao.watchUser(),
+          builder: (context, snapshot) {
+            final sex = snapshot.data?.sex;
+            final badges = snapshot.data?.badges ?? BuiltList(<Badge>[]);
 
-                int _levelOf(BadgeType type) {
-                  final level = badges.firstWhereOrNull((e) => e.type == type)?.level;
-                  if (level != null && level > supportedBadgeLevels) {
-                    debugPrint(
-                      '⚠️ debug hint: app currently supports only $supportedBadgeLevels levels of badge assets ⚠️',
-                    );
-                  }
-                  return level?.clamp(0, supportedBadgeLevels) ?? 0;
-                }
-
-                return SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: 300,
-                  child: sex != null
-                      ? Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            _getCloak(_levelOf(BadgeType.COAT)),
-                            SvgPicture.asset(
-                              sex == Sex.MALE
-                                  ? 'assets/badges/body/man.svg'
-                                  : 'assets/badges/body/woman.svg',
-                            ),
-                            _getHeadband(_levelOf(BadgeType.HEADBAND)),
-                            _getGoogles(sex, _levelOf(BadgeType.GLASSES)),
-                            _getBoots(_levelOf(BadgeType.SHOES)),
-                            if (sex == Sex.FEMALE) _getArmour(_levelOf(BadgeType.TOP)),
-                            _getBelt(sex, _levelOf(BadgeType.BELT)),
-                            _getCloakBuckle(_levelOf(BadgeType.COAT)),
-                            _getGloves(sex, _levelOf(BadgeType.GLOVES)),
-                            _getShield(_levelOf(BadgeType.SHIELD)),
-                          ],
-                        )
-                      : const SizedBox(),
+            int _levelOf(BadgeType type) {
+              final level = badges.firstWhereOrNull((e) => e.type == type)?.level;
+              if (level != null && level > supportedBadgeLevels) {
+                debugPrint(
+                  '⚠️ debug hint: app currently supports only $supportedBadgeLevels levels of badge assets ⚠️',
                 );
-              },
-            ),
-          ],
+              }
+              return level?.clamp(0, supportedBadgeLevels) ?? 0;
+            }
+
+            return SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: 300,
+              child: sex != null
+                  ? Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        _getCloak(_levelOf(BadgeType.COAT)),
+                        SvgPicture.asset(
+                          sex == Sex.MALE
+                              ? 'assets/badges/body/man.svg'
+                              : 'assets/badges/body/woman.svg',
+                        ),
+                        _getHeadband(_levelOf(BadgeType.HEADBAND)),
+                        _getGoogles(sex, _levelOf(BadgeType.GLASSES)),
+                        _getBoots(_levelOf(BadgeType.SHOES)),
+                        if (sex == Sex.FEMALE) _getArmour(_levelOf(BadgeType.TOP)),
+                        _getBelt(sex, _levelOf(BadgeType.BELT)),
+                        _getCloakBuckle(_levelOf(BadgeType.COAT)),
+                        _getGloves(sex, _levelOf(BadgeType.GLOVES)),
+                        _getShield(_levelOf(BadgeType.SHIELD)),
+                      ],
+                    )
+                  : const SizedBox(),
+            );
+          },
         ),
       ],
     );
