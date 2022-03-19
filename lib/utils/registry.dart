@@ -117,7 +117,7 @@ Future<void> setup({
         handler.next(options..disableRetry = isDisableRetryUrl);
       },
       onError: (e, handler) async {
-        log(e.response.toString(), name: "Error message");
+        log(e.response.toString(), name: 'Error message');
         if (e.response?.statusCode == 401) {
           await registry.get<AuthService>().signOut();
         }

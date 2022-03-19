@@ -47,7 +47,7 @@ class PreventiveExaminationDatePickerScreen extends StatelessWidget {
                 child: CustomDatePicker(
                   valueChanged: onDateChanged,
                   yearsBeforeActual: DateTime.now().year - 1900,
-                  yearsOverActual: 2,
+                  yearsOverActual: 0,
                 ),
               ),
               const Spacer(),

@@ -1,12 +1,15 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/helpers/achievement_helpers.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
+import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -36,8 +39,25 @@ class ScheduleExamination extends StatelessWidget {
     return user?.sex ?? Sex.MALE;
   }
 
+  void _navigateToDetail(BuildContext context, ExaminationsProvider provider) {
+    final exam = provider.examinations?.examinations.firstWhereOrNull(
+      (item) => item.examinationType == _examinationType,
+    );
+    if (exam != null) {
+      AutoRouter.of(context).navigate(
+        ExaminationDetailRoute(
+          categorizedExamination: CategorizedExamination(
+            examination: exam,
+            category: exam.calculateStatus(),
+          ),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final _examinationsProvider = Provider.of<ExaminationsProvider>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.only(top: 18, left: 18, right: 18),
       child: Column(
@@ -79,23 +99,21 @@ class ScheduleExamination extends StatelessWidget {
                                     final response =
                                         await registry.get<ExaminationRepository>().postExamination(
                                               _examinationType,
-                                              uuid: examinationRecord.uuid,
                                               firstExam: true,
                                               status: ExaminationStatus.UNKNOWN,
-                                              newDate: date,
                                             );
                                     response.map(
                                       success: (res) {
-                                        Provider.of<ExaminationsProvider>(context, listen: false)
-                                            .updateExaminationsRecord(res.data);
+                                        _examinationsProvider.updateExaminationsRecord(res.data);
                                         registry.get<UserRepository>().sync();
                                         _appRouter.navigate(const MainScreenRouter());
+                                        _navigateToDetail(context, _examinationsProvider);
                                       },
                                       failure: (err) {
                                         _appRouter.navigate(const MainScreenRouter());
                                         showSnackBarError(
                                           context,
-                                          message: context.l10n.something_went_wrong,
+                                          message: err.error.response.toString(),
                                         );
                                       },
                                     );
@@ -105,10 +123,9 @@ class ScheduleExamination extends StatelessWidget {
                                     final response =
                                         await registry.get<ExaminationRepository>().postExamination(
                                               _examinationType,
-                                              uuid: examinationRecord.uuid,
                                               firstExam: true,
-                                              status: ExaminationStatus.CONFIRMED,
                                               newDate: pickedDate,
+                                              status: ExaminationStatus.UNKNOWN,
                                             );
                                     response.map(
                                       success: (res) {
@@ -116,6 +133,7 @@ class ScheduleExamination extends StatelessWidget {
                                             .updateExaminationsRecord(res.data);
                                         registry.get<UserRepository>().sync();
                                         _appRouter.navigate(const MainScreenRouter());
+                                        _navigateToDetail(context, _examinationsProvider);
                                         showSnackBarSuccess(
                                           context,
                                           message: context.l10n.checkup_reminder_toast,
@@ -125,7 +143,7 @@ class ScheduleExamination extends StatelessWidget {
                                         _appRouter.navigate(const MainScreenRouter());
                                         showSnackBarError(
                                           context,
-                                          message: context.l10n.something_went_wrong,
+                                          message: err.error.response.toString(),
                                         );
                                       },
                                     );
@@ -143,21 +161,21 @@ class ScheduleExamination extends StatelessWidget {
               nextCallback2: () async {
                 /// code anchor: #postFirstNewExaminationMore
                 final response = await registry.get<ExaminationRepository>().postExamination(
-                      _examinationType,
-                      uuid: examinationRecord.uuid,
+                      examinationRecord.examinationType,
                       firstExam: true,
                       status: ExaminationStatus.UNKNOWN,
-                      newDate: DateTime.now(),
                     );
                 await response.map(
                   success: (res) async {
                     Provider.of<ExaminationsProvider>(context, listen: false)
                         .updateExaminationsRecord(res.data);
+                    await registry.get<UserRepository>().sync();
                     await _appRouter.navigate(const MainScreenRouter());
+                    _navigateToDetail(context, _examinationsProvider);
                   },
-                  failure: (error) async {
+                  failure: (err) async {
                     await _appRouter.pop();
-                    showSnackBarError(context, message: context.l10n.something_went_wrong);
+                    showSnackBarError(context, message: err.error.response.toString());
                   },
                 );
               },
