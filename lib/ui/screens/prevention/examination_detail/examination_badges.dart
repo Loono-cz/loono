@@ -133,7 +133,7 @@ class ExaminationBadges extends StatelessWidget {
           future: registry.get<UserRepository>().getBadges(),
           builder: (context, snapshot) {
             final badge = snapshot.data?.toList().firstWhereOrNull(
-                  (element) => element.type.name == categorizedExamination.examination.badge.name,
+                  (element) => element?.type.name == categorizedExamination.examination.badge.name,
                 );
             return Column(
               children: [

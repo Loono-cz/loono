@@ -64,6 +64,7 @@ void showConfirmationSheet(
                     await _calendar.deleteOnlyDbEvent(examinationType);
                     Provider.of<ExaminationsProvider>(context, listen: false)
                         .updateExaminationsRecord(res.data);
+
                     await AutoRouter.of(context).navigate(
                       AchievementRoute(
                         header: getAchievementTitle(context, examinationType),
@@ -74,9 +75,9 @@ void showConfirmationSheet(
                       ),
                     );
                   },
-                  failure: (error) async {
+                  failure: (err) async {
                     await AutoRouter.of(context).pop();
-                    showSnackBarError(context, message: context.l10n.something_went_wrong);
+                    showSnackBarError(context, message: err.error.response.toString());
                   },
                 );
               },
