@@ -9,7 +9,6 @@ class CheckIsLoggedIn extends AutoRouteGuard {
 
   @override
   Future<void> onNavigation(NavigationResolver resolver, StackRouter router) async {
-    // TODO: separate router so there is SplashScreen while getting current user
     final currAuthUser = await _authService.getCurrentUser();
     if (currAuthUser != null) {
       FlutterNativeSplash.remove();

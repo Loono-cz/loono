@@ -6,6 +6,7 @@ import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/self_examination_category.dart';
+import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/examinations_service.dart';
@@ -38,16 +39,19 @@ class ExaminationsSheetOverlay extends StatelessWidget {
             if (examinationsProvider.loading && examinationsProvider.examinations == null) {
               return const Center(child: CircularProgressIndicator());
             } else if (examinationsProvider.examinations == null) {
-              return Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Text('žádné záznamy'),
-                    TextButton(
-                      onPressed: examinationsProvider.fetchExaminations,
-                      child: const Text('zkusit znovu'),
-                    ),
-                  ],
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 60),
+                child: Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(context.l10n.prevention_retry_no_records),
+                      TextButton(
+                        onPressed: examinationsProvider.fetchExaminations,
+                        child: Text(context.l10n.prevention_retry_try_again),
+                      ),
+                    ],
+                  ),
                 ),
               );
             }

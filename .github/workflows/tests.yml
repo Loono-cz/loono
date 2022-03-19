@@ -5,6 +5,7 @@ on:
 
 env:
   flutter_version: '2.10.1'
+  android_ndk: '21.4.7075529'
 
 jobs:
   android:
@@ -68,6 +69,7 @@ jobs:
           api-level: ${{ matrix.api-level }}
           target: ${{ matrix.target }}
           arch: x86_64
+          ndk: ${{ env.android_ndk }}
           force-avd-creation: false
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
@@ -80,6 +82,7 @@ jobs:
           target: ${{ matrix.target }}
           api-level: ${{ matrix.api-level }}
           arch: x86_64
+          ndk: ${{ env.android_ndk }}
           force-avd-creation: false
           disable-animations: true
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none

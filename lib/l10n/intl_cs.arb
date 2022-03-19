@@ -851,5 +851,9 @@
   "find_doctor_search_hint": "Zadej adresu, nebo odbornost lékaře",
   "@find_doctor_search_hint": {},
   "find_doctor_search_search_history_title": "poslední hledání",
-  "@find_doctor_search_search_history_title": {}
+  "@find_doctor_search_search_history_title": {},
+  "prevention_retry_try_again": "zkusit znovu",
+  "@prevention_retry_try_again": {},
+  "prevention_retry_no_records": "žádné záznamy",
+  "@prevention_retry_no_records": {}
 }

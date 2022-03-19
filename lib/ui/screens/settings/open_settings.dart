@@ -90,7 +90,10 @@ class OpenSettingsScreen extends StatelessWidget {
                       )
                     ],
                   ),
-                  const SizedBox(height: 60.0),
+                  if (LoonoSizes.isScreenSmall(context))
+                    const SizedBox(height: 40.0)
+                  else
+                    const SizedBox(height: 60.0),
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: FutureBuilder<PackageInfo>(

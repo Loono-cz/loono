@@ -1,5 +1,6 @@
 import 'package:badges/badges.dart' as b;
 import 'package:built_collection/built_collection.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
@@ -35,26 +36,26 @@ class ExaminationBadges extends StatelessWidget {
   int get recommendedIntervalInMonthsMinusTwoMonths =>
       categorizedExamination.examination.intervalYears.toInt() * 12 - 2;
 
-  String badgeCZ(String badgeEN) {
-    switch (badgeEN.toUpperCase()) {
-      case 'COAT':
+  String badgeCZ(BadgeType type) {
+    switch (type) {
+      case BadgeType.COAT:
         return 'plášť';
-      case 'TOP':
+      case BadgeType.TOP:
         return 'top';
-      case 'BELT':
+      case BadgeType.BELT:
         return 'opasek';
-      case 'SHOES':
+      case BadgeType.SHOES:
         return 'boty';
-      case 'GLOVES':
+      case BadgeType.GLOVES:
         return 'rukavice';
-      case 'HEADBAND':
+      case BadgeType.HEADBAND:
         return 'čelenku';
-      case 'GLASSES':
+      case BadgeType.GLASSES:
         return 'brýle';
-      case 'SHIELD':
+      case BadgeType.SHIELD:
         return 'štít';
     }
-    return badgeEN;
+    return '';
   }
 
   bool _showGreenBadge(Badge? data, int index) {
@@ -74,7 +75,7 @@ class ExaminationBadges extends StatelessWidget {
      */
     final isLastConfirmedDateOlder = lastConfirmedDate.compareTo(recommendedIntervalTransferToDate);
 
-    if (categorizedExamination.examination.state.name == 'CONFIRMED' &&
+    if (categorizedExamination.examination.state == ExaminationStatus.CONFIRMED &&
         !isPlannedDate &&
         ((isLastConfirmedDateOlder == 1) || (isLastConfirmedDateOlder == 0)) &&
         index + 1 == data?.level) {
@@ -131,9 +132,9 @@ class ExaminationBadges extends StatelessWidget {
         child: FutureBuilder<BuiltList<Badge>?>(
           future: registry.get<UserRepository>().getBadges(),
           builder: (context, snapshot) {
-            final badge = snapshot.data?.firstWhere(
-              (element) => element.type.name == categorizedExamination.examination.badge.name,
-            );
+            final badge = snapshot.data?.toList().firstWhereOrNull(
+                  (element) => element.type.name == categorizedExamination.examination.badge.name,
+                );
             return Column(
               children: [
                 const SizedBox(
@@ -257,7 +258,7 @@ class ExaminationBadges extends StatelessWidget {
                                 style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                               ),
                               Text(
-                                ' ${badgeCZ(categorizedExamination.examination.badge.name)}',
+                                ' ${badgeCZ(categorizedExamination.examination.badge)}',
                                 style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                               ),
                             ],
@@ -286,7 +287,7 @@ class ExaminationBadges extends StatelessWidget {
                           child: Row(
                             children: [
                               Text(
-                                '${badgeCZ(categorizedExamination.examination.badge.name)} ',
+                                '${badgeCZ(categorizedExamination.examination.badge)} ',
                                 style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                               ),
                               Text(

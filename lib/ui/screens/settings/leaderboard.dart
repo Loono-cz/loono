@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/helpers/snackbar_message.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/api_service.dart';
 import 'package:loono/ui/screens/settings/settings_bottom_sheet.dart';
@@ -43,7 +43,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
         },
         failure: (e) {
           setState(() => _fetchState = FetchState.error);
-          showSnackBarError(context, message: context.l10n.something_went_wrong);
+          showFlushBarError(context, context.l10n.something_went_wrong);
         },
       );
     });
@@ -86,7 +86,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
   Widget _getLeaderboardList() {
     switch (_fetchState) {
       case FetchState.loading:
-        return const Center(child: CircularProgressIndicator());
+        return const Center(child: CircularProgressIndicator(color: LoonoColors.primaryEnabled));
       case FetchState.error:
         return const SizedBox.shrink();
       case FetchState.loaded:

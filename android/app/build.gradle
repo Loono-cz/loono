@@ -37,6 +37,7 @@ project.ext.envConfigFiles = [
 
 android {
     compileSdkVersion 31
+    ndkVersion "21.4.7075529"
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -51,6 +52,9 @@ android {
 
 //        "added due to: The number of method references in a .dex file cannot exceed 64k"
         multiDexEnabled true
+        ndk {
+            debugSymbolLevel 'SYMBOL_TABLE'
+        }
     }
 
     signingConfigs {

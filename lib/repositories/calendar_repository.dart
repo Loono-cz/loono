@@ -29,6 +29,10 @@ class CalendarRepository {
     return Event(
       deviceCalendarId,
       eventId: deviceCalendarEventId,
+      reminders: [
+        Reminder(minutes: const Duration(hours: 2).inMinutes),
+        Reminder(minutes: const Duration(hours: 24).inMinutes),
+      ],
       start: tz.TZDateTime.from(startingDate, tz.getLocation(timezone)),
       end: tz.TZDateTime.from(startingDate.add(const Duration(hours: 1)), tz.getLocation(timezone)),
       title: '${examinationType.l10n_name} - preventivní prohlídka [Loono]',
