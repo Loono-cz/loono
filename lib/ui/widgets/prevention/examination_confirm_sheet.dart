@@ -77,7 +77,7 @@ void showConfirmationSheet(
                   },
                   failure: (err) async {
                     await AutoRouter.of(context).pop();
-                    showSnackBarError(context, message: err.error.response.toString());
+                    showSnackBarError(context, message: context.l10n.something_went_wrong);
                   },
                 );
               },

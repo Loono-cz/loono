@@ -106,14 +106,16 @@ class ScheduleExamination extends StatelessWidget {
                                       success: (res) {
                                         _examinationsProvider.updateExaminationsRecord(res.data);
                                         registry.get<UserRepository>().sync();
-                                        _appRouter.navigate(const MainScreenRouter());
+                                        _appRouter.popUntilRouteWithName(
+                                            const MainScreenRouter().routeName);
                                         _navigateToDetail(context, _examinationsProvider);
                                       },
                                       failure: (err) {
-                                        _appRouter.navigate(const MainScreenRouter());
+                                        _appRouter.popUntilRouteWithName(
+                                            const MainScreenRouter().routeName);
                                         showSnackBarError(
                                           context,
-                                          message: err.error.response.toString(),
+                                          message: context.l10n.something_went_wrong,
                                         );
                                       },
                                     );
@@ -132,7 +134,8 @@ class ScheduleExamination extends StatelessWidget {
                                         Provider.of<ExaminationsProvider>(context, listen: false)
                                             .updateExaminationsRecord(res.data);
                                         registry.get<UserRepository>().sync();
-                                        _appRouter.navigate(const MainScreenRouter());
+                                        _appRouter.popUntilRouteWithName(
+                                            const MainScreenRouter().routeName);
                                         _navigateToDetail(context, _examinationsProvider);
                                         showSnackBarSuccess(
                                           context,
@@ -140,10 +143,11 @@ class ScheduleExamination extends StatelessWidget {
                                         );
                                       },
                                       failure: (err) {
-                                        _appRouter.navigate(const MainScreenRouter());
+                                        _appRouter.popUntilRouteWithName(
+                                            const MainScreenRouter().routeName);
                                         showSnackBarError(
                                           context,
-                                          message: err.error.response.toString(),
+                                          message: context.l10n.something_went_wrong,
                                         );
                                       },
                                     );
@@ -169,13 +173,13 @@ class ScheduleExamination extends StatelessWidget {
                   success: (res) async {
                     Provider.of<ExaminationsProvider>(context, listen: false)
                         .updateExaminationsRecord(res.data);
-                    await registry.get<UserRepository>().sync();
-                    await _appRouter.navigate(const MainScreenRouter());
+                    _appRouter.popUntilRouteWithName(const MainScreenRouter().routeName);
                     _navigateToDetail(context, _examinationsProvider);
+                    await registry.get<UserRepository>().sync();
                   },
                   failure: (err) async {
                     await _appRouter.pop();
-                    showSnackBarError(context, message: err.error.response.toString());
+                    showSnackBarError(context, message: context.l10n.something_went_wrong);
                   },
                 );
               },

@@ -36,6 +36,7 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
 
   @override
   void initState() {
+    super.initState();
     widget.valueChanged(
       DateTime(
         timePickerDate.year,
@@ -45,7 +46,6 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
         widget.defaultMinute ?? 0,
       ),
     );
-    super.initState();
   }
 
   @override
