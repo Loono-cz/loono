@@ -5,7 +5,6 @@ import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/custom_date_picker.dart';
 
 import '../../../../test_helpers/common_shared_finders.dart';
-import '../../../../test_helpers/widget_tester_extensions.dart';
 
 class QuestionnaireBirthDatePage {
   QuestionnaireBirthDatePage(this.tester);
@@ -21,12 +20,12 @@ class QuestionnaireBirthDatePage {
   /// Page methods
   Future<void> clickSkipQuestionnaireButton() async {
     await tester.tap(skipQuestionnaireBtn);
-    await tester.pumpSettleAndWait(seconds: 1);
+    await tester.pumpAndSettle();
   }
 
   Future<void> clickContinueButton() async {
     await tester.tap(continueBtn);
-    await tester.pumpSettleAndWait(seconds: 2);
+    await tester.pumpAndSettle();
   }
 
   Future<void> scrollToApproxYear(int year) async {
@@ -46,6 +45,6 @@ class QuestionnaireBirthDatePage {
       if (tester.widgetList(yearFinder).isNotEmpty) break;
       await tester.pump(const Duration(milliseconds: 200));
     }
-    await tester.pumpSettleAndWait(seconds: 2);
+    await tester.pumpAndSettle();
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
@@ -46,7 +47,10 @@ class OpenSettingsScreen extends StatelessWidget {
                       changePage(SettingsPage.edit);
                     },
                   ),
-                  const SizedBox(height: 104.0),
+                  if (LoonoSizes.isScreenSmall(context))
+                    const SizedBox(height: 36.0)
+                  else
+                    const SizedBox(height: 104.0),
                   PointsDisplay(),
                   const SizedBox(height: 12.0),
                   Text(
@@ -57,7 +61,10 @@ class OpenSettingsScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 48.0),
+                  if (LoonoSizes.isScreenSmall(context))
+                    const SizedBox(height: 20.0)
+                  else
+                    const SizedBox(height: 48.0),
                   Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,

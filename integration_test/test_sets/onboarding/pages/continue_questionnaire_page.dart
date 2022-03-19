@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/widgets/button.dart';
 
-import '../../../test_helpers/widget_tester_extensions.dart';
-
 class ContinueQuestionnairePage {
   ContinueQuestionnairePage(this.tester);
 
@@ -17,12 +15,12 @@ class ContinueQuestionnairePage {
   /// Page methods
   Future<void> clickAlreadyHavenAnAccountButton() async {
     await tester.tap(alreadyHaveAnAccountBtn);
-    await tester.pumpSettleAndWait(seconds: 2);
+    await tester.pumpAndSettle();
   }
 
   Future<void> clickContinueFormButton() async {
     await tester.tap(continueFormButton);
-    await tester.pumpSettleAndWait(seconds: 2);
+    await tester.pumpAndSettle();
   }
 
   bool hasProgressBarAnyProgress() => _progressBarValue > 0;

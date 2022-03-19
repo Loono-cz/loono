@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:loono/ui/screens/logout.dart';
 import 'package:loono/ui/widgets/button.dart';
 
 import '../../../test_helpers/widget_tester_extensions.dart';
@@ -14,6 +15,7 @@ class LogoutPage {
   /// Page methods
   Future<void> clickLoginButton() async {
     await tester.tap(loginBtn);
-    await tester.pumpSettleAndWait(seconds: 5);
+    await tester.pumpAndSettle();
+    await tester.pumpUntilNotVisible(find.byType(LogoutScreen));
   }
 }

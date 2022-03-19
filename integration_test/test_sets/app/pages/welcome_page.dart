@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:loono/ui/screens/welcome.dart';
 import 'package:loono/ui/widgets/button.dart';
 
 import '../../../test_helpers/widget_tester_extensions.dart';
@@ -16,11 +17,13 @@ class WelcomePage {
   /// Page methods
   Future<void> clickStartButton() async {
     await tester.tap(startBtn);
-    await tester.pumpSettleAndWait(seconds: 8);
+    await tester.pump(const Duration(seconds: 2));
+    await tester.pumpUntilNotVisible(find.byType(WelcomeScreen));
   }
 
   Future<void> clickLoginButton() async {
     await tester.tap(loginBtn);
-    await tester.pumpSettleAndWait(seconds: 8);
+    await tester.pumpAndSettle();
+    await tester.pumpUntilNotVisible(find.byType(WelcomeScreen));
   }
 }

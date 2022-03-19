@@ -29,6 +29,7 @@ class LoginPage {
 
   Future<void> clickCreateNewAccountButton() async {
     await tester.tap(createNewAccountBtn);
-    await tester.pumpSettleAndWait(seconds: 6);
+    await tester.pumpAndSettle();
+    await tester.pumpUntilNotVisible(createNewAccountBtn);
   }
 }

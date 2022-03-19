@@ -91,6 +91,7 @@ class _SettingsContentState extends State<_SettingsContent> {
                 children: [
                   if (navigationStack.lastOrNull != SettingsPage.main)
                     IconButton(
+                      key: const Key('settings_sheet_backButton'),
                       onPressed: goBack,
                       icon: SvgPicture.asset(
                         'assets/icons/arrow_back.svg',
@@ -98,6 +99,7 @@ class _SettingsContentState extends State<_SettingsContent> {
                     ),
                   const Spacer(),
                   IconButton(
+                    key: const Key('settings_sheet_closeButton'),
                     icon: const Icon(Icons.close, size: 32),
                     onPressed: () {
                       AutoRouter.of(context).popForced();

@@ -3,7 +3,6 @@ import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/onboarding/gender_button.dart';
 
 import '../../../../test_helpers/common_shared_finders.dart';
-import '../../../../test_helpers/widget_tester_extensions.dart';
 
 class QuestionnaireGenderPage {
   QuestionnaireGenderPage(this.tester);
@@ -25,17 +24,22 @@ class QuestionnaireGenderPage {
   /// Page methods
   Future<void> clickSkipQuestionnaireButton() async {
     await tester.tap(skipQuestionnaireBtn);
-    await tester.pumpSettleAndWait(seconds: 1);
+    await tester.pumpAndSettle();
   }
 
   Future<void> clickContinueButton() async {
     await tester.tap(continueBtn);
-    await tester.pumpSettleAndWait(seconds: 1);
+    await tester.pumpAndSettle();
   }
 
   Future<void> chooseMaleGender() async {
     await tester.tap(maleGenderBtn);
-    await tester.pumpSettleAndWait(seconds: 1);
+    await tester.pumpAndSettle();
+  }
+
+  Future<void> chooseFemaleGender() async {
+    await tester.tap(femaleGenderBtn);
+    await tester.pumpAndSettle();
   }
 
   bool isContinueButtonDisabled() {

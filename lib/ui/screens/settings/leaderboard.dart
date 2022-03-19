@@ -90,32 +90,28 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
       case FetchState.error:
         return const SizedBox.shrink();
       case FetchState.loaded:
-        return Flexible(
-          child: ListView(
-            children: [
-              ..._leaderboardData!.top.asMap().entries.map(
-                    (e) => LeaderboardTile(
-                      position: e.key + 1,
-                      user: e.value,
-                    ),
+        return ListView(
+          children: [
+            ..._leaderboardData!.top.asMap().entries.map(
+                  (e) => LeaderboardTile(
+                    position: e.key + 1,
+                    user: e.value,
                   ),
-              Divider(
-                color: LoonoColors.leaderboardPrimary,
-                indent: MediaQuery.of(context).size.width / 4,
-                endIndent: MediaQuery.of(context).size.width / 4,
-              ),
-              ..._leaderboardData!.peers.asMap().entries.mapIndexed(
-                    (i, e) => LeaderboardTile(
-                      position: e.value.isThisMe == true
-                          ? _leaderboardData!.myOrder
-                          : (i == 0
-                              ? _leaderboardData!.myOrder - 1
-                              : _leaderboardData!.myOrder + 1),
-                      user: e.value,
-                    ),
+                ),
+            Divider(
+              color: LoonoColors.leaderboardPrimary,
+              indent: MediaQuery.of(context).size.width / 4,
+              endIndent: MediaQuery.of(context).size.width / 4,
+            ),
+            ..._leaderboardData!.peers.asMap().entries.mapIndexed(
+                  (i, e) => LeaderboardTile(
+                    position: e.value.isThisMe == true
+                        ? _leaderboardData!.myOrder
+                        : (i == 0 ? _leaderboardData!.myOrder - 1 : _leaderboardData!.myOrder + 1),
+                    user: e.value,
                   ),
-            ],
-          ),
+                ),
+          ],
         );
     }
   }
