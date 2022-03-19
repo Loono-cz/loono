@@ -23,7 +23,10 @@ class PreventionScreen extends StatelessWidget {
           builder: (BuildContext context, BoxConstraints constraints) {
             return Stack(
               children: [
-                const Padding(padding: EdgeInsets.only(top: 40), child: BadgeComposer()),
+                const Padding(
+                  padding: EdgeInsets.only(top: 40),
+                  child: BadgeComposer(showDescription: false),
+                ),
                 ValueListenableBuilder(
                   valueListenable: extentFromTop,
                   builder: (context, double? value, child) {
