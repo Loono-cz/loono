@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
 
+// ignore: constant_identifier_names
+const BOTTOM_NAV_BAR_HEIGHT = 90.0;
+
 class CustomNavigationBar extends StatelessWidget {
   const CustomNavigationBar({
     Key? key,
@@ -18,7 +21,7 @@ class CustomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 90,
+      height: BOTTOM_NAV_BAR_HEIGHT,
       width: double.infinity,
       child: Material(
         color: LoonoColors.settingsBackground,
