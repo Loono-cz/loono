@@ -1,5 +1,6 @@
 import 'package:badges/badges.dart' as b;
 import 'package:built_collection/built_collection.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
@@ -23,11 +24,7 @@ class ExaminationBadges extends StatelessWidget {
 
   DateTime get actualDate => DateTime.now();
 
-  DateTime get lastConfirmedDate => DateTime(
-        categorizedExamination.examination.lastConfirmedDate!.year,
-        categorizedExamination.examination.lastConfirmedDate!.month,
-        categorizedExamination.examination.lastConfirmedDate!.day,
-      );
+  DateTime? get lastConfirmedDate => categorizedExamination.examination.lastConfirmedDate;
 
   int get recommendedIntervalInMonths =>
       categorizedExamination.examination.intervalYears.toInt() * 12;
@@ -72,7 +69,9 @@ class ExaminationBadges extends StatelessWidget {
         else
         "is newer (not older) than";
      */
-    final isLastConfirmedDateOlder = lastConfirmedDate.compareTo(recommendedIntervalTransferToDate);
+
+    final isLastConfirmedDateOlder =
+        lastConfirmedDate?.compareTo(recommendedIntervalTransferToDate);
 
     if (categorizedExamination.examination.state.name == 'CONFIRMED' &&
         !isPlannedDate &&
@@ -91,13 +90,15 @@ class ExaminationBadges extends StatelessWidget {
       actualDate.day,
     );
     final isLastConfirmedDateOlderMinusTwoMonths =
-        lastConfirmedDate.compareTo(recommendedIntervalTransferToDateMinusTwoMonths);
+        lastConfirmedDate?.compareTo(recommendedIntervalTransferToDateMinusTwoMonths);
     final recommendedIntervalTransferToDate =
         DateTime(actualDate.year, actualDate.month - recommendedIntervalInMonths, actualDate.day);
-    final isLastConfirmedDateOlder = lastConfirmedDate.compareTo(recommendedIntervalTransferToDate);
-    if (!isPlannedDate &&
-        isLastConfirmedDateOlderMinusTwoMonths < 0 &&
-        isLastConfirmedDateOlder > 0 &&
+    final isLastConfirmedDateOlder =
+        lastConfirmedDate?.compareTo(recommendedIntervalTransferToDate);
+    if (lastConfirmedDate != null &&
+        !isPlannedDate &&
+        isLastConfirmedDateOlderMinusTwoMonths! < 0 &&
+        isLastConfirmedDateOlder! > 0 &&
         ((index == null) || (index + 1 == data?.level))) {
       return true;
     } else {
@@ -109,7 +110,7 @@ class ExaminationBadges extends StatelessWidget {
     final comparedDateMinusRecommendedInterval =
         DateTime(actualDate.year, actualDate.month - recommendedIntervalInMonths, actualDate.day);
     final isLastConfirmedDateOlder =
-        lastConfirmedDate.compareTo(comparedDateMinusRecommendedInterval);
+        lastConfirmedDate?.compareTo(comparedDateMinusRecommendedInterval);
     if (isPlannedDate || isLastConfirmedDateOlder == 1) {
       return true;
     } else {
@@ -128,11 +129,11 @@ class ExaminationBadges extends StatelessWidget {
           ),
           color: LoonoColors.greenLight,
         ),
-        child: FutureBuilder<BuiltList<Badge>?>(
+        child: FutureBuilder<BuiltList<Badge?>?>(
           future: registry.get<UserRepository>().getBadges(),
           builder: (context, snapshot) {
-            final badge = snapshot.data?.firstWhere(
-              (element) => element.type.name == categorizedExamination.examination.badge.name,
+            final badge = snapshot.data?.firstWhereOrNull(
+              (element) => element?.type.name == categorizedExamination.examination.badge.name,
             );
             return Column(
               children: [
@@ -192,7 +193,7 @@ class ExaminationBadges extends StatelessWidget {
                                           position: b.BadgePosition.bottomEnd(bottom: -8, end: -24),
                                           child: Image.asset(
                                             'assets/badges_examination/${examinationType.toString().toLowerCase()}'
-                                            '/level_${badge?.type.name == categorizedExamination.examination.badge.name && badge!.level >= index + 1 ? '${index + 1}.png' : '${index + 1}_disabled.png'}',
+                                            '/level_${badge != null && badge.type.name == categorizedExamination.examination.badge.name && badge.level >= index + 1 ? '${index + 1}.png' : '${index + 1}_disabled.png'}',
                                           ),
                                         ),
                                       ),
@@ -201,7 +202,9 @@ class ExaminationBadges extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                if (snapshot.data != null && badge!.level >= index + 1)
+                                if (badge != null &&
+                                    snapshot.data != null &&
+                                    badge.level >= index + 1)
                                   Padding(
                                     padding: const EdgeInsets.only(top: 6.0),
                                     child: Row(

@@ -147,6 +147,7 @@ class ScheduleExamination extends StatelessWidget {
                       uuid: examinationRecord.uuid,
                       firstExam: true,
                       status: ExaminationStatus.UNKNOWN,
+                      newDate: DateTime.now(),
                     );
                 await response.map(
                   success: (res) async {
