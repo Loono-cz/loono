@@ -11,7 +11,7 @@ import '../test_helpers/post_app_clear.dart';
 import 'onboarding/test_cases/other/loon_542_installing_and_opening_app.dart' as loon542;
 import 'onboarding/test_cases/questionnaire/loon_543_male_onboarding_flow.dart' as loon543;
 import 'onboarding/test_cases/questionnaire/loon_544_female_onboarding_flow.dart' as loon544;
-import 'onboarding/test_cases/questionnaire/loon_x_onboarding_age_validation.dart' as loonx;
+import 'onboarding/test_cases/questionnaire/loon_558_onboarding_age_validation.dart' as loon558;
 import 'settings/test_cases/delete_account/loon_465_delete_account_and_contact_straight_path.dart'
     as loon465;
 import 'settings/test_cases/delete_account/loon_466_delete_account_cancelling_proccess.dart'
@@ -59,8 +59,8 @@ void main() {
       );
 
       testWidgets(
-        'TC(LOON_X): Onboarding age validation',
-        (tester) async => loonx.run(tester: tester, charlatan: charlatan),
+        'TC(LOON_558): Onboarding Questionnaire - Age validation rule (negative)',
+        (tester) async => loon558.run(tester: tester, charlatan: charlatan),
       );
     });
 
