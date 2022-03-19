@@ -37,6 +37,5 @@ Future<void> loginFlow({required WidgetTester tester, required Charlatan charlat
   expect(find.byType(LoginScreen), findsOneWidget);
 
   await loginPage.loginWithGoogle();
-  await tester.pumpAndSettle();
   await tester.pump(const Duration(seconds: 2));
 }

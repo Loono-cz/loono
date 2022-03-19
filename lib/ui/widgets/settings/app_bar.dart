@@ -13,6 +13,7 @@ AppBar settingsAppBar(
     iconTheme: const IconThemeData(color: LoonoColors.black),
     leading: showBackButton
         ? IconButton(
+            key: const Key('settingsAppBar_backButton'),
             icon: SizedBox(
               height: 25,
               width: 25,
@@ -25,6 +26,7 @@ AppBar settingsAppBar(
       Padding(
         padding: const EdgeInsets.only(right: 15.0),
         child: IconButton(
+          key: const Key('settingsAppBar_closeButton'),
           icon: const Icon(Icons.close, size: 37),
           onPressed: () => AutoRouter.of(context).popForced(),
         ),

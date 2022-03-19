@@ -11,22 +11,26 @@ final Uint8List HEALTHCARE_PROVIDER_ENCODED = _encodedProvider;
 
 // TODO: expand this to be able to create multiple healthcare providers
 Uint8List get _encodedProvider {
-  final object = SimpleHealthcareProvider((b) {
-    b
-      ..locationId = 1
-      ..institutionId = 1
-      ..title = 'title'
-      ..city = 'city'
-      ..postalCode = '1234'
-      ..houseNumber = '123'
-      ..lat = 0.005
-      ..lng = 0.002
-      ..category = BuiltList.of(<String>[]).toBuilder();
-  });
-  final json = standardSerializers.toJson(SimpleHealthcareProvider.serializer, object);
-  final encodeJson = utf8.encode(json);
-  final bytes = Uint8List.fromList(encodeJson);
-  final zip = Archive()..addFile(ArchiveFile('providers.json', bytes.lengthInBytes, bytes));
-  final encodedZip = ZipEncoder().encode(zip)!;
-  return Uint8List.fromList(encodedZip);
+  final objects = <SimpleHealthcareProvider>[
+    SimpleHealthcareProvider((b) {
+      b
+        ..locationId = 1
+        ..institutionId = 1
+        ..title = 'title'
+        ..city = 'city'
+        ..postalCode = '1234'
+        ..houseNumber = '123'
+        ..lat = 0.005
+        ..lng = 0.002
+        ..category = BuiltList.of(<String>[]).toBuilder();
+    })
+  ];
+  String toJson(SimpleHealthcareProvider o) =>
+      standardSerializers.toJson(SimpleHealthcareProvider.serializer, o);
+  final serializedList = objects.map(toJson).toList();
+  final encodedJson = utf8.encode(serializedList.toString());
+  final bytesData = Uint8List.fromList(encodedJson);
+  final zip = Archive()..addFile(ArchiveFile('providers.json', bytesData.lengthInBytes, bytesData));
+  final zipBytesData = ZipEncoder().encode(zip)!;
+  return Uint8List.fromList(zipBytesData);
 }

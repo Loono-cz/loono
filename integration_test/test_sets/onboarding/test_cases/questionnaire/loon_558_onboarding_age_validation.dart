@@ -17,7 +17,7 @@ import '../../pages/questionnaire/birthdate_page.dart';
 import '../../pages/questionnaire/fill_form_later_page.dart';
 import '../../pages/questionnaire/gender_page.dart';
 
-/// [Test case link](https://cesko-digital.atlassian.net/browse/LOON-X)
+/// [Test case link](https://cesko-digital.atlassian.net/browse/LOON-558)
 Future<void> run({required WidgetTester tester, required Charlatan charlatan}) async {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 

@@ -22,7 +22,7 @@ class ApiService {
       final Response<T> response = await apiCallback();
       return ApiResponse<T>.success(response.data as T);
     } on DioError catch (e, _) {
-      debugPrint(e.toString());
+      debugPrint('${e.message}: ${e.response.toString()}\n${e.toString()}');
       return ApiResponse.failure(e);
     }
   }

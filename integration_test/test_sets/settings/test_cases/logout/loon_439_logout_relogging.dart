@@ -12,10 +12,10 @@ import 'package:loono/ui/screens/settings/update_profile.dart';
 import '../../../../setup.dart' as app;
 import '../../../app/flows/login_flow.dart';
 import '../../../app/pages/login_page.dart';
+import '../../../app/pages/logout_page.dart';
 import '../../../prevention/pages/prevention_main_page.dart';
-import '../../pages/logout_page.dart';
 import '../../pages/open_settings_page.dart';
-import '../../pages/update_profile_page.dart';
+import '../../pages/update_profile/update_profile_page.dart';
 
 /// [Test case link](https://cesko-digital.atlassian.net/browse/LOON-439)
 Future<void> run({

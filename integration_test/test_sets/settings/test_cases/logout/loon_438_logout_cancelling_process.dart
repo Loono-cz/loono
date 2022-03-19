@@ -10,7 +10,7 @@ import '../../../../setup.dart' as app;
 import '../../../app/flows/login_flow.dart';
 import '../../../prevention/pages/prevention_main_page.dart';
 import '../../pages/open_settings_page.dart';
-import '../../pages/update_profile_page.dart';
+import '../../pages/update_profile/update_profile_page.dart';
 
 /// [Test case link](https://cesko-digital.atlassian.net/browse/LOON-438)
 Future<void> run({

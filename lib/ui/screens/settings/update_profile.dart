@@ -88,18 +88,21 @@ class UpdateProfileScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 20.0),
                   UpdateProfileItem(
+                    key: const Key('updateProfilePage_updateProfileItem_nickname'),
                     label: context.l10n.update_profile_nickname,
                     value: user?.nickname ?? '',
                     route: EditNicknameRoute(user: user),
                   ),
                   itemSpacing,
                   UpdateProfileItem(
+                    key: const Key('updateProfilePage_updateProfileItem_email'),
                     label: context.l10n.update_profile_email,
                     value: user?.email ?? '',
                     route: EditEmailRoute(user: user),
                   ),
                   itemSpacing,
                   UpdateProfileItem(
+                    key: const Key('updateProfilePage_updateProfileItem_sex'),
                     label: context.l10n.update_profile_sex,
                     value: _getUserSexValue(context, sex: user?.sex),
                     route: null,
@@ -109,6 +112,7 @@ class UpdateProfileScreen extends StatelessWidget {
                   ),
                   itemSpacing,
                   UpdateProfileItem(
+                    key: const Key('updateProfilePage_updateProfileItem_birthdate'),
                     label: context.l10n.update_profile_birthdate,
                     value: _getBirthdateValue(birthDateWithoutDay),
                     route: null,
