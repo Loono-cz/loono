@@ -6,6 +6,7 @@ import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/self_examination_category.dart';
+import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/examinations_service.dart';
@@ -44,10 +45,10 @@ class ExaminationsSheetOverlay extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Text('žádné záznamy'),
+                      Text(context.l10n.prevention_retry_no_records),
                       TextButton(
                         onPressed: examinationsProvider.fetchExaminations,
-                        child: const Text('zkusit znovu'),
+                        child: Text(context.l10n.prevention_retry_try_again),
                       ),
                     ],
                   ),
