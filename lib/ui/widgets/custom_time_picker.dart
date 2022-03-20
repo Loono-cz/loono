@@ -36,8 +36,16 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
 
   @override
   void initState() {
-    widget.valueChanged(timePickerDate);
     super.initState();
+    widget.valueChanged(
+      DateTime(
+        timePickerDate.year,
+        timePickerDate.month,
+        timePickerDate.day,
+        widget.defaultHour ?? 9,
+        widget.defaultMinute ?? 0,
+      ),
+    );
   }
 
   @override
@@ -59,8 +67,8 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              _datePickerColumn(forType: ColumnType.hour),
-              _datePickerColumn(forType: ColumnType.minute),
+              _timePickerColumn(forType: ColumnType.hour),
+              _timePickerColumn(forType: ColumnType.minute),
             ],
           ),
           Padding(
@@ -80,9 +88,9 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
   }
 
   List<int> get _timePickerHours {
-    final hours = [for (var i = 1; i < 24; i += 1) i];
+    final hours = [for (var i = 0; i < 24; i += 1) i];
 
-    final hoursShifted = hours.sublist(_defaultHour - 1, 23) + hours.sublist(0, _defaultHour - 1);
+    final hoursShifted = hours.sublist(_defaultHour, 24) + hours.sublist(0, _defaultHour);
 
     return hoursShifted;
   }
@@ -98,7 +106,7 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
     return minutesShifted;
   }
 
-  Widget _datePickerColumn({required ColumnType forType}) {
+  Widget _timePickerColumn({required ColumnType forType}) {
     final items =
         forType == ColumnType.hour ? _timePickerHours.asMap() : _timePickerMinutes.asMap();
 
