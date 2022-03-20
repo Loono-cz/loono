@@ -855,5 +855,11 @@
   "prevention_retry_try_again": "zkusit znovu",
   "@prevention_retry_try_again": {},
   "prevention_retry_no_records": "žádné záznamy",
-  "@prevention_retry_no_records": {}
+  "@prevention_retry_no_records": {},
+  "force_update_title": "Nová verze aplikace je tu",
+  "@force_update_title": {},
+  "force_update_subtitle": "Bez aktualizace to dál nepůjde. Celý proces zabere jen malou chvíli.",
+  "@force_update_subtitle": {},
+  "force_update_button": "Aktualizovat aplikaci",
+  "@force_update_button": {}
 }

@@ -8,6 +8,7 @@ import 'package:loono/ui/screens/about_health/about_health.dart';
 import 'package:loono/ui/screens/dentist_achievement.dart';
 import 'package:loono/ui/screens/find_doctor/doctor_search_detail.dart';
 import 'package:loono/ui/screens/find_doctor/find_doctor.dart';
+import 'package:loono/ui/screens/force_update.dart';
 import 'package:loono/ui/screens/general_practicioner_achievement.dart';
 import 'package:loono/ui/screens/gynecology_achievement.dart';
 import 'package:loono/ui/screens/logout.dart';
@@ -66,6 +67,7 @@ const _settingsTransition = TransitionsBuilders.slideLeft;
     _appStartUpRouter,
     ..._preAuthRoutes,
     _postAuthRouter,
+    _forceUpdateRoute,
   ],
 )
 class $AppRouter {}
@@ -139,6 +141,7 @@ const _allowNotificationRoute = CustomRoute<void>(
   transitionsBuilder: _onboardingTransition,
 );
 const _aboutHealthRoute = AutoRoute<void>(page: AboutHealthScreen, path: 'about-health');
+const _forceUpdateRoute = AutoRoute<void>(page: ForceUpdateScreen, path: 'force-update');
 
 const _findDoctorRoutes = <AutoRoute>[
   AutoRoute<void>(page: FindDoctorScreen, path: 'find-doctor'),
