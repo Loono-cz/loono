@@ -47,6 +47,8 @@ class SearchDoctorCard extends StatelessWidget {
                   Text(
                     _specialization.toUpperCase(),
                     style: LoonoFonts.cardSubtitle.copyWith(color: LoonoColors.grey),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 3,
                   ),
                 Padding(
                   padding: const EdgeInsets.only(top: 8),
