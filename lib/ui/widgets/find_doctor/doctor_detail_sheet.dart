@@ -19,6 +19,20 @@ class DoctorDetailSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String _getStreet() {
+      final _street = doctor.street;
+      if (_street != '' && _street != null) {
+        return _street;
+      } else {
+        return doctor.city;
+      }
+    }
+
+    String _getFormattedPostalCode(String postalCode) {
+      final codeParts = [postalCode.substring(0, 3).trim(), postalCode.substring(3).trim()];
+      return '${codeParts[0]} ${codeParts[1]}';
+    }
+
     return Padding(
       padding: const EdgeInsets.all(18.0),
       child: Column(
@@ -59,7 +73,7 @@ class DoctorDetailSheet extends StatelessWidget {
             children: [
               Flexible(
                 child: Text(
-                  '${doctor.street ?? ""} ${doctor.houseNumber}\n${doctor.city}, ${doctor.postalCode}',
+                  '${_getStreet()} ${doctor.houseNumber}\n${doctor.city}, ${_getFormattedPostalCode(doctor.postalCode)}',
                   style: const TextStyle(color: LoonoColors.grey, height: 1.6),
                 ),
               ),
