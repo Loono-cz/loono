@@ -44,14 +44,16 @@ class ScheduleExamination extends StatelessWidget {
       (item) => item.examinationType == _examinationType,
     );
     if (exam != null) {
-      AutoRouter.of(context).navigate(
-        ExaminationDetailRoute(
-          categorizedExamination: CategorizedExamination(
-            examination: exam,
-            category: exam.calculateStatus(),
+      _appRouter
+        ..popUntilRouteWithName(const MainScreenRouter().routeName)
+        ..navigate(
+          ExaminationDetailRoute(
+            categorizedExamination: CategorizedExamination(
+              examination: exam,
+              category: exam.calculateStatus(),
+            ),
           ),
-        ),
-      );
+        );
     }
   }
 
@@ -106,13 +108,12 @@ class ScheduleExamination extends StatelessWidget {
                                       success: (res) {
                                         _examinationsProvider.updateExaminationsRecord(res.data);
                                         registry.get<UserRepository>().sync();
-                                        _appRouter.popUntilRouteWithName(
-                                            const MainScreenRouter().routeName);
                                         _navigateToDetail(context, _examinationsProvider);
                                       },
                                       failure: (err) {
                                         _appRouter.popUntilRouteWithName(
-                                            const MainScreenRouter().routeName);
+                                          const MainScreenRouter().routeName,
+                                        );
                                         showSnackBarError(
                                           context,
                                           message: context.l10n.something_went_wrong,
@@ -127,15 +128,13 @@ class ScheduleExamination extends StatelessWidget {
                                               _examinationType,
                                               firstExam: true,
                                               newDate: pickedDate,
-                                              status: ExaminationStatus.UNKNOWN,
+                                              status: ExaminationStatus.CONFIRMED,
                                             );
                                     response.map(
                                       success: (res) {
                                         Provider.of<ExaminationsProvider>(context, listen: false)
                                             .updateExaminationsRecord(res.data);
                                         registry.get<UserRepository>().sync();
-                                        _appRouter.popUntilRouteWithName(
-                                            const MainScreenRouter().routeName);
                                         _navigateToDetail(context, _examinationsProvider);
                                         showSnackBarSuccess(
                                           context,
@@ -144,7 +143,8 @@ class ScheduleExamination extends StatelessWidget {
                                       },
                                       failure: (err) {
                                         _appRouter.popUntilRouteWithName(
-                                            const MainScreenRouter().routeName);
+                                          const MainScreenRouter().routeName,
+                                        );
                                         showSnackBarError(
                                           context,
                                           message: context.l10n.something_went_wrong,
@@ -167,13 +167,12 @@ class ScheduleExamination extends StatelessWidget {
                 final response = await registry.get<ExaminationRepository>().postExamination(
                       examinationRecord.examinationType,
                       firstExam: true,
-                      status: ExaminationStatus.UNKNOWN,
+                      status: ExaminationStatus.CONFIRMED,
                     );
                 await response.map(
                   success: (res) async {
                     Provider.of<ExaminationsProvider>(context, listen: false)
                         .updateExaminationsRecord(res.data);
-                    _appRouter.popUntilRouteWithName(const MainScreenRouter().routeName);
                     _navigateToDetail(context, _examinationsProvider);
                     await registry.get<UserRepository>().sync();
                   },

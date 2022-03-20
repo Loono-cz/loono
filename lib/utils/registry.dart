@@ -1,7 +1,6 @@
 // ignore_for_file: cascade_invocations
 
 import 'dart:async';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:device_calendar/device_calendar.dart';
@@ -117,7 +116,6 @@ Future<void> setup({
         handler.next(options..disableRetry = isDisableRetryUrl);
       },
       onError: (e, handler) async {
-        log(e.response.toString(), name: 'Error message');
         if (e.response?.statusCode == 401) {
           await registry.get<AuthService>().signOut();
         }
