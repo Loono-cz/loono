@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono_api/loono_api.dart';
 
@@ -43,13 +44,27 @@ class SearchDoctorCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (_specialization != null)
-                  Text(
-                    _specialization.toUpperCase(),
-                    style: LoonoFonts.cardSubtitle.copyWith(color: LoonoColors.grey),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 3,
-                  ),
+                Row(
+                  children: [
+                    if (_specialization != null)
+                      Text(
+                        _specialization.toUpperCase(),
+                        style: LoonoFonts.cardSubtitle.copyWith(color: LoonoColors.grey),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 3,
+                      ),
+                    const Spacer(),
+                    SvgPicture.asset(
+                      'assets/icons/telephone.svg',
+                      color: LoonoColors.grey,
+                    ),
+                    const SizedBox(width: 8),
+                    SvgPicture.asset(
+                      'assets/icons/at.svg',
+                      color: LoonoColors.grey,
+                    ),
+                  ],
+                ),
                 Padding(
                   padding: const EdgeInsets.only(top: 8),
                   child: Text(
