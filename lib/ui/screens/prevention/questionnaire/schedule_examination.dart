@@ -103,6 +103,7 @@ class ScheduleExamination extends StatelessWidget {
                                               _examinationType,
                                               firstExam: true,
                                               status: ExaminationStatus.UNKNOWN,
+                                              newDate: DateTime.now(),
                                             );
                                     response.map(
                                       success: (res) {

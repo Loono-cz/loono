@@ -964,6 +964,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.2.8"
+  open_store:
+    dependency: "direct main"
+    description:
+      name: open_store
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.4"
   package_config:
     dependency: transitive
     description:

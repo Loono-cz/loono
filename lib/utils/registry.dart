@@ -119,6 +119,16 @@ Future<void> setup({
         if (e.response?.statusCode == 401) {
           await registry.get<AuthService>().signOut();
         }
+
+        /// TODO: select correct status code for force update with BE
+        if (e.response?.statusCode == 410) {
+          final router = registry<AppRouter>();
+          const forceUpdateRoute = ForceUpdateRoute();
+          // prevents pushing multiple force update routes
+          if (router.current.route.name != forceUpdateRoute.routeName) {
+            await router.push(forceUpdateRoute);
+          }
+        }
         handler.next(e);
       },
     ),
