@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loono/constants.dart';
 import 'package:loono_api/loono_api.dart';
 
 class SearchDoctorCard extends StatelessWidget {
@@ -13,9 +14,18 @@ class SearchDoctorCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final specialization = item.specialization;
+    final _specialization = item.specialization;
 
-    String getFormattedPostalCode(String postalCode) {
+    String _getStreet() {
+      final _street = item.street;
+      if (_street != '' && _street != null) {
+        return _street;
+      } else {
+        return item.city;
+      }
+    }
+
+    String _getFormattedPostalCode(String postalCode) {
       final codeParts = [postalCode.substring(0, 3).trim(), postalCode.substring(3).trim()];
       return '${codeParts[0]} ${codeParts[1]}';
     }
@@ -33,13 +43,27 @@ class SearchDoctorCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (specialization != null) Text(specialization),
-                Text(item.title),
-                const Spacer(),
-                Row(
-                  children: [Text('${item.street ?? item.city} ${item.houseNumber}')],
+                if (_specialization != null)
+                  Text(
+                    _specialization.toUpperCase(),
+                    style: LoonoFonts.cardSubtitle.copyWith(color: LoonoColors.grey),
+                  ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: Text(
+                    item.title,
+                    style: LoonoFonts.cardTitle.copyWith(color: LoonoColors.secondaryFont),
+                  ),
                 ),
-                Text('${item.city}, ${getFormattedPostalCode(item.postalCode)}')
+                const Spacer(),
+                Text(
+                  '${_getStreet()} ${item.houseNumber}',
+                  style: LoonoFonts.cardAddress,
+                ),
+                Text(
+                  '${item.city}, ${_getFormattedPostalCode(item.postalCode)}',
+                  style: LoonoFonts.cardAddress,
+                ),
               ],
             ),
           ),
