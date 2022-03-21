@@ -55,14 +55,19 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
         CupertinoActionSheetAction(
           isDestructiveAction: true,
           onPressed: () {
-            AutoRouter.of(modalContext).pop();
-            showCancelExaminationSheet(
-              context: pageContext,
-              id: examination.examination.uuid,
-              examinationType: examinationType,
-              title: '${pageContext.l10n.checkup_cancel_question} $preposition $procedure?',
-              date: examination.examination.plannedDate ?? DateTime.now(),
-            );
+            final examinationUuid = examination.examination.uuid;
+            if (examinationUuid != null) {
+              AutoRouter.of(modalContext).pop();
+              showCancelExaminationSheet(
+                context: pageContext,
+                id: examinationUuid,
+                examinationType: examinationType,
+                title: '${pageContext.l10n.checkup_cancel_question} $preposition $procedure?',
+                date: examination.examination.plannedDate ?? DateTime.now(),
+              );
+            } else {
+              showSnackBarError(modalContext, message: modalContext.l10n.something_went_wrong);
+            }
           },
           child: Text(pageContext.l10n.cancel_checkup),
         ),
