@@ -889,8 +889,8 @@ packages:
     dependency: "direct main"
     description:
       path: dart
-      ref: "0ebd92b0a729828a0aa68e9fbf4dc46f336cf80d"
-      resolved-ref: "0ebd92b0a729828a0aa68e9fbf4dc46f336cf80d"
+      ref: "7be6eca0651fdf74d34125bba1b1c6791764b9fe"
+      resolved-ref: "7be6eca0651fdf74d34125bba1b1c6791764b9fe"
       url: "https://github.com/cesko-digital/loono-api.git"
     source: git
     version: "1.0.0"

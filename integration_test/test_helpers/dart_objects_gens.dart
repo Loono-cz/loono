@@ -91,7 +91,7 @@ PreventionStatus createExaminationsObject({
 }
 
 ExaminationPreventionStatus createExaminationPreventionObject({
-  String uuid = 'abcdefghijkl',
+  String? uuid,
   ExaminationType examinationType = ExaminationType.GENERAL_PRACTITIONER,
   int intervalYears = 2,
   DateTime? plannedDate,

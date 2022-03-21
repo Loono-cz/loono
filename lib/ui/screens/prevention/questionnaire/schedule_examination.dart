@@ -101,6 +101,7 @@ class ScheduleExamination extends StatelessWidget {
                                     final response =
                                         await registry.get<ExaminationRepository>().postExamination(
                                               _examinationType,
+                                              uuid: examinationRecord.uuid,
                                               firstExam: true,
                                               status: ExaminationStatus.UNKNOWN,
                                               newDate: DateTime.now(),
@@ -127,6 +128,7 @@ class ScheduleExamination extends StatelessWidget {
                                     final response =
                                         await registry.get<ExaminationRepository>().postExamination(
                                               _examinationType,
+                                              uuid: examinationRecord.uuid,
                                               firstExam: true,
                                               newDate: pickedDate,
                                               status: ExaminationStatus.CONFIRMED,
@@ -167,8 +169,9 @@ class ScheduleExamination extends StatelessWidget {
                 /// code anchor: #postFirstNewExaminationMore
                 final response = await registry.get<ExaminationRepository>().postExamination(
                       examinationRecord.examinationType,
+                      uuid: examinationRecord.uuid,
                       firstExam: true,
-                      status: ExaminationStatus.CONFIRMED,
+                      status: ExaminationStatus.UNKNOWN,
                     );
                 await response.map(
                   success: (res) async {
