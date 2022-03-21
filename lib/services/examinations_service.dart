@@ -43,7 +43,9 @@ class ExaminationsProvider extends ChangeNotifier {
             (item) => item
               ..uuid = record.uuid
               ..examinationType = record.type
-              ..plannedDate = record.date
+              ..plannedDate = record.status == ExaminationStatus.CONFIRMED ? null : record.date
+              ..lastConfirmedDate =
+                  record.status == ExaminationStatus.CONFIRMED ? record.date : null
               ..state = record.status
               ..firstExam = record.firstExam,
           );
