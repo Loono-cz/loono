@@ -47,11 +47,13 @@ class SearchDoctorCard extends StatelessWidget {
                 Row(
                   children: [
                     if (_specialization != null)
-                      Text(
-                        _specialization.toUpperCase(),
-                        style: LoonoFonts.cardSubtitle.copyWith(color: LoonoColors.grey),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 3,
+                      Flexible(
+                        child: Text(
+                          _specialization.toUpperCase(),
+                          style: LoonoFonts.cardSubtitle.copyWith(color: LoonoColors.grey),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 3,
+                        ),
                       ),
                     const Spacer(),
                     SvgPicture.asset(
