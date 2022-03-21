@@ -7,7 +7,7 @@ import 'package:loono_api/loono_api.dart';
 Account createAccountObject({
   String uid = '123abcdabcd',
   String nickname = 'Adam Novák',
-  String prefferedEmail = 'test@loono.cz',
+  String preferredEmail = 'test@loono.cz',
   Sex sex = Sex.MALE,
   Date? birthdate,
   String? profileImageUrl,
@@ -21,7 +21,7 @@ Account createAccountObject({
     b
       ..uid = uid
       ..nickname = nickname
-      ..prefferedEmail = prefferedEmail
+      ..preferredEmail = preferredEmail
       ..sex = sex
       ..birthdate = birthdate ?? Date(2000, 5, 20)
       ..profileImageUrl = profileImageUrl

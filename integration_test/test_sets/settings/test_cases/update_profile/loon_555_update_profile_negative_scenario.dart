@@ -48,7 +48,7 @@ Future<void> run({
   expect(find.byType(UpdateProfileScreen), findsOneWidget);
   updateProfilePage
     ..verifyNickname(defaultAccount.nickname)
-    ..verifyEmail(defaultAccount.prefferedEmail);
+    ..verifyEmail(defaultAccount.preferredEmail);
 
   await updateProfilePage.clickNicknameField();
   expect(find.byType(EditNicknameScreen), findsOneWidget);
@@ -75,7 +75,7 @@ Future<void> run({
 
   await editEmailPage.clickBackButton();
   expect(find.byType(UpdateProfileScreen), findsOneWidget);
-  updateProfilePage.verifyEmail(defaultAccount.prefferedEmail);
+  updateProfilePage.verifyEmail(defaultAccount.preferredEmail);
 
   await updateProfilePage.clickSexField();
   expect(find.text('Pohlaví teď není možné změnit'), findsOneWidget);

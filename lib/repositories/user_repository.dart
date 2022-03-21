@@ -63,7 +63,7 @@ class UserRepository {
           ),
         ),
         sex: Value<Sex>(data.sex),
-        email: Value<String>(data.prefferedEmail),
+        email: Value<String>(data.preferredEmail),
         profileImageUrl: Value<String?>(data.profileImageUrl),
         points: Value<int>(data.points),
         badges: Value<BuiltList<Badge>>(data.badges),
@@ -126,7 +126,7 @@ class UserRepository {
   }
 
   Future<bool> updateEmail(String email) async {
-    final apiResponse = await _apiService.updateAccountUser(prefferedEmail: email);
+    final apiResponse = await _apiService.updateAccountUser(preferredEmail: email);
     final result = await apiResponse.map(
       success: (_) async {
         await _db.users.updateCurrentUser(UsersCompanion(email: Value(email)));

@@ -5,7 +5,7 @@ import '../../../test_helpers/dart_objects_gens.dart';
 final defaultAccount = createAccountObject(
   uid: 'uUzgkYpV9zg5msVszcZ0cD8z3oi1',
   nickname: 'Adam',
-  prefferedEmail: 'test@loono.cz',
+  preferredEmail: 'test@loono.cz',
   sex: Sex.MALE,
   birthdate: Date(1985, 1, 22),
   points: 500,
