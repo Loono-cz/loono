@@ -60,7 +60,7 @@ class ApiService {
 
   Future<ApiResponse<Account>> updateAccountUser({
     String? nickname,
-    String? prefferedEmail,
+    String? preferredEmail,
     String? profileImageUrl,
   }) async {
     return _callApi(
@@ -68,7 +68,7 @@ class ApiService {
         accountUpdate: AccountUpdate((b) {
           b
             ..nickname = nickname
-            ..prefferedEmail = prefferedEmail
+            ..preferredEmail = preferredEmail
             ..profileImageUrl = profileImageUrl;
         }),
       ),

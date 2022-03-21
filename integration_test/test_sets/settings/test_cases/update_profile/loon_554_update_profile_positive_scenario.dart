@@ -49,7 +49,7 @@ Future<void> run({
   expect(find.byType(UpdateProfileScreen), findsOneWidget);
   updateProfilePage
     ..verifyNickname(defaultAccount.nickname)
-    ..verifyEmail(defaultAccount.prefferedEmail);
+    ..verifyEmail(defaultAccount.preferredEmail);
 
   charlatan.whenPost(
     '/account',
@@ -75,21 +75,21 @@ Future<void> run({
   await editNicknamePage.clickSaveButton();
   updateProfilePage
     ..verifyNickname(_testDataNickname)
-    ..verifyEmail(defaultAccount.prefferedEmail);
+    ..verifyEmail(defaultAccount.preferredEmail);
 
   charlatan.whenPost(
     '/account',
     (request) {
       final data = request.body as Map<String, Object?>? ?? {};
-      final prefferedEmail = data['prefferedEmail'] as String?;
-      if (prefferedEmail == null) {
+      final preferredEmail = data['preferredEmail'] as String?;
+      if (preferredEmail == null) {
         return CharlatanHttpResponse(statusCode: 422, body: 'Error: Body is empty.');
       }
       return CharlatanHttpResponse(
         statusCode: 200,
         body: standardSerializers.serializeWith(
           Account.serializer,
-          defaultAccount.rebuild((b) => b.prefferedEmail = prefferedEmail),
+          defaultAccount.rebuild((b) => b.preferredEmail = preferredEmail),
         ),
       );
     },
