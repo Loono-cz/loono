@@ -104,4 +104,11 @@ class LoonoFonts {
     color: LoonoColors.primaryEnabled,
     fontWeight: FontWeight.w700,
   );
+
+  static const cardAddress = TextStyle(
+    fontSize: 12,
+    height: 1.5,
+    color: LoonoColors.grey,
+    fontWeight: FontWeight.w400,
+  );
 }

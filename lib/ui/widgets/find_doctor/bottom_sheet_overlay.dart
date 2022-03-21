@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/map_variables.dart';
 import 'package:loono/services/map_state_sevice.dart';
+import 'package:loono/ui/widgets/find_doctor/search_doctor_card.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
@@ -71,24 +72,13 @@ class MapSheetOverlay extends StatelessWidget {
                         ],
                       ),
                     ],
-                    Card(
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                      elevation: 0.0,
-                      child: InkWell(
-                        onTap: () async {
-                          sheetController.jumpTo(MapVariables.DOCTOR_DETAIL_SHEET_SIZE);
-                          onItemTap?.call(item);
-                          mapStateService.setDoctorDetail(item);
-                        },
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          height: 120.0,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(item.title),
-                          ),
-                        ),
-                      ),
+                    SearchDoctorCard(
+                      item: item,
+                      onTap: () async {
+                        sheetController.jumpTo(MapVariables.DOCTOR_DETAIL_SHEET_SIZE);
+                        onItemTap?.call(item);
+                        mapStateService.setDoctorDetail(item);
+                      },
                     ),
                   ],
                 ),

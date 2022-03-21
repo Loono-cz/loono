@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/simple_health_care_provider_helper.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/api_response.dart';
 import 'package:loono/services/api_service.dart';
@@ -59,7 +60,7 @@ class DoctorDetailSheet extends StatelessWidget {
             children: [
               Flexible(
                 child: Text(
-                  '${doctor.street ?? ""} ${doctor.houseNumber}\n${doctor.city}, ${doctor.postalCode}',
+                  '${doctor.getStreet()} ${doctor.houseNumber}\n${doctor.city}, ${doctor.getFormattedPostalCode()}',
                   style: const TextStyle(color: LoonoColors.grey, height: 1.6),
                 ),
               ),
