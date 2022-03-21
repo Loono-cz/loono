@@ -45,18 +45,16 @@ class ForceUpdateScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 90.0),
-                  child: LoonoButton(
-                    text: context.l10n.force_update_button,
-                    onTap: () {
-                      OpenStore.instance.open(
-                        appStoreId: '1573646003',
-                        androidAppBundleId: 'cz.loono.app',
-                      );
-                    },
-                  ),
-                )
+                LoonoButton(
+                  text: context.l10n.force_update_button,
+                  onTap: () {
+                    OpenStore.instance.open(
+                      appStoreId: '1573646003',
+                      androidAppBundleId: 'cz.loono.app',
+                    );
+                  },
+                ),
+                const SizedBox(),
               ],
             ),
           ),
