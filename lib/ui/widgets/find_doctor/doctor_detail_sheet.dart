@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/simple_health_care_provider_helper.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/api_response.dart';
 import 'package:loono/services/api_service.dart';
@@ -19,20 +20,6 @@ class DoctorDetailSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String _getStreet() {
-      final _street = doctor.street;
-      if (_street != '' && _street != null) {
-        return _street;
-      } else {
-        return doctor.city;
-      }
-    }
-
-    String _getFormattedPostalCode(String postalCode) {
-      final codeParts = [postalCode.substring(0, 3).trim(), postalCode.substring(3).trim()];
-      return '${codeParts[0]} ${codeParts[1]}';
-    }
-
     return Padding(
       padding: const EdgeInsets.all(18.0),
       child: Column(
@@ -73,7 +60,7 @@ class DoctorDetailSheet extends StatelessWidget {
             children: [
               Flexible(
                 child: Text(
-                  '${_getStreet()} ${doctor.houseNumber}\n${doctor.city}, ${_getFormattedPostalCode(doctor.postalCode)}',
+                  '${doctor.getStreet()} ${doctor.houseNumber}\n${doctor.city}, ${doctor.getFormattedPostalCode()}',
                   style: const TextStyle(color: LoonoColors.grey, height: 1.6),
                 ),
               ),
