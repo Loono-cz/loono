@@ -18,7 +18,7 @@ enum Months {
   december,
 }
 
-Months monthFromInt(int i) => Months.values[i - 1];
+Months monthFromInt(int i) => Months.values[i];
 
 @freezed
 class DateWithoutDay with _$DateWithoutDay {
