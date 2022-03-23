@@ -119,7 +119,7 @@ Future<void> setup({
             final token = await registry.get<AuthService>().refreshUserToken();
             if (token == null) {
               await appClear();
-              return;
+              return handler.reject(error);
             }
             final response = await dio.request<Object?>(
               requestOptions.path,
@@ -133,7 +133,7 @@ Future<void> setup({
               return handler.resolve(response);
             } else {
               await appClear();
-              return;
+              return handler.reject(error);
             }
           }
           return handler.next(error);
