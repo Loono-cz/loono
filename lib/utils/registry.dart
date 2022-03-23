@@ -30,6 +30,7 @@ import 'package:loono/services/database_service.dart';
 import 'package:loono/services/firebase_storage_service.dart';
 import 'package:loono/services/notification_service.dart';
 import 'package:loono/services/save_directories.dart';
+import 'package:loono/utils/app_clear.dart';
 import 'package:loono/utils/app_config.dart';
 import 'package:loono/utils/picture_precaching.dart';
 import 'package:loono_api/loono_api.dart';
@@ -109,29 +110,54 @@ Future<void> setup({
     );
   }
 
-  dio.interceptors.add(
-    InterceptorsWrapper(
-      onRequest: (options, handler) {
-        final isDisableRetryUrl = retryBlacklist.contains(options.path);
-        handler.next(options..disableRetry = isDisableRetryUrl);
-      },
-      onError: (e, handler) async {
-        if (e.response?.statusCode == 401) {
-          await registry.get<AuthService>().signOut();
-        }
-
-        /// TODO: select correct status code for force update with BE
-        if (e.response?.statusCode == 410) {
-          final router = registry<AppRouter>();
-          const forceUpdateRoute = ForceUpdateRoute();
-          // prevents pushing multiple force update routes
-          if (router.current.route.name != forceUpdateRoute.routeName) {
-            await router.push(forceUpdateRoute);
+  dio.interceptors.addAll(
+    [
+      QueuedInterceptorsWrapper(
+        onError: (error, handler) async {
+          if (error.response?.statusCode == 401) {
+            final requestOptions = error.response!.requestOptions;
+            final token = await registry.get<AuthService>().refreshUserToken();
+            if (token == null) {
+              await appClear();
+              return;
+            }
+            final response = await dio.request<Object?>(
+              requestOptions.path,
+              options: Options(method: requestOptions.method),
+              cancelToken: requestOptions.cancelToken,
+              onReceiveProgress: requestOptions.onReceiveProgress,
+              data: requestOptions.data,
+              queryParameters: requestOptions.queryParameters,
+            );
+            if (response.data != null) {
+              return handler.resolve(response);
+            } else {
+              await appClear();
+              return;
+            }
           }
-        }
-        handler.next(e);
-      },
-    ),
+          return handler.next(error);
+        },
+      ),
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          final isDisableRetryUrl = retryBlacklist.contains(options.path);
+          handler.next(options..disableRetry = isDisableRetryUrl);
+        },
+        onError: (e, handler) async {
+          /// TODO: select correct status code for force update with BE
+          if (e.response?.statusCode == 410) {
+            final router = registry<AppRouter>();
+            const forceUpdateRoute = ForceUpdateRoute();
+            // prevents pushing multiple force update routes
+            if (router.current.route.name != forceUpdateRoute.routeName) {
+              await router.push(forceUpdateRoute);
+            }
+          }
+          handler.next(e);
+        },
+      ),
+    ],
   );
 
   registry.registerSingleton<LoonoApi>(LoonoApi(dio: dio));
