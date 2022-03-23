@@ -251,6 +251,8 @@
   "@oculist_question_highlight": {},
   "dermatology_question_highlight": "Dermatologa",
   "@dermatology_question_highlight": {},
+  "ultrasound_breast_question_highlight": "Ultrazvuku prsu",
+  "@ultrasound_breast_question_highlight": {},
   "mammogram_question_highlight": "Mamografu",
   "@mammogram_question_highlight": {},
   "urology_question_highlight": "Urologa",
