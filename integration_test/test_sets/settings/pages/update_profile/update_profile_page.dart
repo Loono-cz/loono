@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../../../../test_helpers/common_finders.dart';
 import '../../../../test_helpers/widget_tester_extensions.dart';
 
-class UpdateProfilePage {
+class UpdateProfilePage with SettingsFinders {
   UpdateProfilePage(this.tester);
 
   final WidgetTester tester;

@@ -2,15 +2,15 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/onboarding/gender_button.dart';
 
-import '../../../../test_helpers/common_shared_finders.dart';
+import '../../../../test_helpers/common_finders.dart';
 
-class QuestionnaireGenderPage {
+class QuestionnaireGenderPage with OnboardingFinders {
   QuestionnaireGenderPage(this.tester);
 
   final WidgetTester tester;
 
   /// Page finders
-  final Finder skipQuestionnaireBtn = CommonSharedFinders.onboardingSkipQuestionnaireBtn;
+  Finder get skipQuestionnaireBtn => commonOnboardingSkipQuestionnaireBtn;
   final Finder continueBtn = find.widgetWithText(LoonoButton, 'Pokračovat');
   final Finder femaleGenderBtn = find.descendant(
     of: find.byType(GenderButton),

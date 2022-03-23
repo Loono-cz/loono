@@ -1,16 +1,16 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/widgets/button.dart';
 
-import '../../../../test_helpers/common_shared_finders.dart';
+import '../../../../test_helpers/common_finders.dart';
 
-class PointsHelpPage {
+class PointsHelpPage with SettingsFinders {
   PointsHelpPage(this.tester);
 
   final WidgetTester tester;
 
   /// Page finders
+  Finder get backBtn => commonSettingsSheetBackBtn;
   final Finder leaderboardBtn = find.widgetWithText(LoonoButton, 'Žebříček');
-  final Finder backBtn = CommonSharedFinders.settingsSheetBackBtn;
 
   /// Page methods
   Future<void> clickLeaderboardButton() async {

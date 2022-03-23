@@ -3,9 +3,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/settings/checkbox.dart';
 
+import '../../../../test_helpers/common_finders.dart';
 import '../../../../test_helpers/widget_tester_extensions.dart';
 
-class DeleteAccountPage {
+class DeleteAccountPage with SettingsFinders {
   DeleteAccountPage(this.tester);
 
   final WidgetTester tester;

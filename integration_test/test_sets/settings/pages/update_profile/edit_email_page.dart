@@ -3,7 +3,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/fallback_account_content.dart';
 
-class EditEmailPage {
+import '../../../../test_helpers/common_finders.dart';
+
+class EditEmailPage with SettingsFinders {
   EditEmailPage(this.tester);
 
   final WidgetTester tester;

@@ -1,7 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/widgets/button.dart';
 
-class FillFormLaterPage {
+import '../../../../test_helpers/common_finders.dart';
+
+class FillFormLaterPage with OnboardingFinders {
   FillFormLaterPage(this.tester);
 
   final WidgetTester tester;

@@ -4,15 +4,15 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/custom_date_picker.dart';
 
-import '../../../../test_helpers/common_shared_finders.dart';
+import '../../../../test_helpers/common_finders.dart';
 
-class QuestionnaireBirthDatePage {
+class QuestionnaireBirthDatePage with OnboardingFinders {
   QuestionnaireBirthDatePage(this.tester);
 
   final WidgetTester tester;
 
   /// Page finders
-  final Finder skipQuestionnaireBtn = CommonSharedFinders.onboardingSkipQuestionnaireBtn;
+  Finder get skipQuestionnaireBtn => commonOnboardingSkipQuestionnaireBtn;
   final Finder continueBtn = find.widgetWithText(LoonoButton, 'Pokračovat');
   final Finder yearPickerBox =
       find.byKey(Key('customDatePicker_${ColumnType.year.name}'), skipOffstage: false);

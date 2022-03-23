@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/widgets/button.dart';
 
-class QuestionnaireDoctorDatePickerPage {
+import '../../../../test_helpers/common_finders.dart';
+
+class QuestionnaireDoctorDatePickerPage with OnboardingFinders {
   QuestionnaireDoctorDatePickerPage(this.tester);
 
   final WidgetTester tester;

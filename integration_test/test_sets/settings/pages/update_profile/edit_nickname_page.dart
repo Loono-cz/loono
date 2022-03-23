@@ -3,7 +3,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/fallback_account_content.dart';
 
-class EditNicknamePage {
+import '../../../../test_helpers/common_finders.dart';
+
+class EditNicknamePage with SettingsFinders {
   EditNicknamePage(this.tester);
 
   final WidgetTester tester;

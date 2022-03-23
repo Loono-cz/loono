@@ -1,7 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/widgets/button.dart';
 
-class OpenSettingsPage {
+import '../../../test_helpers/common_finders.dart';
+
+class OpenSettingsPage with SettingsFinders {
   OpenSettingsPage(this.tester);
 
   final WidgetTester tester;
