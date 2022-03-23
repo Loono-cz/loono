@@ -14,6 +14,7 @@ class LogoutPage {
 
   /// Page methods
   Future<void> clickLoginButton() async {
+    logTestEvent();
     await tester.tap(loginBtn);
     await tester.pumpAndSettle();
     await tester.pumpUntilNotVisible(find.byType(LogoutScreen));

@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../test_helpers/common_finders.dart';
+import '../../../../test_helpers/widget_tester_extensions.dart';
 
 class LeaderboardPage with SettingsFinders {
   LeaderboardPage(this.tester);
@@ -15,11 +16,13 @@ class LeaderboardPage with SettingsFinders {
 
   /// Page methods
   Future<void> clickCloseButton() async {
+    logTestEvent();
     await tester.tap(closeBtn);
     await tester.pumpAndSettle();
   }
 
   void checkMeMarkerIsDrawn() {
+    logTestEvent();
     expect(listTileMeMarker, findsOneWidget);
   }
 }

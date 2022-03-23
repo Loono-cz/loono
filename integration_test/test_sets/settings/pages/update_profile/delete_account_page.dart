@@ -27,16 +27,19 @@ class DeleteAccountPage with SettingsFinders {
 
   /// Page methods
   Future<void> clickDeleteCheckupsCheckBox() async {
+    logTestEvent();
     await tester.tap(checkBoxDeleteCheckups);
     await tester.pumpAndSettle();
   }
 
   Future<void> clickDeleteBadgesCheckBox() async {
+    logTestEvent();
     await tester.tap(checkBoxDeleteBadges);
     await tester.pumpAndSettle();
   }
 
   Future<void> clickStopNotificationsCheckBox() async {
+    logTestEvent();
     await tester.tap(checkBoxStopNotifications);
     await tester.pumpAndSettle();
   }
@@ -47,22 +50,26 @@ class DeleteAccountPage with SettingsFinders {
   }
 
   Future<void> clickDeleteAccountButton() async {
+    logTestEvent();
     await tester.tap(deleteAccountBtn);
     await tester.pumpAndSettle();
   }
 
   Future<void> cancelDeleteAccountDialog() async {
+    logTestEvent();
     await tester.tap(cancelBtnDeleteAccountDialog);
     await tester.pumpAndSettle();
   }
 
   Future<void> confirmDeleteAccountDialog() async {
+    logTestEvent();
     await tester.tap(yesBtnDeleteAccountDialog);
     await tester.pumpAndSettle();
     await tester.pumpUntilNotVisible(yesBtnDeleteAccountDialog);
   }
 
   Future<void> clickCloseScreenButton() async {
+    logTestEvent();
     await tester.tap(closeScreenBtn);
     await tester.pumpAndSettle();
   }

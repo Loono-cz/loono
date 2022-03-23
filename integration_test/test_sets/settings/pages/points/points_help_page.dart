@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/widgets/button.dart';
 
 import '../../../../test_helpers/common_finders.dart';
+import '../../../../test_helpers/widget_tester_extensions.dart';
 
 class PointsHelpPage with SettingsFinders {
   PointsHelpPage(this.tester);
@@ -14,11 +15,13 @@ class PointsHelpPage with SettingsFinders {
 
   /// Page methods
   Future<void> clickLeaderboardButton() async {
+    logTestEvent();
     await tester.tap(leaderboardBtn);
     await tester.pumpAndSettle();
   }
 
   Future<void> clickBackButton() async {
+    logTestEvent();
     await tester.tap(backBtn);
     await tester.pumpAndSettle();
   }

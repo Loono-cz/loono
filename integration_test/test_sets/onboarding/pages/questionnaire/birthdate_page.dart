@@ -5,6 +5,7 @@ import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/custom_date_picker.dart';
 
 import '../../../../test_helpers/common_finders.dart';
+import '../../../../test_helpers/widget_tester_extensions.dart';
 
 class QuestionnaireBirthDatePage with OnboardingFinders {
   QuestionnaireBirthDatePage(this.tester);
@@ -19,16 +20,19 @@ class QuestionnaireBirthDatePage with OnboardingFinders {
 
   /// Page methods
   Future<void> clickSkipQuestionnaireButton() async {
+    logTestEvent();
     await tester.tap(skipQuestionnaireBtn);
     await tester.pumpAndSettle();
   }
 
   Future<void> clickContinueButton() async {
+    logTestEvent();
     await tester.tap(continueBtn);
     await tester.pumpAndSettle();
   }
 
   Future<void> scrollToApproxYear(int year) async {
+    logTestEvent('scrollToApproxYear: $year');
     final yearPicker = find.descendant(
       of: yearPickerBox,
       matching: find.byType(ListWheelScrollView),

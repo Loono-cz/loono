@@ -89,12 +89,15 @@ Future<void> run({required WidgetTester tester, required Charlatan charlatan}) a
   expect(find.byType(OnboardingGeneralPracticionerScreen), findsOneWidget);
 
   // "more than X years" button should transition to next doctor
-  await questionnaireDoctorCcaLastVisitPage.clickMoreThanXYearsOrIdkButton();
-  expect(find.byType(OnboardingDentistScreen), findsOneWidget);
+  await questionnaireDoctorCcaLastVisitPage.clickMoreThanXYearsOrIdkButton(
+    nextScreen: OnboardingDentistScreen,
+  );
 
   // "in last X years" should transition to achievement screen, date picker screen
-  await questionnaireDoctorCcaLastVisitPage.clickInLastXYearsButton();
-  expect(find.byType(DentistAchievementScreen), findsOneWidget);
+  await questionnaireDoctorCcaLastVisitPage.clickInLastXYearsButton(
+    nextScreen: DentistAchievementScreen,
+  );
+
   await questionnaireAchievementPage.clickContinueButton();
   expect(find.byType(DentistDateScreen), findsOneWidget);
   await questionnaireDoctorDatePickerPage.clickContinueButton();

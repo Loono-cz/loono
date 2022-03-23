@@ -17,17 +17,19 @@ class LoginPage {
 
   /// Page methods
   Future<void> loginWithApple() async {
-    // TODO
+    logTestEvent();
     await tester.tap(appleLoginBtn);
     await tester.pumpAndSettle();
   }
 
   Future<void> loginWithGoogle() async {
+    logTestEvent();
     await tester.tap(googleLoginBtn);
     await tester.pumpAndSettle();
   }
 
   Future<void> clickCreateNewAccountButton() async {
+    logTestEvent();
     await tester.tap(createNewAccountBtn);
     await tester.pumpAndSettle();
     await tester.pumpUntilNotVisible(createNewAccountBtn);

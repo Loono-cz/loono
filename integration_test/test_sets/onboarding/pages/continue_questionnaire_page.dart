@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/widgets/button.dart';
 
+import '../../../test_helpers/widget_tester_extensions.dart';
+
 class ContinueQuestionnairePage {
   ContinueQuestionnairePage(this.tester);
 
@@ -14,11 +16,13 @@ class ContinueQuestionnairePage {
 
   /// Page methods
   Future<void> clickAlreadyHavenAnAccountButton() async {
+    logTestEvent();
     await tester.tap(alreadyHaveAnAccountBtn);
     await tester.pumpAndSettle();
   }
 
   Future<void> clickContinueFormButton() async {
+    logTestEvent();
     await tester.tap(continueFormButton);
     await tester.pumpAndSettle();
   }

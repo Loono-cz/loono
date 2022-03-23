@@ -14,13 +14,17 @@ class QuestionnaireDoctorCcaLastVisitPage with OnboardingFinders {
   final Finder moreThanXYearsOrIdkButton = find.textContaining('to více než');
 
   /// Page methods
-  Future<void> clickInLastXYearsButton() async {
+  Future<void> clickInLastXYearsButton({required Type nextScreen}) async {
+    logTestEvent();
     await tester.tap(inLastXYearsBtn);
     await tester.pumpAndSettle();
+    await tester.pumpUntilVisible(find.byType(nextScreen));
   }
 
-  Future<void> clickMoreThanXYearsOrIdkButton() async {
+  Future<void> clickMoreThanXYearsOrIdkButton({required Type nextScreen}) async {
+    logTestEvent();
     await tester.tap(moreThanXYearsOrIdkButton);
     await tester.pumpAndSettle();
+    await tester.pumpUntilVisible(find.byType(nextScreen));
   }
 }
