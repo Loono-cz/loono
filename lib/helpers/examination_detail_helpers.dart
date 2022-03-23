@@ -131,7 +131,7 @@ String procedureQuestionTitle(
       // TODO: Handle this case.
       break;
     case ExaminationType.ULTRASOUND_BREAST:
-      // TODO: Handle this case.
+      response = context.l10n.ultrasound_breast_question_highlight;
       break;
     case ExaminationType.UROLOGIST:
       response = context.l10n.urology_question_highlight;

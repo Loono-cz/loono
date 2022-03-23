@@ -198,7 +198,6 @@ class AuthService {
     await _googleSignIn.signOut();
   }
 
-  // TODO: refresh token more often - maybe on each api call ? (https://cesko-digital.atlassian.net/browse/LOON-477)
   Future<String?> refreshUserToken() async {
     final token = await _auth.currentUser?.getIdToken();
     if (token != null) {

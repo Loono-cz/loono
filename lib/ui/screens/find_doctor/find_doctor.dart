@@ -74,88 +74,85 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                 !_isHealthCareProvidersInMapService) {
               _setHealthcareProviders(mapStateService);
             }
-            return ChangeNotifierProvider.value(
-              value: mapStateService,
-              child: Stack(
-                children: [
-                  MapPreview(mapController: _mapController),
-                  if (_isHealthCareProvidersInMapService)
-                    SearchTextField(
-                      onItemTap: (searchResult) async {
-                        final provider = searchResult.data;
-                        if (provider == null) return;
-                        await animateToPos(
-                          _mapController,
-                          cameraPosition: CameraPosition(
-                            target: LatLng(provider.lat, provider.lng),
-                            zoom: searchResult.zoomLevel,
-                          ),
-                        );
-                        _sheetController.jumpTo(MapVariables.MIN_SHEET_SIZE);
-                      },
-                    ),
-                  if (_isHealthCareProvidersInMapService)
-                    MapSheetOverlay(
-                      onItemTap: (healthcareProvider) async => animateToPos(
+            return Stack(
+              children: [
+                MapPreview(mapController: _mapController),
+                if (_isHealthCareProvidersInMapService)
+                  SearchTextField(
+                    onItemTap: (searchResult) async {
+                      final provider = searchResult.data;
+                      if (provider == null) return;
+                      await animateToPos(
                         _mapController,
                         cameraPosition: CameraPosition(
-                          target: LatLng(healthcareProvider.lat, healthcareProvider.lng),
-                          zoom: MapVariables.DOCTOR_DETAIL_ZOOM,
+                          target: LatLng(provider.lat, provider.lng),
+                          zoom: searchResult.zoomLevel,
                         ),
-                      ),
-                      sheetController: _sheetController,
-                      mapStateService: mapStateService,
-                    ),
-                  if (!_isHealthCareProvidersInMapService)
-                    Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
-                            child: const LinearProgressIndicator(
-                              backgroundColor: Color.fromRGBO(104, 170, 123, 1),
-                              color: LoonoColors.greenSuccess,
-                              minHeight: 70,
-                              value: null,
-                            ),
-                          ),
-                          Text(
-                            'Načítám informace o lékařích ...',
-                            style: LoonoFonts.cardTitle.copyWith(color: Colors.white),
-                          ),
-                        ],
+                      );
+                      _sheetController.jumpTo(MapVariables.MIN_SHEET_SIZE);
+                    },
+                  ),
+                if (_isHealthCareProvidersInMapService)
+                  MapSheetOverlay(
+                    onItemTap: (healthcareProvider) async => animateToPos(
+                      _mapController,
+                      cameraPosition: CameraPosition(
+                        target: LatLng(healthcareProvider.lat, healthcareProvider.lng),
+                        zoom: MapVariables.DOCTOR_DETAIL_ZOOM,
                       ),
                     ),
-                  if (mapStateService.doctorDetail != null)
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Container(
-                        width: double.infinity,
-                        decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                              Colors.white,
-                              LoonoColors.greenLight,
-                            ],
-                          ),
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(10.0),
-                            topLeft: Radius.circular(10.0),
+                    sheetController: _sheetController,
+                    mapStateService: mapStateService,
+                  ),
+                if (!_isHealthCareProvidersInMapService)
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10.0),
+                          child: const LinearProgressIndicator(
+                            backgroundColor: Color.fromRGBO(104, 170, 123, 1),
+                            color: LoonoColors.greenSuccess,
+                            minHeight: 70,
+                            value: null,
                           ),
                         ),
-                        height: 370,
-                        child: DoctorDetailSheet(
-                          doctor: mapStateService.doctorDetail!,
-                          closeDetail: () => mapStateService.setDoctorDetail(null),
+                        Text(
+                          'Načítám informace o lékařích ...',
+                          style: LoonoFonts.cardTitle.copyWith(color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ),
+                if (mapStateService.doctorDetail != null)
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      width: double.infinity,
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Colors.white,
+                            LoonoColors.greenLight,
+                          ],
+                        ),
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(10.0),
+                          topLeft: Radius.circular(10.0),
                         ),
                       ),
+                      height: 370,
+                      child: DoctorDetailSheet(
+                        doctor: mapStateService.doctorDetail!,
+                        closeDetail: () => mapStateService.setDoctorDetail(null),
+                      ),
                     ),
-                ],
-              ),
+                  ),
+              ],
             );
           },
         ),
