@@ -1,7 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/widgets/button.dart';
 
-class FillFormLaterPage {
+import '../../../../test_helpers/common_finders.dart';
+import '../../../../test_helpers/widget_tester_extensions.dart';
+
+class FillFormLaterPage with OnboardingFinders {
   FillFormLaterPage(this.tester);
 
   final WidgetTester tester;
@@ -12,11 +15,13 @@ class FillFormLaterPage {
 
   /// Page methods
   Future<void> clickContinueFormButton() async {
+    logTestEvent();
     await tester.tap(continueFormButton);
     await tester.pumpAndSettle();
   }
 
   Future<void> clickFillFormLaterButton() async {
+    logTestEvent();
     await tester.tap(fillLaterBtn);
     await tester.pumpAndSettle();
   }

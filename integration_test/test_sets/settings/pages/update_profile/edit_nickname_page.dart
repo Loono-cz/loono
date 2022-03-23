@@ -3,7 +3,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/fallback_account_content.dart';
 
-class EditNicknamePage {
+import '../../../../test_helpers/common_finders.dart';
+import '../../../../test_helpers/widget_tester_extensions.dart';
+
+class EditNicknamePage with SettingsFinders {
   EditNicknamePage(this.tester);
 
   final WidgetTester tester;
@@ -16,26 +19,31 @@ class EditNicknamePage {
 
   /// Page methods
   Future<void> insertNickname(String nickname) async {
+    logTestEvent('Insert nickname: $nickname');
     await tester.enterText(textField, nickname);
     await tester.pumpAndSettle();
   }
 
   void checkInputTextIsValid() {
+    logTestEvent();
     final textFieldWidget = tester.widget<TextField>(textField);
     expect(textFieldWidget.controller!.text.length <= MAX_ALLOWED_INPUT_FORM_LENGTH, true);
   }
 
   Future<void> clickSaveButton() async {
+    logTestEvent();
     await tester.tap(saveBtn);
     await tester.pumpAndSettle();
   }
 
   Future<void> clickBackButton() async {
+    logTestEvent();
     await tester.tap(backBtn);
     await tester.pumpAndSettle();
   }
 
   Future<void> clickCloseButton() async {
+    logTestEvent();
     await tester.tap(closeBtn);
     await tester.pumpAndSettle();
   }

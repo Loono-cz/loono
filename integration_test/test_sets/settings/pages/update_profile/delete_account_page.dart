@@ -3,9 +3,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/settings/checkbox.dart';
 
+import '../../../../test_helpers/common_finders.dart';
 import '../../../../test_helpers/widget_tester_extensions.dart';
 
-class DeleteAccountPage {
+class DeleteAccountPage with SettingsFinders {
   DeleteAccountPage(this.tester);
 
   final WidgetTester tester;
@@ -26,16 +27,19 @@ class DeleteAccountPage {
 
   /// Page methods
   Future<void> clickDeleteCheckupsCheckBox() async {
+    logTestEvent();
     await tester.tap(checkBoxDeleteCheckups);
     await tester.pumpAndSettle();
   }
 
   Future<void> clickDeleteBadgesCheckBox() async {
+    logTestEvent();
     await tester.tap(checkBoxDeleteBadges);
     await tester.pumpAndSettle();
   }
 
   Future<void> clickStopNotificationsCheckBox() async {
+    logTestEvent();
     await tester.tap(checkBoxStopNotifications);
     await tester.pumpAndSettle();
   }
@@ -46,22 +50,26 @@ class DeleteAccountPage {
   }
 
   Future<void> clickDeleteAccountButton() async {
+    logTestEvent();
     await tester.tap(deleteAccountBtn);
     await tester.pumpAndSettle();
   }
 
   Future<void> cancelDeleteAccountDialog() async {
+    logTestEvent();
     await tester.tap(cancelBtnDeleteAccountDialog);
     await tester.pumpAndSettle();
   }
 
   Future<void> confirmDeleteAccountDialog() async {
+    logTestEvent();
     await tester.tap(yesBtnDeleteAccountDialog);
     await tester.pumpAndSettle();
     await tester.pumpUntilNotVisible(yesBtnDeleteAccountDialog);
   }
 
   Future<void> clickCloseScreenButton() async {
+    logTestEvent();
     await tester.tap(closeScreenBtn);
     await tester.pumpAndSettle();
   }

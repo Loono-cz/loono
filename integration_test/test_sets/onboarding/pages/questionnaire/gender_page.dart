@@ -2,15 +2,16 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/onboarding/gender_button.dart';
 
-import '../../../../test_helpers/common_shared_finders.dart';
+import '../../../../test_helpers/common_finders.dart';
+import '../../../../test_helpers/widget_tester_extensions.dart';
 
-class QuestionnaireGenderPage {
+class QuestionnaireGenderPage with OnboardingFinders {
   QuestionnaireGenderPage(this.tester);
 
   final WidgetTester tester;
 
   /// Page finders
-  final Finder skipQuestionnaireBtn = CommonSharedFinders.onboardingSkipQuestionnaireBtn;
+  Finder get skipQuestionnaireBtn => commonOnboardingSkipQuestionnaireBtn;
   final Finder continueBtn = find.widgetWithText(LoonoButton, 'Pokračovat');
   final Finder femaleGenderBtn = find.descendant(
     of: find.byType(GenderButton),
@@ -23,26 +24,31 @@ class QuestionnaireGenderPage {
 
   /// Page methods
   Future<void> clickSkipQuestionnaireButton() async {
+    logTestEvent();
     await tester.tap(skipQuestionnaireBtn);
     await tester.pumpAndSettle();
   }
 
   Future<void> clickContinueButton() async {
+    logTestEvent();
     await tester.tap(continueBtn);
     await tester.pumpAndSettle();
   }
 
   Future<void> chooseMaleGender() async {
+    logTestEvent();
     await tester.tap(maleGenderBtn);
     await tester.pumpAndSettle();
   }
 
   Future<void> chooseFemaleGender() async {
+    logTestEvent();
     await tester.tap(femaleGenderBtn);
     await tester.pumpAndSettle();
   }
 
   bool isContinueButtonDisabled() {
+    logTestEvent('Check continue button disabled state');
     final loonoButton = tester.widget<LoonoButton>(continueBtn);
     final isButtonDisabled = loonoButton.enabled == false;
     return isButtonDisabled;

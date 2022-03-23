@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/widgets/button.dart';
 
-class QuestionnaireDoctorDatePickerPage {
+import '../../../../test_helpers/common_finders.dart';
+import '../../../../test_helpers/widget_tester_extensions.dart';
+
+class QuestionnaireDoctorDatePickerPage with OnboardingFinders {
   QuestionnaireDoctorDatePickerPage(this.tester);
 
   final WidgetTester tester;
@@ -13,11 +16,13 @@ class QuestionnaireDoctorDatePickerPage {
 
   /// Page methods
   Future<void> clickContinueButton() async {
+    logTestEvent();
     await tester.tap(continueBtn);
     await tester.pumpAndSettle();
   }
 
   Future<void> clickIdkButton() async {
+    logTestEvent();
     await tester.tap(idkBtn);
     await tester.pumpAndSettle();
   }

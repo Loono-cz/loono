@@ -1,4 +1,7 @@
+import 'package:collection/collection.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:stack_trace/stack_trace.dart';
 
 extension WidgetTesterExt on WidgetTester {
   Future<void> pumpSettleAndWait({int seconds = 2}) async {
@@ -43,5 +46,16 @@ extension WidgetTesterExt on WidgetTester {
       }
     }
     await pump(const Duration(seconds: 1));
+  }
+}
+
+extension LogExt on Object {
+  void logTestEvent([String? event]) {
+    if (event != null) {
+      debugPrint('$runtimeType: $event');
+    } else {
+      final stackTraceMethodCall = Trace.current(1).frames.firstOrNull?.member;
+      debugPrint(stackTraceMethodCall ?? '$runtimeType: unknown method');
+    }
   }
 }

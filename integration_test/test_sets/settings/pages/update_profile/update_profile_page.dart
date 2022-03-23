@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../../../../test_helpers/common_finders.dart';
 import '../../../../test_helpers/widget_tester_extensions.dart';
 
-class UpdateProfilePage {
+class UpdateProfilePage with SettingsFinders {
   UpdateProfilePage(this.tester);
 
   final WidgetTester tester;
@@ -32,16 +33,19 @@ class UpdateProfilePage {
 
   /// Page methods
   Future<void> clickNicknameField() async {
+    logTestEvent();
     await tester.tap(nicknameTextField);
     await tester.pumpAndSettle();
   }
 
   Future<void> clickEmailField() async {
+    logTestEvent();
     await tester.tap(emailTextField);
     await tester.pumpAndSettle();
   }
 
   Future<void> clickSexField() async {
+    logTestEvent();
     await tester.ensureVisible(sexTextField);
     await tester.pumpAndSettle();
     await tester.tap(sexTextField);
@@ -49,6 +53,7 @@ class UpdateProfilePage {
   }
 
   Future<void> clickBirthdateField() async {
+    logTestEvent();
     await tester.ensureVisible(birthdateTextField);
     await tester.pumpAndSettle();
     await tester.tap(birthdateTextField);
@@ -56,6 +61,7 @@ class UpdateProfilePage {
   }
 
   Future<void> clickLogoutButton() async {
+    logTestEvent();
     await tester.ensureVisible(logoutBtn);
     await tester.pumpAndSettle();
     await tester.tap(logoutBtn);
@@ -63,6 +69,7 @@ class UpdateProfilePage {
   }
 
   Future<void> clickDeleteAccountButton() async {
+    logTestEvent();
     await tester.ensureVisible(deleteAccountBtn);
     await tester.pumpAndSettle();
     await tester.tap(deleteAccountBtn);
@@ -70,21 +77,25 @@ class UpdateProfilePage {
   }
 
   Future<void> cancelLogoutDialog() async {
+    logTestEvent();
     await tester.tap(cancelBtnLogoutDialog);
     await tester.pumpAndSettle();
   }
 
   Future<void> confirmLogoutDialog() async {
+    logTestEvent();
     await tester.tap(confirmBtnLogoutDialog);
     await tester.pumpAndSettle();
     await tester.pumpUntilNotVisible(confirmBtnLogoutDialog);
   }
 
   Future<void> closeErrorSheet() async {
+    logTestEvent();
     await tester.tapAt(Offset.zero);
   }
 
   void verifyNickname(String expectedNickname) {
+    logTestEvent('Verify nickname is: $expectedNickname');
     final nicknameText = find.descendant(
       of: nicknameTextField,
       matching: find.text(expectedNickname),
@@ -93,6 +104,7 @@ class UpdateProfilePage {
   }
 
   void verifyEmail(String expectedEmail) {
+    logTestEvent('Verify email is: $expectedEmail');
     final emailText = find.descendant(
       of: emailTextField,
       matching: find.text(expectedEmail),

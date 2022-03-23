@@ -1,7 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/widgets/button.dart';
 
-class OpenSettingsPage {
+import '../../../test_helpers/common_finders.dart';
+import '../../../test_helpers/widget_tester_extensions.dart';
+
+class OpenSettingsPage with SettingsFinders {
   OpenSettingsPage(this.tester);
 
   final WidgetTester tester;
@@ -13,16 +16,19 @@ class OpenSettingsPage {
 
   /// Page methods
   Future<void> clickEditProfileButton() async {
+    logTestEvent();
     await tester.tap(editProfileBtn);
     await tester.pumpAndSettle();
   }
 
   Future<void> clickPointsHelpButton() async {
+    logTestEvent();
     await tester.tap(pointsHelpBtn);
     await tester.pumpAndSettle();
   }
 
   Future<void> clickLeaderboardButton() async {
+    logTestEvent();
     await tester.tap(leaderboardBtn);
     await tester.pumpAndSettle();
   }

@@ -6,6 +6,7 @@ import 'package:loono/ui/screens/gynecology_achievement.dart';
 import 'package:loono/ui/screens/main/pre_auth/login.dart';
 import 'package:loono/ui/screens/main/pre_auth/onboarding_form_done.dart';
 import 'package:loono/ui/screens/onboarding/birthdate.dart';
+import 'package:loono/ui/screens/onboarding/doctors/dentist.dart';
 import 'package:loono/ui/screens/onboarding/doctors/dentist_date.dart';
 import 'package:loono/ui/screens/onboarding/doctors/general_practicioner.dart';
 import 'package:loono/ui/screens/onboarding/doctors/gynecology.dart';
@@ -61,20 +62,27 @@ Future<void> run({required WidgetTester tester, required Charlatan charlatan}) a
   expect(find.byType(OnboardingGeneralPracticionerScreen), findsOneWidget);
 
   // "more than X years" button should transition to next doctor
-  await questionnaireDoctorCcaLastVisitPage.clickMoreThanXYearsOrIdkButton();
-  expect(find.byType(OnboardingGynecologyScreen), findsOneWidget);
+  await questionnaireDoctorCcaLastVisitPage.clickMoreThanXYearsOrIdkButton(
+    nextScreen: OnboardingGynecologyScreen,
+  );
 
   // "in last X years" should transition to achievement screen, date picker screen
-  await questionnaireDoctorCcaLastVisitPage.clickInLastXYearsButton();
-  expect(find.byType(GynecologyAchievementScreen), findsOneWidget);
+  await questionnaireDoctorCcaLastVisitPage.clickInLastXYearsButton(
+    nextScreen: GynecologyAchievementScreen,
+  );
+
   await questionnaireAchievementPage.clickContinueButton();
   expect(find.byType(GynecologyDateScreen), findsOneWidget);
+
   // clicking 'Dont know' button should transition to next doctor
-  await questionnaireDoctorDatePickerPage.clickContinueButton();
+  await questionnaireDoctorDatePickerPage.clickIdkButton();
+  expect(find.byType(OnboardingDentistScreen), findsOneWidget);
 
   // "in last X years" should transition to achievement screen, date picker screen
-  await questionnaireDoctorCcaLastVisitPage.clickInLastXYearsButton();
-  expect(find.byType(DentistAchievementScreen), findsOneWidget);
+  await questionnaireDoctorCcaLastVisitPage.clickInLastXYearsButton(
+    nextScreen: DentistAchievementScreen,
+  );
+
   await questionnaireAchievementPage.clickContinueButton();
   expect(find.byType(DentistDateScreen), findsOneWidget);
 

@@ -21,16 +21,19 @@ class IntroVideoPage {
   }
 
   Future<void> clickContinueBtn() async {
+    logTestEvent();
     await tester.tap(continueBtn);
     await tester.pumpAndSettle();
   }
 
   void checkVideoIsMuted() {
+    logTestEvent();
     final introVideo = tester.widget<IntroVideo>(find.byType(IntroVideo));
     expect(introVideo.storyPageState.isMuted, true);
   }
 
   Future<void> replayVideo() async {
+    logTestEvent();
     final videoPlayer = tester.widget<VideoPlayer>(find.byType(VideoPlayer));
     await tester.pump(const Duration(seconds: 1));
     final beforeResetProgress = videoPlayer.controller.value;
@@ -42,6 +45,7 @@ class IntroVideoPage {
   }
 
   Future<void> clickPlayAgainBtn({bool pumpAndSettle = true}) async {
+    logTestEvent();
     await tester.tap(playAgainBtn);
     if (pumpAndSettle) await tester.pumpAndSettle();
   }
