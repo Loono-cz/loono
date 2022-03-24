@@ -29,7 +29,7 @@ void showConfirmationSheet(
 
   Future<void> _completedAction() async {
     await registry.get<UserRepository>().sync();
-    AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
+    AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
   }
 
   final l10n = context.l10n;
