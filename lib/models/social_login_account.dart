@@ -9,21 +9,22 @@ import 'package:loono/utils/registry.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class SocialLoginAccount {
-  const SocialLoginAccount.apple(
-    this._appleID,
-  )   : assert(_appleID != null),
-        _socialLoginMethod = SocialLoginMethod.apple,
-        _googleUser = null;
+  const SocialLoginAccount.apple(AuthorizationCredentialAppleID appleID, String nonce)
+      : _socialLoginMethod = SocialLoginMethod.apple,
+        _googleUser = null,
+        _nonce = nonce,
+        _appleID = appleID;
 
-  const SocialLoginAccount.google(
-    this._googleUser,
-  )   : assert(_googleUser != null),
-        _socialLoginMethod = SocialLoginMethod.google,
-        _appleID = null;
+  const SocialLoginAccount.google(GoogleSignInAccount googleUser)
+      : _socialLoginMethod = SocialLoginMethod.google,
+        _appleID = null,
+        _nonce = null,
+        _googleUser = googleUser;
 
   final SocialLoginMethod _socialLoginMethod;
   final GoogleSignInAccount? _googleUser;
   final AuthorizationCredentialAppleID? _appleID;
+  final String? _nonce;
 
   String? get email {
     switch (_socialLoginMethod) {
@@ -47,7 +48,7 @@ class SocialLoginAccount {
     final authService = registry.get<AuthService>();
     switch (_socialLoginMethod) {
       case SocialLoginMethod.apple:
-        return authService.signInWithApple(_appleID?.userIdentifier);
+        return authService.signInWithApple(_appleID?.identityToken, _nonce);
       case SocialLoginMethod.google:
         return authService.signInWithGoogle(_googleUser);
     }

@@ -77,12 +77,12 @@ class AuthService {
 
     if (appleCredential == null) return const Left(AuthFailure.unknown());
     if (appleCredential.email == null) {
-      return Left(AuthFailure.accountNotExists(SocialLoginAccount.apple(appleCredential)));
+      return Left(AuthFailure.accountNotExists(SocialLoginAccount.apple(appleCredential, nonce)));
     }
 
     final signInMethods = await _auth.fetchSignInMethodsForEmail(appleCredential.email!);
     if (signInMethods.isEmpty) {
-      return Left(AuthFailure.accountNotExists(SocialLoginAccount.apple(appleCredential)));
+      return Left(AuthFailure.accountNotExists(SocialLoginAccount.apple(appleCredential, nonce)));
     }
 
     // account exists, sign in
@@ -133,6 +133,10 @@ class AuthService {
     String? existingIdToken,
     String? existingNonce,
   ]) async {
+    assert(
+      (existingIdToken != null && existingNonce != null) ||
+          (existingIdToken == null && existingNonce == null),
+    );
     // To prevent replay attacks with the credential returned from Apple, we
     // include a nonce in the credential request. When signing in with
     // Firebase, the nonce in the id token returned by Apple, is expected to
