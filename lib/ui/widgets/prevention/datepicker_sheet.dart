@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/ui/widgets/async_button.dart';
@@ -164,6 +165,10 @@ class _DatePickerContentState extends State<_DatePickerContent> {
           text: isFirstStep ? context.l10n.continue_info : context.l10n.action_save,
           enabled: newDate != null,
           asyncCallback: () async {
+            if (DateTime.now().isAfter(newDate!)) {
+              showFlushBarError(context, context.l10n.error_must_be_in_future);
+              return;
+            }
             if (isFirstStep) {
               if (originalDate != null) {
                 /// preset original date

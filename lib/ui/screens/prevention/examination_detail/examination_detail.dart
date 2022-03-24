@@ -248,7 +248,7 @@ class ExaminationDetail extends StatelessWidget {
                   ].contains(categorizedExamination.category)) ...[
                 StreamBuilder<CalendarEvent?>(
                   stream: _calendarEventsDao.watch(_examinationType),
-                  builder: (context, snapshot) {
+                  builder: (streamContext, snapshot) {
                     if (!snapshot.hasData) {
                       return Expanded(
                         child: Row(

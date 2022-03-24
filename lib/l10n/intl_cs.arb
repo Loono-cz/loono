@@ -863,5 +863,7 @@
   "force_update_subtitle": "Bez aktualizace to dál nepůjde. Celý proces zabere jen malou chvíli.",
   "@force_update_subtitle": {},
   "force_update_button": "Aktualizovat aplikaci",
-  "@force_update_button": {}
+  "@force_update_button": {},
+  "error_must_be_in_future": "Datum prohlídky musí být v budoucnu",
+  "@error_must_be_in_future": {}
 }
