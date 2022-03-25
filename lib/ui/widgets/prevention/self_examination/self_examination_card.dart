@@ -120,7 +120,16 @@ class SelfExaminationCard extends StatelessWidget {
           ),
         ),
       ),
-      Align(alignment: Alignment.bottomRight, child: _doctorAsset),
+      Stack(
+        children: [
+          _doctorCircle,
+          Positioned(
+            right: 0,
+            bottom: 0,
+            child: _doctorAsset,
+          ),
+        ],
+      ),
     ];
   }
 
@@ -159,9 +168,7 @@ class SelfExaminationCard extends StatelessWidget {
       ),
       Stack(
         children: [
-          SvgPicture.asset(
-            'assets/icons/card_circle.svg',
-          ),
+          _doctorCircle,
           Positioned(
             right: 0,
             bottom: 0,
@@ -181,6 +188,10 @@ class SelfExaminationCard extends StatelessWidget {
           selfExamination.type.assetPath,
           height: 82,
         ),
+      );
+
+  Widget get _doctorCircle => SvgPicture.asset(
+        'assets/icons/card_circle.svg',
       );
 
   Widget get _loonoPointRow {
