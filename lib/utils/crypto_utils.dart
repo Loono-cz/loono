@@ -10,4 +10,14 @@ String sha256ofString(String input) {
   return digest.toString();
 }
 
-String getNonce() => sha256ofString(generateNonce());
+String generateSecureNonce() => generateNonce();
+
+class CryptoNonce {
+  CryptoNonce() {
+    rawNonce = generateSecureNonce();
+    nonce = sha256ofString(rawNonce);
+  }
+
+  late final String nonce;
+  late final String rawNonce;
+}
