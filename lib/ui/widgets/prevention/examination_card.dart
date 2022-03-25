@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/ui/widgets/loono_point.dart';
@@ -29,14 +30,13 @@ class ExaminationCard extends StatelessWidget {
         style: LoonoFonts.cardTitle,
       );
 
-  Widget get _doctorAsset => ClipRRect(
-        borderRadius: const BorderRadius.only(
-          bottomRight: Radius.circular(10),
-        ),
-        child: SvgPicture.asset(
-          categorizedExamination.examination.examinationType.assetPath,
-          width: 100,
-        ),
+  Widget get _doctorAsset => SvgPicture.asset(
+        categorizedExamination.examination.examinationType.assetPath,
+        height: 100,
+      );
+
+  Widget get _doctorCircle => SvgPicture.asset(
+        'assets/icons/card_circle.svg',
       );
 
   @override
@@ -44,18 +44,34 @@ class ExaminationCard extends StatelessWidget {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       elevation: 0.0,
-      child: SizedBox(
-        height: 120.0,
-        child: InkWell(
-          onTap: onTap,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: categorizedExamination.category.when(
-              scheduledSoonOrOverdue: () => _scheduledContent(isSoonOrOverdue: true),
-              newToSchedule: () => _makeAppointmentContent(context, isNew: true),
-              unknownLastVisit: () => _makeAppointmentContent(context),
-              scheduled: _scheduledContent,
-              waiting: _waitingContent,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Container(
+          height: 120.0,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Colors.white,
+                if (categorizedExamination.category == const ExaminationCategory.waiting())
+                  LoonoColors.greenLight
+                else
+                  LoonoColors.pink,
+              ],
+            ),
+          ),
+          child: InkWell(
+            onTap: onTap,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: categorizedExamination.category.when(
+                scheduledSoonOrOverdue: () => _scheduledContent(isSoonOrOverdue: true),
+                newToSchedule: () => _makeAppointmentContent(context, isNew: true),
+                unknownLastVisit: () => _makeAppointmentContent(context),
+                scheduled: _scheduledContent,
+                waiting: _waitingContent,
+              ),
             ),
           ),
         ),
@@ -103,7 +119,16 @@ class ExaminationCard extends StatelessWidget {
           ),
         ),
       ),
-      Align(alignment: Alignment.bottomRight, child: _doctorAsset),
+      Stack(
+        children: [
+          _doctorCircle,
+          Positioned(
+            right: 0,
+            bottom: 0,
+            child: _doctorAsset,
+          ),
+        ],
+      )
     ];
   }
 
@@ -135,7 +160,16 @@ class ExaminationCard extends StatelessWidget {
           ),
         ),
       ),
-      Align(alignment: Alignment.bottomRight, child: _doctorAsset),
+      Stack(
+        children: [
+          _doctorCircle,
+          Positioned(
+            right: 0,
+            bottom: 0,
+            child: _doctorAsset,
+          ),
+        ],
+      )
     ];
   }
 
@@ -172,6 +206,7 @@ class ExaminationCard extends StatelessWidget {
           alignment: Alignment.bottomRight,
           children: [
             const SizedBox(width: 150),
+            _doctorCircle,
             _doctorAsset,
             Positioned(
               bottom: 10,

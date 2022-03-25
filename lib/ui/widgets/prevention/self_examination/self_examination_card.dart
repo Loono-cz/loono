@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/examination_types.dart';
+import 'package:loono/helpers/self_examination_category.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart' as db;
@@ -35,8 +36,22 @@ class SelfExaminationCard extends StatelessWidget {
         return Card(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           elevation: 0.0,
-          child: SizedBox(
+          child: Container(
             height: 120.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.white,
+                  if (selfExamination.calculateStatus() == const SelfExaminationCategory.waiting())
+                    LoonoColors.greenLight
+                  else
+                    LoonoColors.pink,
+                ],
+              ),
+            ),
             child: InkWell(
               onTap: () {
                 onTap?.call(sex);
@@ -142,15 +157,29 @@ class SelfExaminationCard extends StatelessWidget {
           ),
         ),
       ),
-      Align(alignment: Alignment.bottomRight, child: _doctorAsset),
+      Stack(
+        children: [
+          SvgPicture.asset(
+            'assets/icons/card_circle.svg',
+          ),
+          Positioned(
+            right: 0,
+            bottom: 0,
+            child: _doctorAsset,
+          ),
+        ],
+      )
     ];
   }
 
   Widget get _doctorAsset => Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.only(
+          right: 12.0,
+          bottom: 15.0,
+        ),
         child: SvgPicture.asset(
           selfExamination.type.assetPath,
-          width: 82,
+          height: 82,
         ),
       );
 
