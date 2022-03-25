@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/helpers/ui_helpers.dart';
@@ -32,73 +33,85 @@ class GamificationIntroductionScreen extends StatelessWidget {
                 final user = snapshot.data;
                 final sex = user?.sex;
 
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                return Stack(
                   children: [
-                    const SizedBox(height: 24),
-                    Text(
-                      '${sex == Sex.MALE ? context.l10n.gamification_introduction_header_male : context.l10n.gamification_introduction_header_female} ${user?.nickname ?? (sex?.getNicknameHintLabel(context)) ?? ''}',
-                      textAlign: TextAlign.center,
-                      style: LoonoFonts.headerFontStyle,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 24.0, top: 100),
+                      child: SvgPicture.asset(
+                        'assets/icons/hero_background.svg',
+                        width: double.infinity,
+                        height: MediaQuery.of(context).size.width * 0.735,
+                      ),
                     ),
-                    const SizedBox(height: 18),
-                    Row(
+                    Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const LoonoPointIcon(color: LoonoColors.primaryEnabled, width: 16.0),
-                        const SizedBox(width: 7),
+                        const SizedBox(height: 24),
                         Text(
-                          '${user?.points ?? 0} ${context.l10n.gamification_introduction_points.toUpperCase()}',
-                          style: LoonoFonts.subtitleFontStyle.copyWith(
-                            color: LoonoColors.primaryEnabled,
-                            fontSize: 11,
-                          ),
+                          '${sex == Sex.MALE ? context.l10n.gamification_introduction_header_male : context.l10n.gamification_introduction_header_female} ${user?.nickname ?? (sex?.getNicknameHintLabel(context)) ?? ''}',
+                          textAlign: TextAlign.center,
+                          style: LoonoFonts.headerFontStyle,
                         ),
-                      ],
-                    ),
-                    if (LoonoSizes.isScreenSmall(context))
-                      Expanded(
-                        child: ListView(
-                          shrinkWrap: true,
+                        const SizedBox(height: 18),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const BadgeComposer(),
-                            const SizedBox(height: 10),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 18),
-                              child: _buildDescContainer(context),
-                            ),
-                            const SizedBox(height: 20),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 18),
-                              child: LoonoButton(
-                                text: context.l10n.gamification_introduction_button,
-                                onTap: () => AutoRouter.of(context).replaceAll(
-                                  [const MainScreenRouter()],
-                                ),
+                            const LoonoPointIcon(color: LoonoColors.primaryEnabled, width: 16.0),
+                            const SizedBox(width: 7),
+                            Text(
+                              '${user?.points ?? 0} ${context.l10n.gamification_introduction_points.toUpperCase()}',
+                              style: LoonoFonts.subtitleFontStyle.copyWith(
+                                color: LoonoColors.primaryEnabled,
+                                fontSize: 11,
                               ),
                             ),
-                            SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
                           ],
                         ),
-                      )
-                    else ...[
-                      const BadgeComposer(),
-                      const SizedBox(height: 10),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 18),
-                        child: _buildDescContainer(context),
-                      ),
-                      const Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 18),
-                        child: LoonoButton(
-                          text: context.l10n.gamification_introduction_button,
-                          onTap: () =>
-                              AutoRouter.of(context).replaceAll([const MainScreenRouter()]),
-                        ),
-                      ),
-                      const Spacer(flex: 2),
-                    ],
+                        if (LoonoSizes.isScreenSmall(context))
+                          Expanded(
+                            child: ListView(
+                              shrinkWrap: true,
+                              children: [
+                                const BadgeComposer(),
+                                const SizedBox(height: 10),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 18),
+                                  child: _buildDescContainer(context),
+                                ),
+                                const SizedBox(height: 20),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 18),
+                                  child: LoonoButton(
+                                    text: context.l10n.gamification_introduction_button,
+                                    onTap: () => AutoRouter.of(context).replaceAll(
+                                      [const MainScreenRouter()],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
+                              ],
+                            ),
+                          )
+                        else ...[
+                          const BadgeComposer(),
+                          const SizedBox(height: 10),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 18),
+                            child: _buildDescContainer(context),
+                          ),
+                          const Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 18),
+                            child: LoonoButton(
+                              text: context.l10n.gamification_introduction_button,
+                              onTap: () =>
+                                  AutoRouter.of(context).replaceAll([const MainScreenRouter()]),
+                            ),
+                          ),
+                          const Spacer(flex: 2),
+                        ],
+                      ],
+                    ),
                   ],
                 );
               },
