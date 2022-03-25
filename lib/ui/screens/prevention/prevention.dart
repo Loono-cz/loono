@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/ui/widgets/avatar_arrow_bubble.dart';
 import 'package:loono/ui/widgets/badges/badge_composer.dart';
 import 'package:loono/ui/widgets/prevention/examinations_sheet_overlay.dart';
@@ -23,6 +24,14 @@ class PreventionScreen extends StatelessWidget {
           builder: (BuildContext context, BoxConstraints constraints) {
             return Stack(
               children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 24.0, top: 60),
+                  child: SvgPicture.asset(
+                    'assets/icons/hero_background.svg',
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.width * 0.735,
+                  ),
+                ),
                 const Padding(
                   padding: EdgeInsets.only(top: 40),
                   child: BadgeComposer(showDescription: false),
