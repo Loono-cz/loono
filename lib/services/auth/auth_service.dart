@@ -72,21 +72,25 @@ class AuthService {
   }
 
   Future<Either<AuthFailure, AuthUser>> checkAppleAccountExistsAndSignIn() async {
-    final nonce = getNonce();
-    final appleCredential = await getAppleCredential(nonce);
+    final cryptoNonce = CryptoNonce();
+    final appleCredential = await getAppleCredential(cryptoNonce);
 
     if (appleCredential == null) return const Left(AuthFailure.unknown());
     if (appleCredential.email == null) {
-      return Left(AuthFailure.accountNotExists(SocialLoginAccount.apple(appleCredential)));
+      return Left(
+        AuthFailure.accountNotExists(SocialLoginAccount.apple(appleCredential, cryptoNonce)),
+      );
     }
 
     final signInMethods = await _auth.fetchSignInMethodsForEmail(appleCredential.email!);
     if (signInMethods.isEmpty) {
-      return Left(AuthFailure.accountNotExists(SocialLoginAccount.apple(appleCredential)));
+      return Left(
+        AuthFailure.accountNotExists(SocialLoginAccount.apple(appleCredential, cryptoNonce)),
+      );
     }
 
     // account exists, sign in
-    final authResult = await signInWithApple(appleCredential.identityToken, nonce);
+    final authResult = await signInWithApple(appleCredential.identityToken, cryptoNonce);
     return authResult;
   }
 
@@ -131,15 +135,20 @@ class AuthService {
 
   Future<Either<AuthFailure, AuthUser>> signInWithApple([
     String? existingIdToken,
-    String? existingNonce,
+    CryptoNonce? existingNonce,
   ]) async {
+    assert(
+      (existingIdToken != null && existingNonce != null) ||
+          (existingIdToken == null && existingNonce == null),
+    );
     // To prevent replay attacks with the credential returned from Apple, we
     // include a nonce in the credential request. When signing in with
     // Firebase, the nonce in the id token returned by Apple, is expected to
     // match the sha256 hash of `rawNonce`.
 
     AuthorizationCredentialAppleID? appleCredential;
-    final nonce = existingNonce ?? getNonce();
+
+    final cryptoNonce = existingNonce ?? CryptoNonce();
 
     if (existingIdToken == null) {
       try {
@@ -148,7 +157,7 @@ class AuthService {
             AppleIDAuthorizationScopes.email,
             AppleIDAuthorizationScopes.fullName,
           ],
-          nonce: nonce,
+          nonce: cryptoNonce.nonce,
         );
       } on SignInWithAppleException catch (_) {
         // TODO: find out network error code
@@ -160,7 +169,7 @@ class AuthService {
 
     final oauthCredential = OAuthProvider('apple.com').credential(
       idToken: existingIdToken ?? appleCredential?.identityToken,
-      rawNonce: nonce,
+      rawNonce: cryptoNonce.rawNonce,
     );
 
     UserCredential? userCredential;
@@ -174,8 +183,8 @@ class AuthService {
         : Right(_authUserFromFirebase(userCredential.user)!);
   }
 
-  Future<AuthorizationCredentialAppleID?> getAppleCredential([String? existingNonce]) async {
-    final nonce = existingNonce ?? getNonce();
+  Future<AuthorizationCredentialAppleID?> getAppleCredential([CryptoNonce? existingNonce]) async {
+    final cryptoNonce = existingNonce ?? CryptoNonce();
 
     AuthorizationCredentialAppleID? appleCredential;
     try {
@@ -184,7 +193,7 @@ class AuthService {
           AppleIDAuthorizationScopes.email,
           AppleIDAuthorizationScopes.fullName,
         ],
-        nonce: nonce,
+        nonce: cryptoNonce.nonce,
       );
     } catch (o) {
       debugPrint(o.toString());
