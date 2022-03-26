@@ -5,6 +5,7 @@ import 'package:built_value/serializer.dart';
 import 'package:drift/drift.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:loono/helpers/date_without_day.dart';
+import 'package:loono/models/apple_account_info.dart';
 import 'package:loono/models/search_result.dart';
 import 'package:loono_api/loono_api.dart'
     show
@@ -187,5 +188,21 @@ class SimpleHealthcareProviderListConverter
     return jsonEncode(
       value.map((e) => standardSerializers.toJson(SimpleHealthcareProvider.serializer, e)).toList(),
     ).toString();
+  }
+}
+
+class AppleAccountInfoListJsonConverter implements JsonConverter<List<AppleAccountInfo>, String> {
+  const AppleAccountInfoListJsonConverter();
+
+  @override
+  List<AppleAccountInfo> fromJson(String json) {
+    final list = (jsonDecode(json) as Iterable<dynamic>)
+        .map((dynamic e) => AppleAccountInfo.fromJson(e as Map<String, dynamic>));
+    return list.toList();
+  }
+
+  @override
+  String toJson(List<AppleAccountInfo> objects) {
+    return jsonEncode(objects.map((e) => e.toJson()).toList()).toString();
   }
 }
