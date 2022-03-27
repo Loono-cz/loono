@@ -30,7 +30,7 @@ class SelfExaminationDetailScreen extends StatelessWidget {
             SvgPicture.asset('assets/icons/prevention/calendar.svg'),
             const SizedBox(width: 5),
             Text(
-              text,
+              text.toUpperCase(),
               style: LoonoFonts.cardSubtitle,
             ),
           ],
