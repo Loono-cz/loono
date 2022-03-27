@@ -30,7 +30,13 @@ void showHowItWentSheet(
         sheetHeight: 400,
         child: Column(
           children: <Widget>[
-            Text(context.l10n.self_exam_how_it_went, style: LoonoFonts.headerFontStyle),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                context.l10n.self_exam_how_it_went,
+                style: LoonoFonts.headerFontStyle,
+              ),
+            ),
             const SizedBox(height: 60),
             LoonoButton.light(
               text: context.l10n.self_exam_how_it_went_ok,
