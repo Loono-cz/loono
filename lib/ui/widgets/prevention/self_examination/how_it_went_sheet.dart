@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/api_service.dart';
 import 'package:loono/services/examinations_service.dart';
@@ -10,7 +13,11 @@ import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
-void showHowItWentSheet(BuildContext context, Sex sex, int points) {
+void showHowItWentSheet(
+  BuildContext context,
+  Sex sex,
+  SelfExaminationPreventionStatus selfExamination,
+) {
   showModalBottomSheet<void>(
     context: context,
     shape: RoundedRectangleBorder(
@@ -21,38 +28,40 @@ void showHowItWentSheet(BuildContext context, Sex sex, int points) {
         sheetHeight: 400,
         child: Column(
           children: <Widget>[
-            const Text(
-              'Jak to dopadlo?',
-              style: LoonoFonts.headerFontStyle,
-            ),
+            Text(context.l10n.self_exam_how_it_went, style: LoonoFonts.headerFontStyle),
             const SizedBox(height: 60),
             LoonoButton.light(
-              text: 'Je to v pořádku',
+              text: context.l10n.self_exam_how_it_went_ok,
               onTap: () async {
-                // TODO: temporary call for debug
                 await registry.get<ApiService>().confirmSelfExamination(
-                  SelfExaminationType.TESTICULAR,
+                  selfExamination.type,
                   result: SelfExaminationResult((b) {
                     b.result = SelfExaminationResultResultEnum.OK;
                   }),
                 );
-                await Provider.of<ExaminationsProvider>(context, listen: false).fetchExaminations();
-                await AutoRouter.of(context).push(NoFindingRoute(points: points));
+                unawaited(
+                  Provider.of<ExaminationsProvider>(context, listen: false).fetchExaminations(),
+                );
+                await AutoRouter.of(context)
+                    .popAndPush(NoFindingRoute(points: selfExamination.points));
               },
             ),
             const SizedBox(height: 20),
             LoonoButton.light(
-              text: 'Něco jsem našla',
+              text: sex == Sex.FEMALE
+                  ? context.l10n.self_exam_how_it_went_finding_female
+                  : context.l10n.self_exam_how_it_went_finding_male,
               onTap: () async {
-                // TODO: temporary call for debug
                 await registry.get<ApiService>().confirmSelfExamination(
-                  SelfExaminationType.TESTICULAR,
+                  selfExamination.type,
                   result: SelfExaminationResult((b) {
                     b.result = SelfExaminationResultResultEnum.FINDING;
                   }),
                 );
-                await Provider.of<ExaminationsProvider>(context, listen: false).fetchExaminations();
-                await AutoRouter.of(context).push(HasFindingRoute(sex: sex));
+                unawaited(
+                  Provider.of<ExaminationsProvider>(context, listen: false).fetchExaminations(),
+                );
+                await AutoRouter.of(context).popAndPush(HasFindingRoute(sex: sex));
               },
             ),
           ],

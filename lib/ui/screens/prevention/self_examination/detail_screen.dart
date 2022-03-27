@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/examination_types.dart';
+import 'package:loono/helpers/self_examination_category.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/screens/prevention/self_examination/self_faq_section.dart';
@@ -257,13 +259,12 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                           text: sex == Sex.MALE
                               ? context.l10n.self_examination_done_male
                               : context.l10n.self_examination_done_female,
-                          enabled: selfExamination.plannedDate == null ||
-                              (selfExamination.plannedDate != null &&
-                                  DateTime.now().isAfter(
-                                    selfExamination.plannedDate?.toDateTime() as DateTime,
-                                  )),
+                          enabled: selfExamination.calculateStatus() ==
+                                  const SelfExaminationCategory.active() ||
+                              selfExamination.calculateStatus() ==
+                                  const SelfExaminationCategory.first(),
                           onTap: () {
-                            showHowItWentSheet(context, sex, selfExamination.points);
+                            showHowItWentSheet(context, sex, selfExamination);
                           },
                         ),
                       ),

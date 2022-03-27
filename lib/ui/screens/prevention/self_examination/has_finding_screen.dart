@@ -49,7 +49,7 @@ class HasFindingScreen extends StatelessWidget {
                                 padding: const EdgeInsets.only(top: 20),
                                 child: IconButton(
                                   onPressed: () {
-                                    AutoRouter.of(context).pop();
+                                    AutoRouter.of(context).replace(MainRoute());
                                   },
                                   icon: const Icon(Icons.close),
                                 ),
