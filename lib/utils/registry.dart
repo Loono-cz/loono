@@ -8,6 +8,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_smart_retry/dio_smart_retry.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -159,6 +160,8 @@ Future<void> setup({
       ),
     ],
   );
+
+  registry.registerSingleton<FirebaseAnalytics>(FirebaseAnalytics.instance);
 
   registry.registerSingleton<LoonoApi>(LoonoApi(dio: dio));
 

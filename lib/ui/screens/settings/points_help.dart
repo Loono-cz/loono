@@ -37,7 +37,7 @@ class PointsHelpScreen extends StatelessWidget {
             const Spacer(flex: 2),
             LoonoButton.light(
               text: context.l10n.leaderboard,
-              onTap: () => changePage(SettingsPage.leaderboard),
+              onTap: () => changePage(SettingsPage.SettingsLeaderboardPage),
             ),
             const Spacer(flex: 5),
           ],

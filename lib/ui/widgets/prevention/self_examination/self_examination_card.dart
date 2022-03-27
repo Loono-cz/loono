@@ -37,56 +37,62 @@ class SelfExaminationCard extends StatelessWidget {
         return Card(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           elevation: 0.0,
-          child: Container(
-            height: EXAMINATION_CARD_HEIGHT,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.white,
-                  if (selfExamination.calculateStatus() == const SelfExaminationCategory.waiting())
-                    LoonoColors.greenLight
-                  else
-                    LoonoColors.pink,
-                ],
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Container(
+              height: EXAMINATION_CARD_HEIGHT,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.white,
+                    if (selfExamination.calculateStatus() ==
+                        const SelfExaminationCategory.waiting())
+                      LoonoColors.greenLight
+                    else
+                      LoonoColors.pink,
+                  ],
+                ),
               ),
-            ),
-            child: InkWell(
-              onTap: () {
-                onTap?.call(sex);
-              },
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: selfExamination.calculateStatus().map(
-                      first: (_) => _cardContent(
-                        subtitle: context.l10n.start_with_self_examination_card_subtitle,
-                      ),
-                      active: (_) => _dateCardContent(
-                        subtitle: context.l10n.active_self_examination_card_subtitle,
-                        hasPriority: true,
-                      ),
-                      waiting: (_) {
-                        final formattedDate = DateFormat('d. M. yyyy', 'cs-CZ')
-                            .format(selfExamination.plannedDate!.toDateTime().toLocal());
-                        return _dateCardContent(
-                          subtitle:
-                              '${context.l10n.waiting_self_examination_card_subtitle} $formattedDate',
-                        );
-                      },
-                      // should get visible after 56 days, as hasFindingExpectingResult status
-                      hasFinding: (_) => _cardContent(
-                        subtitle:
-                            context.l10n.has_finding_expecting_result_examination_card_subtitle,
-                        topPriority: null,
-                      ),
-                      hasFindingExpectingResult: (_) => _cardContent(
-                        subtitle:
-                            context.l10n.has_finding_expecting_result_examination_card_subtitle,
-                        topPriority: true,
-                      ),
-                    ),
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  onTap: () {
+                    onTap?.call(sex);
+                  },
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: selfExamination.calculateStatus().map(
+                          first: (_) => _cardContent(
+                            subtitle: context.l10n.start_with_self_examination_card_subtitle,
+                          ),
+                          active: (_) => _dateCardContent(
+                            subtitle: context.l10n.active_self_examination_card_subtitle,
+                            hasPriority: true,
+                          ),
+                          waiting: (_) {
+                            final formattedDate = DateFormat('d. M. yyyy', 'cs-CZ')
+                                .format(selfExamination.plannedDate!.toDateTime().toLocal());
+                            return _dateCardContent(
+                              subtitle:
+                                  '${context.l10n.waiting_self_examination_card_subtitle} $formattedDate',
+                            );
+                          },
+                          // should get visible after 56 days, as hasFindingExpectingResult status
+                          hasFinding: (_) => _cardContent(
+                            subtitle:
+                                context.l10n.has_finding_expecting_result_examination_card_subtitle,
+                            topPriority: null,
+                          ),
+                          hasFindingExpectingResult: (_) => _cardContent(
+                            subtitle:
+                                context.l10n.has_finding_expecting_result_examination_card_subtitle,
+                            topPriority: true,
+                          ),
+                        ),
+                  ),
+                ),
               ),
             ),
           ),

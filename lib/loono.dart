@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -56,7 +57,11 @@ class Loono extends StatelessWidget {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             locale: defaultLocale != null ? Locale(defaultLocale!) : null,
-            routerDelegate: AutoRouterDelegate(_appRouter),
+            routerDelegate: AutoRouterDelegate(
+              _appRouter,
+              navigatorObservers: () =>
+                  [FirebaseAnalyticsObserver(analytics: registry.get<FirebaseAnalytics>())],
+            ),
             routeInformationParser: _appRouter.defaultRouteParser(),
           ),
         );

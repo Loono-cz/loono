@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
@@ -35,7 +36,13 @@ class _MainScreenState extends State<MainScreen> {
     const AboutHealthScreen(),
   ];
 
-  void _onItemTapped(int index) => setState(() => _selectedIndex = index);
+  final analyticsTabNames = ['PreventionTab', 'FindDoctorTab', 'ExploreSectionTab'];
+
+  Future<void> _onItemTapped(int index) async {
+    await registry.get<FirebaseAnalytics>().setCurrentScreen(screenName: analyticsTabNames[index]);
+
+    setState(() => _selectedIndex = index);
+  }
 
   final noConnectionMessage = noConnectionFlushbar();
 
