@@ -82,7 +82,9 @@ class ExaminationsSheetOverlay extends StatelessWidget {
                 child: ListView.builder(
                   controller: scrollController,
                   itemCount: examinationCategoriesOrdering.length,
-                  // TODO: set cacheExtent to prevent card repositioning
+                  // this prevents card flashing/repositioning when there's ongoing sorting on scroll
+                  cacheExtent: SelfExaminationType.values.length * EXAMINATION_CARD_HEIGHT +
+                      ExaminationType.values.length * EXAMINATION_CARD_HEIGHT,
                   itemBuilder: (context, index) {
                     final examinationStatus = examinationCategoriesOrdering.elementAt(index);
                     final categorizedExaminations = categorized

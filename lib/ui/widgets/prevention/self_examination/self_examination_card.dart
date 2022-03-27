@@ -9,6 +9,7 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart' as db;
 import 'package:loono/ui/widgets/loono_point.dart';
+import 'package:loono/ui/widgets/prevention/examination_card.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
@@ -37,7 +38,7 @@ class SelfExaminationCard extends StatelessWidget {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           elevation: 0.0,
           child: Container(
-            height: 120.0,
+            height: EXAMINATION_CARD_HEIGHT,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
               gradient: LinearGradient(
