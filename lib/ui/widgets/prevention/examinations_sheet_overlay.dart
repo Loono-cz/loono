@@ -37,7 +37,11 @@ class ExaminationsSheetOverlay extends StatelessWidget {
           minChildSize: 0.15,
           builder: (context, scrollController) {
             if (examinationsProvider.loading && examinationsProvider.examinations == null) {
-              return const Center(child: CircularProgressIndicator());
+              return const Center(
+                child: CircularProgressIndicator(
+                  color: LoonoColors.primaryEnabled,
+                ),
+              );
             } else if (examinationsProvider.examinations == null) {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 60),
@@ -78,7 +82,9 @@ class ExaminationsSheetOverlay extends StatelessWidget {
                 child: ListView.builder(
                   controller: scrollController,
                   itemCount: examinationCategoriesOrdering.length,
-                  // TODO: set cacheExtent to prevent card repositioning
+                  // this prevents card flashing/repositioning when there's ongoing sorting on scroll
+                  cacheExtent: SelfExaminationType.values.length * EXAMINATION_CARD_HEIGHT +
+                      ExaminationType.values.length * EXAMINATION_CARD_HEIGHT,
                   itemBuilder: (context, index) {
                     final examinationStatus = examinationCategoriesOrdering.elementAt(index);
                     final categorizedExaminations = categorized
@@ -163,12 +169,7 @@ class ExaminationsSheetOverlay extends StatelessWidget {
   ) {
     if (selfExaminations.isEmpty) return const SizedBox.shrink();
     final positionedExaminations = selfExaminations.where(
-      (selfExamination) {
-        final selfExamCategory = selfExamination.calculateStatus();
-        // also filter out self exams where we're waiting for check up
-        return selfExamCategory.position == cardPosition &&
-            selfExamCategory != const SelfExaminationCategory.hasFinding();
-      },
+      (selfExamination) => selfExamination.calculateStatus().position == cardPosition,
     );
     if (positionedExaminations.isEmpty) return const SizedBox.shrink();
     final header = positionedExaminations.first.calculateStatus().getHeaderMessage(context);
@@ -210,7 +211,7 @@ class ExaminationsSheetOverlay extends StatelessWidget {
         style: const TextStyle(
           color: LoonoColors.black,
           fontSize: 16,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w400,
           fontStyle: FontStyle.italic,
         ),
       ),

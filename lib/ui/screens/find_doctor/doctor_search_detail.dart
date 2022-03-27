@@ -87,7 +87,7 @@ class _DoctorSearchDetailScreenState extends State<DoctorSearchDetailScreen> {
               ),
             ),
             if (_isSearchQueryEmpty)
-              Expanded(child: SearchHistoryList(searchQuery: _searchQueryText))
+              Expanded(child: SearchHistoryList())
             else
               Expanded(
                 child: Padding(

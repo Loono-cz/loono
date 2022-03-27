@@ -18,7 +18,7 @@ class SearchResultsList extends StatelessWidget {
         super(key: key);
 
   final List<SearchResult> searchResults;
-  final String searchQueryText;
+  final String? searchQueryText;
   final Iterable<SearchResult> _specializationSearchResults;
 
   final _userRepository = registry.get<UserRepository>();
@@ -37,23 +37,25 @@ class SearchResultsList extends StatelessWidget {
               children: _specializationSearchResults
                   .map(
                     (specialization) => ActionChip(
-                      label: Text.rich(
-                        TextSpan(
-                          children: getHighlightedSearchSpans(
-                            searchResult: specialization,
-                            searchQuery: searchQueryText,
-                          ),
-                        ),
-                      ),
+                      label: searchQueryText == null
+                          ? Text(specialization.text, style: LoonoFonts.fontStyle)
+                          : Text.rich(
+                              TextSpan(
+                                children: getHighlightedSearchSpans(
+                                  searchResult: specialization,
+                                  searchQuery: searchQueryText!,
+                                ),
+                              ),
+                            ),
                       shape: const StadiumBorder(
                         side: BorderSide(color: LoonoColors.primaryEnabled),
                       ),
                       backgroundColor: Colors.transparent,
                       shadowColor: Colors.transparent,
-                      onPressed: () {
-                        _userRepository.addSearchHistoryItem(specialization);
+                      onPressed: () async {
+                        await _userRepository.addSearchHistoryItem(specialization);
                         context.read<MapStateService>().setSpecialization(specialization);
-                        AutoRouter.of(context).pop();
+                        await AutoRouter.of(context).pop();
                       },
                     ),
                   )

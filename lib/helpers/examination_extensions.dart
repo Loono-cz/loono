@@ -51,7 +51,6 @@ extension ExaminationPreventionStatusExt on ExaminationPreventionStatus {
 }
 
 extension SelfExaminationPreventionStatusExt on SelfExaminationPreventionStatus {
-  // TODO: test statuses
   SelfExaminationCategory calculateStatus([DateTime? dateTimeNow]) {
     final now = dateTimeNow ?? DateTime.now();
 

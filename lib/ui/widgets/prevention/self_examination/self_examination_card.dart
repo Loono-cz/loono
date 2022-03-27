@@ -9,6 +9,7 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart' as db;
 import 'package:loono/ui/widgets/loono_point.dart';
+import 'package:loono/ui/widgets/prevention/examination_card.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
@@ -39,7 +40,7 @@ class SelfExaminationCard extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: Container(
-              height: 120.0,
+              height: EXAMINATION_CARD_HEIGHT,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
@@ -79,10 +80,15 @@ class SelfExaminationCard extends StatelessWidget {
                             );
                           },
                           // should get visible after 56 days, as hasFindingExpectingResult status
-                          hasFinding: (_) => [const SizedBox.shrink()],
+                          hasFinding: (_) => _cardContent(
+                            subtitle:
+                                context.l10n.has_finding_expecting_result_examination_card_subtitle,
+                            topPriority: null,
+                          ),
                           hasFindingExpectingResult: (_) => _cardContent(
                             subtitle:
                                 context.l10n.has_finding_expecting_result_examination_card_subtitle,
+                            topPriority: true,
                           ),
                         ),
                   ),
@@ -97,7 +103,7 @@ class SelfExaminationCard extends StatelessWidget {
 
   List<Widget> _cardContent({
     required String subtitle,
-    bool topPriority = false,
+    bool? topPriority = false,
   }) {
     return <Widget>[
       Expanded(
@@ -110,8 +116,13 @@ class SelfExaminationCard extends StatelessWidget {
                 children: [
                   _title,
                   const SizedBox(width: 5),
-                  if (topPriority)
+                  // if null, we hide red icon
+                  if (topPriority == null)
+                    const SizedBox.shrink()
+                  // if topPriority true we show red icon with exclamation
+                  else if (topPriority)
                     SvgPicture.asset('assets/icons/prevention/appointment_soon.svg')
+                  // if topPriority false we just show red icon
                   else
                     SvgPicture.asset('assets/icons/prevention/make_an_appointment.svg'),
                 ],

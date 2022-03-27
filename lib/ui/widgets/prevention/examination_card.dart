@@ -7,6 +7,9 @@ import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/ui/widgets/loono_point.dart';
 
+// ignore: constant_identifier_names
+const EXAMINATION_CARD_HEIGHT = 120.0;
+
 class ExaminationCard extends StatelessWidget {
   ExaminationCard({
     Key? key,
@@ -47,7 +50,7 @@ class ExaminationCard extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: Container(
-          height: 120.0,
+          height: EXAMINATION_CARD_HEIGHT,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,

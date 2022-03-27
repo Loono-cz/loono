@@ -198,14 +198,14 @@ class UserRepository {
       updatedHistory.insert(0, item);
     }
 
-    // take max 3 specializations & put them at the beginning
-    final specializations = List.of(updatedHistory).where(isSpecialization).take(3);
+    // take max 4 specializations & put them at the beginning
+    final specializations = List.of(updatedHistory).where(isSpecialization).take(4);
     updatedHistory
       ..removeWhere(isSpecialization)
       ..insertAll(0, specializations);
 
-    if (updatedHistory.length > 20) {
-      updatedHistory.removeRange(14, updatedHistory.length);
+    if (updatedHistory.length > 50) {
+      updatedHistory.removeRange(50, updatedHistory.length);
     }
     await updateCurrentUser(UsersCompanion(searchHistory: Value(updatedHistory)));
   }

@@ -4,15 +4,11 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/ui/widgets/find_doctor/search_results_list.dart';
+import 'package:loono/ui/widgets/scrollbar.dart';
 import 'package:loono/utils/registry.dart';
 
 class SearchHistoryList extends StatelessWidget {
-  SearchHistoryList({
-    Key? key,
-    required this.searchQuery,
-  }) : super(key: key);
-
-  final String searchQuery;
+  SearchHistoryList({Key? key}) : super(key: key);
 
   final _usersDao = registry.get<DatabaseService>().users;
 
@@ -42,9 +38,11 @@ class SearchHistoryList extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: SearchResultsList(
-                searchResults: searchHistory,
-                searchQueryText: searchQuery,
+              child: LoonoScrollbar(
+                child: SearchResultsList(
+                  searchResults: searchHistory,
+                  searchQueryText: null,
+                ),
               ),
             ),
           ],
