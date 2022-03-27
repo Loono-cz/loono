@@ -76,10 +76,15 @@ class SelfExaminationCard extends StatelessWidget {
                         );
                       },
                       // should get visible after 56 days, as hasFindingExpectingResult status
-                      hasFinding: (_) => [const SizedBox.shrink()],
+                      hasFinding: (_) => _cardContent(
+                        subtitle:
+                            context.l10n.has_finding_expecting_result_examination_card_subtitle,
+                        topPriority: null,
+                      ),
                       hasFindingExpectingResult: (_) => _cardContent(
                         subtitle:
                             context.l10n.has_finding_expecting_result_examination_card_subtitle,
+                        topPriority: true,
                       ),
                     ),
               ),
@@ -92,7 +97,7 @@ class SelfExaminationCard extends StatelessWidget {
 
   List<Widget> _cardContent({
     required String subtitle,
-    bool topPriority = false,
+    bool? topPriority = false,
   }) {
     return <Widget>[
       Expanded(
@@ -105,8 +110,13 @@ class SelfExaminationCard extends StatelessWidget {
                 children: [
                   _title,
                   const SizedBox(width: 5),
-                  if (topPriority)
+                  // if null, we hide red icon
+                  if (topPriority == null)
+                    const SizedBox.shrink()
+                  // if topPriority true we show red icon with exclamation
+                  else if (topPriority)
                     SvgPicture.asset('assets/icons/prevention/appointment_soon.svg')
+                  // if topPriority false we just show red icon
                   else
                     SvgPicture.asset('assets/icons/prevention/make_an_appointment.svg'),
                 ],
