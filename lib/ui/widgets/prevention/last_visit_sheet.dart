@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
@@ -6,6 +7,7 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/prevention/change_last_visit_sheet.dart';
+import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
 void showLastVisitSheet({
@@ -13,6 +15,7 @@ void showLastVisitSheet({
   required BuildContext context,
   required Sex sex,
 }) {
+  registry.get<FirebaseAnalytics>().logEvent(name: 'OpenLastVisitQuestionModal');
   showModalBottomSheet<void>(
     context: context,
     shape: RoundedRectangleBorder(
@@ -24,7 +27,9 @@ void showLastVisitSheet({
         sex: sex,
       );
     },
-  );
+  ).whenComplete(() {
+    registry.get<FirebaseAnalytics>().logEvent(name: 'CloseLastVisitQuestionModal');
+  });
 }
 
 class _ModalContent extends StatelessWidget {

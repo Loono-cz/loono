@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
@@ -10,18 +11,22 @@ import 'package:loono/ui/screens/settings/leaderboard.dart';
 import 'package:loono/ui/screens/settings/open_settings.dart';
 import 'package:loono/ui/screens/settings/points_help.dart';
 import 'package:loono/ui/screens/settings/update_profile.dart';
+import 'package:loono/utils/registry.dart';
 
+//ignore_for_file: constant_identifier_names
+// Settings Page names in Upper case for analytics tracking
 enum SettingsPage {
-  main,
-  edit,
-  photo,
-  photoCrop,
-  photoResult,
-  points,
-  leaderboard,
+  SettingsMainPage,
+  SettingsEditPage,
+  SettingsPhotoPage,
+  SettingsPhotoCropPage,
+  SettingsPhotoResultPage,
+  SettingsPointsPage,
+  SettingsLeaderboardPage,
 }
 
 void showSettingsSheet(BuildContext context) {
+  registry.get<FirebaseAnalytics>().logEvent(name: 'SettingsMainPage');
   showModalBottomSheet<void>(
     context: context,
     shape: RoundedRectangleBorder(
@@ -31,13 +36,13 @@ void showSettingsSheet(BuildContext context) {
     builder: (context) {
       return const _SettingsContent();
     },
-  );
+  ).whenComplete(() {
+    registry.get<FirebaseAnalytics>().logEvent(name: 'CloseSettings');
+  });
 }
 
 class _SettingsContent extends StatefulWidget {
-  const _SettingsContent({
-    Key? key,
-  }) : super(key: key);
+  const _SettingsContent({Key? key}) : super(key: key);
 
   @override
   _SettingsContentState createState() => _SettingsContentState();
@@ -45,14 +50,15 @@ class _SettingsContent extends StatefulWidget {
 
 class _SettingsContentState extends State<_SettingsContent> {
   /// Custom navigation stack. Because, what could possibly go wrong... :D
-  List<SettingsPage> navigationStack = [SettingsPage.main];
-  SettingsPage prevPage = SettingsPage.main;
+  List<SettingsPage> navigationStack = [SettingsPage.SettingsMainPage];
+  SettingsPage prevPage = SettingsPage.SettingsMainPage;
   Uint8List? imageBytes;
 
   void changePage(SettingsPage newPage) {
     setState(() {
       navigationStack.add(newPage);
     });
+    registry.get<FirebaseAnalytics>().logEvent(name: newPage.name);
   }
 
   void goBack() {
@@ -60,6 +66,7 @@ class _SettingsContentState extends State<_SettingsContent> {
       setState(() {
         navigationStack.removeLast();
       });
+      registry.get<FirebaseAnalytics>().logEvent(name: navigationStack.last.name);
     }
   }
 
@@ -89,7 +96,7 @@ class _SettingsContentState extends State<_SettingsContent> {
               const SizedBox(height: 18),
               Row(
                 children: [
-                  if (navigationStack.lastOrNull != SettingsPage.main)
+                  if (navigationStack.lastOrNull != SettingsPage.SettingsMainPage)
                     IconButton(
                       key: const Key('settings_sheet_backButton'),
                       onPressed: goBack,
@@ -110,23 +117,23 @@ class _SettingsContentState extends State<_SettingsContent> {
               const SizedBox(height: 18),
 
               /// TODO: This works but might get refactor in the future
-              if (navigationStack.last == SettingsPage.main)
+              if (navigationStack.last == SettingsPage.SettingsMainPage)
                 OpenSettingsScreen(
                   changePage: changePage,
                 ),
-              if (navigationStack.last == SettingsPage.edit)
+              if (navigationStack.last == SettingsPage.SettingsEditPage)
                 UpdateProfileScreen(
                   changePage: changePage,
                 ),
-              if (navigationStack.last == SettingsPage.points)
+              if (navigationStack.last == SettingsPage.SettingsPointsPage)
                 PointsHelpScreen(
                   changePage: changePage,
                 ),
-              if (navigationStack.last == SettingsPage.leaderboard)
+              if (navigationStack.last == SettingsPage.SettingsLeaderboardPage)
                 LeaderboardScreen(
                   changePage: changePage,
                 ),
-              if (navigationStack.last == SettingsPage.photo)
+              if (navigationStack.last == SettingsPage.SettingsPhotoPage)
                 EditPhotoScreen(
                   changePage: changePage,
                 ),

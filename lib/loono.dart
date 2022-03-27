@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:loono/helpers/map_variables.dart';
-import 'package:loono/helpers/navigation_observer.dart';
 import 'package:loono/models/firebase_user.dart';
 import 'package:loono/repositories/healthcare_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -59,7 +59,8 @@ class Loono extends StatelessWidget {
             locale: defaultLocale != null ? Locale(defaultLocale!) : null,
             routerDelegate: AutoRouterDelegate(
               _appRouter,
-              navigatorObservers: () => [LoonoNavigationObserver()],
+              navigatorObservers: () =>
+                  [FirebaseAnalyticsObserver(analytics: registry.get<FirebaseAnalytics>())],
             ),
             routeInformationParser: _appRouter.defaultRouteParser(),
           ),

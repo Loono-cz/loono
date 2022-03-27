@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
@@ -9,6 +10,7 @@ import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/custom_date_picker.dart';
 import 'package:loono/ui/widgets/custom_time_picker.dart';
+import 'package:loono/utils/registry.dart';
 
 void showDatePickerSheet({
   required BuildContext context,
@@ -18,6 +20,7 @@ void showDatePickerSheet({
   required String secondStepTitle,
   String? additionalBottomText,
 }) {
+  registry.get<FirebaseAnalytics>().logEvent(name: 'OpenDatePickerModal');
   showModalBottomSheet<void>(
     context: context,
     shape: RoundedRectangleBorder(
@@ -49,7 +52,9 @@ void showDatePickerSheet({
         ),
       );
     },
-  );
+  ).whenComplete(() {
+    registry.get<FirebaseAnalytics>().logEvent(name: 'CloseDatePickerModal');
+  });
 }
 
 class _DatePickerContent extends StatefulWidget {

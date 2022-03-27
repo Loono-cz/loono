@@ -50,7 +50,7 @@
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>Nutne doplnit!</string>
 		<key>NSCalendarsUsageDescription</key>
-		<string>Nutne doplnit!</string>
+		<string>“Preventivka” ti chce zapisovat prohlídky do kalendáře.</string>
 		<key>PermissionGroupNotification</key>
         <string>Nutne doplnit!</string>
 		<key>NSLocationWhenInUseUsageDescription</key>

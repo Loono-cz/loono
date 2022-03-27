@@ -74,7 +74,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
             const SizedBox(height: 20.0),
             LoonoButton.light(
               text: context.l10n.leaderboard_points_help_button,
-              onTap: () => widget.changePage(SettingsPage.points),
+              onTap: () => widget.changePage(SettingsPage.SettingsPointsPage),
             ),
             const SizedBox(height: 40.0),
           ],
