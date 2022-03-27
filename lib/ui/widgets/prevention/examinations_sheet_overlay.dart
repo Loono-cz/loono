@@ -37,7 +37,11 @@ class ExaminationsSheetOverlay extends StatelessWidget {
           minChildSize: 0.15,
           builder: (context, scrollController) {
             if (examinationsProvider.loading && examinationsProvider.examinations == null) {
-              return const Center(child: CircularProgressIndicator());
+              return const Center(
+                child: CircularProgressIndicator(
+                  color: LoonoColors.primaryEnabled,
+                ),
+              );
             } else if (examinationsProvider.examinations == null) {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 60),
@@ -210,7 +214,7 @@ class ExaminationsSheetOverlay extends StatelessWidget {
         style: const TextStyle(
           color: LoonoColors.black,
           fontSize: 16,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w400,
           fontStyle: FontStyle.italic,
         ),
       ),
