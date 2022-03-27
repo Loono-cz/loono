@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
@@ -22,6 +23,7 @@ void showCancelExaminationSheet({
 }) {
   final l10n = context.l10n;
 
+  registry.get<FirebaseAnalytics>().logEvent(name: 'OpenCancelCheckupModal');
   showModalBottomSheet<void>(
     context: context,
     shape: RoundedRectangleBorder(
@@ -111,5 +113,7 @@ void showCancelExaminationSheet({
         ),
       );
     },
-  );
+  ).whenComplete(() {
+    registry.get<FirebaseAnalytics>().logEvent(name: 'CloseCancelCheckupModal');
+  });
 }

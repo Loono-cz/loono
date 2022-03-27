@@ -61,16 +61,19 @@ class ExaminationCard extends StatelessWidget {
               ],
             ),
           ),
-          child: InkWell(
-            onTap: onTap,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: categorizedExamination.category.when(
-                scheduledSoonOrOverdue: () => _scheduledContent(isSoonOrOverdue: true),
-                newToSchedule: () => _makeAppointmentContent(context, isNew: true),
-                unknownLastVisit: () => _makeAppointmentContent(context),
-                scheduled: _scheduledContent,
-                waiting: _waitingContent,
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: onTap,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: categorizedExamination.category.when(
+                  scheduledSoonOrOverdue: () => _scheduledContent(isSoonOrOverdue: true),
+                  newToSchedule: () => _makeAppointmentContent(context, isNew: true),
+                  unknownLastVisit: () => _makeAppointmentContent(context),
+                  scheduled: _scheduledContent,
+                  waiting: _waitingContent,
+                ),
               ),
             ),
           ),

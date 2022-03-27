@@ -50,7 +50,7 @@
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>Nutne doplnit!</string>
 		<key>NSCalendarsUsageDescription</key>
-		<string>Nutne doplnit!</string>
+		<string>“Preventivka” ti chce zapisovat prohlídky do kalendáře.</string>
 		<key>PermissionGroupNotification</key>
         <string>Nutne doplnit!</string>
 		<key>NSLocationWhenInUseUsageDescription</key>
@@ -82,5 +82,7 @@
 		<false/>
 		<key>UIStatusBarHidden</key>
 		<false/>
+		<key>GOOGLE_ANALYTICS_REGISTRATION_WITH_AD_NETWORK_ENABLED</key>
+        <false/>
 	</dict>
 </plist>

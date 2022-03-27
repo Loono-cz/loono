@@ -1,13 +1,16 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/utils/registry.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 void showCalendarPermissionSheet(BuildContext context) {
   final l10n = context.l10n;
 
+  registry.get<FirebaseAnalytics>().logEvent(name: 'OpenCalendarPermissionModal');
   showModalBottomSheet<void>(
     context: context,
     shape: RoundedRectangleBorder(
@@ -55,5 +58,7 @@ void showCalendarPermissionSheet(BuildContext context) {
         ),
       );
     },
-  );
+  ).whenComplete(() {
+    registry.get<FirebaseAnalytics>().logEvent(name: 'CloseCalendarPermissionModal');
+  });
 }

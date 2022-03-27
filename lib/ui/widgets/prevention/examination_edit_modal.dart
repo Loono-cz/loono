@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -48,6 +49,7 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
   final formattedDate = DateFormat('d. MMMM yyyy, HH:mm', 'cs-CZ')
       .format(examination.examination.plannedDate!.toLocal());
 
+  registry.get<FirebaseAnalytics>().logEvent(name: 'OpenEditCheckupModal');
   showCupertinoModalPopup<void>(
     context: pageContext,
     builder: (BuildContext modalContext) => CupertinoActionSheet(
@@ -100,5 +102,7 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
         )
       ],
     ),
-  );
+  ).whenComplete(() {
+    registry.get<FirebaseAnalytics>().logEvent(name: 'CloseEditCheckupModal');
+  });
 }

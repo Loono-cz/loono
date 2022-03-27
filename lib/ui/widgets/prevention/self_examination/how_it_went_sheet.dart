@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -11,6 +12,7 @@ import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
 void showHowItWentSheet(BuildContext context, Sex sex, int points) {
+  registry.get<FirebaseAnalytics>().logEvent(name: 'OpenHowItWentModal');
   showModalBottomSheet<void>(
     context: context,
     shape: RoundedRectangleBorder(
@@ -59,5 +61,7 @@ void showHowItWentSheet(BuildContext context, Sex sex, int points) {
         ),
       );
     },
-  );
+  ).whenComplete(() {
+    registry.get<FirebaseAnalytics>().logEvent(name: 'CloseHowItWentModal');
+  });
 }

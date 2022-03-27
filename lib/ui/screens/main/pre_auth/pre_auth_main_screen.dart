@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/custom_navigation_bar.dart';
+import 'package:loono/utils/registry.dart';
 
 /// Pre-auth main screen.
 class PreAuthMainScreen extends StatelessWidget {
@@ -12,6 +14,11 @@ class PreAuthMainScreen extends StatelessWidget {
   }) : super(key: key);
 
   final PageRouteInfo? overridenPreventionRoute;
+  static const analyticsTabNames = [
+    'PreAuthPreventionTab',
+    'PreAuthFindDoctorTab',
+    'PreAuthExploreSectionTab'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +33,12 @@ class PreAuthMainScreen extends StatelessWidget {
 
         return CustomNavigationBar(
           currentIndex: tabsRouter.activeIndex,
-          onTap: tabsRouter.setActiveIndex,
+          onTap: (index) async {
+            await registry
+                .get<FirebaseAnalytics>()
+                .setCurrentScreen(screenName: analyticsTabNames[index]);
+            tabsRouter.setActiveIndex(index);
+          },
           items: [
             CustomNavigationBarItem(
               label: context.l10n.main_menu_item_prevention,

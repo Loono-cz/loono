@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
@@ -17,6 +18,7 @@ void showChangeLastVisitSheet({
   required CategorizedExamination examination,
   required String title,
 }) {
+  registry.get<FirebaseAnalytics>().logEvent(name: 'OpenLastVisitModal');
   showModalBottomSheet<void>(
     context: context,
     shape: RoundedRectangleBorder(
@@ -43,7 +45,9 @@ void showChangeLastVisitSheet({
         ),
       );
     },
-  );
+  ).whenComplete(() {
+    registry.get<FirebaseAnalytics>().logEvent(name: 'CloseLastVisitModal');
+  });
 }
 
 class _DatePickerContent extends StatefulWidget {
