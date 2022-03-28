@@ -80,7 +80,7 @@ class ExaminationDetail extends StatelessWidget {
 
     final lastVisit = lastVisitDateWithoutDay != null
         ? DateFormat.yMMMM('cs-CZ').format(
-            DateTime(lastVisitDateWithoutDay.year, lastVisitDateWithoutDay.month),
+            DateTime(lastVisitDateWithoutDay.year, lastVisitDateWithoutDay.month+1),
           )
         : context.l10n.skip_idk;
 
