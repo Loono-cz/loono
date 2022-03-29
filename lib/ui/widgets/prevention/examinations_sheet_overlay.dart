@@ -186,12 +186,25 @@ class ExaminationsSheetOverlay extends StatelessWidget {
                     child: SelfExaminationCard(
                       // TODO: different route based on the category
                       selfExamination: selfExamination,
-                      onTap: (sex) => AutoRouter.of(context).navigate(
-                        SelfExaminationDetailRoute(
-                          sex: sex,
-                          selfExamination: selfExamination,
-                        ),
-                      ),
+                      onTap: (sex) {
+                        if (selfExamination.history.isNotEmpty &&
+                            selfExamination.history.first ==
+                                SelfExaminationStatus.WAITING_FOR_RESULT) {
+                          AutoRouter.of(context).navigate(
+                            ResultFromDoctorRoute(
+                              sex: sex,
+                              selfExamination: selfExamination,
+                            ),
+                          );
+                        } else {
+                          AutoRouter.of(context).navigate(
+                            SelfExaminationDetailRoute(
+                              sex: sex,
+                              selfExamination: selfExamination,
+                            ),
+                          );
+                        }
+                      },
                     ),
                   ),
                 )
