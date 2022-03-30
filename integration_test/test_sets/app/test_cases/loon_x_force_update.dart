@@ -8,7 +8,7 @@ import '../../../setup.dart' as app;
 import '../flows/login_flow.dart';
 import '../pages/force_update_page.dart';
 
-/// [Test case link](https://cesko-digital.atlassian.net/browse/LOON-X)
+/// [Test case link](https://cesko-digital.atlassian.net/browse/LOON-580)
 Future<void> run({
   required WidgetTester tester,
   required Charlatan charlatan,

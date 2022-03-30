@@ -8,7 +8,7 @@ import 'package:integration_test/integration_test.dart';
 import '../mocks/firebase_auth_mock.dart';
 import '../mocks/google_sign_in_mock.dart';
 import '../test_helpers/post_app_clear.dart';
-import 'app/test_cases/loon_x_force_update.dart' as loonx;
+import 'app/test_cases/loon_x_force_update.dart' as loon580;
 import 'onboarding/test_cases/other/loon_542_installing_and_opening_app.dart' as loon542;
 import 'onboarding/test_cases/questionnaire/loon_543_male_onboarding_flow.dart' as loon543;
 import 'onboarding/test_cases/questionnaire/loon_544_female_onboarding_flow.dart' as loon544;
@@ -65,9 +65,9 @@ void main() {
       });
 
       testWidgets(
-        'TC(LOON-X): Force update - routing is blocked',
+        'TC(LOON-580): Force update - routing is blocked',
         (tester) async =>
-            loonx.run(tester: tester, charlatan: charlatan, firebaseAuth: firebaseAuth),
+            loon580.run(tester: tester, charlatan: charlatan, firebaseAuth: firebaseAuth),
       );
     });
   });
