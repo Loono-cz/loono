@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/helpers/date_without_day.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/helpers/onboarding_state_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/database_service.dart';
@@ -30,6 +31,12 @@ class _DentistDateScreenState extends State<DentistDateScreen> {
       onDateChanged: (value) => selectedDate = value,
       onContinueButtonPress: () async {
         if (selectedDate == null) return;
+        final now = DateTime.now();
+        if (selectedDate!.isBefore(DateTime(now.year - 1, now.month, now.day)) ||
+            selectedDate!.isAfter(now)) {
+          showFlushBarError(context, context.l10n.must_be_in_last_year);
+          return;
+        }
         await _examinationsQuestionnairesDao.updateLastVisitDate(
           _type,
           dateWithoutDay:

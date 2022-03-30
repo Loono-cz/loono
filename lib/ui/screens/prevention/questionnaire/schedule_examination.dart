@@ -6,6 +6,7 @@ import 'package:loono/helpers/achievement_helpers.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/examination_types.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
@@ -97,6 +98,8 @@ class ScheduleExamination extends StatelessWidget {
                                   assetPath: _examinationType.assetPath,
                                   title: _examinationType.l10n_name,
                                   onSkipButtonPress: (date) async {
+                                    final now = DateTime.now();
+
                                     /// code anchor: #postFirstNewExaminationUnknownDate
                                     final response =
                                         await registry.get<ExaminationRepository>().postExamination(
@@ -104,7 +107,7 @@ class ScheduleExamination extends StatelessWidget {
                                               uuid: examinationRecord.uuid,
                                               firstExam: true,
                                               status: ExaminationStatus.UNKNOWN,
-                                              newDate: DateTime.now(),
+                                              newDate: DateTime(now.year, now.month, now.day),
                                             );
                                     response.map(
                                       success: (res) {
@@ -124,6 +127,26 @@ class ScheduleExamination extends StatelessWidget {
                                     );
                                   },
                                   onContinueButtonPress: (pickedDate) async {
+                                    final now = DateTime.now();
+                                    if (pickedDate.isBefore(
+                                          DateTime(
+                                            now.year - examinationRecord.intervalYears,
+                                            now.month,
+                                            now.day,
+                                          ),
+                                        ) ||
+                                        pickedDate.isAfter(now)) {
+                                      showFlushBarError(
+                                        context,
+                                        examinationRecord.intervalYears == 1
+                                            ? context.l10n.must_be_in_last_year
+                                            : context.l10n.must_be_in_last_n_years(
+                                                examinationRecord.intervalYears,
+                                              ),
+                                      );
+                                      return;
+                                    }
+
                                     /// code anchor: #postFirstNewExaminationKnownDate
                                     final response =
                                         await registry.get<ExaminationRepository>().postExamination(

@@ -873,5 +873,15 @@
   "self_exam_how_it_went_finding_female": "Něco jsem našla",
   "@self_exam_how_it_went_finding_female": {},
   "self_exam_how_it_went_finding_male": "Něco jsem našel",
-  "@self_exam_how_it_went_finding_male": {}
+  "@self_exam_how_it_went_finding_male": {},
+  "must_be_in_last_n_years": "Musí být v uplynulých {interval} letech",
+  "@must_be_in_last_n_years": {
+    "placeholders": {
+      "interval": {
+        "type": "int"
+      }
+    }
+  },
+  "must_be_in_last_year": "Musí být v uplynulém roce",
+  "@must_be_in_last_year": {}
 }

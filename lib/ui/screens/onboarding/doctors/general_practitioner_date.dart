@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/helpers/date_without_day.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/screens/onboarding/preventive_examination_date_picker.dart';
@@ -29,6 +30,12 @@ class _GeneralPractitionerDateScreenState extends State<GeneralPractitionerDateS
       onDateChanged: (value) => selectedDate = value,
       onContinueButtonPress: () async {
         if (selectedDate == null) return;
+        final now = DateTime.now();
+        if (selectedDate!.isBefore(DateTime(now.year - 2, now.month, now.day)) ||
+            selectedDate!.isAfter(now)) {
+          showFlushBarError(context, context.l10n.must_be_in_last_n_years(2));
+          return;
+        }
         await _examinationsQuestionnairesDao.updateLastVisitDate(
           _type,
           dateWithoutDay:
