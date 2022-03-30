@@ -1,3 +1,4 @@
+import 'dart:io' show Platform;
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' as s;
@@ -82,21 +83,23 @@ class LoginScreen extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
             ),
             const Spacer(flex: 2),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 18.0),
-              child: SocialLoginButton.apple(
-                onPressed: () async {
-                  final accountExistsResult = await _authService.checkAppleAccountExistsAndSignIn();
-                  accountExistsResult.fold(
-                    (failure) => showSnackBarError(context, message: failure.getMessage(context)),
-                    (authUser) async {
-                      await _userRepository.createUserIfNotExists();
-                      await AutoRouter.of(context).replaceAll([const MainScreenRouter()]);
-                    },
-                  );
-                },
+            if (Platform.isIOS)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                child: SocialLoginButton.apple(
+                  onPressed: () async {
+                    final accountExistsResult =
+                        await _authService.checkAppleAccountExistsAndSignIn();
+                    accountExistsResult.fold(
+                      (failure) => showSnackBarError(context, message: failure.getMessage(context)),
+                      (authUser) async {
+                        await _userRepository.createUserIfNotExists();
+                        await AutoRouter.of(context).replaceAll([const MainScreenRouter()]);
+                      },
+                    );
+                  },
+                ),
               ),
-            ),
             const SizedBox(height: 20.0),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18.0),

@@ -1,3 +1,4 @@
+import 'dart:io' show Platform;
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
@@ -95,15 +96,16 @@ class OnboardingFormDoneScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 30),
-            Padding(
-              padding: const EdgeInsets.only(top: 18, left: 18, right: 18),
-              child: SocialLoginButton.apple(
-                onPressed: () async => _processSocialAuth(
-                  context,
-                  socialLoginMethod: SocialLoginMethod.apple,
+            if (Platform.isIOS)
+              Padding(
+                padding: const EdgeInsets.only(top: 18, left: 18, right: 18),
+                child: SocialLoginButton.apple(
+                  onPressed: () async => _processSocialAuth(
+                    context,
+                    socialLoginMethod: SocialLoginMethod.apple,
+                  ),
                 ),
               ),
-            ),
             const SizedBox(height: 15),
             Padding(
               padding: const EdgeInsets.only(left: 18, right: 18),
