@@ -77,7 +77,7 @@ class UpdateProfileScreen extends StatelessWidget {
                       ),
                       LoonoAvatar(),
                       TextButton(
-                        onPressed: () => changePage(SettingsPage.photo),
+                        onPressed: () => changePage(SettingsPage.SettingsPhotoPage),
                         child: Text(
                           context.l10n.action_change,
                           style: const TextStyle(fontSize: 14, color: Colors.black),

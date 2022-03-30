@@ -32,6 +32,7 @@ dependencies:
       url: https://github.com/simolus3/moor.git
       path: extras/encryption
       ref: fd0764594dc70b04f5ea5dcd18aa2213abbbce12
+  firebase_analytics: ^9.1.2
   firebase_auth: ^3.3.9
   firebase_core: ^1.2.0
   firebase_crashlytics: ^2.0.7
@@ -46,6 +47,7 @@ dependencies:
     sdk: flutter
   flutter_native_splash: ^2.0.5
   flutter_native_timezone: ^2.0.0
+  flutter_secure_storage: ^5.0.2
   flutter_svg: ^1.0.3
   flutter_typeahead: ^3.2.4
   freezed_annotation: ^1.1.0

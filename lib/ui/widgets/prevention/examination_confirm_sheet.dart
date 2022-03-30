@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/achievement_helpers.dart';
@@ -37,6 +38,7 @@ void showConfirmationSheet(
   final _api = registry.get<ExaminationRepository>();
   final _calendar = registry.get<CalendarRepository>();
 
+  registry.get<FirebaseAnalytics>().logEvent(name: 'OpenConfirmCheckupModal');
   showModalBottomSheet<void>(
     context: context,
     shape: RoundedRectangleBorder(
@@ -86,5 +88,7 @@ void showConfirmationSheet(
         ),
       );
     },
-  );
+  ).whenComplete(() {
+    registry.get<FirebaseAnalytics>().logEvent(name: 'CloseConfirmCheckupModal');
+  });
 }

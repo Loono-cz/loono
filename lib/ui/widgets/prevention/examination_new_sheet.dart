@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
@@ -8,6 +9,7 @@ import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/how/loon_botton_sheet.dart';
 import 'package:loono/ui/widgets/prevention/datepicker_sheet.dart';
+import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
 void showNewCheckupSheetStep1(
@@ -20,6 +22,7 @@ void showNewCheckupSheetStep1(
   final examinationType = categorizedExamination.examination.examinationType;
   final autoRouter = AutoRouter.of(context);
   final cancelRoute = ExaminationDetailRoute(categorizedExamination: categorizedExamination);
+  registry.get<FirebaseAnalytics>().logEvent(name: 'OpenNewCheckupModal');
   showModalBottomSheet<void>(
     context: context,
     shape: RoundedRectangleBorder(
@@ -63,7 +66,9 @@ void showNewCheckupSheetStep1(
         ),
       );
     },
-  );
+  ).whenComplete(() {
+    registry.get<FirebaseAnalytics>().logEvent(name: 'CloseNewCheckupModal');
+  });
 }
 
 void showNewCheckupSheetStep2(
@@ -76,6 +81,7 @@ void showNewCheckupSheetStep2(
   final examinationType = categorizedExamination.examination.examinationType;
   final preposition = czechPreposition(context, examinationType: examinationType);
 
+  registry.get<FirebaseAnalytics>().logEvent(name: 'OpenNewCheckupQuestionModal');
   showModalBottomSheet<void>(
     context: context,
     isScrollControlled: true,
@@ -162,7 +168,9 @@ void showNewCheckupSheetStep2(
         ),
       );
     },
-  );
+  ).whenComplete(() {
+    registry.get<FirebaseAnalytics>().logEvent(name: 'CloseNewCheckupQuestionModal');
+  });
 }
 
 class CirceNumber extends StatelessWidget {

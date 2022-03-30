@@ -44,7 +44,7 @@ class OpenSettingsScreen extends StatelessWidget {
                   LoonoButton.light(
                     text: context.l10n.settings_edit_account_button,
                     onTap: () {
-                      changePage(SettingsPage.edit);
+                      changePage(SettingsPage.SettingsEditPage);
                     },
                   ),
                   if (LoonoSizes.isScreenSmall(context))
@@ -74,7 +74,7 @@ class OpenSettingsScreen extends StatelessWidget {
                         child: LoonoButton.light(
                           text: context.l10n.settings_user_points_help_button,
                           onTap: () {
-                            changePage(SettingsPage.points);
+                            changePage(SettingsPage.SettingsPointsPage);
                           },
                         ),
                       ),
@@ -84,7 +84,7 @@ class OpenSettingsScreen extends StatelessWidget {
                         child: LoonoButton.light(
                           text: context.l10n.leaderboard,
                           onTap: () {
-                            changePage(SettingsPage.leaderboard);
+                            changePage(SettingsPage.SettingsLeaderboardPage);
                           },
                         ),
                       )

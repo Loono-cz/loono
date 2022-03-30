@@ -62,7 +62,7 @@ class EducationalVideoScreen extends StatelessWidget {
                     text: context.l10n.self_examination_educational_button,
                     onTap: () async {
                       await AutoRouter.of(context).pop();
-                      showHowItWentSheet(context, sex, selfExamination.points);
+                      showHowItWentSheet(context, sex, selfExamination);
                     },
                   ),
                 SizedBox(height: LoonoSizes.buttonBottomPadding(context)),

@@ -8,12 +8,14 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_smart_retry/dio_smart_retry.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
@@ -30,6 +32,7 @@ import 'package:loono/services/database_service.dart';
 import 'package:loono/services/firebase_storage_service.dart';
 import 'package:loono/services/notification_service.dart';
 import 'package:loono/services/save_directories.dart';
+import 'package:loono/services/secure_storage_service.dart';
 import 'package:loono/utils/app_clear.dart';
 import 'package:loono/utils/app_config.dart';
 import 'package:loono/utils/picture_precaching.dart';
@@ -160,6 +163,8 @@ Future<void> setup({
     ],
   );
 
+  registry.registerSingleton<FirebaseAnalytics>(FirebaseAnalytics.instance);
+
   registry.registerSingleton<LoonoApi>(LoonoApi(dio: dio));
 
   registry.registerLazySingleton<GlobalKey<NavigatorState>>(() => GlobalKey());
@@ -169,6 +174,9 @@ Future<void> setup({
   await registry.get<NotificationService>().init();
 
   // services
+  registry.registerSingleton<SecureStorageService>(
+    const SecureStorageService(flutterSecureStorage: FlutterSecureStorage()),
+  );
   registry.registerSingleton<SaveDirectories>(SaveDirectories());
   await registry.get<SaveDirectories>().init();
   registry.registerSingleton<AuthService>(
@@ -176,6 +184,7 @@ Future<void> setup({
       api: registry.get<LoonoApi>(),
       firebaseAuth: firebaseAuth ?? FirebaseAuth.instance,
       googleSignIn: googleSignIn ?? GoogleSignIn(),
+      secureStorageService: registry.get<SecureStorageService>(),
     ),
   );
   registry.registerSingleton<DatabaseService>(DatabaseService());
