@@ -9,8 +9,8 @@ final _testDataLeaderboard = createLeaderboardObject(
   ],
   peers: [
     createLeaderboardUserObject(
-      name: defaultAccount.nickname,
-      points: defaultAccount.points,
+      name: defaultMaleAccount.nickname,
+      points: defaultMaleAccount.points,
       isThisMe: true,
     ),
     createLeaderboardUserObject(name: 'Daniel', points: 100, isThisMe: false),

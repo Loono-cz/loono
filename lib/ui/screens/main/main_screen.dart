@@ -102,6 +102,7 @@ class _MainScreenState extends State<MainScreen> {
       child: Scaffold(
         body: _pages.elementAt(_selectedIndex),
         bottomNavigationBar: CustomNavigationBar(
+          key: const Key('mainScreenPage_bottomNavBar'),
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
           items: [

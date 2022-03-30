@@ -45,8 +45,8 @@ class AppDatabase extends _$AppDatabase {
 
   Future<void> deleteAllData() {
     return transaction(() async {
+      flutter.debugPrint('**Drift db** delete all tables');
       for (final table in allTables) {
-        flutter.debugPrint('**Moor** delele all tables');
         await delete<Table, dynamic>(table).go();
       }
     });

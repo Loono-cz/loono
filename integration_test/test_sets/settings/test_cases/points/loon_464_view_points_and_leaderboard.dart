@@ -13,7 +13,7 @@ import '../../../../test_helpers/dart_objects_gens.dart';
 import '../../../app/flows/login_flow.dart';
 import '../../../app/test_data/default_test_data.dart';
 import '../../../app/test_data/fake_healthcare_provider_response.dart';
-import '../../../onboarding/pages/questionnaire_done_page.dart';
+import '../../../prevention/pages/prevention_main_page.dart';
 import '../../pages/open_settings_page.dart';
 import '../../pages/points/leaderboard_page.dart';
 import '../../pages/points/points_help_page.dart';
@@ -33,7 +33,7 @@ Future<void> run({
 
   await loginFlow(tester: tester, charlatan: charlatan);
 
-  final preventionMainPage = PreventionMainPage(tester);
+  final preventionMainPage = PreventionPage(tester);
   final openSettingsPage = OpenSettingsPage(tester);
   final pointsHelpPage = PointsHelpPage(tester);
   final leaderboardPage = LeaderboardPage(tester);

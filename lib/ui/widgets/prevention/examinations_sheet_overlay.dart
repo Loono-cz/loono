@@ -145,6 +145,7 @@ class ExaminationsSheetOverlay extends StatelessWidget {
                   (index, e) => Padding(
                     padding: const EdgeInsets.symmetric(vertical: 6),
                     child: ExaminationCard(
+                      key: ValueKey<ExaminationType>(e.examination.examinationType),
                       index: index,
                       categorizedExamination: e,
                       onTap: () => AutoRouter.of(context).navigate(
@@ -172,19 +173,22 @@ class ExaminationsSheetOverlay extends StatelessWidget {
       (selfExamination) => selfExamination.calculateStatus().position == cardPosition,
     );
     if (positionedExaminations.isEmpty) return const SizedBox.shrink();
-    final header = positionedExaminations.first.calculateStatus().getHeaderMessage(context);
+    final category = positionedExaminations.first.calculateStatus();
+    final categoryHeaderName = category.getHeaderMessage(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
+        key: ValueKey<String>('selfExam_category_column_$categoryHeaderName'),
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildCategoryHeader(header),
+          _buildCategoryHeader(categoryHeaderName),
           Column(
             children: selfExaminations
                 .map(
                   (selfExamination) => Padding(
                     padding: const EdgeInsets.symmetric(vertical: 6),
                     child: SelfExaminationCard(
+                      key: ValueKey<SelfExaminationType>(selfExamination.type),
                       // TODO: different route based on the category
                       selfExamination: selfExamination,
                       onTap: (sex) => AutoRouter.of(context).navigate(
@@ -208,6 +212,7 @@ class ExaminationsSheetOverlay extends StatelessWidget {
       padding: const EdgeInsets.only(left: 6),
       child: Text(
         header,
+        key: key,
         style: const TextStyle(
           color: LoonoColors.black,
           fontSize: 16,

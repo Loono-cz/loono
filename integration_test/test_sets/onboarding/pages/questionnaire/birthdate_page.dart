@@ -32,7 +32,7 @@ class QuestionnaireBirthDatePage with OnboardingFinders {
   }
 
   Future<void> scrollToApproxYear(int year) async {
-    logTestEvent('scrollToApproxYear: $year');
+    logTestEvent('scrollToApproxYear: "$year"');
     final yearPicker = find.descendant(
       of: yearPickerBox,
       matching: find.byType(ListWheelScrollView),

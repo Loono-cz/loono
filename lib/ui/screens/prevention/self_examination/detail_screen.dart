@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
@@ -24,22 +25,24 @@ class SelfExaminationDetailScreen extends StatelessWidget {
   final Sex sex;
   final SelfExaminationPreventionStatus selfExamination;
 
-  Widget _calendarRow(String text, {VoidCallback? onTap}) => GestureDetector(
-        onTap: onTap,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SvgPicture.asset('assets/icons/prevention/calendar.svg'),
-            const SizedBox(width: 5),
-            Text(
-              text.toUpperCase(),
-              style: LoonoFonts.cardSubtitle,
-            ),
-          ],
-        ),
+  Widget _buildInterval(String text) => Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SvgPicture.asset('assets/icons/prevention/calendar.svg'),
+          const SizedBox(width: 5),
+          Text(
+            text.toUpperCase(),
+            key: const Key('selfExaminationDetailPage_text_interval'),
+            style: LoonoFonts.cardSubtitle,
+          ),
+        ],
       );
 
-  Widget get _selfExaminationAsset => SvgPicture.asset(selfExamination.type.assetPath, width: 180);
+  Widget get _selfExaminationAsset => SvgPicture.asset(
+        selfExamination.type.assetPath,
+        key: const Key('selfExaminationDetailPage_image'),
+        width: 180,
+      );
 
   double _selfExaminationProgress() {
     if (selfExamination.plannedDate?.toDateTime() != null) {
@@ -56,8 +59,8 @@ class SelfExaminationDetailScreen extends StatelessWidget {
     }
   }
 
-  SelfExaminationStatus get _lastResultWithoutPlanned =>
-      selfExamination.history.lastWhere((item) => item != SelfExaminationStatus.PLANNED);
+  SelfExaminationStatus? get _lastResultWithoutPlanned =>
+      selfExamination.history.lastWhereOrNull((item) => item != SelfExaminationStatus.PLANNED);
 
   @override
   Widget build(BuildContext context) {
@@ -92,6 +95,7 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 10.0, top: 16),
                             child: IconButton(
+                              key: const Key('selfExaminationDetailPage_backBtn'),
                               onPressed: () {
                                 AutoRouter.of(context).pop();
                               },
@@ -110,13 +114,14 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                                 const SizedBox(height: 18),
                                 Text(
                                   selfExamination.type.l10n_name,
+                                  key: const Key('selfExaminationDetailPage_text_header'),
                                   style: LoonoFonts.headerFontStyle.copyWith(
                                     color: LoonoColors.green,
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
                                 const SizedBox(height: 10),
-                                _calendarRow(
+                                _buildInterval(
                                   '${context.l10n.once_per} ${context.l10n.month}',
                                 ),
                               ],
@@ -128,6 +133,7 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                   ),
                 ),
                 Row(
+                  key: const Key('selfExaminationDetailPage_rewardProgressArea'),
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     if (selfExamination.history.isNotEmpty)
@@ -256,6 +262,7 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: LoonoButton(
+                          key: const Key('selfExaminationDetailPage_button_selfExamPerformed'),
                           text: sex == Sex.MALE
                               ? context.l10n.self_examination_done_male
                               : context.l10n.self_examination_done_female,
@@ -271,6 +278,7 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                       const SizedBox(width: 19),
                       Expanded(
                         child: LoonoButton.light(
+                          key: const Key('selfExaminationDetailPage_button_howToSelfExam'),
                           text: context.l10n.how_to_self_examination,
                           onTap: () => AutoRouter.of(context).push(
                             EducationalVideoRoute(sex: sex, selfExamination: selfExamination),
@@ -284,6 +292,7 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                   height: 50,
                 ),
                 SelfFaqSection(
+                  key: const Key('selfExaminationDetailPage_faqSection'),
                   selfExaminationType: selfExamination.type,
                 )
               ],

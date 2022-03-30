@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:built_collection/built_collection.dart';
+import 'package:collection/collection.dart';
 import 'package:drift/drift.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
@@ -67,6 +68,28 @@ class UserRepository {
         profileImageUrl: Value<String?>(data.profileImageUrl),
         points: Value<int>(data.points),
         badges: Value<BuiltList<Badge>>(data.badges),
+      ),
+    );
+  }
+
+  Future<void> updateCurrentUserFromSelfExamCompletion(
+    SelfExaminationCompletionInformation newData,
+  ) async {
+    final currBadges = _db.users.user?.badges;
+    final currBadge = currBadges?.firstWhereOrNull((b) => b.type == newData.badgeType);
+    final updatedBadges = currBadges?.toBuilder()
+      ?..remove(currBadge)
+      ..add(
+        Badge((b) {
+          b
+            ..type = newData.badgeType
+            ..level = newData.badgeLevel;
+        }),
+      );
+    await _db.users.updateCurrentUser(
+      UsersCompanion(
+        points: Value<int>(newData.allPoints),
+        badges: Value<BuiltList<Badge>>.ofNullable(updatedBadges?.build()),
       ),
     );
   }

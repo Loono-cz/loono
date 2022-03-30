@@ -6,6 +6,7 @@ import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/ui/widgets/loono_point.dart';
+import 'package:loono/ui/widgets/notification_icon.dart';
 
 // ignore: constant_identifier_names
 const EXAMINATION_CARD_HEIGHT = 120.0;
@@ -108,7 +109,7 @@ class ExaminationCard extends StatelessWidget {
                   _title,
                   if (isSoonOrOverdue) ...[
                     const SizedBox(width: 5),
-                    SvgPicture.asset('assets/icons/prevention/appointment_soon.svg'),
+                    const NotificationIcon.topPriority(),
                   ],
                 ],
               ),
@@ -151,7 +152,7 @@ class ExaminationCard extends StatelessWidget {
                   _title,
                   if (isNew && index == 0) ...[
                     const SizedBox(width: 5),
-                    SvgPicture.asset('assets/icons/prevention/make_an_appointment.svg'),
+                    const NotificationIcon.priority(),
                   ],
                 ],
               ),
