@@ -44,7 +44,7 @@ class _ModalContent extends StatelessWidget {
     final l10n = context.l10n;
 
     // TODO: remove now()
-    final lastVisit = examination.examination.lastConfirmedDate ?? DateTime.now();
+    final lastVisit = examination.examination.lastConfirmedDate?.toLocal() ?? DateTime.now();
 
     final notificationDate = DateTime(
       lastVisit.year + examination.examination.intervalYears,

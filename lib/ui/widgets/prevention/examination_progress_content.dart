@@ -99,7 +99,7 @@ class ExaminationProgressContent extends StatelessWidget {
   }
 
   Widget _earlyCheckupContent(BuildContext context) {
-    final lastDateVisit = categorizedExamination.examination.lastConfirmedDate!;
+    final lastDateVisit = categorizedExamination.examination.lastConfirmedDate!.toLocal();
     final newWaitToDateTime = DateTime(
       lastDateVisit.year + categorizedExamination.examination.intervalYears,
       lastDateVisit.month,
