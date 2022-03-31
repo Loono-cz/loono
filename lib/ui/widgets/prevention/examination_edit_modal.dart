@@ -63,7 +63,7 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
                 id: examinationUuid,
                 examinationType: examinationType,
                 title: '${pageContext.l10n.checkup_cancel_question} $preposition $procedure?',
-                date: examination.examination.plannedDate ?? DateTime.now(),
+                date: examination.examination.plannedDate?.toLocal() ?? DateTime.now(),
               );
             } else {
               showSnackBarError(modalContext, message: modalContext.l10n.something_went_wrong);

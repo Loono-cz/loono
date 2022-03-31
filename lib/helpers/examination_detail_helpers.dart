@@ -10,7 +10,7 @@ import 'package:loono_api/loono_api.dart';
 TextStyle earlyOrderStyles(CategorizedExamination examination) {
   var color = LoonoColors.black;
   var weight = FontWeight.w400;
-  final nextVisit = examination.examination.plannedDate;
+  final nextVisit = examination.examination.plannedDate?.toLocal();
 
   if (nextVisit != null &&
       [
@@ -232,7 +232,7 @@ String selfExaminationTypeCasus(
 }
 
 double upperArcProgress(CategorizedExamination examination) {
-  final nextVisit = examination.examination.plannedDate;
+  final nextVisit = examination.examination.plannedDate?.toLocal();
   final category = examination.category;
   final interval = examination.examination.intervalYears;
   if ([
@@ -256,8 +256,8 @@ double upperArcProgress(CategorizedExamination examination) {
 }
 
 double lowerArcProgress(CategorizedExamination examination) {
-  final nextVisit = examination.examination.plannedDate;
-  final lastVisit = examination.examination.lastConfirmedDate;
+  final nextVisit = examination.examination.plannedDate?.toLocal();
+  final lastVisit = examination.examination.lastConfirmedDate?.toLocal();
   final category = examination.category;
   final interval = examination.examination.intervalYears;
 
@@ -287,7 +287,7 @@ double lowerArcProgress(CategorizedExamination examination) {
 }
 
 bool isOverdue(CategorizedExamination examination) {
-  final nextVisit = examination.examination.plannedDate;
+  final nextVisit = examination.examination.plannedDate?.toLocal();
   if (nextVisit != null) {
     return examination.category == const ExaminationCategory.scheduledSoonOrOverdue() &&
         DateTime.now().isAfter(nextVisit);
