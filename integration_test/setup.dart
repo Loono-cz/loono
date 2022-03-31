@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:charlatan/charlatan.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -23,6 +24,8 @@ Future<void> main({
     envOverride: env,
     flavor: AppFlavors.dev,
   );
+  // disable FirebaseAnalytics in testing
+  await registry.get<FirebaseAnalytics>().setAnalyticsCollectionEnabled(false);
   runApp(const Loono(defaultLocale: 'cs'));
 }
 
