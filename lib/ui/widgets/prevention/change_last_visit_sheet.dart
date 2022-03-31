@@ -74,7 +74,8 @@ class _DatePickerContentState extends State<_DatePickerContent> {
 
   @override
   Widget build(BuildContext context) {
-    final lastVisit = widget.categorizedExamination.examination.lastConfirmedDate ?? DateTime.now();
+    final lastVisit =
+        widget.categorizedExamination.examination.lastConfirmedDate?.toLocal() ?? DateTime.now();
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
