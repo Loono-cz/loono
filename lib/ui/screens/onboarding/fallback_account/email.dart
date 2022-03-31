@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:loono/helpers/date_helpers.dart';
 import 'package:loono/helpers/nickname_hint_resolver.dart';
 import 'package:loono/helpers/onboarding_state_helpers.dart';
 import 'package:loono/helpers/snackbar_message.dart';
@@ -106,7 +107,7 @@ class EmailScreen extends StatelessWidget {
             ExaminationRecord((b) {
               b
                 ..status = questionnaire.status
-                ..date = questionnaire.date?.toUtc()
+                ..date = getFakeUtcDate(questionnaire.date)
                 ..firstExam = true
                 ..type = questionnaire.type;
             })

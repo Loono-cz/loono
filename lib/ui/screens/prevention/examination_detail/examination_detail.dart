@@ -76,7 +76,7 @@ class ExaminationDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final lastVisitDateWithoutDay = categorizedExamination.examination.lastConfirmedDate;
+    final lastVisitDateWithoutDay = categorizedExamination.examination.lastConfirmedDate?.toLocal();
 
     final lastVisit = lastVisitDateWithoutDay != null
         ? DateFormat.yMMMM('cs-CZ').format(
