@@ -110,15 +110,4 @@ Future<void> run({
 
   await mainScreenPage.clickPreventionTab();
   await preventionPage.verifyScreenIsShown();
-
-  await preventionPage.verifySelfExaminationCardIsInCategory(
-    selfExamType,
-    expectedCategoryName: 'Připomenu ti vyšetření',
-  );
-  await preventionPage.verifySelfExaminationCardContainsText(
-    selfExamType,
-    textPattern: 'Jak ti dopadla návštěva u lékaře',
-  );
-  await preventionPage.verifySelfExaminationCardDoesNotHaveNotificationIcon(selfExamType);
-  preventionPage.verifyHasBadge(badgeReward);
 }
