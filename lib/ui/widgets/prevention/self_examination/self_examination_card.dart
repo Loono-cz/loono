@@ -9,6 +9,7 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart' as db;
 import 'package:loono/ui/widgets/loono_point.dart';
+import 'package:loono/ui/widgets/notification_icon.dart';
 import 'package:loono/ui/widgets/prevention/examination_card.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
@@ -121,10 +122,10 @@ class SelfExaminationCard extends StatelessWidget {
                     const SizedBox.shrink()
                   // if topPriority true we show red icon with exclamation
                   else if (topPriority)
-                    SvgPicture.asset('assets/icons/prevention/appointment_soon.svg')
+                    const NotificationIcon.topPriority()
                   // if topPriority false we just show red icon
                   else
-                    SvgPicture.asset('assets/icons/prevention/make_an_appointment.svg'),
+                    const NotificationIcon.priority(),
                 ],
               ),
               Text(
@@ -165,8 +166,7 @@ class SelfExaminationCard extends StatelessWidget {
                 children: [
                   _title,
                   const SizedBox(width: 5),
-                  if (hasPriority)
-                    SvgPicture.asset('assets/icons/prevention/make_an_appointment.svg')
+                  if (hasPriority) const NotificationIcon.priority()
                 ],
               ),
               const SizedBox(height: 8.0),

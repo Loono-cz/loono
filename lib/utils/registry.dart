@@ -49,6 +49,10 @@ final defaultDioOptions = BaseOptions(
 
 const retryBlacklist = ['/account/onboard', '/leaderboard'];
 
+/// TODO: select correct status code for force update with BE
+// ignore: constant_identifier_names
+const FORCE_UPDATE_STATUS_CODE = 410;
+
 Future<void> setup({
   Dio? dioOverride,
   GoogleSignIn? googleSignIn,
@@ -148,8 +152,7 @@ Future<void> setup({
           handler.next(options..disableRetry = isDisableRetryUrl);
         },
         onError: (e, handler) async {
-          /// TODO: select correct status code for force update with BE
-          if (e.response?.statusCode == 410) {
+          if (e.response?.statusCode == FORCE_UPDATE_STATUS_CODE) {
             final router = registry<AppRouter>();
             const forceUpdateRoute = ForceUpdateRoute();
             // prevents pushing multiple force update routes

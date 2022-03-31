@@ -11,7 +11,7 @@ import '../../../../setup.dart' as app;
 import '../../../app/flows/login_flow.dart';
 import '../../../app/test_data/default_test_data.dart';
 import '../../../app/test_data/fake_healthcare_provider_response.dart';
-import '../../../onboarding/pages/questionnaire_done_page.dart';
+import '../../../prevention/pages/prevention_main_page.dart';
 import '../../pages/open_settings_page.dart';
 import '../../pages/update_profile/edit_email_page.dart';
 import '../../pages/update_profile/edit_nickname_page.dart';
@@ -35,7 +35,7 @@ Future<void> run({
   await tester.pumpAndSettle();
   await tester.pump(const Duration(seconds: 3));
 
-  final preventionMainPage = PreventionMainPage(tester);
+  final preventionMainPage = PreventionPage(tester);
   final openSettingsPage = OpenSettingsPage(tester);
   final updateProfilePage = UpdateProfilePage(tester);
   final editNicknamePage = EditNicknamePage(tester);
@@ -47,8 +47,8 @@ Future<void> run({
   await openSettingsPage.clickEditProfileButton();
   expect(find.byType(UpdateProfileScreen), findsOneWidget);
   updateProfilePage
-    ..verifyNickname(defaultAccount.nickname)
-    ..verifyEmail(defaultAccount.preferredEmail);
+    ..verifyNickname(defaultMaleAccount.nickname)
+    ..verifyEmail(defaultMaleAccount.preferredEmail);
 
   await updateProfilePage.clickNicknameField();
   expect(find.byType(EditNicknameScreen), findsOneWidget);
@@ -58,7 +58,7 @@ Future<void> run({
 
   await editNicknamePage.clickBackButton();
   expect(find.byType(UpdateProfileScreen), findsOneWidget);
-  updateProfilePage.verifyNickname(defaultAccount.nickname);
+  updateProfilePage.verifyNickname(defaultMaleAccount.nickname);
 
   await updateProfilePage.clickEmailField();
   expect(find.byType(EditEmailScreen), findsOneWidget);
@@ -75,7 +75,7 @@ Future<void> run({
 
   await editEmailPage.clickBackButton();
   expect(find.byType(UpdateProfileScreen), findsOneWidget);
-  updateProfilePage.verifyEmail(defaultAccount.preferredEmail);
+  updateProfilePage.verifyEmail(defaultMaleAccount.preferredEmail);
 
   await updateProfilePage.clickSexField();
   expect(find.text('Pohlaví teď není možné změnit'), findsOneWidget);

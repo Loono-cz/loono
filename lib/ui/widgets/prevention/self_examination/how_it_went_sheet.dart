@@ -5,6 +5,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/api_service.dart';
 import 'package:loono/services/examinations_service.dart';
@@ -20,6 +21,7 @@ void showHowItWentSheet(
   SelfExaminationPreventionStatus selfExamination,
 ) {
   registry.get<FirebaseAnalytics>().logEvent(name: 'OpenHowItWentModal');
+  final userRepository = registry.get<UserRepository>();
   showModalBottomSheet<void>(
     context: context,
     shape: RoundedRectangleBorder(
@@ -27,6 +29,7 @@ void showHowItWentSheet(
     ),
     builder: (context) {
       return LoonBottomSheet(
+        key: const Key('selfExaminationDetailPage_howItWentModal'),
         sheetHeight: 400,
         child: Column(
           children: <Widget>[
@@ -39,13 +42,18 @@ void showHowItWentSheet(
             ),
             const SizedBox(height: 60),
             LoonoButton.light(
+              key: const Key('selfExaminationDetailPage_howItWentModal_okBtn'),
               text: context.l10n.self_exam_how_it_went_ok,
               onTap: () async {
-                await registry.get<ApiService>().confirmSelfExamination(
+                final apiRes = await registry.get<ApiService>().confirmSelfExamination(
                   selfExamination.type,
                   result: SelfExaminationResult((b) {
                     b.result = SelfExaminationResultResultEnum.OK;
                   }),
+                );
+                await apiRes.whenOrNull(
+                  success: (data) async =>
+                      userRepository.updateCurrentUserFromSelfExamCompletion(data),
                 );
                 unawaited(
                   Provider.of<ExaminationsProvider>(context, listen: false).fetchExaminations(),
@@ -56,15 +64,20 @@ void showHowItWentSheet(
             ),
             const SizedBox(height: 20),
             LoonoButton.light(
+              key: const Key('selfExaminationDetailPage_howItWentModal_hasFindingBtn'),
               text: sex == Sex.FEMALE
                   ? context.l10n.self_exam_how_it_went_finding_female
                   : context.l10n.self_exam_how_it_went_finding_male,
               onTap: () async {
-                await registry.get<ApiService>().confirmSelfExamination(
+                final apiRes = await registry.get<ApiService>().confirmSelfExamination(
                   selfExamination.type,
                   result: SelfExaminationResult((b) {
                     b.result = SelfExaminationResultResultEnum.FINDING;
                   }),
+                );
+                await apiRes.whenOrNull(
+                  success: (data) async =>
+                      userRepository.updateCurrentUserFromSelfExamCompletion(data),
                 );
                 unawaited(
                   Provider.of<ExaminationsProvider>(context, listen: false).fetchExaminations(),

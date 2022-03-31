@@ -28,6 +28,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
   Widget _getGoogles(Sex sex, int level) {
     return level > 0
         ? SizedBox(
+            key: ValueKey<String>('badgeComposer_${BadgeType.GLASSES.name}'),
             width: MediaQuery.of(context).size.width,
             child: Stack(
               alignment: Alignment.center,
@@ -67,6 +68,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
   Widget _getHeadband(int level) {
     return level > 0
         ? SizedBox(
+            key: ValueKey<String>('badgeComposer_${BadgeType.HEADBAND.name}'),
             width: MediaQuery.of(context).size.width,
             child: Stack(
               alignment: Alignment.center,
@@ -106,6 +108,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
   Widget _getBoots(int level) {
     return level > 0
         ? SizedBox(
+            key: ValueKey<String>('badgeComposer_${BadgeType.SHOES.name}'),
             width: MediaQuery.of(context).size.width,
             child: Stack(
               alignment: Alignment.center,
@@ -145,6 +148,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
   Widget _getBelt(Sex sex, int level) {
     return level > 0
         ? SizedBox(
+            key: ValueKey<String>('badgeComposer_${BadgeType.BELT.name}'),
             width: MediaQuery.of(context).size.width,
             child: Stack(
               alignment: Alignment.center,
@@ -185,6 +189,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
   Widget _getArmour(int level) {
     return level > 0
         ? SizedBox(
+            key: ValueKey<String>('badgeComposer_${BadgeType.TOP.name}'),
             width: MediaQuery.of(context).size.width,
             child: Stack(
               alignment: Alignment.center,
@@ -224,6 +229,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
   Widget _getCloak(int level) {
     return level > 0
         ? SizedBox(
+            key: ValueKey<String>('badgeComposer_${BadgeType.COAT.name}'),
             width: MediaQuery.of(context).size.width,
             child: Stack(
               alignment: Alignment.center,
@@ -274,6 +280,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
   Widget _getGloves(Sex sex, int level) {
     return level > 0
         ? SizedBox(
+            key: ValueKey<String>('badgeComposer_${BadgeType.GLOVES.name}'),
             width: MediaQuery.of(context).size.width,
             child: Stack(
               alignment: Alignment.center,
@@ -317,6 +324,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
   Widget _getShield(int level) {
     return level > 0
         ? SizedBox(
+            key: ValueKey<String>('badgeComposer_${BadgeType.SHIELD.name}'),
             width: MediaQuery.of(context).size.width,
             child: Stack(
               alignment: Alignment.center,

@@ -37,6 +37,7 @@ class ContinueQuestionnairePage {
     expect(progressBar, findsOneWidget);
     final progressBarWidget = tester.widget<CircularProgressIndicator>(progressBar);
     final value = progressBarWidget.value;
+    logTestEvent('Progress bar value: "$value"');
     // should not have endless animation
     expect(value, isNotNull);
     return value!;

@@ -46,6 +46,7 @@ class ForceUpdateScreen extends StatelessWidget {
                   ],
                 ),
                 LoonoButton(
+                  key: const Key('forceUpdatePage_btn_forceUpdate'),
                   text: context.l10n.force_update_button,
                   onTap: () {
                     OpenStore.instance.open(

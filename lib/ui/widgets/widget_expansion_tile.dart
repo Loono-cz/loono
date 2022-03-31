@@ -4,9 +4,14 @@ import 'package:loono/constants.dart';
 import 'package:loono/ui/screens/prevention/self_examination/self_faq_content.dart';
 
 class WidgetExpansionTile extends StatefulWidget {
-  const WidgetExpansionTile(this.pair, {Key? key}) : super(key: key);
+  const WidgetExpansionTile(
+    this.pair, {
+    Key? key,
+    this.expansionIconKey,
+  }) : super(key: key);
 
   final SelfFAQPair pair;
+  final Key? expansionIconKey;
 
   @override
   State<WidgetExpansionTile> createState() => _WidgetExpansionTileState();
@@ -43,6 +48,7 @@ class _WidgetExpansionTileState extends State<WidgetExpansionTile> {
                 });
               },
               trailing: AnimatedRotation(
+                key: widget.expansionIconKey,
                 turns: _isExpanded ? .5 : 0,
                 duration: const Duration(milliseconds: 200),
                 child: SvgPicture.asset('assets/icons/chevron-down.svg'),
@@ -61,6 +67,7 @@ class _WidgetExpansionTileState extends State<WidgetExpansionTile> {
                               height: 1.6,
                             ),
                             child: Flexible(
+                              key: const Key('widgetExpansionTile_answer'),
                               child: widget.pair.answer,
                             ),
                           ),

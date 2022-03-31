@@ -48,9 +48,8 @@ class HasFindingScreen extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(top: 20),
                                 child: IconButton(
-                                  onPressed: () {
-                                    AutoRouter.of(context).replace(MainRoute());
-                                  },
+                                  key: const Key('hasFindingPage_btn_close'),
+                                  onPressed: () => AutoRouter.of(context).navigate(MainRoute()),
                                   icon: const Icon(Icons.close),
                                 ),
                               ),
@@ -170,6 +169,7 @@ class HasFindingScreen extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(top: 20),
                                 child: LoonoButton.light(
+                                  key: const Key('hasFindingPage_btn_findDoctor'),
                                   text: context.l10n.main_menu_item_find_doc,
                                   onTap: () =>
                                       AutoRouter.of(context).replace(MainRoute(selectedIndex: 1)),

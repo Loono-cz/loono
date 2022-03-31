@@ -61,6 +61,23 @@ Badge createBadgeObject({
   });
 }
 
+SelfExaminationCompletionInformation createSelfExaminationCompletionInformationObject({
+  int points = 50,
+  int allPoints = 100,
+  BadgeType badgeType = BadgeType.SHIELD,
+  int badgeLevel = 1,
+  int streak = 1,
+}) {
+  return SelfExaminationCompletionInformation((b) {
+    b
+      ..points = points
+      ..allPoints = allPoints
+      ..badgeType = badgeType
+      ..badgeLevel = badgeLevel
+      ..streak = streak;
+  });
+}
+
 ExaminationRecord createExaminationRecordObject({
   String? uuid,
   ExaminationType type = ExaminationType.GENERAL_PRACTITIONER,

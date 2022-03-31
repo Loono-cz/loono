@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
@@ -32,8 +33,12 @@ class SelfFaqSection extends StatelessWidget {
           ),
           Column(
             children: selfFaqContent(context, selfExaminationType)
-                .map(
-                  (content) => WidgetExpansionTile(content),
+                .mapIndexed(
+                  (i, content) => WidgetExpansionTile(
+                    content,
+                    key: ValueKey('selfFaqSection_item_$i'),
+                    expansionIconKey: ValueKey('selfFaqSection_item_expansionIcon_$i'),
+                  ),
                 )
                 .toList(),
           ),
