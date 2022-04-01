@@ -873,5 +873,7 @@
   "self_exam_how_it_went_finding_female": "Něco jsem našla",
   "@self_exam_how_it_went_finding_female": {},
   "self_exam_how_it_went_finding_male": "Něco jsem našel",
-  "@self_exam_how_it_went_finding_male": {}
+  "@self_exam_how_it_went_finding_male": {},
+  "terms_and_conditions": "Podmínky užívání aplikace",
+  "@terms_and_conditions": {}
 }
