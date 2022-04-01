@@ -5,9 +5,9 @@ import 'package:built_collection/built_collection.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/helpers/date_helpers.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/helpers/nickname_hint_resolver.dart';
 import 'package:loono/helpers/onboarding_state_helpers.dart';
-import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/helpers/validators.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/api_response.dart';
@@ -55,7 +55,7 @@ class EmailScreen extends StatelessWidget {
             await _usersDao.updateCurrentUser(UsersCompanion(email: Value(input)));
             final createAccountResult = await socialLoginAccount.createAccount();
             createAccountResult.fold(
-              (failure) => showSnackBarError(context, message: context.l10n.something_went_wrong),
+              (failure) => showFlushBarError(context, context.l10n.something_went_wrong),
               (authUser) async {
                 final user = _usersDao.user;
                 final examinationQuestionnaires = await _examinationQuestionnairesDao.getAll();
@@ -67,7 +67,7 @@ class EmailScreen extends StatelessWidget {
                     await AutoRouter.of(context).replaceAll([GamificationIntroductionRoute()]);
                   },
                   failure: (_) async {
-                    showSnackBarError(context, message: context.l10n.something_went_wrong);
+                    showFlushBarError(context, context.l10n.something_went_wrong);
                     // delete account so user can not login without saving info to server first
                     await authUser.delete();
                   },

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_category.dart';
-import 'package:loono/helpers/snackbar_message.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/ui/widgets/button.dart';
@@ -106,10 +106,10 @@ class _ChangeLastVisitScreenState extends State<ChangeLastVisitScreen> {
                   await response.map(
                     success: (res) async {
                       await AutoRouter.of(context).pop();
-                      showSnackBarSuccess(context, message: context.l10n.checkup_reminder_toast);
+                      showFlushBarSuccess(context, context.l10n.checkup_reminder_toast);
                     },
                     failure: (err) async {
-                      showSnackBarError(context, message: context.l10n.something_went_wrong);
+                      showFlushBarError(context, context.l10n.something_went_wrong);
                     },
                   );
                 },

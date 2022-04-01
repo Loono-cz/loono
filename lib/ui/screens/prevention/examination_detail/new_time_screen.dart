@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
-import 'package:loono/helpers/snackbar_message.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/calendar_repository.dart';
@@ -116,10 +116,10 @@ class _NewTimeScreenState extends State<NewTimeScreen> {
                             newDate: newDate!,
                           );
                       AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
-                      showSnackBarSuccess(context, message: context.l10n.checkup_reminder_toast);
+                      showFlushBarSuccess(context, context.l10n.checkup_reminder_toast);
                     },
                     failure: (err) {
-                      showSnackBarError(context, message: context.l10n.something_went_wrong);
+                      showFlushBarError(context, context.l10n.something_went_wrong);
                     },
                   );
                 },

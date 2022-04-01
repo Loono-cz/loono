@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' as s;
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/helpers/onboarding_state_helpers.dart';
-import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -91,7 +91,7 @@ class LoginScreen extends StatelessWidget {
                     final accountExistsResult =
                         await _authService.checkAppleAccountExistsAndSignIn();
                     accountExistsResult.fold(
-                      (failure) => showSnackBarError(context, message: failure.getMessage(context)),
+                      (failure) => showFlushBarError(context, failure.getMessage(context)),
                       (authUser) async {
                         await _userRepository.createUserIfNotExists();
                         await AutoRouter.of(context).replaceAll([const MainScreenRouter()]);
@@ -108,7 +108,7 @@ class LoginScreen extends StatelessWidget {
                   final accountExistsResult =
                       await _authService.checkGoogleAccountExistsAndSignIn();
                   accountExistsResult.fold(
-                    (failure) => showSnackBarError(context, message: failure.getMessage(context)),
+                    (failure) => showFlushBarError(context, failure.getMessage(context)),
                     (authUser) async {
                       await _userRepository.createUserIfNotExists();
                       await AutoRouter.of(context).replaceAll([const MainScreenRouter()]);

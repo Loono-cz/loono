@@ -6,8 +6,8 @@ import 'package:loono/helpers/achievement_helpers.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/examination_types.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/helpers/sex_extensions.dart';
-import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/examination_repository.dart';
@@ -116,9 +116,9 @@ class ScheduleExamination extends StatelessWidget {
                                         _appRouter.popUntilRouteWithName(
                                           const MainScreenRouter().routeName,
                                         );
-                                        showSnackBarError(
+                                        showFlushBarError(
                                           context,
-                                          message: context.l10n.something_went_wrong,
+                                          context.l10n.something_went_wrong,
                                         );
                                       },
                                     );
@@ -139,18 +139,18 @@ class ScheduleExamination extends StatelessWidget {
                                             .updateExaminationsRecord(res.data);
                                         registry.get<UserRepository>().sync();
                                         _navigateToDetail(context, _examinationsProvider);
-                                        showSnackBarSuccess(
+                                        showFlushBarSuccess(
                                           context,
-                                          message: context.l10n.checkup_reminder_toast,
+                                          context.l10n.checkup_reminder_toast,
                                         );
                                       },
                                       failure: (err) {
                                         _appRouter.popUntilRouteWithName(
                                           const MainScreenRouter().routeName,
                                         );
-                                        showSnackBarError(
+                                        showFlushBarError(
                                           context,
-                                          message: context.l10n.something_went_wrong,
+                                          context.l10n.something_went_wrong,
                                         );
                                       },
                                     );
@@ -182,7 +182,7 @@ class ScheduleExamination extends StatelessWidget {
                   },
                   failure: (err) async {
                     await _appRouter.pop();
-                    showSnackBarError(context, message: context.l10n.something_went_wrong);
+                    showFlushBarError(context, context.l10n.something_went_wrong);
                   },
                 );
               },

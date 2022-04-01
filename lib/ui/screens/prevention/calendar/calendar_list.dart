@@ -4,7 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:device_calendar/device_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/helpers/snackbar_message.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/calendar_repository.dart';
@@ -144,9 +144,9 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
                   );
                   if (result) {
                     await _userRepository.updateDeviceCalendarId(_calendarIdChoice!);
-                    showSnackBarSuccess(
+                    showFlushBarSuccess(
                       context,
-                      message: l10n.calendar_added_success_message,
+                      l10n.calendar_added_success_message,
                     );
                     await AutoRouter.of(context).pop();
                   }

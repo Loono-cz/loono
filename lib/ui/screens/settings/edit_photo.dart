@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/flushbar_message.dart';
-import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -76,9 +75,9 @@ class EditPhotoScreen extends StatelessWidget {
               onPressed: () async {
                 final result = await registry.get<UserRepository>().deleteUserPhoto();
                 if (result) {
-                  showSnackBarSuccess(
+                  showFlushBarSuccess(
                     context,
-                    message: context.l10n.edit_photo_delete_photo_action_success,
+                    context.l10n.edit_photo_delete_photo_action_success,
                   );
                 }
               },
