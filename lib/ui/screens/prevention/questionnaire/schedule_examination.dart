@@ -44,6 +44,8 @@ class ScheduleExamination extends StatelessWidget {
     ExaminationsProvider provider, {
     String? message,
   }) {
+    /// TODO: this whole post-auth navigation needs refactor as part of https://cesko-digital.atlassian.net/browse/LOON-571
+    /// to get rid of initialMessage and stateful widget from exam detail
     final exam = provider.examinations?.examinations.firstWhereOrNull(
       (item) => item.examinationType == _examinationType,
     );

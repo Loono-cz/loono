@@ -26,6 +26,7 @@ Object showFlushBarSuccess(
   String message, {
   bool sync = true,
 }) {
+  if (message.isEmpty) return Object;
   if (sync) return _showFlushBar(context, message, LoonoColors.greenSuccess);
   return Future.delayed(
     const Duration(),
@@ -38,6 +39,7 @@ Object showFlushBarError(
   String message, {
   bool sync = true,
 }) {
+  if (message.isEmpty) return Object;
   if (sync) return _showFlushBar(context, message, LoonoColors.red);
   return Future.delayed(
     const Duration(),
