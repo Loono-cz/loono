@@ -67,9 +67,9 @@ class EmailScreen extends StatelessWidget {
                     await AutoRouter.of(context).replaceAll([GamificationIntroductionRoute()]);
                   },
                   failure: (_) async {
-                    showFlushBarError(context, context.l10n.something_went_wrong);
                     // delete account so user can not login without saving info to server first
                     await authUser.delete();
+                    showFlushBarError(context, context.l10n.something_went_wrong);
                   },
                 );
               },

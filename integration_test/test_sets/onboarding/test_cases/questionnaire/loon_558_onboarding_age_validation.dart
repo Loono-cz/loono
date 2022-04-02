@@ -53,7 +53,8 @@ Future<void> run({required WidgetTester tester, required Charlatan charlatan}) a
   await questionnaireBirthDatePage.clickContinueButton();
   expect(find.byType(OnBoardingBirthdateScreen), findsOneWidget);
   // wait for message to disappear
-  await tester.pump(const Duration(seconds: 12));
+  await tester.pump(const Duration(seconds: 8));
+  await tester.pump(const Duration(seconds: 4));
 
   // skip onboarding form, progress bar should have progress
   await questionnaireBirthDatePage.clickSkipQuestionnaireButton();

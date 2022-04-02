@@ -164,12 +164,12 @@ class OnboardingFormDoneScreen extends StatelessWidget {
       (authUser) async {
         // email already has an existing account, login
         // TODO:
+        await _userRepository.createUser();
+        await AutoRouter.of(context).replaceAll([const MainScreenRouter()]);
         showFlushBarSuccess(
           context,
           'TODO(message): Účet již existuje, přihlašování ...',
         );
-        await _userRepository.createUser();
-        await AutoRouter.of(context).replaceAll([const MainScreenRouter()]);
       },
     );
   }

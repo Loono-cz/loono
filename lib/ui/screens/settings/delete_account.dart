@@ -126,10 +126,6 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                               onPressed: () async {
                                 final res = await registry.get<UserRepository>().deleteAccount();
                                 if (res) {
-                                  showFlushBarSuccess(
-                                    context,
-                                    context.l10n.settings_after_deletion_deleted,
-                                  );
                                   await AutoRouter.of(context).pop();
                                   await AutoRouter.of(context)
                                       .push(AfterDeletionRoute(sex: gender));
@@ -138,6 +134,7 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                                   showFlushBarError(
                                     context,
                                     context.l10n.something_went_wrong,
+                                    sync: false,
                                   );
                                 }
                               },
