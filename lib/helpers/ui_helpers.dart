@@ -8,4 +8,15 @@ class LoonoSizes {
     final screenHeight = MediaQuery.of(context).size.height;
     return isScreenSmall(context) ? screenHeight * 0.075 : screenHeight * 0.15;
   }
+
+  static TextStyle responsiveStyleScale(BuildContext context, TextStyle textStyle) {
+    if (!isScreenSmall(context)) return textStyle;
+    final fontSize = textStyle.fontSize;
+    if (fontSize != null) {
+      return textStyle.copyWith(
+        fontSize: fontSize * 0.8,
+      );
+    }
+    return textStyle;
+  }
 }
