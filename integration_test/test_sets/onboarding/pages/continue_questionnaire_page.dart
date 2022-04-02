@@ -11,7 +11,7 @@ class ContinueQuestionnairePage {
 
   /// Page finders
   final Finder alreadyHaveAnAccountBtn = find.widgetWithText(TextButton, 'Už mám účet');
-  final Finder continueFormButton = find.widgetWithText(LoonoButton, 'Dokonči dotazník');
+  final Finder continueFormButton = find.widgetWithText(LoonoButton, 'Dokončit dotazník');
   final Finder progressBar = find.byType(CircularProgressIndicator);
 
   /// Page methods

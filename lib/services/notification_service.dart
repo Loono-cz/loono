@@ -21,7 +21,7 @@ class NotificationService {
     await OneSignal.shared.setExternalUserId(userId);
   }
 
-  Future<void> removeId() async {
+  Future<void> removeUserId() async {
     await OneSignal.shared.removeExternalUserId();
   }
 

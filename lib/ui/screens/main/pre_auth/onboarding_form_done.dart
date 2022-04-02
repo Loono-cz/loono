@@ -1,4 +1,5 @@
 import 'dart:io' show Platform;
+
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/helpers/social_login_helpers.dart';
+import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/firebase_user.dart';
 import 'package:loono/repositories/user_repository.dart';
@@ -24,6 +26,7 @@ class OnboardingFormDoneScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isScreenSmall = LoonoSizes.isScreenSmall(context);
     return Scaffold(
       body: SafeArea(
         child: ListView(
@@ -31,7 +34,7 @@ class OnboardingFormDoneScreen extends StatelessWidget {
             Container(
               color: const Color.fromRGBO(241, 249, 249, 1),
               child: Padding(
-                padding: const EdgeInsets.only(top: 18, left: 18, right: 18),
+                padding: const EdgeInsets.only(top: 0, left: 18, right: 18),
                 child: Column(
                   children: [
                     const SizedBox(height: 10),
@@ -48,13 +51,13 @@ class OnboardingFormDoneScreen extends StatelessWidget {
                         ]);
                       },
                     ),
-                    const SizedBox(height: 24),
+                    SizedBox(height: isScreenSmall ? 6 : 24),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 18.0),
                       child: Text(
                         context.l10n.onboarding_form_done_header,
                         textAlign: TextAlign.start,
-                        style: LoonoFonts.headerFontStyle,
+                        style: LoonoSizes.responsiveStyleScale(context, LoonoFonts.headerFontStyle),
                       ),
                     ),
                     Row(
@@ -86,7 +89,10 @@ class OnboardingFormDoneScreen extends StatelessWidget {
                           alignment: Alignment.centerRight,
                           child: Padding(
                             padding: const EdgeInsets.only(right: 8.0),
-                            child: SvgPicture.asset('assets/icons/doctor_finish_questionnaire.svg'),
+                            child: SvgPicture.asset(
+                              'assets/icons/doctor_finish_questionnaire.svg',
+                              width: isScreenSmall ? 90 : null,
+                            ),
                           ),
                         ),
                       ],
@@ -95,7 +101,7 @@ class OnboardingFormDoneScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 30),
+            SizedBox(height: isScreenSmall ? 5 : 30),
             if (Platform.isIOS)
               Padding(
                 padding: const EdgeInsets.only(top: 18, left: 18, right: 18),
@@ -163,11 +169,6 @@ class OnboardingFormDoneScreen extends StatelessWidget {
       },
       (authUser) async {
         // email already has an existing account, login
-        // TODO:
-        showFlushBarSuccess(
-          context,
-          'TODO(message): Účet již existuje, přihlašování ...',
-        );
         await _userRepository.createUser();
         await AutoRouter.of(context).replaceAll([const MainScreenRouter()]);
       },
