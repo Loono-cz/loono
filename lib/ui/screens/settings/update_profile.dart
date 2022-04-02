@@ -15,6 +15,7 @@ import 'package:loono/ui/widgets/settings/update_profile_item.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class UpdateProfileScreen extends StatelessWidget {
   UpdateProfileScreen({
@@ -24,6 +25,8 @@ class UpdateProfileScreen extends StatelessWidget {
   final Function(SettingsPage) changePage;
 
   final _usersDao = registry.get<DatabaseService>().users;
+
+  final termsUrl = 'https://www.loono.cz/podminky-uzivani-mobilni-aplikace';
 
   String _getUserSexValue(BuildContext context, {required Sex? sex}) {
     if (sex == null) return '';
@@ -143,13 +146,25 @@ class UpdateProfileScreen extends StatelessWidget {
                           },
                           child: Text(context.l10n.sign_out_action, style: LoonoFonts.fontStyle),
                         ),
-                        const SizedBox(height: 41.0),
+                        const SizedBox(height: 32.0),
                         TextButton(
                           onPressed: () {
                             // TODO: Show 'Ochrana osobních údajů'
                           },
                           child: Text(
                             context.l10n.update_profile_privacy_action,
+                            style: LoonoFonts.fontStyle,
+                          ),
+                        ),
+                        const SizedBox(height: 32.0),
+                        TextButton(
+                          onPressed: () async {
+                            if (await canLaunch(termsUrl)) {
+                              await launch(termsUrl);
+                            }
+                          },
+                          child: Text(
+                            context.l10n.terms_and_conditions,
                             style: LoonoFonts.fontStyle,
                           ),
                         ),
