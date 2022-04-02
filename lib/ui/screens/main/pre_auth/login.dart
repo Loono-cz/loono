@@ -83,7 +83,10 @@ class LoginScreen extends StatelessWidget {
                         child: Text(
                           context.l10n.login_header,
                           textAlign: TextAlign.left,
-                          style: LoonoFonts.headerFontStyle,
+                          style: LoonoSizes.responsiveStyleScale(
+                            context,
+                            LoonoFonts.headerFontStyle,
+                          ),
                         ),
                       ),
                     ),
@@ -93,7 +96,7 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             if (isScreenSmall) const SizedBox(height: 10),
-            if (!Platform.isIOS) ...[
+            if (Platform.isIOS) ...[
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0),
                 child: SocialLoginButton.apple(

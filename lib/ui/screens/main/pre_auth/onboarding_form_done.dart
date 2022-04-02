@@ -57,7 +57,7 @@ class OnboardingFormDoneScreen extends StatelessWidget {
                       child: Text(
                         context.l10n.onboarding_form_done_header,
                         textAlign: TextAlign.start,
-                        style: LoonoFonts.headerFontStyle,
+                        style: LoonoSizes.responsiveStyleScale(context, LoonoFonts.headerFontStyle),
                       ),
                     ),
                     Row(
@@ -91,7 +91,7 @@ class OnboardingFormDoneScreen extends StatelessWidget {
                             padding: const EdgeInsets.only(right: 8.0),
                             child: SvgPicture.asset(
                               'assets/icons/doctor_finish_questionnaire.svg',
-                              width: isScreenSmall ? 75 : null,
+                              width: isScreenSmall ? 90 : null,
                             ),
                           ),
                         ),

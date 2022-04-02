@@ -49,7 +49,7 @@ class ContinueOnboardingFormScreen extends StatelessWidget {
                   ),
                   Text(
                     l10n.continue_onboarding_title,
-                    style: LoonoFonts.headerFontStyle,
+                    style: LoonoSizes.responsiveStyleScale(context, LoonoFonts.headerFontStyle),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -70,7 +70,7 @@ class ContinueOnboardingFormScreen extends StatelessWidget {
                       ),
                       SvgPicture.asset(
                         'assets/icons/a_doctor.svg',
-                        width: isScreenSmall ? 100 : null,
+                        width: isScreenSmall ? 110 : null,
                         alignment: Alignment.bottomRight,
                       ),
                     ],
