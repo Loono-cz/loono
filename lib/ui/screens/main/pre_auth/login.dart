@@ -39,7 +39,7 @@ class LoginScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     const SizedBox(height: 30),
-                    if (registry.get<AppConfig>().flavor != AppFlavors.dev) ...[
+                    if (!isScreenSmall && registry.get<AppConfig>().flavor == AppFlavors.dev) ...[
                       TextButton(
                         onPressed: () async {
                           final data = await s.rootBundle.loadString('assets/supported_apis.yaml');
