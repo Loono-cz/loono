@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/onboarding_state_helpers.dart';
+import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
@@ -20,6 +21,7 @@ class ContinueOnboardingFormScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const horizontalPadding = 20.0;
+    final isScreenSmall = LoonoSizes.isScreenSmall(context);
     final l10n = context.l10n;
     return Scaffold(
       body: SafeArea(
@@ -57,7 +59,7 @@ class ContinueOnboardingFormScreen extends StatelessWidget {
                           _buildOnboardingFormProgressIndicator(),
                           const SizedBox(width: 10),
                           Text(
-                            l10n.continue_onboarding_form_button,
+                            l10n.continue_onboarding_form_progress,
                             style: const TextStyle(
                               fontSize: 14,
                               color: LoonoColors.primaryEnabled,
@@ -68,6 +70,7 @@ class ContinueOnboardingFormScreen extends StatelessWidget {
                       ),
                       SvgPicture.asset(
                         'assets/icons/a_doctor.svg',
+                        width: isScreenSmall ? 100 : null,
                         alignment: Alignment.bottomRight,
                       ),
                     ],
@@ -84,7 +87,7 @@ class ContinueOnboardingFormScreen extends StatelessWidget {
                     l10n.continue_onboarding_text,
                     style: LoonoFonts.paragraphFontStyle,
                   ),
-                  const SizedBox(height: 80),
+                  SizedBox(height: isScreenSmall ? 30 : 80),
                   LoonoButton(
                     text: l10n.continue_onboarding_form_button,
                     onTap: () => AutoRouter.of(context).push(const OnboardingWrapperRoute()),
