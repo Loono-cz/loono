@@ -5,7 +5,7 @@ import 'package:loono/constants.dart';
 import 'package:loono/helpers/achievement_helpers.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_types.dart';
-import 'package:loono/helpers/snackbar_message.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/repositories/examination_repository.dart';
@@ -79,7 +79,7 @@ void showConfirmationSheet(
                   },
                   failure: (err) async {
                     await AutoRouter.of(context).pop();
-                    showSnackBarError(context, message: context.l10n.something_went_wrong);
+                    showFlushBarError(context, context.l10n.something_went_wrong);
                   },
                 );
               },

@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
-import 'package:loono/helpers/snackbar_message.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/calendar_repository.dart';
@@ -38,10 +38,10 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
               newDate: date,
             );
         AutoRouter.of(pageContext).popUntilRouteWithName('ExaminationDetailRoute');
-        showSnackBarSuccess(pageContext, message: pageContext.l10n.checkup_reminder_toast);
+        showFlushBarSuccess(pageContext, pageContext.l10n.checkup_reminder_toast);
       },
       failure: (err) async {
-        showSnackBarError(pageContext, message: pageContext.l10n.something_went_wrong);
+        showFlushBarError(pageContext, pageContext.l10n.something_went_wrong);
       },
     );
   }
@@ -68,7 +68,7 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
                 date: examination.examination.plannedDate?.toLocal() ?? DateTime.now(),
               );
             } else {
-              showSnackBarError(modalContext, message: modalContext.l10n.something_went_wrong);
+              showFlushBarError(modalContext, modalContext.l10n.something_went_wrong);
             }
           },
           child: Text(pageContext.l10n.cancel_checkup),

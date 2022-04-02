@@ -4,7 +4,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/flushbar_message.dart';
-import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/services/firebase_storage_service.dart';
@@ -67,7 +66,7 @@ class _PhotoCroppedResultScreenState extends State<PhotoCroppedResultScreen> {
                     text: context.l10n.action_save,
                     onTap: () async {
                       if (isImageBiggerThanLimit(widget.imageBytes)) {
-                        showSnackBarError(context, message: context.l10n.image_error_size_exceeded);
+                        showFlushBarError(context, context.l10n.image_error_size_exceeded);
                         return;
                       }
                       setState(() => _isUploading = true);
@@ -84,9 +83,9 @@ class _PhotoCroppedResultScreenState extends State<PhotoCroppedResultScreen> {
                           sync: false,
                         );
                       } else if (!_uploadCancelled) {
-                        showSnackBarError(
+                        showFlushBarError(
                           context,
-                          message: const ImageError.unknown().getMessage(context),
+                          const ImageError.unknown().getMessage(context),
                         );
                       }
                       _uploadCancelled = false;

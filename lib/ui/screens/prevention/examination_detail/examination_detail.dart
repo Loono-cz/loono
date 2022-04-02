@@ -6,7 +6,7 @@ import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_types.dart';
-import 'package:loono/helpers/snackbar_message.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/calendar_repository.dart';
@@ -104,10 +104,10 @@ class ExaminationDetail extends StatelessWidget {
           Provider.of<ExaminationsProvider>(context, listen: false)
               .updateExaminationsRecord(res.data);
           AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
-          showSnackBarSuccess(context, message: context.l10n.checkup_reminder_toast);
+          showFlushBarSuccess(context, context.l10n.checkup_reminder_toast);
         },
         failure: (err) {
-          showSnackBarError(context, message: context.l10n.something_went_wrong);
+          showFlushBarError(context, context.l10n.something_went_wrong);
         },
       );
     }
@@ -270,9 +270,9 @@ class ExaminationDetail extends StatelessWidget {
                                           deviceCalendarId: defaultDeviceCalendarId,
                                           startingDate: _nextVisitDate!,
                                         );
-                                        showSnackBarSuccess(
+                                        showFlushBarSuccess(
                                           context,
-                                          message: l10n.calendar_added_success_message,
+                                          l10n.calendar_added_success_message,
                                         );
                                       } else {
                                         await AutoRouter.of(context).push(

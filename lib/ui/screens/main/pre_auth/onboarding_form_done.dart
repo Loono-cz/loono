@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/helpers/snackbar_message.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/helpers/social_login_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/firebase_user.dart';
@@ -158,15 +158,15 @@ class OnboardingFormDoneScreen extends StatelessWidget {
         failure.maybeWhen(
           accountNotExists: (socialAccount) =>
               AutoRouter.of(context).push(NicknameRoute(socialLoginAccount: socialAccount)),
-          orElse: () => showSnackBarError(context, message: failure.getMessage(context)),
+          orElse: () => showFlushBarError(context, failure.getMessage(context)),
         );
       },
       (authUser) async {
         // email already has an existing account, login
         // TODO:
-        showSnackBarSuccess(
+        showFlushBarSuccess(
           context,
-          message: 'TODO(message): Účet již existuje, přihlašování ...',
+          'TODO(message): Účet již existuje, přihlašování ...',
         );
         await _userRepository.createUser();
         await AutoRouter.of(context).replaceAll([const MainScreenRouter()]);

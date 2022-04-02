@@ -6,6 +6,7 @@ Flushbar<dynamic> _showFlushBar(BuildContext context, String message, Color bgCo
   return Flushbar<dynamic>(
     flushbarStyle: FlushbarStyle.FLOATING,
     margin: const EdgeInsets.all(8),
+    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 18),
     borderRadius: BorderRadius.circular(8),
     flushbarPosition: FlushbarPosition.TOP,
     duration: const Duration(seconds: 4),
@@ -15,7 +16,6 @@ Flushbar<dynamic> _showFlushBar(BuildContext context, String message, Color bgCo
       style: const TextStyle(
         color: Colors.white,
         fontSize: 16,
-        fontWeight: FontWeight.w700,
       ),
     ),
   )..show(context);
