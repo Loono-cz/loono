@@ -168,6 +168,7 @@ class OnboardingFormDoneScreen extends StatelessWidget {
         );
       },
       (authUser) async {
+        // email already has an existing account, login
         await _userRepository.createUser();
         await AutoRouter.of(context).replaceAll([const MainScreenRouter()]);
       },
