@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -21,7 +22,14 @@ class _LogoutScreenState extends State<LogoutScreen> {
   @override
   void initState() {
     super.initState();
-    appClear();
+    appClear().then((value) {
+      Future.delayed(Duration.zero, () {
+        showFlushBarSuccess(
+          context,
+          context.l10n.logout_screen_success_message,
+        );
+      });
+    });
   }
 
   @override
@@ -34,12 +42,7 @@ class _LogoutScreenState extends State<LogoutScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              LoonoButton(
-                text: context.l10n.logout_screen_success_message,
-                onTap: () {},
-                enabledColor: LoonoColors.greenSuccess,
-              ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 80),
               Text(
                 context.l10n.logout_screen_header,
                 style: LoonoFonts.headerFontStyle,

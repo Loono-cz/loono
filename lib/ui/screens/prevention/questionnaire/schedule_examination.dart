@@ -39,7 +39,13 @@ class ScheduleExamination extends StatelessWidget {
     return user?.sex ?? Sex.MALE;
   }
 
-  void _navigateToDetail(BuildContext context, ExaminationsProvider provider) {
+  void _navigateToDetail(
+    BuildContext context,
+    ExaminationsProvider provider, {
+    String? message,
+  }) {
+    /// TODO: this whole post-auth navigation needs refactor as part of https://cesko-digital.atlassian.net/browse/LOON-571
+    /// to get rid of initialMessage and stateful widget from exam detail
     final exam = provider.examinations?.examinations.firstWhereOrNull(
       (item) => item.examinationType == _examinationType,
     );
@@ -52,6 +58,7 @@ class ScheduleExamination extends StatelessWidget {
               examination: exam,
               category: exam.calculateStatus(),
             ),
+            initialMessage: message,
           ),
         );
     }
@@ -110,15 +117,15 @@ class ScheduleExamination extends StatelessWidget {
                                       success: (res) {
                                         _examinationsProvider.updateExaminationsRecord(res.data);
                                         registry.get<UserRepository>().sync();
-                                        _navigateToDetail(context, _examinationsProvider);
+                                        _navigateToDetail(
+                                          context,
+                                          _examinationsProvider,
+                                          message: context.l10n.checkup_reminder_toast,
+                                        );
                                       },
                                       failure: (err) {
                                         _appRouter.popUntilRouteWithName(
                                           const MainScreenRouter().routeName,
-                                        );
-                                        showFlushBarError(
-                                          context,
-                                          context.l10n.something_went_wrong,
                                         );
                                       },
                                     );
@@ -138,10 +145,10 @@ class ScheduleExamination extends StatelessWidget {
                                         Provider.of<ExaminationsProvider>(context, listen: false)
                                             .updateExaminationsRecord(res.data);
                                         registry.get<UserRepository>().sync();
-                                        _navigateToDetail(context, _examinationsProvider);
-                                        showFlushBarSuccess(
+                                        _navigateToDetail(
                                           context,
-                                          context.l10n.checkup_reminder_toast,
+                                          _examinationsProvider,
+                                          message: context.l10n.checkup_reminder_toast,
                                         );
                                       },
                                       failure: (err) {
