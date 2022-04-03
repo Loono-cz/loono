@@ -23,7 +23,7 @@ Future<void> run({
   await app.runMockApp(firebaseAuthOverride: firebaseAuth, charlatan: charlatan);
   await loginFlow(tester: tester, charlatan: charlatan);
 
-  final preventionMainPage = PreventionMainPage(tester);
+  final preventionMainPage = PreventionPage(tester);
   final openSettingsPage = OpenSettingsPage(tester);
   final updateProfilePage = UpdateProfilePage(tester);
 

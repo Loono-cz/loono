@@ -11,9 +11,11 @@ class ExaminationDetailScreen extends StatelessWidget {
   const ExaminationDetailScreen({
     Key? key,
     required this.categorizedExamination,
+    this.initialMessage,
   }) : super(key: key);
 
   final CategorizedExamination categorizedExamination;
+  final String? initialMessage; // show flushbar message on init
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +38,7 @@ class ExaminationDetailScreen extends StatelessWidget {
                     examination: _examination,
                     category: _examination.calculateStatus(),
                   ),
+                  initialMessage: initialMessage,
                 ),
               ),
       ),

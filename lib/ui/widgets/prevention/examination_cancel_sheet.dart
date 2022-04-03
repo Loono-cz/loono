@@ -3,7 +3,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/helpers/snackbar_message.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/repositories/examination_repository.dart';
@@ -96,11 +96,11 @@ void showCancelExaminationSheet({
                       Provider.of<ExaminationsProvider>(context, listen: false)
                           .updateExaminationsRecord(res.data);
                       await AutoRouter.of(context).pop();
-                      showSnackBarSuccess(context, message: context.l10n.checkup_canceled);
+                      showFlushBarSuccess(context, context.l10n.checkup_canceled);
                     },
                     failure: (err) async {
                       await AutoRouter.of(context).pop();
-                      showSnackBarError(context, message: context.l10n.something_went_wrong);
+                      showFlushBarError(context, context.l10n.something_went_wrong);
                     },
                   );
                 },

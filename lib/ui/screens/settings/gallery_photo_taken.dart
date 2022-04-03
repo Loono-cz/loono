@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:loono/helpers/snackbar_message.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/settings/photo_taken_content.dart';
@@ -22,7 +22,7 @@ class GalleryPhotoTakenScreen extends StatelessWidget {
       onSecondaryButtonTap: () async {
         final result = await takePictureAsBytes(ImageSource.gallery);
         result.fold(
-          (error) => showSnackBarError(context, message: error.getMessage(context)),
+          (error) => showFlushBarError(context, error.getMessage(context)),
           (imageBytes) =>
               AutoRouter.of(context).popAndPush(GalleryPhotoTakenRoute(imageBytes: imageBytes)),
         );

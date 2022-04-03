@@ -30,6 +30,7 @@ class EducationalVideoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return YoutubePlayerBuilder(
       player: YoutubePlayer(
+        key: const Key('educationalVideoPage_video'),
         controller: YoutubePlayerController(
           initialVideoId: _getVideoIdFromSex(),
           flags: const YoutubePlayerFlags(
@@ -47,6 +48,7 @@ class EducationalVideoScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 IconButton(
+                  key: const Key('educationalVideoPage_closeBtn'),
                   icon: const Icon(
                     Icons.close,
                     size: 32,
@@ -56,9 +58,10 @@ class EducationalVideoScreen extends StatelessWidget {
                 const SizedBox(height: 24),
                 player,
                 const SizedBox(height: 48),
-                if (selfExamination.calculateStatus() !=
-                    const SelfExaminationCategory.hasFindingExpectingResult())
+                if (selfExamination.calculateStatus() == const SelfExaminationCategory.active() ||
+                    selfExamination.calculateStatus() == const SelfExaminationCategory.first())
                   LoonoButton(
+                    key: const Key('educationalVideoPage_btn_selfExamPerformed'),
                     text: context.l10n.self_examination_educational_button,
                     onTap: () async {
                       await AutoRouter.of(context).pop();

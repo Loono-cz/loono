@@ -13,7 +13,5 @@ Future<void> appClear({bool deletingAccount = false}) async {
   // clears saved user avatar and other app's temp data
   await registry.get<DefaultCacheManager>().emptyCache();
 
-  if (deletingAccount) {
-    await registry.get<NotificationService>().removeId();
-  }
+  await registry.get<NotificationService>().removeUserId();
 }

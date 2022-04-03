@@ -6,8 +6,8 @@ import 'package:loono/helpers/achievement_helpers.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/examination_types.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/helpers/sex_extensions.dart';
-import 'package:loono/helpers/snackbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/examination_repository.dart';
@@ -39,7 +39,13 @@ class ScheduleExamination extends StatelessWidget {
     return user?.sex ?? Sex.MALE;
   }
 
-  void _navigateToDetail(BuildContext context, ExaminationsProvider provider) {
+  void _navigateToDetail(
+    BuildContext context,
+    ExaminationsProvider provider, {
+    String? message,
+  }) {
+    /// TODO: this whole post-auth navigation needs refactor as part of https://cesko-digital.atlassian.net/browse/LOON-571
+    /// to get rid of initialMessage and stateful widget from exam detail
     final exam = provider.examinations?.examinations.firstWhereOrNull(
       (item) => item.examinationType == _examinationType,
     );
@@ -52,6 +58,7 @@ class ScheduleExamination extends StatelessWidget {
               examination: exam,
               category: exam.calculateStatus(),
             ),
+            initialMessage: message,
           ),
         );
     }
@@ -110,15 +117,15 @@ class ScheduleExamination extends StatelessWidget {
                                       success: (res) {
                                         _examinationsProvider.updateExaminationsRecord(res.data);
                                         registry.get<UserRepository>().sync();
-                                        _navigateToDetail(context, _examinationsProvider);
+                                        _navigateToDetail(
+                                          context,
+                                          _examinationsProvider,
+                                          message: context.l10n.checkup_reminder_toast,
+                                        );
                                       },
                                       failure: (err) {
                                         _appRouter.popUntilRouteWithName(
                                           const MainScreenRouter().routeName,
-                                        );
-                                        showSnackBarError(
-                                          context,
-                                          message: context.l10n.something_went_wrong,
                                         );
                                       },
                                     );
@@ -138,9 +145,9 @@ class ScheduleExamination extends StatelessWidget {
                                         Provider.of<ExaminationsProvider>(context, listen: false)
                                             .updateExaminationsRecord(res.data);
                                         registry.get<UserRepository>().sync();
-                                        _navigateToDetail(context, _examinationsProvider);
-                                        showSnackBarSuccess(
+                                        _navigateToDetail(
                                           context,
+                                          _examinationsProvider,
                                           message: context.l10n.checkup_reminder_toast,
                                         );
                                       },
@@ -148,9 +155,9 @@ class ScheduleExamination extends StatelessWidget {
                                         _appRouter.popUntilRouteWithName(
                                           const MainScreenRouter().routeName,
                                         );
-                                        showSnackBarError(
+                                        showFlushBarError(
                                           context,
-                                          message: context.l10n.something_went_wrong,
+                                          context.l10n.something_went_wrong,
                                         );
                                       },
                                     );
@@ -182,7 +189,7 @@ class ScheduleExamination extends StatelessWidget {
                   },
                   failure: (err) async {
                     await _appRouter.pop();
-                    showSnackBarError(context, message: context.l10n.something_went_wrong);
+                    showFlushBarError(context, context.l10n.something_went_wrong);
                   },
                 );
               },

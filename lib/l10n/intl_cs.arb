@@ -209,7 +209,9 @@
   "@login_create_new_account": {},
   "create_new_account": "Vytvořit účet",
   "@create_new_account": {},
-  "continue_onboarding_form_button": "Dokonči dotazník",
+  "continue_onboarding_form_progress": "Dokonči dotazník",
+  "@continue_onboarding_form_progress": {},
+  "continue_onboarding_form_button": "Dokončit dotazník",
   "@continue_onboarding_form_button": {},
   "practitioner_question_highlight": "Praktického lékaře",
   "@practitioner_question_highlight": {},
@@ -881,5 +883,7 @@
   "self_exam_how_it_went_finding_female": "Něco jsem našla",
   "@self_exam_how_it_went_finding_female": {},
   "self_exam_how_it_went_finding_male": "Něco jsem našel",
-  "@self_exam_how_it_went_finding_male": {}
+  "@self_exam_how_it_went_finding_male": {},
+  "terms_and_conditions": "Podmínky užívání aplikace",
+  "@terms_and_conditions": {}
 }

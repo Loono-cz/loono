@@ -408,7 +408,8 @@ class AppRouter extends _i14.RootStackRouter {
           routeData: routeData,
           child: _i42.ExaminationDetailScreen(
               key: args.key,
-              categorizedExamination: args.categorizedExamination),
+              categorizedExamination: args.categorizedExamination,
+              initialMessage: args.initialMessage),
           transitionsBuilder: _i14.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -1477,27 +1478,32 @@ class PhotoCroppedResultRouteArgs {
 class ExaminationDetailRoute
     extends _i14.PageRouteInfo<ExaminationDetailRouteArgs> {
   ExaminationDetailRoute(
-      {_i54.Key? key,
-      required _i62.CategorizedExamination categorizedExamination})
+      {_i53.Key? key,
+      required _i61.CategorizedExamination categorizedExamination,
+      String? initialMessage})
       : super(ExaminationDetailRoute.name,
             path: 'prevention-detail',
             args: ExaminationDetailRouteArgs(
-                key: key, categorizedExamination: categorizedExamination));
+                key: key,
+                categorizedExamination: categorizedExamination,
+                initialMessage: initialMessage));
 
   static const String name = 'ExaminationDetailRoute';
 }
 
 class ExaminationDetailRouteArgs {
   const ExaminationDetailRouteArgs(
-      {this.key, required this.categorizedExamination});
+      {this.key, required this.categorizedExamination, this.initialMessage});
 
   final _i54.Key? key;
 
   final _i62.CategorizedExamination categorizedExamination;
 
+  final String? initialMessage;
+
   @override
   String toString() {
-    return 'ExaminationDetailRouteArgs{key: $key, categorizedExamination: $categorizedExamination}';
+    return 'ExaminationDetailRouteArgs{key: $key, categorizedExamination: $categorizedExamination, initialMessage: $initialMessage}';
   }
 }
 

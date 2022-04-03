@@ -3,7 +3,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/helpers/snackbar_message.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/examination_repository.dart';
@@ -78,7 +78,8 @@ class _DatePickerContentState extends State<_DatePickerContent> {
 
   @override
   Widget build(BuildContext context) {
-    final lastVisit = widget.categorizedExamination.examination.lastConfirmedDate ?? DateTime.now();
+    final lastVisit =
+        widget.categorizedExamination.examination.lastConfirmedDate?.toLocal() ?? DateTime.now();
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -137,7 +138,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 await AutoRouter.of(context).pop();
               },
               failure: (err) async {
-                showSnackBarError(context, message: context.l10n.something_went_wrong);
+                showFlushBarError(context, context.l10n.something_went_wrong);
               },
             );
           },

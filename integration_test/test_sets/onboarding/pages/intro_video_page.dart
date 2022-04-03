@@ -37,15 +37,14 @@ class IntroVideoPage {
     final videoPlayer = tester.widget<VideoPlayer>(find.byType(VideoPlayer));
     await tester.pump(const Duration(seconds: 1));
     final beforeResetProgress = videoPlayer.controller.value;
-    await clickPlayAgainBtn(pumpAndSettle: false);
-    await tester.pump(const Duration(milliseconds: 100));
+    await _clickPlayAgainBtn(pumpAndSettle: false);
+    await tester.pump(const Duration(milliseconds: 10));
     final afterResetProgress = videoPlayer.controller.value;
     expect(afterResetProgress.position < beforeResetProgress.position, true);
     await tester.pump(const Duration(seconds: 2));
   }
 
-  Future<void> clickPlayAgainBtn({bool pumpAndSettle = true}) async {
-    logTestEvent();
+  Future<void> _clickPlayAgainBtn({bool pumpAndSettle = true}) async {
     await tester.tap(playAgainBtn);
     if (pumpAndSettle) await tester.pumpAndSettle();
   }

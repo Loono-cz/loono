@@ -11,7 +11,7 @@ class ContinueQuestionnairePage {
 
   /// Page finders
   final Finder alreadyHaveAnAccountBtn = find.widgetWithText(TextButton, 'Už mám účet');
-  final Finder continueFormButton = find.widgetWithText(LoonoButton, 'Dokonči dotazník');
+  final Finder continueFormButton = find.widgetWithText(LoonoButton, 'Dokončit dotazník');
   final Finder progressBar = find.byType(CircularProgressIndicator);
 
   /// Page methods
@@ -37,6 +37,7 @@ class ContinueQuestionnairePage {
     expect(progressBar, findsOneWidget);
     final progressBarWidget = tester.widget<CircularProgressIndicator>(progressBar);
     final value = progressBarWidget.value;
+    logTestEvent('Progress bar value: "$value"');
     // should not have endless animation
     expect(value, isNotNull);
     return value!;

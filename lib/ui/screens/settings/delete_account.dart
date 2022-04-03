@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/helpers/snackbar_message.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -126,18 +126,15 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                               onPressed: () async {
                                 final res = await registry.get<UserRepository>().deleteAccount();
                                 if (res) {
-                                  showSnackBarSuccess(
-                                    context,
-                                    message: context.l10n.settings_after_deletion_deleted,
-                                  );
                                   await AutoRouter.of(context).pop();
                                   await AutoRouter.of(context)
                                       .push(AfterDeletionRoute(sex: gender));
                                 } else {
                                   await AutoRouter.of(context).pop();
-                                  showSnackBarError(
+                                  showFlushBarError(
                                     context,
-                                    message: context.l10n.something_went_wrong,
+                                    context.l10n.something_went_wrong,
+                                    sync: false,
                                   );
                                 }
                               },

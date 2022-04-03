@@ -6,6 +6,7 @@ Flushbar<dynamic> _showFlushBar(BuildContext context, String message, Color bgCo
   return Flushbar<dynamic>(
     flushbarStyle: FlushbarStyle.FLOATING,
     margin: const EdgeInsets.all(8),
+    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 18),
     borderRadius: BorderRadius.circular(8),
     flushbarPosition: FlushbarPosition.TOP,
     duration: const Duration(seconds: 4),
@@ -15,7 +16,6 @@ Flushbar<dynamic> _showFlushBar(BuildContext context, String message, Color bgCo
       style: const TextStyle(
         color: Colors.white,
         fontSize: 16,
-        fontWeight: FontWeight.w700,
       ),
     ),
   )..show(context);
@@ -26,6 +26,7 @@ Object showFlushBarSuccess(
   String message, {
   bool sync = true,
 }) {
+  if (message.isEmpty) return Object;
   if (sync) return _showFlushBar(context, message, LoonoColors.greenSuccess);
   return Future.delayed(
     const Duration(),
@@ -38,6 +39,7 @@ Object showFlushBarError(
   String message, {
   bool sync = true,
 }) {
+  if (message.isEmpty) return Object;
   if (sync) return _showFlushBar(context, message, LoonoColors.red);
   return Future.delayed(
     const Duration(),
