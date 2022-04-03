@@ -2,8 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/services/api_service.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
+
 
 class ResultFromDoctorScreen extends StatelessWidget {
   const ResultFromDoctorScreen({
@@ -84,7 +88,15 @@ class ResultFromDoctorScreen extends StatelessWidget {
                             child: LoonoButton.light(
                               text: context.l10n.self_examination_everything_good,
                               // TODO: call BE we notify normally
-                              onTap: () {},
+                              onTap: () async {
+                                await registry.get<ApiService>().resultSelfExamination(
+                                  selfExamination.type,
+                                  result: SelfExaminationResult((b) {
+                                    b.result = SelfExaminationResultResultEnum.OK;
+                                  }),
+                                );
+                                AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
+                              },
                             ),
                           ),
                           Padding(
@@ -92,7 +104,15 @@ class ResultFromDoctorScreen extends StatelessWidget {
                             child: LoonoButton.light(
                               text: context.l10n.self_examination_it_is_cancer,
                               // TODO: call BE we don't ever notify
-                              onTap: () {},
+                              onTap: () async {
+                                await registry.get<ApiService>().resultSelfExamination(
+                                  selfExamination.type,
+                                  result: SelfExaminationResult((b) {
+                                    b.result = SelfExaminationResultResultEnum.NOT_OK;
+                                  }),
+                                );
+                                AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
+                              },
                             ),
                           ),
                         ],
