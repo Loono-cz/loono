@@ -73,6 +73,7 @@ class NoFindingScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 58),
               child: LoonoButton(
+                key: const Key('noFindingRewardPage_btn_continue'),
                 text: context.l10n.continue_info,
                 onTap: () {
                   AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
