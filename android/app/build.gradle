@@ -94,12 +94,12 @@ android {
         prod {
             dimension "flavors"
             applicationId "cz.loono.app"
-            resValue "string", "app_name", "loono"
+            resValue "string", "app_name", "Preventivka"
         }
         dev {
             dimension "flavors"
             applicationId "cz.loono.app.dev"
-            resValue "string", "app_name", "[dev] loono"
+            resValue "string", "app_name", "[dev] Preventivka"
         }
     }
 }
