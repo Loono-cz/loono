@@ -2,13 +2,16 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:loono/models/apple_account_info.dart';
 import 'package:loono/models/firebase_user.dart';
 import 'package:loono/models/social_login_account.dart';
 import 'package:loono/services/auth/failures.dart';
 import 'package:loono/services/secure_storage_service.dart';
+import 'package:loono/utils/app_config.dart';
 import 'package:loono/utils/crypto_utils.dart';
+import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart' as api;
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
@@ -48,6 +51,14 @@ class AuthService {
 
   AuthUser? _authUserFromFirebase(User? firebaseUser) =>
       firebaseUser == null ? null : AuthUser(firebaseUser: firebaseUser);
+
+  /// Used only in testing.
+  ///
+  /// A token which has not been signed from Firebase Auth yet.
+  String? get _customToken => dotenv.env['CUSTOM_TOKEN'];
+
+  bool get isInBackendIntegrationTestingMode =>
+      kDebugMode && registry.get<AppConfig>().flavor == AppFlavors.dev && _customToken != null;
 
   Future<Either<AuthFailure, AuthUser>> checkGoogleAccountExistsAndSignIn() async {
     // clear existing saved account from Google account picker
@@ -228,6 +239,33 @@ class AuthService {
       debugPrint(o.toString());
     }
     return appleCredential;
+  }
+
+  /// This login method is a way to proceed through the login without needing a Google Account.
+  /// Custom token can be generated only from Firebase Admin SDK and lasts for 1 hour. This token
+  /// needs to be then exchanged for a signed token from Firebase Auth
+  /// in order to call Backend API as valid user.
+  ///
+  /// Should be used only in testing.
+  Future<Either<AuthFailure, AuthUser>> signInWithCustomToken() async {
+    if (!isInBackendIntegrationTestingMode) {
+      throw (Exception('This login method can be used only in testing'));
+    }
+
+    final customToken = _customToken;
+    if (customToken == null) {
+      throw (Exception('Custom token is not defined'));
+    }
+
+    UserCredential? userCredential;
+    try {
+      userCredential = await _auth.signInWithCustomToken(customToken);
+    } catch (_) {
+      return const Left(AuthFailure.unknown());
+    }
+    return userCredential.user == null
+        ? const Left(AuthFailure.unknown())
+        : Right(_authUserFromFirebase(userCredential.user)!);
   }
 
   Future<void> signOut() async {

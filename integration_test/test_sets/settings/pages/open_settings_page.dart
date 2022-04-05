@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:loono/ui/screens/settings/open_settings.dart';
 import 'package:loono/ui/widgets/button.dart';
 
 import '../../../test_helpers/common_finders.dart';
@@ -31,5 +32,10 @@ class OpenSettingsPage with SettingsFinders {
     logTestEvent();
     await tester.tap(leaderboardBtn);
     await tester.pumpAndSettle();
+  }
+
+  Future<void> verifyScreenIsShown() async {
+    logTestEvent();
+    await tester.pumpUntilVisible(find.byType(OpenSettingsScreen));
   }
 }

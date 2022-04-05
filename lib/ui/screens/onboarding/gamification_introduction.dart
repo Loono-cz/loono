@@ -82,6 +82,7 @@ class GamificationIntroductionScreen extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 18),
                                   child: LoonoButton(
+                                    key: const Key('gamificationIntroductionPage_btn_continue'),
                                     text: context.l10n.gamification_introduction_button,
                                     onTap: () => AutoRouter.of(context).replaceAll(
                                       [const MainScreenRouter()],
@@ -103,6 +104,7 @@ class GamificationIntroductionScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 18),
                             child: LoonoButton(
+                              key: const Key('gamificationIntroductionPage_btn_continue'),
                               text: context.l10n.gamification_introduction_button,
                               onTap: () =>
                                   AutoRouter.of(context).replaceAll([const MainScreenRouter()]),

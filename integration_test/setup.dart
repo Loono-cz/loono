@@ -16,7 +16,6 @@ Future<void> main({
   GoogleSignIn? googleSignIn,
   Map<String, String>? env,
 }) async {
-  assert(dio != null && env != null);
   await setup(
     dioOverride: dio,
     googleSignIn: googleSignIn,
