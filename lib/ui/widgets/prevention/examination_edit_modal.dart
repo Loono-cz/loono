@@ -13,6 +13,7 @@ import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/widgets/prevention/datepicker_sheet.dart';
 import 'package:loono/ui/widgets/prevention/examination_cancel_sheet.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
 void showEditModal(BuildContext pageContext, CategorizedExamination examination) {
@@ -28,6 +29,7 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
           newDate: date,
           uuid: examination.examination.uuid,
           firstExam: false,
+          status: ExaminationStatus.CONFIRMED,
         );
     await response.map(
       success: (res) async {
