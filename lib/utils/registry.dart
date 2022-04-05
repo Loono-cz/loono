@@ -91,15 +91,6 @@ Future<void> setup({
 
   final dio = dioOverride ?? Dio(defaultDioOptions);
 
-  /// Ignore api certificate - remove this asap when server has set
-  if (dioOverride == null) {
-    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (HttpClient client) {
-      client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
-      return client;
-    };
-  }
-  // remove end
-
   if (dioOverride == null) {
     dio.options.headers['app-version'] = appInfo.version;
     dio.interceptors.add(
