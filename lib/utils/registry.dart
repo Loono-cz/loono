@@ -160,6 +160,7 @@ Future<void> setup({
   );
 
   registry.registerSingleton<FirebaseAnalytics>(FirebaseAnalytics.instance);
+  await registry.get<FirebaseAnalytics>().setAnalyticsCollectionEnabled(!kDebugMode);
 
   registry.registerSingleton<LoonoApi>(LoonoApi(dio: dio));
 
