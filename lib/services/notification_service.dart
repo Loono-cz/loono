@@ -4,7 +4,6 @@ import 'dart:io';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:loono/utils/app_config.dart';
-import 'package:loono/utils/registry.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 class NotificationService {
@@ -16,9 +15,7 @@ class NotificationService {
     await OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
     final appId = getEnvString(
       dotenv.env,
-      registry.get<AppConfig>().flavor == AppFlavors.dev
-          ? 'ONESIGNAL_APP_ID_DEV'
-          : 'ONESIGNAL_APP_ID_PROD',
+      'ONESIGNAL_APP_ID',
     );
     await OneSignal.shared.setAppId(appId);
     OneSignal.shared.setPermissionObserver(_onPermissionStateChanges);
