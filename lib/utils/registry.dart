@@ -5,7 +5,6 @@ import 'dart:io';
 
 import 'package:device_calendar/device_calendar.dart';
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_smart_retry/dio_smart_retry.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
