@@ -8,7 +8,6 @@ import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
-
 class ResultFromDoctorScreen extends StatelessWidget {
   const ResultFromDoctorScreen({
     Key? key,
@@ -57,7 +56,10 @@ class ResultFromDoctorScreen extends StatelessWidget {
                                   onPressed: () {
                                     AutoRouter.of(context).pop();
                                   },
-                                  icon: const Icon(Icons.close),
+                                  icon: const Icon(
+                                    Icons.close,
+                                    size: 32,
+                                  ),
                                 ),
                               ),
                             ],
@@ -76,7 +78,9 @@ class ResultFromDoctorScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(top: 8.0),
                             child: Text(
-                              context.l10n.self_examination_cancer,
+                              sex == Sex.MALE
+                                  ? context.l10n.self_examination_cancer_male
+                                  : context.l10n.self_examination_cancer_female,
                               style: const TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 14,

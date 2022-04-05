@@ -10,11 +10,10 @@
 //
 // ignore_for_file: type=lint
 
-import 'dart:typed_data' as _i60;
-
 import 'package:auto_route/auto_route.dart' as _i14;
 import 'package:flutter/material.dart' as _i54;
 import 'package:loono_api/loono_api.dart' as _i58;
+import 'package:moor/moor.dart' as _i60;
 
 import '../helpers/examination_category.dart' as _i63;
 import '../models/categorized_examination.dart' as _i62;
@@ -1478,8 +1477,8 @@ class PhotoCroppedResultRouteArgs {
 class ExaminationDetailRoute
     extends _i14.PageRouteInfo<ExaminationDetailRouteArgs> {
   ExaminationDetailRoute(
-      {_i53.Key? key,
-      required _i61.CategorizedExamination categorizedExamination,
+      {_i54.Key? key,
+      required _i62.CategorizedExamination categorizedExamination,
       String? initialMessage})
       : super(ExaminationDetailRoute.name,
             path: 'prevention-detail',
