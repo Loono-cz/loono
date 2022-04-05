@@ -23,7 +23,7 @@ Notes
 `flutter test integration_test --test-randomize-ordering-seed=random --flavor dev integration_test/test_sets/app_test.dart`.
 - Or, you can run a specific TC or a group with:
 `flutter test integration_test/test_sets/app_test.dart --plain-name "TC(LOON_437): Logout (straight path)" --flavor dev`
-- To run BE tests which use real and tests real API, add generated `CUSTOM_TOKEN` to ./assets/.env. You can run the test then with: `flutter test integration_test --flavor dev integration_test/test_sets/be_test.dart`.
+- To run BE tests which test real API, add generated `CUSTOM_TOKEN` to ./assets/.env. You can run the test then with: `flutter test integration_test --flavor dev integration_test/test_sets/be_test.dart`.
 - Since the app is in active development, tests are expected to fail often. No need to fix them right away.
 - Conventions:
     - test case implementation is inspired by POM (Page Object Model) design pattern
