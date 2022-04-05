@@ -11,6 +11,7 @@ import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/custom_date_picker.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
 void showChangeLastVisitSheet({
@@ -78,8 +79,8 @@ class _DatePickerContentState extends State<_DatePickerContent> {
 
   @override
   Widget build(BuildContext context) {
-    final lastVisit =
-        widget.categorizedExamination.examination.lastConfirmedDate?.toLocal() ?? DateTime.now();
+    final lastVisit = widget.categorizedExamination.examination.lastConfirmedDate?.toLocal() ??
+        Date.now().toDateTime();
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -111,6 +112,9 @@ class _DatePickerContentState extends State<_DatePickerContent> {
         const Spacer(),
         Center(
           child: CustomDatePicker(
+            defaultDay: lastVisit.day,
+            defaultMonth: lastVisit.month,
+            defaultYear: lastVisit.year,
             valueChanged: onDateChanged,
             yearsBeforeActual: DateTime.now().year - 1900,
             yearsOverActual: 2,
