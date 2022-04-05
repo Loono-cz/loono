@@ -52,7 +52,7 @@ class Loono extends StatelessWidget {
             ChangeNotifierProvider<MapStateService>(create: (_) => MapStateService()),
           ],
           child: MaterialApp.router(
-            title: 'Loono',
+            title: 'Preventivka',
             color: Colors.deepOrange,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,

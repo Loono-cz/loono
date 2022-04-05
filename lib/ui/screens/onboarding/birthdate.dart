@@ -109,6 +109,7 @@ class _OnBoardingBirthdateScreenState extends State<OnBoardingBirthdateScreen> {
                       showFlushBarError(
                         context,
                         'Prevence je zatím pro starší 19 let',
+                        sync: false,
                       );
                     }
                   }

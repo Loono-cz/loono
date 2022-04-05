@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -15,13 +16,17 @@ class NotificationService {
     final appId = getEnvString(dotenv.env, 'ONESIGNAL_APP_ID');
     await OneSignal.shared.setAppId(appId);
     OneSignal.shared.setPermissionObserver(_onPermissionStateChanges);
+    OneSignal.shared.setNotificationOpenedHandler((OSNotificationOpenedResult res) {
+      /// TODO: handle notification action
+      log(res.notification.toString());
+    });
   }
 
   Future<void> setUserId(String userId) async {
     await OneSignal.shared.setExternalUserId(userId);
   }
 
-  Future<void> removeId() async {
+  Future<void> removeUserId() async {
     await OneSignal.shared.removeExternalUserId();
   }
 

@@ -103,7 +103,7 @@ class ExaminationQuestionnairesDao extends DatabaseAccessor<AppDatabase>
     await updateQuestionnaire(
       examinationType,
       examinationQuestionnairesCompanion: ExaminationQuestionnairesCompanion(
-        date: Value<DateTime>(DateTime.now()),
+        date: Value<DateTime>(Date.now().toDateTime()),
         status: const Value<ExaminationStatus>(ExaminationStatus.UNKNOWN),
       ),
     );

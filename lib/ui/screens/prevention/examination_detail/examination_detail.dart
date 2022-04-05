@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
@@ -31,22 +32,32 @@ import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
-class ExaminationDetail extends StatelessWidget {
-  ExaminationDetail({
+class ExaminationDetail extends StatefulWidget {
+  const ExaminationDetail({
     Key? key,
     required this.categorizedExamination,
+    this.initialMessage,
   }) : super(key: key);
 
+  final CategorizedExamination categorizedExamination;
+  final String? initialMessage;
+
+  @override
+  State<ExaminationDetail> createState() => _ExaminationDetailState();
+}
+
+class _ExaminationDetailState extends State<ExaminationDetail> {
   final _calendarRepository = registry.get<CalendarRepository>();
+
   final _calendarService = registry.get<CalendarService>();
+
   final _calendarEventsDao = registry.get<DatabaseService>().calendarEvents;
+
   final _usersDao = registry.get<DatabaseService>().users;
 
-  final CategorizedExamination categorizedExamination;
+  ExaminationType get _examinationType => widget.categorizedExamination.examination.examinationType;
 
-  ExaminationType get _examinationType => categorizedExamination.examination.examinationType;
-
-  DateTime? get _nextVisitDate => categorizedExamination.examination.plannedDate;
+  DateTime? get _nextVisitDate => widget.categorizedExamination.examination.plannedDate;
 
   Widget get _doctorAsset => SvgPicture.asset(_examinationType.assetPath, width: 180);
 
@@ -56,7 +67,7 @@ class ExaminationDetail extends StatelessWidget {
   }
 
   String _intervalYears(BuildContext context) =>
-      '${categorizedExamination.examination.intervalYears.toString()} ${categorizedExamination.examination.intervalYears > 1 ? context.l10n.years : context.l10n.year}';
+      '${widget.categorizedExamination.examination.intervalYears.toString()} ${widget.categorizedExamination.examination.intervalYears > 1 ? context.l10n.years : context.l10n.year}';
 
   Widget _calendarRow(String text, {VoidCallback? onTap}) => GestureDetector(
         onTap: onTap,
@@ -74,9 +85,20 @@ class ExaminationDetail extends StatelessWidget {
       );
 
   @override
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance?.addPostFrameCallback((_) {
+      if (widget.initialMessage != null) {
+        showFlushBarSuccess(context, widget.initialMessage!);
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final lastVisitDateWithoutDay = categorizedExamination.examination.lastConfirmedDate?.toLocal();
+    final lastVisitDateWithoutDay =
+        widget.categorizedExamination.examination.lastConfirmedDate?.toLocal();
 
     final lastVisit = lastVisitDateWithoutDay != null
         ? DateFormat.yMMMM('cs-CZ').format(
@@ -94,7 +116,7 @@ class ExaminationDetail extends StatelessWidget {
       final response = await registry.get<ExaminationRepository>().postExamination(
             _examinationType,
             newDate: date,
-            uuid: categorizedExamination.examination.uuid,
+            uuid: widget.categorizedExamination.examination.uuid,
             firstExam: false,
             status: ExaminationStatus.NEW,
           );
@@ -180,22 +202,25 @@ class ExaminationDetail extends StatelessWidget {
                           '${context.l10n.last_visit}:\n$lastVisit',
                           onTap: () {
                             /// must be first exam and no planned examination should exist
-                            if (!categorizedExamination.examination.firstExam &&
-                                categorizedExamination.examination.plannedDate != null) return;
+                            if (!widget.categorizedExamination.examination.firstExam &&
+                                widget.categorizedExamination.examination.plannedDate != null) {
+                              return;
+                            }
 
                             /// if "nevim", open question sheet else allow to change date
-                            if (categorizedExamination.examination.lastConfirmedDate != null) {
+                            if (widget.categorizedExamination.examination.lastConfirmedDate !=
+                                null) {
                               final title =
                                   '${_sex == Sex.MALE ? l10n.last_checkup_question_male : l10n.last_checkup_question_female} $preposition $practitioner?';
                               showChangeLastVisitSheet(
                                 context: context,
                                 title: title,
-                                examination: categorizedExamination,
+                                examination: widget.categorizedExamination,
                               );
                             } else {
                               showLastVisitSheet(
                                 context: context,
-                                examination: categorizedExamination,
+                                examination: widget.categorizedExamination,
                                 sex: _sex,
                               );
                             }
@@ -217,12 +242,12 @@ class ExaminationDetail extends StatelessWidget {
                 child: Text(
                   context.l10n.early_ordering,
                   textAlign: TextAlign.right,
-                  style: earlyOrderStyles(categorizedExamination),
+                  style: earlyOrderStyles(widget.categorizedExamination),
                 ),
               ),
             ),
             ExaminationProgressContent(
-              categorizedExamination: categorizedExamination,
+              categorizedExamination: widget.categorizedExamination,
               sex: _sex,
             ),
             Expanded(
@@ -230,7 +255,7 @@ class ExaminationDetail extends StatelessWidget {
                 padding: const EdgeInsets.all(4.0),
                 child: Text(
                   context.l10n.preventive_inspection,
-                  style: preventiveInspectionStyles(categorizedExamination.category),
+                  style: preventiveInspectionStyles(widget.categorizedExamination.category),
                 ),
               ),
             ),
@@ -245,7 +270,7 @@ class ExaminationDetail extends StatelessWidget {
                   [
                     const ExaminationCategory.scheduled(),
                     const ExaminationCategory.scheduledSoonOrOverdue()
-                  ].contains(categorizedExamination.category)) ...[
+                  ].contains(widget.categorizedExamination.category)) ...[
                 StreamBuilder<CalendarEvent?>(
                   stream: _calendarEventsDao.watch(_examinationType),
                   builder: (streamContext, snapshot) {
@@ -277,14 +302,16 @@ class ExaminationDetail extends StatelessWidget {
                                       } else {
                                         await AutoRouter.of(context).push(
                                           CalendarListRoute(
-                                            examinationRecord: categorizedExamination.examination,
+                                            examinationRecord:
+                                                widget.categorizedExamination.examination,
                                           ),
                                         );
                                       }
                                     } else {
                                       final result = await AutoRouter.of(context).push<bool>(
                                         CalendarPermissionInfoRoute(
-                                          examinationRecord: categorizedExamination.examination,
+                                          examinationRecord:
+                                              widget.categorizedExamination.examination,
                                         ),
                                       );
                                       // permission was permanently denied, show permission settings guide
@@ -304,9 +331,9 @@ class ExaminationDetail extends StatelessWidget {
                                   onTap: () {
                                     showConfirmationSheet(
                                       context,
-                                      categorizedExamination.examination.examinationType,
+                                      widget.categorizedExamination.examination.examinationType,
                                       _sex,
-                                      categorizedExamination.examination.uuid,
+                                      widget.categorizedExamination.examination.uuid,
                                     );
                                   },
                                 ),
@@ -323,20 +350,20 @@ class ExaminationDetail extends StatelessWidget {
                 Expanded(
                   child: LoonoButton.light(
                     text: l10n.examination_detail_edit_date_button,
-                    onTap: () => showEditModal(context, categorizedExamination),
+                    onTap: () => showEditModal(context, widget.categorizedExamination),
                   ),
                 ),
               ] else if ([
                 const ExaminationCategory.unknownLastVisit(),
                 const ExaminationCategory.newToSchedule(),
                 const ExaminationCategory.waiting()
-              ].contains(categorizedExamination.category)) ...[
+              ].contains(widget.categorizedExamination.category)) ...[
                 Expanded(
                   child: LoonoButton(
                     text: l10n.examination_detail_order_examination, //objednat se
                     onTap: () => showNewCheckupSheetStep1(
                       context,
-                      categorizedExamination,
+                      widget.categorizedExamination,
                       _onPostNewCheckupSubmit,
                       _sex,
                     ),
@@ -348,7 +375,7 @@ class ExaminationDetail extends StatelessWidget {
                     text: l10n.examination_detail_set_examination_button, //mám objednáno
                     onTap: () => showDatePickerSheet(
                       context: context,
-                      categorizedExamination: categorizedExamination,
+                      categorizedExamination: widget.categorizedExamination,
                       onSubmit: _onPostNewCheckupSubmit,
                       firstStepTitle:
                           '${_sex == Sex.MALE ? l10n.checkup_new_date_title_male : l10n.checkup_new_date_title_female} $preposition ${examinationTypeCasus(
@@ -371,7 +398,7 @@ class ExaminationDetail extends StatelessWidget {
         ),
         ExaminationBadges(
           examinationType: _examinationType,
-          categorizedExamination: categorizedExamination,
+          categorizedExamination: widget.categorizedExamination,
         ),
         const SizedBox(
           height: 40,

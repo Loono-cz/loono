@@ -15,6 +15,7 @@ class PreventionPage with BadgeFinders {
 
   /// Page finders
   final Finder profileAvatar = find.byType(LoonoAvatar);
+  final Finder profileBtnPoints = find.byKey(const Key('profileButton_points'));
 
   Finder getExaminationCard(ExaminationType type) =>
       find.byKey(ValueKey<ExaminationType>(type), skipOffstage: false);
@@ -123,6 +124,12 @@ class PreventionPage with BadgeFinders {
   Future<void> verifyScreenIsShown() async {
     logTestEvent();
     await tester.pumpUntilVisible(find.byType(PreventionScreen));
+  }
+
+  void verifyHasPoints(int expectedPoints) {
+    logTestEvent('Verify has points "${expectedPoints.toString()}"');
+    final textWidget = tester.widget<Text>(profileBtnPoints);
+    expect(textWidget.data, expectedPoints.toString());
   }
 
   void verifyHasBadge(BadgeType type) {

@@ -406,7 +406,8 @@ class AppRouter extends _i14.RootStackRouter {
           routeData: routeData,
           child: _i42.ExaminationDetailScreen(
               key: args.key,
-              categorizedExamination: args.categorizedExamination),
+              categorizedExamination: args.categorizedExamination,
+              initialMessage: args.initialMessage),
           transitionsBuilder: _i14.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -837,7 +838,7 @@ class GamificationIntroductionRouteArgs {
 /// [_i8.NicknameScreen]
 class NicknameRoute extends _i14.PageRouteInfo<NicknameRouteArgs> {
   NicknameRoute(
-      {_i53.Key? key, required _i56.SocialLoginAccount socialLoginAccount})
+      {_i53.Key? key, required _i56.SocialLoginAccount? socialLoginAccount})
       : super(NicknameRoute.name,
             path: 'fallback-account/name',
             args: NicknameRouteArgs(
@@ -851,7 +852,7 @@ class NicknameRouteArgs {
 
   final _i53.Key? key;
 
-  final _i56.SocialLoginAccount socialLoginAccount;
+  final _i56.SocialLoginAccount? socialLoginAccount;
 
   @override
   String toString() {
@@ -863,7 +864,7 @@ class NicknameRouteArgs {
 /// [_i9.EmailScreen]
 class EmailRoute extends _i14.PageRouteInfo<EmailRouteArgs> {
   EmailRoute(
-      {_i53.Key? key, required _i56.SocialLoginAccount socialLoginAccount})
+      {_i53.Key? key, required _i56.SocialLoginAccount? socialLoginAccount})
       : super(EmailRoute.name,
             path: 'fallback-account/email',
             args: EmailRouteArgs(
@@ -877,7 +878,7 @@ class EmailRouteArgs {
 
   final _i53.Key? key;
 
-  final _i56.SocialLoginAccount socialLoginAccount;
+  final _i56.SocialLoginAccount? socialLoginAccount;
 
   @override
   String toString() {
@@ -1461,26 +1462,31 @@ class ExaminationDetailRoute
     extends _i14.PageRouteInfo<ExaminationDetailRouteArgs> {
   ExaminationDetailRoute(
       {_i53.Key? key,
-      required _i61.CategorizedExamination categorizedExamination})
+      required _i61.CategorizedExamination categorizedExamination,
+      String? initialMessage})
       : super(ExaminationDetailRoute.name,
             path: 'prevention-detail',
             args: ExaminationDetailRouteArgs(
-                key: key, categorizedExamination: categorizedExamination));
+                key: key,
+                categorizedExamination: categorizedExamination,
+                initialMessage: initialMessage));
 
   static const String name = 'ExaminationDetailRoute';
 }
 
 class ExaminationDetailRouteArgs {
   const ExaminationDetailRouteArgs(
-      {this.key, required this.categorizedExamination});
+      {this.key, required this.categorizedExamination, this.initialMessage});
 
   final _i53.Key? key;
 
   final _i61.CategorizedExamination categorizedExamination;
 
+  final String? initialMessage;
+
   @override
   String toString() {
-    return 'ExaminationDetailRouteArgs{key: $key, categorizedExamination: $categorizedExamination}';
+    return 'ExaminationDetailRouteArgs{key: $key, categorizedExamination: $categorizedExamination, initialMessage: $initialMessage}';
   }
 }
 
