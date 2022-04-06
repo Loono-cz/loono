@@ -40,16 +40,15 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
   bool _isHealthCareProvidersInMapService = false;
 
   Future<void> _setHealthcareProviders() async {
-    final healthcareProviders =
-        await registry.get<HealthcareProviderRepository>().getHealthcareProviders();
-
-    if (healthcareProviders != null && healthcareProviders.isNotEmpty) {
-      if (mapState.allHealthcareProviders.isEmpty) {
+    if (mapState.allHealthcareProviders.isEmpty) {
+      final healthcareProviders =
+          await registry.get<HealthcareProviderRepository>().getHealthcareProviders();
+      if (healthcareProviders != null && healthcareProviders.isNotEmpty) {
         mapState.addAll(healthcareProviders);
+        setState(() => _isHealthCareProvidersInMapService = true);
       }
-      setState(() {
-        _isHealthCareProvidersInMapService = true;
-      });
+    } else {
+      setState(() => _isHealthCareProvidersInMapService = true);
     }
   }
 
