@@ -64,7 +64,7 @@ class MapSheetOverlay extends StatelessWidget {
                             Align(
                               alignment: Alignment.centerRight,
                               child: Text(
-                                'doktorů v okolí: ${mapState.currHealthcareProviders.length}',
+                                '${mapState.onMoveAppFilteringBlocked ? 'vybraní doktoři' : 'doktorů v okolí'}: ${mapState.currHealthcareProviders.length}',
                                 style: const TextStyle(color: Colors.white),
                               ),
                             ),
