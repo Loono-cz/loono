@@ -11,12 +11,10 @@ class MapSheetOverlay extends StatelessWidget {
     Key? key,
     required this.onItemTap,
     required this.sheetController,
-    required this.mapStateService,
   }) : super(key: key);
 
   final ValueChanged<SimpleHealthcareProvider>? onItemTap;
   final DraggableScrollableController sheetController;
-  final MapStateService mapStateService;
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +75,7 @@ class MapSheetOverlay extends StatelessWidget {
                       onTap: () async {
                         sheetController.jumpTo(MapVariables.DOCTOR_DETAIL_SHEET_SIZE);
                         onItemTap?.call(item);
-                        mapStateService.setDoctorDetail(item);
+                        mapState.setDoctorDetail(item);
                       },
                     ),
                   ],

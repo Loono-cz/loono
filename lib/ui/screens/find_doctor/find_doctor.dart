@@ -14,6 +14,7 @@ import 'package:loono/ui/widgets/find_doctor/main_search_text_field.dart';
 import 'package:loono/ui/widgets/find_doctor/map_preview.dart';
 import 'package:loono/utils/map_utils.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
 class FindDoctorScreen extends StatefulWidget {
@@ -38,7 +39,7 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
 
   bool _isHealthCareProvidersInMapService = false;
 
-  Future<void> _setHealthcareProviders(MapStateService mapStateService) async {
+  Future<void> _setHealthcareProviders() async {
     final healthcareProviders =
         await registry.get<HealthcareProviderRepository>().getHealthcareProviders();
 
@@ -60,7 +61,8 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final mapStateService = Provider.of<MapStateService>(context, listen: true);
+    final currDoctorDetail =
+        context.select<MapStateService, SimpleHealthcareProvider?>((value) => value.doctorDetail);
 
     return Scaffold(
       appBar: widget.cancelRouteName != null
@@ -82,7 +84,7 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
           builder: (context, snapshot) {
             if (snapshot.data == HealtCareSyncState.completed &&
                 !_isHealthCareProvidersInMapService) {
-              _setHealthcareProviders(mapStateService);
+              _setHealthcareProviders();
             }
             return Stack(
               children: [
@@ -112,7 +114,6 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                       ),
                     ),
                     sheetController: _sheetController,
-                    mapStateService: mapStateService,
                   ),
                 if (!_isHealthCareProvidersInMapService)
                   Padding(
@@ -136,7 +137,7 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                       ],
                     ),
                   ),
-                if (mapStateService.doctorDetail != null)
+                if (currDoctorDetail != null)
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
@@ -157,8 +158,8 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                       ),
                       height: 370,
                       child: DoctorDetailSheet(
-                        doctor: mapStateService.doctorDetail!,
-                        closeDetail: () => mapStateService.setDoctorDetail(null),
+                        doctor: currDoctorDetail,
+                        closeDetail: () => mapState.setDoctorDetail(null),
                       ),
                     ),
                   ),
