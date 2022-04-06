@@ -854,7 +854,7 @@ class GamificationIntroductionRouteArgs {
 /// [_i8.NicknameScreen]
 class NicknameRoute extends _i14.PageRouteInfo<NicknameRouteArgs> {
   NicknameRoute(
-      {_i54.Key? key, required _i57.SocialLoginAccount socialLoginAccount})
+      {_i54.Key? key, required _i57.SocialLoginAccount? socialLoginAccount})
       : super(NicknameRoute.name,
             path: 'fallback-account/name',
             args: NicknameRouteArgs(
@@ -868,7 +868,7 @@ class NicknameRouteArgs {
 
   final _i54.Key? key;
 
-  final _i57.SocialLoginAccount socialLoginAccount;
+  final _i57.SocialLoginAccount? socialLoginAccount;
 
   @override
   String toString() {
@@ -880,7 +880,7 @@ class NicknameRouteArgs {
 /// [_i9.EmailScreen]
 class EmailRoute extends _i14.PageRouteInfo<EmailRouteArgs> {
   EmailRoute(
-      {_i54.Key? key, required _i57.SocialLoginAccount socialLoginAccount})
+      {_i54.Key? key, required _i57.SocialLoginAccount? socialLoginAccount})
       : super(EmailRoute.name,
             path: 'fallback-account/email',
             args: EmailRouteArgs(
@@ -894,7 +894,7 @@ class EmailRouteArgs {
 
   final _i54.Key? key;
 
-  final _i57.SocialLoginAccount socialLoginAccount;
+  final _i57.SocialLoginAccount? socialLoginAccount;
 
   @override
   String toString() {

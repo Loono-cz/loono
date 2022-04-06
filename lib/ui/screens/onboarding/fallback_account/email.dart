@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/helpers/date_helpers.dart';
@@ -16,6 +17,8 @@ import 'package:loono/models/social_login_account.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/api_service.dart';
+import 'package:loono/services/auth/auth_service.dart';
+import 'package:loono/services/auth/failures.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/ui/widgets/fallback_account_content.dart';
@@ -30,9 +33,10 @@ class EmailScreen extends StatelessWidget {
     required this.socialLoginAccount,
   }) : super(key: key);
 
-  final SocialLoginAccount socialLoginAccount;
+  final SocialLoginAccount? socialLoginAccount;
 
   final _apiService = registry.get<ApiService>();
+  final _authService = registry.get<AuthService>();
   final _examinationQuestionnairesDao = registry.get<DatabaseService>().examinationQuestionnaires;
   final _usersDao = registry.get<DatabaseService>().users;
   final _userRepository = registry.get<UserRepository>();
@@ -45,7 +49,7 @@ class EmailScreen extends StatelessWidget {
         return FallbackAccountContent(
           appBar: createAccountAppBar(context, step: 2),
           title: context.l10n.fallback_account_email,
-          initialText: socialLoginAccount.email,
+          initialText: socialLoginAccount?.email,
           buttonText: context.l10n.create_new_account,
           hint: '${getHintText(context, user: snapshot.data).toLowerCase()}@seznam.cz',
           description: context.l10n.fallback_account_email_desc,
@@ -53,7 +57,16 @@ class EmailScreen extends StatelessWidget {
           validator: Validators.email(context),
           onSubmit: (input) async {
             await _usersDao.updateCurrentUser(UsersCompanion(email: Value(input)));
-            final createAccountResult = await socialLoginAccount.createAccount();
+
+            final Either<AuthFailure, AuthUser> createAccountResult;
+            if (socialLoginAccount != null) {
+              createAccountResult = await socialLoginAccount!.createAccount();
+            } else if (_authService.isInBackendIntegrationTestingMode) {
+              createAccountResult = await _authService.signInWithCustomToken();
+            } else {
+              throw (Exception('Unknown sign in method'));
+            }
+
             createAccountResult.fold(
               (failure) => showFlushBarError(context, context.l10n.something_went_wrong),
               (authUser) async {

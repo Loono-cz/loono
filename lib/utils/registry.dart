@@ -5,7 +5,6 @@ import 'dart:io';
 
 import 'package:device_calendar/device_calendar.dart';
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_smart_retry/dio_smart_retry.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -41,12 +40,6 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 final registry = GetIt.instance;
 
-final defaultDioOptions = BaseOptions(
-  baseUrl: LoonoApi.basePath,
-  connectTimeout: 5000,
-  receiveTimeout: 8000,
-);
-
 const retryBlacklist = ['/account/onboard', '/leaderboard'];
 
 /// TODO: select correct status code for force update with BE
@@ -65,6 +58,12 @@ Future<void> setup({
 
   final appInfo = await PackageInfo.fromPlatform();
   await dotenv.load(fileName: 'assets/.env');
+
+  final defaultDioOptions = BaseOptions(
+    baseUrl: flavor == AppFlavors.dev ? 'https://app.devel.loono.cz' : 'https://app.prod.loono.cz',
+    connectTimeout: 5000,
+    receiveTimeout: 8000,
+  );
 
   late final String osVersion;
   try {
@@ -90,15 +89,6 @@ Future<void> setup({
   );
 
   final dio = dioOverride ?? Dio(defaultDioOptions);
-
-  /// Ignore api certificate - remove this asap when server has set
-  if (dioOverride == null) {
-    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (HttpClient client) {
-      client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
-      return client;
-    };
-  }
-  // remove end
 
   if (dioOverride == null) {
     dio.options.headers['app-version'] = appInfo.version;

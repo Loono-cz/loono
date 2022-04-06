@@ -43,11 +43,16 @@ class ExaminationsProvider extends ChangeNotifier {
             (item) => item
               ..uuid = record.uuid
               ..examinationType = record.type
-              ..plannedDate = record.status == ExaminationStatus.CONFIRMED ? null : record.date
+              ..plannedDate =
+                  (record.status == ExaminationStatus.CONFIRMED || record.firstExam == true)
+                      ? item.plannedDate
+                      : record.date?.toLocal()
               ..lastConfirmedDate =
-                  record.status == ExaminationStatus.CONFIRMED ? record.date : null
-              ..state = record.status
-              ..firstExam = record.firstExam,
+                  (record.status == ExaminationStatus.CONFIRMED || record.firstExam == true)
+                      ? record.date?.toLocal()
+                      : item.lastConfirmedDate
+              ..state = record.status ?? item.state
+              ..firstExam = record.firstExam ?? item.firstExam,
           );
 
       final builder = examinations?.toBuilder();

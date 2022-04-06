@@ -116,6 +116,7 @@ class OnboardingFormDoneScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 18, right: 18),
               child: SocialLoginButton.google(
+                key: const Key('onboardingFormDonePage_btn_googleSignUp'),
                 onPressed: () async => _processSocialAuth(
                   context,
                   socialLoginMethod: SocialLoginMethod.google,
@@ -150,6 +151,12 @@ class OnboardingFormDoneScreen extends StatelessWidget {
     BuildContext context, {
     required SocialLoginMethod socialLoginMethod,
   }) async {
+    if (socialLoginMethod == SocialLoginMethod.google &&
+        _authService.isInBackendIntegrationTestingMode) {
+      await AutoRouter.of(context).push(NicknameRoute(socialLoginAccount: null));
+      return;
+    }
+
     final Either<AuthFailure, AuthUser> accountExistsResult;
     switch (socialLoginMethod) {
       case SocialLoginMethod.apple:

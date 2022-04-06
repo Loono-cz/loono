@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:loono/ui/screens/settings/update_profile.dart';
 
 import '../../../../test_helpers/common_finders.dart';
 import '../../../../test_helpers/widget_tester_extensions.dart';
 
+/// * Corresponding screen: [UpdateProfileScreen]
 class UpdateProfilePage with SettingsFinders {
   UpdateProfilePage(this.tester);
 
@@ -30,6 +32,8 @@ class UpdateProfilePage with SettingsFinders {
   final Finder deleteAccountBtn = find.widgetWithText(TextButton, 'Smazat účet');
   final Finder cancelBtnLogoutDialog = find.widgetWithText(TextButton, 'Zrušit');
   final Finder confirmBtnLogoutDialog = find.widgetWithText(TextButton, 'Pokračovat');
+
+  Finder get backBtn => commonSettingsSheetBackBtn;
 
   /// Page methods
   Future<void> clickNicknameField() async {
@@ -92,6 +96,13 @@ class UpdateProfilePage with SettingsFinders {
   Future<void> closeErrorSheet() async {
     logTestEvent();
     await tester.tapAt(Offset.zero);
+    await tester.pumpAndSettle();
+  }
+
+  Future<void> clickBackButton() async {
+    logTestEvent();
+    await tester.tap(backBtn);
+    await tester.pumpAndSettle();
   }
 
   void verifyNickname(String expectedNickname) {
@@ -110,5 +121,10 @@ class UpdateProfilePage with SettingsFinders {
       matching: find.text(expectedEmail),
     );
     expect(emailText, findsOneWidget);
+  }
+
+  Future<void> verifyScreenIsShown() async {
+    logTestEvent();
+    await tester.pumpUntilVisible(find.byType(UpdateProfileScreen));
   }
 }

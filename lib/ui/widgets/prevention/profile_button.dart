@@ -57,6 +57,7 @@ class ProfileButton extends StatelessWidget {
                                 ),
                                 Text(
                                   '${user?.points}',
+                                  key: const Key('profileButton_points'),
                                   style: LoonoFonts.subtitleFontStyle.copyWith(
                                     color: LoonoColors.primaryEnabled,
                                   ),

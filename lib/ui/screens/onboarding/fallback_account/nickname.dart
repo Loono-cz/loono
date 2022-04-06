@@ -18,7 +18,7 @@ class NicknameScreen extends StatelessWidget {
     required this.socialLoginAccount,
   }) : super(key: key);
 
-  final SocialLoginAccount socialLoginAccount;
+  final SocialLoginAccount? socialLoginAccount;
 
   final _usersDao = registry.get<DatabaseService>().users;
 
@@ -30,7 +30,7 @@ class NicknameScreen extends StatelessWidget {
         return FallbackAccountContent(
           appBar: createAccountAppBar(context, step: 1),
           title: context.l10n.fallback_account_name,
-          initialText: socialLoginAccount.nickname,
+          initialText: socialLoginAccount?.nickname,
           hint: getHintText(context, user: snapshot.data),
           keyboardType: TextInputType.name,
           validator: Validators.nickname(context),
