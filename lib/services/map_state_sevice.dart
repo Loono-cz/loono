@@ -168,6 +168,7 @@ class MapStateService with ChangeNotifier {
   }
 
   void setDoctorDetail(SimpleHealthcareProvider? detail) {
+    onMoveAppFilteringBlocked = false;
     doctorDetail = detail;
     notifyListeners();
   }
