@@ -34,6 +34,8 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
 
   final healthcareProviderRepository = registry.get<HealthcareProviderRepository>();
 
+  late final MapStateService mapState;
+
   bool _isHealthCareProvidersInMapService = false;
 
   Future<void> _setHealthcareProviders(MapStateService mapStateService) async {
@@ -41,11 +43,19 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
         await registry.get<HealthcareProviderRepository>().getHealthcareProviders();
 
     if (healthcareProviders != null && healthcareProviders.isNotEmpty) {
-      mapStateService.addAll(healthcareProviders);
+      if (mapState.allHealthcareProviders.isEmpty) {
+        mapState.addAll(healthcareProviders);
+      }
       setState(() {
         _isHealthCareProvidersInMapService = true;
       });
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    mapState = context.read<MapStateService>();
   }
 
   @override
