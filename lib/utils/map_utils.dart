@@ -46,8 +46,9 @@ Future<Position> determinePosition() async {
 
 Future<Marker> Function(
   Cluster<HealthcareItemPlace>,
-  Function(SimpleHealthcareProvider?) setDoctor,
-) get markerBuilder => (cluster, setDoctor) async {
+  Function(SimpleHealthcareProvider?) setDoctorDetail,
+  Function(Iterable<SimpleHealthcareProvider>) setActiveDoctors,
+) get markerBuilder => (cluster, setDoctorDetail, setActiveDoctors) async {
       final icon = await getMarkerBitmap(
         cluster.isMultiple ? 125 : 75,
         text: cluster.isMultiple ? cluster.count.toString() : null,
@@ -56,7 +57,9 @@ Future<Marker> Function(
       return Marker(
         markerId: MarkerId(cluster.getId()),
         position: cluster.location,
-        onTap: () => setDoctor(cluster.items.first.healthcareProvider),
+        onTap: () => cluster.isMultiple
+            ? setActiveDoctors(cluster.items.map((e) => e.healthcareProvider))
+            : setDoctorDetail(cluster.items.first.healthcareProvider),
         infoWindow: cluster.isMultiple
             ? InfoWindow.noText
             : InfoWindow(

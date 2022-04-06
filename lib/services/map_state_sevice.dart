@@ -32,6 +32,8 @@ class MapStateService with ChangeNotifier {
 
   List<SimpleHealthcareProvider> get allHealthcareProviders => _allHealthcareProviders;
 
+  bool onMoveAppFilteringBlocked = false;
+
   /// Currently selected or visible healthcare providers.
   ///
   /// If [currSpecialization] is not null it displays only providers with the currently selected
@@ -45,7 +47,7 @@ class MapStateService with ChangeNotifier {
   ClusterManager _initClusterManager() => ClusterManager<HealthcareItemPlace>(
         <HealthcareItemPlace>[],
         updateMarkers,
-        markerBuilder: (cluster) => markerBuilder(cluster, setDoctorDetail),
+        markerBuilder: (cluster) => markerBuilder(cluster, setDoctorDetail, setActiveDoctors),
       );
 
   void setVisibleRegion(LatLngBounds latLngBounds) {
@@ -139,6 +141,18 @@ class MapStateService with ChangeNotifier {
   }
 
   void _applyFilter() {
+    if (onMoveAppFilteringBlocked) {
+      final firstProvider = currHealthcareProviders.firstOrNull;
+      if (firstProvider != null && visibleRegion != null) {
+        final isProviderInCurrRegion =
+            visibleRegion!.contains(LatLng(firstProvider.lat, firstProvider.lng));
+        if (isProviderInCurrRegion) {
+          // filtering on map move is blocked - clicked on a cluster
+          return;
+        }
+      }
+    }
+    onMoveAppFilteringBlocked = false;
     _currHealthcareProviders.replaceRange(
       0,
       _currHealthcareProviders.length,
@@ -155,6 +169,13 @@ class MapStateService with ChangeNotifier {
 
   void setDoctorDetail(SimpleHealthcareProvider? detail) {
     doctorDetail = detail;
+    notifyListeners();
+  }
+
+  void setActiveDoctors(Iterable<SimpleHealthcareProvider> newProviders) {
+    onMoveAppFilteringBlocked = true;
+    doctorDetail = null;
+    _currHealthcareProviders.replaceRange(0, _currHealthcareProviders.length, newProviders);
     notifyListeners();
   }
 
