@@ -40,12 +40,6 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 final registry = GetIt.instance;
 
-final defaultDioOptions = BaseOptions(
-  baseUrl: LoonoApi.basePath,
-  connectTimeout: 5000,
-  receiveTimeout: 8000,
-);
-
 const retryBlacklist = ['/account/onboard', '/leaderboard'];
 
 /// TODO: select correct status code for force update with BE
@@ -64,6 +58,12 @@ Future<void> setup({
 
   final appInfo = await PackageInfo.fromPlatform();
   await dotenv.load(fileName: 'assets/.env');
+
+  final defaultDioOptions = BaseOptions(
+    baseUrl: flavor == AppFlavors.dev ? 'https://app.devel.loono.cz' : 'https://app.prod.loono.cz',
+    connectTimeout: 5000,
+    receiveTimeout: 8000,
+  );
 
   late final String osVersion;
   try {
