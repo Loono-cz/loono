@@ -192,9 +192,8 @@ class ExaminationsSheetOverlay extends StatelessWidget {
                       // TODO: different route based on the category
                       selfExamination: selfExamination,
                       onTap: (sex) {
-                        if (selfExamination.history.isNotEmpty &&
-                            selfExamination.history.first ==
-                                SelfExaminationStatus.WAITING_FOR_RESULT) {
+                        if (category == const SelfExaminationCategory.hasFinding() ||
+                            category == const SelfExaminationCategory.hasFindingExpectingResult()) {
                           AutoRouter.of(context).navigate(
                             ResultFromDoctorRoute(
                               sex: sex,

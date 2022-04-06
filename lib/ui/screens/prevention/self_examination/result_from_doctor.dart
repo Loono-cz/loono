@@ -1,12 +1,17 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/api_service.dart';
+import 'package:loono/services/examinations_service.dart';
+
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
+import 'package:provider/provider.dart';
 
 class ResultFromDoctorScreen extends StatelessWidget {
   const ResultFromDoctorScreen({
@@ -99,6 +104,10 @@ class ResultFromDoctorScreen extends StatelessWidget {
                                     b.result = SelfExaminationResultResultEnum.OK;
                                   }),
                                 );
+                                unawaited(
+                                  Provider.of<ExaminationsProvider>(context, listen: false)
+                                      .fetchExaminations(),
+                                );
                                 AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
                               },
                             ),
@@ -114,6 +123,10 @@ class ResultFromDoctorScreen extends StatelessWidget {
                                   result: SelfExaminationResult((b) {
                                     b.result = SelfExaminationResultResultEnum.NOT_OK;
                                   }),
+                                );
+                                unawaited(
+                                  Provider.of<ExaminationsProvider>(context, listen: false)
+                                      .fetchExaminations(),
                                 );
                                 AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
                               },
