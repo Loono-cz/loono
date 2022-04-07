@@ -32,6 +32,8 @@ class MapStateService with ChangeNotifier {
 
   List<SimpleHealthcareProvider> get allHealthcareProviders => _allHealthcareProviders;
 
+  bool onMoveMapFilteringBlocked = false;
+
   /// Currently selected or visible healthcare providers.
   ///
   /// If [currSpecialization] is not null it displays only providers with the currently selected
@@ -45,13 +47,20 @@ class MapStateService with ChangeNotifier {
   ClusterManager _initClusterManager() => ClusterManager<HealthcareItemPlace>(
         <HealthcareItemPlace>[],
         updateMarkers,
-        markerBuilder: (cluster) => markerBuilder(cluster, setDoctorDetail),
+        markerBuilder: (cluster) => markerBuilder(
+          cluster,
+          setDoctorDetail,
+          setActiveDoctors,
+          currHealthcareProviders,
+          onMoveMapFilteringBlocked,
+          applyFilter,
+        ),
       );
 
   void setVisibleRegion(LatLngBounds latLngBounds) {
     if (visibleRegion != latLngBounds) {
       visibleRegion = latLngBounds;
-      _applyFilter();
+      applyFilter();
       notifyListeners();
     }
   }
@@ -59,7 +68,7 @@ class MapStateService with ChangeNotifier {
   void addAll(Iterable<SimpleHealthcareProvider> healthcareProviders) {
     _allHealthcareProviders.addAll(healthcareProviders);
     clusterManager.setItems(allHealthcareProviders.map((e) => HealthcareItemPlace(e)).toList());
-    _applyFilter();
+    applyFilter();
     notifyListeners();
   }
 
@@ -138,7 +147,19 @@ class MapStateService with ChangeNotifier {
     notifyListeners();
   }
 
-  void _applyFilter() {
+  void applyFilter() {
+    if (onMoveMapFilteringBlocked) {
+      final firstProvider = currHealthcareProviders.firstOrNull;
+      if (firstProvider != null && visibleRegion != null) {
+        final isProviderInCurrRegion =
+            visibleRegion!.contains(LatLng(firstProvider.lat, firstProvider.lng));
+        if (isProviderInCurrRegion) {
+          // filtering on map move is blocked - clicked on a cluster
+          return;
+        }
+      }
+    }
+    onMoveMapFilteringBlocked = false;
     _currHealthcareProviders.replaceRange(
       0,
       _currHealthcareProviders.length,
@@ -153,8 +174,18 @@ class MapStateService with ChangeNotifier {
     );
   }
 
-  void setDoctorDetail(SimpleHealthcareProvider? detail) {
+  void setDoctorDetail(SimpleHealthcareProvider? detail, {bool unblockOnMoveMapFiltering = true}) {
+    if (unblockOnMoveMapFiltering) {
+      onMoveMapFilteringBlocked = false;
+    }
     doctorDetail = detail;
+    notifyListeners();
+  }
+
+  void setActiveDoctors(Iterable<SimpleHealthcareProvider> newProviders) {
+    onMoveMapFilteringBlocked = true;
+    doctorDetail = null;
+    _currHealthcareProviders.replaceRange(0, _currHealthcareProviders.length, newProviders);
     notifyListeners();
   }
 

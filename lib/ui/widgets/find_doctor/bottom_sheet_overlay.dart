@@ -11,82 +11,82 @@ class MapSheetOverlay extends StatelessWidget {
     Key? key,
     required this.onItemTap,
     required this.sheetController,
-    required this.mapStateService,
   }) : super(key: key);
 
   final ValueChanged<SimpleHealthcareProvider>? onItemTap;
   final DraggableScrollableController sheetController;
-  final MapStateService mapStateService;
 
   @override
   Widget build(BuildContext context) {
     final mapState = context.watch<MapStateService>();
 
-    return DraggableScrollableSheet(
-      initialChildSize: MapVariables.MIN_SHEET_SIZE,
-      minChildSize: MapVariables.MIN_SHEET_SIZE,
-      maxChildSize: MapVariables.MAX_SHEET_SIZE,
-      controller: sheetController,
-      builder: (context, scrollController) {
-        return Container(
-          decoration: const BoxDecoration(
-            color: LoonoColors.bottomSheetPrevention,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(12),
-              topRight: Radius.circular(12),
+    if (mapState.currHealthcareProviders.isNotEmpty) {
+      return DraggableScrollableSheet(
+        initialChildSize: MapVariables.MIN_SHEET_SIZE,
+        minChildSize: MapVariables.MIN_SHEET_SIZE,
+        maxChildSize: MapVariables.MAX_SHEET_SIZE,
+        controller: sheetController,
+        builder: (context, scrollController) {
+          return Container(
+            decoration: const BoxDecoration(
+              color: LoonoColors.bottomSheetPrevention,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(12),
+                topRight: Radius.circular(12),
+              ),
             ),
-          ),
-          child: ListView.builder(
-            controller: scrollController,
-            itemCount: mapState.currHealthcareProviders.length,
-            itemBuilder: (context, index) {
-              final item = mapState.currHealthcareProviders[index];
+            child: ListView.builder(
+              controller: scrollController,
+              itemCount: mapState.currHealthcareProviders.length,
+              itemBuilder: (context, index) {
+                final item = mapState.currHealthcareProviders[index];
 
-              return ListTile(
-                title: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (index == 0) ...[
-                      Column(
-                        children: [
-                          Center(
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                top: 10.0,
-                                bottom: 10.0,
-                              ),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width / 3,
-                                height: 4.0,
-                                color: Colors.white,
+                return ListTile(
+                  title: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (index == 0) ...[
+                        Column(
+                          children: [
+                            Center(
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 10.0,
+                                  bottom: 10.0,
+                                ),
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width / 3,
+                                  height: 4.0,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
-                          ),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: Text(
-                              'doktorů v okolí: ${mapState.currHealthcareProviders.length}',
-                              style: const TextStyle(color: Colors.white),
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: Text(
+                                '${mapState.onMoveMapFilteringBlocked ? 'vybraní doktoři' : 'doktorů v okolí'}: ${mapState.currHealthcareProviders.length}',
+                                style: const TextStyle(color: Colors.white),
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
+                      ],
+                      SearchDoctorCard(
+                        item: item,
+                        onTap: () {
+                          onItemTap?.call(item);
+                          mapState.setDoctorDetail(item, unblockOnMoveMapFiltering: false);
+                        },
                       ),
                     ],
-                    SearchDoctorCard(
-                      item: item,
-                      onTap: () async {
-                        sheetController.jumpTo(MapVariables.DOCTOR_DETAIL_SHEET_SIZE);
-                        onItemTap?.call(item);
-                        mapStateService.setDoctorDetail(item);
-                      },
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
-        );
-      },
-    );
+                  ),
+                );
+              },
+            ),
+          );
+        },
+      );
+    }
+    return const SizedBox.shrink();
   }
 }
