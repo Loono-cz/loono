@@ -48,7 +48,9 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
         setState(() => _isHealthCareProvidersInMapService = true);
       }
     } else {
-      setState(() => _isHealthCareProvidersInMapService = true);
+      Future.delayed(Duration.zero, () async {
+        setState(() => _isHealthCareProvidersInMapService = true);
+      });
     }
   }
 
