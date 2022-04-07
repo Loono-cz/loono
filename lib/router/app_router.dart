@@ -42,6 +42,7 @@ import 'package:loono/ui/screens/prevention/self_examination/educational_screen.
 import 'package:loono/ui/screens/prevention/self_examination/has_finding_screen.dart';
 import 'package:loono/ui/screens/prevention/self_examination/no_finding_screen.dart';
 import 'package:loono/ui/screens/prevention/self_examination/progress_screen.dart';
+import 'package:loono/ui/screens/prevention/self_examination/result_from_doctor.dart';
 import 'package:loono/ui/screens/settings/after_deletion.dart';
 import 'package:loono/ui/screens/settings/camera_photo_taken.dart';
 import 'package:loono/ui/screens/settings/delete_account.dart';
@@ -315,6 +316,11 @@ const _selfExaminationRoutes = <AutoRoute>[
   CustomRoute<void>(
     page: ProgressRewardScreen,
     path: 'self-examination/detail/progress-reward',
+    transitionsBuilder: _preventionTransition,
+  ),
+  CustomRoute<void>(
+    page: ResultFromDoctorScreen,
+    path: 'self-examination/detail/reusult-from-doctor',
     transitionsBuilder: _preventionTransition,
   ),
 ];

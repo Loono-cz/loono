@@ -17,11 +17,13 @@ class FirebaseStorageService {
   /// If `null` then there is not any on-going task.
   UploadTask? uploadTask;
 
+  Reference _getUserFolderRef(String uid) => _storage.ref().child('users').child(uid);
+
   /// Returns [Reference] location of the user's avatar.
   Future<Reference?> get userPhotoRef async {
     final uid = await _authService.userUid;
     if (uid == null) return null;
-    return _storage.ref().child('users').child(uid).child('files').child('avatar.png');
+    return _getUserFolderRef(uid).child('files').child('avatar.png');
   }
 
   // TODO: Error handling (https://cesko-digital.atlassian.net/browse/LOON-386)
@@ -57,5 +59,13 @@ class FirebaseStorageService {
     if (ref == null) return null;
     await ref.delete();
     return true;
+  }
+
+  /// Delete all user's files.
+  Future<void> deleteAll() async {
+    final refs = [
+      await userPhotoRef,
+    ].whereType<Reference>();
+    await Future.wait<void>([for (final ref in refs) ref.delete()]);
   }
 }
