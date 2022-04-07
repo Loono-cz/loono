@@ -53,13 +53,14 @@ class MapStateService with ChangeNotifier {
           setActiveDoctors,
           currHealthcareProviders,
           onMoveMapFilteringBlocked,
+          applyFilter,
         ),
       );
 
   void setVisibleRegion(LatLngBounds latLngBounds) {
     if (visibleRegion != latLngBounds) {
       visibleRegion = latLngBounds;
-      _applyFilter();
+      applyFilter();
       notifyListeners();
     }
   }
@@ -67,7 +68,7 @@ class MapStateService with ChangeNotifier {
   void addAll(Iterable<SimpleHealthcareProvider> healthcareProviders) {
     _allHealthcareProviders.addAll(healthcareProviders);
     clusterManager.setItems(allHealthcareProviders.map((e) => HealthcareItemPlace(e)).toList());
-    _applyFilter();
+    applyFilter();
     notifyListeners();
   }
 
@@ -146,7 +147,7 @@ class MapStateService with ChangeNotifier {
     notifyListeners();
   }
 
-  void _applyFilter() {
+  void applyFilter() {
     if (onMoveMapFilteringBlocked) {
       final firstProvider = currHealthcareProviders.firstOrNull;
       if (firstProvider != null && visibleRegion != null) {

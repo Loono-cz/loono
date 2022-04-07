@@ -51,8 +51,15 @@ Future<Marker> Function(
   Function(Iterable<SimpleHealthcareProvider>) setActiveDoctors,
   List<SimpleHealthcareProvider> currDoctors,
   bool onMoveMapFilteringBlocked,
-) get markerBuilder =>
-    (cluster, setDoctorDetail, setActiveDoctors, currDoctors, onMoveMapFilteringBlocked) async {
+  VoidCallback applyFilter,
+) get markerBuilder => (
+      cluster,
+      setDoctorDetail,
+      setActiveDoctors,
+      currDoctors,
+      onMoveMapFilteringBlocked,
+      applyFilter,
+    ) async {
       final isClusterSelected = cluster.isMultiple &&
           onMoveMapFilteringBlocked &&
           (const DeepCollectionEquality.unordered().equals(
@@ -69,11 +76,14 @@ Future<Marker> Function(
       return Marker(
         markerId: MarkerId(cluster.getId()),
         position: cluster.location,
-        onTap: () => cluster.isMultiple
+        onTap: cluster.isMultiple
             ? isClusterSelected
-                ? setDoctorDetail(null)
-                : setActiveDoctors(cluster.items.map((e) => e.healthcareProvider))
-            : setDoctorDetail(cluster.items.first.healthcareProvider),
+                ? () {
+                    setDoctorDetail(null);
+                    applyFilter();
+                  }
+                : () => setActiveDoctors(cluster.items.map((e) => e.healthcareProvider))
+            : () => setDoctorDetail(cluster.items.first.healthcareProvider),
         infoWindow: cluster.isMultiple
             ? InfoWindow.noText
             : InfoWindow(
