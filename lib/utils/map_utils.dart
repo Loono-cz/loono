@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_cluster_manager/google_maps_cluster_manager.dart';
@@ -48,17 +49,30 @@ Future<Marker> Function(
   Cluster<HealthcareItemPlace>,
   Function(SimpleHealthcareProvider?) setDoctorDetail,
   Function(Iterable<SimpleHealthcareProvider>) setActiveDoctors,
-) get markerBuilder => (cluster, setDoctorDetail, setActiveDoctors) async {
+  List<SimpleHealthcareProvider> currDoctors,
+  bool onMoveMapFilteringBlocked,
+) get markerBuilder =>
+    (cluster, setDoctorDetail, setActiveDoctors, currDoctors, onMoveMapFilteringBlocked) async {
+      final isClusterSelected = cluster.isMultiple &&
+          onMoveMapFilteringBlocked &&
+          (const DeepCollectionEquality.unordered().equals(
+            cluster.items.map((e) => e.healthcareProvider.institutionId),
+            currDoctors.map((e) => e.institutionId),
+          ));
+
       final icon = await getMarkerBitmap(
         cluster.isMultiple ? 125 : 75,
         text: cluster.isMultiple ? cluster.count.toString() : null,
+        isClusterSelected: isClusterSelected,
       );
 
       return Marker(
         markerId: MarkerId(cluster.getId()),
         position: cluster.location,
         onTap: () => cluster.isMultiple
-            ? setActiveDoctors(cluster.items.map((e) => e.healthcareProvider))
+            ? isClusterSelected
+                ? setDoctorDetail(null)
+                : setActiveDoctors(cluster.items.map((e) => e.healthcareProvider))
             : setDoctorDetail(cluster.items.first.healthcareProvider),
         infoWindow: cluster.isMultiple
             ? InfoWindow.noText
@@ -73,10 +87,15 @@ Future<Marker> Function(
       );
     };
 
-Future<BitmapDescriptor?> getMarkerBitmap(int size, {String? text}) async {
+Future<BitmapDescriptor?> getMarkerBitmap(
+  int size, {
+  String? text,
+  required bool isClusterSelected,
+}) async {
   final pictureRecorder = PictureRecorder();
   final canvas = Canvas(pictureRecorder);
-  final paint1 = Paint()..color = LoonoColors.primaryLight;
+  final paint1 = Paint()
+    ..color = isClusterSelected ? LoonoColors.primaryEnabled : LoonoColors.primaryLight;
   final paint2 = Paint()..color = LoonoColors.primaryEnabled;
 
   canvas
@@ -91,7 +110,7 @@ Future<BitmapDescriptor?> getMarkerBitmap(int size, {String? text}) async {
         text: text,
         style: TextStyle(
           fontSize: size / 3,
-          color: LoonoColors.primaryEnabled,
+          color: isClusterSelected ? Colors.white : LoonoColors.primaryEnabled,
           fontWeight: FontWeight.normal,
         ),
       )
