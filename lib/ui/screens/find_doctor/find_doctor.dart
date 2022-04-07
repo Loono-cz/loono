@@ -158,7 +158,8 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                       height: 370,
                       child: DoctorDetailSheet(
                         doctor: currDoctorDetail,
-                        closeDetail: () => mapState.setDoctorDetail(null),
+                        closeDetail: () =>
+                            mapState.setDoctorDetail(null, unblockOnMoveMapFiltering: false),
                       ),
                     ),
                   ),

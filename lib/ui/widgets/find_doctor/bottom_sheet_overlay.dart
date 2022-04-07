@@ -64,7 +64,7 @@ class MapSheetOverlay extends StatelessWidget {
                             Align(
                               alignment: Alignment.centerRight,
                               child: Text(
-                                '${mapState.onMoveAppFilteringBlocked ? 'vybraní doktoři' : 'doktorů v okolí'}: ${mapState.currHealthcareProviders.length}',
+                                '${mapState.onMoveMapFilteringBlocked ? 'vybraní doktoři' : 'doktorů v okolí'}: ${mapState.currHealthcareProviders.length}',
                                 style: const TextStyle(color: Colors.white),
                               ),
                             ),
@@ -73,10 +73,9 @@ class MapSheetOverlay extends StatelessWidget {
                       ],
                       SearchDoctorCard(
                         item: item,
-                        onTap: () async {
-                          sheetController.jumpTo(MapVariables.DOCTOR_DETAIL_SHEET_SIZE);
+                        onTap: () {
                           onItemTap?.call(item);
-                          mapState.setDoctorDetail(item);
+                          mapState.setDoctorDetail(item, unblockOnMoveMapFiltering: false);
                         },
                       ),
                     ],

@@ -32,7 +32,7 @@ class MapStateService with ChangeNotifier {
 
   List<SimpleHealthcareProvider> get allHealthcareProviders => _allHealthcareProviders;
 
-  bool onMoveAppFilteringBlocked = false;
+  bool onMoveMapFilteringBlocked = false;
 
   /// Currently selected or visible healthcare providers.
   ///
@@ -141,7 +141,7 @@ class MapStateService with ChangeNotifier {
   }
 
   void _applyFilter() {
-    if (onMoveAppFilteringBlocked) {
+    if (onMoveMapFilteringBlocked) {
       final firstProvider = currHealthcareProviders.firstOrNull;
       if (firstProvider != null && visibleRegion != null) {
         final isProviderInCurrRegion =
@@ -152,7 +152,7 @@ class MapStateService with ChangeNotifier {
         }
       }
     }
-    onMoveAppFilteringBlocked = false;
+    onMoveMapFilteringBlocked = false;
     _currHealthcareProviders.replaceRange(
       0,
       _currHealthcareProviders.length,
@@ -167,14 +167,16 @@ class MapStateService with ChangeNotifier {
     );
   }
 
-  void setDoctorDetail(SimpleHealthcareProvider? detail) {
-    onMoveAppFilteringBlocked = false;
+  void setDoctorDetail(SimpleHealthcareProvider? detail, {bool unblockOnMoveMapFiltering = true}) {
+    if (unblockOnMoveMapFiltering) {
+      onMoveMapFilteringBlocked = false;
+    }
     doctorDetail = detail;
     notifyListeners();
   }
 
   void setActiveDoctors(Iterable<SimpleHealthcareProvider> newProviders) {
-    onMoveAppFilteringBlocked = true;
+    onMoveMapFilteringBlocked = true;
     doctorDetail = null;
     _currHealthcareProviders.replaceRange(0, _currHealthcareProviders.length, newProviders);
     notifyListeners();
