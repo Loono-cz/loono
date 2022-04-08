@@ -43,6 +43,8 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
+    testBuildType "debug"
+
     defaultConfig {
         applicationId "cz.loono.app"
         minSdkVersion 21
@@ -55,9 +57,13 @@ android {
         ndk {
             debugSymbolLevel 'SYMBOL_TABLE'
         }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     signingConfigs {
+        / * start remove first 
+        comment
+        */
         release {
             if (System.getenv()["CI"]) { // CI=true is exported by Codemagic
                 storeFile file(System.getenv()["FCI_KEYSTORE_PATH"])
@@ -71,6 +77,20 @@ android {
                 keyPassword "prod-or-dev-password"
             }
         }
+
+        /* start remove second
+
+
+        release {
+            storeFile = file("loono-debug")
+            storePassword = "Vd3ryhCWsy3PJHP"
+            keyAlias = "vcas-debug"
+            keyPassword = "Vd3ryhCWsy3PJHP"
+        }
+
+        end remove second */
+
+
         debug {
             storeFile = file("loono-debug")
             storePassword = "Vd3ryhCWsy3PJHP"
@@ -112,6 +132,11 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation platform('com.google.firebase:firebase-bom:29.2.1')
+    testImplementation 'junit:junit:4.12'
+
+    // https://developer.android.com/jetpack/androidx/releases/test/#1.2.0
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
 
 apply plugin: 'com.google.firebase.crashlytics'

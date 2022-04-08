@@ -22,16 +22,10 @@ jobs:
         run: flutter pub get
 
       - name: Copy .env.example into .env file
-        run: |
-          cp ./assets/.env.example ./assets/.env
+        run: sh ./bin/ci_workflow_scripts/env_copy.sh
 
       - name: Verify formatting dart
-        run: |
-          libFiles=`find ./lib/ -type f -not -regex ".*\.\(freezed\|gr\|g\).dart" -not -name "*.arb"`
-          for file in $libFiles
-          do
-              dart format --line-length 100 --output=none --set-exit-if-changed $file
-          done
+        run: sh ./bin/ci_workflow_scripts/verify_formatting.sh
 
   analyze:
     runs-on: ubuntu-latest
@@ -50,8 +44,7 @@ jobs:
         run: flutter pub get
 
       - name: Copy .env.example into .env file
-        run: |
-          cp ./assets/.env.example ./assets/.env
+        run: sh ./bin/ci_workflow_scripts/env_copy.sh
 
       - uses: invertase/github-action-dart-analyzer@v1
         with:
