@@ -39,13 +39,16 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
 
   bool _isHealthCareProvidersInMapService = false;
 
-  Future<void> _setHealthcareProviders() async {
+  Future<void> _setHealthcareProviders({bool tryFetchAgainData = false}) async {
     if (mapState.allHealthcareProviders.isEmpty) {
-      final healthcareProviders =
-          await registry.get<HealthcareProviderRepository>().getHealthcareProviders();
+      final healthcareProviders = await healthcareProviderRepository.getHealthcareProviders();
       if (healthcareProviders != null && healthcareProviders.isNotEmpty) {
         mapState.addAll(healthcareProviders);
         setState(() => _isHealthCareProvidersInMapService = true);
+      } else {
+        if (tryFetchAgainData) {
+          await healthcareProviderRepository.checkAndUpdateIfNeeded();
+        }
       }
     } else {
       Future.delayed(Duration.zero, () async {
@@ -83,7 +86,8 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
           stream: healthcareProviderRepository.healtcareProvidersStream,
           initialData: healthcareProviderRepository.lastStreamValue,
           builder: (context, snapshot) {
-            if (snapshot.data == HealtCareSyncState.completed &&
+            final healthcareSyncState = snapshot.data;
+            if (healthcareSyncState == HealtCareSyncState.completed &&
                 !_isHealthCareProvidersInMapService) {
               _setHealthcareProviders();
             }
@@ -117,27 +121,10 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                     sheetController: _sheetController,
                   ),
                 if (!_isHealthCareProvidersInMapService)
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(10.0),
-                          child: const LinearProgressIndicator(
-                            backgroundColor: Color.fromRGBO(104, 170, 123, 1),
-                            color: LoonoColors.greenSuccess,
-                            minHeight: 70,
-                            value: null,
-                          ),
-                        ),
-                        Text(
-                          'Načítám informace o lékařích ...',
-                          style: LoonoFonts.cardTitle.copyWith(color: Colors.white),
-                        ),
-                      ],
-                    ),
-                  ),
+                  if (healthcareSyncState == HealtCareSyncState.error)
+                    _buildErrorIndicator()
+                  else
+                    _buildLoadingIndicator(),
                 if (currDoctorDetail != null)
                   Align(
                     alignment: Alignment.bottomCenter,
@@ -168,6 +155,68 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
               ],
             );
           },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLoadingIndicator() {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10.0),
+            child: const LinearProgressIndicator(
+              backgroundColor: Color.fromRGBO(104, 170, 123, 1),
+              color: LoonoColors.greenSuccess,
+              minHeight: 70,
+              value: null,
+            ),
+          ),
+          Text(
+            'Načítám informace o lékařích ...',
+            style: LoonoFonts.cardTitle.copyWith(color: Colors.white),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildErrorIndicator() {
+    return GestureDetector(
+      onTap: () => _setHealthcareProviders(tryFetchAgainData: true),
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10.0),
+              child: const LinearProgressIndicator(
+                backgroundColor: LoonoColors.primaryWashed,
+                minHeight: 70,
+                value: 0,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Flexible(
+                    child: Text(
+                      'Chyba při načítání dat o lékařích.',
+                      style: LoonoFonts.cardTitle.copyWith(color: Colors.white),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  const Icon(Icons.refresh, color: Colors.white),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
