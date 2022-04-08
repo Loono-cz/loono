@@ -22,7 +22,7 @@ class NoFindingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final validResults = history.where((item) => item == SelfExaminationStatus.COMPLETED);
     final awardLevel = (validResults.length / 3).floor() + 1;
-    final receivedShield = validResults.length % 3 == 0;
+    final receivedShield = validResults.isEmpty || (validResults.length + 1) % 3 == 0;
 
     return Scaffold(
       body: Padding(
