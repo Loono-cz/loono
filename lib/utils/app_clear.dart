@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/database_service.dart';
@@ -8,7 +9,11 @@ import 'package:loono/utils/registry.dart';
 
 Future<void> appClear({bool deletingAccount = false}) async {
   if (deletingAccount) {
-    await registry.get<FirebaseStorageService>().deleteAll();
+    try {
+      await registry.get<FirebaseStorageService>().deleteAll();
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
   await registry.get<AuthService>().signOut();
   await registry.get<DatabaseService>().clearDb();

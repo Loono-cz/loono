@@ -98,7 +98,7 @@ class _OnBoardingBirthdateScreenState extends State<OnBoardingBirthdateScreen> {
                 text: context.l10n.continue_info,
                 onTap: () async {
                   if (selectedDate != null) {
-                    if (_calculateAge(selectedDate!) > 19) {
+                    if (_calculateAge(selectedDate!) >= 19) {
                       await registry.get<UserRepository>().updateDateOfBirth(
                             DateWithoutDay(
                               month: monthFromInt(selectedDate!.month),
