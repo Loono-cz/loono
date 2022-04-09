@@ -10,6 +10,7 @@ import 'package:loono/helpers/self_examination_category.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/screens/prevention/self_examination/self_faq_section.dart';
+import 'package:loono/ui/widgets/badges/self_exam_badges_sheet.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/loono_point.dart';
 import 'package:loono/ui/widgets/prevention/progress_bar/self_examination_ring.dart';
@@ -64,6 +65,7 @@ class SelfExaminationDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _currentProgress = _selfExaminationProgress();
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -162,28 +164,36 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                       width: 80,
                       child: Stack(
                         children: [
-                          SizedBox(
-                            height: 80,
-                            width: 80,
-                            child: CustomPaint(
-                              painter: SelfExaminationRing(
-                                backgroundColor: LoonoColors.primaryWashed,
-                                progress: _selfExaminationProgress(),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const LoonoPointIcon(width: 16.0),
-                                  const SizedBox(width: 6.0),
-                                  Text(
-                                    selfExamination.points.toString(),
-                                    style: LoonoFonts.primaryColorStyle.copyWith(
-                                      color: LoonoColors.primaryEnabled,
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  )
-                                ],
+                          GestureDetector(
+                            onTap: () => showSelfExamBadgesSheet(
+                              context,
+                              selfExamination.points,
+                              selfExamination.history,
+                              _currentProgress,
+                            ),
+                            child: SizedBox(
+                              height: 80,
+                              width: 80,
+                              child: CustomPaint(
+                                painter: SelfExaminationRing(
+                                  backgroundColor: LoonoColors.primaryWashed,
+                                  progress: _currentProgress,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const LoonoPointIcon(width: 16.0),
+                                    const SizedBox(width: 6.0),
+                                    Text(
+                                      selfExamination.points.toString(),
+                                      style: LoonoFonts.primaryColorStyle.copyWith(
+                                        color: LoonoColors.primaryEnabled,
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                           ),
