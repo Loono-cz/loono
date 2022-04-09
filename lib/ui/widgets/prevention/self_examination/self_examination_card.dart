@@ -1,7 +1,9 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/helpers/self_examination_category.dart';
@@ -11,6 +13,7 @@ import 'package:loono/services/db/database.dart' as db;
 import 'package:loono/ui/widgets/loono_point.dart';
 import 'package:loono/ui/widgets/notification_icon.dart';
 import 'package:loono/ui/widgets/prevention/examination_card.dart';
+import 'package:loono/ui/widgets/prevention/progress_bar/progress_icons.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
@@ -155,6 +158,17 @@ class SelfExaminationCard extends StatelessWidget {
     required String subtitle,
     bool hasPriority = false,
   }) {
+    final validStatuses = selfExamination.history.where(
+      (item) => item == SelfExaminationStatus.COMPLETED || item == SelfExaminationStatus.PLANNED,
+    );
+
+    final offset = ((validStatuses.length - 1) / 3).floor();
+
+    final iconList = List.generate(3, (index) {
+      final absIndex = (offset * 3) + index;
+      return absIndex < validStatuses.length ? validStatuses.elementAt(absIndex) : null;
+    });
+
     return <Widget>[
       Expanded(
         child: ListTile(
@@ -179,6 +193,24 @@ class SelfExaminationCard extends StatelessWidget {
               ),
               const SizedBox(height: 5.0),
               _loonoPointRow,
+              const Spacer(),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: iconList
+                    .mapIndexed(
+                      (index, item) => Padding(
+                        padding: EdgeInsets.symmetric(horizontal: index == 1 ? 3 : 0),
+                        child: item == SelfExaminationStatus.COMPLETED
+                            ? const SuccessIcon()
+                            : item == SelfExaminationStatus.PLANNED
+                                ? ProgressIcon(
+                                    progress: selfExaminationProgress(selfExamination.plannedDate),
+                                  )
+                                : const EmptyIcon(),
+                      ),
+                    )
+                    .toList(),
+              ),
             ],
           ),
         ),

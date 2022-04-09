@@ -368,3 +368,18 @@ Widget progressBarRightDot(ExaminationCategory category) {
     ),
   );
 }
+
+double selfExaminationProgress(Date? plannedDate) {
+  if (plannedDate?.toDateTime() != null) {
+    final date = plannedDate?.toDateTime() as DateTime;
+    final planedDate = date.millisecondsSinceEpoch;
+    final startDate = DateTime(date.year, date.month - 1, date.day).millisecondsSinceEpoch;
+    final todayDate = DateTime.now().millisecondsSinceEpoch;
+    final total = planedDate - startDate;
+    final current = todayDate - startDate;
+    final percentage = current / total;
+    return percentage.clamp(0, 1);
+  } else {
+    return 0;
+  }
+}

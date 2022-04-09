@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/loono_point.dart';
-import 'package:loono/ui/widgets/prevention/progress_bar/mini_progress_ring.dart';
+import 'package:loono/ui/widgets/prevention/progress_bar/progress_icons.dart';
 import 'package:loono_api/loono_api.dart';
 
 Future<void> showSelfExamBadgesSheet(
@@ -106,12 +106,12 @@ Future<void> showSelfExamBadgesSheet(
                                     return Padding(
                                       padding: const EdgeInsets.symmetric(horizontal: 1.5),
                                       child: absIndex < validStatuses.length
-                                          ? const _SuccessIcon()
+                                          ? const SuccessIcon()
                                           : absIndex < validStatuses.length + 1
-                                              ? _ProgressIcon(
+                                              ? ProgressIcon(
                                                   progress: progress,
                                                 )
-                                              : const _EmptyIcon(),
+                                              : const EmptyIcon(),
                                     );
                                   },
                                 ),
@@ -157,61 +157,4 @@ Future<void> showSelfExamBadgesSheet(
       );
     },
   );
-}
-
-class _SuccessIcon extends StatelessWidget {
-  const _SuccessIcon({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 18,
-      height: 18,
-      decoration: BoxDecoration(
-        color: LoonoColors.greenSuccess,
-        borderRadius: BorderRadius.circular(9),
-      ),
-      child: const Icon(
-        Icons.check,
-        size: 14,
-        color: Colors.white,
-      ),
-    );
-  }
-}
-
-class _EmptyIcon extends StatelessWidget {
-  const _EmptyIcon({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 18,
-      height: 18,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(9),
-        border: Border.all(width: 2, color: LoonoColors.primaryWashed),
-      ),
-    );
-  }
-}
-
-class _ProgressIcon extends StatelessWidget {
-  const _ProgressIcon({Key? key, required this.progress}) : super(key: key);
-
-  final double progress;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 18,
-      height: 18,
-      child: CustomPaint(
-        painter: MiniProgressRing(
-          backgroundColor: LoonoColors.primaryWashed,
-          progress: progress,
-        ),
-      ),
-    );
-  }
 }

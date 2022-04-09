@@ -50,6 +50,7 @@ class _AboutHealthScreenState extends State<AboutHealthScreen> {
               crossPlatform: InAppWebViewOptions(
                 useShouldOverrideUrlLoading: true,
                 mediaPlaybackRequiresUserGesture: false,
+                userAgent: 'ma-preventivka',
               ),
               android: AndroidInAppWebViewOptions(
                 useHybridComposition: useHybridComposition(),

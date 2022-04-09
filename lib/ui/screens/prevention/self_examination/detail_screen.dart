@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/helpers/self_examination_category.dart';
@@ -45,27 +46,12 @@ class SelfExaminationDetailScreen extends StatelessWidget {
         width: 180,
       );
 
-  double _selfExaminationProgress() {
-    if (selfExamination.plannedDate?.toDateTime() != null) {
-      final date = selfExamination.plannedDate?.toDateTime() as DateTime;
-      final planedDate = date.millisecondsSinceEpoch;
-      final startDate = DateTime(date.year, date.month - 1, date.day).millisecondsSinceEpoch;
-      final todayDate = DateTime.now().millisecondsSinceEpoch;
-      final total = planedDate - startDate;
-      final current = todayDate - startDate;
-      final percentage = current / total;
-      return percentage.clamp(0, 1);
-    } else {
-      return 0;
-    }
-  }
-
   SelfExaminationStatus? get _lastResultWithoutPlanned =>
       selfExamination.history.lastWhereOrNull((item) => item != SelfExaminationStatus.PLANNED);
 
   @override
   Widget build(BuildContext context) {
-    final _currentProgress = _selfExaminationProgress();
+    final _currentProgress = selfExaminationProgress(selfExamination.plannedDate);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
