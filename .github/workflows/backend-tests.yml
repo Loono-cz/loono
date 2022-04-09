@@ -103,4 +103,4 @@ jobs:
               "text": "❗ Scheduled backend integration tests have failed. ❗\nSee results at: https://1url.cz/mK71t"
             }
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_CODEMAGIC_CHANNEL_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.DEVEL_SLACK_CODEMAGIC_CHANNEL_WEBHOOK_URL }}
