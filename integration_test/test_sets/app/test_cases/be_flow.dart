@@ -147,10 +147,6 @@ Future<void> run({required WidgetTester tester}) async {
 
   await howItWentModalPage.clickOkButton();
   await noFindingRewardPage.verifyScreenIsShown();
-  expect(
-    tester.takeException().toString(),
-    contains('This library only supports <defs> and'), // just a SVG asset error
-  );
 
   await noFindingRewardPage.clickContinueButton();
   await preventionMainPage.verifyScreenIsShown();
