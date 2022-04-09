@@ -548,7 +548,7 @@
   "@less_information": {},
   "calendar_list_header": "Vyber kalendář, do kterého ti má Preventivka zaznačovat prohlídky",
   "@calendar_list_header": {},
-  "calendar_added_success_message": "Prohlídky ti přidáme do kalendáře",
+  "calendar_added_success_message": "Prohlídku jsme ti přidali do kalendáře",
   "@calendar_added_success_message": {},
   "calendar": "Kalendář",
   "@calendar": {},
@@ -887,5 +887,17 @@
   "self_exam_how_it_went_finding_male": "Něco jsem našel",
   "@self_exam_how_it_went_finding_male": {},
   "terms_and_conditions": "Podmínky užívání aplikace",
-  "@terms_and_conditions": {}
+  "@terms_and_conditions": {},
+  "self_examination_rewards": "Odměny za samovyšetření",
+  "@self_examination_rewards": {},
+  "self_examination_reward_description_start": "Za každé samovyšetření získáš v základu ",
+  "@self_examination_reward_description_start": {},
+  "self_examination_reward_description_end": " Loono bodů. Za každé třetí samovyšetření dostaneš nový štít.",
+  "@self_examination_reward_description_end": {},
+  "no_findings_progress_header": "Jsi zase o krok dál",
+  "@no_findings_progress_header": {},
+  "no_findings_progress_desc": "Pokračuj dál v samovyšetřování a získáš další odměny.",
+  "@no_findings_progress_desc": {},
+  "your_progress": "Tvůj progres",
+  "@your_progress": {}
 }

@@ -86,7 +86,7 @@ extension CategorizedExaminationListExt on List<CategorizedExamination> {
     if (isEmpty) return;
     first.category.whenOrNull(
       scheduledSoonOrOverdue: () =>
-          sort((a, b) => b.examination.plannedDate!.compareTo(a.examination.plannedDate!)),
+          sort((a, b) => a.examination.plannedDate!.compareTo(b.examination.plannedDate!)),
       newToSchedule: () => sort((a, b) {
         if (a.examination.lastConfirmedDate == null || b.examination.lastConfirmedDate == null) {
           return -1;

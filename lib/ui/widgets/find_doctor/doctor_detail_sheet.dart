@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/simple_health_care_provider_helper.dart';
@@ -115,6 +116,9 @@ class DoctorDetailSheet extends StatelessWidget {
                               );
                               if (await canLaunch(phoneLaunchUri.toString())) {
                                 await launch(phoneLaunchUri.toString());
+                                await registry
+                                    .get<FirebaseAnalytics>()
+                                    .logEvent(name: 'ContactDoctorPhoneAction');
                               }
                             },
                           ),
@@ -130,6 +134,9 @@ class DoctorDetailSheet extends StatelessWidget {
                             );
                             if (await canLaunch(emailLaunchUri.toString())) {
                               await launch(emailLaunchUri.toString());
+                              await registry
+                                  .get<FirebaseAnalytics>()
+                                  .logEvent(name: 'ContactDoctorEmailAction');
                             }
                           },
                         ),

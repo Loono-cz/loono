@@ -1,11 +1,13 @@
 import 'package:device_calendar/device_calendar.dart';
 import 'package:drift/drift.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/services/calendar_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
+import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:timezone/timezone.dart' as tz;
 
@@ -60,6 +62,7 @@ class CalendarRepository {
           date: startingDate,
         );
         await _db.calendarEvents.addOrUpdateEvent(dbEvent);
+        await registry.get<FirebaseAnalytics>().logEvent(name: 'AddVisitToCalendar');
         return true;
       }
     }
@@ -85,6 +88,7 @@ class CalendarRepository {
           examinationType,
           calendarEventsCompanion: CalendarEventsCompanion(date: Value(newDate)),
         );
+        await registry.get<FirebaseAnalytics>().logEvent(name: 'UpdateVisitInCalendar');
       } else {
         debugPrint(
           'DEBUG: there was an "existingDbCalendarEvent" but it was not updated in the device calendar',
@@ -101,6 +105,7 @@ class CalendarRepository {
         calendarId: existingDbEvent.deviceCalendarId,
         eventId: existingDbEvent.calendarEventId,
       );
+      await registry.get<FirebaseAnalytics>().logEvent(name: 'RemoveVisitFromCalendar');
       if (!result) {
         debugPrint(
           'DEBUG: there was an "existingDbCalendarEvent" but it was not removed from the device calendar',

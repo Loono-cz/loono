@@ -51,15 +51,20 @@ void showHowItWentSheet(
                     b.result = SelfExaminationResultResultEnum.OK;
                   }),
                 );
-                await apiRes.whenOrNull(
-                  success: (data) async =>
-                      userRepository.updateCurrentUserFromSelfExamCompletion(data),
-                );
                 unawaited(
                   Provider.of<ExaminationsProvider>(context, listen: false).fetchExaminations(),
                 );
-                await AutoRouter.of(context)
-                    .popAndPush(NoFindingRoute(points: selfExamination.points));
+                await apiRes.whenOrNull(
+                  success: (data) async {
+                    await userRepository.updateCurrentUserFromSelfExamCompletion(data);
+                    await AutoRouter.of(context).popAndPush(
+                      NoFindingRoute(
+                        points: selfExamination.points,
+                        history: selfExamination.history,
+                      ),
+                    );
+                  },
+                );
               },
             ),
             const SizedBox(height: 20),
