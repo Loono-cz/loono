@@ -1,6 +1,8 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/map_variables.dart';
+import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/map_state_sevice.dart';
 import 'package:loono/ui/widgets/find_doctor/search_doctor_card.dart';
 import 'package:loono_api/loono_api.dart';
@@ -19,8 +21,12 @@ class MapSheetOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mapState = context.watch<MapStateService>();
+    final currHealthcareProviders = mapState.currHealthcareProviders;
 
-    if (mapState.currHealthcareProviders.isNotEmpty) {
+    if (currHealthcareProviders.isNotEmpty) {
+      if (!mapState.onMoveMapFilteringBlocked && currHealthcareProviders.length > 1000) {
+        return const SizedBox.shrink();
+      }
       return DraggableScrollableSheet(
         initialChildSize: MapVariables.MIN_SHEET_SIZE,
         minChildSize: MapVariables.MIN_SHEET_SIZE,
@@ -37,9 +43,9 @@ class MapSheetOverlay extends StatelessWidget {
             ),
             child: ListView.builder(
               controller: scrollController,
-              itemCount: mapState.currHealthcareProviders.length,
+              itemCount: currHealthcareProviders.length,
               itemBuilder: (context, index) {
-                final item = mapState.currHealthcareProviders[index];
+                final item = currHealthcareProviders[index];
 
                 return ListTile(
                   title: Column(
@@ -87,6 +93,20 @@ class MapSheetOverlay extends StatelessWidget {
         },
       );
     }
-    return const SizedBox.shrink();
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: Flushbar<dynamic>(
+          isDismissible: false,
+          message: context.l10n.map_no_doctors_around_info_message,
+          messageColor: LoonoColors.black,
+          backgroundColor: LoonoColors.primaryWashed,
+          flushbarStyle: FlushbarStyle.FLOATING,
+          flushbarPosition: FlushbarPosition.BOTTOM,
+          borderRadius: BorderRadius.circular(5),
+        ),
+      ),
+    );
   }
 }

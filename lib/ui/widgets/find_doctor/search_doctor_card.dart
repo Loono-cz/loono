@@ -42,16 +42,20 @@ class SearchDoctorCard extends StatelessWidget {
                           maxLines: 3,
                         ),
                       ),
-                    const SizedBox(width: 8),
-                    SvgPicture.asset(
-                      'assets/icons/telephone.svg',
-                      color: LoonoColors.grey,
-                    ),
-                    const SizedBox(width: 8),
-                    SvgPicture.asset(
-                      'assets/icons/at.svg',
-                      color: LoonoColors.grey,
-                    ),
+                    // TODO: display icon if they have contact
+                    // ignore: dead_code
+                    if (false) ...[
+                      const SizedBox(width: 8),
+                      SvgPicture.asset(
+                        'assets/icons/telephone.svg',
+                        color: LoonoColors.grey,
+                      ),
+                      const SizedBox(width: 8),
+                      SvgPicture.asset(
+                        'assets/icons/at.svg',
+                        color: LoonoColors.grey,
+                      ),
+                    ],
                   ],
                 ),
                 Padding(
