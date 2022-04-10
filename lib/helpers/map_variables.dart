@@ -10,7 +10,7 @@ class MapVariables {
 
   static const MIN_SHEET_SIZE = 0.15;
 
-  static const MAX_SHEET_SIZE = 0.75;
+  static const MAX_SHEET_SIZE = 0.72;
 
   /// Prague, main train station
   static const LatLng INITIAL_COORDS = LatLng(50.08308000648528, 14.435443582943789);
