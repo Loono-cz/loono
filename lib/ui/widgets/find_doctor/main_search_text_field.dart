@@ -20,7 +20,9 @@ class SearchTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const iconWidth = 24.0;
-    const inputBorder = OutlineInputBorder();
+    const inputBorder = OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+    );
     final specialization =
         context.select<MapStateService, SearchResult?>((value) => value.currSpecialization);
 
@@ -35,8 +37,9 @@ class SearchTextField extends StatelessWidget {
         },
         autofocus: false,
         readOnly: true,
-        textAlignVertical: TextAlignVertical.bottom,
+        textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(
+          isDense: true,
           border: customSearchInputDecoration(
             color: LoonoColors.primaryEnabled,
             inputBorder: inputBorder,
@@ -56,11 +59,27 @@ class SearchTextField extends StatelessWidget {
           hintText: specialization == null
               ? context.l10n.find_doctor_search_hint
               : specialization.overriddenText ?? '',
-          suffixIconConstraints: getSearchIconConstraints(iconSize: iconWidth),
-          prefixIconConstraints: getSearchIconConstraints(iconSize: iconWidth),
-          prefixIcon: const SearchTextFieldIcon(),
+          hintStyle: specialization == null
+              ? LoonoFonts.fontStyle.copyWith(color: LoonoColors.grey)
+              : LoonoFonts.fontStyle,
+          suffixIconConstraints: const BoxConstraints(
+            minWidth: iconWidth,
+            minHeight: iconWidth,
+            maxHeight: iconWidth,
+            maxWidth: iconWidth + 10,
+          ),
+          prefixIconConstraints: const BoxConstraints(
+            minWidth: iconWidth,
+            minHeight: iconWidth,
+            maxHeight: iconWidth,
+            maxWidth: iconWidth + 10,
+          ),
+          prefixIcon: const Padding(
+            padding: EdgeInsets.only(bottom: 3, left: 10),
+            child: SearchTextFieldIcon(),
+          ),
           suffixIcon: specialization == null
-              ? null
+              ? const SizedBox.shrink()
               : GestureDetector(
                   onTap: () => context.read<MapStateService>().setSpecialization(null),
                   child: const SearchTextFieldIcon(

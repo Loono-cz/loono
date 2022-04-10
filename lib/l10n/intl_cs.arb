@@ -899,5 +899,9 @@
   "no_findings_progress_desc": "Pokračuj dál v samovyšetřování a získáš další odměny.",
   "@no_findings_progress_desc": {},
   "your_progress": "Tvůj progres",
-  "@your_progress": {}
+  "@your_progress": {},
+  "find_doctor_spec_sheet_header": "Odbornosti",
+  "@find_doctor_spec_sheet_header": {},
+  "map_no_doctors_around_info_message": "Žádní lékaři ve vybrané oblasti, oddal si mapu",
+  "@map_no_doctors_around_info_message": {}
 }

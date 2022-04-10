@@ -20,6 +20,8 @@ class MapStateService with ChangeNotifier {
 
   final List<SimpleHealthcareProvider> _currHealthcareProviders = <SimpleHealthcareProvider>[];
 
+  final List<SearchResult> _allSpecs = <SearchResult>[];
+
   final Set<Marker> _markers = <Marker>{};
 
   SimpleHealthcareProvider? doctorDetail;
@@ -31,6 +33,8 @@ class MapStateService with ChangeNotifier {
   List<SearchResult> searchResults = <SearchResult>[];
 
   List<SimpleHealthcareProvider> get allHealthcareProviders => _allHealthcareProviders;
+
+  List<SearchResult> get allSpecs => _allSpecs;
 
   bool onMoveMapFilteringBlocked = false;
 
@@ -69,6 +73,7 @@ class MapStateService with ChangeNotifier {
     _allHealthcareProviders.addAll(healthcareProviders);
     clusterManager.setItems(allHealthcareProviders.map((e) => HealthcareItemPlace(e)).toList());
     applyFilter();
+    _setSpecializations();
     notifyListeners();
   }
 
@@ -93,13 +98,13 @@ class MapStateService with ChangeNotifier {
         uniqueCitiesMap[healthcareProvider.city] = healthcareProvider;
       }
 
-      bool matchesQuery(String specialization) =>
+      bool matchesSpecQuery(String specialization) =>
           removeDiacritics(specialization).toLowerCase().contains(normalizedQuery);
       final specializations = healthcareProvider.category;
       final hasSpecializationMatch =
-          specializations.isNotEmpty ? specializations.any(matchesQuery) : false;
+          specializations.isNotEmpty ? specializations.any(matchesSpecQuery) : false;
       if (hasSpecializationMatch) {
-        final matchedSpecs = specializations.where(matchesQuery);
+        final matchedSpecs = specializations.where(matchesSpecQuery);
         for (final spec in matchedSpecs) {
           uniqueSpecializationsMap[spec] = healthcareProvider;
         }
@@ -145,6 +150,38 @@ class MapStateService with ChangeNotifier {
   void clearSearchResults() {
     searchResults.clear();
     notifyListeners();
+  }
+
+  SearchResult? getSpecSearchResultByName(String specName) {
+    final matched = _allHealthcareProviders.firstWhereOrNull(
+      (e) => e.category.any(
+        (spec) =>
+            removeDiacritics(spec).toLowerCase().contains(removeDiacritics(specName.toLowerCase())),
+      ),
+    );
+    if (matched != null) {
+      return SearchResult(
+        data: matched,
+        searchType: SearchType.specialization,
+        overriddenText: specName,
+      );
+    }
+    return null;
+  }
+
+  void _setSpecializations() {
+    final uniqueSpecializationsMap = <String, SearchResult>{};
+    for (final healthcareProvider in _allHealthcareProviders) {
+      final specializations = healthcareProvider.category;
+      for (final spec in specializations) {
+        uniqueSpecializationsMap[spec] = SearchResult(
+          data: healthcareProvider,
+          searchType: SearchType.specialization,
+          overriddenText: spec,
+        );
+      }
+    }
+    _allSpecs.replaceRange(0, _allSpecs.length, uniqueSpecializationsMap.values);
   }
 
   void applyFilter() {

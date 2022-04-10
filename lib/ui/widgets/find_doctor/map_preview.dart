@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:loono/helpers/map_variables.dart';
 import 'package:loono/models/healthcare_item_place.dart';
@@ -63,7 +64,7 @@ class MapPreview extends StatelessWidget {
             );
           },
           backgroundColor: Colors.white,
-          child: const Icon(Icons.my_location, color: Colors.black87),
+          child: SvgPicture.asset('assets/icons/navigation.svg'),
         ),
       ),
     );

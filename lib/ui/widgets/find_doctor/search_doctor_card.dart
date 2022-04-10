@@ -23,9 +23,20 @@ class SearchDoctorCard extends StatelessWidget {
       elevation: 0.0,
       child: InkWell(
         onTap: onTap,
-        child: SizedBox(
+        child: Container(
           width: MediaQuery.of(context).size.width,
           height: 165.0,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            gradient: const LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Colors.white,
+                LoonoColors.greenLight,
+              ],
+            ),
+          ),
           child: Padding(
             padding: const EdgeInsets.only(top: 16, left: 12, right: 12, bottom: 16),
             child: Column(
@@ -42,16 +53,20 @@ class SearchDoctorCard extends StatelessWidget {
                           maxLines: 3,
                         ),
                       ),
-                    const SizedBox(width: 8),
-                    SvgPicture.asset(
-                      'assets/icons/telephone.svg',
-                      color: LoonoColors.grey,
-                    ),
-                    const SizedBox(width: 8),
-                    SvgPicture.asset(
-                      'assets/icons/at.svg',
-                      color: LoonoColors.grey,
-                    ),
+                    // TODO: display icon if they have contact
+                    // ignore: dead_code
+                    if (false) ...[
+                      const SizedBox(width: 8),
+                      SvgPicture.asset(
+                        'assets/icons/telephone.svg',
+                        color: LoonoColors.grey,
+                      ),
+                      const SizedBox(width: 8),
+                      SvgPicture.asset(
+                        'assets/icons/at.svg',
+                        color: LoonoColors.grey,
+                      ),
+                    ],
                   ],
                 ),
                 Padding(

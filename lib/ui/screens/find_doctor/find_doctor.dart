@@ -12,6 +12,7 @@ import 'package:loono/ui/widgets/find_doctor/bottom_sheet_overlay.dart';
 import 'package:loono/ui/widgets/find_doctor/doctor_detail_sheet.dart';
 import 'package:loono/ui/widgets/find_doctor/main_search_text_field.dart';
 import 'package:loono/ui/widgets/find_doctor/map_preview.dart';
+import 'package:loono/ui/widgets/find_doctor/specialization_chips_list.dart';
 import 'package:loono/utils/map_utils.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
@@ -67,6 +68,8 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
   Widget build(BuildContext context) {
     final currDoctorDetail =
         context.select<MapStateService, SimpleHealthcareProvider?>((value) => value.doctorDetail);
+    final currSpec =
+        context.select<MapStateService, SearchResult?>((value) => value.currSpecialization);
 
     return Scaffold(
       appBar: widget.cancelRouteName != null
@@ -94,22 +97,29 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
             return Stack(
               children: [
                 MapPreview(mapController: _mapController),
-                if (_isHealthCareProvidersInMapService)
-                  SearchTextField(
-                    onItemTap: (searchResult) async {
-                      final provider = searchResult.data;
-                      if (provider == null) return;
-                      await animateToPos(
-                        _mapController,
-                        cameraPosition: CameraPosition(
-                          target: LatLng(provider.lat, provider.lng),
-                          zoom: searchResult.zoomLevel,
+                if (_isHealthCareProvidersInMapService) ...[
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Column(
+                      children: [
+                        SearchTextField(
+                          onItemTap: (searchResult) async {
+                            final provider = searchResult.data;
+                            if (provider == null) return;
+                            await animateToPos(
+                              _mapController,
+                              cameraPosition: CameraPosition(
+                                target: LatLng(provider.lat, provider.lng),
+                                zoom: searchResult.zoomLevel,
+                              ),
+                            );
+                            _sheetController.jumpTo(MapVariables.MIN_SHEET_SIZE);
+                          },
                         ),
-                      );
-                      _sheetController.jumpTo(MapVariables.MIN_SHEET_SIZE);
-                    },
+                        SpecializationChipsList(showDefaultSpecs: currSpec == null),
+                      ],
+                    ),
                   ),
-                if (_isHealthCareProvidersInMapService)
                   MapSheetOverlay(
                     onItemTap: (healthcareProvider) async => animateToPos(
                       _mapController,
@@ -120,6 +130,7 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                     ),
                     sheetController: _sheetController,
                   ),
+                ],
                 if (!_isHealthCareProvidersInMapService)
                   if (healthcareSyncState == HealtCareSyncState.error)
                     _buildErrorIndicator()
