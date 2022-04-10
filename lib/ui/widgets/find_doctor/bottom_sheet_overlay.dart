@@ -70,7 +70,7 @@ class MapSheetOverlay extends StatelessWidget {
                             Align(
                               alignment: Alignment.centerRight,
                               child: Text(
-                                '${mapState.onMoveMapFilteringBlocked ? 'vybraní doktoři' : 'doktorů v okolí'}: ${mapState.currHealthcareProviders.length}',
+                                '${mapState.onMoveMapFilteringBlocked ? 'vybraní lékaři' : 'lékařů v okolí'}: ${mapState.currHealthcareProviders.length}',
                                 style: const TextStyle(color: Colors.white),
                               ),
                             ),
@@ -94,7 +94,7 @@ class MapSheetOverlay extends StatelessWidget {
       );
     }
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.fromLTRB(8, 8, 8, 50),
       child: Align(
         alignment: Alignment.bottomCenter,
         child: Flushbar<dynamic>(

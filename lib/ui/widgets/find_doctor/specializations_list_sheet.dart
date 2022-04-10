@@ -56,9 +56,7 @@ Future<void> showSpecializationsListSheet(BuildContext context) async {
                         backgroundColor: Colors.transparent,
                         shadowColor: Colors.transparent,
                         onPressed: () {
-                          context
-                              .read<MapStateService>()
-                              .setSpecialization(allSpecializations[index]);
+                          context.read<MapStateService>().setSpecialization(spec);
                           AutoRouter.of(context).pop();
                         },
                       ),
