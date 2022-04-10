@@ -14,10 +14,6 @@ class _AboutHealthScreenState extends State<AboutHealthScreen> {
   InAppWebViewController? webViewController;
 
   final initialUri = Uri.parse('https://www.loono.cz/objevuj-prevenci');
-  final initialCss = '#footer {display: none;}'
-      '#header {display: none;} '
-      '#main {padding-top: 0;}'
-      '.preventivka-hero {top: 0;}';
   final allowedUrlsWhitelist = ['open.spotify.com', 'www.loono.cz'];
   final openInBrowserWhitelist = ['spotify.link', 'www.youtube.com'];
 
@@ -38,11 +34,6 @@ class _AboutHealthScreenState extends State<AboutHealthScreen> {
             onWebViewCreated: (controller) {
               webViewController = controller;
             },
-            onLoadStop: (controller, uri) {
-              controller.injectCSSCode(
-                source: initialCss,
-              );
-            },
             initialUrlRequest: URLRequest(
               url: initialUri,
             ),
@@ -50,6 +41,7 @@ class _AboutHealthScreenState extends State<AboutHealthScreen> {
               crossPlatform: InAppWebViewOptions(
                 useShouldOverrideUrlLoading: true,
                 mediaPlaybackRequiresUserGesture: false,
+                userAgent: 'ma-preventivka',
               ),
               android: AndroidInAppWebViewOptions(
                 useHybridComposition: useHybridComposition(),
