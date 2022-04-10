@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/services/examinations_service.dart';
+import 'package:loono/services/webview_service.dart';
 import 'package:loono/ui/screens/about_health/about_health.dart';
 import 'package:loono/ui/screens/find_doctor/find_doctor.dart';
 import 'package:loono/ui/screens/prevention/prevention.dart';
@@ -33,7 +34,7 @@ class _MainScreenState extends State<MainScreen> {
   static final List<Widget> _pages = <Widget>[
     PreventionScreen(),
     const FindDoctorScreen(),
-    const AboutHealthScreen(),
+    AboutHealthScreen(),
   ];
 
   final analyticsTabNames = ['PreventionTab', 'FindDoctorTab', 'ExploreSectionTab'];
@@ -97,8 +98,15 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      /// index 2 has its own WillPopScope for webview navigation. This prevents pop event override
-      onWillPop: _selectedIndex == 2 ? null : () async => false,
+      onWillPop: () async {
+        final webViewController = context.read<WebViewProvider>().webViewController;
+        if (_selectedIndex == 2 &&
+            webViewController != null &&
+            await webViewController.canGoBack()) {
+          await webViewController.goBack();
+        }
+        return false;
+      },
       child: Scaffold(
         body: _pages.elementAt(_selectedIndex),
         bottomNavigationBar: CustomNavigationBar(
