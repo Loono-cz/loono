@@ -27,6 +27,7 @@ class UpdateProfileScreen extends StatelessWidget {
   final _usersDao = registry.get<DatabaseService>().users;
 
   final termsUrl = 'https://www.loono.cz/podminky-uzivani-mobilni-aplikace';
+  final privacyUrl = 'https://www.loono.cz/zasady-ochrany-osobnich-udaju-mobilni-aplikace';
 
   String _getUserSexValue(BuildContext context, {required Sex? sex}) {
     if (sex == null) return '';
@@ -148,8 +149,10 @@ class UpdateProfileScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 32.0),
                         TextButton(
-                          onPressed: () {
-                            // TODO: Show 'Ochrana osobních údajů'
+                          onPressed: () async {
+                            if (await canLaunch(privacyUrl)) {
+                              await launch(privacyUrl);
+                            }
                           },
                           child: Text(
                             context.l10n.update_profile_privacy_action,
