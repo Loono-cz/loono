@@ -27,7 +27,9 @@ class PreAuthMainScreen extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async {
         final webViewController = context.read<WebViewProvider>().webViewController;
-        if (webViewController != null && await webViewController.canGoBack()) {
+        if (AutoRouter.of(context).isRouteActive(AboutHealthRoute.name) &&
+            webViewController != null &&
+            await webViewController.canGoBack()) {
           await webViewController.goBack();
         }
         return false;
