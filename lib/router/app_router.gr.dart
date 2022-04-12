@@ -10,11 +10,12 @@
 //
 // ignore_for_file: type=lint
 
+import 'dart:typed_data' as _i60;
+
 import 'package:auto_route/auto_route.dart' as _i14;
 import 'package:built_collection/built_collection.dart' as _i64;
 import 'package:flutter/material.dart' as _i54;
 import 'package:loono_api/loono_api.dart' as _i58;
-import 'package:moor/moor.dart' as _i60;
 
 import '../helpers/examination_category.dart' as _i63;
 import '../models/categorized_examination.dart' as _i62;
@@ -202,8 +203,10 @@ class AppRouter extends _i14.RootStackRouter {
               key: args.key, forceRoute: args.forceRoute));
     },
     AboutHealthRoute.name: (routeData) {
+      final args = routeData.argsAs<AboutHealthRouteArgs>(
+          orElse: () => const AboutHealthRouteArgs());
       return _i14.MaterialPageX<void>(
-          routeData: routeData, child: const _i18.AboutHealthScreen());
+          routeData: routeData, child: _i18.AboutHealthScreen(key: args.key));
     },
     StartNewQuestionnaireRoute.name: (routeData) {
       return _i14.MaterialPageX<void>(
@@ -1036,10 +1039,23 @@ class PreAuthPreventionWrapperRouteArgs {
 
 /// generated route for
 /// [_i18.AboutHealthScreen]
-class AboutHealthRoute extends _i14.PageRouteInfo<void> {
-  const AboutHealthRoute() : super(AboutHealthRoute.name, path: 'about-health');
+class AboutHealthRoute extends _i14.PageRouteInfo<AboutHealthRouteArgs> {
+  AboutHealthRoute({_i54.Key? key})
+      : super(AboutHealthRoute.name,
+            path: 'about-health', args: AboutHealthRouteArgs(key: key));
 
   static const String name = 'AboutHealthRoute';
+}
+
+class AboutHealthRouteArgs {
+  const AboutHealthRouteArgs({this.key});
+
+  final _i54.Key? key;
+
+  @override
+  String toString() {
+    return 'AboutHealthRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
