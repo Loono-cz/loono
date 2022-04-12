@@ -2,6 +2,7 @@ import 'dart:io' show Platform;
 
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
@@ -17,12 +18,16 @@ import 'package:loono/services/auth/failures.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
 import 'package:loono/ui/widgets/social_login_button.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class OnboardingFormDoneScreen extends StatelessWidget {
   OnboardingFormDoneScreen({Key? key}) : super(key: key);
 
   final _authService = registry.get<AuthService>();
   final _userRepository = registry.get<UserRepository>();
+
+  final termsUrl = 'https://www.loono.cz/podminky-uzivani-mobilni-aplikace';
+  final privacyUrl = 'https://www.loono.cz/zasady-ochrany-osobnich-udaju-mobilni-aplikace';
 
   @override
   Widget build(BuildContext context) {
@@ -131,9 +136,31 @@ class OnboardingFormDoneScreen extends StatelessWidget {
                   text: context.l10n.by_logging_in_you_agree_to_the_terms_of_privacy,
                   children: [
                     TextSpan(
-                      text:
-                          ' ${context.l10n.by_logging_in_you_agree_to_the_terms_of_privacy_highlight}',
+                      text: context.l10n.by_logging_in_you_agree_to_the_terms_highlight,
                       style: LoonoFonts.fontStyle.copyWith(decoration: TextDecoration.underline),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () async {
+                          if (await canLaunch(termsUrl)) {
+                            await launch(
+                              termsUrl,
+                            );
+                          }
+                        },
+                    ),
+                    TextSpan(
+                      text: ' ${context.l10n.examination_detail_rewards_get_badge_2} ',
+                    ),
+                    TextSpan(
+                      text: context.l10n.by_logging_in_you_agree_to_the_privacy_highlight,
+                      style: LoonoFonts.fontStyle.copyWith(decoration: TextDecoration.underline),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () async {
+                          if (await canLaunch(privacyUrl)) {
+                            await launch(
+                              privacyUrl,
+                            );
+                          }
+                        },
                     ),
                   ],
                 ),
