@@ -28,6 +28,7 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
           newDate: date,
           uuid: examination.examination.uuid,
           firstExam: false,
+          status: examination.examination.state,
         );
     await response.map(
       success: (res) async {
