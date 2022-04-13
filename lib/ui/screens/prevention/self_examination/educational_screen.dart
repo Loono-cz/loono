@@ -62,7 +62,9 @@ class EducationalVideoScreen extends StatelessWidget {
                     selfExamination.calculateStatus() == const SelfExaminationCategory.first())
                   LoonoButton(
                     key: const Key('educationalVideoPage_btn_selfExamPerformed'),
-                    text: context.l10n.self_examination_educational_button,
+                    text: sex == Sex.MALE
+                        ? context.l10n.self_examination_done_male
+                        : context.l10n.self_examination_done_female,
                     onTap: () async {
                       await AutoRouter.of(context).pop();
                       showHowItWentSheet(context, sex, selfExamination);
