@@ -135,8 +135,6 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
       );
     }
 
-    //print(widget.categorizedExamination.examination);
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
