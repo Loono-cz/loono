@@ -98,7 +98,7 @@ class _OnBoardingBirthdateScreenState extends State<OnBoardingBirthdateScreen> {
                 text: context.l10n.continue_info,
                 onTap: () async {
                   if (selectedDate != null) {
-                    if (_calculateAge(selectedDate!) >= 19) {
+                    if (_calculateAge(selectedDate!) >= 18) {
                       await registry.get<UserRepository>().updateDateOfBirth(
                             DateWithoutDay(
                               month: monthFromInt(selectedDate!.month),
@@ -108,7 +108,7 @@ class _OnBoardingBirthdateScreenState extends State<OnBoardingBirthdateScreen> {
                     } else {
                       showFlushBarError(
                         context,
-                        'Prevence je zatím pro starší 19 let',
+                        'Prevence je zatím pro starší 18 let',
                         sync: false,
                       );
                     }

@@ -21,8 +21,8 @@ class SearchDoctorCard extends StatelessWidget {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       elevation: 0.0,
-      child: InkWell(
-        onTap: onTap,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10.0),
         child: Container(
           width: MediaQuery.of(context).size.width,
           height: 165.0,
@@ -37,57 +37,63 @@ class SearchDoctorCard extends StatelessWidget {
               ],
             ),
           ),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 16, left: 12, right: 12, bottom: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: onTap,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 16, left: 12, right: 12, bottom: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (_specialization != null)
-                      Expanded(
-                        child: Text(
-                          _specialization.toUpperCase(),
-                          style: LoonoFonts.cardSubtitle.copyWith(color: LoonoColors.grey),
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 3,
-                        ),
+                    Row(
+                      children: [
+                        if (_specialization != null)
+                          Expanded(
+                            child: Text(
+                              _specialization.toUpperCase(),
+                              style: LoonoFonts.cardSubtitle.copyWith(color: LoonoColors.grey),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 3,
+                            ),
+                          ),
+                        // TODO: display icon if they have contact
+                        // ignore: dead_code
+                        if (false) ...[
+                          const SizedBox(width: 8),
+                          SvgPicture.asset(
+                            'assets/icons/telephone.svg',
+                            color: LoonoColors.grey,
+                          ),
+                          const SizedBox(width: 8),
+                          SvgPicture.asset(
+                            'assets/icons/at.svg',
+                            color: LoonoColors.grey,
+                          ),
+                        ],
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: Text(
+                        item.title,
+                        style: LoonoFonts.cardTitle.copyWith(color: LoonoColors.secondaryFont),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
                       ),
-                    // TODO: display icon if they have contact
-                    // ignore: dead_code
-                    if (false) ...[
-                      const SizedBox(width: 8),
-                      SvgPicture.asset(
-                        'assets/icons/telephone.svg',
-                        color: LoonoColors.grey,
-                      ),
-                      const SizedBox(width: 8),
-                      SvgPicture.asset(
-                        'assets/icons/at.svg',
-                        color: LoonoColors.grey,
-                      ),
-                    ],
+                    ),
+                    const Spacer(),
+                    Text(
+                      '${item.getStreet()} ${item.houseNumber}',
+                      style: LoonoFonts.cardAddress,
+                    ),
+                    Text(
+                      '${item.city}, ${item.getFormattedPostalCode()}',
+                      style: LoonoFonts.cardAddress,
+                    ),
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  child: Text(
-                    item.title,
-                    style: LoonoFonts.cardTitle.copyWith(color: LoonoColors.secondaryFont),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                  ),
-                ),
-                const Spacer(),
-                Text(
-                  '${item.getStreet()} ${item.houseNumber}',
-                  style: LoonoFonts.cardAddress,
-                ),
-                Text(
-                  '${item.city}, ${item.getFormattedPostalCode()}',
-                  style: LoonoFonts.cardAddress,
-                ),
-              ],
+              ),
             ),
           ),
         ),
