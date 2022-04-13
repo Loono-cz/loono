@@ -905,5 +905,7 @@
   "find_doctor_spec_sheet_header": "Odbornosti",
   "@find_doctor_spec_sheet_header": {},
   "map_no_doctors_around_info_message": "Žádní lékaři ve vybrané oblasti, oddal si mapu",
-  "@map_no_doctors_around_info_message": {}
+  "@map_no_doctors_around_info_message": {},
+  "unsupported_interval": "Neplatný datum",
+  "@unsupported_interval": {}
 }

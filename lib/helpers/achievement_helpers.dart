@@ -72,7 +72,7 @@ String getAchievementAssetPath(ExaminationType type) {
       name = 'boots_level_1.svg';
       break;
     case ExaminationType.ULTRASOUND_BREAST:
-      // TODO: Handle this case.
+      name = 'armour_level_1.svg';
       break;
     case ExaminationType.UROLOGIST:
       name = 'belt_level_1.svg';

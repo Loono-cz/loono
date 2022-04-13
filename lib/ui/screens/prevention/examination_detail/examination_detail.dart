@@ -100,7 +100,8 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
     final lastVisitDateWithoutDay =
         widget.categorizedExamination.examination.lastConfirmedDate?.toLocal();
 
-    final lastVisit = lastVisitDateWithoutDay != null
+    final lastVisit = lastVisitDateWithoutDay != null &&
+            widget.categorizedExamination.examination.state != ExaminationStatus.UNKNOWN
         ? DateFormat.yMMMM('cs-CZ').format(
             DateTime(lastVisitDateWithoutDay.year, lastVisitDateWithoutDay.month),
           )
@@ -133,6 +134,8 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
         },
       );
     }
+
+    //print(widget.categorizedExamination.examination);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
