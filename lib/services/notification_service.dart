@@ -34,6 +34,9 @@ class NotificationService {
           .singleWhereOrNull((element) => element.key == 'examinationType')
           ?.value
           .toString();
+
+      if (notificationExaminationType == null) return;
+
       await registry.get<ApiService>().getExaminations().then((res) {
         res.map(
           success: (exams) {
