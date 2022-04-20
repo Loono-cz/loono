@@ -91,6 +91,7 @@ class _MainScreenState extends State<MainScreen> {
         ],
         bottomNavigationBuilder: (_, tabsRouter) {
           return CustomNavigationBar(
+            key: const Key('mainScreenPage_bottomNavBar'),
             currentIndex: tabsRouter.activeIndex,
             onTap: (index) async {
               await registry
