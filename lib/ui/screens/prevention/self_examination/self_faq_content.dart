@@ -41,7 +41,69 @@ List<SelfFAQPair> selfFaqContent(BuildContext context, SelfExaminationType type)
               Text(texts.self_faq_testicular_steps_question),
             ],
           ),
-          answer: const Text('TODO: dodat texty'),
+          answer: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                texts.self_faq_testicular_steps_answer_part_1,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(
+                texts.self_faq_testicular_steps_answer_part_2,
+              ),
+              Text(
+                texts.self_faq_testicular_steps_answer_part_3,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(
+                texts.self_faq_testicular_steps_answer_part_4,
+              ),
+              RichText(
+                text: TextSpan(
+                  text: '',
+                  style: DefaultTextStyle.of(context).style,
+                  children: [
+                    TextSpan(
+                      text: texts.self_faq_testicular_steps_answer_part_5,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    TextSpan(
+                      text: texts.self_faq_testicular_steps_answer_part_6,
+                    ),
+                    TextSpan(text: texts.self_faq_testicular_steps_answer_part_7),
+                    TextSpan(
+                      text: texts.self_faq_testicular_steps_answer_part_8,
+                      style: const TextStyle(decoration: TextDecoration.underline),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          // TODO: via this way it does not load smoothly
+                          AutoRouter.of(context).replaceAll([
+                            FindDoctorRoute(),
+                            MainRoute(selectedIndex: 1),
+                          ]);
+                        },
+                    ),
+                    TextSpan(text: texts.self_faq_testicular_steps_answer_part_9),
+                    TextSpan(
+                      text: LoonoStrings.contactEmail,
+                      style: const TextStyle(decoration: TextDecoration.underline),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () async {
+                          final emailLaunchUri = Uri(
+                            scheme: 'mailto',
+                            path: LoonoStrings.contactEmail,
+                          );
+                          if (await canLaunch(emailLaunchUri.toString())) {
+                            await launch(emailLaunchUri.toString());
+                          }
+                        },
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
         SelfFAQPair(
           question: Text(texts.self_faq_testicular_changes_question),
@@ -103,7 +165,7 @@ List<SelfFAQPair> selfFaqContent(BuildContext context, SelfExaminationType type)
               const SizedBox(
                 width: 6,
               ),
-              Text(texts.self_faq_testicular_steps_question),
+              Text(texts.self_faq_breast_steps_question),
             ],
           ),
           answer: Column(
