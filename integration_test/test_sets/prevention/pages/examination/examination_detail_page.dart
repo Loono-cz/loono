@@ -11,13 +11,14 @@ class ExaminationDetailPage {
   final WidgetTester tester;
 
   /// Page finders
-  final Finder somethingOnPage = find.byKey(const Key('page_widget_name'));
+  final Finder _somethingOnPage = find.byKey(const Key('page_widget_name'));
 
   /// Page methods
 
-  Future<void> clickSomeButton() async {
+  // ignore: unused_element
+  Future<void> _clickSomeButton() async {
     logTestEvent();
-    await tester.tap(somethingOnPage);
+    await tester.tap(_somethingOnPage);
     await tester.pumpAndSettle();
   }
 
