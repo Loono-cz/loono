@@ -91,23 +91,22 @@ class MapStateService with ChangeNotifier {
     final uniqueAddressesMap = <String, SimpleHealthcareProvider>{};
     final uniqueSpecializationsMap = <String, SimpleHealthcareProvider>{};
 
+    final specs = _allSpecs.map((spec) => spec.overriddenText).whereType<String>();
+    bool matchesSpecQuery(String specialization) =>
+        removeDiacritics(specialization).toLowerCase().contains(normalizedQuery);
+    final matchedSpecs = specs.where(matchesSpecQuery);
+    final anyHealthcareProvider = _allHealthcareProviders.firstOrNull;
+    if (anyHealthcareProvider != null) {
+      for (final spec in matchedSpecs) {
+        uniqueSpecializationsMap[spec] = anyHealthcareProvider;
+      }
+    }
+
     for (final healthcareProvider in _allHealthcareProviders) {
       final isCityMatching =
           removeDiacritics(healthcareProvider.city.toLowerCase()).contains(normalizedQuery);
       if (isCityMatching) {
         uniqueCitiesMap[healthcareProvider.city] = healthcareProvider;
-      }
-
-      bool matchesSpecQuery(String specialization) =>
-          removeDiacritics(specialization).toLowerCase().contains(normalizedQuery);
-      final specializations = healthcareProvider.category;
-      final hasSpecializationMatch =
-          specializations.isNotEmpty ? specializations.any(matchesSpecQuery) : false;
-      if (hasSpecializationMatch) {
-        final matchedSpecs = specializations.where(matchesSpecQuery);
-        for (final spec in matchedSpecs) {
-          uniqueSpecializationsMap[spec] = healthcareProvider;
-        }
       }
 
       final isAddressMatching = healthcareProvider.street == null
@@ -153,15 +152,10 @@ class MapStateService with ChangeNotifier {
   }
 
   SearchResult? getSpecSearchResultByName(String specName) {
-    final matched = _allHealthcareProviders.firstWhereOrNull(
-      (e) => e.category.any(
-        (spec) =>
-            removeDiacritics(spec).toLowerCase().contains(removeDiacritics(specName.toLowerCase())),
-      ),
-    );
+    final matched = _allSpecs.firstWhereOrNull((spec) => spec.overriddenText == specName);
     if (matched != null) {
       return SearchResult(
-        data: matched,
+        data: matched.data,
         searchType: SearchType.specialization,
         overriddenText: specName,
       );
