@@ -32,6 +32,6 @@ class LoginPage {
     logTestEvent();
     await tester.tap(createNewAccountBtn);
     await tester.pumpAndSettle();
-    await tester.pumpUntilNotVisible(createNewAccountBtn);
+    await tester.pumpUntilNotFound(createNewAccountBtn);
   }
 }

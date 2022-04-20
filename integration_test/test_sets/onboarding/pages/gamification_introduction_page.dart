@@ -23,6 +23,6 @@ class GamificationIntroductionPage {
 
   Future<void> verifyScreenIsShown() async {
     logTestEvent();
-    await tester.pumpUntilVisible(find.byType(GamificationIntroductionScreen));
+    await tester.pumpUntilFound(find.byType(GamificationIntroductionScreen));
   }
 }

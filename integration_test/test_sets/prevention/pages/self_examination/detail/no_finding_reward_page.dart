@@ -22,6 +22,6 @@ class NoFindingRewardPage {
 
   Future<void> verifyScreenIsShown() async {
     logTestEvent();
-    await tester.pumpUntilVisible(find.byType(NoFindingScreen));
+    await tester.pumpUntilFound(find.byType(NoFindingScreen));
   }
 }

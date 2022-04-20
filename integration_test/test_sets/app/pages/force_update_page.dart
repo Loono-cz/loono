@@ -21,6 +21,6 @@ class ForceUpdatePage {
 
   Future<void> verifyScreenIsShown() async {
     logTestEvent();
-    await tester.pumpUntilVisible(find.byType(ForceUpdateScreen));
+    await tester.pumpUntilFound(find.byType(ForceUpdateScreen));
   }
 }

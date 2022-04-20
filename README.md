@@ -12,6 +12,18 @@ Notes
   developers or might differ from the ones generated via the CodeMagic pipeline. We also commit them to
   avoid spending time and money when building the app on CodeMagic.
 
+### Mason templates
+- [Mason](https://pub.dev/packages/mason_cli) is Dart template generator which helps teams generate files quickly and consistently.
+- To install mason, run: `dart pub global activate mason_cli`
+- Currently used templates (bricks):
+    - pom_class - A template for generating Page Object Model (POM) class.
+- Then from the root of the project you can quickly make generate a file from a template:
+```
+mason get
+mason list
+mason make pom_class
+```
+
 ## App internalizations
 
 - Currently app supports only Czech language, all texts used within the app should be located in `lib/l10n/intl_cs.arb`. Supporting new languages can be made by adding new language arb file.

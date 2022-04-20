@@ -65,5 +65,5 @@ Future<void> run({
   await selfExaminationDetailPage.verifySelfExamFaqContentIsCollapsed(itemPosition: 1);
 
   await selfExaminationDetailPage.clickBackButton();
-  await tester.pumpUntilVisible(find.byType(PreventionScreen));
+  await tester.pumpUntilFound(find.byType(PreventionScreen));
 }

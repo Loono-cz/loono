@@ -17,6 +17,6 @@ class LogoutPage {
     logTestEvent();
     await tester.tap(loginBtn);
     await tester.pumpAndSettle();
-    await tester.pumpUntilNotVisible(find.byType(LogoutScreen));
+    await tester.pumpUntilNotFound(find.byType(LogoutScreen));
   }
 }

@@ -65,7 +65,7 @@ class DeleteAccountPage with SettingsFinders {
     logTestEvent();
     await tester.tap(yesBtnDeleteAccountDialog);
     await tester.pumpAndSettle();
-    await tester.pumpUntilNotVisible(yesBtnDeleteAccountDialog);
+    await tester.pumpUntilNotFound(yesBtnDeleteAccountDialog);
   }
 
   Future<void> clickCloseScreenButton() async {

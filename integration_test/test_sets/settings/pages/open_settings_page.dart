@@ -36,6 +36,6 @@ class OpenSettingsPage with SettingsFinders {
 
   Future<void> verifyScreenIsShown() async {
     logTestEvent();
-    await tester.pumpUntilVisible(find.byType(OpenSettingsScreen));
+    await tester.pumpUntilFound(find.byType(OpenSettingsScreen));
   }
 }
