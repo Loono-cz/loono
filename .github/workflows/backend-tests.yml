@@ -1,7 +1,7 @@
 name: Continuous Integration / Firebase Test Lab / backend
 on:
   schedule:
-    - cron: "0 6 * * *" # every day on 06:00 UTC
+    - cron: "0 4 * * *" # every day on 04:00 UTC
   workflow_dispatch: # can be triggered manually
 
 env:
@@ -93,7 +93,7 @@ jobs:
             --results-history-name="[backend] [dev] loonoapp" \
             --device model=${{ matrix.device-id }},version=${{ matrix.api-level }}
 
-      - name: Send Slack notification if tests have have failed
+      - name: Send Slack notification if tests have failed
         id: slack
         uses: slackapi/slack-github-action@v1.18.0
         if: failure() && steps.be-test.outcome != 'success'

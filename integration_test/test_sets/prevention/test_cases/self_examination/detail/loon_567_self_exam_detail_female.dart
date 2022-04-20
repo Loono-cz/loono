@@ -41,7 +41,7 @@ Future<void> run({
   await selfExaminationDetailPage.verifyScreenIsShown();
 
   selfExaminationDetailPage
-    ..verifyHeaderText('Samovyšetření prsu')
+    ..verifyHeaderText('Samovyšetření\nprsu')
     ..verifyImageIsShown()
     ..verifyIntervalText('JEDNOU ZA MĚSÍC')
     ..verifyRewardProgressBarIsShown()

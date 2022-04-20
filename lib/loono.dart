@@ -12,6 +12,7 @@ import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/examinations_service.dart';
 import 'package:loono/services/map_state_sevice.dart';
+import 'package:loono/services/webview_service.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:provider/provider.dart';
 
@@ -50,6 +51,7 @@ class Loono extends StatelessWidget {
           providers: [
             ChangeNotifierProvider<ExaminationsProvider>(create: (_) => ExaminationsProvider()),
             ChangeNotifierProvider<MapStateService>(create: (_) => MapStateService()),
+            ChangeNotifierProvider<WebViewProvider>(create: (_) => WebViewProvider()),
           ],
           child: MaterialApp.router(
             title: 'Preventivka',

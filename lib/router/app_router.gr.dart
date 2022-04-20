@@ -204,8 +204,10 @@ class AppRouter extends _i14.RootStackRouter {
               key: args.key, forceRoute: args.forceRoute));
     },
     AboutHealthRoute.name: (routeData) {
+      final args = routeData.argsAs<AboutHealthRouteArgs>(
+          orElse: () => const AboutHealthRouteArgs());
       return _i14.MaterialPageX<void>(
-          routeData: routeData, child: const _i18.AboutHealthScreen());
+          routeData: routeData, child: _i18.AboutHealthScreen(key: args.key));
     },
     StartNewQuestionnaireRoute.name: (routeData) {
       return _i14.MaterialPageX<void>(
@@ -1053,10 +1055,23 @@ class PreAuthPreventionWrapperRouteArgs {
 
 /// generated route for
 /// [_i18.AboutHealthScreen]
-class AboutHealthRoute extends _i14.PageRouteInfo<void> {
-  const AboutHealthRoute() : super(AboutHealthRoute.name, path: 'about-health');
+class AboutHealthRoute extends _i14.PageRouteInfo<AboutHealthRouteArgs> {
+  AboutHealthRoute({_i55.Key? key})
+      : super(AboutHealthRoute.name,
+            path: 'about-health', args: AboutHealthRouteArgs(key: key));
 
   static const String name = 'AboutHealthRoute';
+}
+
+class AboutHealthRouteArgs {
+  const AboutHealthRouteArgs({this.key});
+
+  final _i55.Key? key;
+
+  @override
+  String toString() {
+    return 'AboutHealthRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for

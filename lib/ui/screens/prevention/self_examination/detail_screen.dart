@@ -101,7 +101,7 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                               children: [
                                 const SizedBox(height: 18),
                                 Text(
-                                  selfExamination.type.l10n_name,
+                                  selfExamination.type.l10n_name.replaceFirst(' ', '\n'),
                                   key: const Key('selfExaminationDetailPage_text_header'),
                                   style: LoonoFonts.headerFontStyle.copyWith(
                                     color: LoonoColors.green,

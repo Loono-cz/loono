@@ -63,7 +63,8 @@ Future<void> setup({
   await dotenv.load(fileName: 'assets/.env');
 
   final defaultDioOptions = BaseOptions(
-    baseUrl: flavor == AppFlavors.dev ? 'https://app.devel.loono.cz' : 'https://app.prod.loono.cz',
+    baseUrl:
+        flavor == AppFlavors.dev ? 'https://app.devel.loono.cz/v1' : 'https://app.prod.loono.cz/v1',
     connectTimeout: 5000,
     receiveTimeout: 8000,
   );

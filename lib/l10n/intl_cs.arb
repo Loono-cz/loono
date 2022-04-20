@@ -109,10 +109,12 @@
   "@sign_in_with_apple": {},
   "sign_in_with_google_account": "Přihlásit pomocí Google účtu",
   "@sign_in_with_google_account": {},
-  "by_logging_in_you_agree_to_the_terms_of_privacy": "Přihlášením souhlasíš s",
+  "by_logging_in_you_agree_to_the_terms_of_privacy": "Přihlášením souhlasíš s ",
   "@by_logging_in_you_agree_to_the_terms_of_privacy": {},
-  "by_logging_in_you_agree_to_the_terms_of_privacy_highlight": "Podmínkami užívání a Zásadami zpracování osobních údajů",
-  "@by_logging_in_you_agree_to_the_terms_of_privacy_highlight": {},
+  "by_logging_in_you_agree_to_the_terms_highlight": "Podmínkami užívání",
+  "@by_logging_in_you_agree_to_the_terms_highlight": {},
+  "by_logging_in_you_agree_to_the_privacy_highlight": "Zásadami zpracování osobních údajů",
+  "@by_logging_in_you_agree_to_the_privacy_highlight": {},
   "login_header": "Vítej zpátky ve společnosti (ne)obyčejných hrdinů",
   "@login_header": {},
   "month_january": "Leden",
@@ -724,8 +726,6 @@
   "@checkup_reminder_toast": {},
   "something_went_wrong": "Něco se nepovedlo",
   "@something_went_wrong": {},
-  "self_examination_educational_button": "Vyšetřila jsem se",
-  "@self_examination_educational_button": {},
   "month": "měsíc",
   "@month": {},
   "next_self_examination": "Příští samovyšetření",
@@ -903,5 +903,7 @@
   "find_doctor_spec_sheet_header": "Odbornosti",
   "@find_doctor_spec_sheet_header": {},
   "map_no_doctors_around_info_message": "Žádní lékaři ve vybrané oblasti, oddal si mapu",
-  "@map_no_doctors_around_info_message": {}
+  "@map_no_doctors_around_info_message": {},
+  "unsupported_interval": "Neplatné datum",
+  "@unsupported_interval": {}
 }

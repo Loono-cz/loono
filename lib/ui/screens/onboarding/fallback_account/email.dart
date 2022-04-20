@@ -120,7 +120,7 @@ class EmailScreen extends StatelessWidget {
             ExaminationRecord((b) {
               b
                 ..status = questionnaire.status
-                ..date = getFakeUtcDate(questionnaire.date)
+                ..plannedDate = getFakeUtcDate(questionnaire.date)
                 ..firstExam = true
                 ..type = questionnaire.type;
             })

@@ -146,7 +146,7 @@ class ApiService {
           record
             ..uuid = uuid
             ..type = type
-            ..date = utcNewDate
+            ..plannedDate = utcNewDate
             ..status = status
             ..firstExam = firstExam;
         }),

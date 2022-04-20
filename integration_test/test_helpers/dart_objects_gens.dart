@@ -89,7 +89,7 @@ ExaminationRecord createExaminationRecordObject({
     b
       ..uuid = uuid
       ..type = type
-      ..date = date
+      ..plannedDate = date
       ..status = status
       ..firstExam = firstExam;
   });

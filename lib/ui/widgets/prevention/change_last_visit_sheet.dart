@@ -131,7 +131,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                   widget.categorizedExamination.examination.examinationType,
                   newDate: newDate,
                   uuid: widget.categorizedExamination.examination.uuid,
-                  status: widget.categorizedExamination.examination.state,
+                  status: ExaminationStatus.CONFIRMED,
                   firstExam: true,
                 );
 
@@ -142,7 +142,12 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 await AutoRouter.of(context).pop();
               },
               failure: (err) async {
-                showFlushBarError(context, context.l10n.something_went_wrong);
+                showFlushBarError(
+                  context,
+                  err.error.response?.statusCode == 400
+                      ? context.l10n.unsupported_interval
+                      : context.l10n.something_went_wrong,
+                );
               },
             );
           },

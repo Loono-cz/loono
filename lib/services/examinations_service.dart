@@ -46,10 +46,10 @@ class ExaminationsProvider extends ChangeNotifier {
               ..plannedDate =
                   (record.status == ExaminationStatus.CONFIRMED || record.firstExam == true)
                       ? item.plannedDate
-                      : record.date?.toLocal()
+                      : record.plannedDate?.toLocal()
               ..lastConfirmedDate =
                   (record.status == ExaminationStatus.CONFIRMED || record.firstExam == true)
-                      ? record.date?.toLocal()
+                      ? record.plannedDate?.toLocal()
                       : item.lastConfirmedDate
               ..state = record.status ?? item.state
               ..firstExam = record.firstExam ?? item.firstExam,
