@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
@@ -23,11 +24,37 @@ class _DoctorSearchDetailScreenState extends State<DoctorSearchDetailScreen> {
 
   String get _searchQueryText => _textEditingController.text;
 
-  bool get _isSearchQueryEmpty => _searchQueryText.isEmpty;
+  @override
+  void initState() {
+    super.initState();
+    _textEditingController.addListener(() {
+      EasyDebounce.debounce(
+        '_doctorSearchDetailTextSearchField',
+        const Duration(milliseconds: 250),
+        () => _onSearchQueryChanged(_searchQueryText),
+      );
+    });
+  }
+
+  void _onSearchQueryChanged(String input) {
+    final mapState = context.read<MapStateService>();
+    if (input.isEmpty) {
+      mapState.clearSearchResults();
+    } else {
+      mapState.search(input);
+    }
+  }
+
+  @override
+  void dispose() {
+    _textEditingController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final mapState = context.watch<MapStateService>();
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -52,13 +79,6 @@ class _DoctorSearchDetailScreenState extends State<DoctorSearchDetailScreen> {
                 autofocus: true,
                 controller: _textEditingController,
                 textAlignVertical: TextAlignVertical.bottom,
-                onChanged: (input) {
-                  if (input.isEmpty) {
-                    mapState.clearSearchResults();
-                  } else {
-                    mapState.search(input);
-                  }
-                },
                 cursorColor: LoonoColors.black,
                 decoration: InputDecoration(
                   fillColor: Colors.white,
@@ -69,7 +89,7 @@ class _DoctorSearchDetailScreenState extends State<DoctorSearchDetailScreen> {
                   prefixIconConstraints: getSearchIconConstraints(),
                   suffixIconConstraints: getSearchIconConstraints(),
                   prefixIcon: const SearchTextFieldIcon(),
-                  suffixIcon: _isSearchQueryEmpty
+                  suffixIcon: _searchQueryText.isEmpty
                       ? const SizedBox.shrink()
                       : GestureDetector(
                           onTap: () {
@@ -86,7 +106,7 @@ class _DoctorSearchDetailScreenState extends State<DoctorSearchDetailScreen> {
                 ),
               ),
             ),
-            if (_isSearchQueryEmpty)
+            if (_searchQueryText.isEmpty)
               Expanded(child: SearchHistoryList())
             else
               Expanded(
