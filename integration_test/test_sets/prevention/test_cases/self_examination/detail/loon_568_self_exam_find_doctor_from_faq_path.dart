@@ -50,9 +50,9 @@ Future<void> run({
     itemPosition: 1,
     text: 'seznamu lékařů',
   );
-  await tester.pumpUntilVisible(find.byType(FindDoctorScreen));
+  await tester.pumpUntilFound(find.byType(FindDoctorScreen));
   mainScreenPage.verifyBottomBarIsShown();
 
   await mainScreenPage.clickPreventionTab();
-  await tester.pumpUntilVisible(find.byType(PreventionScreen));
+  await tester.pumpUntilFound(find.byType(PreventionScreen));
 }

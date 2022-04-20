@@ -17,7 +17,7 @@ class IntroVideoPage {
 
   /// Page methods
   Future<void> waitForVideoLoad() async {
-    await tester.pumpUntilNotVisible(find.byType(CircularProgressIndicator));
+    await tester.pumpUntilNotFound(find.byType(CircularProgressIndicator));
   }
 
   Future<void> clickContinueBtn() async {

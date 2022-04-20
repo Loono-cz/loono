@@ -123,7 +123,7 @@ class PreventionPage with BadgeFinders {
 
   Future<void> verifyScreenIsShown() async {
     logTestEvent();
-    await tester.pumpUntilVisible(find.byType(PreventionScreen));
+    await tester.pumpUntilFound(find.byType(PreventionScreen));
   }
 
   void verifyHasPoints(int expectedPoints) {

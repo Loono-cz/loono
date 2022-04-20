@@ -171,6 +171,6 @@ class SelfExaminationDetailPage {
 
   Future<void> verifyScreenIsShown() async {
     logTestEvent();
-    await tester.pumpUntilVisible(find.byType(SelfExaminationDetailScreen));
+    await tester.pumpUntilFound(find.byType(SelfExaminationDetailScreen));
   }
 }

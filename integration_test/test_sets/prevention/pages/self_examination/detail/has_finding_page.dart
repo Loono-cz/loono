@@ -36,6 +36,6 @@ class HasFindingPage {
 
   Future<void> verifyScreenIsShown() async {
     logTestEvent();
-    await tester.pumpUntilVisible(find.byType(HasFindingScreen));
+    await tester.pumpUntilFound(find.byType(HasFindingScreen));
   }
 }

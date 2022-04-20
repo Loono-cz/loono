@@ -90,7 +90,7 @@ class UpdateProfilePage with SettingsFinders {
     logTestEvent();
     await tester.tap(confirmBtnLogoutDialog);
     await tester.pumpAndSettle();
-    await tester.pumpUntilNotVisible(confirmBtnLogoutDialog);
+    await tester.pumpUntilNotFound(confirmBtnLogoutDialog);
   }
 
   Future<void> closeErrorSheet() async {
@@ -125,6 +125,6 @@ class UpdateProfilePage with SettingsFinders {
 
   Future<void> verifyScreenIsShown() async {
     logTestEvent();
-    await tester.pumpUntilVisible(find.byType(UpdateProfileScreen));
+    await tester.pumpUntilFound(find.byType(UpdateProfileScreen));
   }
 }

@@ -19,13 +19,13 @@ class WelcomePage {
     logTestEvent();
     await tester.tap(startBtn);
     await tester.pump(const Duration(seconds: 2));
-    await tester.pumpUntilNotVisible(find.byType(WelcomeScreen));
+    await tester.pumpUntilNotFound(find.byType(WelcomeScreen));
   }
 
   Future<void> clickLoginButton() async {
     logTestEvent();
     await tester.tap(loginBtn);
     await tester.pumpAndSettle();
-    await tester.pumpUntilNotVisible(find.byType(WelcomeScreen));
+    await tester.pumpUntilNotFound(find.byType(WelcomeScreen));
   }
 }

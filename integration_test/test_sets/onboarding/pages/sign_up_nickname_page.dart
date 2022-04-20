@@ -28,6 +28,6 @@ class SignUpNicknamePage {
 
   Future<void> verifyScreenIsShown() async {
     logTestEvent();
-    await tester.pumpUntilVisible(find.byType(NicknameScreen));
+    await tester.pumpUntilFound(find.byType(NicknameScreen));
   }
 }
