@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:loono/ui/screens/prevention/prevention.dart';
+import 'package:loono/ui/screens/prevention/prevention_screen.dart';
 import 'package:loono/ui/widgets/notification_icon.dart';
 import 'package:loono/ui/widgets/settings/avatar.dart';
 import 'package:loono_api/loono_api.dart';
