@@ -322,12 +322,8 @@ class AppRouter extends _i14.RootStackRouter {
           barrierDismissible: false);
     },
     MainRoute.name: (routeData) {
-      final args =
-          routeData.argsAs<MainRouteArgs>(orElse: () => const MainRouteArgs());
       return _i14.MaterialPageX<void>(
-          routeData: routeData,
-          child: _i33.MainScreen(
-              key: args.key, selectedIndex: args.selectedIndex));
+          routeData: routeData, child: const _i33.MainScreen());
     },
     ExaminationDetailRoute.name: (routeData) {
       final args = routeData.argsAs<ExaminationDetailRouteArgs>();
@@ -1296,30 +1292,11 @@ class DentistDateRoute extends _i14.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i33.MainScreen]
-class MainRoute extends _i14.PageRouteInfo<MainRouteArgs> {
-  MainRoute(
-      {_i55.Key? key,
-      int selectedIndex = 0,
-      List<_i14.PageRouteInfo>? children})
-      : super(MainRoute.name,
-            path: '',
-            args: MainRouteArgs(key: key, selectedIndex: selectedIndex),
-            initialChildren: children);
+class MainRoute extends _i14.PageRouteInfo<void> {
+  const MainRoute({List<_i14.PageRouteInfo>? children})
+      : super(MainRoute.name, path: '', initialChildren: children);
 
   static const String name = 'MainRoute';
-}
-
-class MainRouteArgs {
-  const MainRouteArgs({this.key, this.selectedIndex = 0});
-
-  final _i55.Key? key;
-
-  final int selectedIndex;
-
-  @override
-  String toString() {
-    return 'MainRouteArgs{key: $key, selectedIndex: $selectedIndex}';
-  }
 }
 
 /// generated route for

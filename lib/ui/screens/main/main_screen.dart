@@ -15,16 +15,14 @@ import 'package:provider/provider.dart';
 
 /// Post-auth main screen.
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key, this.selectedIndex = 0}) : super(key: key);
-
-  final int selectedIndex;
+  const MainScreen({Key? key}) : super(key: key);
 
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _selectedIndex = 0;
+  int? _selectedIndex;
   StreamSubscription? subscription;
 
   bool connectivityLocked = true;
@@ -44,7 +42,6 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    _selectedIndex = widget.selectedIndex;
     final examinationsProvider = Provider.of<ExaminationsProvider>(context, listen: false);
 
     WidgetsBinding.instance?.addPostFrameCallback(
@@ -100,6 +97,9 @@ class _MainScreenState extends State<MainScreen> {
                   .get<FirebaseAnalytics>()
                   .setCurrentScreen(screenName: analyticsTabNames[index]);
               tabsRouter.setActiveIndex(index);
+              setState(() {
+                _selectedIndex = index;
+              });
             },
             items: [
               CustomNavigationBarItem(
