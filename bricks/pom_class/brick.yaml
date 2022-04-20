@@ -21,7 +21,7 @@ environment:
 vars:
   screenName:
     type: string
-    prompt: Screen class name
+    prompt: Screen class name (e.g. for "LoginScreen" type "Login")
   hasButton:
     type: boolean
     default: true
