@@ -1,8 +1,10 @@
 import 'package:collection/collection.dart';
 import 'package:diacritic/diacritic.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_cluster_manager/google_maps_cluster_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:loono/helpers/simple_health_care_provider_helper.dart';
 import 'package:loono/models/healthcare_item_place.dart';
 import 'package:loono/models/search_result.dart';
 import 'package:loono/utils/map_utils.dart';
@@ -88,6 +90,8 @@ class MapStateService with ChangeNotifier {
     final normalizedQuery = removeDiacritics(query).toLowerCase();
 
     final uniqueCitiesMap = <String, SimpleHealthcareProvider>{};
+    final uniqueCitiesWithSameNameMap = <String, Set<SimpleHealthcareProvider>>{};
+
     final uniqueAddressesMap = <String, SimpleHealthcareProvider>{};
     final uniqueSpecializationsMap = <String, SimpleHealthcareProvider>{};
 
@@ -95,7 +99,45 @@ class MapStateService with ChangeNotifier {
       final isCityMatching =
           removeDiacritics(healthcareProvider.city.toLowerCase()).contains(normalizedQuery);
       if (isCityMatching) {
-        uniqueCitiesMap[healthcareProvider.city] = healthcareProvider;
+        final city = healthcareProvider.city;
+        final sameCityFromMap = uniqueCitiesMap[city];
+        final sameCityWithNameAlreadyAdded = uniqueCitiesWithSameNameMap.containsKey(city);
+        // Checking for cities which have same name but are in different locations
+        // (different postal code).
+        if (sameCityFromMap != null || sameCityWithNameAlreadyAdded) {
+          final a = healthcareProvider;
+          bool hasSamePostalCode(SimpleHealthcareProvider b) =>
+              a.postalCode.isNotEmpty && (a.postalCode == b.postalCode);
+          final cityAlreadyAdded =
+              uniqueCitiesWithSameNameMap[city]?.firstWhereOrNull(hasSamePostalCode) != null;
+          if (!cityAlreadyAdded) {
+            // Whether the city is also far away from the other. To ignore for example results from
+            // Prague 1 where postal codes are (110 00, 118 000, etc.)
+            final anyCity = sameCityFromMap ?? uniqueCitiesWithSameNameMap[city]?.firstOrNull;
+            if (anyCity != null) {
+              bool isFarAway() =>
+                  (Geolocator.distanceBetween(
+                        healthcareProvider.lat,
+                        healthcareProvider.lng,
+                        anyCity.lat,
+                        anyCity.lng,
+                      ) ~/
+                      1000) >
+                  20;
+              if (isFarAway()) {
+                uniqueCitiesWithSameNameMap.update(
+                  city,
+                  (set) => set..add(healthcareProvider),
+                  ifAbsent: () => <SimpleHealthcareProvider>{anyCity, healthcareProvider},
+                );
+                uniqueCitiesMap.remove(city);
+              }
+            }
+          }
+        } else {
+          // City is not added yet.
+          uniqueCitiesMap[city] = healthcareProvider;
+        }
       }
 
       bool matchesSpecQuery(String specialization) =>
@@ -119,9 +161,16 @@ class MapStateService with ChangeNotifier {
       }
     }
 
-    final cities = uniqueCitiesMap.values
-        .map((e) => SearchResult(data: e, searchType: SearchType.city))
-        .sorted((a, b) => compareNatural(a.text, b.text));
+    final cities = [
+      ...uniqueCitiesMap.values.map((e) => SearchResult(data: e, searchType: SearchType.city)),
+      for (final healthcareProvidersSameCityName in uniqueCitiesWithSameNameMap.values)
+        for (final item in healthcareProvidersSameCityName)
+          SearchResult(
+            data: item,
+            searchType: SearchType.city,
+            overriddenText: '${item.city} (${item.getFormattedPostalCode()})',
+          ),
+    ].sorted((a, b) => compareNatural(a.overriddenText ?? a.text, b.overriddenText ?? b.text));
     final addresses = uniqueAddressesMap.values
         .map((e) => SearchResult(data: e, searchType: SearchType.address))
         .sorted((a, b) => compareNatural(a.text, b.text));
