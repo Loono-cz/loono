@@ -36,6 +36,7 @@ import 'package:loono/ui/screens/prevention/calendar/calendar_list.dart';
 import 'package:loono/ui/screens/prevention/calendar/permission_info.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/change_last_visit_screen.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/examination_screen.dart';
+import 'package:loono/ui/screens/prevention/prevention_screen.dart';
 import 'package:loono/ui/screens/prevention/questionnaire/date_picker_screen.dart';
 import 'package:loono/ui/screens/prevention/self_examination/detail_screen.dart';
 import 'package:loono/ui/screens/prevention/self_examination/educational_screen.dart';
@@ -105,12 +106,22 @@ const _postAuthRouter = AutoRoute<void>(
   initial: true,
   guards: [CheckIsLoggedIn],
   children: [
-    AutoRoute<void>(page: MainScreen, path: ''),
-    ..._settingsRoutes,
+    AutoRoute<void>(
+      page: MainScreen,
+      path: '',
+      children: [
+        CustomRoute<void>(
+          page: PreventionScreen,
+          path: 'prevention',
+          transitionsBuilder: _preventionTransition,
+        ),
+        ..._findDoctorRoutes,
+        _aboutHealthRoute,
+      ],
+    ),
     ..._preventionRoutes,
+    ..._settingsRoutes,
     ..._selfExaminationRoutes,
-    ..._findDoctorRoutes,
-    _aboutHealthRoute,
   ],
 );
 
