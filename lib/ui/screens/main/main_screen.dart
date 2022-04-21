@@ -8,6 +8,7 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/examinations_service.dart';
+import 'package:loono/services/webview_service.dart';
 import 'package:loono/ui/widgets/custom_navigation_bar.dart';
 import 'package:loono/ui/widgets/no_connection_message.dart';
 import 'package:loono/utils/registry.dart';
@@ -22,7 +23,6 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int? _selectedIndex;
   StreamSubscription? subscription;
 
   bool connectivityLocked = true;
@@ -82,7 +82,15 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       /// index 2 has its own WillPopScope for webview navigation. This prevents pop event override
-      onWillPop: _selectedIndex == 2 ? null : () async => false,
+      onWillPop: () async {
+        final webViewController = context.read<WebViewProvider>().webViewController;
+        if (AutoRouter.of(context).isRouteActive(AboutHealthRoute.name) &&
+            webViewController != null &&
+            await webViewController.canGoBack()) {
+          await webViewController.goBack();
+        }
+        return false;
+      },
       child: AutoTabsScaffold(
         routes: [
           PreventionRoute(),
@@ -98,9 +106,6 @@ class _MainScreenState extends State<MainScreen> {
                   .get<FirebaseAnalytics>()
                   .setCurrentScreen(screenName: analyticsTabNames[index]);
               tabsRouter.setActiveIndex(index);
-              setState(() {
-                _selectedIndex = index;
-              });
             },
             items: [
               CustomNavigationBarItem(
