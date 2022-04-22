@@ -19,8 +19,7 @@ Future<void> run({
   charlatan.whenGet('/providers/all', (_) => HEALTHCARE_PROVIDER_ENCODED);
 
   await loginFlow(tester: tester, charlatan: charlatan);
-
   await tester.pumpAndSettle();
-  await tester.pump(const Duration(seconds: 3));
+  await tester.pump(const Duration(seconds: 1));
   // TODO
 }

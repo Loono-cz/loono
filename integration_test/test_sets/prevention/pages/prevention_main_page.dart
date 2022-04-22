@@ -8,6 +8,7 @@ import 'package:loono_api/loono_api.dart';
 import '../../../test_helpers/common_finders.dart';
 import '../../../test_helpers/widget_tester_extensions.dart';
 
+/// * Corresponding screen: [PreventionScreen]
 class PreventionPage with BadgeFinders {
   PreventionPage(this.tester);
 
@@ -33,7 +34,7 @@ class PreventionPage with BadgeFinders {
   }
 
   Future<void> clickExaminationCard(ExaminationType type) async {
-    logTestEvent('Clicking ExaminationCard: "${type.name}"');
+    logTestEvent('Click ExaminationCard: "${type.name}"');
     final card = getExaminationCard(type);
     await tester.ensureVisible(card);
     await tester.pumpAndSettle();
@@ -42,7 +43,7 @@ class PreventionPage with BadgeFinders {
   }
 
   Future<void> clickSelfExaminationCard(SelfExaminationType type) async {
-    logTestEvent('Clicking SelfExaminationCard: "${type.name}"');
+    logTestEvent('Click SelfExaminationCard: "${type.name}"');
     final card = getSelfExaminationCard(type);
     await tester.ensureVisible(card);
     await tester.pumpAndSettle();
@@ -108,7 +109,7 @@ class PreventionPage with BadgeFinders {
   Future<void> verifySelfExaminationCardDoesNotHaveNotificationIcon(
     SelfExaminationType type,
   ) async {
-    logTestEvent('Verify SelfExaminationCard "${type.name}" does not have "NotificationIcon"');
+    logTestEvent('Verify SelfExaminationCard "${type.name}" does not have "notification mark"');
     final card = getSelfExaminationCard(type);
     await tester.ensureVisible(card);
     await tester.pumpAndSettle();
@@ -121,24 +122,24 @@ class PreventionPage with BadgeFinders {
     );
   }
 
-  Future<void> verifyScreenIsShown() async {
-    logTestEvent();
-    await tester.pumpUntilFound(find.byType(PreventionScreen));
-  }
-
   void verifyHasPoints(int expectedPoints) {
-    logTestEvent('Verify has points "${expectedPoints.toString()}"');
+    logTestEvent('Verify has points: "${expectedPoints.toString()}"');
     final textWidget = tester.widget<Text>(profileBtnPoints);
     expect(textWidget.data, expectedPoints.toString());
   }
 
   void verifyHasBadge(BadgeType type) {
-    logTestEvent('Verify has badge "${type.name}"');
+    logTestEvent('Verify has badge: "${type.name}"');
     expect(getBadge(type), findsOneWidget);
   }
 
   void verifyDoesNotHaveBadge(BadgeType type) {
-    logTestEvent('Verify does not have badge "${type.name}"');
+    logTestEvent('Verify does not have badge: "${type.name}"');
     expect(getBadge(type), findsNothing);
+  }
+
+  Future<void> verifyScreenIsShown() async {
+    logTestEvent();
+    await tester.pumpUntilFound(find.byType(PreventionScreen));
   }
 }

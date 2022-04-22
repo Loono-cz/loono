@@ -56,7 +56,7 @@ class SelfExaminationDetailPage {
   }
 
   Future<void> clickSelfExamFaqItem({required int itemPosition}) async {
-    logTestEvent('Click on "$itemPosition. SelfFaqItem"');
+    logTestEvent('Click on the "$itemPosition. SelfFaqItem"');
     final faqItem = getSelfFaqItem(itemPosition);
     final faqItemIcon = getSelfFaqItemIcon(itemPosition);
     await tester.ensureVisible(faqItem);
@@ -97,7 +97,7 @@ class SelfExaminationDetailPage {
     required int itemPosition,
     required String text,
   }) async {
-    logTestEvent('Click "$itemPosition. SelfExamFaq" on text: "$text"');
+    logTestEvent('Click on the "$itemPosition. SelfExamFaq" on text: "$text"');
     final faqItem = getSelfFaqItem(itemPosition);
     await tester.ensureVisible(faqItem);
     await tester.pumpAndSettle();

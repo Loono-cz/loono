@@ -4,6 +4,7 @@ import 'package:loono/ui/screens/onboarding/fallback_account/email.dart';
 
 import '../../../test_helpers/widget_tester_extensions.dart';
 
+/// * Corresponding screen: [EmailScreen]
 class SignUpEmailPage {
   SignUpEmailPage(this.tester);
 
@@ -15,7 +16,7 @@ class SignUpEmailPage {
 
   /// Page methods
   Future<void> insertEmail(String email) async {
-    logTestEvent('Insert email: $email');
+    logTestEvent('Insert email: "$email"');
     await tester.enterText(textField, email);
     await tester.pumpAndSettle();
   }

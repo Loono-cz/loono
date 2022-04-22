@@ -2,17 +2,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:loono/ui/screens/dentist_achievement.dart';
-import 'package:loono/ui/screens/main/pre_auth/login.dart';
 import 'package:loono/ui/screens/onboarding/birthdate.dart';
 import 'package:loono/ui/screens/onboarding/doctors/dentist.dart';
 import 'package:loono/ui/screens/onboarding/doctors/dentist_date.dart';
 import 'package:loono/ui/screens/onboarding/doctors/general_practicioner.dart';
-import 'package:loono/ui/screens/onboarding/gender.dart';
-import 'package:loono/ui/screens/settings/edit_email.dart';
-import 'package:loono/ui/screens/settings/leaderboard.dart';
-import 'package:loono/ui/screens/settings/open_settings.dart';
-import 'package:loono/ui/screens/settings/points_help.dart';
-import 'package:loono/ui/screens/welcome.dart';
 import 'package:loono/ui/widgets/prevention/self_examination/self_examination_card.dart';
 import 'package:loono_api/loono_api.dart';
 
@@ -20,7 +13,6 @@ import '../../../setup.dart' as app;
 import '../../../test_helpers/widget_tester_extensions.dart';
 import '../../onboarding/pages/gamification_introduction_page.dart';
 import '../../onboarding/pages/onboarding_form_done_page.dart';
-import '../../onboarding/pages/questionnaire/achievement_page.dart';
 import '../../onboarding/pages/questionnaire/birthdate_page.dart';
 import '../../onboarding/pages/questionnaire/doctor_cca_last_visit_page.dart';
 import '../../onboarding/pages/questionnaire/doctor_date_picker_page.dart';
@@ -32,9 +24,11 @@ import '../../prevention/pages/self_examination/detail/how_it_went_modal_page.da
 import '../../prevention/pages/self_examination/detail/no_finding_reward_page.dart';
 import '../../prevention/pages/self_examination/detail/self_examination_detail_page.dart';
 import '../../settings/pages/open_settings_page.dart';
+import '../../settings/pages/points/leaderboard_page.dart';
 import '../../settings/pages/points/points_help_page.dart';
 import '../../settings/pages/update_profile/edit_email_page.dart';
 import '../../settings/pages/update_profile/update_profile_page.dart';
+import '../pages/achievement_page.dart';
 import '../pages/login_page.dart';
 import '../pages/welcome_page.dart';
 
@@ -63,7 +57,7 @@ Future<void> run({required WidgetTester tester}) async {
   final signUpEmailPage = SignUpEmailPage(tester);
   final gamificationIntroductionPage = GamificationIntroductionPage(tester);
 
-  final preventionMainPage = PreventionPage(tester);
+  final preventionPage = PreventionPage(tester);
   final selfExaminationDetailPage = SelfExaminationDetailPage(tester);
   final howItWentModalPage = HowItWentModalPage(tester);
   final noFindingRewardPage = NoFindingRewardPage(tester);
@@ -72,15 +66,16 @@ Future<void> run({required WidgetTester tester}) async {
   final updateProfilePage = UpdateProfilePage(tester);
   final editEmailPage = EditEmailPage(tester);
   final pointsHelpPage = PointsHelpPage(tester);
+  final leaderboardPage = LeaderboardPage(tester);
 
   // start questionnaire and create a new account
-  await tester.pumpUntilFound(find.byType(WelcomeScreen));
+  await welcomePage.verifyScreenIsShown();
 
   await welcomePage.clickLoginButton();
-  await tester.pumpUntilFound(find.byType(LoginScreen));
+  await loginPage.verifyScreenIsShown();
 
   await loginPage.clickCreateNewAccountButton();
-  await tester.pumpUntilFound(find.byType(OnboardingGenderScreen));
+  await questionnaireGenderPage.verifyScreenIsShown();
 
   await questionnaireGenderPage.chooseMaleGender();
   await questionnaireGenderPage.clickContinueButton();
@@ -89,18 +84,20 @@ Future<void> run({required WidgetTester tester}) async {
   expect(find.text('Kdy ses narodil?'), findsOneWidget);
 
   await questionnaireBirthDatePage.clickContinueButton();
-  await tester.pumpUntilFound(find.byType(OnboardingGeneralPracticionerScreen));
+  await questionnaireDoctorCcaLastVisitPage.verifyScreenIsShown(
+    expectedScreen: OnboardingGeneralPracticionerScreen,
+  );
 
   await questionnaireDoctorCcaLastVisitPage.clickMoreThanXYearsOrIdkButton(
-    nextScreen: OnboardingDentistScreen,
+    expectedNextScreen: OnboardingDentistScreen,
   );
 
   await questionnaireDoctorCcaLastVisitPage.clickInLastXYearsButton(
-    nextScreen: DentistAchievementScreen,
+    expectedNextScreen: DentistAchievementScreen,
   );
 
   await questionnaireAchievementPage.clickContinueButton();
-  await tester.pumpUntilFound(find.byType(DentistDateScreen));
+  await questionnaireDoctorDatePickerPage.verifyScreenIsShown(expectedScreen: DentistDateScreen);
 
   await questionnaireDoctorDatePickerPage.clickIdkButton();
   await onboardingFormDonePage.verifyScreenIsShown();
@@ -125,51 +122,51 @@ Future<void> run({required WidgetTester tester}) async {
     debugPrint(e.toString());
   }
   await gamificationIntroductionPage.clickContinueButton();
-  await preventionMainPage.verifyScreenIsShown();
+  await preventionPage.verifyScreenIsShown();
 
   // verify some data are fetched from api GET /examinations
   await tester.pumpUntilFound(find.byType(SelfExaminationCard));
-  preventionMainPage
+  preventionPage
     ..verifyHasBadge(BadgeType.HEADBAND)
     ..verifyDoesNotHaveBadge(BadgeType.SHIELD)
     ..verifyHasPoints(300); // HEADBAND and points are reward from the Dentist visit
-  await preventionMainPage.verifySelfExaminationCardIsInCategory(
+  await preventionPage.verifySelfExaminationCardIsInCategory(
     SelfExaminationType.TESTICULAR,
     expectedCategoryName: 'Vyšetři se',
   );
 
   // perform self examination with OK status
-  await preventionMainPage.clickSelfExaminationCard(SelfExaminationType.TESTICULAR);
+  await preventionPage.clickSelfExaminationCard(SelfExaminationType.TESTICULAR);
   await selfExaminationDetailPage.verifyScreenIsShown();
 
   await selfExaminationDetailPage.clickSelfExaminationPerformedButton();
-  howItWentModalPage.verifyModalIsShown();
+  await howItWentModalPage.verifyModalIsShown();
 
   await howItWentModalPage.clickOkButton();
   await noFindingRewardPage.verifyScreenIsShown();
 
   await noFindingRewardPage.clickContinueButton();
-  await preventionMainPage.verifyScreenIsShown();
+  await preventionPage.verifyScreenIsShown();
 
-  await preventionMainPage.verifySelfExaminationCardIsInCategory(
+  await preventionPage.verifySelfExaminationCardIsInCategory(
     SelfExaminationType.TESTICULAR,
     expectedCategoryName: 'Připomenu ti vyšetření',
   );
-  preventionMainPage
+  preventionPage
     ..verifyHasBadge(BadgeType.HEADBAND)
     ..verifyHasBadge(BadgeType.SHIELD)
     ..verifyHasPoints(350); // +50 points and shield from the performed self examination
 
   // edit email
-  await preventionMainPage.clickProfileAvatar();
-  expect(find.byType(OpenSettingsScreen), findsOneWidget);
+  await preventionPage.clickProfileAvatar();
+  await openSettingsPage.verifyScreenIsShown();
 
   await openSettingsPage.clickEditProfileButton();
   await updateProfilePage.verifyScreenIsShown();
   updateProfilePage.verifyEmail('backend.test@loono.cz');
 
   await updateProfilePage.clickEmailField();
-  expect(find.byType(EditEmailScreen), findsOneWidget);
+  await editEmailPage.verifyScreenIsShown();
 
   await editEmailPage.insertEmail('backend.test.edited@loono.cz');
   await editEmailPage.clickSaveButton();
@@ -181,12 +178,12 @@ Future<void> run({required WidgetTester tester}) async {
 
   // check leaderboard
   await openSettingsPage.clickPointsHelpButton();
-  expect(find.byType(PointsHelpScreen), findsOneWidget);
+  await pointsHelpPage.verifyScreenIsShown();
 
   await pointsHelpPage.clickBackButton();
-  expect(find.byType(OpenSettingsScreen), findsOneWidget);
+  await openSettingsPage.verifyScreenIsShown();
 
   await openSettingsPage.clickLeaderboardButton();
-  expect(find.byType(LeaderboardScreen), findsOneWidget);
+  await leaderboardPage.verifyScreenIsShown();
   await tester.pump(const Duration(seconds: 4));
 }

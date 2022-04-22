@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:loono/ui/screens/main/pre_auth/start_new_questionnaire.dart';
 import 'package:loono/ui/widgets/button.dart';
 
 import '../../../test_helpers/widget_tester_extensions.dart';
 
+/// * Corresponding screen: [StartNewQuestionnaireScreen]
 class StartNewQuestionnairePage {
   StartNewQuestionnairePage(this.tester);
 
@@ -24,5 +26,10 @@ class StartNewQuestionnairePage {
     logTestEvent();
     await tester.tap(fillFormBtn);
     await tester.pumpAndSettle();
+  }
+
+  Future<void> verifyScreenIsShown() async {
+    logTestEvent();
+    await tester.pumpUntilFound(find.byType(StartNewQuestionnaireScreen));
   }
 }

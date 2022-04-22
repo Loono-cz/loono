@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:loono/ui/screens/onboarding/doctors/dentist_date.dart';
+import 'package:loono/ui/screens/onboarding/doctors/general_practitioner_date.dart';
+import 'package:loono/ui/screens/onboarding/doctors/gynecology_date.dart';
 import 'package:loono/ui/widgets/button.dart';
 
 import '../../../../test_helpers/common_finders.dart';
 import '../../../../test_helpers/widget_tester_extensions.dart';
 
+/// * Corresponding screen is either:
+/// [GeneralPractitionerDateScreen], [GynecologyDateScreen] or [DentistDateScreen].
 class QuestionnaireDoctorDatePickerPage with OnboardingFinders {
   QuestionnaireDoctorDatePickerPage(this.tester);
 
@@ -25,5 +30,10 @@ class QuestionnaireDoctorDatePickerPage with OnboardingFinders {
     logTestEvent();
     await tester.tap(idkBtn);
     await tester.pumpAndSettle();
+  }
+
+  Future<void> verifyScreenIsShown({required Type expectedScreen}) async {
+    logTestEvent('Verify screen is shown: "${expectedScreen.runtimeType}"');
+    await tester.pumpUntilFound(find.byType(expectedScreen));
   }
 }

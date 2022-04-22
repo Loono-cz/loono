@@ -1,11 +1,9 @@
 import 'package:charlatan/charlatan.dart';
 import 'package:charlatan/src/charlatan_http_response_definition.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:loono/ui/screens/main/pre_auth/login.dart';
-import 'package:loono/ui/screens/welcome.dart';
 import 'package:loono_api/loono_api.dart';
 
-import '../../../test_helpers/widget_tester_extensions.dart';
+import '../../prevention/pages/prevention_main_page.dart';
 import '../pages/login_page.dart';
 import '../pages/welcome_page.dart';
 import '../test_data/default_test_data.dart';
@@ -25,6 +23,7 @@ Future<void> loginFlow({
 }) async {
   final welcomePage = WelcomePage(tester);
   final loginPage = LoginPage(tester);
+  final preventionPage = PreventionPage(tester);
 
   charlatan
     ..whenGet('/providers/all', (_) => HEALTHCARE_PROVIDER_ENCODED)
@@ -45,11 +44,11 @@ Future<void> loginFlow({
     );
 
   await tester.pumpAndSettle();
-  await tester.pumpUntilFound(find.byType(WelcomeScreen));
+  await welcomePage.verifyScreenIsShown();
 
   await welcomePage.clickLoginButton();
-  expect(find.byType(LoginScreen), findsOneWidget);
+  await loginPage.verifyScreenIsShown();
 
   await loginPage.loginWithGoogle();
-  await tester.pump(const Duration(seconds: 2));
+  await preventionPage.verifyScreenIsShown();
 }

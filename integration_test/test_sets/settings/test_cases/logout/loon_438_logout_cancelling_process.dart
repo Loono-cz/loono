@@ -1,10 +1,7 @@
 import 'package:charlatan/charlatan.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:loono/ui/screens/settings/open_settings.dart';
-import 'package:loono/ui/screens/settings/update_profile.dart';
 
 import '../../../../setup.dart' as app;
 import '../../../app/flows/login_flow.dart';
@@ -23,20 +20,20 @@ Future<void> run({
   await app.runMockApp(firebaseAuthOverride: firebaseAuth, charlatan: charlatan);
   await loginFlow(tester: tester, charlatan: charlatan);
 
-  final preventionMainPage = PreventionPage(tester);
+  final preventionPage = PreventionPage(tester);
   final openSettingsPage = OpenSettingsPage(tester);
   final updateProfilePage = UpdateProfilePage(tester);
 
-  await preventionMainPage.clickProfileAvatar();
-  expect(find.byType(OpenSettingsScreen), findsOneWidget);
+  await preventionPage.clickProfileAvatar();
+  await openSettingsPage.verifyScreenIsShown();
 
   await openSettingsPage.clickEditProfileButton();
-  expect(find.byType(UpdateProfileScreen), findsOneWidget);
+  await updateProfilePage.verifyScreenIsShown();
 
   await updateProfilePage.clickLogoutButton();
-  expect(find.byType(AlertDialog), findsOneWidget);
+  await updateProfilePage.verifyConfirmationDialogIsShown();
 
   await updateProfilePage.cancelLogoutDialog();
-  expect(find.byType(UpdateProfileScreen), findsOneWidget);
+  await updateProfilePage.verifyScreenIsShown();
   expect(find.text('Tvůj účet'), findsOneWidget);
 }

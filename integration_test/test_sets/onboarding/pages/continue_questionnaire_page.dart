@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:loono/ui/screens/main/pre_auth/continue_onboarding_form.dart';
 import 'package:loono/ui/widgets/button.dart';
 
 import '../../../test_helpers/widget_tester_extensions.dart';
 
+/// * Corresponding screen: [ContinueOnboardingFormScreen]
 class ContinueQuestionnairePage {
   ContinueQuestionnairePage(this.tester);
 
@@ -27,7 +29,9 @@ class ContinueQuestionnairePage {
     await tester.pumpAndSettle();
   }
 
-  bool hasProgressBarAnyProgress() => _progressBarValue > 0;
+  void verifyProgressBarHasAnyProgress() => expect(_progressBarValue > 0, true);
+
+  void verifyProgressBarDoesNotHaveAnyProgress() => expect(_progressBarValue > 0, false);
 
   bool isProgressBarValueEqualTo(double value) => _progressBarValue == value;
 
@@ -37,9 +41,14 @@ class ContinueQuestionnairePage {
     expect(progressBar, findsOneWidget);
     final progressBarWidget = tester.widget<CircularProgressIndicator>(progressBar);
     final value = progressBarWidget.value;
-    logTestEvent('Progress bar value: "$value"');
+    logTestEvent('Print progress bar value: "$value"');
     // should not have endless animation
     expect(value, isNotNull);
     return value!;
+  }
+
+  Future<void> verifyScreenIsShown() async {
+    logTestEvent();
+    await tester.pumpUntilFound(find.byType(ContinueOnboardingFormScreen));
   }
 }

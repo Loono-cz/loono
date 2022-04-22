@@ -132,6 +132,7 @@ class UpdateProfileScreen extends StatelessWidget {
                           onPressed: () async {
                             showConfirmationDialog(
                               context,
+                              key: const Key('updateProfilePage_confirmationDialog'),
                               onConfirm: () {
                                 AutoRouter.of(context).pushAndPopUntil(
                                   // TODO: After updating a routes do logout processes here instead of in LogoutScreen

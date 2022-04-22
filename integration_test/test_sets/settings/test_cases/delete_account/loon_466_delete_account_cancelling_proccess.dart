@@ -2,9 +2,6 @@ import 'package:charlatan/charlatan.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:loono/ui/screens/settings/delete_account.dart';
-import 'package:loono/ui/screens/settings/open_settings.dart';
-import 'package:loono/ui/screens/settings/update_profile.dart';
 
 import '../../../../setup.dart' as app;
 import '../../../app/flows/login_flow.dart';
@@ -24,32 +21,30 @@ Future<void> run({
   await app.runMockApp(firebaseAuthOverride: firebaseAuth, charlatan: charlatan);
   await loginFlow(tester: tester, charlatan: charlatan);
 
-  final preventionMainPage = PreventionPage(tester);
+  final preventionPage = PreventionPage(tester);
   final openSettingsPage = OpenSettingsPage(tester);
   final updateProfilePage = UpdateProfilePage(tester);
   final deleteAccountPage = DeleteAccountPage(tester);
 
-  await preventionMainPage.clickProfileAvatar();
-  expect(find.byType(OpenSettingsScreen), findsOneWidget);
+  await preventionPage.clickProfileAvatar();
+  await openSettingsPage.verifyScreenIsShown();
 
   await openSettingsPage.clickEditProfileButton();
-  expect(find.byType(UpdateProfileScreen), findsOneWidget);
+  await updateProfilePage.verifyScreenIsShown();
 
   await updateProfilePage.clickDeleteAccountButton();
-  expect(find.byType(DeleteAccountScreen), findsOneWidget);
-  expect(deleteAccountPage.deleteAccountBtn, findsNothing);
+  await deleteAccountPage.verifyScreenIsShown();
 
   await deleteAccountPage.clickDeleteCheckupsCheckBox();
-  expect(deleteAccountPage.deleteAccountBtn, findsNothing);
   await tester.pump(const Duration(seconds: 1));
 
   await deleteAccountPage.clickDeleteBadgesCheckBox();
-  expect(deleteAccountPage.deleteAccountBtn, findsNothing);
-  await deleteAccountPage.clickStopNotificationsCheckBox();
+  await deleteAccountPage.verifyDeleteAccountButtonIsNotShown();
 
   // all three checkboxes are checked, delete button appears
-  await tester.pump(const Duration(seconds: 2));
-  expect(deleteAccountPage.deleteAccountBtn, findsOneWidget);
+  await deleteAccountPage.clickStopNotificationsCheckBox();
+  await tester.pump(const Duration(seconds: 1));
+  await deleteAccountPage.verifyDeleteAccountButtonIsShown();
 
   // close screen
   // TODO: should be modal and should be PreventionScreen / MainScreen

@@ -1,9 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:loono/ui/screens/settings/leaderboard.dart';
 
 import '../../../../test_helpers/common_finders.dart';
 import '../../../../test_helpers/widget_tester_extensions.dart';
 
+/// * Corresponding screen: [LeaderboardScreen]
 class LeaderboardPage with SettingsFinders {
   LeaderboardPage(this.tester);
 
@@ -24,5 +26,10 @@ class LeaderboardPage with SettingsFinders {
   void checkMeMarkerIsDrawn() {
     logTestEvent();
     expect(listTileMeMarker, findsOneWidget);
+  }
+
+  Future<void> verifyScreenIsShown() async {
+    logTestEvent();
+    await tester.pumpUntilFound(find.byType(LeaderboardScreen));
   }
 }

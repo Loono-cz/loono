@@ -4,6 +4,7 @@ import 'package:loono/ui/screens/onboarding/fallback_account/nickname.dart';
 
 import '../../../test_helpers/widget_tester_extensions.dart';
 
+/// * Corresponding screen: [NicknameScreen]
 class SignUpNicknamePage {
   SignUpNicknamePage(this.tester);
 
@@ -15,7 +16,7 @@ class SignUpNicknamePage {
 
   /// Page methods
   Future<void> insertNickname(String nickname) async {
-    logTestEvent('Insert nickname: $nickname');
+    logTestEvent('Insert nickname: "$nickname"');
     await tester.enterText(textField, nickname);
     await tester.pumpAndSettle();
   }

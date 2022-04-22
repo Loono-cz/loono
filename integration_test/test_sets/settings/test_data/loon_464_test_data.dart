@@ -1,6 +1,5 @@
 part of '../test_cases/points/loon_464_view_points_and_leaderboard.dart';
 
-// ignore: non_constant_identifier_names
 final _testDataLeaderboard = createLeaderboardObject(
   top: [
     createLeaderboardUserObject(name: 'Martin', points: 2650, isThisMe: false),

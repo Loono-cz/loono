@@ -1,16 +1,16 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:loono/ui/widgets/achievement_screen.dart';
 import 'package:loono/ui/widgets/button.dart';
 
-import '../../../../test_helpers/common_finders.dart';
-import '../../../../test_helpers/widget_tester_extensions.dart';
+import '../../../test_helpers/widget_tester_extensions.dart';
 
-class QuestionnaireAchievementPage with OnboardingFinders {
+/// * Corresponding screen: [AchievementScreen]
+class QuestionnaireAchievementPage {
   QuestionnaireAchievementPage(this.tester);
 
   final WidgetTester tester;
 
   /// Page finders
-  Finder get skipQuestionnaireBtn => commonOnboardingSkipQuestionnaireBtn;
   final Finder continueBtn = find.widgetWithText(LoonoButton, 'Pokračovat');
 
   /// Page methods
@@ -18,5 +18,10 @@ class QuestionnaireAchievementPage with OnboardingFinders {
     logTestEvent();
     await tester.tap(continueBtn);
     await tester.pumpAndSettle();
+  }
+
+  Future<void> verifyScreenIsShown() async {
+    logTestEvent();
+    await tester.pumpUntilFound(find.byType(AchievementScreen));
   }
 }

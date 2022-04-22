@@ -29,14 +29,14 @@ class HowItWentModalPage {
     await tester.pumpAndSettle();
   }
 
-  void verifyModalIsShown() {
+  Future<void> verifyModalIsShown() async {
     logTestEvent();
-    expect(modalContent, findsOneWidget);
+    await tester.pumpUntilFound(modalContent);
   }
 
-  void verifyModalIsNotShown() {
+  Future<void> verifyModalIsNotShown() async {
     logTestEvent();
-    expect(modalContent, findsNothing);
+    await tester.pumpUntilNotFound(modalContent);
   }
 
   Future<void> closeModal() async {

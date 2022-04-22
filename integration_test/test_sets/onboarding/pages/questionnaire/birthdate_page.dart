@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:loono/ui/screens/onboarding/birthdate.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/custom_date_picker.dart';
 
 import '../../../../test_helpers/common_finders.dart';
 import '../../../../test_helpers/widget_tester_extensions.dart';
 
+/// * Corresponding screen: [OnBoardingBirthdateScreen]
 class QuestionnaireBirthDatePage with OnboardingFinders {
   QuestionnaireBirthDatePage(this.tester);
 
@@ -32,7 +34,7 @@ class QuestionnaireBirthDatePage with OnboardingFinders {
   }
 
   Future<void> scrollToApproxYear(int year) async {
-    logTestEvent('scrollToApproxYear: "$year"');
+    logTestEvent('scroll to approx. year: "$year"');
     final yearPicker = find.descendant(
       of: yearPickerBox,
       matching: find.byType(ListWheelScrollView),
@@ -50,5 +52,10 @@ class QuestionnaireBirthDatePage with OnboardingFinders {
       await tester.pump(const Duration(milliseconds: 200));
     }
     await tester.pumpAndSettle();
+  }
+
+  Future<void> verifyScreenIsShown() async {
+    logTestEvent();
+    await tester.pumpUntilFound(find.byType(OnBoardingBirthdateScreen));
   }
 }

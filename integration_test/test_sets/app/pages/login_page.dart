@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:loono/ui/screens/main/pre_auth/login.dart';
 import 'package:loono/ui/widgets/social_login_button.dart';
 
 import '../../../test_helpers/widget_tester_extensions.dart';
 
+/// * Corresponding screen: [LoginScreen]
 class LoginPage {
   LoginPage(this.tester);
 
@@ -33,5 +35,10 @@ class LoginPage {
     await tester.tap(createNewAccountBtn);
     await tester.pumpAndSettle();
     await tester.pumpUntilNotFound(createNewAccountBtn);
+  }
+
+  Future<void> verifyScreenIsShown() async {
+    logTestEvent();
+    await tester.pumpUntilFound(find.byType(LoginScreen));
   }
 }

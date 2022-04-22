@@ -4,6 +4,7 @@ import 'package:loono/ui/screens/onboarding/gamification_introduction.dart';
 
 import '../../../test_helpers/widget_tester_extensions.dart';
 
+/// * Corresponding screen: [GamificationIntroductionScreen]
 class GamificationIntroductionPage {
   GamificationIntroductionPage(this.tester);
 

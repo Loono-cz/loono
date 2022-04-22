@@ -2,15 +2,13 @@ import 'package:charlatan/charlatan.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:loono/ui/screens/find_doctor/find_doctor.dart';
-import 'package:loono/ui/screens/prevention/prevention_screen.dart';
 import 'package:loono_api/loono_api.dart';
 
 import '../../../../../setup.dart' as app;
-import '../../../../../test_helpers/widget_tester_extensions.dart';
 import '../../../../app/flows/login_flow.dart';
 import '../../../../app/pages/post_auth_main_screen_page.dart';
 import '../../../../app/test_data/default_test_data.dart';
+import '../../../../find_doctor/pages/find_doctor_page.dart';
 import '../../../pages/prevention_main_page.dart';
 import '../../../pages/self_examination/detail/self_examination_detail_page.dart';
 
@@ -22,8 +20,9 @@ Future<void> run({
 }) async {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  final preventionMainPage = PreventionPage(tester);
+  final preventionPage = PreventionPage(tester);
   final selfExaminationDetailPage = SelfExaminationDetailPage(tester);
+  final findDoctorPage = FindDoctorPage(tester);
   final mainScreenPage = PostAuthMainScreenPage(tester);
 
   await app.runMockApp(firebaseAuthOverride: firebaseAuth, charlatan: charlatan);
@@ -34,7 +33,7 @@ Future<void> run({
     examinationsData: defaultFemaleExaminations,
   );
 
-  await preventionMainPage.clickSelfExaminationCard(SelfExaminationType.BREAST);
+  await preventionPage.clickSelfExaminationCard(SelfExaminationType.BREAST);
   await selfExaminationDetailPage.verifyScreenIsShown();
 
   selfExaminationDetailPage
@@ -50,9 +49,10 @@ Future<void> run({
     itemPosition: 1,
     text: 'seznamu lékařů',
   );
-  await tester.pumpUntilFound(find.byType(FindDoctorScreen));
+  await findDoctorPage.verifyScreenIsShown();
+  await mainScreenPage.verifyScreenIsShown();
   mainScreenPage.verifyBottomBarIsShown();
 
   await mainScreenPage.clickPreventionTab();
-  await tester.pumpUntilFound(find.byType(PreventionScreen));
+  await preventionPage.verifyScreenIsShown();
 }
