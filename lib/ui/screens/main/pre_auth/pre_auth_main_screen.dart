@@ -6,7 +6,6 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
-import 'package:loono/services/examinations_service.dart';
 import 'package:loono/services/webview_service.dart';
 import 'package:loono/ui/widgets/custom_navigation_bar.dart';
 import 'package:loono/ui/widgets/no_connection_message.dart';
@@ -28,7 +27,6 @@ class PreAuthMainScreen extends StatefulWidget {
 
 class _PreAuthMainScreenState extends State<PreAuthMainScreen> {
   StreamSubscription? subscription;
-  bool connectivityLocked = true;
   final noConnectionMessage = noConnectionFlushbar();
 
   static const analyticsTabNames = [
@@ -48,14 +46,6 @@ class _PreAuthMainScreenState extends State<PreAuthMainScreen> {
   @override
   void initState() {
     super.initState();
-    final examinationsProvider = Provider.of<ExaminationsProvider>(context, listen: false);
-
-    /// lock connectivity for the first 300ms to prevent multiple api calls on init
-    Future<void>.delayed(const Duration(milliseconds: 300), () {
-      setState(() {
-        connectivityLocked = false;
-      });
-    });
 
     Connectivity().checkConnectivity().then(
           evalConnectivity,
@@ -65,9 +55,7 @@ class _PreAuthMainScreenState extends State<PreAuthMainScreen> {
       evalConnectivity(result);
 
       /// re-evaluate connection status after network reconnection
-      if (result != ConnectivityResult.none &&
-          examinationsProvider.examinations == null &&
-          !connectivityLocked) {
+      if (result != ConnectivityResult.none) {
         Connectivity().checkConnectivity().then(
               evalConnectivity,
             );
