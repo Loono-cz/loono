@@ -30,7 +30,7 @@ class _DoctorSearchDetailScreenState extends State<DoctorSearchDetailScreen> {
     _textEditingController.addListener(() {
       EasyDebounce.debounce(
         '_doctorSearchDetailTextSearchField',
-        const Duration(milliseconds: 250),
+        Duration(milliseconds: _searchQueryText.length > 3 ? 250 : 500),
         () => _onSearchQueryChanged(_searchQueryText),
       );
     });
