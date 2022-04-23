@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_svg/svg.dart';
@@ -76,7 +75,10 @@ class _AboutHealthScreenState extends State<AboutHealthScreen> {
             Padding(
               padding: const EdgeInsets.only(left: 10, top: 5),
               child: IconButton(
-                onPressed: () => AutoRouter.of(context).pop(),
+                onPressed: () async {
+                  final webViewController = context.read<WebViewProvider>().webViewController;
+                  await webViewController?.goBack();
+                },
                 icon: SvgPicture.asset('assets/icons/arrow_back.svg'),
               ),
             ),
