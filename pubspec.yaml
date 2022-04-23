@@ -109,6 +109,7 @@ flutter:
 
   assets:
     - assets/
+    - assets/maps/
     - assets/.env
     - assets/icons/
     - assets/icons/tabs/
