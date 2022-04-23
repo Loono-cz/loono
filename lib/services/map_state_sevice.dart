@@ -89,17 +89,15 @@ class MapStateService with ChangeNotifier {
 
     final uniqueCitiesMap = <String, SimpleHealthcareProvider>{};
     final uniqueAddressesMap = <String, SimpleHealthcareProvider>{};
-    final uniqueSpecializationsMap = <String, SimpleHealthcareProvider>{};
+    final uniqueSpecializationsMap = <String>{};
 
     final specs = _allSpecs.map((spec) => spec.overriddenText).whereType<String>();
     bool matchesSpecQuery(String specialization) =>
         removeDiacritics(specialization).toLowerCase().contains(normalizedQuery);
     final matchedSpecs = specs.where(matchesSpecQuery);
     final anyHealthcareProvider = _allHealthcareProviders.firstOrNull;
-    if (anyHealthcareProvider != null) {
-      for (final spec in matchedSpecs) {
-        uniqueSpecializationsMap[spec] = anyHealthcareProvider;
-      }
+    for (final spec in matchedSpecs) {
+      uniqueSpecializationsMap.add(spec);
     }
 
     for (final healthcareProvider in _allHealthcareProviders) {
@@ -124,15 +122,17 @@ class MapStateService with ChangeNotifier {
     final addresses = uniqueAddressesMap.values
         .map((e) => SearchResult(data: e, searchType: SearchType.address))
         .sorted((a, b) => compareNatural(a.text, b.text));
-    final specializations = uniqueSpecializationsMap.entries
-        .map(
-          (entry) => SearchResult(
-            data: entry.value,
-            searchType: SearchType.specialization,
-            overriddenText: entry.key,
-          ),
-        )
-        .sorted((a, b) => compareNatural(a.text, b.text));
+    final specializations = anyHealthcareProvider != null
+        ? (uniqueSpecializationsMap
+            .map(
+              (e) => SearchResult(
+                data: anyHealthcareProvider,
+                searchType: SearchType.specialization,
+                overriddenText: e,
+              ),
+            )
+            .sorted((a, b) => compareNatural(a.text, b.text)))
+        : <SearchResult>[];
     debugPrint(
       '-------\nSEARCH QUERY: $query\nADDRESSES: ${uniqueAddressesMap.length}\nCITIES: ${cities.length}\nSPECS: ${specializations.length}',
     );
