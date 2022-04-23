@@ -172,7 +172,8 @@ class _DatePickerContentState extends State<_DatePickerContent> {
           enabled: newDate != null,
           asyncCallback: () async {
             final isDateValid = Date.now().toDateTime().isAtSameMomentAs(
-                    Date(newDate!.year, newDate!.month, newDate!.day).toDateTime()) ||
+                      Date(newDate!.year, newDate!.month, newDate!.day).toDateTime(),
+                    ) ||
                 DateTime.now().isBefore(newDate!);
             if (!isDateValid) {
               showFlushBarError(context, context.l10n.error_must_be_in_future);
