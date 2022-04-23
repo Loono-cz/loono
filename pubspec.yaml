@@ -26,6 +26,7 @@ dependencies:
   dio: ^4.0.0
   dio_smart_retry: ^1.1.0
   drift: ^1.4.0
+  easy_debounce: ^2.0.2+1
   email_validator: ^2.0.1
   encrypted_moor:
     git:
