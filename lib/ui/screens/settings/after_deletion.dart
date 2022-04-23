@@ -69,7 +69,7 @@ class _AfterDeletionScreenState extends State<AfterDeletionScreen> {
                   key: const Key('afterDeletionPage_button_sendEmail'),
                   text: context.l10n.settings_after_deletion_send_as_email,
                   onTap: () {
-                    launch('mailto:info@loono.cz');
+                    launch('mailto:poradna@loono.cz');
                   },
                 ),
                 const SizedBox(height: 20),
