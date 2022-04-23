@@ -22,6 +22,6 @@ class OnboardingFormDonePage {
 
   Future<void> verifyScreenIsShown() async {
     logTestEvent();
-    await tester.pumpUntilVisible(find.byType(OnboardingFormDoneScreen));
+    await tester.pumpUntilFound(find.byType(OnboardingFormDoneScreen));
   }
 }

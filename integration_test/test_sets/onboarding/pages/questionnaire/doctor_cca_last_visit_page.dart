@@ -18,13 +18,13 @@ class QuestionnaireDoctorCcaLastVisitPage with OnboardingFinders {
     logTestEvent();
     await tester.tap(inLastXYearsBtn);
     await tester.pumpAndSettle();
-    await tester.pumpUntilVisible(find.byType(nextScreen));
+    await tester.pumpUntilFound(find.byType(nextScreen));
   }
 
   Future<void> clickMoreThanXYearsOrIdkButton({required Type nextScreen}) async {
     logTestEvent();
     await tester.tap(moreThanXYearsOrIdkButton);
     await tester.pumpAndSettle();
-    await tester.pumpUntilVisible(find.byType(nextScreen));
+    await tester.pumpUntilFound(find.byType(nextScreen));
   }
 }

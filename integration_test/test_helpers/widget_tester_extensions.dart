@@ -9,14 +9,14 @@ extension WidgetTesterExt on WidgetTester {
     await pump(Duration(seconds: seconds));
   }
 
-  Future<void> pumpUntilNotVisible(
+  Future<void> pumpUntilNotFound(
     Finder finder, {
     Duration timeout = const Duration(seconds: 20),
   }) async {
     await _pumpUntil(finder, timeout: timeout, untilVisible: false);
   }
 
-  Future<void> pumpUntilVisible(
+  Future<void> pumpUntilFound(
     Finder finder, {
     Duration timeout = const Duration(seconds: 20),
   }) async {

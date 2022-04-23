@@ -217,10 +217,7 @@ List<SelfFAQPair> selfFaqContent(BuildContext context, SelfExaminationType type)
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
                           // TODO: via this way it does not load smoothly
-                          AutoRouter.of(context).replaceAll([
-                            FindDoctorRoute(),
-                            MainRoute(selectedIndex: 1),
-                          ]);
+                          AutoRouter.of(context).replace(MainRoute(children: [FindDoctorRoute()]));
                         },
                     ),
                     TextSpan(text: texts.self_faq_breast_steps_answer_part_9),

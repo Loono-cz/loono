@@ -45,7 +45,7 @@ Future<void> loginFlow({
     );
 
   await tester.pumpAndSettle();
-  await tester.pumpUntilVisible(find.byType(WelcomeScreen));
+  await tester.pumpUntilFound(find.byType(WelcomeScreen));
 
   await welcomePage.clickLoginButton();
   expect(find.byType(LoginScreen), findsOneWidget);

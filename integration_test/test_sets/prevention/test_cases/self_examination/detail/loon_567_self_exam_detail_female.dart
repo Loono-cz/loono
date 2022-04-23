@@ -2,7 +2,7 @@ import 'package:charlatan/charlatan.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:loono/ui/screens/prevention/prevention.dart';
+import 'package:loono/ui/screens/prevention/prevention_screen.dart';
 import 'package:loono_api/loono_api.dart';
 
 import '../../../../../setup.dart' as app;
@@ -65,5 +65,5 @@ Future<void> run({
   await selfExaminationDetailPage.verifySelfExamFaqContentIsCollapsed(itemPosition: 1);
 
   await selfExaminationDetailPage.clickBackButton();
-  await tester.pumpUntilVisible(find.byType(PreventionScreen));
+  await tester.pumpUntilFound(find.byType(PreventionScreen));
 }

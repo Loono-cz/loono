@@ -38,6 +38,6 @@ class PreAuthMainScreenPage with MainScreenFinders {
 
   Future<void> verifyScreenIsShown() async {
     logTestEvent();
-    await tester.pumpUntilVisible(find.byType(PreAuthMainScreen));
+    await tester.pumpUntilFound(find.byType(PreAuthMainScreen));
   }
 }

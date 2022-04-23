@@ -74,22 +74,22 @@ Future<void> run({required WidgetTester tester}) async {
   final pointsHelpPage = PointsHelpPage(tester);
 
   // start questionnaire and create a new account
-  await tester.pumpUntilVisible(find.byType(WelcomeScreen));
+  await tester.pumpUntilFound(find.byType(WelcomeScreen));
 
   await welcomePage.clickLoginButton();
-  await tester.pumpUntilVisible(find.byType(LoginScreen));
+  await tester.pumpUntilFound(find.byType(LoginScreen));
 
   await loginPage.clickCreateNewAccountButton();
-  await tester.pumpUntilVisible(find.byType(OnboardingGenderScreen));
+  await tester.pumpUntilFound(find.byType(OnboardingGenderScreen));
 
   await questionnaireGenderPage.chooseMaleGender();
   await questionnaireGenderPage.clickContinueButton();
 
-  await tester.pumpUntilVisible(find.byType(OnBoardingBirthdateScreen));
+  await tester.pumpUntilFound(find.byType(OnBoardingBirthdateScreen));
   expect(find.text('Kdy ses narodil?'), findsOneWidget);
 
   await questionnaireBirthDatePage.clickContinueButton();
-  await tester.pumpUntilVisible(find.byType(OnboardingGeneralPracticionerScreen));
+  await tester.pumpUntilFound(find.byType(OnboardingGeneralPracticionerScreen));
 
   await questionnaireDoctorCcaLastVisitPage.clickMoreThanXYearsOrIdkButton(
     nextScreen: OnboardingDentistScreen,
@@ -100,7 +100,7 @@ Future<void> run({required WidgetTester tester}) async {
   );
 
   await questionnaireAchievementPage.clickContinueButton();
-  await tester.pumpUntilVisible(find.byType(DentistDateScreen));
+  await tester.pumpUntilFound(find.byType(DentistDateScreen));
 
   await questionnaireDoctorDatePickerPage.clickIdkButton();
   await onboardingFormDonePage.verifyScreenIsShown();
@@ -128,7 +128,7 @@ Future<void> run({required WidgetTester tester}) async {
   await preventionMainPage.verifyScreenIsShown();
 
   // verify some data are fetched from api GET /examinations
-  await tester.pumpUntilVisible(find.byType(SelfExaminationCard));
+  await tester.pumpUntilFound(find.byType(SelfExaminationCard));
   preventionMainPage
     ..verifyHasBadge(BadgeType.HEADBAND)
     ..verifyDoesNotHaveBadge(BadgeType.SHIELD)

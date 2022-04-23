@@ -28,6 +28,6 @@ class SignUpEmailPage {
 
   Future<void> verifyScreenIsShown() async {
     logTestEvent();
-    await tester.pumpUntilVisible(find.byType(EmailScreen));
+    await tester.pumpUntilFound(find.byType(EmailScreen));
   }
 }

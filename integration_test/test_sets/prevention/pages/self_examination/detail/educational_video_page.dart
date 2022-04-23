@@ -31,7 +31,7 @@ class EducationalVideoPage {
 
   Future<void> verifyVideoIsShown() async {
     logTestEvent();
-    await tester.pumpUntilVisible(video);
+    await tester.pumpUntilFound(video);
   }
 
   void verifySelfExaminationPerformedButtonIsShown() {
@@ -46,6 +46,6 @@ class EducationalVideoPage {
 
   Future<void> verifyScreenIsShown() async {
     logTestEvent();
-    await tester.pumpUntilVisible(find.byType(EducationalVideoScreen));
+    await tester.pumpUntilFound(find.byType(EducationalVideoScreen));
   }
 }

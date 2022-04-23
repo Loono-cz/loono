@@ -14,6 +14,6 @@ class FindDoctorPage {
   /// Page methods
   Future<void> verifyScreenIsShown() async {
     logTestEvent();
-    await tester.pumpUntilVisible(find.byType(FindDoctorScreen));
+    await tester.pumpUntilFound(find.byType(FindDoctorScreen));
   }
 }

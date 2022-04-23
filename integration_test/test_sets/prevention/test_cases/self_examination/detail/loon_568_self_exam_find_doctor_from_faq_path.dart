@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:loono/ui/screens/find_doctor/find_doctor.dart';
-import 'package:loono/ui/screens/prevention/prevention.dart';
+import 'package:loono/ui/screens/prevention/prevention_screen.dart';
 import 'package:loono_api/loono_api.dart';
 
 import '../../../../../setup.dart' as app;
@@ -50,9 +50,9 @@ Future<void> run({
     itemPosition: 1,
     text: 'seznamu lékařů',
   );
-  await tester.pumpUntilVisible(find.byType(FindDoctorScreen));
+  await tester.pumpUntilFound(find.byType(FindDoctorScreen));
   mainScreenPage.verifyBottomBarIsShown();
 
   await mainScreenPage.clickPreventionTab();
-  await tester.pumpUntilVisible(find.byType(PreventionScreen));
+  await tester.pumpUntilFound(find.byType(PreventionScreen));
 }

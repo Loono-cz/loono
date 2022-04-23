@@ -41,7 +41,7 @@ class PostAuthMainScreenPage with MainScreenFinders {
 
   Future<void> verifyScreenIsShown() async {
     logTestEvent();
-    await tester.pumpUntilVisible(find.byType(MainScreen));
+    await tester.pumpUntilFound(find.byType(MainScreen));
   }
 
   void verifyBottomBarIsShown() {

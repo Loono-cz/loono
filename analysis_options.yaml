@@ -5,6 +5,7 @@ analyzer:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
     - "**/*.gr.dart"
+    - "bricks/**/*.dart"
 
   # See https://dart.dev/guides/language/analysis-options#enabling-additional-type-checks
   strong-mode:
