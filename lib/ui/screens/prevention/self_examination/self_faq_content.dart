@@ -76,13 +76,8 @@ List<SelfFAQPair> selfFaqContent(BuildContext context, SelfExaminationType type)
                       text: texts.self_faq_testicular_steps_answer_part_8,
                       style: const TextStyle(decoration: TextDecoration.underline),
                       recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          // TODO: via this way it does not load smoothly
-                          AutoRouter.of(context).replaceAll([
-                            FindDoctorRoute(),
-                            MainRoute(selectedIndex: 1),
-                          ]);
-                        },
+                        ..onTap = () => AutoRouter.of(context)
+                            .replace(MainRoute(children: [FindDoctorRoute()])),
                     ),
                     TextSpan(text: texts.self_faq_testicular_steps_answer_part_9),
                     TextSpan(
@@ -215,10 +210,8 @@ List<SelfFAQPair> selfFaqContent(BuildContext context, SelfExaminationType type)
                       text: texts.self_faq_breast_steps_answer_part_8,
                       style: const TextStyle(decoration: TextDecoration.underline),
                       recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          // TODO: via this way it does not load smoothly
-                          AutoRouter.of(context).replace(MainRoute(children: [FindDoctorRoute()]));
-                        },
+                        ..onTap = () => AutoRouter.of(context)
+                            .replace(MainRoute(children: [FindDoctorRoute()])),
                     ),
                     TextSpan(text: texts.self_faq_breast_steps_answer_part_9),
                     TextSpan(
