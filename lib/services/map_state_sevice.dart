@@ -93,7 +93,16 @@ class MapStateService with ChangeNotifier {
     final uniqueCitiesWithSameNameMap = <String, Set<SimpleHealthcareProvider>>{};
 
     final uniqueAddressesMap = <String, SimpleHealthcareProvider>{};
-    final uniqueSpecializationsMap = <String, SimpleHealthcareProvider>{};
+    final uniqueSpecializationsMap = <String>{};
+
+    final specs = _allSpecs.map((spec) => spec.overriddenText).whereType<String>();
+    bool matchesSpecQuery(String specialization) =>
+        removeDiacritics(specialization).toLowerCase().contains(normalizedQuery);
+    final matchedSpecs = specs.where(matchesSpecQuery);
+    final anyHealthcareProvider = _allHealthcareProviders.firstOrNull;
+    for (final spec in matchedSpecs) {
+      uniqueSpecializationsMap.add(spec);
+    }
 
     for (final healthcareProvider in _allHealthcareProviders) {
       final isCityMatching =
@@ -140,18 +149,6 @@ class MapStateService with ChangeNotifier {
         }
       }
 
-      bool matchesSpecQuery(String specialization) =>
-          removeDiacritics(specialization).toLowerCase().contains(normalizedQuery);
-      final specializations = healthcareProvider.category;
-      final hasSpecializationMatch =
-          specializations.isNotEmpty ? specializations.any(matchesSpecQuery) : false;
-      if (hasSpecializationMatch) {
-        final matchedSpecs = specializations.where(matchesSpecQuery);
-        for (final spec in matchedSpecs) {
-          uniqueSpecializationsMap[spec] = healthcareProvider;
-        }
-      }
-
       final isAddressMatching = healthcareProvider.street == null
           ? false
           : removeDiacritics(healthcareProvider.street!.toLowerCase()).contains(normalizedQuery);
@@ -174,15 +171,17 @@ class MapStateService with ChangeNotifier {
     final addresses = uniqueAddressesMap.values
         .map((e) => SearchResult(data: e, searchType: SearchType.address))
         .sorted((a, b) => compareNatural(a.text, b.text));
-    final specializations = uniqueSpecializationsMap.entries
-        .map(
-          (entry) => SearchResult(
-            data: entry.value,
-            searchType: SearchType.specialization,
-            overriddenText: entry.key,
-          ),
-        )
-        .sorted((a, b) => compareNatural(a.text, b.text));
+    final specializations = anyHealthcareProvider != null
+        ? (uniqueSpecializationsMap
+            .map(
+              (e) => SearchResult(
+                data: anyHealthcareProvider,
+                searchType: SearchType.specialization,
+                overriddenText: e,
+              ),
+            )
+            .sorted((a, b) => compareNatural(a.text, b.text)))
+        : <SearchResult>[];
     debugPrint(
       '-------\nSEARCH QUERY: $query\nADDRESSES: ${uniqueAddressesMap.length}\nCITIES: ${cities.length}\nSPECS: ${specializations.length}',
     );
@@ -202,15 +201,10 @@ class MapStateService with ChangeNotifier {
   }
 
   SearchResult? getSpecSearchResultByName(String specName) {
-    final matched = _allHealthcareProviders.firstWhereOrNull(
-      (e) => e.category.any(
-        (spec) =>
-            removeDiacritics(spec).toLowerCase().contains(removeDiacritics(specName.toLowerCase())),
-      ),
-    );
+    final matched = _allSpecs.firstWhereOrNull((spec) => spec.overriddenText == specName);
     if (matched != null) {
       return SearchResult(
-        data: matched,
+        data: matched.data,
         searchType: SearchType.specialization,
         overriddenText: specName,
       );

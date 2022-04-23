@@ -85,7 +85,7 @@ class _PreAuthMainScreenState extends State<PreAuthMainScreen> {
         routes: [
           PreAuthPreventionWrapperRoute(forceRoute: widget.overridenPreventionRoute),
           FindDoctorRoute(),
-          AboutHealthRoute(),
+          const AboutHealthRoute(),
         ],
         bottomNavigationBuilder: (_, tabsRouter) {
           // TODO: unify widgets with Post-auth MainScreen
