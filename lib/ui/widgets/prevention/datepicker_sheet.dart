@@ -11,6 +11,7 @@ import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/custom_date_picker.dart';
 import 'package:loono/ui/widgets/custom_time_picker.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart';
 
 void showDatePickerSheet({
   required BuildContext context,
@@ -170,7 +171,11 @@ class _DatePickerContentState extends State<_DatePickerContent> {
           text: isFirstStep ? context.l10n.continue_info : context.l10n.action_save,
           enabled: newDate != null,
           asyncCallback: () async {
-            if (DateTime.now().isAfter(newDate!)) {
+            final isDateValid = Date.now().toDateTime().isAtSameMomentAs(
+                      Date(newDate!.year, newDate!.month, newDate!.day).toDateTime(),
+                    ) ||
+                DateTime.now().isBefore(newDate!);
+            if (!isDateValid) {
               showFlushBarError(context, context.l10n.error_must_be_in_future);
               return;
             }
