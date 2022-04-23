@@ -36,17 +36,19 @@ class PreventionScreen extends StatelessWidget {
                   padding: EdgeInsets.only(top: 40),
                   child: BadgeComposer(showDescription: false),
                 ),
-                ValueListenableBuilder(
-                  valueListenable: extentFromTop,
-                  builder: (context, double? value, child) {
-                    if (value != null) {
-                      return AvatarBubbleArrow(
-                        extent: value,
-                        height: constraints.maxHeight,
-                      );
-                    }
-                    return const SizedBox();
-                  },
+                IgnorePointer(
+                  child: ValueListenableBuilder(
+                    valueListenable: extentFromTop,
+                    builder: (context, double? value, child) {
+                      if (value != null) {
+                        return AvatarBubbleArrow(
+                          extent: value,
+                          height: constraints.maxHeight,
+                        );
+                      }
+                      return const SizedBox();
+                    },
+                  ),
                 ),
                 ExaminationsSheetOverlay(
                   convertExtent: convertExtent,
