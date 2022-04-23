@@ -37,7 +37,7 @@ class CalendarRepository {
       ],
       start: tz.TZDateTime.from(startingDate, tz.getLocation(timezone)),
       end: tz.TZDateTime.from(startingDate.add(const Duration(hours: 1)), tz.getLocation(timezone)),
-      title: '${examinationType.l10n_name} - preventivní prohlídka [Loono]',
+      title: '${examinationType.l10n_name} - preventivní prohlídka [Preventivka]',
     );
   }
 

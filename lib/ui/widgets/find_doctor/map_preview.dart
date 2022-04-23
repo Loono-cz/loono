@@ -57,7 +57,7 @@ class MapPreview extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       floatingActionButton: Padding(
-        padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, MediaQuery.of(context).size.height * 0.5),
+        padding: EdgeInsets.fromLTRB(0, 0, 16.0, MediaQuery.of(context).size.height * 0.15),
         child: FloatingActionButton(
           onPressed: () async {
             final currentPos = await determinePosition();
