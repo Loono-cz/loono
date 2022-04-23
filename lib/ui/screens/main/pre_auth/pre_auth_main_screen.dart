@@ -38,7 +38,7 @@ class PreAuthMainScreen extends StatelessWidget {
         routes: [
           PreAuthPreventionWrapperRoute(forceRoute: overridenPreventionRoute),
           FindDoctorRoute(),
-          AboutHealthRoute(),
+          const AboutHealthRoute(),
         ],
         bottomNavigationBuilder: (_, tabsRouter) {
           // TODO: unify widgets with Post-auth MainScreen
