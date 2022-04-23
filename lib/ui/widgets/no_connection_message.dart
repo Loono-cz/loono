@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/ui/widgets/custom_navigation_bar.dart';
 
-Flushbar noConnectionFlushbar() {
+Flushbar noConnectionFlushbar({bool isPreAuth = false}) {
   return Flushbar<dynamic>(
     forwardAnimationCurve: Curves.decelerate,
     reverseAnimationCurve: Curves.easeOut,
@@ -17,8 +17,10 @@ Flushbar noConnectionFlushbar() {
     message: 'Prosím zkontroluj své připojení k síti',
     backgroundColor: LoonoColors.red,
     flushbarStyle: FlushbarStyle.FLOATING,
-    flushbarPosition: FlushbarPosition.BOTTOM,
+    flushbarPosition: isPreAuth ? FlushbarPosition.TOP : FlushbarPosition.BOTTOM,
     borderRadius: BorderRadius.circular(12),
-    margin: const EdgeInsets.fromLTRB(8, 8, 8, BOTTOM_NAV_BAR_HEIGHT + 10),
+    margin: isPreAuth
+        ? const EdgeInsets.fromLTRB(8, 60, 8, 8) // Margin top to not overlap "Už mám účet" top bar
+        : const EdgeInsets.fromLTRB(8, 8, 8, BOTTOM_NAV_BAR_HEIGHT + 10),
   );
 }

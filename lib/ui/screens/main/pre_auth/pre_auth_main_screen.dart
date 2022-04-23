@@ -27,7 +27,7 @@ class PreAuthMainScreen extends StatefulWidget {
 
 class _PreAuthMainScreenState extends State<PreAuthMainScreen> {
   StreamSubscription? subscription;
-  final noConnectionMessage = noConnectionFlushbar();
+  final noConnectionMessage = noConnectionFlushbar(isPreAuth: true);
 
   static const analyticsTabNames = [
     'PreAuthPreventionTab',
