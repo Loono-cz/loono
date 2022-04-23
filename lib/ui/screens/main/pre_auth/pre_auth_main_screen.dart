@@ -1,26 +1,73 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/webview_service.dart';
 import 'package:loono/ui/widgets/custom_navigation_bar.dart';
+import 'package:loono/ui/widgets/no_connection_message.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:provider/provider.dart';
 
 /// Pre-auth main screen.
-class PreAuthMainScreen extends StatelessWidget {
+class PreAuthMainScreen extends StatefulWidget {
   const PreAuthMainScreen({
     Key? key,
     this.overridenPreventionRoute,
   }) : super(key: key);
 
   final PageRouteInfo? overridenPreventionRoute;
+
+  @override
+  State<PreAuthMainScreen> createState() => _PreAuthMainScreenState();
+}
+
+class _PreAuthMainScreenState extends State<PreAuthMainScreen> {
+  StreamSubscription? subscription;
+  final noConnectionMessage = noConnectionFlushbar(isPreAuth: true);
+
   static const analyticsTabNames = [
     'PreAuthPreventionTab',
     'PreAuthFindDoctorTab',
     'PreAuthExploreSectionTab'
   ];
+
+  void evalConnectivity(ConnectivityResult result) {
+    if (result == ConnectivityResult.none) {
+      noConnectionMessage.show(context);
+    } else {
+      noConnectionMessage.dismiss(context);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    Connectivity().checkConnectivity().then(
+          evalConnectivity,
+        );
+
+    subscription = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
+      evalConnectivity(result);
+
+      /// re-evaluate connection status after network reconnection
+      if (result != ConnectivityResult.none) {
+        Connectivity().checkConnectivity().then(
+              evalConnectivity,
+            );
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    subscription?.cancel();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +83,7 @@ class PreAuthMainScreen extends StatelessWidget {
       },
       child: AutoTabsScaffold(
         routes: [
-          PreAuthPreventionWrapperRoute(forceRoute: overridenPreventionRoute),
+          PreAuthPreventionWrapperRoute(forceRoute: widget.overridenPreventionRoute),
           FindDoctorRoute(),
           const AboutHealthRoute(),
         ],
