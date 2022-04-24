@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:loono/helpers/map_variables.dart';
@@ -34,6 +35,9 @@ class MapPreview extends StatelessWidget {
         myLocationButtonEnabled: false,
         zoomControlsEnabled: false,
         onMapCreated: (GoogleMapController mapController) async {
+          await mapController.setMapStyle(
+            await rootBundle.loadString('assets/maps/map-style.json'),
+          );
           _mapController.complete(mapController);
           final latLngBounds = await mapController.getVisibleRegion();
           mapState.setVisibleRegion(latLngBounds);
@@ -53,7 +57,7 @@ class MapPreview extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       floatingActionButton: Padding(
-        padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, MediaQuery.of(context).size.height * 0.5),
+        padding: EdgeInsets.fromLTRB(0, 0, 16.0, MediaQuery.of(context).size.height * 0.15),
         child: FloatingActionButton(
           onPressed: () async {
             final currentPos = await determinePosition();

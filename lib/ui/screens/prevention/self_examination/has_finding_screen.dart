@@ -150,13 +150,13 @@ class HasFindingScreen extends StatelessWidget {
                                       style: LoonoFonts.paragraphFontStyle,
                                       children: [
                                         TextSpan(
-                                          text: 'loono@gmail.com',
+                                          text: 'poradna@loono.cz',
                                           style: const TextStyle(
                                             color: LoonoColors.primary,
                                           ),
                                           recognizer: TapGestureRecognizer()
                                             ..onTap = () => launch(
-                                                  'mailto:loono@gmail.com',
+                                                  'mailto:poradna@loono.cz',
                                                 ),
                                         )
                                       ],
