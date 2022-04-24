@@ -46,7 +46,7 @@ Future<void> run({
 
   await deleteAccountPage.clickDeleteCheckupsCheckBox();
   deleteAccountPage.verifyCheckBoxStates(
-    isDeleteCheckupsCheckBoxChecked: false,
+    isDeleteCheckupsCheckBoxChecked: true,
     isDeleteBadgesCheckBoxChecked: false,
     isStopNotificationsCheckBoxChecked: false,
   );

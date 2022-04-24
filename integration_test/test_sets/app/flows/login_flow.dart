@@ -50,5 +50,5 @@ Future<void> loginFlow({
   await loginPage.verifyScreenIsShown();
 
   await loginPage.loginWithGoogle();
-  await preventionPage.verifyScreenIsShown();
+  if (accountResponse == null) await preventionPage.verifyScreenIsShown();
 }

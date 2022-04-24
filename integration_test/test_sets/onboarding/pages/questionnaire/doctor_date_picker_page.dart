@@ -33,7 +33,8 @@ class QuestionnaireDoctorDatePickerPage with OnboardingFinders {
   }
 
   Future<void> verifyScreenIsShown({required Type expectedScreen}) async {
-    logTestEvent('Verify screen is shown: "${expectedScreen.runtimeType}"');
-    await tester.pumpUntilFound(find.byType(expectedScreen));
+    final screen = find.byType(expectedScreen);
+    logTestEvent('Verify screen is shown: "${tester.widget(screen).runtimeType}"');
+    await tester.pumpUntilFound(screen);
   }
 }

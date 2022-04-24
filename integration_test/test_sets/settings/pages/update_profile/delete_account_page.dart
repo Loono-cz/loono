@@ -64,8 +64,8 @@ class DeleteAccountPage with SettingsFinders {
     logTestEvent(
       'Verify unchecked checkboxes are: "${checkboxTexts.where((e) => !checked.contains(e))}"',
     );
-    final deleteCheckupsCheckBoxState = _isCheckBoxChecked(checkBoxStopNotifications);
-    final deleteBadgesCheckBoxState = _isCheckBoxChecked(checkBoxStopNotifications);
+    final deleteCheckupsCheckBoxState = _isCheckBoxChecked(checkBoxDeleteCheckups);
+    final deleteBadgesCheckBoxState = _isCheckBoxChecked(checkBoxDeleteBadges);
     final stopNotificationsCheckBoxState = _isCheckBoxChecked(checkBoxStopNotifications);
     expect(deleteCheckupsCheckBoxState, isDeleteCheckupsCheckBoxChecked);
     expect(deleteBadgesCheckBoxState, isDeleteBadgesCheckBoxChecked);

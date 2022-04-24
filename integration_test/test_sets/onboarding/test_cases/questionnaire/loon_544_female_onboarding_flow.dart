@@ -4,6 +4,7 @@ import 'package:integration_test/integration_test.dart';
 import 'package:loono/ui/screens/dentist_achievement.dart';
 import 'package:loono/ui/screens/gynecology_achievement.dart';
 import 'package:loono/ui/screens/onboarding/doctors/dentist.dart';
+import 'package:loono/ui/screens/onboarding/doctors/dentist_date.dart';
 import 'package:loono/ui/screens/onboarding/doctors/general_practicioner.dart';
 import 'package:loono/ui/screens/onboarding/doctors/gynecology.dart';
 import 'package:loono/ui/screens/onboarding/doctors/gynecology_date.dart';
@@ -87,7 +88,7 @@ Future<void> run({required WidgetTester tester, required Charlatan charlatan}) a
 
   await questionnaireAchievementPage.clickContinueButton();
   await questionnaireDoctorDatePickerPage.verifyScreenIsShown(
-    expectedScreen: OnboardingDentistScreen,
+    expectedScreen: DentistDateScreen,
   );
 
   // last doctor: clicking 'Dont know' button should transition to OnboardingFormDoneScreen
