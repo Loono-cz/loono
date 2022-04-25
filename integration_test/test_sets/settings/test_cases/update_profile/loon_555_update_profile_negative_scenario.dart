@@ -2,10 +2,6 @@ import 'package:charlatan/charlatan.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:loono/ui/screens/settings/edit_email.dart';
-import 'package:loono/ui/screens/settings/edit_nickname.dart';
-import 'package:loono/ui/screens/settings/open_settings.dart';
-import 'package:loono/ui/screens/settings/update_profile.dart';
 
 import '../../../../setup.dart' as app;
 import '../../../app/flows/login_flow.dart';
@@ -33,57 +29,60 @@ Future<void> run({
   await loginFlow(tester: tester, charlatan: charlatan);
 
   await tester.pumpAndSettle();
-  await tester.pump(const Duration(seconds: 3));
+  await tester.pump(const Duration(seconds: 1));
 
-  final preventionMainPage = PreventionPage(tester);
+  final preventionPage = PreventionPage(tester);
   final openSettingsPage = OpenSettingsPage(tester);
   final updateProfilePage = UpdateProfilePage(tester);
   final editNicknamePage = EditNicknamePage(tester);
   final editEmailPage = EditEmailPage(tester);
 
-  await preventionMainPage.clickProfileAvatar();
-  expect(find.byType(OpenSettingsScreen), findsOneWidget);
+  await preventionPage.clickProfileAvatar();
+  await openSettingsPage.verifyScreenIsShown();
 
   await openSettingsPage.clickEditProfileButton();
-  expect(find.byType(UpdateProfileScreen), findsOneWidget);
+  await updateProfilePage.verifyScreenIsShown();
   updateProfilePage
     ..verifyNickname(defaultMaleAccount.nickname)
     ..verifyEmail(defaultMaleAccount.preferredEmail);
 
   await updateProfilePage.clickNicknameField();
-  expect(find.byType(EditNicknameScreen), findsOneWidget);
+  await editNicknamePage.verifyScreenIsShown();
+
   await editNicknamePage.insertNickname(_testDataNicknameLong);
   // long text gets stripped
   editNicknamePage.checkInputTextIsValid();
 
   await editNicknamePage.clickBackButton();
-  expect(find.byType(UpdateProfileScreen), findsOneWidget);
+  await updateProfilePage.verifyScreenIsShown();
   updateProfilePage.verifyNickname(defaultMaleAccount.nickname);
 
   await updateProfilePage.clickEmailField();
-  expect(find.byType(EditEmailScreen), findsOneWidget);
+  await editEmailPage.verifyScreenIsShown();
 
   await editEmailPage.insertEmail(_testDataEmailIncorrect1);
   await editEmailPage.clickSaveButton();
-  expect(find.byType(EditEmailScreen), findsOneWidget);
+  await editEmailPage.verifyScreenIsShown();
   expect(find.text('Nesprávný formát e-mailu'), findsOneWidget);
 
   await editEmailPage.insertEmail(_testDataEmailIncorrect2);
   await editEmailPage.clickSaveButton();
-  expect(find.byType(EditEmailScreen), findsOneWidget);
+  await editEmailPage.verifyScreenIsShown();
   expect(find.text('Nesprávný formát e-mailu'), findsOneWidget);
 
   await editEmailPage.clickBackButton();
-  expect(find.byType(UpdateProfileScreen), findsOneWidget);
+  await updateProfilePage.verifyScreenIsShown();
   updateProfilePage.verifyEmail(defaultMaleAccount.preferredEmail);
 
   await updateProfilePage.clickSexField();
   expect(find.text('Pohlaví teď není možné změnit'), findsOneWidget);
+
   await updateProfilePage.closeErrorSheet();
-  expect(find.byType(UpdateProfileScreen), findsOneWidget);
+  await updateProfilePage.verifyScreenIsShown();
 
   await updateProfilePage.clickBirthdateField();
   expect(find.text('Věk teď není možné změnit'), findsOneWidget);
+
   await updateProfilePage.closeErrorSheet();
-  expect(find.byType(UpdateProfileScreen), findsOneWidget);
+  await updateProfilePage.verifyScreenIsShown();
 }

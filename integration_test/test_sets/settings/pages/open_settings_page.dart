@@ -5,6 +5,7 @@ import 'package:loono/ui/widgets/button.dart';
 import '../../../test_helpers/common_finders.dart';
 import '../../../test_helpers/widget_tester_extensions.dart';
 
+/// * Corresponding screen: [OpenSettingsScreen]
 class OpenSettingsPage with SettingsFinders {
   OpenSettingsPage(this.tester);
 

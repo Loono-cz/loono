@@ -1,12 +1,6 @@
 import 'package:charlatan/charlatan.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:loono/ui/screens/main/pre_auth/continue_onboarding_form.dart';
-import 'package:loono/ui/screens/main/pre_auth/login.dart';
-import 'package:loono/ui/screens/onboarding/birthdate.dart';
-import 'package:loono/ui/screens/onboarding/fill_form_later.dart';
-import 'package:loono/ui/screens/onboarding/gender.dart';
-import 'package:loono/ui/screens/welcome.dart';
 
 import '../../../../setup.dart' as app;
 import '../../../app/pages/login_page.dart';
@@ -25,7 +19,7 @@ Future<void> run({required WidgetTester tester, required Charlatan charlatan}) a
   charlatan.whenGet('/providers/all', (_) => HEALTHCARE_PROVIDER_ENCODED);
 
   await tester.pumpAndSettle();
-  await tester.pump(const Duration(seconds: 3));
+  await tester.pump(const Duration(seconds: 1));
 
   final welcomePage = WelcomePage(tester);
   final loginPage = LoginPage(tester);
@@ -34,16 +28,17 @@ Future<void> run({required WidgetTester tester, required Charlatan charlatan}) a
   final questionnaireGenderPage = QuestionnaireGenderPage(tester);
   final questionnaireBirthDatePage = QuestionnaireBirthDatePage(tester);
 
-  expect(find.byType(WelcomeScreen), findsOneWidget);
+  await welcomePage.verifyScreenIsShown();
   await welcomePage.clickLoginButton();
-  expect(find.byType(LoginScreen), findsOneWidget);
+  await loginPage.verifyScreenIsShown();
 
   // start questionnaire
   await loginPage.clickCreateNewAccountButton();
-  expect(find.byType(OnboardingGenderScreen), findsOneWidget);
+  await questionnaireGenderPage.verifyScreenIsShown();
+
   await questionnaireGenderPage.chooseMaleGender();
   await questionnaireGenderPage.clickContinueButton();
-  expect(find.byType(OnBoardingBirthdateScreen), findsOneWidget);
+  await questionnaireBirthDatePage.verifyScreenIsShown();
 
   // when age < 19
   await questionnaireBirthDatePage.scrollToApproxYear(DateTime.now().year - 5);
@@ -51,15 +46,16 @@ Future<void> run({required WidgetTester tester, required Charlatan charlatan}) a
   // TODO: check for SnackBar error message
   // should not transition to next screen - due to age
   await questionnaireBirthDatePage.clickContinueButton();
-  expect(find.byType(OnBoardingBirthdateScreen), findsOneWidget);
-  // wait for message to disappear
+  await questionnaireBirthDatePage.verifyScreenIsShown();
+  // wait for error message to disappear
   await tester.pump(const Duration(seconds: 8));
   await tester.pump(const Duration(seconds: 4));
 
   // skip onboarding form, progress bar should have progress
   await questionnaireBirthDatePage.clickSkipQuestionnaireButton();
-  expect(find.byType(FillOnboardingFormLaterScreen), findsOneWidget);
+  await fillFormLaterPage.verifyScreenIsShown();
+
   await fillFormLaterPage.clickFillFormLaterButton();
-  expect(find.byType(ContinueOnboardingFormScreen), findsOneWidget);
-  expect(continueQuestionnairePage.hasProgressBarAnyProgress(), true);
+  await continueQuestionnairePage.verifyScreenIsShown();
+  continueQuestionnairePage.verifyProgressBarHasAnyProgress();
 }

@@ -1,15 +1,11 @@
 import 'package:charlatan/charlatan.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:loono/ui/screens/settings/after_deletion.dart';
-import 'package:loono/ui/screens/settings/delete_account.dart';
-import 'package:loono/ui/screens/settings/open_settings.dart';
-import 'package:loono/ui/screens/settings/update_profile.dart';
 
 import '../../../../setup.dart' as app;
 import '../../../app/flows/login_flow.dart';
+import '../../../app/pages/after_deletion_page.dart';
 import '../../../prevention/pages/prevention_main_page.dart';
 import '../../pages/open_settings_page.dart';
 import '../../pages/update_profile/delete_account_page.dart';
@@ -26,53 +22,62 @@ Future<void> run({
   await app.runMockApp(firebaseAuthOverride: firebaseAuth, charlatan: charlatan);
   await loginFlow(tester: tester, charlatan: charlatan);
 
-  final preventionMainPage = PreventionPage(tester);
+  final preventionPage = PreventionPage(tester);
   final openSettingsPage = OpenSettingsPage(tester);
   final updateProfilePage = UpdateProfilePage(tester);
   final deleteAccountPage = DeleteAccountPage(tester);
+  final afterDeletionPage = AfterDeletionPage(tester);
 
-  await preventionMainPage.clickProfileAvatar();
-  expect(find.byType(OpenSettingsScreen), findsOneWidget);
+  await preventionPage.clickProfileAvatar();
+  await openSettingsPage.verifyScreenIsShown();
 
   await openSettingsPage.clickEditProfileButton();
-  expect(find.byType(UpdateProfileScreen), findsOneWidget);
+  await updateProfilePage.verifyScreenIsShown();
 
   await updateProfilePage.clickDeleteAccountButton();
-  expect(find.byType(DeleteAccountScreen), findsOneWidget);
+  await deleteAccountPage.verifyScreenIsShown();
+  await deleteAccountPage.verifyDeleteAccountButtonIsNotShown();
 
-  expect(deleteAccountPage.deleteAccountBtn, findsNothing);
-  expect(deleteAccountPage.isCheckBoxChecked(deleteAccountPage.checkBoxDeleteCheckups), false);
-  expect(deleteAccountPage.isCheckBoxChecked(deleteAccountPage.checkBoxDeleteBadges), false);
-  expect(deleteAccountPage.isCheckBoxChecked(deleteAccountPage.checkBoxStopNotifications), false);
+  deleteAccountPage.verifyCheckBoxStates(
+    isDeleteCheckupsCheckBoxChecked: false,
+    isDeleteBadgesCheckBoxChecked: false,
+    isStopNotificationsCheckBoxChecked: false,
+  );
 
   await deleteAccountPage.clickDeleteCheckupsCheckBox();
-  expect(deleteAccountPage.deleteAccountBtn, findsNothing);
-  expect(deleteAccountPage.isCheckBoxChecked(deleteAccountPage.checkBoxDeleteCheckups), true);
-  expect(deleteAccountPage.isCheckBoxChecked(deleteAccountPage.checkBoxDeleteBadges), false);
-  expect(deleteAccountPage.isCheckBoxChecked(deleteAccountPage.checkBoxStopNotifications), false);
+  deleteAccountPage.verifyCheckBoxStates(
+    isDeleteCheckupsCheckBoxChecked: true,
+    isDeleteBadgesCheckBoxChecked: false,
+    isStopNotificationsCheckBoxChecked: false,
+  );
+  await deleteAccountPage.verifyDeleteAccountButtonIsNotShown();
   await tester.pump(const Duration(seconds: 1));
 
   await deleteAccountPage.clickDeleteBadgesCheckBox();
-  expect(deleteAccountPage.deleteAccountBtn, findsNothing);
-  expect(deleteAccountPage.isCheckBoxChecked(deleteAccountPage.checkBoxDeleteCheckups), true);
-  expect(deleteAccountPage.isCheckBoxChecked(deleteAccountPage.checkBoxDeleteBadges), true);
-  expect(deleteAccountPage.isCheckBoxChecked(deleteAccountPage.checkBoxStopNotifications), false);
-
-  await deleteAccountPage.clickStopNotificationsCheckBox();
-  expect(deleteAccountPage.isCheckBoxChecked(deleteAccountPage.checkBoxDeleteCheckups), true);
-  expect(deleteAccountPage.isCheckBoxChecked(deleteAccountPage.checkBoxDeleteBadges), true);
-  expect(deleteAccountPage.isCheckBoxChecked(deleteAccountPage.checkBoxStopNotifications), true);
+  await deleteAccountPage.verifyDeleteAccountButtonIsNotShown();
+  deleteAccountPage.verifyCheckBoxStates(
+    isDeleteCheckupsCheckBoxChecked: true,
+    isDeleteBadgesCheckBoxChecked: true,
+    isStopNotificationsCheckBoxChecked: false,
+  );
 
   // all three checkboxes are checked, delete button appears
-  await tester.pump(const Duration(seconds: 2));
-  expect(deleteAccountPage.deleteAccountBtn, findsOneWidget);
+  await deleteAccountPage.clickStopNotificationsCheckBox();
+  deleteAccountPage.verifyCheckBoxStates(
+    isDeleteCheckupsCheckBoxChecked: true,
+    isDeleteBadgesCheckBoxChecked: true,
+    isStopNotificationsCheckBoxChecked: true,
+  );
+  await tester.pump(const Duration(seconds: 1));
+  await deleteAccountPage.verifyDeleteAccountButtonIsShown();
+
   await deleteAccountPage.clickDeleteAccountButton();
-  expect(find.byType(CupertinoAlertDialog), findsOneWidget);
+  await deleteAccountPage.verifyConfirmationDialogIsShown();
 
   // fake /delete API response
   charlatan.whenDelete('/account', (_) => CharlatanHttpResponse(statusCode: 200));
   await deleteAccountPage.confirmDeleteAccountDialog();
-  expect(find.byType(AfterDeletionScreen), findsOneWidget);
+  await afterDeletionPage.verifyScreenIsShown();
   expect(find.textContaining('Co můžeme udělat pro to, aby ses'), findsOneWidget);
   // TODO: verify launch with email method was called (via method channel handler)?
   // await afterDeletionPage.clickSendEmailButton();

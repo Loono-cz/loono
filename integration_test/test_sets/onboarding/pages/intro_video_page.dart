@@ -6,6 +6,7 @@ import 'package:video_player/video_player.dart';
 
 import '../../../test_helpers/widget_tester_extensions.dart';
 
+/// * Corresponding screen: [IntroVideo]
 class IntroVideoPage {
   IntroVideoPage(this.tester);
 
@@ -17,6 +18,7 @@ class IntroVideoPage {
 
   /// Page methods
   Future<void> waitForVideoLoad() async {
+    logTestEvent();
     await tester.pumpUntilNotFound(find.byType(CircularProgressIndicator));
   }
 
@@ -34,6 +36,7 @@ class IntroVideoPage {
 
   Future<void> replayVideo() async {
     logTestEvent();
+    // TODO: Refactor this. Very flaky cuz it depends on delays which are not consistent.
     final videoPlayer = tester.widget<VideoPlayer>(find.byType(VideoPlayer));
     await tester.pump(const Duration(seconds: 1));
     final beforeResetProgress = videoPlayer.controller.value;
@@ -47,5 +50,10 @@ class IntroVideoPage {
   Future<void> _clickPlayAgainBtn({bool pumpAndSettle = true}) async {
     await tester.tap(playAgainBtn);
     if (pumpAndSettle) await tester.pumpAndSettle();
+  }
+
+  Future<void> verifyScreenIsShown() async {
+    logTestEvent();
+    await tester.pumpUntilFound(find.byType(IntroVideo));
   }
 }

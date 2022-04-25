@@ -108,6 +108,7 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                       showCupertinoDialog<void>(
                         context: context,
                         builder: (BuildContext context) => CupertinoAlertDialog(
+                          key: const Key('deleteAccountPage_confirmationDialog'),
                           content: Text(
                             context.l10n.settings_delete_account_alert,
                             style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600),

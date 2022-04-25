@@ -1,10 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:loono/ui/screens/onboarding/gender.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/onboarding/gender_button.dart';
 
 import '../../../../test_helpers/common_finders.dart';
 import '../../../../test_helpers/widget_tester_extensions.dart';
 
+/// * Corresponding screen: [OnboardingGenderScreen]
 class QuestionnaireGenderPage with OnboardingFinders {
   QuestionnaireGenderPage(this.tester);
 
@@ -47,10 +49,15 @@ class QuestionnaireGenderPage with OnboardingFinders {
     await tester.pumpAndSettle();
   }
 
-  bool isContinueButtonDisabled() {
-    logTestEvent('Check continue button disabled state');
+  bool verifyContinueButtonState({required bool isEnabled}) {
+    logTestEvent('Verify continue button state is: "${isEnabled ? 'enabled' : 'disabled'}"');
     final loonoButton = tester.widget<LoonoButton>(continueBtn);
     final isButtonDisabled = loonoButton.enabled == false;
     return isButtonDisabled;
+  }
+
+  Future<void> verifyScreenIsShown() async {
+    logTestEvent();
+    await tester.pumpUntilFound(find.byType(OnboardingGenderScreen));
   }
 }

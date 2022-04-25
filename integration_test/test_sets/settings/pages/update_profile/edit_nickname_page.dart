@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:loono/ui/screens/settings/edit_nickname.dart';
 import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/fallback_account_content.dart';
 
 import '../../../../test_helpers/common_finders.dart';
 import '../../../../test_helpers/widget_tester_extensions.dart';
 
+/// * Corresponding screen: [EditNicknameScreen]
 class EditNicknamePage with SettingsFinders {
   EditNicknamePage(this.tester);
 
@@ -19,7 +21,7 @@ class EditNicknamePage with SettingsFinders {
 
   /// Page methods
   Future<void> insertNickname(String nickname) async {
-    logTestEvent('Insert nickname: $nickname');
+    logTestEvent('Insert nickname: "$nickname"');
     await tester.enterText(textField, nickname);
     await tester.pumpAndSettle();
   }
@@ -46,5 +48,10 @@ class EditNicknamePage with SettingsFinders {
     logTestEvent();
     await tester.tap(closeBtn);
     await tester.pumpAndSettle();
+  }
+
+  Future<void> verifyScreenIsShown() async {
+    logTestEvent();
+    await tester.pumpUntilFound(find.byType(EditNicknameScreen));
   }
 }

@@ -2,11 +2,9 @@ import 'package:charlatan/charlatan.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:loono/ui/screens/prevention/prevention_screen.dart';
 import 'package:loono_api/loono_api.dart';
 
 import '../../../../../setup.dart' as app;
-import '../../../../../test_helpers/widget_tester_extensions.dart';
 import '../../../../app/flows/login_flow.dart';
 import '../../../../app/test_data/default_test_data.dart';
 import '../../../pages/prevention_main_page.dart';
@@ -20,7 +18,7 @@ Future<void> run({
 }) async {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  final preventionMainPage = PreventionPage(tester);
+  final preventionPage = PreventionPage(tester);
   final selfExaminationDetailPage = SelfExaminationDetailPage(tester);
 
   await app.runMockApp(firebaseAuthOverride: firebaseAuth, charlatan: charlatan);
@@ -32,12 +30,12 @@ Future<void> run({
   );
 
   const selfExamType = SelfExaminationType.TESTICULAR;
-  await preventionMainPage.verifySelfExaminationCardIsInCategory(
+  await preventionPage.verifySelfExaminationCardIsInCategory(
     selfExamType,
     expectedCategoryName: 'Vyšetři se',
   );
 
-  await preventionMainPage.clickSelfExaminationCard(selfExamType);
+  await preventionPage.clickSelfExaminationCard(selfExamType);
   await selfExaminationDetailPage.verifyScreenIsShown();
 
   selfExaminationDetailPage
@@ -64,5 +62,5 @@ Future<void> run({
   await selfExaminationDetailPage.verifySelfExamFaqContentIsCollapsed(itemPosition: 2);
 
   await selfExaminationDetailPage.clickBackButton();
-  await tester.pumpUntilFound(find.byType(PreventionScreen));
+  await preventionPage.verifyScreenIsShown();
 }

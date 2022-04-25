@@ -1,9 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:loono/ui/screens/settings/points_help.dart';
 import 'package:loono/ui/widgets/button.dart';
 
 import '../../../../test_helpers/common_finders.dart';
 import '../../../../test_helpers/widget_tester_extensions.dart';
 
+/// * Corresponding screen: [PointsHelpScreen]
 class PointsHelpPage with SettingsFinders {
   PointsHelpPage(this.tester);
 
@@ -24,5 +26,10 @@ class PointsHelpPage with SettingsFinders {
     logTestEvent();
     await tester.tap(backBtn);
     await tester.pumpAndSettle();
+  }
+
+  Future<void> verifyScreenIsShown() async {
+    logTestEvent();
+    await tester.pumpUntilFound(find.byType(PointsHelpScreen));
   }
 }

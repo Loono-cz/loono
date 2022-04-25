@@ -30,6 +30,7 @@ class UpdateProfilePage with SettingsFinders {
   );
   final Finder logoutBtn = find.widgetWithText(TextButton, 'Odhlásit se');
   final Finder deleteAccountBtn = find.widgetWithText(TextButton, 'Smazat účet');
+  final Finder confirmationDialog = find.byKey(const Key('updateProfilePage_confirmationDialog'));
   final Finder cancelBtnLogoutDialog = find.widgetWithText(TextButton, 'Zrušit');
   final Finder confirmBtnLogoutDialog = find.widgetWithText(TextButton, 'Pokračovat');
 
@@ -106,7 +107,7 @@ class UpdateProfilePage with SettingsFinders {
   }
 
   void verifyNickname(String expectedNickname) {
-    logTestEvent('Verify nickname is: $expectedNickname');
+    logTestEvent('Verify nickname is: "$expectedNickname"');
     final nicknameText = find.descendant(
       of: nicknameTextField,
       matching: find.text(expectedNickname),
@@ -115,12 +116,22 @@ class UpdateProfilePage with SettingsFinders {
   }
 
   void verifyEmail(String expectedEmail) {
-    logTestEvent('Verify email is: $expectedEmail');
+    logTestEvent('Verify email is: "$expectedEmail"');
     final emailText = find.descendant(
       of: emailTextField,
       matching: find.text(expectedEmail),
     );
     expect(emailText, findsOneWidget);
+  }
+
+  Future<void> verifyConfirmationDialogIsShown() async {
+    logTestEvent();
+    await tester.pumpUntilFound(confirmationDialog);
+  }
+
+  Future<void> verifyConfirmationDialogIsNotShown() async {
+    logTestEvent();
+    await tester.pumpUntilNotFound(confirmationDialog);
   }
 
   Future<void> verifyScreenIsShown() async {

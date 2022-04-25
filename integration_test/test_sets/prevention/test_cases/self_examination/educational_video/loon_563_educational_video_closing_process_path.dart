@@ -19,7 +19,7 @@ Future<void> run({
 }) async {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  final preventionMainPage = PreventionPage(tester);
+  final preventionPage = PreventionPage(tester);
   final selfExaminationDetailPage = SelfExaminationDetailPage(tester);
   final educationalVideoPage = EducationalVideoPage(tester);
 
@@ -31,7 +31,7 @@ Future<void> run({
     examinationsData: defaultFemaleExaminations,
   );
 
-  await preventionMainPage.clickSelfExaminationCard(SelfExaminationType.BREAST);
+  await preventionPage.clickSelfExaminationCard(SelfExaminationType.BREAST);
   await selfExaminationDetailPage.verifyScreenIsShown();
 
   await selfExaminationDetailPage.clickHowToSelfExamButton();

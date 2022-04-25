@@ -3,6 +3,7 @@ import 'package:loono/l10n/ext.dart';
 
 void showConfirmationDialog(
   BuildContext context, {
+  Key? key,
   required VoidCallback onConfirm,
   VoidCallback? onCancel,
   required String content,
@@ -24,6 +25,7 @@ void showConfirmationDialog(
     context: context,
     useRootNavigator: false,
     builder: (context) => AlertDialog(
+      key: key,
       content: Text(
         content,
         textAlign: TextAlign.center,

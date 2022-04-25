@@ -21,7 +21,7 @@ Future<void> run({
 }) async {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  final preventionMainPage = PreventionPage(tester);
+  final preventionPage = PreventionPage(tester);
   final selfExaminationDetailPage = SelfExaminationDetailPage(tester);
   final educationalVideoPage = EducationalVideoPage(tester);
 
@@ -45,12 +45,12 @@ Future<void> run({
   );
 
   const selfExamType = SelfExaminationType.BREAST;
-  await preventionMainPage.verifySelfExaminationCardIsInCategory(
+  await preventionPage.verifySelfExaminationCardIsInCategory(
     selfExamType,
     expectedCategoryName: 'Připomenu ti vyšetření',
   );
 
-  await preventionMainPage.clickSelfExaminationCard(selfExamType);
+  await preventionPage.clickSelfExaminationCard(selfExamType);
   await selfExaminationDetailPage.verifyScreenIsShown();
 
   await selfExaminationDetailPage.clickHowToSelfExamButton();

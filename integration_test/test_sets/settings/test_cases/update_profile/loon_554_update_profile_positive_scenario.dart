@@ -2,10 +2,6 @@ import 'package:charlatan/charlatan.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:loono/ui/screens/settings/edit_email.dart';
-import 'package:loono/ui/screens/settings/edit_nickname.dart';
-import 'package:loono/ui/screens/settings/open_settings.dart';
-import 'package:loono/ui/screens/settings/update_profile.dart';
 import 'package:loono_api/loono_api.dart';
 
 import '../../../../setup.dart' as app;
@@ -32,21 +28,20 @@ Future<void> run({
   charlatan.whenGet('/providers/all', (_) => HEALTHCARE_PROVIDER_ENCODED);
 
   await loginFlow(tester: tester, charlatan: charlatan);
-
   await tester.pumpAndSettle();
-  await tester.pump(const Duration(seconds: 3));
+  await tester.pump(const Duration(seconds: 1));
 
-  final preventionMainPage = PreventionPage(tester);
+  final preventionPage = PreventionPage(tester);
   final openSettingsPage = OpenSettingsPage(tester);
   final updateProfilePage = UpdateProfilePage(tester);
   final editNicknamePage = EditNicknamePage(tester);
   final editEmailPage = EditEmailPage(tester);
 
-  await preventionMainPage.clickProfileAvatar();
-  expect(find.byType(OpenSettingsScreen), findsOneWidget);
+  await preventionPage.clickProfileAvatar();
+  await openSettingsPage.verifyScreenIsShown();
 
   await openSettingsPage.clickEditProfileButton();
-  expect(find.byType(UpdateProfileScreen), findsOneWidget);
+  await updateProfilePage.verifyScreenIsShown();
   updateProfilePage
     ..verifyNickname(defaultMaleAccount.nickname)
     ..verifyEmail(defaultMaleAccount.preferredEmail);
@@ -70,7 +65,8 @@ Future<void> run({
   );
 
   await updateProfilePage.clickNicknameField();
-  expect(find.byType(EditNicknameScreen), findsOneWidget);
+  await editNicknamePage.verifyScreenIsShown();
+
   await editNicknamePage.insertNickname(_testDataNickname);
   await editNicknamePage.clickSaveButton();
   updateProfilePage
@@ -96,9 +92,11 @@ Future<void> run({
   );
 
   await updateProfilePage.clickEmailField();
-  expect(find.byType(EditEmailScreen), findsOneWidget);
+  await editEmailPage.verifyScreenIsShown();
+
   await editEmailPage.insertEmail(_testDataEmail);
   await editEmailPage.clickSaveButton();
+  await updateProfilePage.verifyScreenIsShown();
   updateProfilePage
     ..verifyNickname(_testDataNickname)
     ..verifyEmail(_testDataEmail);

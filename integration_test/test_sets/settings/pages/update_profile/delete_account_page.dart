@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:loono/ui/screens/settings/delete_account.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/settings/checkbox.dart';
 
 import '../../../../test_helpers/common_finders.dart';
 import '../../../../test_helpers/widget_tester_extensions.dart';
 
+/// * Corresponding screen: [DeleteAccountScreen]
 class DeleteAccountPage with SettingsFinders {
   DeleteAccountPage(this.tester);
 
@@ -19,11 +21,12 @@ class DeleteAccountPage with SettingsFinders {
   final Finder checkBoxStopNotifications =
       find.byKey(const Key('deleteAccountPage_checkBox_stopNotifications'));
   final Finder deleteAccountBtn = find.widgetWithText(LoonoButton, 'Smazat účet');
-  final Finder cancelBtnDeleteAccountDialog =
+  final Finder deleteAccountDialogCancelBtn =
       find.byKey(const Key('deleteAccountPage_confirmationDialog_cancelBtn'));
-  final Finder yesBtnDeleteAccountDialog =
+  final Finder deleteAccountDialogConfirmBtn =
       find.byKey(const Key('deleteAccountPage_confirmationDialog_yesBtn'));
   final Finder closeScreenBtn = find.byIcon(Icons.close);
+  final Finder deleteAccountDialog = find.byKey(const Key('deleteAccountPage_confirmationDialog'));
 
   /// Page methods
   Future<void> clickDeleteCheckupsCheckBox() async {
@@ -44,9 +47,29 @@ class DeleteAccountPage with SettingsFinders {
     await tester.pumpAndSettle();
   }
 
-  bool isCheckBoxChecked(Finder finder) {
-    final checkBox = tester.widget<CheckboxCustom>(finder);
-    return checkBox.isChecked;
+  void verifyCheckBoxStates({
+    required bool isDeleteCheckupsCheckBoxChecked,
+    required bool isDeleteBadgesCheckBoxChecked,
+    required bool isStopNotificationsCheckBoxChecked,
+  }) {
+    final checkboxTexts = <String>['deleteCheckups', 'deleteBadges', 'stopNotifications'];
+    final checked = <String>[
+      if (isDeleteCheckupsCheckBoxChecked) checkboxTexts[0],
+      if (isDeleteBadgesCheckBoxChecked) checkboxTexts[1],
+      if (isStopNotificationsCheckBoxChecked) checkboxTexts[2],
+    ];
+    logTestEvent(
+      'Verify checked checkboxes are: "${checked.toString()}"',
+    );
+    logTestEvent(
+      'Verify unchecked checkboxes are: "${checkboxTexts.where((e) => !checked.contains(e))}"',
+    );
+    final deleteCheckupsCheckBoxState = _isCheckBoxChecked(checkBoxDeleteCheckups);
+    final deleteBadgesCheckBoxState = _isCheckBoxChecked(checkBoxDeleteBadges);
+    final stopNotificationsCheckBoxState = _isCheckBoxChecked(checkBoxStopNotifications);
+    expect(deleteCheckupsCheckBoxState, isDeleteCheckupsCheckBoxChecked);
+    expect(deleteBadgesCheckBoxState, isDeleteBadgesCheckBoxChecked);
+    expect(stopNotificationsCheckBoxState, isStopNotificationsCheckBoxChecked);
   }
 
   Future<void> clickDeleteAccountButton() async {
@@ -57,20 +80,50 @@ class DeleteAccountPage with SettingsFinders {
 
   Future<void> cancelDeleteAccountDialog() async {
     logTestEvent();
-    await tester.tap(cancelBtnDeleteAccountDialog);
+    await tester.tap(deleteAccountDialogCancelBtn);
     await tester.pumpAndSettle();
   }
 
   Future<void> confirmDeleteAccountDialog() async {
     logTestEvent();
-    await tester.tap(yesBtnDeleteAccountDialog);
+    await tester.tap(deleteAccountDialogConfirmBtn);
     await tester.pumpAndSettle();
-    await tester.pumpUntilNotFound(yesBtnDeleteAccountDialog);
+    await tester.pumpUntilNotFound(deleteAccountDialogConfirmBtn);
   }
 
   Future<void> clickCloseScreenButton() async {
     logTestEvent();
     await tester.tap(closeScreenBtn);
     await tester.pumpAndSettle();
+  }
+
+  Future<void> verifyConfirmationDialogIsShown() async {
+    logTestEvent();
+    await tester.pumpUntilFound(deleteAccountDialog);
+  }
+
+  Future<void> verifyConfirmationDialogIsNotShown() async {
+    logTestEvent();
+    await tester.pumpUntilNotFound(deleteAccountDialog);
+  }
+
+  Future<void> verifyDeleteAccountButtonIsShown() async {
+    logTestEvent();
+    await tester.pumpUntilFound(deleteAccountBtn);
+  }
+
+  Future<void> verifyDeleteAccountButtonIsNotShown() async {
+    logTestEvent();
+    await tester.pumpUntilNotFound(deleteAccountBtn);
+  }
+
+  bool _isCheckBoxChecked(Finder finder) {
+    final checkBox = tester.widget<CheckboxCustom>(finder);
+    return checkBox.isChecked;
+  }
+
+  Future<void> verifyScreenIsShown() async {
+    logTestEvent();
+    await tester.pumpUntilFound(find.byType(DeleteAccountScreen));
   }
 }

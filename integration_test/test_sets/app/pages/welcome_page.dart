@@ -5,6 +5,7 @@ import 'package:loono/ui/widgets/button.dart';
 
 import '../../../test_helpers/widget_tester_extensions.dart';
 
+/// * Corresponding screen: [WelcomeScreen]
 class WelcomePage {
   WelcomePage(this.tester);
 
@@ -18,7 +19,7 @@ class WelcomePage {
   Future<void> clickStartButton() async {
     logTestEvent();
     await tester.tap(startBtn);
-    await tester.pump(const Duration(seconds: 2));
+    await tester.pump(const Duration(seconds: 1));
     await tester.pumpUntilNotFound(find.byType(WelcomeScreen));
   }
 
@@ -27,5 +28,10 @@ class WelcomePage {
     await tester.tap(loginBtn);
     await tester.pumpAndSettle();
     await tester.pumpUntilNotFound(find.byType(WelcomeScreen));
+  }
+
+  Future<void> verifyScreenIsShown() async {
+    logTestEvent();
+    await tester.pumpUntilFound(find.byType(WelcomeScreen));
   }
 }
