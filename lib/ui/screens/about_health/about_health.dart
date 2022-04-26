@@ -16,11 +16,11 @@ class AboutHealthScreen extends StatefulWidget {
 class _AboutHealthScreenState extends State<AboutHealthScreen> {
   final initialUri = Uri.parse('https://www.loono.cz/objevuj-prevenci');
 
-  final allowedUrlsWhitelist = ['open.spotify.com', 'www.loono.cz'];
+  final allowedUrlsWhitelist = ['www.loono.cz', 'www.youtube.com'];
 
-  final openInBrowserWhitelist = ['spotify.link', 'www.youtube.com'];
+  final openInBrowserWhitelist = ['spotify.link', 'open.spotify.com', 'www.youtube.com'];
 
-  bool _canGoBack = false;
+  bool _showBackArrow = false;
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +35,9 @@ class _AboutHealthScreenState extends State<AboutHealthScreen> {
               url: initialUri,
             ),
             onUpdateVisitedHistory: (webViewController, uri, androidIsReload) async {
-              if (await webViewController.canGoBack()) {
-                _canGoBack = true;
-              } else {
-                _canGoBack = false;
-              }
-              setState(() {});
+              setState(() {
+                _showBackArrow = uri != initialUri;
+              });
             },
             initialOptions: InAppWebViewGroupOptions(
               crossPlatform: InAppWebViewOptions(
@@ -58,20 +55,22 @@ class _AboutHealthScreenState extends State<AboutHealthScreen> {
             shouldOverrideUrlLoading: (controller, navigationAction) async {
               final uri = navigationAction.request.url!;
 
-              if (openInBrowserWhitelist.contains(uri.host)) {
+              print(uri.toString());
+              if (openInBrowserWhitelist.contains(uri.host) && !uri.path.contains('/embed')) {
                 if (await canLaunch(uri.toString())) {
                   await launch(uri.toString());
                 }
               }
 
               /// prevent clicks outside of allowed urls
-              if (allowedUrlsWhitelist.contains(uri.host)) {
+              if ((allowedUrlsWhitelist.contains(uri.host) && !uri.path.contains('/watch') ||
+                  uri.toString().contains('https://open.spotify.com/embed'))) {
                 return NavigationActionPolicy.ALLOW;
               }
               return NavigationActionPolicy.CANCEL;
             },
           ),
-          if (_canGoBack)
+          if (_showBackArrow)
             Padding(
               padding: const EdgeInsets.only(left: 10, top: 5),
               child: IconButton(
