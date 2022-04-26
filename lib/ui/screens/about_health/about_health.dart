@@ -55,7 +55,6 @@ class _AboutHealthScreenState extends State<AboutHealthScreen> {
             shouldOverrideUrlLoading: (controller, navigationAction) async {
               final uri = navigationAction.request.url!;
 
-              print(uri.toString());
               if (openInBrowserWhitelist.contains(uri.host) && !uri.path.contains('/embed')) {
                 if (await canLaunch(uri.toString())) {
                   await launch(uri.toString());
