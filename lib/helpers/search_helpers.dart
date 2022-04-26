@@ -33,7 +33,7 @@ BoxConstraints getSearchIconConstraints({double iconSize = 18.0}) {
 }
 
 InputBorder customSearchInputDecoration({required Color color, InputBorder? inputBorder}) {
-  final borderSide = BorderSide(color: color, width: 2.0);
+  final borderSide = BorderSide(color: color, width: 1.0);
   return inputBorder?.copyWith(borderSide: borderSide) ??
       UnderlineInputBorder(borderSide: borderSide);
 }
