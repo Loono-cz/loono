@@ -134,7 +134,7 @@ class DefaultLoonoCircleAvatar extends StatelessWidget {
       child: SvgPicture.asset(
         'assets/icons/default_avatar.svg',
         color: LoonoColors.primary,
-        width: 60,
+        width: radius,
       ),
     );
   }
