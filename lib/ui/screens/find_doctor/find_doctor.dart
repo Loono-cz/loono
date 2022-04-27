@@ -97,7 +97,7 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
             return Stack(
               children: [
                 MapPreview(mapController: _mapController),
-                if (_isHealthCareProvidersInMapService) ...[
+                if (_isHealthCareProvidersInMapService && currDoctorDetail == null) ...[
                   Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: Column(
