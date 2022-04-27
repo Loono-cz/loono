@@ -194,14 +194,12 @@ List<SelfFAQPair> selfFaqContent(BuildContext context, SelfExaminationType type)
                 texts.self_faq_breast_steps_answer_part_3,
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
-              Text(
-                texts.self_faq_breast_steps_answer_part_4,
-              ),
               RichText(
                 text: TextSpan(
                   text: '',
                   style: DefaultTextStyle.of(context).style,
                   children: [
+                    TextSpan(text: texts.self_faq_breast_steps_answer_part_4),
                     TextSpan(
                       text: 'www.mamo.cz',
                       style: const TextStyle(decoration: TextDecoration.underline),
