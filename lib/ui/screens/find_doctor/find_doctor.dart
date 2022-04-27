@@ -120,15 +120,19 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                       ],
                     ),
                   ),
-                  MapSheetOverlay(
-                    onItemTap: (healthcareProvider) async => animateToPos(
-                      _mapController,
-                      cameraPosition: CameraPosition(
-                        target: LatLng(healthcareProvider.lat, healthcareProvider.lng),
-                        zoom: MapVariables.DOCTOR_DETAIL_ZOOM,
+                  Visibility(
+                    visible: currDoctorDetail == null,
+                    maintainState: true,
+                    child: MapSheetOverlay(
+                      onItemTap: (healthcareProvider) async => animateToPos(
+                        _mapController,
+                        cameraPosition: CameraPosition(
+                          target: LatLng(healthcareProvider.lat, healthcareProvider.lng),
+                          zoom: MapVariables.DOCTOR_DETAIL_ZOOM,
+                        ),
                       ),
+                      sheetController: _sheetController,
                     ),
-                    sheetController: _sheetController,
                   ),
                 ],
                 if (!_isHealthCareProvidersInMapService)
