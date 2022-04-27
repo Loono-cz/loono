@@ -95,7 +95,7 @@ class _MainScreenState extends State<MainScreen> {
         routes: [
           PreventionRoute(),
           FindDoctorRoute(),
-          const AboutHealthRoute(),
+          AboutHealthRoute(),
         ],
         bottomNavigationBuilder: (_, tabsRouter) {
           return CustomNavigationBar(
