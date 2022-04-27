@@ -119,27 +119,43 @@ List<SelfFAQPair> selfFaqContent(BuildContext context, SelfExaminationType type)
                   _ImageTile(
                     assetPath: 'assets/icons/prevention/findings/testicular_shape.svg',
                     description: texts.self_faq_testicular_tile_desc_shape,
+                    isMale: true,
                   ),
                   _ImageTile(
                     assetPath: 'assets/icons/prevention/findings/testicular_size.svg',
                     description: texts.self_faq_testicular_tile_desc_size,
+                    isMale: true,
                   ),
                   _ImageTile(
                     assetPath: 'assets/icons/prevention/findings/testicular_bump.svg',
                     description: texts.self_faq_testicular_tile_desc_bump,
+                    isMale: true,
                   ),
                   _ImageTile(
                     assetPath: 'assets/icons/prevention/findings/testicular_skin.svg',
                     description: texts.self_faq_testicular_tile_desc_skin,
+                    isMale: true,
                   ),
                 ],
-              )
+              ),
+              const SizedBox(
+                height: 14,
+              ),
+              Row(
+                children: [
+                  Flexible(child: Text(texts.self_faq_testicular_changes2_answer)),
+                ],
+              ),
             ],
           ),
         ),
         SelfFAQPair(
           question: Text(texts.self_faq_testicular_meaning_question),
           answer: Text(texts.self_faq_testicular_meaning_answer),
+        ),
+        SelfFAQPair(
+          question: Text(texts.self_faq_testicular_ashamed_question),
+          answer: Text(texts.self_faq_testicular_ashamed_answer),
         ),
         SelfFAQPair(
           question: Text(texts.self_faq_testicular_distinguish_question),
@@ -178,21 +194,12 @@ List<SelfFAQPair> selfFaqContent(BuildContext context, SelfExaminationType type)
                 texts.self_faq_breast_steps_answer_part_3,
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
-              Text(
-                texts.self_faq_breast_steps_answer_part_4,
-              ),
               RichText(
                 text: TextSpan(
                   text: '',
                   style: DefaultTextStyle.of(context).style,
                   children: [
-                    TextSpan(
-                      text: texts.self_faq_breast_steps_answer_part_5,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    TextSpan(
-                      text: texts.self_faq_breast_steps_answer_part_6,
-                    ),
+                    TextSpan(text: texts.self_faq_breast_steps_answer_part_4),
                     TextSpan(
                       text: 'www.mamo.cz',
                       style: const TextStyle(decoration: TextDecoration.underline),
@@ -205,7 +212,14 @@ List<SelfFAQPair> selfFaqContent(BuildContext context, SelfExaminationType type)
                           }
                         },
                     ),
-                    TextSpan(text: texts.self_faq_breast_steps_answer_part_7),
+                    TextSpan(text: texts.self_faq_breast_steps_answer_part_5),
+                    TextSpan(
+                      text: texts.self_faq_breast_steps_answer_part_6,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    TextSpan(
+                      text: texts.self_faq_breast_steps_answer_part_7,
+                    ),
                     TextSpan(
                       text: texts.self_faq_breast_steps_answer_part_8,
                       style: const TextStyle(decoration: TextDecoration.underline),
@@ -213,7 +227,9 @@ List<SelfFAQPair> selfFaqContent(BuildContext context, SelfExaminationType type)
                         ..onTap = () => AutoRouter.of(context)
                             .replace(MainRoute(children: [FindDoctorRoute()])),
                     ),
-                    TextSpan(text: texts.self_faq_breast_steps_answer_part_9),
+                    TextSpan(
+                      text: texts.self_faq_breast_steps_answer_part_9,
+                    ),
                     TextSpan(
                       text: LoonoStrings.contactEmail,
                       style: const TextStyle(decoration: TextDecoration.underline),
@@ -279,7 +295,15 @@ List<SelfFAQPair> selfFaqContent(BuildContext context, SelfExaminationType type)
                     width: 88,
                   )
                 ],
-              )
+              ),
+              const SizedBox(
+                height: 14,
+              ),
+              Row(
+                children: [
+                  Flexible(child: Text(texts.self_faq_breast_changes2_answer)),
+                ],
+              ),
             ],
           ),
         ),
@@ -292,12 +316,12 @@ List<SelfFAQPair> selfFaqContent(BuildContext context, SelfExaminationType type)
           answer: Text(texts.self_faq_breast_distinguish_answer),
         ),
         SelfFAQPair(
-          question: Text(texts.self_faq_breast_men_too_question),
-          answer: Text(texts.self_faq_breast_men_too_answer),
+          question: Text(texts.self_faq_breast_family_question),
+          answer: Text(texts.self_faq_breast_family_answer),
         ),
         SelfFAQPair(
-          question: Text(texts.self_faq_breast_model_question),
-          answer: Text(texts.self_faq_breast_model_answer),
+          question: Text(texts.self_faq_breast_men_too_question),
+          answer: Text(texts.self_faq_breast_men_too_answer),
         ),
       ];
       break;
@@ -310,15 +334,17 @@ class _ImageTile extends StatelessWidget {
     Key? key,
     required this.assetPath,
     required this.description,
+    this.isMale = false,
   }) : super(key: key);
 
   final String assetPath;
   final String description;
+  final bool isMale;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 130,
+      height: isMale ? 160 : 130,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

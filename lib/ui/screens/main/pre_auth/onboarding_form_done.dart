@@ -37,7 +37,7 @@ class OnboardingFormDoneScreen extends StatelessWidget {
         child: ListView(
           children: [
             Container(
-              color: const Color.fromRGBO(241, 249, 249, 1),
+              color: const Color.fromRGBO(237, 248, 253, 1),
               child: Padding(
                 padding: const EdgeInsets.only(top: 0, left: 18, right: 18),
                 child: Column(
@@ -57,37 +57,31 @@ class OnboardingFormDoneScreen extends StatelessWidget {
                       },
                     ),
                     SizedBox(height: isScreenSmall ? 6 : 24),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                      child: Text(
-                        context.l10n.onboarding_form_done_header,
-                        textAlign: TextAlign.start,
-                        style: LoonoSizes.responsiveStyleScale(context, LoonoFonts.headerFontStyle),
-                      ),
+                    Text(
+                      context.l10n.onboarding_form_done_header,
+                      textAlign: TextAlign.start,
+                      style: LoonoSizes.responsiveStyleScale(context, LoonoFonts.headerFontStyle),
                     ),
                     Row(
                       children: [
                         Flexible(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                            child: Row(
-                              children: [
-                                SvgPicture.asset(
-                                  'assets/icons/prevention/success_checkmark.svg',
-                                  width: 30,
-                                ),
-                                const SizedBox(width: 10),
-                                Flexible(
-                                  child: Text(
-                                    context.l10n.onboarding_form_done_success_message,
-                                    textAlign: TextAlign.start,
-                                    style: LoonoFonts.subtitleFontStyle.copyWith(
-                                      color: LoonoColors.greenSuccess,
-                                    ),
+                          child: Row(
+                            children: [
+                              SvgPicture.asset(
+                                'assets/icons/prevention/success_checkmark.svg',
+                                width: 30,
+                              ),
+                              const SizedBox(width: 10),
+                              Flexible(
+                                child: Text(
+                                  context.l10n.onboarding_form_done_success_message,
+                                  textAlign: TextAlign.start,
+                                  style: LoonoFonts.subtitleFontStyle.copyWith(
+                                    color: LoonoColors.greenSuccess,
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                         Align(
@@ -109,7 +103,7 @@ class OnboardingFormDoneScreen extends StatelessWidget {
             SizedBox(height: isScreenSmall ? 5 : 30),
             if (Platform.isIOS)
               Padding(
-                padding: const EdgeInsets.only(top: 18, left: 18, right: 18),
+                padding: const EdgeInsets.only(left: 18, right: 18),
                 child: SocialLoginButton.apple(
                   onPressed: () async => _processSocialAuth(
                     context,
@@ -117,7 +111,7 @@ class OnboardingFormDoneScreen extends StatelessWidget {
                   ),
                 ),
               ),
-            const SizedBox(height: 15),
+            const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.only(left: 18, right: 18),
               child: SocialLoginButton.google(
@@ -128,44 +122,47 @@ class OnboardingFormDoneScreen extends StatelessWidget {
                 ),
               ),
             ),
-            TextButton(
-              // TODO: Terms of privacy page
-              onPressed: () => debugPrint('open'),
-              child: Text.rich(
-                TextSpan(
-                  text: context.l10n.by_logging_in_you_agree_to_the_terms_of_privacy,
-                  children: [
-                    TextSpan(
-                      text: context.l10n.by_logging_in_you_agree_to_the_terms_highlight,
-                      style: LoonoFonts.fontStyle.copyWith(decoration: TextDecoration.underline),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () async {
-                          if (await canLaunch(termsUrl)) {
-                            await launch(
-                              termsUrl,
-                            );
-                          }
-                        },
-                    ),
-                    TextSpan(
-                      text: ' ${context.l10n.examination_detail_rewards_get_badge_2} ',
-                    ),
-                    TextSpan(
-                      text: context.l10n.by_logging_in_you_agree_to_the_privacy_highlight,
-                      style: LoonoFonts.fontStyle.copyWith(decoration: TextDecoration.underline),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () async {
-                          if (await canLaunch(privacyUrl)) {
-                            await launch(
-                              privacyUrl,
-                            );
-                          }
-                        },
-                    ),
-                  ],
+            SizedBox(height: isScreenSmall ? 5 : 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 28.0),
+              child: TextButton(
+                onPressed: () => debugPrint('open'),
+                child: Text.rich(
+                  TextSpan(
+                    text: context.l10n.by_logging_in_you_agree_to_the_terms_of_privacy,
+                    children: [
+                      TextSpan(
+                        text: context.l10n.by_logging_in_you_agree_to_the_terms_highlight,
+                        style: LoonoFonts.fontStyle.copyWith(decoration: TextDecoration.underline),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () async {
+                            if (await canLaunch(termsUrl)) {
+                              await launch(
+                                termsUrl,
+                              );
+                            }
+                          },
+                      ),
+                      TextSpan(
+                        text: ' ${context.l10n.examination_detail_rewards_get_badge_2} ',
+                      ),
+                      TextSpan(
+                        text: context.l10n.by_logging_in_you_agree_to_the_privacy_highlight,
+                        style: LoonoFonts.fontStyle.copyWith(decoration: TextDecoration.underline),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () async {
+                            if (await canLaunch(privacyUrl)) {
+                              await launch(
+                                privacyUrl,
+                              );
+                            }
+                          },
+                      ),
+                    ],
+                  ),
+                  style: LoonoFonts.fontStyle.copyWith(fontSize: 12),
+                  textAlign: TextAlign.center,
                 ),
-                style: LoonoFonts.fontStyle,
-                textAlign: TextAlign.center,
               ),
             ),
           ],

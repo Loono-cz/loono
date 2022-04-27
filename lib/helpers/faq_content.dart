@@ -23,7 +23,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
     case ExaminationType.COLONOSCOPY:
       result = [
         FAQPair(
-          question: '${texts.what_is} ${type.l10n_name}?',
+          question: '${texts.what_is} ${type.l10n_name.toLowerCase()}?',
           answer: texts.faq_colonoscopy_answer,
         ),
         FAQPair(
@@ -51,7 +51,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
     case ExaminationType.DENTIST:
       result = [
         FAQPair(
-          question: '${texts.who_is} ${type.l10n_name}?',
+          question: '${texts.who_is} ${type.l10n_name.toLowerCase()}?',
           answer: texts.faq_dentist_answer,
         ),
         FAQPair(
@@ -74,12 +74,20 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
           question: texts.faq_prepare_question,
           answer: texts.faq_dentist_prepare_answer,
         ),
+        FAQPair(
+          question: texts.faq_pain_question,
+          answer: texts.faq_dentist_pain_answer,
+        ),
+        FAQPair(
+          question: texts.faq_do_more_question,
+          answer: texts.faq_dentist_do_more_answer,
+        ),
       ];
       break;
     case ExaminationType.DERMATOLOGIST:
       result = [
         FAQPair(
-          question: '${texts.who_is} ${type.l10n_name}?',
+          question: '${texts.who_is} ${type.l10n_name.toLowerCase()}?',
           answer: texts.faq_dermatologist_answer,
         ),
         FAQPair(
@@ -102,12 +110,20 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
           question: texts.faq_prepare_question,
           answer: texts.faq_dermatologist_prepare_answer,
         ),
+        FAQPair(
+          question: texts.faq_pain_question,
+          answer: texts.faq_dermatologist_pain_answer,
+        ),
+        FAQPair(
+          question: texts.faq_do_more_question,
+          answer: texts.faq_dermatologist_do_more_answer,
+        ),
       ];
       break;
     case ExaminationType.GENERAL_PRACTITIONER:
       result = [
         FAQPair(
-          question: '${texts.who_is} ${type.l10n_name}?',
+          question: '${texts.who_is} ${type.l10n_name.toLowerCase()}?',
           answer: texts.faq_general_practitioner_answer,
         ),
         FAQPair(
@@ -130,12 +146,20 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
           question: texts.faq_prepare_question,
           answer: texts.faq_general_practitioner_prepare_answer,
         ),
+        FAQPair(
+          question: texts.faq_pain_question,
+          answer: texts.faq_general_practitioner_pain_answer,
+        ),
+        FAQPair(
+          question: texts.faq_do_more_question,
+          answer: texts.faq_general_practitioner_do_more_answer,
+        ),
       ];
       break;
     case ExaminationType.GYNECOLOGIST:
       result = [
         FAQPair(
-          question: '${texts.who_is} ${type.l10n_name}?',
+          question: '${texts.who_is} ${type.l10n_name.toLowerCase()}?',
           answer: texts.faq_gynecologist_answer,
         ),
         FAQPair(
@@ -158,12 +182,20 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
           question: texts.faq_prepare_question,
           answer: texts.faq_gynecologist_prepare_answer,
         ),
+        FAQPair(
+          question: texts.faq_pain_question,
+          answer: texts.faq_gynecologist_pain_answer,
+        ),
+        FAQPair(
+          question: texts.faq_do_more_question,
+          answer: texts.faq_gynecologist_do_more_answer,
+        ),
       ];
       break;
     case ExaminationType.MAMMOGRAM:
       result = [
         FAQPair(
-          question: '${texts.what_is} ${type.l10n_name}?',
+          question: '${texts.what_is} ${type.l10n_name.toLowerCase()}?',
           answer: texts.faq_mammogram_answer,
         ),
         FAQPair(
@@ -191,7 +223,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
     case ExaminationType.OPHTHALMOLOGIST:
       result = [
         FAQPair(
-          question: '${texts.who_is} ${type.l10n_name}?',
+          question: '${texts.who_is} ${type.l10n_name.toLowerCase()}?',
           answer: texts.faq_ophthalmologist_answer,
         ),
         FAQPair(
@@ -214,13 +246,21 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
           question: texts.faq_prepare_question,
           answer: texts.faq_ophthalmologist_prepare_answer,
         ),
+        FAQPair(
+          question: texts.faq_pain_question,
+          answer: texts.faq_ophthalmologist_pain_answer,
+        ),
+        FAQPair(
+          question: texts.faq_do_more_question,
+          answer: texts.faq_ophthalmologist_do_more_answer,
+        ),
       ];
       break;
 
     case ExaminationType.UROLOGIST:
       result = [
         FAQPair(
-          question: '${texts.who_is} ${type.l10n_name}?',
+          question: '${texts.who_is} ${type.l10n_name.toLowerCase()}?',
           answer: texts.faq_urologist_answer,
         ),
         FAQPair(
@@ -243,13 +283,54 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
           question: texts.faq_prepare_question,
           answer: texts.faq_urologist_prepare_answer,
         ),
+        FAQPair(
+          question: texts.faq_pain_question,
+          answer: texts.faq_urologist_pain_answer,
+        ),
+        FAQPair(
+          question: texts.faq_do_more_question,
+          answer: texts.faq_urologist_do_more_answer,
+        ),
       ];
       break;
     case ExaminationType.TOKS:
       // TODO: This case is not used yet
       break;
     case ExaminationType.ULTRASOUND_BREAST:
-      // TODO: This case is not used yet
+      result = [
+        FAQPair(
+          question: '${texts.what_is} ${type.l10n_name.toLowerCase()}?',
+          answer: texts.faq_ultrasound_breast_answer,
+        ),
+        FAQPair(
+          question: texts.faq_reward_question,
+          answer: texts.faq_ultrasound_breast_reward_answer,
+        ),
+        FAQPair(
+          question: texts.faq_flow_question,
+          answer: texts.faq_ultrasound_breast_flow_answer,
+        ),
+        FAQPair(
+          question: texts.faq_duration_question,
+          answer: texts.faq_ultrasound_breast_duration_answer,
+        ),
+        FAQPair(
+          question: texts.faq_cost_question,
+          answer: texts.faq_ultrasound_breast_cost_answer,
+        ),
+        FAQPair(
+          question: texts.faq_prepare_question,
+          answer: texts.faq_ultrasound_breast_prepare_answer,
+        ),
+        FAQPair(
+          question: texts.faq_pain_question,
+          answer: texts.faq_ultrasound_breast_pain_answer,
+        ),
+        FAQPair(
+          question: texts.faq_do_more_question,
+          answer: texts.faq_ultrasound_breast_do_more_answer,
+        ),
+      ];
       break;
     case ExaminationType.VENEREAL_DISEASES:
       // TODO: Handle this case.

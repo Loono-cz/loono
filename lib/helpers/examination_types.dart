@@ -63,11 +63,11 @@ extension ExaminationTypeExt on ExaminationType {
   String get l10n_name => mapToUnion.when(
         colonoscopy: () => 'Koloskopie',
         dentist: () => 'Zubař',
-        dermatologist: () => 'Dermatolog',
+        dermatologist: () => 'Kožař',
         generalPractitioner: () => 'Praktický lékař',
         mammogram: () => 'Mamograf',
         gynecologist: () => 'Gynekolog',
-        ophthalmologist: () => 'Oční',
+        ophthalmologist: () => 'Očař',
         toks: () => 'Toks',
         ultrasoundBreast: () => 'Ultrazvuk prsu',
         urologist: () => 'Urolog',
