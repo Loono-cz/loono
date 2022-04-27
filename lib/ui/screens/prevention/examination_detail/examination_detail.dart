@@ -281,62 +281,68 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                           children: [
                             if (_nextVisitDate!.isAfter(DateTime.now()))
                               Expanded(
-                                child: LoonoButton.light(
-                                  text: l10n.examination_detail_add_to_calendar_button,
-                                  onTap: () async {
-                                    final hasPermissionsGranted =
-                                        await _calendarService.hasPermissionsGranted();
-                                    if (hasPermissionsGranted) {
-                                      final defaultDeviceCalendarId =
-                                          _usersDao.user?.defaultDeviceCalendarId;
-                                      if (defaultDeviceCalendarId != null) {
-                                        // default device calendar id is set, do not display list of calendars
-                                        await _calendarRepository.createEvent(
-                                          _examinationType,
-                                          deviceCalendarId: defaultDeviceCalendarId,
-                                          startingDate: _nextVisitDate!,
-                                        );
-                                        showFlushBarSuccess(
-                                          context,
-                                          l10n.calendar_added_success_message,
-                                        );
+                                child: Padding(
+                                  padding: const EdgeInsets.only(right: 19),
+                                  child: LoonoButton.light(
+                                    text: l10n.examination_detail_add_to_calendar_button,
+                                    onTap: () async {
+                                      final hasPermissionsGranted =
+                                          await _calendarService.hasPermissionsGranted();
+                                      if (hasPermissionsGranted) {
+                                        final defaultDeviceCalendarId =
+                                            _usersDao.user?.defaultDeviceCalendarId;
+                                        if (defaultDeviceCalendarId != null) {
+                                          // default device calendar id is set, do not display list of calendars
+                                          await _calendarRepository.createEvent(
+                                            _examinationType,
+                                            deviceCalendarId: defaultDeviceCalendarId,
+                                            startingDate: _nextVisitDate!,
+                                          );
+                                          showFlushBarSuccess(
+                                            context,
+                                            l10n.calendar_added_success_message,
+                                          );
+                                        } else {
+                                          await AutoRouter.of(context).push(
+                                            CalendarListRoute(
+                                              examinationRecord:
+                                                  widget.categorizedExamination.examination,
+                                            ),
+                                          );
+                                        }
                                       } else {
-                                        await AutoRouter.of(context).push(
-                                          CalendarListRoute(
+                                        final result = await AutoRouter.of(context).push<bool>(
+                                          CalendarPermissionInfoRoute(
                                             examinationRecord:
                                                 widget.categorizedExamination.examination,
                                           ),
                                         );
+                                        // permission was permanently denied, show permission settings guide
+                                        if (result == false) {
+                                          showCalendarPermissionSheet(context);
+                                        }
                                       }
-                                    } else {
-                                      final result = await AutoRouter.of(context).push<bool>(
-                                        CalendarPermissionInfoRoute(
-                                          examinationRecord:
-                                              widget.categorizedExamination.examination,
-                                        ),
-                                      );
-                                      // permission was permanently denied, show permission settings guide
-                                      if (result == false) {
-                                        showCalendarPermissionSheet(context);
-                                      }
-                                    }
-                                  },
+                                    },
+                                  ),
                                 ),
                               )
                             else
                               Expanded(
-                                child: LoonoButton(
-                                  text: _sex == Sex.MALE
-                                      ? l10n.checkup_confirmation_male
-                                      : l10n.checkup_confirmation_female,
-                                  onTap: () {
-                                    showConfirmationSheet(
-                                      context,
-                                      widget.categorizedExamination.examination.examinationType,
-                                      _sex,
-                                      widget.categorizedExamination.examination.uuid,
-                                    );
-                                  },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(right: 19),
+                                  child: LoonoButton(
+                                    text: _sex == Sex.MALE
+                                        ? l10n.checkup_confirmation_male
+                                        : l10n.checkup_confirmation_female,
+                                    onTap: () {
+                                      showConfirmationSheet(
+                                        context,
+                                        widget.categorizedExamination.examination.examinationType,
+                                        _sex,
+                                        widget.categorizedExamination.examination.uuid,
+                                      );
+                                    },
+                                  ),
                                 ),
                               ),
                           ],
@@ -347,7 +353,6 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                     return const SizedBox.shrink();
                   },
                 ),
-                const SizedBox(width: 19),
                 Expanded(
                   child: LoonoButton.light(
                     text: l10n.examination_detail_edit_date_button,
