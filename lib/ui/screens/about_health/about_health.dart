@@ -6,21 +6,16 @@ import 'package:loono/services/webview_service.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class AboutHealthScreen extends StatefulWidget {
-  const AboutHealthScreen({Key? key}) : super(key: key);
+class AboutHealthScreen extends StatelessWidget {
+  AboutHealthScreen({Key? key}) : super(key: key);
 
-  @override
-  State<AboutHealthScreen> createState() => _AboutHealthScreenState();
-}
-
-class _AboutHealthScreenState extends State<AboutHealthScreen> {
   final initialUri = Uri.parse('https://www.loono.cz/objevuj-prevenci');
 
   final allowedUrlsWhitelist = ['www.loono.cz', 'www.youtube.com'];
 
   final openInBrowserWhitelist = ['spotify.link', 'open.spotify.com', 'www.youtube.com'];
 
-  bool _showBackArrow = false;
+  final _showBackArrow = ValueNotifier<bool>(false);
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +30,7 @@ class _AboutHealthScreenState extends State<AboutHealthScreen> {
               url: initialUri,
             ),
             onUpdateVisitedHistory: (webViewController, uri, androidIsReload) async {
-              setState(() {
-                _showBackArrow = uri != initialUri;
-              });
+              _showBackArrow.value = uri != initialUri;
             },
             initialOptions: InAppWebViewGroupOptions(
               crossPlatform: InAppWebViewOptions(
@@ -69,17 +62,24 @@ class _AboutHealthScreenState extends State<AboutHealthScreen> {
               return NavigationActionPolicy.CANCEL;
             },
           ),
-          if (_showBackArrow)
-            Padding(
-              padding: const EdgeInsets.only(left: 10, top: 5),
-              child: IconButton(
-                onPressed: () async {
-                  final webViewController = context.read<WebViewProvider>().webViewController;
-                  await webViewController?.goBack();
-                },
-                icon: SvgPicture.asset('assets/icons/arrow_back.svg'),
-              ),
-            ),
+          ValueListenableBuilder<bool>(
+            valueListenable: _showBackArrow,
+            builder: (context, value, _) {
+              if (value) {
+                return Padding(
+                  padding: const EdgeInsets.only(left: 10, top: 5),
+                  child: IconButton(
+                    onPressed: () async {
+                      final webViewController = context.read<WebViewProvider>().webViewController;
+                      await webViewController?.goBack();
+                    },
+                    icon: SvgPicture.asset('assets/icons/arrow_back.svg'),
+                  ),
+                );
+              }
+              return const SizedBox.shrink();
+            },
+          ),
         ],
       ),
     );
