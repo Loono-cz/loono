@@ -11,7 +11,7 @@ import 'package:loono_api/loono_api.dart';
 
 import '../../../setup.dart' as app;
 import '../../../test_helpers/widget_tester_extensions.dart';
-import '../../onboarding/pages/gamification_introduction_page.dart';
+import '../../onboarding/pages/badge_overview_page.dart';
 import '../../onboarding/pages/onboarding_form_done_page.dart';
 import '../../onboarding/pages/questionnaire/birthdate_page.dart';
 import '../../onboarding/pages/questionnaire/doctor_cca_last_visit_page.dart';
@@ -55,7 +55,7 @@ Future<void> run({required WidgetTester tester}) async {
   final onboardingFormDonePage = OnboardingFormDonePage(tester);
   final signUpNicknamePage = SignUpNicknamePage(tester);
   final signUpEmailPage = SignUpEmailPage(tester);
-  final gamificationIntroductionPage = GamificationIntroductionPage(tester);
+  final badgeOverviewPage = BadgeOverviewPage(tester);
 
   final preventionPage = PreventionPage(tester);
   final selfExaminationDetailPage = SelfExaminationDetailPage(tester);
@@ -112,7 +112,7 @@ Future<void> run({required WidgetTester tester}) async {
   await signUpEmailPage.insertEmail('backend.test@loono.cz');
   await signUpEmailPage.clickCreateAccountButton();
 
-  await gamificationIntroductionPage.verifyScreenIsShown();
+  await badgeOverviewPage.verifyScreenIsShown();
   try {
     expect(
       tester.takeException().toString(),
@@ -121,7 +121,7 @@ Future<void> run({required WidgetTester tester}) async {
   } catch (e) {
     debugPrint(e.toString());
   }
-  await gamificationIntroductionPage.clickContinueButton();
+  await badgeOverviewPage.clickContinueButton();
   await preventionPage.verifyScreenIsShown();
 
   // verify some data are fetched from api GET /examinations

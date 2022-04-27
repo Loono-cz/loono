@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:loono/ui/screens/onboarding/gamification_introduction.dart';
+import 'package:loono/ui/screens/onboarding/badge_overview.dart';
 
 import '../../../test_helpers/widget_tester_extensions.dart';
 
-/// * Corresponding screen: [GamificationIntroductionScreen]
-class GamificationIntroductionPage {
-  GamificationIntroductionPage(this.tester);
+/// * Corresponding screen: [BadgeOverviewScreen]
+class BadgeOverviewPage {
+  BadgeOverviewPage(this.tester);
 
   final WidgetTester tester;
 
   /// Page finders
-  final Finder continueBtn = find.byKey(const Key('gamificationIntroductionPage_btn_continue'));
+  final Finder continueBtn = find.byKey(const Key('badgeOverviewPage_btn_continue'));
 
   /// Page methods
   Future<void> clickContinueButton() async {
@@ -24,6 +24,6 @@ class GamificationIntroductionPage {
 
   Future<void> verifyScreenIsShown() async {
     logTestEvent();
-    await tester.pumpUntilFound(find.byType(GamificationIntroductionScreen));
+    await tester.pumpUntilFound(find.byType(BadgeOverviewScreen));
   }
 }

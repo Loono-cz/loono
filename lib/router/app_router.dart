@@ -19,6 +19,7 @@ import 'package:loono/ui/screens/main/pre_auth/onboarding_form_done.dart';
 import 'package:loono/ui/screens/main/pre_auth/pre_auth_main_screen.dart';
 import 'package:loono/ui/screens/main/pre_auth/start_new_questionnaire.dart';
 import 'package:loono/ui/screens/onboarding/allow_notifications.dart';
+import 'package:loono/ui/screens/onboarding/badge_overview.dart';
 import 'package:loono/ui/screens/onboarding/birthdate.dart';
 import 'package:loono/ui/screens/onboarding/carousel/carousel.dart';
 import 'package:loono/ui/screens/onboarding/doctors/dentist.dart';
@@ -30,7 +31,6 @@ import 'package:loono/ui/screens/onboarding/doctors/gynecology_date.dart';
 import 'package:loono/ui/screens/onboarding/fallback_account/email.dart';
 import 'package:loono/ui/screens/onboarding/fallback_account/nickname.dart';
 import 'package:loono/ui/screens/onboarding/fill_form_later.dart';
-import 'package:loono/ui/screens/onboarding/gamification_introduction.dart';
 import 'package:loono/ui/screens/onboarding/gender.dart';
 import 'package:loono/ui/screens/prevention/calendar/calendar_list.dart';
 import 'package:loono/ui/screens/prevention/calendar/permission_info.dart';
@@ -90,7 +90,7 @@ const _preAuthRoutes = <AutoRoute>[
   _onboardingQuestionnaireRouter,
   _allowNotificationRoute,
   AutoRoute<void>(page: FillOnboardingFormLaterScreen, path: 'fill-form-later'),
-  AutoRoute<void>(page: GamificationIntroductionScreen, path: 'gamification-introduction'),
+  _badgeOverviewRoute,
   AutoRoute<void>(page: NicknameScreen, path: 'fallback-account/name'),
   AutoRoute<void>(page: EmailScreen, path: 'fallback-account/email'),
   _loginRoute,
@@ -119,6 +119,7 @@ const _postAuthRouter = AutoRoute<void>(
         _aboutHealthRoute,
       ],
     ),
+    _badgeOverviewRoute,
     ..._preventionRoutes,
     ..._settingsRoutes,
     ..._selfExaminationRoutes,
@@ -154,6 +155,7 @@ const _allowNotificationRoute = CustomRoute<void>(
 );
 const _aboutHealthRoute = AutoRoute<void>(page: AboutHealthScreen, path: 'about-health');
 const _forceUpdateRoute = AutoRoute<void>(page: ForceUpdateScreen, path: 'force-update');
+const _badgeOverviewRoute = AutoRoute<void>(page: BadgeOverviewScreen, path: 'badge-overview');
 
 const _findDoctorRoutes = <AutoRoute>[
   AutoRoute<void>(page: FindDoctorScreen, path: 'find-doctor'),

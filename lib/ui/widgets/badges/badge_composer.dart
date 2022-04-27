@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/utils/registry.dart';
@@ -386,30 +388,37 @@ class _BadgeComposerState extends State<BadgeComposer> {
               return level?.clamp(0, supportedBadgeLevels) ?? 0;
             }
 
-            return SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: 300,
-              child: sex != null
-                  ? Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        _getCloak(_levelOf(BadgeType.COAT)),
-                        SvgPicture.asset(
-                          sex == Sex.MALE
-                              ? 'assets/badges/body/man.svg'
-                              : 'assets/badges/body/woman.svg',
-                        ),
-                        _getHeadband(_levelOf(BadgeType.HEADBAND)),
-                        _getGoogles(sex, _levelOf(BadgeType.GLASSES)),
-                        _getBoots(_levelOf(BadgeType.SHOES)),
-                        if (sex == Sex.FEMALE) _getArmour(_levelOf(BadgeType.TOP)),
-                        _getBelt(sex, _levelOf(BadgeType.BELT)),
-                        _getCloakBuckle(_levelOf(BadgeType.COAT)),
-                        _getGloves(sex, _levelOf(BadgeType.GLOVES)),
-                        _getShield(_levelOf(BadgeType.SHIELD)),
-                      ],
-                    )
-                  : const SizedBox(),
+            return GestureDetector(
+              onTap: widget.showDescription
+                  ? null
+                  : () => AutoRouter.of(context).push(
+                        BadgeOverviewRoute(onButtonTap: () => AutoRouter.of(context).popForced()),
+                      ),
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: 300,
+                child: sex != null
+                    ? Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          _getCloak(_levelOf(BadgeType.COAT)),
+                          SvgPicture.asset(
+                            sex == Sex.MALE
+                                ? 'assets/badges/body/man.svg'
+                                : 'assets/badges/body/woman.svg',
+                          ),
+                          _getHeadband(_levelOf(BadgeType.HEADBAND)),
+                          _getGoogles(sex, _levelOf(BadgeType.GLASSES)),
+                          _getBoots(_levelOf(BadgeType.SHOES)),
+                          if (sex == Sex.FEMALE) _getArmour(_levelOf(BadgeType.TOP)),
+                          _getBelt(sex, _levelOf(BadgeType.BELT)),
+                          _getCloakBuckle(_levelOf(BadgeType.COAT)),
+                          _getGloves(sex, _levelOf(BadgeType.GLOVES)),
+                          _getShield(_levelOf(BadgeType.SHIELD)),
+                        ],
+                      )
+                    : const SizedBox(),
+              ),
             );
           },
         ),
