@@ -74,27 +74,40 @@ class BadgeOverviewScreen extends StatelessWidget {
                         ),
                         if (LoonoSizes.isScreenSmall(context))
                           Expanded(
-                            child: ListView(
-                              shrinkWrap: true,
+                            child: Stack(
                               children: [
-                                const BadgeComposer(),
-                                const SizedBox(height: 10),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 18),
-                                  child: _buildDescContainer(context),
-                                ),
-                                const SizedBox(height: 20),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 18),
-                                  child: LoonoButton(
-                                    key: const Key('badgeOverviewPage_btn_continue'),
-                                    text: context.l10n.gamification_introduction_button,
-                                    onTap: onButtonTap ??
-                                        () => AutoRouter.of(context)
-                                            .replaceAll([const MainScreenRouter()]),
+                                Scrollbar(
+                                  isAlwaysShown: true,
+                                  child: ListView(
+                                    shrinkWrap: true,
+                                    children: [
+                                      const BadgeComposer(),
+                                      const SizedBox(height: 10),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 18),
+                                        child: _buildDescContainer(context),
+                                      ),
+                                      SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
+                                      SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
+                                    ],
                                   ),
                                 ),
-                                SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
+                                Positioned(
+                                  bottom: 10,
+                                  child: SizedBox(
+                                    width: MediaQuery.of(context).size.width,
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 18),
+                                      child: LoonoButton(
+                                        key: const Key('badgeOverviewPage_btn_continue'),
+                                        text: context.l10n.gamification_introduction_button,
+                                        onTap: onButtonTap ??
+                                            () => AutoRouter.of(context)
+                                                .replaceAll([const MainScreenRouter()]),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
                           )
