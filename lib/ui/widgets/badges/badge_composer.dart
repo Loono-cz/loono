@@ -25,14 +25,6 @@ class _BadgeComposerState extends State<BadgeComposer> {
 
   static const supportedBadgeLevels = 5;
 
-  late bool showDescription;
-
-  @override
-  void initState() {
-    super.initState();
-    showDescription = widget.showDescription;
-  }
-
   Widget _getGoogles(Sex sex, int level) {
     return level > 0
         ? SizedBox(
@@ -44,7 +36,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 SvgPicture.asset(
                   'assets/badges/goggles-${sex == Sex.MALE ? 'man' : 'woman'}/level_$level.svg',
                 ),
-                if (showDescription)
+                if (widget.showDescription)
                   Positioned(
                     top: 50,
                     left: (MediaQuery.of(context).size.width / 2) - 150,
@@ -84,7 +76,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 SvgPicture.asset(
                   'assets/badges/headband/level_$level.svg',
                 ),
-                if (showDescription)
+                if (widget.showDescription)
                   Positioned(
                     top: 30,
                     left: (MediaQuery.of(context).size.width / 2) + 30,
@@ -124,7 +116,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 SvgPicture.asset(
                   'assets/badges/boots/level_$level.svg',
                 ),
-                if (showDescription)
+                if (widget.showDescription)
                   Positioned(
                     left: (MediaQuery.of(context).size.width / 2) - 170,
                     top: 260,
@@ -164,7 +156,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 SvgPicture.asset(
                   'assets/badges/belt-${sex == Sex.MALE ? 'man' : 'woman'}/level_$level.svg',
                 ),
-                if (showDescription)
+                if (widget.showDescription)
                   Positioned(
                     left: (MediaQuery.of(context).size.width / 2) + 40,
                     child: Column(
@@ -205,7 +197,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 SvgPicture.asset(
                   'assets/badges/armour-woman/level_$level.svg',
                 ),
-                if (showDescription)
+                if (widget.showDescription)
                   Positioned(
                     top: 90,
                     left: (MediaQuery.of(context).size.width / 2) - 160,
@@ -245,7 +237,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 SvgPicture.asset(
                   'assets/badges/cloak/level_$level.svg',
                 ),
-                if (showDescription)
+                if (widget.showDescription)
                   Positioned(
                     top: 240,
                     left: (MediaQuery.of(context).size.width / 2) + 30,
@@ -296,7 +288,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 SvgPicture.asset(
                   'assets/badges/gloves-${sex == Sex.MALE ? 'man' : 'woman'}/level_$level.svg',
                 ),
-                if (showDescription)
+                if (widget.showDescription)
                   Positioned(
                     top: 180,
                     left: (MediaQuery.of(context).size.width / 2) + 40,
@@ -340,7 +332,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 SvgPicture.asset(
                   'assets/badges/shield/level_$level.svg',
                 ),
-                if (showDescription)
+                if (widget.showDescription)
                   Positioned(
                     top: 210,
                     left: (MediaQuery.of(context).size.width / 2) - 180,
@@ -394,33 +386,30 @@ class _BadgeComposerState extends State<BadgeComposer> {
               return level?.clamp(0, supportedBadgeLevels) ?? 0;
             }
 
-            return GestureDetector(
-              onTap: () => setState(() => showDescription = !showDescription),
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: 300,
-                child: sex != null
-                    ? Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          _getCloak(_levelOf(BadgeType.COAT)),
-                          SvgPicture.asset(
-                            sex == Sex.MALE
-                                ? 'assets/badges/body/man.svg'
-                                : 'assets/badges/body/woman.svg',
-                          ),
-                          _getHeadband(_levelOf(BadgeType.HEADBAND)),
-                          _getGoogles(sex, _levelOf(BadgeType.GLASSES)),
-                          _getBoots(_levelOf(BadgeType.SHOES)),
-                          if (sex == Sex.FEMALE) _getArmour(_levelOf(BadgeType.TOP)),
-                          _getBelt(sex, _levelOf(BadgeType.BELT)),
-                          _getCloakBuckle(_levelOf(BadgeType.COAT)),
-                          _getGloves(sex, _levelOf(BadgeType.GLOVES)),
-                          _getShield(_levelOf(BadgeType.SHIELD)),
-                        ],
-                      )
-                    : const SizedBox(),
-              ),
+            return SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: 300,
+              child: sex != null
+                  ? Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        _getCloak(_levelOf(BadgeType.COAT)),
+                        SvgPicture.asset(
+                          sex == Sex.MALE
+                              ? 'assets/badges/body/man.svg'
+                              : 'assets/badges/body/woman.svg',
+                        ),
+                        _getHeadband(_levelOf(BadgeType.HEADBAND)),
+                        _getGoogles(sex, _levelOf(BadgeType.GLASSES)),
+                        _getBoots(_levelOf(BadgeType.SHOES)),
+                        if (sex == Sex.FEMALE) _getArmour(_levelOf(BadgeType.TOP)),
+                        _getBelt(sex, _levelOf(BadgeType.BELT)),
+                        _getCloakBuckle(_levelOf(BadgeType.COAT)),
+                        _getGloves(sex, _levelOf(BadgeType.GLOVES)),
+                        _getShield(_levelOf(BadgeType.SHIELD)),
+                      ],
+                    )
+                  : const SizedBox(),
             );
           },
         ),
