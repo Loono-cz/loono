@@ -10,6 +10,7 @@ import 'package:loono/services/db/database.dart';
 import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/screens/settings/settings_bottom_sheet.dart';
 import 'package:loono/ui/widgets/confirmation_dialog.dart';
+import 'package:loono/ui/widgets/feedback/email_feedback_button.dart';
 import 'package:loono/ui/widgets/settings/avatar.dart';
 import 'package:loono/ui/widgets/settings/update_profile_item.dart';
 import 'package:loono/utils/registry.dart';
@@ -184,7 +185,9 @@ class UpdateProfileScreen extends StatelessWidget {
                             style: LoonoFonts.fontStyle.copyWith(color: LoonoColors.redButton),
                           ),
                         ),
-                        const SizedBox(height: 32.0),
+                        const SizedBox(height: 200),
+                        const EmailFeedbackButton(),
+                        const SizedBox(height: 40),
                       ],
                     ),
                   ),

@@ -20,6 +20,7 @@ import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/examination_badges.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/faq_section.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/feedback/feedback_button.dart';
 import 'package:loono/ui/widgets/prevention/calendar_permission_sheet.dart';
 import 'package:loono/ui/widgets/prevention/change_last_visit_sheet.dart';
 import 'package:loono/ui/widgets/prevention/datepicker_sheet.dart';
@@ -408,9 +409,9 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
           examinationType: _examinationType,
           categorizedExamination: widget.categorizedExamination,
         ),
-        const SizedBox(
-          height: 40,
-        ),
+        const SizedBox(height: 22),
+        const Align(child: FeedbackButton()),
+        const SizedBox(height: 8),
         FaqSection(
           examinationType: _examinationType,
         ),
