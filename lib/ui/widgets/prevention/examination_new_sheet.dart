@@ -30,6 +30,7 @@ void showNewCheckupSheetStep1(
     ),
     builder: (BuildContext context) {
       return LoonBottomSheet(
+        key: const Key('examinationDetailPage_orderSheet'),
         sheetHeight: 400,
         child: Column(
           children: <Widget>[
@@ -43,6 +44,7 @@ void showNewCheckupSheetStep1(
             ),
             const SizedBox(height: 60),
             LoonoButton.light(
+              key: const Key('examinationDetailPage_orderSheet_btn_iHaveDoctor'),
               text: '${l10n.i_have} ${examinationTypeCasus(
                 context,
                 casus: Casus.genitiv,
@@ -90,6 +92,7 @@ void showNewCheckupSheetStep2(
     ),
     builder: (BuildContext context) {
       return LoonBottomSheet(
+        key: const Key('examinationDetailPage_orderInstructionsSheet'),
         sheetHeight: 470,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

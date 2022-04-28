@@ -1,3 +1,4 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
@@ -6,6 +7,10 @@ import 'package:loono/ui/screens/onboarding/birthdate.dart';
 import 'package:loono/ui/screens/onboarding/doctors/dentist.dart';
 import 'package:loono/ui/screens/onboarding/doctors/dentist_date.dart';
 import 'package:loono/ui/screens/onboarding/doctors/general_practicioner.dart';
+import 'package:loono/ui/screens/prevention/examination_detail/examination_detail.dart';
+import 'package:loono/ui/screens/prevention/questionnaire/date_picker_screen.dart';
+import 'package:loono/ui/screens/prevention/questionnaire/schedule_examination.dart';
+import 'package:loono/ui/widgets/achievement_screen.dart';
 import 'package:loono/ui/widgets/prevention/self_examination/self_examination_card.dart';
 import 'package:loono_api/loono_api.dart';
 
@@ -19,6 +24,7 @@ import '../../onboarding/pages/questionnaire/doctor_date_picker_page.dart';
 import '../../onboarding/pages/questionnaire/gender_page.dart';
 import '../../onboarding/pages/sign_up_email_page.dart';
 import '../../onboarding/pages/sign_up_nickname_page.dart';
+import '../../prevention/pages/examination/examination_detail_page.dart';
 import '../../prevention/pages/prevention_main_page.dart';
 import '../../prevention/pages/self_examination/detail/how_it_went_modal_page.dart';
 import '../../prevention/pages/self_examination/detail/no_finding_reward_page.dart';
@@ -38,7 +44,9 @@ This simple flow tests:
 2. Perform sign up with Firebase and send onboarding data via Onboarding API
 3. Verify account is created and receives badge(s) and gets valid list of check-ups
 4. Verify the user can successfully perform a self-examination and gets rewards from it
-5. Verify account details can be changed in the Settings
+5. Verify the user can fill missing check-ups
+6. Verify the user order and cancel a check-up visit
+7. Verify account details can be changed in the Settings
  */
 Future<void> run({required WidgetTester tester}) async {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
@@ -59,6 +67,7 @@ Future<void> run({required WidgetTester tester}) async {
 
   final preventionPage = PreventionPage(tester);
   final selfExaminationDetailPage = SelfExaminationDetailPage(tester);
+  final examinationDetailPage = ExaminationDetailPage(tester);
   final howItWentModalPage = HowItWentModalPage(tester);
   final noFindingRewardPage = NoFindingRewardPage(tester);
 
@@ -68,7 +77,7 @@ Future<void> run({required WidgetTester tester}) async {
   final pointsHelpPage = PointsHelpPage(tester);
   final leaderboardPage = LeaderboardPage(tester);
 
-  // start questionnaire and create a new account
+  /// Start questionnaire and create a new account.
   await welcomePage.verifyScreenIsShown();
 
   await welcomePage.clickLoginButton();
@@ -123,19 +132,23 @@ Future<void> run({required WidgetTester tester}) async {
   }
   await badgeOverviewPage.clickContinueButton();
   await preventionPage.verifyScreenIsShown();
+  //////////////////////////////////////////////////////////////////////////////
 
-  // verify some data are fetched from api GET /examinations
+  /// Verify some data are fetched from api GET /examinations.
   await tester.pumpUntilFound(find.byType(SelfExaminationCard));
   preventionPage
     ..verifyHasBadge(BadgeType.HEADBAND)
     ..verifyDoesNotHaveBadge(BadgeType.SHIELD)
+    ..verifyDoesNotHaveBadge(BadgeType.GLOVES)
     ..verifyHasPoints(300); // HEADBAND and points are reward from the Dentist visit
   await preventionPage.verifySelfExaminationCardIsInCategory(
     SelfExaminationType.TESTICULAR,
     expectedCategoryName: 'Vyšetři se',
   );
 
-  // perform self examination with OK status
+  //////////////////////////////////////////////////////////////////////////////
+
+  /////// Perform self examination with OK status.
   await preventionPage.clickSelfExaminationCard(SelfExaminationType.TESTICULAR);
   await selfExaminationDetailPage.verifyScreenIsShown();
 
@@ -155,9 +168,135 @@ Future<void> run({required WidgetTester tester}) async {
   preventionPage
     ..verifyHasBadge(BadgeType.HEADBAND)
     ..verifyHasBadge(BadgeType.SHIELD)
-    ..verifyHasPoints(350); // +50 points and shield from the performed self examination
+    ..verifyDoesNotHaveBadge(BadgeType.GLOVES)
+    ..verifyHasPoints(300 + 50); // +50 points and shield from the performed self examination
 
-  // edit email
+  //////////////////////////////////////////////////////////////////////////////
+
+  /////// LOON-591: Filling missing checkups - Dermatologist, path: should receive points and a badge.
+  await preventionPage.verifyExaminationCardIsInCategory(
+    ExaminationType.DERMATOLOGIST,
+    expectedCategoryName: 'Další prohlídky',
+  );
+  await preventionPage.clickExaminationCard(ExaminationType.DERMATOLOGIST);
+  await questionnaireDoctorCcaLastVisitPage.verifyScreenIsShown(
+    expectedScreen: ScheduleExamination,
+  );
+
+  await questionnaireDoctorCcaLastVisitPage.clickInLastXYearsButton(
+    expectedNextScreen: AchievementScreen,
+  );
+  await questionnaireAchievementPage.clickContinueButton();
+  await questionnaireDoctorDatePickerPage.verifyScreenIsShown(expectedScreen: DatePickerScreen);
+
+  await questionnaireDoctorDatePickerPage.clickContinueButton();
+  await examinationDetailPage.verifyScreenIsShown();
+
+  await tester.pumpUntilNotFound(find.byType(Flushbar));
+  await examinationDetailPage.clickBackButton();
+  await preventionPage.verifyScreenIsShown();
+
+  preventionPage
+    ..verifyHasBadge(BadgeType.HEADBAND)
+    ..verifyHasBadge(BadgeType.SHIELD)
+    ..verifyHasBadge(BadgeType.GLOVES)
+    ..verifyHasPoints(350 + 200); // +200 points and gloves from the dermatologist visit
+
+  await preventionPage.verifyExaminationCardIsInCategory(
+    ExaminationType.DERMATOLOGIST,
+    expectedCategoryName: 'Připomenu ti objednání',
+  );
+  //////////////////////////////////////////////////////////////////////////////
+
+  /////// LOON-591: Filling missing checkups - Ophthalmologist, path: should not receive poitns and a badge.
+  await preventionPage.verifyExaminationCardIsInCategory(
+    ExaminationType.OPHTHALMOLOGIST,
+    expectedCategoryName: 'Další prohlídky',
+  );
+  await preventionPage.clickExaminationCard(ExaminationType.OPHTHALMOLOGIST);
+  await questionnaireDoctorCcaLastVisitPage.verifyScreenIsShown(
+    expectedScreen: ScheduleExamination,
+  );
+
+  await questionnaireDoctorCcaLastVisitPage.clickMoreThanXYearsOrIdkButton(
+    expectedNextScreen: ExaminationDetail,
+  );
+  await examinationDetailPage.verifyScreenIsShown();
+  examinationDetailPage.verifyIsFirstAwaitingVisit();
+
+  await examinationDetailPage.clickBackButton();
+  await preventionPage.verifyScreenIsShown();
+
+  preventionPage
+    ..verifyHasBadge(BadgeType.HEADBAND)
+    ..verifyHasBadge(BadgeType.SHIELD)
+    ..verifyHasBadge(BadgeType.GLOVES)
+    ..verifyDoesNotHaveBadge(BadgeType.GLASSES)
+    ..verifyHasPoints(550); // no points and no badge should be added
+
+  await preventionPage.verifyExaminationCardIsInCategory(
+    ExaminationType.OPHTHALMOLOGIST,
+    expectedCategoryName: 'Objednej se',
+  );
+  //////////////////////////////////////////////////////////////////////////////
+
+  /////// LOON-592: Order for a check-up and delete it afterward.
+  await preventionPage.verifyExaminationCardIsInCategory(
+    ExaminationType.OPHTHALMOLOGIST,
+    expectedCategoryName: 'Objednej se',
+  );
+  await preventionPage.clickExaminationCard(ExaminationType.OPHTHALMOLOGIST);
+
+  await examinationDetailPage.verifyScreenIsShown();
+  examinationDetailPage
+    ..verifyOrderButtonIsShown()
+    ..verifyIsFirstAwaitingVisit();
+
+  await examinationDetailPage.clickOrderButton();
+  await examinationDetailPage.verifyOrderSheetIsShown();
+
+  await examinationDetailPage.clickIHaveDoctorOrderSheetButton();
+  await examinationDetailPage.verifyOrderInstructionsSheetIsShown();
+
+  await examinationDetailPage.clickIHaveAppointmentOrderInstructionsSheetButton();
+  await examinationDetailPage.verifyOrderDatePickerSheetIsShown();
+
+  examinationDetailPage.verifyDatePickerIsShown();
+  await examinationDetailPage.datePickerSheetPickNextMonth();
+  await examinationDetailPage.clickDatePickerSheetContinueButton();
+
+  await examinationDetailPage.verifyOrderDatePickerSheetIsShown();
+  examinationDetailPage.verifyTimePickerIsShown();
+  await examinationDetailPage.clickDatePickerSheetContinueButton();
+
+  await tester.pumpUntilNotFound(find.byType(Flushbar));
+  examinationDetailPage.verifyCalendarButtonIsShown();
+
+  await examinationDetailPage.clickBackButton();
+  await preventionPage.verifyScreenIsShown();
+  await preventionPage.verifyExaminationCardIsInCategory(
+    ExaminationType.OPHTHALMOLOGIST,
+    expectedCategoryName: 'Běž na prohlídku',
+  );
+
+  await preventionPage.clickExaminationCard(ExaminationType.OPHTHALMOLOGIST);
+  await examinationDetailPage.verifyScreenIsShown();
+
+  await examinationDetailPage.cancelCheckup();
+  await tester.pumpUntilNotFound(find.byType(Flushbar));
+  examinationDetailPage
+    ..verifyOrderButtonIsShown()
+    ..verifyIsFirstAwaitingVisit();
+
+  await examinationDetailPage.clickBackButton();
+  await preventionPage.verifyScreenIsShown();
+  await preventionPage.verifyExaminationCardIsInCategory(
+    ExaminationType.OPHTHALMOLOGIST,
+    expectedCategoryName: 'Objednej se',
+  );
+  //////////////////////////////////////////////////////////////////////////////
+
+  /////// Edit email.
   await preventionPage.clickProfileAvatar();
   await openSettingsPage.verifyScreenIsShown();
 
@@ -186,4 +325,5 @@ Future<void> run({required WidgetTester tester}) async {
   await openSettingsPage.clickLeaderboardButton();
   await leaderboardPage.verifyScreenIsShown();
   await tester.pump(const Duration(seconds: 4));
+  //////////////////////////////////////////////////////////////////////////////
 }

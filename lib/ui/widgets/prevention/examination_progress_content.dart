@@ -53,6 +53,7 @@ class ExaminationProgressContent extends StatelessWidget {
       /// first examination
       return Text(
         context.l10n.first_visit_awaiting,
+        key: const Key('examinationProgress_firstVisitAwaiting'),
         textAlign: TextAlign.center,
         style: LoonoFonts.paragraphSmallFontStyle.copyWith(
           fontWeight: FontWeight.w700,

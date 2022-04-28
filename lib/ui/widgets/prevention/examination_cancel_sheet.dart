@@ -32,6 +32,7 @@ void showCancelExaminationSheet({
     isScrollControlled: true,
     builder: (BuildContext modalContext) {
       return Container(
+        key: const Key('cancelCheckUpSheet'),
         height: 700,
         decoration: const BoxDecoration(
           color: LoonoColors.bottomSheetPrevention,

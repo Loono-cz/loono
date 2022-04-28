@@ -54,6 +54,7 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
   showCupertinoModalPopup<void>(
     context: pageContext,
     builder: (BuildContext modalContext) => CupertinoActionSheet(
+      key: const Key('editCheckUpDateSheet'),
       actions: <CupertinoActionSheetAction>[
         CupertinoActionSheetAction(
           isDestructiveAction: true,

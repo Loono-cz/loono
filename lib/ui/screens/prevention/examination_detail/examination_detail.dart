@@ -171,9 +171,8 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                   Padding(
                     padding: const EdgeInsets.only(left: 10.0, top: 16),
                     child: IconButton(
-                      onPressed: () {
-                        AutoRouter.of(context).pop();
-                      },
+                      key: const Key('examinationDetailPage_btn_back'),
+                      onPressed: () => AutoRouter.of(context).pop(),
                       icon: SvgPicture.asset(
                         'assets/icons/arrow_back.svg',
                       ),
@@ -284,6 +283,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                                 child: Padding(
                                   padding: const EdgeInsets.only(right: 19),
                                   child: LoonoButton.light(
+                                    key: const Key('examinationDetailPage_btn_calendar'),
                                     text: l10n.examination_detail_add_to_calendar_button,
                                     onTap: () async {
                                       final hasPermissionsGranted =
@@ -355,6 +355,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                 ),
                 Expanded(
                   child: LoonoButton.light(
+                    key: const Key('examinationDetailPage_btn_updateDate'),
                     text: l10n.examination_detail_edit_date_button,
                     onTap: () => showEditModal(context, widget.categorizedExamination),
                   ),
@@ -366,6 +367,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
               ].contains(widget.categorizedExamination.category)) ...[
                 Expanded(
                   child: LoonoButton(
+                    key: const Key('examinationDetailPage_btn_order'),
                     text: l10n.examination_detail_order_examination, //objednat se
                     onTap: () => showNewCheckupSheetStep1(
                       context,

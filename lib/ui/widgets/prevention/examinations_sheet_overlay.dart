@@ -140,6 +140,7 @@ class ExaminationsSheetOverlay extends StatelessWidget {
         children: [
           _buildCategoryHeader(header),
           Column(
+            key: ValueKey<String>('exam_category_column_$header'),
             children: categorizedExaminations
                 .mapIndexed(
                   (index, e) => Padding(
