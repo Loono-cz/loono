@@ -31,6 +31,7 @@ void showDatePickerSheet({
     isScrollControlled: true,
     builder: (BuildContext modalContext) {
       return Container(
+        key: const Key('datePickerSheet'),
         height: 680,
         decoration: const BoxDecoration(
           color: LoonoColors.primary,
@@ -168,6 +169,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
         ),
         const Spacer(),
         AsyncLoonoApiButton(
+          key: const Key('datePickerSheet_btn_continue'),
           text: isFirstStep ? context.l10n.continue_info : context.l10n.action_save,
           enabled: newDate != null,
           asyncCallback: () async {

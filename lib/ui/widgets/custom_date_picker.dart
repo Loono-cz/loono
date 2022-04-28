@@ -43,13 +43,23 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
     _selectedMonthIndex,
     _selectedDayIndex + 1,
   );
+
   final FixedExtentScrollController _dayController = FixedExtentScrollController();
+  final FixedExtentScrollController _monthController = FixedExtentScrollController();
   final FixedExtentScrollController _yearController = FixedExtentScrollController();
 
   @override
   void initState() {
     widget.valueChanged(datePickerDate);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _yearController.dispose();
+    _monthController.dispose();
+    _dayController.dispose();
+    super.dispose();
   }
 
   @override
@@ -167,7 +177,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
             ? _dayController
             : forType == ColumnType.year
                 ? _yearController
-                : null,
+                : _monthController,
         itemExtent: _itemHeight,
         childDelegate: ListWheelChildLoopingListDelegate(
           children: items.keys.map(

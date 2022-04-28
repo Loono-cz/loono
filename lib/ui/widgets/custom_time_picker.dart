@@ -4,7 +4,7 @@ import 'package:loono/helpers/datepicker_helpers.dart';
 
 const _itemHeight = 40.0;
 
-enum ColumnType { hour, minute }
+enum TimeColumnType { hour, minute }
 
 class CustomTimePicker extends StatefulWidget {
   const CustomTimePicker({
@@ -67,8 +67,8 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              _timePickerColumn(forType: ColumnType.hour),
-              _timePickerColumn(forType: ColumnType.minute),
+              _timePickerColumn(forType: TimeColumnType.hour),
+              _timePickerColumn(forType: TimeColumnType.minute),
             ],
           ),
           Padding(
@@ -106,11 +106,12 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
     return minutesShifted;
   }
 
-  Widget _timePickerColumn({required ColumnType forType}) {
+  Widget _timePickerColumn({required TimeColumnType forType}) {
     final items =
-        forType == ColumnType.hour ? _timePickerHours.asMap() : _timePickerMinutes.asMap();
+        forType == TimeColumnType.hour ? _timePickerHours.asMap() : _timePickerMinutes.asMap();
 
-    final selectedIndex = forType == ColumnType.hour ? _selectedHourIndex : _selectedMinuteIndex;
+    final selectedIndex =
+        forType == TimeColumnType.hour ? _selectedHourIndex : _selectedMinuteIndex;
 
     return SizedBox(
       width: MediaQuery.of(context).size.width / 3,
@@ -133,7 +134,7 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
           _selectedItemHandle(forType: forType, items: items, value: items.keys.elementAt(index));
 
           setState(() {
-            forType == ColumnType.hour
+            forType == TimeColumnType.hour
                 ? _selectedHourIndex = items.keys.elementAt(index)
                 : _selectedMinuteIndex = items.keys.elementAt(index);
           });
@@ -142,9 +143,13 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
     );
   }
 
-  void _selectedItemHandle({required ColumnType forType, required Map items, required int value}) {
+  void _selectedItemHandle({
+    required TimeColumnType forType,
+    required Map items,
+    required int value,
+  }) {
     switch (forType) {
-      case ColumnType.hour:
+      case TimeColumnType.hour:
         timePickerDate = DateTime(
           timePickerDate.year,
           timePickerDate.month,
@@ -153,7 +158,7 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
           timePickerDate.minute,
         );
         break;
-      case ColumnType.minute:
+      case TimeColumnType.minute:
         timePickerDate = DateTime(
           timePickerDate.year,
           timePickerDate.month,

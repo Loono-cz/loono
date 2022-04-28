@@ -64,7 +64,7 @@ class PreventionPage with BadgeFinders {
     expect(
       find.ancestor(
         of: card,
-        matching: find.text(expectedCategoryName),
+        matching: find.byKey(ValueKey<String>('exam_category_column_$expectedCategoryName')),
       ),
       findsOneWidget,
     );
