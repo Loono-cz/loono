@@ -10,6 +10,9 @@ import 'package:loono/ui/widgets/find_doctor/search_doctor_card.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
+// To not overlap the Google logo, which might be against ToS.
+const bottomGoogleLogoPadding = 50.0;
+
 class MapSheetOverlay extends StatelessWidget {
   const MapSheetOverlay({
     Key? key,
@@ -22,8 +25,6 @@ class MapSheetOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // To not overlap the Google logo, which might be against ToS.
-    const bottomGoogleLogoPadding = 50.0;
     final mapState = context.watch<MapStateService>();
     final currHealthcareProviders = mapState.currHealthcareProviders;
 

@@ -141,9 +141,16 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                   ),
                 ],
                 if (!_isHealthCareProvidersInMapService)
-                  if (healthcareSyncState == HealtCareSyncState.error)
-                    _buildErrorIndicator()
-                  else
+                  if (healthcareSyncState == HealtCareSyncState.error) ...[
+                    _buildErrorIndicator(),
+                    const Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 9, bottom: bottomGoogleLogoPadding),
+                        child: FeedbackButton(),
+                      ),
+                    ),
+                  ] else
                     _buildLoadingIndicator(),
                 if (currDoctorDetail != null) ...[
                   const Positioned(
