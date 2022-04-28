@@ -5,6 +5,7 @@ import 'package:loono/constants.dart';
 import 'package:loono/helpers/map_variables.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/map_state_sevice.dart';
+import 'package:loono/ui/widgets/feedback/feedback_button.dart';
 import 'package:loono/ui/widgets/find_doctor/search_doctor_card.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
@@ -21,12 +22,20 @@ class MapSheetOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // To not overlap the Google logo, which might be against ToS.
+    const bottomGoogleLogoPadding = 50.0;
     final mapState = context.watch<MapStateService>();
     final currHealthcareProviders = mapState.currHealthcareProviders;
 
     if (currHealthcareProviders.isNotEmpty) {
       if (!mapState.onMoveMapFilteringBlocked && currHealthcareProviders.length > 1000) {
-        return const SizedBox.shrink();
+        return const Align(
+          alignment: Alignment.bottomLeft,
+          child: Padding(
+            padding: EdgeInsets.only(left: 9, bottom: bottomGoogleLogoPadding),
+            child: FeedbackButton(),
+          ),
+        );
       }
       return DraggableScrollableSheet(
         initialChildSize: MapVariables.MIN_SHEET_SIZE,
@@ -96,7 +105,7 @@ class MapSheetOverlay extends StatelessWidget {
       );
     }
     return Padding(
-      padding: const EdgeInsets.fromLTRB(8, 8, 8, 50),
+      padding: const EdgeInsets.fromLTRB(8, 8, 8, bottomGoogleLogoPadding),
       child: Align(
         alignment: Alignment.bottomCenter,
         child: Flushbar<dynamic>(

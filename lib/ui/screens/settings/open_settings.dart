@@ -6,6 +6,7 @@ import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/ui/screens/settings/settings_bottom_sheet.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/feedback/email_feedback_button.dart';
 import 'package:loono/ui/widgets/settings/avatar.dart';
 import 'package:loono/ui/widgets/settings/points_display.dart';
 import 'package:loono/utils/registry.dart';
@@ -105,6 +106,8 @@ class OpenSettingsScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20.0),
+                  const EmailFeedbackButton(),
+                  const SizedBox(height: 32.0),
                 ],
               ),
             ),

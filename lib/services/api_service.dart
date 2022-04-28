@@ -218,4 +218,20 @@ class ApiService {
           ),
     );
   }
+
+  Future<bool> sendFeedback({
+    required String? message,
+    required int rating,
+  }) async {
+    final res = await _callApi(
+      () async => _api.getDefaultApi().feedback(
+            userFeedback: UserFeedback(
+              (b) => b
+                ..message = message
+                ..evaluation = rating,
+            ),
+          ),
+    );
+    return res.when(success: (_) => true, failure: (_) => false);
+  }
 }

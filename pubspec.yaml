@@ -114,6 +114,7 @@ flutter:
     - assets/icons/
     - assets/icons/tabs/
     - assets/icons/find_doctor/
+    - assets/icons/feedback/
     - assets/icons/prevention/
     - assets/icons/prevention/doctors/
     - assets/icons/prevention/findings/

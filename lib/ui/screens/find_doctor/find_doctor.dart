@@ -8,6 +8,7 @@ import 'package:loono/helpers/map_variables.dart';
 import 'package:loono/models/search_result.dart';
 import 'package:loono/repositories/healthcare_repository.dart';
 import 'package:loono/services/map_state_sevice.dart';
+import 'package:loono/ui/widgets/feedback/feedback_button.dart';
 import 'package:loono/ui/widgets/find_doctor/bottom_sheet_overlay.dart';
 import 'package:loono/ui/widgets/find_doctor/doctor_detail_sheet.dart';
 import 'package:loono/ui/widgets/find_doctor/main_search_text_field.dart';
@@ -97,27 +98,31 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
             return Stack(
               children: [
                 MapPreview(mapController: _mapController),
-                if (_isHealthCareProvidersInMapService && currDoctorDetail == null) ...[
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Column(
-                      children: [
-                        SearchTextField(
-                          onItemTap: (searchResult) async {
-                            final provider = searchResult.data;
-                            if (provider == null) return;
-                            await animateToPos(
-                              _mapController,
-                              cameraPosition: CameraPosition(
-                                target: LatLng(provider.lat, provider.lng),
-                                zoom: searchResult.zoomLevel,
-                              ),
-                            );
-                            _sheetController.jumpTo(MapVariables.MIN_SHEET_SIZE);
-                          },
-                        ),
-                        SpecializationChipsList(showDefaultSpecs: currSpec == null),
-                      ],
+                if (_isHealthCareProvidersInMapService) ...[
+                  Visibility(
+                    visible: currDoctorDetail == null,
+                    maintainState: true,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Column(
+                        children: [
+                          SearchTextField(
+                            onItemTap: (searchResult) async {
+                              final provider = searchResult.data;
+                              if (provider == null) return;
+                              await animateToPos(
+                                _mapController,
+                                cameraPosition: CameraPosition(
+                                  target: LatLng(provider.lat, provider.lng),
+                                  zoom: searchResult.zoomLevel,
+                                ),
+                              );
+                              _sheetController.jumpTo(MapVariables.MIN_SHEET_SIZE);
+                            },
+                          ),
+                          SpecializationChipsList(showDefaultSpecs: currSpec == null),
+                        ],
+                      ),
                     ),
                   ),
                   Visibility(
@@ -140,7 +145,12 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                     _buildErrorIndicator()
                   else
                     _buildLoadingIndicator(),
-                if (currDoctorDetail != null)
+                if (currDoctorDetail != null) ...[
+                  const Positioned(
+                    top: 23,
+                    right: 15,
+                    child: FeedbackButton(),
+                  ),
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
@@ -167,6 +177,7 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                       ),
                     ),
                   ),
+                ],
               ],
             );
           },

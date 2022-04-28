@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/ui/widgets/avatar_arrow_bubble.dart';
 import 'package:loono/ui/widgets/badges/badge_composer.dart';
+import 'package:loono/ui/widgets/feedback/feedback_button.dart';
 import 'package:loono/ui/widgets/prevention/examinations_sheet_overlay.dart';
 import 'package:loono/ui/widgets/prevention/profile_button.dart';
 
@@ -54,6 +55,11 @@ class PreventionScreen extends StatelessWidget {
                   convertExtent: convertExtent,
                 ),
                 const ProfileButton(),
+                const Positioned(
+                  top: 20,
+                  right: 22,
+                  child: FeedbackButton(),
+                ),
               ],
             );
           },
