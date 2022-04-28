@@ -1,4 +1,5 @@
 import 'package:another_flushbar/flushbar.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/map_variables.dart';
@@ -57,8 +58,8 @@ class MapSheetOverlay extends StatelessWidget {
                             Center(
                               child: Padding(
                                 padding: const EdgeInsets.only(
-                                  top: 10.0,
-                                  bottom: 10.0,
+                                  top: 18.0,
+                                  bottom: 18.0,
                                 ),
                                 child: Container(
                                   width: MediaQuery.of(context).size.width / 3,
@@ -67,13 +68,14 @@ class MapSheetOverlay extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Align(
-                              alignment: Alignment.centerRight,
-                              child: Text(
-                                '${mapState.onMoveMapFilteringBlocked ? 'vybraní lékaři' : 'lékařů v okolí'}: ${mapState.currHealthcareProviders.length}',
-                                style: const TextStyle(color: Colors.white),
+                            if (kDebugMode)
+                              Align(
+                                alignment: Alignment.centerRight,
+                                child: Text(
+                                  '${mapState.onMoveMapFilteringBlocked ? 'vybraní lékaři' : 'lékařů v okolí'}: ${mapState.currHealthcareProviders.length}',
+                                  style: const TextStyle(color: Colors.white),
+                                ),
                               ),
-                            ),
                           ],
                         ),
                       ],

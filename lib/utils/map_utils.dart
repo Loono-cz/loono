@@ -84,15 +84,7 @@ Future<Marker> Function(
                   }
                 : () => setActiveDoctors(cluster.items.map((e) => e.healthcareProvider))
             : () => setDoctorDetail(cluster.items.first.healthcareProvider),
-        infoWindow: cluster.isMultiple
-            ? InfoWindow.noText
-            : InfoWindow(
-                title: cluster.items.first.healthcareProvider.title,
-                snippet: cluster.items.first.healthcareProvider.category.join(', '),
-                onTap: () {
-                  //
-                },
-              ),
+        infoWindow: InfoWindow.noText,
         icon: icon ?? BitmapDescriptor.defaultMarker,
       );
     };

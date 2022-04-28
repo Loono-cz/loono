@@ -11,6 +11,7 @@ import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/services/calendar_service.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/scrollbar.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
@@ -89,43 +90,47 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
                         });
                       }
 
-                      return ListView.builder(
-                        itemCount: calendars.length,
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          final calendar = calendars.elementAt(index);
+                      return LoonoScrollbar(
+                        thumbColor: Colors.white.withOpacity(0.75),
+                        trackColor: Colors.white.withOpacity(0.15),
+                        child: ListView.builder(
+                          itemCount: calendars.length,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            final calendar = calendars.elementAt(index);
 
-                          return ListTile(
-                            onTap: () => setState(() => _calendarIdChoice = calendar.id),
-                            leading: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Container(
-                                width: 15,
-                                height: 15,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Color(calendar.color ?? 0xFFFFFFFF),
+                            return ListTile(
+                              onTap: () => setState(() => _calendarIdChoice = calendar.id),
+                              leading: Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: Container(
+                                  width: 15,
+                                  height: 15,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Color(calendar.color ?? 0xFFFFFFFF),
+                                  ),
                                 ),
                               ),
-                            ),
-                            minLeadingWidth: 20,
-                            title: Text(
-                              calendar.name ?? '${l10n.calendar} ${calendar.id ?? ''}',
-                              style: Theme.of(context).textTheme.subtitle1,
-                            ),
-                            trailing: Theme(
-                              data: ThemeData(
-                                unselectedWidgetColor: LoonoColors.grey,
+                              minLeadingWidth: 20,
+                              title: Text(
+                                calendar.name ?? '${l10n.calendar} ${calendar.id ?? ''}',
+                                style: Theme.of(context).textTheme.subtitle1,
                               ),
-                              child: Radio<String?>(
-                                value: calendar.id,
-                                groupValue: _calendarIdChoice,
-                                activeColor: LoonoColors.primaryEnabled,
-                                onChanged: (choice) => setState(() => _calendarIdChoice = choice),
+                              trailing: Theme(
+                                data: ThemeData(
+                                  unselectedWidgetColor: LoonoColors.grey,
+                                ),
+                                child: Radio<String?>(
+                                  value: calendar.id,
+                                  groupValue: _calendarIdChoice,
+                                  activeColor: LoonoColors.primaryEnabled,
+                                  onChanged: (choice) => setState(() => _calendarIdChoice = choice),
+                                ),
                               ),
-                            ),
-                          );
-                        },
+                            );
+                          },
+                        ),
                       );
                     }
                     return const SizedBox.shrink();

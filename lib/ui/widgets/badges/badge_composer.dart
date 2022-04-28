@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/utils/registry.dart';
@@ -25,14 +27,6 @@ class _BadgeComposerState extends State<BadgeComposer> {
 
   static const supportedBadgeLevels = 5;
 
-  late bool showDescription;
-
-  @override
-  void initState() {
-    super.initState();
-    showDescription = widget.showDescription;
-  }
-
   Widget _getGoogles(Sex sex, int level) {
     return level > 0
         ? SizedBox(
@@ -44,7 +38,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 SvgPicture.asset(
                   'assets/badges/goggles-${sex == Sex.MALE ? 'man' : 'woman'}/level_$level.svg',
                 ),
-                if (showDescription)
+                if (widget.showDescription)
                   Positioned(
                     top: 50,
                     left: (MediaQuery.of(context).size.width / 2) - 150,
@@ -84,7 +78,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 SvgPicture.asset(
                   'assets/badges/headband/level_$level.svg',
                 ),
-                if (showDescription)
+                if (widget.showDescription)
                   Positioned(
                     top: 30,
                     left: (MediaQuery.of(context).size.width / 2) + 30,
@@ -124,7 +118,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 SvgPicture.asset(
                   'assets/badges/boots/level_$level.svg',
                 ),
-                if (showDescription)
+                if (widget.showDescription)
                   Positioned(
                     left: (MediaQuery.of(context).size.width / 2) - 170,
                     top: 260,
@@ -164,7 +158,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 SvgPicture.asset(
                   'assets/badges/belt-${sex == Sex.MALE ? 'man' : 'woman'}/level_$level.svg',
                 ),
-                if (showDescription)
+                if (widget.showDescription)
                   Positioned(
                     left: (MediaQuery.of(context).size.width / 2) + 40,
                     child: Column(
@@ -205,7 +199,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 SvgPicture.asset(
                   'assets/badges/armour-woman/level_$level.svg',
                 ),
-                if (showDescription)
+                if (widget.showDescription)
                   Positioned(
                     top: 90,
                     left: (MediaQuery.of(context).size.width / 2) - 160,
@@ -245,7 +239,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 SvgPicture.asset(
                   'assets/badges/cloak/level_$level.svg',
                 ),
-                if (showDescription)
+                if (widget.showDescription)
                   Positioned(
                     top: 240,
                     left: (MediaQuery.of(context).size.width / 2) + 30,
@@ -296,7 +290,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 SvgPicture.asset(
                   'assets/badges/gloves-${sex == Sex.MALE ? 'man' : 'woman'}/level_$level.svg',
                 ),
-                if (showDescription)
+                if (widget.showDescription)
                   Positioned(
                     top: 180,
                     left: (MediaQuery.of(context).size.width / 2) + 40,
@@ -340,7 +334,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 SvgPicture.asset(
                   'assets/badges/shield/level_$level.svg',
                 ),
-                if (showDescription)
+                if (widget.showDescription)
                   Positioned(
                     top: 210,
                     left: (MediaQuery.of(context).size.width / 2) - 180,
@@ -395,7 +389,11 @@ class _BadgeComposerState extends State<BadgeComposer> {
             }
 
             return GestureDetector(
-              onTap: () => setState(() => showDescription = !showDescription),
+              onTap: widget.showDescription
+                  ? null
+                  : () => AutoRouter.of(context).push(
+                        BadgeOverviewRoute(onButtonTap: () => AutoRouter.of(context).popForced()),
+                      ),
               child: SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: 300,

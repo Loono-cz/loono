@@ -77,7 +77,7 @@ class EmailScreen extends StatelessWidget {
                 await result.when(
                   success: (account) async {
                     await _userRepository.updateCurrentUserFromAccount(account);
-                    await AutoRouter.of(context).replaceAll([GamificationIntroductionRoute()]);
+                    await AutoRouter.of(context).replaceAll([BadgeOverviewRoute()]);
                   },
                   failure: (_) async {
                     // delete account so user can not login without saving info to server first

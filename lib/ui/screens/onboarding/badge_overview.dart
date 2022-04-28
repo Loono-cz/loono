@@ -14,8 +14,13 @@ import 'package:loono/ui/widgets/loono_point.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
-class GamificationIntroductionScreen extends StatelessWidget {
-  GamificationIntroductionScreen({Key? key}) : super(key: key);
+class BadgeOverviewScreen extends StatelessWidget {
+  BadgeOverviewScreen({
+    Key? key,
+    this.onButtonTap,
+  }) : super(key: key);
+
+  final VoidCallback? onButtonTap;
 
   final _usersDao = registry.get<DatabaseService>().users;
 
@@ -69,27 +74,40 @@ class GamificationIntroductionScreen extends StatelessWidget {
                         ),
                         if (LoonoSizes.isScreenSmall(context))
                           Expanded(
-                            child: ListView(
-                              shrinkWrap: true,
+                            child: Stack(
                               children: [
-                                const BadgeComposer(),
-                                const SizedBox(height: 10),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 18),
-                                  child: _buildDescContainer(context),
+                                Scrollbar(
+                                  isAlwaysShown: true,
+                                  child: ListView(
+                                    shrinkWrap: true,
+                                    children: [
+                                      const BadgeComposer(),
+                                      const SizedBox(height: 10),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 18),
+                                        child: _buildDescContainer(context),
+                                      ),
+                                      SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
+                                      SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
+                                    ],
+                                  ),
                                 ),
-                                const SizedBox(height: 20),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 18),
-                                  child: LoonoButton(
-                                    key: const Key('gamificationIntroductionPage_btn_continue'),
-                                    text: context.l10n.gamification_introduction_button,
-                                    onTap: () => AutoRouter.of(context).replaceAll(
-                                      [const MainScreenRouter()],
+                                Positioned(
+                                  bottom: 10,
+                                  child: SizedBox(
+                                    width: MediaQuery.of(context).size.width,
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 18),
+                                      child: LoonoButton(
+                                        key: const Key('badgeOverviewPage_btn_continue'),
+                                        text: context.l10n.gamification_introduction_button,
+                                        onTap: onButtonTap ??
+                                            () => AutoRouter.of(context)
+                                                .replaceAll([const MainScreenRouter()]),
+                                      ),
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
                               ],
                             ),
                           )
@@ -104,10 +122,11 @@ class GamificationIntroductionScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 18),
                             child: LoonoButton(
-                              key: const Key('gamificationIntroductionPage_btn_continue'),
+                              key: const Key('badgeOverviewPage_btn_continue'),
                               text: context.l10n.gamification_introduction_button,
-                              onTap: () =>
-                                  AutoRouter.of(context).replaceAll([const MainScreenRouter()]),
+                              onTap: onButtonTap ??
+                                  () =>
+                                      AutoRouter.of(context).replaceAll([const MainScreenRouter()]),
                             ),
                           ),
                           const Spacer(flex: 2),

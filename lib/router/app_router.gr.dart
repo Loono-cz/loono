@@ -37,6 +37,7 @@ import '../ui/screens/main/pre_auth/onboarding_form_done.dart' as _i21;
 import '../ui/screens/main/pre_auth/pre_auth_main_screen.dart' as _i2;
 import '../ui/screens/main/pre_auth/start_new_questionnaire.dart' as _i19;
 import '../ui/screens/onboarding/allow_notifications.dart' as _i5;
+import '../ui/screens/onboarding/badge_overview.dart' as _i7;
 import '../ui/screens/onboarding/birthdate.dart' as _i23;
 import '../ui/screens/onboarding/carousel/carousel.dart' as _i3;
 import '../ui/screens/onboarding/doctors/dentist.dart' as _i30;
@@ -49,7 +50,6 @@ import '../ui/screens/onboarding/doctors/gynecology_date.dart' as _i29;
 import '../ui/screens/onboarding/fallback_account/email.dart' as _i9;
 import '../ui/screens/onboarding/fallback_account/nickname.dart' as _i8;
 import '../ui/screens/onboarding/fill_form_later.dart' as _i6;
-import '../ui/screens/onboarding/gamification_introduction.dart' as _i7;
 import '../ui/screens/onboarding/gender.dart' as _i22;
 import '../ui/screens/prevention/calendar/calendar_list.dart' as _i38;
 import '../ui/screens/prevention/calendar/permission_info.dart' as _i37;
@@ -134,12 +134,13 @@ class AppRouter extends _i14.RootStackRouter {
           routeData: routeData,
           child: const _i6.FillOnboardingFormLaterScreen());
     },
-    GamificationIntroductionRoute.name: (routeData) {
-      final args = routeData.argsAs<GamificationIntroductionRouteArgs>(
-          orElse: () => const GamificationIntroductionRouteArgs());
+    BadgeOverviewRoute.name: (routeData) {
+      final args = routeData.argsAs<BadgeOverviewRouteArgs>(
+          orElse: () => const BadgeOverviewRouteArgs());
       return _i14.MaterialPageX<void>(
           routeData: routeData,
-          child: _i7.GamificationIntroductionScreen(key: args.key));
+          child: _i7.BadgeOverviewScreen(
+              key: args.key, onButtonTap: args.onButtonTap));
     },
     NicknameRoute.name: (routeData) {
       final args = routeData.argsAs<NicknameRouteArgs>();
@@ -662,8 +663,7 @@ class AppRouter extends _i14.RootStackRouter {
             path: 'allow-notifications'),
         _i14.RouteConfig(FillOnboardingFormLaterRoute.name,
             path: 'fill-form-later'),
-        _i14.RouteConfig(GamificationIntroductionRoute.name,
-            path: 'gamification-introduction'),
+        _i14.RouteConfig(BadgeOverviewRoute.name, path: 'badge-overview'),
         _i14.RouteConfig(NicknameRoute.name, path: 'fallback-account/name'),
         _i14.RouteConfig(EmailRoute.name, path: 'fallback-account/email'),
         _i14.RouteConfig(LoginRoute.name, path: 'login'),
@@ -687,6 +687,8 @@ class AppRouter extends _i14.RootStackRouter {
                 _i14.RouteConfig(AboutHealthRoute.name,
                     path: 'about-health', parent: MainRoute.name)
               ]),
+          _i14.RouteConfig(BadgeOverviewRoute.name,
+              path: 'badge-overview', parent: MainScreenRouter.name),
           _i14.RouteConfig(ExaminationDetailRoute.name,
               path: 'prevention-detail', parent: MainScreenRouter.name),
           _i14.RouteConfig(AchievementRoute.name,
@@ -845,25 +847,26 @@ class FillOnboardingFormLaterRoute extends _i14.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i7.GamificationIntroductionScreen]
-class GamificationIntroductionRoute
-    extends _i14.PageRouteInfo<GamificationIntroductionRouteArgs> {
-  GamificationIntroductionRoute({_i55.Key? key})
-      : super(GamificationIntroductionRoute.name,
-            path: 'gamification-introduction',
-            args: GamificationIntroductionRouteArgs(key: key));
+/// [_i7.BadgeOverviewScreen]
+class BadgeOverviewRoute extends _i14.PageRouteInfo<BadgeOverviewRouteArgs> {
+  BadgeOverviewRoute({_i55.Key? key, void Function()? onButtonTap})
+      : super(BadgeOverviewRoute.name,
+            path: 'badge-overview',
+            args: BadgeOverviewRouteArgs(key: key, onButtonTap: onButtonTap));
 
-  static const String name = 'GamificationIntroductionRoute';
+  static const String name = 'BadgeOverviewRoute';
 }
 
-class GamificationIntroductionRouteArgs {
-  const GamificationIntroductionRouteArgs({this.key});
+class BadgeOverviewRouteArgs {
+  const BadgeOverviewRouteArgs({this.key, this.onButtonTap});
 
   final _i55.Key? key;
 
+  final void Function()? onButtonTap;
+
   @override
   String toString() {
-    return 'GamificationIntroductionRouteArgs{key: $key}';
+    return 'BadgeOverviewRouteArgs{key: $key, onButtonTap: $onButtonTap}';
   }
 }
 
