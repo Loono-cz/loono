@@ -11,6 +11,7 @@ import 'package:loono/ui/screens/settings/leaderboard.dart';
 import 'package:loono/ui/screens/settings/open_settings.dart';
 import 'package:loono/ui/screens/settings/points_help.dart';
 import 'package:loono/ui/screens/settings/update_profile.dart';
+import 'package:loono/ui/widgets/close_button.dart';
 import 'package:loono/utils/registry.dart';
 
 //ignore_for_file: constant_identifier_names
@@ -97,20 +98,20 @@ class _SettingsContentState extends State<_SettingsContent> {
               Row(
                 children: [
                   if (navigationStack.lastOrNull != SettingsPage.SettingsMainPage)
-                    IconButton(
-                      key: const Key('settings_sheet_backButton'),
-                      onPressed: goBack,
-                      icon: SvgPicture.asset(
-                        'assets/icons/arrow_back.svg',
+                    Material(
+                      color: Colors.transparent,
+                      child: IconButton(
+                        key: const Key('settings_sheet_backButton'),
+                        onPressed: goBack,
+                        icon: SvgPicture.asset(
+                          'assets/icons/arrow_back.svg',
+                        ),
                       ),
                     ),
                   const Spacer(),
-                  IconButton(
+                  LoonoCloseButton(
                     key: const Key('settings_sheet_closeButton'),
-                    icon: const Icon(Icons.close, size: 32),
-                    onPressed: () {
-                      AutoRouter.of(context).popForced();
-                    },
+                    onPressed: () => AutoRouter.of(context).popForced(),
                   ),
                 ],
               ),
