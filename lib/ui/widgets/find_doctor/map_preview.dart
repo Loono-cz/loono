@@ -34,6 +34,7 @@ class MapPreview extends StatelessWidget {
         myLocationEnabled: true,
         myLocationButtonEnabled: false,
         zoomControlsEnabled: false,
+        rotateGesturesEnabled: false,
         onMapCreated: (GoogleMapController mapController) async {
           await mapController.setMapStyle(
             await rootBundle.loadString('assets/maps/map-style.json'),
@@ -50,6 +51,7 @@ class MapPreview extends StatelessWidget {
           // ignore: omit_local_variable_types
           final GoogleMapController controller = await _mapController.future;
           final latLngBounds = await controller.getVisibleRegion();
+
           mapState.setVisibleRegion(latLngBounds);
           mapState.clusterManager.updateMap();
         },
