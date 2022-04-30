@@ -1,8 +1,11 @@
 import 'dart:async';
-import 'dart:ui';
+import 'dart:typed_data';
+import 'dart:ui' as ui;
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_cluster_manager/google_maps_cluster_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -67,11 +70,13 @@ Future<Marker> Function(
             currDoctors.map((e) => e.institutionId),
           ));
 
-      final icon = await getMarkerBitmap(
-        cluster.isMultiple ? 125 : 75,
-        text: cluster.isMultiple ? cluster.count.toString() : null,
-        isClusterSelected: isClusterSelected,
-      );
+      final icon = cluster.isMultiple
+          ? await getMarkerBitmap(
+              125,
+              text: cluster.isMultiple ? cluster.count.toString() : null,
+              isClusterSelected: isClusterSelected,
+            )
+          : BitmapDescriptor.fromBytes(await getMarkerIcon(31 * 3, 40 * 3));
 
       return Marker(
         markerId: MarkerId(cluster.getId()),
@@ -94,7 +99,7 @@ Future<BitmapDescriptor?> getMarkerBitmap(
   String? text,
   required bool isClusterSelected,
 }) async {
-  final pictureRecorder = PictureRecorder();
+  final pictureRecorder = ui.PictureRecorder();
   final canvas = Canvas(pictureRecorder);
   final paint1 = Paint()
     ..color = isClusterSelected ? LoonoColors.primaryEnabled : LoonoColors.primaryLight;
@@ -124,7 +129,30 @@ Future<BitmapDescriptor?> getMarkerBitmap(
   }
 
   final img = await pictureRecorder.endRecording().toImage(size, size);
-  final data = await img.toByteData(format: ImageByteFormat.png);
+  final data = await img.toByteData(format: ui.ImageByteFormat.png);
   if (data == null) return null;
   return BitmapDescriptor.fromBytes(data.buffer.asUint8List());
+}
+
+Future<ui.Image> loadUiImage(String imageAssetPath) async {
+  final data = await rootBundle.load(imageAssetPath);
+  final completer = Completer<ui.Image>();
+  ui.decodeImageFromList(Uint8List.view(data.buffer), completer.complete);
+  return completer.future;
+}
+
+Future<Uint8List> getMarkerIcon(int width, int height) async {
+  final pictureRecorder = ui.PictureRecorder();
+  final canvas = Canvas(pictureRecorder);
+  final imaged = await loadUiImage('assets/icons/doctor_marker.png');
+  canvas.drawImageRect(
+    imaged,
+    Rect.fromLTRB(0.0, 0.0, imaged.width.toDouble(), imaged.height.toDouble()),
+    Rect.fromLTRB(0.0, 0.0, width.toDouble(), height.toDouble()),
+    Paint(),
+  );
+
+  final img = await pictureRecorder.endRecording().toImage(width, height);
+  final data = await img.toByteData(format: ui.ImageByteFormat.png);
+  return data!.buffer.asUint8List();
 }
