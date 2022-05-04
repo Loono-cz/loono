@@ -6,9 +6,9 @@ import 'package:loono/ui/widgets/find_doctor/specializations_list_sheet.dart';
 import 'package:provider/provider.dart';
 
 // key - spec name in chip in UI
-// value - actual spec name in db
-const defaultSpecs = <String, String>{
-  'Praktický lékař': 'Praktik',
+// value - actual spec name from API
+const _defaultSpecs = <String, String>{
+  'Praktický lékař': 'Praktický lékař',
   'Zubař': 'Zubař',
   'Gynekolog': 'Gynekologie a porodnictví',
   'Dermatolog': 'Dermatovenerologie, kožní',
@@ -20,7 +20,7 @@ class SpecializationChipsList extends StatelessWidget {
   SpecializationChipsList({
     Key? key,
     this.showDefaultSpecs = true,
-  })  : _specs = showDefaultSpecs ? defaultSpecs : Map.fromEntries([defaultSpecs.entries.last]),
+  })  : _specs = showDefaultSpecs ? _defaultSpecs : Map.fromEntries([_defaultSpecs.entries.last]),
         super(key: key);
 
   final bool showDefaultSpecs;

@@ -109,11 +109,13 @@ class _FeedbackFormContentState extends State<_FeedbackFormContent> {
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: TextField(
                         controller: _textController,
-                        // Hide the keyboard on small devices so the button gets visible & prevent accidental form sending.
+                        // Hides the keyboard on small devices on action done so the button gets visible.
+                        // Does not send form to prevent accidental form sending.
                         onEditingComplete: () async =>
                             FocusManager.instance.primaryFocus?.unfocus(),
-                        // New line on large devices, 'Send' button is visible.
-                        textInputAction: isScreenSmall ? TextInputAction.done : null,
+                        // Performs action done instead of new line on small devices.
+                        textInputAction:
+                            isScreenSmall ? TextInputAction.done : TextInputAction.newline,
                         onChanged: (_) => setState(() {}),
                         maxLength: 500,
                         minLines: null,
