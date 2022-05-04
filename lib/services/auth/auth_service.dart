@@ -18,12 +18,10 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 class AuthService {
   AuthService({
     required api.LoonoApi api,
-    required FirebaseAuth firebaseAuth,
-    required GoogleSignIn googleSignIn,
     required SecureStorageService secureStorageService,
   })  : _api = api,
-        _auth = firebaseAuth,
-        _googleSignIn = googleSignIn,
+        _auth = FirebaseAuth.instance,
+        _googleSignIn = GoogleSignIn(),
         _secureStorage = secureStorageService {
     _auth.authStateChanges().listen((authUser) async {
       if (authUser == null) {

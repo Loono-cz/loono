@@ -1,5 +1,4 @@
 import 'package:charlatan/charlatan.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:loono_api/loono_api.dart';
@@ -15,7 +14,6 @@ import '../../../pages/self_examination/detail/self_examination_detail_page.dart
 Future<void> run({
   required WidgetTester tester,
   required Charlatan charlatan,
-  required FirebaseAuth firebaseAuth,
 }) async {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
@@ -23,7 +21,7 @@ Future<void> run({
   final selfExaminationDetailPage = SelfExaminationDetailPage(tester);
   final educationalVideoPage = EducationalVideoPage(tester);
 
-  await app.runMockApp(firebaseAuthOverride: firebaseAuth, charlatan: charlatan);
+  await app.runMockApp(charlatan: charlatan);
   await loginFlow(
     tester: tester,
     charlatan: charlatan,
