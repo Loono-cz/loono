@@ -10,6 +10,7 @@ import '../mocks/google_sign_in_mock.dart';
 import '../test_helpers/post_app_clear.dart';
 import 'app/test_cases/loon_580_force_update.dart' as loon580;
 import 'onboarding/test_cases/other/loon_542_installing_and_opening_app.dart' as loon542;
+import 'onboarding/test_cases/other/loon_671_login_server_down_block_user.dart' as loon671;
 import 'onboarding/test_cases/questionnaire/loon_543_male_onboarding_flow.dart' as loon543;
 import 'onboarding/test_cases/questionnaire/loon_544_female_onboarding_flow.dart' as loon544;
 import 'onboarding/test_cases/questionnaire/loon_558_onboarding_age_validation.dart' as loon558;
@@ -107,8 +108,10 @@ void main() {
     group('Other', () {
       late Charlatan charlatan;
 
-      setUp(() {
+      setUp(() async {
         charlatan = Charlatan();
+        mockGoogleSignIn();
+        await mockFirebaseAuth();
       });
 
       tearDown(() async {
@@ -119,6 +122,11 @@ void main() {
         'TC(LOON-542): Installing & opening app - Intro & Pre-auth Main Screen routes',
         (tester) async => loon542.run(tester: tester, charlatan: charlatan),
         timeout: const Timeout(Duration(minutes: 2)),
+      );
+
+      testWidgets(
+        'TC(LOON-671): Blocking the user from logging in when the server is down',
+        (tester) async => loon671.run(tester: tester, charlatan: charlatan),
       );
     });
   });

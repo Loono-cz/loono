@@ -20,6 +20,7 @@ Future<void> loginFlow({
   Account? accountData,
   PreventionStatus? examinationsData,
   CharlatanResponseBuilder? accountResponse,
+  CharlatanResponseBuilder? examinationsResponse,
 }) async {
   final welcomePage = WelcomePage(tester);
   final loginPage = LoginPage(tester);
@@ -37,10 +38,11 @@ Future<void> loginFlow({
     )
     ..whenGet(
       '/examinations',
-      (_) => standardSerializers.serializeWith(
-        PreventionStatus.serializer,
-        examinationsData ?? defaultMaleExaminations,
-      ),
+      examinationsResponse ??
+          (_) => standardSerializers.serializeWith(
+                PreventionStatus.serializer,
+                examinationsData ?? defaultMaleExaminations,
+              ),
     );
 
   await tester.pumpAndSettle();
@@ -50,5 +52,7 @@ Future<void> loginFlow({
   await loginPage.verifyScreenIsShown();
 
   await loginPage.loginWithGoogle();
-  if (accountResponse == null) await preventionPage.verifyScreenIsShown();
+  if (accountResponse == null && examinationsResponse == null) {
+    await preventionPage.verifyScreenIsShown();
+  }
 }

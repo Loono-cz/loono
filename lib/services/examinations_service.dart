@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:loono/models/api_response.dart';
 import 'package:loono/services/api_service.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
@@ -9,25 +10,25 @@ class ExaminationsProvider extends ChangeNotifier {
   PreventionStatus? examinations;
   bool loading = false;
 
-  Future<void> fetchExaminations() async {
+  Future<ApiResponse<PreventionStatus>> fetchExaminations() async {
     log('fetching examinations from server');
 
     loading = true;
     notifyListeners();
 
-    await registry.get<ApiService>().getExaminations().then((res) {
-      res.map(
-        success: (exams) {
-          examinations = exams.data;
-          loading = false;
-        },
-        failure: (err) {
-          loading = false;
-        },
-      );
-    });
+    final examResponse = await registry.get<ApiService>().getExaminations();
+    examResponse.map(
+      success: (exams) {
+        examinations = exams.data;
+        loading = false;
+      },
+      failure: (err) {
+        loading = false;
+      },
+    );
 
     notifyListeners();
+    return examResponse;
   }
 
   void clearExaminations() {

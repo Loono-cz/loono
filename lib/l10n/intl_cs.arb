@@ -1019,5 +1019,7 @@
   "feedback_form_support_text": "Potřebuješ poradit? Neváhej nás kontaktovat na ",
   "@feedback_form_support_text": {},
   "feedback_form_success_message": "Odesláno. Děkujeme za zpětnou vazbu!",
-  "@feedback_form_success_message": {}
+  "@feedback_form_success_message": {},
+  "login_server_down_message": "Naše systémy mají preventivní prohlídku, zkus to znovu za 5 minut.",
+  "@login_server_down_message": {}
 }
