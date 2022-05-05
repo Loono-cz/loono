@@ -4,6 +4,7 @@ import 'package:loono/constants.dart';
 import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/close_button.dart';
 import 'package:loono/ui/widgets/feedback/feedback_form_content_sheet.dart';
 import 'package:loono/ui/widgets/feedback/rating_bar.dart';
 
@@ -14,6 +15,7 @@ void showFeedbackRatingBottomSheet(BuildContext pageContext) {
 
   showModalBottomSheet<void>(
     context: pageContext,
+    useRootNavigator: true,
     shape: RoundedRectangleBorder(borderRadius: borderRadius),
     isScrollControlled: true,
     builder: (context) {
@@ -32,13 +34,7 @@ void showFeedbackRatingBottomSheet(BuildContext pageContext) {
               children: <Widget>[
                 Align(
                   alignment: Alignment.centerRight,
-                  child: Material(
-                    color: Colors.transparent,
-                    child: IconButton(
-                      icon: const Icon(Icons.close, size: 32),
-                      onPressed: () => AutoRouter.of(context).pop(),
-                    ),
-                  ),
+                  child: LoonoCloseButton(onPressed: () => AutoRouter.of(context).pop()),
                 ),
                 const SizedBox(height: 10),
                 Text(l10n.feedback_form_button_sheet_header, style: LoonoFonts.headerFontStyle),

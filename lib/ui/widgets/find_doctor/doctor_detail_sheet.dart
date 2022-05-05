@@ -5,6 +5,7 @@ import 'package:loono/helpers/simple_health_care_provider_helper.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/api_response.dart';
 import 'package:loono/services/api_service.dart';
+import 'package:loono/ui/widgets/close_button.dart';
 import 'package:loono/ui/widgets/find_doctor/contact_button.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
@@ -38,10 +39,7 @@ class DoctorDetailSheet extends StatelessWidget {
                     softWrap: false,
                   ),
                 ),
-              IconButton(
-                icon: const Icon(Icons.close, size: 37),
-                onPressed: closeDetail,
-              ),
+              LoonoCloseButton(onPressed: closeDetail),
             ],
           ),
           Row(

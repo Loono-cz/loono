@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/ui/widgets/close_button.dart';
 
 AppBar settingsAppBar(
   BuildContext context, {
@@ -25,9 +26,8 @@ AppBar settingsAppBar(
     actions: [
       Padding(
         padding: const EdgeInsets.only(right: 15.0),
-        child: IconButton(
+        child: LoonoCloseButton(
           key: const Key('settingsAppBar_closeButton'),
-          icon: const Icon(Icons.close, size: 37),
           onPressed: () => AutoRouter.of(context).popForced(),
         ),
       ),

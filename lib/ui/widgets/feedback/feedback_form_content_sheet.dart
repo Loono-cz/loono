@@ -8,6 +8,7 @@ import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/api_service.dart';
 import 'package:loono/ui/widgets/async_button.dart';
+import 'package:loono/ui/widgets/close_button.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -18,6 +19,7 @@ void showFeedbackFormContentBottomSheet(
   final borderRadius = BorderRadius.circular(10.0);
   showModalBottomSheet<void>(
     context: pageContext,
+    useRootNavigator: true,
     shape: RoundedRectangleBorder(borderRadius: borderRadius),
     isScrollControlled: true,
     builder: (_) => _FeedbackFormContent(borderRadius: borderRadius, rating: rating),
@@ -55,11 +57,11 @@ class _FeedbackFormContentState extends State<_FeedbackFormContent> {
 
   @override
   Widget build(BuildContext context) {
+    final isScreenSmall = LoonoSizes.isScreenSmall(context);
     final l10n = context.l10n;
     const arrowBackWidth = 22.5;
     return Padding(
-      padding:
-          LoonoSizes.isScreenSmall(context) ? EdgeInsets.zero : MediaQuery.of(context).viewInsets,
+      padding: isScreenSmall ? EdgeInsets.zero : MediaQuery.of(context).viewInsets,
       child: FractionallySizedBox(
         heightFactor: 0.95,
         child: Container(
@@ -84,13 +86,7 @@ class _FeedbackFormContentState extends State<_FeedbackFormContent> {
                         onPressed: () => AutoRouter.of(context).pop(),
                       ),
                     ),
-                    Material(
-                      color: Colors.transparent,
-                      child: IconButton(
-                        icon: const Icon(Icons.close, size: 32),
-                        onPressed: () async => _closeForm(),
-                      ),
-                    ),
+                    LoonoCloseButton(onPressed: () async => _closeForm()),
                   ],
                 ),
                 const SizedBox(height: 20),
@@ -113,6 +109,13 @@ class _FeedbackFormContentState extends State<_FeedbackFormContent> {
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: TextField(
                         controller: _textController,
+                        // Hides the keyboard on small devices on action done so the button gets visible.
+                        // Does not send form to prevent accidental form sending.
+                        onEditingComplete: () async =>
+                            FocusManager.instance.primaryFocus?.unfocus(),
+                        // Performs action done instead of new line on small devices.
+                        textInputAction:
+                            isScreenSmall ? TextInputAction.done : TextInputAction.newline,
                         onChanged: (_) => setState(() {}),
                         maxLength: 500,
                         minLines: null,
