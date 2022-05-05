@@ -1,5 +1,4 @@
 import 'package:charlatan/charlatan.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:loono_api/loono_api.dart';
@@ -20,11 +19,10 @@ part '../../test_data/loon_464_test_data.dart';
 Future<void> run({
   required WidgetTester tester,
   required Charlatan charlatan,
-  required FirebaseAuth firebaseAuth,
 }) async {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  await app.runMockApp(firebaseAuthOverride: firebaseAuth, charlatan: charlatan);
+  await app.runMockApp(charlatan: charlatan);
   charlatan.whenGet('/providers/all', (_) => HEALTHCARE_PROVIDER_ENCODED);
   await loginFlow(tester: tester, charlatan: charlatan);
 

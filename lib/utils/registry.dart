@@ -8,7 +8,6 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_smart_retry/dio_smart_retry.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
@@ -18,7 +17,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/repositories/examination_repository.dart';
@@ -50,8 +48,6 @@ const FORCE_UPDATE_STATUS_CODE = 410;
 
 Future<void> setup({
   Dio? dioOverride,
-  GoogleSignIn? googleSignIn,
-  FirebaseAuth? firebaseAuth,
   Map<String, String>? envOverride,
   required AppFlavors flavor,
 }) async {
@@ -180,8 +176,6 @@ Future<void> setup({
   registry.registerSingleton<AuthService>(
     AuthService(
       api: registry.get<LoonoApi>(),
-      firebaseAuth: firebaseAuth ?? FirebaseAuth.instance,
-      googleSignIn: googleSignIn ?? GoogleSignIn(),
       secureStorageService: registry.get<SecureStorageService>(),
     ),
   );

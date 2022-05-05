@@ -37,6 +37,9 @@ class Loono extends StatelessWidget {
       builder: (context, snapshot) {
         final authUser = snapshot.data;
         if (authUser == null &&
+            !_appRouter.isRouteActive(EmailRoute.name) &&
+            !_appRouter.isRouteActive(OnboardingFormDoneRoute.name) &&
+            !_appRouter.isRouteActive(LoginRoute.name) &&
             !_appRouter.isRouteActive(LogoutRoute.name) &&
             !_appRouter.isRouteActive(AfterDeletionRoute.name)) {
           SchedulerBinding.instance?.addPostFrameCallback((_) {

@@ -81,8 +81,8 @@ class EmailScreen extends StatelessWidget {
                   },
                   failure: (_) async {
                     // delete account so user can not login without saving info to server first
-                    await authUser.delete();
                     showFlushBarError(context, context.l10n.something_went_wrong);
+                    await authUser.delete();
                   },
                 );
               },

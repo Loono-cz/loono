@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth_platform_interface/src/method_channel/method_channel_firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
@@ -8,7 +7,7 @@ import '../test_helpers/method_channels_handlers.dart';
 
 const firebaseAuthChannel = MethodChannelFirebaseAuth.channel;
 
-Future<FirebaseAuth> mockFirebaseAuth() async {
+Future<void> mockFirebaseAuth() async {
   await Firebase.initializeApp();
 
   const username = 'Adam tester';
@@ -53,8 +52,6 @@ Future<FirebaseAuth> mockFirebaseAuth() async {
     }
     return Future<dynamic>.value(response);
   });
-
-  return FirebaseAuth.instance;
 }
 
 void tearDownFirebaseAuth() {

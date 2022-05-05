@@ -1,5 +1,4 @@
 import 'package:charlatan/charlatan.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 
@@ -16,11 +15,10 @@ import '../../pages/update_profile/update_profile_page.dart';
 Future<void> run({
   required WidgetTester tester,
   required Charlatan charlatan,
-  required FirebaseAuth firebaseAuth,
 }) async {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  await app.runMockApp(firebaseAuthOverride: firebaseAuth, charlatan: charlatan);
+  await app.runMockApp(charlatan: charlatan);
   await loginFlow(tester: tester, charlatan: charlatan);
 
   final preventionPage = PreventionPage(tester);
