@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_cluster_manager/google_maps_cluster_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:loono/helpers/map_variables.dart';
 import 'package:loono/helpers/simple_health_care_provider_helper.dart';
 import 'package:loono/models/healthcare_item_place.dart';
 import 'package:loono/models/search_result.dart';
@@ -227,12 +228,24 @@ class MapStateService with ChangeNotifier {
     _allSpecs.replaceRange(0, _allSpecs.length, uniqueSpecializationsMap.values);
   }
 
+  LatLngBounds get visibleRegionPadded {
+    final bottomPadding = (visibleRegion!.northeast.latitude - visibleRegion!.southwest.latitude) *
+        MapVariables.MIN_SHEET_SIZE;
+    return LatLngBounds(
+      southwest: LatLng(
+        visibleRegion!.southwest.latitude + bottomPadding,
+        visibleRegion!.southwest.longitude,
+      ),
+      northeast: visibleRegion!.northeast,
+    );
+  }
+
   void applyFilter() {
     if (onMoveMapFilteringBlocked) {
       final firstProvider = currHealthcareProviders.firstOrNull;
       if (firstProvider != null && visibleRegion != null) {
         final isProviderInCurrRegion =
-            visibleRegion!.contains(LatLng(firstProvider.lat, firstProvider.lng));
+            visibleRegionPadded.contains(LatLng(firstProvider.lat, firstProvider.lng));
         if (isProviderInCurrRegion) {
           // filtering on map move is blocked - clicked on a cluster
           return;
@@ -248,7 +261,7 @@ class MapStateService with ChangeNotifier {
           if (visibleRegion == null) return true;
           final lat = healthcareProvider.lat;
           final lng = healthcareProvider.lng;
-          return visibleRegion!.contains(LatLng(lat, lng));
+          return visibleRegionPadded.contains(LatLng(lat, lng));
         },
       ),
     );
