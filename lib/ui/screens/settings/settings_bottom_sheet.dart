@@ -98,13 +98,16 @@ class _SettingsContentState extends State<_SettingsContent> {
               Row(
                 children: [
                   if (navigationStack.lastOrNull != SettingsPage.SettingsMainPage)
-                    Material(
-                      color: Colors.transparent,
-                      child: IconButton(
-                        key: const Key('settings_sheet_backButton'),
-                        onPressed: goBack,
-                        icon: SvgPicture.asset(
-                          'assets/icons/arrow_back.svg',
+                    ClipRRect(
+                      borderRadius: const BorderRadius.all(Radius.circular(32)),
+                      child: Material(
+                        color: Colors.transparent,
+                        child: IconButton(
+                          key: const Key('settings_sheet_backButton'),
+                          onPressed: goBack,
+                          icon: SvgPicture.asset(
+                            'assets/icons/arrow_back.svg',
+                          ),
                         ),
                       ),
                     ),
