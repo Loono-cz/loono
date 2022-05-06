@@ -57,7 +57,7 @@ class PreventionScreen extends StatelessWidget {
                 const ProfileButton(),
                 const Positioned(
                   top: 20,
-                  right: 22,
+                  right: 15,
                   child: FeedbackButton(),
                 ),
               ],

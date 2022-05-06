@@ -62,7 +62,6 @@ class SelfExaminationDetailScreen extends StatelessWidget {
               SizedBox(
                 height: 207,
                 child: Stack(
-                  alignment: Alignment.center,
                   children: [
                     Positioned(
                       right: -50,
@@ -77,7 +76,8 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                       ),
                     ),
                     const Positioned(
-                      top: 2,
+                      top: 4,
+                      right: 15,
                       child: FeedbackButton(),
                     ),
                     Column(

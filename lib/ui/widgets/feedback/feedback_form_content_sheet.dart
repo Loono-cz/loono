@@ -7,6 +7,7 @@ import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/api_service.dart';
+import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/close_button.dart';
 import 'package:loono/utils/registry.dart';
@@ -42,6 +43,7 @@ class _FeedbackFormContent extends StatefulWidget {
 
 class _FeedbackFormContentState extends State<_FeedbackFormContent> {
   final _apiService = registry.get<ApiService>();
+  final _authService = registry.get<AuthService>();
   final _textController = TextEditingController();
 
   Future<void> _closeForm() async {
@@ -142,6 +144,7 @@ class _FeedbackFormContentState extends State<_FeedbackFormContent> {
                   text: l10n.feedback_form_send_button,
                   enabled: _textController.text.isNotEmpty,
                   asyncCallback: () async => _apiService.sendFeedback(
+                    uid: await _authService.getCurrentUser().then((user) => user?.uid),
                     message: _textController.text,
                     rating: widget.rating,
                   ),
