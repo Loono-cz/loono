@@ -22,16 +22,14 @@ Future<void> animateToPos(
   await controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
 }
 
-Future<Position> determinePosition() async {
+Future<Position> determinePosition(LocationPermission permission) async {
   bool serviceEnabled;
-  LocationPermission permission;
 
   serviceEnabled = await Geolocator.isLocationServiceEnabled();
   if (!serviceEnabled) {
     // return Future.error('Location services are disabled.');
   }
 
-  permission = await Geolocator.checkPermission();
   if (permission == LocationPermission.denied) {
     permission = await Geolocator.requestPermission();
     if (permission == LocationPermission.denied) {

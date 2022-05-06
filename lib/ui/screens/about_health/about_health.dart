@@ -3,6 +3,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/helpers/map_variables.dart';
 import 'package:loono/services/webview_service.dart';
+import 'package:loono/ui/widgets/feedback/feedback_button.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -80,6 +81,13 @@ class AboutHealthScreen extends StatelessWidget {
               return const SizedBox.shrink();
             },
           ),
+          const Align(
+            alignment: Alignment.topRight,
+            child: Padding(
+              padding: EdgeInsets.only(top: 8.0, right: 18),
+              child: FeedbackButton(),
+            ),
+          )
         ],
       ),
     );

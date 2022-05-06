@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:loono/helpers/map_variables.dart';
 import 'package:loono/models/healthcare_item_place.dart';
@@ -31,7 +32,8 @@ class MapPreview extends StatelessWidget {
     return Scaffold(
       body: GoogleMap(
         initialCameraPosition: _initialCameraPos,
-        myLocationEnabled: true,
+        myLocationEnabled: [LocationPermission.always, LocationPermission.whileInUse]
+            .contains(mapState.locationPermission),
         myLocationButtonEnabled: false,
         zoomControlsEnabled: false,
         rotateGesturesEnabled: false,
@@ -62,12 +64,17 @@ class MapPreview extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(0, 0, 16.0, MediaQuery.of(context).size.height * 0.15),
         child: FloatingActionButton(
           onPressed: () async {
-            final currentPos = await determinePosition();
+            var permission = await Geolocator.checkPermission();
+            final currentPos = await determinePosition(permission);
             final latLng = LatLng(currentPos.latitude, currentPos.longitude);
             await animateToPos(
               _mapController,
               cameraPosition: CameraPosition(target: latLng, zoom: 17.0),
             );
+
+            /// from unknown reason I need to reassign this permission to display blue dot on map
+            permission = await Geolocator.checkPermission();
+            mapState.setLocationPermission(permission);
           },
           backgroundColor: Colors.white,
           child: SvgPicture.asset('assets/icons/navigation.svg'),
