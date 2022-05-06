@@ -27,6 +27,8 @@ class MapStateService with ChangeNotifier {
 
   final Set<Marker> _markers = <Marker>{};
 
+  LocationPermission _locationPermission = LocationPermission.unableToDetermine;
+
   SimpleHealthcareProvider? doctorDetail;
 
   SearchResult? currSpecialization;
@@ -51,6 +53,8 @@ class MapStateService with ChangeNotifier {
 
   Set<Marker> get markers => _markers;
 
+  LocationPermission get locationPermission => _locationPermission;
+
   ClusterManager _initClusterManager() => ClusterManager<HealthcareItemPlace>(
         <HealthcareItemPlace>[],
         updateMarkers,
@@ -70,6 +74,11 @@ class MapStateService with ChangeNotifier {
       applyFilter();
       notifyListeners();
     }
+  }
+
+  void setLocationPermission(LocationPermission permission) {
+    _locationPermission = permission;
+    notifyListeners();
   }
 
   void addAll(Iterable<SimpleHealthcareProvider> healthcareProviders) {
