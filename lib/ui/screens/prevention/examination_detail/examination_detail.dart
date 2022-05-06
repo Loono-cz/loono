@@ -139,9 +139,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const SizedBox(
-          height: 16.0,
-        ),
+        const SizedBox(height: 16.0),
         SizedBox(
           height: 207,
           child: Stack(
@@ -166,11 +164,16 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                   ),
                 ),
               ),
+              const Positioned(
+                top: 4,
+                right: 15,
+                child: FeedbackButton(),
+              ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 10.0, top: 16),
+                    padding: const EdgeInsets.only(left: 10.0, top: 21),
                     child: IconButton(
                       key: const Key('examinationDetailPage_btn_back'),
                       onPressed: () => AutoRouter.of(context).pop(),
@@ -409,12 +412,8 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
           examinationType: _examinationType,
           categorizedExamination: widget.categorizedExamination,
         ),
-        const SizedBox(height: 22),
-        const Align(child: FeedbackButton()),
-        const SizedBox(height: 8),
-        FaqSection(
-          examinationType: _examinationType,
-        ),
+        const SizedBox(height: 40),
+        FaqSection(examinationType: _examinationType),
       ],
     );
   }

@@ -222,11 +222,13 @@ class ApiService {
   Future<bool> sendFeedback({
     required String? message,
     required int rating,
+    required String? uid,
   }) async {
     final res = await _callApi(
       () async => _api.getDefaultApi().feedback(
             userFeedback: UserFeedback(
               (b) => b
+                ..uid = uid
                 ..message = message
                 ..evaluation = rating,
             ),
