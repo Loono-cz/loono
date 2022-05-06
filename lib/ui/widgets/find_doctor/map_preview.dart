@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -7,7 +8,9 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:loono/helpers/map_variables.dart';
 import 'package:loono/models/healthcare_item_place.dart';
+import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/map_state_sevice.dart';
+import 'package:loono/ui/screens/find_doctor/no_permissions_screen.dart';
 import 'package:loono/utils/map_utils.dart';
 import 'package:provider/provider.dart';
 
@@ -65,6 +68,11 @@ class MapPreview extends StatelessWidget {
         child: FloatingActionButton(
           onPressed: () async {
             var permission = await Geolocator.checkPermission();
+            if ([LocationPermission.denied, LocationPermission.deniedForever]
+                .contains(permission)) {
+              await AutoRouter.of(context).navigate(const NoPermissionsRoute());
+              return;
+            }
             final currentPos = await determinePosition(permission);
             final latLng = LatLng(currentPos.latitude, currentPos.longitude);
             await animateToPos(

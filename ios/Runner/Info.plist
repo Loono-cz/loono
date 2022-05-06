@@ -45,20 +45,20 @@
 		<key>LSRequiresIPhoneOS</key>
 		<true/>
 		<key>NSCameraUsageDescription</key>
-		<string>Nutne doplnit!</string>
-		<key>NSMicrophoneUsageDescription</key>
-		<string>Feel free to disable</string>
-		<key>NSPhotoLibraryUsageDescription</key>
-		<string>Nutne doplnit!</string>
-		<key>NSCalendarsUsageDescription</key>
-		<string>“Preventivka” ti chce zapisovat prohlídky do kalendáře.</string>
-		<key>PermissionGroupNotification</key>
-        <string>Nutne doplnit!</string>
-		<key>NSLocationWhenInUseUsageDescription</key>
-		<string>Nutne doplnit!</string>
-		<key>NSLocationAlwaysUsageDescription</key>
-		<string>Nutne doplnit!</string>
-		<key>UIBackgroundModes</key>
+        <string>Potřebné pro pořízení nové profilové fotografie.</string>
+        <key>NSMicrophoneUsageDescription</key>
+        <string>Feel free to disable</string>
+        <key>NSPhotoLibraryUsageDescription</key>
+        <string>Potřebné pro výběr nové profilové fotografie z galerie.</string>
+        <key>NSCalendarsUsageDescription</key>
+        <string>“Preventivka” ti chce zapisovat prohlídky do kalendáře.</string>
+        <key>PermissionGroupNotification</key>
+        <string>Potřebné k vyhledání doktorů ve tvém okolí.</string>
+        <key>NSLocationWhenInUseUsageDescription</key>
+        <string>Potřebné k vyhledání doktorů ve tvém okolí.</string>
+        <key>NSLocationAlwaysUsageDescription</key>
+        <string>Potřebné k vyhledání doktorů ve tvém okolí.</string>
+        <key>UIBackgroundModes</key>
 		<array>
 			<string>remote-notification</string>
 		</array>
