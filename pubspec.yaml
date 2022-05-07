@@ -52,7 +52,7 @@ dependencies:
   flutter_svg: ^1.0.3
   flutter_typeahead: ^3.2.4
   freezed_annotation: ^1.1.0
-  geolocator: ^8.1.1
+  geolocator: ^8.2.1
   get_it: ^7.2.0
   google_maps_cluster_manager: ^3.0.0+1
   google_maps_flutter: ^2.1.0

@@ -26,7 +26,9 @@ class Loono extends StatelessWidget {
     final _auth = registry.get<AuthService>();
     final _appRouter = registry.get<AppRouter>();
     final _healthcareProviderRepository = registry.get<HealthcareProviderRepository>();
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
+    );
 
     if (useHybridComposition()) {
       AndroidGoogleMapsFlutter.useAndroidViewSurface = true;

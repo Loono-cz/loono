@@ -10,7 +10,6 @@ import 'package:loono/helpers/map_variables.dart';
 import 'package:loono/models/healthcare_item_place.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/map_state_sevice.dart';
-import 'package:loono/ui/screens/find_doctor/no_permissions_screen.dart';
 import 'package:loono/utils/map_utils.dart';
 import 'package:provider/provider.dart';
 
@@ -31,6 +30,10 @@ class MapPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mapState = context.watch<MapStateService>();
+
+    bool _locationDenied(LocationPermission permission) {
+      return [LocationPermission.denied, LocationPermission.deniedForever].contains(permission);
+    }
 
     return Scaffold(
       body: GoogleMap(
@@ -68,17 +71,19 @@ class MapPreview extends StatelessWidget {
         child: FloatingActionButton(
           onPressed: () async {
             var permission = await Geolocator.checkPermission();
-            if ([LocationPermission.denied, LocationPermission.deniedForever]
-                .contains(permission)) {
-              await AutoRouter.of(context).navigate(const NoPermissionsRoute());
-              return;
+            if (_locationDenied(permission)) {
+              permission = await Geolocator.requestPermission();
             }
-            final currentPos = await determinePosition(permission);
-            final latLng = LatLng(currentPos.latitude, currentPos.longitude);
-            await animateToPos(
-              _mapController,
-              cameraPosition: CameraPosition(target: latLng, zoom: 17.0),
-            );
+            if (_locationDenied(permission)) {
+              await AutoRouter.of(context).push(const NoPermissionsRoute());
+            } else {
+              final currentPos = await determinePosition(permission);
+              final latLng = LatLng(currentPos.latitude, currentPos.longitude);
+              await animateToPos(
+                _mapController,
+                cameraPosition: CameraPosition(target: latLng, zoom: 17.0),
+              );
+            }
 
             /// from unknown reason I need to reassign this permission to display blue dot on map
             permission = await Geolocator.checkPermission();
