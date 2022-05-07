@@ -18,7 +18,7 @@ TextStyle earlyOrderStyles(CategorizedExamination examination) {
         const ExaminationCategory.scheduledSoonOrOverdue(),
       ].contains(examination.category) &&
       DateTime.now().isBefore(nextVisit)) {
-    color = LoonoColors.green;
+    color = LoonoColors.greenSuccess;
   } else if ([
     const ExaminationCategory.newToSchedule(),
     const ExaminationCategory.unknownLastVisit(),
@@ -30,7 +30,7 @@ TextStyle earlyOrderStyles(CategorizedExamination examination) {
 }
 
 TextStyle preventiveInspectionStyles(ExaminationCategory category) {
-  var color = LoonoColors.green;
+  var color = LoonoColors.greenSuccess;
   var weight = FontWeight.w400;
 
   if (category == const ExaminationCategory.scheduledSoonOrOverdue()) {
@@ -39,6 +39,7 @@ TextStyle preventiveInspectionStyles(ExaminationCategory category) {
   } else if ([
     const ExaminationCategory.scheduled(),
     const ExaminationCategory.unknownLastVisit(),
+    const ExaminationCategory.newToSchedule(),
   ].contains(category)) {
     color = LoonoColors.black;
   }
