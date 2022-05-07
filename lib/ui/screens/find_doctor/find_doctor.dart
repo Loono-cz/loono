@@ -76,6 +76,7 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
       appBar: widget.cancelRouteName != null
           ? AppBar(
               backgroundColor: LoonoColors.bottomSheetPrevention,
+              systemOverlayStyle: const SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
               actions: [
                 IconButton(
                   icon: const Icon(Icons.close),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 PreferredSize carouselAppBar(BuildContext context, VoidCallback? onBack) {
@@ -10,6 +11,7 @@ PreferredSize carouselAppBar(BuildContext context, VoidCallback? onBack) {
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
         toolbarHeight: 63.0,
+        systemOverlayStyle: const SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
         leading: IconButton(
           onPressed: onBack,
           icon: SvgPicture.asset(

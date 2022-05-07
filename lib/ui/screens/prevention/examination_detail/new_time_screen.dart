@@ -61,6 +61,7 @@ class _NewTimeScreenState extends State<NewTimeScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: LoonoColors.black),
+        systemOverlayStyle: const SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
         leading: IconButton(
           onPressed: () => AutoRouter.of(context).pop(),
           icon: SvgPicture.asset(
