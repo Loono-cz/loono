@@ -52,54 +52,75 @@ class MapSheetOverlay extends StatelessWidget {
                 topRight: Radius.circular(12),
               ),
             ),
-            child: ListView.builder(
+            child: CustomScrollView(
               controller: scrollController,
-              itemCount: currHealthcareProviders.length,
-              itemBuilder: (context, index) {
-                final item = currHealthcareProviders[index];
-
-                return ListTile(
-                  title: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      if (index == 0) ...[
-                        Column(
+              slivers: [
+                SliverAppBar(
+                  titleSpacing: 0,
+                  toolbarHeight: 40,
+                  title: Container(
+                    decoration: const BoxDecoration(
+                      color: LoonoColors.bottomSheetPrevention,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        topRight: Radius.circular(12),
+                      ),
+                    ),
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          top: 18.0,
+                          bottom: 18.0,
+                        ),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width / 3,
+                          height: 4.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                  pinned: true,
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                ),
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                      final item = currHealthcareProviders[index];
+                      return ListTile(
+                        title: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Center(
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 18.0,
-                                  bottom: 18.0,
-                                ),
-                                child: Container(
-                                  width: MediaQuery.of(context).size.width / 3,
-                                  height: 4.0,
-                                  color: Colors.white,
-                                ),
+                            if (index == 0) ...[
+                              Column(
+                                children: [
+                                  if (kDebugMode)
+                                    Align(
+                                      alignment: Alignment.centerRight,
+                                      child: Text(
+                                        '${mapState.onMoveMapFilteringBlocked ? 'vybraní lékaři' : 'lékařů v okolí'}: ${mapState.currHealthcareProviders.length}',
+                                        style: const TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                                ],
                               ),
+                            ],
+                            SearchDoctorCard(
+                              item: item,
+                              onTap: () {
+                                onItemTap?.call(item);
+                                mapState.setDoctorDetail(item, unblockOnMoveMapFiltering: false);
+                              },
                             ),
-                            if (kDebugMode)
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: Text(
-                                  '${mapState.onMoveMapFilteringBlocked ? 'vybraní lékaři' : 'lékařů v okolí'}: ${mapState.currHealthcareProviders.length}',
-                                  style: const TextStyle(color: Colors.white),
-                                ),
-                              ),
                           ],
                         ),
-                      ],
-                      SearchDoctorCard(
-                        item: item,
-                        onTap: () {
-                          onItemTap?.call(item);
-                          mapState.setDoctorDetail(item, unblockOnMoveMapFiltering: false);
-                        },
-                      ),
-                    ],
+                      );
+                    },
+                    childCount: currHealthcareProviders.length,
                   ),
-                );
-              },
+                ),
+              ],
             ),
           );
         },
