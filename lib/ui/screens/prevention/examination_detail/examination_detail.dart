@@ -389,6 +389,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                       context: context,
                       categorizedExamination: widget.categorizedExamination,
                       onSubmit: _onPostNewCheckupSubmit,
+                      isNewCheckup: true,
                       firstStepTitle:
                           '${_sex == Sex.MALE ? l10n.checkup_new_date_title_male : l10n.checkup_new_date_title_female} $preposition ${examinationTypeCasus(
                         context,

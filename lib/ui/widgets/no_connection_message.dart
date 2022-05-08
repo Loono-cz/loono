@@ -1,4 +1,5 @@
 import 'package:another_flushbar/flushbar.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/ui/widgets/custom_navigation_bar.dart';
@@ -8,6 +9,7 @@ Flushbar noConnectionFlushbar({bool isPreAuth = false}) {
     forwardAnimationCurve: Curves.decelerate,
     reverseAnimationCurve: Curves.easeOut,
     isDismissible: false,
+    shouldIconPulse: !kDebugMode,
     icon: const Icon(
       Icons.signal_cellular_off,
       color: Colors.white,
