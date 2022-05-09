@@ -191,7 +191,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                       children: [
                         const SizedBox(height: 18),
                         Text(
-                          _examinationType.l10n_name.toUpperCase(),
+                          _examinationType.l10n_name,
                           style: LoonoFonts.headerFontStyle.copyWith(
                             color: LoonoColors.green,
                             fontWeight: FontWeight.w700,

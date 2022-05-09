@@ -35,21 +35,21 @@ class ExaminationBadges extends StatelessWidget {
   String badgeCZ(BadgeType type) {
     switch (type) {
       case BadgeType.COAT:
-        return 'plášť';
+        return 'superhrdinský plášť';
       case BadgeType.TOP:
-        return 'top';
+        return 'superhrdinský top';
       case BadgeType.BELT:
-        return 'opasek';
+        return 'superhrdinský opasek';
       case BadgeType.SHOES:
-        return 'boty';
+        return 'superhrdinské boty';
       case BadgeType.GLOVES:
-        return 'rukavice';
+        return 'superhrdinské rukavice';
       case BadgeType.HEADBAND:
-        return 'čelenku';
+        return 'superhrdinskou čelenku';
       case BadgeType.GLASSES:
-        return 'brýle';
+        return 'superhrdinské brýle';
       case BadgeType.SHIELD:
-        return 'štít';
+        return 'superhrdinský štít';
     }
     return '';
   }
@@ -241,35 +241,29 @@ class ExaminationBadges extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 18.0, bottom: 20),
                     child: Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 12.0),
-                          child: Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              context.l10n.examination_detail_rewards_last_month_validity_1,
-                              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
-                            ),
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            context.l10n.examination_detail_rewards_last_month_validity_1,
+                            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 12.0),
-                          child: Row(
-                            children: [
-                              Text(
-                                context.l10n.examination_detail_rewards_last_month_validity_2,
-                                style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                ' ${badgeCZ(categorizedExamination.examination.badge)}',
-                                style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
+                        Row(
+                          children: [
+                            Text(
+                              context.l10n.examination_detail_rewards_last_month_validity_2,
+                              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              ' ${badgeCZ(categorizedExamination.examination.badge)}',
+                              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                            ),
+                          ],
                         ),
                       ],
                     ),
                   ),
-                if (_showPointsText(badge))
+                if (_showPointsText(badge) || badge == null)
                   Padding(
                     padding: const EdgeInsets.only(left: 10.0, bottom: 20),
                     child: Column(
