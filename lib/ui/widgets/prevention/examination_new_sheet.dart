@@ -152,6 +152,7 @@ void showNewCheckupSheetStep2(
                   context: context,
                   categorizedExamination: categorizedExamination,
                   onSubmit: onSubmit,
+                  isNewCheckup: true,
                   firstStepTitle:
                       '${sex == Sex.MALE ? l10n.checkup_new_date_title_male : l10n.checkup_new_date_title_female} $preposition ${examinationTypeCasus(
                     context,
