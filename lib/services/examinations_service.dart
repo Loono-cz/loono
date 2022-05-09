@@ -1,7 +1,13 @@
 import 'dart:developer';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:loono/helpers/examination_category.dart';
+import 'package:loono/helpers/examination_detail_helpers.dart';
+import 'package:loono/helpers/examination_extensions.dart';
+import 'package:loono/helpers/self_examination_category.dart';
 import 'package:loono/models/api_response.dart';
+import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/services/api_service.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
@@ -9,6 +15,7 @@ import 'package:loono_api/loono_api.dart';
 class ExaminationsProvider extends ChangeNotifier {
   PreventionStatus? examinations;
   bool loading = false;
+  bool hasNotification = false;
 
   Future<ApiResponse<PreventionStatus>> fetchExaminations() async {
     log('fetching examinations from server');
@@ -20,6 +27,7 @@ class ExaminationsProvider extends ChangeNotifier {
     examResponse.map(
       success: (exams) {
         examinations = exams.data;
+        evaluateExaminations();
         loading = false;
       },
       failure: (err) {
@@ -60,7 +68,32 @@ class ExaminationsProvider extends ChangeNotifier {
       builder?.examinations.removeAt(indexToUpdate);
       builder?.examinations.add(updatedItem!);
       examinations = builder?.build();
+      evaluateExaminations();
       notifyListeners();
+    }
+  }
+
+  void evaluateExaminations() {
+    if (examinations != null) {
+      final preventionExamsWithPriority = examinations!.examinations.firstWhereOrNull(
+        (e) =>
+            [const ExaminationCategory.newToSchedule()].contains(e.calculateStatus()) ||
+            e.calculateStatus() == const ExaminationCategory.scheduledSoonOrOverdue() &&
+                isOverdue(CategorizedExamination(examination: e, category: e.calculateStatus())),
+      );
+      final selfExamsWithPriority = examinations!.selfexaminations.firstWhereOrNull(
+        (e) => [
+          const SelfExaminationCategory.active(),
+          const SelfExaminationCategory.first(),
+          const SelfExaminationCategory.hasFindingExpectingResult(),
+        ].contains(e.calculateStatus()),
+      );
+
+      if (preventionExamsWithPriority != null || selfExamsWithPriority != null) {
+        hasNotification = true;
+      } else {
+        hasNotification = false;
+      }
     }
   }
 }
