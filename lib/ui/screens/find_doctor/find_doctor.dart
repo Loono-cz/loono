@@ -40,6 +40,7 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
   late final MapStateService mapState;
 
   bool _isHealthCareProvidersInMapService = false;
+  double _mapOpacity = 1;
 
   Future<void> _setHealthcareProviders({bool tryFetchAgainData = false}) async {
     if (mapState.allHealthcareProviders.isEmpty) {
@@ -57,6 +58,14 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
         setState(() => _isHealthCareProvidersInMapService = true);
       });
     }
+  }
+
+  void setMapOpacity(double opacity) {
+    Future.delayed(Duration.zero, () async {
+      setState(() {
+        _mapOpacity = opacity;
+      });
+    });
   }
 
   @override
@@ -97,7 +106,12 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
             }
             return Stack(
               children: [
-                MapPreview(mapController: _mapController),
+                Opacity(
+                  opacity: _mapOpacity,
+                  child: MapPreview(
+                    mapController: _mapController,
+                  ),
+                ),
                 if (_isHealthCareProvidersInMapService) ...[
                   Visibility(
                     visible: currDoctorDetail == null,
@@ -118,6 +132,7 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                                 ),
                               );
                               _sheetController.jumpTo(MapVariables.MIN_SHEET_SIZE);
+                              setMapOpacity(1);
                             },
                           ),
                           SpecializationChipsList(showDefaultSpecs: currSpec == null),
@@ -129,13 +144,17 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                     visible: currDoctorDetail == null,
                     maintainState: true,
                     child: MapSheetOverlay(
-                      onItemTap: (healthcareProvider) async => animateToPos(
-                        _mapController,
-                        cameraPosition: CameraPosition(
-                          target: LatLng(healthcareProvider.lat, healthcareProvider.lng),
-                          zoom: MapVariables.DOCTOR_DETAIL_ZOOM,
-                        ),
-                      ),
+                      onItemTap: (healthcareProvider) async {
+                        await animateToPos(
+                          _mapController,
+                          cameraPosition: CameraPosition(
+                            target: LatLng(healthcareProvider.lat, healthcareProvider.lng),
+                            zoom: MapVariables.DOCTOR_DETAIL_ZOOM,
+                          ),
+                        );
+                        setMapOpacity(1);
+                      },
+                      setOpacity: setMapOpacity,
                       sheetController: _sheetController,
                     ),
                   ),
