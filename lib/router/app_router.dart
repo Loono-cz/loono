@@ -58,7 +58,6 @@ import 'package:loono/ui/widgets/achievement_screen.dart';
 const _onboardingTransition = TransitionsBuilders.slideLeft;
 const _preventionTransition = TransitionsBuilders.slideLeft;
 const _findDoctorTransition = TransitionsBuilders.slideLeft;
-
 const _settingsTransition = TransitionsBuilders.slideLeft;
 
 // After editing this, run:

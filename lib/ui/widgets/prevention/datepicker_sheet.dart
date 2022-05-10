@@ -10,6 +10,7 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/async_button.dart';
+import 'package:loono/ui/widgets/close_button.dart';
 import 'package:loono/ui/widgets/custom_date_picker.dart';
 import 'package:loono/ui/widgets/custom_time_picker.dart';
 import 'package:loono/utils/registry.dart';
@@ -146,13 +147,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 },
               ),
             const Spacer(),
-            IconButton(
-              icon: const Icon(
-                Icons.close,
-                size: 31,
-              ),
-              onPressed: () => AutoRouter.of(context).pop(),
-            ),
+            LoonoCloseButton(onPressed: () => AutoRouter.of(context).pop()),
           ],
         ),
         const SizedBox(

@@ -9,6 +9,7 @@ import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/widgets/async_button.dart';
+import 'package:loono/ui/widgets/close_button.dart';
 import 'package:loono/ui/widgets/prevention/recommendation_item.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
@@ -46,14 +47,9 @@ void showCancelExaminationSheet({
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.close, size: 32),
-                    onPressed: () => AutoRouter.of(context).pop(),
-                  ),
-                ],
+              Align(
+                alignment: Alignment.centerRight,
+                child: LoonoCloseButton(onPressed: () => AutoRouter.of(context).pop()),
               ),
               const SizedBox(
                 height: 10,
