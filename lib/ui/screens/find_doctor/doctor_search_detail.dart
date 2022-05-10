@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/search_helpers.dart';
@@ -62,7 +61,6 @@ class _DoctorSearchDetailScreenState extends State<DoctorSearchDetailScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: LoonoColors.black),
-        systemOverlayStyle: const SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
         leading: IconButton(
           icon: SizedBox(
             height: 25,

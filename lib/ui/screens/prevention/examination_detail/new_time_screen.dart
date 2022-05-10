@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
@@ -62,7 +61,6 @@ class _NewTimeScreenState extends State<NewTimeScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: LoonoColors.black),
-        systemOverlayStyle: const SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
         leading: IconButton(
           onPressed: () => AutoRouter.of(context).pop(),
           icon: SvgPicture.asset(

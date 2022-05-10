@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/map_variables.dart';
@@ -77,7 +76,6 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
       appBar: widget.cancelRouteName != null
           ? AppBar(
               backgroundColor: LoonoColors.bottomSheetPrevention,
-              systemOverlayStyle: const SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
               actions: [
                 IconButton(
                   icon: const Icon(Icons.close),

@@ -3,7 +3,6 @@ import 'dart:collection';
 import 'package:auto_route/auto_route.dart';
 import 'package:device_calendar/device_calendar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/helpers/ui_helpers.dart';
@@ -58,7 +57,6 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
         elevation: 0,
         iconTheme: const IconThemeData(color: LoonoColors.black),
         leading: const SizedBox.shrink(),
-        systemOverlayStyle: const SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
         actions: [
           IconButton(
             icon: const Icon(Icons.close, size: 22),

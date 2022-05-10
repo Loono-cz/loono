@@ -61,6 +61,11 @@ class Loono extends StatelessWidget {
           child: MaterialApp.router(
             title: 'Preventivka',
             color: Colors.deepOrange,
+            theme: ThemeData.light().copyWith(
+              appBarTheme: const AppBarTheme(
+                systemOverlayStyle: SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
+              ),
+            ),
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             locale: defaultLocale != null ? Locale(defaultLocale!) : null,
