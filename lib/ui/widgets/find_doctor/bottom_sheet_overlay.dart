@@ -70,6 +70,7 @@ class MapSheetOverlay extends StatelessWidget {
                   SliverAppBar(
                     titleSpacing: 0,
                     toolbarHeight: 40,
+                    automaticallyImplyLeading: false,
                     title: Container(
                       decoration: const BoxDecoration(
                         color: LoonoColors.bottomSheetPrevention,
