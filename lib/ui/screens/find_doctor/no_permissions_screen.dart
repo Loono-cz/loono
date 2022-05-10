@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
@@ -9,8 +10,30 @@ import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-class NoPermissionsScreen extends StatelessWidget {
+class NoPermissionsScreen extends StatefulWidget {
   const NoPermissionsScreen({Key? key}) : super(key: key);
+
+  @override
+  State<NoPermissionsScreen> createState() => _NoPermissionsScreenState();
+}
+
+class _NoPermissionsScreenState extends State<NoPermissionsScreen> {
+  bool allowInSettings = false;
+
+  Future<void> _checkPermission() async {
+    final permission = await Geolocator.checkPermission();
+    if ([LocationPermission.deniedForever].contains(permission)) {
+      setState(() {
+        allowInSettings = true;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    _checkPermission();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +53,7 @@ class NoPermissionsScreen extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () {
-              AutoRouter.of(context).pop();
-              AutoRouter.of(context).push(const DoctorSearchDetailRoute());
+              AutoRouter.of(context).popAndPush(const DoctorSearchDetailRoute());
             },
             child: Text(
               context.l10n.location_permission_action,
@@ -52,7 +74,7 @@ class NoPermissionsScreen extends StatelessWidget {
             children: [
               const Spacer(),
               Text(
-                context.l10n.location_permission_title,
+                allowInSettings ? context.l10n.location_permission_title : '',
                 style: LoonoFonts.fontStyle.copyWith(fontSize: 16),
               ),
               const SizedBox(
@@ -90,8 +112,23 @@ class NoPermissionsScreen extends StatelessWidget {
               ),
               const Spacer(),
               LoonoButton(
-                text: context.l10n.calendar_permission_sheet_button,
-                onTap: openAppSettings,
+                text: allowInSettings
+                    ? context.l10n.calendar_permission_sheet_button
+                    : context.l10n.allow_location,
+                onTap: allowInSettings
+                    ? openAppSettings
+                    : () async {
+                        final permission = await Geolocator.requestPermission();
+
+                        if ([LocationPermission.denied, LocationPermission.deniedForever]
+                            .contains(permission)) {
+                          setState(() {
+                            allowInSettings = true;
+                          });
+                        } else {
+                          await AutoRouter.of(context).pop();
+                        }
+                      },
               ),
               SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
             ],

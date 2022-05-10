@@ -1027,5 +1027,7 @@
   "location_permission_subtitle": "Abychom věděli kde teď jsi, potřebujeme povolit tvoji lokaci v telefonu.",
   "@location_permission_subtitle": {},
   "location_permission_action": "Zadat adresu ručně",
-  "@location_permission_action": {}
+  "@location_permission_action": {},
+  "allow_location": "Povolit použití lokace",
+  "@allow_location": {}
 }

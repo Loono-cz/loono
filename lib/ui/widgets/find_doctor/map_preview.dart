@@ -71,23 +71,24 @@ class MapPreview extends StatelessWidget {
         child: FloatingActionButton(
           onPressed: () async {
             var permission = await Geolocator.checkPermission();
-            if (_locationDenied(permission)) {
-              permission = await Geolocator.requestPermission();
-            }
+
             if (_locationDenied(permission)) {
               await AutoRouter.of(context).push(const NoPermissionsRoute());
-            } else {
+            }
+
+            permission = await Geolocator.checkPermission();
+            if (!_locationDenied(permission)) {
               final currentPos = await determinePosition(permission);
               final latLng = LatLng(currentPos.latitude, currentPos.longitude);
               await animateToPos(
                 _mapController,
                 cameraPosition: CameraPosition(target: latLng, zoom: 17.0),
               );
-            }
 
-            /// from unknown reason I need to reassign this permission to display blue dot on map
-            permission = await Geolocator.checkPermission();
-            mapState.setLocationPermission(permission);
+              /// from unknown reason I need to reassign this permission to display blue dot on map
+              permission = await Geolocator.checkPermission();
+              mapState.setLocationPermission(permission);
+            }
           },
           backgroundColor: Colors.white,
           child: SvgPicture.asset('assets/icons/navigation.svg'),
