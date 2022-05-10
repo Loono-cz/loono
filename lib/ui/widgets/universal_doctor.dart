@@ -4,6 +4,7 @@ import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/text_highlighter.dart';
 import 'package:loono/helpers/ui_helpers.dart';
+import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono_api/loono_api.dart';
 
@@ -18,6 +19,7 @@ class UniversalDoctor extends StatelessWidget {
     required this.nextCallback1,
     required this.nextCallback2,
     required this.examinationType,
+    this.isAsync = false,
   }) : super(key: key);
 
   final String question;
@@ -28,6 +30,7 @@ class UniversalDoctor extends StatelessWidget {
   final VoidCallback nextCallback1;
   final VoidCallback nextCallback2;
   final ExaminationType examinationType;
+  final bool isAsync;
 
   @override
   Widget build(BuildContext context) {
@@ -81,15 +84,12 @@ class UniversalDoctor extends StatelessWidget {
           style: LoonoFonts.bigFontStyle,
         ),
         const Spacer(),
-        LoonoButton.light(
-          onTap: nextCallback1,
-          text: button1Text,
-        ),
+        LoonoButton.light(onTap: nextCallback1, text: button1Text),
         const SizedBox(height: 20),
-        LoonoButton.light(
-          onTap: nextCallback2,
-          text: button2Text,
-        ),
+        if (isAsync)
+          AsyncLoonoLightApiButton(text: button2Text, asyncCallback: () async => nextCallback2())
+        else
+          LoonoButton.light(onTap: nextCallback2, text: button2Text),
         SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
       ],
     );
