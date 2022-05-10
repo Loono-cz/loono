@@ -80,6 +80,9 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final hasNotification =
+        context.select<ExaminationsProvider, bool>((state) => state.hasNotification);
+
     return WillPopScope(
       /// index 2 has its own WillPopScope for webview navigation. This prevents pop event override
       onWillPop: () async {
@@ -109,6 +112,7 @@ class _MainScreenState extends State<MainScreen> {
             },
             items: [
               CustomNavigationBarItem(
+                hasNotification: hasNotification,
                 label: context.l10n.main_menu_item_prevention,
                 iconPath: 'assets/icons/tabs/prevention.svg',
                 iconPathActive: 'assets/icons/tabs/prevention_active.svg',
