@@ -27,8 +27,8 @@ void showFeedbackFormContentBottomSheet(
   );
 }
 
-class _FeedbackFormContent extends StatefulWidget {
-  const _FeedbackFormContent({
+class _FeedbackFormContent extends StatelessWidget {
+  _FeedbackFormContent({
     Key? key,
     this.borderRadius,
     required this.rating,
@@ -37,25 +37,16 @@ class _FeedbackFormContent extends StatefulWidget {
   final BorderRadius? borderRadius;
   final int rating;
 
-  @override
-  State<_FeedbackFormContent> createState() => _FeedbackFormContentState();
-}
-
-class _FeedbackFormContentState extends State<_FeedbackFormContent> {
   final _apiService = registry.get<ApiService>();
   final _authService = registry.get<AuthService>();
   final _textController = TextEditingController();
 
-  Future<void> _closeForm() async {
+  Future<void> _closeForm(BuildContext context) async {
     await AutoRouter.of(context).pop();
     await AutoRouter.of(context).pop();
   }
 
-  @override
-  void dispose() {
-    _textController.dispose();
-    super.dispose();
-  }
+  String get _inputText => _textController.text;
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +60,7 @@ class _FeedbackFormContentState extends State<_FeedbackFormContent> {
         child: Container(
           decoration: BoxDecoration(
             color: LoonoColors.bottomSheetPrevention,
-            borderRadius: widget.borderRadius,
+            borderRadius: borderRadius,
           ),
           child: Padding(
             padding: const EdgeInsets.all(18.0),
@@ -88,7 +79,7 @@ class _FeedbackFormContentState extends State<_FeedbackFormContent> {
                         onPressed: () => AutoRouter.of(context).pop(),
                       ),
                     ),
-                    LoonoCloseButton(onPressed: () async => _closeForm()),
+                    LoonoCloseButton(onPressed: () async => _closeForm(context)),
                   ],
                 ),
                 const SizedBox(height: 20),
@@ -118,11 +109,11 @@ class _FeedbackFormContentState extends State<_FeedbackFormContent> {
                         // Performs action done instead of new line on small devices.
                         textInputAction:
                             isScreenSmall ? TextInputAction.done : TextInputAction.newline,
-                        onChanged: (_) => setState(() {}),
                         maxLength: 500,
                         minLines: null,
                         maxLines: null,
                         expands: true,
+                        autofocus: true,
                         cursorColor: LoonoColors.black,
                         decoration: InputDecoration(
                           border: InputBorder.none,
@@ -142,14 +133,13 @@ class _FeedbackFormContentState extends State<_FeedbackFormContent> {
                 const SizedBox(height: 20),
                 AsyncLoonoButton(
                   text: l10n.feedback_form_send_button,
-                  enabled: _textController.text.isNotEmpty,
                   asyncCallback: () async => _apiService.sendFeedback(
-                    uid: await _authService.getCurrentUser().then((user) => user?.uid),
-                    message: _textController.text,
-                    rating: widget.rating,
+                    uid: await _authService.userUid,
+                    message: _inputText.isEmpty ? null : _inputText,
+                    rating: rating,
                   ),
                   onSuccess: () async {
-                    await _closeForm();
+                    await _closeForm(context);
                     showFlushBarSuccess(context, l10n.feedback_form_success_message, sync: false);
                   },
                   onError: () => showFlushBarError(context, l10n.something_went_wrong),
