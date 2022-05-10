@@ -20,11 +20,12 @@ void showNewCheckupSheetStep1(
 ) {
   final l10n = context.l10n;
   final examinationType = categorizedExamination.examination.examinationType;
-  final autoRouter = AutoRouter.of(context);
-  final cancelRoute = ExaminationDetailRoute(categorizedExamination: categorizedExamination);
+  final appRouter = registry.get<AppRouter>();
+  final examDetailRoute = ExaminationDetailRoute(categorizedExamination: categorizedExamination);
   registry.get<FirebaseAnalytics>().logEvent(name: 'OpenNewCheckupModal');
   showModalBottomSheet<void>(
     context: context,
+    useRootNavigator: true,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(15.0),
     ),
@@ -62,7 +63,14 @@ void showNewCheckupSheetStep1(
                 casus: Casus.genitiv,
                 examinationType: examinationType,
               ).toLowerCase()}',
-              onTap: () => autoRouter.push(FindDoctorRoute(cancelRouteName: cancelRoute)),
+              onTap: () => appRouter.push(
+                FindDoctorRoute(
+                  onCancelTap: () async {
+                    appRouter.popUntilRouteWithName(MainScreenRouter.name);
+                    await appRouter.navigateNamed(examDetailRoute.routeName);
+                  },
+                ),
+              ),
             ),
           ],
         ),

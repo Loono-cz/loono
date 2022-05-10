@@ -168,7 +168,7 @@ class AppRouter extends _i14.RootStackRouter {
       return _i14.MaterialPageX<void>(
           routeData: routeData,
           child: _i11.FindDoctorScreen(
-              key: args.key, cancelRouteName: args.cancelRouteName));
+              key: args.key, onCancelTap: args.onCancelTap));
     },
     DoctorSearchDetailRoute.name: (routeData) {
       return _i14.CustomPage<_i57.SearchResult>(
@@ -945,25 +945,24 @@ class LoginRouteArgs {
 /// generated route for
 /// [_i11.FindDoctorScreen]
 class FindDoctorRoute extends _i14.PageRouteInfo<FindDoctorRouteArgs> {
-  FindDoctorRoute({_i55.Key? key, _i14.PageRouteInfo<dynamic>? cancelRouteName})
+  FindDoctorRoute({_i55.Key? key, void Function()? onCancelTap})
       : super(FindDoctorRoute.name,
             path: 'find-doctor',
-            args: FindDoctorRouteArgs(
-                key: key, cancelRouteName: cancelRouteName));
+            args: FindDoctorRouteArgs(key: key, onCancelTap: onCancelTap));
 
   static const String name = 'FindDoctorRoute';
 }
 
 class FindDoctorRouteArgs {
-  const FindDoctorRouteArgs({this.key, this.cancelRouteName});
+  const FindDoctorRouteArgs({this.key, this.onCancelTap});
 
   final _i55.Key? key;
 
-  final _i14.PageRouteInfo<dynamic>? cancelRouteName;
+  final void Function()? onCancelTap;
 
   @override
   String toString() {
-    return 'FindDoctorRouteArgs{key: $key, cancelRouteName: $cancelRouteName}';
+    return 'FindDoctorRouteArgs{key: $key, onCancelTap: $onCancelTap}';
   }
 }
 
