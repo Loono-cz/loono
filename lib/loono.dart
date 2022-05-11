@@ -26,7 +26,9 @@ class Loono extends StatelessWidget {
     final _auth = registry.get<AuthService>();
     final _appRouter = registry.get<AppRouter>();
     final _healthcareProviderRepository = registry.get<HealthcareProviderRepository>();
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
+    );
 
     if (useHybridComposition()) {
       AndroidGoogleMapsFlutter.useAndroidViewSurface = true;
@@ -59,6 +61,11 @@ class Loono extends StatelessWidget {
           child: MaterialApp.router(
             title: 'Preventivka',
             color: Colors.deepOrange,
+            theme: ThemeData.light().copyWith(
+              appBarTheme: const AppBarTheme(
+                systemOverlayStyle: SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
+              ),
+            ),
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             locale: defaultLocale != null ? Locale(defaultLocale!) : null,

@@ -1025,5 +1025,13 @@
   "feedback_form_success_message": "Odesláno. Děkujeme za zpětnou vazbu!",
   "@feedback_form_success_message": {},
   "login_server_down_message": "Naše systémy mají preventivní prohlídku, zkus to znovu za 5 minut.",
-  "@login_server_down_message": {}
+  "@login_server_down_message": {},
+  "location_permission_title": "Lokaci povol ručně v nastavení",
+  "@location_permission_title": {},
+  "location_permission_subtitle": "Abychom věděli kde teď jsi, potřebujeme povolit tvoji lokaci v telefonu.",
+  "@location_permission_subtitle": {},
+  "location_permission_action": "Zadat adresu ručně",
+  "@location_permission_action": {},
+  "allow_location": "Povolit použití lokace",
+  "@allow_location": {}
 }

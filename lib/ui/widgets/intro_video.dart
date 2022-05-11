@@ -4,7 +4,6 @@ import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/onboarding/carousel/story_page.dart';
-import 'package:loono/ui/widgets/text_overlay.dart';
 import 'package:loono/ui/widgets/video_player.dart';
 
 class IntroVideo extends StatelessWidget {
@@ -29,7 +28,9 @@ class IntroVideo extends StatelessWidget {
               onLoaded: onVideoLoaded,
               storyPageState: storyPageState,
             ),
-            TextOverlay(textLines: context.l10n.carousel_content_1_body.split('\n')),
+
+            /// subtitle disable for now on request of PO
+            //TextOverlay(textLines: context.l10n.carousel_content_1_body.split('\n')),
           ],
         ),
       ),

@@ -8,6 +8,7 @@ import 'package:loono/ui/screens/about_health/about_health.dart';
 import 'package:loono/ui/screens/dentist_achievement.dart';
 import 'package:loono/ui/screens/find_doctor/doctor_search_detail.dart';
 import 'package:loono/ui/screens/find_doctor/find_doctor.dart';
+import 'package:loono/ui/screens/find_doctor/no_permissions_screen.dart';
 import 'package:loono/ui/screens/force_update.dart';
 import 'package:loono/ui/screens/general_practicioner_achievement.dart';
 import 'package:loono/ui/screens/gynecology_achievement.dart';
@@ -161,6 +162,11 @@ const _findDoctorRoutes = <AutoRoute>[
   CustomRoute<SearchResult>(
     page: DoctorSearchDetailScreen,
     path: 'find-doctor/search/detail',
+    transitionsBuilder: _findDoctorTransition,
+  ),
+  CustomRoute<SearchResult>(
+    page: NoPermissionsScreen,
+    path: 'find-doctor/permissions',
     transitionsBuilder: _findDoctorTransition,
   ),
 ];

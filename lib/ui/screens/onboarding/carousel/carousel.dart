@@ -34,7 +34,7 @@ class _IntroCarouselScreenState extends State<IntroCarouselScreen> {
             onContinueTap: animToNextStory,
           ),
           indicatorVisible: true,
-          duration: const Duration(milliseconds: 12700),
+          duration: const Duration(milliseconds: 8000),
           autoplay: false,
         ),
         StoryPage(content: OnboardingSecondCarouselScreen(onBack: animToPrevStory)),
