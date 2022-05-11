@@ -59,13 +59,10 @@ class EducationalVideoScreen extends StatelessWidget {
                 const SizedBox(height: 24),
                 player,
                 const SizedBox(height: 48),
-                if (selfExamination.calculateStatus() ==
-                        const SelfExaminationCategory.active() ||
-                    selfExamination.calculateStatus() ==
-                        const SelfExaminationCategory.first())
+                if (selfExamination.calculateStatus() == const SelfExaminationCategory.active() ||
+                    selfExamination.calculateStatus() == const SelfExaminationCategory.first())
                   LoonoButton(
-                    key:
-                        const Key('educationalVideoPage_btn_selfExamPerformed'),
+                    key: const Key('educationalVideoPage_btn_selfExamPerformed'),
                     text: sex == Sex.MALE
                         ? context.l10n.self_examination_done_male
                         : context.l10n.self_examination_done_female,

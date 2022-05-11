@@ -37,8 +37,7 @@ class SelfFaqSection extends StatelessWidget {
                   (i, content) => WidgetExpansionTile(
                     content,
                     key: ValueKey('selfFaqSection_item_$i'),
-                    expansionIconKey:
-                        ValueKey('selfFaqSection_item_expansionIcon_$i'),
+                    expansionIconKey: ValueKey('selfFaqSection_item_expansionIcon_$i'),
                   ),
                 )
                 .toList(),
