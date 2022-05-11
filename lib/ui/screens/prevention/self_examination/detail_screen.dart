@@ -15,6 +15,7 @@ import 'package:loono/ui/widgets/badges/self_exam_badges_sheet.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/feedback/feedback_button.dart';
 import 'package:loono/ui/widgets/loono_point.dart';
+import 'package:loono/ui/widgets/prevention/harm_disclosure.dart';
 import 'package:loono/ui/widgets/prevention/progress_bar/self_examination_ring.dart';
 import 'package:loono/ui/widgets/prevention/self_examination/how_it_went_sheet.dart';
 import 'package:loono_api/loono_api.dart';
@@ -105,7 +106,9 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                               const SizedBox(height: 18),
                               Text(
                                 selfExamination.type.l10n_name.replaceFirst(' ', '\n'),
-                                key: const Key('selfExaminationDetailPage_text_header'),
+                                key: const Key(
+                                  'selfExaminationDetailPage_text_header',
+                                ),
                                 style: LoonoFonts.headerFontStyle.copyWith(
                                   color: LoonoColors.green,
                                   fontWeight: FontWeight.w700,
@@ -216,7 +219,10 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
-                        border: Border.all(color: LoonoColors.primaryWashed, width: 4),
+                        border: Border.all(
+                          color: LoonoColors.primaryWashed,
+                          width: 4,
+                        ),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Center(
@@ -293,7 +299,14 @@ class SelfExaminationDetailScreen extends StatelessWidget {
               SelfFaqSection(
                 key: const Key('selfExaminationDetailPage_faqSection'),
                 selfExaminationType: selfExamination.type,
-              )
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 18),
+                child: methodologyDisclosure(sex),
+              ),
+              const SizedBox(
+                height: 50,
+              ),
             ],
           ),
         ),

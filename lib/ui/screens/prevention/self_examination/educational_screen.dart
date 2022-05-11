@@ -5,6 +5,7 @@ import 'package:loono/helpers/self_examination_category.dart';
 import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/prevention/harm_disclosure.dart';
 import 'package:loono/ui/widgets/prevention/self_examination/how_it_went_sheet.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -70,6 +71,8 @@ class EducationalVideoScreen extends StatelessWidget {
                       showHowItWentSheet(context, sex, selfExamination);
                     },
                   ),
+                const SizedBox(height: 18),
+                methodologyDisclosure(sex),
                 SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
               ],
             ),

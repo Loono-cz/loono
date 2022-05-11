@@ -42,9 +42,6 @@ class SelfFaqSection extends StatelessWidget {
                 )
                 .toList(),
           ),
-          const SizedBox(
-            height: 60,
-          ),
         ],
       ),
     );
