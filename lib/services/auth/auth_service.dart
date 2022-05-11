@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -86,13 +87,27 @@ class AuthService {
   }
 
   Future<Either<AuthFailure, AuthUser>> checkAppleAccountExistsAndSignIn() async {
-    final cryptoNonce = CryptoNonce();
-    final appleCredential = await getAppleCredential(cryptoNonce);
+    // Apple does not expose network error: https://github.com/aboutyou/dart_packages/issues/296.
+    final connectivityState = await Connectivity().checkConnectivity();
+    if (connectivityState == ConnectivityResult.none) {
+      return const Left(AuthFailure.network());
+    }
 
-    if (appleCredential == null) return const Left(AuthFailure.unknown());
+    final cryptoNonce = CryptoNonce();
+    AuthorizationCredentialAppleID? appleCredential;
+    try {
+      appleCredential = await getAppleCredential(cryptoNonce);
+    } on SignInWithAppleException catch (e) {
+      return Left(authFailureFromSignInWithAppleException(e));
+    } catch (e) {
+      debugPrint(e.toString());
+      return const Left(AuthFailure.unknown(null, '0x90'));
+    }
+
+    if (appleCredential == null) return const Left(AuthFailure.unknown(null, '0x91'));
 
     final appleUserId = appleCredential.userIdentifier;
-    if (appleUserId == null) return const Left(AuthFailure.unknown());
+    if (appleUserId == null) return const Left(AuthFailure.unknown(null, '0x92'));
 
     final AppleAccountInfo appleAccountInfo;
     final appleUserEmail = appleCredential.email;
@@ -197,11 +212,8 @@ class AuthService {
           ],
           nonce: cryptoNonce.nonce,
         );
-      } on SignInWithAppleException catch (_) {
-        // TODO: find out network error code
-        return const Left(AuthFailure.unknown());
       } catch (_) {
-        return const Left(AuthFailure.unknown());
+        return const Left(AuthFailure.unknown(null, '0x96'));
       }
     }
 
@@ -213,29 +225,25 @@ class AuthService {
     UserCredential? userCredential;
     try {
       userCredential = await _auth.signInWithCredential(oauthCredential);
+    } on FirebaseAuthException catch (e) {
+      return Left(authFailureFromFirebaseAuthException(e));
     } catch (_) {
-      return const Left(AuthFailure.unknown());
+      return const Left(AuthFailure.unknown(null, '0x97'));
     }
     return userCredential.user == null
-        ? const Left(AuthFailure.unknown())
+        ? const Left(AuthFailure.unknown(null, '0x98'))
         : Right(_authUserFromFirebase(userCredential.user)!);
   }
 
   Future<AuthorizationCredentialAppleID?> getAppleCredential([CryptoNonce? existingNonce]) async {
     final cryptoNonce = existingNonce ?? CryptoNonce();
-
-    AuthorizationCredentialAppleID? appleCredential;
-    try {
-      appleCredential = await SignInWithApple.getAppleIDCredential(
-        scopes: [
-          AppleIDAuthorizationScopes.email,
-          AppleIDAuthorizationScopes.fullName,
-        ],
-        nonce: cryptoNonce.nonce,
-      );
-    } catch (o) {
-      debugPrint(o.toString());
-    }
+    final appleCredential = await SignInWithApple.getAppleIDCredential(
+      scopes: [
+        AppleIDAuthorizationScopes.email,
+        AppleIDAuthorizationScopes.fullName,
+      ],
+      nonce: cryptoNonce.nonce,
+    );
     return appleCredential;
   }
 
