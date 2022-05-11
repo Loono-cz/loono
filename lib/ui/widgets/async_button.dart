@@ -200,7 +200,7 @@ class _AsyncLoonoLightApiButtonState extends State<AsyncLoonoLightApiButton> {
               child: const Flexible(
                 child: Padding(
                   padding: EdgeInsets.only(right: 5),
-                  child: CircularProgressIndicator(color: LoonoColors.black),
+                  child: CircularProgressIndicator(color: LoonoColors.primaryEnabled),
                 ),
               ),
             ),
