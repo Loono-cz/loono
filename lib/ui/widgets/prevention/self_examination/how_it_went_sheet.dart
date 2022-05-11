@@ -9,7 +9,7 @@ import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/api_service.dart';
 import 'package:loono/services/examinations_service.dart';
-import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/how/loon_botton_sheet.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
@@ -41,10 +41,10 @@ void showHowItWentSheet(
               ),
             ),
             const SizedBox(height: 60),
-            LoonoButton.light(
+            AsyncLoonoLightApiButton(
               key: const Key('selfExaminationDetailPage_howItWentModal_okBtn'),
               text: context.l10n.self_exam_how_it_went_ok,
-              onTap: () async {
+              asyncCallback: () async {
                 final apiRes = await registry.get<ApiService>().confirmSelfExamination(
                   selfExamination.type,
                   result: SelfExaminationResult((b) {
@@ -68,12 +68,12 @@ void showHowItWentSheet(
               },
             ),
             const SizedBox(height: 20),
-            LoonoButton.light(
+            AsyncLoonoLightApiButton(
               key: const Key('selfExaminationDetailPage_howItWentModal_hasFindingBtn'),
               text: sex == Sex.FEMALE
                   ? context.l10n.self_exam_how_it_went_finding_female
                   : context.l10n.self_exam_how_it_went_finding_male,
-              onTap: () async {
+              asyncCallback: () async {
                 final apiRes = await registry.get<ApiService>().confirmSelfExamination(
                   selfExamination.type,
                   result: SelfExaminationResult((b) {

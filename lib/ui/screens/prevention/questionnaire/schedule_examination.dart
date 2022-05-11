@@ -87,6 +87,7 @@ class ScheduleExamination extends StatelessWidget {
               assetPath: examinationRecord.examinationType.assetPath,
               button1Text: getQuestionnaireFirstAnswer(context, interval: _interval),
               button2Text: getQuestionnaireSecondAnswer(context, interval: _interval),
+              isAsync: true,
               nextCallback1: () {
                 _appRouter.navigate(
                   MainScreenRouter(

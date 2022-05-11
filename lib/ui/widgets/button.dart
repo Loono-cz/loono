@@ -57,7 +57,7 @@ class LoonoButton extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .button
-                ?.copyWith(color: textColor ?? (isLight ? Colors.black : Colors.white)),
+                ?.copyWith(color: textColor ?? (isLight ? LoonoColors.black : Colors.white)),
           ),
         ),
       ),
