@@ -15,6 +15,9 @@ extension AuthFailureMessageExt on AuthFailure {
     return when(
       unknown: (message, errCode) {
         if (errCode == null) return message ?? context.l10n.auth_unknown_failure_message;
+        if (errCode == _appleLoginNotSupportedErrCode) {
+          return context.l10n.auth_apple_not_supported_message;
+        }
         return '${message ?? context.l10n.auth_unknown_failure_message} (${context.l10n.auth_error_code_message}: $errCode)';
       },
       noMessage: () => '',
