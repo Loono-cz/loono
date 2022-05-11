@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -86,8 +87,27 @@ class AuthService {
   }
 
   Future<Either<AuthFailure, AuthUser>> checkAppleAccountExistsAndSignIn() async {
+    // Apple does not expose network error: https://github.com/aboutyou/dart_packages/issues/296.
+    final connectivityState = await Connectivity().checkConnectivity();
+    if (connectivityState == ConnectivityResult.none) {
+      return const Left(AuthFailure.network());
+    }
+
     final cryptoNonce = CryptoNonce();
-    final appleCredential = await getAppleCredential(cryptoNonce);
+    AuthorizationCredentialAppleID? appleCredential;
+    try {
+      appleCredential = await getAppleCredential(cryptoNonce);
+    } on SignInWithAppleException catch (e) {
+      if (e is SignInWithAppleAuthorizationException) {
+        // The user cancelled the sign in flow on purpose. Do not show error message.
+        if (e.code == AuthorizationErrorCode.canceled) {
+          return const Left(AuthFailure.noMessage());
+        }
+      }
+      return const Left(AuthFailure.unknown());
+    } catch (e) {
+      debugPrint(e.toString());
+    }
 
     if (appleCredential == null) return const Left(AuthFailure.unknown());
 
@@ -197,9 +217,6 @@ class AuthService {
           ],
           nonce: cryptoNonce.nonce,
         );
-      } on SignInWithAppleException catch (_) {
-        // TODO: find out network error code
-        return const Left(AuthFailure.unknown());
       } catch (_) {
         return const Left(AuthFailure.unknown());
       }
@@ -235,6 +252,7 @@ class AuthService {
       );
     } catch (o) {
       debugPrint(o.toString());
+      rethrow;
     }
     return appleCredential;
   }
