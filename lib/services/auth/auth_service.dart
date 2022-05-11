@@ -98,21 +98,16 @@ class AuthService {
     try {
       appleCredential = await getAppleCredential(cryptoNonce);
     } on SignInWithAppleException catch (e) {
-      if (e is SignInWithAppleAuthorizationException) {
-        // The user cancelled the sign in flow on purpose. Do not show error message.
-        if (e.code == AuthorizationErrorCode.canceled) {
-          return const Left(AuthFailure.noMessage());
-        }
-      }
-      return const Left(AuthFailure.unknown());
+      return Left(authFailureFromSignInWithAppleException(e));
     } catch (e) {
       debugPrint(e.toString());
+      return const Left(AuthFailure.unknown());
     }
 
-    if (appleCredential == null) return const Left(AuthFailure.unknown());
+    if (appleCredential == null) return const Left(AuthFailure.unknown(null, '0x90'));
 
     final appleUserId = appleCredential.userIdentifier;
-    if (appleUserId == null) return const Left(AuthFailure.unknown());
+    if (appleUserId == null) return const Left(AuthFailure.unknown(null, '0x91'));
 
     final AppleAccountInfo appleAccountInfo;
     final appleUserEmail = appleCredential.email;
@@ -218,7 +213,7 @@ class AuthService {
           nonce: cryptoNonce.nonce,
         );
       } catch (_) {
-        return const Left(AuthFailure.unknown());
+        return const Left(AuthFailure.unknown(null, '0x96'));
       }
     }
 
@@ -230,30 +225,25 @@ class AuthService {
     UserCredential? userCredential;
     try {
       userCredential = await _auth.signInWithCredential(oauthCredential);
+    } on FirebaseAuthException catch (e) {
+      return Left(authFailureFromFirebaseAuthException(e));
     } catch (_) {
-      return const Left(AuthFailure.unknown());
+      return const Left(AuthFailure.unknown(null, '0x97'));
     }
     return userCredential.user == null
-        ? const Left(AuthFailure.unknown())
+        ? const Left(AuthFailure.unknown(null, '0x98'))
         : Right(_authUserFromFirebase(userCredential.user)!);
   }
 
   Future<AuthorizationCredentialAppleID?> getAppleCredential([CryptoNonce? existingNonce]) async {
     final cryptoNonce = existingNonce ?? CryptoNonce();
-
-    AuthorizationCredentialAppleID? appleCredential;
-    try {
-      appleCredential = await SignInWithApple.getAppleIDCredential(
-        scopes: [
-          AppleIDAuthorizationScopes.email,
-          AppleIDAuthorizationScopes.fullName,
-        ],
-        nonce: cryptoNonce.nonce,
-      );
-    } catch (o) {
-      debugPrint(o.toString());
-      rethrow;
-    }
+    final appleCredential = await SignInWithApple.getAppleIDCredential(
+      scopes: [
+        AppleIDAuthorizationScopes.email,
+        AppleIDAuthorizationScopes.fullName,
+      ],
+      nonce: cryptoNonce.nonce,
+    );
     return appleCredential;
   }
 
