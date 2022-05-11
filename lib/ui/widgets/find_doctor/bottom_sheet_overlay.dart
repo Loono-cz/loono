@@ -18,10 +18,12 @@ class MapSheetOverlay extends StatelessWidget {
     Key? key,
     required this.onItemTap,
     required this.sheetController,
+    required this.setOpacity,
   }) : super(key: key);
 
   final ValueChanged<SimpleHealthcareProvider>? onItemTap;
   final DraggableScrollableController sheetController;
+  final Function(double) setOpacity;
 
   @override
   Widget build(BuildContext context) {
@@ -38,71 +40,104 @@ class MapSheetOverlay extends StatelessWidget {
           ),
         );
       }
-      return DraggableScrollableSheet(
-        initialChildSize: MapVariables.MIN_SHEET_SIZE,
-        minChildSize: MapVariables.MIN_SHEET_SIZE,
-        maxChildSize: MapVariables.MAX_SHEET_SIZE,
-        controller: sheetController,
-        builder: (context, scrollController) {
-          return Container(
-            decoration: const BoxDecoration(
-              color: LoonoColors.bottomSheetPrevention,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(12),
-                topRight: Radius.circular(12),
-              ),
-            ),
-            child: ListView.builder(
-              controller: scrollController,
-              itemCount: currHealthcareProviders.length,
-              itemBuilder: (context, index) {
-                final item = currHealthcareProviders[index];
-
-                return ListTile(
-                  title: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      if (index == 0) ...[
-                        Column(
-                          children: [
-                            Center(
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 18.0,
-                                  bottom: 18.0,
-                                ),
-                                child: Container(
-                                  width: MediaQuery.of(context).size.width / 3,
-                                  height: 4.0,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                            if (kDebugMode)
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: Text(
-                                  '${mapState.onMoveMapFilteringBlocked ? 'vybraní lékaři' : 'lékařů v okolí'}: ${mapState.currHealthcareProviders.length}',
-                                  style: const TextStyle(color: Colors.white),
-                                ),
-                              ),
-                          ],
-                        ),
-                      ],
-                      SearchDoctorCard(
-                        item: item,
-                        onTap: () {
-                          onItemTap?.call(item);
-                          mapState.setDoctorDetail(item, unblockOnMoveMapFiltering: false);
-                        },
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
+      return NotificationListener<DraggableScrollableNotification>(
+        onNotification: (notification) {
+          setOpacity(
+            (((notification.extent - MapVariables.MIN_SHEET_SIZE) /
+                        (MapVariables.MAX_SHEET_SIZE - MapVariables.MIN_SHEET_SIZE)) -
+                    1) *
+                -1,
           );
+          return false;
         },
+        child: DraggableScrollableSheet(
+          initialChildSize: MapVariables.MIN_SHEET_SIZE,
+          minChildSize: MapVariables.MIN_SHEET_SIZE,
+          maxChildSize: MapVariables.MAX_SHEET_SIZE,
+          controller: sheetController,
+          builder: (context, scrollController) {
+            return Container(
+              decoration: const BoxDecoration(
+                color: LoonoColors.bottomSheetPrevention,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(12),
+                  topRight: Radius.circular(12),
+                ),
+              ),
+              child: CustomScrollView(
+                controller: scrollController,
+                slivers: [
+                  SliverAppBar(
+                    titleSpacing: 0,
+                    toolbarHeight: 40,
+                    automaticallyImplyLeading: false,
+                    title: Container(
+                      decoration: const BoxDecoration(
+                        color: LoonoColors.bottomSheetPrevention,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(12),
+                          topRight: Radius.circular(12),
+                        ),
+                      ),
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            top: 18.0,
+                            bottom: 18.0,
+                          ),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width / 3,
+                            height: 4.0,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    pinned: true,
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                  ),
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (BuildContext context, int index) {
+                        final item = currHealthcareProviders[index];
+                        return ListTile(
+                          title: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              if (index == 0) ...[
+                                Column(
+                                  children: [
+                                    if (kDebugMode)
+                                      Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Text(
+                                          '${mapState.onMoveMapFilteringBlocked ? 'vybraní lékaři' : 'lékařů v okolí'}: ${mapState.currHealthcareProviders.length}',
+                                          style: const TextStyle(color: Colors.white),
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ],
+                              SearchDoctorCard(
+                                item: item,
+                                onTap: () {
+                                  onItemTap?.call(item);
+                                  mapState.setDoctorDetail(item, unblockOnMoveMapFiltering: false);
+                                },
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                      childCount: currHealthcareProviders.length,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
       );
     }
     return Padding(

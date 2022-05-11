@@ -44,7 +44,7 @@ class _AsyncLoonoButtonState extends State<AsyncLoonoButton> {
           ? () async {
               setState(() => _isLoading = true);
               final asyncResult = await widget.asyncCallback();
-              setState(() => _isLoading = false);
+              if (mounted) setState(() => _isLoading = false);
               if (asyncResult == true) {
                 widget.onSuccess?.call();
               } else if (asyncResult == false) {
@@ -62,7 +62,12 @@ class _AsyncLoonoButtonState extends State<AsyncLoonoButton> {
           children: [
             Visibility(
               visible: _isLoading,
-              child: const Flexible(child: CircularProgressIndicator(color: Colors.white)),
+              child: const Flexible(
+                child: Padding(
+                  padding: EdgeInsets.only(right: 5),
+                  child: CircularProgressIndicator(color: Colors.white),
+                ),
+              ),
             ),
             Expanded(
               child: Align(
@@ -111,7 +116,7 @@ class _AsyncLoonoApiButtonState extends State<AsyncLoonoApiButton> {
           ? () async {
               setState(() => _isLoading = true);
               await widget.asyncCallback();
-              setState(() => _isLoading = false);
+              if (mounted) setState(() => _isLoading = false);
             }
           : null,
       splashColor: widget.enabled ? null : Colors.transparent,
@@ -124,7 +129,12 @@ class _AsyncLoonoApiButtonState extends State<AsyncLoonoApiButton> {
           children: [
             Visibility(
               visible: _isLoading,
-              child: const Flexible(child: CircularProgressIndicator(color: Colors.white)),
+              child: const Flexible(
+                child: Padding(
+                  padding: EdgeInsets.only(right: 5),
+                  child: CircularProgressIndicator(color: Colors.white),
+                ),
+              ),
             ),
             Expanded(
               child: Align(
@@ -133,6 +143,74 @@ class _AsyncLoonoApiButtonState extends State<AsyncLoonoApiButton> {
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.button?.copyWith(
                         color: widget.textColor ?? Colors.white,
+                      ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class AsyncLoonoLightApiButton extends StatefulWidget {
+  const AsyncLoonoLightApiButton({
+    Key? key,
+    required this.text,
+    required this.asyncCallback,
+    this.enabled = true,
+    this.textColor,
+  }) : super(key: key);
+  final Future<dynamic> Function() asyncCallback;
+
+  final String text;
+  final bool enabled;
+  final Color? textColor;
+
+  @override
+  _AsyncLoonoLightApiButtonState createState() => _AsyncLoonoLightApiButtonState();
+}
+
+class _AsyncLoonoLightApiButtonState extends State<AsyncLoonoLightApiButton> {
+  bool _isLoading = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return ExtendedInkWell(
+      /// check if not loading to prevent spamming api
+      onTap: widget.enabled && !_isLoading
+          ? () async {
+              setState(() => _isLoading = true);
+              await widget.asyncCallback();
+              if (mounted) setState(() => _isLoading = false);
+            }
+          : null,
+      splashColor: widget.enabled ? null : Colors.transparent,
+      materialColor:
+          widget.enabled ? LoonoColors.buttonLight : LoonoColors.buttonLight.withOpacity(0.5),
+      borderRadius: BorderRadius.circular(10.0),
+      child: SizedBox(
+        height: 65.0,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Visibility(
+              visible: _isLoading,
+              child: const Flexible(
+                child: Padding(
+                  padding: EdgeInsets.only(right: 5),
+                  child: CircularProgressIndicator(color: LoonoColors.primaryEnabled),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Align(
+                child: Text(
+                  widget.text,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.button?.copyWith(
+                        color: widget.textColor ?? LoonoColors.black,
                       ),
                 ),
               ),

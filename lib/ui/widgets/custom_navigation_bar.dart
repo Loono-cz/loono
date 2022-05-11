@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/ui/widgets/notification_icon.dart';
 
 // ignore: constant_identifier_names
 const BOTTOM_NAV_BAR_HEIGHT = 90.0;
@@ -52,16 +53,26 @@ class CustomNavigationBar extends StatelessWidget {
                               index == currentIndex ? item.iconPathActive : item.iconPath,
                             ),
                           ),
-                          const SizedBox(
-                            height: 6,
-                          ),
-                          Text(
-                            item.label,
-                            style: TextStyle(
-                              color: LoonoColors.primaryEnabled,
-                              fontSize: 10,
-                              fontWeight: index == currentIndex ? FontWeight.w700 : FontWeight.w400,
-                            ),
+                          const SizedBox(height: 6),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              if (item.hasNotification) ...[
+                                const NotificationIcon.priority(width: 10),
+                                const SizedBox(width: 4),
+                              ],
+                              Text(
+                                item.label,
+                                style: TextStyle(
+                                  color: LoonoColors.primaryEnabled,
+                                  fontSize: 10,
+                                  fontWeight:
+                                      index == currentIndex ? FontWeight.w700 : FontWeight.w400,
+                                ),
+                              ),
+                              if (item.hasNotification) const SizedBox(width: 14),
+                            ],
                           ),
                         ],
                       ),
@@ -81,9 +92,11 @@ class CustomNavigationBarItem {
     required this.label,
     required this.iconPath,
     required this.iconPathActive,
+    this.hasNotification = false,
   });
 
   final String label;
   final String iconPath;
   final String iconPathActive;
+  final bool hasNotification;
 }

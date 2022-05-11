@@ -18,7 +18,7 @@ TextStyle earlyOrderStyles(CategorizedExamination examination) {
         const ExaminationCategory.scheduledSoonOrOverdue(),
       ].contains(examination.category) &&
       DateTime.now().isBefore(nextVisit)) {
-    color = LoonoColors.green;
+    color = LoonoColors.greenSuccess;
   } else if ([
     const ExaminationCategory.newToSchedule(),
     const ExaminationCategory.unknownLastVisit(),
@@ -30,7 +30,7 @@ TextStyle earlyOrderStyles(CategorizedExamination examination) {
 }
 
 TextStyle preventiveInspectionStyles(ExaminationCategory category) {
-  var color = LoonoColors.green;
+  var color = LoonoColors.greenSuccess;
   var weight = FontWeight.w400;
 
   if (category == const ExaminationCategory.scheduledSoonOrOverdue()) {
@@ -39,6 +39,7 @@ TextStyle preventiveInspectionStyles(ExaminationCategory category) {
   } else if ([
     const ExaminationCategory.scheduled(),
     const ExaminationCategory.unknownLastVisit(),
+    const ExaminationCategory.newToSchedule(),
   ].contains(category)) {
     color = LoonoColors.black;
   }
@@ -54,6 +55,46 @@ String czechPreposition(BuildContext context, {required ExaminationType examinat
   } else {
     return 'u';
   }
+}
+
+String czechPrepositionDativ(BuildContext context, {required ExaminationType examinationType}) {
+  var res = '';
+  switch (examinationType) {
+    case ExaminationType.COLONOSCOPY:
+      res = 'na';
+      break;
+    case ExaminationType.DENTIST:
+      res = 'k';
+      break;
+    case ExaminationType.DERMATOLOGIST:
+      res = 'k';
+      break;
+    case ExaminationType.GENERAL_PRACTITIONER:
+      res = 'k';
+      break;
+    case ExaminationType.GYNECOLOGIST:
+      res = 'ke';
+      break;
+    case ExaminationType.MAMMOGRAM:
+      res = 'na';
+      break;
+    case ExaminationType.OPHTHALMOLOGIST:
+      res = 'k';
+      break;
+    case ExaminationType.TOKS:
+      res = 'na';
+      break;
+    case ExaminationType.ULTRASOUND_BREAST:
+      res = 'na';
+      break;
+    case ExaminationType.UROLOGIST:
+      res = 'k';
+      break;
+    case ExaminationType.VENEREAL_DISEASES:
+      res = 'na';
+      break;
+  }
+  return res;
 }
 
 final czechMonthsInflected = [

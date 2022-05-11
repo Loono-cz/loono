@@ -30,7 +30,7 @@ Widget setListItem({
       opacity: opacityValue,
       child: Text(
         text,
-        style: LoonoFonts.fontStyle,
+        style: LoonoFonts.fontStyle.copyWith(fontSize: 16),
       ),
     ),
   );

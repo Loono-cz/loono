@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/ui/widgets/close_button.dart';
 
 class LoonBottomSheet extends StatelessWidget {
   const LoonBottomSheet({
@@ -36,14 +37,9 @@ class LoonBottomSheet extends StatelessWidget {
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.close, size: 32),
-                    onPressed: () => AutoRouter.of(context).pop(),
-                  ),
-                ],
+              Align(
+                alignment: Alignment.centerRight,
+                child: LoonoCloseButton(onPressed: () => AutoRouter.of(context).pop()),
               ),
               SizedBox(
                 height: topSpace,

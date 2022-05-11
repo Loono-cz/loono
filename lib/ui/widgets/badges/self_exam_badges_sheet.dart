@@ -18,7 +18,7 @@ Future<void> showSelfExamBadgesSheet(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(15.0),
     ),
-    backgroundColor: LoonoColors.beigeLighter,
+    backgroundColor: LoonoColors.settingsBackground,
     builder: (BuildContext context) {
       final validStatuses = history.where(
         (item) => (item == SelfExaminationStatus.COMPLETED),

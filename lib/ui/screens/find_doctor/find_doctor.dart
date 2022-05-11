@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:loono/constants.dart';
@@ -22,10 +21,10 @@ import 'package:provider/provider.dart';
 class FindDoctorScreen extends StatefulWidget {
   const FindDoctorScreen({
     Key? key,
-    this.cancelRouteName,
+    this.onCancelTap,
   }) : super(key: key);
 
-  final PageRouteInfo? cancelRouteName;
+  final VoidCallback? onCancelTap;
 
   @override
   State<FindDoctorScreen> createState() => _FindDoctorScreenState();
@@ -40,6 +39,7 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
   late final MapStateService mapState;
 
   bool _isHealthCareProvidersInMapService = false;
+  double _mapOpacity = 1;
 
   Future<void> _setHealthcareProviders({bool tryFetchAgainData = false}) async {
     if (mapState.allHealthcareProviders.isEmpty) {
@@ -59,6 +59,14 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
     }
   }
 
+  void setMapOpacity(double opacity) {
+    Future.delayed(Duration.zero, () async {
+      setState(() {
+        _mapOpacity = opacity;
+      });
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -73,14 +81,13 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
         context.select<MapStateService, SearchResult?>((value) => value.currSpecialization);
 
     return Scaffold(
-      appBar: widget.cancelRouteName != null
+      appBar: widget.onCancelTap != null
           ? AppBar(
               backgroundColor: LoonoColors.bottomSheetPrevention,
               actions: [
                 IconButton(
                   icon: const Icon(Icons.close),
-                  onPressed: () => AutoRouter.of(context)
-                      .popUntilRouteWithName(widget.cancelRouteName!.routeName),
+                  onPressed: widget.onCancelTap,
                 ),
               ],
             )
@@ -97,7 +104,12 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
             }
             return Stack(
               children: [
-                MapPreview(mapController: _mapController),
+                Opacity(
+                  opacity: _mapOpacity,
+                  child: MapPreview(
+                    mapController: _mapController,
+                  ),
+                ),
                 if (_isHealthCareProvidersInMapService) ...[
                   Visibility(
                     visible: currDoctorDetail == null,
@@ -118,6 +130,7 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                                 ),
                               );
                               _sheetController.jumpTo(MapVariables.MIN_SHEET_SIZE);
+                              setMapOpacity(1);
                             },
                           ),
                           SpecializationChipsList(showDefaultSpecs: currSpec == null),
@@ -129,13 +142,17 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                     visible: currDoctorDetail == null,
                     maintainState: true,
                     child: MapSheetOverlay(
-                      onItemTap: (healthcareProvider) async => animateToPos(
-                        _mapController,
-                        cameraPosition: CameraPosition(
-                          target: LatLng(healthcareProvider.lat, healthcareProvider.lng),
-                          zoom: MapVariables.DOCTOR_DETAIL_ZOOM,
-                        ),
-                      ),
+                      onItemTap: (healthcareProvider) async {
+                        await animateToPos(
+                          _mapController,
+                          cameraPosition: CameraPosition(
+                            target: LatLng(healthcareProvider.lat, healthcareProvider.lng),
+                            zoom: MapVariables.DOCTOR_DETAIL_ZOOM,
+                          ),
+                        );
+                        setMapOpacity(1);
+                      },
+                      setOpacity: setMapOpacity,
                       sheetController: _sheetController,
                     ),
                   ),

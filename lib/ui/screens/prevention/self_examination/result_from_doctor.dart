@@ -7,8 +7,8 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/api_service.dart';
 import 'package:loono/services/examinations_service.dart';
-
-import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/async_button.dart';
+import 'package:loono/ui/widgets/close_button.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
@@ -57,14 +57,8 @@ class ResultFromDoctorScreen extends StatelessWidget {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(top: 20),
-                                child: IconButton(
-                                  onPressed: () {
-                                    AutoRouter.of(context).pop();
-                                  },
-                                  icon: const Icon(
-                                    Icons.close,
-                                    size: 32,
-                                  ),
+                                child: LoonoCloseButton(
+                                  onPressed: () => AutoRouter.of(context).pop(),
                                 ),
                               ),
                             ],
@@ -94,10 +88,9 @@ class ResultFromDoctorScreen extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 300),
-                            child: LoonoButton.light(
+                            child: AsyncLoonoLightApiButton(
                               text: context.l10n.self_examination_everything_good,
-                              // TODO: call BE we notify normally
-                              onTap: () async {
+                              asyncCallback: () async {
                                 await registry.get<ApiService>().resultSelfExamination(
                                   selfExamination.type,
                                   result: SelfExaminationResult((b) {
@@ -114,10 +107,9 @@ class ResultFromDoctorScreen extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 20.0),
-                            child: LoonoButton.light(
+                            child: AsyncLoonoLightApiButton(
                               text: context.l10n.self_examination_it_is_cancer,
-                              // TODO: call BE we don't ever notify
-                              onTap: () async {
+                              asyncCallback: () async {
                                 await registry.get<ApiService>().resultSelfExamination(
                                   selfExamination.type,
                                   result: SelfExaminationResult((b) {
