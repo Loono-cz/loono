@@ -101,13 +101,13 @@ class AuthService {
       return Left(authFailureFromSignInWithAppleException(e));
     } catch (e) {
       debugPrint(e.toString());
-      return const Left(AuthFailure.unknown());
+      return const Left(AuthFailure.unknown(null, '0x90'));
     }
 
-    if (appleCredential == null) return const Left(AuthFailure.unknown(null, '0x90'));
+    if (appleCredential == null) return const Left(AuthFailure.unknown(null, '0x91'));
 
     final appleUserId = appleCredential.userIdentifier;
-    if (appleUserId == null) return const Left(AuthFailure.unknown(null, '0x91'));
+    if (appleUserId == null) return const Left(AuthFailure.unknown(null, '0x92'));
 
     final AppleAccountInfo appleAccountInfo;
     final appleUserEmail = appleCredential.email;
