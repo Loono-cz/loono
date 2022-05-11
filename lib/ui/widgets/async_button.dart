@@ -44,7 +44,7 @@ class _AsyncLoonoButtonState extends State<AsyncLoonoButton> {
           ? () async {
               setState(() => _isLoading = true);
               final asyncResult = await widget.asyncCallback();
-              setState(() => _isLoading = false);
+              if (mounted) setState(() => _isLoading = false);
               if (asyncResult == true) {
                 widget.onSuccess?.call();
               } else if (asyncResult == false) {
@@ -116,7 +116,7 @@ class _AsyncLoonoApiButtonState extends State<AsyncLoonoApiButton> {
           ? () async {
               setState(() => _isLoading = true);
               await widget.asyncCallback();
-              setState(() => _isLoading = false);
+              if (mounted) setState(() => _isLoading = false);
             }
           : null,
       splashColor: widget.enabled ? null : Colors.transparent,
@@ -183,7 +183,7 @@ class _AsyncLoonoLightApiButtonState extends State<AsyncLoonoLightApiButton> {
           ? () async {
               setState(() => _isLoading = true);
               await widget.asyncCallback();
-              setState(() => _isLoading = false);
+              if (mounted) setState(() => _isLoading = false);
             }
           : null,
       splashColor: widget.enabled ? null : Colors.transparent,
