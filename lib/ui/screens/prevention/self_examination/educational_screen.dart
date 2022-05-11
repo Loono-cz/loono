@@ -5,6 +5,7 @@ import 'package:loono/helpers/self_examination_category.dart';
 import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/prevention/harm_disclosure.dart';
 import 'package:loono/ui/widgets/prevention/self_examination/how_it_went_sheet.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -58,10 +59,13 @@ class EducationalVideoScreen extends StatelessWidget {
                 const SizedBox(height: 24),
                 player,
                 const SizedBox(height: 48),
-                if (selfExamination.calculateStatus() == const SelfExaminationCategory.active() ||
-                    selfExamination.calculateStatus() == const SelfExaminationCategory.first())
+                if (selfExamination.calculateStatus() ==
+                        const SelfExaminationCategory.active() ||
+                    selfExamination.calculateStatus() ==
+                        const SelfExaminationCategory.first())
                   LoonoButton(
-                    key: const Key('educationalVideoPage_btn_selfExamPerformed'),
+                    key:
+                        const Key('educationalVideoPage_btn_selfExamPerformed'),
                     text: sex == Sex.MALE
                         ? context.l10n.self_examination_done_male
                         : context.l10n.self_examination_done_female,
@@ -70,6 +74,8 @@ class EducationalVideoScreen extends StatelessWidget {
                       showHowItWentSheet(context, sex, selfExamination);
                     },
                   ),
+                const SizedBox(height: 18),
+                methodologyDisclosure(sex),
                 SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
               ],
             ),
