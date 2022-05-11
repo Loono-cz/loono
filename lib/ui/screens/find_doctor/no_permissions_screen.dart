@@ -120,8 +120,7 @@ class _NoPermissionsScreenState extends State<NoPermissionsScreen> {
                     : () async {
                         final permission = await Geolocator.requestPermission();
 
-                        if ([LocationPermission.denied, LocationPermission.deniedForever]
-                            .contains(permission)) {
+                        if ([LocationPermission.deniedForever].contains(permission)) {
                           setState(() {
                             allowInSettings = true;
                           });
