@@ -33,16 +33,19 @@ class UpdateProfilePage with SettingsFinders {
   final Finder deleteAccountBtn = find.widgetWithText(TextButton, 'Smazat účet');
 
   Finder get backBtn => commonSettingsSheetBackBtn;
+
   Finder get confirmationDialog =>
       find.byWidgetPredicate((widget) => widget is AlertDialog || widget is CupertinoAlertDialog);
+
   Finder get cancelBtnLogoutDialog => find.descendant(
-    of: confirmationDialog,
-    matching: find.textContaining(RegExp('Zrušit', caseSensitive: false)),
-  );
+        of: confirmationDialog,
+        matching: find.textContaining(RegExp(r'^zrušit$', caseSensitive: false)),
+      );
+
   Finder get confirmBtnLogoutDialog => find.descendant(
-    of: confirmationDialog,
-    matching: find.textContaining(RegExp('Pokračovat', caseSensitive: false)),
-  );
+        of: confirmationDialog,
+        matching: find.textContaining(RegExp(r'^pokračovat$', caseSensitive: false)),
+      );
 
   /// Page methods
   Future<void> clickNicknameField() async {

@@ -29,12 +29,12 @@ class DeleteAccountPage with SettingsFinders {
 
   Finder get deleteAccountDialogCancelBtn => find.descendant(
         of: deleteAccountDialog,
-        matching: find.textContaining(RegExp('Zrušit', caseSensitive: false)),
+        matching: find.textContaining(RegExp(r'^zrušit$', caseSensitive: false)),
       );
 
   Finder get deleteAccountDialogConfirmBtn => find.descendant(
         of: deleteAccountDialog,
-        matching: find.textContaining(RegExp('Smazat', caseSensitive: false)),
+        matching: find.textContaining(RegExp(r'^smazat$', caseSensitive: false)),
       );
 
   /// Page methods
