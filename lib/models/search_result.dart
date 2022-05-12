@@ -43,7 +43,7 @@ extension SearchResultExt on SearchResult {
         return MapVariables.STREET_ZOOM;
       case SearchType.specialization:
       case SearchType.city:
-        return MapVariables.DEFAULT_ZOOM;
+        return MapVariables.CITY_ZOOM;
     }
   }
 }

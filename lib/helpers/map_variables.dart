@@ -12,10 +12,12 @@ class MapVariables {
 
   static const MAX_SHEET_SIZE = 0.72;
 
-  /// Prague, main train station
-  static const LatLng INITIAL_COORDS = LatLng(50.08308000648528, 14.435443582943789);
+  /// Geografický střed České republiky (Číhošť)
+  static const LatLng INITIAL_COORDS = LatLng(49.74387384109868, 15.33894514109844);
 
-  static const double DEFAULT_ZOOM = 13.0;
+  static const double INITIAL_ZOOM = 6.5;
+
+  static const double CITY_ZOOM = 13.0;
 
   static const double STREET_ZOOM = 16.5;
 
