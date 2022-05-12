@@ -269,7 +269,8 @@ class MapStateService with ChangeNotifier {
         (healthcareProvider) {
           if (visibleRegion == null) return true;
           final lat = healthcareProvider.lat;
-          final lng = healthcareProvider.lng;
+          final lng =
+              healthcareProvider.lng;
           return visibleRegionPadded.contains(LatLng(lat, lng));
         },
       ),
