@@ -5,13 +5,12 @@ import 'dart:ui' as ui;
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_cluster_manager/google_maps_cluster_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/models/healthcare_item_place.dart';
-import 'package:loono_api/loono_api.dart';
+import 'package:loono/services/map_state_sevice.dart';
 
 Future<void> animateToPos(
   Completer<GoogleMapController> mapController, {
@@ -48,24 +47,13 @@ Future<Position> determinePosition(LocationPermission permission) async {
 
 Future<Marker> Function(
   Cluster<HealthcareItemPlace>,
-  Function(SimpleHealthcareProvider?) setDoctorDetail,
-  Function(Iterable<SimpleHealthcareProvider>) setActiveDoctors,
-  List<SimpleHealthcareProvider> currDoctors,
-  bool onMoveMapFilteringBlocked,
-  VoidCallback applyFilter,
-) get markerBuilder => (
-      cluster,
-      setDoctorDetail,
-      setActiveDoctors,
-      currDoctors,
-      onMoveMapFilteringBlocked,
-      applyFilter,
-    ) async {
+  MapStateService mapState,
+) get markerBuilder => (cluster, mapState) async {
       final isClusterSelected = cluster.isMultiple &&
-          onMoveMapFilteringBlocked &&
+          mapState.onMoveMapFilteringBlocked &&
           (const DeepCollectionEquality.unordered().equals(
             cluster.items.map((e) => e.healthcareProvider.institutionId),
-            currDoctors.map((e) => e.institutionId),
+            mapState.currHealthcareProviders.map((e) => e.institutionId),
           ));
 
       final icon = cluster.isMultiple
@@ -79,14 +67,16 @@ Future<Marker> Function(
       return Marker(
         markerId: MarkerId(cluster.getId()),
         position: cluster.location,
+        consumeTapEvents: !cluster.isMultiple,
         onTap: cluster.isMultiple
             ? isClusterSelected
                 ? () {
-                    setDoctorDetail(null);
-                    applyFilter();
+                    mapState
+                      ..setDoctorDetail(null)
+                      ..applyFilter();
                   }
-                : () => setActiveDoctors(cluster.items.map((e) => e.healthcareProvider))
-            : () => setDoctorDetail(cluster.items.first.healthcareProvider),
+                : () => mapState.setActiveDoctors(cluster.items.map((e) => e.healthcareProvider))
+            : () => mapState.setDoctorDetail(cluster.items.first.healthcareProvider),
         infoWindow: InfoWindow.noText,
         icon: icon ?? BitmapDescriptor.defaultMarker,
       );
