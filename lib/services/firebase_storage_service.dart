@@ -53,11 +53,15 @@ class FirebaseStorageService {
     return downloadUrl;
   }
 
-  // TODO: Error messaging
   /// Deletes data at the [ref] location.
   Future<bool?> deleteData({required Reference? ref}) async {
     if (ref == null) return null;
-    await ref.delete();
+    try {
+      await ref.delete();
+    } catch (e) {
+      debugPrint(e.toString());
+      return false;
+    }
     return true;
   }
 
@@ -67,5 +71,11 @@ class FirebaseStorageService {
       await userPhotoRef,
     ].whereType<Reference>();
     await Future.wait<void>([for (final ref in refs) ref.delete()]);
+  }
+
+  Future<void> cancelUpload() async {
+    if (uploadTask == null) return;
+    await uploadTask?.cancel();
+    uploadTask = null;
   }
 }

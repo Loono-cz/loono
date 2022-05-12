@@ -33,9 +33,11 @@ class _PhotoCroppedResultScreenState extends State<PhotoCroppedResultScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        if (_isUploading) {
+        final currUploadTask = _firebaseStorageService.uploadTask;
+        if (_isUploading || currUploadTask != null) {
+          setState(() => _isUploading = false);
           _uploadCancelled = true;
-          await _firebaseStorageService.uploadTask?.cancel();
+          await _firebaseStorageService.cancelUpload();
           return false;
         }
         return true;
@@ -72,6 +74,7 @@ class _PhotoCroppedResultScreenState extends State<PhotoCroppedResultScreen> {
                       setState(() => _isUploading = true);
                       final photoUploadResult =
                           await registry.get<UserRepository>().updateUserPhoto(widget.imageBytes);
+                      if (!mounted) return;
                       setState(() => _isUploading = false);
                       if (photoUploadResult) {
                         // TODO: Hacky solution. Should be in bottom modal sheet too but requires bigger refactor

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/screens/settings/delete_account.dart';
@@ -21,12 +22,20 @@ class DeleteAccountPage with SettingsFinders {
   final Finder checkBoxStopNotifications =
       find.byKey(const Key('deleteAccountPage_checkBox_stopNotifications'));
   final Finder deleteAccountBtn = find.widgetWithText(LoonoButton, 'Smazat účet');
-  final Finder deleteAccountDialogCancelBtn =
-      find.byKey(const Key('deleteAccountPage_confirmationDialog_cancelBtn'));
-  final Finder deleteAccountDialogConfirmBtn =
-      find.byKey(const Key('deleteAccountPage_confirmationDialog_yesBtn'));
   final Finder closeScreenBtn = find.byIcon(Icons.close);
-  final Finder deleteAccountDialog = find.byKey(const Key('deleteAccountPage_confirmationDialog'));
+
+  Finder get deleteAccountDialog =>
+      find.byWidgetPredicate((widget) => widget is AlertDialog || widget is CupertinoAlertDialog);
+
+  Finder get deleteAccountDialogCancelBtn => find.descendant(
+        of: deleteAccountDialog,
+        matching: find.textContaining(RegExp('Zrušit', caseSensitive: false)),
+      );
+
+  Finder get deleteAccountDialogConfirmBtn => find.descendant(
+        of: deleteAccountDialog,
+        matching: find.textContaining(RegExp('Smazat', caseSensitive: false)),
+      );
 
   /// Page methods
   Future<void> clickDeleteCheckupsCheckBox() async {

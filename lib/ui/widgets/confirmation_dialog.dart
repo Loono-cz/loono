@@ -1,39 +1,29 @@
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/l10n/ext.dart';
 
-void showConfirmationDialog(
+Future<void> showAdaptiveConfirmationDialog(
   BuildContext context, {
-  Key? key,
-  required VoidCallback onConfirm,
+  required VoidCallback? onConfirm,
   VoidCallback? onCancel,
-  required String content,
-  String? confirmationButtonLabel,
+  required String description,
+  required String confirmationButtonLabel,
   String? cancelButtonLabel,
-}) {
-  final Widget? cancelButton = onCancel != null
-      ? TextButton(
-          onPressed: onCancel,
-          child: Text(cancelButtonLabel ?? context.l10n.cancel),
-        )
-      : null;
-  final Widget confirmButton = TextButton(
-    onPressed: onConfirm,
-    child: Text(confirmationButtonLabel ?? context.l10n.continue_info),
-  );
-
-  showDialog<void>(
+}) async {
+  final res = await showOkCancelAlertDialog(
     context: context,
     useRootNavigator: false,
-    builder: (context) => AlertDialog(
-      key: key,
-      content: Text(
-        content,
-        textAlign: TextAlign.center,
-      ),
-      actions: [
-        cancelButton,
-        confirmButton,
-      ].whereType<Widget>().toList(),
-    ),
+    message: description,
+    cancelLabel: cancelButtonLabel ?? context.l10n.cancel,
+    okLabel: confirmationButtonLabel,
   );
+
+  switch (res) {
+    case OkCancelResult.ok:
+      onConfirm?.call();
+      break;
+    case OkCancelResult.cancel:
+      onCancel?.call();
+      break;
+  }
 }

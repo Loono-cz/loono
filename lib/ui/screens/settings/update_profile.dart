@@ -131,9 +131,10 @@ class UpdateProfileScreen extends StatelessWidget {
                       children: [
                         TextButton(
                           onPressed: () async {
-                            showConfirmationDialog(
+                            await showAdaptiveConfirmationDialog(
                               context,
-                              key: const Key('updateProfilePage_confirmationDialog'),
+                              description: context.l10n.logout_confirmation_dialog_content,
+                              confirmationButtonLabel: context.l10n.continue_info,
                               onConfirm: () {
                                 AutoRouter.of(context).pushAndPopUntil(
                                   // TODO: After updating a routes do logout processes here instead of in LogoutScreen
@@ -143,8 +144,6 @@ class UpdateProfileScreen extends StatelessWidget {
                                 Provider.of<ExaminationsProvider>(context, listen: false)
                                     .clearExaminations();
                               },
-                              onCancel: () => AutoRouter.of(context).pop(),
-                              content: context.l10n.logout_confirmation_dialog_content,
                             );
                           },
                           child: Text(context.l10n.sign_out_action, style: LoonoFonts.fontStyle),
