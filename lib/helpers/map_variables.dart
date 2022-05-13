@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:loono/utils/app_config.dart';
 import 'package:loono/utils/registry.dart';
@@ -33,4 +34,11 @@ bool useHybridComposition() {
     return version >= 29;
   }
   return false;
+}
+
+double getTopMapPadding() {
+  final window = WidgetsBinding.instance?.window;
+  final screenHeight = window!.physicalSize.height / window.devicePixelRatio;
+  final pctSize = screenHeight / (screenHeight - 100) - 1;
+  return pctSize;
 }
