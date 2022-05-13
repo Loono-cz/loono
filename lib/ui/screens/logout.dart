@@ -24,10 +24,12 @@ class _LogoutScreenState extends State<LogoutScreen> {
     super.initState();
     appClear().then((value) {
       Future.delayed(Duration.zero, () {
-        showFlushBarSuccess(
-          context,
-          context.l10n.logout_screen_success_message,
-        );
+        if (mounted) {
+          showFlushBarSuccess(
+            context,
+            context.l10n.logout_screen_success_message,
+          );
+        }
       });
     });
   }

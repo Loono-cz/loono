@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/screens/settings/update_profile.dart';
@@ -30,11 +31,21 @@ class UpdateProfilePage with SettingsFinders {
   );
   final Finder logoutBtn = find.widgetWithText(TextButton, 'Odhlásit se');
   final Finder deleteAccountBtn = find.widgetWithText(TextButton, 'Smazat účet');
-  final Finder confirmationDialog = find.byKey(const Key('updateProfilePage_confirmationDialog'));
-  final Finder cancelBtnLogoutDialog = find.widgetWithText(TextButton, 'Zrušit');
-  final Finder confirmBtnLogoutDialog = find.widgetWithText(TextButton, 'Pokračovat');
 
   Finder get backBtn => commonSettingsSheetBackBtn;
+
+  Finder get confirmationDialog =>
+      find.byWidgetPredicate((widget) => widget is AlertDialog || widget is CupertinoAlertDialog);
+
+  Finder get cancelBtnLogoutDialog => find.descendant(
+        of: confirmationDialog,
+        matching: find.textContaining(RegExp(r'^zrušit$', caseSensitive: false)),
+      );
+
+  Finder get confirmBtnLogoutDialog => find.descendant(
+        of: confirmationDialog,
+        matching: find.textContaining(RegExp(r'^pokračovat$', caseSensitive: false)),
+      );
 
   /// Page methods
   Future<void> clickNicknameField() async {
