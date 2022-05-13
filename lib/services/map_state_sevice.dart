@@ -27,6 +27,8 @@ class MapStateService with ChangeNotifier {
 
   final Set<Marker> _markers = <Marker>{};
 
+  final double _topPctPadding = getTopMapPadding();
+
   LocationPermission _locationPermission = LocationPermission.unableToDetermine;
 
   SimpleHealthcareProvider? doctorDetail;
@@ -241,7 +243,8 @@ class MapStateService with ChangeNotifier {
     final bottomPadding = (visibleRegion!.northeast.latitude - visibleRegion!.southwest.latitude) *
         MapVariables.MIN_SHEET_SIZE;
     final topPadding =
-        (visibleRegion!.northeast.latitude - visibleRegion!.southwest.latitude) * 0.12;
+        (visibleRegion!.northeast.latitude - visibleRegion!.southwest.latitude) * _topPctPadding;
+
     return LatLngBounds(
       southwest: LatLng(
         visibleRegion!.southwest.latitude + bottomPadding,
