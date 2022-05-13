@@ -24,7 +24,7 @@ class MapPreview extends StatelessWidget {
 
   static const _initialCameraPos = CameraPosition(
     target: MapVariables.INITIAL_COORDS,
-    zoom: MapVariables.DEFAULT_ZOOM,
+    zoom: MapVariables.INITIAL_ZOOM,
   );
 
   @override

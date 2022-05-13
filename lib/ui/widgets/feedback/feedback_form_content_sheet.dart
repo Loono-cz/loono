@@ -27,8 +27,10 @@ void showFeedbackFormContentBottomSheet(
   );
 }
 
-class _FeedbackFormContent extends StatelessWidget {
-  _FeedbackFormContent({
+/// Stateful because hiding the keyboard action causes loosing the [TextField] text state
+/// on small devices.
+class _FeedbackFormContent extends StatefulWidget {
+  const _FeedbackFormContent({
     Key? key,
     this.borderRadius,
     required this.rating,
@@ -37,8 +39,15 @@ class _FeedbackFormContent extends StatelessWidget {
   final BorderRadius? borderRadius;
   final int rating;
 
+  @override
+  State<_FeedbackFormContent> createState() => _FeedbackFormContentState();
+}
+
+class _FeedbackFormContentState extends State<_FeedbackFormContent> {
   final _apiService = registry.get<ApiService>();
+
   final _authService = registry.get<AuthService>();
+
   final _textController = TextEditingController();
 
   Future<void> _closeForm(BuildContext context) async {
@@ -47,6 +56,12 @@ class _FeedbackFormContent extends StatelessWidget {
   }
 
   String get _inputText => _textController.text;
+
+  @override
+  void dispose() {
+    _textController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +75,7 @@ class _FeedbackFormContent extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             color: LoonoColors.bottomSheetPrevention,
-            borderRadius: borderRadius,
+            borderRadius: widget.borderRadius,
           ),
           child: Padding(
             padding: const EdgeInsets.all(18.0),
@@ -113,7 +128,7 @@ class _FeedbackFormContent extends StatelessWidget {
                         minLines: null,
                         maxLines: null,
                         expands: true,
-                        autofocus: true,
+                        autofocus: !isScreenSmall,
                         cursorColor: LoonoColors.black,
                         decoration: InputDecoration(
                           border: InputBorder.none,
@@ -136,7 +151,7 @@ class _FeedbackFormContent extends StatelessWidget {
                   asyncCallback: () async => _apiService.sendFeedback(
                     uid: await _authService.userUid,
                     message: _inputText.isEmpty ? null : _inputText,
-                    rating: rating,
+                    rating: widget.rating,
                   ),
                   onSuccess: () async {
                     await _closeForm(context);

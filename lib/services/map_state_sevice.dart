@@ -58,14 +58,8 @@ class MapStateService with ChangeNotifier {
   ClusterManager _initClusterManager() => ClusterManager<HealthcareItemPlace>(
         <HealthcareItemPlace>[],
         updateMarkers,
-        markerBuilder: (cluster) => markerBuilder(
-          cluster,
-          setDoctorDetail,
-          setActiveDoctors,
-          currHealthcareProviders,
-          onMoveMapFilteringBlocked,
-          applyFilter,
-        ),
+        markerBuilder: (cluster) => markerBuilder(cluster, this),
+        levels: const [1, 4.25, 6, 8.25, 11.5, 13, 14.5, 15.25, 16, 16.5, 20],
       );
 
   void setVisibleRegion(LatLngBounds latLngBounds) {
