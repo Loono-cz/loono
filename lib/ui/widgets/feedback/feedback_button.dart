@@ -21,6 +21,11 @@ class FeedbackButton extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 10),
                 child: Text(
                   context.l10n.feedback_overlay_button,
+                  strutStyle: const StrutStyle(
+                    forceStrutHeight: true,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14,
+                  ),
                   style: LoonoFonts.paragraphFontStyle.copyWith(fontWeight: FontWeight.w600),
                 ),
               ),
