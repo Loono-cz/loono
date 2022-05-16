@@ -215,6 +215,7 @@ Future<void> setup({
       databaseService: registry.get<DatabaseService>(),
     ),
   );
+  await registry.get<HealthcareProviderRepository>().init();
   registry.registerSingleton<CalendarRepository>(
     CalendarRepository(
       databaseService: registry.get<DatabaseService>(),

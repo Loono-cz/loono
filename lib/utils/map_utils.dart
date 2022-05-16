@@ -10,7 +10,9 @@ import 'package:google_maps_cluster_manager/google_maps_cluster_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/models/healthcare_item_place.dart';
+import 'package:loono/repositories/healthcare_repository.dart';
 import 'package:loono/services/map_state_sevice.dart';
+import 'package:loono/utils/registry.dart';
 
 Future<void> animateToPos(
   Completer<GoogleMapController> mapController, {
@@ -49,6 +51,8 @@ Future<Marker> Function(
   Cluster<HealthcareItemPlace>,
   MapStateService mapState,
 ) get markerBuilder => (cluster, mapState) async {
+      final healthcareRepository = registry.get<HealthcareProviderRepository>();
+
       final isClusterSelected = cluster.isMultiple &&
           mapState.onMoveMapFilteringBlocked &&
           (const DeepCollectionEquality.unordered().equals(
@@ -62,7 +66,7 @@ Future<Marker> Function(
               text: cluster.isMultiple ? cluster.count.toString() : null,
               isClusterSelected: isClusterSelected,
             )
-          : BitmapDescriptor.fromBytes(await getMarkerIcon(31 * 3, 40 * 3));
+          : BitmapDescriptor.fromBytes(healthcareRepository.customMarkerIcon);
 
       return Marker(
         markerId: MarkerId(cluster.getId()),

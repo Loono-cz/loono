@@ -61,7 +61,7 @@ class MapStateService with ChangeNotifier {
         <HealthcareItemPlace>[],
         updateMarkers,
         markerBuilder: (cluster) => markerBuilder(cluster, this),
-        levels: const [1, 4.25, 6, 8.25, 11.5, 13, 14.5, 15.25, 16, 16.5, 20],
+        levels: const [1, 4.25, 6, 8.25, 11.5, 14.5, 15.75, 16, 16.5, 20],
       );
 
   void setVisibleRegion(LatLngBounds latLngBounds) {

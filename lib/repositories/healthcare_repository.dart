@@ -9,6 +9,7 @@ import 'package:flutter/foundation.dart';
 import 'package:loono/services/api_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/save_directories.dart';
+import 'package:loono/utils/map_utils.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
@@ -29,6 +30,14 @@ class HealthcareProviderRepository {
   static const int UPDATE_CHECK_INTERVAL_IN_DAYS = 21;
 
   final _streamController = StreamController<HealtCareSyncState>.broadcast();
+
+  late final Uint8List _customMarkerIcon;
+
+  Uint8List get customMarkerIcon => _customMarkerIcon;
+
+  Future<void> init() async {
+    _customMarkerIcon = await getMarkerIcon(31 * 3, 40 * 3);
+  }
 
   Stream<HealtCareSyncState> get healtcareProvidersStream => _streamController.stream;
   HealtCareSyncState? _lastStreamValue;
