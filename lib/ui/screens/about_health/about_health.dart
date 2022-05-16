@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:loono/constants.dart';
 import 'package:loono/helpers/map_variables.dart';
 import 'package:loono/services/webview_service.dart';
 import 'package:loono/ui/widgets/feedback/feedback_button.dart';
@@ -18,6 +19,8 @@ class AboutHealthScreen extends StatelessWidget {
 
   final _showBackArrow = ValueNotifier<bool>(false);
 
+  final _loadingProgress = ValueNotifier<int>(0);
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -32,6 +35,9 @@ class AboutHealthScreen extends StatelessWidget {
             ),
             onUpdateVisitedHistory: (webViewController, uri, androidIsReload) async {
               _showBackArrow.value = uri != initialUri;
+            },
+            onProgressChanged: (webViewController, progress) {
+              _loadingProgress.value = progress;
             },
             initialOptions: InAppWebViewGroupOptions(
               crossPlatform: InAppWebViewOptions(
@@ -87,7 +93,26 @@ class AboutHealthScreen extends StatelessWidget {
               padding: EdgeInsets.only(top: 8.0, right: 18),
               child: FeedbackButton(),
             ),
-          )
+          ),
+          ValueListenableBuilder<int>(
+            valueListenable: _loadingProgress,
+            builder: (context, value, _) {
+              if (value == 0 || value == 100) {
+                return const SizedBox.shrink();
+              }
+              return Align(
+                alignment: Alignment.bottomCenter,
+                child: SizedBox(
+                  width: double.infinity,
+                  child: LinearProgressIndicator(
+                    value: value / 100,
+                    backgroundColor: LoonoColors.beigeLight,
+                    valueColor: const AlwaysStoppedAnimation<Color>(LoonoColors.primary),
+                  ),
+                ),
+              );
+            },
+          ),
         ],
       ),
     );
