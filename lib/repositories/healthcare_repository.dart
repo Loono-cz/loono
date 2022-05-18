@@ -10,10 +10,11 @@ import 'package:loono/services/api_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/save_directories.dart';
 import 'package:loono/utils/map_utils.dart';
+import 'package:loono/utils/memoized_stream.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
-enum HealtCareSyncState { started, fetching, parsing, storing, completed, error }
+enum HealthcareSyncState { started, fetching, parsing, storing, completed, error }
 
 class HealthcareProviderRepository {
   HealthcareProviderRepository({
@@ -29,8 +30,6 @@ class HealthcareProviderRepository {
   final DatabaseService _db;
   static const int UPDATE_CHECK_INTERVAL_IN_DAYS = 21;
 
-  final _streamController = StreamController<HealtCareSyncState>.broadcast();
-
   late final Uint8List _customMarkerIcon;
 
   Uint8List get customMarkerIcon => _customMarkerIcon;
@@ -39,16 +38,14 @@ class HealthcareProviderRepository {
     _customMarkerIcon = await getMarkerIcon(31 * 3, 40 * 3);
   }
 
-  Stream<HealtCareSyncState> get healtcareProvidersStream => _streamController.stream;
-  HealtCareSyncState? _lastStreamValue;
+  final healthcareProvidersSyncMemoryStorage = MemoryStorage<HealthcareSyncState>(
+    onStateChanged: (state) => debugPrint('HEALTHCARE_PROVIDERS STREAM VALUE: $state'),
+  );
 
-  HealtCareSyncState? get lastStreamValue => _lastStreamValue;
+  MemoizedStream<HealthcareSyncState> get healthcareProvidersSyncStateStream =>
+      healthcareProvidersSyncMemoryStorage.stateStream;
 
-  void _emitStreamValue(HealtCareSyncState state) {
-    _streamController.sink.add(state);
-    _lastStreamValue = state;
-    debugPrint('HEALTHCARE_PROVIDERS STREAM VALUE $state ');
-  }
+  HealthcareSyncState? get _syncState => healthcareProvidersSyncMemoryStorage.state;
 
   /// Updates [SimpleHealthcareProvider] with new data if the current local
   /// data are not up to date or not fetched yet.
@@ -57,11 +54,11 @@ class HealthcareProviderRepository {
   Future<void> checkAndUpdateIfNeeded() async {
     await _waitForExistingUser();
     // check whether the check is already running
-    if (_lastStreamValue != null &&
-        _lastStreamValue != HealtCareSyncState.completed &&
-        _lastStreamValue != HealtCareSyncState.error) return;
+    if (_syncState != null &&
+        _syncState != HealthcareSyncState.completed &&
+        _syncState != HealthcareSyncState.error) return;
 
-    _emitStreamValue(HealtCareSyncState.started);
+    healthcareProvidersSyncMemoryStorage.setState(HealthcareSyncState.started);
     debugPrint('HEALTHCARE_PROVIDERS: check started');
     final localLatestUpdateCheck = _db.users.user?.latestMapUpdateCheck;
     final localLatestUpdate = _db.users.user?.latestMapUpdate;
@@ -72,12 +69,14 @@ class HealthcareProviderRepository {
     if (localLatestUpdate == null ||
         (serverLatestUpdate != null && serverLatestUpdate.isAfter(localLatestUpdate))) {
       final data = await _fetchAllProvidersData();
-      if (data == null) return _emitStreamValue(HealtCareSyncState.error);
+      if (data == null) {
+        return healthcareProvidersSyncMemoryStorage.setState(HealthcareSyncState.error);
+      }
       await _storeList(data, serverLatestUpdate);
     } else {
       debugPrint('HEALTHCARE_PROVIDERS: DATA ARE UP TO DATE');
     }
-    _emitStreamValue(HealtCareSyncState.completed);
+    healthcareProvidersSyncMemoryStorage.setState(HealthcareSyncState.completed);
   }
 
   Future<Iterable<SimpleHealthcareProvider>?> getHealthcareProviders() async {
@@ -130,7 +129,7 @@ class HealthcareProviderRepository {
   }
 
   Future<Uint8List?> _fetchAllProvidersData() async {
-    _emitStreamValue(HealtCareSyncState.fetching);
+    healthcareProvidersSyncMemoryStorage.setState(HealthcareSyncState.fetching);
     final healthcareApiResponse = await _apiService.getProvidersAll();
     // ignore: omit_local_variable_types
     final Uint8List? responseData = healthcareApiResponse.mapOrNull(
@@ -139,7 +138,7 @@ class HealthcareProviderRepository {
 
     if (responseData == null) return null;
     // the response returns compressed zip file which contains serialized providers.json file
-    _emitStreamValue(HealtCareSyncState.parsing);
+    healthcareProvidersSyncMemoryStorage.setState(HealthcareSyncState.parsing);
     final result = ZipDecoder().decodeBytes(responseData).first.content as Uint8List;
     return result;
   }
@@ -148,7 +147,7 @@ class HealthcareProviderRepository {
     Uint8List data,
     DateTime? serverLatestUpdate,
   ) async {
-    _emitStreamValue(HealtCareSyncState.storing);
+    healthcareProvidersSyncMemoryStorage.setState(HealthcareSyncState.storing);
     await _providersFile.writeAsString(utf8.decode(data));
     await _db.users.updateLatestMapServerUpdate(serverLatestUpdate ?? DateTime.now());
     await _db.users.updateLatestMapUpdateCheck(DateTime.now());
