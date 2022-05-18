@@ -14,6 +14,7 @@ import 'package:loono/ui/widgets/find_doctor/main_search_text_field.dart';
 import 'package:loono/ui/widgets/find_doctor/map_preview.dart';
 import 'package:loono/ui/widgets/find_doctor/specialization_chips_list.dart';
 import 'package:loono/utils/map_utils.dart';
+import 'package:loono/utils/memoized_stream.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
@@ -93,12 +94,11 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
             )
           : null,
       body: SafeArea(
-        child: StreamBuilder<HealtCareSyncState>(
-          stream: healthcareProviderRepository.healtcareProvidersStream,
-          initialData: healthcareProviderRepository.lastStreamValue,
+        child: MemoizedStreamBuilder<HealthcareSyncState>(
+          memoizedStream: healthcareProviderRepository.healthcareProvidersSyncStateStream,
           builder: (context, snapshot) {
             final healthcareSyncState = snapshot.data;
-            if (healthcareSyncState == HealtCareSyncState.completed &&
+            if (healthcareSyncState == HealthcareSyncState.completed &&
                 !_isHealthCareProvidersInMapService) {
               _setHealthcareProviders();
             }
@@ -158,7 +158,7 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                   ),
                 ],
                 if (!_isHealthCareProvidersInMapService)
-                  if (healthcareSyncState == HealtCareSyncState.error) ...[
+                  if (healthcareSyncState == HealthcareSyncState.error) ...[
                     _buildErrorIndicator(),
                     const Align(
                       alignment: Alignment.bottomLeft,
