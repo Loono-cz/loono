@@ -24,16 +24,60 @@ class WelcomeScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const SizedBox(
-                  height: 90,
+                const SizedBox(),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SvgPicture.asset(
+                      'assets/icons/welcome-logo.svg',
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    Text(
+                      context.l10n.carousel_welcome_dialog,
+                      textAlign: TextAlign.center,
+                      style: LoonoFonts.headerFontStyle,
+                    ),
+                  ],
                 ),
-                SvgPicture.asset(
-                  'assets/icons/welcome-logo.svg',
-                ),
-                Text(
-                  context.l10n.carousel_welcome_dialog,
-                  textAlign: TextAlign.center,
-                  style: LoonoFonts.headerFontStyle,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          context.l10n.incubated,
+                          textAlign: TextAlign.center,
+                          style: LoonoFonts.paragraphSmallFontStyle,
+                        ),
+                        const SizedBox(
+                          height: 9,
+                        ),
+                        SvgPicture.asset(
+                          'assets/sponsors/cd.svg',
+                          width: 105,
+                        ),
+                      ],
+                    ),
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          context.l10n.with_support,
+                          textAlign: TextAlign.center,
+                          style: LoonoFonts.paragraphSmallFontStyle,
+                        ),
+                        SvgPicture.asset(
+                          'assets/sponsors/ppf.svg',
+                          height: 73,
+                          color: const Color(0xff012D5A),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
                 Column(
                   children: [
