@@ -56,8 +56,8 @@ class WelcomeScreen extends StatelessWidget {
                         const SizedBox(
                           height: 9,
                         ),
-                        Image.asset(
-                          'assets/sponsors/cd.png',
+                        SvgPicture.asset(
+                          'assets/sponsors/cd.svg',
                           width: 105,
                         ),
                       ],
@@ -70,9 +70,10 @@ class WelcomeScreen extends StatelessWidget {
                           textAlign: TextAlign.center,
                           style: LoonoFonts.paragraphSmallFontStyle,
                         ),
-                        Image.asset(
-                          'assets/sponsors/ppf.png',
-                          height: 65,
+                        SvgPicture.asset(
+                          'assets/sponsors/ppf.svg',
+                          height: 73,
+                          color: const Color(0xff012D5A),
                         ),
                       ],
                     ),
