@@ -24,16 +24,59 @@ class WelcomeScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const SizedBox(
-                  height: 90,
+                const SizedBox(),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SvgPicture.asset(
+                      'assets/icons/welcome-logo.svg',
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    Text(
+                      context.l10n.carousel_welcome_dialog,
+                      textAlign: TextAlign.center,
+                      style: LoonoFonts.headerFontStyle,
+                    ),
+                  ],
                 ),
-                SvgPicture.asset(
-                  'assets/icons/welcome-logo.svg',
-                ),
-                Text(
-                  context.l10n.carousel_welcome_dialog,
-                  textAlign: TextAlign.center,
-                  style: LoonoFonts.headerFontStyle,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Text(
+                          'Aplikace vznikla\nv inkubátoru',
+                          textAlign: TextAlign.center,
+                          style: LoonoFonts.paragraphSmallFontStyle,
+                        ),
+                        const SizedBox(
+                          height: 9,
+                        ),
+                        Image.asset(
+                          'assets/sponsors/cd.png',
+                          width: 105,
+                        ),
+                      ],
+                    ),
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Text(
+                          'Za podpory',
+                          textAlign: TextAlign.center,
+                          style: LoonoFonts.paragraphSmallFontStyle,
+                        ),
+                        Image.asset(
+                          'assets/sponsors/ppf.png',
+                          height: 78,
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
                 Column(
                   children: [
