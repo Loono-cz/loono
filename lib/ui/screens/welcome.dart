@@ -48,8 +48,8 @@ class WelcomeScreen extends StatelessWidget {
                     Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Text(
-                          'Aplikace vznikla\nv inkubátoru',
+                        Text(
+                          context.l10n.incubated,
                           textAlign: TextAlign.center,
                           style: LoonoFonts.paragraphSmallFontStyle,
                         ),
@@ -65,8 +65,8 @@ class WelcomeScreen extends StatelessWidget {
                     Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Text(
-                          'Za podpory',
+                        Text(
+                          context.l10n.with_support,
                           textAlign: TextAlign.center,
                           style: LoonoFonts.paragraphSmallFontStyle,
                         ),

@@ -1039,5 +1039,9 @@
   "location_permission_action": "Zadat adresu ručně",
   "@location_permission_action": {},
   "allow_location": "Povolit použití lokace",
-  "@allow_location": {}
+  "@allow_location": {},
+  "with_support": "Za podpory",
+  "@with_support": {},
+  "incubated": "Aplikace vznikla\nv inkubátoru",
+  "@incubated": {}
 }
