@@ -72,7 +72,7 @@ class WelcomeScreen extends StatelessWidget {
                         ),
                         Image.asset(
                           'assets/sponsors/ppf.png',
-                          height: 78,
+                          height: 65,
                         ),
                       ],
                     ),
