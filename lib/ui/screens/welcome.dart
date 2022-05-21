@@ -42,9 +42,9 @@ class WelcomeScreen extends StatelessWidget {
                   ],
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const Spacer(),
                     Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -62,6 +62,9 @@ class WelcomeScreen extends StatelessWidget {
                         ),
                       ],
                     ),
+                    const SizedBox(
+                      width: 45,
+                    ),
                     Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -70,13 +73,16 @@ class WelcomeScreen extends StatelessWidget {
                           textAlign: TextAlign.center,
                           style: LoonoFonts.paragraphSmallFontStyle,
                         ),
+                        const SizedBox(
+                          height: 12,
+                        ),
                         SvgPicture.asset(
                           'assets/sponsors/ppf.svg',
-                          height: 73,
-                          color: const Color(0xff012D5A),
+                          height: 50,
                         ),
                       ],
                     ),
+                    const Spacer(),
                   ],
                 ),
                 Column(
