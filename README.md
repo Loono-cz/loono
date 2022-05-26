@@ -30,13 +30,12 @@ mason make pom_class
 - Internalization is done by [flutter_internalization](https://flutter.dev/docs/development/accessibility-and-localization/internationalization) plugin
 
 ## Integration Tests
-- **Make sure to <ins>clear the app's</ins> data before running the tests.** (Android)
+- The app has to run from the clean state. **Make sure to <ins>clear the app's</ins> data before running the tests.** (Android/iOS)
 - To run all frontend (UI) tests on an emulator or on a real iOS / Android device, first connect the device and run the following command from the root of the project:
 `flutter test --test-randomize-ordering-seed=random --flavor dev integration_test/test_sets/app_test.dart`.
-- Or, you can run a specific TC or a group with:
-`flutter test integration_test/test_sets/app_test.dart --plain-name "TC(LOON_437): Logout (straight path)" --flavor dev`
-- To run BE tests which test real API, add generated `CUSTOM_TOKEN` to ./assets/.env. You can run the test then with: `flutter test --flavor dev integration_test/test_sets/be_test.dart`.
-- Since the app is in active development, tests are expected to fail often. No need to fix them right away.
+- Or, you can run a specific TC (test case) or a group with:
+`flutter test integration_test/test_sets/app_test.dart --plain-name "LOON-437" --flavor dev`
+- To run BE tests which test real API, add generated `CUSTOM_TOKEN` to `./assets/.env`. You can run the test then with: `flutter test --flavor dev integration_test/test_sets/be_test.dart`. Generating [Custom Token](https://firebase.google.com/docs/auth/admin/create-custom-tokens) requires having Python SDK & an internal [Firebase Account Service JSON](https://firebase.google.com/docs/auth/admin/create-custom-tokens#using_a_service_account_json_file) file (dev environment).
 - Conventions:
     - test case implementation is inspired by POM (Page Object Model) design pattern
     - test data are created from Dart objects and not from JSON - for easier maintainability from API changes
