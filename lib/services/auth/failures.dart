@@ -7,7 +7,6 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 part 'failures.freezed.dart';
 
-const _anonymizedAppleEmailDomain = 'privaterelay.appleid.com';
 const _appleLoginNotSupportedErrCode = '0x00';
 
 extension AuthFailureMessageExt on AuthFailure {
@@ -22,11 +21,7 @@ extension AuthFailureMessageExt on AuthFailure {
       },
       noMessage: () => '',
       accountNotExists: (socialAccount) {
-        var email = socialAccount.email;
-        if (email?.endsWith(_anonymizedAppleEmailDomain) == true) {
-          // this email with such domain will not say to the user anything
-          email = null;
-        }
+        final email = socialAccount.email;
         return '${context.l10n.auth_account_not_exists_message} ${email == null ? '' : '($email).'}';
       },
       network: (message) => message ?? context.l10n.auth_network_failure_message,
