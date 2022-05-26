@@ -13,7 +13,6 @@ import 'package:loono/utils/app_config.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class NotificationService {
   NotificationService();
@@ -100,7 +99,7 @@ class NotificationService {
     if (Platform.isAndroid) {
       return true;
     }
-    return Permission.notification.request().isGranted;
+    return OneSignal.shared.promptUserForPushNotificationPermission();
   }
 
   /// Get OneSignal User ID/Token for current user.
