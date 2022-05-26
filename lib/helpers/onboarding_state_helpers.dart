@@ -1,7 +1,6 @@
 // ignore_for_file: constant_identifier_names
 import 'dart:io';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -106,19 +105,20 @@ Future<void> pushNotificationOrPreAuthMainScreen(BuildContext context) async {
   final shouldDisplayNotificationScreen = await shouldAskForNotification(
     onboardingStateService: context.read<OnboardingStateService>(),
   );
+  final globalRouter = registry.get<AppRouter>();
   if (shouldDisplayNotificationScreen) {
-    await AutoRouter.of(context).pushAll([
+    await globalRouter.pushAll([
       preAuthMainRoute,
       AllowNotificationsRoute(
-        onSkipTap: () => AutoRouter.of(context).push(preAuthMainRoute),
+        onSkipTap: () => globalRouter.push(preAuthMainRoute),
         onContinueTap: () async {
           await registry.get<NotificationService>().promptPermissions();
-          await AutoRouter.of(context).push(preAuthMainRoute);
+          await globalRouter.push(preAuthMainRoute);
         },
       ),
     ]);
   } else {
-    await AutoRouter.of(context).push(preAuthMainRoute);
+    await globalRouter.push(preAuthMainRoute);
   }
 }
 
