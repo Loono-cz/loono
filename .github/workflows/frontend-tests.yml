@@ -2,6 +2,7 @@ name: Continuous Integration / Firebase Test Lab / frontend
 on:
   push:
     branches: [ master ]
+  workflow_dispatch: # can be triggered manually
 
 env:
   flutter_version: '2.10.1'
