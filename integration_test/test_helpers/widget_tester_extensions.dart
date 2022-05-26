@@ -45,7 +45,6 @@ extension WidgetTesterExt on WidgetTester {
         );
       }
     }
-    await pump(const Duration(seconds: 1));
   }
 }
 
