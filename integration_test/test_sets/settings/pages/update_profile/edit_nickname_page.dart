@@ -23,7 +23,11 @@ class EditNicknamePage with SettingsFinders {
   Future<void> insertNickname(String nickname) async {
     logTestEvent('Insert nickname: "$nickname"');
     await tester.enterText(textField, nickname);
-    await tester.pumpAndSettle();
+    if (nickname.length <= MAX_ALLOWED_INPUT_FORM_LENGTH) {
+      await tester.pumpUntilFound(find.text(nickname));
+    } else {
+      await tester.pumpUntilFound(find.textContaining(nickname.substring(0, 50)));
+    }
   }
 
   void checkInputTextIsValid() {

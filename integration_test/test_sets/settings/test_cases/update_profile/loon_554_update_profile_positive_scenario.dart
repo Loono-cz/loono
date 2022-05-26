@@ -67,6 +67,8 @@ Future<void> run({
 
   await editNicknamePage.insertNickname(_testDataNickname);
   await editNicknamePage.clickSaveButton();
+
+  await updateProfilePage.verifyScreenIsShown();
   updateProfilePage
     ..verifyNickname(_testDataNickname)
     ..verifyEmail(defaultMaleAccount.preferredEmail);
@@ -94,6 +96,7 @@ Future<void> run({
 
   await editEmailPage.insertEmail(_testDataEmail);
   await editEmailPage.clickSaveButton();
+
   await updateProfilePage.verifyScreenIsShown();
   updateProfilePage
     ..verifyNickname(_testDataNickname)

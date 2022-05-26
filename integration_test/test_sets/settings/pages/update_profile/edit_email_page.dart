@@ -23,7 +23,11 @@ class EditEmailPage with SettingsFinders {
   Future<void> insertEmail(String email) async {
     logTestEvent('Insert email: "$email"');
     await tester.enterText(textField, email);
-    await tester.pumpAndSettle();
+    if (email.length <= MAX_ALLOWED_INPUT_FORM_LENGTH) {
+      await tester.pumpUntilFound(find.text(email));
+    } else {
+      await tester.pumpUntilFound(find.textContaining(email.substring(0, 50)));
+    }
   }
 
   void checkInputTextIsValid() {
