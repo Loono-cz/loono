@@ -77,6 +77,9 @@ Future<void> run({required WidgetTester tester}) async {
   final pointsHelpPage = PointsHelpPage(tester);
   final leaderboardPage = LeaderboardPage(tester);
 
+  await tester.pumpAndSettle();
+  await tester.pump(const Duration(seconds: 3));
+
   /// Start questionnaire and create a new account.
   await welcomePage.verifyScreenIsShown();
 
