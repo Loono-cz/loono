@@ -65,10 +65,14 @@ extension WidgetTesterExt on WidgetTester {
       }
       await pump(const Duration(milliseconds: pumpWaitInMillisecs));
       timeOutInMillisecs -= pumpWaitInMillisecs;
-      if (timeOutInMillisecs < 0 && failOnTimeout) {
-        throw Exception(
-          '${untilFound ? 'pumpUntilFound' : 'pumpUntilNotFound'} of finder "${finder.toString()}" has timeouted',
-        );
+      if (timeOutInMillisecs < 0) {
+        if (failOnTimeout) {
+          throw Exception(
+            '${untilFound ? 'pumpUntilFound' : 'pumpUntilNotFound'} of finder "${finder.toString()}" has timeouted',
+          );
+        } else {
+          break;
+        }
       }
     }
   }
