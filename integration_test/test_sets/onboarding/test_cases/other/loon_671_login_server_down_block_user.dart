@@ -24,8 +24,7 @@ Future<void> run({
   );
 
   // Server is down, an error message is shown to the user and user stays on the same (Login) page.
-  const errorMsg = 'Naše systémy mají preventivní prohlídku';
-  await tester.pumpUntilFound(find.textContaining(errorMsg));
-  await tester.pumpUntilNotFound(find.textContaining(errorMsg));
+  const errorMsg = 'naše systémy mají preventivní prohlídku';
+  await tester.waitForToastToDisappear(msgPattern: errorMsg);
   await loginPage.verifyScreenIsShown();
 }

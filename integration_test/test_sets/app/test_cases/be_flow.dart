@@ -193,9 +193,9 @@ Future<void> run({required WidgetTester tester}) async {
   await questionnaireDoctorDatePickerPage.verifyScreenIsShown(expectedScreen: DatePickerScreen);
 
   await questionnaireDoctorDatePickerPage.clickContinueButton();
+  await tester.waitForToastToDisappear();
   await examinationDetailPage.verifyScreenIsShown();
 
-  await tester.pumpUntilNotFound(find.byType(Flushbar));
   await examinationDetailPage.clickBackButton();
   await preventionPage.verifyScreenIsShown();
 
@@ -270,9 +270,9 @@ Future<void> run({required WidgetTester tester}) async {
 
   await examinationDetailPage.verifyOrderDatePickerSheetIsShown();
   examinationDetailPage.verifyTimePickerIsShown();
-  await examinationDetailPage.clickDatePickerSheetContinueButton();
 
-  await tester.pumpUntilNotFound(find.byType(Flushbar));
+  await examinationDetailPage.clickDatePickerSheetContinueButton();
+  await tester.waitForToastToDisappear(msgPattern: 'připomeneme');
   examinationDetailPage.verifyCalendarButtonIsShown();
 
   await examinationDetailPage.clickBackButton();
@@ -286,7 +286,7 @@ Future<void> run({required WidgetTester tester}) async {
   await examinationDetailPage.verifyScreenIsShown();
 
   await examinationDetailPage.cancelCheckup();
-  await tester.pumpUntilNotFound(find.byType(Flushbar));
+  await tester.waitForToastToDisappear(msgPattern: 'byla zrušena');
   examinationDetailPage
     ..verifyOrderButtonIsShown()
     ..verifyIsFirstAwaitingVisit();

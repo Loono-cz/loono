@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 
 import '../../../../setup.dart' as app;
+import '../../../../test_helpers/widget_tester_extensions.dart';
 import '../../../app/pages/login_page.dart';
 import '../../../app/pages/welcome_page.dart';
 import '../../../app/test_data/fake_healthcare_provider_response.dart';
@@ -43,13 +44,12 @@ Future<void> run({required WidgetTester tester, required Charlatan charlatan}) a
   // when age < 19
   await questionnaireBirthDatePage.scrollToApproxYear(DateTime.now().year - 5);
 
-  // TODO: check for SnackBar error message
   // should not transition to next screen - due to age
   await questionnaireBirthDatePage.clickContinueButton();
+
+  // wait for toast error message to disappear
+  await tester.waitForToastToDisappear();
   await questionnaireBirthDatePage.verifyScreenIsShown();
-  // wait for error message to disappear
-  await tester.pump(const Duration(seconds: 8));
-  await tester.pump(const Duration(seconds: 4));
 
   // skip onboarding form, progress bar should have progress
   await questionnaireBirthDatePage.clickSkipQuestionnaireButton();
