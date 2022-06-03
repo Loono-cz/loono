@@ -10,13 +10,24 @@ extension ExaminationTypeExt on ExaminationType {
     switch (this) {
       case ExaminationType.GENERAL_PRACTITIONER:
       case ExaminationType.GYNECOLOGIST:
+      case ExaminationType.DERMATOLOGIST:
         return 200;
       case ExaminationType.DENTIST:
+      case ExaminationType.UROLOGIST:
         return 300;
-      // TODO: Add the rest of ExaminationTypes
-      default:
+      case ExaminationType.COLONOSCOPY:
+        return 1000;
+      case ExaminationType.MAMMOGRAM:
+      case ExaminationType.TOKS:
+        return 500;
+      case ExaminationType.OPHTHALMOLOGIST:
+      case ExaminationType.ULTRASOUND_BREAST:
+        return 100;
+      case ExaminationType.VENEREAL_DISEASES:
+        // TODO: Handle this case.
         return 0;
     }
+    return 0;
   }
 
   ExaminationTypeUnion get mapToUnion {
