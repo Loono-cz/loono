@@ -22,8 +22,9 @@ void showConfirmationSheet(
   BuildContext context,
   ExaminationType examinationType,
   Sex sex,
-  String? uuid,
-) {
+  String? uuid, {
+  int? awardPoints,
+}) {
   final practitioner =
       procedureQuestionTitle(context, examinationType: examinationType).toLowerCase();
   final preposition = czechPreposition(context, examinationType: examinationType);
@@ -71,7 +72,7 @@ void showConfirmationSheet(
                       AchievementRoute(
                         header: getAchievementTitle(context, examinationType),
                         textLines: [l10n.award_desc],
-                        numberOfPoints: examinationType.awardPoints,
+                        numberOfPoints: awardPoints ?? examinationType.awardPoints,
                         itemPath: getAchievementAssetPath(examinationType),
                         onButtonTap: _completedAction,
                       ),

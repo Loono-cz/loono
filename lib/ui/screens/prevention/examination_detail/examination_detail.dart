@@ -344,6 +344,8 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                                         widget.categorizedExamination.examination.examinationType,
                                         _sex,
                                         widget.categorizedExamination.examination.uuid,
+                                        awardPoints:
+                                            widget.categorizedExamination.examination.points,
                                       );
                                     },
                                   ),
