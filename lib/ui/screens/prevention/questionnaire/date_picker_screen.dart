@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/screens/onboarding/preventive_examination_date_picker.dart';
+
+import '../../../../helpers/flushbar_message.dart';
 
 class DatePickerScreen extends StatefulWidget {
   const DatePickerScreen({
@@ -53,7 +56,17 @@ class _DatePickerScreenState extends State<DatePickerScreen> {
         onSkipButtonPress: () => widget.onSkipButtonPress?.call(DateTime.now()),
         onContinueButtonPress: () {
           if (selectedDate == null) return;
-          widget.onContinueButtonPress?.call(selectedDate!);
+
+          final today = DateTime.now();
+          if (selectedDate!.year >= today.year && selectedDate!.month > today.month) {
+            showFlushBarError(
+              context,
+              context.l10n.datepicker_error_user_input,
+              sync: false,
+            );
+          } else {
+            widget.onContinueButtonPress?.call(selectedDate!);
+          }
         },
       ),
     );

@@ -7,6 +7,8 @@ import 'package:loono/ui/screens/onboarding/preventive_examination_date_picker.d
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
+import '../../../../helpers/flushbar_message.dart';
+
 class GynecologyDateScreen extends StatefulWidget {
   const GynecologyDateScreen({Key? key}) : super(key: key);
 
@@ -29,11 +31,21 @@ class _GynecologyDateScreenState extends State<GynecologyDateScreen> {
       onDateChanged: (value) => selectedDate = value,
       onContinueButtonPress: () async {
         if (selectedDate == null) return;
-        await _examinationsQuestionnairesDao.updateLastVisitDate(
-          _type,
-          dateWithoutDay:
-              DateWithoutDay(month: monthFromInt(selectedDate!.month), year: selectedDate!.year),
-        );
+
+        final today = DateTime.now();
+        if (selectedDate!.year >= today.year && selectedDate!.month > today.month) {
+          showFlushBarError(
+            context,
+            context.l10n.datepicker_error_user_input,
+            sync: false,
+          );
+        } else {
+          await _examinationsQuestionnairesDao.updateLastVisitDate(
+            _type,
+            dateWithoutDay:
+                DateWithoutDay(month: monthFromInt(selectedDate!.month), year: selectedDate!.year),
+          );
+        }
       },
       onSkipButtonPress: () async => _examinationsQuestionnairesDao.setDontKnowLastVisitDate(_type),
     );
