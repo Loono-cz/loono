@@ -56,9 +56,7 @@ class _DatePickerScreenState extends State<DatePickerScreen> {
         onSkipButtonPress: () => widget.onSkipButtonPress?.call(DateTime.now()),
         onContinueButtonPress: () {
           if (selectedDate == null) return;
-
-          final today = DateTime.now();
-          if (selectedDate!.year >= today.year && selectedDate!.month > today.month) {
+          if (selectedDate?.isAfter(DateTime.now()) ?? true) {
             showFlushBarError(
               context,
               context.l10n.datepicker_error_user_input,

@@ -32,9 +32,7 @@ class _DentistDateScreenState extends State<DentistDateScreen> {
       onDateChanged: (value) => selectedDate = value,
       onContinueButtonPress: () async {
         if (selectedDate == null) return;
-
-        final today = DateTime.now();
-        if (selectedDate!.year >= today.year && selectedDate!.month > today.month) {
+        if (selectedDate?.isAfter(DateTime.now()) ?? true) {
           showFlushBarError(
             context,
             context.l10n.datepicker_error_user_input,
