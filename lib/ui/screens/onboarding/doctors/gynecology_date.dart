@@ -35,7 +35,6 @@ class _GynecologyDateScreenState extends State<GynecologyDateScreen> {
           showFlushBarError(
             context,
             context.l10n.datepicker_error_user_input,
-            sync: false,
           );
         } else {
           await _examinationsQuestionnairesDao.updateLastVisitDate(

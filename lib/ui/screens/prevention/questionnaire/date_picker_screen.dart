@@ -60,7 +60,6 @@ class _DatePickerScreenState extends State<DatePickerScreen> {
             showFlushBarError(
               context,
               context.l10n.datepicker_error_user_input,
-              sync: false,
             );
           } else {
             widget.onContinueButtonPress?.call(selectedDate!);

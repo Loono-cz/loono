@@ -35,7 +35,6 @@ class _GeneralPractitionerDateScreenState extends State<GeneralPractitionerDateS
           showFlushBarError(
             context,
             context.l10n.datepicker_error_user_input,
-            sync: false,
           );
         } else {
           await _examinationsQuestionnairesDao.updateLastVisitDate(
