@@ -158,7 +158,7 @@ class SelfExaminationCard extends StatelessWidget {
     required String subtitle,
     bool hasPriority = false,
   }) {
-    final validStatuses = selfExamination.history.reversed.where(
+    final validStatuses = selfExamination.history.where(
       (item) => item == SelfExaminationStatus.COMPLETED || item == SelfExaminationStatus.PLANNED,
     );
 
