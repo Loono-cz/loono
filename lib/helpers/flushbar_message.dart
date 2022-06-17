@@ -1,6 +1,7 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/l10n/ext.dart';
 
 Flushbar<dynamic> _showFlushBar(BuildContext context, String message, Color bgColor) {
   return Flushbar<dynamic>(
@@ -40,9 +41,30 @@ Object showFlushBarError(
   bool sync = true,
 }) {
   if (message.isEmpty) return Object;
-  if (sync) return _showFlushBar(context, message, LoonoColors.red);
+  if (sync) {
+    return _showFlushBar(
+      context,
+      message,
+      LoonoColors.red,
+    );
+  }
   return Future.delayed(
     const Duration(),
-    () => _showFlushBar(context, message, LoonoColors.red),
+    () => _showFlushBar(
+      context,
+      message,
+      LoonoColors.red,
+    ),
   );
+}
+
+String statusCodeToText(BuildContext context, int? statusCode) {
+  final l10n = context.l10n;
+  var result = l10n.something_went_wrong;
+  switch (statusCode) {
+    case 422:
+      result = l10n.too_early_checkup;
+      break;
+  }
+  return result;
 }

@@ -106,7 +106,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
         ? DateFormat.yMMMM('cs-CZ').format(
             DateTime(lastVisitDateWithoutDay.year, lastVisitDateWithoutDay.month),
           )
-        : context.l10n.skip_idk;
+        : l10n.skip_idk;
 
     final practitioner =
         procedureQuestionTitle(context, examinationType: _examinationType).toLowerCase();
@@ -128,10 +128,16 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
           Provider.of<ExaminationsProvider>(context, listen: false)
               .updateExaminationsRecord(res.data);
           AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
-          showFlushBarSuccess(context, context.l10n.checkup_reminder_toast);
+          showFlushBarSuccess(context, l10n.checkup_reminder_toast);
         },
         failure: (err) {
-          showFlushBarError(context, context.l10n.something_went_wrong);
+          showFlushBarError(
+            context,
+            statusCodeToText(
+              context,
+              err.error.response?.statusCode,
+            ),
+          );
         },
       );
     }

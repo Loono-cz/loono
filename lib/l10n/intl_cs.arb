@@ -1045,5 +1045,7 @@
   "with_support": "Za podpory",
   "@with_support": {},
   "incubated": "Aplikace vznikla\nv inkubátoru",
-  "@incubated": {}
+  "@incubated": {},
+  "too_early_checkup": "Ještě není čas se objednat",
+  "@too_early_checkup": {}
 }
