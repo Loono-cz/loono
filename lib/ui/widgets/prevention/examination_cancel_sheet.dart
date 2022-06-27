@@ -82,6 +82,7 @@ void showCancelExaminationSheet({
                 height: 60,
               ),
               AsyncLoonoApiButton(
+                key: const Key('cancelCheckUpSheet_btn_cancelCheckUp'),
                 text: context.l10n.cancel_checkup,
                 asyncCallback: () async {
                   /// code anchor: #postCancelExamiantion

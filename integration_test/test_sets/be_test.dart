@@ -4,6 +4,7 @@ import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/utils/registry.dart';
 
+import '../test_helpers/e2e_action_logging.dart';
 import '../test_helpers/post_app_clear.dart';
 import 'app/test_cases/be_flow.dart' as be_test1;
 
@@ -28,7 +29,10 @@ void main() {
 
     testWidgets(
       'TC(BE-1): Basic signup and post-signup flow',
-      (tester) async => be_test1.run(tester: tester),
+      (tester) async {
+        logTestStart('be_test1');
+        await be_test1.run(tester: tester);
+      },
     );
   });
 }

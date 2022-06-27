@@ -31,7 +31,7 @@ Future<void> run({
   await updateProfilePage.verifyScreenIsShown();
 
   await updateProfilePage.clickLogoutButton();
-  await updateProfilePage.verifyConfirmationDialogIsShown();
+  await updateProfilePage.verifyConfirmationDialogVisibilityState(isShown: true);
 
   await updateProfilePage.confirmLogoutDialog();
   await logoutPage.verifyScreenIsShown();

@@ -57,6 +57,7 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
       key: const Key('editCheckUpDateSheet'),
       actions: <CupertinoActionSheetAction>[
         CupertinoActionSheetAction(
+          key: const Key('editCheckUpDateSheet_action_cancelCheckUp'),
           isDestructiveAction: true,
           onPressed: () {
             final examinationUuid = examination.examination.uuid;
@@ -76,6 +77,7 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
           child: Text(pageContext.l10n.cancel_checkup),
         ),
         CupertinoActionSheetAction(
+          key: const Key('editCheckUpDateSheet_action_editDateCheckUp'),
           child: Text(
             pageContext.l10n.edit_checkup,
             style: const TextStyle(color: Colors.black),

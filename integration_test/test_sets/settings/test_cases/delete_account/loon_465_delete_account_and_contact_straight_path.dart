@@ -34,7 +34,7 @@ Future<void> run({
 
   await updateProfilePage.clickDeleteAccountButton();
   await deleteAccountPage.verifyScreenIsShown();
-  await deleteAccountPage.verifyDeleteAccountButtonIsNotShown();
+  await deleteAccountPage.verifyDeleteAccountButtonVisibilityState(isShown: false);
 
   deleteAccountPage.verifyCheckBoxStates(
     isDeleteCheckupsCheckBoxChecked: false,
@@ -48,11 +48,11 @@ Future<void> run({
     isDeleteBadgesCheckBoxChecked: false,
     isStopNotificationsCheckBoxChecked: false,
   );
-  await deleteAccountPage.verifyDeleteAccountButtonIsNotShown();
+  await deleteAccountPage.verifyDeleteAccountButtonVisibilityState(isShown: false);
   await tester.pump(const Duration(seconds: 1));
 
   await deleteAccountPage.clickDeleteBadgesCheckBox();
-  await deleteAccountPage.verifyDeleteAccountButtonIsNotShown();
+  await deleteAccountPage.verifyDeleteAccountButtonVisibilityState(isShown: false);
   deleteAccountPage.verifyCheckBoxStates(
     isDeleteCheckupsCheckBoxChecked: true,
     isDeleteBadgesCheckBoxChecked: true,
@@ -67,10 +67,10 @@ Future<void> run({
     isStopNotificationsCheckBoxChecked: true,
   );
   await tester.pump(const Duration(seconds: 1));
-  await deleteAccountPage.verifyDeleteAccountButtonIsShown();
+  await deleteAccountPage.verifyDeleteAccountButtonVisibilityState(isShown: true);
 
   await deleteAccountPage.clickDeleteAccountButton();
-  await deleteAccountPage.verifyConfirmationDialogIsShown();
+  await deleteAccountPage.verifyDeleteAccountDialogVisibilityState(isShown: true);
 
   // fake /delete API response
   charlatan.whenDelete('/account', (_) => CharlatanHttpResponse(statusCode: 200));

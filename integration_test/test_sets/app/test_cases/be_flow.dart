@@ -23,6 +23,8 @@ import '../../onboarding/pages/questionnaire/doctor_date_picker_page.dart';
 import '../../onboarding/pages/questionnaire/gender_page.dart';
 import '../../onboarding/pages/sign_up_email_page.dart';
 import '../../onboarding/pages/sign_up_nickname_page.dart';
+import '../../prevention/flows/cancel_checkup_flow.dart';
+import '../../prevention/flows/new_appointment_flow.dart';
 import '../../prevention/pages/examination/examination_detail_page.dart';
 import '../../prevention/pages/prevention_main_page.dart';
 import '../../prevention/pages/self_examination/detail/how_it_went_modal_page.dart';
@@ -155,7 +157,7 @@ Future<void> run({required WidgetTester tester}) async {
   await selfExaminationDetailPage.verifyScreenIsShown();
 
   await selfExaminationDetailPage.clickSelfExaminationPerformedButton();
-  await howItWentModalPage.verifyModalIsShown();
+  await howItWentModalPage.verifyHowItWentModalVisibilityState(isShown: true);
 
   await howItWentModalPage.clickOkButton();
   await noFindingRewardPage.verifyScreenIsShown();
@@ -242,7 +244,8 @@ Future<void> run({required WidgetTester tester}) async {
   );
   //////////////////////////////////////////////////////////////////////////////
 
-  /////// LOON-592: Order for a check-up and delete it afterward.
+  /////// LOON-592: Order for a check-up and cancel it afterward.
+  // Ordering for a check-up:
   await preventionPage.verifyExaminationCardIsInCategory(
     ExaminationType.OPHTHALMOLOGIST,
     expectedCategoryName: 'Objednej se',
@@ -254,28 +257,12 @@ Future<void> run({required WidgetTester tester}) async {
     ..verifyOrderButtonIsShown()
     ..verifyIsFirstAwaitingVisit();
 
-  await examinationDetailPage.clickOrderButton();
-  await examinationDetailPage.verifyOrderSheetIsShown();
-
-  await examinationDetailPage.clickIHaveDoctorOrderSheetButton();
-  await examinationDetailPage.verifyOrderInstructionsSheetIsShown();
-
-  await examinationDetailPage.clickIHaveAppointmentOrderInstructionsSheetButton();
-  await examinationDetailPage.verifyOrderDatePickerSheetIsShown();
-
-  examinationDetailPage.verifyDatePickerIsShown();
-  await examinationDetailPage.datePickerSheetPickNextMonth();
-  await examinationDetailPage.clickDatePickerSheetContinueButton();
-
-  await examinationDetailPage.verifyOrderDatePickerSheetIsShown();
-  examinationDetailPage.verifyTimePickerIsShown();
-
-  await examinationDetailPage.clickDatePickerSheetContinueButton();
-  await tester.waitForToastToDisappear(msgPattern: 'připomeneme');
-  examinationDetailPage.verifyCalendarButtonIsShown();
+  await newAppointmentFlow(tester: tester);
 
   await examinationDetailPage.clickBackButton();
   await preventionPage.verifyScreenIsShown();
+
+  // Cancelling a check-up:
   await preventionPage.verifyExaminationCardIsInCategory(
     ExaminationType.OPHTHALMOLOGIST,
     expectedCategoryName: 'Běž na prohlídku',
@@ -284,7 +271,7 @@ Future<void> run({required WidgetTester tester}) async {
   await preventionPage.clickExaminationCard(ExaminationType.OPHTHALMOLOGIST);
   await examinationDetailPage.verifyScreenIsShown();
 
-  await examinationDetailPage.cancelCheckup();
+  await cancelCheckUpFlow(tester: tester);
   await tester.waitForToastToDisappear(msgPattern: 'byla zrušena');
   examinationDetailPage
     ..verifyOrderButtonIsShown()

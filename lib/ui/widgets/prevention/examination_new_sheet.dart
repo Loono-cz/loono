@@ -43,7 +43,7 @@ void showNewCheckupSheetStep1(
             ),
             const SizedBox(height: 60),
             LoonoButton.light(
-              key: const Key('examinationDetailPage_orderSheet_btn_iHaveDoctor'),
+              key: const Key('examinationDetailPage_orderSheet_btn_alreadyHaveDoctor'),
               text: '${l10n.i_have} ${examinationTypeCasus(
                 context,
                 casus: Casus.genitiv,
@@ -100,7 +100,7 @@ void showNewCheckupSheetStep2(
     ),
     builder: (BuildContext context) {
       return LoonBottomSheet(
-        key: const Key('examinationDetailPage_orderInstructionsSheet'),
+        key: const Key('examinationDetailPage_orderSheet2'),
         sheetHeight: 470,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -153,6 +153,7 @@ void showNewCheckupSheetStep2(
             const CirceNumber(2),
             const SizedBox(height: 20),
             LoonoButton(
+              key: const Key('examinationDetailPage_orderSheet2_btn_haveAppointment'),
               text: l10n.examination_i_have_appointment_button,
               onTap: () {
                 AutoRouter.of(context).popForced();

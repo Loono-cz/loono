@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/screens/main/pre_auth/login.dart';
 import 'package:loono/ui/widgets/social_login_button.dart';
 
+import '../../../test_helpers/e2e_action_logging.dart';
 import '../../../test_helpers/widget_tester_extensions.dart';
 
 /// * Corresponding screen: [LoginScreen]

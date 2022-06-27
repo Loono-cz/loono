@@ -96,7 +96,7 @@ Future<void> run({
     );
 
   await selfExaminationDetailPage.clickSelfExaminationPerformedButton();
-  await howItWentModalPage.verifyModalIsShown();
+  await howItWentModalPage.verifyHowItWentModalVisibilityState(isShown: true);
 
   await howItWentModalPage.clickHasFindingButton();
   await hasFindingPage.verifyScreenIsShown();

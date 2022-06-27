@@ -37,12 +37,12 @@ Future<void> run({
   await tester.pump(const Duration(seconds: 1));
 
   await deleteAccountPage.clickDeleteBadgesCheckBox();
-  await deleteAccountPage.verifyDeleteAccountButtonIsNotShown();
+  await deleteAccountPage.verifyDeleteAccountButtonVisibilityState(isShown: false);
 
   // all three checkboxes are checked, delete button appears
   await deleteAccountPage.clickStopNotificationsCheckBox();
   await tester.pump(const Duration(seconds: 1));
-  await deleteAccountPage.verifyDeleteAccountButtonIsShown();
+  await deleteAccountPage.verifyDeleteAccountButtonVisibilityState(isShown: true);
 
   // close screen
   // TODO: should be modal and should be PreventionScreen / MainScreen
