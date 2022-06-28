@@ -4,6 +4,7 @@ import 'package:loono/ui/screens/prevention/self_examination/detail_screen.dart'
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/widget_expansion_tile.dart';
 
+import '../../../../../test_helpers/e2e_action_logging.dart';
 import '../../../../../test_helpers/find_text_span.dart';
 import '../../../../../test_helpers/widget_tester_extensions.dart';
 

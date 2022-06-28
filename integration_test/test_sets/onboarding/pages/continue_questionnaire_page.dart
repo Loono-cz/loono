@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/screens/main/pre_auth/continue_onboarding_form.dart';
 import 'package:loono/ui/widgets/button.dart';
 
+import '../../../test_helpers/e2e_action_logging.dart';
 import '../../../test_helpers/widget_tester_extensions.dart';
 
 /// * Corresponding screen: [ContinueOnboardingFormScreen]

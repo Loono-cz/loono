@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/screens/main/pre_auth/onboarding_form_done.dart';
 
+import '../../../test_helpers/e2e_action_logging.dart';
+// ignore: duplicate_import
+import '../../../test_helpers/e2e_action_logging.dart';
 import '../../../test_helpers/widget_tester_extensions.dart';
 
 /// * Corresponding screen: [OnboardingFormDoneScreen]

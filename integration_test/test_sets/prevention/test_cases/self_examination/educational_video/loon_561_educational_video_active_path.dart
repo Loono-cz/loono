@@ -43,13 +43,13 @@ Future<void> run({
   await selfExaminationDetailPage.clickHowToSelfExamButton();
   await educationalVideoPage.verifyScreenIsShown();
   await educationalVideoPage.verifyVideoIsShown();
-  educationalVideoPage.verifySelfExaminationPerformedButtonIsShown();
+  educationalVideoPage.verifySelfExaminationPerformedButtonVisibilityState(isShown: true);
 
   await educationalVideoPage.clickSelfExamPerformedButton();
   await selfExaminationDetailPage.verifyScreenIsShown();
-  await howItWentModalPage.verifyModalIsShown();
+  await howItWentModalPage.verifyHowItWentModalVisibilityState(isShown: true);
 
   await howItWentModalPage.closeModal();
   await selfExaminationDetailPage.verifyScreenIsShown();
-  await howItWentModalPage.verifyModalIsNotShown();
+  await howItWentModalPage.verifyHowItWentModalVisibilityState(isShown: false);
 }

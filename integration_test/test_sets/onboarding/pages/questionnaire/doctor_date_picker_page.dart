@@ -6,6 +6,7 @@ import 'package:loono/ui/screens/onboarding/doctors/gynecology_date.dart';
 import 'package:loono/ui/widgets/button.dart';
 
 import '../../../../test_helpers/common_finders.dart';
+import '../../../../test_helpers/e2e_action_logging.dart';
 import '../../../../test_helpers/widget_tester_extensions.dart';
 
 /// * Corresponding screen is either:

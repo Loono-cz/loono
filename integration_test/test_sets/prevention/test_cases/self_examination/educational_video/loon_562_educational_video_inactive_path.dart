@@ -54,5 +54,5 @@ Future<void> run({
   await selfExaminationDetailPage.clickHowToSelfExamButton();
   await educationalVideoPage.verifyScreenIsShown();
   await educationalVideoPage.verifyVideoIsShown();
-  educationalVideoPage.verifySelfExaminationPerformedButtonIsNotShown();
+  educationalVideoPage.verifySelfExaminationPerformedButtonVisibilityState(isShown: false);
 }

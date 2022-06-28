@@ -31,7 +31,7 @@ Future<void> run({
 
   await updateProfilePage.clickDeleteAccountButton();
   await deleteAccountPage.verifyScreenIsShown();
-  await deleteAccountPage.verifyDeleteAccountButtonIsNotShown();
+  await deleteAccountPage.verifyDeleteAccountButtonVisibilityState(isShown: false);
 
   await deleteAccountPage.clickDeleteCheckupsCheckBox();
   await deleteAccountPage.clickDeleteBadgesCheckBox();
@@ -39,12 +39,12 @@ Future<void> run({
   // all three checkboxes are checked, delete button appears
   await deleteAccountPage.clickStopNotificationsCheckBox();
   await tester.pump(const Duration(seconds: 1));
-  await deleteAccountPage.verifyDeleteAccountButtonIsShown();
+  await deleteAccountPage.verifyDeleteAccountButtonVisibilityState(isShown: true);
 
   await deleteAccountPage.clickDeleteAccountButton();
-  await deleteAccountPage.verifyConfirmationDialogIsShown();
+  await deleteAccountPage.verifyDeleteAccountDialogVisibilityState(isShown: true);
 
   await deleteAccountPage.cancelDeleteAccountDialog();
-  await deleteAccountPage.verifyConfirmationDialogIsNotShown();
+  await deleteAccountPage.verifyDeleteAccountDialogVisibilityState(isShown: false);
   await deleteAccountPage.verifyScreenIsShown();
 }

@@ -6,10 +6,12 @@ import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/settings/checkbox.dart';
 
 import '../../../../test_helpers/common_finders.dart';
+import '../../../../test_helpers/e2e_action_logging.dart';
+import '../../../../test_helpers/pom_class_helpers.dart';
 import '../../../../test_helpers/widget_tester_extensions.dart';
 
 /// * Corresponding screen: [DeleteAccountScreen]
-class DeleteAccountPage with SettingsFinders {
+class DeleteAccountPage with SettingsFinders, PomClassHelpers {
   DeleteAccountPage(this.tester);
 
   final WidgetTester tester;
@@ -106,25 +108,19 @@ class DeleteAccountPage with SettingsFinders {
     await tester.pumpAndSettle();
   }
 
-  Future<void> verifyConfirmationDialogIsShown() async {
-    logTestEvent();
-    await tester.pumpUntilFound(deleteAccountDialog);
-  }
+  VerifyVisibilityState get verifyDeleteAccountDialogVisibilityState =>
+      getVerifyVisibilityStateFunction(
+        finder: deleteAccountDialog,
+        widgetName: 'Delete account dialog',
+        widgetTester: tester,
+      );
 
-  Future<void> verifyConfirmationDialogIsNotShown() async {
-    logTestEvent();
-    await tester.pumpUntilNotFound(deleteAccountDialog);
-  }
-
-  Future<void> verifyDeleteAccountButtonIsShown() async {
-    logTestEvent();
-    await tester.pumpUntilFound(deleteAccountBtn);
-  }
-
-  Future<void> verifyDeleteAccountButtonIsNotShown() async {
-    logTestEvent();
-    await tester.pumpUntilNotFound(deleteAccountBtn);
-  }
+  VerifyVisibilityState get verifyDeleteAccountButtonVisibilityState =>
+      getVerifyVisibilityStateFunction(
+        finder: deleteAccountBtn,
+        widgetName: 'Delete account button',
+        widgetTester: tester,
+      );
 
   bool _isCheckBoxChecked(Finder finder) {
     final checkBox = tester.widget<CheckboxCustom>(finder);

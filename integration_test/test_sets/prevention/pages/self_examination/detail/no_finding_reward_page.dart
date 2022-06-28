@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/screens/prevention/self_examination/no_finding_screen.dart';
 
+import '../../../../../test_helpers/e2e_action_logging.dart';
 import '../../../../../test_helpers/widget_tester_extensions.dart';
 
 /// * Corresponding screen: [NoFindingScreen]

@@ -2,10 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/widgets/prevention/self_examination/how_it_went_sheet.dart';
 
-import '../../../../../test_helpers/widget_tester_extensions.dart';
+import '../../../../../test_helpers/e2e_action_logging.dart';
+import '../../../../../test_helpers/pom_class_helpers.dart';
 
 /// * Corresponding modal: [showHowItWentSheet]
-class HowItWentModalPage {
+class HowItWentModalPage with PomClassHelpers {
   HowItWentModalPage(this.tester);
 
   final WidgetTester tester;
@@ -29,15 +30,11 @@ class HowItWentModalPage {
     await tester.pumpAndSettle();
   }
 
-  Future<void> verifyModalIsShown() async {
-    logTestEvent();
-    await tester.pumpUntilFound(modalContent);
-  }
-
-  Future<void> verifyModalIsNotShown() async {
-    logTestEvent();
-    await tester.pumpUntilNotFound(modalContent);
-  }
+  VerifyVisibilityState get verifyHowItWentModalVisibilityState => getVerifyVisibilityStateFunction(
+        finder: modalContent,
+        widgetName: 'How it went modal',
+        widgetTester: tester,
+      );
 
   Future<void> closeModal() async {
     logTestEvent();

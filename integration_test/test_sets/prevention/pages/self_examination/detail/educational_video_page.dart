@@ -2,10 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/screens/prevention/self_examination/educational_screen.dart';
 
+import '../../../../../test_helpers/e2e_action_logging.dart';
+import '../../../../../test_helpers/pom_class_helpers.dart';
 import '../../../../../test_helpers/widget_tester_extensions.dart';
 
 /// * Corresponding screen: [EducationalVideoScreen]
-class EducationalVideoPage {
+class EducationalVideoPage with PomClassHelpers {
   EducationalVideoPage(this.tester);
 
   final WidgetTester tester;
@@ -34,15 +36,11 @@ class EducationalVideoPage {
     await tester.pumpUntilFound(video);
   }
 
-  void verifySelfExaminationPerformedButtonIsShown() {
-    logTestEvent();
-    expect(selfExamPerformedBtn, findsOneWidget);
-  }
-
-  void verifySelfExaminationPerformedButtonIsNotShown() {
-    logTestEvent();
-    expect(selfExamPerformedBtn, findsNothing);
-  }
+  VerifyVisibilityState get verifySelfExaminationPerformedButtonVisibilityState =>
+      getVerifyVisibilityStateFunction(
+        finder: selfExamPerformedBtn,
+        widgetName: 'Self examination performed button',
+      );
 
   Future<void> verifyScreenIsShown() async {
     logTestEvent();

@@ -1,8 +1,6 @@
 import 'package:another_flushbar/flushbar.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:stack_trace/stack_trace.dart';
 
 const _defaultTimeout = Duration(seconds: 6);
 
@@ -74,17 +72,6 @@ extension WidgetTesterExt on WidgetTester {
           break;
         }
       }
-    }
-  }
-}
-
-extension LogExt on Object {
-  void logTestEvent([String? event]) {
-    if (event != null) {
-      debugPrint('$runtimeType: $event');
-    } else {
-      final stackTraceMethodCall = Trace.current(1).frames.firstOrNull?.member;
-      debugPrint(stackTraceMethodCall ?? '$runtimeType: unknown method');
     }
   }
 }

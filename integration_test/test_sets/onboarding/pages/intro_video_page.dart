@@ -4,6 +4,7 @@ import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/intro_video.dart';
 import 'package:video_player/video_player.dart';
 
+import '../../../test_helpers/e2e_action_logging.dart';
 import '../../../test_helpers/widget_tester_extensions.dart';
 
 /// * Corresponding screen: [IntroVideo]

@@ -4,10 +4,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/screens/settings/update_profile.dart';
 
 import '../../../../test_helpers/common_finders.dart';
+import '../../../../test_helpers/e2e_action_logging.dart';
+import '../../../../test_helpers/pom_class_helpers.dart';
 import '../../../../test_helpers/widget_tester_extensions.dart';
 
 /// * Corresponding screen: [UpdateProfileScreen]
-class UpdateProfilePage with SettingsFinders {
+class UpdateProfilePage with SettingsFinders, PomClassHelpers {
   UpdateProfilePage(this.tester);
 
   final WidgetTester tester;
@@ -135,15 +137,12 @@ class UpdateProfilePage with SettingsFinders {
     expect(emailText, findsOneWidget);
   }
 
-  Future<void> verifyConfirmationDialogIsShown() async {
-    logTestEvent();
-    await tester.pumpUntilFound(confirmationDialog);
-  }
-
-  Future<void> verifyConfirmationDialogIsNotShown() async {
-    logTestEvent();
-    await tester.pumpUntilNotFound(confirmationDialog);
-  }
+  VerifyVisibilityState get verifyConfirmationDialogVisibilityState =>
+      getVerifyVisibilityStateFunction(
+        finder: confirmationDialog,
+        widgetName: 'Confirmation dialog',
+        widgetTester: tester,
+      );
 
   Future<void> verifyScreenIsShown() async {
     logTestEvent();
