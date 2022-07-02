@@ -3,7 +3,7 @@ import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 
 extension PreventDate on DateTime {
-  bool isPast(BuildContext context) {
+  bool datePickerIsPast(BuildContext context) {
     if (isAfter(DateTime.now())) {
       showFlushBarError(
         context,

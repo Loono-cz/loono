@@ -30,7 +30,7 @@ class _GynecologyDateScreenState extends State<GynecologyDateScreen> {
       onDateChanged: (value) => selectedDate = value,
       onContinueButtonPress: () async {
         if (selectedDate == null) return;
-        if (selectedDate!.isPast(context)) {
+        if (selectedDate!.datePickerIsPast(context)) {
           await _examinationsQuestionnairesDao.updateLastVisitDate(
             _type,
             dateWithoutDay:

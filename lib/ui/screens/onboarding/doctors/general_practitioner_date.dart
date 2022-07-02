@@ -30,7 +30,7 @@ class _GeneralPractitionerDateScreenState extends State<GeneralPractitionerDateS
       onDateChanged: (value) => selectedDate = value,
       onContinueButtonPress: () async {
         if (selectedDate == null) return;
-        if (selectedDate!.isPast(context)) {
+        if (selectedDate!.datePickerIsPast(context)) {
           await _examinationsQuestionnairesDao.updateLastVisitDate(
             _type,
             dateWithoutDay:

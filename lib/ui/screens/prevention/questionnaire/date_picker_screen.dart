@@ -54,7 +54,7 @@ class _DatePickerScreenState extends State<DatePickerScreen> {
         onSkipButtonPress: () => widget.onSkipButtonPress?.call(DateTime.now()),
         onContinueButtonPress: () {
           if (selectedDate == null) return;
-          if (selectedDate!.isPast(context)) {
+          if (selectedDate!.datePickerIsPast(context)) {
             widget.onContinueButtonPress?.call(selectedDate!);
           }
         },
