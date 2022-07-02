@@ -7,7 +7,7 @@ extension PreventDate on DateTime {
     if (isAfter(DateTime.now())) {
       showFlushBarError(
         context,
-        context.l10n.datepicker_error_user_input,
+        context.l10n.datepicker_error_is_future,
       );
       return false;
     }
