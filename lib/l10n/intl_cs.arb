@@ -490,6 +490,8 @@
   "@faq_gynecologist_pain_answer": {},
   "faq_gynecologist_do_more_answer": "Nech se očkovat proti HPV. Vybrat si můžeš ze 3 vakcín, které pokrývají různé spektrum HPV typů. Za svůj život se s HPV totiž setká až 80% populace a to včetně mužů. Muži jsou častými přenašeči, ale i u nich může HPV způsobit rakovinu a to v oblasti konečníku nebo hlavy a krku. Nejvhodnější doba pro očkování je pro dívky a chlapce před zahájením pohlavního života. Očkování mezi 13. a 14. rokem hradí dívkám i chlapcům pojišťovna. Očkovat se však můžeš i ve starším věku.",
   "@faq_gynecologist_do_more_answer": {},
+  "datepicker_error_is_future": "Zadej datum v minulosti, prosím.",
+  "@datepicker_error_is_future": {},
 
   "faq_dermatologist_answer": "Kožař neboli kožní lékař je “manažerem” péče o tvou kůži. Je tím, kdo by měl mít přehled o tom, zda nemáš nějaká podezřelá mateřská znaménka.\n\nZároveň je kožař prvním, za kým bys měl/a jít, pokud máš jakékoliv potíže na kůži. Vyšetří tě a v případě potřeby doporučí jiného specialistu, který ti s problémem pomůže. Kožař je také tím, kdo tě poučí o zásadách pobytu na sluníčku.\n\nVůbec nejlepší je najít si kožaře v místě svého současného bydliště. To platí zejména u lidí, kteří se stěhují za studiem či prací do jiného města.",
   "@faq_dermatologist_answer": {},

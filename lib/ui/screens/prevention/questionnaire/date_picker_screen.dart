@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/datetime_extensions.dart';
 import 'package:loono/ui/screens/onboarding/preventive_examination_date_picker.dart';
 
 class DatePickerScreen extends StatefulWidget {
@@ -53,7 +54,9 @@ class _DatePickerScreenState extends State<DatePickerScreen> {
         onSkipButtonPress: () => widget.onSkipButtonPress?.call(DateTime.now()),
         onContinueButtonPress: () {
           if (selectedDate == null) return;
-          widget.onContinueButtonPress?.call(selectedDate!);
+          if (selectedDate!.datePickerIsPast(context)) {
+            widget.onContinueButtonPress?.call(selectedDate!);
+          }
         },
       ),
     );
