@@ -436,11 +436,9 @@ void main() {
       testWidgets(
         'TC(tc_doctor_postal_codes): Find doctor - Searching: Postal codes',
         (tester) async {
-          // TODO:
           logTestStart('tc_doctor_postal_codes');
           await tc_doctor_postal_codes.run(tester: tester, charlatan: charlatan);
         },
-        skip: true,
       );
 
       testWidgets(

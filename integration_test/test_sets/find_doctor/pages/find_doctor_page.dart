@@ -73,7 +73,7 @@ class FindDoctorPage extends MapTestUtils with PomClassHelpers {
 
   Future<void> dragSheetUp() async {
     logTestEvent();
-    await tester.drag(doctorsSheetHandle, const Offset(0, -200));
+    await tester.timedDrag(doctorsSheetHandle, const Offset(0, -200), const Duration(seconds: 1));
     await tester.pumpAndSettle();
   }
 
