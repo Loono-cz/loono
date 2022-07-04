@@ -9,7 +9,8 @@ import '../pages/find_doctor_page.dart';
 import '../test_data/base_doctor_test_data.dart';
 
 /// Test case link description:
-/// TODO
+/// Bottom sheet with doctors should be not visible when there are no doctors on the
+/// currently visible region - an information message should be shown instead.
 Future<void> run({
   required WidgetTester tester,
   required Charlatan charlatan,
@@ -37,8 +38,8 @@ Future<void> run({
   await findDoctorPage.verifyDoctorSheetVisibilityState(isShown: true);
   findDoctorPage.verifyDoctorsCountInSheet(expectedCount: 3);
 
+  // Move to location where are no doctors.
   await findDoctorPage.animateToLocation(latLng: olomoucLatLng, locationName: 'Olomouc');
-
   await findDoctorPage.verifyDoctorSheetVisibilityState(isShown: false);
   await findDoctorPage.verifyNoDoctorsAroundFlushbarVisibilityState(isShown: true);
 }

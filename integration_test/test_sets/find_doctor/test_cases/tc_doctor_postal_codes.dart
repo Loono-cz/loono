@@ -13,7 +13,8 @@ import '../pages/find_doctor_page.dart';
 part '../test_data/tc_postal_codes_test_data.dart';
 
 /// Test case link description:
-/// TODO
+/// Some cities have same name but are not different locations. If the other city is far away,
+/// it should be displayed as separate result.
 Future<void> run({
   required WidgetTester tester,
   required Charlatan charlatan,

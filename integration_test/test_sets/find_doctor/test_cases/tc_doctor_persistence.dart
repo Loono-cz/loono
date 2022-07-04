@@ -43,16 +43,20 @@ Future<void> run({
   await findDoctorPage.verifyDoctorSheetVisibilityState(isShown: true);
   findDoctorPage.verifyDoctorsCountInSheet(expectedCount: 1);
 
+  // Click on some doctor card, doctor detail sheet show up.
   await findDoctorPage.dragSheetUp();
   await findDoctorPage.verifyDoctorDetailSheetVisibilityState(isShown: false);
-
   await findDoctorPage.clickDoctorCardById(dentistInPrague.uniqueId);
   await findDoctorPage.verifyDoctorDetailSheetVisibilityState(isShown: true);
 
+  // Switch to Prevention tab.
   await mainPage.clickPreventionTab();
   await preventionPage.verifyScreenIsShown();
 
+  // Switch back to Find Doctor tab.
   await mainPage.clickFindDoctorTab();
   await findDoctorPage.verifyScreenIsShown();
+
+  // Verify that the doctor detail sheet is still visible.
   await findDoctorPage.verifyDoctorDetailSheetVisibilityState(isShown: true);
 }

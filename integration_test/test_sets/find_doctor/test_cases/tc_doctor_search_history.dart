@@ -10,7 +10,7 @@ import '../pages/find_doctor_page.dart';
 import '../test_data/base_doctor_test_data.dart';
 
 /// Test case link description:
-/// TODO
+/// Clicked search results should move camera to the city and show up in the history.
 Future<void> run({
   required WidgetTester tester,
   required Charlatan charlatan,
@@ -35,13 +35,16 @@ Future<void> run({
   await findDoctorPage.verifyScreenIsShown();
   await findDoctorPage.verifyControlComponentsAreShown();
 
+  // No search history yet.
   await findDoctorPage.clickSearchField();
   await doctorSearchDetailPage.verifyScreenIsShown();
   doctorSearchDetailPage.verifySearchHistoryVisibilityState(isShown: false);
 
+  // Search for some result.
   await doctorSearchDetailPage.insertSearchText('prah');
   doctorSearchDetailPage.verifySearchResultCount(expectedCount: 1);
 
+  // Click on it.
   await doctorSearchDetailPage.clickSearchResultItem(position: 1);
   await findDoctorPage.waitForCameraToStop();
   await findDoctorPage.verifyDoctorSheetVisibilityState(isShown: true);
@@ -54,12 +57,14 @@ Future<void> run({
     isVisible: false,
   );
 
+  // Search history should be visible now, 1 item in history.
   await findDoctorPage.clickSearchField();
   await doctorSearchDetailPage.verifyScreenIsShown();
   doctorSearchDetailPage
     ..verifySearchResultCount(expectedCount: 1)
     ..verifySearchHistoryVisibilityState(isShown: true);
 
+  // Search for another result and click on it.
   await doctorSearchDetailPage.insertSearchText('sum');
   doctorSearchDetailPage.verifySearchResultCount(expectedCount: 1);
 
@@ -75,6 +80,7 @@ Future<void> run({
     isVisible: true,
   );
 
+  // 2 items in history.
   await findDoctorPage.clickSearchField();
   await doctorSearchDetailPage.verifyScreenIsShown();
   doctorSearchDetailPage

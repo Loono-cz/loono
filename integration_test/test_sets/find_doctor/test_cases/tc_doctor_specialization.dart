@@ -13,7 +13,7 @@ import '../pages/find_doctor_page.dart';
 import '../test_data/base_doctor_test_data.dart';
 
 /// Test case link description:
-/// TODO
+/// Choosing a specialization should show only relevant doctors.
 Future<void> run({
   required WidgetTester tester,
   required Charlatan charlatan,
@@ -43,6 +43,7 @@ Future<void> run({
   findDoctorPage.verifyDoctorsCountInSheet(expectedCount: 3);
   await findDoctorPage.verifyVisibleAreaProviderState(dentistInPrague, isVisible: true);
 
+  // There are total of 2 doctors in Šumperk.
   await findDoctorPage.animateToLocation(
     latLng: generalPractitionerInSumperk.latLng,
     locationName: 'Šumperk',
@@ -60,6 +61,7 @@ Future<void> run({
   await doctorSearchDetailPage.insertSearchText('Prakt');
   doctorSearchDetailPage.verifySearchResultCount(expectedCount: 1);
 
+  // There is only 1 doctor as general practitioner in Šumperk.
   await doctorSearchDetailPage.clickSpecializationChip(position: 1);
   await findDoctorPage.verifyDoctorSheetVisibilityState(isShown: true);
   findDoctorPage.verifyDoctorsCountInSheet(expectedCount: 1);
@@ -69,6 +71,7 @@ Future<void> run({
   );
   expect(doctorCard.item.category, contains(contains(generalPractitionerInSumperk.category.first)));
 
+  // Clearing specialization should show all doctors again.
   await tester.pump(const Duration(seconds: 2));
   await findDoctorPage.clickClearSpecialization();
   await findDoctorPage.verifyDoctorSheetVisibilityState(isShown: true);

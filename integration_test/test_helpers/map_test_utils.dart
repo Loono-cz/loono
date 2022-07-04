@@ -68,7 +68,7 @@ class MapTestUtils {
   }
 
   Future<void> animateToLocation({required LatLng latLng, required String locationName}) async {
-    logTestEvent('Map camera is moving to city: "$locationName"');
+    logTestEvent('Map camera is moving to location: "$locationName"');
     final mapController = await _getMapController(tester);
     await mapController.animateCamera(
       CameraUpdate.newCameraPosition(
@@ -78,6 +78,8 @@ class MapTestUtils {
     await waitForCameraToStop(mapController);
   }
 
+  /// This method verifies whether the [provider] is visible on the currently visible region
+  /// on the Google map via [GoogleMapController].
   Future<void> verifyVisibleAreaProviderState(
     SimpleHealthcareProvider provider, {
     required bool isVisible,

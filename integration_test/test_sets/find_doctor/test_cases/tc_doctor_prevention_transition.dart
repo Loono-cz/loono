@@ -10,7 +10,7 @@ import '../../prevention/pages/examination/order_sheet_page.dart';
 import '../../prevention/pages/prevention_main_page.dart';
 import '../pages/find_doctor_page.dart';
 
-/// [Test case link description](https://cesko-digital.atlassian.net/browse/LOON-485)
+/// Regression test for: https://cesko-digital.atlassian.net/browse/LOON-485
 Future<void> run({
   required WidgetTester tester,
   required Charlatan charlatan,
