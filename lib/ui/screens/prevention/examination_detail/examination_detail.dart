@@ -284,85 +284,77 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                 StreamBuilder<CalendarEvent?>(
                   stream: _calendarEventsDao.watch(_examinationType),
                   builder: (streamContext, snapshot) {
-                    if (!snapshot.hasData) {
+                    final isCheckupInCalendar = snapshot.hasData;
+                    final isCheckupAfterNow = _nextVisitDate!.isAfter(DateTime.now());
+                    if (!isCheckupInCalendar && isCheckupAfterNow) {
                       return Expanded(
-                        child: Row(
-                          children: [
-                            if (_nextVisitDate!.isAfter(DateTime.now()))
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 19),
-                                  child: LoonoButton.light(
-                                    key: const Key('examinationDetailPage_btn_calendar'),
-                                    text: l10n.examination_detail_add_to_calendar_button,
-                                    onTap: () async {
-                                      final hasPermissionsGranted =
-                                          await _calendarService.hasPermissionsGranted();
-                                      if (hasPermissionsGranted) {
-                                        final defaultDeviceCalendarId =
-                                            _usersDao.user?.defaultDeviceCalendarId;
-                                        if (defaultDeviceCalendarId != null) {
-                                          // default device calendar id is set, do not display list of calendars
-                                          await _calendarRepository.createEvent(
-                                            _examinationType,
-                                            deviceCalendarId: defaultDeviceCalendarId,
-                                            startingDate: _nextVisitDate!,
-                                          );
-                                          showFlushBarSuccess(
-                                            context,
-                                            l10n.calendar_added_success_message,
-                                          );
-                                        } else {
-                                          await AutoRouter.of(context).push(
-                                            CalendarListRoute(
-                                              examinationRecord:
-                                                  widget.categorizedExamination.examination,
-                                            ),
-                                          );
-                                        }
-                                      } else {
-                                        final result = await AutoRouter.of(context).push<bool>(
-                                          CalendarPermissionInfoRoute(
-                                            examinationRecord:
-                                                widget.categorizedExamination.examination,
-                                          ),
-                                        );
-                                        // permission was permanently denied, show permission settings guide
-                                        if (result == false) {
-                                          showCalendarPermissionSheet(context);
-                                        }
-                                      }
-                                    },
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 19),
+                          child: LoonoButton.light(
+                            key: const Key('examinationDetailPage_btn_calendar'),
+                            text: l10n.examination_detail_add_to_calendar_button,
+                            onTap: () async {
+                              final hasPermissionsGranted =
+                                  await _calendarService.hasPermissionsGranted();
+                              if (hasPermissionsGranted) {
+                                final defaultDeviceCalendarId =
+                                    _usersDao.user?.defaultDeviceCalendarId;
+                                if (defaultDeviceCalendarId != null) {
+                                  // default device calendar id is set, do not display list of calendars
+                                  await _calendarRepository.createEvent(
+                                    _examinationType,
+                                    deviceCalendarId: defaultDeviceCalendarId,
+                                    startingDate: _nextVisitDate!,
+                                  );
+                                  showFlushBarSuccess(
+                                    context,
+                                    l10n.calendar_added_success_message,
+                                  );
+                                } else {
+                                  await AutoRouter.of(context).push(
+                                    CalendarListRoute(
+                                      examinationRecord: widget.categorizedExamination.examination,
+                                    ),
+                                  );
+                                }
+                              } else {
+                                final result = await AutoRouter.of(context).push<bool>(
+                                  CalendarPermissionInfoRoute(
+                                    examinationRecord: widget.categorizedExamination.examination,
                                   ),
-                                ),
-                              )
-                            else
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 19),
-                                  child: LoonoButton(
-                                    text: _sex == Sex.MALE
-                                        ? l10n.checkup_confirmation_male
-                                        : l10n.checkup_confirmation_female,
-                                    onTap: () {
-                                      showConfirmationSheet(
-                                        context,
-                                        widget.categorizedExamination.examination.examinationType,
-                                        _sex,
-                                        widget.categorizedExamination.examination.uuid,
-                                        awardPoints:
-                                            widget.categorizedExamination.examination.points,
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                          ],
+                                );
+                                // permission was permanently denied, show permission settings guide
+                                if (result == false) {
+                                  showCalendarPermissionSheet(context);
+                                }
+                              }
+                            },
+                          ),
                         ),
                       );
                     }
-                    // hides calendar button if the event is already added in the device calendar
-                    return const SizedBox.shrink();
+                    return !isCheckupAfterNow
+                        ? Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 19),
+                              child: LoonoButton(
+                                text: _sex == Sex.MALE
+                                    ? l10n.checkup_confirmation_male
+                                    : l10n.checkup_confirmation_female,
+                                onTap: () {
+                                  showConfirmationSheet(
+                                    context,
+                                    widget.categorizedExamination.examination.examinationType,
+                                    _sex,
+                                    widget.categorizedExamination.examination.uuid,
+                                    awardPoints: widget.categorizedExamination.examination.points,
+                                  );
+                                },
+                              ),
+                            ),
+                          )
+                        // hides calendar button if the event is already added in the device calendar
+                        : const SizedBox.shrink();
                   },
                 ),
                 Expanded(
