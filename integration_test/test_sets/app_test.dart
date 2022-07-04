@@ -444,11 +444,9 @@ void main() {
       testWidgets(
         'TC(tc_doctor_search_history): Find doctor - Searching: Search history',
         (tester) async {
-          // TODO:
           logTestStart('tc_doctor_search_history');
           await tc_doctor_search_history.run(tester: tester, charlatan: charlatan);
         },
-        skip: true,
       );
 
       testWidgets(

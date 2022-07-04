@@ -4,10 +4,11 @@ import 'package:loono/ui/screens/find_doctor/doctor_search_detail.dart';
 import 'package:loono/ui/widgets/find_doctor/search_results_list.dart';
 
 import '../../../test_helpers/e2e_action_logging.dart';
+import '../../../test_helpers/pom_class_helpers.dart';
 import '../../../test_helpers/widget_tester_extensions.dart';
 
 /// * Corresponding screen: [DoctorSearchDetailScreen]
-class DoctorSearchDetailPage {
+class DoctorSearchDetailPage with PomClassHelpers {
   DoctorSearchDetailPage(this.tester);
 
   final WidgetTester tester;
@@ -49,6 +50,11 @@ class DoctorSearchDetailPage {
     final results = tester.widget<SearchResultsList>(find.byType(SearchResultsList));
     expect(results.searchResults.length, expectedCount);
   }
+
+  VerifyVisibilityState get verifySearchHistoryVisibilityState => getVerifyVisibilityStateFunction(
+        finder: find.textContaining(RegExp('poslední hledání', caseSensitive: false)),
+        widgetName: 'Search history title',
+      );
 
   /// Page methods
   Future<void> verifyScreenIsShown() async {
