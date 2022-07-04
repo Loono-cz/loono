@@ -39,11 +39,13 @@ class _DoctorSearchDetailScreenState extends State<DoctorSearchDetailScreen> {
   }
 
   void _onSearchQueryChanged(String input) {
-    final mapState = context.read<MapStateService>();
-    if (input.isEmpty) {
-      mapState.clearSearchResults();
-    } else {
-      mapState.search(input);
+    if (mounted) {
+      final mapState = context.read<MapStateService>();
+      if (input.isEmpty) {
+        mapState.clearSearchResults();
+      } else {
+        mapState.search(input);
+      }
     }
   }
 
