@@ -48,7 +48,6 @@ const FORCE_UPDATE_STATUS_CODE = 410;
 
 Future<void> setup({
   Dio? dioOverride,
-  Map<String, String>? envOverride,
   required AppFlavors flavor,
 }) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -82,7 +81,7 @@ Future<void> setup({
   }
 
   final config = AppConfig(
-    env: envOverride ?? dotenv.env,
+    env: dotenv.env,
     packageInfo: appInfo,
     platformVersion: osVersion,
     flavor: flavor,

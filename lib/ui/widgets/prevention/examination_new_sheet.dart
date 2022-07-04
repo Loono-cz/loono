@@ -56,6 +56,7 @@ void showNewCheckupSheetStep1(
             ),
             const SizedBox(height: 20),
             LoonoButton.light(
+              key: const Key('examinationDetailPage_orderSheet_btn_dontHaveDoctor'),
               text: '${l10n.i_dont_have} ${examinationTypeCasus(
                 context,
                 casus: Casus.genitiv,

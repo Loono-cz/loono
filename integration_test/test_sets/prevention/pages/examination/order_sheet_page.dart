@@ -17,6 +17,9 @@ class OrderSheetPage {
   final Finder orderSheet1 = find.byKey(const Key('examinationDetailPage_orderSheet'));
   final Finder alreadyHaveDoctorOrderSheet1Btn =
       find.byKey(const Key('examinationDetailPage_orderSheet_btn_alreadyHaveDoctor'));
+  final Finder dontHaveDoctorOrderSheet1Btn =
+      find.byKey(const Key('examinationDetailPage_orderSheet_btn_dontHaveDoctor'));
+
   final Finder orderInstructionsSheet2 = find.byKey(const Key('examinationDetailPage_orderSheet2'));
   final Finder haveAppointmentSheet2Btn =
       find.byKey(const Key('examinationDetailPage_orderSheet2_btn_haveAppointment'));
@@ -25,6 +28,12 @@ class OrderSheetPage {
   Future<void> clickAlreadyHaveDoctorSheet1Button() async {
     logTestEvent();
     await tester.tap(alreadyHaveDoctorOrderSheet1Btn);
+    await tester.pumpAndSettle();
+  }
+
+  Future<void> clickDontHaveDoctorSheet1Button() async {
+    logTestEvent();
+    await tester.tap(dontHaveDoctorOrderSheet1Btn);
     await tester.pumpAndSettle();
   }
 

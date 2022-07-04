@@ -9,6 +9,13 @@ import '../mocks/google_sign_in_mock.dart';
 import '../test_helpers/e2e_action_logging.dart';
 import '../test_helpers/post_app_clear.dart';
 import 'app/test_cases/loon_580_force_update.dart' as loon580;
+import 'find_doctor/test_cases/tc_doctor_empty_state.dart' as tc_doctor_empty_state;
+import 'find_doctor/test_cases/tc_doctor_persistence.dart' as tc_doctor_persistence;
+import 'find_doctor/test_cases/tc_doctor_postal_codes.dart' as tc_doctor_postal_codes;
+import 'find_doctor/test_cases/tc_doctor_prevention_transition.dart'
+    as tc_doctor_prevention_transition;
+import 'find_doctor/test_cases/tc_doctor_search_history.dart' as tc_doctor_search_history;
+import 'find_doctor/test_cases/tc_doctor_specialization.dart' as tc_doctor_specialization;
 import 'onboarding/test_cases/other/loon_542_installing_and_opening_app.dart' as loon542;
 import 'onboarding/test_cases/other/loon_671_login_server_down_block_user.dart' as loon671;
 import 'onboarding/test_cases/questionnaire/loon_543_male_onboarding_flow.dart' as loon543;
@@ -276,24 +283,24 @@ void main() {
   });
 
   group('Prevention', () {
-    late Charlatan charlatan;
-
-    setUp(() async {
-      mockGoogleSignIn();
-      await mockFirebaseAuth();
-      charlatan = Charlatan();
-    });
-
-    tearDown(() async {
-      await postAppClear();
-    });
-
     group('Examination', () {
       // TODO:
     });
 
     group('Self Examination', () {
       group('Perform Self Examination', () {
+        late Charlatan charlatan;
+
+        setUp(() async {
+          mockGoogleSignIn();
+          await mockFirebaseAuth();
+          charlatan = Charlatan();
+        });
+
+        tearDown(() async {
+          await postAppClear();
+        });
+
         testWidgets(
           'TC(LOON-565):  Performing self-examination - Has finding - find doctor path',
           (tester) async {
@@ -312,6 +319,18 @@ void main() {
       });
 
       group('Detail', () {
+        late Charlatan charlatan;
+
+        setUp(() async {
+          mockGoogleSignIn();
+          await mockFirebaseAuth();
+          charlatan = Charlatan();
+        });
+
+        tearDown(() async {
+          await postAppClear();
+        });
+
         testWidgets(
           'TC(LOON-568): View details of self-examination - Find doctor from FAQ section path',
           (tester) async {
@@ -338,6 +357,18 @@ void main() {
       });
 
       group('Educational Video', () {
+        late Charlatan charlatan;
+
+        setUp(() async {
+          mockGoogleSignIn();
+          await mockFirebaseAuth();
+          charlatan = Charlatan();
+        });
+
+        tearDown(() async {
+          await postAppClear();
+        });
+
         testWidgets(
           'TC(LOON-561): Educational Video - active self-examination path',
           (tester) async {
@@ -362,6 +393,103 @@ void main() {
           },
         );
       });
+    });
+  });
+
+  group('Find Doctor', () {
+    // Note: On some Android emulators Google Map Services are disabled.
+    group('Map interactions', () {
+      late Charlatan charlatan;
+
+      setUp(() async {
+        mockGoogleSignIn();
+        await mockFirebaseAuth();
+        charlatan = Charlatan();
+      });
+
+      tearDown(() async {
+        await postAppClear();
+      });
+
+      testWidgets(
+        'TC(tc_doctor_empty_state): Find doctor - Map interaction: Empty state',
+        (tester) async {
+          logTestStart('tc_doctor_empty_state');
+          await tc_doctor_empty_state.run(tester: tester, charlatan: charlatan);
+        },
+      );
+    });
+
+    group('Searching', () {
+      late Charlatan charlatan;
+
+      setUp(() async {
+        mockGoogleSignIn();
+        await mockFirebaseAuth();
+        charlatan = Charlatan();
+      });
+
+      tearDown(() async {
+        await postAppClear();
+      });
+
+      testWidgets(
+        'TC(tc_doctor_postal_codes): Find doctor - Searching: Postal codes',
+        (tester) async {
+          // TODO:
+          logTestStart('tc_doctor_postal_codes');
+          await tc_doctor_postal_codes.run(tester: tester, charlatan: charlatan);
+        },
+        skip: true,
+      );
+
+      testWidgets(
+        'TC(tc_doctor_search_history): Find doctor - Searching: Search history',
+        (tester) async {
+          // TODO:
+          logTestStart('tc_doctor_search_history');
+          await tc_doctor_search_history.run(tester: tester, charlatan: charlatan);
+        },
+        skip: true,
+      );
+
+      testWidgets(
+        'TC(tc_doctor_specialization): Find doctor - Searching: Specialization',
+        (tester) async {
+          logTestStart('tc_doctor_specialization');
+          await tc_doctor_specialization.run(tester: tester, charlatan: charlatan);
+        },
+      );
+    });
+
+    group('Other', () {
+      late Charlatan charlatan;
+
+      setUp(() async {
+        mockGoogleSignIn();
+        await mockFirebaseAuth();
+        charlatan = Charlatan();
+      });
+
+      tearDown(() async {
+        await postAppClear();
+      });
+
+      testWidgets(
+        'TC(tc_doctor_persistence): Find doctor - State persistence',
+        (tester) async {
+          logTestStart('tc_doctor_persistence');
+          await tc_doctor_persistence.run(tester: tester, charlatan: charlatan);
+        },
+      );
+
+      testWidgets(
+        'TC(tc_doctor_prevention_transition): Find doctor - Transition from Prevention',
+        (tester) async {
+          logTestStart('tc_doctor_prevention_transition');
+          await tc_doctor_prevention_transition.run(tester: tester, charlatan: charlatan);
+        },
+      );
     });
   });
 }

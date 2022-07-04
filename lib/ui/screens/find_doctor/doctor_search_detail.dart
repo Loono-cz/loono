@@ -12,6 +12,8 @@ import 'package:loono/ui/widgets/find_doctor/search_text_field_icon.dart';
 import 'package:loono/ui/widgets/scrollbar.dart';
 import 'package:provider/provider.dart';
 
+const int kSearchDebounceDurationMs = 500;
+
 class DoctorSearchDetailScreen extends StatefulWidget {
   const DoctorSearchDetailScreen({Key? key}) : super(key: key);
 
@@ -30,7 +32,7 @@ class _DoctorSearchDetailScreenState extends State<DoctorSearchDetailScreen> {
     _textEditingController.addListener(() {
       EasyDebounce.debounce(
         '_doctorSearchDetailTextSearchField',
-        Duration(milliseconds: _searchQueryText.length > 3 ? 250 : 500),
+        Duration(milliseconds: _searchQueryText.length > 3 ? 250 : kSearchDebounceDurationMs),
         () => _onSearchQueryChanged(_searchQueryText),
       );
     });
@@ -76,6 +78,7 @@ class _DoctorSearchDetailScreenState extends State<DoctorSearchDetailScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
               child: TextFormField(
+                key: const Key('doctorSearchDetailPage_searchTextFormField'),
                 autofocus: true,
                 controller: _textEditingController,
                 textAlignVertical: TextAlignVertical.bottom,
