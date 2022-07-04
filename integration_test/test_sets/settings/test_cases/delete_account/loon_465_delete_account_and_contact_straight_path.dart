@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 
 import '../../../../setup.dart' as app;
+import '../../../../test_helpers/widget_tester_extensions.dart';
 import '../../../app/flows/login_flow.dart';
 import '../../../app/pages/after_deletion_page.dart';
 import '../../../prevention/pages/prevention_main_page.dart';
@@ -75,8 +76,10 @@ Future<void> run({
   // fake /delete API response
   charlatan.whenDelete('/account', (_) => CharlatanHttpResponse(statusCode: 200));
   await deleteAccountPage.confirmDeleteAccountDialog();
-  await afterDeletionPage.verifyScreenIsShown();
-  expect(find.textContaining('Co můžeme udělat pro to, aby ses'), findsOneWidget);
   // TODO: verify launch with email method was called (via method channel handler)?
   // await afterDeletionPage.clickSendEmailButton();
+
+  await tester.waitForToastToDisappear(msgPattern: 'jsme smazali');
+  await afterDeletionPage.verifyScreenIsShown();
+  expect(find.textContaining('Co můžeme udělat pro to, aby ses'), findsOneWidget);
 }
