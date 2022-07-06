@@ -40,3 +40,10 @@ mason make pom_class
     - test case implementation is inspired by POM (Page Object Model) design pattern
     - test data are created from Dart objects and not from JSON - for easier maintainability from API changes
     - test cases are structured with folder-by-feature
+  
+## Webview share dialog
+- Webview allows to open native share dialog using custom JS handler called `openShareSheet`. It can be called directly from JS with following code:
+`window.flutter_inappwebview.callHandler("openShareSheet");`. This will open native share dialog with current url address. To customize shared content, just pass desired string argument to the handler like this:
+  `window.flutter_inappwebview.callHandler("openShareSheet","Mrkni na naši novou appku Preventivka na loono.cz");`
+  
+  
