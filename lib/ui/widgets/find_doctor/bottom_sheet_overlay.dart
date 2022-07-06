@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/map_variables.dart';
+import 'package:loono/helpers/simple_health_care_provider_helper.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/map_state_sevice.dart';
 import 'package:loono/ui/widgets/feedback/feedback_button.dart';
@@ -51,6 +52,7 @@ class MapSheetOverlay extends StatelessWidget {
           return false;
         },
         child: DraggableScrollableSheet(
+          key: const Key('mapSheetOverlay_sheet'),
           initialChildSize: MapVariables.MIN_SHEET_SIZE,
           minChildSize: MapVariables.MIN_SHEET_SIZE,
           maxChildSize: MapVariables.MAX_SHEET_SIZE,
@@ -86,6 +88,7 @@ class MapSheetOverlay extends StatelessWidget {
                             bottom: 18.0,
                           ),
                           child: Container(
+                            key: const Key('mapSheetOverlay_handle'),
                             width: MediaQuery.of(context).size.width / 3,
                             height: 4.0,
                             color: Colors.white,
@@ -98,6 +101,7 @@ class MapSheetOverlay extends StatelessWidget {
                     elevation: 0,
                   ),
                   SliverList(
+                    key: const Key('mapSheetOverlay_list'),
                     delegate: SliverChildBuilderDelegate(
                       (BuildContext context, int index) {
                         final item = currHealthcareProviders[index];
@@ -120,6 +124,7 @@ class MapSheetOverlay extends StatelessWidget {
                                 ),
                               ],
                               SearchDoctorCard(
+                                key: ValueKey<String>('mapSheetOverlay_card_${item.uniqueId}'),
                                 item: item,
                                 onTap: () {
                                   onItemTap?.call(item);
@@ -145,6 +150,7 @@ class MapSheetOverlay extends StatelessWidget {
       child: Align(
         alignment: Alignment.bottomCenter,
         child: Flushbar<dynamic>(
+          key: const Key('mapSheetOverlay_flushbar_noDoctorsAround'),
           isDismissible: false,
           message: context.l10n.map_no_doctors_around_info_message,
           messageColor: LoonoColors.black,

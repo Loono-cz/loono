@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/search_helpers.dart';
@@ -35,8 +36,9 @@ class SearchResultsList extends StatelessWidget {
             child: Wrap(
               spacing: 4,
               children: _specializationSearchResults
-                  .map(
-                    (specialization) => ActionChip(
+                  .mapIndexed(
+                    (i, specialization) => ActionChip(
+                      key: ValueKey<String>('searchResultList_specialization_$i'),
                       label: searchQueryText == null
                           ? Text(specialization.text, style: LoonoFonts.fontStyle)
                           : Text.rich(
@@ -65,6 +67,7 @@ class SearchResultsList extends StatelessWidget {
         }
         if (!isSpecialization(searchResult)) {
           return SearchResultListItem(
+            key: ValueKey<String>('searchResultList_item_$index'),
             searchResult: searchResult,
             searchQuery: searchQueryText,
           );

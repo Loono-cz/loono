@@ -11,7 +11,10 @@ extension SimpleHealthcareProviderHelper on SimpleHealthcareProvider {
   }
 
   String getFormattedPostalCode() {
+    if (postalCode.length < 5) return postalCode;
     final codeParts = [postalCode.substring(0, 3).trim(), postalCode.substring(3).trim()];
     return '${codeParts[0]} ${codeParts[1]}';
   }
+
+  String get uniqueId => '$locationId-$institutionId';
 }

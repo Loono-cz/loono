@@ -3,11 +3,11 @@ import 'package:charlatan/src/charlatan_http_response_definition.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:loono_api/loono_api.dart';
 
+import '../../../test_helpers/dart_objects_gens.dart';
 import '../../prevention/pages/prevention_main_page.dart';
 import '../pages/login_page.dart';
 import '../pages/welcome_page.dart';
 import '../test_data/default_test_data.dart';
-import '../test_data/fake_healthcare_provider_response.dart';
 
 ///
 /// Flows that can be reused in other test cases.
@@ -19,6 +19,7 @@ Future<void> loginFlow({
   required Charlatan charlatan,
   Account? accountData,
   PreventionStatus? examinationsData,
+  List<SimpleHealthcareProvider>? providersData,
   CharlatanResponseBuilder? accountResponse,
   CharlatanResponseBuilder? examinationsResponse,
 }) async {
@@ -27,7 +28,12 @@ Future<void> loginFlow({
   final preventionPage = PreventionPage(tester);
 
   charlatan
-    ..whenGet('/providers/all', (_) => HEALTHCARE_PROVIDER_ENCODED)
+    ..whenGet(
+      '/providers/all',
+      (_) => providersData != null
+          ? getEncodedProviders(providers: providersData)
+          : ENCODED_SINGLE_HEALTHCARE_PROVIDER,
+    )
     ..whenGet(
       '/account',
       accountResponse ??

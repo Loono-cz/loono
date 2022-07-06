@@ -83,6 +83,7 @@ class SearchTextField extends StatelessWidget {
               : GestureDetector(
                   onTap: () => context.read<MapStateService>().setSpecialization(null),
                   child: const SearchTextFieldIcon(
+                    key: Key('mainSearchTextField_specialization_clear'),
                     assetPath: 'assets/icons/find_doctor/search_clear.svg',
                     iconWidth: iconWidth,
                   ),

@@ -28,29 +28,31 @@ class FindDoctorScreen extends StatefulWidget {
   final VoidCallback? onCancelTap;
 
   @override
-  State<FindDoctorScreen> createState() => _FindDoctorScreenState();
+  State<FindDoctorScreen> createState() => FindDoctorScreenState();
 }
 
-class _FindDoctorScreenState extends State<FindDoctorScreen> {
-  final _mapController = Completer<GoogleMapController>();
+@visibleForTesting
+class FindDoctorScreenState extends State<FindDoctorScreen> {
+  @visibleForTesting
+  final mapController = Completer<GoogleMapController>();
   final _sheetController = DraggableScrollableController();
 
-  final healthcareProviderRepository = registry.get<HealthcareProviderRepository>();
+  final _healthcareProviderRepository = registry.get<HealthcareProviderRepository>();
 
-  late final MapStateService mapState;
+  late final MapStateService _mapState;
 
   bool _isHealthCareProvidersInMapService = false;
   double _mapOpacity = 1;
 
   Future<void> _setHealthcareProviders({bool tryFetchAgainData = false}) async {
-    if (mapState.allHealthcareProviders.isEmpty) {
-      final healthcareProviders = await healthcareProviderRepository.getHealthcareProviders();
+    if (_mapState.allHealthcareProviders.isEmpty) {
+      final healthcareProviders = await _healthcareProviderRepository.getHealthcareProviders();
       if (healthcareProviders != null && healthcareProviders.isNotEmpty) {
-        mapState.addAll(healthcareProviders);
+        _mapState.addAll(healthcareProviders);
         setState(() => _isHealthCareProvidersInMapService = true);
       } else {
         if (tryFetchAgainData) {
-          await healthcareProviderRepository.checkAndUpdateIfNeeded();
+          await _healthcareProviderRepository.checkAndUpdateIfNeeded();
         }
       }
     } else {
@@ -60,7 +62,7 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
     }
   }
 
-  void setMapOpacity(double opacity) {
+  void _setMapOpacity(double opacity) {
     Future.delayed(Duration.zero, () async {
       setState(() {
         _mapOpacity = opacity;
@@ -71,7 +73,7 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
   @override
   void initState() {
     super.initState();
-    mapState = context.read<MapStateService>();
+    _mapState = context.read<MapStateService>();
   }
 
   @override
@@ -87,6 +89,7 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
               backgroundColor: LoonoColors.bottomSheetPrevention,
               actions: [
                 IconButton(
+                  key: const Key('findDoctorPage_closeButton'),
                   icon: const Icon(Icons.close),
                   onPressed: widget.onCancelTap,
                 ),
@@ -95,7 +98,7 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
           : null,
       body: SafeArea(
         child: MemoizedStreamBuilder<HealthcareSyncState>(
-          memoizedStream: healthcareProviderRepository.healthcareProvidersSyncStateStream,
+          memoizedStream: _healthcareProviderRepository.healthcareProvidersSyncStateStream,
           builder: (context, snapshot) {
             final healthcareSyncState = snapshot.data;
             if (healthcareSyncState == HealthcareSyncState.completed &&
@@ -107,7 +110,7 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                 Opacity(
                   opacity: _mapOpacity,
                   child: MapPreview(
-                    mapController: _mapController,
+                    mapController: mapController,
                   ),
                 ),
                 if (_isHealthCareProvidersInMapService) ...[
@@ -119,18 +122,19 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                       child: Column(
                         children: [
                           SearchTextField(
+                            key: const Key('findDoctorPage_mainSearchField'),
                             onItemTap: (searchResult) async {
                               final provider = searchResult.data;
                               if (provider == null) return;
                               await animateToPos(
-                                _mapController,
+                                mapController,
                                 cameraPosition: CameraPosition(
                                   target: LatLng(provider.lat, provider.lng),
                                   zoom: searchResult.zoomLevel,
                                 ),
                               );
                               _sheetController.jumpTo(MapVariables.MIN_SHEET_SIZE);
-                              setMapOpacity(1);
+                              _setMapOpacity(1);
                             },
                           ),
                           SpecializationChipsList(showDefaultSpecs: currSpec == null),
@@ -144,15 +148,15 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                     child: MapSheetOverlay(
                       onItemTap: (healthcareProvider) async {
                         await animateToPos(
-                          _mapController,
+                          mapController,
                           cameraPosition: CameraPosition(
                             target: LatLng(healthcareProvider.lat, healthcareProvider.lng),
                             zoom: MapVariables.DOCTOR_DETAIL_ZOOM,
                           ),
                         );
-                        setMapOpacity(1);
+                        _setMapOpacity(1);
                       },
-                      setOpacity: setMapOpacity,
+                      setOpacity: _setMapOpacity,
                       sheetController: _sheetController,
                     ),
                   ),
@@ -195,9 +199,10 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
                       ),
                       height: 370,
                       child: DoctorDetailSheet(
+                        key: const Key('findDoctorPage_doctorDetailSheet'),
                         doctor: currDoctorDetail,
                         closeDetail: () =>
-                            mapState.setDoctorDetail(null, unblockOnMoveMapFiltering: false),
+                            _mapState.setDoctorDetail(null, unblockOnMoveMapFiltering: false),
                       ),
                     ),
                   ),
@@ -212,6 +217,7 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
 
   Widget _buildLoadingIndicator() {
     return Padding(
+      key: const Key('findDoctorPage_loadingIndicator'),
       padding: const EdgeInsets.all(20.0),
       child: Stack(
         alignment: Alignment.center,
@@ -236,6 +242,7 @@ class _FindDoctorScreenState extends State<FindDoctorScreen> {
 
   Widget _buildErrorIndicator() {
     return GestureDetector(
+      key: const Key('findDoctorPage_errorIndicator'),
       onTap: () => _setHealthcareProviders(tryFetchAgainData: true),
       child: Padding(
         padding: const EdgeInsets.all(20.0),

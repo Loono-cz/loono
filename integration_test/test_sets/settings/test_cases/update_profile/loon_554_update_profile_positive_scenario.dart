@@ -6,7 +6,6 @@ import 'package:loono_api/loono_api.dart';
 import '../../../../setup.dart' as app;
 import '../../../app/flows/login_flow.dart';
 import '../../../app/test_data/default_test_data.dart';
-import '../../../app/test_data/fake_healthcare_provider_response.dart';
 import '../../../prevention/pages/prevention_main_page.dart';
 import '../../pages/open_settings_page.dart';
 import '../../pages/update_profile/edit_email_page.dart';
@@ -23,7 +22,7 @@ Future<void> run({
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   await app.runMockApp(charlatan: charlatan);
-  charlatan.whenGet('/providers/all', (_) => HEALTHCARE_PROVIDER_ENCODED);
+  charlatan.whenGet('/providers/all', (_) => ENCODED_SINGLE_HEALTHCARE_PROVIDER);
 
   await loginFlow(tester: tester, charlatan: charlatan);
   await tester.pumpAndSettle();

@@ -6,7 +6,7 @@ import '../../../../setup.dart' as app;
 import '../../../../test_helpers/widget_tester_extensions.dart';
 import '../../../app/pages/login_page.dart';
 import '../../../app/pages/welcome_page.dart';
-import '../../../app/test_data/fake_healthcare_provider_response.dart';
+import '../../../app/test_data/default_test_data.dart';
 import '../../pages/continue_questionnaire_page.dart';
 import '../../pages/questionnaire/birthdate_page.dart';
 import '../../pages/questionnaire/fill_form_later_page.dart';
@@ -17,7 +17,7 @@ Future<void> run({required WidgetTester tester, required Charlatan charlatan}) a
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   await app.runMockApp(charlatan: charlatan);
-  charlatan.whenGet('/providers/all', (_) => HEALTHCARE_PROVIDER_ENCODED);
+  charlatan.whenGet('/providers/all', (_) => ENCODED_SINGLE_HEALTHCARE_PROVIDER);
 
   await tester.pumpAndSettle();
   await tester.pump(const Duration(seconds: 1));

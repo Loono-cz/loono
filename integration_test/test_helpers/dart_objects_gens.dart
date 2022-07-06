@@ -1,8 +1,25 @@
+import 'dart:convert';
+import 'dart:math';
+import 'dart:typed_data';
+
+import 'package:archive/archive.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:drift/drift.dart';
 import 'package:loono_api/loono_api.dart';
 
-/// To create test data, we're using dart objects instead of plain JSON data, so when something
-/// on API changes, it is much easier to maintain these data.
+// To create test data, we're using dart objects instead of plain JSON data, so when something
+// on API changes, it is much easier to maintain these data.
+
+Uint8List getEncodedProviders({required List<SimpleHealthcareProvider> providers}) {
+  String toJson(SimpleHealthcareProvider o) =>
+      standardSerializers.toJson(SimpleHealthcareProvider.serializer, o);
+  final serializedList = providers.map(toJson).toList();
+  final encodedJson = utf8.encode(serializedList.toString());
+  final bytesData = Uint8List.fromList(encodedJson);
+  final zip = Archive()..addFile(ArchiveFile('providers.json', bytesData.lengthInBytes, bytesData));
+  final zipBytesData = ZipEncoder().encode(zip)!;
+  return Uint8List.fromList(zipBytesData);
+}
 
 Account createAccountObject({
   String uid = '123abcdabcd',
@@ -180,5 +197,35 @@ LeaderboardUser createLeaderboardUserObject({
       ..profileImageUrl = profileImageUrl
       ..points = points
       ..isThisMe = isThisMe;
+  });
+}
+
+SimpleHealthcareProvider createSimpleHealthcareProviderObject({
+  required int locationId,
+  required int institutionId,
+  required String title,
+  required String city,
+  required String postalCode,
+  String? street,
+  String? houseNumber,
+  List<String> category = const <String>[],
+  String? specialization,
+  required double lat,
+  required double lng,
+}) {
+  return SimpleHealthcareProvider((b) {
+    final r = Random();
+    b
+      ..locationId = locationId
+      ..institutionId = institutionId
+      ..title = title
+      ..city = city
+      ..postalCode = postalCode
+      ..street = street
+      ..houseNumber = houseNumber ?? r.nextInt(1000).toString()
+      ..lat = lat
+      ..lng = lng
+      ..specialization = specialization
+      ..category = BuiltList.of(category).toBuilder();
   });
 }

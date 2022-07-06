@@ -1,3 +1,8 @@
+// ignore_for_file: non_constant_identifier_names
+
+import 'dart:typed_data';
+
+import 'package:dio/dio.dart';
 import 'package:loono_api/loono_api.dart';
 
 import '../../../test_helpers/dart_objects_gens.dart';
@@ -186,6 +191,22 @@ final defaultFemaleExaminations = createExaminationsObject(
       badge: BadgeType.SHIELD,
       lastExamUuid: null,
       plannedDate: null,
+    ),
+  ],
+);
+
+/// Gets single encoded instance of [SimpleHealthcareProvider] object to silence the [DioError]
+/// errors during integration tests which does not test 'Find doctor' section.
+final Uint8List ENCODED_SINGLE_HEALTHCARE_PROVIDER = getEncodedProviders(
+  providers: [
+    createSimpleHealthcareProviderObject(
+      locationId: 1,
+      institutionId: 1,
+      title: 'title',
+      city: 'city',
+      postalCode: '1234',
+      lat: 0.005,
+      lng: 0.002,
     ),
   ],
 );
