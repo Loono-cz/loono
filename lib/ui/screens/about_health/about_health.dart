@@ -6,6 +6,7 @@ import 'package:loono/helpers/map_variables.dart';
 import 'package:loono/services/webview_service.dart';
 import 'package:loono/ui/widgets/feedback/feedback_button.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutHealthScreen extends StatelessWidget {
@@ -29,6 +30,16 @@ class AboutHealthScreen extends StatelessWidget {
           InAppWebView(
             onWebViewCreated: (controller) {
               context.read<WebViewProvider>().setController(controller);
+              controller.addJavaScriptHandler(
+                handlerName: 'openShareSheet',
+                callback: (args) async {
+                  final url = await controller.getUrl();
+                  await Share.share(
+                    args.isNotEmpty ? args.first.toString() : url.toString(),
+                  );
+                  return;
+                },
+              );
             },
             initialUrlRequest: URLRequest(
               url: initialUri,
