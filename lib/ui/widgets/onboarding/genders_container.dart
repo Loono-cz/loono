@@ -4,7 +4,7 @@ import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/onboarding/gender_button.dart';
 import 'package:loono_api/loono_api.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 enum Gender { man, woman, other }
 
@@ -147,8 +147,8 @@ class _GendersContainerState extends State<GendersContainer> {
                                       scheme: 'mailto',
                                       path: LoonoStrings.contactEmail,
                                     );
-                                    if (await canLaunch(emailLaunchUri.toString())) {
-                                      await launch(emailLaunchUri.toString());
+                                    if (await canLaunchUrlString(emailLaunchUri.toString())) {
+                                      await launchUrlString(emailLaunchUri.toString());
                                     }
                                   },
                               ),

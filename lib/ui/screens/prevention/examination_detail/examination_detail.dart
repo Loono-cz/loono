@@ -88,7 +88,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
   @override
   void initState() {
     super.initState();
-    SchedulerBinding.instance?.addPostFrameCallback((_) {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
       if (widget.initialMessage != null) {
         showFlushBarSuccess(context, widget.initialMessage!);
       }

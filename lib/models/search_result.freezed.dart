@@ -12,35 +12,11 @@ part of 'search_result.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 SearchResult _$SearchResultFromJson(Map<String, dynamic> json) {
   return _SearchResult.fromJson(json);
 }
-
-/// @nodoc
-class _$SearchResultTearOff {
-  const _$SearchResultTearOff();
-
-  _SearchResult call(
-      {required SearchType searchType,
-      String? overriddenText,
-      @SimpleHealthcareProviderJsonConverter()
-          required SimpleHealthcareProvider? data}) {
-    return _SearchResult(
-      searchType: searchType,
-      overriddenText: overriddenText,
-      data: data,
-    );
-  }
-
-  SearchResult fromJson(Map<String, Object?> json) {
-    return SearchResult.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $SearchResult = _$SearchResultTearOff();
 
 /// @nodoc
 mixin _$SearchResult {
@@ -98,11 +74,11 @@ class _$SearchResultCopyWithImpl<$Res> implements $SearchResultCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$SearchResultCopyWith<$Res>
+abstract class _$$_SearchResultCopyWith<$Res>
     implements $SearchResultCopyWith<$Res> {
-  factory _$SearchResultCopyWith(
-          _SearchResult value, $Res Function(_SearchResult) then) =
-      __$SearchResultCopyWithImpl<$Res>;
+  factory _$$_SearchResultCopyWith(
+          _$_SearchResult value, $Res Function(_$_SearchResult) then) =
+      __$$_SearchResultCopyWithImpl<$Res>;
   @override
   $Res call(
       {SearchType searchType,
@@ -111,14 +87,15 @@ abstract class _$SearchResultCopyWith<$Res>
 }
 
 /// @nodoc
-class __$SearchResultCopyWithImpl<$Res> extends _$SearchResultCopyWithImpl<$Res>
-    implements _$SearchResultCopyWith<$Res> {
-  __$SearchResultCopyWithImpl(
-      _SearchResult _value, $Res Function(_SearchResult) _then)
-      : super(_value, (v) => _then(v as _SearchResult));
+class __$$_SearchResultCopyWithImpl<$Res>
+    extends _$SearchResultCopyWithImpl<$Res>
+    implements _$$_SearchResultCopyWith<$Res> {
+  __$$_SearchResultCopyWithImpl(
+      _$_SearchResult _value, $Res Function(_$_SearchResult) _then)
+      : super(_value, (v) => _then(v as _$_SearchResult));
 
   @override
-  _SearchResult get _value => super._value as _SearchResult;
+  _$_SearchResult get _value => super._value as _$_SearchResult;
 
   @override
   $Res call({
@@ -126,7 +103,7 @@ class __$SearchResultCopyWithImpl<$Res> extends _$SearchResultCopyWithImpl<$Res>
     Object? overriddenText = freezed,
     Object? data = freezed,
   }) {
-    return _then(_SearchResult(
+    return _then(_$_SearchResult(
       searchType: searchType == freezed
           ? _value.searchType
           : searchType // ignore: cast_nullable_to_non_nullable
@@ -171,7 +148,7 @@ class _$_SearchResult implements _SearchResult {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SearchResult &&
+            other is _$_SearchResult &&
             const DeepCollectionEquality()
                 .equals(other.searchType, searchType) &&
             const DeepCollectionEquality()
@@ -179,6 +156,7 @@ class _$_SearchResult implements _SearchResult {
             const DeepCollectionEquality().equals(other.data, data));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -188,8 +166,8 @@ class _$_SearchResult implements _SearchResult {
 
   @JsonKey(ignore: true)
   @override
-  _$SearchResultCopyWith<_SearchResult> get copyWith =>
-      __$SearchResultCopyWithImpl<_SearchResult>(this, _$identity);
+  _$$_SearchResultCopyWith<_$_SearchResult> get copyWith =>
+      __$$_SearchResultCopyWithImpl<_$_SearchResult>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -199,10 +177,10 @@ class _$_SearchResult implements _SearchResult {
 
 abstract class _SearchResult implements SearchResult {
   factory _SearchResult(
-      {required SearchType searchType,
-      String? overriddenText,
+      {required final SearchType searchType,
+      final String? overriddenText,
       @SimpleHealthcareProviderJsonConverter()
-          required SimpleHealthcareProvider? data}) = _$_SearchResult;
+          required final SimpleHealthcareProvider? data}) = _$_SearchResult;
 
   factory _SearchResult.fromJson(Map<String, dynamic> json) =
       _$_SearchResult.fromJson;
@@ -216,6 +194,6 @@ abstract class _SearchResult implements SearchResult {
   SimpleHealthcareProvider? get data;
   @override
   @JsonKey(ignore: true)
-  _$SearchResultCopyWith<_SearchResult> get copyWith =>
+  _$$_SearchResultCopyWith<_$_SearchResult> get copyWith =>
       throw _privateConstructorUsedError;
 }

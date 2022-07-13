@@ -16,7 +16,7 @@ import 'package:loono/ui/widgets/settings/update_profile_item.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class UpdateProfileScreen extends StatelessWidget {
   UpdateProfileScreen({
@@ -151,8 +151,8 @@ class UpdateProfileScreen extends StatelessWidget {
                         const SizedBox(height: 32.0),
                         TextButton(
                           onPressed: () async {
-                            if (await canLaunch(privacyUrl)) {
-                              await launch(privacyUrl);
+                            if (await canLaunchUrlString(privacyUrl)) {
+                              await launchUrlString(privacyUrl);
                             }
                           },
                           child: Text(
@@ -163,8 +163,8 @@ class UpdateProfileScreen extends StatelessWidget {
                         const SizedBox(height: 32.0),
                         TextButton(
                           onPressed: () async {
-                            if (await canLaunch(termsUrl)) {
-                              await launch(termsUrl);
+                            if (await canLaunchUrlString(termsUrl)) {
+                              await launchUrlString(termsUrl);
                             }
                           },
                           child: Text(

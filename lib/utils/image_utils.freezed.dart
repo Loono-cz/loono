@@ -12,44 +12,7 @@ part of 'image_utils.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ImageErrorTearOff {
-  const _$ImageErrorTearOff();
-
-  UnknownError unknown() {
-    return const UnknownError();
-  }
-
-  NoMessageError noMessage() {
-    return const NoMessageError();
-  }
-
-  PermissionDenied permissionDenied(RequiredImagePermission permission) {
-    return PermissionDenied(
-      permission,
-    );
-  }
-
-  PermissionPermanentlyDenied permissionPermanentlyDenied(
-      RequiredImagePermission permission) {
-    return PermissionPermanentlyDenied(
-      permission,
-    );
-  }
-
-  NetworkError network() {
-    return const NetworkError();
-  }
-
-  SizeExceededError sizeExceeded() {
-    return const SizeExceededError();
-  }
-}
-
-/// @nodoc
-const $ImageError = _$ImageErrorTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$ImageError {
@@ -141,21 +104,21 @@ class _$ImageErrorCopyWithImpl<$Res> implements $ImageErrorCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $UnknownErrorCopyWith<$Res> {
-  factory $UnknownErrorCopyWith(
-          UnknownError value, $Res Function(UnknownError) then) =
-      _$UnknownErrorCopyWithImpl<$Res>;
+abstract class _$$UnknownErrorCopyWith<$Res> {
+  factory _$$UnknownErrorCopyWith(
+          _$UnknownError value, $Res Function(_$UnknownError) then) =
+      __$$UnknownErrorCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$UnknownErrorCopyWithImpl<$Res> extends _$ImageErrorCopyWithImpl<$Res>
-    implements $UnknownErrorCopyWith<$Res> {
-  _$UnknownErrorCopyWithImpl(
-      UnknownError _value, $Res Function(UnknownError) _then)
-      : super(_value, (v) => _then(v as UnknownError));
+class __$$UnknownErrorCopyWithImpl<$Res> extends _$ImageErrorCopyWithImpl<$Res>
+    implements _$$UnknownErrorCopyWith<$Res> {
+  __$$UnknownErrorCopyWithImpl(
+      _$UnknownError _value, $Res Function(_$UnknownError) _then)
+      : super(_value, (v) => _then(v as _$UnknownError));
 
   @override
-  UnknownError get _value => super._value as UnknownError;
+  _$UnknownError get _value => super._value as _$UnknownError;
 }
 
 /// @nodoc
@@ -171,7 +134,7 @@ class _$UnknownError extends UnknownError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is UnknownError);
+        (other.runtimeType == runtimeType && other is _$UnknownError);
   }
 
   @override
@@ -277,21 +240,22 @@ abstract class UnknownError extends ImageError {
 }
 
 /// @nodoc
-abstract class $NoMessageErrorCopyWith<$Res> {
-  factory $NoMessageErrorCopyWith(
-          NoMessageError value, $Res Function(NoMessageError) then) =
-      _$NoMessageErrorCopyWithImpl<$Res>;
+abstract class _$$NoMessageErrorCopyWith<$Res> {
+  factory _$$NoMessageErrorCopyWith(
+          _$NoMessageError value, $Res Function(_$NoMessageError) then) =
+      __$$NoMessageErrorCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$NoMessageErrorCopyWithImpl<$Res> extends _$ImageErrorCopyWithImpl<$Res>
-    implements $NoMessageErrorCopyWith<$Res> {
-  _$NoMessageErrorCopyWithImpl(
-      NoMessageError _value, $Res Function(NoMessageError) _then)
-      : super(_value, (v) => _then(v as NoMessageError));
+class __$$NoMessageErrorCopyWithImpl<$Res>
+    extends _$ImageErrorCopyWithImpl<$Res>
+    implements _$$NoMessageErrorCopyWith<$Res> {
+  __$$NoMessageErrorCopyWithImpl(
+      _$NoMessageError _value, $Res Function(_$NoMessageError) _then)
+      : super(_value, (v) => _then(v as _$NoMessageError));
 
   @override
-  NoMessageError get _value => super._value as NoMessageError;
+  _$NoMessageError get _value => super._value as _$NoMessageError;
 }
 
 /// @nodoc
@@ -307,7 +271,7 @@ class _$NoMessageError extends NoMessageError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is NoMessageError);
+        (other.runtimeType == runtimeType && other is _$NoMessageError);
   }
 
   @override
@@ -413,29 +377,29 @@ abstract class NoMessageError extends ImageError {
 }
 
 /// @nodoc
-abstract class $PermissionDeniedCopyWith<$Res> {
-  factory $PermissionDeniedCopyWith(
-          PermissionDenied value, $Res Function(PermissionDenied) then) =
-      _$PermissionDeniedCopyWithImpl<$Res>;
+abstract class _$$PermissionDeniedCopyWith<$Res> {
+  factory _$$PermissionDeniedCopyWith(
+          _$PermissionDenied value, $Res Function(_$PermissionDenied) then) =
+      __$$PermissionDeniedCopyWithImpl<$Res>;
   $Res call({RequiredImagePermission permission});
 }
 
 /// @nodoc
-class _$PermissionDeniedCopyWithImpl<$Res>
+class __$$PermissionDeniedCopyWithImpl<$Res>
     extends _$ImageErrorCopyWithImpl<$Res>
-    implements $PermissionDeniedCopyWith<$Res> {
-  _$PermissionDeniedCopyWithImpl(
-      PermissionDenied _value, $Res Function(PermissionDenied) _then)
-      : super(_value, (v) => _then(v as PermissionDenied));
+    implements _$$PermissionDeniedCopyWith<$Res> {
+  __$$PermissionDeniedCopyWithImpl(
+      _$PermissionDenied _value, $Res Function(_$PermissionDenied) _then)
+      : super(_value, (v) => _then(v as _$PermissionDenied));
 
   @override
-  PermissionDenied get _value => super._value as PermissionDenied;
+  _$PermissionDenied get _value => super._value as _$PermissionDenied;
 
   @override
   $Res call({
     Object? permission = freezed,
   }) {
-    return _then(PermissionDenied(
+    return _then(_$PermissionDenied(
       permission == freezed
           ? _value.permission
           : permission // ignore: cast_nullable_to_non_nullable
@@ -461,7 +425,7 @@ class _$PermissionDenied extends PermissionDenied {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is PermissionDenied &&
+            other is _$PermissionDenied &&
             const DeepCollectionEquality()
                 .equals(other.permission, permission));
   }
@@ -472,8 +436,8 @@ class _$PermissionDenied extends PermissionDenied {
 
   @JsonKey(ignore: true)
   @override
-  $PermissionDeniedCopyWith<PermissionDenied> get copyWith =>
-      _$PermissionDeniedCopyWithImpl<PermissionDenied>(this, _$identity);
+  _$$PermissionDeniedCopyWith<_$PermissionDenied> get copyWith =>
+      __$$PermissionDeniedCopyWithImpl<_$PermissionDenied>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -570,42 +534,43 @@ class _$PermissionDenied extends PermissionDenied {
 }
 
 abstract class PermissionDenied extends ImageError {
-  const factory PermissionDenied(RequiredImagePermission permission) =
+  const factory PermissionDenied(final RequiredImagePermission permission) =
       _$PermissionDenied;
   const PermissionDenied._() : super._();
 
   RequiredImagePermission get permission;
   @JsonKey(ignore: true)
-  $PermissionDeniedCopyWith<PermissionDenied> get copyWith =>
+  _$$PermissionDeniedCopyWith<_$PermissionDenied> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PermissionPermanentlyDeniedCopyWith<$Res> {
-  factory $PermissionPermanentlyDeniedCopyWith(
-          PermissionPermanentlyDenied value,
-          $Res Function(PermissionPermanentlyDenied) then) =
-      _$PermissionPermanentlyDeniedCopyWithImpl<$Res>;
+abstract class _$$PermissionPermanentlyDeniedCopyWith<$Res> {
+  factory _$$PermissionPermanentlyDeniedCopyWith(
+          _$PermissionPermanentlyDenied value,
+          $Res Function(_$PermissionPermanentlyDenied) then) =
+      __$$PermissionPermanentlyDeniedCopyWithImpl<$Res>;
   $Res call({RequiredImagePermission permission});
 }
 
 /// @nodoc
-class _$PermissionPermanentlyDeniedCopyWithImpl<$Res>
+class __$$PermissionPermanentlyDeniedCopyWithImpl<$Res>
     extends _$ImageErrorCopyWithImpl<$Res>
-    implements $PermissionPermanentlyDeniedCopyWith<$Res> {
-  _$PermissionPermanentlyDeniedCopyWithImpl(PermissionPermanentlyDenied _value,
-      $Res Function(PermissionPermanentlyDenied) _then)
-      : super(_value, (v) => _then(v as PermissionPermanentlyDenied));
+    implements _$$PermissionPermanentlyDeniedCopyWith<$Res> {
+  __$$PermissionPermanentlyDeniedCopyWithImpl(
+      _$PermissionPermanentlyDenied _value,
+      $Res Function(_$PermissionPermanentlyDenied) _then)
+      : super(_value, (v) => _then(v as _$PermissionPermanentlyDenied));
 
   @override
-  PermissionPermanentlyDenied get _value =>
-      super._value as PermissionPermanentlyDenied;
+  _$PermissionPermanentlyDenied get _value =>
+      super._value as _$PermissionPermanentlyDenied;
 
   @override
   $Res call({
     Object? permission = freezed,
   }) {
-    return _then(PermissionPermanentlyDenied(
+    return _then(_$PermissionPermanentlyDenied(
       permission == freezed
           ? _value.permission
           : permission // ignore: cast_nullable_to_non_nullable
@@ -631,7 +596,7 @@ class _$PermissionPermanentlyDenied extends PermissionPermanentlyDenied {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is PermissionPermanentlyDenied &&
+            other is _$PermissionPermanentlyDenied &&
             const DeepCollectionEquality()
                 .equals(other.permission, permission));
   }
@@ -642,9 +607,9 @@ class _$PermissionPermanentlyDenied extends PermissionPermanentlyDenied {
 
   @JsonKey(ignore: true)
   @override
-  $PermissionPermanentlyDeniedCopyWith<PermissionPermanentlyDenied>
-      get copyWith => _$PermissionPermanentlyDeniedCopyWithImpl<
-          PermissionPermanentlyDenied>(this, _$identity);
+  _$$PermissionPermanentlyDeniedCopyWith<_$PermissionPermanentlyDenied>
+      get copyWith => __$$PermissionPermanentlyDeniedCopyWithImpl<
+          _$PermissionPermanentlyDenied>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -742,31 +707,31 @@ class _$PermissionPermanentlyDenied extends PermissionPermanentlyDenied {
 
 abstract class PermissionPermanentlyDenied extends ImageError {
   const factory PermissionPermanentlyDenied(
-      RequiredImagePermission permission) = _$PermissionPermanentlyDenied;
+      final RequiredImagePermission permission) = _$PermissionPermanentlyDenied;
   const PermissionPermanentlyDenied._() : super._();
 
   RequiredImagePermission get permission;
   @JsonKey(ignore: true)
-  $PermissionPermanentlyDeniedCopyWith<PermissionPermanentlyDenied>
+  _$$PermissionPermanentlyDeniedCopyWith<_$PermissionPermanentlyDenied>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $NetworkErrorCopyWith<$Res> {
-  factory $NetworkErrorCopyWith(
-          NetworkError value, $Res Function(NetworkError) then) =
-      _$NetworkErrorCopyWithImpl<$Res>;
+abstract class _$$NetworkErrorCopyWith<$Res> {
+  factory _$$NetworkErrorCopyWith(
+          _$NetworkError value, $Res Function(_$NetworkError) then) =
+      __$$NetworkErrorCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$NetworkErrorCopyWithImpl<$Res> extends _$ImageErrorCopyWithImpl<$Res>
-    implements $NetworkErrorCopyWith<$Res> {
-  _$NetworkErrorCopyWithImpl(
-      NetworkError _value, $Res Function(NetworkError) _then)
-      : super(_value, (v) => _then(v as NetworkError));
+class __$$NetworkErrorCopyWithImpl<$Res> extends _$ImageErrorCopyWithImpl<$Res>
+    implements _$$NetworkErrorCopyWith<$Res> {
+  __$$NetworkErrorCopyWithImpl(
+      _$NetworkError _value, $Res Function(_$NetworkError) _then)
+      : super(_value, (v) => _then(v as _$NetworkError));
 
   @override
-  NetworkError get _value => super._value as NetworkError;
+  _$NetworkError get _value => super._value as _$NetworkError;
 }
 
 /// @nodoc
@@ -782,7 +747,7 @@ class _$NetworkError extends NetworkError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is NetworkError);
+        (other.runtimeType == runtimeType && other is _$NetworkError);
   }
 
   @override
@@ -888,22 +853,22 @@ abstract class NetworkError extends ImageError {
 }
 
 /// @nodoc
-abstract class $SizeExceededErrorCopyWith<$Res> {
-  factory $SizeExceededErrorCopyWith(
-          SizeExceededError value, $Res Function(SizeExceededError) then) =
-      _$SizeExceededErrorCopyWithImpl<$Res>;
+abstract class _$$SizeExceededErrorCopyWith<$Res> {
+  factory _$$SizeExceededErrorCopyWith(
+          _$SizeExceededError value, $Res Function(_$SizeExceededError) then) =
+      __$$SizeExceededErrorCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SizeExceededErrorCopyWithImpl<$Res>
+class __$$SizeExceededErrorCopyWithImpl<$Res>
     extends _$ImageErrorCopyWithImpl<$Res>
-    implements $SizeExceededErrorCopyWith<$Res> {
-  _$SizeExceededErrorCopyWithImpl(
-      SizeExceededError _value, $Res Function(SizeExceededError) _then)
-      : super(_value, (v) => _then(v as SizeExceededError));
+    implements _$$SizeExceededErrorCopyWith<$Res> {
+  __$$SizeExceededErrorCopyWithImpl(
+      _$SizeExceededError _value, $Res Function(_$SizeExceededError) _then)
+      : super(_value, (v) => _then(v as _$SizeExceededError));
 
   @override
-  SizeExceededError get _value => super._value as SizeExceededError;
+  _$SizeExceededError get _value => super._value as _$SizeExceededError;
 }
 
 /// @nodoc
@@ -919,7 +884,7 @@ class _$SizeExceededError extends SizeExceededError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is SizeExceededError);
+        (other.runtimeType == runtimeType && other is _$SizeExceededError);
   }
 
   @override

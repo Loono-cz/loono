@@ -46,8 +46,7 @@ class ExaminationTypeDbConverter extends TypeConverter<ExaminationType, String> 
   @override
   ExaminationType? mapToDart(String? fromDb) {
     if (fromDb == null) return null;
-    return ExaminationType.values
-        .singleWhereOrNull((examinationType) => examinationType.name == fromDb);
+    return ExaminationType.values.singleWhere((examinationType) => examinationType.name == fromDb);
   }
 
   @override
@@ -64,7 +63,7 @@ class ExaminationStatusDbConverter extends TypeConverter<ExaminationStatus, Stri
   ExaminationStatus? mapToDart(String? fromDb) {
     if (fromDb == null) return null;
     return ExaminationStatus.values
-        .singleWhereOrNull((examinationStatus) => examinationStatus.name == fromDb);
+        .singleWhere((examinationStatus) => examinationStatus.name == fromDb);
   }
 
   @override
@@ -80,7 +79,7 @@ class SexDbConverter extends TypeConverter<Sex, String> {
   @override
   Sex? mapToDart(String? fromDb) {
     if (fromDb == null) return null;
-    return Sex.values.singleWhereOrNull((sex) => sex.name == fromDb);
+    return Sex.values.singleWhere((sex) => sex.name == fromDb);
   }
 
   @override

@@ -6,7 +6,7 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono_api/loono_api.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class HasFindingScreen extends StatelessWidget {
   const HasFindingScreen({Key? key, required this.sex}) : super(key: key);
@@ -107,7 +107,7 @@ class HasFindingScreen extends StatelessWidget {
                                                 color: LoonoColors.primary,
                                               ),
                                               recognizer: TapGestureRecognizer()
-                                                ..onTap = () => launch(
+                                                ..onTap = () => launchUrlString(
                                                       'https://www.mamo.cz',
                                                     ),
                                             )
@@ -155,7 +155,7 @@ class HasFindingScreen extends StatelessWidget {
                                             color: LoonoColors.primary,
                                           ),
                                           recognizer: TapGestureRecognizer()
-                                            ..onTap = () => launch(
+                                            ..onTap = () => launchUrlString(
                                                   'mailto:poradna@loono.cz',
                                                 ),
                                         )

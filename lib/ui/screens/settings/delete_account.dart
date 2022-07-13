@@ -125,7 +125,7 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                             confirmationButtonLabel: context.l10n.delete,
                             onConfirm: () async {
                               WidgetsBinding.instance
-                                  ?.addPostFrameCallback((_) => _setLoadingState(true));
+                                  .addPostFrameCallback((_) => _setLoadingState(true));
                               final res = await _userRepository.deleteAccount();
                               if (res) {
                                 await AutoRouter.of(context).push(AfterDeletionRoute(sex: _sex));

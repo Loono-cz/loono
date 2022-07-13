@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class EmailFeedbackButton extends StatelessWidget {
   const EmailFeedbackButton({Key? key}) : super(key: key);
@@ -11,8 +11,8 @@ class EmailFeedbackButton extends StatelessWidget {
     return TextButton(
       onPressed: () async {
         final emailLaunchUri = Uri(scheme: 'mailto', path: LoonoStrings.contactEmail);
-        if (await canLaunch(emailLaunchUri.toString())) {
-          await launch(emailLaunchUri.toString());
+        if (await canLaunchUrlString(emailLaunchUri.toString())) {
+          await launchUrlString(emailLaunchUri.toString());
         }
       },
       child: Text(

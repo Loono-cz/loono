@@ -6,7 +6,7 @@ import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono_api/loono_api.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class SelfFAQPair {
   const SelfFAQPair({
@@ -89,8 +89,8 @@ List<SelfFAQPair> selfFaqContent(BuildContext context, SelfExaminationType type)
                             scheme: 'mailto',
                             path: LoonoStrings.contactEmail,
                           );
-                          if (await canLaunch(emailLaunchUri.toString())) {
-                            await launch(emailLaunchUri.toString());
+                          if (await canLaunchUrlString(emailLaunchUri.toString())) {
+                            await launchUrlString(emailLaunchUri.toString());
                           }
                         },
                     ),
@@ -207,8 +207,8 @@ List<SelfFAQPair> selfFaqContent(BuildContext context, SelfExaminationType type)
                         ..onTap = () async {
                           const url = 'https://www.mamo.cz/';
 
-                          if (await canLaunch(url)) {
-                            await launch(url);
+                          if (await canLaunchUrlString(url)) {
+                            await launchUrlString(url);
                           }
                         },
                     ),
@@ -239,8 +239,8 @@ List<SelfFAQPair> selfFaqContent(BuildContext context, SelfExaminationType type)
                             scheme: 'mailto',
                             path: LoonoStrings.contactEmail,
                           );
-                          if (await canLaunch(emailLaunchUri.toString())) {
-                            await launch(emailLaunchUri.toString());
+                          if (await canLaunchUrlString(emailLaunchUri.toString())) {
+                            await launchUrlString(emailLaunchUri.toString());
                           }
                         },
                     ),

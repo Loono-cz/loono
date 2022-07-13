@@ -12,36 +12,11 @@ part of 'apple_account_info.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 AppleAccountInfo _$AppleAccountInfoFromJson(Map<String, dynamic> json) {
   return _AppleAccountInfo.fromJson(json);
 }
-
-/// @nodoc
-class _$AppleAccountInfoTearOff {
-  const _$AppleAccountInfoTearOff();
-
-  _AppleAccountInfo call(
-      {required String userIdentifier,
-      required String email,
-      required String? givenName,
-      required String? familyName}) {
-    return _AppleAccountInfo(
-      userIdentifier: userIdentifier,
-      email: email,
-      givenName: givenName,
-      familyName: familyName,
-    );
-  }
-
-  AppleAccountInfo fromJson(Map<String, Object?> json) {
-    return AppleAccountInfo.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $AppleAccountInfo = _$AppleAccountInfoTearOff();
 
 /// @nodoc
 mixin _$AppleAccountInfo {
@@ -106,11 +81,11 @@ class _$AppleAccountInfoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$AppleAccountInfoCopyWith<$Res>
+abstract class _$$_AppleAccountInfoCopyWith<$Res>
     implements $AppleAccountInfoCopyWith<$Res> {
-  factory _$AppleAccountInfoCopyWith(
-          _AppleAccountInfo value, $Res Function(_AppleAccountInfo) then) =
-      __$AppleAccountInfoCopyWithImpl<$Res>;
+  factory _$$_AppleAccountInfoCopyWith(
+          _$_AppleAccountInfo value, $Res Function(_$_AppleAccountInfo) then) =
+      __$$_AppleAccountInfoCopyWithImpl<$Res>;
   @override
   $Res call(
       {String userIdentifier,
@@ -120,15 +95,15 @@ abstract class _$AppleAccountInfoCopyWith<$Res>
 }
 
 /// @nodoc
-class __$AppleAccountInfoCopyWithImpl<$Res>
+class __$$_AppleAccountInfoCopyWithImpl<$Res>
     extends _$AppleAccountInfoCopyWithImpl<$Res>
-    implements _$AppleAccountInfoCopyWith<$Res> {
-  __$AppleAccountInfoCopyWithImpl(
-      _AppleAccountInfo _value, $Res Function(_AppleAccountInfo) _then)
-      : super(_value, (v) => _then(v as _AppleAccountInfo));
+    implements _$$_AppleAccountInfoCopyWith<$Res> {
+  __$$_AppleAccountInfoCopyWithImpl(
+      _$_AppleAccountInfo _value, $Res Function(_$_AppleAccountInfo) _then)
+      : super(_value, (v) => _then(v as _$_AppleAccountInfo));
 
   @override
-  _AppleAccountInfo get _value => super._value as _AppleAccountInfo;
+  _$_AppleAccountInfo get _value => super._value as _$_AppleAccountInfo;
 
   @override
   $Res call({
@@ -137,7 +112,7 @@ class __$AppleAccountInfoCopyWithImpl<$Res>
     Object? givenName = freezed,
     Object? familyName = freezed,
   }) {
-    return _then(_AppleAccountInfo(
+    return _then(_$_AppleAccountInfo(
       userIdentifier: userIdentifier == freezed
           ? _value.userIdentifier
           : userIdentifier // ignore: cast_nullable_to_non_nullable
@@ -188,7 +163,7 @@ class _$_AppleAccountInfo implements _AppleAccountInfo {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AppleAccountInfo &&
+            other is _$_AppleAccountInfo &&
             const DeepCollectionEquality()
                 .equals(other.userIdentifier, userIdentifier) &&
             const DeepCollectionEquality().equals(other.email, email) &&
@@ -197,6 +172,7 @@ class _$_AppleAccountInfo implements _AppleAccountInfo {
                 .equals(other.familyName, familyName));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -207,8 +183,8 @@ class _$_AppleAccountInfo implements _AppleAccountInfo {
 
   @JsonKey(ignore: true)
   @override
-  _$AppleAccountInfoCopyWith<_AppleAccountInfo> get copyWith =>
-      __$AppleAccountInfoCopyWithImpl<_AppleAccountInfo>(this, _$identity);
+  _$$_AppleAccountInfoCopyWith<_$_AppleAccountInfo> get copyWith =>
+      __$$_AppleAccountInfoCopyWithImpl<_$_AppleAccountInfo>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -218,10 +194,10 @@ class _$_AppleAccountInfo implements _AppleAccountInfo {
 
 abstract class _AppleAccountInfo implements AppleAccountInfo {
   const factory _AppleAccountInfo(
-      {required String userIdentifier,
-      required String email,
-      required String? givenName,
-      required String? familyName}) = _$_AppleAccountInfo;
+      {required final String userIdentifier,
+      required final String email,
+      required final String? givenName,
+      required final String? familyName}) = _$_AppleAccountInfo;
 
   factory _AppleAccountInfo.fromJson(Map<String, dynamic> json) =
       _$_AppleAccountInfo.fromJson;
@@ -236,6 +212,6 @@ abstract class _AppleAccountInfo implements AppleAccountInfo {
   String? get familyName;
   @override
   @JsonKey(ignore: true)
-  _$AppleAccountInfoCopyWith<_AppleAccountInfo> get copyWith =>
+  _$$_AppleAccountInfoCopyWith<_$_AppleAccountInfo> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,35 +12,7 @@ part of 'examination_category.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ExaminationCategoryTearOff {
-  const _$ExaminationCategoryTearOff();
-
-  ScheduledSoonOrOverdueExamination scheduledSoonOrOverdue() {
-    return const ScheduledSoonOrOverdueExamination();
-  }
-
-  NewToScheduleExamination newToSchedule() {
-    return const NewToScheduleExamination();
-  }
-
-  UnknownLastVisitExamination unknownLastVisit() {
-    return const UnknownLastVisitExamination();
-  }
-
-  ScheduledExamination scheduled() {
-    return const ScheduledExamination();
-  }
-
-  WaitingExamination waiting() {
-    return const WaitingExamination();
-  }
-}
-
-/// @nodoc
-const $ExaminationCategory = _$ExaminationCategoryTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$ExaminationCategory {
@@ -124,25 +96,25 @@ class _$ExaminationCategoryCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $ScheduledSoonOrOverdueExaminationCopyWith<$Res> {
-  factory $ScheduledSoonOrOverdueExaminationCopyWith(
-          ScheduledSoonOrOverdueExamination value,
-          $Res Function(ScheduledSoonOrOverdueExamination) then) =
-      _$ScheduledSoonOrOverdueExaminationCopyWithImpl<$Res>;
+abstract class _$$ScheduledSoonOrOverdueExaminationCopyWith<$Res> {
+  factory _$$ScheduledSoonOrOverdueExaminationCopyWith(
+          _$ScheduledSoonOrOverdueExamination value,
+          $Res Function(_$ScheduledSoonOrOverdueExamination) then) =
+      __$$ScheduledSoonOrOverdueExaminationCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ScheduledSoonOrOverdueExaminationCopyWithImpl<$Res>
+class __$$ScheduledSoonOrOverdueExaminationCopyWithImpl<$Res>
     extends _$ExaminationCategoryCopyWithImpl<$Res>
-    implements $ScheduledSoonOrOverdueExaminationCopyWith<$Res> {
-  _$ScheduledSoonOrOverdueExaminationCopyWithImpl(
-      ScheduledSoonOrOverdueExamination _value,
-      $Res Function(ScheduledSoonOrOverdueExamination) _then)
-      : super(_value, (v) => _then(v as ScheduledSoonOrOverdueExamination));
+    implements _$$ScheduledSoonOrOverdueExaminationCopyWith<$Res> {
+  __$$ScheduledSoonOrOverdueExaminationCopyWithImpl(
+      _$ScheduledSoonOrOverdueExamination _value,
+      $Res Function(_$ScheduledSoonOrOverdueExamination) _then)
+      : super(_value, (v) => _then(v as _$ScheduledSoonOrOverdueExamination));
 
   @override
-  ScheduledSoonOrOverdueExamination get _value =>
-      super._value as ScheduledSoonOrOverdueExamination;
+  _$ScheduledSoonOrOverdueExamination get _value =>
+      super._value as _$ScheduledSoonOrOverdueExamination;
 }
 
 /// @nodoc
@@ -160,7 +132,7 @@ class _$ScheduledSoonOrOverdueExamination
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is ScheduledSoonOrOverdueExamination);
+            other is _$ScheduledSoonOrOverdueExamination);
   }
 
   @override
@@ -258,23 +230,23 @@ abstract class ScheduledSoonOrOverdueExamination extends ExaminationCategory {
 }
 
 /// @nodoc
-abstract class $NewToScheduleExaminationCopyWith<$Res> {
-  factory $NewToScheduleExaminationCopyWith(NewToScheduleExamination value,
-          $Res Function(NewToScheduleExamination) then) =
-      _$NewToScheduleExaminationCopyWithImpl<$Res>;
+abstract class _$$NewToScheduleExaminationCopyWith<$Res> {
+  factory _$$NewToScheduleExaminationCopyWith(_$NewToScheduleExamination value,
+          $Res Function(_$NewToScheduleExamination) then) =
+      __$$NewToScheduleExaminationCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$NewToScheduleExaminationCopyWithImpl<$Res>
+class __$$NewToScheduleExaminationCopyWithImpl<$Res>
     extends _$ExaminationCategoryCopyWithImpl<$Res>
-    implements $NewToScheduleExaminationCopyWith<$Res> {
-  _$NewToScheduleExaminationCopyWithImpl(NewToScheduleExamination _value,
-      $Res Function(NewToScheduleExamination) _then)
-      : super(_value, (v) => _then(v as NewToScheduleExamination));
+    implements _$$NewToScheduleExaminationCopyWith<$Res> {
+  __$$NewToScheduleExaminationCopyWithImpl(_$NewToScheduleExamination _value,
+      $Res Function(_$NewToScheduleExamination) _then)
+      : super(_value, (v) => _then(v as _$NewToScheduleExamination));
 
   @override
-  NewToScheduleExamination get _value =>
-      super._value as NewToScheduleExamination;
+  _$NewToScheduleExamination get _value =>
+      super._value as _$NewToScheduleExamination;
 }
 
 /// @nodoc
@@ -290,7 +262,8 @@ class _$NewToScheduleExamination extends NewToScheduleExamination {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is NewToScheduleExamination);
+        (other.runtimeType == runtimeType &&
+            other is _$NewToScheduleExamination);
   }
 
   @override
@@ -387,24 +360,25 @@ abstract class NewToScheduleExamination extends ExaminationCategory {
 }
 
 /// @nodoc
-abstract class $UnknownLastVisitExaminationCopyWith<$Res> {
-  factory $UnknownLastVisitExaminationCopyWith(
-          UnknownLastVisitExamination value,
-          $Res Function(UnknownLastVisitExamination) then) =
-      _$UnknownLastVisitExaminationCopyWithImpl<$Res>;
+abstract class _$$UnknownLastVisitExaminationCopyWith<$Res> {
+  factory _$$UnknownLastVisitExaminationCopyWith(
+          _$UnknownLastVisitExamination value,
+          $Res Function(_$UnknownLastVisitExamination) then) =
+      __$$UnknownLastVisitExaminationCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$UnknownLastVisitExaminationCopyWithImpl<$Res>
+class __$$UnknownLastVisitExaminationCopyWithImpl<$Res>
     extends _$ExaminationCategoryCopyWithImpl<$Res>
-    implements $UnknownLastVisitExaminationCopyWith<$Res> {
-  _$UnknownLastVisitExaminationCopyWithImpl(UnknownLastVisitExamination _value,
-      $Res Function(UnknownLastVisitExamination) _then)
-      : super(_value, (v) => _then(v as UnknownLastVisitExamination));
+    implements _$$UnknownLastVisitExaminationCopyWith<$Res> {
+  __$$UnknownLastVisitExaminationCopyWithImpl(
+      _$UnknownLastVisitExamination _value,
+      $Res Function(_$UnknownLastVisitExamination) _then)
+      : super(_value, (v) => _then(v as _$UnknownLastVisitExamination));
 
   @override
-  UnknownLastVisitExamination get _value =>
-      super._value as UnknownLastVisitExamination;
+  _$UnknownLastVisitExamination get _value =>
+      super._value as _$UnknownLastVisitExamination;
 }
 
 /// @nodoc
@@ -421,7 +395,7 @@ class _$UnknownLastVisitExamination extends UnknownLastVisitExamination {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is UnknownLastVisitExamination);
+            other is _$UnknownLastVisitExamination);
   }
 
   @override
@@ -518,22 +492,22 @@ abstract class UnknownLastVisitExamination extends ExaminationCategory {
 }
 
 /// @nodoc
-abstract class $ScheduledExaminationCopyWith<$Res> {
-  factory $ScheduledExaminationCopyWith(ScheduledExamination value,
-          $Res Function(ScheduledExamination) then) =
-      _$ScheduledExaminationCopyWithImpl<$Res>;
+abstract class _$$ScheduledExaminationCopyWith<$Res> {
+  factory _$$ScheduledExaminationCopyWith(_$ScheduledExamination value,
+          $Res Function(_$ScheduledExamination) then) =
+      __$$ScheduledExaminationCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ScheduledExaminationCopyWithImpl<$Res>
+class __$$ScheduledExaminationCopyWithImpl<$Res>
     extends _$ExaminationCategoryCopyWithImpl<$Res>
-    implements $ScheduledExaminationCopyWith<$Res> {
-  _$ScheduledExaminationCopyWithImpl(
-      ScheduledExamination _value, $Res Function(ScheduledExamination) _then)
-      : super(_value, (v) => _then(v as ScheduledExamination));
+    implements _$$ScheduledExaminationCopyWith<$Res> {
+  __$$ScheduledExaminationCopyWithImpl(_$ScheduledExamination _value,
+      $Res Function(_$ScheduledExamination) _then)
+      : super(_value, (v) => _then(v as _$ScheduledExamination));
 
   @override
-  ScheduledExamination get _value => super._value as ScheduledExamination;
+  _$ScheduledExamination get _value => super._value as _$ScheduledExamination;
 }
 
 /// @nodoc
@@ -549,7 +523,7 @@ class _$ScheduledExamination extends ScheduledExamination {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is ScheduledExamination);
+        (other.runtimeType == runtimeType && other is _$ScheduledExamination);
   }
 
   @override
@@ -646,22 +620,22 @@ abstract class ScheduledExamination extends ExaminationCategory {
 }
 
 /// @nodoc
-abstract class $WaitingExaminationCopyWith<$Res> {
-  factory $WaitingExaminationCopyWith(
-          WaitingExamination value, $Res Function(WaitingExamination) then) =
-      _$WaitingExaminationCopyWithImpl<$Res>;
+abstract class _$$WaitingExaminationCopyWith<$Res> {
+  factory _$$WaitingExaminationCopyWith(_$WaitingExamination value,
+          $Res Function(_$WaitingExamination) then) =
+      __$$WaitingExaminationCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$WaitingExaminationCopyWithImpl<$Res>
+class __$$WaitingExaminationCopyWithImpl<$Res>
     extends _$ExaminationCategoryCopyWithImpl<$Res>
-    implements $WaitingExaminationCopyWith<$Res> {
-  _$WaitingExaminationCopyWithImpl(
-      WaitingExamination _value, $Res Function(WaitingExamination) _then)
-      : super(_value, (v) => _then(v as WaitingExamination));
+    implements _$$WaitingExaminationCopyWith<$Res> {
+  __$$WaitingExaminationCopyWithImpl(
+      _$WaitingExamination _value, $Res Function(_$WaitingExamination) _then)
+      : super(_value, (v) => _then(v as _$WaitingExamination));
 
   @override
-  WaitingExamination get _value => super._value as WaitingExamination;
+  _$WaitingExamination get _value => super._value as _$WaitingExamination;
 }
 
 /// @nodoc
@@ -677,7 +651,7 @@ class _$WaitingExamination extends WaitingExamination {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is WaitingExamination);
+        (other.runtimeType == runtimeType && other is _$WaitingExamination);
   }
 
   @override
