@@ -2138,18 +2138,21 @@ mixin _$SelfExaminationTypeUnion {
   TResult when<TResult extends Object?>({
     required TResult Function() breast,
     required TResult Function() testicular,
+    required TResult Function() skin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? breast,
     TResult Function()? testicular,
+    TResult Function()? skin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? breast,
     TResult Function()? testicular,
+    TResult Function()? skin,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -2158,18 +2161,21 @@ mixin _$SelfExaminationTypeUnion {
     required TResult Function(BrestSelfExaminationTypeUnion value) breast,
     required TResult Function(TesticularSelfExaminationTypeUnion value)
         testicular,
+    required TResult Function(SkinSelfExaminationTypeUnion value) skin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(BrestSelfExaminationTypeUnion value)? breast,
     TResult Function(TesticularSelfExaminationTypeUnion value)? testicular,
+    TResult Function(SkinSelfExaminationTypeUnion value)? skin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BrestSelfExaminationTypeUnion value)? breast,
     TResult Function(TesticularSelfExaminationTypeUnion value)? testicular,
+    TResult Function(SkinSelfExaminationTypeUnion value)? skin,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -2239,6 +2245,7 @@ class _$BrestSelfExaminationTypeUnion extends BrestSelfExaminationTypeUnion {
   TResult when<TResult extends Object?>({
     required TResult Function() breast,
     required TResult Function() testicular,
+    required TResult Function() skin,
   }) {
     return breast();
   }
@@ -2248,6 +2255,7 @@ class _$BrestSelfExaminationTypeUnion extends BrestSelfExaminationTypeUnion {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? breast,
     TResult Function()? testicular,
+    TResult Function()? skin,
   }) {
     return breast?.call();
   }
@@ -2257,6 +2265,7 @@ class _$BrestSelfExaminationTypeUnion extends BrestSelfExaminationTypeUnion {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? breast,
     TResult Function()? testicular,
+    TResult Function()? skin,
     required TResult orElse(),
   }) {
     if (breast != null) {
@@ -2271,6 +2280,7 @@ class _$BrestSelfExaminationTypeUnion extends BrestSelfExaminationTypeUnion {
     required TResult Function(BrestSelfExaminationTypeUnion value) breast,
     required TResult Function(TesticularSelfExaminationTypeUnion value)
         testicular,
+    required TResult Function(SkinSelfExaminationTypeUnion value) skin,
   }) {
     return breast(this);
   }
@@ -2280,6 +2290,7 @@ class _$BrestSelfExaminationTypeUnion extends BrestSelfExaminationTypeUnion {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(BrestSelfExaminationTypeUnion value)? breast,
     TResult Function(TesticularSelfExaminationTypeUnion value)? testicular,
+    TResult Function(SkinSelfExaminationTypeUnion value)? skin,
   }) {
     return breast?.call(this);
   }
@@ -2289,6 +2300,7 @@ class _$BrestSelfExaminationTypeUnion extends BrestSelfExaminationTypeUnion {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BrestSelfExaminationTypeUnion value)? breast,
     TResult Function(TesticularSelfExaminationTypeUnion value)? testicular,
+    TResult Function(SkinSelfExaminationTypeUnion value)? skin,
     required TResult orElse(),
   }) {
     if (breast != null) {
@@ -2352,6 +2364,7 @@ class _$TesticularSelfExaminationTypeUnion
   TResult when<TResult extends Object?>({
     required TResult Function() breast,
     required TResult Function() testicular,
+    required TResult Function() skin,
   }) {
     return testicular();
   }
@@ -2361,6 +2374,7 @@ class _$TesticularSelfExaminationTypeUnion
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? breast,
     TResult Function()? testicular,
+    TResult Function()? skin,
   }) {
     return testicular?.call();
   }
@@ -2370,6 +2384,7 @@ class _$TesticularSelfExaminationTypeUnion
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? breast,
     TResult Function()? testicular,
+    TResult Function()? skin,
     required TResult orElse(),
   }) {
     if (testicular != null) {
@@ -2384,6 +2399,7 @@ class _$TesticularSelfExaminationTypeUnion
     required TResult Function(BrestSelfExaminationTypeUnion value) breast,
     required TResult Function(TesticularSelfExaminationTypeUnion value)
         testicular,
+    required TResult Function(SkinSelfExaminationTypeUnion value) skin,
   }) {
     return testicular(this);
   }
@@ -2393,6 +2409,7 @@ class _$TesticularSelfExaminationTypeUnion
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(BrestSelfExaminationTypeUnion value)? breast,
     TResult Function(TesticularSelfExaminationTypeUnion value)? testicular,
+    TResult Function(SkinSelfExaminationTypeUnion value)? skin,
   }) {
     return testicular?.call(this);
   }
@@ -2402,6 +2419,7 @@ class _$TesticularSelfExaminationTypeUnion
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BrestSelfExaminationTypeUnion value)? breast,
     TResult Function(TesticularSelfExaminationTypeUnion value)? testicular,
+    TResult Function(SkinSelfExaminationTypeUnion value)? skin,
     required TResult orElse(),
   }) {
     if (testicular != null) {
@@ -2416,4 +2434,121 @@ abstract class TesticularSelfExaminationTypeUnion
   const factory TesticularSelfExaminationTypeUnion() =
       _$TesticularSelfExaminationTypeUnion;
   const TesticularSelfExaminationTypeUnion._() : super._();
+}
+
+/// @nodoc
+abstract class _$$SkinSelfExaminationTypeUnionCopyWith<$Res> {
+  factory _$$SkinSelfExaminationTypeUnionCopyWith(
+          _$SkinSelfExaminationTypeUnion value,
+          $Res Function(_$SkinSelfExaminationTypeUnion) then) =
+      __$$SkinSelfExaminationTypeUnionCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SkinSelfExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$SelfExaminationTypeUnionCopyWithImpl<$Res>
+    implements _$$SkinSelfExaminationTypeUnionCopyWith<$Res> {
+  __$$SkinSelfExaminationTypeUnionCopyWithImpl(
+      _$SkinSelfExaminationTypeUnion _value,
+      $Res Function(_$SkinSelfExaminationTypeUnion) _then)
+      : super(_value, (v) => _then(v as _$SkinSelfExaminationTypeUnion));
+
+  @override
+  _$SkinSelfExaminationTypeUnion get _value =>
+      super._value as _$SkinSelfExaminationTypeUnion;
+}
+
+/// @nodoc
+
+class _$SkinSelfExaminationTypeUnion extends SkinSelfExaminationTypeUnion {
+  const _$SkinSelfExaminationTypeUnion() : super._();
+
+  @override
+  String toString() {
+    return 'SelfExaminationTypeUnion.skin()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SkinSelfExaminationTypeUnion);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() breast,
+    required TResult Function() testicular,
+    required TResult Function() skin,
+  }) {
+    return skin();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? breast,
+    TResult Function()? testicular,
+    TResult Function()? skin,
+  }) {
+    return skin?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? breast,
+    TResult Function()? testicular,
+    TResult Function()? skin,
+    required TResult orElse(),
+  }) {
+    if (skin != null) {
+      return skin();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BrestSelfExaminationTypeUnion value) breast,
+    required TResult Function(TesticularSelfExaminationTypeUnion value)
+        testicular,
+    required TResult Function(SkinSelfExaminationTypeUnion value) skin,
+  }) {
+    return skin(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(BrestSelfExaminationTypeUnion value)? breast,
+    TResult Function(TesticularSelfExaminationTypeUnion value)? testicular,
+    TResult Function(SkinSelfExaminationTypeUnion value)? skin,
+  }) {
+    return skin?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BrestSelfExaminationTypeUnion value)? breast,
+    TResult Function(TesticularSelfExaminationTypeUnion value)? testicular,
+    TResult Function(SkinSelfExaminationTypeUnion value)? skin,
+    required TResult orElse(),
+  }) {
+    if (skin != null) {
+      return skin(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SkinSelfExaminationTypeUnion extends SelfExaminationTypeUnion {
+  const factory SkinSelfExaminationTypeUnion() = _$SkinSelfExaminationTypeUnion;
+  const SkinSelfExaminationTypeUnion._() : super._();
 }

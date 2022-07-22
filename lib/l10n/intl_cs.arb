@@ -1047,5 +1047,11 @@
   "incubated": "Aplikace vznikla\nv inkubátoru",
   "@incubated": {},
   "too_early_checkup": "Ještě není čas se objednat",
-  "@too_early_checkup": {}
+  "@too_early_checkup": {},
+  "skinSelf_nomativ": "Vyšetření kůže",
+  "@skinSelf_nomativ": {},
+  "skinSelf_genitiv": "Vyšetření kůže",
+  "@skinSelf_genitiv": {},
+  "skinSelf_dativ": "Vyšetření kůže",
+  "@skinSelf_dativ": {}
 }

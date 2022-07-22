@@ -102,6 +102,9 @@ extension SelfExaminationTypeExt on SelfExaminationType {
       case SelfExaminationType.TESTICULAR:
         selfExaminationTypeUnion = const SelfExaminationTypeUnion.testicular();
         break;
+      case SelfExaminationType.SKIN:
+        selfExaminationTypeUnion = const SelfExaminationTypeUnion.skin();
+        break;
     }
     return selfExaminationTypeUnion;
   }
@@ -110,6 +113,7 @@ extension SelfExaminationTypeExt on SelfExaminationType {
   String get l10n_name => mapToUnion.when(
         breast: () => 'Samovyšetření prsu',
         testicular: () => 'Samovyšetření varlat',
+        skin: () => 'Samovyšetření kůže',
       );
 
   String get assetPath {
@@ -154,4 +158,6 @@ class SelfExaminationTypeUnion with _$SelfExaminationTypeUnion {
   const factory SelfExaminationTypeUnion.breast() = BrestSelfExaminationTypeUnion;
 
   const factory SelfExaminationTypeUnion.testicular() = TesticularSelfExaminationTypeUnion;
+
+  const factory SelfExaminationTypeUnion.skin() = SkinSelfExaminationTypeUnion;
 }

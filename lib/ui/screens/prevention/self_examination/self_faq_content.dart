@@ -325,6 +325,7 @@ List<SelfFAQPair> selfFaqContent(BuildContext context, SelfExaminationType type)
         ),
       ];
       break;
+    //TODO: ADD SKIN SELF EXAMINATION FAQ...
   }
   return result;
 }

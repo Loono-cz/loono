@@ -268,6 +268,11 @@ String selfExaminationTypeCasus(
       if (casus == Casus.genitiv) return l10n.testicularSelf_genitiv;
       if (casus == Casus.dativ) return l10n.testicularSelf_dativ;
       return '${SelfExaminationType.TESTICULAR} unkown casus';
+    case SelfExaminationType.SKIN:
+      if (casus == Casus.nomativ) return l10n.skinSelf_nomativ;
+      if (casus == Casus.genitiv) return l10n.skinSelf_genitiv;
+      if (casus == Casus.dativ) return l10n.skinSelf_dativ;
+      return '${SelfExaminationType.SKIN} unkown casus';
   }
   return '${selfExaminationType.name} unkown casus';
 }
