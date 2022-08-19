@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class UpdateProfileItem extends StatefulWidget {
   const UpdateProfileItem({
@@ -234,8 +234,8 @@ class PopUpState extends State<PopUp> {
                                             scheme: 'mailto',
                                             path: LoonoStrings.contactEmail,
                                           );
-                                          if (await canLaunch(emailLaunchUri.toString())) {
-                                            await launch(emailLaunchUri.toString());
+                                          if (await canLaunchUrlString(emailLaunchUri.toString())) {
+                                            await launchUrlString(emailLaunchUri.toString());
                                           }
                                         },
                                     ),

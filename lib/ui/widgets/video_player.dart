@@ -61,7 +61,7 @@ class _VideoPlayerScreenState extends State<CustomVideoPlayer> {
     if (_controller.value.isInitialized) {
       if (widget.storyPageState.isInResetState != oldWidget.storyPageState.isInResetState) {
         resetVideo();
-        WidgetsBinding.instance!.addPostFrameCallback((_) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
           if (mounted) widget.onLoaded?.call();
         });
       }
@@ -80,7 +80,7 @@ class _VideoPlayerScreenState extends State<CustomVideoPlayer> {
         if (initialPage <= oldWidget.storyPageState.pageIndexState &&
             widget.storyPageState.isPaused) {
           if (!(initialPage > oldWidget.storyPageState.pageIndexState)) {
-            WidgetsBinding.instance!.addPostFrameCallback((_) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
               if (mounted) widget.onLoaded?.call();
             });
           }

@@ -100,7 +100,7 @@ class _EditPhotoScreenState extends State<EditPhotoScreen> {
                     description: context.l10n.photo_remove_confirmation_dialog_content,
                     confirmationButtonLabel: context.l10n.continue_info,
                     onConfirm: () async {
-                      WidgetsBinding.instance?.addPostFrameCallback((_) {
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
                         _setLoadingState(true);
                       });
                       final result = await _userRepository.deleteUserPhoto();

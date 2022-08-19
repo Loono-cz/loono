@@ -12,27 +12,7 @@ part of 'api_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ApiResponseTearOff {
-  const _$ApiResponseTearOff();
-
-  SuccessApiResponse<T> success<T>(T data) {
-    return SuccessApiResponse<T>(
-      data,
-    );
-  }
-
-  FailureApiResponse<T> failure<T>(DioError error) {
-    return FailureApiResponse<T>(
-      error,
-    );
-  }
-}
-
-/// @nodoc
-const $ApiResponse = _$ApiResponseTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$ApiResponse<T> {
@@ -94,29 +74,29 @@ class _$ApiResponseCopyWithImpl<T, $Res>
 }
 
 /// @nodoc
-abstract class $SuccessApiResponseCopyWith<T, $Res> {
-  factory $SuccessApiResponseCopyWith(SuccessApiResponse<T> value,
-          $Res Function(SuccessApiResponse<T>) then) =
-      _$SuccessApiResponseCopyWithImpl<T, $Res>;
+abstract class _$$SuccessApiResponseCopyWith<T, $Res> {
+  factory _$$SuccessApiResponseCopyWith(_$SuccessApiResponse<T> value,
+          $Res Function(_$SuccessApiResponse<T>) then) =
+      __$$SuccessApiResponseCopyWithImpl<T, $Res>;
   $Res call({T data});
 }
 
 /// @nodoc
-class _$SuccessApiResponseCopyWithImpl<T, $Res>
+class __$$SuccessApiResponseCopyWithImpl<T, $Res>
     extends _$ApiResponseCopyWithImpl<T, $Res>
-    implements $SuccessApiResponseCopyWith<T, $Res> {
-  _$SuccessApiResponseCopyWithImpl(
-      SuccessApiResponse<T> _value, $Res Function(SuccessApiResponse<T>) _then)
-      : super(_value, (v) => _then(v as SuccessApiResponse<T>));
+    implements _$$SuccessApiResponseCopyWith<T, $Res> {
+  __$$SuccessApiResponseCopyWithImpl(_$SuccessApiResponse<T> _value,
+      $Res Function(_$SuccessApiResponse<T>) _then)
+      : super(_value, (v) => _then(v as _$SuccessApiResponse<T>));
 
   @override
-  SuccessApiResponse<T> get _value => super._value as SuccessApiResponse<T>;
+  _$SuccessApiResponse<T> get _value => super._value as _$SuccessApiResponse<T>;
 
   @override
   $Res call({
     Object? data = freezed,
   }) {
-    return _then(SuccessApiResponse<T>(
+    return _then(_$SuccessApiResponse<T>(
       data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -142,7 +122,7 @@ class _$SuccessApiResponse<T> extends SuccessApiResponse<T> {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is SuccessApiResponse<T> &&
+            other is _$SuccessApiResponse<T> &&
             const DeepCollectionEquality().equals(other.data, data));
   }
 
@@ -152,8 +132,8 @@ class _$SuccessApiResponse<T> extends SuccessApiResponse<T> {
 
   @JsonKey(ignore: true)
   @override
-  $SuccessApiResponseCopyWith<T, SuccessApiResponse<T>> get copyWith =>
-      _$SuccessApiResponseCopyWithImpl<T, SuccessApiResponse<T>>(
+  _$$SuccessApiResponseCopyWith<T, _$SuccessApiResponse<T>> get copyWith =>
+      __$$SuccessApiResponseCopyWithImpl<T, _$SuccessApiResponse<T>>(
           this, _$identity);
 
   @override
@@ -220,39 +200,39 @@ class _$SuccessApiResponse<T> extends SuccessApiResponse<T> {
 }
 
 abstract class SuccessApiResponse<T> extends ApiResponse<T> {
-  const factory SuccessApiResponse(T data) = _$SuccessApiResponse<T>;
+  const factory SuccessApiResponse(final T data) = _$SuccessApiResponse<T>;
   const SuccessApiResponse._() : super._();
 
   T get data;
   @JsonKey(ignore: true)
-  $SuccessApiResponseCopyWith<T, SuccessApiResponse<T>> get copyWith =>
+  _$$SuccessApiResponseCopyWith<T, _$SuccessApiResponse<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FailureApiResponseCopyWith<T, $Res> {
-  factory $FailureApiResponseCopyWith(FailureApiResponse<T> value,
-          $Res Function(FailureApiResponse<T>) then) =
-      _$FailureApiResponseCopyWithImpl<T, $Res>;
+abstract class _$$FailureApiResponseCopyWith<T, $Res> {
+  factory _$$FailureApiResponseCopyWith(_$FailureApiResponse<T> value,
+          $Res Function(_$FailureApiResponse<T>) then) =
+      __$$FailureApiResponseCopyWithImpl<T, $Res>;
   $Res call({DioError error});
 }
 
 /// @nodoc
-class _$FailureApiResponseCopyWithImpl<T, $Res>
+class __$$FailureApiResponseCopyWithImpl<T, $Res>
     extends _$ApiResponseCopyWithImpl<T, $Res>
-    implements $FailureApiResponseCopyWith<T, $Res> {
-  _$FailureApiResponseCopyWithImpl(
-      FailureApiResponse<T> _value, $Res Function(FailureApiResponse<T>) _then)
-      : super(_value, (v) => _then(v as FailureApiResponse<T>));
+    implements _$$FailureApiResponseCopyWith<T, $Res> {
+  __$$FailureApiResponseCopyWithImpl(_$FailureApiResponse<T> _value,
+      $Res Function(_$FailureApiResponse<T>) _then)
+      : super(_value, (v) => _then(v as _$FailureApiResponse<T>));
 
   @override
-  FailureApiResponse<T> get _value => super._value as FailureApiResponse<T>;
+  _$FailureApiResponse<T> get _value => super._value as _$FailureApiResponse<T>;
 
   @override
   $Res call({
     Object? error = freezed,
   }) {
-    return _then(FailureApiResponse<T>(
+    return _then(_$FailureApiResponse<T>(
       error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -278,7 +258,7 @@ class _$FailureApiResponse<T> extends FailureApiResponse<T> {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is FailureApiResponse<T> &&
+            other is _$FailureApiResponse<T> &&
             const DeepCollectionEquality().equals(other.error, error));
   }
 
@@ -288,8 +268,8 @@ class _$FailureApiResponse<T> extends FailureApiResponse<T> {
 
   @JsonKey(ignore: true)
   @override
-  $FailureApiResponseCopyWith<T, FailureApiResponse<T>> get copyWith =>
-      _$FailureApiResponseCopyWithImpl<T, FailureApiResponse<T>>(
+  _$$FailureApiResponseCopyWith<T, _$FailureApiResponse<T>> get copyWith =>
+      __$$FailureApiResponseCopyWithImpl<T, _$FailureApiResponse<T>>(
           this, _$identity);
 
   @override
@@ -356,11 +336,12 @@ class _$FailureApiResponse<T> extends FailureApiResponse<T> {
 }
 
 abstract class FailureApiResponse<T> extends ApiResponse<T> {
-  const factory FailureApiResponse(DioError error) = _$FailureApiResponse<T>;
+  const factory FailureApiResponse(final DioError error) =
+      _$FailureApiResponse<T>;
   const FailureApiResponse._() : super._();
 
   DioError get error;
   @JsonKey(ignore: true)
-  $FailureApiResponseCopyWith<T, FailureApiResponse<T>> get copyWith =>
+  _$$FailureApiResponseCopyWith<T, _$FailureApiResponse<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

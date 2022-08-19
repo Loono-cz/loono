@@ -85,7 +85,7 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
                       // TODO: Handle this case
                       if (calendars.isEmpty) return const Center(child: Text('Žádné kalendáře'));
                       if (calendars.length == 1) {
-                        WidgetsBinding.instance?.scheduleFrameCallback((_) {
+                        WidgetsBinding.instance.scheduleFrameCallback((_) {
                           setState(() => _calendarIdChoice = calendars.first.id);
                         });
                       }

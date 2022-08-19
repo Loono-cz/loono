@@ -12,59 +12,7 @@ part of 'examination_types.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ExaminationTypeUnionTearOff {
-  const _$ExaminationTypeUnionTearOff();
-
-  ColonoscopyExaminationTypeUnion colonoscopy() {
-    return const ColonoscopyExaminationTypeUnion();
-  }
-
-  DentistExaminationTypeUnion dentist() {
-    return const DentistExaminationTypeUnion();
-  }
-
-  DermatologistExaminationTypeUnion dermatologist() {
-    return const DermatologistExaminationTypeUnion();
-  }
-
-  GeneralPractitionerExaminationTypeUnion generalPractitioner() {
-    return const GeneralPractitionerExaminationTypeUnion();
-  }
-
-  MammogramExaminationTypeUnion mammogram() {
-    return const MammogramExaminationTypeUnion();
-  }
-
-  GynecologistExaminationTypeUnion gynecologist() {
-    return const GynecologistExaminationTypeUnion();
-  }
-
-  OphthalmologistExaminationTypeUnion ophthalmologist() {
-    return const OphthalmologistExaminationTypeUnion();
-  }
-
-  ToksExaminationTypeUnion toks() {
-    return const ToksExaminationTypeUnion();
-  }
-
-  UltrasoundBreastExaminationTypeUnion ultrasoundBreast() {
-    return const UltrasoundBreastExaminationTypeUnion();
-  }
-
-  UrologistExaminationTypeUnion urologist() {
-    return const UrologistExaminationTypeUnion();
-  }
-
-  VenerealDiseasesExaminationTypeUnion venerealDiseases() {
-    return const VenerealDiseasesExaminationTypeUnion();
-  }
-}
-
-/// @nodoc
-const $ExaminationTypeUnion = _$ExaminationTypeUnionTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$ExaminationTypeUnion {
@@ -195,25 +143,25 @@ class _$ExaminationTypeUnionCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $ColonoscopyExaminationTypeUnionCopyWith<$Res> {
-  factory $ColonoscopyExaminationTypeUnionCopyWith(
-          ColonoscopyExaminationTypeUnion value,
-          $Res Function(ColonoscopyExaminationTypeUnion) then) =
-      _$ColonoscopyExaminationTypeUnionCopyWithImpl<$Res>;
+abstract class _$$ColonoscopyExaminationTypeUnionCopyWith<$Res> {
+  factory _$$ColonoscopyExaminationTypeUnionCopyWith(
+          _$ColonoscopyExaminationTypeUnion value,
+          $Res Function(_$ColonoscopyExaminationTypeUnion) then) =
+      __$$ColonoscopyExaminationTypeUnionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ColonoscopyExaminationTypeUnionCopyWithImpl<$Res>
+class __$$ColonoscopyExaminationTypeUnionCopyWithImpl<$Res>
     extends _$ExaminationTypeUnionCopyWithImpl<$Res>
-    implements $ColonoscopyExaminationTypeUnionCopyWith<$Res> {
-  _$ColonoscopyExaminationTypeUnionCopyWithImpl(
-      ColonoscopyExaminationTypeUnion _value,
-      $Res Function(ColonoscopyExaminationTypeUnion) _then)
-      : super(_value, (v) => _then(v as ColonoscopyExaminationTypeUnion));
+    implements _$$ColonoscopyExaminationTypeUnionCopyWith<$Res> {
+  __$$ColonoscopyExaminationTypeUnionCopyWithImpl(
+      _$ColonoscopyExaminationTypeUnion _value,
+      $Res Function(_$ColonoscopyExaminationTypeUnion) _then)
+      : super(_value, (v) => _then(v as _$ColonoscopyExaminationTypeUnion));
 
   @override
-  ColonoscopyExaminationTypeUnion get _value =>
-      super._value as ColonoscopyExaminationTypeUnion;
+  _$ColonoscopyExaminationTypeUnion get _value =>
+      super._value as _$ColonoscopyExaminationTypeUnion;
 }
 
 /// @nodoc
@@ -231,7 +179,7 @@ class _$ColonoscopyExaminationTypeUnion
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is ColonoscopyExaminationTypeUnion);
+            other is _$ColonoscopyExaminationTypeUnion);
   }
 
   @override
@@ -376,24 +324,25 @@ abstract class ColonoscopyExaminationTypeUnion extends ExaminationTypeUnion {
 }
 
 /// @nodoc
-abstract class $DentistExaminationTypeUnionCopyWith<$Res> {
-  factory $DentistExaminationTypeUnionCopyWith(
-          DentistExaminationTypeUnion value,
-          $Res Function(DentistExaminationTypeUnion) then) =
-      _$DentistExaminationTypeUnionCopyWithImpl<$Res>;
+abstract class _$$DentistExaminationTypeUnionCopyWith<$Res> {
+  factory _$$DentistExaminationTypeUnionCopyWith(
+          _$DentistExaminationTypeUnion value,
+          $Res Function(_$DentistExaminationTypeUnion) then) =
+      __$$DentistExaminationTypeUnionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$DentistExaminationTypeUnionCopyWithImpl<$Res>
+class __$$DentistExaminationTypeUnionCopyWithImpl<$Res>
     extends _$ExaminationTypeUnionCopyWithImpl<$Res>
-    implements $DentistExaminationTypeUnionCopyWith<$Res> {
-  _$DentistExaminationTypeUnionCopyWithImpl(DentistExaminationTypeUnion _value,
-      $Res Function(DentistExaminationTypeUnion) _then)
-      : super(_value, (v) => _then(v as DentistExaminationTypeUnion));
+    implements _$$DentistExaminationTypeUnionCopyWith<$Res> {
+  __$$DentistExaminationTypeUnionCopyWithImpl(
+      _$DentistExaminationTypeUnion _value,
+      $Res Function(_$DentistExaminationTypeUnion) _then)
+      : super(_value, (v) => _then(v as _$DentistExaminationTypeUnion));
 
   @override
-  DentistExaminationTypeUnion get _value =>
-      super._value as DentistExaminationTypeUnion;
+  _$DentistExaminationTypeUnion get _value =>
+      super._value as _$DentistExaminationTypeUnion;
 }
 
 /// @nodoc
@@ -410,7 +359,7 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is DentistExaminationTypeUnion);
+            other is _$DentistExaminationTypeUnion);
   }
 
   @override
@@ -554,25 +503,25 @@ abstract class DentistExaminationTypeUnion extends ExaminationTypeUnion {
 }
 
 /// @nodoc
-abstract class $DermatologistExaminationTypeUnionCopyWith<$Res> {
-  factory $DermatologistExaminationTypeUnionCopyWith(
-          DermatologistExaminationTypeUnion value,
-          $Res Function(DermatologistExaminationTypeUnion) then) =
-      _$DermatologistExaminationTypeUnionCopyWithImpl<$Res>;
+abstract class _$$DermatologistExaminationTypeUnionCopyWith<$Res> {
+  factory _$$DermatologistExaminationTypeUnionCopyWith(
+          _$DermatologistExaminationTypeUnion value,
+          $Res Function(_$DermatologistExaminationTypeUnion) then) =
+      __$$DermatologistExaminationTypeUnionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$DermatologistExaminationTypeUnionCopyWithImpl<$Res>
+class __$$DermatologistExaminationTypeUnionCopyWithImpl<$Res>
     extends _$ExaminationTypeUnionCopyWithImpl<$Res>
-    implements $DermatologistExaminationTypeUnionCopyWith<$Res> {
-  _$DermatologistExaminationTypeUnionCopyWithImpl(
-      DermatologistExaminationTypeUnion _value,
-      $Res Function(DermatologistExaminationTypeUnion) _then)
-      : super(_value, (v) => _then(v as DermatologistExaminationTypeUnion));
+    implements _$$DermatologistExaminationTypeUnionCopyWith<$Res> {
+  __$$DermatologistExaminationTypeUnionCopyWithImpl(
+      _$DermatologistExaminationTypeUnion _value,
+      $Res Function(_$DermatologistExaminationTypeUnion) _then)
+      : super(_value, (v) => _then(v as _$DermatologistExaminationTypeUnion));
 
   @override
-  DermatologistExaminationTypeUnion get _value =>
-      super._value as DermatologistExaminationTypeUnion;
+  _$DermatologistExaminationTypeUnion get _value =>
+      super._value as _$DermatologistExaminationTypeUnion;
 }
 
 /// @nodoc
@@ -590,7 +539,7 @@ class _$DermatologistExaminationTypeUnion
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is DermatologistExaminationTypeUnion);
+            other is _$DermatologistExaminationTypeUnion);
   }
 
   @override
@@ -735,26 +684,26 @@ abstract class DermatologistExaminationTypeUnion extends ExaminationTypeUnion {
 }
 
 /// @nodoc
-abstract class $GeneralPractitionerExaminationTypeUnionCopyWith<$Res> {
-  factory $GeneralPractitionerExaminationTypeUnionCopyWith(
-          GeneralPractitionerExaminationTypeUnion value,
-          $Res Function(GeneralPractitionerExaminationTypeUnion) then) =
-      _$GeneralPractitionerExaminationTypeUnionCopyWithImpl<$Res>;
+abstract class _$$GeneralPractitionerExaminationTypeUnionCopyWith<$Res> {
+  factory _$$GeneralPractitionerExaminationTypeUnionCopyWith(
+          _$GeneralPractitionerExaminationTypeUnion value,
+          $Res Function(_$GeneralPractitionerExaminationTypeUnion) then) =
+      __$$GeneralPractitionerExaminationTypeUnionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$GeneralPractitionerExaminationTypeUnionCopyWithImpl<$Res>
+class __$$GeneralPractitionerExaminationTypeUnionCopyWithImpl<$Res>
     extends _$ExaminationTypeUnionCopyWithImpl<$Res>
-    implements $GeneralPractitionerExaminationTypeUnionCopyWith<$Res> {
-  _$GeneralPractitionerExaminationTypeUnionCopyWithImpl(
-      GeneralPractitionerExaminationTypeUnion _value,
-      $Res Function(GeneralPractitionerExaminationTypeUnion) _then)
-      : super(
-            _value, (v) => _then(v as GeneralPractitionerExaminationTypeUnion));
+    implements _$$GeneralPractitionerExaminationTypeUnionCopyWith<$Res> {
+  __$$GeneralPractitionerExaminationTypeUnionCopyWithImpl(
+      _$GeneralPractitionerExaminationTypeUnion _value,
+      $Res Function(_$GeneralPractitionerExaminationTypeUnion) _then)
+      : super(_value,
+            (v) => _then(v as _$GeneralPractitionerExaminationTypeUnion));
 
   @override
-  GeneralPractitionerExaminationTypeUnion get _value =>
-      super._value as GeneralPractitionerExaminationTypeUnion;
+  _$GeneralPractitionerExaminationTypeUnion get _value =>
+      super._value as _$GeneralPractitionerExaminationTypeUnion;
 }
 
 /// @nodoc
@@ -772,7 +721,7 @@ class _$GeneralPractitionerExaminationTypeUnion
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is GeneralPractitionerExaminationTypeUnion);
+            other is _$GeneralPractitionerExaminationTypeUnion);
   }
 
   @override
@@ -918,25 +867,25 @@ abstract class GeneralPractitionerExaminationTypeUnion
 }
 
 /// @nodoc
-abstract class $MammogramExaminationTypeUnionCopyWith<$Res> {
-  factory $MammogramExaminationTypeUnionCopyWith(
-          MammogramExaminationTypeUnion value,
-          $Res Function(MammogramExaminationTypeUnion) then) =
-      _$MammogramExaminationTypeUnionCopyWithImpl<$Res>;
+abstract class _$$MammogramExaminationTypeUnionCopyWith<$Res> {
+  factory _$$MammogramExaminationTypeUnionCopyWith(
+          _$MammogramExaminationTypeUnion value,
+          $Res Function(_$MammogramExaminationTypeUnion) then) =
+      __$$MammogramExaminationTypeUnionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$MammogramExaminationTypeUnionCopyWithImpl<$Res>
+class __$$MammogramExaminationTypeUnionCopyWithImpl<$Res>
     extends _$ExaminationTypeUnionCopyWithImpl<$Res>
-    implements $MammogramExaminationTypeUnionCopyWith<$Res> {
-  _$MammogramExaminationTypeUnionCopyWithImpl(
-      MammogramExaminationTypeUnion _value,
-      $Res Function(MammogramExaminationTypeUnion) _then)
-      : super(_value, (v) => _then(v as MammogramExaminationTypeUnion));
+    implements _$$MammogramExaminationTypeUnionCopyWith<$Res> {
+  __$$MammogramExaminationTypeUnionCopyWithImpl(
+      _$MammogramExaminationTypeUnion _value,
+      $Res Function(_$MammogramExaminationTypeUnion) _then)
+      : super(_value, (v) => _then(v as _$MammogramExaminationTypeUnion));
 
   @override
-  MammogramExaminationTypeUnion get _value =>
-      super._value as MammogramExaminationTypeUnion;
+  _$MammogramExaminationTypeUnion get _value =>
+      super._value as _$MammogramExaminationTypeUnion;
 }
 
 /// @nodoc
@@ -953,7 +902,7 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is MammogramExaminationTypeUnion);
+            other is _$MammogramExaminationTypeUnion);
   }
 
   @override
@@ -1098,25 +1047,25 @@ abstract class MammogramExaminationTypeUnion extends ExaminationTypeUnion {
 }
 
 /// @nodoc
-abstract class $GynecologistExaminationTypeUnionCopyWith<$Res> {
-  factory $GynecologistExaminationTypeUnionCopyWith(
-          GynecologistExaminationTypeUnion value,
-          $Res Function(GynecologistExaminationTypeUnion) then) =
-      _$GynecologistExaminationTypeUnionCopyWithImpl<$Res>;
+abstract class _$$GynecologistExaminationTypeUnionCopyWith<$Res> {
+  factory _$$GynecologistExaminationTypeUnionCopyWith(
+          _$GynecologistExaminationTypeUnion value,
+          $Res Function(_$GynecologistExaminationTypeUnion) then) =
+      __$$GynecologistExaminationTypeUnionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$GynecologistExaminationTypeUnionCopyWithImpl<$Res>
+class __$$GynecologistExaminationTypeUnionCopyWithImpl<$Res>
     extends _$ExaminationTypeUnionCopyWithImpl<$Res>
-    implements $GynecologistExaminationTypeUnionCopyWith<$Res> {
-  _$GynecologistExaminationTypeUnionCopyWithImpl(
-      GynecologistExaminationTypeUnion _value,
-      $Res Function(GynecologistExaminationTypeUnion) _then)
-      : super(_value, (v) => _then(v as GynecologistExaminationTypeUnion));
+    implements _$$GynecologistExaminationTypeUnionCopyWith<$Res> {
+  __$$GynecologistExaminationTypeUnionCopyWithImpl(
+      _$GynecologistExaminationTypeUnion _value,
+      $Res Function(_$GynecologistExaminationTypeUnion) _then)
+      : super(_value, (v) => _then(v as _$GynecologistExaminationTypeUnion));
 
   @override
-  GynecologistExaminationTypeUnion get _value =>
-      super._value as GynecologistExaminationTypeUnion;
+  _$GynecologistExaminationTypeUnion get _value =>
+      super._value as _$GynecologistExaminationTypeUnion;
 }
 
 /// @nodoc
@@ -1134,7 +1083,7 @@ class _$GynecologistExaminationTypeUnion
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is GynecologistExaminationTypeUnion);
+            other is _$GynecologistExaminationTypeUnion);
   }
 
   @override
@@ -1279,25 +1228,25 @@ abstract class GynecologistExaminationTypeUnion extends ExaminationTypeUnion {
 }
 
 /// @nodoc
-abstract class $OphthalmologistExaminationTypeUnionCopyWith<$Res> {
-  factory $OphthalmologistExaminationTypeUnionCopyWith(
-          OphthalmologistExaminationTypeUnion value,
-          $Res Function(OphthalmologistExaminationTypeUnion) then) =
-      _$OphthalmologistExaminationTypeUnionCopyWithImpl<$Res>;
+abstract class _$$OphthalmologistExaminationTypeUnionCopyWith<$Res> {
+  factory _$$OphthalmologistExaminationTypeUnionCopyWith(
+          _$OphthalmologistExaminationTypeUnion value,
+          $Res Function(_$OphthalmologistExaminationTypeUnion) then) =
+      __$$OphthalmologistExaminationTypeUnionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$OphthalmologistExaminationTypeUnionCopyWithImpl<$Res>
+class __$$OphthalmologistExaminationTypeUnionCopyWithImpl<$Res>
     extends _$ExaminationTypeUnionCopyWithImpl<$Res>
-    implements $OphthalmologistExaminationTypeUnionCopyWith<$Res> {
-  _$OphthalmologistExaminationTypeUnionCopyWithImpl(
-      OphthalmologistExaminationTypeUnion _value,
-      $Res Function(OphthalmologistExaminationTypeUnion) _then)
-      : super(_value, (v) => _then(v as OphthalmologistExaminationTypeUnion));
+    implements _$$OphthalmologistExaminationTypeUnionCopyWith<$Res> {
+  __$$OphthalmologistExaminationTypeUnionCopyWithImpl(
+      _$OphthalmologistExaminationTypeUnion _value,
+      $Res Function(_$OphthalmologistExaminationTypeUnion) _then)
+      : super(_value, (v) => _then(v as _$OphthalmologistExaminationTypeUnion));
 
   @override
-  OphthalmologistExaminationTypeUnion get _value =>
-      super._value as OphthalmologistExaminationTypeUnion;
+  _$OphthalmologistExaminationTypeUnion get _value =>
+      super._value as _$OphthalmologistExaminationTypeUnion;
 }
 
 /// @nodoc
@@ -1315,7 +1264,7 @@ class _$OphthalmologistExaminationTypeUnion
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is OphthalmologistExaminationTypeUnion);
+            other is _$OphthalmologistExaminationTypeUnion);
   }
 
   @override
@@ -1461,23 +1410,23 @@ abstract class OphthalmologistExaminationTypeUnion
 }
 
 /// @nodoc
-abstract class $ToksExaminationTypeUnionCopyWith<$Res> {
-  factory $ToksExaminationTypeUnionCopyWith(ToksExaminationTypeUnion value,
-          $Res Function(ToksExaminationTypeUnion) then) =
-      _$ToksExaminationTypeUnionCopyWithImpl<$Res>;
+abstract class _$$ToksExaminationTypeUnionCopyWith<$Res> {
+  factory _$$ToksExaminationTypeUnionCopyWith(_$ToksExaminationTypeUnion value,
+          $Res Function(_$ToksExaminationTypeUnion) then) =
+      __$$ToksExaminationTypeUnionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ToksExaminationTypeUnionCopyWithImpl<$Res>
+class __$$ToksExaminationTypeUnionCopyWithImpl<$Res>
     extends _$ExaminationTypeUnionCopyWithImpl<$Res>
-    implements $ToksExaminationTypeUnionCopyWith<$Res> {
-  _$ToksExaminationTypeUnionCopyWithImpl(ToksExaminationTypeUnion _value,
-      $Res Function(ToksExaminationTypeUnion) _then)
-      : super(_value, (v) => _then(v as ToksExaminationTypeUnion));
+    implements _$$ToksExaminationTypeUnionCopyWith<$Res> {
+  __$$ToksExaminationTypeUnionCopyWithImpl(_$ToksExaminationTypeUnion _value,
+      $Res Function(_$ToksExaminationTypeUnion) _then)
+      : super(_value, (v) => _then(v as _$ToksExaminationTypeUnion));
 
   @override
-  ToksExaminationTypeUnion get _value =>
-      super._value as ToksExaminationTypeUnion;
+  _$ToksExaminationTypeUnion get _value =>
+      super._value as _$ToksExaminationTypeUnion;
 }
 
 /// @nodoc
@@ -1493,7 +1442,8 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is ToksExaminationTypeUnion);
+        (other.runtimeType == runtimeType &&
+            other is _$ToksExaminationTypeUnion);
   }
 
   @override
@@ -1637,25 +1587,26 @@ abstract class ToksExaminationTypeUnion extends ExaminationTypeUnion {
 }
 
 /// @nodoc
-abstract class $UltrasoundBreastExaminationTypeUnionCopyWith<$Res> {
-  factory $UltrasoundBreastExaminationTypeUnionCopyWith(
-          UltrasoundBreastExaminationTypeUnion value,
-          $Res Function(UltrasoundBreastExaminationTypeUnion) then) =
-      _$UltrasoundBreastExaminationTypeUnionCopyWithImpl<$Res>;
+abstract class _$$UltrasoundBreastExaminationTypeUnionCopyWith<$Res> {
+  factory _$$UltrasoundBreastExaminationTypeUnionCopyWith(
+          _$UltrasoundBreastExaminationTypeUnion value,
+          $Res Function(_$UltrasoundBreastExaminationTypeUnion) then) =
+      __$$UltrasoundBreastExaminationTypeUnionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$UltrasoundBreastExaminationTypeUnionCopyWithImpl<$Res>
+class __$$UltrasoundBreastExaminationTypeUnionCopyWithImpl<$Res>
     extends _$ExaminationTypeUnionCopyWithImpl<$Res>
-    implements $UltrasoundBreastExaminationTypeUnionCopyWith<$Res> {
-  _$UltrasoundBreastExaminationTypeUnionCopyWithImpl(
-      UltrasoundBreastExaminationTypeUnion _value,
-      $Res Function(UltrasoundBreastExaminationTypeUnion) _then)
-      : super(_value, (v) => _then(v as UltrasoundBreastExaminationTypeUnion));
+    implements _$$UltrasoundBreastExaminationTypeUnionCopyWith<$Res> {
+  __$$UltrasoundBreastExaminationTypeUnionCopyWithImpl(
+      _$UltrasoundBreastExaminationTypeUnion _value,
+      $Res Function(_$UltrasoundBreastExaminationTypeUnion) _then)
+      : super(
+            _value, (v) => _then(v as _$UltrasoundBreastExaminationTypeUnion));
 
   @override
-  UltrasoundBreastExaminationTypeUnion get _value =>
-      super._value as UltrasoundBreastExaminationTypeUnion;
+  _$UltrasoundBreastExaminationTypeUnion get _value =>
+      super._value as _$UltrasoundBreastExaminationTypeUnion;
 }
 
 /// @nodoc
@@ -1673,7 +1624,7 @@ class _$UltrasoundBreastExaminationTypeUnion
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is UltrasoundBreastExaminationTypeUnion);
+            other is _$UltrasoundBreastExaminationTypeUnion);
   }
 
   @override
@@ -1819,25 +1770,25 @@ abstract class UltrasoundBreastExaminationTypeUnion
 }
 
 /// @nodoc
-abstract class $UrologistExaminationTypeUnionCopyWith<$Res> {
-  factory $UrologistExaminationTypeUnionCopyWith(
-          UrologistExaminationTypeUnion value,
-          $Res Function(UrologistExaminationTypeUnion) then) =
-      _$UrologistExaminationTypeUnionCopyWithImpl<$Res>;
+abstract class _$$UrologistExaminationTypeUnionCopyWith<$Res> {
+  factory _$$UrologistExaminationTypeUnionCopyWith(
+          _$UrologistExaminationTypeUnion value,
+          $Res Function(_$UrologistExaminationTypeUnion) then) =
+      __$$UrologistExaminationTypeUnionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$UrologistExaminationTypeUnionCopyWithImpl<$Res>
+class __$$UrologistExaminationTypeUnionCopyWithImpl<$Res>
     extends _$ExaminationTypeUnionCopyWithImpl<$Res>
-    implements $UrologistExaminationTypeUnionCopyWith<$Res> {
-  _$UrologistExaminationTypeUnionCopyWithImpl(
-      UrologistExaminationTypeUnion _value,
-      $Res Function(UrologistExaminationTypeUnion) _then)
-      : super(_value, (v) => _then(v as UrologistExaminationTypeUnion));
+    implements _$$UrologistExaminationTypeUnionCopyWith<$Res> {
+  __$$UrologistExaminationTypeUnionCopyWithImpl(
+      _$UrologistExaminationTypeUnion _value,
+      $Res Function(_$UrologistExaminationTypeUnion) _then)
+      : super(_value, (v) => _then(v as _$UrologistExaminationTypeUnion));
 
   @override
-  UrologistExaminationTypeUnion get _value =>
-      super._value as UrologistExaminationTypeUnion;
+  _$UrologistExaminationTypeUnion get _value =>
+      super._value as _$UrologistExaminationTypeUnion;
 }
 
 /// @nodoc
@@ -1854,7 +1805,7 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is UrologistExaminationTypeUnion);
+            other is _$UrologistExaminationTypeUnion);
   }
 
   @override
@@ -1999,25 +1950,26 @@ abstract class UrologistExaminationTypeUnion extends ExaminationTypeUnion {
 }
 
 /// @nodoc
-abstract class $VenerealDiseasesExaminationTypeUnionCopyWith<$Res> {
-  factory $VenerealDiseasesExaminationTypeUnionCopyWith(
-          VenerealDiseasesExaminationTypeUnion value,
-          $Res Function(VenerealDiseasesExaminationTypeUnion) then) =
-      _$VenerealDiseasesExaminationTypeUnionCopyWithImpl<$Res>;
+abstract class _$$VenerealDiseasesExaminationTypeUnionCopyWith<$Res> {
+  factory _$$VenerealDiseasesExaminationTypeUnionCopyWith(
+          _$VenerealDiseasesExaminationTypeUnion value,
+          $Res Function(_$VenerealDiseasesExaminationTypeUnion) then) =
+      __$$VenerealDiseasesExaminationTypeUnionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$VenerealDiseasesExaminationTypeUnionCopyWithImpl<$Res>
+class __$$VenerealDiseasesExaminationTypeUnionCopyWithImpl<$Res>
     extends _$ExaminationTypeUnionCopyWithImpl<$Res>
-    implements $VenerealDiseasesExaminationTypeUnionCopyWith<$Res> {
-  _$VenerealDiseasesExaminationTypeUnionCopyWithImpl(
-      VenerealDiseasesExaminationTypeUnion _value,
-      $Res Function(VenerealDiseasesExaminationTypeUnion) _then)
-      : super(_value, (v) => _then(v as VenerealDiseasesExaminationTypeUnion));
+    implements _$$VenerealDiseasesExaminationTypeUnionCopyWith<$Res> {
+  __$$VenerealDiseasesExaminationTypeUnionCopyWithImpl(
+      _$VenerealDiseasesExaminationTypeUnion _value,
+      $Res Function(_$VenerealDiseasesExaminationTypeUnion) _then)
+      : super(
+            _value, (v) => _then(v as _$VenerealDiseasesExaminationTypeUnion));
 
   @override
-  VenerealDiseasesExaminationTypeUnion get _value =>
-      super._value as VenerealDiseasesExaminationTypeUnion;
+  _$VenerealDiseasesExaminationTypeUnion get _value =>
+      super._value as _$VenerealDiseasesExaminationTypeUnion;
 }
 
 /// @nodoc
@@ -2035,7 +1987,7 @@ class _$VenerealDiseasesExaminationTypeUnion
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is VenerealDiseasesExaminationTypeUnion);
+            other is _$VenerealDiseasesExaminationTypeUnion);
   }
 
   @override
@@ -2181,39 +2133,26 @@ abstract class VenerealDiseasesExaminationTypeUnion
 }
 
 /// @nodoc
-class _$SelfExaminationTypeUnionTearOff {
-  const _$SelfExaminationTypeUnionTearOff();
-
-  BrestSelfExaminationTypeUnion breast() {
-    return const BrestSelfExaminationTypeUnion();
-  }
-
-  TesticularSelfExaminationTypeUnion testicular() {
-    return const TesticularSelfExaminationTypeUnion();
-  }
-}
-
-/// @nodoc
-const $SelfExaminationTypeUnion = _$SelfExaminationTypeUnionTearOff();
-
-/// @nodoc
 mixin _$SelfExaminationTypeUnion {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() breast,
     required TResult Function() testicular,
+    required TResult Function() skin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? breast,
     TResult Function()? testicular,
+    TResult Function()? skin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? breast,
     TResult Function()? testicular,
+    TResult Function()? skin,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -2222,18 +2161,21 @@ mixin _$SelfExaminationTypeUnion {
     required TResult Function(BrestSelfExaminationTypeUnion value) breast,
     required TResult Function(TesticularSelfExaminationTypeUnion value)
         testicular,
+    required TResult Function(SkinSelfExaminationTypeUnion value) skin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(BrestSelfExaminationTypeUnion value)? breast,
     TResult Function(TesticularSelfExaminationTypeUnion value)? testicular,
+    TResult Function(SkinSelfExaminationTypeUnion value)? skin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BrestSelfExaminationTypeUnion value)? breast,
     TResult Function(TesticularSelfExaminationTypeUnion value)? testicular,
+    TResult Function(SkinSelfExaminationTypeUnion value)? skin,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -2257,25 +2199,25 @@ class _$SelfExaminationTypeUnionCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $BrestSelfExaminationTypeUnionCopyWith<$Res> {
-  factory $BrestSelfExaminationTypeUnionCopyWith(
-          BrestSelfExaminationTypeUnion value,
-          $Res Function(BrestSelfExaminationTypeUnion) then) =
-      _$BrestSelfExaminationTypeUnionCopyWithImpl<$Res>;
+abstract class _$$BrestSelfExaminationTypeUnionCopyWith<$Res> {
+  factory _$$BrestSelfExaminationTypeUnionCopyWith(
+          _$BrestSelfExaminationTypeUnion value,
+          $Res Function(_$BrestSelfExaminationTypeUnion) then) =
+      __$$BrestSelfExaminationTypeUnionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$BrestSelfExaminationTypeUnionCopyWithImpl<$Res>
+class __$$BrestSelfExaminationTypeUnionCopyWithImpl<$Res>
     extends _$SelfExaminationTypeUnionCopyWithImpl<$Res>
-    implements $BrestSelfExaminationTypeUnionCopyWith<$Res> {
-  _$BrestSelfExaminationTypeUnionCopyWithImpl(
-      BrestSelfExaminationTypeUnion _value,
-      $Res Function(BrestSelfExaminationTypeUnion) _then)
-      : super(_value, (v) => _then(v as BrestSelfExaminationTypeUnion));
+    implements _$$BrestSelfExaminationTypeUnionCopyWith<$Res> {
+  __$$BrestSelfExaminationTypeUnionCopyWithImpl(
+      _$BrestSelfExaminationTypeUnion _value,
+      $Res Function(_$BrestSelfExaminationTypeUnion) _then)
+      : super(_value, (v) => _then(v as _$BrestSelfExaminationTypeUnion));
 
   @override
-  BrestSelfExaminationTypeUnion get _value =>
-      super._value as BrestSelfExaminationTypeUnion;
+  _$BrestSelfExaminationTypeUnion get _value =>
+      super._value as _$BrestSelfExaminationTypeUnion;
 }
 
 /// @nodoc
@@ -2292,7 +2234,7 @@ class _$BrestSelfExaminationTypeUnion extends BrestSelfExaminationTypeUnion {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is BrestSelfExaminationTypeUnion);
+            other is _$BrestSelfExaminationTypeUnion);
   }
 
   @override
@@ -2303,6 +2245,7 @@ class _$BrestSelfExaminationTypeUnion extends BrestSelfExaminationTypeUnion {
   TResult when<TResult extends Object?>({
     required TResult Function() breast,
     required TResult Function() testicular,
+    required TResult Function() skin,
   }) {
     return breast();
   }
@@ -2312,6 +2255,7 @@ class _$BrestSelfExaminationTypeUnion extends BrestSelfExaminationTypeUnion {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? breast,
     TResult Function()? testicular,
+    TResult Function()? skin,
   }) {
     return breast?.call();
   }
@@ -2321,6 +2265,7 @@ class _$BrestSelfExaminationTypeUnion extends BrestSelfExaminationTypeUnion {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? breast,
     TResult Function()? testicular,
+    TResult Function()? skin,
     required TResult orElse(),
   }) {
     if (breast != null) {
@@ -2335,6 +2280,7 @@ class _$BrestSelfExaminationTypeUnion extends BrestSelfExaminationTypeUnion {
     required TResult Function(BrestSelfExaminationTypeUnion value) breast,
     required TResult Function(TesticularSelfExaminationTypeUnion value)
         testicular,
+    required TResult Function(SkinSelfExaminationTypeUnion value) skin,
   }) {
     return breast(this);
   }
@@ -2344,6 +2290,7 @@ class _$BrestSelfExaminationTypeUnion extends BrestSelfExaminationTypeUnion {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(BrestSelfExaminationTypeUnion value)? breast,
     TResult Function(TesticularSelfExaminationTypeUnion value)? testicular,
+    TResult Function(SkinSelfExaminationTypeUnion value)? skin,
   }) {
     return breast?.call(this);
   }
@@ -2353,6 +2300,7 @@ class _$BrestSelfExaminationTypeUnion extends BrestSelfExaminationTypeUnion {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BrestSelfExaminationTypeUnion value)? breast,
     TResult Function(TesticularSelfExaminationTypeUnion value)? testicular,
+    TResult Function(SkinSelfExaminationTypeUnion value)? skin,
     required TResult orElse(),
   }) {
     if (breast != null) {
@@ -2369,25 +2317,25 @@ abstract class BrestSelfExaminationTypeUnion extends SelfExaminationTypeUnion {
 }
 
 /// @nodoc
-abstract class $TesticularSelfExaminationTypeUnionCopyWith<$Res> {
-  factory $TesticularSelfExaminationTypeUnionCopyWith(
-          TesticularSelfExaminationTypeUnion value,
-          $Res Function(TesticularSelfExaminationTypeUnion) then) =
-      _$TesticularSelfExaminationTypeUnionCopyWithImpl<$Res>;
+abstract class _$$TesticularSelfExaminationTypeUnionCopyWith<$Res> {
+  factory _$$TesticularSelfExaminationTypeUnionCopyWith(
+          _$TesticularSelfExaminationTypeUnion value,
+          $Res Function(_$TesticularSelfExaminationTypeUnion) then) =
+      __$$TesticularSelfExaminationTypeUnionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$TesticularSelfExaminationTypeUnionCopyWithImpl<$Res>
+class __$$TesticularSelfExaminationTypeUnionCopyWithImpl<$Res>
     extends _$SelfExaminationTypeUnionCopyWithImpl<$Res>
-    implements $TesticularSelfExaminationTypeUnionCopyWith<$Res> {
-  _$TesticularSelfExaminationTypeUnionCopyWithImpl(
-      TesticularSelfExaminationTypeUnion _value,
-      $Res Function(TesticularSelfExaminationTypeUnion) _then)
-      : super(_value, (v) => _then(v as TesticularSelfExaminationTypeUnion));
+    implements _$$TesticularSelfExaminationTypeUnionCopyWith<$Res> {
+  __$$TesticularSelfExaminationTypeUnionCopyWithImpl(
+      _$TesticularSelfExaminationTypeUnion _value,
+      $Res Function(_$TesticularSelfExaminationTypeUnion) _then)
+      : super(_value, (v) => _then(v as _$TesticularSelfExaminationTypeUnion));
 
   @override
-  TesticularSelfExaminationTypeUnion get _value =>
-      super._value as TesticularSelfExaminationTypeUnion;
+  _$TesticularSelfExaminationTypeUnion get _value =>
+      super._value as _$TesticularSelfExaminationTypeUnion;
 }
 
 /// @nodoc
@@ -2405,7 +2353,7 @@ class _$TesticularSelfExaminationTypeUnion
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is TesticularSelfExaminationTypeUnion);
+            other is _$TesticularSelfExaminationTypeUnion);
   }
 
   @override
@@ -2416,6 +2364,7 @@ class _$TesticularSelfExaminationTypeUnion
   TResult when<TResult extends Object?>({
     required TResult Function() breast,
     required TResult Function() testicular,
+    required TResult Function() skin,
   }) {
     return testicular();
   }
@@ -2425,6 +2374,7 @@ class _$TesticularSelfExaminationTypeUnion
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? breast,
     TResult Function()? testicular,
+    TResult Function()? skin,
   }) {
     return testicular?.call();
   }
@@ -2434,6 +2384,7 @@ class _$TesticularSelfExaminationTypeUnion
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? breast,
     TResult Function()? testicular,
+    TResult Function()? skin,
     required TResult orElse(),
   }) {
     if (testicular != null) {
@@ -2448,6 +2399,7 @@ class _$TesticularSelfExaminationTypeUnion
     required TResult Function(BrestSelfExaminationTypeUnion value) breast,
     required TResult Function(TesticularSelfExaminationTypeUnion value)
         testicular,
+    required TResult Function(SkinSelfExaminationTypeUnion value) skin,
   }) {
     return testicular(this);
   }
@@ -2457,6 +2409,7 @@ class _$TesticularSelfExaminationTypeUnion
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(BrestSelfExaminationTypeUnion value)? breast,
     TResult Function(TesticularSelfExaminationTypeUnion value)? testicular,
+    TResult Function(SkinSelfExaminationTypeUnion value)? skin,
   }) {
     return testicular?.call(this);
   }
@@ -2466,6 +2419,7 @@ class _$TesticularSelfExaminationTypeUnion
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BrestSelfExaminationTypeUnion value)? breast,
     TResult Function(TesticularSelfExaminationTypeUnion value)? testicular,
+    TResult Function(SkinSelfExaminationTypeUnion value)? skin,
     required TResult orElse(),
   }) {
     if (testicular != null) {
@@ -2480,4 +2434,121 @@ abstract class TesticularSelfExaminationTypeUnion
   const factory TesticularSelfExaminationTypeUnion() =
       _$TesticularSelfExaminationTypeUnion;
   const TesticularSelfExaminationTypeUnion._() : super._();
+}
+
+/// @nodoc
+abstract class _$$SkinSelfExaminationTypeUnionCopyWith<$Res> {
+  factory _$$SkinSelfExaminationTypeUnionCopyWith(
+          _$SkinSelfExaminationTypeUnion value,
+          $Res Function(_$SkinSelfExaminationTypeUnion) then) =
+      __$$SkinSelfExaminationTypeUnionCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SkinSelfExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$SelfExaminationTypeUnionCopyWithImpl<$Res>
+    implements _$$SkinSelfExaminationTypeUnionCopyWith<$Res> {
+  __$$SkinSelfExaminationTypeUnionCopyWithImpl(
+      _$SkinSelfExaminationTypeUnion _value,
+      $Res Function(_$SkinSelfExaminationTypeUnion) _then)
+      : super(_value, (v) => _then(v as _$SkinSelfExaminationTypeUnion));
+
+  @override
+  _$SkinSelfExaminationTypeUnion get _value =>
+      super._value as _$SkinSelfExaminationTypeUnion;
+}
+
+/// @nodoc
+
+class _$SkinSelfExaminationTypeUnion extends SkinSelfExaminationTypeUnion {
+  const _$SkinSelfExaminationTypeUnion() : super._();
+
+  @override
+  String toString() {
+    return 'SelfExaminationTypeUnion.skin()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SkinSelfExaminationTypeUnion);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() breast,
+    required TResult Function() testicular,
+    required TResult Function() skin,
+  }) {
+    return skin();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? breast,
+    TResult Function()? testicular,
+    TResult Function()? skin,
+  }) {
+    return skin?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? breast,
+    TResult Function()? testicular,
+    TResult Function()? skin,
+    required TResult orElse(),
+  }) {
+    if (skin != null) {
+      return skin();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BrestSelfExaminationTypeUnion value) breast,
+    required TResult Function(TesticularSelfExaminationTypeUnion value)
+        testicular,
+    required TResult Function(SkinSelfExaminationTypeUnion value) skin,
+  }) {
+    return skin(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(BrestSelfExaminationTypeUnion value)? breast,
+    TResult Function(TesticularSelfExaminationTypeUnion value)? testicular,
+    TResult Function(SkinSelfExaminationTypeUnion value)? skin,
+  }) {
+    return skin?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BrestSelfExaminationTypeUnion value)? breast,
+    TResult Function(TesticularSelfExaminationTypeUnion value)? testicular,
+    TResult Function(SkinSelfExaminationTypeUnion value)? skin,
+    required TResult orElse(),
+  }) {
+    if (skin != null) {
+      return skin(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SkinSelfExaminationTypeUnion extends SelfExaminationTypeUnion {
+  const factory SkinSelfExaminationTypeUnion() = _$SkinSelfExaminationTypeUnion;
+  const SkinSelfExaminationTypeUnion._() : super._();
 }

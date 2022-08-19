@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono_api/loono_api.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 Widget methodologyDisclosure(Sex sex) {
   final loonoUrl = sex == Sex.MALE
@@ -21,8 +21,8 @@ Widget methodologyDisclosure(Sex sex) {
           style: const TextStyle(decoration: TextDecoration.underline),
           recognizer: TapGestureRecognizer()
             ..onTap = () async {
-              if (await canLaunch(loonoUrl)) {
-                await launch(loonoUrl);
+              if (await canLaunchUrlString(loonoUrl)) {
+                await launchUrlString(loonoUrl);
               }
             },
         ),
@@ -32,8 +32,8 @@ Widget methodologyDisclosure(Sex sex) {
           style: const TextStyle(decoration: TextDecoration.underline),
           recognizer: TapGestureRecognizer()
             ..onTap = () async {
-              if (await canLaunch(linkosUrl)) {
-                await launch(linkosUrl);
+              if (await canLaunchUrlString(linkosUrl)) {
+                await launchUrlString(linkosUrl);
               }
             },
         ),

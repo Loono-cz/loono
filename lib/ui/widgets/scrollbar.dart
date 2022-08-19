@@ -25,7 +25,7 @@ class LoonoScrollbar extends StatelessWidget {
             ),
       ),
       child: Scrollbar(
-        isAlwaysShown: true,
+        thumbVisibility: true,
         child: child,
       ),
     );

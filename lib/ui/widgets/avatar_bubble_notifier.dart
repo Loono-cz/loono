@@ -14,7 +14,7 @@ class AvatarBubbleNotifier extends StatefulWidget {
 class _AvatarBubbleNotifierState extends State<AvatarBubbleNotifier> {
   @override
   void initState() {
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       widget.convertExtent(0.4);
     });
     super.initState();

@@ -21,7 +21,7 @@ import 'package:loono/ui/widgets/social_login_button.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class OnboardingFormDoneScreen extends StatelessWidget {
   OnboardingFormDoneScreen({Key? key}) : super(key: key);
@@ -154,8 +154,8 @@ class OnboardingFormDoneScreen extends StatelessWidget {
                                   .copyWith(decoration: TextDecoration.underline),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () async {
-                                  if (await canLaunch(termsUrl)) {
-                                    await launch(
+                                  if (await canLaunchUrlString(termsUrl)) {
+                                    await launchUrlString(
                                       termsUrl,
                                     );
                                   }
@@ -170,8 +170,8 @@ class OnboardingFormDoneScreen extends StatelessWidget {
                                   .copyWith(decoration: TextDecoration.underline),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () async {
-                                  if (await canLaunch(privacyUrl)) {
-                                    await launch(
+                                  if (await canLaunchUrlString(privacyUrl)) {
+                                    await launchUrlString(
                                       privacyUrl,
                                     );
                                   }

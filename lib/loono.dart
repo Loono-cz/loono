@@ -23,9 +23,9 @@ class Loono extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _auth = registry.get<AuthService>();
-    final _appRouter = registry.get<AppRouter>();
-    final _healthcareProviderRepository = registry.get<HealthcareProviderRepository>();
+    final auth = registry.get<AuthService>();
+    final appRouter = registry.get<AppRouter>();
+    final healthcareProviderRepository = registry.get<HealthcareProviderRepository>();
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
     );
@@ -35,21 +35,21 @@ class Loono extends StatelessWidget {
     }
 
     return StreamBuilder<AuthUser?>(
-      stream: _auth.onAuthStateChanged,
+      stream: auth.onAuthStateChanged,
       builder: (context, snapshot) {
         final authUser = snapshot.data;
         if (authUser == null &&
-            !_appRouter.isRouteActive(EmailRoute.name) &&
-            !_appRouter.isRouteActive(OnboardingFormDoneRoute.name) &&
-            !_appRouter.isRouteActive(LoginRoute.name) &&
-            !_appRouter.isRouteActive(LogoutRoute.name) &&
-            !_appRouter.isRouteActive(AfterDeletionRoute.name)) {
-          SchedulerBinding.instance?.addPostFrameCallback((_) {
-            _appRouter.removeWhere((_) => true);
+            !appRouter.isRouteActive(EmailRoute.name) &&
+            !appRouter.isRouteActive(OnboardingFormDoneRoute.name) &&
+            !appRouter.isRouteActive(LoginRoute.name) &&
+            !appRouter.isRouteActive(LogoutRoute.name) &&
+            !appRouter.isRouteActive(AfterDeletionRoute.name)) {
+          SchedulerBinding.instance.addPostFrameCallback((_) {
+            appRouter.removeWhere((_) => true);
             // ignore: cascade_invocations
-            _appRouter.push(const MainScreenRouter());
+            appRouter.push(const MainScreenRouter());
           });
-          _healthcareProviderRepository.checkAndUpdateIfNeeded();
+          healthcareProviderRepository.checkAndUpdateIfNeeded();
         }
 
         return MultiProvider(
@@ -70,11 +70,11 @@ class Loono extends StatelessWidget {
             supportedLocales: AppLocalizations.supportedLocales,
             locale: defaultLocale != null ? Locale(defaultLocale!) : null,
             routerDelegate: AutoRouterDelegate(
-              _appRouter,
+              appRouter,
               navigatorObservers: () =>
                   [FirebaseAnalyticsObserver(analytics: registry.get<FirebaseAnalytics>())],
             ),
-            routeInformationParser: _appRouter.defaultRouteParser(),
+            routeInformationParser: appRouter.defaultRouteParser(),
           ),
         );
       },

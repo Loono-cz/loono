@@ -12,30 +12,11 @@ part of 'date_without_day.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 DateWithoutDay _$DateWithoutDayFromJson(Map<String, dynamic> json) {
   return _DateWithoutDay.fromJson(json);
 }
-
-/// @nodoc
-class _$DateWithoutDayTearOff {
-  const _$DateWithoutDayTearOff();
-
-  _DateWithoutDay call({required Months month, required int year}) {
-    return _DateWithoutDay(
-      month: month,
-      year: year,
-    );
-  }
-
-  DateWithoutDay fromJson(Map<String, Object?> json) {
-    return DateWithoutDay.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $DateWithoutDay = _$DateWithoutDayTearOff();
 
 /// @nodoc
 mixin _$DateWithoutDay {
@@ -84,32 +65,32 @@ class _$DateWithoutDayCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$DateWithoutDayCopyWith<$Res>
+abstract class _$$_DateWithoutDayCopyWith<$Res>
     implements $DateWithoutDayCopyWith<$Res> {
-  factory _$DateWithoutDayCopyWith(
-          _DateWithoutDay value, $Res Function(_DateWithoutDay) then) =
-      __$DateWithoutDayCopyWithImpl<$Res>;
+  factory _$$_DateWithoutDayCopyWith(
+          _$_DateWithoutDay value, $Res Function(_$_DateWithoutDay) then) =
+      __$$_DateWithoutDayCopyWithImpl<$Res>;
   @override
   $Res call({Months month, int year});
 }
 
 /// @nodoc
-class __$DateWithoutDayCopyWithImpl<$Res>
+class __$$_DateWithoutDayCopyWithImpl<$Res>
     extends _$DateWithoutDayCopyWithImpl<$Res>
-    implements _$DateWithoutDayCopyWith<$Res> {
-  __$DateWithoutDayCopyWithImpl(
-      _DateWithoutDay _value, $Res Function(_DateWithoutDay) _then)
-      : super(_value, (v) => _then(v as _DateWithoutDay));
+    implements _$$_DateWithoutDayCopyWith<$Res> {
+  __$$_DateWithoutDayCopyWithImpl(
+      _$_DateWithoutDay _value, $Res Function(_$_DateWithoutDay) _then)
+      : super(_value, (v) => _then(v as _$_DateWithoutDay));
 
   @override
-  _DateWithoutDay get _value => super._value as _DateWithoutDay;
+  _$_DateWithoutDay get _value => super._value as _$_DateWithoutDay;
 
   @override
   $Res call({
     Object? month = freezed,
     Object? year = freezed,
   }) {
-    return _then(_DateWithoutDay(
+    return _then(_$_DateWithoutDay(
       month: month == freezed
           ? _value.month
           : month // ignore: cast_nullable_to_non_nullable
@@ -144,11 +125,12 @@ class _$_DateWithoutDay implements _DateWithoutDay {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _DateWithoutDay &&
+            other is _$_DateWithoutDay &&
             const DeepCollectionEquality().equals(other.month, month) &&
             const DeepCollectionEquality().equals(other.year, year));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -157,8 +139,8 @@ class _$_DateWithoutDay implements _DateWithoutDay {
 
   @JsonKey(ignore: true)
   @override
-  _$DateWithoutDayCopyWith<_DateWithoutDay> get copyWith =>
-      __$DateWithoutDayCopyWithImpl<_DateWithoutDay>(this, _$identity);
+  _$$_DateWithoutDayCopyWith<_$_DateWithoutDay> get copyWith =>
+      __$$_DateWithoutDayCopyWithImpl<_$_DateWithoutDay>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -167,8 +149,9 @@ class _$_DateWithoutDay implements _DateWithoutDay {
 }
 
 abstract class _DateWithoutDay implements DateWithoutDay {
-  factory _DateWithoutDay({required Months month, required int year}) =
-      _$_DateWithoutDay;
+  factory _DateWithoutDay(
+      {required final Months month,
+      required final int year}) = _$_DateWithoutDay;
 
   factory _DateWithoutDay.fromJson(Map<String, dynamic> json) =
       _$_DateWithoutDay.fromJson;
@@ -179,6 +162,6 @@ abstract class _DateWithoutDay implements DateWithoutDay {
   int get year;
   @override
   @JsonKey(ignore: true)
-  _$DateWithoutDayCopyWith<_DateWithoutDay> get copyWith =>
+  _$$_DateWithoutDayCopyWith<_$_DateWithoutDay> get copyWith =>
       throw _privateConstructorUsedError;
 }

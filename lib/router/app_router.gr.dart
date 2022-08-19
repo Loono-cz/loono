@@ -526,7 +526,10 @@ class AppRouter extends _i15.RootStackRouter {
       return _i15.CustomPage<void>(
           routeData: routeData,
           child: _i52.NoFindingScreen(
-              key: args.key, points: args.points, history: args.history),
+              key: args.key,
+              points: args.points,
+              history: args.history,
+              type: args.type),
           transitionsBuilder: _i15.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -1847,18 +1850,19 @@ class NoFindingRoute extends _i15.PageRouteInfo<NoFindingRouteArgs> {
   NoFindingRoute(
       {_i56.Key? key,
       required int points,
-      required _i66.BuiltList<_i60.SelfExaminationStatus> history})
+      required _i66.BuiltList<_i60.SelfExaminationStatus> history,
+      _i60.SelfExaminationType? type})
       : super(NoFindingRoute.name,
             path: 'self-examination/detail/no-finding',
-            args:
-                NoFindingRouteArgs(key: key, points: points, history: history));
+            args: NoFindingRouteArgs(
+                key: key, points: points, history: history, type: type));
 
   static const String name = 'NoFindingRoute';
 }
 
 class NoFindingRouteArgs {
   const NoFindingRouteArgs(
-      {this.key, required this.points, required this.history});
+      {this.key, required this.points, required this.history, this.type});
 
   final _i56.Key? key;
 
@@ -1866,9 +1870,11 @@ class NoFindingRouteArgs {
 
   final _i66.BuiltList<_i60.SelfExaminationStatus> history;
 
+  final _i60.SelfExaminationType? type;
+
   @override
   String toString() {
-    return 'NoFindingRouteArgs{key: $key, points: $points, history: $history}';
+    return 'NoFindingRouteArgs{key: $key, points: $points, history: $history, type: $type}';
   }
 }
 

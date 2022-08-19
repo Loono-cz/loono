@@ -45,6 +45,9 @@ class LoonoColors {
 
 class LoonoStrings {
   static const contactEmail = 'poradna@loono.cz';
+  static const shieldPath = 'assets/badges/shield';
+  static const pauldronsPath = 'assets/badges/pauldrons';
+  static const awardShadowStirng = 'assets/icons/prevention/award_shadow.png';
 }
 
 class LoonoFonts {
