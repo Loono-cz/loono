@@ -10,12 +10,11 @@
 //
 // ignore_for_file: type=lint
 
-import 'dart:typed_data' as _i64;
-
 import 'package:auto_route/auto_route.dart' as _i15;
 import 'package:built_collection/built_collection.dart' as _i66;
 import 'package:flutter/material.dart' as _i56;
 import 'package:loono_api/loono_api.dart' as _i60;
+import 'package:moor/moor.dart' as _i64;
 
 import '../helpers/examination_category.dart' as _i62;
 import '../models/categorized_examination.dart' as _i61;
@@ -526,7 +525,10 @@ class AppRouter extends _i15.RootStackRouter {
       return _i15.CustomPage<void>(
           routeData: routeData,
           child: _i52.NoFindingScreen(
-              key: args.key, points: args.points, history: args.history),
+              key: args.key,
+              points: args.points,
+              history: args.history,
+              type: args.type),
           transitionsBuilder: _i15.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -1847,18 +1849,22 @@ class NoFindingRoute extends _i15.PageRouteInfo<NoFindingRouteArgs> {
   NoFindingRoute(
       {_i56.Key? key,
       required int points,
-      required _i66.BuiltList<_i60.SelfExaminationStatus> history})
+      required _i66.BuiltList<_i60.SelfExaminationStatus> history,
+      _i60.SelfExaminationType type = _i60.SelfExaminationType.TESTICULAR})
       : super(NoFindingRoute.name,
             path: 'self-examination/detail/no-finding',
-            args:
-                NoFindingRouteArgs(key: key, points: points, history: history));
+            args: NoFindingRouteArgs(
+                key: key, points: points, history: history, type: type));
 
   static const String name = 'NoFindingRoute';
 }
 
 class NoFindingRouteArgs {
   const NoFindingRouteArgs(
-      {this.key, required this.points, required this.history});
+      {this.key,
+      required this.points,
+      required this.history,
+      this.type = _i60.SelfExaminationType.TESTICULAR});
 
   final _i56.Key? key;
 
@@ -1866,9 +1872,11 @@ class NoFindingRouteArgs {
 
   final _i66.BuiltList<_i60.SelfExaminationStatus> history;
 
+  final _i60.SelfExaminationType type;
+
   @override
   String toString() {
-    return 'NoFindingRouteArgs{key: $key, points: $points, history: $history}';
+    return 'NoFindingRouteArgs{key: $key, points: $points, history: $history, type: $type}';
   }
 }
 

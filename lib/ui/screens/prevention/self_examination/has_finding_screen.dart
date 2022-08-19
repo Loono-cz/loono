@@ -81,7 +81,7 @@ class HasFindingScreen extends StatelessWidget {
                                     style: LoonoFonts.paragraphFontStyle,
                                   ),
                                   Text(
-                                    context.l10n.self_examination_has_finding_part_2_title,
+                                    context.l10n.visit_doctor,
                                     style: LoonoFonts.paragraphFontStyle
                                         .copyWith(fontWeight: FontWeight.bold),
                                   ),
