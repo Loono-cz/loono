@@ -21,10 +21,10 @@ class DeleteAccountScreen extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _DeleteAccountScreenState createState() => _DeleteAccountScreenState();
+  DeleteAccountScreenState createState() => DeleteAccountScreenState();
 }
 
-class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
+class DeleteAccountScreenState extends State<DeleteAccountScreen> {
   bool _isCheckedHistory = false;
   bool _isCheckedBadge = false;
   bool _isCheckedNotifications = false;
@@ -124,12 +124,15 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                             description: context.l10n.settings_delete_account_alert,
                             confirmationButtonLabel: context.l10n.delete,
                             onConfirm: () async {
+                              final autoRouter = AutoRouter.of(context);
                               WidgetsBinding.instance
                                   .addPostFrameCallback((_) => _setLoadingState(true));
                               final res = await _userRepository.deleteAccount();
                               if (res) {
-                                await AutoRouter.of(context).push(AfterDeletionRoute(sex: _sex));
+                                await autoRouter.push(AfterDeletionRoute(sex: _sex));
                               } else {
+                                //TODO: Fix lint..
+                                // ignore: use_build_context_synchronously
                                 showFlushBarError(
                                   context,
                                   context.l10n.something_went_wrong,

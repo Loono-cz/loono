@@ -55,9 +55,11 @@ class SearchResultsList extends StatelessWidget {
                       backgroundColor: Colors.transparent,
                       shadowColor: Colors.transparent,
                       onPressed: () async {
+                        final contextReader = context.read<MapStateService>();
+                        final autoRouter = AutoRouter.of(context);
                         await _userRepository.addSearchHistoryItem(specialization);
-                        context.read<MapStateService>().setSpecialization(specialization);
-                        await AutoRouter.of(context).pop();
+                        contextReader.setSpecialization(specialization);
+                        await autoRouter.pop();
                       },
                     ),
                   )

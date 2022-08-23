@@ -91,6 +91,9 @@ class ResultFromDoctorScreen extends StatelessWidget {
                             child: AsyncLoonoLightApiButton(
                               text: context.l10n.self_examination_everything_good,
                               asyncCallback: () async {
+                                final examProvider =
+                                    Provider.of<ExaminationsProvider>(context, listen: false);
+                                final autoRouter = AutoRouter.of(context);
                                 await registry.get<ApiService>().resultSelfExamination(
                                   selfExamination.type,
                                   result: SelfExaminationResult((b) {
@@ -98,10 +101,9 @@ class ResultFromDoctorScreen extends StatelessWidget {
                                   }),
                                 );
                                 unawaited(
-                                  Provider.of<ExaminationsProvider>(context, listen: false)
-                                      .fetchExaminations(),
+                                  examProvider.fetchExaminations(),
                                 );
-                                AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
+                                autoRouter.popUntilRouteWithName(MainRoute.name);
                               },
                             ),
                           ),
@@ -110,6 +112,9 @@ class ResultFromDoctorScreen extends StatelessWidget {
                             child: AsyncLoonoLightApiButton(
                               text: context.l10n.self_examination_it_is_cancer,
                               asyncCallback: () async {
+                                final examProvider =
+                                    Provider.of<ExaminationsProvider>(context, listen: false);
+                                final autoRouter = AutoRouter.of(context);
                                 await registry.get<ApiService>().resultSelfExamination(
                                   selfExamination.type,
                                   result: SelfExaminationResult((b) {
@@ -117,10 +122,9 @@ class ResultFromDoctorScreen extends StatelessWidget {
                                   }),
                                 );
                                 unawaited(
-                                  Provider.of<ExaminationsProvider>(context, listen: false)
-                                      .fetchExaminations(),
+                                  examProvider.fetchExaminations(),
                                 );
-                                AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
+                                autoRouter.popUntilRouteWithName(MainRoute.name);
                               },
                             ),
                           ),

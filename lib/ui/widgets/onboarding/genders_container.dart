@@ -23,10 +23,10 @@ class GendersContainer extends StatefulWidget {
   final Color bottomSheetColor;
 
   @override
-  _GendersContainerState createState() => _GendersContainerState();
+  GendersContainerState createState() => GendersContainerState();
 }
 
-class _GendersContainerState extends State<GendersContainer> {
+class GendersContainerState extends State<GendersContainer> {
   PersistentBottomSheetController? sheetController;
 
   Gender? activeButton;

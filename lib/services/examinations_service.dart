@@ -34,7 +34,6 @@ class ExaminationsProvider extends ChangeNotifier {
         loading = false;
       },
     );
-
     notifyListeners();
     return examResponse;
   }

@@ -53,7 +53,7 @@ class SelfExaminationDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _currentProgress = selfExaminationProgress(selfExamination.plannedDate);
+    final currentProgress = selfExaminationProgress(selfExamination.plannedDate);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -161,7 +161,7 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                             context,
                             selfExamination.points,
                             selfExamination.history,
-                            _currentProgress,
+                            currentProgress,
                           ),
                           child: SizedBox(
                             height: 80,
@@ -169,7 +169,7 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                             child: CustomPaint(
                               painter: SelfExaminationRing(
                                 backgroundColor: LoonoColors.primaryWashed,
-                                progress: _currentProgress,
+                                progress: currentProgress,
                               ),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,

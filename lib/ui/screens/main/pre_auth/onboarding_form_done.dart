@@ -227,6 +227,7 @@ class OnboardingFormDoneScreen extends StatelessWidget {
                 success: (data) async {
                   // An account with this email already exists, proceed through the login.
                   await _userRepository.createUser();
+                  // ignore: use_build_context_synchronously
                   await AutoRouter.of(context).replaceAll([const MainScreenRouter()]);
                 },
                 failure: (_) async {

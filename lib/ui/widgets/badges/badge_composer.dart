@@ -19,10 +19,10 @@ class BadgeComposer extends StatefulWidget {
   final bool showDescription;
 
   @override
-  _BadgeComposerState createState() => _BadgeComposerState();
+  BadgeComposerState createState() => BadgeComposerState();
 }
 
-class _BadgeComposerState extends State<BadgeComposer> {
+class BadgeComposerState extends State<BadgeComposer> {
   final _usersDao = registry.get<DatabaseService>().users;
 
   static const supportedBadgeLevels = 5;

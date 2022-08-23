@@ -2,9 +2,9 @@ import 'package:loono_api/loono_api.dart';
 
 extension SimpleHealthcareProviderHelper on SimpleHealthcareProvider {
   String getStreet() {
-    final _street = street;
-    if (_street != '' && _street != null) {
-      return _street;
+    final currentStreet = street;
+    if (currentStreet != '' && currentStreet != null) {
+      return currentStreet;
     } else {
       return city;
     }

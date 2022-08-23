@@ -102,10 +102,10 @@ class AsyncLoonoApiButton extends StatefulWidget {
   final Color? textColor;
 
   @override
-  _AsyncLoonoApiButtonState createState() => _AsyncLoonoApiButtonState();
+  AsyncLoonoApiButtonState createState() => AsyncLoonoApiButtonState();
 }
 
-class _AsyncLoonoApiButtonState extends State<AsyncLoonoApiButton> {
+class AsyncLoonoApiButtonState extends State<AsyncLoonoApiButton> {
   bool _isLoading = false;
 
   @override
@@ -169,10 +169,10 @@ class AsyncLoonoLightApiButton extends StatefulWidget {
   final Color? textColor;
 
   @override
-  _AsyncLoonoLightApiButtonState createState() => _AsyncLoonoLightApiButtonState();
+  AsyncLoonoLightApiButtonState createState() => AsyncLoonoLightApiButtonState();
 }
 
-class _AsyncLoonoLightApiButtonState extends State<AsyncLoonoLightApiButton> {
+class AsyncLoonoLightApiButtonState extends State<AsyncLoonoLightApiButton> {
   bool _isLoading = false;
 
   @override

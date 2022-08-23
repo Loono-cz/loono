@@ -90,14 +90,20 @@ void showCancelExaminationSheet({
                       await registry.get<ExaminationRepository>().cancelExamination(id);
                   await response.map(
                     success: (res) async {
+                      final examProvider =
+                          Provider.of<ExaminationsProvider>(context, listen: false);
+                      final autoRouter = AutoRouter.of(context);
                       await registry.get<CalendarRepository>().deleteEvent(examinationType);
-                      Provider.of<ExaminationsProvider>(context, listen: false)
-                          .updateExaminationsRecord(res.data);
-                      await AutoRouter.of(context).pop();
+                      examProvider.updateExaminationsRecord(res.data);
+                      await autoRouter.pop();
+                      //TODO: lint fix
+                      // ignore: use_build_context_synchronously
                       showFlushBarSuccess(context, context.l10n.checkup_canceled);
                     },
                     failure: (err) async {
                       await AutoRouter.of(context).pop();
+                      //TODO: lint fix
+                      // ignore: use_build_context_synchronously
                       showFlushBarError(context, context.l10n.something_went_wrong);
                     },
                   );

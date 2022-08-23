@@ -23,10 +23,10 @@ class CustomVideoPlayer extends StatefulWidget {
   final StoryPageState storyPageState;
 
   @override
-  _VideoPlayerScreenState createState() => _VideoPlayerScreenState();
+  VideoPlayerScreenState createState() => VideoPlayerScreenState();
 }
 
-class _VideoPlayerScreenState extends State<CustomVideoPlayer> {
+class VideoPlayerScreenState extends State<CustomVideoPlayer> {
   late final VideoPlayerController _controller;
   late final Future<void> _initializeVideoPlayerFuture;
   late final int initialPage;

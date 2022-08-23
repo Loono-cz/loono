@@ -67,8 +67,8 @@ class EducationalVideoScreen extends StatelessWidget {
                         ? context.l10n.self_examination_done_male
                         : context.l10n.self_examination_done_female,
                     onTap: () async {
-                      await AutoRouter.of(context).pop();
                       showHowItWentSheet(context, sex, selfExamination);
+                      await AutoRouter.of(context).pop();
                     },
                   ),
                 const SizedBox(height: 18),

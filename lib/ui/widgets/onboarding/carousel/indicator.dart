@@ -45,10 +45,10 @@ class Indicator extends StatefulWidget {
   final VoidCallback? onFinish;
 
   @override
-  _IndicatorState createState() => _IndicatorState();
+  IndicatorState createState() => IndicatorState();
 }
 
-class _IndicatorState extends State<Indicator> with SingleTickerProviderStateMixin {
+class IndicatorState extends State<Indicator> with SingleTickerProviderStateMixin {
   late final AnimationController animationController;
   late final Animation<double> containerAnim;
 

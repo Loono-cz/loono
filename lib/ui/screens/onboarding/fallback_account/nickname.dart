@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:drift/drift.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/helpers/nickname_hint_resolver.dart';
 import 'package:loono/helpers/validators.dart';
@@ -10,7 +11,6 @@ import 'package:loono/services/db/database.dart';
 import 'package:loono/ui/widgets/fallback_account_content.dart';
 import 'package:loono/ui/widgets/onboarding/app_bar.dart';
 import 'package:loono/utils/registry.dart';
-import 'package:moor/moor.dart';
 
 class NicknameScreen extends StatelessWidget {
   NicknameScreen({
@@ -35,8 +35,10 @@ class NicknameScreen extends StatelessWidget {
           keyboardType: TextInputType.name,
           validator: Validators.nickname(context),
           onSubmit: (input) async {
+            final autoRouter = AutoRouter.of(context);
             await _usersDao.updateCurrentUser(UsersCompanion(nickname: Value(input)));
-            await AutoRouter.of(context).push(EmailRoute(socialLoginAccount: socialLoginAccount));
+
+            await autoRouter.push(EmailRoute(socialLoginAccount: socialLoginAccount));
             return null;
           },
         );

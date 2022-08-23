@@ -25,10 +25,10 @@ class NewTimeScreen extends StatefulWidget {
   final DateTime newDate;
 
   @override
-  _NewTimeScreenState createState() => _NewTimeScreenState();
+  NewTimeScreenState createState() => NewTimeScreenState();
 }
 
-class _NewTimeScreenState extends State<NewTimeScreen> {
+class NewTimeScreenState extends State<NewTimeScreen> {
   DateTime? newDate;
 
   void onTimeChanged(DateTime date) {
@@ -111,11 +111,15 @@ class _NewTimeScreenState extends State<NewTimeScreen> {
                       );
                   await response.map(
                     success: (res) async {
+                      final autoRouter = AutoRouter.of(context);
                       await registry.get<CalendarRepository>().updateEventDate(
                             examinationType,
                             newDate: newDate!,
                           );
-                      AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
+                      autoRouter.popUntilRouteWithName(MainRoute.name);
+
+                      //todo: Fix lint...
+                      // ignore: use_build_context_synchronously
                       showFlushBarSuccess(context, context.l10n.checkup_reminder_toast);
                     },
                     failure: (err) {

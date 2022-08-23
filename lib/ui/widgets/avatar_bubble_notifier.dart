@@ -8,10 +8,10 @@ class AvatarBubbleNotifier extends StatefulWidget {
   final Widget child;
 
   @override
-  _AvatarBubbleNotifierState createState() => _AvatarBubbleNotifierState();
+  AvatarBubbleNotifierState createState() => AvatarBubbleNotifierState();
 }
 
-class _AvatarBubbleNotifierState extends State<AvatarBubbleNotifier> {
+class AvatarBubbleNotifierState extends State<AvatarBubbleNotifier> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {

@@ -19,10 +19,10 @@ class DatePickerScreen extends StatefulWidget {
   final ValueChanged<DateTime>? onSkipButtonPress;
 
   @override
-  _DatePickerScreenState createState() => _DatePickerScreenState();
+  DatePickerScreenState createState() => DatePickerScreenState();
 }
 
-class _DatePickerScreenState extends State<DatePickerScreen> {
+class DatePickerScreenState extends State<DatePickerScreen> {
   DateTime? selectedDate;
 
   @override

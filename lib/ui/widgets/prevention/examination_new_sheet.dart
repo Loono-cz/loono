@@ -62,16 +62,15 @@ void showNewCheckupSheetStep1(
                 casus: Casus.genitiv,
                 examinationType: examinationType,
               ).toLowerCase()}',
-              onTap: () {
-                appRouter.push(
-                  FindDoctorRoute(
-                    onCancelTap: () async {
-                      await appRouter.pop();
-                      await AutoRouter.of(context).pop();
-                    },
-                  ),
-                );
-              },
+              onTap: () => appRouter.push(
+                FindDoctorRoute(
+                  onCancelTap: () async {
+                    final autoRouter = AutoRouter.of(context);
+                    await appRouter.pop();
+                    await autoRouter.pop();
+                  },
+                ),
+              ),
             ),
           ],
         ),

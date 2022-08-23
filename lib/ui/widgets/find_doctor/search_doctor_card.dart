@@ -16,7 +16,7 @@ class SearchDoctorCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _specialization = item.specialization;
+    final specialization = item.specialization;
 
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
@@ -48,10 +48,10 @@ class SearchDoctorCard extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        if (_specialization != null)
+                        if (specialization != null)
                           Expanded(
                             child: Text(
-                              _specialization.toUpperCase(),
+                              specialization.toUpperCase(),
                               style: LoonoFonts.cardSubtitle.copyWith(color: LoonoColors.grey),
                               overflow: TextOverflow.ellipsis,
                               maxLines: 3,

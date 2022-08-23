@@ -31,10 +31,10 @@ class CustomDatePicker extends StatefulWidget {
   final bool filled;
 
   @override
-  _CustomDatePickerState createState() => _CustomDatePickerState();
+  CustomDatePickerState createState() => CustomDatePickerState();
 }
 
-class _CustomDatePickerState extends State<CustomDatePicker> {
+class CustomDatePickerState extends State<CustomDatePicker> {
   late int _selectedDayIndex = 0;
   late int _selectedMonthIndex = widget.defaultMonth ?? widget.today.month;
   late int _selectedYearIndex = 0;

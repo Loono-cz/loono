@@ -24,6 +24,7 @@ import 'package:loono/ui/widgets/fallback_account_content.dart';
 import 'package:loono/ui/widgets/onboarding/app_bar.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
+// ignore: depend_on_referenced_packages
 import 'package:moor/moor.dart';
 
 class EmailScreen extends StatelessWidget {
@@ -76,6 +77,7 @@ class EmailScreen extends StatelessWidget {
                 await result.when(
                   success: (account) async {
                     await _userRepository.updateCurrentUserFromAccount(account);
+                    // ignore: use_build_context_synchronously
                     await AutoRouter.of(context).replaceAll([BadgeOverviewRoute()]);
                   },
                   failure: (_) async {

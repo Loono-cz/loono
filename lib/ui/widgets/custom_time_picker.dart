@@ -23,10 +23,10 @@ class CustomTimePicker extends StatefulWidget {
   final bool filled;
 
   @override
-  _CustomTimePickerState createState() => _CustomTimePickerState();
+  CustomTimePickerState createState() => CustomTimePickerState();
 }
 
-class _CustomTimePickerState extends State<CustomTimePicker> {
+class CustomTimePickerState extends State<CustomTimePicker> {
   late int _selectedHourIndex = 0;
   late int _selectedMinuteIndex = 0;
   late final int _defaultHour = widget.defaultHour ?? 9;

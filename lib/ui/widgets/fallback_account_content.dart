@@ -51,10 +51,10 @@ class FallbackAccountContent extends StatefulWidget {
   final VoidCallback? onError;
 
   @override
-  _FallbackAccountContentState createState() => _FallbackAccountContentState();
+  FallbackAccountContentState createState() => FallbackAccountContentState();
 }
 
-class _FallbackAccountContentState extends State<FallbackAccountContent> {
+class FallbackAccountContentState extends State<FallbackAccountContent> {
   late final TextEditingController _textEditingController;
   final _formKey = GlobalKey<FormState>();
 
