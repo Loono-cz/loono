@@ -59,7 +59,7 @@ void showHowItWentSheet(
                     await userRepository.updateCurrentUserFromSelfExamCompletion(data);
                     await AutoRouter.of(context).popAndPush(
                       NoFindingRoute(
-                        type: selfExamination.type,
+                        badgeType: data.badgeType,
                         points: selfExamination.points,
                         history: selfExamination.history,
                       ),

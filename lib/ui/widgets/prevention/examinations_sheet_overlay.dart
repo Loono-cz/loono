@@ -99,7 +99,10 @@ class ExaminationsSheetOverlay extends StatelessWidget {
                           _buildSelfExaminationCategory(
                             context,
                             CardPosition.first,
-                            examinationsProvider.examinations!.selfexaminations,
+                            examinationsProvider.examinations!.selfexaminations
+                                .where(
+                                    (exam) => exam.calculateStatus().position == CardPosition.first)
+                                .toBuiltList(),
                           ),
                         ],
                         if (categorizedExaminations.isNotEmpty)

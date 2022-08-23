@@ -73,6 +73,32 @@ class ExaminationsProvider extends ChangeNotifier {
     }
   }
 
+  void updateSelfExaminationRecord(
+    SelfExaminationCompletionInformation data,
+    SelfExaminationType type,
+  ) {
+    final indexToUpdate =
+        examinations?.selfexaminations.indexWhere((examination) => examination.type == type);
+    if (indexToUpdate != null && indexToUpdate >= 0) {
+      final updatedItem = examinations?.selfexaminations.elementAt(indexToUpdate).rebuild(
+            (item) => item
+              ..badge = data.badgeType
+              ..plannedDate = item.plannedDate
+              ..lastExamUuid = item.lastExamUuid
+              ..history = item.history
+              ..points = item.points
+              ..type = item.type,
+          );
+
+      final builder = examinations?.toBuilder();
+      builder?.examinations.removeAt(indexToUpdate);
+      builder?.selfexaminations.add(updatedItem!);
+      examinations = builder?.build();
+      evaluateExaminations();
+      notifyListeners();
+    }
+  }
+
   void evaluateExaminations() {
     if (examinations != null) {
       final preventionExamsWithPriority = examinations!.examinations.firstWhereOrNull(

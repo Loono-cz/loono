@@ -13,21 +13,21 @@ class NoFindingScreen extends StatelessWidget {
     Key? key,
     required this.points,
     required this.history,
-    this.type,
+    this.badgeType,
   }) : super(key: key);
 
   final int points;
   final BuiltList<SelfExaminationStatus> history;
 
-  final SelfExaminationType? type;
+  final BadgeType? badgeType;
   @override
   Widget build(BuildContext context) {
     final validResults = history.where((item) => item == SelfExaminationStatus.COMPLETED);
     final awardLevel = (validResults.length / 3).floor() + 1;
     final receivedAward = validResults.isEmpty || (validResults.length + 1) % 3 == 0;
 
-    final assetPath = getAssetPath(type);
-    final awardLabel = getAwardLabel(type, context);
+    final assetPath = getAssetPath(badgeType);
+    final awardLabel = getAwardLabel(badgeType, context);
 
     return Scaffold(
       body: Padding(
@@ -142,18 +142,18 @@ class NoFindingScreen extends StatelessWidget {
     );
   }
 
-  String getAssetPath(SelfExaminationType? type) {
+  String getAssetPath(BadgeType? type) {
     switch (type) {
-      case SelfExaminationType.SKIN:
+      case BadgeType.PAULDRONS:
         return LoonoStrings.pauldronsPath;
       default:
         return LoonoStrings.shieldPath;
     }
   }
 
-  String getAwardLabel(SelfExaminationType? type, BuildContext context) {
+  String getAwardLabel(BadgeType? type, BuildContext context) {
     switch (type) {
-      case SelfExaminationType.SKIN:
+      case BadgeType.PAULDRONS:
         return context.l10n.pauldrons_award_label;
       default:
         return context.l10n.no_finding_getting;

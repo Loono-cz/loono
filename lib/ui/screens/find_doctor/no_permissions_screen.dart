@@ -125,6 +125,7 @@ class _NoPermissionsScreenState extends State<NoPermissionsScreen> {
                             allowInSettings = true;
                           });
                         } else {
+                          // ignore: use_build_context_synchronously
                           await AutoRouter.of(context).pop();
                         }
                       },
