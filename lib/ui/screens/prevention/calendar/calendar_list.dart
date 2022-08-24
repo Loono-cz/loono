@@ -142,13 +142,13 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
                 text: l10n.calendar_choose_calendar_button,
                 enabled: _calendarIdChoice != null,
                 onTap: () async {
+                  final autoRouter = AutoRouter.of(context);
                   final result = await _calendarRepository.createEvent(
                     examinationRecord.examinationType,
                     deviceCalendarId: _calendarIdChoice!,
                     startingDate: nextVisitDate!,
                   );
                   if (result) {
-                    final autoRouter = AutoRouter.of(context);
                     await _userRepository.updateDeviceCalendarId(_calendarIdChoice!);
                     await autoRouter.pop();
                     //TODO: Fix lint...
