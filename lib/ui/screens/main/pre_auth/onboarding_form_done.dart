@@ -225,10 +225,10 @@ class OnboardingFormDoneScreen extends StatelessWidget {
         await context.read<ExaminationsProvider>().fetchExaminations().then(
               (res) async => res.when(
                 success: (data) async {
+                  final autoRouter = AutoRouter.of(context);
                   // An account with this email already exists, proceed through the login.
                   await _userRepository.createUser();
-                  // ignore: use_build_context_synchronously
-                  await AutoRouter.of(context).replaceAll([const MainScreenRouter()]);
+                  await autoRouter.replaceAll([const MainScreenRouter()]);
                 },
                 failure: (_) async {
                   showFlushBarError(context, context.l10n.login_server_down_message);

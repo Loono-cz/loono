@@ -41,6 +41,7 @@ class OnboardingDentistScreen extends StatelessWidget {
               _type,
               ccaDoctorVisit: CcaDoctorVisit.moreThanXYearsOrIdk,
             );
+            //TODO: Fix lint...
             // ignore: use_build_context_synchronously
             await pushNotificationOrPreAuthMainScreen(context);
           },

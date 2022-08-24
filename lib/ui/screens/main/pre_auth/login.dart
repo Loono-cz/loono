@@ -140,13 +140,12 @@ class LoginScreen extends StatelessWidget {
                   if (!isScreenSmall) const SizedBox(height: 10),
                   TextButton(
                     onPressed: () async {
+                      final autoRouter = AutoRouter.of(context);
                       final questionnaires = await _examinationQuestionnairesDao.getAll();
                       if (questionnaires.isOnboardingDone) {
-                        // ignore: use_build_context_synchronously
-                        await AutoRouter.of(context).push(PreAuthMainRoute());
+                        await autoRouter.push(PreAuthMainRoute());
                       } else {
-                        // ignore: use_build_context_synchronously
-                        await AutoRouter.of(context).push(const OnboardingWrapperRoute());
+                        await autoRouter.push(const OnboardingWrapperRoute());
                       }
                     },
                     child: Text(

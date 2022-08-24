@@ -148,9 +148,10 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
                     startingDate: nextVisitDate!,
                   );
                   if (result) {
+                    final autoRouter = AutoRouter.of(context);
                     await _userRepository.updateDeviceCalendarId(_calendarIdChoice!);
-                    // ignore: use_build_context_synchronously
-                    await AutoRouter.of(context).pop();
+                    await autoRouter.pop();
+                    //TODO: Fix lint...
                     // ignore: use_build_context_synchronously
                     showFlushBarSuccess(
                       context,

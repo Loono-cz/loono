@@ -307,6 +307,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                                     deviceCalendarId: defaultDeviceCalendarId,
                                     startingDate: _nextVisitDate!,
                                   );
+                                  //TODO: Fix lint...
                                   // ignore: use_build_context_synchronously
                                   showFlushBarSuccess(
                                     context,
@@ -327,6 +328,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                                 );
                                 // permission was permanently denied, show permission settings guide
                                 if (result == false) {
+                                  //TODO: Fix lint...
                                   // ignore: use_build_context_synchronously
                                   showCalendarPermissionSheet(context);
                                 }
