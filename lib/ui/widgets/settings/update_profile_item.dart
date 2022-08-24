@@ -31,7 +31,7 @@ class UpdateProfileItem extends StatefulWidget {
 class _UpdateProfileItemState extends State<UpdateProfileItem> with TickerProviderStateMixin {
   AnimationController? _popUpAnimController;
   PersistentBottomSheetController? sheetController;
-
+  TextEditingController textController = TextEditingController();
   void showPopup() {
     _popUpAnimController =
         AnimationController(duration: const Duration(milliseconds: 200), vsync: this);
@@ -60,36 +60,37 @@ class _UpdateProfileItemState extends State<UpdateProfileItem> with TickerProvid
   }
 
   @override
+  void initState() {
+    textController.text = widget.value;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    const textFieldBorder = OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-      borderSide: BorderSide(color: Colors.transparent),
+    final disabledColor = widget.enabled ? Colors.black : Colors.black26;
+
+    final textFieldBorder = OutlineInputBorder(
+      borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+      borderSide: BorderSide(color: disabledColor),
     );
 
-    return Row(
-      children: [
-        ConstrainedBox(
-          constraints: const BoxConstraints(minWidth: 100, maxWidth: 100),
-          child: Text(widget.label, style: const TextStyle(fontSize: 12, color: Colors.black)),
-        ),
-        Expanded(
-          child: TextField(
-            readOnly: true,
-            onTap: () => widget.enabled
-                ? (widget.route == null ? null : AutoRouter.of(context).push(widget.route!))
-                : showPopup(),
-            decoration: InputDecoration(
-              hintText: widget.value,
-              hintStyle: const TextStyle(fontSize: 16, color: Colors.black),
-              filled: true,
-              fillColor: widget.enabled ? Colors.white : LoonoColors.pink,
-              enabledBorder: textFieldBorder,
-              disabledBorder: textFieldBorder,
-              focusedBorder: textFieldBorder,
-            ),
-          ),
-        ),
-      ],
+    return TextField(
+      style: TextStyle(color: widget.enabled ? Colors.black : Colors.black26),
+      controller: textController,
+      readOnly: true,
+      onTap: () => widget.enabled
+          ? (widget.route == null ? null : AutoRouter.of(context).push(widget.route!))
+          : showPopup(),
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.white,
+        floatingLabelStyle: TextStyle(color: disabledColor),
+        focusedBorder: textFieldBorder,
+        border: textFieldBorder,
+        enabledBorder: textFieldBorder,
+        labelText: widget.label,
+        labelStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+      ),
     );
   }
 }

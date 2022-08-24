@@ -119,32 +119,38 @@ class _SettingsContentState extends State<_SettingsContent> {
                 ],
               ),
               const SizedBox(height: 18),
-
-              /// TODO: This works but might get refactor in the future
-              if (navigationStack.last == SettingsPage.SettingsMainPage)
-                OpenSettingsScreen(
-                  changePage: changePage,
-                ),
-              if (navigationStack.last == SettingsPage.SettingsEditPage)
-                UpdateProfileScreen(
-                  changePage: changePage,
-                ),
-              if (navigationStack.last == SettingsPage.SettingsPointsPage)
-                PointsHelpScreen(
-                  changePage: changePage,
-                ),
-              if (navigationStack.last == SettingsPage.SettingsLeaderboardPage)
-                LeaderboardScreen(
-                  changePage: changePage,
-                ),
-              if (navigationStack.last == SettingsPage.SettingsPhotoPage)
-                EditPhotoScreen(
-                  changePage: changePage,
-                ),
+              showPropperSettings(context),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Widget showPropperSettings(BuildContext context) {
+    switch (navigationStack.last) {
+      case SettingsPage.SettingsMainPage:
+        return OpenSettingsScreen(
+          changePage: changePage,
+        );
+
+      case SettingsPage.SettingsEditPage:
+        return UpdateProfileScreen(
+          changePage: changePage,
+        );
+
+      case SettingsPage.SettingsPointsPage:
+        return PointsHelpScreen(
+          changePage: changePage,
+        );
+      case SettingsPage.SettingsLeaderboardPage:
+        return LeaderboardScreen(
+          changePage: changePage,
+        );
+      default:
+        return EditPhotoScreen(
+          changePage: changePage,
+        );
+    }
   }
 }
