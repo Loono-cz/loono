@@ -37,8 +37,8 @@ bool useHybridComposition() {
 }
 
 double getTopMapPadding() {
-  final window = WidgetsBinding.instance?.window;
-  final screenHeight = window!.physicalSize.height / window.devicePixelRatio;
+  final window = WidgetsBinding.instance.window;
+  final screenHeight = window.physicalSize.height / window.devicePixelRatio;
   final pctSize = screenHeight / (screenHeight - 100) - 1;
   return pctSize;
 }

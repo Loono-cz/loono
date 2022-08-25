@@ -66,7 +66,7 @@ class ScheduleExamination extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _examinationsProvider = Provider.of<ExaminationsProvider>(context, listen: false);
+    final examinationsProvider = Provider.of<ExaminationsProvider>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.only(top: 18, left: 18, right: 18),
       child: Column(
@@ -116,11 +116,11 @@ class ScheduleExamination extends StatelessWidget {
                                             );
                                     response.map(
                                       success: (res) {
-                                        _examinationsProvider.updateExaminationsRecord(res.data);
+                                        examinationsProvider.updateExaminationsRecord(res.data);
                                         registry.get<UserRepository>().sync();
                                         _navigateToDetail(
                                           context,
-                                          _examinationsProvider,
+                                          examinationsProvider,
                                           message: context.l10n.checkup_reminder_toast,
                                         );
                                       },
@@ -148,7 +148,7 @@ class ScheduleExamination extends StatelessWidget {
                                         registry.get<UserRepository>().sync();
                                         _navigateToDetail(
                                           context,
-                                          _examinationsProvider,
+                                          examinationsProvider,
                                           message: context.l10n.checkup_reminder_toast,
                                         );
                                       },
@@ -185,11 +185,13 @@ class ScheduleExamination extends StatelessWidget {
                   success: (res) async {
                     Provider.of<ExaminationsProvider>(context, listen: false)
                         .updateExaminationsRecord(res.data);
-                    _navigateToDetail(context, _examinationsProvider);
+                    _navigateToDetail(context, examinationsProvider);
                     await registry.get<UserRepository>().sync();
                   },
                   failure: (err) async {
                     await _appRouter.pop();
+                    //TODO: fix lint.
+                    // ignore: use_build_context_synchronously
                     showFlushBarError(context, context.l10n.something_went_wrong);
                   },
                 );

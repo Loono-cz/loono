@@ -106,6 +106,8 @@ class _ChangeLastVisitScreenState extends State<ChangeLastVisitScreen> {
                   await response.map(
                     success: (res) async {
                       await AutoRouter.of(context).pop();
+                      //TODO: Fix lint...
+                      // ignore: use_build_context_synchronously
                       showFlushBarSuccess(context, context.l10n.checkup_reminder_toast);
                     },
                     failure: (err) async {

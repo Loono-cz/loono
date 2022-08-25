@@ -30,14 +30,15 @@ void showConfirmationSheet(
   final preposition = czechPreposition(context, examinationType: examinationType);
 
   Future<void> _completedAction() async {
+    final autoRouter = AutoRouter.of(context);
     await registry.get<UserRepository>().sync();
-    AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
+    autoRouter.popUntilRouteWithName(ExaminationDetailRoute.name);
   }
 
   final l10n = context.l10n;
 
-  final _api = registry.get<ExaminationRepository>();
-  final _calendar = registry.get<CalendarRepository>();
+  final api = registry.get<ExaminationRepository>();
+  final calendar = registry.get<CalendarRepository>();
 
   registry.get<FirebaseAnalytics>().logEvent(name: 'OpenConfirmCheckupModal');
   showModalBottomSheet<void>(
@@ -61,15 +62,18 @@ void showConfirmationSheet(
                   '${l10n.yes}, ${sex == Sex.MALE ? l10n.checkup_confirmation_male.toLowerCase() : l10n.checkup_confirmation_female.toLowerCase()}',
               asyncCallback: () async {
                 /// code anchor: #postConfirmExamiantion
-                final response = await _api.confirmExamination(uuid);
+                final response = await api.confirmExamination(uuid);
                 await response.map(
                   success: (res) async {
-                    await _calendar.deleteOnlyDbEvent(examinationType);
-                    Provider.of<ExaminationsProvider>(context, listen: false)
-                        .updateExaminationsRecord(res.data);
+                    final examProvider = Provider.of<ExaminationsProvider>(context, listen: false);
+                    final autoRouter = AutoRouter.of(context);
+                    await calendar.deleteOnlyDbEvent(examinationType);
 
-                    await AutoRouter.of(context).navigate(
+                    examProvider.updateExaminationsRecord(res.data);
+
+                    await autoRouter.navigate(
                       AchievementRoute(
+                        // ignore: use_build_context_synchronously
                         header: getAchievementTitle(context, examinationType),
                         textLines: [l10n.award_desc],
                         numberOfPoints: awardPoints ?? examinationType.awardPoints,
@@ -80,6 +84,7 @@ void showConfirmationSheet(
                   },
                   failure: (err) async {
                     await AutoRouter.of(context).pop();
+                    // ignore: use_build_context_synchronously
                     showFlushBarError(context, context.l10n.something_went_wrong);
                   },
                 );

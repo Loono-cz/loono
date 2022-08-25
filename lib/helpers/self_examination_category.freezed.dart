@@ -12,35 +12,7 @@ part of 'self_examination_category.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$SelfExaminationCategoryTearOff {
-  const _$SelfExaminationCategoryTearOff();
-
-  FirstSelfExamination first() {
-    return const FirstSelfExamination();
-  }
-
-  ActiveSelfExamination active() {
-    return const ActiveSelfExamination();
-  }
-
-  WaitingSelfExamination waiting() {
-    return const WaitingSelfExamination();
-  }
-
-  HasFindingSelfExamination hasFinding() {
-    return const HasFindingSelfExamination();
-  }
-
-  HasFindingExpectingResultSelfExamination hasFindingExpectingResult() {
-    return const HasFindingExpectingResultSelfExamination();
-  }
-}
-
-/// @nodoc
-const $SelfExaminationCategory = _$SelfExaminationCategoryTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$SelfExaminationCategory {
@@ -123,22 +95,22 @@ class _$SelfExaminationCategoryCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $FirstSelfExaminationCopyWith<$Res> {
-  factory $FirstSelfExaminationCopyWith(FirstSelfExamination value,
-          $Res Function(FirstSelfExamination) then) =
-      _$FirstSelfExaminationCopyWithImpl<$Res>;
+abstract class _$$FirstSelfExaminationCopyWith<$Res> {
+  factory _$$FirstSelfExaminationCopyWith(_$FirstSelfExamination value,
+          $Res Function(_$FirstSelfExamination) then) =
+      __$$FirstSelfExaminationCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$FirstSelfExaminationCopyWithImpl<$Res>
+class __$$FirstSelfExaminationCopyWithImpl<$Res>
     extends _$SelfExaminationCategoryCopyWithImpl<$Res>
-    implements $FirstSelfExaminationCopyWith<$Res> {
-  _$FirstSelfExaminationCopyWithImpl(
-      FirstSelfExamination _value, $Res Function(FirstSelfExamination) _then)
-      : super(_value, (v) => _then(v as FirstSelfExamination));
+    implements _$$FirstSelfExaminationCopyWith<$Res> {
+  __$$FirstSelfExaminationCopyWithImpl(_$FirstSelfExamination _value,
+      $Res Function(_$FirstSelfExamination) _then)
+      : super(_value, (v) => _then(v as _$FirstSelfExamination));
 
   @override
-  FirstSelfExamination get _value => super._value as FirstSelfExamination;
+  _$FirstSelfExamination get _value => super._value as _$FirstSelfExamination;
 }
 
 /// @nodoc
@@ -154,7 +126,7 @@ class _$FirstSelfExamination extends FirstSelfExamination {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is FirstSelfExamination);
+        (other.runtimeType == runtimeType && other is _$FirstSelfExamination);
   }
 
   @override
@@ -250,22 +222,22 @@ abstract class FirstSelfExamination extends SelfExaminationCategory {
 }
 
 /// @nodoc
-abstract class $ActiveSelfExaminationCopyWith<$Res> {
-  factory $ActiveSelfExaminationCopyWith(ActiveSelfExamination value,
-          $Res Function(ActiveSelfExamination) then) =
-      _$ActiveSelfExaminationCopyWithImpl<$Res>;
+abstract class _$$ActiveSelfExaminationCopyWith<$Res> {
+  factory _$$ActiveSelfExaminationCopyWith(_$ActiveSelfExamination value,
+          $Res Function(_$ActiveSelfExamination) then) =
+      __$$ActiveSelfExaminationCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ActiveSelfExaminationCopyWithImpl<$Res>
+class __$$ActiveSelfExaminationCopyWithImpl<$Res>
     extends _$SelfExaminationCategoryCopyWithImpl<$Res>
-    implements $ActiveSelfExaminationCopyWith<$Res> {
-  _$ActiveSelfExaminationCopyWithImpl(
-      ActiveSelfExamination _value, $Res Function(ActiveSelfExamination) _then)
-      : super(_value, (v) => _then(v as ActiveSelfExamination));
+    implements _$$ActiveSelfExaminationCopyWith<$Res> {
+  __$$ActiveSelfExaminationCopyWithImpl(_$ActiveSelfExamination _value,
+      $Res Function(_$ActiveSelfExamination) _then)
+      : super(_value, (v) => _then(v as _$ActiveSelfExamination));
 
   @override
-  ActiveSelfExamination get _value => super._value as ActiveSelfExamination;
+  _$ActiveSelfExamination get _value => super._value as _$ActiveSelfExamination;
 }
 
 /// @nodoc
@@ -281,7 +253,7 @@ class _$ActiveSelfExamination extends ActiveSelfExamination {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is ActiveSelfExamination);
+        (other.runtimeType == runtimeType && other is _$ActiveSelfExamination);
   }
 
   @override
@@ -377,22 +349,23 @@ abstract class ActiveSelfExamination extends SelfExaminationCategory {
 }
 
 /// @nodoc
-abstract class $WaitingSelfExaminationCopyWith<$Res> {
-  factory $WaitingSelfExaminationCopyWith(WaitingSelfExamination value,
-          $Res Function(WaitingSelfExamination) then) =
-      _$WaitingSelfExaminationCopyWithImpl<$Res>;
+abstract class _$$WaitingSelfExaminationCopyWith<$Res> {
+  factory _$$WaitingSelfExaminationCopyWith(_$WaitingSelfExamination value,
+          $Res Function(_$WaitingSelfExamination) then) =
+      __$$WaitingSelfExaminationCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$WaitingSelfExaminationCopyWithImpl<$Res>
+class __$$WaitingSelfExaminationCopyWithImpl<$Res>
     extends _$SelfExaminationCategoryCopyWithImpl<$Res>
-    implements $WaitingSelfExaminationCopyWith<$Res> {
-  _$WaitingSelfExaminationCopyWithImpl(WaitingSelfExamination _value,
-      $Res Function(WaitingSelfExamination) _then)
-      : super(_value, (v) => _then(v as WaitingSelfExamination));
+    implements _$$WaitingSelfExaminationCopyWith<$Res> {
+  __$$WaitingSelfExaminationCopyWithImpl(_$WaitingSelfExamination _value,
+      $Res Function(_$WaitingSelfExamination) _then)
+      : super(_value, (v) => _then(v as _$WaitingSelfExamination));
 
   @override
-  WaitingSelfExamination get _value => super._value as WaitingSelfExamination;
+  _$WaitingSelfExamination get _value =>
+      super._value as _$WaitingSelfExamination;
 }
 
 /// @nodoc
@@ -408,7 +381,7 @@ class _$WaitingSelfExamination extends WaitingSelfExamination {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is WaitingSelfExamination);
+        (other.runtimeType == runtimeType && other is _$WaitingSelfExamination);
   }
 
   @override
@@ -504,23 +477,24 @@ abstract class WaitingSelfExamination extends SelfExaminationCategory {
 }
 
 /// @nodoc
-abstract class $HasFindingSelfExaminationCopyWith<$Res> {
-  factory $HasFindingSelfExaminationCopyWith(HasFindingSelfExamination value,
-          $Res Function(HasFindingSelfExamination) then) =
-      _$HasFindingSelfExaminationCopyWithImpl<$Res>;
+abstract class _$$HasFindingSelfExaminationCopyWith<$Res> {
+  factory _$$HasFindingSelfExaminationCopyWith(
+          _$HasFindingSelfExamination value,
+          $Res Function(_$HasFindingSelfExamination) then) =
+      __$$HasFindingSelfExaminationCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$HasFindingSelfExaminationCopyWithImpl<$Res>
+class __$$HasFindingSelfExaminationCopyWithImpl<$Res>
     extends _$SelfExaminationCategoryCopyWithImpl<$Res>
-    implements $HasFindingSelfExaminationCopyWith<$Res> {
-  _$HasFindingSelfExaminationCopyWithImpl(HasFindingSelfExamination _value,
-      $Res Function(HasFindingSelfExamination) _then)
-      : super(_value, (v) => _then(v as HasFindingSelfExamination));
+    implements _$$HasFindingSelfExaminationCopyWith<$Res> {
+  __$$HasFindingSelfExaminationCopyWithImpl(_$HasFindingSelfExamination _value,
+      $Res Function(_$HasFindingSelfExamination) _then)
+      : super(_value, (v) => _then(v as _$HasFindingSelfExamination));
 
   @override
-  HasFindingSelfExamination get _value =>
-      super._value as HasFindingSelfExamination;
+  _$HasFindingSelfExamination get _value =>
+      super._value as _$HasFindingSelfExamination;
 }
 
 /// @nodoc
@@ -537,7 +511,7 @@ class _$HasFindingSelfExamination extends HasFindingSelfExamination {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is HasFindingSelfExamination);
+            other is _$HasFindingSelfExamination);
   }
 
   @override
@@ -633,26 +607,26 @@ abstract class HasFindingSelfExamination extends SelfExaminationCategory {
 }
 
 /// @nodoc
-abstract class $HasFindingExpectingResultSelfExaminationCopyWith<$Res> {
-  factory $HasFindingExpectingResultSelfExaminationCopyWith(
-          HasFindingExpectingResultSelfExamination value,
-          $Res Function(HasFindingExpectingResultSelfExamination) then) =
-      _$HasFindingExpectingResultSelfExaminationCopyWithImpl<$Res>;
+abstract class _$$HasFindingExpectingResultSelfExaminationCopyWith<$Res> {
+  factory _$$HasFindingExpectingResultSelfExaminationCopyWith(
+          _$HasFindingExpectingResultSelfExamination value,
+          $Res Function(_$HasFindingExpectingResultSelfExamination) then) =
+      __$$HasFindingExpectingResultSelfExaminationCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$HasFindingExpectingResultSelfExaminationCopyWithImpl<$Res>
+class __$$HasFindingExpectingResultSelfExaminationCopyWithImpl<$Res>
     extends _$SelfExaminationCategoryCopyWithImpl<$Res>
-    implements $HasFindingExpectingResultSelfExaminationCopyWith<$Res> {
-  _$HasFindingExpectingResultSelfExaminationCopyWithImpl(
-      HasFindingExpectingResultSelfExamination _value,
-      $Res Function(HasFindingExpectingResultSelfExamination) _then)
+    implements _$$HasFindingExpectingResultSelfExaminationCopyWith<$Res> {
+  __$$HasFindingExpectingResultSelfExaminationCopyWithImpl(
+      _$HasFindingExpectingResultSelfExamination _value,
+      $Res Function(_$HasFindingExpectingResultSelfExamination) _then)
       : super(_value,
-            (v) => _then(v as HasFindingExpectingResultSelfExamination));
+            (v) => _then(v as _$HasFindingExpectingResultSelfExamination));
 
   @override
-  HasFindingExpectingResultSelfExamination get _value =>
-      super._value as HasFindingExpectingResultSelfExamination;
+  _$HasFindingExpectingResultSelfExamination get _value =>
+      super._value as _$HasFindingExpectingResultSelfExamination;
 }
 
 /// @nodoc
@@ -670,7 +644,7 @@ class _$HasFindingExpectingResultSelfExamination
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is HasFindingExpectingResultSelfExamination);
+            other is _$HasFindingExpectingResultSelfExamination);
   }
 
   @override

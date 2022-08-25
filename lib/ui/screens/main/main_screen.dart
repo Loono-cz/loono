@@ -44,7 +44,7 @@ class _MainScreenState extends State<MainScreen> {
     super.initState();
     final examinationsProvider = Provider.of<ExaminationsProvider>(context, listen: false);
 
-    WidgetsBinding.instance?.addPostFrameCallback(
+    WidgetsBinding.instance.addPostFrameCallback(
       (_) => examinationsProvider.fetchExaminations(),
     );
     registry.get<UserRepository>().sync();

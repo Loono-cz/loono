@@ -21,7 +21,7 @@ class ApiService {
       // ignore: omit_local_variable_types
       final Response<T> response = await apiCallback();
       return ApiResponse<T>.success(response.data as T);
-    } on DioError catch (e, _) {
+    } on DioError catch (e) {
       debugPrint('${e.message}: ${e.response.toString()}\n${e.toString()}');
       return ApiResponse.failure(e);
     }

@@ -70,10 +70,11 @@ class MapPreview extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(0, 0, 16.0, MediaQuery.of(context).size.height * 0.15),
         child: FloatingActionButton(
           onPressed: () async {
+            final autoRouter = AutoRouter.of(context);
             var permission = await Geolocator.checkPermission();
 
             if (_locationDenied(permission)) {
-              await AutoRouter.of(context).push(const NoPermissionsRoute());
+              await autoRouter.push(const NoPermissionsRoute());
             }
 
             permission = await Geolocator.checkPermission();

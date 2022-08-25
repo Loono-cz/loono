@@ -9,7 +9,7 @@ import 'package:loono/ui/widgets/close_button.dart';
 import 'package:loono/ui/widgets/find_doctor/contact_button.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class DoctorDetailSheet extends StatelessWidget {
   const DoctorDetailSheet({
@@ -112,8 +112,8 @@ class DoctorDetailSheet extends StatelessWidget {
                                 scheme: 'tel',
                                 path: firstPhoneNumber,
                               );
-                              if (await canLaunch(phoneLaunchUri.toString())) {
-                                await launch(phoneLaunchUri.toString());
+                              if (await canLaunchUrlString(phoneLaunchUri.toString())) {
+                                await launchUrlString(phoneLaunchUri.toString());
                                 await registry
                                     .get<FirebaseAnalytics>()
                                     .logEvent(name: 'ContactDoctorPhoneAction');
@@ -130,8 +130,8 @@ class DoctorDetailSheet extends StatelessWidget {
                               scheme: 'mailto',
                               path: firstEmail,
                             );
-                            if (await canLaunch(emailLaunchUri.toString())) {
-                              await launch(emailLaunchUri.toString());
+                            if (await canLaunchUrlString(emailLaunchUri.toString())) {
+                              await launchUrlString(emailLaunchUri.toString());
                               await registry
                                   .get<FirebaseAnalytics>()
                                   .logEvent(name: 'ContactDoctorEmailAction');

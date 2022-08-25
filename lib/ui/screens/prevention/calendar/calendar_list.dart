@@ -85,7 +85,7 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
                       // TODO: Handle this case
                       if (calendars.isEmpty) return const Center(child: Text('Žádné kalendáře'));
                       if (calendars.length == 1) {
-                        WidgetsBinding.instance?.scheduleFrameCallback((_) {
+                        WidgetsBinding.instance.scheduleFrameCallback((_) {
                           setState(() => _calendarIdChoice = calendars.first.id);
                         });
                       }
@@ -142,6 +142,7 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
                 text: l10n.calendar_choose_calendar_button,
                 enabled: _calendarIdChoice != null,
                 onTap: () async {
+                  final autoRouter = AutoRouter.of(context);
                   final result = await _calendarRepository.createEvent(
                     examinationRecord.examinationType,
                     deviceCalendarId: _calendarIdChoice!,
@@ -149,7 +150,9 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
                   );
                   if (result) {
                     await _userRepository.updateDeviceCalendarId(_calendarIdChoice!);
-                    await AutoRouter.of(context).pop();
+                    await autoRouter.pop();
+                    //TODO: Fix lint...
+                    // ignore: use_build_context_synchronously
                     showFlushBarSuccess(
                       context,
                       l10n.calendar_added_success_message,

@@ -144,12 +144,13 @@ Future<void> run({required WidgetTester tester}) async {
     ..verifyHasBadge(BadgeType.HEADBAND)
     ..verifyDoesNotHaveBadge(BadgeType.SHIELD)
     ..verifyDoesNotHaveBadge(BadgeType.GLOVES)
+    ..verifyDoesNotHaveBadge(BadgeType.PAULDRONS)
     ..verifyHasPoints(300); // HEADBAND and points are reward from the Dentist visit
+
   await preventionPage.verifySelfExaminationCardIsInCategory(
     SelfExaminationType.TESTICULAR,
     expectedCategoryName: 'Vyšetři se',
   );
-
   //////////////////////////////////////////////////////////////////////////////
 
   /////// Perform self examination with OK status.
@@ -173,7 +174,40 @@ Future<void> run({required WidgetTester tester}) async {
     ..verifyHasBadge(BadgeType.HEADBAND)
     ..verifyHasBadge(BadgeType.SHIELD)
     ..verifyDoesNotHaveBadge(BadgeType.GLOVES)
+    ..verifyDoesNotHaveBadge(BadgeType.PAULDRONS)
     ..verifyHasPoints(300 + 50); // +50 points and shield from the performed self examination
+
+  //////////////////////////////////////////////////////////////////////////////
+
+  /////// Perform self examination skin with OK status.
+
+  await preventionPage.verifySelfExaminationCardIsInCategory(
+    SelfExaminationType.SKIN,
+    expectedCategoryName: 'Vyšetři se',
+  );
+
+  await preventionPage.clickSelfExaminationCard(SelfExaminationType.SKIN);
+  await selfExaminationDetailPage.verifyScreenIsShown();
+
+  await selfExaminationDetailPage.clickSelfExaminationPerformedButton();
+  await howItWentModalPage.verifyHowItWentModalVisibilityState(isShown: true);
+
+  await howItWentModalPage.clickOkButton();
+  await noFindingRewardPage.verifyScreenIsShown();
+
+  await noFindingRewardPage.clickContinueButton();
+  await preventionPage.verifyScreenIsShown();
+
+  await preventionPage.verifySelfExaminationCardIsInCategory(
+    SelfExaminationType.SKIN,
+    expectedCategoryName: 'Připomenu ti vyšetření',
+  );
+  preventionPage
+    ..verifyHasBadge(BadgeType.HEADBAND)
+    ..verifyHasBadge(BadgeType.SHIELD)
+    ..verifyHasBadge(BadgeType.PAULDRONS)
+    ..verifyDoesNotHaveBadge(BadgeType.GLOVES)
+    ..verifyHasPoints(350 + 50); // +50 points and pauldrons from the performed self examination
 
   //////////////////////////////////////////////////////////////////////////////
 
@@ -204,7 +238,8 @@ Future<void> run({required WidgetTester tester}) async {
     ..verifyHasBadge(BadgeType.HEADBAND)
     ..verifyHasBadge(BadgeType.SHIELD)
     ..verifyHasBadge(BadgeType.GLOVES)
-    ..verifyHasPoints(350 + 200); // +200 points and gloves from the dermatologist visit
+    ..verifyHasBadge(BadgeType.PAULDRONS)
+    ..verifyHasPoints(400 + 200); // +200 points and gloves from the dermatologist visit
 
   await preventionPage.verifyExaminationCardIsInCategory(
     ExaminationType.DERMATOLOGIST,
@@ -235,8 +270,9 @@ Future<void> run({required WidgetTester tester}) async {
     ..verifyHasBadge(BadgeType.HEADBAND)
     ..verifyHasBadge(BadgeType.SHIELD)
     ..verifyHasBadge(BadgeType.GLOVES)
+    ..verifyHasBadge(BadgeType.PAULDRONS)
     ..verifyDoesNotHaveBadge(BadgeType.GLASSES)
-    ..verifyHasPoints(550); // no points and no badge should be added
+    ..verifyHasPoints(600); // no points and no badge should be added
 
   await preventionPage.verifyExaminationCardIsInCategory(
     ExaminationType.OPHTHALMOLOGIST,

@@ -32,13 +32,17 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
         );
     await response.map(
       success: (res) async {
+        final autoRouter = AutoRouter.of(pageContext);
         Provider.of<ExaminationsProvider>(pageContext, listen: false)
             .updateExaminationsRecord(res.data);
         await registry.get<CalendarRepository>().updateEventDate(
               examinationType,
               newDate: date,
             );
-        AutoRouter.of(pageContext).popUntilRouteWithName('ExaminationDetailRoute');
+        autoRouter.popUntilRouteWithName('ExaminationDetailRoute');
+
+        ///TODO: lint fix
+        // ignore: use_build_context_synchronously
         showFlushBarSuccess(pageContext, pageContext.l10n.checkup_reminder_toast);
       },
       failure: (err) async {

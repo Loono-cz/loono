@@ -38,12 +38,14 @@ class SearchResultListItem extends StatelessWidget {
       minLeadingWidth: 0,
       dense: true,
       onTap: () async {
+        final autoRouter = AutoRouter.of(context);
+        final contextReader = context.read<MapStateService>();
         FocusManager.instance.primaryFocus?.unfocus(); // dismisses keyboard
         await _userRepository.addSearchHistoryItem(searchResult);
-        context.read<MapStateService>()
+        contextReader
           ..setDoctorDetail(null)
           ..setSpecialization(null);
-        await AutoRouter.of(context).pop(searchResult);
+        await autoRouter.pop(searchResult);
       },
     );
   }

@@ -88,7 +88,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
   @override
   void initState() {
     super.initState();
-    SchedulerBinding.instance?.addPostFrameCallback((_) {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
       if (widget.initialMessage != null) {
         showFlushBarSuccess(context, widget.initialMessage!);
       }
@@ -294,6 +294,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                             key: const Key('examinationDetailPage_btn_calendar'),
                             text: l10n.examination_detail_add_to_calendar_button,
                             onTap: () async {
+                              final autoRouter = AutoRouter.of(context);
                               final hasPermissionsGranted =
                                   await _calendarService.hasPermissionsGranted();
                               if (hasPermissionsGranted) {
@@ -306,25 +307,29 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                                     deviceCalendarId: defaultDeviceCalendarId,
                                     startingDate: _nextVisitDate!,
                                   );
+                                  //TODO: Fix lint...
+                                  // ignore: use_build_context_synchronously
                                   showFlushBarSuccess(
                                     context,
                                     l10n.calendar_added_success_message,
                                   );
                                 } else {
-                                  await AutoRouter.of(context).push(
+                                  await autoRouter.push(
                                     CalendarListRoute(
                                       examinationRecord: widget.categorizedExamination.examination,
                                     ),
                                   );
                                 }
                               } else {
-                                final result = await AutoRouter.of(context).push<bool>(
+                                final result = await autoRouter.push<bool>(
                                   CalendarPermissionInfoRoute(
                                     examinationRecord: widget.categorizedExamination.examination,
                                   ),
                                 );
                                 // permission was permanently denied, show permission settings guide
                                 if (result == false) {
+                                  //TODO: Fix lint...
+                                  // ignore: use_build_context_synchronously
                                   showCalendarPermissionSheet(context);
                                 }
                               }

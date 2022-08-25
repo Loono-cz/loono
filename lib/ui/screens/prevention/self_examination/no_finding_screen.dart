@@ -13,16 +13,21 @@ class NoFindingScreen extends StatelessWidget {
     Key? key,
     required this.points,
     required this.history,
+    this.badgeType,
   }) : super(key: key);
 
   final int points;
   final BuiltList<SelfExaminationStatus> history;
 
+  final BadgeType? badgeType;
   @override
   Widget build(BuildContext context) {
     final validResults = history.where((item) => item == SelfExaminationStatus.COMPLETED);
     final awardLevel = (validResults.length / 3).floor() + 1;
-    final receivedShield = validResults.isEmpty || (validResults.length + 1) % 3 == 0;
+    final receivedAward = validResults.isEmpty || (validResults.length + 1) % 3 == 0;
+
+    final assetPath = getAssetPath(badgeType);
+    final awardLabel = getAwardLabel(badgeType, context);
 
     return Scaffold(
       body: Padding(
@@ -30,15 +35,15 @@ class NoFindingScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if (receivedShield)
+            if (receivedAward)
               Column(
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(bottom: 14),
-                    child: SvgPicture.asset('assets/badges/shield/reward_level_$awardLevel.svg'),
+                    child: SvgPicture.asset('$assetPath/reward_level_$awardLevel.svg'),
                   ),
                   Image.asset(
-                    'assets/icons/prevention/award_shadow.png',
+                    LoonoStrings.awardShadowStirng,
                     width: 200,
                   ),
                   Padding(
@@ -83,19 +88,18 @@ class NoFindingScreen extends StatelessWidget {
                 ],
               ),
             Text(
-              receivedShield
-                  ? context.l10n.no_finding_header
-                  : context.l10n.no_findings_progress_header,
+              receivedAward ? awardLabel : context.l10n.no_findings_progress_header,
               style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.w700,
                 color: LoonoColors.green,
               ),
+              textAlign: TextAlign.center,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10, bottom: 31),
               child: Text(
-                receivedShield
+                receivedAward
                     ? context.l10n.no_finding_desc
                     : context.l10n.no_findings_progress_desc,
                 style: const TextStyle(
@@ -136,6 +140,24 @@ class NoFindingScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String getAssetPath(BadgeType? type) {
+    switch (type) {
+      case BadgeType.PAULDRONS:
+        return LoonoStrings.pauldronsPath;
+      default:
+        return LoonoStrings.shieldPath;
+    }
+  }
+
+  String getAwardLabel(BadgeType? type, BuildContext context) {
+    switch (type) {
+      case BadgeType.PAULDRONS:
+        return context.l10n.pauldrons_award_label;
+      default:
+        return context.l10n.no_finding_getting;
+    }
   }
 }
 

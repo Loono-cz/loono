@@ -50,8 +50,11 @@ class ExaminationBadges extends StatelessWidget {
         return 'superhrdinské brýle';
       case BadgeType.SHIELD:
         return 'superhrdinský štít';
+      case BadgeType.PAULDRONS:
+        return 'superhrdinské nárameníky';
+      default:
+        return '';
     }
-    return '';
   }
 
   bool _showGreenBadge(Badge? data, int index) {

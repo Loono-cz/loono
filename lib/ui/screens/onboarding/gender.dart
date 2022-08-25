@@ -15,6 +15,7 @@ class OnboardingGenderScreen extends StatefulWidget {
   const OnboardingGenderScreen({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _OnboardingGenderScreenState createState() => _OnboardingGenderScreenState();
 }
 

@@ -90,8 +90,9 @@ class WelcomeScreen extends StatelessWidget {
                     LoonoButton(
                       text: context.l10n.carousel_start,
                       onTap: () async {
+                        final autoRouter = AutoRouter.of(context);
                         await _userRepository.createUserIfNotExists();
-                        await AutoRouter.of(context).push(const IntroCarouselRoute());
+                        await autoRouter.push(const IntroCarouselRoute());
                       },
                     ),
                     const SizedBox(
@@ -99,10 +100,11 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () async {
+                        final autoRouter = AutoRouter.of(context);
                         await _userRepository.createUserIfNotExists();
 
                         // ignore: unawaited_futures
-                        AutoRouter.of(context).replaceAll([
+                        autoRouter.replaceAll([
                           LoginRoute(),
                           PreAuthMainRoute(overridenPreventionRoute: LoginRoute()),
                         ]);

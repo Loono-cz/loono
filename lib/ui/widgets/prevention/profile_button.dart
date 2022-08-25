@@ -12,12 +12,12 @@ class ProfileButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _usersDao = registry.get<DatabaseService>().users;
+    final usersDao = registry.get<DatabaseService>().users;
     const radius = 27.0;
     return Column(
       children: [
         StreamBuilder<User?>(
-          stream: _usersDao.watchUser(),
+          stream: usersDao.watchUser(),
           builder: (context, snapshot) {
             final user = snapshot.data;
             return GestureDetector(

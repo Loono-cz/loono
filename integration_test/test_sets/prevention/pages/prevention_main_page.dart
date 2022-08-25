@@ -78,7 +78,10 @@ class PreventionPage with BadgeFinders {
     logTestEvent(
       'Verify SelfExaminationCard "${type.name}" is in category: "$expectedCategoryName"',
     );
+    logTestEvent('Type of selfExamination is $type');
     final card = getSelfExaminationCard(type);
+
+    logTestEvent('Founded card is $card');
     await tester.ensureVisible(card);
     await tester.pumpAndSettle();
     expect(
@@ -86,7 +89,7 @@ class PreventionPage with BadgeFinders {
         of: card,
         matching: find.byKey(ValueKey<String>('selfExam_category_column_$expectedCategoryName')),
       ),
-      findsOneWidget,
+      findsWidgets,
     );
   }
 

@@ -77,7 +77,7 @@ class BadgeOverviewScreen extends StatelessWidget {
                             child: Stack(
                               children: [
                                 Scrollbar(
-                                  isAlwaysShown: true,
+                                  thumbVisibility: true,
                                   child: ListView(
                                     shrinkWrap: true,
                                     children: [

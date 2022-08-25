@@ -100,11 +100,13 @@ class _EditPhotoScreenState extends State<EditPhotoScreen> {
                     description: context.l10n.photo_remove_confirmation_dialog_content,
                     confirmationButtonLabel: context.l10n.continue_info,
                     onConfirm: () async {
-                      WidgetsBinding.instance?.addPostFrameCallback((_) {
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
                         _setLoadingState(true);
                       });
                       final result = await _userRepository.deleteUserPhoto();
                       if (result) {
+                        //TODO: Fix lint
+                        // ignore: use_build_context_synchronously
                         showFlushBarSuccess(
                           context,
                           context.l10n.edit_photo_delete_photo_action_success,

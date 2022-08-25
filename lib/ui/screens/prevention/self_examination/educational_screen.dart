@@ -19,11 +19,15 @@ class EducationalVideoScreen extends StatelessWidget {
   final Sex sex;
   final SelfExaminationPreventionStatus selfExamination;
 
-  String _getVideoIdFromSex() {
-    if (sex == Sex.FEMALE) {
-      return 'xfkSnGt9U80';
-    } else {
-      return 'HHJpDtxuXZQ';
+  ///TODO: After structure change load video url from BE.
+  String _getVideoByExaminationType(SelfExaminationType? type) {
+    switch (type) {
+      case SelfExaminationType.BREAST:
+        return 'xfkSnGt9U80';
+      case SelfExaminationType.TESTICULAR:
+        return 'HHJpDtxuXZQ';
+      default:
+        return 'meppmLo4Hy0';
     }
   }
 
@@ -33,7 +37,7 @@ class EducationalVideoScreen extends StatelessWidget {
       player: YoutubePlayer(
         key: const Key('educationalVideoPage_video'),
         controller: YoutubePlayerController(
-          initialVideoId: _getVideoIdFromSex(),
+          initialVideoId: _getVideoByExaminationType(selfExamination.type),
           flags: const YoutubePlayerFlags(
             autoPlay: false,
           ),
@@ -67,8 +71,8 @@ class EducationalVideoScreen extends StatelessWidget {
                         ? context.l10n.self_examination_done_male
                         : context.l10n.self_examination_done_female,
                     onTap: () async {
-                      await AutoRouter.of(context).pop();
                       showHowItWentSheet(context, sex, selfExamination);
+                      await AutoRouter.of(context).pop();
                     },
                   ),
                 const SizedBox(height: 18),

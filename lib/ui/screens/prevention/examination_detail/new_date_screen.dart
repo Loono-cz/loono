@@ -23,10 +23,10 @@ class NewDateScreen extends StatefulWidget {
   final bool showCancelIcon;
 
   @override
-  _NewDateScreenState createState() => _NewDateScreenState();
+  NewDateScreenState createState() => NewDateScreenState();
 }
 
-class _NewDateScreenState extends State<NewDateScreen> {
+class NewDateScreenState extends State<NewDateScreen> {
   DateTime? _newDate;
 
   Sex get _sex {

@@ -60,8 +60,7 @@ class _LogoutScreenState extends State<LogoutScreen> {
                 text: context.l10n.login,
                 onTap: () async {
                   await _userRepository.createUser();
-                  await AutoRouter.of(context)
-                      .replaceAll([PreAuthMainRoute(overridenPreventionRoute: LoginRoute())]);
+                  await preAuthMainRouteTapped();
                 },
               ),
               const SizedBox(height: 20),
@@ -69,7 +68,7 @@ class _LogoutScreenState extends State<LogoutScreen> {
                 text: context.l10n.use_app_without_account,
                 onTap: () async {
                   await _userRepository.createUser();
-                  await AutoRouter.of(context).replaceAll([const AppStartUpWrapperRoute()]);
+                  await lightButtonTapped();
                 },
               ),
             ],
@@ -78,4 +77,10 @@ class _LogoutScreenState extends State<LogoutScreen> {
       ),
     );
   }
+
+  Future<void> preAuthMainRouteTapped() async =>
+      AutoRouter.of(context).replaceAll([PreAuthMainRoute(overridenPreventionRoute: LoginRoute())]);
+
+  Future<void> lightButtonTapped() async =>
+      AutoRouter.of(context).replaceAll([const AppStartUpWrapperRoute()]);
 }

@@ -45,6 +45,7 @@ void showHowItWentSheet(
               key: const Key('selfExaminationDetailPage_howItWentModal_okBtn'),
               text: context.l10n.self_exam_how_it_went_ok,
               asyncCallback: () async {
+                final provider = Provider.of<ExaminationsProvider>(context, listen: false);
                 final apiRes = await registry.get<ApiService>().confirmSelfExamination(
                   selfExamination.type,
                   result: SelfExaminationResult((b) {
@@ -52,13 +53,15 @@ void showHowItWentSheet(
                   }),
                 );
                 unawaited(
-                  Provider.of<ExaminationsProvider>(context, listen: false).fetchExaminations(),
+                  provider.fetchExaminations(),
                 );
                 await apiRes.whenOrNull(
                   success: (data) async {
+                    final autoRouter = AutoRouter.of(context);
                     await userRepository.updateCurrentUserFromSelfExamCompletion(data);
-                    await AutoRouter.of(context).popAndPush(
+                    await autoRouter.popAndPush(
                       NoFindingRoute(
+                        badgeType: data.badgeType,
                         points: selfExamination.points,
                         history: selfExamination.history,
                       ),
@@ -74,6 +77,8 @@ void showHowItWentSheet(
                   ? context.l10n.self_exam_how_it_went_finding_female
                   : context.l10n.self_exam_how_it_went_finding_male,
               asyncCallback: () async {
+                final provider = Provider.of<ExaminationsProvider>(context, listen: false);
+                final autoRouter = AutoRouter.of(context);
                 final apiRes = await registry.get<ApiService>().confirmSelfExamination(
                   selfExamination.type,
                   result: SelfExaminationResult((b) {
@@ -85,9 +90,9 @@ void showHowItWentSheet(
                       userRepository.updateCurrentUserFromSelfExamCompletion(data),
                 );
                 unawaited(
-                  Provider.of<ExaminationsProvider>(context, listen: false).fetchExaminations(),
+                  provider.fetchExaminations(),
                 );
-                await AutoRouter.of(context).popAndPush(HasFindingRoute(sex: sex));
+                await autoRouter.popAndPush(HasFindingRoute(sex: sex));
               },
             ),
           ],

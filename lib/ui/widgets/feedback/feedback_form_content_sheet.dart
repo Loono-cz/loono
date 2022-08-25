@@ -11,7 +11,7 @@ import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/close_button.dart';
 import 'package:loono/utils/registry.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 void showFeedbackFormContentBottomSheet(
   BuildContext pageContext, {
@@ -50,10 +50,7 @@ class _FeedbackFormContentState extends State<_FeedbackFormContent> {
 
   final _textController = TextEditingController();
 
-  Future<void> _closeForm(BuildContext context) async {
-    await AutoRouter.of(context).pop();
-    await AutoRouter.of(context).pop();
-  }
+  Future<void> _closeForm(BuildContext context) async => AutoRouter.of(context).popUntilRoot();
 
   String get _inputText => _textController.text;
 
@@ -155,6 +152,8 @@ class _FeedbackFormContentState extends State<_FeedbackFormContent> {
                   ),
                   onSuccess: () async {
                     await _closeForm(context);
+                    //TODO: Fix lint
+                    // ignore: use_build_context_synchronously
                     showFlushBarSuccess(context, l10n.feedback_form_success_message, sync: false);
                   },
                   onError: () => showFlushBarError(context, l10n.something_went_wrong),
@@ -175,8 +174,8 @@ class _FeedbackFormContentState extends State<_FeedbackFormContent> {
                               ..onTap = () async {
                                 final emailLaunchUri =
                                     Uri(scheme: 'mailto', path: LoonoStrings.contactEmail);
-                                if (await canLaunch(emailLaunchUri.toString())) {
-                                  await launch(emailLaunchUri.toString());
+                                if (await canLaunchUrlString(emailLaunchUri.toString())) {
+                                  await launchUrlString(emailLaunchUri.toString());
                                 }
                               },
                           ),

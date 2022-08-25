@@ -23,10 +23,10 @@ class CustomVideoPlayer extends StatefulWidget {
   final StoryPageState storyPageState;
 
   @override
-  _VideoPlayerScreenState createState() => _VideoPlayerScreenState();
+  VideoPlayerScreenState createState() => VideoPlayerScreenState();
 }
 
-class _VideoPlayerScreenState extends State<CustomVideoPlayer> {
+class VideoPlayerScreenState extends State<CustomVideoPlayer> {
   late final VideoPlayerController _controller;
   late final Future<void> _initializeVideoPlayerFuture;
   late final int initialPage;
@@ -61,7 +61,7 @@ class _VideoPlayerScreenState extends State<CustomVideoPlayer> {
     if (_controller.value.isInitialized) {
       if (widget.storyPageState.isInResetState != oldWidget.storyPageState.isInResetState) {
         resetVideo();
-        WidgetsBinding.instance!.addPostFrameCallback((_) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
           if (mounted) widget.onLoaded?.call();
         });
       }
@@ -80,7 +80,7 @@ class _VideoPlayerScreenState extends State<CustomVideoPlayer> {
         if (initialPage <= oldWidget.storyPageState.pageIndexState &&
             widget.storyPageState.isPaused) {
           if (!(initialPage > oldWidget.storyPageState.pageIndexState)) {
-            WidgetsBinding.instance!.addPostFrameCallback((_) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
               if (mounted) widget.onLoaded?.call();
             });
           }

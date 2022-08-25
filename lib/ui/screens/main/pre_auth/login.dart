@@ -76,10 +76,11 @@ class LoginScreen extends StatelessWidget {
                                               .map(
                                                 (dynamic api) => ElevatedButton(
                                                   onPressed: () async {
+                                                    final autoRouter = AutoRouter.of(context);
                                                     await registry
                                                         .get<AuthService>()
                                                         .switchApi(api['url'].toString());
-                                                    await AutoRouter.of(context).pop();
+                                                    await autoRouter.pop();
                                                   },
                                                   child: Text(api['url'].toString()),
                                                 ),
@@ -139,11 +140,12 @@ class LoginScreen extends StatelessWidget {
                   if (!isScreenSmall) const SizedBox(height: 10),
                   TextButton(
                     onPressed: () async {
+                      final autoRouter = AutoRouter.of(context);
                       final questionnaires = await _examinationQuestionnairesDao.getAll();
                       if (questionnaires.isOnboardingDone) {
-                        await AutoRouter.of(context).push(PreAuthMainRoute());
+                        await autoRouter.push(PreAuthMainRoute());
                       } else {
-                        await AutoRouter.of(context).push(const OnboardingWrapperRoute());
+                        await autoRouter.push(const OnboardingWrapperRoute());
                       }
                     },
                     child: Text(
@@ -181,9 +183,10 @@ class LoginScreen extends StatelessWidget {
         await context.read<ExaminationsProvider>().fetchExaminations().then(
               (res) async => res.when(
                 success: (data) async {
+                  final autoRouter = AutoRouter.of(context);
                   // An account with this email already exists, proceed through the login.
                   await _userRepository.createUser();
-                  await AutoRouter.of(context).replaceAll([const MainScreenRouter()]);
+                  await autoRouter.replaceAll([const MainScreenRouter()]);
                 },
                 failure: (_) async {
                   showFlushBarError(context, context.l10n.login_server_down_message);

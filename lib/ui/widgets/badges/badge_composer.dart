@@ -19,10 +19,10 @@ class BadgeComposer extends StatefulWidget {
   final bool showDescription;
 
   @override
-  _BadgeComposerState createState() => _BadgeComposerState();
+  BadgeComposerState createState() => BadgeComposerState();
 }
 
-class _BadgeComposerState extends State<BadgeComposer> {
+class BadgeComposerState extends State<BadgeComposer> {
   final _usersDao = registry.get<DatabaseService>().users;
 
   static const supportedBadgeLevels = 5;
@@ -81,7 +81,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 if (widget.showDescription)
                   Positioned(
                     top: 30,
-                    left: (MediaQuery.of(context).size.width / 2) + 30,
+                    left: (MediaQuery.of(context).size.width / 2) + 25,
                     child: Column(
                       children: [
                         Container(
@@ -241,13 +241,13 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 ),
                 if (widget.showDescription)
                   Positioned(
-                    top: 240,
-                    left: (MediaQuery.of(context).size.width / 2) + 30,
+                    top: 220,
+                    left: (MediaQuery.of(context).size.width / 2) + 40,
                     child: Stack(
                       children: [
                         Container(
-                          constraints: const BoxConstraints(maxWidth: 150),
-                          padding: const EdgeInsets.only(left: 20),
+                          constraints: const BoxConstraints(maxWidth: 130),
+                          padding: const EdgeInsets.only(left: 30),
                           child: Text(
                             context.l10n.badge_cloak_desc.toUpperCase(),
                             style: const TextStyle(
@@ -256,8 +256,11 @@ class _BadgeComposerState extends State<BadgeComposer> {
                             ),
                           ),
                         ),
-                        SvgPicture.asset(
-                          'assets/badges/lines/cloak_line.svg',
+                        Positioned(
+                          top: 10,
+                          child: SvgPicture.asset(
+                            'assets/badges/lines/cloak_line.svg',
+                          ),
                         )
                       ],
                     ),
@@ -336,14 +339,16 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 ),
                 if (widget.showDescription)
                   Positioned(
-                    top: 210,
-                    left: (MediaQuery.of(context).size.width / 2) - 180,
+                    top: 200,
+                    left: (MediaQuery.of(context).size.width / 2) - 190,
                     child: Stack(
                       children: [
                         Container(
                           constraints: const BoxConstraints(maxWidth: 120),
-                          height: 35,
-                          padding: const EdgeInsets.only(right: 10),
+                          height: 45,
+                          padding: const EdgeInsets.only(
+                            right: 10,
+                          ),
                           child: Text(
                             context.l10n.badge_shield_desc.toUpperCase(),
                             style: const TextStyle(
@@ -353,9 +358,53 @@ class _BadgeComposerState extends State<BadgeComposer> {
                           ),
                         ),
                         Positioned(
-                          top: 20,
+                          top: 25,
                           child: SvgPicture.asset(
                             'assets/badges/lines/shield_line.svg',
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+              ],
+            ),
+          )
+        : const SizedBox();
+  }
+
+  Widget _getPauldrons(int level) {
+    return level > 0
+        ? SizedBox(
+            key: ValueKey<String>('badgeComposer_${BadgeType.PAULDRONS.name}'),
+            width: MediaQuery.of(context).size.width,
+            child: Stack(
+              alignment: Alignment.topCenter,
+              children: [
+                SvgPicture.asset(
+                  'assets/badges/pauldrons/level_$level.svg',
+                ),
+                if (widget.showDescription)
+                  Positioned(
+                    top: 70,
+                    left: (MediaQuery.of(context).size.width / 2 + 40),
+                    child: Stack(
+                      children: [
+                        Container(
+                          constraints: const BoxConstraints(maxWidth: 120),
+                          height: 45,
+                          padding: const EdgeInsets.only(left: 8, bottom: 0),
+                          child: Text(
+                            context.l10n.badge_pauldrons_desc.toUpperCase(),
+                            style: const TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top: 30,
+                          child: SvgPicture.asset(
+                            'assets/badges/lines/paulderons_line.svg',
                           ),
                         )
                       ],
@@ -399,7 +448,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
                 height: 300,
                 child: sex != null
                     ? Stack(
-                        alignment: Alignment.center,
+                        alignment: Alignment.topCenter,
                         children: [
                           _getCloak(_levelOf(BadgeType.COAT)),
                           SvgPicture.asset(
@@ -415,6 +464,7 @@ class _BadgeComposerState extends State<BadgeComposer> {
                           _getCloakBuckle(_levelOf(BadgeType.COAT)),
                           _getGloves(sex, _levelOf(BadgeType.GLOVES)),
                           _getShield(_levelOf(BadgeType.SHIELD)),
+                          _getPauldrons(_levelOf(BadgeType.PAULDRONS))
                         ],
                       )
                     : const SizedBox(),

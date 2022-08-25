@@ -14,7 +14,7 @@ _$_DateWithoutDay _$$_DateWithoutDayFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_DateWithoutDayToJson(_$_DateWithoutDay instance) =>
     <String, dynamic>{
-      'month': _$MonthsEnumMap[instance.month],
+      'month': _$MonthsEnumMap[instance.month]!,
       'year': instance.year,
     };
 

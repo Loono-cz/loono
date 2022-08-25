@@ -24,6 +24,7 @@ import 'package:loono/ui/widgets/fallback_account_content.dart';
 import 'package:loono/ui/widgets/onboarding/app_bar.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
+// ignore: depend_on_referenced_packages
 import 'package:moor/moor.dart';
 
 class EmailScreen extends StatelessWidget {
@@ -75,8 +76,9 @@ class EmailScreen extends StatelessWidget {
                 final result = await _callOnboardUser(authUser, user, examinationQuestionnaires);
                 await result.when(
                   success: (account) async {
+                    final autoRouter = AutoRouter.of(context);
                     await _userRepository.updateCurrentUserFromAccount(account);
-                    await AutoRouter.of(context).replaceAll([BadgeOverviewRoute()]);
+                    await autoRouter.replaceAll([BadgeOverviewRoute()]);
                   },
                   failure: (_) async {
                     // delete account so user can not login without saving info to server first

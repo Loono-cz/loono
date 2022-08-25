@@ -19,7 +19,7 @@ class ExaminationDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _examination = Provider.of<ExaminationsProvider>(context, listen: true)
+    final examination = Provider.of<ExaminationsProvider>(context, listen: true)
         .examinations!
         .examinations
         .firstWhere(
@@ -35,8 +35,8 @@ class ExaminationDetailScreen extends StatelessWidget {
             : SingleChildScrollView(
                 child: ExaminationDetail(
                   categorizedExamination: CategorizedExamination(
-                    examination: _examination,
-                    category: _examination.calculateStatus(),
+                    examination: examination,
+                    category: examination.calculateStatus(),
                   ),
                   initialMessage: initialMessage,
                 ),

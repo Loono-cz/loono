@@ -7,7 +7,7 @@ import 'package:loono/services/webview_service.dart';
 import 'package:loono/ui/widgets/feedback/feedback_button.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class AboutHealthScreen extends StatelessWidget {
   AboutHealthScreen({Key? key}) : super(key: key);
@@ -67,8 +67,8 @@ class AboutHealthScreen extends StatelessWidget {
               final uri = navigationAction.request.url!;
 
               if (openInBrowserWhitelist.contains(uri.host) && !uri.path.contains('/embed')) {
-                if (await canLaunch(uri.toString())) {
-                  await launch(uri.toString());
+                if (await canLaunchUrlString(uri.toString())) {
+                  await launchUrlString(uri.toString());
                 }
               }
 

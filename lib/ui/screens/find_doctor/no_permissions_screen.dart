@@ -118,6 +118,7 @@ class _NoPermissionsScreenState extends State<NoPermissionsScreen> {
                 onTap: allowInSettings
                     ? openAppSettings
                     : () async {
+                        final autoRouter = AutoRouter.of(context);
                         final permission = await Geolocator.requestPermission();
 
                         if ([LocationPermission.deniedForever].contains(permission)) {
@@ -125,7 +126,7 @@ class _NoPermissionsScreenState extends State<NoPermissionsScreen> {
                             allowInSettings = true;
                           });
                         } else {
-                          await AutoRouter.of(context).pop();
+                          await autoRouter.pop();
                         }
                       },
               ),
