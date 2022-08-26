@@ -1123,5 +1123,14 @@
   "badge_pauldrons_desc":"Chrániče samovyšetření",
   "@badge_pauldrons_desc":{},
   "pauldrons_award_label": "Nové nárameníky za samovyšetření",
-  "@pauldrons_award_label": {}
+  "@pauldrons_award_label": {},
+  "donate_label_btn": "Chci přispět",
+  "@donate_label_btn": {},
+  "donate_label_desc": "Líbí se ti aplikace? Podpoř její rozvoj.",
+  "@donate_label_desc": {},
+  "user_data_label": "Osobní údaje",
+  "@user_data_label": {},
+  "notification_settings_label": "Notifikace",
+  "@notification_settings_label": {}
+
 }
