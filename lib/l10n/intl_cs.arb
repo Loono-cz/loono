@@ -836,6 +836,8 @@
   "@self_faq_important": {},
   "self_faq_breast_steps_answer_part_7": "Při objednání nezapomeň říct, že sis na prsu objevila změny. Zkrátí se tak objednací doba.\n\nPokud gynekologa nemáš, co nejdříve si ho vyhledej v našem ",
   "@self_faq_breast_steps_answer_part_7": {},
+  "self_faq_breast_steps_answer_part_8": "seznamu lékařů",
+  "@self_faq_breast_steps_answer_part_8": {},
   "self_faq_breast_steps_answer_part_9": ".\n\nPokud si stále nevíš rady, napiš nám na ",
   "@self_faq_breast_steps_answer_part_9": {},
   "self_faq_breast_changes_question": "Jaké změny mám na prsu hledat?",
@@ -1121,13 +1123,5 @@
   "badge_pauldrons_desc":"Chrániče samovyšetření",
   "@badge_pauldrons_desc":{},
   "pauldrons_award_label": "Nové nárameníky za samovyšetření",
-  "@pauldrons_award_label": {},
-  "donate_label_btn": "Chci přispět",
-  "@donate_label_btn": {},
-  "donate_label_desc": "Líbí se ti aplikace? Podpoř její rozvoj.",
-  "@donate_label_desc": {},
-  "user_data_label": "Osobní údaje",
-  "@user_data_label": {},
-  "notification_settings_label": "Notifikace",
-  "@notification_settings_label": {}
+  "@pauldrons_award_label": {}
 }
