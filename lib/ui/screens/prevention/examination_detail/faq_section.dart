@@ -30,7 +30,7 @@ class FaqSection extends StatelessWidget {
           Column(
             children: faqContent(context, examinationType)
                 .map(
-                  (content) => FaqExpansionTile(content),
+                  FaqExpansionTile.new,
                 )
                 .toList(),
           ),

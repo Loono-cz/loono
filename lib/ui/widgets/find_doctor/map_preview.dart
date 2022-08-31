@@ -52,7 +52,7 @@ class MapPreview extends StatelessWidget {
           mapState.setVisibleRegion(latLngBounds);
           mapState.clusterManager
             ..setMapId(mapController.mapId)
-            ..setItems(mapState.allHealthcareProviders.map((e) => HealthcareItemPlace(e)).toList());
+            ..setItems(mapState.allHealthcareProviders.map(HealthcareItemPlace.new).toList());
         },
         onCameraMove: mapState.clusterManager.onCameraMove,
         onCameraIdle: () async {
