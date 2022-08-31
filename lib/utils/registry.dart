@@ -160,7 +160,7 @@ Future<void> setup({
 
   registry.registerSingleton<LoonoApi>(LoonoApi(dio: dio));
 
-  registry.registerLazySingleton<GlobalKey<NavigatorState>>(() => GlobalKey());
+  registry.registerLazySingleton<GlobalKey<NavigatorState>>(GlobalKey.new);
   registry.registerLazySingleton<AppConfig>(() => config);
 
   registry.registerSingleton<NotificationService>(NotificationService());
@@ -226,8 +226,8 @@ Future<void> setup({
   registry.registerSingleton<AppRouter>(AppRouter(checkIsLoggedIn: CheckIsLoggedIn()));
 
   // utils
-  registry.registerLazySingleton<ImagePicker>(() => ImagePicker());
-  registry.registerLazySingleton<DefaultCacheManager>(() => DefaultCacheManager());
+  registry.registerLazySingleton<ImagePicker>(ImagePicker.new);
+  registry.registerLazySingleton<DefaultCacheManager>(DefaultCacheManager.new);
 
   // picture caching
   await precacheImagesFromList(welcomeSplashes);
