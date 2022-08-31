@@ -299,10 +299,7 @@ class MapStateService with ChangeNotifier {
       clusterManager.setItems(allHealthcareProviders.map(HealthcareItemPlace.new).toList());
     } else {
       clusterManager.setItems(
-        allHealthcareProviders
-            .where(_hasSpecialization)
-            .map(HealthcareItemPlace.new)
-            .toList(),
+        allHealthcareProviders.where(_hasSpecialization).map(HealthcareItemPlace.new).toList(),
       );
     }
     notifyListeners();
