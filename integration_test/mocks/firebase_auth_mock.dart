@@ -1,5 +1,6 @@
 import 'package:firebase_auth_platform_interface/src/method_channel/method_channel_firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -43,6 +44,7 @@ Future<void> mockFirebaseAuth() async {
 
   final firebaseAuthResponses = Map<String, dynamic>.from(kDefaultFirebaseAuthResponses);
   firebaseAuthChannel.setMockMethodCallHandler((MethodCall methodCall) {
+    debugPrint('firebaseAuthChannel LOG: ${methodCall.toString()}');
     final dynamic response = firebaseAuthResponses[methodCall.method];
     // todo: find better way of handling event channels
     if (response is String Function()) {

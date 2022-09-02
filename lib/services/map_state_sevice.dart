@@ -79,7 +79,7 @@ class MapStateService with ChangeNotifier {
 
   void addAll(Iterable<SimpleHealthcareProvider> healthcareProviders) {
     _allHealthcareProviders.addAll(healthcareProviders);
-    clusterManager.setItems(allHealthcareProviders.map((e) => HealthcareItemPlace(e)).toList());
+    clusterManager.setItems(allHealthcareProviders.map(HealthcareItemPlace.new).toList());
     applyFilter();
     _setSpecializations();
     notifyListeners();
@@ -296,13 +296,10 @@ class MapStateService with ChangeNotifier {
   void setSpecialization(SearchResult? searchResult) {
     currSpecialization = searchResult;
     if (searchResult == null) {
-      clusterManager.setItems(allHealthcareProviders.map((e) => HealthcareItemPlace(e)).toList());
+      clusterManager.setItems(allHealthcareProviders.map(HealthcareItemPlace.new).toList());
     } else {
       clusterManager.setItems(
-        allHealthcareProviders
-            .where(_hasSpecialization)
-            .map((e) => HealthcareItemPlace(e))
-            .toList(),
+        allHealthcareProviders.where(_hasSpecialization).map(HealthcareItemPlace.new).toList(),
       );
     }
     notifyListeners();

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_sign_in_platform_interface/google_sign_in_platform_interface.dart';
@@ -27,6 +28,7 @@ void mockGoogleSignIn() {
 
   final googleSignInResponses = Map<String, dynamic>.from(defaultSignInResponse);
   googleSignInMethodChannel.setMockMethodCallHandler((MethodCall methodCall) {
+    debugPrint('googleSignInMethodChannel LOG: ${methodCall.toString()}');
     return Future<dynamic>.value(googleSignInResponses[methodCall.method]);
   });
 }
