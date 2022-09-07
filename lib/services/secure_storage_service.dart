@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:collection/collection.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:loono/helpers/type_converters.dart';
 import 'package:loono/models/apple_account_info.dart';
+import 'package:loono/models/donate_user_info.dart';
 
 const _appleAccountsDataKey = 'appleAccountsData';
+const _donate_infoDataKey = 'donateInfoData';
 
 /// We do not want to delete these keys on logout/delete account because we need to access
 /// them afterwards. These data are securely stored.
@@ -67,4 +71,21 @@ class SecureStorageService {
       for (final k in keysToRemove) _storage.delete(key: k),
     ]);
   }
+
+  Future<DonateUserInfo?> getDonateInfoData() async {
+    final data = await _storage.read(key: _donate_infoDataKey);
+    if (data == null) return null;
+    final donateData = DonateUserInfo.fromJson(jsonDecode(data) as Map<String, dynamic>);
+    return donateData;
+  }
+
+  Future<String?> storeDonateInfoData(DonateUserInfo donateInfo) async {
+    await _storage.write(key: _donate_infoDataKey, value: jsonEncode(donateInfo.toJson()));
+    final data = await getDonateInfoData();
+    if (data == null) return null;
+    if (data.lastOpened == donateInfo.lastOpened) return 'OK';
+    return null;
+  }
+
+  Future<void> deleteDonateInfoData() => _storage.delete(key: _donate_infoDataKey);
 }

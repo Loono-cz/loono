@@ -1131,6 +1131,18 @@
   "user_data_label": "Osobní údaje",
   "@user_data_label": {},
   "notification_settings_label": "Notifikace",
-  "@notification_settings_label": {}
+  "@notification_settings_label": {},
+  "do_you_like_loono":"Líbí se ti Preventivka?",
+  "@do_you_like_loono":{},
+  "donate_desc_loono":"Podpoř finančně její rozvoj a staň se součástí mise Loono, která zachraňuje životy.",
+  "@donate_desc_loono": {},
+  "donate_anytime": "Přispět můžeš kdykoliv - stačí mrknout do svého účtu v aplikaci, kde najdeš darovací tlačítko.",
+  "@donate_anytime": {},
+  "donate_info_notification":"Pokud si přeješ tuto zprávu více nezobrazovat můžeš si ",
+  "@donate_info_notification": {},
+  "notification_settings_edit": "upravit nastavení notifikací.",
+  "@notification_settings_edit": {}
+
+  
 
 }

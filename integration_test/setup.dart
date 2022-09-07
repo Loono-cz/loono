@@ -17,7 +17,7 @@ Future<void> main({
   );
   // disables FirebaseAnalytics in testing
   await registry.get<FirebaseAnalytics>().setAnalyticsCollectionEnabled(false);
-  runApp(const Loono(defaultLocale: 'cs'));
+  runApp(Loono(defaultLocale: 'cs'));
 }
 
 Future<void> runMockApp({

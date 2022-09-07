@@ -4,10 +4,12 @@ import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/models/donate_user_info.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/examinations_service.dart';
+import 'package:loono/services/secure_storage_service.dart';
 import 'package:loono/ui/screens/settings/settings_bottom_sheet.dart';
 import 'package:loono/ui/widgets/settings/avatar.dart';
 import 'package:loono/ui/widgets/settings/update_profile_item.dart';
@@ -15,14 +17,19 @@ import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
-class UpdateProfileScreen extends StatelessWidget {
-  UpdateProfileScreen({
-    Key? key,
-    required this.changePage,
-  }) : super(key: key);
+class UpdateProfileScreen extends StatefulWidget {
+  const UpdateProfileScreen({Key? key, required this.changePage}) : super(key: key);
   final Function(SettingsPage) changePage;
 
+  @override
+  UpdateProfileScreenState createState() => UpdateProfileScreenState();
+}
+
+class UpdateProfileScreenState extends State<UpdateProfileScreen> {
   final _usersDao = registry.get<DatabaseService>().users;
+  final registryDonate = registry.get<SecureStorageService>();
+  DonateUserInfo? donateInfo;
+  bool? isNotificationSwitched = true;
 
   String _getUserSexValue(BuildContext context, {required Sex? sex}) {
     if (sex == null) return '';
@@ -43,6 +50,18 @@ class UpdateProfileScreen extends StatelessWidget {
     final date = DateTime(dateWithoutDay.year, dateWithoutDay.month.index + 1);
     final formattedDate = DateFormat.yMMMM('cs-CZ').format(date);
     return formattedDate.toString();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    registryDonate.getDonateInfoData().then((value) {
+      setState(() {
+        donateInfo = value;
+        isNotificationSwitched = donateInfo != null ? donateInfo?.showNotification : true;
+      });
+    });
   }
 
   @override
@@ -127,7 +146,7 @@ class UpdateProfileScreen extends StatelessWidget {
                         child: LoonoAvatar(),
                       ),
                       TextButton(
-                        onPressed: () => changePage(SettingsPage.SettingsPhotoPage),
+                        onPressed: () => widget.changePage(SettingsPage.SettingsPhotoPage),
                         child: Text(
                           context.l10n.action_change,
                           style: const TextStyle(fontSize: 14, color: Colors.black),
@@ -201,8 +220,28 @@ class UpdateProfileScreen extends StatelessWidget {
             color: Colors.white,
             child: Padding(
               padding: const EdgeInsets.all(16),
-              child: Column(
-                children: const [],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text('Výzva k darování'),
+                  Switch(
+                    value: isNotificationSwitched!,
+                    onChanged: (value) async {
+                      await registryDonate.storeDonateInfoData(
+                        DonateUserInfo(
+                          lastOpened: donateInfo!.lastOpened,
+                          seen: donateInfo!.seen,
+                          showNotification: value,
+                        ),
+                      );
+                      setState(() {
+                        isNotificationSwitched = value;
+                      });
+                    },
+                    activeTrackColor: LoonoColors.donateColor,
+                    activeColor: Colors.white,
+                  )
+                ],
               ),
             ),
           )

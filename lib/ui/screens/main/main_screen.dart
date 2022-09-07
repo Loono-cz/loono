@@ -5,11 +5,14 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/models/donate_user_info.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/examinations_service.dart';
+import 'package:loono/services/secure_storage_service.dart';
 import 'package:loono/services/webview_service.dart';
 import 'package:loono/ui/widgets/custom_navigation_bar.dart';
+import 'package:loono/ui/widgets/donate/donate_bottom_sheet.dart';
 import 'package:loono/ui/widgets/no_connection_message.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:provider/provider.dart';
@@ -39,6 +42,28 @@ class _MainScreenState extends State<MainScreen> {
     }
   }
 
+  Future<void> showDonatePage(BuildContext context) async {
+    final secureStorageRegistry = registry.get<SecureStorageService>();
+    final donateInfo = await secureStorageRegistry.getDonateInfoData();
+    if (donateInfo == null || donateInfo.seen == false) {
+      await secureStorageRegistry.storeDonateInfoData(
+        DonateUserInfo(lastOpened: DateTime.now(), seen: true, showNotification: true),
+      );
+      Future.delayed(const Duration(seconds: 5), () {
+        showDonateBottomSheet(context);
+      });
+    } else if (donateInfo.seen == false ||
+        donateInfo.lastOpened!.isAfter(DateTime.now().add(const Duration(days: 14))) &&
+            donateInfo.showNotification == true) {
+      await secureStorageRegistry.storeDonateInfoData(
+        DonateUserInfo(lastOpened: DateTime.now(), seen: true, showNotification: true),
+      );
+      Future.delayed(const Duration(seconds: 5), () {
+        showDonateBottomSheet(context);
+      });
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -47,6 +72,7 @@ class _MainScreenState extends State<MainScreen> {
     WidgetsBinding.instance.addPostFrameCallback(
       (_) => examinationsProvider.fetchExaminations(),
     );
+    showDonatePage(context);
     registry.get<UserRepository>().sync();
 
     /// lock connectivity for the first 300ms to prevent multiple api calls on init
