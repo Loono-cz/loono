@@ -26,7 +26,7 @@ enum SettingsPage {
   SettingsLeaderboardPage,
 }
 
-void showSettingsSheet(BuildContext context) {
+void showSettingsSheet(BuildContext context, {SettingsPage? settingsPage, bool? expand}) {
   registry.get<FirebaseAnalytics>().logEvent(name: 'SettingsMainPage');
   showModalBottomSheet<void>(
     context: context,
@@ -35,7 +35,10 @@ void showSettingsSheet(BuildContext context) {
     ),
     isScrollControlled: true,
     builder: (context) {
-      return const _SettingsContent();
+      return _SettingsContent(
+        settingsPage: settingsPage,
+        expand: expand,
+      );
     },
   ).whenComplete(() {
     registry.get<FirebaseAnalytics>().logEvent(name: 'CloseSettings');
@@ -43,8 +46,10 @@ void showSettingsSheet(BuildContext context) {
 }
 
 class _SettingsContent extends StatefulWidget {
-  const _SettingsContent({Key? key}) : super(key: key);
+  _SettingsContent({Key? key, this.settingsPage, this.expand}) : super(key: key);
 
+  final SettingsPage? settingsPage;
+  bool? expand;
   @override
   _SettingsContentState createState() => _SettingsContentState();
 }
@@ -54,6 +59,7 @@ class _SettingsContentState extends State<_SettingsContent> {
   List<SettingsPage> navigationStack = [SettingsPage.SettingsMainPage];
   SettingsPage prevPage = SettingsPage.SettingsMainPage;
   Uint8List? imageBytes;
+  bool? expand;
 
   void changePage(SettingsPage newPage) {
     setState(() {
@@ -69,6 +75,15 @@ class _SettingsContentState extends State<_SettingsContent> {
       });
       registry.get<FirebaseAnalytics>().logEvent(name: navigationStack.last.name);
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.settingsPage != null) navigationStack.add(widget.settingsPage!);
+    setState(() {
+      expand = widget.expand ?? false;
+    });
   }
 
   @override
@@ -137,6 +152,7 @@ class _SettingsContentState extends State<_SettingsContent> {
       case SettingsPage.SettingsEditPage:
         return UpdateProfileScreen(
           changePage: changePage,
+          expandNotSection: expand,
         );
 
       case SettingsPage.SettingsPointsPage:

@@ -45,7 +45,6 @@ class _MainScreenState extends State<MainScreen> {
   Future<void> showDonatePage(BuildContext context) async {
     final secureStorageRegistry = registry.get<SecureStorageService>();
     final donateInfo = await secureStorageRegistry.getDonateInfoData();
-
     if (donateInfo == null) {
       await secureStorageRegistry.storeDonateInfoData(
         DonateUserInfo(lastOpened: DateTime.now(), seen: true, showNotification: true),

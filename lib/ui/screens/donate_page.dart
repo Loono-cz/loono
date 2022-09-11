@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/ui/screens/settings/settings_bottom_sheet.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/close_button.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -76,7 +77,12 @@ class DonatePageState extends State<DonatePage> {
                 ),
                 TextSpan(
                   style: const TextStyle(fontWeight: FontWeight.bold),
-                  recognizer: TapGestureRecognizer()..onTap = () => print('Ahoj'),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => showSettingsSheet(
+                          context,
+                          settingsPage: SettingsPage.SettingsEditPage,
+                          expand: true,
+                        ),
                   text: context.l10n.notification_settings_edit,
                 )
               ],

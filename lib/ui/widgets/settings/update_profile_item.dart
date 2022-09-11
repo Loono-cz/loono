@@ -5,7 +5,7 @@ import 'package:loono/constants.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class UpdateProfileItem extends StatefulWidget {
-  UpdateProfileItem({
+  const UpdateProfileItem({
     Key? key,
     required this.label,
     required this.value,
@@ -16,7 +16,7 @@ class UpdateProfileItem extends StatefulWidget {
   }) : super(key: key);
 
   final String label;
-  String value;
+  final String value;
   final PageRouteInfo? route;
   final String? messageTitle;
   final String? messageText;

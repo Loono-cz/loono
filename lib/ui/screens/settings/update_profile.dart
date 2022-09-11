@@ -18,9 +18,13 @@ import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
 class UpdateProfileScreen extends StatefulWidget {
-  const UpdateProfileScreen({Key? key, required this.changePage}) : super(key: key);
+  UpdateProfileScreen({
+    Key? key,
+    required this.changePage,
+    this.expandNotSection,
+  }) : super(key: key);
   final Function(SettingsPage) changePage;
-
+  bool? expandNotSection;
   @override
   UpdateProfileScreenState createState() => UpdateProfileScreenState();
 }
@@ -31,6 +35,8 @@ class UpdateProfileScreenState extends State<UpdateProfileScreen> {
   DonateUserInfo? donateInfo;
   bool? isNotificationSwitched = true;
   User? user;
+  bool? expandNotSection;
+
   String _getUserSexValue(BuildContext context, {required Sex? sex}) {
     if (sex == null) return '';
     late final String value;
@@ -219,6 +225,7 @@ class UpdateProfileScreenState extends State<UpdateProfileScreen> {
       clipBehavior: Clip.antiAlias,
       margin: EdgeInsets.zero,
       child: ExpansionTile(
+        initiallyExpanded: widget.expandNotSection ?? false,
         key: const Key('ExpansionTileNotificationSection'),
         textColor: Colors.black,
         iconColor: Colors.black,
