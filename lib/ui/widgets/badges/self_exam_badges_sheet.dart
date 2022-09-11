@@ -12,6 +12,7 @@ Future<void> showSelfExamBadgesSheet(
   int points,
   BuiltList<SelfExaminationStatus> history,
   double progress,
+  SelfExaminationType examinationType,
 ) async {
   await showModalBottomSheet<void>(
     context: context,
@@ -80,12 +81,13 @@ Future<void> showSelfExamBadgesSheet(
                                         width: 40,
                                         height: 40,
                                         child: SvgPicture.asset(
-                                          'assets/badges/shield/reward_level_${badgeIndex + 1}.svg',
+                                          _getEnabledBadgeAsset(
+                                              examinationType, badgeIndex + 1),
                                         ),
                                       ),
                                     )
                                   : Image.asset(
-                                      'assets/badges/shield/shield_disabled.png',
+                                      _getDisabledBadgeAsset(examinationType),
                                       width: 40,
                                       height: 40,
                                     ),
@@ -102,9 +104,11 @@ Future<void> showSelfExamBadgesSheet(
                                 children: List.generate(
                                   3,
                                   (iconIndex) {
-                                    final absIndex = (badgeIndex * 3) + iconIndex;
+                                    final absIndex =
+                                        (badgeIndex * 3) + iconIndex;
                                     return Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 1.5),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 1.5),
                                       child: absIndex < validStatuses.length
                                           ? const SuccessIcon()
                                           : absIndex < validStatuses.length + 1
@@ -132,7 +136,9 @@ Future<void> showSelfExamBadgesSheet(
                   TextSpan(
                     style: const TextStyle(fontSize: 12, height: 1.5),
                     children: [
-                      TextSpan(text: context.l10n.self_examination_reward_description_start),
+                      TextSpan(
+                          text: context
+                              .l10n.self_examination_reward_description_start),
                       const WidgetSpan(
                         child: Padding(
                           padding: EdgeInsets.only(right: 7.0),
@@ -146,7 +152,10 @@ Future<void> showSelfExamBadgesSheet(
                           color: LoonoColors.primaryEnabled,
                         ),
                       ),
-                      TextSpan(text: context.l10n.self_examination_reward_description_end),
+                      TextSpan(
+                        text:
+                            _getRewardDescriptionEnd(examinationType, context),
+                      )
                     ],
                   ),
                 ),
@@ -157,4 +166,45 @@ Future<void> showSelfExamBadgesSheet(
       );
     },
   );
+}
+
+String _getDisabledBadgeAsset(SelfExaminationType type) {
+  switch (type) {
+    case SelfExaminationType.TESTICULAR:
+      return 'assets/badges/shield/shield_disabled.png';
+    case SelfExaminationType.SKIN:
+      //missing pauldrons disabled badge TODO add pauldrons disabled badge
+      return 'assets/badges/shield/shield_disabled.png';
+    case SelfExaminationType.BREAST:
+      return 'assets/badges/shield/shield_disabled.png';
+  }
+  return '';
+}
+
+String _getEnabledBadgeAsset(SelfExaminationType type, int level) {
+  var path = 'assets/badges/';
+  switch (type) {
+    case SelfExaminationType.TESTICULAR:
+      path += 'shield';
+      break;
+    case SelfExaminationType.SKIN:
+      path += 'pauldrons';
+      break;
+    case SelfExaminationType.BREAST:
+      path += 'shield';
+  }
+  return '$path/reward_level_$level.svg';
+}
+
+String _getRewardDescriptionEnd(
+    SelfExaminationType type, BuildContext context) {
+  switch (type) {
+    case SelfExaminationType.TESTICULAR:
+      return context.l10n.self_examination_reward_description_end_shield;
+    case SelfExaminationType.SKIN:
+      return context.l10n.self_examination_reward_description_end_pauldrons;
+    case SelfExaminationType.BREAST:
+      return context.l10n.self_examination_reward_description_end_shield;
+  }
+  return context.l10n.self_examination_reward_description_end;
 }
