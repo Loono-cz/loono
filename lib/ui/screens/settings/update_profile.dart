@@ -30,7 +30,7 @@ class UpdateProfileScreenState extends State<UpdateProfileScreen> {
   final registryDonate = registry.get<SecureStorageService>();
   DonateUserInfo? donateInfo;
   bool? isNotificationSwitched = true;
-
+  User? user;
   String _getUserSexValue(BuildContext context, {required Sex? sex}) {
     if (sex == null) return '';
     late final String value;
@@ -54,14 +54,15 @@ class UpdateProfileScreenState extends State<UpdateProfileScreen> {
 
   @override
   void initState() {
-    super.initState();
-
     registryDonate.getDonateInfoData().then((value) {
       setState(() {
         donateInfo = value;
         isNotificationSwitched = donateInfo != null ? donateInfo?.showNotification : true;
+        user = null;
       });
     });
+
+    super.initState();
   }
 
   @override
@@ -70,7 +71,7 @@ class UpdateProfileScreenState extends State<UpdateProfileScreen> {
       child: StreamBuilder<User?>(
         stream: _usersDao.watchUser(),
         builder: (context, snapshot) {
-          final user = snapshot.data;
+          user = snapshot.data;
           final birthDateWithoutDay = user?.dateOfBirth;
 
           return SingleChildScrollView(
@@ -84,7 +85,12 @@ class UpdateProfileScreenState extends State<UpdateProfileScreen> {
                     style: const TextStyle(fontSize: 24),
                   ),
                   const SizedBox(height: 28.0),
-                  userSettingSection(context, user, birthDateWithoutDay),
+                  userSettingSection(
+                    const Key(''),
+                    context,
+                    user,
+                    birthDateWithoutDay,
+                  ),
                   const SizedBox(
                     height: 28.0,
                   ),
@@ -113,7 +119,12 @@ class UpdateProfileScreenState extends State<UpdateProfileScreen> {
     );
   }
 
-  Widget userSettingSection(BuildContext context, User? user, DateWithoutDay? birthDateWithoutDay) {
+  Widget userSettingSection(
+    Key key,
+    BuildContext context,
+    User? user,
+    DateWithoutDay? birthDateWithoutDay,
+  ) {
     const itemSpacing = SizedBox(height: 16.0);
     return Card(
       elevation: 0,
@@ -123,6 +134,7 @@ class UpdateProfileScreenState extends State<UpdateProfileScreen> {
       clipBehavior: Clip.antiAlias,
       margin: EdgeInsets.zero,
       child: ExpansionTile(
+        key: const Key('ExpansionTileUserDataSection'),
         textColor: Colors.black,
         iconColor: Colors.black,
         backgroundColor: LoonoColors.expandTileColor,
@@ -207,6 +219,7 @@ class UpdateProfileScreenState extends State<UpdateProfileScreen> {
       clipBehavior: Clip.antiAlias,
       margin: EdgeInsets.zero,
       child: ExpansionTile(
+        key: const Key('ExpansionTileNotificationSection'),
         textColor: Colors.black,
         iconColor: Colors.black,
         backgroundColor: LoonoColors.expandTileColor,

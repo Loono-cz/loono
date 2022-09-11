@@ -5,7 +5,7 @@ import 'package:loono/constants.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class UpdateProfileItem extends StatefulWidget {
-  const UpdateProfileItem({
+  UpdateProfileItem({
     Key? key,
     required this.label,
     required this.value,
@@ -16,7 +16,7 @@ class UpdateProfileItem extends StatefulWidget {
   }) : super(key: key);
 
   final String label;
-  final String value;
+  String value;
   final PageRouteInfo? route;
   final String? messageTitle;
   final String? messageText;
@@ -61,7 +61,7 @@ class _UpdateProfileItemState extends State<UpdateProfileItem> with TickerProvid
 
   @override
   void initState() {
-    textController.text = widget.value;
+    //textController.text = widget.value;
     super.initState();
   }
 
@@ -73,7 +73,13 @@ class _UpdateProfileItemState extends State<UpdateProfileItem> with TickerProvid
       borderRadius: const BorderRadius.all(Radius.circular(10.0)),
       borderSide: BorderSide(color: disabledColor),
     );
-
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (widget.value != textController.text) {
+        setState(() {
+          textController.text = widget.value;
+        });
+      }
+    });
     return TextField(
       style: TextStyle(color: widget.enabled ? Colors.black : Colors.black26),
       controller: textController,

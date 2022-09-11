@@ -33,12 +33,12 @@ Future<void> run({
   final updateProfilePage = UpdateProfilePage(tester);
   final editNicknamePage = EditNicknamePage(tester);
   final editEmailPage = EditEmailPage(tester);
-
   await preventionPage.clickProfileAvatar();
   await openSettingsPage.verifyScreenIsShown();
 
   await openSettingsPage.clickEditProfileButton();
   await updateProfilePage.verifyScreenIsShown();
+  await updateProfilePage.clickUserDataSection();
   updateProfilePage
     ..verifyNickname(defaultMaleAccount.nickname)
     ..verifyEmail(defaultMaleAccount.preferredEmail);

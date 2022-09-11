@@ -45,7 +45,8 @@ class _MainScreenState extends State<MainScreen> {
   Future<void> showDonatePage(BuildContext context) async {
     final secureStorageRegistry = registry.get<SecureStorageService>();
     final donateInfo = await secureStorageRegistry.getDonateInfoData();
-    if (donateInfo == null || donateInfo.seen == false) {
+
+    if (donateInfo == null) {
       await secureStorageRegistry.storeDonateInfoData(
         DonateUserInfo(lastOpened: DateTime.now(), seen: true, showNotification: true),
       );
@@ -53,7 +54,7 @@ class _MainScreenState extends State<MainScreen> {
         showDonateBottomSheet(context);
       });
     } else if (donateInfo.seen == false ||
-        donateInfo.lastOpened!.isAfter(DateTime.now().add(const Duration(days: 14))) &&
+        DateTime.now().isAfter(donateInfo.lastOpened!.add(const Duration(days: 14))) &&
             donateInfo.showNotification == true) {
       await secureStorageRegistry.storeDonateInfoData(
         DonateUserInfo(lastOpened: DateTime.now(), seen: true, showNotification: true),

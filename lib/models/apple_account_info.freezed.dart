@@ -188,7 +188,9 @@ class _$_AppleAccountInfo implements _AppleAccountInfo {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AppleAccountInfoToJson(this);
+    return _$$_AppleAccountInfoToJson(
+      this,
+    );
   }
 }
 
