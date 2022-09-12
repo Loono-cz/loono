@@ -82,7 +82,9 @@ Future<void> showSelfExamBadgesSheet(
                                         height: 40,
                                         child: SvgPicture.asset(
                                           _getEnabledBadgeAsset(
-                                              examinationType, badgeIndex + 1),
+                                            examinationType,
+                                            badgeIndex + 1,
+                                          ),
                                         ),
                                       ),
                                     )
@@ -108,7 +110,8 @@ Future<void> showSelfExamBadgesSheet(
                                         (badgeIndex * 3) + iconIndex;
                                     return Padding(
                                       padding: const EdgeInsets.symmetric(
-                                          horizontal: 1.5),
+                                        horizontal: 1.5,
+                                      ),
                                       child: absIndex < validStatuses.length
                                           ? const SuccessIcon()
                                           : absIndex < validStatuses.length + 1
@@ -137,8 +140,9 @@ Future<void> showSelfExamBadgesSheet(
                     style: const TextStyle(fontSize: 12, height: 1.5),
                     children: [
                       TextSpan(
-                          text: context
-                              .l10n.self_examination_reward_description_start),
+                        text: context
+                            .l10n.self_examination_reward_description_start,
+                      ),
                       const WidgetSpan(
                         child: Padding(
                           padding: EdgeInsets.only(right: 7.0),
@@ -197,7 +201,9 @@ String _getEnabledBadgeAsset(SelfExaminationType type, int level) {
 }
 
 String _getRewardDescriptionEnd(
-    SelfExaminationType type, BuildContext context) {
+  SelfExaminationType type,
+  BuildContext context,
+) {
   switch (type) {
     case SelfExaminationType.TESTICULAR:
       return context.l10n.self_examination_reward_description_end_shield;
