@@ -41,6 +41,9 @@ class LoonoColors {
     Color.fromARGB(255, 197, 85, 236),
     Color.fromARGB(255, 237, 141, 140),
   ];
+
+  static const donateColor = Color(0xFFBE5713);
+  static const expandTileColor = Color(0xFFFDE4D3);
 }
 
 class LoonoStrings {
@@ -48,6 +51,11 @@ class LoonoStrings {
   static const shieldPath = 'assets/badges/shield';
   static const pauldronsPath = 'assets/badges/pauldrons';
   static const awardShadowStirng = 'assets/icons/prevention/award_shadow.png';
+  static const termsUrl = 'https://www.loono.cz/podminky-uzivani-mobilni-aplikace';
+  static const privacyUrl = 'https://www.loono.cz/zasady-ochrany-osobnich-udaju-mobilni-aplikace';
+  static const donateUrl = 'https://www.darujme.cz/projekt/1206713';
+
+  static const donateDelayInterval = 14;
 }
 
 class LoonoFonts {

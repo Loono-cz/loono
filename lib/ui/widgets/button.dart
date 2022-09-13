@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/ui/widgets/extend_inkwell.dart';
 
-enum ButtonStyle { dark, light }
+enum ButtonStyle { dark, light, donate }
 
 class LoonoButton extends StatelessWidget {
   const LoonoButton({

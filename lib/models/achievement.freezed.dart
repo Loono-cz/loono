@@ -143,7 +143,9 @@ class _$_Achievement implements _Achievement {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AchievementToJson(this);
+    return _$$_AchievementToJson(
+      this,
+    );
   }
 }
 

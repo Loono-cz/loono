@@ -171,7 +171,9 @@ class _$_SearchResult implements _SearchResult {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SearchResultToJson(this);
+    return _$$_SearchResultToJson(
+      this,
+    );
   }
 }
 

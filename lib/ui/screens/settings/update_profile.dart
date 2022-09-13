@@ -4,31 +4,38 @@ import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/models/donate_user_info.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/examinations_service.dart';
+import 'package:loono/services/secure_storage_service.dart';
 import 'package:loono/ui/screens/settings/settings_bottom_sheet.dart';
-import 'package:loono/ui/widgets/confirmation_dialog.dart';
-import 'package:loono/ui/widgets/feedback/email_feedback_button.dart';
 import 'package:loono/ui/widgets/settings/avatar.dart';
 import 'package:loono/ui/widgets/settings/update_profile_item.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
-class UpdateProfileScreen extends StatelessWidget {
-  UpdateProfileScreen({
+class UpdateProfileScreen extends StatefulWidget {
+  const UpdateProfileScreen({
     Key? key,
     required this.changePage,
+    this.expandNotSection,
   }) : super(key: key);
   final Function(SettingsPage) changePage;
+  final bool? expandNotSection;
+  @override
+  UpdateProfileScreenState createState() => UpdateProfileScreenState();
+}
 
+class UpdateProfileScreenState extends State<UpdateProfileScreen> {
   final _usersDao = registry.get<DatabaseService>().users;
-
-  final termsUrl = 'https://www.loono.cz/podminky-uzivani-mobilni-aplikace';
-  final privacyUrl = 'https://www.loono.cz/zasady-ochrany-osobnich-udaju-mobilni-aplikace';
+  final registryDonate = registry.get<SecureStorageService>();
+  DonateUserInfo? donateInfo;
+  bool? isNotificationSwitched = true;
+  User? user;
+  bool? expandNotSection;
 
   String _getUserSexValue(BuildContext context, {required Sex? sex}) {
     if (sex == null) return '';
@@ -52,14 +59,25 @@ class UpdateProfileScreen extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
-    const itemSpacing = SizedBox(height: 10.0);
+  void initState() {
+    registryDonate.getDonateInfoData().then((value) {
+      setState(() {
+        donateInfo = value;
+        isNotificationSwitched = donateInfo != null ? donateInfo?.showNotification : true;
+        user = null;
+      });
+    });
 
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Expanded(
       child: StreamBuilder<User?>(
         stream: _usersDao.watchUser(),
         builder: (context, snapshot) {
-          final user = snapshot.data;
+          user = snapshot.data;
           final birthDateWithoutDay = user?.dateOfBirth;
 
           return SingleChildScrollView(
@@ -73,16 +91,80 @@ class UpdateProfileScreen extends StatelessWidget {
                     style: const TextStyle(fontSize: 24),
                   ),
                   const SizedBox(height: 28.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        context.l10n.photo_header,
-                        style: const TextStyle(fontSize: 12, color: Colors.black),
+                  userSettingSection(
+                    const Key(''),
+                    context,
+                    user,
+                    birthDateWithoutDay,
+                  ),
+                  const SizedBox(
+                    height: 28.0,
+                  ),
+                  notificationSection(context),
+                  const SizedBox(height: 80.0),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: TextButton(
+                      onPressed: () {
+                        AutoRouter.of(context).push(const DeleteAccountRoute());
+                        Provider.of<ExaminationsProvider>(context, listen: false)
+                            .clearExaminations();
+                      },
+                      child: Text(
+                        context.l10n.remove_account_action,
+                        style: LoonoFonts.fontStyle.copyWith(color: LoonoColors.redButton),
                       ),
-                      LoonoAvatar(),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget userSettingSection(
+    Key key,
+    BuildContext context,
+    User? user,
+    DateWithoutDay? birthDateWithoutDay,
+  ) {
+    const itemSpacing = SizedBox(height: 16.0);
+    return Card(
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      clipBehavior: Clip.antiAlias,
+      margin: EdgeInsets.zero,
+      child: ExpansionTile(
+        key: const Key('ExpansionTileUserDataSection'),
+        textColor: Colors.black,
+        iconColor: Colors.black,
+        backgroundColor: LoonoColors.expandTileColor,
+        collapsedBackgroundColor: LoonoColors.expandTileColor,
+        title: Text(
+          context.l10n.user_data_label,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+        ),
+        children: [
+          Container(
+            color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 16.0),
+                        child: LoonoAvatar(),
+                      ),
                       TextButton(
-                        onPressed: () => changePage(SettingsPage.SettingsPhotoPage),
+                        onPressed: () => widget.changePage(SettingsPage.SettingsPhotoPage),
                         child: Text(
                           context.l10n.action_change,
                           style: const TextStyle(fontSize: 14, color: Colors.black),
@@ -125,76 +207,64 @@ class UpdateProfileScreen extends StatelessWidget {
                     messageTitle: context.l10n.update_profile_can_not_edit_birthday_title,
                     messageText: context.l10n.update_profile_can_not_edit_birthday_message,
                   ),
-                  const SizedBox(height: 80.0),
-                  Align(
-                    child: Column(
-                      children: [
-                        TextButton(
-                          onPressed: () async {
-                            await showAdaptiveConfirmationDialog(
-                              context,
-                              description: context.l10n.logout_confirmation_dialog_content,
-                              confirmationButtonLabel: context.l10n.continue_info,
-                              onConfirm: () {
-                                AutoRouter.of(context).pushAndPopUntil(
-                                  // TODO: After updating a routes do logout processes here instead of in LogoutScreen
-                                  const LogoutRoute(),
-                                  predicate: (_) => false,
-                                );
-                                Provider.of<ExaminationsProvider>(context, listen: false)
-                                    .clearExaminations();
-                              },
-                            );
-                          },
-                          child: Text(context.l10n.sign_out_action, style: LoonoFonts.fontStyle),
-                        ),
-                        const SizedBox(height: 32.0),
-                        TextButton(
-                          onPressed: () async {
-                            if (await canLaunchUrlString(privacyUrl)) {
-                              await launchUrlString(privacyUrl);
-                            }
-                          },
-                          child: Text(
-                            context.l10n.update_profile_privacy_action,
-                            style: LoonoFonts.fontStyle,
-                          ),
-                        ),
-                        const SizedBox(height: 32.0),
-                        TextButton(
-                          onPressed: () async {
-                            if (await canLaunchUrlString(termsUrl)) {
-                              await launchUrlString(termsUrl);
-                            }
-                          },
-                          child: Text(
-                            context.l10n.terms_and_conditions,
-                            style: LoonoFonts.fontStyle,
-                          ),
-                        ),
-                        const SizedBox(height: 32.0),
-                        TextButton(
-                          onPressed: () {
-                            AutoRouter.of(context).push(const DeleteAccountRoute());
-                            Provider.of<ExaminationsProvider>(context, listen: false)
-                                .clearExaminations();
-                          },
-                          child: Text(
-                            context.l10n.remove_account_action,
-                            style: LoonoFonts.fontStyle.copyWith(color: LoonoColors.redButton),
-                          ),
-                        ),
-                        const SizedBox(height: 200),
-                        const EmailFeedbackButton(),
-                        const SizedBox(height: 40),
-                      ],
-                    ),
-                  ),
                 ],
               ),
             ),
-          );
-        },
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget notificationSection(BuildContext context) {
+    return Card(
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      clipBehavior: Clip.antiAlias,
+      margin: EdgeInsets.zero,
+      child: ExpansionTile(
+        initiallyExpanded: widget.expandNotSection ?? false,
+        key: const Key('ExpansionTileNotificationSection'),
+        textColor: Colors.black,
+        iconColor: Colors.black,
+        backgroundColor: LoonoColors.expandTileColor,
+        collapsedBackgroundColor: LoonoColors.expandTileColor,
+        title: Text(
+          context.l10n.notification_settings_label,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+        ),
+        children: [
+          Container(
+            color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text('Výzva k darování'),
+                  Switch(
+                    value: isNotificationSwitched!,
+                    onChanged: (value) async {
+                      await registryDonate.storeDonateInfoData(
+                        DonateUserInfo(
+                          lastOpened: donateInfo?.lastOpened ?? DateTime.now(),
+                          showNotification: value,
+                        ),
+                      );
+                      setState(() {
+                        isNotificationSwitched = value;
+                      });
+                    },
+                    activeTrackColor: LoonoColors.donateColor,
+                    activeColor: Colors.white,
+                  )
+                ],
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

@@ -115,6 +115,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
     /// not ideal in build method but need context
     Future<void> _onPostNewCheckupSubmit({required DateTime date}) async {
       /// code anchor: #postNewExamination
+      /// TODO: Add Note property
       final response = await registry.get<ExaminationRepository>().postExamination(
             _examinationType,
             newDate: date,

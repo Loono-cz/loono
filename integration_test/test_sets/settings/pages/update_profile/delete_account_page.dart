@@ -7,11 +7,11 @@ import 'package:loono/ui/widgets/settings/checkbox.dart';
 
 import '../../../../test_helpers/common_finders.dart';
 import '../../../../test_helpers/e2e_action_logging.dart';
-import '../../../../test_helpers/pom_class_helpers.dart';
+import '../../../../test_helpers/verify_visibility_state_helper.dart';
 import '../../../../test_helpers/widget_tester_extensions.dart';
 
 /// * Corresponding screen: [DeleteAccountScreen]
-class DeleteAccountPage with SettingsFinders, PomClassHelpers {
+class DeleteAccountPage with SettingsFinders, VerifyVisibilityStateHelper {
   DeleteAccountPage(this.tester);
 
   final WidgetTester tester;

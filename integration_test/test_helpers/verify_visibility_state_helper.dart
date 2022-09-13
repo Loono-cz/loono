@@ -7,7 +7,7 @@ import 'widget_tester_extensions.dart';
 
 typedef VerifyVisibilityState = FutureOr<void> Function({required bool isShown});
 
-mixin PomClassHelpers on Object {
+mixin VerifyVisibilityStateHelper on Object {
   /// Pass [widgetTester] if the expected widget may take some time to show up.
   VerifyVisibilityState getVerifyVisibilityStateFunction({
     required Finder finder,
