@@ -4,7 +4,7 @@ import 'package:loono/ui/screens/find_doctor/find_doctor.dart';
 
 import '../../../test_helpers/e2e_action_logging.dart';
 import '../../../test_helpers/map_test_utils.dart';
-import '../../../test_helpers/pom_class_helpers.dart';
+import '../../../test_helpers/verify_visibility_state_helper.dart';
 import '../../../test_helpers/widget_tester_extensions.dart';
 
 /// * Corresponding screen: [FindDoctorScreen]
