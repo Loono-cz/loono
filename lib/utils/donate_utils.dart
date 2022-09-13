@@ -24,7 +24,8 @@ Future<void> checkAndShowDonatePage(
     await secureStorageRegistry.storeDonateInfoData(donateuserInfo);
     showModal = true;
   } else if (DateTime.now().isAfter(
-          donateInfo.lastOpened.add(const Duration(days: LoonoStrings.donateDelayInterval))) &&
+        donateInfo.lastOpened.add(const Duration(days: LoonoStrings.donateDelayInterval)),
+      ) &&
       donateInfo.showNotification == true) {
     await secureStorageRegistry.storeDonateInfoData(
       donateuserInfo,
