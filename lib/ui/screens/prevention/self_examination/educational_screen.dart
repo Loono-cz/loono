@@ -18,6 +18,7 @@ class EducationalVideoScreen extends StatelessWidget {
   }) : super(key: key);
   final Sex sex;
   final SelfExaminationPreventionStatus selfExamination;
+  final bool mounted = true;
 
   ///TODO: After structure change load video url from BE.
   String _getVideoByExaminationType(SelfExaminationType? type) {
@@ -71,8 +72,9 @@ class EducationalVideoScreen extends StatelessWidget {
                         ? context.l10n.self_examination_done_male
                         : context.l10n.self_examination_done_female,
                     onTap: () async {
-                      showHowItWentSheet(context, sex, selfExamination);
                       await AutoRouter.of(context).pop();
+                      if (!mounted) return;
+                      showHowItWentSheet(context, sex, selfExamination);
                     },
                   ),
                 const SizedBox(height: 18),
