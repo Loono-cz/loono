@@ -26,7 +26,7 @@ enum SettingsPage {
   SettingsLeaderboardPage,
 }
 
-void showSettingsSheet(BuildContext context) {
+void showSettingsSheet(BuildContext context, {SettingsPage? settingsPage, bool? expand}) {
   registry.get<FirebaseAnalytics>().logEvent(name: 'SettingsMainPage');
   showModalBottomSheet<void>(
     context: context,
@@ -35,7 +35,10 @@ void showSettingsSheet(BuildContext context) {
     ),
     isScrollControlled: true,
     builder: (context) {
-      return const _SettingsContent();
+      return _SettingsContent(
+        settingsPage: settingsPage,
+        expand: expand,
+      );
     },
   ).whenComplete(() {
     registry.get<FirebaseAnalytics>().logEvent(name: 'CloseSettings');
@@ -43,8 +46,10 @@ void showSettingsSheet(BuildContext context) {
 }
 
 class _SettingsContent extends StatefulWidget {
-  const _SettingsContent({Key? key}) : super(key: key);
+  const _SettingsContent({Key? key, this.settingsPage, this.expand}) : super(key: key);
 
+  final SettingsPage? settingsPage;
+  final bool? expand;
   @override
   _SettingsContentState createState() => _SettingsContentState();
 }
@@ -54,6 +59,7 @@ class _SettingsContentState extends State<_SettingsContent> {
   List<SettingsPage> navigationStack = [SettingsPage.SettingsMainPage];
   SettingsPage prevPage = SettingsPage.SettingsMainPage;
   Uint8List? imageBytes;
+  bool? expand;
 
   void changePage(SettingsPage newPage) {
     setState(() {
@@ -69,6 +75,15 @@ class _SettingsContentState extends State<_SettingsContent> {
       });
       registry.get<FirebaseAnalytics>().logEvent(name: navigationStack.last.name);
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.settingsPage != null) navigationStack.add(widget.settingsPage!);
+    setState(() {
+      expand = widget.expand ?? false;
+    });
   }
 
   @override
@@ -119,32 +134,39 @@ class _SettingsContentState extends State<_SettingsContent> {
                 ],
               ),
               const SizedBox(height: 18),
-
-              /// TODO: This works but might get refactor in the future
-              if (navigationStack.last == SettingsPage.SettingsMainPage)
-                OpenSettingsScreen(
-                  changePage: changePage,
-                ),
-              if (navigationStack.last == SettingsPage.SettingsEditPage)
-                UpdateProfileScreen(
-                  changePage: changePage,
-                ),
-              if (navigationStack.last == SettingsPage.SettingsPointsPage)
-                PointsHelpScreen(
-                  changePage: changePage,
-                ),
-              if (navigationStack.last == SettingsPage.SettingsLeaderboardPage)
-                LeaderboardScreen(
-                  changePage: changePage,
-                ),
-              if (navigationStack.last == SettingsPage.SettingsPhotoPage)
-                EditPhotoScreen(
-                  changePage: changePage,
-                ),
+              showPropperSettings(context),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Widget showPropperSettings(BuildContext context) {
+    switch (navigationStack.last) {
+      case SettingsPage.SettingsMainPage:
+        return OpenSettingsScreen(
+          changePage: changePage,
+        );
+
+      case SettingsPage.SettingsEditPage:
+        return UpdateProfileScreen(
+          changePage: changePage,
+          expandNotSection: expand,
+        );
+
+      case SettingsPage.SettingsPointsPage:
+        return PointsHelpScreen(
+          changePage: changePage,
+        );
+      case SettingsPage.SettingsLeaderboardPage:
+        return LeaderboardScreen(
+          changePage: changePage,
+        );
+      default:
+        return EditPhotoScreen(
+          changePage: changePage,
+        );
+    }
   }
 }

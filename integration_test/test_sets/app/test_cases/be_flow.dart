@@ -340,10 +340,6 @@ Future<void> run({required WidgetTester tester}) async {
   await updateProfilePage.clickBackButton();
   await openSettingsPage.verifyScreenIsShown();
 
-  // check leaderboard
-  await openSettingsPage.clickPointsHelpButton();
-  await pointsHelpPage.verifyScreenIsShown();
-
   await pointsHelpPage.clickBackButton();
   await openSettingsPage.verifyScreenIsShown();
 

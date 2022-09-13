@@ -1,4 +1,5 @@
 import 'package:loono/services/database_service.dart';
+import 'package:loono/services/secure_storage_service.dart';
 import 'package:loono/utils/app_clear.dart';
 import 'package:loono/utils/registry.dart';
 
@@ -10,6 +11,7 @@ Future<void> postAppClear() async {
   mockGoogleSignIn();
   await appClear();
   await registry.get<DatabaseService>().closeDb();
+  await registry.get<SecureStorageService>().deleteDonateInfoData();
   await registry.reset();
   tearDownFirebaseAuth();
   tearDownGoogleSignIn();

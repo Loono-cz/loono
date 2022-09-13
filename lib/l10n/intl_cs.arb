@@ -362,7 +362,7 @@
   "@image_error_size_exceeded": {},
   "photo_changed_success": "Fotografie úspěšně změněna",
   "@photo_changed_success": {},
-  "settings_edit_account_button": "Upravit účet",
+  "settings_edit_account_button": "Nastavení účtu",
   "@settings_edit_account_button": {},
   "settings_user_points_help_button": "Co s body?",
   "@settings_user_points_help_button": {},
@@ -836,6 +836,8 @@
   "@self_faq_important": {},
   "self_faq_breast_steps_answer_part_7": "Při objednání nezapomeň říct, že sis na prsu objevila změny. Zkrátí se tak objednací doba.\n\nPokud gynekologa nemáš, co nejdříve si ho vyhledej v našem ",
   "@self_faq_breast_steps_answer_part_7": {},
+  "self_faq_breast_steps_answer_part_8": "seznamu lékařů",
+  "@self_faq_breast_steps_answer_part_8": {},
   "self_faq_breast_steps_answer_part_9": ".\n\nPokud si stále nevíš rady, napiš nám na ",
   "@self_faq_breast_steps_answer_part_9": {},
   "self_faq_breast_changes_question": "Jaké změny mám na prsu hledat?",
@@ -1121,5 +1123,26 @@
   "badge_pauldrons_desc":"Chrániče samovyšetření",
   "@badge_pauldrons_desc":{},
   "pauldrons_award_label": "Nové nárameníky za samovyšetření",
-  "@pauldrons_award_label": {}
+  "@pauldrons_award_label": {},
+  "donate_label_btn": "Chci přispět",
+  "@donate_label_btn": {},
+  "donate_label_desc": "Líbí se ti aplikace? Podpoř její rozvoj.",
+  "@donate_label_desc": {},
+  "user_data_label": "Osobní údaje",
+  "@user_data_label": {},
+  "notification_settings_label": "Notifikace",
+  "@notification_settings_label": {},
+  "do_you_like_loono":"Líbí se ti Preventivka?",
+  "@do_you_like_loono":{},
+  "donate_desc_loono":"Podpoř finančně její rozvoj a staň se součástí mise Loono, která zachraňuje životy.",
+  "@donate_desc_loono": {},
+  "donate_anytime": "Přispět můžeš kdykoliv - stačí mrknout do svého účtu v aplikaci, kde najdeš darovací tlačítko.",
+  "@donate_anytime": {},
+  "donate_info_notification":"Pokud si přeješ tuto zprávu více nezobrazovat můžeš si ",
+  "@donate_info_notification": {},
+  "notification_settings_edit": "upravit nastavení notifikací.",
+  "@notification_settings_edit": {}
+
+  
+
 }
