@@ -46,10 +46,10 @@ void showSettingsSheet(BuildContext context, {SettingsPage? settingsPage, bool? 
 }
 
 class _SettingsContent extends StatefulWidget {
-  _SettingsContent({Key? key, this.settingsPage, this.expand}) : super(key: key);
+  const _SettingsContent({Key? key, this.settingsPage, this.expand}) : super(key: key);
 
   final SettingsPage? settingsPage;
-  bool? expand;
+  final bool? expand;
   @override
   _SettingsContentState createState() => _SettingsContentState();
 }
