@@ -1,18 +1,22 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/screens/settings/update_profile.dart';
 
 import '../../../../test_helpers/common_finders.dart';
 import '../../../../test_helpers/e2e_action_logging.dart';
-import '../../../../test_helpers/pom_class_helpers.dart';
+import '../../../../test_helpers/verify_visibility_state_helper.dart';
 import '../../../../test_helpers/widget_tester_extensions.dart';
 
 /// * Corresponding screen: [UpdateProfileScreen]
-class UpdateProfilePage with SettingsFinders, PomClassHelpers {
+class UpdateProfilePage with SettingsFinders, VerifyVisibilityStateHelper {
   UpdateProfilePage(this.tester);
 
   final WidgetTester tester;
+
+  final Finder userDataSection = find.ancestor(
+    of: find.byType(Container),
+    matching: find.byKey(const Key('ExpansionTileUserDataSection')),
+  );
 
   /// Page finders
   final Finder nicknameTextField = find.descendant(
@@ -31,23 +35,17 @@ class UpdateProfilePage with SettingsFinders, PomClassHelpers {
     of: find.byKey(const Key('updateProfilePage_updateProfileItem_birthdate')),
     matching: find.byType(TextField),
   );
-  final Finder logoutBtn = find.widgetWithText(TextButton, 'Odhlásit se');
+
   final Finder deleteAccountBtn = find.widgetWithText(TextButton, 'Smazat účet');
 
   Finder get backBtn => commonSettingsSheetBackBtn;
 
-  Finder get confirmationDialog =>
-      find.byWidgetPredicate((widget) => widget is AlertDialog || widget is CupertinoAlertDialog);
-
-  Finder get cancelBtnLogoutDialog => find.descendant(
-        of: confirmationDialog,
-        matching: find.textContaining(RegExp(r'^zrušit$', caseSensitive: false)),
-      );
-
-  Finder get confirmBtnLogoutDialog => find.descendant(
-        of: confirmationDialog,
-        matching: find.textContaining(RegExp(r'^pokračovat$', caseSensitive: false)),
-      );
+  Future<void> clickUserDataSection() async {
+    logTestEvent('Click on user data section');
+    await tester.pumpAndSettle();
+    await tester.tap(userDataSection);
+    await tester.pumpAndSettle();
+  }
 
   /// Page methods
   Future<void> clickNicknameField() async {
@@ -78,33 +76,12 @@ class UpdateProfilePage with SettingsFinders, PomClassHelpers {
     await tester.pumpAndSettle();
   }
 
-  Future<void> clickLogoutButton() async {
-    logTestEvent();
-    await tester.ensureVisible(logoutBtn);
-    await tester.pumpAndSettle();
-    await tester.tap(logoutBtn);
-    await tester.pumpAndSettle();
-  }
-
   Future<void> clickDeleteAccountButton() async {
     logTestEvent();
     await tester.ensureVisible(deleteAccountBtn);
     await tester.pumpAndSettle();
     await tester.tap(deleteAccountBtn);
     await tester.pumpAndSettle();
-  }
-
-  Future<void> cancelLogoutDialog() async {
-    logTestEvent();
-    await tester.tap(cancelBtnLogoutDialog);
-    await tester.pumpAndSettle();
-  }
-
-  Future<void> confirmLogoutDialog() async {
-    logTestEvent();
-    await tester.tap(confirmBtnLogoutDialog);
-    await tester.pumpAndSettle();
-    await tester.pumpUntilNotFound(confirmBtnLogoutDialog);
   }
 
   Future<void> closeErrorSheet() async {
@@ -136,13 +113,6 @@ class UpdateProfilePage with SettingsFinders, PomClassHelpers {
     );
     expect(emailText, findsOneWidget);
   }
-
-  VerifyVisibilityState get verifyConfirmationDialogVisibilityState =>
-      getVerifyVisibilityStateFunction(
-        finder: confirmationDialog,
-        widgetName: 'Confirmation dialog',
-        widgetTester: tester,
-      );
 
   Future<void> verifyScreenIsShown() async {
     logTestEvent();

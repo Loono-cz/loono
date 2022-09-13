@@ -15,8 +15,8 @@ class PointsDisplay extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const LoonoPointIcon(width: 36.0),
-        const SizedBox(width: 16.0),
+        const LoonoPointIcon(width: 24.0),
+        const SizedBox(width: 8.0),
         StreamBuilder<User?>(
           stream: _usersDao.watchUser(),
           builder: (context, snapshot) {

@@ -4,11 +4,11 @@ import 'package:loono/ui/screens/find_doctor/doctor_search_detail.dart';
 import 'package:loono/ui/widgets/find_doctor/search_results_list.dart';
 
 import '../../../test_helpers/e2e_action_logging.dart';
-import '../../../test_helpers/pom_class_helpers.dart';
+import '../../../test_helpers/verify_visibility_state_helper.dart';
 import '../../../test_helpers/widget_tester_extensions.dart';
 
 /// * Corresponding screen: [DoctorSearchDetailScreen]
-class DoctorSearchDetailPage with PomClassHelpers {
+class DoctorSearchDetailPage with VerifyVisibilityStateHelper {
   DoctorSearchDetailPage(this.tester);
 
   final WidgetTester tester;

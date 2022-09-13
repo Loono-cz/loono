@@ -144,7 +144,9 @@ class _$_DateWithoutDay implements _DateWithoutDay {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DateWithoutDayToJson(this);
+    return _$$_DateWithoutDayToJson(
+      this,
+    );
   }
 }
 
