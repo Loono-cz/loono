@@ -8,7 +8,7 @@ import '../../../test_helpers/pom_class_helpers.dart';
 import '../../../test_helpers/widget_tester_extensions.dart';
 
 /// * Corresponding screen: [FindDoctorScreen]
-class FindDoctorPage extends MapTestUtils with PomClassHelpers {
+class FindDoctorPage extends MapTestUtils with VerifyVisibilityStateHelper {
   FindDoctorPage(WidgetTester tester) : super(tester);
 
   /// Page finders

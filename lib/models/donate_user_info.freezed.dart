@@ -20,9 +20,8 @@ DonateUserInfo _$DonateUserInfoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DonateUserInfo {
-  DateTime? get lastOpened => throw _privateConstructorUsedError;
-  bool? get seen => throw _privateConstructorUsedError;
-  bool? get showNotification => throw _privateConstructorUsedError;
+  DateTime get lastOpened => throw _privateConstructorUsedError;
+  bool get showNotification => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +34,7 @@ abstract class $DonateUserInfoCopyWith<$Res> {
   factory $DonateUserInfoCopyWith(
           DonateUserInfo value, $Res Function(DonateUserInfo) then) =
       _$DonateUserInfoCopyWithImpl<$Res>;
-  $Res call({DateTime? lastOpened, bool? seen, bool? showNotification});
+  $Res call({DateTime lastOpened, bool showNotification});
 }
 
 /// @nodoc
@@ -50,22 +49,17 @@ class _$DonateUserInfoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? lastOpened = freezed,
-    Object? seen = freezed,
     Object? showNotification = freezed,
   }) {
     return _then(_value.copyWith(
       lastOpened: lastOpened == freezed
           ? _value.lastOpened
           : lastOpened // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      seen: seen == freezed
-          ? _value.seen
-          : seen // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as DateTime,
       showNotification: showNotification == freezed
           ? _value.showNotification
           : showNotification // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
     ));
   }
 }
@@ -77,7 +71,7 @@ abstract class _$$_DonateUserInfoCopyWith<$Res>
           _$_DonateUserInfo value, $Res Function(_$_DonateUserInfo) then) =
       __$$_DonateUserInfoCopyWithImpl<$Res>;
   @override
-  $Res call({DateTime? lastOpened, bool? seen, bool? showNotification});
+  $Res call({DateTime lastOpened, bool showNotification});
 }
 
 /// @nodoc
@@ -94,22 +88,17 @@ class __$$_DonateUserInfoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? lastOpened = freezed,
-    Object? seen = freezed,
     Object? showNotification = freezed,
   }) {
     return _then(_$_DonateUserInfo(
       lastOpened: lastOpened == freezed
           ? _value.lastOpened
           : lastOpened // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      seen: seen == freezed
-          ? _value.seen
-          : seen // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as DateTime,
       showNotification: showNotification == freezed
           ? _value.showNotification
           : showNotification // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
     ));
   }
 }
@@ -117,21 +106,20 @@ class __$$_DonateUserInfoCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_DonateUserInfo implements _DonateUserInfo {
-  const _$_DonateUserInfo({this.lastOpened, this.seen, this.showNotification});
+  const _$_DonateUserInfo(
+      {required this.lastOpened, required this.showNotification});
 
   factory _$_DonateUserInfo.fromJson(Map<String, dynamic> json) =>
       _$$_DonateUserInfoFromJson(json);
 
   @override
-  final DateTime? lastOpened;
+  final DateTime lastOpened;
   @override
-  final bool? seen;
-  @override
-  final bool? showNotification;
+  final bool showNotification;
 
   @override
   String toString() {
-    return 'DonateUserInfo(lastOpened: $lastOpened, seen: $seen, showNotification: $showNotification)';
+    return 'DonateUserInfo(lastOpened: $lastOpened, showNotification: $showNotification)';
   }
 
   @override
@@ -141,7 +129,6 @@ class _$_DonateUserInfo implements _DonateUserInfo {
             other is _$_DonateUserInfo &&
             const DeepCollectionEquality()
                 .equals(other.lastOpened, lastOpened) &&
-            const DeepCollectionEquality().equals(other.seen, seen) &&
             const DeepCollectionEquality()
                 .equals(other.showNotification, showNotification));
   }
@@ -151,7 +138,6 @@ class _$_DonateUserInfo implements _DonateUserInfo {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(lastOpened),
-      const DeepCollectionEquality().hash(seen),
       const DeepCollectionEquality().hash(showNotification));
 
   @JsonKey(ignore: true)
@@ -169,19 +155,16 @@ class _$_DonateUserInfo implements _DonateUserInfo {
 
 abstract class _DonateUserInfo implements DonateUserInfo {
   const factory _DonateUserInfo(
-      {final DateTime? lastOpened,
-      final bool? seen,
-      final bool? showNotification}) = _$_DonateUserInfo;
+      {required final DateTime lastOpened,
+      required final bool showNotification}) = _$_DonateUserInfo;
 
   factory _DonateUserInfo.fromJson(Map<String, dynamic> json) =
       _$_DonateUserInfo.fromJson;
 
   @override
-  DateTime? get lastOpened;
+  DateTime get lastOpened;
   @override
-  bool? get seen;
-  @override
-  bool? get showNotification;
+  bool get showNotification;
   @override
   @JsonKey(ignore: true)
   _$$_DonateUserInfoCopyWith<_$_DonateUserInfo> get copyWith =>

@@ -249,8 +249,7 @@ class UpdateProfileScreenState extends State<UpdateProfileScreen> {
                     onChanged: (value) async {
                       await registryDonate.storeDonateInfoData(
                         DonateUserInfo(
-                          lastOpened: donateInfo!.lastOpened,
-                          seen: donateInfo!.seen,
+                          lastOpened: donateInfo?.lastOpened ?? DateTime.now(),
                           showNotification: value,
                         ),
                       );

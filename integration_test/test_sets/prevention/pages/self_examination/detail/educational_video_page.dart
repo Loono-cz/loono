@@ -7,7 +7,7 @@ import '../../../../../test_helpers/pom_class_helpers.dart';
 import '../../../../../test_helpers/widget_tester_extensions.dart';
 
 /// * Corresponding screen: [EducationalVideoScreen]
-class EducationalVideoPage with PomClassHelpers {
+class EducationalVideoPage with VerifyVisibilityStateHelper {
   EducationalVideoPage(this.tester);
 
   final WidgetTester tester;

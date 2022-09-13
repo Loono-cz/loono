@@ -10,7 +10,7 @@ import '../../../test_helpers/pom_class_helpers.dart';
 import '../../../test_helpers/widget_tester_extensions.dart';
 
 /// * Corresponding screen: [OpenSettingsScreen]
-class OpenSettingsPage with SettingsFinders, PomClassHelpers {
+class OpenSettingsPage with SettingsFinders, VerifyVisibilityStateHelper {
   OpenSettingsPage(this.tester);
 
   final WidgetTester tester;

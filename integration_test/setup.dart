@@ -20,7 +20,7 @@ Future<void> main({
   // disables FirebaseAnalytics in testing
   await registry.get<FirebaseAnalytics>().setAnalyticsCollectionEnabled(false);
   await registry.get<SecureStorageService>().storeDonateInfoData(
-        DonateUserInfo(lastOpened: DateTime.now(), seen: true, showNotification: false),
+        DonateUserInfo(lastOpened: DateTime.now(), showNotification: false),
       );
   runApp(const Loono(defaultLocale: 'cs'));
 }

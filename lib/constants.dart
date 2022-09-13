@@ -54,6 +54,8 @@ class LoonoStrings {
   static const termsUrl = 'https://www.loono.cz/podminky-uzivani-mobilni-aplikace';
   static const privacyUrl = 'https://www.loono.cz/zasady-ochrany-osobnich-udaju-mobilni-aplikace';
   static const donateUrl = 'https://www.darujme.cz/projekt/1206713';
+
+  static const donateDelayInterval = 14;
 }
 
 class LoonoFonts {

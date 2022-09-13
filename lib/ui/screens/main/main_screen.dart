@@ -48,7 +48,7 @@ class _MainScreenState extends State<MainScreen> {
     WidgetsBinding.instance.addPostFrameCallback(
       (_) => examinationsProvider.fetchExaminations(),
     );
-    showDonatePage(context, mounted: mounted);
+    checkAndShowDonatePage(context, mounted: mounted);
     registry.get<UserRepository>().sync();
 
     /// lock connectivity for the first 300ms to prevent multiple api calls on init

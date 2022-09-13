@@ -6,7 +6,7 @@ import '../../../../../test_helpers/e2e_action_logging.dart';
 import '../../../../../test_helpers/pom_class_helpers.dart';
 
 /// * Corresponding modal: [showHowItWentSheet]
-class HowItWentModalPage with PomClassHelpers {
+class HowItWentModalPage with VerifyVisibilityStateHelper {
   HowItWentModalPage(this.tester);
 
   final WidgetTester tester;

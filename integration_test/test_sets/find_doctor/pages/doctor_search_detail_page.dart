@@ -8,7 +8,7 @@ import '../../../test_helpers/pom_class_helpers.dart';
 import '../../../test_helpers/widget_tester_extensions.dart';
 
 /// * Corresponding screen: [DoctorSearchDetailScreen]
-class DoctorSearchDetailPage with PomClassHelpers {
+class DoctorSearchDetailPage with VerifyVisibilityStateHelper {
   DoctorSearchDetailPage(this.tester);
 
   final WidgetTester tester;
