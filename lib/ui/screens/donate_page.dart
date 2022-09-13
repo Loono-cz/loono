@@ -1,6 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/screens/settings/settings_bottom_sheet.dart';
@@ -10,13 +10,12 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 class DonatePage extends StatefulWidget {
   const DonatePage({Key? key}) : super(key: key);
-
   @override
   DonatePageState createState() => DonatePageState();
 }
 
 class DonatePageState extends State<DonatePage> {
-  Future<void> _closeForm(BuildContext context) async => AutoRouter.of(context).popUntilRoot();
+  Future<void> _closeForm(BuildContext context) async => Navigator.of(context).pop();
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +28,7 @@ class DonatePageState extends State<DonatePage> {
             alignment: Alignment.centerRight,
             child: LoonoCloseButton(onPressed: () async => _closeForm(context)),
           ),
-
-          //TODO: set image !
-          Image.asset('assets/image_placeholder.png'),
+          SvgPicture.asset('assets/donate_ilustration.svg'),
           Text(
             context.l10n.do_you_like_loono,
             style: const TextStyle(

@@ -18,13 +18,13 @@ import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
 class UpdateProfileScreen extends StatefulWidget {
-  UpdateProfileScreen({
+  const UpdateProfileScreen({
     Key? key,
     required this.changePage,
     this.expandNotSection,
   }) : super(key: key);
   final Function(SettingsPage) changePage;
-  bool? expandNotSection;
+  final bool? expandNotSection;
   @override
   UpdateProfileScreenState createState() => UpdateProfileScreenState();
 }
