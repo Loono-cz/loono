@@ -88,10 +88,11 @@ Future<void> showSelfExamBadgesSheet(
                                         ),
                                       ),
                                     )
-                                  : Image.asset(
-                                      _getDisabledBadgeAsset(examinationType),
-                                      width: 40,
-                                      height: 40,
+                                  : _getDisabledBadge(
+                                      examinationType,
+                                      badgeIndex + 1,
+                                      40,
+                                      40,
                                     ),
                             ),
                           ),
@@ -172,17 +173,38 @@ Future<void> showSelfExamBadgesSheet(
   );
 }
 
-String _getDisabledBadgeAsset(SelfExaminationType type) {
+String _getDisabledBadgeAsset(SelfExaminationType type, int level) {
   switch (type) {
     case SelfExaminationType.TESTICULAR:
       return 'assets/badges/shield/shield_disabled.png';
     case SelfExaminationType.SKIN:
-      //missing pauldrons disabled badge TODO add pauldrons disabled badge
-      return 'assets/badges/shield/shield_disabled.png';
+      return 'assets/badges/pauldrons/disabled_level_$level.svg';
     case SelfExaminationType.BREAST:
       return 'assets/badges/shield/shield_disabled.png';
   }
   return '';
+}
+
+Widget _getDisabledBadge(
+  SelfExaminationType type,
+  int level,
+  double width,
+  double height,
+) {
+  final asset = _getDisabledBadgeAsset(type, level);
+  if (asset.contains('.svg')) {
+    return SizedBox(
+      width: 40,
+      height: 40,
+      child: SvgPicture.asset(asset),
+    );
+  } else {
+    return Image.asset(
+      asset,
+      width: width,
+      height: height,
+    );
+  }
 }
 
 String _getEnabledBadgeAsset(SelfExaminationType type, int level) {
