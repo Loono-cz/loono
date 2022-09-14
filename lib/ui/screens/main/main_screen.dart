@@ -11,6 +11,7 @@ import 'package:loono/services/examinations_service.dart';
 import 'package:loono/services/webview_service.dart';
 import 'package:loono/ui/widgets/custom_navigation_bar.dart';
 import 'package:loono/ui/widgets/no_connection_message.dart';
+import 'package:loono/utils/donate_utils.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:provider/provider.dart';
 
@@ -47,6 +48,7 @@ class _MainScreenState extends State<MainScreen> {
     WidgetsBinding.instance.addPostFrameCallback(
       (_) => examinationsProvider.fetchExaminations(),
     );
+    checkAndShowDonatePage(context, mounted: mounted);
     registry.get<UserRepository>().sync();
 
     /// lock connectivity for the first 300ms to prevent multiple api calls on init

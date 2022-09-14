@@ -3,10 +3,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:loono/ui/widgets/prevention/self_examination/how_it_went_sheet.dart';
 
 import '../../../../../test_helpers/e2e_action_logging.dart';
-import '../../../../../test_helpers/pom_class_helpers.dart';
+import '../../../../../test_helpers/verify_visibility_state_helper.dart';
 
 /// * Corresponding modal: [showHowItWentSheet]
-class HowItWentModalPage with PomClassHelpers {
+class HowItWentModalPage with VerifyVisibilityStateHelper {
   HowItWentModalPage(this.tester);
 
   final WidgetTester tester;

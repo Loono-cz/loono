@@ -39,6 +39,8 @@ Future<void> run({
 
   await openSettingsPage.clickEditProfileButton();
   await updateProfilePage.verifyScreenIsShown();
+
+  await updateProfilePage.clickUserDataSection();
   updateProfilePage
     ..verifyNickname(defaultMaleAccount.nickname)
     ..verifyEmail(defaultMaleAccount.preferredEmail);
