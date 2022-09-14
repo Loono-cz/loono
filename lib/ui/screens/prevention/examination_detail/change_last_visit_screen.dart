@@ -7,7 +7,7 @@ import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/ui/widgets/button.dart';
-import 'package:loono/ui/widgets/custom_date_picker.dart';
+import 'package:loono/ui/widgets/date_picker.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
@@ -73,12 +73,11 @@ class _ChangeLastVisitScreenState extends State<ChangeLastVisitScreen> {
               ),
               const Spacer(),
               Center(
-                child: CustomDatePicker(
+                child: DatePicker(
                   valueChanged: onDateChanged,
-                  yearsBeforeActual: widget.originalDate.year - 1900,
-                  yearsOverActual: 0,
-                  defaultMonth: widget.originalDate.month,
-                  defaultYear: widget.originalDate.year,
+                  defaultDate: DateTime.now(),
+                  minDate: DateTime(DateTime.now().year-100),
+                  maxDate: DateTime.now(),
                 ),
               ),
               const Spacer(),
