@@ -79,11 +79,11 @@ class DatePickerState extends State<DatePicker> {
   late DateTime datePickerDate = widget.defaultDate;
 
   final FixedExtentScrollController _dayController =
-      FixedExtentScrollController();
+  FixedExtentScrollController();
   final FixedExtentScrollController _monthController =
-      FixedExtentScrollController();
+  FixedExtentScrollController();
   final FixedExtentScrollController _yearController =
-      FixedExtentScrollController();
+  FixedExtentScrollController();
 
   List<int> get _datePickerYears {
     final defaultYear = widget.getDefaultYear();
@@ -334,12 +334,12 @@ class DatePickerState extends State<DatePicker> {
         controller: forType == ColumnType.day
             ? _dayController
             : forType == ColumnType.year
-                ? _yearController
-                : _monthController,
+            ? _yearController
+            : _monthController,
         itemExtent: _itemHeight,
         childDelegate: ListWheelChildLoopingListDelegate(
           children: items.keys.map(
-            (index) {
+                (index) {
               return setListItem(
                 index: index,
                 text: items[index].toString(),
@@ -360,8 +360,8 @@ class DatePickerState extends State<DatePicker> {
             forType == ColumnType.day
                 ? _selectedDayIndex = index
                 : forType == ColumnType.month
-                    ? _selectedMonthIndex = items.keys.elementAt(index)
-                    : _selectedYearIndex = index;
+                ? _selectedMonthIndex = items.keys.elementAt(index)
+                : _selectedYearIndex = index;
           });
         },
       ),

@@ -7,7 +7,7 @@ import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/ui/widgets/button.dart';
-import 'package:loono/ui/widgets/date_picker.dart';
+import 'package:loono/ui/widgets/prevention/date_picker.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
@@ -76,7 +76,7 @@ class _ChangeLastVisitScreenState extends State<ChangeLastVisitScreen> {
                 child: DatePicker(
                   valueChanged: onDateChanged,
                   defaultDate: DateTime.now(),
-                  minDate: DateTime(DateTime.now().year-100),
+                  minDate: DateTime(DateTime.now().year - 100),
                   maxDate: DateTime.now(),
                 ),
               ),
@@ -97,7 +97,9 @@ class _ChangeLastVisitScreenState extends State<ChangeLastVisitScreen> {
               LoonoButton(
                 text: context.l10n.action_save,
                 onTap: () async {
-                  final response = await registry.get<ExaminationRepository>().postExamination(
+                  final response = await registry
+                      .get<ExaminationRepository>()
+                      .postExamination(
                         widget.examinationType,
                         newDate: newDate,
                         uuid: widget.uuid,
@@ -107,10 +109,12 @@ class _ChangeLastVisitScreenState extends State<ChangeLastVisitScreen> {
                       await AutoRouter.of(context).pop();
                       //TODO: Fix lint...
                       // ignore: use_build_context_synchronously
-                      showFlushBarSuccess(context, context.l10n.checkup_reminder_toast);
+                      showFlushBarSuccess(
+                          context, context.l10n.checkup_reminder_toast);
                     },
                     failure: (err) async {
-                      showFlushBarError(context, context.l10n.something_went_wrong);
+                      showFlushBarError(
+                          context, context.l10n.something_went_wrong);
                     },
                   );
                 },

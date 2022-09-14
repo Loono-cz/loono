@@ -9,7 +9,7 @@ import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/widgets/async_button.dart';
-import 'package:loono/ui/widgets/date_picker.dart';
+import 'package:loono/ui/widgets/prevention/date_picker.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
@@ -113,8 +113,8 @@ class _DatePickerContentState extends State<_DatePickerContent> {
         Center(
           child: DatePicker(
             valueChanged: onDateChanged,
-            defaultDate: DateTime.now(),
-            minDate: DateTime(1900),
+            defaultDate: lastVisit,
+            minDate: DateTime(DateTime.now().year - 100),
             maxDate: DateTime.now(),
           ),
         ),
