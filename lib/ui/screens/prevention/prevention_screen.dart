@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/ui/widgets/avatar_arrow_bubble.dart';
 import 'package:loono/ui/widgets/badges/badge_composer.dart';
-import 'package:loono/ui/widgets/feedback/feedback_button.dart';
 import 'package:loono/ui/widgets/prevention/examinations_sheet_overlay.dart';
-import 'package:loono/ui/widgets/prevention/profile_button.dart';
+import 'package:loono/ui/widgets/prevention/prevention_header.dart';
 
 class PreventionScreen extends StatelessWidget {
   PreventionScreen({Key? key}) : super(key: key);
@@ -34,7 +33,7 @@ class PreventionScreen extends StatelessWidget {
                   ),
                 ),
                 const Padding(
-                  padding: EdgeInsets.only(top: 40),
+                  padding: EdgeInsets.only(top: 75),
                   child: BadgeComposer(showDescription: false),
                 ),
                 IgnorePointer(
@@ -54,12 +53,7 @@ class PreventionScreen extends StatelessWidget {
                 ExaminationsSheetOverlay(
                   convertExtent: convertExtent,
                 ),
-                const ProfileButton(),
-                const Positioned(
-                  top: 20,
-                  right: 15,
-                  child: FeedbackButton(),
-                ),
+               const PreventionHeader()
               ],
             );
           },
