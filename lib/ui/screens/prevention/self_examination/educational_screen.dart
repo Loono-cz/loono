@@ -78,7 +78,7 @@ class EducationalVideoScreen extends StatelessWidget {
                     },
                   ),
                 const SizedBox(height: 18),
-                methodologyDisclosureByType(selfExamination.type),
+                harmDisclosureWidget(context, selfExamination.type),
                 SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
               ],
             ),

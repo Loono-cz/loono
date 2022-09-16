@@ -303,7 +303,7 @@ class SelfExaminationDetailScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 18),
-                child: methodologyDisclosureByType(selfExamination.type),
+                child: harmDisclosureWidget(context, selfExamination.type),
               ),
               const SizedBox(
                 height: 50,
