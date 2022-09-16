@@ -69,7 +69,7 @@ extension SelfExaminationPreventionStatusExt on SelfExaminationPreventionStatus 
 
     if (history.last == SelfExaminationStatus.PLANNED) {
       if (plannedDate != null) {
-        final nowDate = DateTime(now.year, now.month, now.day);//now with set hour and minute to 0
+        final nowDate = DateTime(now.year, now.month, now.day); //now with set hour and minute to 0
         final difference = plannedDate!.toDateTime().difference(nowDate).inHours.abs();
         if (difference <= SELF_EXAMINATION_ACTIVE_CARD_INTERVAL_IN_HOURS) {
           return const SelfExaminationCategory.active();

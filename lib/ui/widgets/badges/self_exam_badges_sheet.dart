@@ -107,8 +107,7 @@ Future<void> showSelfExamBadgesSheet(
                                 children: List.generate(
                                   3,
                                   (iconIndex) {
-                                    final absIndex =
-                                        (badgeIndex * 3) + iconIndex;
+                                    final absIndex = (badgeIndex * 3) + iconIndex;
                                     return Padding(
                                       padding: const EdgeInsets.symmetric(
                                         horizontal: 1.5,
@@ -141,8 +140,7 @@ Future<void> showSelfExamBadgesSheet(
                     style: const TextStyle(fontSize: 12, height: 1.5),
                     children: [
                       TextSpan(
-                        text: context
-                            .l10n.self_examination_reward_description_start,
+                        text: context.l10n.self_examination_reward_description_start,
                       ),
                       const WidgetSpan(
                         child: Padding(
@@ -158,8 +156,7 @@ Future<void> showSelfExamBadgesSheet(
                         ),
                       ),
                       TextSpan(
-                        text:
-                            _getRewardDescriptionEnd(examinationType, context),
+                        text: _getRewardDescriptionEnd(examinationType, context),
                       )
                     ],
                   ),
@@ -175,14 +172,11 @@ Future<void> showSelfExamBadgesSheet(
 
 String _getDisabledBadgeAsset(SelfExaminationType type, int level) {
   switch (type) {
-    case SelfExaminationType.TESTICULAR:
-      return 'assets/badges/shield/shield_disabled.png';
     case SelfExaminationType.SKIN:
       return 'assets/badges/pauldrons/disabled_level_$level.svg';
-    case SelfExaminationType.BREAST:
+    default:
       return 'assets/badges/shield/shield_disabled.png';
   }
-  return '';
 }
 
 Widget _getDisabledBadge(
@@ -192,32 +186,30 @@ Widget _getDisabledBadge(
   double height,
 ) {
   final asset = _getDisabledBadgeAsset(type, level);
-  if (asset.contains('.svg')) {
-    return SizedBox(
-      width: 40,
-      height: 40,
-      child: SvgPicture.asset(asset),
-    );
-  } else {
-    return Image.asset(
-      asset,
-      width: width,
-      height: height,
-    );
-  }
+  return asset.contains('.svg')
+      ? SizedBox(
+          width: 24,
+          height: 24,
+          child: SvgPicture.asset(
+            asset,
+          ),
+        )
+      : Image.asset(
+          asset,
+          width: width,
+          height: height,
+        );
 }
 
 String _getEnabledBadgeAsset(SelfExaminationType type, int level) {
   var path = 'assets/badges/';
   switch (type) {
-    case SelfExaminationType.TESTICULAR:
-      path += 'shield';
-      break;
     case SelfExaminationType.SKIN:
       path += 'pauldrons';
       break;
-    case SelfExaminationType.BREAST:
+    default:
       path += 'shield';
+      break;
   }
   return '$path/reward_level_$level.svg';
 }
@@ -227,12 +219,9 @@ String _getRewardDescriptionEnd(
   BuildContext context,
 ) {
   switch (type) {
-    case SelfExaminationType.TESTICULAR:
-      return context.l10n.self_examination_reward_description_end_shield;
     case SelfExaminationType.SKIN:
       return context.l10n.self_examination_reward_description_end_pauldrons;
-    case SelfExaminationType.BREAST:
+    default:
       return context.l10n.self_examination_reward_description_end_shield;
   }
-  return context.l10n.self_examination_reward_description_end;
 }
