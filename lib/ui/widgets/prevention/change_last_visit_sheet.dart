@@ -114,7 +114,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
           child: DatePicker(
             valueChanged: onDateChanged,
             defaultDate: lastVisit,
-            minDate: DateTime(DateTime.now().year - 100),
+            minDate: DateTime(1900),
             maxDate: DateTime.now(),
           ),
         ),
