@@ -24,6 +24,7 @@ void showConfirmationSheet(
   Sex sex,
   String? uuid, {
   int? awardPoints,
+  bool mounted = true,
 }) {
   final practitioner =
       procedureQuestionTitle(context, examinationType: examinationType).toLowerCase();
@@ -70,10 +71,9 @@ void showConfirmationSheet(
                     await calendar.deleteOnlyDbEvent(examinationType);
 
                     examProvider.updateExaminationsRecord(res.data);
-
+                    if (!mounted) return;
                     await autoRouter.navigate(
                       AchievementRoute(
-                        // ignore: use_build_context_synchronously
                         header: getAchievementTitle(context, examinationType),
                         textLines: [l10n.award_desc],
                         numberOfPoints: awardPoints ?? examinationType.awardPoints,
@@ -84,7 +84,7 @@ void showConfirmationSheet(
                   },
                   failure: (err) async {
                     await AutoRouter.of(context).pop();
-                    // ignore: use_build_context_synchronously
+                    if (!mounted) return;
                     showFlushBarError(context, context.l10n.something_went_wrong);
                   },
                 );

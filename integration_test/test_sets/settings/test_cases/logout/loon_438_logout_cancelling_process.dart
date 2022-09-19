@@ -28,5 +28,4 @@ Future<void> run({
 
   await openSettingsPage.cancelLogoutDialog();
   await openSettingsPage.verifyScreenIsShown();
-  expect(find.text('Tvůj účet'), findsOneWidget);
 }

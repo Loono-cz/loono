@@ -54,7 +54,15 @@ class LoonoStrings {
   static const termsUrl = 'https://www.loono.cz/podminky-uzivani-mobilni-aplikace';
   static const privacyUrl = 'https://www.loono.cz/zasady-ochrany-osobnich-udaju-mobilni-aplikace';
   static const donateUrl = 'https://www.darujme.cz/projekt/1206713';
-
+  static const testicularExamUrl = 'https://www.loono.cz/prevence/samovysetreni#vysetri-si-koule';
+  static const tumorTesticularLink =
+      'https://www.linkos.cz/pacient-a-rodina/onkologicke-diagnozy/zhoubne-nadory-muzskeho-pohlavniho-ustroji-c60-c62/o-varlatech-a-nadorech-varlat/';
+  static const breastExamUrl = 'https://www.loono.cz/prevence/samovysetreni#vysetri-si-prsa';
+  static const tumorBreastExamUrl =
+      'https://www.linkos.cz/onkologicka-prevence/informace-o-prevenci/nadory-prsu/';
+  static const skinExamUrl = 'https://www.loono.cz/prevence/kuze#kuze';
+  static const tumorUrl =
+      'https://www.linkos.cz/pacient-a-rodina/onkologicke-diagnozy/maligni-melanom-spinaliom-bazaliom-c43-44-d03/maligni-melanom-a-ostatni-nadory-kuze/';
   static const donateDelayInterval = 14;
 }
 
