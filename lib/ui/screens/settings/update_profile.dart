@@ -244,21 +244,25 @@ class UpdateProfileScreenState extends State<UpdateProfileScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text('Výzva k darování'),
-                  Switch(
-                    value: isNotificationSwitched!,
-                    onChanged: (value) async {
-                      await registryDonate.storeDonateInfoData(
-                        DonateUserInfo(
-                          lastOpened: donateInfo?.lastOpened ?? DateTime.now(),
-                          showNotification: value,
-                        ),
-                      );
-                      setState(() {
-                        isNotificationSwitched = value;
-                      });
-                    },
-                    activeTrackColor: LoonoColors.donateColor,
-                    activeColor: Colors.white,
+                  Transform.scale(
+                    scale: 1.5,
+                    child: Switch(
+                      value: isNotificationSwitched!,
+                      onChanged: (value) async {
+                        await registryDonate.storeDonateInfoData(
+                          DonateUserInfo(
+                            lastOpened:
+                                donateInfo?.lastOpened ?? DateTime.now(),
+                            showNotification: value,
+                          ),
+                        );
+                        setState(() {
+                          isNotificationSwitched = value;
+                        });
+                      },
+                      activeTrackColor: LoonoColors.donateColor,
+                      activeColor: Colors.white,
+                    ),
                   )
                 ],
               ),
