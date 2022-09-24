@@ -18,6 +18,7 @@ class DatePicker extends StatefulWidget {
     this.monthEnabled = true,
     this.dayEnabled = true,
     this.filled = false,
+    this.animated = false,
   }) : super(key: key);
 
   final DateTime today = DateTime.now();
@@ -29,6 +30,7 @@ class DatePicker extends StatefulWidget {
   final bool monthEnabled;
   final bool dayEnabled;
   final bool filled;
+  final bool animated;
 
   @override
   DatePickerState createState() => DatePickerState();
@@ -71,21 +73,10 @@ class DatePicker extends StatefulWidget {
 }
 
 class DatePickerState extends State<DatePicker> {
-  late int _selectedDayIndex = -1;
-  late int _selectedMonthIndex = -1;
+  late int _selectedDay = -1;
+  late int _selectedMonth = -1;
   late int _selectedYearIndex = -1;
   late DateTime datePickerDate = widget.defaultDate;
-
-  ///Is auto month position set in current cycle (after change by user to end of set animation).
-  bool _isMothPositionSet = false;
-  ///Is auto day position set in current cycle (after change by user to end of set animation).
-  bool _isDayPositionSet = false;
-
-  ///Target position in month column to be auto selected.
-  int _animationTargetMonth = 0;
-  ///Target position in day column to be auto selected.
-  int _animationTargetDay = 0;
-
 
   Map<int, String> _lastAvailableMonths = {};
   List<int> _lastAvailableDays = [];
@@ -131,24 +122,11 @@ class DatePickerState extends State<DatePicker> {
     };
     final defaultMonth = widget.getDefaultMonth();
     assert(monthsMap.containsKey(defaultMonth));
-
-    final keysOrder = List<int>.generate(DateTime.monthsPerYear, (index) {
-      if (DateTime.monthsPerYear - index < defaultMonth) {
-        return index - (DateTime.monthsPerYear - defaultMonth);
-      } else {
-        return defaultMonth + index;
-      }
-    });
-    final months = <int, String>{};
-    for (final key in keysOrder) {
-      months[key] = monthsMap[key]!;
-    }
-    return months;
+    return monthsMap;
   }
 
   List<int> get _datePickerDays {
-    final daysInMonth =
-        DateTime(datePickerDate.year, datePickerDate.month, 0).day;
+    final daysInMonth = DateUtils.getDaysInMonth(_getSelectedYear(), _selectedMonth);
 
     final days = [for (var i = 1; i <= daysInMonth; i += 1) i];
 
@@ -175,20 +153,16 @@ class DatePickerState extends State<DatePicker> {
     if (isSet) {
       if (_lastAvailableMonths.length != _getAvailableMonths().length) {
         _lastAvailableMonths = _getAvailableMonths();
-        _isMothPositionSet = false;
-        _animationTargetMonth = _getSelectedMonth();
+        _moveTo(_monthController, _getSelectedMonthIndex());
       }
       if (_lastAvailableDays.length != _getAvailableDays().length) {
         _lastAvailableDays = _getAvailableDays();
-        _isDayPositionSet = false;
-        _animationTargetDay = _getSelectedDay();
+        _moveTo(_dayController, _getSelectedDayIndex());
       }
+    } else {
+      _moveTo(_monthController, _getSelectedMonthIndex());
+      _moveTo(_dayController, _getSelectedDayIndex());
     }
-    else{
-      _animationTargetMonth = _getDefaultMonthIndex();
-      _animationTargetDay = _getDefaultDayIndex();
-    }
-    _animateToDate(_animationTargetMonth, _animationTargetDay);
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.32,
       child: Stack(
@@ -206,21 +180,24 @@ class DatePickerState extends State<DatePicker> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              _datePickerColumn(
-                forType: ColumnType.day,
-                items: _getAvailableDays().asMap(),
-                selectedIndex: _selectedDayIndex,
-              ),
-              _datePickerColumn(
-                forType: ColumnType.month,
-                items: _getAvailableMonths(),
-                selectedIndex: _selectedMonthIndex,
-              ),
-              _datePickerColumn(
-                forType: ColumnType.year,
-                items: _datePickerYears.asMap(),
-                selectedIndex: _selectedYearIndex,
-              ),
+              if(widget.dayEnabled)
+                _datePickerColumn(
+                  forType: ColumnType.day,
+                  items: _getAvailableDays().asMap(),
+                  selectedIndex: _getSelectedDayIndex(),
+                ),
+              if(widget.monthEnabled)
+                _datePickerColumn(
+                  forType: ColumnType.month,
+                  items: _getAvailableMonths().values.toList().asMap(),
+                  selectedIndex: _getSelectedMonthIndex(),
+                ),
+              if(widget.dayEnabled)
+                _datePickerColumn(
+                  forType: ColumnType.year,
+                  items: _datePickerYears.asMap(),
+                  selectedIndex: _selectedYearIndex,
+                ),
             ],
           ),
           Padding(
@@ -239,77 +216,88 @@ class DatePickerState extends State<DatePicker> {
     );
   }
 
+  void _moveTo(FixedExtentScrollController controller,int itemIndex){
+    if (widget.animated) {
+      controller.animateToItem(
+        itemIndex,
+        duration: const Duration(milliseconds: 200),
+        curve: Curves.bounceIn,
+      );
+    } else {
+      controller.jumpToItem(itemIndex);
+    }
+  }
+
+  int _getSelectedDayIndex(){
+    return _getSelectedItemIndex(_selectedDay, _getAvailableDays());
+  }
+  int _getSelectedMonthIndex(){
+    return _getSelectedItemIndex(_selectedMonth, _getAvailableMonths().keys.toList());}
+
+  int _getSelectedItemIndex(int selected, List<int> values){
+    var index = -1;
+    while(index == -1 && selected >=0){
+      index = values.indexOf(selected);
+      selected--;
+    }
+    selected = _selectedDay;
+    while(index == -1 && selected < values.length){
+      index = values.indexOf(selected);
+      selected++;
+    }
+    return index;
+  }
+
+  void _setSelectedDayIndex(int index){
+    final values = _getAvailableDays();
+    setState(() {
+      _selectedDay = index < values.length ? values[index] : values.last;
+    });
+  }
+  void _setSelectedMonthIndex(int index){
+    final values = _getAvailableMonths().keys.toList();
+    setState(() {
+      _selectedMonth = index < values.length ? values[index] : values.last;
+    });
+  }
+
   bool _isSetDefaultDate() {
     var isSet = true;
     if (_selectedYearIndex == -1) {
-      _selectedYearIndex = _datePickerYears.indexOf(widget.defaultDate.year);
-      isSet = false;
+      setState(() {
+        _selectedYearIndex = _datePickerYears.indexOf(widget.defaultDate.year);
+        isSet = false;
+      });
     }
-    if (_selectedMonthIndex == -1) {
-      final index = _getDefaultMonthIndex();
-      _isMothPositionSet = false;
-      _selectedMonthIndex = index;
-      isSet = false;
+    if (_selectedMonth == -1) {
+      setState(() {
+        _selectedMonth = widget.defaultDate.month;
+        isSet = false;
+      });
     }
-    if (_selectedDayIndex == -1) {
-      _selectedDayIndex = _getDefaultDayIndex();
-      _isDayPositionSet = false;
-      isSet = false;
+    if (_selectedDay == -1) {
+      setState(() {
+        _selectedDay = widget.defaultDate.day;
+        isSet = false;
+      });
     }
     return isSet;
-  }
-
-  ///Animates to moth or day when [_isMothPositionSet] or [_isDayPositionSet] is false.
-  ///Use on first load and after change from or to max year or max month.
-  void _animateToDate(final int monthTarget, final int dayTarget) {
-    if (!_isMothPositionSet) {
-      final target = monthTarget;
-      _monthController.animateToItem(target,
-          duration: const Duration(milliseconds: 100), curve: Curves.linear);
-      _isMothPositionSet = _isControllerOnItem(_monthController, target);
-    }
-    if (!_isDayPositionSet) {
-      final target = dayTarget;
-      _dayController.animateToItem(_getDefaultMonthIndex(),
-          duration: const Duration(milliseconds: 100), curve: Curves.linear);
-      _isDayPositionSet = _isControllerOnItem(_dayController, target);
-    }
-  }
-
-  bool _isControllerOnItem(
-      FixedExtentScrollController controller, int itemIndex) {
-    if (controller.positions.isNotEmpty) {
-      return controller.selectedItem == itemIndex;
-    }
-    return false;
-  }
-
-  int _getDefaultMonthIndex() {
-    return _getAvailableMonths()
-        .keys
-        .toList()
-        .indexOf(widget.defaultDate.month);
-  }
-
-  int _getDefaultDayIndex() {
-    return _getAvailableDays().indexOf(widget.defaultDate.month);
   }
 
   ///removes moths over [maxDate] and under [minDate]
   Map<int, String> _getAvailableMonths() {
     if (_isMinYear()) {
       final months = <int, String>{};
+      final minMonth = widget.minDate.month;
 
-      var monthIndex = _datePickerMonths.length - 1;
-      var month = _datePickerMonths[monthIndex];
-      while (monthIndex >= widget.minDate.month) {
-        if (month != null) {
-          months[monthIndex] = month;
+      var monthIndex = 1;
+
+      while(monthIndex < 12){
+        final month = monthIndex +1;
+        if(month >= minMonth){
+          months[month] = _datePickerMonths[month]!;
         }
-
-        monthIndex--;
-        if (monthIndex < 0) break;
-        month = _datePickerMonths[monthIndex];
+        monthIndex++;
       }
 
       return months;
@@ -367,24 +355,15 @@ class DatePickerState extends State<DatePicker> {
   }
 
   bool _isMinMonth() {
-    return _isMinYear() && _getSelectedMonth() == widget.minDate.month;
+    return _isMinYear() && _selectedMonth == widget.minDate.month;
   }
 
   bool _isMaxMonth() {
-    return _isMaxYear() && _getSelectedMonth() == widget.maxDate.month;
+    return _isMaxYear() && _selectedMonth == widget.maxDate.month;
   }
 
   int _getSelectedYear() {
     return _datePickerYears[_selectedYearIndex];
-  }
-
-  int _getSelectedMonth() {
-    final monthName = _datePickerMonths[_selectedMonthIndex];
-    return _datePickerMonths.keys.firstWhere((element) => _datePickerMonths[element] == monthName);
-  }
-
-  int _getSelectedDay() {
-    return _datePickerDays[_selectedDayIndex];
   }
 
   Widget _datePickerColumn({
@@ -424,9 +403,9 @@ class DatePickerState extends State<DatePicker> {
 
           setState(() {
             forType == ColumnType.day
-                ? _selectedDayIndex = index
+                ? _setSelectedDayIndex(index)
                 : forType == ColumnType.month
-                    ? _selectedMonthIndex = items.keys.elementAt(index)
+                    ? _setSelectedMonthIndex(items.keys.elementAt(index))
                     : _selectedYearIndex = index;
           });
         },
@@ -444,11 +423,11 @@ class DatePickerState extends State<DatePicker> {
           : DateTime(items[value] as int, datePickerDate.month + 1, 0).day;
 
       /// jump to maximal possible day
-      _dayController.jumpToItem(_selectedDayIndex.clamp(0, daysInMonth));
-      if (_selectedDayIndex > daysInMonth - 1) {
+      _dayController.jumpToItem(_getSelectedDayIndex().clamp(0, daysInMonth));
+      if (_getSelectedDayIndex() > daysInMonth - 1) {
         _dayController.jumpToItem(daysInMonth - 1);
         setState(() {
-          _selectedDayIndex = daysInMonth - 1;
+          _setSelectedDayIndex(daysInMonth - 1);
         });
       }
     }
@@ -463,7 +442,7 @@ class DatePickerState extends State<DatePicker> {
         break;
       case ColumnType.month:
         datePickerDate =
-            DateTime(datePickerDate.year, value, datePickerDate.day);
+            DateTime(datePickerDate.year, value + 1, datePickerDate.day);
         break;
       case ColumnType.year:
         datePickerDate = DateTime(
