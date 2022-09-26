@@ -23,9 +23,11 @@ class FindDoctorScreen extends StatefulWidget {
   const FindDoctorScreen({
     Key? key,
     this.onCancelTap,
+    this.firstSelectedSpecializationName,
   }) : super(key: key);
 
   final VoidCallback? onCancelTap;
+  final String? firstSelectedSpecializationName;
 
   @override
   State<FindDoctorScreen> createState() => FindDoctorScreenState();
@@ -40,6 +42,9 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
   final _healthcareProviderRepository = registry.get<HealthcareProviderRepository>();
 
   late final MapStateService _mapState;
+
+  bool _isFirstSelectedSpecializationSet = false;
+  bool _canFirstSelectedSpecializationSet = false;
 
   bool _isHealthCareProvidersInMapService = false;
   double _mapOpacity = 1;
@@ -76,8 +81,37 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
     _mapState = context.read<MapStateService>();
   }
 
+
+  @override
+  void dispose() {
+    _isFirstSelectedSpecializationSet = false;
+    super.dispose();
+  }
+
+  void _setFirstSelectedSpecialization() {
+    if (!_isFirstSelectedSpecializationSet) {
+      _isFirstSelectedSpecializationSet = true;
+
+      final specializationName = widget.firstSelectedSpecializationName;
+      if (specializationName != null) {
+        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+          final specResult =
+              _mapState.getSpecSearchResultByName(specializationName);
+          _mapState.setSpecialization(specResult);
+        });
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    if(_canFirstSelectedSpecializationSet){
+      _setFirstSelectedSpecialization();
+      _canFirstSelectedSpecializationSet = false;
+    }
+    else {
+      _canFirstSelectedSpecializationSet = true;
+    }
     final currDoctorDetail =
         context.select<MapStateService, SimpleHealthcareProvider?>((value) => value.doctorDetail);
     final currSpec =

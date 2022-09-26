@@ -169,7 +169,10 @@ class AppRouter extends _i15.RootStackRouter {
       return _i15.MaterialPageX<void>(
           routeData: routeData,
           child: _i11.FindDoctorScreen(
-              key: args.key, onCancelTap: args.onCancelTap));
+            key: args.key,
+            firstSelectedSpecializationName: args.targetSpecialization,
+            onCancelTap: args.onCancelTap,
+          ));
     },
     DoctorSearchDetailRoute.name: (routeData) {
       return _i15.CustomPage<_i58.SearchResult>(
@@ -967,20 +970,31 @@ class LoginRouteArgs {
 /// generated route for
 /// [_i11.FindDoctorScreen]
 class FindDoctorRoute extends _i15.PageRouteInfo<FindDoctorRouteArgs> {
-  FindDoctorRoute({_i56.Key? key, void Function()? onCancelTap})
-      : super(FindDoctorRoute.name,
-            path: 'find-doctor',
-            args: FindDoctorRouteArgs(key: key, onCancelTap: onCancelTap));
+  FindDoctorRoute({
+    _i56.Key? key,
+    String? targetSpecialization,
+    void Function()? onCancelTap,
+  }) : super(
+          FindDoctorRoute.name,
+          path: 'find-doctor',
+          args: FindDoctorRouteArgs(
+            key: key,
+            targetSpecialization: targetSpecialization,
+            onCancelTap: onCancelTap,
+          ),
+        );
 
   static const String name = 'FindDoctorRoute';
 }
 
 class FindDoctorRouteArgs {
-  const FindDoctorRouteArgs({this.key, this.onCancelTap});
+  const FindDoctorRouteArgs({this.key,this.targetSpecialization, this.onCancelTap,});
 
   final _i56.Key? key;
 
   final void Function()? onCancelTap;
+
+  final String? targetSpecialization;
 
   @override
   String toString() {

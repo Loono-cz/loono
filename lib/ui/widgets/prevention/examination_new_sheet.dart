@@ -7,6 +7,7 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/find_doctor/specialization_chips_list.dart';
 import 'package:loono/ui/widgets/how/loon_botton_sheet.dart';
 import 'package:loono/ui/widgets/prevention/datepicker_sheet.dart';
 import 'package:loono/utils/registry.dart';
@@ -64,6 +65,7 @@ void showNewCheckupSheetStep1(
               ).toLowerCase()}',
               onTap: () => appRouter.push(
                 FindDoctorRoute(
+                  targetSpecialization: getSpecializationByExaminationType(examinationType),
                   onCancelTap: () async {
                     final autoRouter = AutoRouter.of(context);
                     await appRouter.pop();
