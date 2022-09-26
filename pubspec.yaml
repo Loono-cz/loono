@@ -41,6 +41,7 @@ dependencies:
   firebase_storage: ^10.1.0
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.1
   flutter_cache_manager: ^3.1.3
   flutter_config: ^2.0.0
   flutter_dotenv: ^5.0.0
@@ -70,7 +71,7 @@ dependencies:
     git:
       url: https://github.com/Loono-cz/loono-api.git
       path: dart
-      ref: 96d0a5bdca381693f19665093ce9fc61f218ee98
+      ref: 8d3b9f9531e6003256a2939e23582f0e303f477f
   modal_progress_hud_nsn: ^0.2.1
   onesignal_flutter: ^3.2.4
   open_store: ^0.2.4

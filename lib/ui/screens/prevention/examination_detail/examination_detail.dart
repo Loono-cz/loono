@@ -122,6 +122,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
             uuid: widget.categorizedExamination.examination.uuid,
             firstExam: false,
             status: ExaminationStatus.NEW,
+            categoryType: ExaminationCategoryType.MANDATORY,
           );
 
       response.map(
