@@ -248,7 +248,10 @@ class UpdateProfileScreenState extends State<UpdateProfileScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('Výzva k darování'),
+                    Text(
+                      context.l10n.donate_challenge,
+                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                    ),
                     Switch(
                       value: isNotificationSwitched!,
                       onChanged: (value) async {
