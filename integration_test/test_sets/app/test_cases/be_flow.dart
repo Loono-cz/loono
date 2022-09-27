@@ -326,7 +326,9 @@ Future<void> run({required WidgetTester tester}) async {
   await openSettingsPage.verifyScreenIsShown();
 
   await openSettingsPage.clickEditProfileButton();
+
   await updateProfilePage.verifyScreenIsShown();
+  await updateProfilePage.clickUserDataSection();
   updateProfilePage.verifyEmail('backend.test@loono.cz');
 
   await updateProfilePage.clickEmailField();
@@ -338,9 +340,6 @@ Future<void> run({required WidgetTester tester}) async {
   updateProfilePage.verifyEmail('backend.test.edited@loono.cz');
 
   await updateProfilePage.clickBackButton();
-  await openSettingsPage.verifyScreenIsShown();
-
-  await pointsHelpPage.clickBackButton();
   await openSettingsPage.verifyScreenIsShown();
 
   await openSettingsPage.clickLeaderboardButton();
