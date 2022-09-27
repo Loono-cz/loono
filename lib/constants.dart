@@ -43,7 +43,7 @@ class LoonoColors {
   ];
 
   static const donateColor = Color(0xFFBE5713);
-  static const expandTileColor = Color(0xFFFDE4D3);
+  static const primaryLight50 = Color(0xFFFDE4D3);
 }
 
 class LoonoStrings {
@@ -130,4 +130,11 @@ class LoonoFonts {
     color: LoonoColors.grey,
     fontWeight: FontWeight.w400,
   );
+
+  static const customExamLabel = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.w400,
+  );
+
+  static const customExamSubLabel = TextStyle(fontSize: 14, fontWeight: FontWeight.w400);
 }

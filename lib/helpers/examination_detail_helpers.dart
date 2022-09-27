@@ -72,7 +72,7 @@ String czechPrepositionDativ(BuildContext context, {required ExaminationType exa
     case ExaminationType.GENERAL_PRACTITIONER:
       res = 'k';
       break;
-    case ExaminationType.GYNECOLOGIST:
+    case ExaminationType.GYNECOLOGY_AND_OBSTETRICS:
       res = 'ke';
       break;
     case ExaminationType.MAMMOGRAM:
@@ -160,7 +160,7 @@ String procedureQuestionTitle(
     case ExaminationType.GENERAL_PRACTITIONER:
       response = context.l10n.practitioner_question_highlight;
       break;
-    case ExaminationType.GYNECOLOGIST:
+    case ExaminationType.GYNECOLOGY_AND_OBSTETRICS:
       response = context.l10n.gynecology_question_highlight;
       break;
     case ExaminationType.MAMMOGRAM:
@@ -214,16 +214,17 @@ String examinationTypeCasus(
       if (casus == Casus.genitiv) return l10n.generalPractitioner_genitiv;
       if (casus == Casus.dativ) return l10n.generalPractitioner_dativ;
       return '${ExaminationType.GENERAL_PRACTITIONER} unkown casus';
-    case ExaminationType.GYNECOLOGIST:
+    case ExaminationType.GYNECOLOGY_AND_OBSTETRICS:
       if (casus == Casus.nomativ) return l10n.gynecologist_nomativ;
       if (casus == Casus.genitiv) return l10n.gynecologist_genitiv;
       if (casus == Casus.dativ) return l10n.gynecologist_dativ;
-      return '${ExaminationType.GYNECOLOGIST} unkown casus';
+      return '${ExaminationType.GYNECOLOGY_AND_OBSTETRICS} unkown casus';
     case ExaminationType.MAMMOGRAM:
       if (casus == Casus.nomativ) return l10n.mammogram_nomativ;
       if (casus == Casus.genitiv) return l10n.mammogram_genitiv;
       if (casus == Casus.dativ) return l10n.mammogram_dativ;
       return '${ExaminationType.MAMMOGRAM} unkown casus';
+    case ExaminationType.OCULAR:
     case ExaminationType.OPHTHALMOLOGIST:
       if (casus == Casus.nomativ) return l10n.ophthalmologist_nomativ;
       if (casus == Casus.genitiv) return l10n.ophthalmologist_genitiv;
@@ -246,7 +247,22 @@ String examinationTypeCasus(
       return '${ExaminationType.UROLOGIST} unkown casus';
     case ExaminationType.VENEREAL_DISEASES:
       // TODO: Handle this case.
-      return '';
+      return '${ExaminationType.VENEREAL_DISEASES} unkown casus';
+    case ExaminationType.PHYSIOTHERAPY:
+      if (casus == Casus.nomativ) return l10n.physiotherapy_nomativ;
+      if (casus == Casus.genitiv) return l10n.physiotherapy_genitiv;
+      if (casus == Casus.dativ) return l10n.physiotherapy_dativ;
+      return '${ExaminationType.PHYSIOTHERAPY} unkown casus';
+    case ExaminationType.PEDIATRICIAN:
+      if (casus == Casus.nomativ) return l10n.pediatrician_nomativ;
+      if (casus == Casus.genitiv) return l10n.pediatrician_genitiv;
+      if (casus == Casus.dativ) return l10n.pediatrician_dativ;
+      return '${ExaminationType.PEDIATRICIAN} unkown casus';
+    case ExaminationType.INTERN:
+      if (casus == Casus.nomativ) return l10n.intern_nomativ;
+      if (casus == Casus.genitiv) return l10n.intern_genitiv;
+      if (casus == Casus.dativ) return l10n.intern_dativ;
+      return '${ExaminationType.PEDIATRICIAN} unkown casus';
   }
   return '${examinationType.name} unkown casus';
 }

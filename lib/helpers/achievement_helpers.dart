@@ -17,7 +17,7 @@ String getAchievementTitle(BuildContext context, ExaminationType type) {
     case ExaminationType.GENERAL_PRACTITIONER:
       result = context.l10n.achievement_coat_practitioner_header;
       break;
-    case ExaminationType.GYNECOLOGIST:
+    case ExaminationType.GYNECOLOGY_AND_OBSTETRICS:
       result = context.l10n.achievement_belt_gynecologist_header;
       break;
     case ExaminationType.MAMMOGRAM:
@@ -59,7 +59,7 @@ String getAchievementAssetPath(ExaminationType type) {
     case ExaminationType.GENERAL_PRACTITIONER:
       name = 'cloak_level_1.svg';
       break;
-    case ExaminationType.GYNECOLOGIST:
+    case ExaminationType.GYNECOLOGY_AND_OBSTETRICS:
       name = 'belt_level_1.svg';
       break;
     case ExaminationType.MAMMOGRAM:
