@@ -32,7 +32,6 @@ import '../../prevention/pages/self_examination/detail/no_finding_reward_page.da
 import '../../prevention/pages/self_examination/detail/self_examination_detail_page.dart';
 import '../../settings/pages/open_settings_page.dart';
 import '../../settings/pages/points/leaderboard_page.dart';
-import '../../settings/pages/points/points_help_page.dart';
 import '../../settings/pages/update_profile/edit_email_page.dart';
 import '../../settings/pages/update_profile/update_profile_page.dart';
 import '../pages/achievement_page.dart';
@@ -75,7 +74,6 @@ Future<void> run({required WidgetTester tester}) async {
   final openSettingsPage = OpenSettingsPage(tester);
   final updateProfilePage = UpdateProfilePage(tester);
   final editEmailPage = EditEmailPage(tester);
-  final pointsHelpPage = PointsHelpPage(tester);
   final leaderboardPage = LeaderboardPage(tester);
 
   await tester.pumpAndSettle();
