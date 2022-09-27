@@ -10,9 +10,12 @@ class CustomPeriodicalSpinner extends StatefulWidget {
   const CustomPeriodicalSpinner({
     super.key,
     required this.valueChanged,
+    this.stringPeriod,
+    this.numberPeriod,
   });
   final Function(String, String) valueChanged;
-
+  final String? stringPeriod;
+  final String? numberPeriod;
   @override
   State<CustomPeriodicalSpinner> createState() => _CustomPeriodicalSpinnerState();
 }
@@ -93,8 +96,14 @@ class _CustomPeriodicalSpinnerState extends State<CustomPeriodicalSpinner> {
   Widget _frequencyPickerColumn() {
     final items = List<String>.of(['měsíce', 'roky']).asMap();
 
-    final selectedIndex = _selectedStringIndex;
-
+    int selectedIndex;
+    if (widget.stringPeriod!.isNotEmpty == true) {
+      selectedIndex = items.values
+          .toList()
+          .indexOf(items.values.firstWhere((element) => element == widget.stringPeriod));
+    } else {
+      selectedIndex = _selectedStringIndex;
+    }
     return SizedBox(
       width: MediaQuery.of(context).size.width / 3,
       child: ListWheelScrollView.useDelegate(

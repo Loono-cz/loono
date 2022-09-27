@@ -5,14 +5,18 @@ import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_action_types.dart';
 import 'package:loono/helpers/examination_types.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
+import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/custom_exam_form/custom_input_text_field.dart';
 import 'package:loono/ui/widgets/settings/checkbox.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
+import 'package:provider/provider.dart';
 
 class CustomExamFormScreen extends StatefulWidget {
   const CustomExamFormScreen({Key? key}) : super(key: key);
@@ -25,7 +29,7 @@ bool checkPeriodicExam = false;
 
 class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
   ExaminationType? _specialist;
-  ExaminationActionType? _examination;
+  ExaminationActionType? _examinationType;
 
   String _customInterval = '';
   String _note = '';
@@ -61,18 +65,18 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
       });
 
   void onActionTypeSet(ExaminationActionType? examination) => setState(() {
-        _examination = examination;
+        _examinationType = examination;
       });
 
   void onDateSet(DateTime? dateTime) => setState(() {
-        _periodDateTime = dateTime ?? DateTime.now();
+        _periodDateTime = dateTime;
       });
 
   void onLastExamDateSet(DateTime? dateTime) => setState(() {
-        _lastExamDate = dateTime ?? DateTime.now();
+        _lastExamDate = dateTime;
       });
   void onNextExamDateSet(DateTime? dateTime) => setState(() {
-        _nextExamDate = dateTime ?? DateTime.now();
+        _nextExamDate = dateTime;
       });
 
   void setLastExamCheckbox(bool value) => setState(() {
@@ -120,7 +124,8 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                 height: 20,
               ),
               CustomInputTextField(
-                label: context.l10n.specialist,
+                error: false,
+                label: _specialist == null ? '' : context.l10n.specialist,
                 hintText: context.l10n.choose_specialist,
                 value: _specialist != null ? ExaminationTypeExt(_specialist!).l10n_name : '',
                 onClickInputField: () => AutoRouter.of(context).navigate(
@@ -134,13 +139,15 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                 height: 20,
               ),
               CustomInputTextField(
-                label: context.l10n.examination_type,
+                error: _specialist != null && _examinationType == null,
+                label: _specialist == null ? '' : context.l10n.examination_type,
                 hintText: context.l10n.choose_examination_type,
-                value:
-                    _examination != null ? ExaminationActionTypeExt(_examination!).l10n_name : '',
+                value: _examinationType != null
+                    ? ExaminationActionTypeExt(_examinationType!).l10n_name
+                    : '',
                 onClickInputField: () => AutoRouter.of(context).navigate(
                   ChooseCustomExaminationTypeRoute(
-                    actionType: _examination,
+                    actionType: _examinationType,
                     onActionTypeSet: onActionTypeSet,
                   ),
                 ),
@@ -193,6 +200,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                 maxLength: 256,
                 keyboardType: TextInputType.multiline,
                 initialValue: _note,
+                enabled: !_nextExamChck,
                 onChanged: onNoteChange,
                 decoration: InputDecoration(
                   hintText: context.l10n.note_visiting_description,
@@ -209,36 +217,36 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
               LoonoButton(
                 text: context.l10n.action_save,
                 onTap: () async {
-                  // final response = await registry.get<ExaminationRepository>().postExamination(
-                  //       ExaminationType.ALLERGOLOGY,
-                  //       actionType: ExaminationActionType.CONTROL,
-                  //       periodicExam: checkPeriodicExam,
-                  //       note: _note,
-                  //       customInterval: null, // Pravidelne
-                  //       newDate: _periodDateTime,
-                  //       categoryType: ExaminationCategoryType.CUSTOM,
-                  //       uuid: _usersDao.user?.id,
-                  //       status: ExaminationStatus.NEW,
-                  //       firstExam: true,
-                  //     );
-                  // response.map(
-                  //   success: (res) {
-                  //     Provider.of<ExaminationsProvider>(context, listen: false)
-                  //         .updateExaminationsRecord(res.data);
-                  //     AutoRouter.of(context).popUntilRouteWithName(PreventionRoute.name);
-                  //     showFlushBarSuccess(context, 'Prohlídka byla pridána');
-                  //   },
-                  //   failure: (err) {
-                  //     showFlushBarError(
-                  //       context,
-                  //       statusCodeToText(
-                  //         context,
-                  //         err.error.response?.statusCode,
-                  //       ),
-                  //     );
-                  //   },
-                  // );
-                  Navigator.of(context).pop();
+                  if (_specialist != null && _examinationType != null) {
+                    final response = await registry.get<ExaminationRepository>().postExamination(
+                          _specialist!,
+                          actionType: _examinationType,
+                          periodicExam: checkPeriodicExam,
+                          note: _note,
+                          customInterval: null, // Pravidelne
+                          newDate: _periodDateTime,
+                          categoryType: ExaminationCategoryType.CUSTOM,
+                          status: ExaminationStatus.NEW,
+                          firstExam: true,
+                        );
+                    response.map(
+                      success: (res) {
+                        Provider.of<ExaminationsProvider>(context, listen: false)
+                            .updateExaminationsRecord(res.data);
+                        AutoRouter.of(context).popUntilRouteWithName(PreventionRoute.name);
+                        showFlushBarSuccess(context, 'Prohlídka byla pridána');
+                      },
+                      failure: (err) {
+                        showFlushBarError(
+                          context,
+                          statusCodeToText(
+                            context,
+                            err.error.response?.statusCode,
+                          ),
+                        );
+                      },
+                    );
+                  }
                 },
               )
             ],
@@ -313,11 +321,13 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
               Flexible(
                 flex: 2,
                 child: CustomInputTextField(
+                  error: false,
                   label: '',
                   hintText: context.l10n.exam_frequency,
                   value: _customInterval,
                   onClickInputField: () => AutoRouter.of(context).navigate(
                     ChooseFrequencyOfExamRoute(
+                      value: _customInterval,
                       valueChanged: setFrequencyExam,
                     ),
                   ),
@@ -336,8 +346,9 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                 width: (MediaQuery.of(context).size.width) -
                     (MediaQuery.of(context).size.width / 20) * 10,
                 child: CustomInputTextField(
+                  error: false,
                   enabled: !_lastExamChck,
-                  label: context.l10n.last_examination,
+                  label: _lastExamDate == null ? '' : context.l10n.last_examination,
                   hintText: context.l10n.last_examination,
                   value:
                       _lastExamDate != null ? DateFormat('dd.MM.yyyy').format(_lastExamDate!) : '',
@@ -382,18 +393,19 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                 width: (MediaQuery.of(context).size.width) -
                     (MediaQuery.of(context).size.width / 20) * 10,
                 child: CustomInputTextField(
+                  error: false,
                   enabled: !_nextExamChck,
-                  label: context.l10n.next_examination,
+                  label: _nextExamDate == null ? '' : context.l10n.next_examination,
                   hintText: context.l10n.next_examination,
                   value: _nextExamDate != null
-                      ? DateFormat('dd.MM.yyyy hh:mm').format(_nextExamDate!)
+                      ? DateFormat('dd.MM.yyyy HH:mm').format(_nextExamDate!)
                       : '',
                   prefixIcon: SvgPicture.asset(
                     'assets/icons/calendar.svg',
                     width: 5,
                     height: 5,
                     fit: BoxFit.scaleDown,
-                    color: Colors.black87,
+                    color: _nextExamChck ? Colors.black38 : Colors.black87,
                   ),
                   onClickInputField: () => AutoRouter.of(context).navigate(
                     ChooseExamPeriodDateRoute(
@@ -420,10 +432,11 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
       return SizedBox(
         width: (MediaQuery.of(context).size.width) - (MediaQuery.of(context).size.width / 20) * 10,
         child: CustomInputTextField(
-          label: context.l10n.examination_term,
+          error: false,
+          label: _periodDateTime == null ? '' : context.l10n.examination_term,
           hintText: context.l10n.examination_term,
           value: _periodDateTime != null
-              ? DateFormat('dd.MM.yyyy hh:mm').format(_periodDateTime!)
+              ? DateFormat('dd.MM.yyyy HH:mm').format(_periodDateTime!)
               : '',
           prefixIcon: SvgPicture.asset(
             'assets/icons/calendar.svg',

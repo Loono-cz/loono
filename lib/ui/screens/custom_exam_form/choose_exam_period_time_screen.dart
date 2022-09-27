@@ -42,7 +42,9 @@ class _ChooseExamPeriodTimeScreenState extends State<ChooseExamPeriodTimeScreen>
   @override
   void initState() {
     super.initState();
-    _dateTime = widget.dateTime;
+
+    _dateTime =
+        widget.dateTime?.add(Duration(hours: DateTime.now().hour, minutes: DateTime.now().minute));
   }
 
   @override
@@ -77,10 +79,12 @@ class _ChooseExamPeriodTimeScreenState extends State<ChooseExamPeriodTimeScreen>
               height: (MediaQuery.of(context).size.height) -
                   (MediaQuery.of(context).size.height / 25) * 10,
               child: CustomTimePicker(
+                defaultHour: _dateTime?.hour,
+                defaultMinute: _dateTime?.minute,
                 valueChanged: (value) {
                   _time = value;
                 },
-                defaultDate: DateTime.now(),
+                defaultDate: _dateTime ?? DateTime.now(),
               ),
             ),
             const SizedBox(
@@ -89,8 +93,7 @@ class _ChooseExamPeriodTimeScreenState extends State<ChooseExamPeriodTimeScreen>
             LoonoButton(
               text: context.l10n.confirm_info,
               onTap: () {
-                final settedDate =
-                    _dateTime?.add(Duration(hours: _time.hour, minutes: _time.minute));
+                final settedDate = _time;
                 widget.onTimeSet(settedDate);
                 AutoRouter.of(context).popUntilRouteWithName(CustomExamFormRoute.name);
               },

@@ -40,7 +40,6 @@ mixin _$ExaminationTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -64,6 +63,7 @@ mixin _$ExaminationTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -90,7 +90,6 @@ mixin _$ExaminationTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -114,6 +113,7 @@ mixin _$ExaminationTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -140,7 +140,6 @@ mixin _$ExaminationTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -164,6 +163,7 @@ mixin _$ExaminationTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -200,8 +200,6 @@ mixin _$ExaminationTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -228,6 +226,7 @@ mixin _$ExaminationTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -259,8 +258,6 @@ mixin _$ExaminationTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -285,6 +282,7 @@ mixin _$ExaminationTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -316,8 +314,6 @@ mixin _$ExaminationTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -342,6 +338,7 @@ mixin _$ExaminationTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -432,7 +429,6 @@ class _$ColonoscopyExaminationTypeUnion
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -456,6 +452,7 @@ class _$ColonoscopyExaminationTypeUnion
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return colonoscopy();
   }
@@ -485,7 +482,6 @@ class _$ColonoscopyExaminationTypeUnion
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -509,6 +505,7 @@ class _$ColonoscopyExaminationTypeUnion
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return colonoscopy?.call();
   }
@@ -538,7 +535,6 @@ class _$ColonoscopyExaminationTypeUnion
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -562,6 +558,7 @@ class _$ColonoscopyExaminationTypeUnion
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (colonoscopy != null) {
@@ -604,8 +601,6 @@ class _$ColonoscopyExaminationTypeUnion
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -632,6 +627,7 @@ class _$ColonoscopyExaminationTypeUnion
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return colonoscopy(this);
   }
@@ -666,8 +662,6 @@ class _$ColonoscopyExaminationTypeUnion
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -692,6 +686,7 @@ class _$ColonoscopyExaminationTypeUnion
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return colonoscopy?.call(this);
   }
@@ -726,8 +721,6 @@ class _$ColonoscopyExaminationTypeUnion
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -752,6 +745,7 @@ class _$ColonoscopyExaminationTypeUnion
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (colonoscopy != null) {
@@ -834,7 +828,6 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -858,6 +851,7 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return dentist();
   }
@@ -887,7 +881,6 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -911,6 +904,7 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return dentist?.call();
   }
@@ -940,7 +934,6 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -964,6 +957,7 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (dentist != null) {
@@ -1006,8 +1000,6 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -1034,6 +1026,7 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return dentist(this);
   }
@@ -1068,8 +1061,6 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -1094,6 +1085,7 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return dentist?.call(this);
   }
@@ -1128,8 +1120,6 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -1154,6 +1144,7 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (dentist != null) {
@@ -1236,7 +1227,6 @@ class _$DermatologistExaminationTypeUnion
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -1260,6 +1250,7 @@ class _$DermatologistExaminationTypeUnion
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return dermatologist();
   }
@@ -1289,7 +1280,6 @@ class _$DermatologistExaminationTypeUnion
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -1313,6 +1303,7 @@ class _$DermatologistExaminationTypeUnion
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return dermatologist?.call();
   }
@@ -1342,7 +1333,6 @@ class _$DermatologistExaminationTypeUnion
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -1366,6 +1356,7 @@ class _$DermatologistExaminationTypeUnion
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (dermatologist != null) {
@@ -1408,8 +1399,6 @@ class _$DermatologistExaminationTypeUnion
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -1436,6 +1425,7 @@ class _$DermatologistExaminationTypeUnion
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return dermatologist(this);
   }
@@ -1470,8 +1460,6 @@ class _$DermatologistExaminationTypeUnion
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -1496,6 +1484,7 @@ class _$DermatologistExaminationTypeUnion
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return dermatologist?.call(this);
   }
@@ -1530,8 +1519,6 @@ class _$DermatologistExaminationTypeUnion
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -1556,6 +1543,7 @@ class _$DermatologistExaminationTypeUnion
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (dermatologist != null) {
@@ -1640,7 +1628,6 @@ class _$GeneralPractitionerExaminationTypeUnion
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -1664,6 +1651,7 @@ class _$GeneralPractitionerExaminationTypeUnion
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return generalPractitioner();
   }
@@ -1693,7 +1681,6 @@ class _$GeneralPractitionerExaminationTypeUnion
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -1717,6 +1704,7 @@ class _$GeneralPractitionerExaminationTypeUnion
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return generalPractitioner?.call();
   }
@@ -1746,7 +1734,6 @@ class _$GeneralPractitionerExaminationTypeUnion
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -1770,6 +1757,7 @@ class _$GeneralPractitionerExaminationTypeUnion
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (generalPractitioner != null) {
@@ -1812,8 +1800,6 @@ class _$GeneralPractitionerExaminationTypeUnion
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -1840,6 +1826,7 @@ class _$GeneralPractitionerExaminationTypeUnion
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return generalPractitioner(this);
   }
@@ -1874,8 +1861,6 @@ class _$GeneralPractitionerExaminationTypeUnion
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -1900,6 +1885,7 @@ class _$GeneralPractitionerExaminationTypeUnion
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return generalPractitioner?.call(this);
   }
@@ -1934,8 +1920,6 @@ class _$GeneralPractitionerExaminationTypeUnion
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -1960,6 +1944,7 @@ class _$GeneralPractitionerExaminationTypeUnion
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (generalPractitioner != null) {
@@ -2043,7 +2028,6 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -2067,6 +2051,7 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return mammogram();
   }
@@ -2096,7 +2081,6 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -2120,6 +2104,7 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return mammogram?.call();
   }
@@ -2149,7 +2134,6 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -2173,6 +2157,7 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (mammogram != null) {
@@ -2215,8 +2200,6 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -2243,6 +2226,7 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return mammogram(this);
   }
@@ -2277,8 +2261,6 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -2303,6 +2285,7 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return mammogram?.call(this);
   }
@@ -2337,8 +2320,6 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -2363,6 +2344,7 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (mammogram != null) {
@@ -2446,7 +2428,6 @@ class _$GynecologistExaminationTypeUnion
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -2470,6 +2451,7 @@ class _$GynecologistExaminationTypeUnion
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return gynecologist();
   }
@@ -2499,7 +2481,6 @@ class _$GynecologistExaminationTypeUnion
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -2523,6 +2504,7 @@ class _$GynecologistExaminationTypeUnion
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return gynecologist?.call();
   }
@@ -2552,7 +2534,6 @@ class _$GynecologistExaminationTypeUnion
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -2576,6 +2557,7 @@ class _$GynecologistExaminationTypeUnion
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (gynecologist != null) {
@@ -2618,8 +2600,6 @@ class _$GynecologistExaminationTypeUnion
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -2646,6 +2626,7 @@ class _$GynecologistExaminationTypeUnion
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return gynecologist(this);
   }
@@ -2680,8 +2661,6 @@ class _$GynecologistExaminationTypeUnion
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -2706,6 +2685,7 @@ class _$GynecologistExaminationTypeUnion
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return gynecologist?.call(this);
   }
@@ -2740,8 +2720,6 @@ class _$GynecologistExaminationTypeUnion
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -2766,6 +2744,7 @@ class _$GynecologistExaminationTypeUnion
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (gynecologist != null) {
@@ -2849,7 +2828,6 @@ class _$OphthalmologistExaminationTypeUnion
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -2873,6 +2851,7 @@ class _$OphthalmologistExaminationTypeUnion
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return ophthalmologist();
   }
@@ -2902,7 +2881,6 @@ class _$OphthalmologistExaminationTypeUnion
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -2926,6 +2904,7 @@ class _$OphthalmologistExaminationTypeUnion
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return ophthalmologist?.call();
   }
@@ -2955,7 +2934,6 @@ class _$OphthalmologistExaminationTypeUnion
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -2979,6 +2957,7 @@ class _$OphthalmologistExaminationTypeUnion
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (ophthalmologist != null) {
@@ -3021,8 +3000,6 @@ class _$OphthalmologistExaminationTypeUnion
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -3049,6 +3026,7 @@ class _$OphthalmologistExaminationTypeUnion
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return ophthalmologist(this);
   }
@@ -3083,8 +3061,6 @@ class _$OphthalmologistExaminationTypeUnion
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -3109,6 +3085,7 @@ class _$OphthalmologistExaminationTypeUnion
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return ophthalmologist?.call(this);
   }
@@ -3143,8 +3120,6 @@ class _$OphthalmologistExaminationTypeUnion
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -3169,6 +3144,7 @@ class _$OphthalmologistExaminationTypeUnion
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (ophthalmologist != null) {
@@ -3250,7 +3226,6 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -3274,6 +3249,7 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return toks();
   }
@@ -3303,7 +3279,6 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -3327,6 +3302,7 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return toks?.call();
   }
@@ -3356,7 +3332,6 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -3380,6 +3355,7 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (toks != null) {
@@ -3422,8 +3398,6 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -3450,6 +3424,7 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return toks(this);
   }
@@ -3484,8 +3459,6 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -3510,6 +3483,7 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return toks?.call(this);
   }
@@ -3544,8 +3518,6 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -3570,6 +3542,7 @@ class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (toks != null) {
@@ -3653,7 +3626,6 @@ class _$UltrasoundBreastExaminationTypeUnion
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -3677,6 +3649,7 @@ class _$UltrasoundBreastExaminationTypeUnion
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return ultrasoundBreast();
   }
@@ -3706,7 +3679,6 @@ class _$UltrasoundBreastExaminationTypeUnion
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -3730,6 +3702,7 @@ class _$UltrasoundBreastExaminationTypeUnion
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return ultrasoundBreast?.call();
   }
@@ -3759,7 +3732,6 @@ class _$UltrasoundBreastExaminationTypeUnion
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -3783,6 +3755,7 @@ class _$UltrasoundBreastExaminationTypeUnion
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (ultrasoundBreast != null) {
@@ -3825,8 +3798,6 @@ class _$UltrasoundBreastExaminationTypeUnion
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -3853,6 +3824,7 @@ class _$UltrasoundBreastExaminationTypeUnion
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return ultrasoundBreast(this);
   }
@@ -3887,8 +3859,6 @@ class _$UltrasoundBreastExaminationTypeUnion
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -3913,6 +3883,7 @@ class _$UltrasoundBreastExaminationTypeUnion
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return ultrasoundBreast?.call(this);
   }
@@ -3947,8 +3918,6 @@ class _$UltrasoundBreastExaminationTypeUnion
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -3973,6 +3942,7 @@ class _$UltrasoundBreastExaminationTypeUnion
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (ultrasoundBreast != null) {
@@ -4056,7 +4026,6 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -4080,6 +4049,7 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return urologist();
   }
@@ -4109,7 +4079,6 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -4133,6 +4102,7 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return urologist?.call();
   }
@@ -4162,7 +4132,6 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -4186,6 +4155,7 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (urologist != null) {
@@ -4228,8 +4198,6 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -4256,6 +4224,7 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return urologist(this);
   }
@@ -4290,8 +4259,6 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -4316,6 +4283,7 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return urologist?.call(this);
   }
@@ -4350,8 +4318,6 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -4376,6 +4342,7 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (urologist != null) {
@@ -4460,7 +4427,6 @@ class _$VenerealDiseasesExaminationTypeUnion
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -4484,6 +4450,7 @@ class _$VenerealDiseasesExaminationTypeUnion
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return venerealDiseases();
   }
@@ -4513,7 +4480,6 @@ class _$VenerealDiseasesExaminationTypeUnion
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -4537,6 +4503,7 @@ class _$VenerealDiseasesExaminationTypeUnion
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return venerealDiseases?.call();
   }
@@ -4566,7 +4533,6 @@ class _$VenerealDiseasesExaminationTypeUnion
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -4590,6 +4556,7 @@ class _$VenerealDiseasesExaminationTypeUnion
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (venerealDiseases != null) {
@@ -4632,8 +4599,6 @@ class _$VenerealDiseasesExaminationTypeUnion
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -4660,6 +4625,7 @@ class _$VenerealDiseasesExaminationTypeUnion
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return venerealDiseases(this);
   }
@@ -4694,8 +4660,6 @@ class _$VenerealDiseasesExaminationTypeUnion
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -4720,6 +4684,7 @@ class _$VenerealDiseasesExaminationTypeUnion
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return venerealDiseases?.call(this);
   }
@@ -4754,8 +4719,6 @@ class _$VenerealDiseasesExaminationTypeUnion
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -4780,6 +4743,7 @@ class _$VenerealDiseasesExaminationTypeUnion
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (venerealDiseases != null) {
@@ -4861,7 +4825,6 @@ class _$AlergollogyExamTypeUnion extends AlergollogyExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -4885,6 +4848,7 @@ class _$AlergollogyExamTypeUnion extends AlergollogyExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return allergology();
   }
@@ -4914,7 +4878,6 @@ class _$AlergollogyExamTypeUnion extends AlergollogyExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -4938,6 +4901,7 @@ class _$AlergollogyExamTypeUnion extends AlergollogyExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return allergology?.call();
   }
@@ -4967,7 +4931,6 @@ class _$AlergollogyExamTypeUnion extends AlergollogyExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -4991,6 +4954,7 @@ class _$AlergollogyExamTypeUnion extends AlergollogyExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (allergology != null) {
@@ -5033,8 +4997,6 @@ class _$AlergollogyExamTypeUnion extends AlergollogyExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -5061,6 +5023,7 @@ class _$AlergollogyExamTypeUnion extends AlergollogyExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return allergology(this);
   }
@@ -5095,8 +5058,6 @@ class _$AlergollogyExamTypeUnion extends AlergollogyExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -5121,6 +5082,7 @@ class _$AlergollogyExamTypeUnion extends AlergollogyExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return allergology?.call(this);
   }
@@ -5155,8 +5117,6 @@ class _$AlergollogyExamTypeUnion extends AlergollogyExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -5181,6 +5141,7 @@ class _$AlergollogyExamTypeUnion extends AlergollogyExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (allergology != null) {
@@ -5260,7 +5221,6 @@ class _$CardiologyExamTypeUnion extends CardiologyExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -5284,6 +5244,7 @@ class _$CardiologyExamTypeUnion extends CardiologyExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return cardiology();
   }
@@ -5313,7 +5274,6 @@ class _$CardiologyExamTypeUnion extends CardiologyExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -5337,6 +5297,7 @@ class _$CardiologyExamTypeUnion extends CardiologyExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return cardiology?.call();
   }
@@ -5366,7 +5327,6 @@ class _$CardiologyExamTypeUnion extends CardiologyExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -5390,6 +5350,7 @@ class _$CardiologyExamTypeUnion extends CardiologyExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (cardiology != null) {
@@ -5432,8 +5393,6 @@ class _$CardiologyExamTypeUnion extends CardiologyExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -5460,6 +5419,7 @@ class _$CardiologyExamTypeUnion extends CardiologyExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return cardiology(this);
   }
@@ -5494,8 +5454,6 @@ class _$CardiologyExamTypeUnion extends CardiologyExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -5520,6 +5478,7 @@ class _$CardiologyExamTypeUnion extends CardiologyExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return cardiology?.call(this);
   }
@@ -5554,8 +5513,6 @@ class _$CardiologyExamTypeUnion extends CardiologyExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -5580,6 +5537,7 @@ class _$CardiologyExamTypeUnion extends CardiologyExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (cardiology != null) {
@@ -5663,7 +5621,6 @@ class _$EndocrinologyAndHormonesExamTypeUnion
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -5687,6 +5644,7 @@ class _$EndocrinologyAndHormonesExamTypeUnion
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return endocrinologyandhormones();
   }
@@ -5716,7 +5674,6 @@ class _$EndocrinologyAndHormonesExamTypeUnion
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -5740,6 +5697,7 @@ class _$EndocrinologyAndHormonesExamTypeUnion
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return endocrinologyandhormones?.call();
   }
@@ -5769,7 +5727,6 @@ class _$EndocrinologyAndHormonesExamTypeUnion
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -5793,6 +5750,7 @@ class _$EndocrinologyAndHormonesExamTypeUnion
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (endocrinologyandhormones != null) {
@@ -5835,8 +5793,6 @@ class _$EndocrinologyAndHormonesExamTypeUnion
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -5863,6 +5819,7 @@ class _$EndocrinologyAndHormonesExamTypeUnion
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return endocrinologyandhormones(this);
   }
@@ -5897,8 +5854,6 @@ class _$EndocrinologyAndHormonesExamTypeUnion
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -5923,6 +5878,7 @@ class _$EndocrinologyAndHormonesExamTypeUnion
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return endocrinologyandhormones?.call(this);
   }
@@ -5957,8 +5913,6 @@ class _$EndocrinologyAndHormonesExamTypeUnion
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -5983,6 +5937,7 @@ class _$EndocrinologyAndHormonesExamTypeUnion
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (endocrinologyandhormones != null) {
@@ -6066,7 +6021,6 @@ class _$GastroenterologyExamTypeUnion extends GastroenterologyExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -6090,6 +6044,7 @@ class _$GastroenterologyExamTypeUnion extends GastroenterologyExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return gastroenterology();
   }
@@ -6119,7 +6074,6 @@ class _$GastroenterologyExamTypeUnion extends GastroenterologyExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -6143,6 +6097,7 @@ class _$GastroenterologyExamTypeUnion extends GastroenterologyExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return gastroenterology?.call();
   }
@@ -6172,7 +6127,6 @@ class _$GastroenterologyExamTypeUnion extends GastroenterologyExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -6196,6 +6150,7 @@ class _$GastroenterologyExamTypeUnion extends GastroenterologyExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (gastroenterology != null) {
@@ -6238,8 +6193,6 @@ class _$GastroenterologyExamTypeUnion extends GastroenterologyExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -6266,6 +6219,7 @@ class _$GastroenterologyExamTypeUnion extends GastroenterologyExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return gastroenterology(this);
   }
@@ -6300,8 +6254,6 @@ class _$GastroenterologyExamTypeUnion extends GastroenterologyExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -6326,6 +6278,7 @@ class _$GastroenterologyExamTypeUnion extends GastroenterologyExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return gastroenterology?.call(this);
   }
@@ -6360,8 +6313,6 @@ class _$GastroenterologyExamTypeUnion extends GastroenterologyExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -6386,6 +6337,7 @@ class _$GastroenterologyExamTypeUnion extends GastroenterologyExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (gastroenterology != null) {
@@ -6464,7 +6416,6 @@ class _$GeneticsExamTypeUnion extends GeneticsExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -6488,6 +6439,7 @@ class _$GeneticsExamTypeUnion extends GeneticsExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return genetics();
   }
@@ -6517,7 +6469,6 @@ class _$GeneticsExamTypeUnion extends GeneticsExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -6541,6 +6492,7 @@ class _$GeneticsExamTypeUnion extends GeneticsExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return genetics?.call();
   }
@@ -6570,7 +6522,6 @@ class _$GeneticsExamTypeUnion extends GeneticsExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -6594,6 +6545,7 @@ class _$GeneticsExamTypeUnion extends GeneticsExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (genetics != null) {
@@ -6636,8 +6588,6 @@ class _$GeneticsExamTypeUnion extends GeneticsExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -6664,6 +6614,7 @@ class _$GeneticsExamTypeUnion extends GeneticsExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return genetics(this);
   }
@@ -6698,8 +6649,6 @@ class _$GeneticsExamTypeUnion extends GeneticsExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -6724,6 +6673,7 @@ class _$GeneticsExamTypeUnion extends GeneticsExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return genetics?.call(this);
   }
@@ -6758,8 +6708,6 @@ class _$GeneticsExamTypeUnion extends GeneticsExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -6784,6 +6732,7 @@ class _$GeneticsExamTypeUnion extends GeneticsExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (genetics != null) {
@@ -6863,7 +6812,6 @@ class _$HematologyExamTypeUnion extends HematologyExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -6887,6 +6835,7 @@ class _$HematologyExamTypeUnion extends HematologyExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return hematology();
   }
@@ -6916,7 +6865,6 @@ class _$HematologyExamTypeUnion extends HematologyExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -6940,6 +6888,7 @@ class _$HematologyExamTypeUnion extends HematologyExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return hematology?.call();
   }
@@ -6969,7 +6918,6 @@ class _$HematologyExamTypeUnion extends HematologyExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -6993,6 +6941,7 @@ class _$HematologyExamTypeUnion extends HematologyExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (hematology != null) {
@@ -7035,8 +6984,6 @@ class _$HematologyExamTypeUnion extends HematologyExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -7063,6 +7010,7 @@ class _$HematologyExamTypeUnion extends HematologyExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return hematology(this);
   }
@@ -7097,8 +7045,6 @@ class _$HematologyExamTypeUnion extends HematologyExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -7123,6 +7069,7 @@ class _$HematologyExamTypeUnion extends HematologyExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return hematology?.call(this);
   }
@@ -7157,8 +7104,6 @@ class _$HematologyExamTypeUnion extends HematologyExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -7183,6 +7128,7 @@ class _$HematologyExamTypeUnion extends HematologyExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (hematology != null) {
@@ -7262,7 +7208,6 @@ class _$ImmunologyExamTypeUnion extends ImmunologyExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -7286,6 +7231,7 @@ class _$ImmunologyExamTypeUnion extends ImmunologyExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return immunology();
   }
@@ -7315,7 +7261,6 @@ class _$ImmunologyExamTypeUnion extends ImmunologyExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -7339,6 +7284,7 @@ class _$ImmunologyExamTypeUnion extends ImmunologyExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return immunology?.call();
   }
@@ -7368,7 +7314,6 @@ class _$ImmunologyExamTypeUnion extends ImmunologyExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -7392,6 +7337,7 @@ class _$ImmunologyExamTypeUnion extends ImmunologyExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (immunology != null) {
@@ -7434,8 +7380,6 @@ class _$ImmunologyExamTypeUnion extends ImmunologyExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -7462,6 +7406,7 @@ class _$ImmunologyExamTypeUnion extends ImmunologyExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return immunology(this);
   }
@@ -7496,8 +7441,6 @@ class _$ImmunologyExamTypeUnion extends ImmunologyExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -7522,6 +7465,7 @@ class _$ImmunologyExamTypeUnion extends ImmunologyExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return immunology?.call(this);
   }
@@ -7556,8 +7500,6 @@ class _$ImmunologyExamTypeUnion extends ImmunologyExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -7582,6 +7524,7 @@ class _$ImmunologyExamTypeUnion extends ImmunologyExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (immunology != null) {
@@ -7659,7 +7602,6 @@ class _$InternExamTypeUnion extends InternExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -7683,6 +7625,7 @@ class _$InternExamTypeUnion extends InternExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return intern();
   }
@@ -7712,7 +7655,6 @@ class _$InternExamTypeUnion extends InternExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -7736,6 +7678,7 @@ class _$InternExamTypeUnion extends InternExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return intern?.call();
   }
@@ -7765,7 +7708,6 @@ class _$InternExamTypeUnion extends InternExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -7789,6 +7731,7 @@ class _$InternExamTypeUnion extends InternExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (intern != null) {
@@ -7831,8 +7774,6 @@ class _$InternExamTypeUnion extends InternExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -7859,6 +7800,7 @@ class _$InternExamTypeUnion extends InternExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return intern(this);
   }
@@ -7893,8 +7835,6 @@ class _$InternExamTypeUnion extends InternExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -7919,6 +7859,7 @@ class _$InternExamTypeUnion extends InternExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return intern?.call(this);
   }
@@ -7953,8 +7894,6 @@ class _$InternExamTypeUnion extends InternExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -7979,6 +7918,7 @@ class _$InternExamTypeUnion extends InternExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (intern != null) {
@@ -8056,7 +7996,6 @@ class _$NephrologyTypeUnion extends NephrologyTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -8080,6 +8019,7 @@ class _$NephrologyTypeUnion extends NephrologyTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return nephrology();
   }
@@ -8109,7 +8049,6 @@ class _$NephrologyTypeUnion extends NephrologyTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -8133,6 +8072,7 @@ class _$NephrologyTypeUnion extends NephrologyTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return nephrology?.call();
   }
@@ -8162,7 +8102,6 @@ class _$NephrologyTypeUnion extends NephrologyTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -8186,6 +8125,7 @@ class _$NephrologyTypeUnion extends NephrologyTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (nephrology != null) {
@@ -8228,8 +8168,6 @@ class _$NephrologyTypeUnion extends NephrologyTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -8256,6 +8194,7 @@ class _$NephrologyTypeUnion extends NephrologyTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return nephrology(this);
   }
@@ -8290,8 +8229,6 @@ class _$NephrologyTypeUnion extends NephrologyTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -8316,6 +8253,7 @@ class _$NephrologyTypeUnion extends NephrologyTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return nephrology?.call(this);
   }
@@ -8350,8 +8288,6 @@ class _$NephrologyTypeUnion extends NephrologyTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -8376,6 +8312,7 @@ class _$NephrologyTypeUnion extends NephrologyTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (nephrology != null) {
@@ -8454,7 +8391,6 @@ class _$NeurologyExamTypeUnion extends NeurologyExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -8478,6 +8414,7 @@ class _$NeurologyExamTypeUnion extends NeurologyExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return neurology();
   }
@@ -8507,7 +8444,6 @@ class _$NeurologyExamTypeUnion extends NeurologyExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -8531,6 +8467,7 @@ class _$NeurologyExamTypeUnion extends NeurologyExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return neurology?.call();
   }
@@ -8560,7 +8497,6 @@ class _$NeurologyExamTypeUnion extends NeurologyExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -8584,6 +8520,7 @@ class _$NeurologyExamTypeUnion extends NeurologyExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (neurology != null) {
@@ -8626,8 +8563,6 @@ class _$NeurologyExamTypeUnion extends NeurologyExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -8654,6 +8589,7 @@ class _$NeurologyExamTypeUnion extends NeurologyExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return neurology(this);
   }
@@ -8688,8 +8624,6 @@ class _$NeurologyExamTypeUnion extends NeurologyExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -8714,6 +8648,7 @@ class _$NeurologyExamTypeUnion extends NeurologyExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return neurology?.call(this);
   }
@@ -8748,8 +8683,6 @@ class _$NeurologyExamTypeUnion extends NeurologyExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -8774,6 +8707,7 @@ class _$NeurologyExamTypeUnion extends NeurologyExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (neurology != null) {
@@ -8852,7 +8786,6 @@ class _$NutritionExamTypeUnion extends NutritionExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -8876,6 +8809,7 @@ class _$NutritionExamTypeUnion extends NutritionExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return nutrition();
   }
@@ -8905,7 +8839,6 @@ class _$NutritionExamTypeUnion extends NutritionExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -8929,6 +8862,7 @@ class _$NutritionExamTypeUnion extends NutritionExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return nutrition?.call();
   }
@@ -8958,7 +8892,6 @@ class _$NutritionExamTypeUnion extends NutritionExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -8982,6 +8915,7 @@ class _$NutritionExamTypeUnion extends NutritionExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (nutrition != null) {
@@ -9024,8 +8958,6 @@ class _$NutritionExamTypeUnion extends NutritionExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -9052,6 +8984,7 @@ class _$NutritionExamTypeUnion extends NutritionExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return nutrition(this);
   }
@@ -9086,8 +9019,6 @@ class _$NutritionExamTypeUnion extends NutritionExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -9112,6 +9043,7 @@ class _$NutritionExamTypeUnion extends NutritionExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return nutrition?.call(this);
   }
@@ -9146,8 +9078,6 @@ class _$NutritionExamTypeUnion extends NutritionExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -9172,6 +9102,7 @@ class _$NutritionExamTypeUnion extends NutritionExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (nutrition != null) {
@@ -9184,409 +9115,6 @@ class _$NutritionExamTypeUnion extends NutritionExamTypeUnion {
 abstract class NutritionExamTypeUnion extends ExaminationTypeUnion {
   const factory NutritionExamTypeUnion() = _$NutritionExamTypeUnion;
   const NutritionExamTypeUnion._() : super._();
-}
-
-/// @nodoc
-abstract class _$$OccupationalTherapyExamTypeUnionCopyWith<$Res> {
-  factory _$$OccupationalTherapyExamTypeUnionCopyWith(
-          _$OccupationalTherapyExamTypeUnion value,
-          $Res Function(_$OccupationalTherapyExamTypeUnion) then) =
-      __$$OccupationalTherapyExamTypeUnionCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$OccupationalTherapyExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
-    implements _$$OccupationalTherapyExamTypeUnionCopyWith<$Res> {
-  __$$OccupationalTherapyExamTypeUnionCopyWithImpl(
-      _$OccupationalTherapyExamTypeUnion _value,
-      $Res Function(_$OccupationalTherapyExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$OccupationalTherapyExamTypeUnion));
-
-  @override
-  _$OccupationalTherapyExamTypeUnion get _value =>
-      super._value as _$OccupationalTherapyExamTypeUnion;
-}
-
-/// @nodoc
-
-class _$OccupationalTherapyExamTypeUnion
-    extends OccupationalTherapyExamTypeUnion {
-  const _$OccupationalTherapyExamTypeUnion() : super._();
-
-  @override
-  String toString() {
-    return 'ExaminationTypeUnion.occupationaltherapy()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$OccupationalTherapyExamTypeUnion);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() colonoscopy,
-    required TResult Function() dentist,
-    required TResult Function() dermatologist,
-    required TResult Function() generalPractitioner,
-    required TResult Function() mammogram,
-    required TResult Function() gynecologist,
-    required TResult Function() ophthalmologist,
-    required TResult Function() toks,
-    required TResult Function() ultrasoundBreast,
-    required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
-    required TResult Function() allergology,
-    required TResult Function() cardiology,
-    required TResult Function() endocrinologyandhormones,
-    required TResult Function() gastroenterology,
-    required TResult Function() genetics,
-    required TResult Function() hematology,
-    required TResult Function() immunology,
-    required TResult Function() intern,
-    required TResult Function() nephrology,
-    required TResult Function() neurology,
-    required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
-    required TResult Function() oncology,
-    required TResult Function() orl,
-    required TResult Function() orthodontics,
-    required TResult Function() orthopedics,
-    required TResult Function() other,
-    required TResult Function() pallativemedicine,
-    required TResult Function() pediatrician,
-    required TResult Function() phoniatrics,
-    required TResult Function() physiotherapy,
-    required TResult Function() psychiatry,
-    required TResult Function() psychology,
-    required TResult Function() pulmonary,
-    required TResult Function() rehabilitation,
-    required TResult Function() reproductivemedicine,
-    required TResult Function() rheumatology,
-    required TResult Function() sexology,
-    required TResult Function() speechtherapist,
-    required TResult Function() sportmedicine,
-    required TResult Function() surgey,
-    required TResult Function() tanner,
-    required TResult Function() urlogy,
-    required TResult Function() vascular,
-    required TResult Function() dentalhygiene,
-  }) {
-    return occupationaltherapy();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? toks,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-  }) {
-    return occupationaltherapy?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? toks,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    required TResult orElse(),
-  }) {
-    if (occupationaltherapy != null) {
-      return occupationaltherapy();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ColonoscopyExaminationTypeUnion value)
-        colonoscopy,
-    required TResult Function(DentistExaminationTypeUnion value) dentist,
-    required TResult Function(DermatologistExaminationTypeUnion value)
-        dermatologist,
-    required TResult Function(GeneralPractitionerExaminationTypeUnion value)
-        generalPractitioner,
-    required TResult Function(MammogramExaminationTypeUnion value) mammogram,
-    required TResult Function(GynecologistExaminationTypeUnion value)
-        gynecologist,
-    required TResult Function(OphthalmologistExaminationTypeUnion value)
-        ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
-    required TResult Function(UltrasoundBreastExaminationTypeUnion value)
-        ultrasoundBreast,
-    required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
-    required TResult Function(AlergollogyExamTypeUnion value) allergology,
-    required TResult Function(CardiologyExamTypeUnion value) cardiology,
-    required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
-        endocrinologyandhormones,
-    required TResult Function(GastroenterologyExamTypeUnion value)
-        gastroenterology,
-    required TResult Function(GeneticsExamTypeUnion value) genetics,
-    required TResult Function(HematologyExamTypeUnion value) hematology,
-    required TResult Function(ImmunologyExamTypeUnion value) immunology,
-    required TResult Function(InternExamTypeUnion value) intern,
-    required TResult Function(NephrologyTypeUnion value) nephrology,
-    required TResult Function(NeurologyExamTypeUnion value) neurology,
-    required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
-    required TResult Function(OncologyExamTypeUnion value) oncology,
-    required TResult Function(OrlExamTypeUnion value) orl,
-    required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
-    required TResult Function(OrthopedicsExamTypeUnion value) orthopedics,
-    required TResult Function(OtherExamTypeUnion value) other,
-    required TResult Function(PallativemedicineExamTypeUnion value)
-        pallativemedicine,
-    required TResult Function(PediatricianExamTypeUnion value) pediatrician,
-    required TResult Function(PhoniatricsExamTypeUnion value) phoniatrics,
-    required TResult Function(PhysiotherapyExamTypeUnion value) physiotherapy,
-    required TResult Function(PsychiatryExamTypeUnion value) psychiatry,
-    required TResult Function(PsychologyExamTypeUnion value) psychology,
-    required TResult Function(PumonaryExamTypeUnion value) pulmonary,
-    required TResult Function(RegabilitationExamTypeUnion value) rehabilitation,
-    required TResult Function(ProductiveMedicineExamTypeUnion value)
-        reproductivemedicine,
-    required TResult Function(RheumatologyExamTypeUnion value) rheumatology,
-    required TResult Function(SexologyExamTypeUnion value) sexology,
-    required TResult Function(SpeechTherapistExamTypeUnion value)
-        speechtherapist,
-    required TResult Function(SportMedicineExamTypeUnion value) sportmedicine,
-    required TResult Function(SurgeyExamTypeUnion value) surgey,
-    required TResult Function(TannerExamTypeUnion value) tanner,
-    required TResult Function(UrlogoyExamTypeUnion value) urlogy,
-    required TResult Function(VascularExamTypeUnion value) vascular,
-    required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
-  }) {
-    return occupationaltherapy(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
-        endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
-        reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-  }) {
-    return occupationaltherapy?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
-        endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
-        reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    required TResult orElse(),
-  }) {
-    if (occupationaltherapy != null) {
-      return occupationaltherapy(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class OccupationalTherapyExamTypeUnion extends ExaminationTypeUnion {
-  const factory OccupationalTherapyExamTypeUnion() =
-      _$OccupationalTherapyExamTypeUnion;
-  const OccupationalTherapyExamTypeUnion._() : super._();
 }
 
 /// @nodoc
@@ -9652,7 +9180,6 @@ class _$OncologyExamTypeUnion extends OncologyExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -9676,6 +9203,7 @@ class _$OncologyExamTypeUnion extends OncologyExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return oncology();
   }
@@ -9705,7 +9233,6 @@ class _$OncologyExamTypeUnion extends OncologyExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -9729,6 +9256,7 @@ class _$OncologyExamTypeUnion extends OncologyExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return oncology?.call();
   }
@@ -9758,7 +9286,6 @@ class _$OncologyExamTypeUnion extends OncologyExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -9782,6 +9309,7 @@ class _$OncologyExamTypeUnion extends OncologyExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (oncology != null) {
@@ -9824,8 +9352,6 @@ class _$OncologyExamTypeUnion extends OncologyExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -9852,6 +9378,7 @@ class _$OncologyExamTypeUnion extends OncologyExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return oncology(this);
   }
@@ -9886,8 +9413,6 @@ class _$OncologyExamTypeUnion extends OncologyExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -9912,6 +9437,7 @@ class _$OncologyExamTypeUnion extends OncologyExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return oncology?.call(this);
   }
@@ -9946,8 +9472,6 @@ class _$OncologyExamTypeUnion extends OncologyExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -9972,6 +9496,7 @@ class _$OncologyExamTypeUnion extends OncologyExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (oncology != null) {
@@ -10049,7 +9574,6 @@ class _$OrlExamTypeUnion extends OrlExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -10073,6 +9597,7 @@ class _$OrlExamTypeUnion extends OrlExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return orl();
   }
@@ -10102,7 +9627,6 @@ class _$OrlExamTypeUnion extends OrlExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -10126,6 +9650,7 @@ class _$OrlExamTypeUnion extends OrlExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return orl?.call();
   }
@@ -10155,7 +9680,6 @@ class _$OrlExamTypeUnion extends OrlExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -10179,6 +9703,7 @@ class _$OrlExamTypeUnion extends OrlExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (orl != null) {
@@ -10221,8 +9746,6 @@ class _$OrlExamTypeUnion extends OrlExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -10249,6 +9772,7 @@ class _$OrlExamTypeUnion extends OrlExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return orl(this);
   }
@@ -10283,8 +9807,6 @@ class _$OrlExamTypeUnion extends OrlExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -10309,6 +9831,7 @@ class _$OrlExamTypeUnion extends OrlExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return orl?.call(this);
   }
@@ -10343,8 +9866,6 @@ class _$OrlExamTypeUnion extends OrlExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -10369,6 +9890,7 @@ class _$OrlExamTypeUnion extends OrlExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (orl != null) {
@@ -10449,7 +9971,6 @@ class _$OrthodonticsExamTypeUnion extends OrthodonticsExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -10473,6 +9994,7 @@ class _$OrthodonticsExamTypeUnion extends OrthodonticsExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return orthodontics();
   }
@@ -10502,7 +10024,6 @@ class _$OrthodonticsExamTypeUnion extends OrthodonticsExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -10526,6 +10047,7 @@ class _$OrthodonticsExamTypeUnion extends OrthodonticsExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return orthodontics?.call();
   }
@@ -10555,7 +10077,6 @@ class _$OrthodonticsExamTypeUnion extends OrthodonticsExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -10579,6 +10100,7 @@ class _$OrthodonticsExamTypeUnion extends OrthodonticsExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (orthodontics != null) {
@@ -10621,8 +10143,6 @@ class _$OrthodonticsExamTypeUnion extends OrthodonticsExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -10649,6 +10169,7 @@ class _$OrthodonticsExamTypeUnion extends OrthodonticsExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return orthodontics(this);
   }
@@ -10683,8 +10204,6 @@ class _$OrthodonticsExamTypeUnion extends OrthodonticsExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -10709,6 +10228,7 @@ class _$OrthodonticsExamTypeUnion extends OrthodonticsExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return orthodontics?.call(this);
   }
@@ -10743,8 +10263,6 @@ class _$OrthodonticsExamTypeUnion extends OrthodonticsExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -10769,6 +10287,7 @@ class _$OrthodonticsExamTypeUnion extends OrthodonticsExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (orthodontics != null) {
@@ -10848,7 +10367,6 @@ class _$OrthopedicsExamTypeUnion extends OrthopedicsExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -10872,6 +10390,7 @@ class _$OrthopedicsExamTypeUnion extends OrthopedicsExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return orthopedics();
   }
@@ -10901,7 +10420,6 @@ class _$OrthopedicsExamTypeUnion extends OrthopedicsExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -10925,6 +10443,7 @@ class _$OrthopedicsExamTypeUnion extends OrthopedicsExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return orthopedics?.call();
   }
@@ -10954,7 +10473,6 @@ class _$OrthopedicsExamTypeUnion extends OrthopedicsExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -10978,6 +10496,7 @@ class _$OrthopedicsExamTypeUnion extends OrthopedicsExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (orthopedics != null) {
@@ -11020,8 +10539,6 @@ class _$OrthopedicsExamTypeUnion extends OrthopedicsExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -11048,6 +10565,7 @@ class _$OrthopedicsExamTypeUnion extends OrthopedicsExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return orthopedics(this);
   }
@@ -11082,8 +10600,6 @@ class _$OrthopedicsExamTypeUnion extends OrthopedicsExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -11108,6 +10624,7 @@ class _$OrthopedicsExamTypeUnion extends OrthopedicsExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return orthopedics?.call(this);
   }
@@ -11142,8 +10659,6 @@ class _$OrthopedicsExamTypeUnion extends OrthopedicsExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -11168,6 +10683,7 @@ class _$OrthopedicsExamTypeUnion extends OrthopedicsExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (orthopedics != null) {
@@ -11245,7 +10761,6 @@ class _$OtherExamTypeUnion extends OtherExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -11269,6 +10784,7 @@ class _$OtherExamTypeUnion extends OtherExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return other();
   }
@@ -11298,7 +10814,6 @@ class _$OtherExamTypeUnion extends OtherExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -11322,6 +10837,7 @@ class _$OtherExamTypeUnion extends OtherExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return other?.call();
   }
@@ -11351,7 +10867,6 @@ class _$OtherExamTypeUnion extends OtherExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -11375,6 +10890,7 @@ class _$OtherExamTypeUnion extends OtherExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (other != null) {
@@ -11417,8 +10933,6 @@ class _$OtherExamTypeUnion extends OtherExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -11445,6 +10959,7 @@ class _$OtherExamTypeUnion extends OtherExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return other(this);
   }
@@ -11479,8 +10994,6 @@ class _$OtherExamTypeUnion extends OtherExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -11505,6 +11018,7 @@ class _$OtherExamTypeUnion extends OtherExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return other?.call(this);
   }
@@ -11539,8 +11053,6 @@ class _$OtherExamTypeUnion extends OtherExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -11565,6 +11077,7 @@ class _$OtherExamTypeUnion extends OtherExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (other != null) {
@@ -11646,7 +11159,6 @@ class _$PallativemedicineExamTypeUnion extends PallativemedicineExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -11670,6 +11182,7 @@ class _$PallativemedicineExamTypeUnion extends PallativemedicineExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return pallativemedicine();
   }
@@ -11699,7 +11212,6 @@ class _$PallativemedicineExamTypeUnion extends PallativemedicineExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -11723,6 +11235,7 @@ class _$PallativemedicineExamTypeUnion extends PallativemedicineExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return pallativemedicine?.call();
   }
@@ -11752,7 +11265,6 @@ class _$PallativemedicineExamTypeUnion extends PallativemedicineExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -11776,6 +11288,7 @@ class _$PallativemedicineExamTypeUnion extends PallativemedicineExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (pallativemedicine != null) {
@@ -11818,8 +11331,6 @@ class _$PallativemedicineExamTypeUnion extends PallativemedicineExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -11846,6 +11357,7 @@ class _$PallativemedicineExamTypeUnion extends PallativemedicineExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return pallativemedicine(this);
   }
@@ -11880,8 +11392,6 @@ class _$PallativemedicineExamTypeUnion extends PallativemedicineExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -11906,6 +11416,7 @@ class _$PallativemedicineExamTypeUnion extends PallativemedicineExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return pallativemedicine?.call(this);
   }
@@ -11940,8 +11451,6 @@ class _$PallativemedicineExamTypeUnion extends PallativemedicineExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -11966,6 +11475,7 @@ class _$PallativemedicineExamTypeUnion extends PallativemedicineExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (pallativemedicine != null) {
@@ -12047,7 +11557,6 @@ class _$PediatricianExamTypeUnion extends PediatricianExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -12071,6 +11580,7 @@ class _$PediatricianExamTypeUnion extends PediatricianExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return pediatrician();
   }
@@ -12100,7 +11610,6 @@ class _$PediatricianExamTypeUnion extends PediatricianExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -12124,6 +11633,7 @@ class _$PediatricianExamTypeUnion extends PediatricianExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return pediatrician?.call();
   }
@@ -12153,7 +11663,6 @@ class _$PediatricianExamTypeUnion extends PediatricianExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -12177,6 +11686,7 @@ class _$PediatricianExamTypeUnion extends PediatricianExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (pediatrician != null) {
@@ -12219,8 +11729,6 @@ class _$PediatricianExamTypeUnion extends PediatricianExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -12247,6 +11755,7 @@ class _$PediatricianExamTypeUnion extends PediatricianExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return pediatrician(this);
   }
@@ -12281,8 +11790,6 @@ class _$PediatricianExamTypeUnion extends PediatricianExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -12307,6 +11814,7 @@ class _$PediatricianExamTypeUnion extends PediatricianExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return pediatrician?.call(this);
   }
@@ -12341,8 +11849,6 @@ class _$PediatricianExamTypeUnion extends PediatricianExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -12367,6 +11873,7 @@ class _$PediatricianExamTypeUnion extends PediatricianExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (pediatrician != null) {
@@ -12446,7 +11953,6 @@ class _$PhoniatricsExamTypeUnion extends PhoniatricsExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -12470,6 +11976,7 @@ class _$PhoniatricsExamTypeUnion extends PhoniatricsExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return phoniatrics();
   }
@@ -12499,7 +12006,6 @@ class _$PhoniatricsExamTypeUnion extends PhoniatricsExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -12523,6 +12029,7 @@ class _$PhoniatricsExamTypeUnion extends PhoniatricsExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return phoniatrics?.call();
   }
@@ -12552,7 +12059,6 @@ class _$PhoniatricsExamTypeUnion extends PhoniatricsExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -12576,6 +12082,7 @@ class _$PhoniatricsExamTypeUnion extends PhoniatricsExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (phoniatrics != null) {
@@ -12618,8 +12125,6 @@ class _$PhoniatricsExamTypeUnion extends PhoniatricsExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -12646,6 +12151,7 @@ class _$PhoniatricsExamTypeUnion extends PhoniatricsExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return phoniatrics(this);
   }
@@ -12680,8 +12186,6 @@ class _$PhoniatricsExamTypeUnion extends PhoniatricsExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -12706,6 +12210,7 @@ class _$PhoniatricsExamTypeUnion extends PhoniatricsExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return phoniatrics?.call(this);
   }
@@ -12740,8 +12245,6 @@ class _$PhoniatricsExamTypeUnion extends PhoniatricsExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -12766,6 +12269,7 @@ class _$PhoniatricsExamTypeUnion extends PhoniatricsExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (phoniatrics != null) {
@@ -12847,7 +12351,6 @@ class _$PhysiotherapyExamTypeUnion extends PhysiotherapyExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -12871,6 +12374,7 @@ class _$PhysiotherapyExamTypeUnion extends PhysiotherapyExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return physiotherapy();
   }
@@ -12900,7 +12404,6 @@ class _$PhysiotherapyExamTypeUnion extends PhysiotherapyExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -12924,6 +12427,7 @@ class _$PhysiotherapyExamTypeUnion extends PhysiotherapyExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return physiotherapy?.call();
   }
@@ -12953,7 +12457,6 @@ class _$PhysiotherapyExamTypeUnion extends PhysiotherapyExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -12977,6 +12480,7 @@ class _$PhysiotherapyExamTypeUnion extends PhysiotherapyExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (physiotherapy != null) {
@@ -13019,8 +12523,6 @@ class _$PhysiotherapyExamTypeUnion extends PhysiotherapyExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -13047,6 +12549,7 @@ class _$PhysiotherapyExamTypeUnion extends PhysiotherapyExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return physiotherapy(this);
   }
@@ -13081,8 +12584,6 @@ class _$PhysiotherapyExamTypeUnion extends PhysiotherapyExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -13107,6 +12608,7 @@ class _$PhysiotherapyExamTypeUnion extends PhysiotherapyExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return physiotherapy?.call(this);
   }
@@ -13141,8 +12643,6 @@ class _$PhysiotherapyExamTypeUnion extends PhysiotherapyExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -13167,6 +12667,7 @@ class _$PhysiotherapyExamTypeUnion extends PhysiotherapyExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (physiotherapy != null) {
@@ -13246,7 +12747,6 @@ class _$PsychiatryExamTypeUnion extends PsychiatryExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -13270,6 +12770,7 @@ class _$PsychiatryExamTypeUnion extends PsychiatryExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return psychiatry();
   }
@@ -13299,7 +12800,6 @@ class _$PsychiatryExamTypeUnion extends PsychiatryExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -13323,6 +12823,7 @@ class _$PsychiatryExamTypeUnion extends PsychiatryExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return psychiatry?.call();
   }
@@ -13352,7 +12853,6 @@ class _$PsychiatryExamTypeUnion extends PsychiatryExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -13376,6 +12876,7 @@ class _$PsychiatryExamTypeUnion extends PsychiatryExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (psychiatry != null) {
@@ -13418,8 +12919,6 @@ class _$PsychiatryExamTypeUnion extends PsychiatryExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -13446,6 +12945,7 @@ class _$PsychiatryExamTypeUnion extends PsychiatryExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return psychiatry(this);
   }
@@ -13480,8 +12980,6 @@ class _$PsychiatryExamTypeUnion extends PsychiatryExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -13506,6 +13004,7 @@ class _$PsychiatryExamTypeUnion extends PsychiatryExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return psychiatry?.call(this);
   }
@@ -13540,8 +13039,6 @@ class _$PsychiatryExamTypeUnion extends PsychiatryExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -13566,6 +13063,7 @@ class _$PsychiatryExamTypeUnion extends PsychiatryExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (psychiatry != null) {
@@ -13645,7 +13143,6 @@ class _$PsychologyExamTypeUnion extends PsychologyExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -13669,6 +13166,7 @@ class _$PsychologyExamTypeUnion extends PsychologyExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return psychology();
   }
@@ -13698,7 +13196,6 @@ class _$PsychologyExamTypeUnion extends PsychologyExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -13722,6 +13219,7 @@ class _$PsychologyExamTypeUnion extends PsychologyExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return psychology?.call();
   }
@@ -13751,7 +13249,6 @@ class _$PsychologyExamTypeUnion extends PsychologyExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -13775,6 +13272,7 @@ class _$PsychologyExamTypeUnion extends PsychologyExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (psychology != null) {
@@ -13817,8 +13315,6 @@ class _$PsychologyExamTypeUnion extends PsychologyExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -13845,6 +13341,7 @@ class _$PsychologyExamTypeUnion extends PsychologyExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return psychology(this);
   }
@@ -13879,8 +13376,6 @@ class _$PsychologyExamTypeUnion extends PsychologyExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -13905,6 +13400,7 @@ class _$PsychologyExamTypeUnion extends PsychologyExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return psychology?.call(this);
   }
@@ -13939,8 +13435,6 @@ class _$PsychologyExamTypeUnion extends PsychologyExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -13965,6 +13459,7 @@ class _$PsychologyExamTypeUnion extends PsychologyExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (psychology != null) {
@@ -14042,7 +13537,6 @@ class _$PumonaryExamTypeUnion extends PumonaryExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -14066,6 +13560,7 @@ class _$PumonaryExamTypeUnion extends PumonaryExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return pulmonary();
   }
@@ -14095,7 +13590,6 @@ class _$PumonaryExamTypeUnion extends PumonaryExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -14119,6 +13613,7 @@ class _$PumonaryExamTypeUnion extends PumonaryExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return pulmonary?.call();
   }
@@ -14148,7 +13643,6 @@ class _$PumonaryExamTypeUnion extends PumonaryExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -14172,6 +13666,7 @@ class _$PumonaryExamTypeUnion extends PumonaryExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (pulmonary != null) {
@@ -14214,8 +13709,6 @@ class _$PumonaryExamTypeUnion extends PumonaryExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -14242,6 +13735,7 @@ class _$PumonaryExamTypeUnion extends PumonaryExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return pulmonary(this);
   }
@@ -14276,8 +13770,6 @@ class _$PumonaryExamTypeUnion extends PumonaryExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -14302,6 +13794,7 @@ class _$PumonaryExamTypeUnion extends PumonaryExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return pulmonary?.call(this);
   }
@@ -14336,8 +13829,6 @@ class _$PumonaryExamTypeUnion extends PumonaryExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -14362,6 +13853,7 @@ class _$PumonaryExamTypeUnion extends PumonaryExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (pulmonary != null) {
@@ -14443,7 +13935,6 @@ class _$RegabilitationExamTypeUnion extends RegabilitationExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -14467,6 +13958,7 @@ class _$RegabilitationExamTypeUnion extends RegabilitationExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return rehabilitation();
   }
@@ -14496,7 +13988,6 @@ class _$RegabilitationExamTypeUnion extends RegabilitationExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -14520,6 +14011,7 @@ class _$RegabilitationExamTypeUnion extends RegabilitationExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return rehabilitation?.call();
   }
@@ -14549,7 +14041,6 @@ class _$RegabilitationExamTypeUnion extends RegabilitationExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -14573,6 +14064,7 @@ class _$RegabilitationExamTypeUnion extends RegabilitationExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (rehabilitation != null) {
@@ -14615,8 +14107,6 @@ class _$RegabilitationExamTypeUnion extends RegabilitationExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -14643,6 +14133,7 @@ class _$RegabilitationExamTypeUnion extends RegabilitationExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return rehabilitation(this);
   }
@@ -14677,8 +14168,6 @@ class _$RegabilitationExamTypeUnion extends RegabilitationExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -14703,6 +14192,7 @@ class _$RegabilitationExamTypeUnion extends RegabilitationExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return rehabilitation?.call(this);
   }
@@ -14737,8 +14227,6 @@ class _$RegabilitationExamTypeUnion extends RegabilitationExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -14763,6 +14251,7 @@ class _$RegabilitationExamTypeUnion extends RegabilitationExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (rehabilitation != null) {
@@ -14845,7 +14334,6 @@ class _$ProductiveMedicineExamTypeUnion
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -14869,6 +14357,7 @@ class _$ProductiveMedicineExamTypeUnion
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return reproductivemedicine();
   }
@@ -14898,7 +14387,6 @@ class _$ProductiveMedicineExamTypeUnion
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -14922,6 +14410,7 @@ class _$ProductiveMedicineExamTypeUnion
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return reproductivemedicine?.call();
   }
@@ -14951,7 +14440,6 @@ class _$ProductiveMedicineExamTypeUnion
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -14975,6 +14463,7 @@ class _$ProductiveMedicineExamTypeUnion
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (reproductivemedicine != null) {
@@ -15017,8 +14506,6 @@ class _$ProductiveMedicineExamTypeUnion
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -15045,6 +14532,7 @@ class _$ProductiveMedicineExamTypeUnion
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return reproductivemedicine(this);
   }
@@ -15079,8 +14567,6 @@ class _$ProductiveMedicineExamTypeUnion
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -15105,6 +14591,7 @@ class _$ProductiveMedicineExamTypeUnion
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return reproductivemedicine?.call(this);
   }
@@ -15139,8 +14626,6 @@ class _$ProductiveMedicineExamTypeUnion
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -15165,6 +14650,7 @@ class _$ProductiveMedicineExamTypeUnion
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (reproductivemedicine != null) {
@@ -15246,7 +14732,6 @@ class _$RheumatologyExamTypeUnion extends RheumatologyExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -15270,6 +14755,7 @@ class _$RheumatologyExamTypeUnion extends RheumatologyExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return rheumatology();
   }
@@ -15299,7 +14785,6 @@ class _$RheumatologyExamTypeUnion extends RheumatologyExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -15323,6 +14808,7 @@ class _$RheumatologyExamTypeUnion extends RheumatologyExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return rheumatology?.call();
   }
@@ -15352,7 +14838,6 @@ class _$RheumatologyExamTypeUnion extends RheumatologyExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -15376,6 +14861,7 @@ class _$RheumatologyExamTypeUnion extends RheumatologyExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (rheumatology != null) {
@@ -15418,8 +14904,6 @@ class _$RheumatologyExamTypeUnion extends RheumatologyExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -15446,6 +14930,7 @@ class _$RheumatologyExamTypeUnion extends RheumatologyExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return rheumatology(this);
   }
@@ -15480,8 +14965,6 @@ class _$RheumatologyExamTypeUnion extends RheumatologyExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -15506,6 +14989,7 @@ class _$RheumatologyExamTypeUnion extends RheumatologyExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return rheumatology?.call(this);
   }
@@ -15540,8 +15024,6 @@ class _$RheumatologyExamTypeUnion extends RheumatologyExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -15566,6 +15048,7 @@ class _$RheumatologyExamTypeUnion extends RheumatologyExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (rheumatology != null) {
@@ -15643,7 +15126,6 @@ class _$SexologyExamTypeUnion extends SexologyExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -15667,6 +15149,7 @@ class _$SexologyExamTypeUnion extends SexologyExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return sexology();
   }
@@ -15696,7 +15179,6 @@ class _$SexologyExamTypeUnion extends SexologyExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -15720,6 +15202,7 @@ class _$SexologyExamTypeUnion extends SexologyExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return sexology?.call();
   }
@@ -15749,7 +15232,6 @@ class _$SexologyExamTypeUnion extends SexologyExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -15773,6 +15255,7 @@ class _$SexologyExamTypeUnion extends SexologyExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (sexology != null) {
@@ -15815,8 +15298,6 @@ class _$SexologyExamTypeUnion extends SexologyExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -15843,6 +15324,7 @@ class _$SexologyExamTypeUnion extends SexologyExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return sexology(this);
   }
@@ -15877,8 +15359,6 @@ class _$SexologyExamTypeUnion extends SexologyExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -15903,6 +15383,7 @@ class _$SexologyExamTypeUnion extends SexologyExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return sexology?.call(this);
   }
@@ -15937,8 +15418,6 @@ class _$SexologyExamTypeUnion extends SexologyExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -15963,6 +15442,7 @@ class _$SexologyExamTypeUnion extends SexologyExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (sexology != null) {
@@ -16044,7 +15524,6 @@ class _$SpeechTherapistExamTypeUnion extends SpeechTherapistExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -16068,6 +15547,7 @@ class _$SpeechTherapistExamTypeUnion extends SpeechTherapistExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return speechtherapist();
   }
@@ -16097,7 +15577,6 @@ class _$SpeechTherapistExamTypeUnion extends SpeechTherapistExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -16121,6 +15600,7 @@ class _$SpeechTherapistExamTypeUnion extends SpeechTherapistExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return speechtherapist?.call();
   }
@@ -16150,7 +15630,6 @@ class _$SpeechTherapistExamTypeUnion extends SpeechTherapistExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -16174,6 +15653,7 @@ class _$SpeechTherapistExamTypeUnion extends SpeechTherapistExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (speechtherapist != null) {
@@ -16216,8 +15696,6 @@ class _$SpeechTherapistExamTypeUnion extends SpeechTherapistExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -16244,6 +15722,7 @@ class _$SpeechTherapistExamTypeUnion extends SpeechTherapistExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return speechtherapist(this);
   }
@@ -16278,8 +15757,6 @@ class _$SpeechTherapistExamTypeUnion extends SpeechTherapistExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -16304,6 +15781,7 @@ class _$SpeechTherapistExamTypeUnion extends SpeechTherapistExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return speechtherapist?.call(this);
   }
@@ -16338,8 +15816,6 @@ class _$SpeechTherapistExamTypeUnion extends SpeechTherapistExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -16364,6 +15840,7 @@ class _$SpeechTherapistExamTypeUnion extends SpeechTherapistExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (speechtherapist != null) {
@@ -16445,7 +15922,6 @@ class _$SportMedicineExamTypeUnion extends SportMedicineExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -16469,6 +15945,7 @@ class _$SportMedicineExamTypeUnion extends SportMedicineExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return sportmedicine();
   }
@@ -16498,7 +15975,6 @@ class _$SportMedicineExamTypeUnion extends SportMedicineExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -16522,6 +15998,7 @@ class _$SportMedicineExamTypeUnion extends SportMedicineExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return sportmedicine?.call();
   }
@@ -16551,7 +16028,6 @@ class _$SportMedicineExamTypeUnion extends SportMedicineExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -16575,6 +16051,7 @@ class _$SportMedicineExamTypeUnion extends SportMedicineExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (sportmedicine != null) {
@@ -16617,8 +16094,6 @@ class _$SportMedicineExamTypeUnion extends SportMedicineExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -16645,6 +16120,7 @@ class _$SportMedicineExamTypeUnion extends SportMedicineExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return sportmedicine(this);
   }
@@ -16679,8 +16155,6 @@ class _$SportMedicineExamTypeUnion extends SportMedicineExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -16705,6 +16179,7 @@ class _$SportMedicineExamTypeUnion extends SportMedicineExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return sportmedicine?.call(this);
   }
@@ -16739,8 +16214,6 @@ class _$SportMedicineExamTypeUnion extends SportMedicineExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -16765,6 +16238,7 @@ class _$SportMedicineExamTypeUnion extends SportMedicineExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (sportmedicine != null) {
@@ -16842,7 +16316,6 @@ class _$SurgeyExamTypeUnion extends SurgeyExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -16866,6 +16339,7 @@ class _$SurgeyExamTypeUnion extends SurgeyExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return surgey();
   }
@@ -16895,7 +16369,6 @@ class _$SurgeyExamTypeUnion extends SurgeyExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -16919,6 +16392,7 @@ class _$SurgeyExamTypeUnion extends SurgeyExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return surgey?.call();
   }
@@ -16948,7 +16422,6 @@ class _$SurgeyExamTypeUnion extends SurgeyExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -16972,6 +16445,7 @@ class _$SurgeyExamTypeUnion extends SurgeyExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (surgey != null) {
@@ -17014,8 +16488,6 @@ class _$SurgeyExamTypeUnion extends SurgeyExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -17042,6 +16514,7 @@ class _$SurgeyExamTypeUnion extends SurgeyExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return surgey(this);
   }
@@ -17076,8 +16549,6 @@ class _$SurgeyExamTypeUnion extends SurgeyExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -17102,6 +16573,7 @@ class _$SurgeyExamTypeUnion extends SurgeyExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return surgey?.call(this);
   }
@@ -17136,8 +16608,6 @@ class _$SurgeyExamTypeUnion extends SurgeyExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -17162,6 +16632,7 @@ class _$SurgeyExamTypeUnion extends SurgeyExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (surgey != null) {
@@ -17239,7 +16710,6 @@ class _$TannerExamTypeUnion extends TannerExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -17263,6 +16733,7 @@ class _$TannerExamTypeUnion extends TannerExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return tanner();
   }
@@ -17292,7 +16763,6 @@ class _$TannerExamTypeUnion extends TannerExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -17316,6 +16786,7 @@ class _$TannerExamTypeUnion extends TannerExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return tanner?.call();
   }
@@ -17345,7 +16816,6 @@ class _$TannerExamTypeUnion extends TannerExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -17369,6 +16839,7 @@ class _$TannerExamTypeUnion extends TannerExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (tanner != null) {
@@ -17411,8 +16882,6 @@ class _$TannerExamTypeUnion extends TannerExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -17439,6 +16908,7 @@ class _$TannerExamTypeUnion extends TannerExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return tanner(this);
   }
@@ -17473,8 +16943,6 @@ class _$TannerExamTypeUnion extends TannerExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -17499,6 +16967,7 @@ class _$TannerExamTypeUnion extends TannerExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return tanner?.call(this);
   }
@@ -17533,8 +17002,6 @@ class _$TannerExamTypeUnion extends TannerExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -17559,6 +17026,7 @@ class _$TannerExamTypeUnion extends TannerExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (tanner != null) {
@@ -17636,7 +17104,6 @@ class _$UrlogoyExamTypeUnion extends UrlogoyExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -17660,6 +17127,7 @@ class _$UrlogoyExamTypeUnion extends UrlogoyExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return urlogy();
   }
@@ -17689,7 +17157,6 @@ class _$UrlogoyExamTypeUnion extends UrlogoyExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -17713,6 +17180,7 @@ class _$UrlogoyExamTypeUnion extends UrlogoyExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return urlogy?.call();
   }
@@ -17742,7 +17210,6 @@ class _$UrlogoyExamTypeUnion extends UrlogoyExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -17766,6 +17233,7 @@ class _$UrlogoyExamTypeUnion extends UrlogoyExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (urlogy != null) {
@@ -17808,8 +17276,6 @@ class _$UrlogoyExamTypeUnion extends UrlogoyExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -17836,6 +17302,7 @@ class _$UrlogoyExamTypeUnion extends UrlogoyExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return urlogy(this);
   }
@@ -17870,8 +17337,6 @@ class _$UrlogoyExamTypeUnion extends UrlogoyExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -17896,6 +17361,7 @@ class _$UrlogoyExamTypeUnion extends UrlogoyExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return urlogy?.call(this);
   }
@@ -17930,8 +17396,6 @@ class _$UrlogoyExamTypeUnion extends UrlogoyExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -17956,6 +17420,7 @@ class _$UrlogoyExamTypeUnion extends UrlogoyExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (urlogy != null) {
@@ -18033,7 +17498,6 @@ class _$VascularExamTypeUnion extends VascularExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -18057,6 +17521,7 @@ class _$VascularExamTypeUnion extends VascularExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return vascular();
   }
@@ -18086,7 +17551,6 @@ class _$VascularExamTypeUnion extends VascularExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -18110,6 +17574,7 @@ class _$VascularExamTypeUnion extends VascularExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return vascular?.call();
   }
@@ -18139,7 +17604,6 @@ class _$VascularExamTypeUnion extends VascularExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -18163,6 +17627,7 @@ class _$VascularExamTypeUnion extends VascularExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (vascular != null) {
@@ -18205,8 +17670,6 @@ class _$VascularExamTypeUnion extends VascularExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -18233,6 +17696,7 @@ class _$VascularExamTypeUnion extends VascularExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return vascular(this);
   }
@@ -18267,8 +17731,6 @@ class _$VascularExamTypeUnion extends VascularExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -18293,6 +17755,7 @@ class _$VascularExamTypeUnion extends VascularExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return vascular?.call(this);
   }
@@ -18327,8 +17790,6 @@ class _$VascularExamTypeUnion extends VascularExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -18353,6 +17814,7 @@ class _$VascularExamTypeUnion extends VascularExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (vascular != null) {
@@ -18434,7 +17896,6 @@ class _$DentalhygieneExamTypeUnion extends DentalhygieneExamTypeUnion {
     required TResult Function() nephrology,
     required TResult Function() neurology,
     required TResult Function() nutrition,
-    required TResult Function() occupationaltherapy,
     required TResult Function() oncology,
     required TResult Function() orl,
     required TResult Function() orthodontics,
@@ -18458,6 +17919,7 @@ class _$DentalhygieneExamTypeUnion extends DentalhygieneExamTypeUnion {
     required TResult Function() urlogy,
     required TResult Function() vascular,
     required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
   }) {
     return dentalhygiene();
   }
@@ -18487,7 +17949,6 @@ class _$DentalhygieneExamTypeUnion extends DentalhygieneExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -18511,6 +17972,7 @@ class _$DentalhygieneExamTypeUnion extends DentalhygieneExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
   }) {
     return dentalhygiene?.call();
   }
@@ -18540,7 +18002,6 @@ class _$DentalhygieneExamTypeUnion extends DentalhygieneExamTypeUnion {
     TResult Function()? nephrology,
     TResult Function()? neurology,
     TResult Function()? nutrition,
-    TResult Function()? occupationaltherapy,
     TResult Function()? oncology,
     TResult Function()? orl,
     TResult Function()? orthodontics,
@@ -18564,6 +18025,7 @@ class _$DentalhygieneExamTypeUnion extends DentalhygieneExamTypeUnion {
     TResult Function()? urlogy,
     TResult Function()? vascular,
     TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
     required TResult orElse(),
   }) {
     if (dentalhygiene != null) {
@@ -18606,8 +18068,6 @@ class _$DentalhygieneExamTypeUnion extends DentalhygieneExamTypeUnion {
     required TResult Function(NephrologyTypeUnion value) nephrology,
     required TResult Function(NeurologyExamTypeUnion value) neurology,
     required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OccupationalTherapyExamTypeUnion value)
-        occupationaltherapy,
     required TResult Function(OncologyExamTypeUnion value) oncology,
     required TResult Function(OrlExamTypeUnion value) orl,
     required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
@@ -18634,6 +18094,7 @@ class _$DentalhygieneExamTypeUnion extends DentalhygieneExamTypeUnion {
     required TResult Function(UrlogoyExamTypeUnion value) urlogy,
     required TResult Function(VascularExamTypeUnion value) vascular,
     required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
   }) {
     return dentalhygiene(this);
   }
@@ -18668,8 +18129,6 @@ class _$DentalhygieneExamTypeUnion extends DentalhygieneExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -18694,6 +18153,7 @@ class _$DentalhygieneExamTypeUnion extends DentalhygieneExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return dentalhygiene?.call(this);
   }
@@ -18728,8 +18188,6 @@ class _$DentalhygieneExamTypeUnion extends DentalhygieneExamTypeUnion {
     TResult Function(NephrologyTypeUnion value)? nephrology,
     TResult Function(NeurologyExamTypeUnion value)? neurology,
     TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OccupationalTherapyExamTypeUnion value)?
-        occupationaltherapy,
     TResult Function(OncologyExamTypeUnion value)? oncology,
     TResult Function(OrlExamTypeUnion value)? orl,
     TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
@@ -18754,6 +18212,7 @@ class _$DentalhygieneExamTypeUnion extends DentalhygieneExamTypeUnion {
     TResult Function(UrlogoyExamTypeUnion value)? urlogy,
     TResult Function(VascularExamTypeUnion value)? vascular,
     TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
     required TResult orElse(),
   }) {
     if (dentalhygiene != null) {
@@ -18766,6 +18225,400 @@ class _$DentalhygieneExamTypeUnion extends DentalhygieneExamTypeUnion {
 abstract class DentalhygieneExamTypeUnion extends ExaminationTypeUnion {
   const factory DentalhygieneExamTypeUnion() = _$DentalhygieneExamTypeUnion;
   const DentalhygieneExamTypeUnion._() : super._();
+}
+
+/// @nodoc
+abstract class _$$ErgotherapyTypeUnionCopyWith<$Res> {
+  factory _$$ErgotherapyTypeUnionCopyWith(_$ErgotherapyTypeUnion value,
+          $Res Function(_$ErgotherapyTypeUnion) then) =
+      __$$ErgotherapyTypeUnionCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ErgotherapyTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    implements _$$ErgotherapyTypeUnionCopyWith<$Res> {
+  __$$ErgotherapyTypeUnionCopyWithImpl(_$ErgotherapyTypeUnion _value,
+      $Res Function(_$ErgotherapyTypeUnion) _then)
+      : super(_value, (v) => _then(v as _$ErgotherapyTypeUnion));
+
+  @override
+  _$ErgotherapyTypeUnion get _value => super._value as _$ErgotherapyTypeUnion;
+}
+
+/// @nodoc
+
+class _$ErgotherapyTypeUnion extends ErgotherapyTypeUnion {
+  const _$ErgotherapyTypeUnion() : super._();
+
+  @override
+  String toString() {
+    return 'ExaminationTypeUnion.ergotherapy()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ErgotherapyTypeUnion);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() colonoscopy,
+    required TResult Function() dentist,
+    required TResult Function() dermatologist,
+    required TResult Function() generalPractitioner,
+    required TResult Function() mammogram,
+    required TResult Function() gynecologist,
+    required TResult Function() ophthalmologist,
+    required TResult Function() toks,
+    required TResult Function() ultrasoundBreast,
+    required TResult Function() urologist,
+    required TResult Function() venerealDiseases,
+    required TResult Function() allergology,
+    required TResult Function() cardiology,
+    required TResult Function() endocrinologyandhormones,
+    required TResult Function() gastroenterology,
+    required TResult Function() genetics,
+    required TResult Function() hematology,
+    required TResult Function() immunology,
+    required TResult Function() intern,
+    required TResult Function() nephrology,
+    required TResult Function() neurology,
+    required TResult Function() nutrition,
+    required TResult Function() oncology,
+    required TResult Function() orl,
+    required TResult Function() orthodontics,
+    required TResult Function() orthopedics,
+    required TResult Function() other,
+    required TResult Function() pallativemedicine,
+    required TResult Function() pediatrician,
+    required TResult Function() phoniatrics,
+    required TResult Function() physiotherapy,
+    required TResult Function() psychiatry,
+    required TResult Function() psychology,
+    required TResult Function() pulmonary,
+    required TResult Function() rehabilitation,
+    required TResult Function() reproductivemedicine,
+    required TResult Function() rheumatology,
+    required TResult Function() sexology,
+    required TResult Function() speechtherapist,
+    required TResult Function() sportmedicine,
+    required TResult Function() surgey,
+    required TResult Function() tanner,
+    required TResult Function() urlogy,
+    required TResult Function() vascular,
+    required TResult Function() dentalhygiene,
+    required TResult Function() ergotherapy,
+  }) {
+    return ergotherapy();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? colonoscopy,
+    TResult Function()? dentist,
+    TResult Function()? dermatologist,
+    TResult Function()? generalPractitioner,
+    TResult Function()? mammogram,
+    TResult Function()? gynecologist,
+    TResult Function()? ophthalmologist,
+    TResult Function()? toks,
+    TResult Function()? ultrasoundBreast,
+    TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
+    TResult Function()? allergology,
+    TResult Function()? cardiology,
+    TResult Function()? endocrinologyandhormones,
+    TResult Function()? gastroenterology,
+    TResult Function()? genetics,
+    TResult Function()? hematology,
+    TResult Function()? immunology,
+    TResult Function()? intern,
+    TResult Function()? nephrology,
+    TResult Function()? neurology,
+    TResult Function()? nutrition,
+    TResult Function()? oncology,
+    TResult Function()? orl,
+    TResult Function()? orthodontics,
+    TResult Function()? orthopedics,
+    TResult Function()? other,
+    TResult Function()? pallativemedicine,
+    TResult Function()? pediatrician,
+    TResult Function()? phoniatrics,
+    TResult Function()? physiotherapy,
+    TResult Function()? psychiatry,
+    TResult Function()? psychology,
+    TResult Function()? pulmonary,
+    TResult Function()? rehabilitation,
+    TResult Function()? reproductivemedicine,
+    TResult Function()? rheumatology,
+    TResult Function()? sexology,
+    TResult Function()? speechtherapist,
+    TResult Function()? sportmedicine,
+    TResult Function()? surgey,
+    TResult Function()? tanner,
+    TResult Function()? urlogy,
+    TResult Function()? vascular,
+    TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
+  }) {
+    return ergotherapy?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? colonoscopy,
+    TResult Function()? dentist,
+    TResult Function()? dermatologist,
+    TResult Function()? generalPractitioner,
+    TResult Function()? mammogram,
+    TResult Function()? gynecologist,
+    TResult Function()? ophthalmologist,
+    TResult Function()? toks,
+    TResult Function()? ultrasoundBreast,
+    TResult Function()? urologist,
+    TResult Function()? venerealDiseases,
+    TResult Function()? allergology,
+    TResult Function()? cardiology,
+    TResult Function()? endocrinologyandhormones,
+    TResult Function()? gastroenterology,
+    TResult Function()? genetics,
+    TResult Function()? hematology,
+    TResult Function()? immunology,
+    TResult Function()? intern,
+    TResult Function()? nephrology,
+    TResult Function()? neurology,
+    TResult Function()? nutrition,
+    TResult Function()? oncology,
+    TResult Function()? orl,
+    TResult Function()? orthodontics,
+    TResult Function()? orthopedics,
+    TResult Function()? other,
+    TResult Function()? pallativemedicine,
+    TResult Function()? pediatrician,
+    TResult Function()? phoniatrics,
+    TResult Function()? physiotherapy,
+    TResult Function()? psychiatry,
+    TResult Function()? psychology,
+    TResult Function()? pulmonary,
+    TResult Function()? rehabilitation,
+    TResult Function()? reproductivemedicine,
+    TResult Function()? rheumatology,
+    TResult Function()? sexology,
+    TResult Function()? speechtherapist,
+    TResult Function()? sportmedicine,
+    TResult Function()? surgey,
+    TResult Function()? tanner,
+    TResult Function()? urlogy,
+    TResult Function()? vascular,
+    TResult Function()? dentalhygiene,
+    TResult Function()? ergotherapy,
+    required TResult orElse(),
+  }) {
+    if (ergotherapy != null) {
+      return ergotherapy();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ColonoscopyExaminationTypeUnion value)
+        colonoscopy,
+    required TResult Function(DentistExaminationTypeUnion value) dentist,
+    required TResult Function(DermatologistExaminationTypeUnion value)
+        dermatologist,
+    required TResult Function(GeneralPractitionerExaminationTypeUnion value)
+        generalPractitioner,
+    required TResult Function(MammogramExaminationTypeUnion value) mammogram,
+    required TResult Function(GynecologistExaminationTypeUnion value)
+        gynecologist,
+    required TResult Function(OphthalmologistExaminationTypeUnion value)
+        ophthalmologist,
+    required TResult Function(ToksExaminationTypeUnion value) toks,
+    required TResult Function(UltrasoundBreastExaminationTypeUnion value)
+        ultrasoundBreast,
+    required TResult Function(UrologistExaminationTypeUnion value) urologist,
+    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
+        venerealDiseases,
+    required TResult Function(AlergollogyExamTypeUnion value) allergology,
+    required TResult Function(CardiologyExamTypeUnion value) cardiology,
+    required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
+        endocrinologyandhormones,
+    required TResult Function(GastroenterologyExamTypeUnion value)
+        gastroenterology,
+    required TResult Function(GeneticsExamTypeUnion value) genetics,
+    required TResult Function(HematologyExamTypeUnion value) hematology,
+    required TResult Function(ImmunologyExamTypeUnion value) immunology,
+    required TResult Function(InternExamTypeUnion value) intern,
+    required TResult Function(NephrologyTypeUnion value) nephrology,
+    required TResult Function(NeurologyExamTypeUnion value) neurology,
+    required TResult Function(NutritionExamTypeUnion value) nutrition,
+    required TResult Function(OncologyExamTypeUnion value) oncology,
+    required TResult Function(OrlExamTypeUnion value) orl,
+    required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
+    required TResult Function(OrthopedicsExamTypeUnion value) orthopedics,
+    required TResult Function(OtherExamTypeUnion value) other,
+    required TResult Function(PallativemedicineExamTypeUnion value)
+        pallativemedicine,
+    required TResult Function(PediatricianExamTypeUnion value) pediatrician,
+    required TResult Function(PhoniatricsExamTypeUnion value) phoniatrics,
+    required TResult Function(PhysiotherapyExamTypeUnion value) physiotherapy,
+    required TResult Function(PsychiatryExamTypeUnion value) psychiatry,
+    required TResult Function(PsychologyExamTypeUnion value) psychology,
+    required TResult Function(PumonaryExamTypeUnion value) pulmonary,
+    required TResult Function(RegabilitationExamTypeUnion value) rehabilitation,
+    required TResult Function(ProductiveMedicineExamTypeUnion value)
+        reproductivemedicine,
+    required TResult Function(RheumatologyExamTypeUnion value) rheumatology,
+    required TResult Function(SexologyExamTypeUnion value) sexology,
+    required TResult Function(SpeechTherapistExamTypeUnion value)
+        speechtherapist,
+    required TResult Function(SportMedicineExamTypeUnion value) sportmedicine,
+    required TResult Function(SurgeyExamTypeUnion value) surgey,
+    required TResult Function(TannerExamTypeUnion value) tanner,
+    required TResult Function(UrlogoyExamTypeUnion value) urlogy,
+    required TResult Function(VascularExamTypeUnion value) vascular,
+    required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
+    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
+  }) {
+    return ergotherapy(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult Function(DentistExaminationTypeUnion value)? dentist,
+    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+        generalPractitioner,
+    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)?
+        ophthalmologist,
+    TResult Function(ToksExaminationTypeUnion value)? toks,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+        ultrasoundBreast,
+    TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
+    TResult Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+        endocrinologyandhormones,
+    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult Function(GeneticsExamTypeUnion value)? genetics,
+    TResult Function(HematologyExamTypeUnion value)? hematology,
+    TResult Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult Function(InternExamTypeUnion value)? intern,
+    TResult Function(NephrologyTypeUnion value)? nephrology,
+    TResult Function(NeurologyExamTypeUnion value)? neurology,
+    TResult Function(NutritionExamTypeUnion value)? nutrition,
+    TResult Function(OncologyExamTypeUnion value)? oncology,
+    TResult Function(OrlExamTypeUnion value)? orl,
+    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult Function(OtherExamTypeUnion value)? other,
+    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult Function(PsychologyExamTypeUnion value)? psychology,
+    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult Function(ProductiveMedicineExamTypeUnion value)?
+        reproductivemedicine,
+    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult Function(SexologyExamTypeUnion value)? sexology,
+    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult Function(SurgeyExamTypeUnion value)? surgey,
+    TResult Function(TannerExamTypeUnion value)? tanner,
+    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult Function(VascularExamTypeUnion value)? vascular,
+    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+  }) {
+    return ergotherapy?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult Function(DentistExaminationTypeUnion value)? dentist,
+    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+        generalPractitioner,
+    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult Function(OphthalmologistExaminationTypeUnion value)?
+        ophthalmologist,
+    TResult Function(ToksExaminationTypeUnion value)? toks,
+    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+        ultrasoundBreast,
+    TResult Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
+        venerealDiseases,
+    TResult Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+        endocrinologyandhormones,
+    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult Function(GeneticsExamTypeUnion value)? genetics,
+    TResult Function(HematologyExamTypeUnion value)? hematology,
+    TResult Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult Function(InternExamTypeUnion value)? intern,
+    TResult Function(NephrologyTypeUnion value)? nephrology,
+    TResult Function(NeurologyExamTypeUnion value)? neurology,
+    TResult Function(NutritionExamTypeUnion value)? nutrition,
+    TResult Function(OncologyExamTypeUnion value)? oncology,
+    TResult Function(OrlExamTypeUnion value)? orl,
+    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult Function(OtherExamTypeUnion value)? other,
+    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult Function(PsychologyExamTypeUnion value)? psychology,
+    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult Function(ProductiveMedicineExamTypeUnion value)?
+        reproductivemedicine,
+    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult Function(SexologyExamTypeUnion value)? sexology,
+    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult Function(SurgeyExamTypeUnion value)? surgey,
+    TResult Function(TannerExamTypeUnion value)? tanner,
+    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult Function(VascularExamTypeUnion value)? vascular,
+    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    required TResult orElse(),
+  }) {
+    if (ergotherapy != null) {
+      return ergotherapy(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ErgotherapyTypeUnion extends ExaminationTypeUnion {
+  const factory ErgotherapyTypeUnion() = _$ErgotherapyTypeUnion;
+  const ErgotherapyTypeUnion._() : super._();
 }
 
 /// @nodoc

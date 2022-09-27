@@ -625,7 +625,9 @@ class AppRouter extends _i15.RootStackRouter {
       return _i15.CustomPage<void>(
           routeData: routeData,
           child: _i60.ChooseFrequencyOfExamScreen(
-              key: args.key, valueChanged: args.valueChanged),
+              key: args.key,
+              value: args.value,
+              valueChanged: args.valueChanged),
           transitionsBuilder: _i15.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -2176,25 +2178,30 @@ class ChooseExamPeriodTimeRouteArgs {
 class ChooseFrequencyOfExamRoute
     extends _i15.PageRouteInfo<ChooseFrequencyOfExamRouteArgs> {
   ChooseFrequencyOfExamRoute(
-      {_i62.Key? key, required dynamic Function(String) valueChanged})
+      {_i62.Key? key,
+      String? value,
+      required dynamic Function(String) valueChanged})
       : super(ChooseFrequencyOfExamRoute.name,
             path: 'custom-exam-form-choose-exam-frequency',
             args: ChooseFrequencyOfExamRouteArgs(
-                key: key, valueChanged: valueChanged));
+                key: key, value: value, valueChanged: valueChanged));
 
   static const String name = 'ChooseFrequencyOfExamRoute';
 }
 
 class ChooseFrequencyOfExamRouteArgs {
-  const ChooseFrequencyOfExamRouteArgs({this.key, required this.valueChanged});
+  const ChooseFrequencyOfExamRouteArgs(
+      {this.key, this.value, required this.valueChanged});
 
   final _i62.Key? key;
+
+  final String? value;
 
   final dynamic Function(String) valueChanged;
 
   @override
   String toString() {
-    return 'ChooseFrequencyOfExamRouteArgs{key: $key, valueChanged: $valueChanged}';
+    return 'ChooseFrequencyOfExamRouteArgs{key: $key, value: $value, valueChanged: $valueChanged}';
   }
 }
 

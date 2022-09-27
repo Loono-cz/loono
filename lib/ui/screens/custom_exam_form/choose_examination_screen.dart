@@ -8,8 +8,11 @@ import 'package:loono/ui/widgets/custom_exam_form/custom_radio_button.dart';
 import 'package:loono_api/loono_api.dart';
 
 class ChooseCustomExaminationTypeScreen extends StatefulWidget {
-  const ChooseCustomExaminationTypeScreen(
-      {this.actionType, required this.onActionTypeSet, super.key});
+  const ChooseCustomExaminationTypeScreen({
+    this.actionType,
+    required this.onActionTypeSet,
+    super.key,
+  });
   final ExaminationActionType? actionType;
   final Function(ExaminationActionType?) onActionTypeSet;
   @override
@@ -29,6 +32,7 @@ class _ChooseCustomExaminationTypeScreenState extends State<ChooseCustomExaminat
       _groupValue = widget.actionType != null
           ? ExaminationActionTypeExt(widget.actionType!).l10n_name.toString()
           : '';
+      _examActionType = widget.actionType;
     });
   }
 

@@ -47,8 +47,6 @@ extension ExaminationTypeExt on ExaminationType {
 
       case ExaminationType.NUTRITION:
 
-      case ExaminationType.OCCUPATIONAL_THERAPY:
-
       case ExaminationType.OCULAR:
 
       case ExaminationType.ONCOLOGY:
@@ -123,6 +121,9 @@ extension ExaminationTypeExt on ExaminationType {
       case ExaminationType.MAMMOGRAM:
         examinationTypeUnion = const ExaminationTypeUnion.mammogram();
         break;
+      case ExaminationType.ERGOTHERAPY:
+        examinationTypeUnion = const ExaminationTypeUnion.ergotherapy();
+        break;
       case ExaminationType.OCULAR:
       case ExaminationType.OPHTHALMOLOGIST:
         examinationTypeUnion = const ExaminationTypeUnion.ophthalmologist();
@@ -171,9 +172,6 @@ extension ExaminationTypeExt on ExaminationType {
         break;
       case ExaminationType.NUTRITION:
         examinationTypeUnion = const ExaminationTypeUnion.nutrition();
-        break;
-      case ExaminationType.OCCUPATIONAL_THERAPY:
-        examinationTypeUnion = const ExaminationTypeUnion.occupationaltherapy();
         break;
       case ExaminationType.ONCOLOGY:
         examinationTypeUnion = const ExaminationTypeUnion.oncology();
@@ -251,6 +249,7 @@ extension ExaminationTypeExt on ExaminationType {
   // ignore: non_constant_identifier_names
   String get l10n_name => mapToUnion.when(
         colonoscopy: () => 'Kolonoskopie',
+        ergotherapy: () => 'Ergoterapie',
         dentist: () => 'Zubař',
         dermatologist: () => 'Kožař',
         generalPractitioner: () => 'Praktický lékař',
@@ -273,7 +272,6 @@ extension ExaminationTypeExt on ExaminationType {
         nephrology: () => 'Nefrologie, ledviny',
         neurology: () => 'Neurologie',
         nutrition: () => 'Výživa',
-        occupationaltherapy: () => 'Ergoterapie',
         oncology: () => 'Onkologie',
         orl: () => 'ORL',
         orthodontics: () => 'Ortodoncie, rovnátka',
@@ -376,7 +374,6 @@ class ExaminationTypeUnion with _$ExaminationTypeUnion {
 
   const factory ExaminationTypeUnion.neurology() = NeurologyExamTypeUnion;
   const factory ExaminationTypeUnion.nutrition() = NutritionExamTypeUnion;
-  const factory ExaminationTypeUnion.occupationaltherapy() = OccupationalTherapyExamTypeUnion;
   const factory ExaminationTypeUnion.oncology() = OncologyExamTypeUnion;
   const factory ExaminationTypeUnion.orl() = OrlExamTypeUnion;
   const factory ExaminationTypeUnion.orthodontics() = OrthodonticsExamTypeUnion;
@@ -402,6 +399,7 @@ class ExaminationTypeUnion with _$ExaminationTypeUnion {
   const factory ExaminationTypeUnion.urlogy() = UrlogoyExamTypeUnion;
   const factory ExaminationTypeUnion.vascular() = VascularExamTypeUnion;
   const factory ExaminationTypeUnion.dentalhygiene() = DentalhygieneExamTypeUnion;
+  const factory ExaminationTypeUnion.ergotherapy() = ErgotherapyTypeUnion;
 }
 
 @freezed

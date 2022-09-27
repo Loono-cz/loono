@@ -9,6 +9,7 @@ class CustomInputTextField extends StatefulWidget {
     required this.value,
     required this.onClickInputField,
     this.enabled,
+    required this.error,
   });
   final String label;
   final String? hintText;
@@ -16,6 +17,7 @@ class CustomInputTextField extends StatefulWidget {
   final String value;
   final VoidCallback? onClickInputField;
   final bool? enabled;
+  final bool error;
   @override
   State<CustomInputTextField> createState() => _CustomInputTextFieldState();
 }
@@ -23,10 +25,14 @@ class CustomInputTextField extends StatefulWidget {
 class _CustomInputTextFieldState extends State<CustomInputTextField> {
   var textController = TextEditingController();
 
+  final disabledFieldBorder =
+      const OutlineInputBorder(borderSide: BorderSide(color: Colors.black38));
+
   final textFieldBorder = const OutlineInputBorder(
     borderRadius: BorderRadius.all(Radius.circular(10.0)),
     borderSide: BorderSide(color: Colors.black45),
   );
+
   @override
   void initState() {
     super.initState();
@@ -48,17 +54,27 @@ class _CustomInputTextFieldState extends State<CustomInputTextField> {
       autofocus: false,
       onTap: widget.onClickInputField,
       decoration: InputDecoration(
+        disabledBorder: widget.enabled == false ? disabledFieldBorder : textFieldBorder,
+        errorBorder: widget.error
+            ? const OutlineInputBorder(borderSide: BorderSide(color: Colors.red))
+            : widget.enabled == false
+                ? disabledFieldBorder
+                : textFieldBorder,
         suffixIcon: widget.prefixIcon != null
             ? null
             : const Icon(
                 Icons.arrow_downward_outlined,
               ),
+        errorText: widget.error ? 'Toto pole je povinné' : '',
         prefixIcon: widget.prefixIcon,
         suffixIconColor: Colors.black87,
         filled: true,
         fillColor: Colors.white,
         floatingLabelStyle: const TextStyle(color: Colors.black),
         focusedBorder: textFieldBorder,
+        focusedErrorBorder: widget.error
+            ? const OutlineInputBorder(borderSide: BorderSide(color: Colors.red))
+            : textFieldBorder,
         border: textFieldBorder,
         enabledBorder: textFieldBorder,
         labelText: widget.label,

@@ -26,6 +26,7 @@ class _ChooseSpecialistScreenState extends State<ChooseSpecialistScreen> {
     super.initState();
     setState(() {
       _groupValue = widget.specialist?.l10n_name;
+      _examType = widget.specialist;
     });
     _exams.sort(((a, b) => a.l10n_name.compareTo(b.l10n_name)));
   }

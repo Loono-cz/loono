@@ -10,10 +10,11 @@ enum FrequencyType { numbers, period }
 class ChooseFrequencyOfExamScreen extends StatefulWidget {
   const ChooseFrequencyOfExamScreen({
     super.key,
+    this.value,
     required this.valueChanged,
   });
   final Function(String) valueChanged;
-
+  final String? value;
   @override
   State<ChooseFrequencyOfExamScreen> createState() => _ChooseFrequencyOfExamScreenState();
 }
@@ -21,10 +22,21 @@ class ChooseFrequencyOfExamScreen extends StatefulWidget {
 class _ChooseFrequencyOfExamScreenState extends State<ChooseFrequencyOfExamScreen> {
   Future<void> _closeForm(BuildContext context) async => Navigator.of(context).pop();
   String period = '';
+  String numberPeriod = '';
+  String stringPeriod = '';
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    setState(() {
+      if (widget.value!.isNotEmpty) {
+        final str = widget.value?.split(' ');
+        if (str != null) {
+          numberPeriod = str[0];
+          stringPeriod = str[1];
+        }
+      }
+    });
   }
 
   @override
@@ -67,6 +79,8 @@ class _ChooseFrequencyOfExamScreenState extends State<ChooseFrequencyOfExamScree
               height: (MediaQuery.of(context).size.height) -
                   (MediaQuery.of(context).size.height / 25) * 10,
               child: CustomPeriodicalSpinner(
+                stringPeriod: stringPeriod,
+                numberPeriod: numberPeriod,
                 valueChanged: (number, text) {
                   setState(() {
                     period = '$number $text';
