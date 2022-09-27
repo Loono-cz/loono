@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/helpers/date_without_day.dart';
@@ -39,11 +37,13 @@ class _DentistDateScreenState extends State<DentistDateScreen> {
             dateWithoutDay:
                 DateWithoutDay(month: monthFromInt(selectedDate!.month), year: selectedDate!.year),
           );
+          if (!mounted) return;
           await pushNotificationOrPreAuthMainScreen(context);
         }
       },
       onSkipButtonPress: () async {
         await _examinationsQuestionnairesDao.setDontKnowLastVisitDate(_type);
+        if (!mounted) return;
         await pushNotificationOrPreAuthMainScreen(context);
       },
     );

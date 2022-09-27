@@ -91,7 +91,7 @@ class UpdateProfilePage with SettingsFinders, VerifyVisibilityStateHelper {
   }
 
   Future<void> clickBackButton() async {
-    logTestEvent();
+    logTestEvent('Click on back button in update profile');
     await tester.tap(backBtn);
     await tester.pumpAndSettle();
   }
