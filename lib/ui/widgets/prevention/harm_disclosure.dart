@@ -45,8 +45,7 @@ Widget harmDisclosureWidget(BuildContext context, SelfExaminationType type) {
             },
         ),
         TextSpan(
-          text:
-              '${AppLocalizationsExt(context).l10n.or} ${AppLocalizationsExt(context).l10n.our_web_page}',
+          text: AppLocalizationsExt(context).l10n.or_on_linkos_web_page,
         ),
         TextSpan(
           text: AppLocalizationsExt(context).l10n.czech_oncology_corp,
