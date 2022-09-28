@@ -6,16 +6,14 @@ const _itemHeight = 40.0;
 
 enum FrequencyType { numbers, period }
 
+final items = List<String>.of(['měsíce', 'roky']).asMap();
+
 class CustomPeriodicalSpinner extends StatefulWidget {
   const CustomPeriodicalSpinner({
     super.key,
     required this.valueChanged,
-    this.stringPeriod,
-    this.numberPeriod,
   });
   final Function(String, String) valueChanged;
-  final String? stringPeriod;
-  final String? numberPeriod;
   @override
   State<CustomPeriodicalSpinner> createState() => _CustomPeriodicalSpinnerState();
 }
@@ -34,6 +32,10 @@ class _CustomPeriodicalSpinnerState extends State<CustomPeriodicalSpinner> {
 
   @override
   Widget build(BuildContext context) {
+    final finalInterval = _selectedStringIndex >= 1 ? 10 : 11;
+    final monthNumbers =
+        [for (var i = _selectedStringIndex == 1 ? 1 : 6; i <= finalInterval; i++) i].asMap();
+
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.32,
       child: Row(
@@ -51,42 +53,33 @@ class _CustomPeriodicalSpinnerState extends State<CustomPeriodicalSpinner> {
             ),
           ),
           const Text('Jednou za'),
-          _monthPickerColumn(),
+          _monthPickerColumn(monthNumbers),
           _frequencyPickerColumn(),
         ],
       ),
     );
   }
 
-  Widget _monthPickerColumn() {
-    final finalInterval = _selectedStringIndex >= 1 ? 10 : 11;
-    final items =
-        [for (var i = _selectedStringIndex == 1 ? 1 : 6; i <= finalInterval; i++) i].asMap();
-
-    final selectedIndex = _selectedFrequency;
-
+  Widget _monthPickerColumn(Map<int, int> monthNumbers) {
     return SizedBox(
       width: MediaQuery.of(context).size.width / 3,
       child: ListWheelScrollView.useDelegate(
         physics: const FixedExtentScrollPhysics(),
         itemExtent: _itemHeight,
-        childDelegate: ListWheelChildLoopingListDelegate(
-          children: items.keys
-              .map(
-                (index) => setListItem(
-                  index: index,
-                  text: items[index].toString().padLeft(1, '0'),
-                  items: items,
-                  selectedIndex: selectedIndex,
-                ),
-              )
-              .toList(),
+        childDelegate: ListWheelChildBuilderDelegate(
+          childCount: monthNumbers.length,
+          builder: (context, index) => setListItem(
+            index: index,
+            text: monthNumbers[index].toString().padLeft(1, '0'),
+            items: monthNumbers,
+            selectedIndex: _selectedFrequency,
+          ),
         ),
         onSelectedItemChanged: (index) {
-          _changeNumber(items: items, value: items.keys.elementAt(index));
+          _changeNumber(items: monthNumbers, value: monthNumbers.keys.elementAt(index));
 
           setState(() {
-            _selectedFrequency = items.keys.elementAt(index);
+            _selectedFrequency = monthNumbers.keys.elementAt(index);
           });
         },
       ),
@@ -94,16 +87,6 @@ class _CustomPeriodicalSpinnerState extends State<CustomPeriodicalSpinner> {
   }
 
   Widget _frequencyPickerColumn() {
-    final items = List<String>.of(['měsíce', 'roky']).asMap();
-
-    int selectedIndex;
-    if (widget.stringPeriod!.isNotEmpty == true) {
-      selectedIndex = items.values
-          .toList()
-          .indexOf(items.values.firstWhere((element) => element == widget.stringPeriod));
-    } else {
-      selectedIndex = _selectedStringIndex;
-    }
     return SizedBox(
       width: MediaQuery.of(context).size.width / 3,
       child: ListWheelScrollView.useDelegate(
@@ -115,7 +98,7 @@ class _CustomPeriodicalSpinnerState extends State<CustomPeriodicalSpinner> {
             index: index,
             text: items[index].toString().padLeft(1, '0'),
             items: items,
-            selectedIndex: selectedIndex,
+            selectedIndex: _selectedStringIndex,
           ),
         ),
         onSelectedItemChanged: (index) {
