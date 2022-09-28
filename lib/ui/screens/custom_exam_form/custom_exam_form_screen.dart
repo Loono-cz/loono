@@ -39,6 +39,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
 
   bool _lastExamChck = false;
   bool _nextExamChck = false;
+  bool _showError = false;
   @override
   void initState() {
     super.initState();
@@ -62,10 +63,12 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
 
   void onProviderSet(ExaminationType? provider) => setState(() {
         _specialist = provider;
+        _showError = false;
       });
 
   void onActionTypeSet(ExaminationActionType? examination) => setState(() {
         _examinationType = examination;
+        _showError = false;
       });
 
   void onDateSet(DateTime? dateTime) => setState(() {
@@ -74,6 +77,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
 
   void onLastExamDateSet(DateTime? dateTime) => setState(() {
         _lastExamDate = dateTime;
+        _showError = false;
       });
   void onNextExamDateSet(DateTime? dateTime) => setState(() {
         _nextExamDate = dateTime;
@@ -124,7 +128,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                 height: 20,
               ),
               CustomInputTextField(
-                error: false,
+                error: _showError,
                 label: _specialist == null ? '' : context.l10n.specialist,
                 hintText: context.l10n.choose_specialist,
                 value: _specialist != null ? ExaminationTypeExt(_specialist!).l10n_name : '',
@@ -139,7 +143,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                 height: 20,
               ),
               CustomInputTextField(
-                error: _specialist != null && _examinationType == null,
+                error: _specialist != null && _examinationType == null || _showError,
                 label: _specialist == null ? '' : context.l10n.examination_type,
                 hintText: context.l10n.choose_examination_type,
                 value: _examinationType != null
@@ -200,7 +204,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                 maxLength: 256,
                 keyboardType: TextInputType.multiline,
                 initialValue: _note,
-                enabled: !_nextExamChck,
+                enabled: _nextExamDate != null,
                 onChanged: onNoteChange,
                 decoration: InputDecoration(
                   hintText: context.l10n.note_visiting_description,
@@ -212,42 +216,50 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                 ),
               ),
               const SizedBox(
-                height: 20.0,
+                height: 15.0,
               ),
-              LoonoButton(
-                text: context.l10n.action_save,
-                onTap: () async {
-                  if (_specialist != null && _examinationType != null) {
-                    final response = await registry.get<ExaminationRepository>().postExamination(
-                          _specialist!,
-                          actionType: _examinationType,
-                          periodicExam: checkPeriodicExam,
-                          note: _note,
-                          customInterval: null, // Pravidelne
-                          newDate: _periodDateTime,
-                          categoryType: ExaminationCategoryType.CUSTOM,
-                          status: ExaminationStatus.NEW,
-                          firstExam: true,
-                        );
-                    response.map(
-                      success: (res) {
-                        Provider.of<ExaminationsProvider>(context, listen: false)
-                            .updateExaminationsRecord(res.data);
-                        AutoRouter.of(context).popUntilRouteWithName(PreventionRoute.name);
-                        showFlushBarSuccess(context, 'Prohlídka byla pridána');
-                      },
-                      failure: (err) {
-                        showFlushBarError(
-                          context,
-                          statusCodeToText(
+              Padding(
+                padding: const EdgeInsets.only(bottom: 30.0),
+                child: LoonoButton(
+                  text: context.l10n.action_save,
+                  onTap: () async {
+                    if (_specialist != null && _examinationType != null) {
+                      //TODO: Zeptat se stepana jak to teda ma byt ...
+                      final response = await registry.get<ExaminationRepository>().postExamination(
+                            _specialist!,
+                            actionType: _examinationType,
+                            periodicExam: checkPeriodicExam,
+                            note: _note,
+                            customInterval: checkPeriodicExam ? 1 : 0, // Pravidelne
+                            newDate: _periodDateTime,
+                            categoryType: ExaminationCategoryType.CUSTOM,
+                            status: ExaminationStatus.NEW,
+                            firstExam: true,
+                          );
+                      response.map(
+                        success: (res) {
+                          Provider.of<ExaminationsProvider>(context, listen: false)
+                              .updateExaminationsRecord(res.data);
+                          AutoRouter.of(context).popUntilRouteWithName(PreventionRoute.name);
+                          showFlushBarSuccess(context, context.l10n.examinatoin_was_added);
+                        },
+                        failure: (err) {
+                          showFlushBarError(
                             context,
-                            err.error.response?.statusCode,
-                          ),
-                        );
-                      },
-                    );
-                  }
-                },
+                            statusCodeToText(
+                              context,
+                              err.error.response?.statusCode,
+                            ),
+                          );
+                        },
+                      );
+                    } else {
+                      setState(() {
+                        _showError = true;
+                      });
+                    }
+                  },
+                ),
               )
             ],
           ),
@@ -305,7 +317,8 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.baseline,
+            textBaseline: TextBaseline.ideographic,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Flexible(
@@ -339,14 +352,15 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
             height: 20.0,
           ),
           Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.baseline,
+            textBaseline: TextBaseline.ideographic,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
                 width: (MediaQuery.of(context).size.width) -
                     (MediaQuery.of(context).size.width / 20) * 10,
                 child: CustomInputTextField(
-                  error: false,
+                  error: _showError,
                   enabled: !_lastExamChck,
                   label: _lastExamDate == null ? '' : context.l10n.last_examination,
                   hintText: context.l10n.last_examination,
@@ -357,7 +371,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                     width: 5,
                     height: 5,
                     fit: BoxFit.scaleDown,
-                    color: Colors.black87,
+                    color: _lastExamChck ? Colors.black38 : Colors.black87,
                   ),
                   onClickInputField: () => AutoRouter.of(context).navigate(
                     ChooseExamPeriodDateRoute(
@@ -386,7 +400,8 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
             height: 20.0,
           ),
           Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.baseline,
+            textBaseline: TextBaseline.ideographic,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(

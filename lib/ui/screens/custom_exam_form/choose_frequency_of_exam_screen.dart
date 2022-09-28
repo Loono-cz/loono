@@ -79,8 +79,6 @@ class _ChooseFrequencyOfExamScreenState extends State<ChooseFrequencyOfExamScree
               height: (MediaQuery.of(context).size.height) -
                   (MediaQuery.of(context).size.height / 25) * 10,
               child: CustomPeriodicalSpinner(
-                stringPeriod: stringPeriod,
-                numberPeriod: numberPeriod,
                 valueChanged: (number, text) {
                   setState(() {
                     period = '$number $text';
@@ -94,7 +92,7 @@ class _ChooseFrequencyOfExamScreenState extends State<ChooseFrequencyOfExamScree
             LoonoButton(
               text: context.l10n.confirm_info,
               onTap: () {
-                widget.valueChanged(period);
+                widget.valueChanged(period.isEmpty ? '6 měsíce' : period);
                 Navigator.of(context).pop();
               },
             )
