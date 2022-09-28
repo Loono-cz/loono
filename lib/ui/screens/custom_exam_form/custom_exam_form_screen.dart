@@ -224,12 +224,13 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                   text: context.l10n.action_save,
                   onTap: () async {
                     if (_specialist != null && _examinationType != null) {
+                      //TODO: Zeptat se stepana jak to teda ma byt ...
                       final response = await registry.get<ExaminationRepository>().postExamination(
                             _specialist!,
                             actionType: _examinationType,
                             periodicExam: checkPeriodicExam,
                             note: _note,
-                            customInterval: null, // Pravidelne
+                            customInterval: checkPeriodicExam ? 1 : 0, // Pravidelne
                             newDate: _periodDateTime,
                             categoryType: ExaminationCategoryType.CUSTOM,
                             status: ExaminationStatus.NEW,
@@ -240,7 +241,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                           Provider.of<ExaminationsProvider>(context, listen: false)
                               .updateExaminationsRecord(res.data);
                           AutoRouter.of(context).popUntilRouteWithName(PreventionRoute.name);
-                          showFlushBarSuccess(context, 'Prohlídka byla pridána');
+                          showFlushBarSuccess(context, context.l10n.examinatoin_was_added);
                         },
                         failure: (err) {
                           showFlushBarError(

@@ -1205,5 +1205,7 @@
   "note_visiting": "Poznámka k návštevě",
   "@note_visiting": {},
   "note_visiting_description": "Prostor pro tvoje poznámky k návštevě",
-  "@note_visiting_description": {}
+  "@note_visiting_description": {},
+  "examinatoin_was_added": "Prohlídka byla přidána",
+  "@examinatoin_was_added": {}
 }
