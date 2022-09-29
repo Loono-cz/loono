@@ -145,8 +145,8 @@ class ApiService {
             ..customInterval = customInterval
             ..periodicExam = periodicExam
             ..note = note
-            ..examinationCategoryType = categoryType;
-          //..actionType = actionType;
+            ..examinationCategoryType = categoryType
+            ..examinationActionType = actionType;
         }),
       ),
     );
