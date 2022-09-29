@@ -25,10 +25,8 @@ mixin _$ExaminationTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -75,10 +73,8 @@ mixin _$ExaminationTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -125,10 +121,8 @@ mixin _$ExaminationTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -181,12 +175,9 @@ mixin _$ExaminationTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -240,12 +231,9 @@ mixin _$ExaminationTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -296,12 +284,9 @@ mixin _$ExaminationTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -414,10 +399,8 @@ class _$ColonoscopyExaminationTypeUnion
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -467,10 +450,8 @@ class _$ColonoscopyExaminationTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -520,10 +501,8 @@ class _$ColonoscopyExaminationTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -582,12 +561,9 @@ class _$ColonoscopyExaminationTypeUnion
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -644,12 +620,9 @@ class _$ColonoscopyExaminationTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -703,12 +676,9 @@ class _$ColonoscopyExaminationTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -813,10 +783,8 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -866,10 +834,8 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -919,10 +885,8 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -981,12 +945,9 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -1043,12 +1004,9 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -1102,12 +1060,9 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -1212,10 +1167,8 @@ class _$DermatologistExaminationTypeUnion
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -1265,10 +1218,8 @@ class _$DermatologistExaminationTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -1318,10 +1269,8 @@ class _$DermatologistExaminationTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -1380,12 +1329,9 @@ class _$DermatologistExaminationTypeUnion
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -1442,12 +1388,9 @@ class _$DermatologistExaminationTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -1501,12 +1444,9 @@ class _$DermatologistExaminationTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -1613,10 +1553,8 @@ class _$GeneralPractitionerExaminationTypeUnion
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -1666,10 +1604,8 @@ class _$GeneralPractitionerExaminationTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -1719,10 +1655,8 @@ class _$GeneralPractitionerExaminationTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -1781,12 +1715,9 @@ class _$GeneralPractitionerExaminationTypeUnion
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -1843,12 +1774,9 @@ class _$GeneralPractitionerExaminationTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -1902,12 +1830,9 @@ class _$GeneralPractitionerExaminationTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -2013,10 +1938,8 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -2066,10 +1989,8 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -2119,10 +2040,8 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -2181,12 +2100,9 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -2243,12 +2159,9 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -2302,12 +2215,9 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -2413,10 +2323,8 @@ class _$GynecologistExaminationTypeUnion
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -2466,10 +2374,8 @@ class _$GynecologistExaminationTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -2519,10 +2425,8 @@ class _$GynecologistExaminationTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -2581,12 +2485,9 @@ class _$GynecologistExaminationTypeUnion
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -2643,12 +2544,9 @@ class _$GynecologistExaminationTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -2702,12 +2600,9 @@ class _$GynecologistExaminationTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -2813,10 +2708,8 @@ class _$OphthalmologistExaminationTypeUnion
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -2866,10 +2759,8 @@ class _$OphthalmologistExaminationTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -2919,10 +2810,8 @@ class _$OphthalmologistExaminationTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -2981,12 +2870,9 @@ class _$OphthalmologistExaminationTypeUnion
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -3043,12 +2929,9 @@ class _$OphthalmologistExaminationTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -3102,12 +2985,9 @@ class _$OphthalmologistExaminationTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -3159,402 +3039,6 @@ abstract class OphthalmologistExaminationTypeUnion
   const factory OphthalmologistExaminationTypeUnion() =
       _$OphthalmologistExaminationTypeUnion;
   const OphthalmologistExaminationTypeUnion._() : super._();
-}
-
-/// @nodoc
-abstract class _$$ToksExaminationTypeUnionCopyWith<$Res> {
-  factory _$$ToksExaminationTypeUnionCopyWith(_$ToksExaminationTypeUnion value,
-          $Res Function(_$ToksExaminationTypeUnion) then) =
-      __$$ToksExaminationTypeUnionCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ToksExaminationTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
-    implements _$$ToksExaminationTypeUnionCopyWith<$Res> {
-  __$$ToksExaminationTypeUnionCopyWithImpl(_$ToksExaminationTypeUnion _value,
-      $Res Function(_$ToksExaminationTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$ToksExaminationTypeUnion));
-
-  @override
-  _$ToksExaminationTypeUnion get _value =>
-      super._value as _$ToksExaminationTypeUnion;
-}
-
-/// @nodoc
-
-class _$ToksExaminationTypeUnion extends ToksExaminationTypeUnion {
-  const _$ToksExaminationTypeUnion() : super._();
-
-  @override
-  String toString() {
-    return 'ExaminationTypeUnion.toks()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ToksExaminationTypeUnion);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() colonoscopy,
-    required TResult Function() dentist,
-    required TResult Function() dermatologist,
-    required TResult Function() generalPractitioner,
-    required TResult Function() mammogram,
-    required TResult Function() gynecologist,
-    required TResult Function() ophthalmologist,
-    required TResult Function() toks,
-    required TResult Function() ultrasoundBreast,
-    required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
-    required TResult Function() allergology,
-    required TResult Function() cardiology,
-    required TResult Function() endocrinologyandhormones,
-    required TResult Function() gastroenterology,
-    required TResult Function() genetics,
-    required TResult Function() hematology,
-    required TResult Function() immunology,
-    required TResult Function() intern,
-    required TResult Function() nephrology,
-    required TResult Function() neurology,
-    required TResult Function() nutrition,
-    required TResult Function() oncology,
-    required TResult Function() orl,
-    required TResult Function() orthodontics,
-    required TResult Function() orthopedics,
-    required TResult Function() other,
-    required TResult Function() pallativemedicine,
-    required TResult Function() pediatrician,
-    required TResult Function() phoniatrics,
-    required TResult Function() physiotherapy,
-    required TResult Function() psychiatry,
-    required TResult Function() psychology,
-    required TResult Function() pulmonary,
-    required TResult Function() rehabilitation,
-    required TResult Function() reproductivemedicine,
-    required TResult Function() rheumatology,
-    required TResult Function() sexology,
-    required TResult Function() speechtherapist,
-    required TResult Function() sportmedicine,
-    required TResult Function() surgey,
-    required TResult Function() tanner,
-    required TResult Function() urlogy,
-    required TResult Function() vascular,
-    required TResult Function() dentalhygiene,
-    required TResult Function() ergotherapy,
-  }) {
-    return toks();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? toks,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
-  }) {
-    return toks?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? toks,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
-    required TResult orElse(),
-  }) {
-    if (toks != null) {
-      return toks();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ColonoscopyExaminationTypeUnion value)
-        colonoscopy,
-    required TResult Function(DentistExaminationTypeUnion value) dentist,
-    required TResult Function(DermatologistExaminationTypeUnion value)
-        dermatologist,
-    required TResult Function(GeneralPractitionerExaminationTypeUnion value)
-        generalPractitioner,
-    required TResult Function(MammogramExaminationTypeUnion value) mammogram,
-    required TResult Function(GynecologistExaminationTypeUnion value)
-        gynecologist,
-    required TResult Function(OphthalmologistExaminationTypeUnion value)
-        ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
-    required TResult Function(UltrasoundBreastExaminationTypeUnion value)
-        ultrasoundBreast,
-    required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
-    required TResult Function(AlergollogyExamTypeUnion value) allergology,
-    required TResult Function(CardiologyExamTypeUnion value) cardiology,
-    required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
-        endocrinologyandhormones,
-    required TResult Function(GastroenterologyExamTypeUnion value)
-        gastroenterology,
-    required TResult Function(GeneticsExamTypeUnion value) genetics,
-    required TResult Function(HematologyExamTypeUnion value) hematology,
-    required TResult Function(ImmunologyExamTypeUnion value) immunology,
-    required TResult Function(InternExamTypeUnion value) intern,
-    required TResult Function(NephrologyTypeUnion value) nephrology,
-    required TResult Function(NeurologyExamTypeUnion value) neurology,
-    required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OncologyExamTypeUnion value) oncology,
-    required TResult Function(OrlExamTypeUnion value) orl,
-    required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
-    required TResult Function(OrthopedicsExamTypeUnion value) orthopedics,
-    required TResult Function(OtherExamTypeUnion value) other,
-    required TResult Function(PallativemedicineExamTypeUnion value)
-        pallativemedicine,
-    required TResult Function(PediatricianExamTypeUnion value) pediatrician,
-    required TResult Function(PhoniatricsExamTypeUnion value) phoniatrics,
-    required TResult Function(PhysiotherapyExamTypeUnion value) physiotherapy,
-    required TResult Function(PsychiatryExamTypeUnion value) psychiatry,
-    required TResult Function(PsychologyExamTypeUnion value) psychology,
-    required TResult Function(PumonaryExamTypeUnion value) pulmonary,
-    required TResult Function(RegabilitationExamTypeUnion value) rehabilitation,
-    required TResult Function(ProductiveMedicineExamTypeUnion value)
-        reproductivemedicine,
-    required TResult Function(RheumatologyExamTypeUnion value) rheumatology,
-    required TResult Function(SexologyExamTypeUnion value) sexology,
-    required TResult Function(SpeechTherapistExamTypeUnion value)
-        speechtherapist,
-    required TResult Function(SportMedicineExamTypeUnion value) sportmedicine,
-    required TResult Function(SurgeyExamTypeUnion value) surgey,
-    required TResult Function(TannerExamTypeUnion value) tanner,
-    required TResult Function(UrlogoyExamTypeUnion value) urlogy,
-    required TResult Function(VascularExamTypeUnion value) vascular,
-    required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
-    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
-  }) {
-    return toks(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
-        endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
-        reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
-  }) {
-    return toks?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
-        endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
-        reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
-    required TResult orElse(),
-  }) {
-    if (toks != null) {
-      return toks(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ToksExaminationTypeUnion extends ExaminationTypeUnion {
-  const factory ToksExaminationTypeUnion() = _$ToksExaminationTypeUnion;
-  const ToksExaminationTypeUnion._() : super._();
 }
 
 /// @nodoc
@@ -3611,10 +3095,8 @@ class _$UltrasoundBreastExaminationTypeUnion
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -3664,10 +3146,8 @@ class _$UltrasoundBreastExaminationTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -3717,10 +3197,8 @@ class _$UltrasoundBreastExaminationTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -3779,12 +3257,9 @@ class _$UltrasoundBreastExaminationTypeUnion
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -3841,12 +3316,9 @@ class _$UltrasoundBreastExaminationTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -3900,12 +3372,9 @@ class _$UltrasoundBreastExaminationTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -4011,10 +3480,8 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -4064,10 +3531,8 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -4117,10 +3582,8 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -4179,12 +3642,9 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -4241,12 +3701,9 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -4300,12 +3757,9 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -4359,408 +3813,6 @@ abstract class UrologistExaminationTypeUnion extends ExaminationTypeUnion {
 }
 
 /// @nodoc
-abstract class _$$VenerealDiseasesExaminationTypeUnionCopyWith<$Res> {
-  factory _$$VenerealDiseasesExaminationTypeUnionCopyWith(
-          _$VenerealDiseasesExaminationTypeUnion value,
-          $Res Function(_$VenerealDiseasesExaminationTypeUnion) then) =
-      __$$VenerealDiseasesExaminationTypeUnionCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$VenerealDiseasesExaminationTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
-    implements _$$VenerealDiseasesExaminationTypeUnionCopyWith<$Res> {
-  __$$VenerealDiseasesExaminationTypeUnionCopyWithImpl(
-      _$VenerealDiseasesExaminationTypeUnion _value,
-      $Res Function(_$VenerealDiseasesExaminationTypeUnion) _then)
-      : super(
-            _value, (v) => _then(v as _$VenerealDiseasesExaminationTypeUnion));
-
-  @override
-  _$VenerealDiseasesExaminationTypeUnion get _value =>
-      super._value as _$VenerealDiseasesExaminationTypeUnion;
-}
-
-/// @nodoc
-
-class _$VenerealDiseasesExaminationTypeUnion
-    extends VenerealDiseasesExaminationTypeUnion {
-  const _$VenerealDiseasesExaminationTypeUnion() : super._();
-
-  @override
-  String toString() {
-    return 'ExaminationTypeUnion.venerealDiseases()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$VenerealDiseasesExaminationTypeUnion);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() colonoscopy,
-    required TResult Function() dentist,
-    required TResult Function() dermatologist,
-    required TResult Function() generalPractitioner,
-    required TResult Function() mammogram,
-    required TResult Function() gynecologist,
-    required TResult Function() ophthalmologist,
-    required TResult Function() toks,
-    required TResult Function() ultrasoundBreast,
-    required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
-    required TResult Function() allergology,
-    required TResult Function() cardiology,
-    required TResult Function() endocrinologyandhormones,
-    required TResult Function() gastroenterology,
-    required TResult Function() genetics,
-    required TResult Function() hematology,
-    required TResult Function() immunology,
-    required TResult Function() intern,
-    required TResult Function() nephrology,
-    required TResult Function() neurology,
-    required TResult Function() nutrition,
-    required TResult Function() oncology,
-    required TResult Function() orl,
-    required TResult Function() orthodontics,
-    required TResult Function() orthopedics,
-    required TResult Function() other,
-    required TResult Function() pallativemedicine,
-    required TResult Function() pediatrician,
-    required TResult Function() phoniatrics,
-    required TResult Function() physiotherapy,
-    required TResult Function() psychiatry,
-    required TResult Function() psychology,
-    required TResult Function() pulmonary,
-    required TResult Function() rehabilitation,
-    required TResult Function() reproductivemedicine,
-    required TResult Function() rheumatology,
-    required TResult Function() sexology,
-    required TResult Function() speechtherapist,
-    required TResult Function() sportmedicine,
-    required TResult Function() surgey,
-    required TResult Function() tanner,
-    required TResult Function() urlogy,
-    required TResult Function() vascular,
-    required TResult Function() dentalhygiene,
-    required TResult Function() ergotherapy,
-  }) {
-    return venerealDiseases();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? toks,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
-  }) {
-    return venerealDiseases?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? toks,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
-    required TResult orElse(),
-  }) {
-    if (venerealDiseases != null) {
-      return venerealDiseases();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ColonoscopyExaminationTypeUnion value)
-        colonoscopy,
-    required TResult Function(DentistExaminationTypeUnion value) dentist,
-    required TResult Function(DermatologistExaminationTypeUnion value)
-        dermatologist,
-    required TResult Function(GeneralPractitionerExaminationTypeUnion value)
-        generalPractitioner,
-    required TResult Function(MammogramExaminationTypeUnion value) mammogram,
-    required TResult Function(GynecologistExaminationTypeUnion value)
-        gynecologist,
-    required TResult Function(OphthalmologistExaminationTypeUnion value)
-        ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
-    required TResult Function(UltrasoundBreastExaminationTypeUnion value)
-        ultrasoundBreast,
-    required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
-    required TResult Function(AlergollogyExamTypeUnion value) allergology,
-    required TResult Function(CardiologyExamTypeUnion value) cardiology,
-    required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
-        endocrinologyandhormones,
-    required TResult Function(GastroenterologyExamTypeUnion value)
-        gastroenterology,
-    required TResult Function(GeneticsExamTypeUnion value) genetics,
-    required TResult Function(HematologyExamTypeUnion value) hematology,
-    required TResult Function(ImmunologyExamTypeUnion value) immunology,
-    required TResult Function(InternExamTypeUnion value) intern,
-    required TResult Function(NephrologyTypeUnion value) nephrology,
-    required TResult Function(NeurologyExamTypeUnion value) neurology,
-    required TResult Function(NutritionExamTypeUnion value) nutrition,
-    required TResult Function(OncologyExamTypeUnion value) oncology,
-    required TResult Function(OrlExamTypeUnion value) orl,
-    required TResult Function(OrthodonticsExamTypeUnion value) orthodontics,
-    required TResult Function(OrthopedicsExamTypeUnion value) orthopedics,
-    required TResult Function(OtherExamTypeUnion value) other,
-    required TResult Function(PallativemedicineExamTypeUnion value)
-        pallativemedicine,
-    required TResult Function(PediatricianExamTypeUnion value) pediatrician,
-    required TResult Function(PhoniatricsExamTypeUnion value) phoniatrics,
-    required TResult Function(PhysiotherapyExamTypeUnion value) physiotherapy,
-    required TResult Function(PsychiatryExamTypeUnion value) psychiatry,
-    required TResult Function(PsychologyExamTypeUnion value) psychology,
-    required TResult Function(PumonaryExamTypeUnion value) pulmonary,
-    required TResult Function(RegabilitationExamTypeUnion value) rehabilitation,
-    required TResult Function(ProductiveMedicineExamTypeUnion value)
-        reproductivemedicine,
-    required TResult Function(RheumatologyExamTypeUnion value) rheumatology,
-    required TResult Function(SexologyExamTypeUnion value) sexology,
-    required TResult Function(SpeechTherapistExamTypeUnion value)
-        speechtherapist,
-    required TResult Function(SportMedicineExamTypeUnion value) sportmedicine,
-    required TResult Function(SurgeyExamTypeUnion value) surgey,
-    required TResult Function(TannerExamTypeUnion value) tanner,
-    required TResult Function(UrlogoyExamTypeUnion value) urlogy,
-    required TResult Function(VascularExamTypeUnion value) vascular,
-    required TResult Function(DentalhygieneExamTypeUnion value) dentalhygiene,
-    required TResult Function(ErgotherapyTypeUnion value) ergotherapy,
-  }) {
-    return venerealDiseases(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
-        endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
-        reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
-  }) {
-    return venerealDiseases?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
-        generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
-        ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
-        ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
-        endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
-        reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
-    required TResult orElse(),
-  }) {
-    if (venerealDiseases != null) {
-      return venerealDiseases(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class VenerealDiseasesExaminationTypeUnion
-    extends ExaminationTypeUnion {
-  const factory VenerealDiseasesExaminationTypeUnion() =
-      _$VenerealDiseasesExaminationTypeUnion;
-  const VenerealDiseasesExaminationTypeUnion._() : super._();
-}
-
-/// @nodoc
 abstract class _$$AlergollogyExamTypeUnionCopyWith<$Res> {
   factory _$$AlergollogyExamTypeUnionCopyWith(_$AlergollogyExamTypeUnion value,
           $Res Function(_$AlergollogyExamTypeUnion) then) =
@@ -4810,10 +3862,8 @@ class _$AlergollogyExamTypeUnion extends AlergollogyExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -4863,10 +3913,8 @@ class _$AlergollogyExamTypeUnion extends AlergollogyExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -4916,10 +3964,8 @@ class _$AlergollogyExamTypeUnion extends AlergollogyExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -4978,12 +4024,9 @@ class _$AlergollogyExamTypeUnion extends AlergollogyExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -5040,12 +4083,9 @@ class _$AlergollogyExamTypeUnion extends AlergollogyExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -5099,12 +4139,9 @@ class _$AlergollogyExamTypeUnion extends AlergollogyExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -5206,10 +4243,8 @@ class _$CardiologyExamTypeUnion extends CardiologyExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -5259,10 +4294,8 @@ class _$CardiologyExamTypeUnion extends CardiologyExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -5312,10 +4345,8 @@ class _$CardiologyExamTypeUnion extends CardiologyExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -5374,12 +4405,9 @@ class _$CardiologyExamTypeUnion extends CardiologyExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -5436,12 +4464,9 @@ class _$CardiologyExamTypeUnion extends CardiologyExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -5495,12 +4520,9 @@ class _$CardiologyExamTypeUnion extends CardiologyExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -5606,10 +4628,8 @@ class _$EndocrinologyAndHormonesExamTypeUnion
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -5659,10 +4679,8 @@ class _$EndocrinologyAndHormonesExamTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -5712,10 +4730,8 @@ class _$EndocrinologyAndHormonesExamTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -5774,12 +4790,9 @@ class _$EndocrinologyAndHormonesExamTypeUnion
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -5836,12 +4849,9 @@ class _$EndocrinologyAndHormonesExamTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -5895,12 +4905,9 @@ class _$EndocrinologyAndHormonesExamTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -6006,10 +5013,8 @@ class _$GastroenterologyExamTypeUnion extends GastroenterologyExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -6059,10 +5064,8 @@ class _$GastroenterologyExamTypeUnion extends GastroenterologyExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -6112,10 +5115,8 @@ class _$GastroenterologyExamTypeUnion extends GastroenterologyExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -6174,12 +5175,9 @@ class _$GastroenterologyExamTypeUnion extends GastroenterologyExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -6236,12 +5234,9 @@ class _$GastroenterologyExamTypeUnion extends GastroenterologyExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -6295,12 +5290,9 @@ class _$GastroenterologyExamTypeUnion extends GastroenterologyExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -6401,10 +5393,8 @@ class _$GeneticsExamTypeUnion extends GeneticsExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -6454,10 +5444,8 @@ class _$GeneticsExamTypeUnion extends GeneticsExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -6507,10 +5495,8 @@ class _$GeneticsExamTypeUnion extends GeneticsExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -6569,12 +5555,9 @@ class _$GeneticsExamTypeUnion extends GeneticsExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -6631,12 +5614,9 @@ class _$GeneticsExamTypeUnion extends GeneticsExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -6690,12 +5670,9 @@ class _$GeneticsExamTypeUnion extends GeneticsExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -6797,10 +5774,8 @@ class _$HematologyExamTypeUnion extends HematologyExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -6850,10 +5825,8 @@ class _$HematologyExamTypeUnion extends HematologyExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -6903,10 +5876,8 @@ class _$HematologyExamTypeUnion extends HematologyExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -6965,12 +5936,9 @@ class _$HematologyExamTypeUnion extends HematologyExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -7027,12 +5995,9 @@ class _$HematologyExamTypeUnion extends HematologyExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -7086,12 +6051,9 @@ class _$HematologyExamTypeUnion extends HematologyExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -7193,10 +6155,8 @@ class _$ImmunologyExamTypeUnion extends ImmunologyExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -7246,10 +6206,8 @@ class _$ImmunologyExamTypeUnion extends ImmunologyExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -7299,10 +6257,8 @@ class _$ImmunologyExamTypeUnion extends ImmunologyExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -7361,12 +6317,9 @@ class _$ImmunologyExamTypeUnion extends ImmunologyExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -7423,12 +6376,9 @@ class _$ImmunologyExamTypeUnion extends ImmunologyExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -7482,12 +6432,9 @@ class _$ImmunologyExamTypeUnion extends ImmunologyExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -7587,10 +6534,8 @@ class _$InternExamTypeUnion extends InternExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -7640,10 +6585,8 @@ class _$InternExamTypeUnion extends InternExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -7693,10 +6636,8 @@ class _$InternExamTypeUnion extends InternExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -7755,12 +6696,9 @@ class _$InternExamTypeUnion extends InternExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -7817,12 +6755,9 @@ class _$InternExamTypeUnion extends InternExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -7876,12 +6811,9 @@ class _$InternExamTypeUnion extends InternExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -7981,10 +6913,8 @@ class _$NephrologyTypeUnion extends NephrologyTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -8034,10 +6964,8 @@ class _$NephrologyTypeUnion extends NephrologyTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -8087,10 +7015,8 @@ class _$NephrologyTypeUnion extends NephrologyTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -8149,12 +7075,9 @@ class _$NephrologyTypeUnion extends NephrologyTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -8211,12 +7134,9 @@ class _$NephrologyTypeUnion extends NephrologyTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -8270,12 +7190,9 @@ class _$NephrologyTypeUnion extends NephrologyTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -8376,10 +7293,8 @@ class _$NeurologyExamTypeUnion extends NeurologyExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -8429,10 +7344,8 @@ class _$NeurologyExamTypeUnion extends NeurologyExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -8482,10 +7395,8 @@ class _$NeurologyExamTypeUnion extends NeurologyExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -8544,12 +7455,9 @@ class _$NeurologyExamTypeUnion extends NeurologyExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -8606,12 +7514,9 @@ class _$NeurologyExamTypeUnion extends NeurologyExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -8665,12 +7570,9 @@ class _$NeurologyExamTypeUnion extends NeurologyExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -8771,10 +7673,8 @@ class _$NutritionExamTypeUnion extends NutritionExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -8824,10 +7724,8 @@ class _$NutritionExamTypeUnion extends NutritionExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -8877,10 +7775,8 @@ class _$NutritionExamTypeUnion extends NutritionExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -8939,12 +7835,9 @@ class _$NutritionExamTypeUnion extends NutritionExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -9001,12 +7894,9 @@ class _$NutritionExamTypeUnion extends NutritionExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -9060,12 +7950,9 @@ class _$NutritionExamTypeUnion extends NutritionExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -9165,10 +8052,8 @@ class _$OncologyExamTypeUnion extends OncologyExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -9218,10 +8103,8 @@ class _$OncologyExamTypeUnion extends OncologyExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -9271,10 +8154,8 @@ class _$OncologyExamTypeUnion extends OncologyExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -9333,12 +8214,9 @@ class _$OncologyExamTypeUnion extends OncologyExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -9395,12 +8273,9 @@ class _$OncologyExamTypeUnion extends OncologyExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -9454,12 +8329,9 @@ class _$OncologyExamTypeUnion extends OncologyExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -9559,10 +8431,8 @@ class _$OrlExamTypeUnion extends OrlExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -9612,10 +8482,8 @@ class _$OrlExamTypeUnion extends OrlExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -9665,10 +8533,8 @@ class _$OrlExamTypeUnion extends OrlExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -9727,12 +8593,9 @@ class _$OrlExamTypeUnion extends OrlExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -9789,12 +8652,9 @@ class _$OrlExamTypeUnion extends OrlExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -9848,12 +8708,9 @@ class _$OrlExamTypeUnion extends OrlExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -9956,10 +8813,8 @@ class _$OrthodonticsExamTypeUnion extends OrthodonticsExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -10009,10 +8864,8 @@ class _$OrthodonticsExamTypeUnion extends OrthodonticsExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -10062,10 +8915,8 @@ class _$OrthodonticsExamTypeUnion extends OrthodonticsExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -10124,12 +8975,9 @@ class _$OrthodonticsExamTypeUnion extends OrthodonticsExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -10186,12 +9034,9 @@ class _$OrthodonticsExamTypeUnion extends OrthodonticsExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -10245,12 +9090,9 @@ class _$OrthodonticsExamTypeUnion extends OrthodonticsExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -10352,10 +9194,8 @@ class _$OrthopedicsExamTypeUnion extends OrthopedicsExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -10405,10 +9245,8 @@ class _$OrthopedicsExamTypeUnion extends OrthopedicsExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -10458,10 +9296,8 @@ class _$OrthopedicsExamTypeUnion extends OrthopedicsExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -10520,12 +9356,9 @@ class _$OrthopedicsExamTypeUnion extends OrthopedicsExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -10582,12 +9415,9 @@ class _$OrthopedicsExamTypeUnion extends OrthopedicsExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -10641,12 +9471,9 @@ class _$OrthopedicsExamTypeUnion extends OrthopedicsExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -10746,10 +9573,8 @@ class _$OtherExamTypeUnion extends OtherExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -10799,10 +9624,8 @@ class _$OtherExamTypeUnion extends OtherExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -10852,10 +9675,8 @@ class _$OtherExamTypeUnion extends OtherExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -10914,12 +9735,9 @@ class _$OtherExamTypeUnion extends OtherExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -10976,12 +9794,9 @@ class _$OtherExamTypeUnion extends OtherExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -11035,12 +9850,9 @@ class _$OtherExamTypeUnion extends OtherExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -11144,10 +9956,8 @@ class _$PallativemedicineExamTypeUnion extends PallativemedicineExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -11197,10 +10007,8 @@ class _$PallativemedicineExamTypeUnion extends PallativemedicineExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -11250,10 +10058,8 @@ class _$PallativemedicineExamTypeUnion extends PallativemedicineExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -11312,12 +10118,9 @@ class _$PallativemedicineExamTypeUnion extends PallativemedicineExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -11374,12 +10177,9 @@ class _$PallativemedicineExamTypeUnion extends PallativemedicineExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -11433,12 +10233,9 @@ class _$PallativemedicineExamTypeUnion extends PallativemedicineExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -11542,10 +10339,8 @@ class _$PediatricianExamTypeUnion extends PediatricianExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -11595,10 +10390,8 @@ class _$PediatricianExamTypeUnion extends PediatricianExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -11648,10 +10441,8 @@ class _$PediatricianExamTypeUnion extends PediatricianExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -11710,12 +10501,9 @@ class _$PediatricianExamTypeUnion extends PediatricianExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -11772,12 +10560,9 @@ class _$PediatricianExamTypeUnion extends PediatricianExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -11831,12 +10616,9 @@ class _$PediatricianExamTypeUnion extends PediatricianExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -11938,10 +10720,8 @@ class _$PhoniatricsExamTypeUnion extends PhoniatricsExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -11991,10 +10771,8 @@ class _$PhoniatricsExamTypeUnion extends PhoniatricsExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -12044,10 +10822,8 @@ class _$PhoniatricsExamTypeUnion extends PhoniatricsExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -12106,12 +10882,9 @@ class _$PhoniatricsExamTypeUnion extends PhoniatricsExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -12168,12 +10941,9 @@ class _$PhoniatricsExamTypeUnion extends PhoniatricsExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -12227,12 +10997,9 @@ class _$PhoniatricsExamTypeUnion extends PhoniatricsExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -12336,10 +11103,8 @@ class _$PhysiotherapyExamTypeUnion extends PhysiotherapyExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -12389,10 +11154,8 @@ class _$PhysiotherapyExamTypeUnion extends PhysiotherapyExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -12442,10 +11205,8 @@ class _$PhysiotherapyExamTypeUnion extends PhysiotherapyExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -12504,12 +11265,9 @@ class _$PhysiotherapyExamTypeUnion extends PhysiotherapyExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -12566,12 +11324,9 @@ class _$PhysiotherapyExamTypeUnion extends PhysiotherapyExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -12625,12 +11380,9 @@ class _$PhysiotherapyExamTypeUnion extends PhysiotherapyExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -12732,10 +11484,8 @@ class _$PsychiatryExamTypeUnion extends PsychiatryExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -12785,10 +11535,8 @@ class _$PsychiatryExamTypeUnion extends PsychiatryExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -12838,10 +11586,8 @@ class _$PsychiatryExamTypeUnion extends PsychiatryExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -12900,12 +11646,9 @@ class _$PsychiatryExamTypeUnion extends PsychiatryExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -12962,12 +11705,9 @@ class _$PsychiatryExamTypeUnion extends PsychiatryExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -13021,12 +11761,9 @@ class _$PsychiatryExamTypeUnion extends PsychiatryExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -13128,10 +11865,8 @@ class _$PsychologyExamTypeUnion extends PsychologyExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -13181,10 +11916,8 @@ class _$PsychologyExamTypeUnion extends PsychologyExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -13234,10 +11967,8 @@ class _$PsychologyExamTypeUnion extends PsychologyExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -13296,12 +12027,9 @@ class _$PsychologyExamTypeUnion extends PsychologyExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -13358,12 +12086,9 @@ class _$PsychologyExamTypeUnion extends PsychologyExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -13417,12 +12142,9 @@ class _$PsychologyExamTypeUnion extends PsychologyExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -13522,10 +12244,8 @@ class _$PumonaryExamTypeUnion extends PumonaryExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -13575,10 +12295,8 @@ class _$PumonaryExamTypeUnion extends PumonaryExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -13628,10 +12346,8 @@ class _$PumonaryExamTypeUnion extends PumonaryExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -13690,12 +12406,9 @@ class _$PumonaryExamTypeUnion extends PumonaryExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -13752,12 +12465,9 @@ class _$PumonaryExamTypeUnion extends PumonaryExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -13811,12 +12521,9 @@ class _$PumonaryExamTypeUnion extends PumonaryExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -13920,10 +12627,8 @@ class _$RegabilitationExamTypeUnion extends RegabilitationExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -13973,10 +12678,8 @@ class _$RegabilitationExamTypeUnion extends RegabilitationExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -14026,10 +12729,8 @@ class _$RegabilitationExamTypeUnion extends RegabilitationExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -14088,12 +12789,9 @@ class _$RegabilitationExamTypeUnion extends RegabilitationExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -14150,12 +12848,9 @@ class _$RegabilitationExamTypeUnion extends RegabilitationExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -14209,12 +12904,9 @@ class _$RegabilitationExamTypeUnion extends RegabilitationExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -14319,10 +13011,8 @@ class _$ProductiveMedicineExamTypeUnion
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -14372,10 +13062,8 @@ class _$ProductiveMedicineExamTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -14425,10 +13113,8 @@ class _$ProductiveMedicineExamTypeUnion
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -14487,12 +13173,9 @@ class _$ProductiveMedicineExamTypeUnion
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -14549,12 +13232,9 @@ class _$ProductiveMedicineExamTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -14608,12 +13288,9 @@ class _$ProductiveMedicineExamTypeUnion
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -14717,10 +13394,8 @@ class _$RheumatologyExamTypeUnion extends RheumatologyExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -14770,10 +13445,8 @@ class _$RheumatologyExamTypeUnion extends RheumatologyExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -14823,10 +13496,8 @@ class _$RheumatologyExamTypeUnion extends RheumatologyExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -14885,12 +13556,9 @@ class _$RheumatologyExamTypeUnion extends RheumatologyExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -14947,12 +13615,9 @@ class _$RheumatologyExamTypeUnion extends RheumatologyExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -15006,12 +13671,9 @@ class _$RheumatologyExamTypeUnion extends RheumatologyExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -15111,10 +13773,8 @@ class _$SexologyExamTypeUnion extends SexologyExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -15164,10 +13824,8 @@ class _$SexologyExamTypeUnion extends SexologyExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -15217,10 +13875,8 @@ class _$SexologyExamTypeUnion extends SexologyExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -15279,12 +13935,9 @@ class _$SexologyExamTypeUnion extends SexologyExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -15341,12 +13994,9 @@ class _$SexologyExamTypeUnion extends SexologyExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -15400,12 +14050,9 @@ class _$SexologyExamTypeUnion extends SexologyExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -15509,10 +14156,8 @@ class _$SpeechTherapistExamTypeUnion extends SpeechTherapistExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -15562,10 +14207,8 @@ class _$SpeechTherapistExamTypeUnion extends SpeechTherapistExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -15615,10 +14258,8 @@ class _$SpeechTherapistExamTypeUnion extends SpeechTherapistExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -15677,12 +14318,9 @@ class _$SpeechTherapistExamTypeUnion extends SpeechTherapistExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -15739,12 +14377,9 @@ class _$SpeechTherapistExamTypeUnion extends SpeechTherapistExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -15798,12 +14433,9 @@ class _$SpeechTherapistExamTypeUnion extends SpeechTherapistExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -15907,10 +14539,8 @@ class _$SportMedicineExamTypeUnion extends SportMedicineExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -15960,10 +14590,8 @@ class _$SportMedicineExamTypeUnion extends SportMedicineExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -16013,10 +14641,8 @@ class _$SportMedicineExamTypeUnion extends SportMedicineExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -16075,12 +14701,9 @@ class _$SportMedicineExamTypeUnion extends SportMedicineExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -16137,12 +14760,9 @@ class _$SportMedicineExamTypeUnion extends SportMedicineExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -16196,12 +14816,9 @@ class _$SportMedicineExamTypeUnion extends SportMedicineExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -16301,10 +14918,8 @@ class _$SurgeyExamTypeUnion extends SurgeyExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -16354,10 +14969,8 @@ class _$SurgeyExamTypeUnion extends SurgeyExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -16407,10 +15020,8 @@ class _$SurgeyExamTypeUnion extends SurgeyExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -16469,12 +15080,9 @@ class _$SurgeyExamTypeUnion extends SurgeyExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -16531,12 +15139,9 @@ class _$SurgeyExamTypeUnion extends SurgeyExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -16590,12 +15195,9 @@ class _$SurgeyExamTypeUnion extends SurgeyExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -16695,10 +15297,8 @@ class _$TannerExamTypeUnion extends TannerExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -16748,10 +15348,8 @@ class _$TannerExamTypeUnion extends TannerExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -16801,10 +15399,8 @@ class _$TannerExamTypeUnion extends TannerExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -16863,12 +15459,9 @@ class _$TannerExamTypeUnion extends TannerExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -16925,12 +15518,9 @@ class _$TannerExamTypeUnion extends TannerExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -16984,12 +15574,9 @@ class _$TannerExamTypeUnion extends TannerExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -17089,10 +15676,8 @@ class _$UrlogoyExamTypeUnion extends UrlogoyExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -17142,10 +15727,8 @@ class _$UrlogoyExamTypeUnion extends UrlogoyExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -17195,10 +15778,8 @@ class _$UrlogoyExamTypeUnion extends UrlogoyExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -17257,12 +15838,9 @@ class _$UrlogoyExamTypeUnion extends UrlogoyExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -17319,12 +15897,9 @@ class _$UrlogoyExamTypeUnion extends UrlogoyExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -17378,12 +15953,9 @@ class _$UrlogoyExamTypeUnion extends UrlogoyExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -17483,10 +16055,8 @@ class _$VascularExamTypeUnion extends VascularExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -17536,10 +16106,8 @@ class _$VascularExamTypeUnion extends VascularExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -17589,10 +16157,8 @@ class _$VascularExamTypeUnion extends VascularExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -17651,12 +16217,9 @@ class _$VascularExamTypeUnion extends VascularExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -17713,12 +16276,9 @@ class _$VascularExamTypeUnion extends VascularExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -17772,12 +16332,9 @@ class _$VascularExamTypeUnion extends VascularExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -17881,10 +16438,8 @@ class _$DentalhygieneExamTypeUnion extends DentalhygieneExamTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -17934,10 +16489,8 @@ class _$DentalhygieneExamTypeUnion extends DentalhygieneExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -17987,10 +16540,8 @@ class _$DentalhygieneExamTypeUnion extends DentalhygieneExamTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -18049,12 +16600,9 @@ class _$DentalhygieneExamTypeUnion extends DentalhygieneExamTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -18111,12 +16659,9 @@ class _$DentalhygieneExamTypeUnion extends DentalhygieneExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -18170,12 +16715,9 @@ class _$DentalhygieneExamTypeUnion extends DentalhygieneExamTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -18275,10 +16817,8 @@ class _$ErgotherapyTypeUnion extends ErgotherapyTypeUnion {
     required TResult Function() mammogram,
     required TResult Function() gynecologist,
     required TResult Function() ophthalmologist,
-    required TResult Function() toks,
     required TResult Function() ultrasoundBreast,
     required TResult Function() urologist,
-    required TResult Function() venerealDiseases,
     required TResult Function() allergology,
     required TResult Function() cardiology,
     required TResult Function() endocrinologyandhormones,
@@ -18328,10 +16868,8 @@ class _$ErgotherapyTypeUnion extends ErgotherapyTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -18381,10 +16919,8 @@ class _$ErgotherapyTypeUnion extends ErgotherapyTypeUnion {
     TResult Function()? mammogram,
     TResult Function()? gynecologist,
     TResult Function()? ophthalmologist,
-    TResult Function()? toks,
     TResult Function()? ultrasoundBreast,
     TResult Function()? urologist,
-    TResult Function()? venerealDiseases,
     TResult Function()? allergology,
     TResult Function()? cardiology,
     TResult Function()? endocrinologyandhormones,
@@ -18443,12 +16979,9 @@ class _$ErgotherapyTypeUnion extends ErgotherapyTypeUnion {
         gynecologist,
     required TResult Function(OphthalmologistExaminationTypeUnion value)
         ophthalmologist,
-    required TResult Function(ToksExaminationTypeUnion value) toks,
     required TResult Function(UltrasoundBreastExaminationTypeUnion value)
         ultrasoundBreast,
     required TResult Function(UrologistExaminationTypeUnion value) urologist,
-    required TResult Function(VenerealDiseasesExaminationTypeUnion value)
-        venerealDiseases,
     required TResult Function(AlergollogyExamTypeUnion value) allergology,
     required TResult Function(CardiologyExamTypeUnion value) cardiology,
     required TResult Function(EndocrinologyAndHormonesExamTypeUnion value)
@@ -18505,12 +17038,9 @@ class _$ErgotherapyTypeUnion extends ErgotherapyTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
@@ -18564,12 +17094,9 @@ class _$ErgotherapyTypeUnion extends ErgotherapyTypeUnion {
     TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
     TResult Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(ToksExaminationTypeUnion value)? toks,
     TResult Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
     TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(VenerealDiseasesExaminationTypeUnion value)?
-        venerealDiseases,
     TResult Function(AlergollogyExamTypeUnion value)? allergology,
     TResult Function(CardiologyExamTypeUnion value)? cardiology,
     TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?

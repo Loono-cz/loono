@@ -18,12 +18,10 @@ extension ExaminationTypeExt on ExaminationType {
       case ExaminationType.COLONOSCOPY:
         return 1000;
       case ExaminationType.MAMMOGRAM:
-      case ExaminationType.TOKS:
         return 500;
       case ExaminationType.OPHTHALMOLOGIST:
       case ExaminationType.ULTRASOUND_BREAST:
         return 100;
-      case ExaminationType.VENEREAL_DISEASES:
 
       case ExaminationType.ALLERGOLOGY:
 
@@ -128,17 +126,11 @@ extension ExaminationTypeExt on ExaminationType {
       case ExaminationType.OPHTHALMOLOGIST:
         examinationTypeUnion = const ExaminationTypeUnion.ophthalmologist();
         break;
-      case ExaminationType.TOKS:
-        examinationTypeUnion = const ExaminationTypeUnion.toks();
-        break;
       case ExaminationType.ULTRASOUND_BREAST:
         examinationTypeUnion = const ExaminationTypeUnion.ultrasoundBreast();
         break;
       case ExaminationType.UROLOGIST:
         examinationTypeUnion = const ExaminationTypeUnion.urologist();
-        break;
-      case ExaminationType.VENEREAL_DISEASES:
-        examinationTypeUnion = const ExaminationTypeUnion.venerealDiseases();
         break;
       case ExaminationType.ALLERGOLOGY:
         examinationTypeUnion = const ExaminationTypeUnion.allergology();
@@ -256,10 +248,8 @@ extension ExaminationTypeExt on ExaminationType {
         mammogram: () => 'Mamograf',
         gynecologist: () => 'Gynekolog',
         ophthalmologist: () => 'Očař',
-        toks: () => 'Toks',
         ultrasoundBreast: () => 'Ultrazvuk prsu',
         urologist: () => 'Urolog',
-        venerealDiseases: () => 'Pohlavní choroby',
         allergology: () => 'Alergologie',
         cardiology: () => 'Kardiologie',
         dentalhygiene: () => 'Dentální hygiena',
@@ -353,13 +343,9 @@ class ExaminationTypeUnion with _$ExaminationTypeUnion {
 
   const factory ExaminationTypeUnion.ophthalmologist() = OphthalmologistExaminationTypeUnion;
 
-  const factory ExaminationTypeUnion.toks() = ToksExaminationTypeUnion;
-
   const factory ExaminationTypeUnion.ultrasoundBreast() = UltrasoundBreastExaminationTypeUnion;
 
   const factory ExaminationTypeUnion.urologist() = UrologistExaminationTypeUnion;
-
-  const factory ExaminationTypeUnion.venerealDiseases() = VenerealDiseasesExaminationTypeUnion;
 
   const factory ExaminationTypeUnion.allergology() = AlergollogyExamTypeUnion;
   const factory ExaminationTypeUnion.cardiology() = CardiologyExamTypeUnion;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loono/l10n/ext.dart';
 
 class CustomInputTextField extends StatefulWidget {
   const CustomInputTextField({
@@ -10,6 +11,7 @@ class CustomInputTextField extends StatefulWidget {
     required this.onClickInputField,
     this.enabled,
     required this.error,
+    this.onValidation,
   });
   final String label;
   final String? hintText;
@@ -18,6 +20,7 @@ class CustomInputTextField extends StatefulWidget {
   final VoidCallback? onClickInputField;
   final bool? enabled;
   final bool error;
+  final String? Function(String?)? onValidation;
   @override
   State<CustomInputTextField> createState() => _CustomInputTextFieldState();
 }
@@ -25,8 +28,10 @@ class CustomInputTextField extends StatefulWidget {
 class _CustomInputTextFieldState extends State<CustomInputTextField> {
   var textController = TextEditingController();
 
-  final disabledFieldBorder =
-      const OutlineInputBorder(borderSide: BorderSide(color: Colors.black38));
+  final disabledFieldBorder = const OutlineInputBorder(
+    borderSide: BorderSide(color: Colors.black38),
+    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+  );
 
   final textFieldBorder = const OutlineInputBorder(
     borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -53,6 +58,7 @@ class _CustomInputTextFieldState extends State<CustomInputTextField> {
       enabled: widget.enabled,
       autofocus: false,
       onTap: widget.onClickInputField,
+      validator: widget.onValidation,
       decoration: InputDecoration(
         disabledBorder: widget.enabled == false ? disabledFieldBorder : textFieldBorder,
         errorBorder: widget.error
@@ -65,7 +71,7 @@ class _CustomInputTextFieldState extends State<CustomInputTextField> {
             : const Icon(
                 Icons.arrow_downward_outlined,
               ),
-        errorText: widget.error ? 'Toto pole je povinné' : '',
+        errorText: widget.error ? context.l10n.mandatory_field : '',
         prefixIcon: widget.prefixIcon,
         suffixIconColor: Colors.black87,
         filled: true,

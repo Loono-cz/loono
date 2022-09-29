@@ -81,16 +81,118 @@ String czechPrepositionDativ(BuildContext context, {required ExaminationType exa
     case ExaminationType.OPHTHALMOLOGIST:
       res = 'k';
       break;
-    case ExaminationType.TOKS:
-      res = 'na';
-      break;
     case ExaminationType.ULTRASOUND_BREAST:
       res = 'na';
       break;
     case ExaminationType.UROLOGIST:
       res = 'k';
       break;
-    case ExaminationType.VENEREAL_DISEASES:
+    case ExaminationType.ALLERGOLOGY:
+      res = 'k';
+      break;
+    case ExaminationType.CARDIOLOGY:
+      res = 'na';
+      break;
+    case ExaminationType.ENDOCRINOLOGY_AND_HORMONES:
+      res = 'na';
+      break;
+    case ExaminationType.ERGOTHERAPY:
+      res = 'na';
+      break;
+    case ExaminationType.GASTROENTEROLOGY:
+      res = 'k';
+      break;
+    case ExaminationType.GENETICS:
+      res = 'na';
+      break;
+    case ExaminationType.HEMATOLOGY:
+      res = 'k';
+      break;
+    case ExaminationType.IMMUNOLOGY:
+      res = 'na';
+      break;
+    case ExaminationType.INTERN:
+      res = 'na';
+      break;
+    case ExaminationType.NEPHROLOGY:
+      res = 'na';
+      break;
+    case ExaminationType.NEUROLOGY:
+      res = 'k';
+      break;
+    case ExaminationType.NUTRITION:
+      res = 'k';
+      break;
+    case ExaminationType.OCULAR:
+      res = 'k';
+      break;
+    case ExaminationType.ONCOLOGY:
+      res = 'na';
+      break;
+    case ExaminationType.ORL:
+      res = 'k';
+      break;
+    case ExaminationType.ORTHODONTICS:
+      res = 'k';
+      break;
+    case ExaminationType.ORTHOPEDICS:
+      res = 'k';
+      break;
+    case ExaminationType.OTHER:
+      res = 'k';
+      break;
+    case ExaminationType.PALLIATIVE_MEDICINE:
+      res = 'na';
+      break;
+    case ExaminationType.PEDIATRICIAN:
+      res = 'k';
+      break;
+    case ExaminationType.PHONIATRICS:
+      res = 'k';
+      break;
+    case ExaminationType.PHYSIOTHERAPY:
+      res = 'na';
+      break;
+    case ExaminationType.PSYCHIATRY:
+      res = 'k';
+      break;
+    case ExaminationType.PSYCHOLOGY:
+      res = 'k';
+      break;
+    case ExaminationType.PULMONARY:
+      res = 'na';
+      break;
+    case ExaminationType.REHABILITATION:
+      res = 'na';
+      break;
+    case ExaminationType.REPRODUCTIVE_MEDICINE:
+      res = 'na';
+      break;
+    case ExaminationType.RHEUMATOLOGY:
+      res = 'na';
+      break;
+    case ExaminationType.SEXOLOGY:
+      res = 'k';
+      break;
+    case ExaminationType.SPEECH_THERAPIST:
+      res = 'k';
+      break;
+    case ExaminationType.SPORTS_MEDICINE:
+      res = 'na';
+      break;
+    case ExaminationType.SURGERY:
+      res = 'na';
+      break;
+    case ExaminationType.TANNER:
+      res = 'na';
+      break;
+    case ExaminationType.UROLOGY:
+      res = 'k';
+      break;
+    case ExaminationType.VASCULAR:
+      res = 'na';
+      break;
+    case ExaminationType.dENTALHYGIENE:
       res = 'na';
       break;
   }
@@ -169,17 +271,12 @@ String procedureQuestionTitle(
     case ExaminationType.OPHTHALMOLOGIST:
       response = context.l10n.oculist_question_highlight;
       break;
-    case ExaminationType.TOKS:
-      // TODO: Handle this case.
-      break;
+
     case ExaminationType.ULTRASOUND_BREAST:
       response = context.l10n.ultrasound_breast_question_highlight;
       break;
     case ExaminationType.UROLOGIST:
       response = context.l10n.urology_question_highlight;
-      break;
-    case ExaminationType.VENEREAL_DISEASES:
-      // TODO: Handle this case.
       break;
   }
   return response;
@@ -230,11 +327,7 @@ String examinationTypeCasus(
       if (casus == Casus.genitiv) return l10n.ophthalmologist_genitiv;
       if (casus == Casus.dativ) return l10n.ophthalmologist_dativ;
       return '${ExaminationType.OPHTHALMOLOGIST} unkown casus';
-    case ExaminationType.TOKS:
-      if (casus == Casus.nomativ) return l10n.toks_nomativ;
-      if (casus == Casus.genitiv) return l10n.toks_genitiv;
-      if (casus == Casus.dativ) return l10n.toks_dativ;
-      return '${ExaminationType.TOKS} unkown casus';
+
     case ExaminationType.ULTRASOUND_BREAST:
       if (casus == Casus.nomativ) return l10n.ultrasoundBreast_nomativ;
       if (casus == Casus.genitiv) return l10n.ultrasoundBreast_genitiv;
@@ -245,9 +338,6 @@ String examinationTypeCasus(
       if (casus == Casus.genitiv) return l10n.urologist_genitiv;
       if (casus == Casus.dativ) return l10n.urologist_dativ;
       return '${ExaminationType.UROLOGIST} unkown casus';
-    case ExaminationType.VENEREAL_DISEASES:
-      // TODO: Handle this case.
-      return '${ExaminationType.VENEREAL_DISEASES} unkown casus';
     case ExaminationType.PHYSIOTHERAPY:
       if (casus == Casus.nomativ) return l10n.physiotherapy_nomativ;
       if (casus == Casus.genitiv) return l10n.physiotherapy_genitiv;

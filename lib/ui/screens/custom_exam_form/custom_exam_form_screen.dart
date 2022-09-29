@@ -40,6 +40,8 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
   bool _lastExamChck = false;
   bool _nextExamChck = false;
   bool _showError = false;
+  bool _showLastExamError = false;
+  bool _showPeriodDateTime = false;
   @override
   void initState() {
     super.initState();
@@ -73,6 +75,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
 
   void onDateSet(DateTime? dateTime) => setState(() {
         _periodDateTime = dateTime;
+        _showPeriodDateTime = false;
       });
 
   void onLastExamDateSet(DateTime? dateTime) => setState(() {
@@ -85,6 +88,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
 
   void setLastExamCheckbox(bool value) => setState(() {
         _lastExamChck = value;
+        _showLastExamError = false;
       });
   void setNextExamCheckbox(bool value) => setState(() {
         _nextExamChck = value;
@@ -92,10 +96,12 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
 
   void setFrequencyExam(String value) => setState(() {
         _customInterval = value;
+        _showLastExamError = false;
       });
   void onNoteChange(String value) => setState(() {
         _note = value;
       });
+
   BuildContext? providerContext;
   @override
   Widget build(BuildContext context) {
@@ -230,7 +236,9 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                             actionType: _examinationType,
                             periodicExam: checkPeriodicExam,
                             note: _note,
-                            customInterval: checkPeriodicExam ? 1 : 0, // Pravidelne
+                            customInterval: checkPeriodicExam && _customInterval.isNotEmpty
+                                ? int.parse(_customInterval[0])
+                                : null, // Pravidelne
                             newDate: _periodDateTime,
                             categoryType: ExaminationCategoryType.CUSTOM,
                             status: ExaminationStatus.NEW,
@@ -256,6 +264,11 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                     } else {
                       setState(() {
                         _showError = true;
+                        if (!checkPeriodicExam) {
+                          _showPeriodDateTime = true;
+                        } else {
+                          _showLastExamError = true;
+                        }
                       });
                     }
                   },
@@ -334,7 +347,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
               Flexible(
                 flex: 2,
                 child: CustomInputTextField(
-                  error: false,
+                  error: _showError,
                   label: '',
                   hintText: context.l10n.exam_frequency,
                   value: _customInterval,
@@ -360,7 +373,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                 width: (MediaQuery.of(context).size.width) -
                     (MediaQuery.of(context).size.width / 20) * 10,
                 child: CustomInputTextField(
-                  error: _showError,
+                  error: _showLastExamError,
                   enabled: !_lastExamChck,
                   label: _lastExamDate == null ? '' : context.l10n.last_examination,
                   hintText: context.l10n.last_examination,
@@ -447,7 +460,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
       return SizedBox(
         width: (MediaQuery.of(context).size.width) - (MediaQuery.of(context).size.width / 20) * 10,
         child: CustomInputTextField(
-          error: false,
+          error: _showPeriodDateTime,
           label: _periodDateTime == null ? '' : context.l10n.examination_term,
           hintText: context.l10n.examination_term,
           value: _periodDateTime != null
