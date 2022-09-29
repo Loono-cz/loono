@@ -158,8 +158,6 @@
   "@achievement_dermatologist_header": {},
   "achievement_colonoscopy_header": "Boty za kolonoskopii",
   "@achievement_colonoscopy_header": {},
-  "achievement_toks_header": "Boty za TOKS",
-  "@achievement_toks_header": {},
   "achievement_description_subtitle": "Za splněné prohlídky a pravidelné samovyšetřování získáváš vybavení pro svého superhrdinu.",
   "@achievement_description_subtitle": {},
   "achievement_general_practitioner_text_1": "Vybavení pro svého superhrdinu získáváš dokončením preventivních prohlídek.",
@@ -736,8 +734,6 @@
   "@ophthalmologist_nomativ": {},
   "testicularSelf_nomativ": "Samovyšetření varlata",
   "@testicularSelf_nomativ": {},
-  "toks_nomativ": "Toks",
-  "@toks_nomativ": {},
   "ultrasoundBreast_nomativ": "Ultrazvuk prsu",
   "@ultrasoundBreast_nomativ": {},
   "urologist_nomativ": "Urolog",
@@ -760,8 +756,7 @@
   "@ophthalmologist_genitiv": {},
   "testicularSelf_genitiv": "Samovyšetření varlete",
   "@testicularSelf_genitiv": {},
-  "toks_genitiv": "Toks",
-  "@toks_genitiv": {},
+
   "ultrasoundBreast_genitiv": "Ultrazvuk prsu",
   "@ultrasoundBreast_genitiv": {},
   "urologist_genitiv": "Urologa",
@@ -784,8 +779,6 @@
   "@ophthalmologist_dativ": {},
   "testicularSelf_dativ": "Samovyšetření varlete",
   "@testicularSelf_dativ": {},
-  "toks_dativ": "Toks",
-  "@toks_dativ": {},
   "ultrasoundBreast_dativ": "Ultrazvuku prsu",
   "@ultrasoundBreast_dativ": {},
   "urologist_dativ": "Urologovi",
@@ -1223,5 +1216,7 @@
   "examinatoin_was_added": "Prohlídka byla přidána",
   "@examinatoin_was_added": {},
   "donate_challenge": "Výzva k darování",
-  "@donate_challenge": {}
+  "@donate_challenge": {},
+  "mandatory_field": "Toto pole je povinné",
+  "@mandatory_field": {}
 }

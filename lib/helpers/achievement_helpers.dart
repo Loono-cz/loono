@@ -26,18 +26,15 @@ String getAchievementTitle(BuildContext context, ExaminationType type) {
     case ExaminationType.OPHTHALMOLOGIST:
       result = context.l10n.achievement_ophthalmologist_header;
       break;
-    case ExaminationType.TOKS:
-      result = context.l10n.achievement_toks_header;
-      break;
+
     case ExaminationType.ULTRASOUND_BREAST:
       // TODO: Handle this case.
       break;
     case ExaminationType.UROLOGIST:
       result = context.l10n.achievement_belt_urologist_header;
       break;
-    case ExaminationType.VENEREAL_DISEASES:
-      // TODO: Handle this case.
-      break;
+    default:
+      return result;
   }
 
   return result;
@@ -68,18 +65,14 @@ String getAchievementAssetPath(ExaminationType type) {
     case ExaminationType.OPHTHALMOLOGIST:
       name = 'goggles_level_1.svg';
       break;
-    case ExaminationType.TOKS:
-      name = 'boots_level_1.svg';
-      break;
     case ExaminationType.ULTRASOUND_BREAST:
       name = 'armour_level_1.svg';
       break;
     case ExaminationType.UROLOGIST:
       name = 'belt_level_1.svg';
       break;
-    case ExaminationType.VENEREAL_DISEASES:
-      // TODO: Handle this case.
-      break;
+    default:
+      return name;
   }
   return path + name;
 }
