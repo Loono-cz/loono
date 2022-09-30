@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/date_helpers.dart';
 import 'package:loono/helpers/examination_action_types.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/helpers/flushbar_message.dart';
@@ -25,11 +26,10 @@ class CustomExamFormScreen extends StatefulWidget {
   State<CustomExamFormScreen> createState() => _CustomExamFormScreenState();
 }
 
-bool checkPeriodicExam = false;
-
 class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
   ExaminationType? _specialist;
   ExaminationActionType? _examinationType;
+  bool _isPeriodicExam = false;
 
   String _customInterval = '';
   String _note = '';
@@ -41,7 +41,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
   bool _nextExamChck = false;
   bool _showError = false;
   bool _showLastExamError = false;
-  bool _showPeriodDateTime = false;
+  bool _showPeriodDateTimeError = false;
   @override
   void initState() {
     super.initState();
@@ -75,7 +75,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
 
   void onDateSet(DateTime? dateTime) => setState(() {
         _periodDateTime = dateTime;
-        _showPeriodDateTime = false;
+        _showPeriodDateTimeError = false;
       });
 
   void onLastExamDateSet(DateTime? dateTime) => setState(() {
@@ -180,18 +180,22 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                       context,
                       'Jednorázové', //TODO: Translation
                       () => setState(() {
-                        checkPeriodicExam = false;
+                        _isPeriodicExam = false;
+                        _showPeriodDateTimeError = false;
+                        _showLastExamError = false;
                       }),
-                      !checkPeriodicExam,
+                      !_isPeriodicExam,
                       false,
                     ),
                     checkboxConetnt(
                       context,
                       'Pravidelné', //TODO: Translation
                       () => setState(() {
-                        checkPeriodicExam = true;
+                        _isPeriodicExam = true;
+                        _showPeriodDateTimeError = false;
+                        _showLastExamError = false;
                       }),
-                      checkPeriodicExam,
+                      _isPeriodicExam,
                       true,
                     ),
                   ],
@@ -210,7 +214,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                 maxLength: 256,
                 keyboardType: TextInputType.multiline,
                 initialValue: _note,
-                enabled: _nextExamDate != null,
+                enabled: _isPeriodicExam ? _nextExamDate != null : true,
                 onChanged: onNoteChange,
                 decoration: InputDecoration(
                   hintText: context.l10n.note_visiting_description,
@@ -231,41 +235,16 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                   onTap: () async {
                     if (_specialist != null && _examinationType != null) {
                       //TODO: Zeptat se stepana jak to teda ma byt ...
-                      final response = await registry.get<ExaminationRepository>().postExamination(
-                            _specialist!,
-                            actionType: _examinationType,
-                            periodicExam: checkPeriodicExam,
-                            note: _note,
-                            customInterval: checkPeriodicExam && _customInterval.isNotEmpty
-                                ? int.parse(_customInterval[0])
-                                : null, // Pravidelne
-                            newDate: _periodDateTime,
-                            categoryType: ExaminationCategoryType.CUSTOM,
-                            status: ExaminationStatus.NEW,
-                            firstExam: true,
-                          );
-                      response.map(
-                        success: (res) {
-                          Provider.of<ExaminationsProvider>(context, listen: false)
-                              .updateExaminationsRecord(res.data);
-                          AutoRouter.of(context).popUntilRouteWithName(PreventionRoute.name);
-                          showFlushBarSuccess(context, context.l10n.examinatoin_was_added);
-                        },
-                        failure: (err) {
-                          showFlushBarError(
-                            context,
-                            statusCodeToText(
-                              context,
-                              err.error.response?.statusCode,
-                            ),
-                          );
-                        },
-                      );
+                      if (_isPeriodicExam) {
+                        await sendMandatoryRequest();
+                      } else {
+                        await sendOnceRequest();
+                      }
                     } else {
                       setState(() {
                         _showError = true;
-                        if (!checkPeriodicExam) {
-                          _showPeriodDateTime = true;
+                        if (!_isPeriodicExam) {
+                          _showPeriodDateTimeError = true;
                         } else {
                           _showLastExamError = true;
                         }
@@ -324,7 +303,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
   }
 
   Widget buildFrequentionForm(BuildContext context) {
-    if (checkPeriodicExam) {
+    if (_isPeriodicExam) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -460,7 +439,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
       return SizedBox(
         width: (MediaQuery.of(context).size.width) - (MediaQuery.of(context).size.width / 20) * 10,
         child: CustomInputTextField(
-          error: _showPeriodDateTime,
+          error: _showPeriodDateTimeError,
           label: _periodDateTime == null ? '' : context.l10n.examination_term,
           hintText: context.l10n.examination_term,
           value: _periodDateTime != null
@@ -484,5 +463,85 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
         ),
       );
     }
+  }
+
+  Future<void> sendMandatoryRequest() async {
+    final response = await registry.get<ExaminationRepository>().postExamination(
+          _specialist!,
+          actionType: _examinationType,
+          periodicExam: _isPeriodicExam,
+          note: _note,
+          customInterval: int.parse(_customInterval[0]), // Pravidelne
+          newDate: _lastExamDate,
+          categoryType: ExaminationCategoryType.CUSTOM,
+          status: ExaminationStatus.CONFIRMED,
+          firstExam: true,
+        );
+    response.map(
+      success: (res) {
+        final frequencyString = _customInterval.split('');
+        registry
+            .get<ExaminationRepository>()
+            .postExamination(
+              _specialist!,
+              actionType: _examinationType,
+              periodicExam: _isPeriodicExam,
+              note: _note,
+              customInterval: frequencyString[1] == 'roky'
+                  ? transformYearToMonth(frequencyString[0])
+                  : int.parse(frequencyString[0]), // Pravidelne
+              newDate: _nextExamDate,
+              categoryType: ExaminationCategoryType.CUSTOM,
+              status: ExaminationStatus.NEW,
+              firstExam: false,
+            )
+            .then((value) {
+          Provider.of<ExaminationsProvider>(context, listen: false)
+              .updateExaminationsRecord(res.data);
+          AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
+          showFlushBarSuccess(context, context.l10n.examinatoin_was_added);
+        });
+      },
+      failure: (err) {
+        showFlushBarError(
+          context,
+          statusCodeToText(
+            context,
+            err.error.response?.statusCode,
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> sendOnceRequest() async {
+    final response = await registry.get<ExaminationRepository>().postExamination(
+          _specialist!,
+          actionType: _examinationType,
+          periodicExam: _isPeriodicExam,
+          note: _note,
+          customInterval: null,
+          newDate: _periodDateTime,
+          categoryType: ExaminationCategoryType.CUSTOM,
+          status: ExaminationStatus.NEW,
+          firstExam: true,
+        );
+    response.map(
+      success: (res) {
+        Provider.of<ExaminationsProvider>(context, listen: false)
+            .updateExaminationsRecord(res.data);
+        AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
+        showFlushBarSuccess(context, context.l10n.examinatoin_was_added);
+      },
+      failure: (err) {
+        showFlushBarError(
+          context,
+          statusCodeToText(
+            context,
+            err.error.response?.statusCode,
+          ),
+        );
+      },
+    );
   }
 }
