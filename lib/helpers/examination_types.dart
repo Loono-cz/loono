@@ -291,6 +291,8 @@ extension ExaminationTypeExt on ExaminationType {
     final doctor = mapToUnion.toString().split('.').last.replaceFirst('()', '.svg');
     return '$basePath$doctor';
   }
+
+  String get customExamAssetPath => 'assets/icons/prevention/doctors/universal_specialist.svg';
 }
 
 extension SelfExaminationTypeExt on SelfExaminationType {

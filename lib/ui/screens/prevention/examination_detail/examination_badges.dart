@@ -32,7 +32,7 @@ class ExaminationBadges extends StatelessWidget {
   int get recommendedIntervalInMonthsMinusTwoMonths =>
       categorizedExamination.examination.intervalYears.toInt() * 12 - 2;
 
-  String badgeCZ(BadgeType type) {
+  String badgeCZ(BadgeType? type) {
     switch (type) {
       case BadgeType.COAT:
         return 'superhrdinský plášť';
@@ -136,7 +136,7 @@ class ExaminationBadges extends StatelessWidget {
           future: registry.get<UserRepository>().getBadges(),
           builder: (context, snapshot) {
             final badge = snapshot.data?.toList().firstWhereOrNull(
-                  (element) => element?.type.name == categorizedExamination.examination.badge.name,
+                  (element) => element?.type.name == categorizedExamination.examination.badge?.name,
                 );
             return Column(
               children: [
@@ -196,7 +196,7 @@ class ExaminationBadges extends StatelessWidget {
                                           position: b.BadgePosition.bottomEnd(bottom: -8, end: -24),
                                           child: Image.asset(
                                             'assets/badges_examination/${examinationType.toString().toLowerCase()}'
-                                            '/level_${badge != null && badge.type.name == categorizedExamination.examination.badge.name && badge.level >= index + 1 ? '${index + 1}.png' : '${index + 1}_disabled.png'}',
+                                            '/level_${badge != null && badge.type.name == categorizedExamination.examination.badge?.name && badge.level >= index + 1 ? '${index + 1}.png' : '${index + 1}_disabled.png'}',
                                           ),
                                         ),
                                       ),

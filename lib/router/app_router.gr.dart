@@ -351,6 +351,7 @@ class AppRouter extends _i15.RootStackRouter {
           child: _i35.ExaminationDetailScreen(
               key: args.key,
               categorizedExamination: args.categorizedExamination,
+              choosedExamination: args.choosedExamination,
               initialMessage: args.initialMessage),
           transitionsBuilder: _i15.TransitionsBuilders.slideLeft,
           opaque: true,
@@ -1434,12 +1435,14 @@ class ExaminationDetailRoute
   ExaminationDetailRoute(
       {_i62.Key? key,
       required _i67.CategorizedExamination categorizedExamination,
+      _i66.ExaminationPreventionStatus? choosedExamination,
       String? initialMessage})
       : super(ExaminationDetailRoute.name,
             path: 'prevention-detail',
             args: ExaminationDetailRouteArgs(
                 key: key,
                 categorizedExamination: categorizedExamination,
+                choosedExamination: choosedExamination,
                 initialMessage: initialMessage));
 
   static const String name = 'ExaminationDetailRoute';
@@ -1447,17 +1450,22 @@ class ExaminationDetailRoute
 
 class ExaminationDetailRouteArgs {
   const ExaminationDetailRouteArgs(
-      {this.key, required this.categorizedExamination, this.initialMessage});
+      {this.key,
+      required this.categorizedExamination,
+      this.choosedExamination,
+      this.initialMessage});
 
   final _i62.Key? key;
 
   final _i67.CategorizedExamination categorizedExamination;
 
+  final _i66.ExaminationPreventionStatus? choosedExamination;
+
   final String? initialMessage;
 
   @override
   String toString() {
-    return 'ExaminationDetailRouteArgs{key: $key, categorizedExamination: $categorizedExamination, initialMessage: $initialMessage}';
+    return 'ExaminationDetailRouteArgs{key: $key, categorizedExamination: $categorizedExamination, choosedExamination: $choosedExamination, initialMessage: $initialMessage}';
   }
 }
 

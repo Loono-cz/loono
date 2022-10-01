@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/examination_action_types.dart';
 import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/ui/widgets/loono_point.dart';
 import 'package:loono/ui/widgets/notification_icon.dart';
+import 'package:loono_api/loono_api.dart';
 
 // ignore: constant_identifier_names
-const EXAMINATION_CARD_HEIGHT = 120.0;
+const EXAMINATION_CARD_HEIGHT = 130.0;
 
 class ExaminationCard extends StatelessWidget {
   ExaminationCard({
@@ -33,9 +35,17 @@ class ExaminationCard extends StatelessWidget {
         categorizedExamination.examination.examinationType.l10n_name,
         style: LoonoFonts.cardTitle,
       );
+  Widget get _subtitle => Text(
+        ExaminationActionTypeExt(
+          categorizedExamination.examination.examinationActionType ?? ExaminationActionType.CONTROL,
+        ).l10n_name,
+        style: LoonoFonts.cardExaminaitonType,
+      );
 
   Widget get _doctorAsset => SvgPicture.asset(
-        categorizedExamination.examination.examinationType.assetPath,
+        categorizedExamination.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM
+            ? categorizedExamination.examination.examinationType.customExamAssetPath
+            : categorizedExamination.examination.examinationType.assetPath,
         height: 100,
       );
 
@@ -113,6 +123,7 @@ class ExaminationCard extends StatelessWidget {
                   ],
                 ],
               ),
+              _subtitle,
               if (isSoonOrOverdue)
                 Text(
                   diffText.toUpperCase(),

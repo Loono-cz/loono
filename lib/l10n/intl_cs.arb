@@ -1218,5 +1218,7 @@
   "donate_challenge": "Výzva k darování",
   "@donate_challenge": {},
   "mandatory_field": "Toto pole je povinné",
-  "@mandatory_field": {}
+  "@mandatory_field": {},
+  "not_other_examinaiton": "U specialisty nemáte další prohlídky.",
+  "@not_other_examinaiton": {}
 }

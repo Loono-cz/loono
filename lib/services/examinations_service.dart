@@ -60,7 +60,13 @@ class ExaminationsProvider extends ChangeNotifier {
                       ? record.plannedDate?.toLocal()
                       : item.lastConfirmedDate
               ..state = record.status ?? item.state
-              ..firstExam = record.firstExam ?? item.firstExam,
+              ..firstExam = record.firstExam ?? item.firstExam
+              ..customInterval = record.customInterval
+              ..examinationActionType = record.examinationActionType
+              ..examinationCategoryType = record.examinationCategoryType
+              ..badge = item.badge
+              ..periodicExam = record.periodicExam
+              ..note = record.note,
           );
 
       final builder = examinations?.toBuilder();
