@@ -4,6 +4,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/date_helpers.dart';
 import 'package:loono/helpers/examination_action_types.dart';
 import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
@@ -80,23 +81,42 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
     return user?.sex ?? Sex.MALE;
   }
 
-  String _intervalYears(BuildContext context) =>
-      '${widget.categorizedExamination.examination.intervalYears.toString()} ${widget.categorizedExamination.examination.intervalYears > 1 ? context.l10n.years : context.l10n.year}';
+  String _intervalYears(BuildContext context) {
+    final yearInterval = widget.categorizedExamination.examination.intervalYears;
+    //transformMonthToEar
+    if (_examinationCategoryType == ExaminationCategoryType.CUSTOM) {
+      return '${transformMonthToEar(yearInterval)} ${yearInterval < 11 ? 'měsíců' : 'roků'}';
+    } else {
+      return '${yearInterval.toString()} ${yearInterval > 1 ? context.l10n.years : context.l10n.year}';
+    }
+  }
 
-  Widget _calendarRow(String text, {VoidCallback? onTap}) => GestureDetector(
-        onTap: onTap,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SvgPicture.asset('assets/icons/prevention/calendar.svg'),
-            const SizedBox(width: 5),
-            Text(
-              text.toUpperCase(),
-              style: LoonoFonts.cardSubtitle,
-            ),
-          ],
-        ),
-      );
+  Widget _calendarRow(String text, {VoidCallback? onTap, bool? interval, bool? showCalendarIcon}) {
+    var svgPath = '';
+    if (_isPeriodicalExam && interval == true) {
+      svgPath = 'assets/icons/prevention/interval_repeat.svg';
+    } else {
+      svgPath = 'assets/icons/prevention/interval_time_repeat.svg';
+    }
+
+    return GestureDetector(
+      onTap: onTap,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.baseline,
+        textBaseline: TextBaseline.alphabetic,
+        children: [
+          SvgPicture.asset(
+            showCalendarIcon == true ? 'assets/icons/prevention/calendar.svg' : svgPath,
+          ),
+          const SizedBox(width: 5),
+          Text(
+            text.toUpperCase(),
+            style: LoonoFonts.cardSubtitle.copyWith(textBaseline: TextBaseline.alphabetic),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   void initState() {
@@ -217,6 +237,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                         if (_isPeriodicalExam)
                           _calendarRow(
                             '${context.l10n.once_per} ${_intervalYears(context)}',
+                            interval: true,
                           ),
                         const SizedBox(height: 10),
                         if (_isPeriodicalExam)
@@ -253,6 +274,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                             _nextVisitDate != null
                                 ? DateFormat('dd.MM.yyyy HH:mm').format(_nextVisitDate!)
                                 : '',
+                            showCalendarIcon: true,
                           )
                       ],
                     ),
@@ -265,12 +287,6 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
         if (_isPeriodicalExam || _examinationCategoryType == ExaminationCategoryType.MANDATORY)
           buildPeriodicalAndMandatorySection(context),
         buildButtons(context, _onPostNewCheckupSubmit, preposition),
-        buildExaminationBadges(context),
-        const SizedBox(height: 40),
-        //SHOWING FAQ Section only for Default
-        if (_isPeriodicalExam && _examinationCategoryType == ExaminationCategoryType.MANDATORY)
-          FaqSection(examinationType: _examinationType),
-        const SizedBox(height: 20),
         if (_nextVisitDate != null)
           Padding(
             padding: const EdgeInsets.only(left: 16.0, right: 16.0),
@@ -291,12 +307,19 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
               ),
             ),
           ),
+        const SizedBox(height: 10),
+        buildExaminationBadges(context),
+        const SizedBox(height: 40),
+        //SHOWING FAQ Section only for Default
+        if (_isPeriodicalExam && _examinationCategoryType == ExaminationCategoryType.MANDATORY)
+          FaqSection(examinationType: _examinationType),
         const SizedBox(height: 20),
-        const Padding(
-          padding: EdgeInsets.only(left: 16.0),
+
+        Padding(
+          padding: const EdgeInsets.only(left: 16.0),
           child: Text(
-            'Další prohlídky u specialisty',
-            style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.w400),
+            context.l10n.next_specialist_examination,
+            style: const TextStyle(fontSize: 24.0, fontWeight: FontWeight.w400),
           ),
         ),
         const SizedBox(height: 20),
@@ -560,6 +583,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                     if (item?.plannedDate != null)
                       _calendarRow(
                         DateFormat('dd.MM.yyyy HH:mm').format(item!.plannedDate!),
+                        showCalendarIcon: true,
                       )
                   ],
                 ),

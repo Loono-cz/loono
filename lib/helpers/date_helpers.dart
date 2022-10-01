@@ -8,4 +8,4 @@ int daysBetween(DateTime from, DateTime to) {
 
 int transformYearToMonth(String str) => (int.parse(str.replaceAll(RegExp(r'\d+'), '')) * 12);
 
-num transformMonthToEar(int year) => year < 12 ? year : year / 12;
+num transformMonthToEar(num year) => year < 12 ? year : year / 12;

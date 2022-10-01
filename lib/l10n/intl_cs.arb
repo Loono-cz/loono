@@ -1220,5 +1220,7 @@
   "mandatory_field": "Toto pole je povinné",
   "@mandatory_field": {},
   "not_other_examinaiton": "U specialisty nemáte další prohlídky.",
-  "@not_other_examinaiton": {}
+  "@not_other_examinaiton": {},
+  "next_specialist_examination": "Další prohlídky u specialisty",
+  "@next_specialist_examination": {}
 }

@@ -145,6 +145,7 @@ flutter:
     - assets/badges/achievement/
     - assets/badges/lines/
     - assets/badges_examination/
+    - assets/badges_examination/custom_examination/
     - assets/badges_examination/dentist/
     - assets/badges_examination/colonoscopy/
     - assets/badges_examination/dermatologist/
