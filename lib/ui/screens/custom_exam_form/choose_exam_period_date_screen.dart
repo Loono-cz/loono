@@ -2,11 +2,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/close_button.dart';
 import 'package:loono/ui/widgets/custom_date_picker.dart';
+import 'package:loono_api/loono_api.dart';
 
 class ChooseExamPeriodDateScreen extends StatefulWidget {
   const ChooseExamPeriodDateScreen({
@@ -15,11 +17,13 @@ class ChooseExamPeriodDateScreen extends StatefulWidget {
     required this.label,
     required this.pickTime,
     this.showLastExamDate,
+    this.isLastExamChoose = false,
     super.key,
   });
   final String label;
   final bool pickTime;
   final bool? showLastExamDate;
+  final bool? isLastExamChoose;
 
   final DateTime? dateTime;
   final Function(DateTime?) onValueChange;
@@ -65,9 +69,8 @@ class _ChooseExamPeriodDateScreenState extends State<ChooseExamPeriodDateScreen>
             const SizedBox(
               height: 20.0,
             ),
-            SizedBox(
-              height: (MediaQuery.of(context).size.height) -
-                  (MediaQuery.of(context).size.height / 25) * 10,
+            Expanded(
+              flex: 1,
               child: CustomDatePicker(
                 valueChanged: (value) {
                   _dateTime = value;
@@ -83,6 +86,24 @@ class _ChooseExamPeriodDateScreenState extends State<ChooseExamPeriodDateScreen>
             LoonoButton(
               text: widget.pickTime ? context.l10n.continue_info : context.l10n.confirm_info,
               onTap: () {
+                final isDateValid = Date.now().toDateTime().isAtSameMomentAs(
+                              Date(_dateTime!.year, _dateTime!.month, _dateTime!.day).toDateTime(),
+                            ) ||
+                        DateTime.now().isBefore(_dateTime!) ||
+                        widget.isLastExamChoose == true
+                    ? DateTime.now().isAfter(_dateTime!)
+                    : false;
+
+                if (!isDateValid) {
+                  showFlushBarError(
+                    context,
+                    widget.isLastExamChoose == true
+                        ? context.l10n.error_date_must_be_in_past
+                        : context.l10n.error_must_be_in_future,
+                  );
+                  return;
+                }
+
                 if (widget.pickTime) {
                   AutoRouter.of(context).navigate(
                     ChooseExamPeriodTimeRoute(

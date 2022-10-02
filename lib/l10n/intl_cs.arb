@@ -1222,5 +1222,7 @@
   "not_other_examinaiton": "U specialisty nemáte další prohlídky.",
   "@not_other_examinaiton": {},
   "next_specialist_examination": "Další prohlídky u specialisty",
-  "@next_specialist_examination": {}
+  "@next_specialist_examination": {},
+  "error_date_must_be_in_past": "Datum prohlídky musí být v minulosti",
+  "@error_date_must_be_in_past": {}
 }

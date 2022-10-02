@@ -61,9 +61,8 @@ class _ChooseSpecialistScreenState extends State<ChooseSpecialistScreen> {
               height: 20.0,
             ),
             const Divider(),
-            SizedBox(
-              height: (MediaQuery.of(context).size.height) -
-                  (MediaQuery.of(context).size.height / 25) * 10,
+            Flexible(
+              flex: 1,
               child: SingleChildScrollView(
                 physics: const ScrollPhysics(),
                 child: ListView.builder(

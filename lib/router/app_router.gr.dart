@@ -605,6 +605,7 @@ class AppRouter extends _i15.RootStackRouter {
               label: args.label,
               pickTime: args.pickTime,
               showLastExamDate: args.showLastExamDate,
+              isLastExamChoose: args.isLastExamChoose,
               key: args.key),
           transitionsBuilder: _i15.TransitionsBuilders.slideLeft,
           opaque: true,
@@ -2114,6 +2115,7 @@ class ChooseExamPeriodDateRoute
       required String label,
       required bool pickTime,
       bool? showLastExamDate,
+      bool? isLastExamChoose = false,
       _i62.Key? key})
       : super(ChooseExamPeriodDateRoute.name,
             path: 'custom-exam-form-choose-period-date',
@@ -2123,6 +2125,7 @@ class ChooseExamPeriodDateRoute
                 label: label,
                 pickTime: pickTime,
                 showLastExamDate: showLastExamDate,
+                isLastExamChoose: isLastExamChoose,
                 key: key));
 
   static const String name = 'ChooseExamPeriodDateRoute';
@@ -2135,6 +2138,7 @@ class ChooseExamPeriodDateRouteArgs {
       required this.label,
       required this.pickTime,
       this.showLastExamDate,
+      this.isLastExamChoose = false,
       this.key});
 
   final DateTime? dateTime;
@@ -2147,11 +2151,13 @@ class ChooseExamPeriodDateRouteArgs {
 
   final bool? showLastExamDate;
 
+  final bool? isLastExamChoose;
+
   final _i62.Key? key;
 
   @override
   String toString() {
-    return 'ChooseExamPeriodDateRouteArgs{dateTime: $dateTime, onValueChange: $onValueChange, label: $label, pickTime: $pickTime, showLastExamDate: $showLastExamDate, key: $key}';
+    return 'ChooseExamPeriodDateRouteArgs{dateTime: $dateTime, onValueChange: $onValueChange, label: $label, pickTime: $pickTime, showLastExamDate: $showLastExamDate, isLastExamChoose: $isLastExamChoose, key: $key}';
   }
 }
 

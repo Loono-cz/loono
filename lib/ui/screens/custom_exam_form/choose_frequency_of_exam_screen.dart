@@ -75,9 +75,8 @@ class _ChooseFrequencyOfExamScreenState extends State<ChooseFrequencyOfExamScree
             const SizedBox(
               height: 20.0,
             ),
-            SizedBox(
-              height: (MediaQuery.of(context).size.height) -
-                  (MediaQuery.of(context).size.height / 25) * 10,
+            Expanded(
+              flex: 1,
               child: CustomPeriodicalSpinner(
                 valueChanged: (number, text) {
                   setState(() {

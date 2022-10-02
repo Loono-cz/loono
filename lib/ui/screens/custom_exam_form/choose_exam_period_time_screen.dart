@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
@@ -75,9 +76,8 @@ class _ChooseExamPeriodTimeScreenState extends State<ChooseExamPeriodTimeScreen>
             const SizedBox(
               height: 20.0,
             ),
-            SizedBox(
-              height: (MediaQuery.of(context).size.height) -
-                  (MediaQuery.of(context).size.height / 25) * 10,
+            Expanded(
+              flex: 1,
               child: CustomTimePicker(
                 defaultHour: _dateTime?.hour,
                 defaultMinute: _dateTime?.minute,
@@ -93,6 +93,15 @@ class _ChooseExamPeriodTimeScreenState extends State<ChooseExamPeriodTimeScreen>
             LoonoButton(
               text: context.l10n.confirm_info,
               onTap: () {
+                final isDateValid = Date.now().toDateTime().isAtSameMomentAs(
+                          Date(_dateTime!.year, _dateTime!.month, _dateTime!.day).toDateTime(),
+                        ) ||
+                    DateTime.now().isBefore(_time);
+                if (!isDateValid) {
+                  showFlushBarError(context, context.l10n.error_must_be_in_future);
+                  return;
+                }
+
                 final settedDate = _time;
                 widget.onTimeSet(settedDate);
                 AutoRouter.of(context).popUntilRouteWithName(CustomExamFormRoute.name);

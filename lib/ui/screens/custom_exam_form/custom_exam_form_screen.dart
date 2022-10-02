@@ -347,9 +347,8 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
             textBaseline: TextBaseline.ideographic,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(
-                width: (MediaQuery.of(context).size.width) -
-                    (MediaQuery.of(context).size.width / 20) * 10,
+              Expanded(
+                flex: 1,
                 child: CustomInputTextField(
                   error: _showLastExamError,
                   enabled: !_lastExamChck,
@@ -369,8 +368,9 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                     ChooseExamPeriodDateRoute(
                       pickTime: false,
                       label: context.l10n.your_last_examination,
-                      dateTime: _lastExamDate ?? DateTime.now(),
+                      dateTime: _lastExamDate,
                       onValueChange: onLastExamDateSet,
+                      isLastExamChoose: true,
                     ),
                   ),
                 ),
@@ -396,9 +396,8 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
             textBaseline: TextBaseline.ideographic,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(
-                width: (MediaQuery.of(context).size.width) -
-                    (MediaQuery.of(context).size.width / 20) * 10,
+              Expanded(
+                flex: 1,
                 child: CustomInputTextField(
                   error: false,
                   enabled: !_nextExamChck,
