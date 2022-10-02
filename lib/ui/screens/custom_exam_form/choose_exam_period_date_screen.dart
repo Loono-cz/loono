@@ -86,13 +86,18 @@ class _ChooseExamPeriodDateScreenState extends State<ChooseExamPeriodDateScreen>
             LoonoButton(
               text: widget.pickTime ? context.l10n.continue_info : context.l10n.confirm_info,
               onTap: () {
-                final isDateValid = Date.now().toDateTime().isAtSameMomentAs(
-                              Date(_dateTime!.year, _dateTime!.month, _dateTime!.day).toDateTime(),
-                            ) ||
-                        DateTime.now().isBefore(_dateTime!) ||
-                        widget.isLastExamChoose == true
-                    ? DateTime.now().isAfter(_dateTime!)
-                    : false;
+                bool isDateValid;
+                if (widget.isLastExamChoose == true) {
+                  isDateValid = Date.now().toDateTime().isAtSameMomentAs(
+                            Date(_dateTime!.year, _dateTime!.month, _dateTime!.day).toDateTime(),
+                          ) ||
+                      DateTime.now().isAfter(_dateTime!);
+                } else {
+                  isDateValid = Date.now().toDateTime().isAtSameMomentAs(
+                            Date(_dateTime!.year, _dateTime!.month, _dateTime!.day).toDateTime(),
+                          ) ||
+                      DateTime.now().isBefore(_dateTime!);
+                }
 
                 if (!isDateValid) {
                   showFlushBarError(
