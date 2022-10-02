@@ -133,11 +133,19 @@ class ExaminationProgressContent extends StatelessWidget {
         ],
       );
     } else {
-      final lastDateVisit = categorizedExamination.examination.lastConfirmedDate!.toLocal();
-      final newWaitToDateTime = DateTime(
-        lastDateVisit.year + categorizedExamination.examination.intervalYears,
-        lastDateVisit.month,
-      );
+      final examination = categorizedExamination.examination;
+      final interval = examination.customInterval;
+      DateTime newWaitToDateTime;
+      final lastDateVisit = examination.lastConfirmedDate!.toLocal();
+
+      if (interval != null && interval <= 11) {
+        newWaitToDateTime = DateTime(lastDateVisit.year, lastDateVisit.month + interval);
+      } else {
+        newWaitToDateTime = DateTime(
+          lastDateVisit.year + categorizedExamination.examination.intervalYears,
+          lastDateVisit.month,
+        );
+      }
 
       final formattedDate = DateFormat.yMMMM('cs-CZ').format(newWaitToDateTime);
       return Column(
