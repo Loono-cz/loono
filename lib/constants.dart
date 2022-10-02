@@ -56,6 +56,8 @@ class LoonoStrings {
   static const donateUrl = 'https://www.darujme.cz/projekt/1206713';
 
   static const donateDelayInterval = 14;
+  static const dateWithHoursFormat = 'dd.MM.yyyy HH:mm';
+  static const dateFormat = 'dd.MM.yyyy ';
 }
 
 class LoonoFonts {

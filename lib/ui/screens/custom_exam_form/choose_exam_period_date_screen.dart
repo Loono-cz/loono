@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -13,10 +14,12 @@ class ChooseExamPeriodDateScreen extends StatefulWidget {
     required this.onValueChange,
     required this.label,
     required this.pickTime,
+    this.showLastExamDate,
     super.key,
   });
   final String label;
   final bool pickTime;
+  final bool? showLastExamDate;
 
   final DateTime? dateTime;
   final Function(DateTime?) onValueChange;
@@ -93,6 +96,10 @@ class _ChooseExamPeriodDateScreenState extends State<ChooseExamPeriodDateScreen>
                 }
               },
             ),
+            if (widget.showLastExamDate == true && widget.dateTime != null)
+              Text(
+                'Původní datum: ${DateFormat('d. MMMM yyyy', 'CS-cz').format(widget.dateTime!)}',
+              )
           ],
         ),
       ),
