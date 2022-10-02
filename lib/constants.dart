@@ -64,7 +64,6 @@ class LoonoStrings {
   static const tumorUrl =
       'https://www.linkos.cz/pacient-a-rodina/onkologicke-diagnozy/maligni-melanom-spinaliom-bazaliom-c43-44-d03/maligni-melanom-a-ostatni-nadory-kuze/';
   static const donateDelayInterval = 14;
-
   static const dateWithHoursFormat = 'dd.MM.yyyy HH:mm';
   static const dateFormat = 'dd.MM.yyyy ';
 }

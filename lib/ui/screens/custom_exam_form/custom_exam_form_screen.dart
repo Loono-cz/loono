@@ -234,7 +234,6 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                   text: context.l10n.action_save,
                   onTap: () async {
                     if (_specialist != null && _examinationType != null) {
-                      //TODO: Zeptat se stepana jak to teda ma byt ...
                       if (_isPeriodicExam) {
                         await sendMandatoryRequest();
                       } else {
@@ -356,8 +355,9 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                   enabled: !_lastExamChck,
                   label: _lastExamDate == null ? '' : context.l10n.last_examination,
                   hintText: context.l10n.last_examination,
-                  value:
-                      _lastExamDate != null ? DateFormat('dd.MM.yyyy').format(_lastExamDate!) : '',
+                  value: _lastExamDate != null
+                      ? DateFormat(LoonoStrings.dateFormat).format(_lastExamDate!)
+                      : '',
                   prefixIcon: SvgPicture.asset(
                     'assets/icons/calendar.svg',
                     width: 5,
@@ -405,7 +405,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                   label: _nextExamDate == null ? '' : context.l10n.next_examination,
                   hintText: context.l10n.next_examination,
                   value: _nextExamDate != null
-                      ? DateFormat('dd.MM.yyyy HH:mm').format(_nextExamDate!)
+                      ? DateFormat(LoonoStrings.dateWithHoursFormat).format(_nextExamDate!)
                       : '',
                   prefixIcon: SvgPicture.asset(
                     'assets/icons/calendar.svg',
@@ -416,9 +416,10 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                   ),
                   onClickInputField: () => AutoRouter.of(context).navigate(
                     ChooseExamPeriodDateRoute(
+                      showLastExamDate: true,
                       label: _getUserLabelBySex(context, sex: _usersDao.user?.sex ?? Sex.FEMALE),
                       pickTime: true,
-                      dateTime: _nextExamDate ?? DateTime.now(),
+                      dateTime: _nextExamDate,
                       onValueChange: onNextExamDateSet,
                     ),
                   ),
@@ -443,7 +444,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
           label: _periodDateTime == null ? '' : context.l10n.examination_term,
           hintText: context.l10n.examination_term,
           value: _periodDateTime != null
-              ? DateFormat('dd.MM.yyyy HH:mm').format(_periodDateTime!)
+              ? DateFormat(LoonoStrings.dateWithHoursFormat).format(_periodDateTime!)
               : '',
           prefixIcon: SvgPicture.asset(
             'assets/icons/calendar.svg',
@@ -497,7 +498,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
             )
             .then((value) {
           Provider.of<ExaminationsProvider>(context, listen: false)
-              .updateExaminationsRecord(res.data);
+              .createCustomExamination(res.data, lastConfirmedDate: _lastExamDate);
           AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
           showFlushBarSuccess(context, context.l10n.examinatoin_was_added);
         });
@@ -528,8 +529,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
         );
     response.map(
       success: (res) {
-        Provider.of<ExaminationsProvider>(context, listen: false)
-            .updateExaminationsRecord(res.data);
+        Provider.of<ExaminationsProvider>(context, listen: false).createCustomExamination(res.data);
         AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
         showFlushBarSuccess(context, context.l10n.examinatoin_was_added);
       },

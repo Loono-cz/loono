@@ -81,7 +81,9 @@ class _ChooseFrequencyOfExamScreenState extends State<ChooseFrequencyOfExamScree
               child: CustomPeriodicalSpinner(
                 valueChanged: (number, text) {
                   setState(() {
-                    period = '$number $text';
+                    final isMonth = text.isNotEmpty && text == 'měsíce';
+                    period =
+                        '${number.isEmpty ? isMonth ? 6 : 1 : number} ${text.isEmpty ? 'měsíce' : text}';
                   });
                 },
               ),

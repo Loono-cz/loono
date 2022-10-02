@@ -127,4 +127,30 @@ class ExaminationsProvider extends ChangeNotifier {
       }
     }
   }
+
+  void createCustomExamination(ExaminationRecord record, {DateTime? lastConfirmedDate}) {
+    final createdItem = ExaminationPreventionStatus(
+      (b) => b
+        ..examinationType = record.type
+        ..customInterval = record.customInterval
+        ..examinationActionType = record.examinationActionType
+        ..examinationCategoryType = record.examinationCategoryType
+        ..lastConfirmedDate = lastConfirmedDate
+        ..periodicExam = record.periodicExam
+        ..points = record.periodicExam == true ? 50 : 0
+        ..firstExam = record.firstExam
+        ..plannedDate = record.plannedDate
+        ..state = record.status
+        ..intervalYears = record.customInterval ?? 2
+        ..priority = 0
+        ..count = 0
+        ..badge = BadgeType.SHIELD,
+    );
+
+    final builder = examinations?.toBuilder();
+    builder?.examinations.add(createdItem);
+    examinations = builder?.build();
+    evaluateExaminations();
+    notifyListeners();
+  }
 }
