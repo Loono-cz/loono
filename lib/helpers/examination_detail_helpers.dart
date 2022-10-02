@@ -216,9 +216,9 @@ final czechMonthsInflected = [
 
 /// Gets localized message of: "In the last [interval] years".
 String getQuestionnaireFirstAnswer(
-  BuildContext context, {
-  required int interval,
-}) {
+    BuildContext context, {
+      required int interval,
+    }) {
   final l10n = context.l10n;
   return Intl.plural(
     interval,
@@ -231,9 +231,9 @@ String getQuestionnaireFirstAnswer(
 
 /// Gets localized message of: "More than [interval] years".
 String getQuestionnaireSecondAnswer(
-  BuildContext context, {
-  required int interval,
-}) {
+    BuildContext context, {
+      required int interval,
+    }) {
   final l10n = context.l10n;
   return Intl.plural(
     interval,
@@ -245,9 +245,9 @@ String getQuestionnaireSecondAnswer(
 }
 
 String procedureQuestionTitle(
-  BuildContext context, {
-  required ExaminationType examinationType,
-}) {
+    BuildContext context, {
+      required ExaminationType examinationType,
+    }) {
   var response = '';
   switch (examinationType) {
     case ExaminationType.COLONOSCOPY:
@@ -285,10 +285,10 @@ String procedureQuestionTitle(
 enum Casus { nomativ, genitiv, dativ }
 
 String examinationTypeCasus(
-  BuildContext context, {
-  required ExaminationType examinationType,
-  required Casus casus,
-}) {
+    BuildContext context, {
+      required ExaminationType examinationType,
+      required Casus casus,
+    }) {
   final l10n = context.l10n;
   switch (examinationType) {
     case ExaminationType.COLONOSCOPY:
@@ -327,7 +327,6 @@ String examinationTypeCasus(
       if (casus == Casus.genitiv) return l10n.ophthalmologist_genitiv;
       if (casus == Casus.dativ) return l10n.ophthalmologist_dativ;
       return '${ExaminationType.OPHTHALMOLOGIST} unkown casus';
-
     case ExaminationType.ULTRASOUND_BREAST:
       if (casus == Casus.nomativ) return l10n.ultrasoundBreast_nomativ;
       if (casus == Casus.genitiv) return l10n.ultrasoundBreast_genitiv;
@@ -353,15 +352,175 @@ String examinationTypeCasus(
       if (casus == Casus.genitiv) return l10n.intern_genitiv;
       if (casus == Casus.dativ) return l10n.intern_dativ;
       return '${ExaminationType.PEDIATRICIAN} unkown casus';
+    case ExaminationType.ALLERGOLOGY:
+      if (casus == Casus.nomativ) return l10n.allergology_nomativ;
+      if (casus == Casus.genitiv) return l10n.allergology_genitiv;
+      if (casus == Casus.dativ) return l10n.allergology_dativ;
+      return '${ExaminationType.ALLERGOLOGY} unkown casus';
+    case ExaminationType.CARDIOLOGY:
+      if (casus == Casus.nomativ) return l10n.cardiology_nomativ;
+      if (casus == Casus.genitiv) return l10n.cardiology_genitiv;
+      if (casus == Casus.dativ) return l10n.cardiology_dativ;
+      return '${ExaminationType.CARDIOLOGY} unkown casus';
+    case ExaminationType.ENDOCRINOLOGY_AND_HORMONES:
+      if (casus == Casus.nomativ) return l10n.endocrinology_and_hormones_nomativ;
+      if (casus == Casus.genitiv) return l10n.endocrinology_and_hormones_genitiv;
+      if (casus == Casus.dativ) return l10n.endocrinology_and_hormones_dativ;
+      return '${ExaminationType.ENDOCRINOLOGY_AND_HORMONES} unkown casus';
+    case ExaminationType.ERGOTHERAPY:
+      if (casus == Casus.nomativ) return l10n.ergotherapy_nomativ;
+      if (casus == Casus.genitiv) return l10n.ergotherapy_genitiv;
+      if (casus == Casus.dativ) return l10n.ergotherapy_dativ;
+      return '${ExaminationType.ERGOTHERAPY} unkown casus';
+    case ExaminationType.GASTROENTEROLOGY:
+      if (casus == Casus.nomativ) return l10n.gastroenterology_nomativ;
+      if (casus == Casus.genitiv) return l10n.gastroenterology_genitiv;
+      if (casus == Casus.dativ) return l10n.gastroenterology_dativ;
+      return '${ExaminationType.GASTROENTEROLOGY} unkown casus';
+    case ExaminationType.GENETICS:
+      if (casus == Casus.nomativ) return l10n.genetics_nomativ;
+      if (casus == Casus.genitiv) return l10n.genetics_genitiv;
+      if (casus == Casus.dativ) return l10n.genetics_dativ;
+      return '${ExaminationType.GENETICS} unkown casus';
+    case ExaminationType.HEMATOLOGY:
+      if (casus == Casus.nomativ) return l10n.hematology_nomativ;
+      if (casus == Casus.genitiv) return l10n.hematology_genitiv;
+      if (casus == Casus.dativ) return l10n.hematology_dativ;
+      return '${ExaminationType.HEMATOLOGY} unkown casus';
+    case ExaminationType.IMMUNOLOGY:
+      if (casus == Casus.nomativ) return l10n.immunology_nomativ;
+      if (casus == Casus.genitiv) return l10n.immunology_genitiv;
+      if (casus == Casus.dativ) return l10n.immunology_dativ;
+      return '${ExaminationType.IMMUNOLOGY} unkown casus';
+    case ExaminationType.NEPHROLOGY:
+      if (casus == Casus.nomativ) return l10n.nephrology_nomativ;
+      if (casus == Casus.genitiv) return l10n.nephrology_genitiv;
+      if (casus == Casus.dativ) return l10n.nephrology_dativ;
+      return '${ExaminationType.NEPHROLOGY} unkown casus';
+    case ExaminationType.NEUROLOGY:
+      if (casus == Casus.nomativ) return l10n.neurology_nomativ;
+      if (casus == Casus.genitiv) return l10n.neurology_genitiv;
+      if (casus == Casus.dativ) return l10n.neurology_dativ;
+      return '${ExaminationType.NEPHROLOGY} unkown casus';
+    case ExaminationType.NUTRITION:
+      if (casus == Casus.nomativ) return l10n.nutrition_nomativ;
+      if (casus == Casus.genitiv) return l10n.nutrition_genitiv;
+      if (casus == Casus.dativ) return l10n.nutrition_dativ;
+      return '${ExaminationType.NUTRITION} unkown casus';
+    case ExaminationType.ONCOLOGY:
+      if (casus == Casus.nomativ) return l10n.oncology_nomativ;
+      if (casus == Casus.genitiv) return l10n.oncology_genitiv;
+      if (casus == Casus.dativ) return l10n.oncology_dativ;
+      return '${ExaminationType.ONCOLOGY} unkown casus';
+    case ExaminationType.ORL:
+      if (casus == Casus.nomativ) return l10n.orl_nomativ;
+      if (casus == Casus.genitiv) return l10n.orl_genitiv;
+      if (casus == Casus.dativ) return l10n.orl_dativ;
+      return '${ExaminationType.ORL} unkown casus';
+    case ExaminationType.ORTHODONTICS:
+      if (casus == Casus.nomativ) return l10n.orthodontics_nomativ;
+      if (casus == Casus.genitiv) return l10n.orthodontics_genitiv;
+      if (casus == Casus.dativ) return l10n.orthodontics_dativ;
+      return '${ExaminationType.ORTHODONTICS} unkown casus';
+    case ExaminationType.ORTHOPEDICS:
+      if (casus == Casus.nomativ) return l10n.orthopaedics_nomativ;
+      if (casus == Casus.genitiv) return l10n.orthopaedics_genitiv;
+      if (casus == Casus.dativ) return l10n.orthopaedics_dativ;
+      return '${ExaminationType.ORTHOPEDICS} unkown casus';
+    case ExaminationType.OTHER:
+      if (casus == Casus.nomativ) return l10n.other_nomativ;
+      if (casus == Casus.genitiv) return l10n.other_genitiv;
+      if (casus == Casus.dativ) return l10n.other_dativ;
+      return '${ExaminationType.OTHER} unkown casus';
+    case ExaminationType.PALLIATIVE_MEDICINE:
+      if (casus == Casus.nomativ) return l10n.palliative_medicine_nomativ;
+      if (casus == Casus.genitiv) return l10n.palliative_medicine_genitiv;
+      if (casus == Casus.dativ) return l10n.palliative_medicine_dativ;
+      return '${ExaminationType.PALLIATIVE_MEDICINE} unkown casus';
+    case ExaminationType.PHONIATRICS:
+      if (casus == Casus.nomativ) return l10n.phoniatrics_nomativ;
+      if (casus == Casus.genitiv) return l10n.phoniatrics_genitiv;
+      if (casus == Casus.dativ) return l10n.phoniatrics_dativ;
+      return '${ExaminationType.PHONIATRICS} unkown casus';
+    case ExaminationType.PSYCHIATRY:
+      if (casus == Casus.nomativ) return l10n.psychiatry_nomativ;
+      if (casus == Casus.genitiv) return l10n.psychiatry_genitiv;
+      if (casus == Casus.dativ) return l10n.psychiatry_dativ;
+      return '${ExaminationType.PSYCHIATRY} unkown casus';
+    case ExaminationType.PSYCHOLOGY:
+      if (casus == Casus.nomativ) return l10n.psychology_nomativ;
+      if (casus == Casus.genitiv) return l10n.psychology_genitiv;
+      if (casus == Casus.dativ) return l10n.psychology_dativ;
+      return '${ExaminationType.PSYCHOLOGY} unkown casus';
+    case ExaminationType.PULMONARY:
+      if (casus == Casus.nomativ) return l10n.pulmonary_nomativ;
+      if (casus == Casus.genitiv) return l10n.pulmonary_genitiv;
+      if (casus == Casus.dativ) return l10n.pulmonary_dativ;
+      return '${ExaminationType.PULMONARY} unkown casus';
+    case ExaminationType.REHABILITATION:
+      if (casus == Casus.nomativ) return l10n.rehabilitation_nomativ;
+      if (casus == Casus.genitiv) return l10n.rehabilitation_genitiv;
+      if (casus == Casus.dativ) return l10n.rehabilitation_dativ;
+      return '${ExaminationType.REHABILITATION} unkown casus';
+    case ExaminationType.REPRODUCTIVE_MEDICINE:
+      if (casus == Casus.nomativ) return l10n.reproductive_medicine_nomativ;
+      if (casus == Casus.genitiv) return l10n.reproductive_medicine_genitiv;
+      if (casus == Casus.dativ) return l10n.reproductive_medicine_dativ;
+      return '${ExaminationType.REPRODUCTIVE_MEDICINE} unkown casus';
+    case ExaminationType.RHEUMATOLOGY:
+      if (casus == Casus.nomativ) return l10n.rheumatology_nomativ;
+      if (casus == Casus.genitiv) return l10n.rheumatology_genitiv;
+      if (casus == Casus.dativ) return l10n.reproductive_medicine_dativ;
+      return '${ExaminationType.RHEUMATOLOGY} unkown casus';
+    case ExaminationType.SEXOLOGY:
+      if (casus == Casus.nomativ) return l10n.sexology_nomativ;
+      if (casus == Casus.genitiv) return l10n.sexology_genitiv;
+      if (casus == Casus.dativ) return l10n.sexology_dativ;
+      return '${ExaminationType.SEXOLOGY} unkown casus';
+    case ExaminationType.SPEECH_THERAPIST:
+      if (casus == Casus.nomativ) return l10n.speech_therapist_nomativ;
+      if (casus == Casus.genitiv) return l10n.speech_therapist_genitiv;
+      if (casus == Casus.dativ) return l10n.speech_therapist_dativ;
+      return '${ExaminationType.SPEECH_THERAPIST} unkown casus';
+    case ExaminationType.SPORTS_MEDICINE:
+      if (casus == Casus.nomativ) return l10n.sports_medicine_nomativ;
+      if (casus == Casus.genitiv) return l10n.sports_medicine_genitiv;
+      if (casus == Casus.dativ) return l10n.sports_medicine_dativ;
+      return '${ExaminationType.SPORTS_MEDICINE} unkown casus';
+    case ExaminationType.SURGERY:
+      if (casus == Casus.nomativ) return l10n.surgery_nomativ;
+      if (casus == Casus.genitiv) return l10n.surgery_genitiv;
+      if (casus == Casus.dativ) return l10n.surgery_dativ;
+      return '${ExaminationType.SURGERY} unkown casus';
+    case ExaminationType.TANNER:
+      if (casus == Casus.nomativ) return l10n.tanner_nomativ;
+      if (casus == Casus.genitiv) return l10n.tanner_genitiv;
+      if (casus == Casus.dativ) return l10n.tanner_dativ;
+      return '${ExaminationType.TANNER} unkown casus';
+    case ExaminationType.UROLOGY:
+      if (casus == Casus.nomativ) return l10n.urology_nomativ;
+      if (casus == Casus.genitiv) return l10n.urology_genitiv;
+      if (casus == Casus.dativ) return l10n.urology_dativ;
+      return '${ExaminationType.UROLOGY} unkown casus';
+    case ExaminationType.VASCULAR:
+      if (casus == Casus.nomativ) return l10n.vascular_nomativ;
+      if (casus == Casus.genitiv) return l10n.vascular_genitiv;
+      if (casus == Casus.dativ) return l10n.vascular_dativ;
+      return '${ExaminationType.VASCULAR} unkown casus';
+    case ExaminationType.dENTALHYGIENE:
+      if (casus == Casus.nomativ) return l10n.dental_hygiene_nomativ;
+      if (casus == Casus.genitiv) return l10n.dental_hygiene_genitiv;
+      if (casus == Casus.dativ) return l10n.dental_hygiene_dativ;
+      return '${ExaminationType.dENTALHYGIENE} unkown casus';
   }
   return '${examinationType.name} unkown casus';
 }
 
 String selfExaminationTypeCasus(
-  BuildContext context, {
-  required SelfExaminationType selfExaminationType,
-  required Casus casus,
-}) {
+    BuildContext context, {
+      required SelfExaminationType selfExaminationType,
+      required Casus casus,
+    }) {
   final l10n = context.l10n;
   switch (selfExaminationType) {
     case SelfExaminationType.BREAST:
@@ -388,9 +547,9 @@ double upperArcProgress(CategorizedExamination examination) {
   final category = examination.category;
   final interval = examination.examination.intervalYears;
   if ([
-        const ExaminationCategory.scheduled(),
-        const ExaminationCategory.scheduledSoonOrOverdue(),
-      ].contains(category) &&
+    const ExaminationCategory.scheduled(),
+    const ExaminationCategory.scheduledSoonOrOverdue(),
+  ].contains(category) &&
       nextVisit != null) {
     final totalDays = daysBetween(
       DateTime(nextVisit.year - interval, nextVisit.month),
@@ -511,10 +670,10 @@ Widget progressBarRightDot(ExaminationCategory category) {
         height: 16,
         child: icon != null
             ? Icon(
-                icon,
-                size: 14,
-                color: Colors.white,
-              )
+          icon,
+          size: 14,
+          color: Colors.white,
+        )
             : const SizedBox(),
       ),
     ),
