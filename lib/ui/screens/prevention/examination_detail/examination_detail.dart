@@ -476,10 +476,12 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
               ),
             ),
           ] else if ([
-            const ExaminationCategory.unknownLastVisit(),
-            const ExaminationCategory.newToSchedule(),
-            const ExaminationCategory.waiting()
-          ].contains(widget.categorizedExamination.category)) ...[
+                const ExaminationCategory.unknownLastVisit(),
+                const ExaminationCategory.newToSchedule(),
+                const ExaminationCategory.waiting()
+              ].contains(widget.categorizedExamination.category) &&
+              !_isPeriodicalExam &&
+              _examinationCategoryType != ExaminationCategoryType.MANDATORY) ...[
             Expanded(
               child: LoonoButton(
                 key: const Key('examinationDetailPage_btn_order'),
