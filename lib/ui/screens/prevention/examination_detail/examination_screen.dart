@@ -4,11 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/models/categorized_examination.dart';
-import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/examination_detail.dart';
 import 'package:loono/ui/screens/prevention/questionnaire/schedule_examination.dart';
 import 'package:loono_api/loono_api.dart';
-import 'package:provider/provider.dart';
 
 class ExaminationDetailScreen extends StatelessWidget {
   const ExaminationDetailScreen({
@@ -24,13 +22,6 @@ class ExaminationDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final examination = Provider.of<ExaminationsProvider>(context, listen: true)
-        .examinations!
-        .examinations
-        .firstWhere(
-          (item) => item.hashCode == categorizedExamination.examination.hashCode,
-        );
-
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
@@ -48,7 +39,8 @@ class ExaminationDetailScreen extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: categorizedExamination.category == const ExaminationCategory.unknownLastVisit()
+        child: categorizedExamination.category == const ExaminationCategory.unknownLastVisit() &&
+                choosedExamination?.examinationCategoryType == ExaminationCategoryType.MANDATORY
             ? ScheduleExamination(
                 examinationRecord: categorizedExamination.examination,
               )

@@ -8,6 +8,7 @@ import 'package:loono/helpers/date_helpers.dart';
 import 'package:loono/helpers/examination_action_types.dart';
 import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
+import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
@@ -24,6 +25,7 @@ import 'package:loono/ui/screens/prevention/examination_detail/faq_section.dart'
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/prevention/calendar_permission_sheet.dart';
 import 'package:loono/ui/widgets/prevention/change_last_visit_sheet.dart';
+import 'package:loono/ui/widgets/prevention/create_order_from_detail_flow.dart';
 import 'package:loono/ui/widgets/prevention/datepicker_sheet.dart';
 import 'package:loono/ui/widgets/prevention/examination_confirm_sheet.dart';
 import 'package:loono/ui/widgets/prevention/examination_edit_modal.dart';
@@ -74,7 +76,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
             : _examinationType.customExamAssetPath,
         width: 180,
       );
-  String get _note => '';
+  String get _note => _examination.note ?? '';
   int get _hashCodeOfExam => _examination.hashCode;
   Sex get _sex {
     final user = registry.get<DatabaseService>().users.user;
@@ -85,7 +87,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
     final yearInterval = widget.categorizedExamination.examination.intervalYears;
     //transformMonthToEar
     if (_examinationCategoryType == ExaminationCategoryType.CUSTOM) {
-      return '${transformMonthToEar(yearInterval)} ${yearInterval < 11 ? 'měsíců' : 'roků'}';
+      return '${transformMonthToYear(yearInterval)} ${yearInterval < 11 ? 'měsíců' : 'roků'}';
     } else {
       return '${yearInterval.toString()} ${yearInterval > 1 ? context.l10n.years : context.l10n.year}';
     }
@@ -146,7 +148,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
     final preposition = czechPreposition(context, examinationType: _examinationType);
 
     /// not ideal in build method but need context
-    Future<void> _onPostNewCheckupSubmit({required DateTime date}) async {
+    Future<void> _onPostNewCheckupSubmit({required DateTime date, String? note}) async {
       /// code anchor: #postNewExamination
       /// TODO: Add Note property
       final response = await registry.get<ExaminationRepository>().postExamination(
@@ -156,13 +158,19 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
             firstExam: false,
             status: ExaminationStatus.NEW,
             categoryType: _examinationCategoryType,
+            note: note,
           );
 
       response.map(
         success: (res) {
-          Provider.of<ExaminationsProvider>(context, listen: false)
-              .updateExaminationsRecord(res.data);
-          AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
+          if (_examinationCategoryType == ExaminationCategoryType.CUSTOM) {
+            Provider.of<ExaminationsProvider>(context, listen: false)
+                .updateCustomExaminationsRecord(res.data, _examination);
+          } else {
+            Provider.of<ExaminationsProvider>(context, listen: false)
+                .updateExaminationsRecord(res.data);
+          }
+          AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
           showFlushBarSuccess(context, l10n.checkup_reminder_toast);
         },
         failure: (err) {
@@ -362,7 +370,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
 
   Widget buildButtons(
     BuildContext context,
-    Future<void> Function({required DateTime date}) onPostNewCheckupSubmit,
+    Future<void> Function({required DateTime date, String? note}) onPostNewCheckupSubmit,
     String preposition,
   ) {
     return Padding(
@@ -440,6 +448,11 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                                 ? context.l10n.checkup_confirmation_male
                                 : context.l10n.checkup_confirmation_female,
                             onTap: () {
+                              Provider.of<ExaminationsProvider>(context, listen: false)
+                                  .setChoosedCustomExamination(
+                                widget.categorizedExamination,
+                                _examination,
+                              );
                               showConfirmationSheet(
                                 context,
                                 widget.categorizedExamination.examination.examinationType,
@@ -471,12 +484,26 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
               child: LoonoButton(
                 key: const Key('examinationDetailPage_btn_order'),
                 text: context.l10n.examination_detail_order_examination, //objednat se
-                onTap: () => showNewCheckupSheetStep1(
-                  context,
-                  widget.categorizedExamination,
-                  onPostNewCheckupSubmit,
-                  _sex,
-                ),
+                onTap: () {
+                  if (_examinationCategoryType == ExaminationCategoryType.CUSTOM &&
+                      _isPeriodicalExam) {
+                    Provider.of<ExaminationsProvider>(context, listen: false)
+                        .setChoosedCustomExamination(widget.categorizedExamination, _examination);
+
+                    showCreateOrderFromDetailSheet(
+                      context: context,
+                      categorizedExamination: widget.categorizedExamination,
+                      onSubmit: onPostNewCheckupSubmit,
+                    );
+                  } else {
+                    showNewCheckupSheetStep1(
+                      context,
+                      widget.categorizedExamination,
+                      onPostNewCheckupSubmit,
+                      _sex,
+                    );
+                  }
+                },
               ),
             ),
             const SizedBox(width: 19),
@@ -520,12 +547,23 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
 
   Widget buildNextSpecialistExams(BuildContext context) {
     final examProvider = Provider.of<ExaminationsProvider>(context, listen: true);
+
     final specialistExams = examProvider.examinations?.examinations
         .toList()
         .where(
           (exam) => exam.examinationType == _examinationType && exam.hashCode != _hashCodeOfExam,
         )
         .toList();
+    final categorized = specialistExams != null
+        ? specialistExams
+            .map(
+              (e) => CategorizedExamination(
+                examination: e,
+                category: e.calculateStatus(),
+              ),
+            )
+            .toList()
+        : <CategorizedExamination>[];
     return Padding(
       padding: const EdgeInsets.only(left: 16.0, right: 16.0),
       child: specialistExams!.isNotEmpty
@@ -535,7 +573,12 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
               itemCount: specialistExams.length,
               itemBuilder: (context, index) {
                 final item = specialistExams[index];
-                return specialistCard(context, item);
+
+                return specialistCard(
+                  context,
+                  item,
+                  categorized.isNotEmpty ? categorized[index] : widget.categorizedExamination,
+                );
               },
             )
           : Center(
@@ -547,12 +590,16 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
     );
   }
 
-  Widget specialistCard(BuildContext context, ExaminationPreventionStatus? item) {
+  Widget specialistCard(
+    BuildContext context,
+    ExaminationPreventionStatus? item,
+    CategorizedExamination? catExam,
+  ) {
     return GestureDetector(
       onTap: () {
         AutoRouter.of(context).push(
           ExaminationDetailRoute(
-            categorizedExamination: widget.categorizedExamination,
+            categorizedExamination: catExam!,
             choosedExamination: item,
           ),
         );
@@ -582,7 +629,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                     ),
                     if (item?.plannedDate != null)
                       _calendarRow(
-                        DateFormat('dd.MM.yyyy HH:mm').format(item!.plannedDate!),
+                        DateFormat(LoonoStrings.dateWithHoursFormat).format(item!.plannedDate!),
                         showCalendarIcon: true,
                       )
                   ],

@@ -378,8 +378,3 @@ const _customExamForm = <AutoRoute>[
     transitionsBuilder: _preventionTransition,
   )
 ];
-
-
-
-
-//AutoRoute<void>(page: CustomExamFormScreen, path: 'custom-exam-form');

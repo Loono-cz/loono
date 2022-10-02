@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/date_helpers.dart';
 import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/l10n/ext.dart';
@@ -18,14 +20,23 @@ class ExaminationProgressContent extends StatelessWidget {
   final CategorizedExamination categorizedExamination;
   final Sex sex;
 
+  ExaminationCategoryType get _examinationCategoryType =>
+      categorizedExamination.examination.examinationCategoryType;
   bool get _isToday {
     final now = DateTime.now();
     final visit = categorizedExamination.examination.plannedDate!.toLocal();
     return now.day == visit.day && now.month == visit.month && now.year == visit.year;
   }
 
-  String _intervalYears(BuildContext context) =>
-      '${categorizedExamination.examination.intervalYears.toString()} ${categorizedExamination.examination.intervalYears > 1 ? context.l10n.years : context.l10n.year}';
+  String _intervalYears(BuildContext context) {
+    final yearInterval = categorizedExamination.examination.intervalYears;
+    //transformMonthToYear
+    if (_examinationCategoryType == ExaminationCategoryType.CUSTOM) {
+      return '${transformMonthToYear(yearInterval)} ${yearInterval < 11 ? 'měsíců' : 'roků'}';
+    } else {
+      return '${yearInterval.toString()} ${yearInterval > 1 ? context.l10n.years : context.l10n.year}';
+    }
+  }
 
   /// get correct combination of text font styles and colors
   Widget _progressBarContent(BuildContext context) {
@@ -100,25 +111,49 @@ class ExaminationProgressContent extends StatelessWidget {
   }
 
   Widget _earlyCheckupContent(BuildContext context) {
-    final lastDateVisit = categorizedExamination.examination.lastConfirmedDate!.toLocal();
-    final newWaitToDateTime = DateTime(
-      lastDateVisit.year + categorizedExamination.examination.intervalYears,
-      lastDateVisit.month,
-    );
-    final formattedDate = DateFormat.yMMMM('cs-CZ').format(newWaitToDateTime);
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          context.l10n.early_ordering,
-          style: LoonoFonts.paragraphSmallFontStyle.copyWith(color: LoonoColors.primaryEnabled),
-        ),
-        Text(
-          formattedDate,
-          style: LoonoFonts.cardSubtitle.copyWith(fontSize: 16),
-        ),
-      ],
-    );
+    final examination = categorizedExamination.examination;
+    if (examination.periodicExam == true &&
+        examination.examinationCategoryType == ExaminationCategoryType.CUSTOM &&
+        examination.plannedDate == null) {
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'Čeká tě',
+            style: LoonoFonts.paragraphSmallFontStyle.copyWith(
+              color: LoonoColors.primaryEnabled,
+            ),
+          ),
+          Text(
+            'první prohlídka',
+            style: LoonoFonts.paragraphSmallFontStyle.copyWith(
+              color: LoonoColors.primaryEnabled,
+            ),
+          )
+        ],
+      );
+    } else {
+      final lastDateVisit = categorizedExamination.examination.lastConfirmedDate!.toLocal();
+      final newWaitToDateTime = DateTime(
+        lastDateVisit.year + categorizedExamination.examination.intervalYears,
+        lastDateVisit.month,
+      );
+
+      final formattedDate = DateFormat.yMMMM('cs-CZ').format(newWaitToDateTime);
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            context.l10n.early_ordering,
+            style: LoonoFonts.paragraphSmallFontStyle.copyWith(color: LoonoColors.primaryEnabled),
+          ),
+          Text(
+            formattedDate,
+            style: LoonoFonts.cardSubtitle.copyWith(fontSize: 16),
+          ),
+        ],
+      );
+    }
   }
 
   @override
