@@ -9,6 +9,7 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/examination_detail.dart';
 import 'package:loono/ui/screens/prevention/questionnaire/schedule_examination.dart';
+import 'package:loono/ui/widgets/prevention/examination_edit_flow.dart';
 import 'package:loono_api/loono_api.dart';
 
 class ExaminationDetailScreen extends StatelessWidget {
@@ -30,7 +31,7 @@ class ExaminationDetailScreen extends StatelessWidget {
         actions: <CupertinoActionSheetAction>[
           CupertinoActionSheetAction(
             onPressed: () {
-              Navigator.pop(context); //356 TODO: navigovat na obrazovku upravy
+              showEditSheet(context: context, categorizedExamination: categorizedExamination);
             },
             child: Text(
               context.l10n.btn_edit_examination,
