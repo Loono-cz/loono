@@ -47,7 +47,6 @@ extension ExaminationPreventionStatusExt on ExaminationPreventionStatus {
       // else wait
       return const ExaminationCategory.waiting();
     }
-    print(examinationType);
     if ([ExaminationStatus.UNKNOWN, ExaminationStatus.CANCELED].contains(state)) {
       return const ExaminationCategory.newToSchedule();
     }

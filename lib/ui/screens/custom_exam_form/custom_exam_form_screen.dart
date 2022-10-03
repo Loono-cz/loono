@@ -235,7 +235,6 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                   onTap: () async {
                     if (_specialist != null && _examinationType != null) {
                       if (_isPeriodicExam) {
-
                         if (_lastExamDate != null && _nextExamDate != null) {
                           await sendMandatoryRequest();
                         } else if (_lastExamDate != null) {
@@ -472,7 +471,6 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
     }
   }
 
-
   Future<void> sendMandatoryRequestNew() async {
     final response = await registry.get<ExaminationRepository>().postExamination(
           _specialist!,
@@ -503,7 +501,6 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
   }
 
   Future<void> sendMandatoryRequestConfirm() async {
-    print(transformInterval(_customInterval));
     final response = await registry.get<ExaminationRepository>().postExamination(
           _specialist!,
           actionType: _examinationType,
@@ -533,9 +530,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
     );
   }
 
-
   Future<void> sendMandatoryRequest() async {
-
     final response = await registry.get<ExaminationRepository>().postExamination(
           _specialist!,
           actionType: _examinationType,
@@ -549,7 +544,6 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
         );
     response.map(
       success: (res) {
-        final frequencyString = _customInterval.split('');
         registry
             .get<ExaminationRepository>()
             .postExamination(
@@ -622,11 +616,11 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
       },
     );
   }
+
   int transformInterval(String str) {
     final splitedString = str.split(' ');
     final number = splitedString[0];
     final desc = splitedString[1];
     return desc == context.l10n.years ? transformYearToMonth(number) : int.parse(number);
   }
-
 }
