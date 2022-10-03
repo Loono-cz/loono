@@ -86,7 +86,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
     final yearInterval = widget.categorizedExamination.examination.intervalYears;
     //transformMonthToEar
     if (_examinationCategoryType == ExaminationCategoryType.CUSTOM) {
-      return '${transformMonthToYear(yearInterval)} ${yearInterval < 11 ? 'měsíců' : 'roků'}';
+      return ' ${yearInterval < 11 ? '$yearInterval měsíců' : '${transformMonthToYear(yearInterval)} roků'}';
     } else {
       return '${yearInterval.toString()} ${yearInterval > 1 ? context.l10n.years : context.l10n.year}';
     }

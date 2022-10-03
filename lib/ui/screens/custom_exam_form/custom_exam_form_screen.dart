@@ -235,7 +235,13 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                   onTap: () async {
                     if (_specialist != null && _examinationType != null) {
                       if (_isPeriodicExam) {
-                        await sendMandatoryRequest();
+                        if (_lastExamDate != null && _nextExamDate != null) {
+                          await sendMandatoryRequest();
+                        } else if (_lastExamDate != null) {
+                          await sendMandatoryRequestConfirm();
+                        } else {
+                          await sendMandatoryRequestNew();
+                        }
                       } else {
                         await sendOnceRequest();
                       }
@@ -472,13 +478,74 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
     }
   }
 
-  Future<void> sendMandatoryRequest() async {
+  Future<void> sendMandatoryRequestNew() async {
     final response = await registry.get<ExaminationRepository>().postExamination(
           _specialist!,
           actionType: _examinationType,
           periodicExam: _isPeriodicExam,
           note: _note,
-          customInterval: int.parse(_customInterval[0]), // Pravidelne
+          customInterval: transformInterval(_customInterval), // Pravidelne
+          newDate: _nextExamDate,
+          categoryType: ExaminationCategoryType.CUSTOM,
+          status: ExaminationStatus.NEW,
+          firstExam: true,
+        );
+
+    response.map(
+      success: (res) {
+        Provider.of<ExaminationsProvider>(context, listen: false).createCustomExamination(res.data);
+        AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
+        showFlushBarSuccess(context, context.l10n.examinatoin_was_added);
+      },
+      failure: (err) => showFlushBarError(
+        context,
+        statusCodeToText(
+          context,
+          err.error.response?.statusCode,
+        ),
+      ),
+    );
+  }
+
+  Future<void> sendMandatoryRequestConfirm() async {
+    print(transformInterval(_customInterval));
+    final response = await registry.get<ExaminationRepository>().postExamination(
+          _specialist!,
+          actionType: _examinationType,
+          periodicExam: _isPeriodicExam,
+          note: _note,
+          customInterval: transformInterval(_customInterval), // Pravidelne
+          newDate: _lastExamDate,
+          categoryType: ExaminationCategoryType.CUSTOM,
+          status: ExaminationStatus.CONFIRMED,
+          firstExam: true,
+        );
+
+    response.map(
+      success: (res) {
+        Provider.of<ExaminationsProvider>(context, listen: false)
+            .createCustomExamination(res.data, lastConfirmedDate: _lastExamDate);
+        AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
+        showFlushBarSuccess(context, context.l10n.examinatoin_was_added);
+      },
+      failure: (err) => showFlushBarError(
+        context,
+        statusCodeToText(
+          context,
+          err.error.response?.statusCode,
+        ),
+      ),
+    );
+  }
+
+  Future<void> sendMandatoryRequest() async {
+    print(_customInterval[0]);
+    final response = await registry.get<ExaminationRepository>().postExamination(
+          _specialist!,
+          actionType: _examinationType,
+          periodicExam: _isPeriodicExam,
+          note: _note,
+          customInterval: transformInterval(_customInterval), // Pravidelne
           newDate: _lastExamDate,
           categoryType: ExaminationCategoryType.CUSTOM,
           status: ExaminationStatus.CONFIRMED,
@@ -494,9 +561,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
               actionType: _examinationType,
               periodicExam: _isPeriodicExam,
               note: _note,
-              customInterval: frequencyString[1] == context.l10n.years
-                  ? transformYearToMonth(frequencyString[0])
-                  : int.parse(frequencyString[0]), // Pravidelne
+              customInterval: transformInterval(_customInterval), // Pravidelne
               newDate: _nextExamDate,
               categoryType: ExaminationCategoryType.CUSTOM,
               status: ExaminationStatus.NEW,
@@ -560,5 +625,12 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
         );
       },
     );
+  }
+
+  int transformInterval(String str) {
+    final splitedString = str.split(' ');
+    final number = splitedString[0];
+    final desc = splitedString[1];
+    return desc == context.l10n.years ? transformYearToMonth(number) : int.parse(number);
   }
 }
