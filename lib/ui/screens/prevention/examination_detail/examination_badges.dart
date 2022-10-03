@@ -20,9 +20,15 @@ class ExaminationBadges extends StatelessWidget {
   final ExaminationType examinationType;
   final CategorizedExamination categorizedExamination;
 
-  bool get isPlannedDate => categorizedExamination.examination.plannedDate != null;
-
   DateTime get actualDate => DateTime.now();
+
+  DateTime? get plannedDate {
+    final date = categorizedExamination.examination.plannedDate;
+    if (date == null) return null;
+    return date.isBefore(actualDate) ? null : date;
+  }
+
+  bool get isPlannedDate => plannedDate != null;
 
   DateTime? get lastConfirmedDate => categorizedExamination.examination.lastConfirmedDate;
 
@@ -32,81 +38,65 @@ class ExaminationBadges extends StatelessWidget {
   int get recommendedIntervalInMonthsMinusTwoMonths =>
       categorizedExamination.examination.intervalYears.toInt() * 12 - 2;
 
-  String badgeCZ(BadgeType? type) {
+  bool get isCustomExam =>
+      categorizedExamination.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM;
+
+  ///Minus 2 months
+  DateTime get recommendedIntervalTransferToDate => DateTime(
+        actualDate.year,
+        actualDate.month - recommendedIntervalInMonthsMinusTwoMonths,
+        actualDate.day,
+      );
+
+  bool get isLastConfirmedDateOlderMinusTwoMonths =>
+      (lastConfirmedDate?.compareTo(
+            recommendedIntervalTransferToDate,
+          ) ??
+          0) >=
+      0;
+
+  String _getBadgeName(BadgeType? type, BuildContext context) {
     switch (type) {
       case BadgeType.COAT:
-        return 'superhrdinský plášť';
+        return context.l10n.examination_detail_rewards_badge_coat;
       case BadgeType.TOP:
-        return 'superhrdinský top';
+        return context.l10n.examination_detail_rewards_badge_top;
       case BadgeType.BELT:
-        return 'superhrdinský opasek';
+        return context.l10n.examination_detail_rewards_badge_belt;
       case BadgeType.SHOES:
-        return 'superhrdinské boty';
+        return context.l10n.examination_detail_rewards_badge_shoes;
       case BadgeType.GLOVES:
-        return 'superhrdinské rukavice';
+        return context.l10n.examination_detail_rewards_badge_gloves;
       case BadgeType.HEADBAND:
-        return 'superhrdinskou čelenku';
+        return context.l10n.examination_detail_rewards_badge_headband;
       case BadgeType.GLASSES:
-        return 'superhrdinské brýle';
+        return context.l10n.examination_detail_rewards_badge_glasses;
       case BadgeType.SHIELD:
-        return 'superhrdinský štít';
+        return context.l10n.examination_detail_rewards_badge_shield;
       case BadgeType.PAULDRONS:
-        return 'superhrdinské nárameníky';
+        return context.l10n.examination_detail_rewards_badge_pauldrons;
       default:
         return '';
     }
   }
 
-  bool _showGreenBadge(Badge? data, int index) {
-    final recommendedIntervalTransferToDate = DateTime(
-      actualDate.year,
-      actualDate.month - recommendedIntervalInMonthsMinusTwoMonths,
-      actualDate.day,
-    );
-
-    /**
-        if (isLastConfirmedDateOlder < 0)
-        "is older than";
-        else if (isLastConfirmedDateOlder == 0)
-        "is the same time as";
-        else
-        "is newer (not older) than";
-     */
-
-    final isLastConfirmedDateOlder =
-        lastConfirmedDate?.compareTo(recommendedIntervalTransferToDate);
-
-    if (categorizedExamination.examination.state == ExaminationStatus.CONFIRMED &&
+  bool _isBadgeLastInMonthOfValidity(Badge? badge, [int? index]) {
+    return lastConfirmedDate != null &&
         !isPlannedDate &&
-        ((isLastConfirmedDateOlder == 1) || (isLastConfirmedDateOlder == 0)) &&
-        index + 1 == data?.level) {
-      return true;
-    } else {
-      return false;
-    }
+        !isLastConfirmedDateOlderMinusTwoMonths &&
+        ((index == null) || (index + 1 == badge?.level));
   }
 
-  bool _showRedBadge(Badge? data, [int? index]) {
-    final recommendedIntervalTransferToDateMinusTwoMonths = DateTime(
-      actualDate.year,
-      actualDate.month - recommendedIntervalInMonthsMinusTwoMonths,
-      actualDate.day,
-    );
-    final isLastConfirmedDateOlderMinusTwoMonths =
-        lastConfirmedDate?.compareTo(recommendedIntervalTransferToDateMinusTwoMonths);
-    final recommendedIntervalTransferToDate =
-        DateTime(actualDate.year, actualDate.month - recommendedIntervalInMonths, actualDate.day);
-    final isLastConfirmedDateOlder =
-        lastConfirmedDate?.compareTo(recommendedIntervalTransferToDate);
-    if (lastConfirmedDate != null &&
+  BadgeState _getBadgeState(Badge? data, int index) {
+    if (categorizedExamination.examination.state == ExaminationStatus.CONFIRMED &&
         !isPlannedDate &&
-        isLastConfirmedDateOlderMinusTwoMonths! < 0 &&
-        isLastConfirmedDateOlder! > 0 &&
-        ((index == null) || (index + 1 == data?.level))) {
-      return true;
-    } else {
-      return false;
+        (isLastConfirmedDateOlderMinusTwoMonths) &&
+        index + 1 == data?.level) {
+      return BadgeState.greenBadge;
+    } else if (_isBadgeLastInMonthOfValidity(data, index)) {
+      return BadgeState.redBadge;
     }
+    return BadgeState.normalBadge;
   }
 
   bool _showPointsText(Badge? data) {
@@ -123,6 +113,17 @@ class ExaminationBadges extends StatelessWidget {
 
   ExaminationCategoryType get examCategoryType =>
       categorizedExamination.examination.examinationCategoryType;
+
+  RewardState _getRewardState(Badge? badge) {
+    if (badge == null) {
+      return RewardState.reward;
+    } else if (_isBadgeLastInMonthOfValidity(badge)) {
+      return RewardState.lastMonthValidity;
+    } else if (_showPointsText(badge)) {
+      return RewardState.reward;
+    }
+    return RewardState.invisible;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -141,6 +142,7 @@ class ExaminationBadges extends StatelessWidget {
             final badge = snapshot.data?.toList().firstWhereOrNull(
                   (element) => element?.type.name == categorizedExamination.examination.badge?.name,
                 );
+            final rewardState = _getRewardState(badge);
             return Column(
               children: [
                 const SizedBox(
@@ -168,12 +170,13 @@ class ExaminationBadges extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         shrinkWrap: true,
                         itemBuilder: (BuildContext context, int index) {
+                          final badgeState = _getBadgeState(badge, index);
                           return Padding(
                             padding: const EdgeInsets.only(right: 20.0),
                             child: Column(
                               children: [
                                 b.Badge(
-                                  showBadge: _showRedBadge(badge, index),
+                                  showBadge: badgeState == BadgeState.redBadge,
                                   badgeColor: LoonoColors.red,
                                   position: b.BadgePosition.topStart(top: -10, start: 27),
                                   padding: const EdgeInsets.all(4),
@@ -188,7 +191,7 @@ class ExaminationBadges extends StatelessWidget {
                                         radius: 35,
                                         backgroundColor: Colors.white,
                                         child: b.Badge(
-                                          showBadge: _showGreenBadge(badge, index),
+                                          showBadge: badgeState == BadgeState.greenBadge,
                                           badgeColor: LoonoColors.green,
                                           padding: const EdgeInsets.all(4),
                                           badgeContent: const Icon(
@@ -208,7 +211,7 @@ class ExaminationBadges extends StatelessWidget {
                                                 ),
                                         ),
                                       ),
-                                      if (_showRedBadge(badge, index))
+                                      if (badgeState == BadgeState.redBadge)
                                         SvgPicture.asset('assets/icons/ellipse.svg'),
                                     ],
                                   ),
@@ -247,7 +250,7 @@ class ExaminationBadges extends StatelessWidget {
                     ),
                   ),
                 ),
-                if (_showRedBadge(badge))
+                if (rewardState == RewardState.lastMonthValidity && !isCustomExam)
                   Padding(
                     padding: const EdgeInsets.only(left: 18.0, bottom: 20),
                     child: Column(
@@ -266,7 +269,7 @@ class ExaminationBadges extends StatelessWidget {
                               style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              ' ${badgeCZ(categorizedExamination.examination.badge)}',
+                              ' ${_getBadgeName(categorizedExamination.examination.badge, context)}',
                               style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                             ),
                           ],
@@ -274,7 +277,7 @@ class ExaminationBadges extends StatelessWidget {
                       ],
                     ),
                   ),
-                if (_showPointsText(badge) || badge == null)
+                if (rewardState == RewardState.reward)
                   Padding(
                     padding: const EdgeInsets.only(left: 10.0, bottom: 20),
                     child: Column(
@@ -293,14 +296,20 @@ class ExaminationBadges extends StatelessWidget {
                           padding: const EdgeInsets.only(left: 12.0),
                           child: Row(
                             children: [
-                              Text(
-                                '${badgeCZ(categorizedExamination.examination.badge)} ',
-                                style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                '${context.l10n.examination_detail_rewards_get_badge_2} ',
-                                style: const TextStyle(fontSize: 12),
-                              ),
+                              if (!isCustomExam)
+                                Text(
+                                  '${_getBadgeName(categorizedExamination.examination.badge, context)} ',
+                                  style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                                )
+                              else
+                                Container(),
+                              if (!isCustomExam)
+                                Text(
+                                  '${context.l10n.examination_detail_rewards_get_badge_2} ',
+                                  style: const TextStyle(fontSize: 12),
+                                )
+                              else
+                                Container(),
                               SizedBox(
                                 width: 16,
                                 height: 16,
@@ -332,3 +341,7 @@ class ExaminationBadges extends StatelessWidget {
     );
   }
 }
+
+enum RewardState { reward, lastMonthValidity, invisible }
+
+enum BadgeState { normalBadge, greenBadge, redBadge }

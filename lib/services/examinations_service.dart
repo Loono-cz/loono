@@ -197,6 +197,46 @@ class ExaminationsProvider extends ChangeNotifier {
     }
   }
 
+  ExaminationPreventionStatus? updateAndReturnCustomExaminationsRecord(
+    ExaminationRecord record,
+    ExaminationPreventionStatus item,
+  ) {
+    final indexToUpdate =
+        examinations?.examinations.indexWhere((examination) => examination == item);
+    if (indexToUpdate != null && indexToUpdate >= 0) {
+      final updatedItem = examinations?.examinations.elementAt(indexToUpdate).rebuild(
+            (item) => item
+              ..uuid = record.uuid
+              ..examinationType = record.type
+              ..plannedDate =
+                  (record.status == ExaminationStatus.CONFIRMED || record.firstExam == true)
+                      ? item.plannedDate
+                      : record.plannedDate?.toLocal()
+              ..lastConfirmedDate =
+                  (record.status == ExaminationStatus.CONFIRMED || record.firstExam == true)
+                      ? record.plannedDate?.toLocal()
+                      : item.lastConfirmedDate
+              ..state = record.status ?? item.state
+              ..firstExam = record.firstExam ?? item.firstExam
+              ..customInterval = record.customInterval
+              ..examinationActionType = record.examinationActionType
+              ..examinationCategoryType = record.examinationCategoryType
+              ..badge = item.badge
+              ..periodicExam = record.periodicExam
+              ..note = record.note,
+          );
+
+      final builder = examinations?.toBuilder();
+      builder?.examinations.removeAt(indexToUpdate);
+      builder?.examinations.add(updatedItem!);
+      examinations = builder?.build();
+      evaluateExaminations();
+      notifyListeners();
+      return updatedItem;
+    }
+    return null;
+  }
+
   void setChoosedCustomExamination(
     CategorizedExamination? categorizedExam,
     ExaminationPreventionStatus? exam,
