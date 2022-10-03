@@ -9,6 +9,7 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/repositories/examination_repository.dart';
+import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/widgets/prevention/datepicker_sheet.dart';
 import 'package:loono/ui/widgets/prevention/examination_cancel_sheet.dart';
@@ -39,7 +40,11 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
               examinationType,
               newDate: date,
             );
-        autoRouter.popUntilRouteWithName('ExaminationDetailRoute');
+        autoRouter.popUntil(
+          (predicate) =>
+              predicate.settings.name ==
+              ExaminationDetailRoute(categorizedExamination: examination).routeName,
+        );
 
         ///TODO: lint fix
         // ignore: use_build_context_synchronously
@@ -65,6 +70,7 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
           isDestructiveAction: true,
           onPressed: () {
             final examinationUuid = examination.examination.uuid;
+
             if (examinationUuid != null) {
               AutoRouter.of(modalContext).pop();
               showCancelExaminationSheet(

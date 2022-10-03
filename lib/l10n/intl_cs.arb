@@ -1411,5 +1411,9 @@
   "waiting_you": "Čeká tě",
   "@waiting_you": {},
   "first_exam_progress": "první prohlídka",
-  "@first_exam_progress": {}
+  "@first_exam_progress": {},
+  "disposable": "Jednorázové",
+  "@disposable": {},
+  "regularly": "Pravidelné",
+  "@regularly": {}
 }

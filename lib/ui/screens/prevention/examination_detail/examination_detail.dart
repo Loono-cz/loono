@@ -164,17 +164,24 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
 
       response.map(
         success: (res) {
+          ExaminationPreventionStatus? newExam;
           if (_examinationCategoryType == ExaminationCategoryType.CUSTOM) {
-            Provider.of<ExaminationsProvider>(context, listen: false)
-                .updateCustomExaminationsRecord(res.data, _examination);
+            newExam = Provider.of<ExaminationsProvider>(context, listen: false)
+                .updateAndReturnCustomExaminationsRecord(res.data, _examination);
           } else {
             Provider.of<ExaminationsProvider>(context, listen: false)
                 .updateExaminationsRecord(res.data);
           }
-          AutoRouter.of(context).popUntilRouteWithName(
-            ExaminationDetailRoute.name,
+
+          //AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
+          AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
+          AutoRouter.of(context).replace(
+            ExaminationDetailRoute(
+              categorizedExamination: widget.categorizedExamination,
+              choosedExamination: newExam,
+            ),
           );
-          showFlushBarSuccess(context, l10n.checkup_reminder_toast);
+          showFlushBarSuccess(context, l10n.checkup_reminder_toast, sync: true);
         },
         failure: (err) {
           showFlushBarError(
@@ -476,7 +483,11 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
               child: LoonoButton.light(
                 key: const Key('examinationDetailPage_btn_updateDate'),
                 text: context.l10n.examination_detail_edit_date_button,
-                onTap: () => showEditModal(context, widget.categorizedExamination),
+                onTap: () {
+                  Provider.of<ExaminationsProvider>(context, listen: false)
+                      .setChoosedCustomExamination(widget.categorizedExamination, null);
+                  showEditModal(context, widget.categorizedExamination);
+                },
               ),
             ),
           ] else if ([

@@ -13,10 +13,10 @@ extension ExaminationActionTypeExt on ExaminationActionType {
       case ExaminationActionType.CONTROL:
         examinationActionTypeUnion = const ExaminationActionTypeUnion.control();
         break;
-      case ExaminationActionType.bLOODCOLLECTION:
+      case ExaminationActionType.BLOOD_COLLECTION:
         examinationActionTypeUnion = const ExaminationActionTypeUnion.bloodcollection();
         break;
-      case ExaminationActionType.vISUALIZATIONMETHODS:
+      case ExaminationActionType.VISUALIZATION_METHODS:
         examinationActionTypeUnion = const ExaminationActionTypeUnion.visualizationmethods();
         break;
     }
@@ -26,10 +26,10 @@ extension ExaminationActionTypeExt on ExaminationActionType {
 
   // ignore: non_constant_identifier_names
   String get l10n_name => mapToUnion.when(
-        examination: () => 'Odborné vyšetření',
+        examination: () => 'Vyšetření',
         control: () => 'Kontrola',
-        bloodcollection: () => 'Odběr krve',
-        visualizationmethods: () => 'Konzultace',
+        bloodcollection: () => 'Odběry',
+        visualizationmethods: () => 'Zobrazovací metody',
       );
 }
 
