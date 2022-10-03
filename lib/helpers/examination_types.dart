@@ -1,6 +1,8 @@
 // ignore_for_file: constant_identifier_names
 
+import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:loono/l10n/ext.dart';
 import 'package:loono_api/loono_api.dart';
 
 part 'examination_types.freezed.dart';
@@ -285,6 +287,61 @@ extension ExaminationTypeExt on ExaminationType {
         urlogy: () => 'Urologie',
         vascular: () => 'Cévní',
       );
+
+
+  String getName(BuildContext? context){
+    if(context == null){
+      return l10n_name;
+    }
+    final l10n = context.l10n;
+    return mapToUnion.when(
+      colonoscopy: () => l10n.colonoscopy_nomativ,
+      ergotherapy: () => l10n.ergotherapy_nomativ,
+      dentist: () => l10n.dentist_nomativ,
+      dermatologist: () => l10n.dermatologist_nomativ,
+      generalPractitioner: () => l10n.generalPractitioner_nomativ,
+      mammogram: () => l10n.mammogram_nomativ,
+      gynecologist: () => l10n.gynecologist_nomativ,
+      ophthalmologist: () => l10n.ophthalmologist_nomativ,
+      ultrasoundBreast: () => l10n.ultrasoundBreast_nomativ,
+      urologist: () => l10n.urologist_nomativ,
+      allergology: () => l10n.allergology_nomativ,
+      cardiology: () => l10n.cardiology_nomativ,
+      dentalhygiene: () => l10n.dental_hygiene_nomativ,
+      endocrinologyandhormones: () => l10n.endocrinology_and_hormones_nomativ,
+      gastroenterology: () => l10n.gastroenterology_nomativ,
+      genetics: () => l10n.genetics_nomativ,
+      hematology: () => l10n.hematology_nomativ,
+      immunology: () => l10n.immunology_nomativ,
+      intern: () => l10n.intern_nomativ,
+      nephrology: () => l10n.nephrology_nomativ,
+      neurology: () => l10n.neurology_nomativ,
+      nutrition: () => l10n.nutrition_nomativ,
+      oncology: () => l10n.oncology_nomativ,
+      orl: () => l10n.orl_nomativ,
+      orthodontics: () => l10n.orthodontics_nomativ,
+      orthopedics: () => l10n.orthopaedics_nomativ,
+      other: () => l10n.other_nomativ,
+      pallativemedicine: () => l10n.palliative_medicine_nomativ,
+      pediatrician: () => l10n.pediatrician_nomativ,
+      phoniatrics: () => l10n.phoniatrics_nomativ,
+      physiotherapy: () => l10n.physiotherapy_nomativ,
+      psychiatry: () => l10n.psychiatry_nomativ,
+      psychology: () => l10n.psychology_nomativ,
+      pulmonary: () => l10n.pulmonary_nomativ,
+      rehabilitation: () => l10n.rehabilitation_nomativ,
+      reproductivemedicine: () => l10n.reproductive_medicine_nomativ,
+      rheumatology: () => l10n.rheumatology_nomativ,
+      sexology: () => l10n.sexology_nomativ,
+      speechtherapist: () => l10n.speech_therapist_nomativ,
+      sportmedicine: () => l10n.sports_medicine_nomativ,
+      surgey: () => l10n.surgery_nomativ,
+      tanner: () => l10n.tanner_nomativ,
+      urlogy: () => l10n.urology_nomativ,
+      vascular: () => l10n.vascular_nomativ,
+    );
+  }
+
 
   String get assetPath {
     const basePath = 'assets/icons/prevention/doctors/';

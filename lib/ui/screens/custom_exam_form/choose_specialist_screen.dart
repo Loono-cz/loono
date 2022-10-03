@@ -75,10 +75,10 @@ class _ChooseSpecialistScreenState extends State<ChooseSpecialistScreen> {
                     return Column(
                       children: [
                         CustomRadioButton(
-                          text: provider.l10n_name,
-                          isChecked: provider.l10n_name == _groupValue,
+                          text: provider.getName(context),
+                          isChecked: provider.getName(context) == _groupValue,
                           whatIsChecked: (checked) => setState(() {
-                            _groupValue = provider.l10n_name;
+                            _groupValue = provider.getName(context);
                             _examType = provider;
                           }),
                         ),

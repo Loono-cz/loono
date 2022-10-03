@@ -78,11 +78,10 @@ class _ChooseFrequencyOfExamScreenState extends State<ChooseFrequencyOfExamScree
             Expanded(
               flex: 1,
               child: CustomPeriodicalSpinner(
-                valueChanged: (number, text) {
+                valueChanged: (number, period) {
                   setState(() {
-                    final isMonth = text.isNotEmpty && text == 'měsíce';
-                    period =
-                        '${number.isEmpty ? isMonth ? 6 : 1 : number} ${text.isEmpty ? 'měsíce' : text}';
+                    final count = number.isNotEmpty ? int.parse(number) : 1;
+                    this.period = '$number ${getTextForPeriod(period, count, context)}';
                   });
                 },
               ),
@@ -93,7 +92,7 @@ class _ChooseFrequencyOfExamScreenState extends State<ChooseFrequencyOfExamScree
             LoonoButton(
               text: context.l10n.confirm_info,
               onTap: () {
-                widget.valueChanged(period.isEmpty ? '6 měsíce' : period);
+                widget.valueChanged(period.isEmpty ? '6 ${getTextForPeriod(Period.perMonth, 6, context)}' : period);
                 Navigator.of(context).pop();
               },
             )

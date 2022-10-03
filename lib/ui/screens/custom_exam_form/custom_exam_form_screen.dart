@@ -137,7 +137,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                 error: _showError,
                 label: _specialist == null ? '' : context.l10n.specialist,
                 hintText: context.l10n.choose_specialist,
-                value: _specialist != null ? ExaminationTypeExt(_specialist!).l10n_name : '',
+                value: _specialist != null ? ExaminationTypeExt(_specialist!).getName(context) : '',
                 onClickInputField: () => AutoRouter.of(context).navigate(
                   ChooseSpecialistRoute(
                     specialist: _specialist,

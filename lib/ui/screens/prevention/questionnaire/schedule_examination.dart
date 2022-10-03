@@ -94,7 +94,7 @@ class ScheduleExamination extends StatelessWidget {
                               children: [
                                 DatePickerRoute(
                                   assetPath: _examinationType.assetPath,
-                                  title: _examinationType.l10n_name,
+                                  title: _examinationType.getName(context),
                                   onSkipButtonPress: (date) async {
                                     /// code anchor: #postFirstNewExaminationUnknownDate
                                     final response =

@@ -124,7 +124,7 @@ class _ChooseExamPeriodDateScreenState extends State<ChooseExamPeriodDateScreen>
             ),
             if (widget.showLastExamDate == true && widget.dateTime != null)
               Text(
-                'Původní datum: ${DateFormat('d. MMMM yyyy', 'CS-cz').format(widget.dateTime!)}',
+                '${context.l10n.original_date}: ${DateFormat('d. MMMM yyyy', 'CS-cz').format(widget.dateTime!)}',
               )
           ],
         ),

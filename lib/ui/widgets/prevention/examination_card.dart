@@ -5,6 +5,7 @@ import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_action_types.dart';
 import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_types.dart';
+import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/ui/widgets/loono_point.dart';
 import 'package:loono/ui/widgets/notification_icon.dart';
@@ -31,8 +32,8 @@ class ExaminationCard extends StatelessWidget {
       .difference(DateTime(now.year, now.month, now.day))
       .inDays;
 
-  Widget get _title => Text(
-        categorizedExamination.examination.examinationType.l10n_name,
+  Widget _title(BuildContext? context) => Text(
+        categorizedExamination.examination.examinationType.getName(context),
         style: LoonoFonts.cardTitle,
       );
   Widget get _subtitle => Text(
@@ -82,11 +83,13 @@ class ExaminationCard extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: categorizedExamination.category.when(
-                  scheduledSoonOrOverdue: () => _scheduledContent(isSoonOrOverdue: true),
+                  scheduledSoonOrOverdue: () => _scheduledContent(isSoonOrOverdue: true, context: context),
                   newToSchedule: () => _makeAppointmentContent(context, isNew: true),
                   unknownLastVisit: () => _makeAppointmentContent(context),
-                  scheduled: _scheduledContent,
-                  waiting: _waitingContent,
+                  scheduled:() {
+                    return _scheduledContent(context: context);
+                  },
+                  waiting: () => _waitingContent(context),
                 ),
               ),
             ),
@@ -96,7 +99,7 @@ class ExaminationCard extends StatelessWidget {
     );
   }
 
-  List<Widget> _scheduledContent({bool isSoonOrOverdue = false}) {
+  List<Widget> _scheduledContent({bool isSoonOrOverdue = false, required BuildContext context}) {
     final nextVisitDate = categorizedExamination.examination.plannedDate!.toLocal();
     final diffDays = _diffInDays(nextVisitDate);
     // final diffText = now.isAfter(nextVisitDate)
@@ -107,10 +110,11 @@ class ExaminationCard extends StatelessWidget {
     //             ? 'zítra'
     //             : '';
 
+
     final diffText = diffDays == 0
-        ? 'dnes'
+        ? context.l10n.today.toLowerCase()
         : diffDays == 1
-            ? 'zítra'
+            ? context.l10n.today
             : '';
 
     return <Widget>[
@@ -122,7 +126,7 @@ class ExaminationCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  _title,
+                  _title(context),
                   if (isSoonOrOverdue) ...[
                     const SizedBox(width: 5),
                     const NotificationIcon.topPriority(),
@@ -161,7 +165,7 @@ class ExaminationCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  _title,
+                  _title(context),
                   if (isNew && index == 0) ...[
                     const SizedBox(width: 5),
                     const NotificationIcon.priority(),
@@ -196,7 +200,7 @@ class ExaminationCard extends StatelessWidget {
     ];
   }
 
-  List<Widget> _waitingContent() {
+  List<Widget> _waitingContent(BuildContext context) {
     final lastDateVisit = categorizedExamination.examination.lastConfirmedDate!.toLocal();
     final newWaitToDateTime = DateTime(
       lastDateVisit.year + categorizedExamination.examination.intervalYears,
@@ -211,7 +215,7 @@ class ExaminationCard extends StatelessWidget {
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _title,
+              _title(context),
               const SizedBox(
                 height: 2.0,
               ),

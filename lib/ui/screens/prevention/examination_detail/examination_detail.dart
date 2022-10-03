@@ -229,7 +229,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                       children: [
                         const SizedBox(height: 18),
                         Text(
-                          _examinationType.l10n_name,
+                          _examinationType.getName(context),
                           style: LoonoFonts.headerFontStyle.copyWith(
                             color: LoonoColors.green,
                             fontWeight: FontWeight.w700,

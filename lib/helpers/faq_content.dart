@@ -23,7 +23,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
     case ExaminationType.COLONOSCOPY:
       result = [
         FAQPair(
-          question: '${texts.what_is} ${type.l10n_name.toLowerCase()}?',
+          question: '${texts.what_is} ${type.getName(context).toLowerCase()}?',
           answer: texts.faq_colonoscopy_answer,
         ),
         FAQPair(
@@ -51,7 +51,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
     case ExaminationType.DENTIST:
       result = [
         FAQPair(
-          question: '${texts.who_is} ${type.l10n_name.toLowerCase()}?',
+          question: '${texts.who_is} ${type.getName(context).toLowerCase()}?',
           answer: texts.faq_dentist_answer,
         ),
         FAQPair(
@@ -87,7 +87,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
     case ExaminationType.DERMATOLOGIST:
       result = [
         FAQPair(
-          question: '${texts.who_is} ${type.l10n_name.toLowerCase()}?',
+          question: '${texts.who_is} ${type.getName(context).toLowerCase()}?',
           answer: texts.faq_dermatologist_answer,
         ),
         FAQPair(
@@ -123,7 +123,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
     case ExaminationType.GENERAL_PRACTITIONER:
       result = [
         FAQPair(
-          question: '${texts.who_is} ${type.l10n_name.toLowerCase()}?',
+          question: '${texts.who_is} ${type.getName(context).toLowerCase()}?',
           answer: texts.faq_general_practitioner_answer,
         ),
         FAQPair(
@@ -159,7 +159,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
     case ExaminationType.GYNECOLOGY_AND_OBSTETRICS:
       result = [
         FAQPair(
-          question: '${texts.who_is} ${type.l10n_name.toLowerCase()}?',
+          question: '${texts.who_is} ${type.getName(context).toLowerCase()}?',
           answer: texts.faq_gynecologist_answer,
         ),
         FAQPair(
@@ -195,7 +195,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
     case ExaminationType.MAMMOGRAM:
       result = [
         FAQPair(
-          question: '${texts.what_is} ${type.l10n_name.toLowerCase()}?',
+          question: '${texts.what_is} ${type.getName(context).toLowerCase()}?',
           answer: texts.faq_mammogram_answer,
         ),
         FAQPair(
@@ -223,7 +223,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
     case ExaminationType.OPHTHALMOLOGIST:
       result = [
         FAQPair(
-          question: '${texts.who_is} ${type.l10n_name.toLowerCase()}?',
+          question: '${texts.who_is} ${type.getName(context).toLowerCase()}?',
           answer: texts.faq_ophthalmologist_answer,
         ),
         FAQPair(
@@ -260,7 +260,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
     case ExaminationType.UROLOGIST:
       result = [
         FAQPair(
-          question: '${texts.who_is} ${type.l10n_name.toLowerCase()}?',
+          question: '${texts.who_is} ${type.getName(context).toLowerCase()}?',
           answer: texts.faq_urologist_answer,
         ),
         FAQPair(
@@ -296,7 +296,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
     case ExaminationType.ULTRASOUND_BREAST:
       result = [
         FAQPair(
-          question: '${texts.what_is} ${type.l10n_name.toLowerCase()}?',
+          question: '${texts.what_is} ${type.getName(context).toLowerCase()}?',
           answer: texts.faq_ultrasound_breast_answer,
         ),
         FAQPair(

@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/datepicker_helpers.dart';
+import 'package:loono/l10n/ext.dart';
 
 const _itemHeight = 40.0;
 
 enum FrequencyType { numbers, period }
 
-final items = List<String>.of(['měsíce', 'roky']).asMap();
+final items = Period.values.asMap();
 
 class CustomPeriodicalSpinner extends StatefulWidget {
   const CustomPeriodicalSpinner({
     super.key,
     required this.valueChanged,
   });
-  final Function(String, String) valueChanged;
+  final Function(String, Period) valueChanged;
   @override
   State<CustomPeriodicalSpinner> createState() => _CustomPeriodicalSpinnerState();
 }
@@ -22,8 +23,9 @@ class _CustomPeriodicalSpinnerState extends State<CustomPeriodicalSpinner> {
   int _selectedFrequency = 0;
   int _selectedStringIndex = 0;
 
-  var num = '';
-  var period = '';
+  var num = '1';
+  int get value => int.parse(num);
+  var period = Period.perMonth;
 
   @override
   void initState() {
@@ -52,7 +54,7 @@ class _CustomPeriodicalSpinnerState extends State<CustomPeriodicalSpinner> {
               ),
             ),
           ),
-          const Text('Jednou za'),
+          Text(context.l10n.custom_exam_once_per),
           _monthPickerColumn(monthNumbers),
           _frequencyPickerColumn(),
         ],
@@ -76,9 +78,8 @@ class _CustomPeriodicalSpinnerState extends State<CustomPeriodicalSpinner> {
           ),
         ),
         onSelectedItemChanged: (index) {
-          _changeNumber(items: monthNumbers, value: monthNumbers.keys.elementAt(index));
-
           setState(() {
+            _changeNumber(items: monthNumbers, value: monthNumbers.keys.elementAt(index));
             _selectedFrequency = monthNumbers.keys.elementAt(index);
           });
         },
@@ -96,14 +97,14 @@ class _CustomPeriodicalSpinnerState extends State<CustomPeriodicalSpinner> {
           childCount: items.length,
           builder: (context, index) => setListItem(
             index: index,
-            text: items[index].toString().padLeft(1, '0'),
+            text: getTextForPeriod(items[index] ?? Period.perMonth, value, context),
             items: items,
             selectedIndex: _selectedStringIndex,
           ),
         ),
         onSelectedItemChanged: (index) {
-          _changeStrPeriod(items: items, value: items.keys.elementAt(index));
           setState(() {
+            _changeStrPeriod(items: items, value: items.keys.elementAt(index));
             _selectedStringIndex = items.keys.elementAt(index);
           });
         },
@@ -120,10 +121,32 @@ class _CustomPeriodicalSpinnerState extends State<CustomPeriodicalSpinner> {
   }
 
   void _changeStrPeriod({
-    required Map items,
+    required Map<int, Period> items,
     required int value,
   }) {
-    period = items[value].toString();
+    period = items[value] ?? Period.perMonth;
     widget.valueChanged(num, period);
+  }
+}
+
+enum Period {
+  perMonth,
+  perYear,
+}
+
+String getTextForPeriod(Period period, int count, BuildContext context) {
+  switch (period) {
+    case Period.perMonth:
+      return count == 1
+          ? context.l10n.custom_exam_every_month_1
+          : count <= 4
+              ? context.l10n.custom_exam_every_month_less_4
+              : context.l10n.custom_exam_every_month_more_4;
+    case Period.perYear:
+      return count == 1
+          ? context.l10n.custom_exam_every_year_1
+          : count <= 4
+              ? context.l10n.custom_exam_every_year_less_4
+              : context.l10n.custom_exam_every_year_more_4;
   }
 }
