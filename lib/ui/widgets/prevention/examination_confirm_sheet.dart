@@ -81,7 +81,7 @@ void showConfirmationSheet(
                     }
                     if (!mounted) return;
                     isCustomExamination
-                        ? await autoRouter.pop()
+                        ? autoRouter.popUntilRouteWithName(MainRoute.name)
                         : await autoRouter.navigate(
                             AchievementRoute(
                               header: getAchievementTitle(context, examinationType),

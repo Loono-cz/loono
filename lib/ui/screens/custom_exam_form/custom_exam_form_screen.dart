@@ -178,7 +178,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                   children: [
                     checkboxConetnt(
                       context,
-                      'Jednorázové', //TODO: Translation
+                      context.l10n.disposable, //TODO: Translation
                       () => setState(() {
                         _isPeriodicExam = false;
                         _showPeriodDateTimeError = false;
@@ -189,7 +189,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                     ),
                     checkboxConetnt(
                       context,
-                      'Pravidelné', //TODO: Translation
+                      context.l10n.regularly, //TODO: Translation
                       () => setState(() {
                         _isPeriodicExam = true;
                         _showPeriodDateTimeError = false;
@@ -413,15 +413,22 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                     fit: BoxFit.scaleDown,
                     color: _nextExamChck ? Colors.black38 : Colors.black87,
                   ),
-                  onClickInputField: () => AutoRouter.of(context).navigate(
-                    ChooseExamPeriodDateRoute(
-                      showLastExamDate: true,
-                      label: _getUserLabelBySex(context, sex: _usersDao.user?.sex ?? Sex.FEMALE),
-                      pickTime: true,
-                      dateTime: _nextExamDate,
-                      onValueChange: onNextExamDateSet,
-                    ),
-                  ),
+                  onClickInputField: () {
+                    final str = _customInterval.split(' ');
+                    final customInterval = str[1] == context.l10n.years
+                        ? transformYearToMonth(str[0])
+                        : int.parse(str[0]);
+
+                    AutoRouter.of(context).navigate(
+                      ChooseExamPeriodDateRoute(
+                        showLastExamDate: true,
+                        label: _getUserLabelBySex(context, sex: _usersDao.user?.sex ?? Sex.FEMALE),
+                        pickTime: true,
+                        dateTime: _nextExamDate,
+                        onValueChange: onNextExamDateSet,
+                      ),
+                    );
+                  },
                 ),
               ),
               Flexible(
@@ -487,7 +494,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
               actionType: _examinationType,
               periodicExam: _isPeriodicExam,
               note: _note,
-              customInterval: frequencyString[1] == 'roky'
+              customInterval: frequencyString[1] == context.l10n.years
                   ? transformYearToMonth(frequencyString[0])
                   : int.parse(frequencyString[0]), // Pravidelne
               newDate: _nextExamDate,
@@ -496,10 +503,21 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
               firstExam: false,
             )
             .then((value) {
-          Provider.of<ExaminationsProvider>(context, listen: false)
-              .createCustomExamination(res.data, lastConfirmedDate: _lastExamDate);
-          AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
-          showFlushBarSuccess(context, context.l10n.examinatoin_was_added);
+          value.map(
+            success: (newRes) {
+              Provider.of<ExaminationsProvider>(context, listen: false)
+                  .createCustomExamination(newRes.data, lastConfirmedDate: _lastExamDate);
+              AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
+              showFlushBarSuccess(context, context.l10n.examinatoin_was_added);
+            },
+            failure: (err) => showFlushBarError(
+              context,
+              statusCodeToText(
+                context,
+                err.error.response?.statusCode,
+              ),
+            ),
+          );
         });
       },
       failure: (err) {

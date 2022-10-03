@@ -76,11 +76,11 @@ class ExaminationProgressContent extends StatelessWidget {
 
   Widget _scheduledVisitContent(BuildContext context) {
     final now = DateTime.now();
-    final visitTime = DateFormat('HH:mm', 'cs-CZ')
+    final visitTime = DateFormat(LoonoStrings.hoursFormat, 'cs-CZ')
         .format(categorizedExamination.examination.plannedDate!.toLocal());
     final visitTimePreposition =
         categorizedExamination.examination.plannedDate!.toLocal().hour > 11 ? 've' : 'v';
-    final visitDate = DateFormat('dd. MMMM yyyy', 'cs-CZ')
+    final visitDate = DateFormat(LoonoStrings.dateFormatSpacing, 'cs-CZ')
         .format(categorizedExamination.examination.plannedDate!.toLocal());
     final isAfterVisit = now.isAfter(categorizedExamination.examination.plannedDate!.toLocal());
     return Column(
@@ -119,13 +119,13 @@ class ExaminationProgressContent extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            'Čeká tě',
+            context.l10n.waiting_you,
             style: LoonoFonts.paragraphSmallFontStyle.copyWith(
               color: LoonoColors.primaryEnabled,
             ),
           ),
           Text(
-            'první prohlídka',
+            context.l10n.first_exam_progress,
             style: LoonoFonts.paragraphSmallFontStyle.copyWith(
               color: LoonoColors.primaryEnabled,
             ),
@@ -134,11 +134,11 @@ class ExaminationProgressContent extends StatelessWidget {
       );
     } else {
       final examination = categorizedExamination.examination;
-      final interval = examination.customInterval;
+      final interval = examination.intervalYears;
       DateTime newWaitToDateTime;
       final lastDateVisit = examination.lastConfirmedDate!.toLocal();
 
-      if (interval != null && interval <= 11) {
+      if (interval <= 11) {
         newWaitToDateTime = DateTime(lastDateVisit.year, lastDateVisit.month + interval);
       } else {
         newWaitToDateTime = DateTime(

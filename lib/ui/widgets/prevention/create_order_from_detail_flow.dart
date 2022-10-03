@@ -168,7 +168,9 @@ class _DatePickerContentState extends State<_DatePickerContent> {
             child: Row(
               children: [
                 Text(
-                  DateFormat('d. MMMM yyyy', 'cs-CZ').format(newDate!).toString(),
+                  DateFormat(LoonoStrings.dateFormatWithNameMonth, 'cs-CZ')
+                      .format(newDate!)
+                      .toString(),
                   style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
                 ),
               ],
