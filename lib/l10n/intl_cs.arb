@@ -1224,5 +1224,7 @@
   "next_specialist_examination": "Další prohlídky u specialisty",
   "@next_specialist_examination": {},
   "error_date_must_be_in_past": "Datum prohlídky musí být v minulosti",
-  "@error_date_must_be_in_past": {}
+  "@error_date_must_be_in_past": {},
+  "btn_edit_examination": "Upravit prohlídku",
+  "@btn_edit_examination": {}
 }
