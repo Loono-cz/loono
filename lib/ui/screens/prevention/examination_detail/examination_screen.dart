@@ -24,7 +24,6 @@ class ExaminationDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final examination = choosedExamination ??
         Provider.of<ExaminationsProvider>(context, listen: true)
             .examinations!

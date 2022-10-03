@@ -164,12 +164,10 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
 
       response.map(
         success: (res) {
-
           ExaminationPreventionStatus? newExam;
           if (_examinationCategoryType == ExaminationCategoryType.CUSTOM) {
             newExam = Provider.of<ExaminationsProvider>(context, listen: false)
                 .updateAndReturnCustomExaminationsRecord(res.data, _examination);
-
           } else {
             Provider.of<ExaminationsProvider>(context, listen: false)
                 .updateExaminationsRecord(res.data);
