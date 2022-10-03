@@ -488,7 +488,6 @@
   "@faq_gynecologist_do_more_answer": {},
   "datepicker_error_is_future": "Zadej datum v minulosti, prosím.",
   "@datepicker_error_is_future": {},
-
   "faq_dermatologist_answer": "Kožař neboli kožní lékař je “manažerem” péče o tvou kůži. Je tím, kdo by měl mít přehled o tom, zda nemáš nějaká podezřelá mateřská znaménka.\n\nZároveň je kožař prvním, za kým bys měl/a jít, pokud máš jakékoliv potíže na kůži. Vyšetří tě a v případě potřeby doporučí jiného specialistu, který ti s problémem pomůže. Kožař je také tím, kdo tě poučí o zásadách pobytu na sluníčku.\n\nVůbec nejlepší je najít si kožaře v místě svého současného bydliště. To platí zejména u lidí, kteří se stěhují za studiem či prací do jiného města.",
   "@faq_dermatologist_answer": {},
   "faq_dermatologist_reward_answer": "Dobrý pocit, že jsi nic nepodcenil/a. Je totiž řada nemocí, jako jsou zhoubné i nezhoubné nádory kůže, které se projevují jako zvláštní znaménka, a mnoho dalších onemocnění kůže, které člověk sám na sobě nemusí poznat a které se dají odhalit právě na preventivní prohlídce u kožaře. Navíc, když se na ně přijde včas, dají se ještě většinou začít léčit či dokonce vyléčit. \n\nA protože po padesátce výrazně roste riziko vzniku melanomu a jiných rakovin kůže, je pravidelná prohlídka u kožaře jednou z důležitých součástí péče o zdraví.",
@@ -505,7 +504,6 @@
   "@faq_dermatologist_pain_answer": {},
   "faq_dermatologist_do_more_answer": "Používej opalovací krém s vysokým faktorem (SPF 50+) a vyhýbej se polednímu slunci. Před sluncem chraň i svoje oči a vlasovou část hlavy. Svá znaménka si 1x měsíčně samovyšetři, zda se nějak nezměnila.",
   "@faq_dermatologist_do_more_answer": {},
-
   "faq_mammogram_answer": "Mamografický screening je vyšetření používané na včasné odhalení rakoviny prsu. Účastnit by se ho měla každá žena od 45 let bez ohledu na to, jestli má malá či velká prsa nebo prsní implantáty.",
   "@faq_mammogram_answer": {},
   "faq_mammogram_reward_answer": "Dobrý pocit, že jsi nic nepodcenila. Počáteční stádia rakoviny prsu žena sama na sobě nemusí poznat, ale dají se odhalit právě na preventivním mamografickém vyšetřením. Navíc, když se na ně přijde včas, dají se ještě většinou začít léčit, či dokonce vyléčit.",
@@ -522,7 +520,6 @@
   "@faq_mammogram_pain_answer": {},
   "faq_mammogram_do_more_answer": "Pravidelně 1x měsíčně prováděj samovyšetření prsu. Jak na to se dozvíš v sekci Prevence.",
   "@faq_mammogram_do_more_answer": {},
-
   "faq_urologist_answer": "Urolog je “manažerem” péče o mužské zdraví. Je tím, kdo by měl mít přehled o zdraví močového a pohlavního systému a o tom, jak dopadly výsledky specializovaných vyšetření. To vše se u něj sbíhá. Nezapomeň proto jakékoliv lékařské zprávy o urologických operacích či estetických zákrocích vždy doručit svému urologovi. \n\nZároveň je urolog prvním, za kým bys měl jít s konkrétním zdravotním problémem v oblasti pohlavních a močových orgánů. Vyšetří tě a v případě potřeby doporučí specialistu, který ti s problémem pomůže. Tvůj urolog by tě měl poučit také o důležitosti samovyšetření varlat. \n \nVůbec nejlepší je najít si urologa v místě svého současného bydliště. To platí zejména u lidí, kteří se stěhují za studiem či prací do jiného města. \n \nZajít bys k němu měl poprvé ve věku 50 let, další frekvenci určí sám lékař na základě výsledků první prohlídky.",
   "@faq_urologist_answer": {},
   "faq_urologist_reward_answer": "Dobrý pocit, že jsi nic nepodcenil. Je totiž řada nemocí, jako jsou změny na prostatě, nejčastěji nezhoubné zvětšené prostaty, které muž nemusí sám na sobě poznat a které se dají odhalit právě na preventivní prohlídce u urologa. Navíc, když se na ně přijde včas, dají se ještě většinou začít léčit, či dokonce vyléčit. \n\nA protože po padesátce výrazně roste výskyt rakoviny prostaty, je pravidelná prohlídka u urologa jednou z důležitých součástí péče o mužské zdraví.",
@@ -539,7 +536,6 @@
   "@faq_urologist_pain_answer": {},
   "faq_urologist_do_more_answer": "Pravidelně 1x měsíčně prováděj samovyšetření varlat.",
   "@faq_urologist_do_more_answer": {},
-
   "faq_ophthalmologist_answer": "Očar neboli oční lékař je “manažerem” péče o zdraví očí. Je tím, kdo by měl mít přehled o tom, jak dobře vidíš a zdá máš oči celkově zdravé. \n\nZároveň je oční lékař prvním, za kým bys měl/a jít, pokud máš jakékoliv potíže se zrakem. Vyšetří tě a v případě potřeby doporučí specialistu, který ti s problémem pomůže. Očař je také tím, kdo ti dá předpis na nové brýle. \n\nVůbec nejlepší je najít si očaře v místě svého současného bydliště. To platí zejména u lidí, kteří se stěhují za studiem či prací do jiného města. \n \nVe věku 45–61 let ti 1 × za 4 roky napíše doporučení na preventivní prohlídku praktický lékař.",
   "@faq_ophthalmologist_answer": {},
   "faq_ophthalmologist_reward_answer": "Dobrý pocit, že jsi nic nepodcenil/a. Je totiž řada nemocí, jako jsou zelený a šedý zákal, změny na očním pozadí (např. vlivem cukrovky) a mnoho dalších, které člověk sám na sobě nemusí poznat a které se dají odhalit právě na preventivní prohlídce u očaře. Navíc, když se na ně přijde včas, dají se ještě většinou začít léčit, či dokonce vyléčit. \n\nA protože po padesátce výrazně roste riziko vzniku chorob očního pozadí, je pravidelná prohlídka u očaře jednou z důležitých součástí péče o zdraví.",
@@ -556,7 +552,6 @@
   "@faq_ophthalmologist_pain_answer": {},
   "faq_ophthalmologist_do_more_answer": "Chránit svůj zrak před sluncem, a to i v zimě. I v oku totiž může vzniknout tzv. melanom (rakovina).",
   "@faq_ophthalmologist_do_more_answer": {},
-
   "faq_dentist_answer": "Zubař je “manažerem” péče o dutinu ústní. Je tím, kdo by měl mít přehled o tom, kolik máš kazů, plomb, zubních náhrad aj., a taky tím, kdo by tě měl poučit o zásadách správného čištění zubů a ústní hygieny. Navštěvovat bys ho měl/a 1-2x ročně.\n\nZubaře se neboj navštívit pokaždé, když tě zazlobí některý ze zubů nebo samotné dásně. Třeba to nemusí nic znamenat, je ale vždy dobré dutinu ústní prohlédnout. \n \nVůbec nejlepší je najít si zubaře v místě svého současného bydliště. To platí zejména u lidí, kteří se stěhují za studiem či prací do jiného města.",
   "@faq_dentist_answer": {},
   "faq_dentist_reward_answer": "Dobrý pocit, že jsi nic nepodcenil/a. Je totiž řada nemocí zubů, jako jsou např. zubní kaz či záněty dásní, které na sobě člověk nemusí poznat a které se dají odhalit právě na preventivní prohlídce u zubaře. Navíc, když se na ně přijde včas, dají se ještě většinou začít léčit, či dokonce vyléčit. \n\nKromě návštěvy zubaře je důležité si každý den čistit zuby ráno i večer tak dlouho, dokud nejsou čisté. Zda jsou čisté zjistíme tak, že po jejich povrchu přejedeme jazykem a cítíme, že jsou hladké.",
@@ -573,7 +568,6 @@
   "@faq_dentist_pain_answer": {},
   "faq_dentist_do_more_answer": "Správně a pravidelně si čisti zuby, každý den používej mezizubní kartáčky a choď 2x ročně na dentální hygienu.",
   "@faq_dentist_do_more_answer": {},
-
   "faq_colonoscopy_answer": "Koloskopie je vyšetřovací metoda používaná pro screening rakoviny tlustého střeva a konečníku. Účastnit by se jí měli všichni od 50. roku věku, a to 1x za 10 let.",
   "@faq_colonoscopy_answer": {},
   "faq_colonoscopy_reward_answer": "Dobrý pocit, že jsi nic nepodcenil/a. Je totiž řada nemocí, jako jsou zhoubné i nezhoubné nádory střeva, které člověk sám na sobě nemusí poznat a které se dají odhalit právě touto screeningovou metodou. Navíc, když se na ně přijde včas, dají se ještě většinou začít léčit, či dokonce vyléčit.",
@@ -590,7 +584,6 @@
   "@faq_colonoscopy_pain_answer": {},
   "faq_colonoscopy_do_more_answer": "Zdravě se stravuj, jez dostatek vlákniny, omez konzumaci červeného masa a alkoholu.",
   "@faq_colonoscopy_do_more_answer": {},
-
   "faq_ultrasound_breast_answer": "Ultrazvuk se používá k preventivnímu vyšetření prsu u žen mladších 40 let, např. u žen, které mají rakovinu prsu v rodině. Na ultrazvuk pak posílá ženy jejich gynekolog i v případě, že na prsu zpozoruje nějaké změny nebo pokud si žena v prsu nahmatá např. bulku.",
   "@faq_ultrasound_breast_answer": {},
   "faq_ultrasound_breast_reward_answer": "Dobrý pocit, že jsi nic nepodcenila.  Počáteční stádia rakoviny prsu žena sama na sobě nemusí poznat, ale dají se odhalit právě na preventivním vyšetřením ultrazvukem. Navíc, když se na ně přijde včas, dají se ještě většinou začít léčit,lékaři či dokonce vyléčit.",
@@ -607,7 +600,6 @@
   "@faq_ultrasound_breast_pain_answer": {},
   "faq_ultrasound_breast_do_more_answer": "Pravidelně 1x měsíčně prováděj samovyšetření prsu. Jak na to se dozvíš v sekci Prevence.",
   "@faq_ultrasound_breast_do_more_answer": {},
-
   "more_information": "Více informací",
   "@more_information": {},
   "less_information": "Méně informací",
@@ -716,8 +708,6 @@
   "@i_have": {},
   "i_dont_have": "Nemám",
   "@i_dont_have": {},
-
-
   "breastSelf_nomativ": "Samovyšetření prsa",
   "@breastSelf_nomativ": {},
   "colonoscopy_nomativ": "Koloskopie",
@@ -812,7 +802,6 @@
   "@vascular_nomativ": {},
   "dental_hygiene_nomativ": "Dentální hygiena",
   "@dental_hygiene_nomativ": {},
-
   "breastSelf_genitiv": "Samovyšetření prsa",
   "@breastSelf_genitiv": {},
   "colonoscopy_genitiv": "Koloskopii",
@@ -907,7 +896,6 @@
   "@vascular_genitiv": {},
   "dental_hygiene_genitiv": "Dentální hygieny",
   "@dental_hygiene_genitiv": {},
-
   "breastSelf_dativ": "Samovyšetření prsu",
   "@breastSelf_dativ": {},
   "colonoscopy_dativ": "Koloskopii",
@@ -1002,7 +990,6 @@
   "@vascular_dativ": {},
   "dental_hygiene_dativ": "Dentální hygieně",
   "@dental_hygiene_dativ": {},
-
   "checkup_canceled": "Prohlídka byla zrušena",
   "@checkup_canceled": {},
   "checkup_reminder_toast": "Prohlídku ti včas připomeneme",
@@ -1257,7 +1244,6 @@
   "@incubated": {},
   "too_early_checkup": "Ještě není čas se objednat",
   "@too_early_checkup": {},
-
   "self_faq_skin_steps_answer_part_4": "Zavolej svému praktickému lékaři nebo rovnou dermatologovi.",
   "@self_faq_skin_steps_answer_part_4": {},
   "self_faq_important_skin_steps_answer_part_5": "Zavolej svému praktickému lékaři nebo rovnou dermatologovi.",
@@ -1421,5 +1407,9 @@
   "next_specialist_examination": "Další prohlídky u specialisty",
   "@next_specialist_examination": {},
   "error_date_must_be_in_past": "Datum prohlídky musí být v minulosti",
-  "@error_date_must_be_in_past": {}
+  "@error_date_must_be_in_past": {},
+  "waiting_you": "Čeká tě",
+  "@waiting_you": {},
+  "first_exam_progress": "první prohlídka",
+  "@first_exam_progress": {}
 }

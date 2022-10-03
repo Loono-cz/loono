@@ -487,7 +487,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
               actionType: _examinationType,
               periodicExam: _isPeriodicExam,
               note: _note,
-              customInterval: frequencyString[1] == 'roky'
+              customInterval: frequencyString[1] == context.l10n.years
                   ? transformYearToMonth(frequencyString[0])
                   : int.parse(frequencyString[0]), // Pravidelne
               newDate: _nextExamDate,

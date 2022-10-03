@@ -154,9 +154,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
             _examinationType,
             newDate: date,
             uuid: widget.categorizedExamination.examination.uuid,
-            firstExam: _examinationCategoryType == ExaminationCategoryType.CUSTOM
-                ? !_examination.firstExam
-                : true,
+            firstExam: false,
             status: ExaminationStatus.NEW,
             categoryType: _examinationCategoryType,
             note: note,
@@ -173,7 +171,9 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
             Provider.of<ExaminationsProvider>(context, listen: false)
                 .updateExaminationsRecord(res.data);
           }
-          AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
+          AutoRouter.of(context).popUntilRouteWithName(
+            ExaminationDetailRoute.name,
+          );
           showFlushBarSuccess(context, l10n.checkup_reminder_toast);
         },
         failure: (err) {

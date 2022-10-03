@@ -46,27 +46,31 @@ class OpenSettingsScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 24.0),
                       if (userNickname != null)
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              userNickname,
-                              style: const TextStyle(fontSize: 24),
-                            ),
-                            const SizedBox(height: 12.0),
-                            PointsDisplay(),
-                            const SizedBox(height: 12.0),
-                            Text(
-                              context.l10n.points_your_points_desc.toUpperCase(),
-                              style: const TextStyle(
-                                fontSize: 12,
-                                color: LoonoColors.black,
-                                fontWeight: FontWeight.bold,
+                        Flexible(
+                          flex: 1,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                userNickname,
+                                style: const TextStyle(fontSize: 24),
+                                overflow: TextOverflow.fade,
+                                softWrap: false,
                               ),
-                            )
-                          ],
+                              const SizedBox(height: 12.0),
+                              PointsDisplay(),
+                              const SizedBox(height: 12.0),
+                              Text(
+                                context.l10n.points_your_points_desc.toUpperCase(),
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  color: LoonoColors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                     ],
                   ),

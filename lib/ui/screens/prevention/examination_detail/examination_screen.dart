@@ -4,9 +4,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/models/categorized_examination.dart';
+import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/examination_detail.dart';
 import 'package:loono/ui/screens/prevention/questionnaire/schedule_examination.dart';
 import 'package:loono_api/loono_api.dart';
+import 'package:provider/provider.dart';
 
 class ExaminationDetailScreen extends StatelessWidget {
   const ExaminationDetailScreen({
@@ -22,6 +24,17 @@ class ExaminationDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final examination = Provider.of<ExaminationsProvider>(context, listen: true)
+        .examinations!
+        .examinations
+        .firstWhere((item) {
+      if (choosedExamination != null && item.hashCode == choosedExamination.hashCode) {
+        return item.hashCode == choosedExamination.hashCode;
+      } else {
+        return item.examinationType == categorizedExamination.examination.examinationType;
+      }
+    });
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
@@ -48,9 +61,8 @@ class ExaminationDetailScreen extends StatelessWidget {
                 physics: const ScrollPhysics(),
                 child: ExaminationDetail(
                   categorizedExamination: CategorizedExamination(
-                    examination: choosedExamination ?? categorizedExamination.examination,
-                    category: choosedExamination?.calculateStatus() ??
-                        categorizedExamination.examination.calculateStatus(),
+                    examination: examination,
+                    category: examination.calculateStatus(),
                   ),
                   initialMessage: initialMessage,
                 ),

@@ -66,6 +66,9 @@ class LoonoStrings {
   static const donateDelayInterval = 14;
   static const dateWithHoursFormat = 'dd.MM.yyyy HH:mm';
   static const dateFormat = 'dd.MM.yyyy ';
+  static const dateFormatSpacing = 'dd. MMMM yyyy';
+  static const dateFormatWithNameMonth = 'd. MMMM yyyy';
+  static const hoursFormat = 'HH:mm';
 }
 
 class LoonoFonts {

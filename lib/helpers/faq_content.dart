@@ -293,7 +293,6 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
         ),
       ];
       break;
-
     case ExaminationType.ULTRASOUND_BREAST:
       result = [
         FAQPair(
