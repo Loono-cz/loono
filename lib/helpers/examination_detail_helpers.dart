@@ -216,9 +216,9 @@ final czechMonthsInflected = [
 
 /// Gets localized message of: "In the last [interval] years".
 String getQuestionnaireFirstAnswer(
-    BuildContext context, {
-      required int interval,
-    }) {
+  BuildContext context, {
+  required int interval,
+}) {
   final l10n = context.l10n;
   return Intl.plural(
     interval,
@@ -231,9 +231,9 @@ String getQuestionnaireFirstAnswer(
 
 /// Gets localized message of: "More than [interval] years".
 String getQuestionnaireSecondAnswer(
-    BuildContext context, {
-      required int interval,
-    }) {
+  BuildContext context, {
+  required int interval,
+}) {
   final l10n = context.l10n;
   return Intl.plural(
     interval,
@@ -244,10 +244,11 @@ String getQuestionnaireSecondAnswer(
   );
 }
 
+//TODO: Fix translation highlight.
 String procedureQuestionTitle(
-    BuildContext context, {
-      required ExaminationType examinationType,
-    }) {
+  BuildContext context, {
+  required ExaminationType examinationType,
+}) {
   var response = '';
   switch (examinationType) {
     case ExaminationType.COLONOSCOPY:
@@ -278,6 +279,8 @@ String procedureQuestionTitle(
     case ExaminationType.UROLOGIST:
       response = context.l10n.urology_question_highlight;
       break;
+    default:
+      return '';
   }
   return response;
 }
@@ -285,10 +288,10 @@ String procedureQuestionTitle(
 enum Casus { nomativ, genitiv, dativ }
 
 String examinationTypeCasus(
-    BuildContext context, {
-      required ExaminationType examinationType,
-      required Casus casus,
-    }) {
+  BuildContext context, {
+  required ExaminationType examinationType,
+  required Casus casus,
+}) {
   final l10n = context.l10n;
   switch (examinationType) {
     case ExaminationType.COLONOSCOPY:
@@ -517,10 +520,10 @@ String examinationTypeCasus(
 }
 
 String selfExaminationTypeCasus(
-    BuildContext context, {
-      required SelfExaminationType selfExaminationType,
-      required Casus casus,
-    }) {
+  BuildContext context, {
+  required SelfExaminationType selfExaminationType,
+  required Casus casus,
+}) {
   final l10n = context.l10n;
   switch (selfExaminationType) {
     case SelfExaminationType.BREAST:
@@ -547,9 +550,9 @@ double upperArcProgress(CategorizedExamination examination) {
   final category = examination.category;
   final interval = examination.examination.intervalYears;
   if ([
-    const ExaminationCategory.scheduled(),
-    const ExaminationCategory.scheduledSoonOrOverdue(),
-  ].contains(category) &&
+        const ExaminationCategory.scheduled(),
+        const ExaminationCategory.scheduledSoonOrOverdue(),
+      ].contains(category) &&
       nextVisit != null) {
     final totalDays = daysBetween(
       DateTime(nextVisit.year - interval, nextVisit.month),
@@ -670,10 +673,10 @@ Widget progressBarRightDot(ExaminationCategory category) {
         height: 16,
         child: icon != null
             ? Icon(
-          icon,
-          size: 14,
-          color: Colors.white,
-        )
+                icon,
+                size: 14,
+                color: Colors.white,
+              )
             : const SizedBox(),
       ),
     ),
