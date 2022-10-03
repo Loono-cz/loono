@@ -38,6 +38,9 @@ class ExaminationBadges extends StatelessWidget {
   int get recommendedIntervalInMonthsMinusTwoMonths =>
       categorizedExamination.examination.intervalYears.toInt() * 12 - 2;
 
+  bool get isCustomExam =>
+      categorizedExamination.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM;
+
   ///Minus 2 months
   DateTime get recommendedIntervalTransferToDate => DateTime(
         actualDate.year,
@@ -168,8 +171,6 @@ class ExaminationBadges extends StatelessWidget {
                         shrinkWrap: true,
                         itemBuilder: (BuildContext context, int index) {
                           final badgeState = _getBadgeState(badge, index);
-                          // log('badges state: ${_getBadgeState(badge, index)}');
-                          // log('show points text: ${_showPointsText(badge)}');
                           return Padding(
                             padding: const EdgeInsets.only(right: 20.0),
                             child: Column(
@@ -249,7 +250,7 @@ class ExaminationBadges extends StatelessWidget {
                     ),
                   ),
                 ),
-                if (rewardState == RewardState.lastMonthValidity)
+                if (rewardState == RewardState.lastMonthValidity && !isCustomExam)
                   Padding(
                     padding: const EdgeInsets.only(left: 18.0, bottom: 20),
                     child: Column(
@@ -295,14 +296,20 @@ class ExaminationBadges extends StatelessWidget {
                           padding: const EdgeInsets.only(left: 12.0),
                           child: Row(
                             children: [
-                              Text(
-                                '${_getBadgeName(categorizedExamination.examination.badge, context)} ',
-                                style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                '${context.l10n.examination_detail_rewards_get_badge_2} ',
-                                style: const TextStyle(fontSize: 12),
-                              ),
+                              if (!isCustomExam)
+                                Text(
+                                  '${_getBadgeName(categorizedExamination.examination.badge, context)} ',
+                                  style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                                )
+                              else
+                                Container(),
+                              if (!isCustomExam)
+                                Text(
+                                  '${context.l10n.examination_detail_rewards_get_badge_2} ',
+                                  style: const TextStyle(fontSize: 12),
+                                )
+                              else
+                                Container(),
                               SizedBox(
                                 width: 16,
                                 height: 16,
