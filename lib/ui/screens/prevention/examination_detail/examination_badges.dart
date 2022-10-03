@@ -38,6 +38,7 @@ class ExaminationBadges extends StatelessWidget {
   int get recommendedIntervalInMonthsMinusTwoMonths =>
       categorizedExamination.examination.intervalYears.toInt() * 12 - 2;
 
+
   bool get isCustomExam =>
       categorizedExamination.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM;
 
@@ -114,6 +115,7 @@ class ExaminationBadges extends StatelessWidget {
   ExaminationCategoryType get examCategoryType =>
       categorizedExamination.examination.examinationCategoryType;
 
+
   RewardState _getRewardState(Badge? badge) {
     if (badge == null) {
       return RewardState.reward;
@@ -124,6 +126,7 @@ class ExaminationBadges extends StatelessWidget {
     }
     return RewardState.invisible;
   }
+
 
   @override
   Widget build(BuildContext context) {

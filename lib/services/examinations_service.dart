@@ -236,7 +236,6 @@ class ExaminationsProvider extends ChangeNotifier {
     }
     return null;
   }
-
   void setChoosedCustomExamination(
     CategorizedExamination? categorizedExam,
     ExaminationPreventionStatus? exam,

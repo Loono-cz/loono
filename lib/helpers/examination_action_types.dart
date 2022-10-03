@@ -17,8 +17,6 @@ extension ExaminationActionTypeExt on ExaminationActionType {
         examinationActionTypeUnion = const ExaminationActionTypeUnion.bloodcollection();
         break;
       case ExaminationActionType.VISUALIZATION_METHODS:
-        examinationActionTypeUnion = const ExaminationActionTypeUnion.visualizationmethods();
-        break;
     }
 
     return examinationActionTypeUnion;
