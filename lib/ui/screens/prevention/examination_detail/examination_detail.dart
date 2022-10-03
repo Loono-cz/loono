@@ -66,7 +66,6 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
   ExaminationActionType get _examinationActionType =>
       _examination.examinationActionType ?? ExaminationActionType.CONTROL;
 
-  DateTime? get _lastPlannedVisitDate => _examination.lastConfirmedDate;
   DateTime? get _nextVisitDate => _examination.plannedDate;
   bool get _isPeriodicalExam => _examination.periodicExam == true; //Pravidelna prohlidka
 
