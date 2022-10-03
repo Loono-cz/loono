@@ -134,11 +134,11 @@ class ExaminationProgressContent extends StatelessWidget {
       );
     } else {
       final examination = categorizedExamination.examination;
-      final interval = examination.customInterval;
+      final interval = examination.intervalYears;
       DateTime newWaitToDateTime;
       final lastDateVisit = examination.lastConfirmedDate!.toLocal();
 
-      if (interval != null && interval <= 11) {
+      if (interval <= 11) {
         newWaitToDateTime = DateTime(lastDateVisit.year, lastDateVisit.month + interval);
       } else {
         newWaitToDateTime = DateTime(

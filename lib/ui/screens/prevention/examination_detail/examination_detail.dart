@@ -155,10 +155,14 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
             _examinationType,
             newDate: date,
             uuid: widget.categorizedExamination.examination.uuid,
-            firstExam: false,
+            firstExam: _examinationCategoryType == ExaminationCategoryType.CUSTOM
+                ? !_examination.firstExam
+                : true,
             status: ExaminationStatus.NEW,
             categoryType: _examinationCategoryType,
             note: note,
+            customInterval: _examination.customInterval ?? _examination.intervalYears,
+            actionType: _examinationActionType,
           );
 
       response.map(
