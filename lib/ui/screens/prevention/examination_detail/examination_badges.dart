@@ -32,7 +32,7 @@ class ExaminationBadges extends StatelessWidget {
   int get recommendedIntervalInMonthsMinusTwoMonths =>
       categorizedExamination.examination.intervalYears.toInt() * 12 - 2;
 
-  String badgeCZ(BadgeType type) {
+  String badgeCZ(BadgeType? type) {
     switch (type) {
       case BadgeType.COAT:
         return 'superhrdinský plášť';
@@ -121,6 +121,9 @@ class ExaminationBadges extends StatelessWidget {
     }
   }
 
+  ExaminationCategoryType get examCategoryType =>
+      categorizedExamination.examination.examinationCategoryType;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -136,7 +139,7 @@ class ExaminationBadges extends StatelessWidget {
           future: registry.get<UserRepository>().getBadges(),
           builder: (context, snapshot) {
             final badge = snapshot.data?.toList().firstWhereOrNull(
-                  (element) => element?.type.name == categorizedExamination.examination.badge.name,
+                  (element) => element?.type.name == categorizedExamination.examination.badge?.name,
                 );
             return Column(
               children: [
@@ -194,10 +197,15 @@ class ExaminationBadges extends StatelessWidget {
                                             color: Colors.white,
                                           ),
                                           position: b.BadgePosition.bottomEnd(bottom: -8, end: -24),
-                                          child: Image.asset(
-                                            'assets/badges_examination/${examinationType.toString().toLowerCase()}'
-                                            '/level_${badge != null && badge.type.name == categorizedExamination.examination.badge.name && badge.level >= index + 1 ? '${index + 1}.png' : '${index + 1}_disabled.png'}',
-                                          ),
+                                          child: examCategoryType == ExaminationCategoryType.CUSTOM
+                                              ? SvgPicture.asset(
+                                                  'assets/badges_examination/custom_examination/badge'
+                                                  '${badge != null && badge.level >= index + 1 ? '_award.svg' : '_disabled.svg'}',
+                                                )
+                                              : Image.asset(
+                                                  'assets/badges_examination/${examinationType.toString().toLowerCase()}'
+                                                  '/level_${badge != null && badge.type.name == categorizedExamination.examination.badge?.name && badge.level >= index + 1 ? '${index + 1}.png' : '${index + 1}_disabled.png'}',
+                                                ),
                                         ),
                                       ),
                                       if (_showRedBadge(badge, index))

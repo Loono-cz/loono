@@ -5,6 +5,12 @@ import 'package:loono/router/sub_routers/app_startup_wrapper_screen.dart';
 import 'package:loono/router/sub_routers/onboarding_wrapper_screen.dart';
 import 'package:loono/router/sub_routers/pre_auth_prevention_wrapper_screen.dart';
 import 'package:loono/ui/screens/about_health/about_health.dart';
+import 'package:loono/ui/screens/custom_exam_form/choose_exam_period_date_screen.dart';
+import 'package:loono/ui/screens/custom_exam_form/choose_exam_period_time_screen.dart';
+import 'package:loono/ui/screens/custom_exam_form/choose_examination_screen.dart';
+import 'package:loono/ui/screens/custom_exam_form/choose_frequency_of_exam_screen.dart';
+import 'package:loono/ui/screens/custom_exam_form/choose_specialist_screen.dart';
+import 'package:loono/ui/screens/custom_exam_form/custom_exam_form_screen.dart';
 import 'package:loono/ui/screens/dentist_achievement.dart';
 import 'package:loono/ui/screens/find_doctor/doctor_search_detail.dart';
 import 'package:loono/ui/screens/find_doctor/find_doctor.dart';
@@ -123,6 +129,7 @@ const _postAuthRouter = AutoRoute<void>(
     ..._preventionRoutes,
     ..._settingsRoutes,
     ..._selfExaminationRoutes,
+    ..._customExamForm
   ],
 );
 
@@ -341,4 +348,33 @@ const _selfExaminationRoutes = <AutoRoute>[
     path: 'self-examination/detail/reusult-from-doctor',
     transitionsBuilder: _preventionTransition,
   ),
+];
+
+const _customExamForm = <AutoRoute>[
+  CustomRoute<void>(page: CustomExamFormScreen, path: 'custom-exam-form'),
+  CustomRoute<void>(
+    page: ChooseCustomExaminationTypeScreen,
+    path: 'custom-exam-form-choose-examination',
+    transitionsBuilder: _preventionTransition,
+  ),
+  CustomRoute<void>(
+    page: ChooseSpecialistScreen,
+    path: 'custom-exam-form-choose-provider',
+    transitionsBuilder: _preventionTransition,
+  ),
+  CustomRoute<void>(
+    page: ChooseExamPeriodDateScreen,
+    path: 'custom-exam-form-choose-period-date',
+    transitionsBuilder: _preventionTransition,
+  ),
+  CustomRoute<void>(
+    page: ChooseExamPeriodTimeScreen,
+    path: 'custom-exam-form-choose-period-time',
+    transitionsBuilder: _preventionTransition,
+  ),
+  CustomRoute<void>(
+    page: ChooseFrequencyOfExamScreen,
+    path: 'custom-exam-form-choose-exam-frequency',
+    transitionsBuilder: _preventionTransition,
+  )
 ];

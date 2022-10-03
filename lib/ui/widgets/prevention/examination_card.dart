@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/examination_action_types.dart';
 import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/ui/widgets/loono_point.dart';
 import 'package:loono/ui/widgets/notification_icon.dart';
+import 'package:loono_api/loono_api.dart';
 
 // ignore: constant_identifier_names
-const EXAMINATION_CARD_HEIGHT = 120.0;
+const EXAMINATION_CARD_HEIGHT = 130.0;
 
 class ExaminationCard extends StatelessWidget {
   ExaminationCard({
@@ -33,9 +35,17 @@ class ExaminationCard extends StatelessWidget {
         categorizedExamination.examination.examinationType.l10n_name,
         style: LoonoFonts.cardTitle,
       );
+  Widget get _subtitle => Text(
+        ExaminationActionTypeExt(
+          categorizedExamination.examination.examinationActionType ?? ExaminationActionType.CONTROL,
+        ).l10n_name,
+        style: LoonoFonts.cardExaminaitonType,
+      );
 
   Widget get _doctorAsset => SvgPicture.asset(
-        categorizedExamination.examination.examinationType.assetPath,
+        categorizedExamination.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM
+            ? categorizedExamination.examination.examinationType.customExamAssetPath
+            : categorizedExamination.examination.examinationType.assetPath,
         height: 100,
       );
 
@@ -89,13 +99,19 @@ class ExaminationCard extends StatelessWidget {
   List<Widget> _scheduledContent({bool isSoonOrOverdue = false}) {
     final nextVisitDate = categorizedExamination.examination.plannedDate!.toLocal();
     final diffDays = _diffInDays(nextVisitDate);
-    final diffText = now.isAfter(nextVisitDate)
-        ? 'byl/a jsi na prohlídce?'
-        : diffDays == 0
-            ? 'dnes'
-            : diffDays == 1
-                ? 'zítra'
-                : '';
+    // final diffText = now.isAfter(nextVisitDate)
+    //     ? 'byl/a jsi na prohlídce?'
+    //     : diffDays == 0
+    //         ? 'dnes'
+    //         : diffDays == 1
+    //             ? 'zítra'
+    //             : '';
+
+    final diffText = diffDays == 0
+        ? 'dnes'
+        : diffDays == 1
+            ? 'zítra'
+            : '';
 
     return <Widget>[
       Expanded(
@@ -113,13 +129,9 @@ class ExaminationCard extends StatelessWidget {
                   ],
                 ],
               ),
-              if (isSoonOrOverdue)
-                Text(
-                  diffText.toUpperCase(),
-                  style: LoonoFonts.cardSubtitle.copyWith(color: LoonoColors.grey),
-                ),
+              _subtitle,
               const SizedBox(height: 8.0),
-              dateRow(),
+              dateRow(isSoonOrOverdue ? diffText : ''),
               const SizedBox(height: 5.0),
               loonoPointRow(),
             ],
@@ -155,6 +167,10 @@ class ExaminationCard extends StatelessWidget {
                     const NotificationIcon.priority(),
                   ],
                 ],
+              ),
+              _subtitle,
+              const SizedBox(
+                height: 4.0,
               ),
               Text(
                 'objednej se'.toUpperCase(),
@@ -196,6 +212,11 @@ class ExaminationCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _title,
+              const SizedBox(
+                height: 2.0,
+              ),
+              _subtitle,
+              const Spacer(flex: 2),
               Text(
                 'do $formattedDate hotovo'.toUpperCase(),
                 style: LoonoFonts.cardSubtitle.copyWith(color: LoonoColors.grey),
@@ -226,26 +247,39 @@ class ExaminationCard extends StatelessWidget {
     ];
   }
 
-  Widget dateRow() {
+  Widget dateRow(String diffText) {
     final formattedDate = DateFormat('d. M. yyyy HH:mm', 'cs-CZ')
         .format(categorizedExamination.examination.plannedDate!.toLocal());
 
     return Row(
+      textBaseline: TextBaseline.alphabetic,
+      crossAxisAlignment: CrossAxisAlignment.baseline,
       children: [
         SvgPicture.asset('assets/icons/prevention/calendar.svg'),
         const SizedBox(width: 7.0),
         Text(formattedDate, style: LoonoFonts.cardSubtitle),
+        const SizedBox(
+          width: 10,
+        ),
+        Text(
+          diffText.toUpperCase(),
+          style: LoonoFonts.cardSubtitle.copyWith(color: LoonoColors.grey),
+        )
       ],
     );
   }
 
   Widget loonoPointRow() {
-    return Row(
-      children: [
-        const LoonoPointIcon(),
-        const SizedBox(width: 7.0),
-        Text(categorizedExamination.examination.points.toString(), style: LoonoFonts.cardSubtitle),
-      ],
-    );
+    final points = categorizedExamination.examination.points;
+
+    return points > 0
+        ? Row(
+            children: [
+              const LoonoPointIcon(),
+              const SizedBox(width: 7.0),
+              Text(points.toString(), style: LoonoFonts.cardSubtitle),
+            ],
+          )
+        : Container();
   }
 }

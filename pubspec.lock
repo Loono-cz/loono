@@ -85,6 +85,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.3"
+  bloc:
+    dependency: transitive
+    description:
+      name: bloc
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "8.1.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -575,6 +582,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_bloc:
+    dependency: "direct main"
+    description:
+      name: flutter_bloc
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "8.1.1"
   flutter_blurhash:
     dependency: transitive
     description:
@@ -1022,8 +1036,8 @@ packages:
     dependency: "direct main"
     description:
       path: dart
-      ref: "96d0a5bdca381693f19665093ce9fc61f218ee98"
-      resolved-ref: "96d0a5bdca381693f19665093ce9fc61f218ee98"
+      ref: "1ea7e7fbc1b7d0c3ea5ffa6124baccf8e05c2d07"
+      resolved-ref: "1ea7e7fbc1b7d0c3ea5ffa6124baccf8e05c2d07"
       url: "https://github.com/Loono-cz/loono-api.git"
     source: git
     version: "1.0.0"
