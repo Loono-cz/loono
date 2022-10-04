@@ -7,5 +7,4 @@ int daysBetween(DateTime from, DateTime to) {
 }
 
 int transformYearToMonth(String str) => (int.parse(str.replaceAll(RegExp(r'[^0-9]'), '')) * 12);
-
-num transformMonthToYear(num month) => month < 12 ? month : month / 12;
+int transformMonthToYear(num month) => (month < 12 ? month : month / 12).round();

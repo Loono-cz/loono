@@ -235,7 +235,13 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                   onTap: () async {
                     if (_specialist != null && _examinationType != null) {
                       if (_isPeriodicExam) {
-                        await sendMandatoryRequest();
+                        if (_lastExamDate != null && _nextExamDate != null) {
+                          await sendMandatoryRequest();
+                        } else if (_lastExamDate != null) {
+                          await sendMandatoryRequestConfirm();
+                        } else {
+                          await sendRegularlyRequestNew();
+                        }
                       } else {
                         await sendOnceRequest();
                       }
@@ -413,22 +419,15 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                     fit: BoxFit.scaleDown,
                     color: _nextExamChck ? Colors.black38 : Colors.black87,
                   ),
-                  onClickInputField: () {
-                    final str = _customInterval.split(' ');
-                    final customInterval = str[1] == context.l10n.years
-                        ? transformYearToMonth(str[0])
-                        : int.parse(str[0]);
-
-                    AutoRouter.of(context).navigate(
-                      ChooseExamPeriodDateRoute(
-                        showLastExamDate: true,
-                        label: _getUserLabelBySex(context, sex: _usersDao.user?.sex ?? Sex.FEMALE),
-                        pickTime: true,
-                        dateTime: _nextExamDate,
-                        onValueChange: onNextExamDateSet,
-                      ),
-                    );
-                  },
+                  onClickInputField: () => AutoRouter.of(context).navigate(
+                    ChooseExamPeriodDateRoute(
+                      showLastExamDate: true,
+                      label: _getUserLabelBySex(context, sex: _usersDao.user?.sex ?? Sex.FEMALE),
+                      pickTime: true,
+                      dateTime: _nextExamDate,
+                      onValueChange: onNextExamDateSet,
+                    ),
+                  ),
                 ),
               ),
               Flexible(
@@ -472,13 +471,73 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
     }
   }
 
+  Future<void> sendRegularlyRequestNew() async {
+    final response = await registry.get<ExaminationRepository>().postExamination(
+          _specialist!,
+          actionType: _examinationType,
+          periodicExam: _isPeriodicExam,
+          note: _note,
+          customInterval: transformInterval(_customInterval), // Pravidelne
+          newDate: _lastExamChck && _nextExamChck ? DateTime.now() : _nextExamDate,
+          categoryType: ExaminationCategoryType.CUSTOM,
+          status:
+              _lastExamChck && _nextExamChck ? ExaminationStatus.UNKNOWN : ExaminationStatus.NEW,
+          firstExam: true,
+        );
+
+    response.map(
+      success: (res) {
+        Provider.of<ExaminationsProvider>(context, listen: false).createCustomExamination(res.data);
+        AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
+        showFlushBarSuccess(context, context.l10n.examinatoin_was_added);
+      },
+      failure: (err) => showFlushBarError(
+        context,
+        statusCodeToText(
+          context,
+          err.error.response?.statusCode,
+        ),
+      ),
+    );
+  }
+
+  Future<void> sendMandatoryRequestConfirm() async {
+    final response = await registry.get<ExaminationRepository>().postExamination(
+          _specialist!,
+          actionType: _examinationType,
+          periodicExam: _isPeriodicExam,
+          note: _note,
+          customInterval: transformInterval(_customInterval), // Pravidelne
+          newDate: _lastExamDate,
+          categoryType: ExaminationCategoryType.CUSTOM,
+          status: ExaminationStatus.CONFIRMED,
+          firstExam: true,
+        );
+
+    response.map(
+      success: (res) {
+        Provider.of<ExaminationsProvider>(context, listen: false)
+            .createCustomExamination(res.data, lastConfirmedDate: _lastExamDate);
+        AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
+        showFlushBarSuccess(context, context.l10n.examinatoin_was_added);
+      },
+      failure: (err) => showFlushBarError(
+        context,
+        statusCodeToText(
+          context,
+          err.error.response?.statusCode,
+        ),
+      ),
+    );
+  }
+
   Future<void> sendMandatoryRequest() async {
     final response = await registry.get<ExaminationRepository>().postExamination(
           _specialist!,
           actionType: _examinationType,
           periodicExam: _isPeriodicExam,
           note: _note,
-          customInterval: int.parse(_customInterval[0]), // Pravidelne
+          customInterval: transformInterval(_customInterval), // Pravidelne
           newDate: _lastExamDate,
           categoryType: ExaminationCategoryType.CUSTOM,
           status: ExaminationStatus.CONFIRMED,
@@ -486,7 +545,6 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
         );
     response.map(
       success: (res) {
-        final frequencyString = _customInterval.split('');
         registry
             .get<ExaminationRepository>()
             .postExamination(
@@ -494,9 +552,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
               actionType: _examinationType,
               periodicExam: _isPeriodicExam,
               note: _note,
-              customInterval: frequencyString[1] == context.l10n.years
-                  ? transformYearToMonth(frequencyString[0])
-                  : int.parse(frequencyString[0]), // Pravidelne
+              customInterval: transformInterval(_customInterval), // Pravidelne
               newDate: _nextExamDate,
               categoryType: ExaminationCategoryType.CUSTOM,
               status: ExaminationStatus.NEW,
@@ -560,5 +616,12 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
         );
       },
     );
+  }
+
+  int transformInterval(String str) {
+    final splitedString = str.split(' ');
+    final number = splitedString[0];
+    final desc = splitedString[1];
+    return desc == context.l10n.years ? transformYearToMonth(number) : int.parse(number);
   }
 }

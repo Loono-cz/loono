@@ -86,7 +86,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
     final yearInterval = widget.categorizedExamination.examination.intervalYears;
     //transformMonthToEar
     if (_examinationCategoryType == ExaminationCategoryType.CUSTOM) {
-      return '${transformMonthToYear(yearInterval)} ${yearInterval < 11 ? 'měsíců' : 'roků'}';
+      return ' ${yearInterval < 11 ? '$yearInterval měsíců' : '${transformMonthToYear(yearInterval)} roků'}';
     } else {
       return '${yearInterval.toString()} ${yearInterval > 1 ? context.l10n.years : context.l10n.year}';
     }
@@ -172,7 +172,6 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
             Provider.of<ExaminationsProvider>(context, listen: false)
                 .updateExaminationsRecord(res.data);
           }
-
           //AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
           AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
           AutoRouter.of(context).replace(
@@ -383,6 +382,10 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
     Future<void> Function({required DateTime date, String? note}) onPostNewCheckupSubmit,
     String preposition,
   ) {
+    if (!_isPeriodicalExam) {
+      return buildDisposableExamButtons(context);
+    }
+
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Row(
@@ -547,6 +550,75 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
               ),
             ),
           ]
+        ],
+      ),
+    );
+  }
+
+  Widget buildDisposableExamButtons(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Row(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(right: 19),
+              child: LoonoButton.light(
+                key: const Key('examinationDetailPage_btn_calendar'),
+                text: context.l10n.examination_detail_add_to_calendar_button,
+                onTap: () async {
+                  final autoRouter = AutoRouter.of(context);
+                  final hasPermissionsGranted = await _calendarService.hasPermissionsGranted();
+                  if (hasPermissionsGranted) {
+                    final defaultDeviceCalendarId = _usersDao.user?.defaultDeviceCalendarId;
+                    if (defaultDeviceCalendarId != null) {
+                      // default device calendar id is set, do not display list of calendars
+                      await _calendarRepository.createEvent(
+                        _examinationType,
+                        deviceCalendarId: defaultDeviceCalendarId,
+                        startingDate: _nextVisitDate!,
+                      );
+                      //TODO: Fix lint...
+                      // ignore: use_build_context_synchronously
+                      showFlushBarSuccess(
+                        context,
+                        context.l10n.calendar_added_success_message,
+                      );
+                    } else {
+                      await autoRouter.push(
+                        CalendarListRoute(
+                          examinationRecord: widget.categorizedExamination.examination,
+                        ),
+                      );
+                    }
+                  } else {
+                    final result = await autoRouter.push<bool>(
+                      CalendarPermissionInfoRoute(
+                        examinationRecord: widget.categorizedExamination.examination,
+                      ),
+                    );
+                    // permission was permanently denied, show permission settings guide
+                    if (result == false) {
+                      //TODO: Fix lint...
+                      // ignore: use_build_context_synchronously
+                      showCalendarPermissionSheet(context);
+                    }
+                  }
+                },
+              ),
+            ),
+          ),
+          Expanded(
+            child: LoonoButton.light(
+              key: const Key('examinationDetailPage_btn_updateDate'),
+              text: context.l10n.examination_detail_edit_date_button,
+              onTap: () {
+                Provider.of<ExaminationsProvider>(context, listen: false)
+                    .setChoosedCustomExamination(widget.categorizedExamination, null);
+                showEditModal(context, widget.categorizedExamination);
+              },
+            ),
+          )
         ],
       ),
     );
