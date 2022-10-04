@@ -664,7 +664,7 @@
   "@calendar_permission_sheet_desc": {},
   "calendar_permission_sheet_button": "Otevřít Nastavení",
   "@calendar_permission_sheet_button": {},
-  "examination_detail_edit_date_button": "Upravit datum",
+  "examination_detail_edit_date_button": "Upravit termín",
   "@examination_detail_edit_date_button": {},
   "examination_call_doctor1": "Zavolej svému",
   "@examination_call_doctor1": {},
@@ -1433,5 +1433,9 @@
   "disposable": "Jednorázové",
   "@disposable": {},
   "regularly": "Pravidelné",
-  "@regularly": {}
+  "@regularly": {},
+  "disposable_exam_delete_question": "Opravdu chceš prohlídku smazat ze svého seznamu?",
+  "@disposable_exam_delete_question": {},
+  "disposable_exam_delete_desc": "Po smazání ti již nebudeme moci prohlídku připomenout.",
+  "@disposable_exam_delete_desc": {}
 }

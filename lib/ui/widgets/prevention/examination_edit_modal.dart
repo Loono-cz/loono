@@ -13,7 +13,9 @@ import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/widgets/prevention/datepicker_sheet.dart';
 import 'package:loono/ui/widgets/prevention/examination_cancel_sheet.dart';
+import 'package:loono/ui/widgets/prevention/examination_delete_sheet.dart';
 import 'package:loono/utils/registry.dart';
+import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
 void showEditModal(BuildContext pageContext, CategorizedExamination examination) {
@@ -118,5 +120,54 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
     ),
   ).whenComplete(() {
     registry.get<FirebaseAnalytics>().logEvent(name: 'CloseEditCheckupModal');
+  });
+}
+
+void showDisposableExamEditModal(
+  BuildContext pageContext,
+  ExaminationPreventionStatus examination,
+) {
+  final examinationType = examination.examinationType;
+  registry.get<FirebaseAnalytics>().logEvent(name: 'OpenEditCustomExaminationNonPeriodicModal');
+
+  showCupertinoModalPopup<void>(
+    context: pageContext,
+    builder: (BuildContext modalContext) => CupertinoActionSheet(
+      key: const Key('editCheckUpDateSheet'),
+      actions: <CupertinoActionSheetAction>[
+        CupertinoActionSheetAction(
+          key: const Key('editCheckUpDateSheet_action_cancelCheckUp'),
+          isDestructiveAction: true,
+          onPressed: () {
+            final examinationUuid = examination.uuid;
+
+            if (examinationUuid != null) {
+              AutoRouter.of(modalContext).pop();
+              showDeleteExaminationSheet(
+                context: pageContext,
+                id: examinationUuid,
+                examinationType: examinationType,
+                date: examination.plannedDate?.toLocal() ?? DateTime.now(),
+              );
+            } else {
+              showFlushBarError(modalContext, modalContext.l10n.something_went_wrong);
+            }
+          },
+          child: Text(pageContext.l10n.cancel_checkup),
+        ),
+        CupertinoActionSheetAction(
+          isDefaultAction: true,
+          onPressed: () {
+            AutoRouter.of(modalContext).pop();
+          },
+          child: Text(
+            pageContext.l10n.back,
+            style: const TextStyle(color: Colors.black),
+          ),
+        )
+      ],
+    ),
+  ).whenComplete(() {
+    registry.get<FirebaseAnalytics>().logEvent(name: 'CloseEditCustomExaminationNonPeriodicModal');
   });
 }

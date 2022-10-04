@@ -149,7 +149,8 @@ class ExaminationsProvider extends ChangeNotifier {
         ..intervalYears = record.customInterval ?? 2
         ..priority = 0
         ..count = 0
-        ..badge = BadgeType.SHIELD,
+        ..badge = BadgeType.SHIELD
+        ..uuid = record.uuid,
     );
 
     final builder = examinations?.toBuilder();

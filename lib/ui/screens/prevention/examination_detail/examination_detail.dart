@@ -613,9 +613,9 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
               key: const Key('examinationDetailPage_btn_updateDate'),
               text: context.l10n.examination_detail_edit_date_button,
               onTap: () {
-                Provider.of<ExaminationsProvider>(context, listen: false)
-                    .setChoosedCustomExamination(widget.categorizedExamination, null);
-                showEditModal(context, widget.categorizedExamination);
+                // Provider.of<ExaminationsProvider>(context, listen: false)
+                //     .setChoosedCustomExamination(widget.categorizedExamination, null);
+                // showEditModal(context, widget.categorizedExamination);
               },
             ),
           )
