@@ -240,7 +240,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                         } else if (_lastExamDate != null) {
                           await sendMandatoryRequestConfirm();
                         } else {
-                          await sendMandatoryRequestNew();
+                          await sendRegularlyRequestNew();
                         }
                       } else {
                         await sendOnceRequest();
@@ -471,16 +471,17 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
     }
   }
 
-  Future<void> sendMandatoryRequestNew() async {
+  Future<void> sendRegularlyRequestNew() async {
     final response = await registry.get<ExaminationRepository>().postExamination(
           _specialist!,
           actionType: _examinationType,
           periodicExam: _isPeriodicExam,
           note: _note,
           customInterval: transformInterval(_customInterval), // Pravidelne
-          newDate: _nextExamDate,
+          newDate: _lastExamChck && _nextExamChck ? DateTime.now() : _nextExamDate,
           categoryType: ExaminationCategoryType.CUSTOM,
-          status: ExaminationStatus.NEW,
+          status:
+              _lastExamChck && _nextExamChck ? ExaminationStatus.UNKNOWN : ExaminationStatus.NEW,
           firstExam: true,
         );
 
