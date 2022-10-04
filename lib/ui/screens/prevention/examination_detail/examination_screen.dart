@@ -33,7 +33,10 @@ class ExaminationDetailScreen extends StatelessWidget {
         actions: <CupertinoActionSheetAction>[
           CupertinoActionSheetAction(
             onPressed: () {
-              showEditSheet(context: context, categorizedExamination: categorizedExamination);
+              Navigator.pop(context);
+              showExaminationEditSheet(
+                context: context,
+              );
             },
             child: Text(
               context.l10n.btn_edit_examination,
