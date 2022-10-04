@@ -5,10 +5,13 @@ import 'package:loono/constants.dart';
 import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/examination_repository.dart';
+import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/close_button.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
+import 'package:provider/provider.dart';
 
 void showDeleteExaminationSheet({
   required BuildContext context,
@@ -72,26 +75,17 @@ void showDeleteExaminationSheet({
                 asyncCallback: () async {
                   /// code anchor: #postCancelExamiantion
                   final response =
-                      await registry.get<ExaminationRepository>().cancelExamination(id);
+                      await registry.get<ExaminationRepository>().deleteExamination(id);
                   await response.map(
                     success: (res) async {
-                      //TODO: Delete examination api
-                      // final examProvider =
-                      //     Provider.of<ExaminationsProvider>(context, listen: false);
-                      // final autoRouter = AutoRouter.of(context);
+                      final examProvider =
+                          Provider.of<ExaminationsProvider>(context, listen: false);
+                      final autoRouter = AutoRouter.of(context);
+                      //TODO: Upravit smazani konkretniho vysetreni z kalendare
                       // await registry.get<CalendarRepository>().deleteEvent(examinationType);
-                      // examProvider.updateExaminationsRecord(res.data);
-                      // autoRouter.popUntilRouteWithName(ExaminationDetailRoute.name);
-
-                      // ignore: unawaited_futures, cascade_invocations
-                      // autoRouter.replace(
-                      //   ExaminationDetailRoute(
-                      //     categorizedExamination:
-                      //         examProvider.getChoosedCustomExamination().categorizedExamination!,
-                      //   ),
-                      // );
-                      // ignore: use_build_context_synchronously
-                      //showFlushBarSuccess(context, context.l10n.checkup_canceled);
+                      examProvider.deleteExaminationRecord(id);
+                      autoRouter.popUntilRouteWithName(MainRoute.name);
+                      showFlushBarSuccess(context, context.l10n.checkup_canceled);
                     },
                     failure: (err) async {
                       await AutoRouter.of(context).pop();

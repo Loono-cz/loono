@@ -1404,8 +1404,10 @@
   "@idk": {},
   "last_examination": "Poslední vysetreni",
   "@last_examination": {},
-  "your_last_examination": "Kdy naposledy jsi byla na vyšetření?",
-  "@yout_last_examination": {},
+  "your_last_examination_female": "Kdy naposledy jsi byla na vyšetření?",
+  "@yout_last_examination_female": {},
+  "your_last_examination_male": "Kdy naposledy jsi byl na vyšetření?",
+  "@yout_last_examination_male": {},
   "examination_term": "Termin vysetreni",
   "@examination_term": {},
   "once_to": "Jednou za ",
@@ -1437,5 +1439,9 @@
   "disposable_exam_delete_question": "Opravdu chceš prohlídku smazat ze svého seznamu?",
   "@disposable_exam_delete_question": {},
   "disposable_exam_delete_desc": "Po smazání ti již nebudeme moci prohlídku připomenout.",
-  "@disposable_exam_delete_desc": {}
+  "@disposable_exam_delete_desc": {},
+  "edit_examination": "Upravit prohlídku",
+  "@edit_examination": {},
+  "examination_was_edited": "Prohlídka byla upravena.",
+  "@examination_was_edited": {}
 }

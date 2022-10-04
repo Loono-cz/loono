@@ -56,12 +56,7 @@ class ExaminationDetailScreen extends StatelessWidget {
               onPressed: () {
                 if (examination.examinationCategoryType == ExaminationCategoryType.CUSTOM) {
                   //Custom exams menu
-                  if (examination.periodicExam == true) {
-                    //Custom periodical exam
-
-                  } else {
-                    showDisposableExamEditModal(context, choosedExamination!);
-                  }
+                  showCustomExamEditModal(context, choosedExamination!);
                 } else {
                   //Default exams menu
                 }
