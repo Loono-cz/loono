@@ -12,17 +12,26 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i15;
-import 'package:built_collection/built_collection.dart' as _i66;
-import 'package:flutter/material.dart' as _i56;
-import 'package:loono_api/loono_api.dart' as _i60;
-import 'package:moor/moor.dart' as _i64;
+import 'package:built_collection/built_collection.dart' as _i72;
+import 'package:flutter/material.dart' as _i62;
+import 'package:loono_api/loono_api.dart' as _i66;
+import 'package:moor/moor.dart' as _i70;
 
-import '../helpers/examination_category.dart' as _i62;
-import '../models/categorized_examination.dart' as _i61;
-import '../models/search_result.dart' as _i58;
-import '../models/social_login_account.dart' as _i59;
-import '../services/db/database.dart' as _i63;
+import '../helpers/examination_category.dart' as _i68;
+import '../models/categorized_examination.dart' as _i67;
+import '../models/search_result.dart' as _i64;
+import '../models/social_login_account.dart' as _i65;
+import '../services/db/database.dart' as _i69;
 import '../ui/screens/about_health/about_health.dart' as _i19;
+import '../ui/screens/custom_exam_form/choose_exam_period_date_screen.dart'
+    as _i58;
+import '../ui/screens/custom_exam_form/choose_exam_period_time_screen.dart'
+    as _i59;
+import '../ui/screens/custom_exam_form/choose_examination_screen.dart' as _i56;
+import '../ui/screens/custom_exam_form/choose_frequency_of_exam_screen.dart'
+    as _i60;
+import '../ui/screens/custom_exam_form/choose_specialist_screen.dart' as _i57;
+import '../ui/screens/custom_exam_form/custom_exam_form_screen.dart' as _i55;
 import '../ui/screens/dentist_achievement.dart' as _i32;
 import '../ui/screens/find_doctor/doctor_search_detail.dart' as _i12;
 import '../ui/screens/find_doctor/find_doctor.dart' as _i11;
@@ -58,7 +67,7 @@ import '../ui/screens/prevention/examination_detail/change_last_visit_screen.dar
     as _i40;
 import '../ui/screens/prevention/examination_detail/examination_screen.dart'
     as _i35;
-import '../ui/screens/prevention/prevention_screen.dart' as _i55;
+import '../ui/screens/prevention/prevention_screen.dart' as _i61;
 import '../ui/screens/prevention/questionnaire/date_picker_screen.dart' as _i37;
 import '../ui/screens/prevention/self_examination/detail_screen.dart' as _i49;
 import '../ui/screens/prevention/self_examination/educational_screen.dart'
@@ -78,21 +87,21 @@ import '../ui/screens/settings/edit_nickname.dart' as _i41;
 import '../ui/screens/settings/edit_photo.dart' as _i43;
 import '../ui/screens/settings/gallery_photo_taken.dart' as _i47;
 import '../ui/screens/settings/photo_cropped_result.dart' as _i48;
-import '../ui/screens/settings/settings_bottom_sheet.dart' as _i65;
+import '../ui/screens/settings/settings_bottom_sheet.dart' as _i71;
 import '../ui/screens/welcome.dart' as _i17;
 import '../ui/widgets/achievement_screen.dart' as _i36;
-import 'guards/check_is_logged_in.dart' as _i57;
+import 'guards/check_is_logged_in.dart' as _i63;
 import 'sub_routers/app_startup_wrapper_screen.dart' as _i1;
 import 'sub_routers/onboarding_wrapper_screen.dart' as _i4;
 import 'sub_routers/pre_auth_prevention_wrapper_screen.dart' as _i18;
 
 class AppRouter extends _i15.RootStackRouter {
   AppRouter(
-      {_i56.GlobalKey<_i56.NavigatorState>? navigatorKey,
+      {_i62.GlobalKey<_i62.NavigatorState>? navigatorKey,
       required this.checkIsLoggedIn})
       : super(navigatorKey);
 
-  final _i57.CheckIsLoggedIn checkIsLoggedIn;
+  final _i63.CheckIsLoggedIn checkIsLoggedIn;
 
   @override
   final Map<String, _i15.PageFactory> pagesMap = {
@@ -172,7 +181,7 @@ class AppRouter extends _i15.RootStackRouter {
               key: args.key, onCancelTap: args.onCancelTap));
     },
     DoctorSearchDetailRoute.name: (routeData) {
-      return _i15.CustomPage<_i58.SearchResult>(
+      return _i15.CustomPage<_i64.SearchResult>(
           routeData: routeData,
           child: const _i12.DoctorSearchDetailScreen(),
           transitionsBuilder: _i15.TransitionsBuilders.slideLeft,
@@ -180,7 +189,7 @@ class AppRouter extends _i15.RootStackRouter {
           barrierDismissible: false);
     },
     NoPermissionsRoute.name: (routeData) {
-      return _i15.CustomPage<_i58.SearchResult>(
+      return _i15.CustomPage<_i64.SearchResult>(
           routeData: routeData,
           child: const _i13.NoPermissionsScreen(),
           transitionsBuilder: _i15.TransitionsBuilders.slideLeft,
@@ -342,6 +351,7 @@ class AppRouter extends _i15.RootStackRouter {
           child: _i35.ExaminationDetailScreen(
               key: args.key,
               categorizedExamination: args.categorizedExamination,
+              choosedExamination: args.choosedExamination,
               initialMessage: args.initialMessage),
           transitionsBuilder: _i15.TransitionsBuilders.slideLeft,
           opaque: true,
@@ -554,12 +564,83 @@ class AppRouter extends _i15.RootStackRouter {
           opaque: true,
           barrierDismissible: false);
     },
+    CustomExamFormRoute.name: (routeData) {
+      return _i15.CustomPage<void>(
+          routeData: routeData,
+          child: const _i55.CustomExamFormScreen(),
+          opaque: true,
+          barrierDismissible: false);
+    },
+    ChooseCustomExaminationTypeRoute.name: (routeData) {
+      final args = routeData.argsAs<ChooseCustomExaminationTypeRouteArgs>();
+      return _i15.CustomPage<void>(
+          routeData: routeData,
+          child: _i56.ChooseCustomExaminationTypeScreen(
+              actionType: args.actionType,
+              onActionTypeSet: args.onActionTypeSet,
+              key: args.key),
+          transitionsBuilder: _i15.TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
+    },
+    ChooseSpecialistRoute.name: (routeData) {
+      final args = routeData.argsAs<ChooseSpecialistRouteArgs>();
+      return _i15.CustomPage<void>(
+          routeData: routeData,
+          child: _i57.ChooseSpecialistScreen(
+              specialist: args.specialist,
+              onProviderSet: args.onProviderSet,
+              key: args.key),
+          transitionsBuilder: _i15.TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
+    },
+    ChooseExamPeriodDateRoute.name: (routeData) {
+      final args = routeData.argsAs<ChooseExamPeriodDateRouteArgs>();
+      return _i15.CustomPage<void>(
+          routeData: routeData,
+          child: _i58.ChooseExamPeriodDateScreen(
+              dateTime: args.dateTime,
+              onValueChange: args.onValueChange,
+              label: args.label,
+              pickTime: args.pickTime,
+              showLastExamDate: args.showLastExamDate,
+              isLastExamChoose: args.isLastExamChoose,
+              key: args.key),
+          transitionsBuilder: _i15.TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
+    },
+    ChooseExamPeriodTimeRoute.name: (routeData) {
+      final args = routeData.argsAs<ChooseExamPeriodTimeRouteArgs>();
+      return _i15.CustomPage<void>(
+          routeData: routeData,
+          child: _i59.ChooseExamPeriodTimeScreen(
+              key: args.key,
+              dateTime: args.dateTime,
+              onTimeSet: args.onTimeSet),
+          transitionsBuilder: _i15.TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
+    },
+    ChooseFrequencyOfExamRoute.name: (routeData) {
+      final args = routeData.argsAs<ChooseFrequencyOfExamRouteArgs>();
+      return _i15.CustomPage<void>(
+          routeData: routeData,
+          child: _i60.ChooseFrequencyOfExamScreen(
+              key: args.key,
+              value: args.value,
+              valueChanged: args.valueChanged),
+          transitionsBuilder: _i15.TransitionsBuilders.slideLeft,
+          opaque: true,
+          barrierDismissible: false);
+    },
     PreventionRoute.name: (routeData) {
       final args = routeData.argsAs<PreventionRouteArgs>(
           orElse: () => const PreventionRouteArgs());
       return _i15.CustomPage<void>(
           routeData: routeData,
-          child: _i55.PreventionScreen(key: args.key),
+          child: _i61.PreventionScreen(key: args.key),
           transitionsBuilder: _i15.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -763,6 +844,23 @@ class AppRouter extends _i15.RootStackRouter {
               parent: MainScreenRouter.name),
           _i15.RouteConfig(ResultFromDoctorRoute.name,
               path: 'self-examination/detail/reusult-from-doctor',
+              parent: MainScreenRouter.name),
+          _i15.RouteConfig(CustomExamFormRoute.name,
+              path: 'custom-exam-form', parent: MainScreenRouter.name),
+          _i15.RouteConfig(ChooseCustomExaminationTypeRoute.name,
+              path: 'custom-exam-form-choose-examination',
+              parent: MainScreenRouter.name),
+          _i15.RouteConfig(ChooseSpecialistRoute.name,
+              path: 'custom-exam-form-choose-provider',
+              parent: MainScreenRouter.name),
+          _i15.RouteConfig(ChooseExamPeriodDateRoute.name,
+              path: 'custom-exam-form-choose-period-date',
+              parent: MainScreenRouter.name),
+          _i15.RouteConfig(ChooseExamPeriodTimeRoute.name,
+              path: 'custom-exam-form-choose-period-time',
+              parent: MainScreenRouter.name),
+          _i15.RouteConfig(ChooseFrequencyOfExamRoute.name,
+              path: 'custom-exam-form-choose-exam-frequency',
               parent: MainScreenRouter.name)
         ]),
         _i15.RouteConfig(ForceUpdateRoute.name, path: 'force-update')
@@ -783,7 +881,7 @@ class AppStartUpWrapperRoute extends _i15.PageRouteInfo<void> {
 /// [_i2.PreAuthMainScreen]
 class PreAuthMainRoute extends _i15.PageRouteInfo<PreAuthMainRouteArgs> {
   PreAuthMainRoute(
-      {_i56.Key? key,
+      {_i62.Key? key,
       _i15.PageRouteInfo<dynamic>? overridenPreventionRoute,
       List<_i15.PageRouteInfo>? children})
       : super(PreAuthMainRoute.name,
@@ -798,7 +896,7 @@ class PreAuthMainRoute extends _i15.PageRouteInfo<PreAuthMainRouteArgs> {
 class PreAuthMainRouteArgs {
   const PreAuthMainRouteArgs({this.key, this.overridenPreventionRoute});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
   final _i15.PageRouteInfo<dynamic>? overridenPreventionRoute;
 
@@ -832,7 +930,7 @@ class OnboardingWrapperRoute extends _i15.PageRouteInfo<void> {
 class AllowNotificationsRoute
     extends _i15.PageRouteInfo<AllowNotificationsRouteArgs> {
   AllowNotificationsRoute(
-      {_i56.Key? key,
+      {_i62.Key? key,
       void Function()? onSkipTap,
       void Function()? onContinueTap})
       : super(AllowNotificationsRoute.name,
@@ -847,7 +945,7 @@ class AllowNotificationsRouteArgs {
   const AllowNotificationsRouteArgs(
       {this.key, this.onSkipTap, this.onContinueTap});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
   final void Function()? onSkipTap;
 
@@ -871,7 +969,7 @@ class FillOnboardingFormLaterRoute extends _i15.PageRouteInfo<void> {
 /// generated route for
 /// [_i7.BadgeOverviewScreen]
 class BadgeOverviewRoute extends _i15.PageRouteInfo<BadgeOverviewRouteArgs> {
-  BadgeOverviewRoute({_i56.Key? key, void Function()? onButtonTap})
+  BadgeOverviewRoute({_i62.Key? key, void Function()? onButtonTap})
       : super(BadgeOverviewRoute.name,
             path: 'badge-overview',
             args: BadgeOverviewRouteArgs(key: key, onButtonTap: onButtonTap));
@@ -882,7 +980,7 @@ class BadgeOverviewRoute extends _i15.PageRouteInfo<BadgeOverviewRouteArgs> {
 class BadgeOverviewRouteArgs {
   const BadgeOverviewRouteArgs({this.key, this.onButtonTap});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
   final void Function()? onButtonTap;
 
@@ -896,7 +994,7 @@ class BadgeOverviewRouteArgs {
 /// [_i8.NicknameScreen]
 class NicknameRoute extends _i15.PageRouteInfo<NicknameRouteArgs> {
   NicknameRoute(
-      {_i56.Key? key, required _i59.SocialLoginAccount? socialLoginAccount})
+      {_i62.Key? key, required _i65.SocialLoginAccount? socialLoginAccount})
       : super(NicknameRoute.name,
             path: 'fallback-account/name',
             args: NicknameRouteArgs(
@@ -908,9 +1006,9 @@ class NicknameRoute extends _i15.PageRouteInfo<NicknameRouteArgs> {
 class NicknameRouteArgs {
   const NicknameRouteArgs({this.key, required this.socialLoginAccount});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
-  final _i59.SocialLoginAccount? socialLoginAccount;
+  final _i65.SocialLoginAccount? socialLoginAccount;
 
   @override
   String toString() {
@@ -922,7 +1020,7 @@ class NicknameRouteArgs {
 /// [_i9.EmailScreen]
 class EmailRoute extends _i15.PageRouteInfo<EmailRouteArgs> {
   EmailRoute(
-      {_i56.Key? key, required _i59.SocialLoginAccount? socialLoginAccount})
+      {_i62.Key? key, required _i65.SocialLoginAccount? socialLoginAccount})
       : super(EmailRoute.name,
             path: 'fallback-account/email',
             args: EmailRouteArgs(
@@ -934,9 +1032,9 @@ class EmailRoute extends _i15.PageRouteInfo<EmailRouteArgs> {
 class EmailRouteArgs {
   const EmailRouteArgs({this.key, required this.socialLoginAccount});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
-  final _i59.SocialLoginAccount? socialLoginAccount;
+  final _i65.SocialLoginAccount? socialLoginAccount;
 
   @override
   String toString() {
@@ -947,7 +1045,7 @@ class EmailRouteArgs {
 /// generated route for
 /// [_i10.LoginScreen]
 class LoginRoute extends _i15.PageRouteInfo<LoginRouteArgs> {
-  LoginRoute({_i56.Key? key})
+  LoginRoute({_i62.Key? key})
       : super(LoginRoute.name, path: 'login', args: LoginRouteArgs(key: key));
 
   static const String name = 'LoginRoute';
@@ -956,7 +1054,7 @@ class LoginRoute extends _i15.PageRouteInfo<LoginRouteArgs> {
 class LoginRouteArgs {
   const LoginRouteArgs({this.key});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
   @override
   String toString() {
@@ -967,7 +1065,7 @@ class LoginRouteArgs {
 /// generated route for
 /// [_i11.FindDoctorScreen]
 class FindDoctorRoute extends _i15.PageRouteInfo<FindDoctorRouteArgs> {
-  FindDoctorRoute({_i56.Key? key, void Function()? onCancelTap})
+  FindDoctorRoute({_i62.Key? key, void Function()? onCancelTap})
       : super(FindDoctorRoute.name,
             path: 'find-doctor',
             args: FindDoctorRouteArgs(key: key, onCancelTap: onCancelTap));
@@ -978,7 +1076,7 @@ class FindDoctorRoute extends _i15.PageRouteInfo<FindDoctorRouteArgs> {
 class FindDoctorRouteArgs {
   const FindDoctorRouteArgs({this.key, this.onCancelTap});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
   final void Function()? onCancelTap;
 
@@ -1034,7 +1132,7 @@ class ForceUpdateRoute extends _i15.PageRouteInfo<void> {
 /// generated route for
 /// [_i17.WelcomeScreen]
 class WelcomeRoute extends _i15.PageRouteInfo<WelcomeRouteArgs> {
-  WelcomeRoute({_i56.Key? key})
+  WelcomeRoute({_i62.Key? key})
       : super(WelcomeRoute.name,
             path: 'welcome', args: WelcomeRouteArgs(key: key));
 
@@ -1044,7 +1142,7 @@ class WelcomeRoute extends _i15.PageRouteInfo<WelcomeRouteArgs> {
 class WelcomeRouteArgs {
   const WelcomeRouteArgs({this.key});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
   @override
   String toString() {
@@ -1057,7 +1155,7 @@ class WelcomeRouteArgs {
 class PreAuthPreventionWrapperRoute
     extends _i15.PageRouteInfo<PreAuthPreventionWrapperRouteArgs> {
   PreAuthPreventionWrapperRoute(
-      {_i56.Key? key,
+      {_i62.Key? key,
       _i15.PageRouteInfo<dynamic>? forceRoute,
       List<_i15.PageRouteInfo>? children})
       : super(PreAuthPreventionWrapperRoute.name,
@@ -1072,7 +1170,7 @@ class PreAuthPreventionWrapperRoute
 class PreAuthPreventionWrapperRouteArgs {
   const PreAuthPreventionWrapperRouteArgs({this.key, this.forceRoute});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
   final _i15.PageRouteInfo<dynamic>? forceRoute;
 
@@ -1085,7 +1183,7 @@ class PreAuthPreventionWrapperRouteArgs {
 /// generated route for
 /// [_i19.AboutHealthScreen]
 class AboutHealthRoute extends _i15.PageRouteInfo<AboutHealthRouteArgs> {
-  AboutHealthRoute({_i56.Key? key})
+  AboutHealthRoute({_i62.Key? key})
       : super(AboutHealthRoute.name,
             path: 'about-health', args: AboutHealthRouteArgs(key: key));
 
@@ -1095,7 +1193,7 @@ class AboutHealthRoute extends _i15.PageRouteInfo<AboutHealthRouteArgs> {
 class AboutHealthRouteArgs {
   const AboutHealthRouteArgs({this.key});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
   @override
   String toString() {
@@ -1116,7 +1214,7 @@ class StartNewQuestionnaireRoute extends _i15.PageRouteInfo<void> {
 /// [_i21.ContinueOnboardingFormScreen]
 class ContinueOnboardingFormRoute
     extends _i15.PageRouteInfo<ContinueOnboardingFormRouteArgs> {
-  ContinueOnboardingFormRoute({_i56.Key? key})
+  ContinueOnboardingFormRoute({_i62.Key? key})
       : super(ContinueOnboardingFormRoute.name,
             path: 'continue-onboarding-form',
             args: ContinueOnboardingFormRouteArgs(key: key));
@@ -1127,7 +1225,7 @@ class ContinueOnboardingFormRoute
 class ContinueOnboardingFormRouteArgs {
   const ContinueOnboardingFormRouteArgs({this.key});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
   @override
   String toString() {
@@ -1139,7 +1237,7 @@ class ContinueOnboardingFormRouteArgs {
 /// [_i22.OnboardingFormDoneScreen]
 class OnboardingFormDoneRoute
     extends _i15.PageRouteInfo<OnboardingFormDoneRouteArgs> {
-  OnboardingFormDoneRoute({_i56.Key? key})
+  OnboardingFormDoneRoute({_i62.Key? key})
       : super(OnboardingFormDoneRoute.name,
             path: 'onboarding-form-done',
             args: OnboardingFormDoneRouteArgs(key: key));
@@ -1150,7 +1248,7 @@ class OnboardingFormDoneRoute
 class OnboardingFormDoneRouteArgs {
   const OnboardingFormDoneRouteArgs({this.key});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
   @override
   String toString() {
@@ -1171,7 +1269,7 @@ class OnboardingGenderRoute extends _i15.PageRouteInfo<void> {
 /// [_i24.OnBoardingBirthdateScreen]
 class OnBoardingBirthdateRoute
     extends _i15.PageRouteInfo<OnBoardingBirthdateRouteArgs> {
-  OnBoardingBirthdateRoute({_i56.Key? key, required _i60.Sex sex})
+  OnBoardingBirthdateRoute({_i62.Key? key, required _i66.Sex sex})
       : super(OnBoardingBirthdateRoute.name,
             path: 'birthdate',
             args: OnBoardingBirthdateRouteArgs(key: key, sex: sex));
@@ -1182,9 +1280,9 @@ class OnBoardingBirthdateRoute
 class OnBoardingBirthdateRouteArgs {
   const OnBoardingBirthdateRouteArgs({this.key, required this.sex});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
-  final _i60.Sex sex;
+  final _i66.Sex sex;
 
   @override
   String toString() {
@@ -1196,7 +1294,7 @@ class OnBoardingBirthdateRouteArgs {
 /// [_i25.OnboardingGeneralPracticionerScreen]
 class OnboardingGeneralPracticionerRoute
     extends _i15.PageRouteInfo<OnboardingGeneralPracticionerRouteArgs> {
-  OnboardingGeneralPracticionerRoute({_i56.Key? key, required _i60.Sex sex})
+  OnboardingGeneralPracticionerRoute({_i62.Key? key, required _i66.Sex sex})
       : super(OnboardingGeneralPracticionerRoute.name,
             path: 'doctor/general-practicioner',
             args: OnboardingGeneralPracticionerRouteArgs(key: key, sex: sex));
@@ -1207,9 +1305,9 @@ class OnboardingGeneralPracticionerRoute
 class OnboardingGeneralPracticionerRouteArgs {
   const OnboardingGeneralPracticionerRouteArgs({this.key, required this.sex});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
-  final _i60.Sex sex;
+  final _i66.Sex sex;
 
   @override
   String toString() {
@@ -1241,7 +1339,7 @@ class GeneralPractitionerDateRoute extends _i15.PageRouteInfo<void> {
 /// [_i28.OnboardingGynecologyScreen]
 class OnboardingGynecologyRoute
     extends _i15.PageRouteInfo<OnboardingGynecologyRouteArgs> {
-  OnboardingGynecologyRoute({_i56.Key? key, required _i60.Sex sex})
+  OnboardingGynecologyRoute({_i62.Key? key, required _i66.Sex sex})
       : super(OnboardingGynecologyRoute.name,
             path: 'doctor/gynecology',
             args: OnboardingGynecologyRouteArgs(key: key, sex: sex));
@@ -1252,9 +1350,9 @@ class OnboardingGynecologyRoute
 class OnboardingGynecologyRouteArgs {
   const OnboardingGynecologyRouteArgs({this.key, required this.sex});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
-  final _i60.Sex sex;
+  final _i66.Sex sex;
 
   @override
   String toString() {
@@ -1284,7 +1382,7 @@ class GynecologyDateRoute extends _i15.PageRouteInfo<void> {
 /// [_i31.OnboardingDentistScreen]
 class OnboardingDentistRoute
     extends _i15.PageRouteInfo<OnboardingDentistRouteArgs> {
-  OnboardingDentistRoute({_i56.Key? key, required _i60.Sex sex})
+  OnboardingDentistRoute({_i62.Key? key, required _i66.Sex sex})
       : super(OnboardingDentistRoute.name,
             path: 'doctor/dentist',
             args: OnboardingDentistRouteArgs(key: key, sex: sex));
@@ -1295,9 +1393,9 @@ class OnboardingDentistRoute
 class OnboardingDentistRouteArgs {
   const OnboardingDentistRouteArgs({this.key, required this.sex});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
-  final _i60.Sex sex;
+  final _i66.Sex sex;
 
   @override
   String toString() {
@@ -1337,14 +1435,16 @@ class MainRoute extends _i15.PageRouteInfo<void> {
 class ExaminationDetailRoute
     extends _i15.PageRouteInfo<ExaminationDetailRouteArgs> {
   ExaminationDetailRoute(
-      {_i56.Key? key,
-      required _i61.CategorizedExamination categorizedExamination,
+      {_i62.Key? key,
+      required _i67.CategorizedExamination categorizedExamination,
+      _i66.ExaminationPreventionStatus? choosedExamination,
       String? initialMessage})
       : super(ExaminationDetailRoute.name,
             path: 'prevention-detail',
             args: ExaminationDetailRouteArgs(
                 key: key,
                 categorizedExamination: categorizedExamination,
+                choosedExamination: choosedExamination,
                 initialMessage: initialMessage));
 
   static const String name = 'ExaminationDetailRoute';
@@ -1352,17 +1452,22 @@ class ExaminationDetailRoute
 
 class ExaminationDetailRouteArgs {
   const ExaminationDetailRouteArgs(
-      {this.key, required this.categorizedExamination, this.initialMessage});
+      {this.key,
+      required this.categorizedExamination,
+      this.choosedExamination,
+      this.initialMessage});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
-  final _i61.CategorizedExamination categorizedExamination;
+  final _i67.CategorizedExamination categorizedExamination;
+
+  final _i66.ExaminationPreventionStatus? choosedExamination;
 
   final String? initialMessage;
 
   @override
   String toString() {
-    return 'ExaminationDetailRouteArgs{key: $key, categorizedExamination: $categorizedExamination, initialMessage: $initialMessage}';
+    return 'ExaminationDetailRouteArgs{key: $key, categorizedExamination: $categorizedExamination, choosedExamination: $choosedExamination, initialMessage: $initialMessage}';
   }
 }
 
@@ -1370,7 +1475,7 @@ class ExaminationDetailRouteArgs {
 /// [_i36.AchievementScreen]
 class AchievementRoute extends _i15.PageRouteInfo<AchievementRouteArgs> {
   AchievementRoute(
-      {_i56.Key? key,
+      {_i62.Key? key,
       required String header,
       required List<String> textLines,
       required int numberOfPoints,
@@ -1398,7 +1503,7 @@ class AchievementRouteArgs {
       required this.itemPath,
       required this.onButtonTap});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
   final String header;
 
@@ -1420,7 +1525,7 @@ class AchievementRouteArgs {
 /// [_i37.DatePickerScreen]
 class DatePickerRoute extends _i15.PageRouteInfo<DatePickerRouteArgs> {
   DatePickerRoute(
-      {_i56.Key? key,
+      {_i62.Key? key,
       required String assetPath,
       required String title,
       required void Function(DateTime)? onContinueButtonPress,
@@ -1445,7 +1550,7 @@ class DatePickerRouteArgs {
       required this.onContinueButtonPress,
       this.onSkipButtonPress});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
   final String assetPath;
 
@@ -1466,8 +1571,8 @@ class DatePickerRouteArgs {
 class CalendarPermissionInfoRoute
     extends _i15.PageRouteInfo<CalendarPermissionInfoRouteArgs> {
   CalendarPermissionInfoRoute(
-      {_i56.Key? key,
-      required _i60.ExaminationPreventionStatus examinationRecord})
+      {_i62.Key? key,
+      required _i66.ExaminationPreventionStatus examinationRecord})
       : super(CalendarPermissionInfoRoute.name,
             path: 'calendar/permission',
             args: CalendarPermissionInfoRouteArgs(
@@ -1480,9 +1585,9 @@ class CalendarPermissionInfoRouteArgs {
   const CalendarPermissionInfoRouteArgs(
       {this.key, required this.examinationRecord});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
-  final _i60.ExaminationPreventionStatus examinationRecord;
+  final _i66.ExaminationPreventionStatus examinationRecord;
 
   @override
   String toString() {
@@ -1494,8 +1599,8 @@ class CalendarPermissionInfoRouteArgs {
 /// [_i39.CalendarListScreen]
 class CalendarListRoute extends _i15.PageRouteInfo<CalendarListRouteArgs> {
   CalendarListRoute(
-      {_i56.Key? key,
-      required _i60.ExaminationPreventionStatus examinationRecord})
+      {_i62.Key? key,
+      required _i66.ExaminationPreventionStatus examinationRecord})
       : super(CalendarListRoute.name,
             path: 'calendar/list',
             args: CalendarListRouteArgs(
@@ -1507,9 +1612,9 @@ class CalendarListRoute extends _i15.PageRouteInfo<CalendarListRouteArgs> {
 class CalendarListRouteArgs {
   const CalendarListRouteArgs({this.key, required this.examinationRecord});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
-  final _i60.ExaminationPreventionStatus examinationRecord;
+  final _i66.ExaminationPreventionStatus examinationRecord;
 
   @override
   String toString() {
@@ -1522,12 +1627,12 @@ class CalendarListRouteArgs {
 class ChangeLastVisitRoute
     extends _i15.PageRouteInfo<ChangeLastVisitRouteArgs> {
   ChangeLastVisitRoute(
-      {_i56.Key? key,
+      {_i62.Key? key,
       required DateTime originalDate,
       required String title,
-      required _i60.ExaminationType examinationType,
+      required _i66.ExaminationType examinationType,
       required String? uuid,
-      required _i62.ExaminationCategory status})
+      required _i68.ExaminationCategory status})
       : super(ChangeLastVisitRoute.name,
             path: 'checkup/last-visit-update',
             args: ChangeLastVisitRouteArgs(
@@ -1550,17 +1655,17 @@ class ChangeLastVisitRouteArgs {
       required this.uuid,
       required this.status});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
   final DateTime originalDate;
 
   final String title;
 
-  final _i60.ExaminationType examinationType;
+  final _i66.ExaminationType examinationType;
 
   final String? uuid;
 
-  final _i62.ExaminationCategory status;
+  final _i68.ExaminationCategory status;
 
   @override
   String toString() {
@@ -1571,7 +1676,7 @@ class ChangeLastVisitRouteArgs {
 /// generated route for
 /// [_i41.EditNicknameScreen]
 class EditNicknameRoute extends _i15.PageRouteInfo<EditNicknameRouteArgs> {
-  EditNicknameRoute({_i56.Key? key, required _i63.User? user})
+  EditNicknameRoute({_i62.Key? key, required _i69.User? user})
       : super(EditNicknameRoute.name,
             path: 'settings/update-profile/nickname',
             args: EditNicknameRouteArgs(key: key, user: user));
@@ -1582,9 +1687,9 @@ class EditNicknameRoute extends _i15.PageRouteInfo<EditNicknameRouteArgs> {
 class EditNicknameRouteArgs {
   const EditNicknameRouteArgs({this.key, required this.user});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
-  final _i63.User? user;
+  final _i69.User? user;
 
   @override
   String toString() {
@@ -1595,7 +1700,7 @@ class EditNicknameRouteArgs {
 /// generated route for
 /// [_i42.EditEmailScreen]
 class EditEmailRoute extends _i15.PageRouteInfo<EditEmailRouteArgs> {
-  EditEmailRoute({_i56.Key? key, required _i63.User? user})
+  EditEmailRoute({_i62.Key? key, required _i69.User? user})
       : super(EditEmailRoute.name,
             path: 'settings/update-profile/email',
             args: EditEmailRouteArgs(key: key, user: user));
@@ -1606,9 +1711,9 @@ class EditEmailRoute extends _i15.PageRouteInfo<EditEmailRouteArgs> {
 class EditEmailRouteArgs {
   const EditEmailRouteArgs({this.key, required this.user});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
-  final _i63.User? user;
+  final _i69.User? user;
 
   @override
   String toString() {
@@ -1620,9 +1725,9 @@ class EditEmailRouteArgs {
 /// [_i43.EditPhotoScreen]
 class EditPhotoRoute extends _i15.PageRouteInfo<EditPhotoRouteArgs> {
   EditPhotoRoute(
-      {_i56.Key? key,
-      _i64.Uint8List? imageBytes,
-      required dynamic Function(_i65.SettingsPage) changePage})
+      {_i62.Key? key,
+      _i70.Uint8List? imageBytes,
+      required dynamic Function(_i71.SettingsPage) changePage})
       : super(EditPhotoRoute.name,
             path: 'settings/update-profile/photo',
             args: EditPhotoRouteArgs(
@@ -1635,11 +1740,11 @@ class EditPhotoRouteArgs {
   const EditPhotoRouteArgs(
       {this.key, this.imageBytes, required this.changePage});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
-  final _i64.Uint8List? imageBytes;
+  final _i70.Uint8List? imageBytes;
 
-  final dynamic Function(_i65.SettingsPage) changePage;
+  final dynamic Function(_i71.SettingsPage) changePage;
 
   @override
   String toString() {
@@ -1659,7 +1764,7 @@ class DeleteAccountRoute extends _i15.PageRouteInfo<void> {
 /// generated route for
 /// [_i45.AfterDeletionScreen]
 class AfterDeletionRoute extends _i15.PageRouteInfo<AfterDeletionRouteArgs> {
-  AfterDeletionRoute({_i56.Key? key, required _i60.Sex sex})
+  AfterDeletionRoute({_i62.Key? key, required _i66.Sex sex})
       : super(AfterDeletionRoute.name,
             path: 'settings/update-profile/delete/after-deletion',
             args: AfterDeletionRouteArgs(key: key, sex: sex));
@@ -1670,9 +1775,9 @@ class AfterDeletionRoute extends _i15.PageRouteInfo<AfterDeletionRouteArgs> {
 class AfterDeletionRouteArgs {
   const AfterDeletionRouteArgs({this.key, required this.sex});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
-  final _i60.Sex sex;
+  final _i66.Sex sex;
 
   @override
   String toString() {
@@ -1684,7 +1789,7 @@ class AfterDeletionRouteArgs {
 /// [_i46.CameraPhotoTakenScreen]
 class CameraPhotoTakenRoute
     extends _i15.PageRouteInfo<CameraPhotoTakenRouteArgs> {
-  CameraPhotoTakenRoute({_i56.Key? key, required _i64.Uint8List imageBytes})
+  CameraPhotoTakenRoute({_i62.Key? key, required _i70.Uint8List imageBytes})
       : super(CameraPhotoTakenRoute.name,
             path: 'settings/update-profile/photo/camera-taken',
             args: CameraPhotoTakenRouteArgs(key: key, imageBytes: imageBytes));
@@ -1695,9 +1800,9 @@ class CameraPhotoTakenRoute
 class CameraPhotoTakenRouteArgs {
   const CameraPhotoTakenRouteArgs({this.key, required this.imageBytes});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
-  final _i64.Uint8List imageBytes;
+  final _i70.Uint8List imageBytes;
 
   @override
   String toString() {
@@ -1709,7 +1814,7 @@ class CameraPhotoTakenRouteArgs {
 /// [_i47.GalleryPhotoTakenScreen]
 class GalleryPhotoTakenRoute
     extends _i15.PageRouteInfo<GalleryPhotoTakenRouteArgs> {
-  GalleryPhotoTakenRoute({_i56.Key? key, required _i64.Uint8List imageBytes})
+  GalleryPhotoTakenRoute({_i62.Key? key, required _i70.Uint8List imageBytes})
       : super(GalleryPhotoTakenRoute.name,
             path: 'settings/update-profile/photo/gallery-taken',
             args: GalleryPhotoTakenRouteArgs(key: key, imageBytes: imageBytes));
@@ -1720,9 +1825,9 @@ class GalleryPhotoTakenRoute
 class GalleryPhotoTakenRouteArgs {
   const GalleryPhotoTakenRouteArgs({this.key, required this.imageBytes});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
-  final _i64.Uint8List imageBytes;
+  final _i70.Uint8List imageBytes;
 
   @override
   String toString() {
@@ -1734,7 +1839,7 @@ class GalleryPhotoTakenRouteArgs {
 /// [_i48.PhotoCroppedResultScreen]
 class PhotoCroppedResultRoute
     extends _i15.PageRouteInfo<PhotoCroppedResultRouteArgs> {
-  PhotoCroppedResultRoute({_i56.Key? key, required _i64.Uint8List imageBytes})
+  PhotoCroppedResultRoute({_i62.Key? key, required _i70.Uint8List imageBytes})
       : super(PhotoCroppedResultRoute.name,
             path: 'settings/update-profile/photo/photo-cropped-result',
             args:
@@ -1746,9 +1851,9 @@ class PhotoCroppedResultRoute
 class PhotoCroppedResultRouteArgs {
   const PhotoCroppedResultRouteArgs({this.key, required this.imageBytes});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
-  final _i64.Uint8List imageBytes;
+  final _i70.Uint8List imageBytes;
 
   @override
   String toString() {
@@ -1761,9 +1866,9 @@ class PhotoCroppedResultRouteArgs {
 class SelfExaminationDetailRoute
     extends _i15.PageRouteInfo<SelfExaminationDetailRouteArgs> {
   SelfExaminationDetailRoute(
-      {_i56.Key? key,
-      required _i60.Sex sex,
-      required _i60.SelfExaminationPreventionStatus selfExamination})
+      {_i62.Key? key,
+      required _i66.Sex sex,
+      required _i66.SelfExaminationPreventionStatus selfExamination})
       : super(SelfExaminationDetailRoute.name,
             path: 'self-examination/detail',
             args: SelfExaminationDetailRouteArgs(
@@ -1776,11 +1881,11 @@ class SelfExaminationDetailRouteArgs {
   const SelfExaminationDetailRouteArgs(
       {this.key, required this.sex, required this.selfExamination});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
-  final _i60.Sex sex;
+  final _i66.Sex sex;
 
-  final _i60.SelfExaminationPreventionStatus selfExamination;
+  final _i66.SelfExaminationPreventionStatus selfExamination;
 
   @override
   String toString() {
@@ -1793,9 +1898,9 @@ class SelfExaminationDetailRouteArgs {
 class EducationalVideoRoute
     extends _i15.PageRouteInfo<EducationalVideoRouteArgs> {
   EducationalVideoRoute(
-      {_i56.Key? key,
-      required _i60.Sex sex,
-      required _i60.SelfExaminationPreventionStatus selfExamination})
+      {_i62.Key? key,
+      required _i66.Sex sex,
+      required _i66.SelfExaminationPreventionStatus selfExamination})
       : super(EducationalVideoRoute.name,
             path: 'self-examination/detail/educational-video',
             args: EducationalVideoRouteArgs(
@@ -1808,11 +1913,11 @@ class EducationalVideoRouteArgs {
   const EducationalVideoRouteArgs(
       {this.key, required this.sex, required this.selfExamination});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
-  final _i60.Sex sex;
+  final _i66.Sex sex;
 
-  final _i60.SelfExaminationPreventionStatus selfExamination;
+  final _i66.SelfExaminationPreventionStatus selfExamination;
 
   @override
   String toString() {
@@ -1823,7 +1928,7 @@ class EducationalVideoRouteArgs {
 /// generated route for
 /// [_i51.HasFindingScreen]
 class HasFindingRoute extends _i15.PageRouteInfo<HasFindingRouteArgs> {
-  HasFindingRoute({_i56.Key? key, required _i60.Sex sex})
+  HasFindingRoute({_i62.Key? key, required _i66.Sex sex})
       : super(HasFindingRoute.name,
             path: 'self-examination/detail/has-finding',
             args: HasFindingRouteArgs(key: key, sex: sex));
@@ -1834,9 +1939,9 @@ class HasFindingRoute extends _i15.PageRouteInfo<HasFindingRouteArgs> {
 class HasFindingRouteArgs {
   const HasFindingRouteArgs({this.key, required this.sex});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
-  final _i60.Sex sex;
+  final _i66.Sex sex;
 
   @override
   String toString() {
@@ -1848,10 +1953,10 @@ class HasFindingRouteArgs {
 /// [_i52.NoFindingScreen]
 class NoFindingRoute extends _i15.PageRouteInfo<NoFindingRouteArgs> {
   NoFindingRoute(
-      {_i56.Key? key,
+      {_i62.Key? key,
       required int points,
-      required _i66.BuiltList<_i60.SelfExaminationStatus> history,
-      _i60.BadgeType? badgeType})
+      required _i72.BuiltList<_i66.SelfExaminationStatus> history,
+      _i66.BadgeType? badgeType})
       : super(NoFindingRoute.name,
             path: 'self-examination/detail/no-finding',
             args: NoFindingRouteArgs(
@@ -1867,13 +1972,13 @@ class NoFindingRouteArgs {
   const NoFindingRouteArgs(
       {this.key, required this.points, required this.history, this.badgeType});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
   final int points;
 
-  final _i66.BuiltList<_i60.SelfExaminationStatus> history;
+  final _i72.BuiltList<_i66.SelfExaminationStatus> history;
 
-  final _i60.BadgeType? badgeType;
+  final _i66.BadgeType? badgeType;
 
   @override
   String toString() {
@@ -1896,9 +2001,9 @@ class ProgressRewardRoute extends _i15.PageRouteInfo<void> {
 class ResultFromDoctorRoute
     extends _i15.PageRouteInfo<ResultFromDoctorRouteArgs> {
   ResultFromDoctorRoute(
-      {_i56.Key? key,
-      required _i60.Sex sex,
-      required _i60.SelfExaminationPreventionStatus selfExamination})
+      {_i62.Key? key,
+      required _i66.Sex sex,
+      required _i66.SelfExaminationPreventionStatus selfExamination})
       : super(ResultFromDoctorRoute.name,
             path: 'self-examination/detail/reusult-from-doctor',
             args: ResultFromDoctorRouteArgs(
@@ -1911,11 +2016,11 @@ class ResultFromDoctorRouteArgs {
   const ResultFromDoctorRouteArgs(
       {this.key, required this.sex, required this.selfExamination});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
-  final _i60.Sex sex;
+  final _i66.Sex sex;
 
-  final _i60.SelfExaminationPreventionStatus selfExamination;
+  final _i66.SelfExaminationPreventionStatus selfExamination;
 
   @override
   String toString() {
@@ -1924,9 +2029,206 @@ class ResultFromDoctorRouteArgs {
 }
 
 /// generated route for
-/// [_i55.PreventionScreen]
+/// [_i55.CustomExamFormScreen]
+class CustomExamFormRoute extends _i15.PageRouteInfo<void> {
+  const CustomExamFormRoute()
+      : super(CustomExamFormRoute.name, path: 'custom-exam-form');
+
+  static const String name = 'CustomExamFormRoute';
+}
+
+/// generated route for
+/// [_i56.ChooseCustomExaminationTypeScreen]
+class ChooseCustomExaminationTypeRoute
+    extends _i15.PageRouteInfo<ChooseCustomExaminationTypeRouteArgs> {
+  ChooseCustomExaminationTypeRoute(
+      {_i66.ExaminationActionType? actionType,
+      required dynamic Function(_i66.ExaminationActionType?) onActionTypeSet,
+      _i62.Key? key})
+      : super(ChooseCustomExaminationTypeRoute.name,
+            path: 'custom-exam-form-choose-examination',
+            args: ChooseCustomExaminationTypeRouteArgs(
+                actionType: actionType,
+                onActionTypeSet: onActionTypeSet,
+                key: key));
+
+  static const String name = 'ChooseCustomExaminationTypeRoute';
+}
+
+class ChooseCustomExaminationTypeRouteArgs {
+  const ChooseCustomExaminationTypeRouteArgs(
+      {this.actionType, required this.onActionTypeSet, this.key});
+
+  final _i66.ExaminationActionType? actionType;
+
+  final dynamic Function(_i66.ExaminationActionType?) onActionTypeSet;
+
+  final _i62.Key? key;
+
+  @override
+  String toString() {
+    return 'ChooseCustomExaminationTypeRouteArgs{actionType: $actionType, onActionTypeSet: $onActionTypeSet, key: $key}';
+  }
+}
+
+/// generated route for
+/// [_i57.ChooseSpecialistScreen]
+class ChooseSpecialistRoute
+    extends _i15.PageRouteInfo<ChooseSpecialistRouteArgs> {
+  ChooseSpecialistRoute(
+      {_i66.ExaminationType? specialist,
+      required dynamic Function(_i66.ExaminationType?) onProviderSet,
+      _i62.Key? key})
+      : super(ChooseSpecialistRoute.name,
+            path: 'custom-exam-form-choose-provider',
+            args: ChooseSpecialistRouteArgs(
+                specialist: specialist,
+                onProviderSet: onProviderSet,
+                key: key));
+
+  static const String name = 'ChooseSpecialistRoute';
+}
+
+class ChooseSpecialistRouteArgs {
+  const ChooseSpecialistRouteArgs(
+      {this.specialist, required this.onProviderSet, this.key});
+
+  final _i66.ExaminationType? specialist;
+
+  final dynamic Function(_i66.ExaminationType?) onProviderSet;
+
+  final _i62.Key? key;
+
+  @override
+  String toString() {
+    return 'ChooseSpecialistRouteArgs{specialist: $specialist, onProviderSet: $onProviderSet, key: $key}';
+  }
+}
+
+/// generated route for
+/// [_i58.ChooseExamPeriodDateScreen]
+class ChooseExamPeriodDateRoute
+    extends _i15.PageRouteInfo<ChooseExamPeriodDateRouteArgs> {
+  ChooseExamPeriodDateRoute(
+      {DateTime? dateTime,
+      required dynamic Function(DateTime?) onValueChange,
+      required String label,
+      required bool pickTime,
+      bool? showLastExamDate,
+      bool? isLastExamChoose = false,
+      _i62.Key? key})
+      : super(ChooseExamPeriodDateRoute.name,
+            path: 'custom-exam-form-choose-period-date',
+            args: ChooseExamPeriodDateRouteArgs(
+                dateTime: dateTime,
+                onValueChange: onValueChange,
+                label: label,
+                pickTime: pickTime,
+                showLastExamDate: showLastExamDate,
+                isLastExamChoose: isLastExamChoose,
+                key: key));
+
+  static const String name = 'ChooseExamPeriodDateRoute';
+}
+
+class ChooseExamPeriodDateRouteArgs {
+  const ChooseExamPeriodDateRouteArgs(
+      {this.dateTime,
+      required this.onValueChange,
+      required this.label,
+      required this.pickTime,
+      this.showLastExamDate,
+      this.isLastExamChoose = false,
+      this.key});
+
+  final DateTime? dateTime;
+
+  final dynamic Function(DateTime?) onValueChange;
+
+  final String label;
+
+  final bool pickTime;
+
+  final bool? showLastExamDate;
+
+  final bool? isLastExamChoose;
+
+  final _i62.Key? key;
+
+  @override
+  String toString() {
+    return 'ChooseExamPeriodDateRouteArgs{dateTime: $dateTime, onValueChange: $onValueChange, label: $label, pickTime: $pickTime, showLastExamDate: $showLastExamDate, isLastExamChoose: $isLastExamChoose, key: $key}';
+  }
+}
+
+/// generated route for
+/// [_i59.ChooseExamPeriodTimeScreen]
+class ChooseExamPeriodTimeRoute
+    extends _i15.PageRouteInfo<ChooseExamPeriodTimeRouteArgs> {
+  ChooseExamPeriodTimeRoute(
+      {_i62.Key? key,
+      DateTime? dateTime,
+      required dynamic Function(DateTime?) onTimeSet})
+      : super(ChooseExamPeriodTimeRoute.name,
+            path: 'custom-exam-form-choose-period-time',
+            args: ChooseExamPeriodTimeRouteArgs(
+                key: key, dateTime: dateTime, onTimeSet: onTimeSet));
+
+  static const String name = 'ChooseExamPeriodTimeRoute';
+}
+
+class ChooseExamPeriodTimeRouteArgs {
+  const ChooseExamPeriodTimeRouteArgs(
+      {this.key, this.dateTime, required this.onTimeSet});
+
+  final _i62.Key? key;
+
+  final DateTime? dateTime;
+
+  final dynamic Function(DateTime?) onTimeSet;
+
+  @override
+  String toString() {
+    return 'ChooseExamPeriodTimeRouteArgs{key: $key, dateTime: $dateTime, onTimeSet: $onTimeSet}';
+  }
+}
+
+/// generated route for
+/// [_i60.ChooseFrequencyOfExamScreen]
+class ChooseFrequencyOfExamRoute
+    extends _i15.PageRouteInfo<ChooseFrequencyOfExamRouteArgs> {
+  ChooseFrequencyOfExamRoute(
+      {_i62.Key? key,
+      String? value,
+      required dynamic Function(String) valueChanged})
+      : super(ChooseFrequencyOfExamRoute.name,
+            path: 'custom-exam-form-choose-exam-frequency',
+            args: ChooseFrequencyOfExamRouteArgs(
+                key: key, value: value, valueChanged: valueChanged));
+
+  static const String name = 'ChooseFrequencyOfExamRoute';
+}
+
+class ChooseFrequencyOfExamRouteArgs {
+  const ChooseFrequencyOfExamRouteArgs(
+      {this.key, this.value, required this.valueChanged});
+
+  final _i62.Key? key;
+
+  final String? value;
+
+  final dynamic Function(String) valueChanged;
+
+  @override
+  String toString() {
+    return 'ChooseFrequencyOfExamRouteArgs{key: $key, value: $value, valueChanged: $valueChanged}';
+  }
+}
+
+/// generated route for
+/// [_i61.PreventionScreen]
 class PreventionRoute extends _i15.PageRouteInfo<PreventionRouteArgs> {
-  PreventionRoute({_i56.Key? key})
+  PreventionRoute({_i62.Key? key})
       : super(PreventionRoute.name,
             path: 'prevention', args: PreventionRouteArgs(key: key));
 
@@ -1936,7 +2238,7 @@ class PreventionRoute extends _i15.PageRouteInfo<PreventionRouteArgs> {
 class PreventionRouteArgs {
   const PreventionRouteArgs({this.key});
 
-  final _i56.Key? key;
+  final _i62.Key? key;
 
   @override
   String toString() {

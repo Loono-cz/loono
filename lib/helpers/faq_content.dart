@@ -156,7 +156,7 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
         ),
       ];
       break;
-    case ExaminationType.GYNECOLOGIST:
+    case ExaminationType.GYNECOLOGY_AND_OBSTETRICS:
       result = [
         FAQPair(
           question: '${texts.who_is} ${type.l10n_name.toLowerCase()}?',
@@ -293,9 +293,6 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
         ),
       ];
       break;
-    case ExaminationType.TOKS:
-      // TODO: This case is not used yet
-      break;
     case ExaminationType.ULTRASOUND_BREAST:
       result = [
         FAQPair(
@@ -332,9 +329,8 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
         ),
       ];
       break;
-    case ExaminationType.VENEREAL_DISEASES:
-      // TODO: Handle this case.
-      break;
+    default:
+      return result;
   }
   return result;
 }

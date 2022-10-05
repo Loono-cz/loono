@@ -17,6 +17,9 @@ class ExaminationsProvider extends ChangeNotifier {
   bool loading = false;
   bool hasNotification = false;
 
+  CategorizedExamination? categorizedExamination;
+  ExaminationPreventionStatus? choosedExamination;
+
   Future<ApiResponse<PreventionStatus>> fetchExaminations() async {
     log('fetching examinations from server');
 
@@ -43,7 +46,9 @@ class ExaminationsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateExaminationsRecord(ExaminationRecord record) {
+  void updateExaminationsRecord(
+    ExaminationRecord record,
+  ) {
     final indexToUpdate = examinations?.examinations
         .indexWhere((examination) => examination.examinationType == record.type);
     if (indexToUpdate != null && indexToUpdate >= 0) {
@@ -60,7 +65,13 @@ class ExaminationsProvider extends ChangeNotifier {
                       ? record.plannedDate?.toLocal()
                       : item.lastConfirmedDate
               ..state = record.status ?? item.state
-              ..firstExam = record.firstExam ?? item.firstExam,
+              ..firstExam = record.firstExam ?? item.firstExam
+              ..customInterval = record.customInterval
+              ..examinationActionType = record.examinationActionType
+              ..examinationCategoryType = record.examinationCategoryType
+              ..badge = item.badge
+              ..periodicExam = record.periodicExam
+              ..note = record.note,
           );
 
       final builder = examinations?.toBuilder();
@@ -121,4 +132,127 @@ class ExaminationsProvider extends ChangeNotifier {
       }
     }
   }
+
+  void createCustomExamination(ExaminationRecord record, {DateTime? lastConfirmedDate}) {
+    final createdItem = ExaminationPreventionStatus(
+      (b) => b
+        ..examinationType = record.type
+        ..customInterval = record.customInterval
+        ..examinationActionType = record.examinationActionType
+        ..examinationCategoryType = record.examinationCategoryType
+        ..lastConfirmedDate = lastConfirmedDate
+        ..periodicExam = record.periodicExam
+        ..points = record.periodicExam == true ? 50 : 0
+        ..firstExam = record.firstExam
+        ..plannedDate = record.plannedDate
+        ..state = record.status
+        ..intervalYears = record.customInterval ?? 2
+        ..priority = 0
+        ..count = 0
+        ..badge = BadgeType.SHIELD,
+    );
+
+    final builder = examinations?.toBuilder();
+    builder?.examinations.add(createdItem);
+    examinations = builder?.build();
+    evaluateExaminations();
+    notifyListeners();
+  }
+
+  void updateCustomExaminationsRecord(
+    ExaminationRecord record,
+    ExaminationPreventionStatus item,
+  ) {
+    final indexToUpdate =
+        examinations?.examinations.indexWhere((examination) => examination == item);
+    if (indexToUpdate != null && indexToUpdate >= 0) {
+      final updatedItem = examinations?.examinations.elementAt(indexToUpdate).rebuild(
+            (item) => item
+              ..uuid = record.uuid
+              ..examinationType = record.type
+              ..plannedDate =
+                  (record.status == ExaminationStatus.CONFIRMED || record.firstExam == true)
+                      ? item.plannedDate
+                      : record.plannedDate?.toLocal()
+              ..lastConfirmedDate =
+                  (record.status == ExaminationStatus.CONFIRMED || record.firstExam == true)
+                      ? record.plannedDate?.toLocal()
+                      : item.lastConfirmedDate
+              ..state = record.status ?? item.state
+              ..firstExam = record.firstExam ?? item.firstExam
+              ..customInterval = record.customInterval
+              ..examinationActionType = record.examinationActionType
+              ..examinationCategoryType = record.examinationCategoryType
+              ..badge = item.badge
+              ..periodicExam = record.periodicExam
+              ..note = record.note,
+          );
+
+      final builder = examinations?.toBuilder();
+      builder?.examinations.removeAt(indexToUpdate);
+      builder?.examinations.add(updatedItem!);
+      examinations = builder?.build();
+      evaluateExaminations();
+      notifyListeners();
+    }
+  }
+
+  ExaminationPreventionStatus? updateAndReturnCustomExaminationsRecord(
+    ExaminationRecord record,
+    ExaminationPreventionStatus item,
+  ) {
+    final indexToUpdate =
+        examinations?.examinations.indexWhere((examination) => examination == item);
+    if (indexToUpdate != null && indexToUpdate >= 0) {
+      final updatedItem = examinations?.examinations.elementAt(indexToUpdate).rebuild(
+            (item) => item
+              ..uuid = record.uuid
+              ..examinationType = record.type
+              ..plannedDate =
+                  (record.status == ExaminationStatus.CONFIRMED || record.firstExam == true)
+                      ? item.plannedDate
+                      : record.plannedDate?.toLocal()
+              ..lastConfirmedDate =
+                  (record.status == ExaminationStatus.CONFIRMED || record.firstExam == true)
+                      ? record.plannedDate?.toLocal()
+                      : item.lastConfirmedDate
+              ..state = record.status ?? item.state
+              ..firstExam = record.firstExam ?? item.firstExam
+              ..customInterval = record.customInterval
+              ..examinationActionType = record.examinationActionType
+              ..examinationCategoryType = record.examinationCategoryType
+              ..badge = item.badge
+              ..periodicExam = record.periodicExam
+              ..note = record.note,
+          );
+
+      final builder = examinations?.toBuilder();
+      builder?.examinations.removeAt(indexToUpdate);
+      builder?.examinations.add(updatedItem!);
+      examinations = builder?.build();
+      evaluateExaminations();
+      notifyListeners();
+      return updatedItem;
+    }
+    return null;
+  }
+
+  void setChoosedCustomExamination(
+    CategorizedExamination? categorizedExam,
+    ExaminationPreventionStatus? exam,
+  ) {
+    categorizedExamination = categorizedExam;
+    choosedExamination = exam;
+  }
+
+  ChoosedCustomExam getChoosedCustomExamination() {
+    return ChoosedCustomExam()
+      ..categorizedExamination = categorizedExamination
+      ..choosedExamination = choosedExamination;
+  }
+}
+
+class ChoosedCustomExam {
+  CategorizedExamination? categorizedExamination;
+  ExaminationPreventionStatus? choosedExamination;
 }

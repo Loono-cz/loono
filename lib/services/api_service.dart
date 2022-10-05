@@ -124,9 +124,14 @@ class ApiService {
   Future<ApiResponse<ExaminationRecord>> postExamination(
     ExaminationType type, {
     String? uuid,
-    DateTime? newDate,
+    DateTime? newDate, //planned Date
     ExaminationStatus? status,
     bool? firstExam,
+    ExaminationCategoryType categoryType = ExaminationCategoryType.MANDATORY,
+    String? note,
+    int? customInterval,
+    bool? periodicExam,
+    ExaminationActionType? actionType,
   }) async {
     return _callApi(
       () async => _api.getExaminationsApi().postExaminations(
@@ -136,7 +141,12 @@ class ApiService {
             ..type = type
             ..plannedDate = newDate?.toUtc()
             ..status = status
-            ..firstExam = firstExam;
+            ..firstExam = firstExam
+            ..customInterval = customInterval
+            ..periodicExam = periodicExam
+            ..note = note
+            ..examinationCategoryType = categoryType
+            ..examinationActionType = actionType;
         }),
       ),
     );
