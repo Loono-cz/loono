@@ -14,14 +14,15 @@ import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/widgets/prevention/datepicker_sheet.dart';
-import 'package:loono/ui/widgets/prevention/examination_cancel_sheet.dart';
-import 'package:loono/ui/widgets/prevention/examination_delete_sheet.dart';
 import 'package:loono/ui/widgets/prevention/examination_edit_sheet.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
-void showEditModal(BuildContext pageContext, CategorizedExamination examination) {
+void showEditModal(
+  BuildContext pageContext,
+  CategorizedExamination examination,
+) {
   final examinationType = examination.examination.examinationType;
   final preposition = czechPreposition(pageContext, examinationType: examinationType);
   final procedure =
@@ -53,7 +54,10 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
         final provider = Provider.of<ExaminationsProvider>(pageContext, listen: false);
         if (examination.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM) {
           exam = Provider.of<ExaminationsProvider>(pageContext, listen: false)
-              .updateAndReturnCustomExaminationsRecord(res.data, examination.examination);
+              .updateAndReturnCustomExaminationsRecord(
+            res.data,
+            examination.examination,
+          );
         } else {
           Provider.of<ExaminationsProvider>(pageContext, listen: false)
               .updateExaminationsRecord(res.data);
@@ -72,7 +76,10 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
 
         ///TODO: lint fix
         // ignore: use_build_context_synchronously
-        showFlushBarSuccess(pageContext, pageContext.l10n.checkup_reminder_toast);
+        showFlushBarSuccess(
+          pageContext,
+          pageContext.l10n.checkup_reminder_toast,
+        );
       },
       failure: (err) async {
         showFlushBarError(pageContext, pageContext.l10n.something_went_wrong);
@@ -107,29 +114,35 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
             );
           },
         ),
-        CupertinoActionSheetAction(
-          key: const Key('editCheckUpDateSheet_action_cancelCheckUp'),
-          isDestructiveAction: true,
-          onPressed: () {
-            final examinationUuid = examination.examination.uuid;
 
-            if (examinationUuid != null) {
-              AutoRouter.of(modalContext).pop();
-              showCancelExaminationSheet(
-                context: pageContext,
-                id: examinationUuid,
-                examinationType: examinationType,
-                title: examination.examination.periodicExam == true
-                    ? pageContext.l10n.custom_exam_cancel_question
-                    : '${pageContext.l10n.checkup_cancel_question} $preposition $procedure?',
-                date: examination.examination.plannedDate?.toLocal() ?? DateTime.now(),
-              );
-            } else {
-              showFlushBarError(modalContext, modalContext.l10n.something_went_wrong);
-            }
-          },
-          child: Text(pageContext.l10n.cancel_checkup),
-        ),
+        ///TODO: After delet api will be working unset this comment.
+        // CupertinoActionSheetAction(
+        //   key: const Key('editCheckUpDateSheet_action_cancelCheckUp'),
+        //   isDestructiveAction: true,
+        //   onPressed: () {
+        //     final examinationUuid = examination.examination.uuid;
+
+        //     if (examinationUuid != null) {
+        //       AutoRouter.of(modalContext).pop();
+        //       showCancelExaminationSheet(
+        //         context: pageContext,
+        //         id: examinationUuid,
+        //         examinationType: examinationType,
+        //         title: examination.examination.periodicExam == true
+        //             ? pageContext.l10n.custom_exam_cancel_question
+        //             : '${pageContext.l10n.checkup_cancel_question} $preposition $procedure?',
+        //         date: examination.examination.plannedDate?.toLocal() ??
+        //             DateTime.now(),
+        //       );
+        //     } else {
+        //       showFlushBarError(
+        //         modalContext,
+        //         modalContext.l10n.something_went_wrong,
+        //       );
+        //     }
+        //   },
+        //   child: Text(pageContext.l10n.cancel_term_action),
+        // ),
         CupertinoActionSheetAction(
           isDefaultAction: true,
           onPressed: () {
@@ -172,7 +185,10 @@ void showCustomExamEditModal(
                   date: examination.plannedDate?.toLocal() ?? DateTime.now(),
                 );
               } else {
-                showFlushBarError(modalContext, modalContext.l10n.something_went_wrong);
+                showFlushBarError(
+                  modalContext,
+                  modalContext.l10n.something_went_wrong,
+                );
               }
             },
             child: Text(
@@ -180,24 +196,29 @@ void showCustomExamEditModal(
               style: LoonoFonts.editExaminationMenuItem,
             ),
           ),
-        CupertinoActionSheetAction(
-          key: const Key('editCheckUpDateSheet_action_cancelCheckUp'),
-          isDestructiveAction: true,
-          onPressed: () {
-            if (examinationUuid != null) {
-              AutoRouter.of(modalContext).pop();
-              showDeleteExaminationSheet(
-                context: pageContext,
-                id: examinationUuid,
-                examinationType: examinationType,
-                date: examination.plannedDate?.toLocal() ?? DateTime.now(),
-              );
-            } else {
-              showFlushBarError(modalContext, modalContext.l10n.something_went_wrong);
-            }
-          },
-          child: Text(pageContext.l10n.cancel_checkup),
-        ),
+
+        ///TODO: After delet api will be working unset this comment.
+        // CupertinoActionSheetAction(
+        //   key: const Key('editCheckUpDateSheet_action_cancelCheckUp'),
+        //   isDestructiveAction: true,
+        //   onPressed: () {
+        //     if (examinationUuid != null) {
+        //       AutoRouter.of(modalContext).pop();
+        //       showDeleteExaminationSheet(
+        //         context: pageContext,
+        //         id: examinationUuid,
+        //         examinationType: examinationType,
+        //         date: examination.plannedDate?.toLocal() ?? DateTime.now(),
+        //       );
+        //     } else {
+        //       showFlushBarError(
+        //         modalContext,
+        //         modalContext.l10n.something_went_wrong,
+        //       );
+        //     }
+        //   },
+        //   child: Text(pageContext.l10n.delete_exam_action),
+        // ),
         CupertinoActionSheetAction(
           isDefaultAction: true,
           onPressed: () {

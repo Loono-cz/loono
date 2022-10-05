@@ -1447,5 +1447,9 @@
   "custom_exam_cancel_question": "Opravdu chceš zrušit termín prohlídky?",
   "@custom_exam_cancel_question": {},
   "cancel_term_note_disclaimer": "Se zrušením termínu budou smazány i všechny tvé poznámky k návštevě.",
-  "@cancel_term_note_disclaimer": {}
+  "@cancel_term_note_disclaimer": {},
+  "cancel_term_action": "Zrušit termín",
+  "@cancel_term_action": {},
+  "delete_exam_action": "Smazat prohlídku",
+  "@delete_exam_action": {}
 }

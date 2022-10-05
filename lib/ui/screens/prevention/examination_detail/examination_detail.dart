@@ -673,9 +673,6 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                     onSubmit: onPostNewCheckupSubmit,
                   );
                 }
-                // Provider.of<ExaminationsProvider>(context, listen: false)
-                //     .setChoosedCustomExamination(widget.categorizedExamination, null);
-                // showEditModal(context, widget.categorizedExamination);
               },
             ),
           )
