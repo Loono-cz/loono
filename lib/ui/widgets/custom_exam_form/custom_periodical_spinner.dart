@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/datepicker_helpers.dart';
+import 'package:loono/l10n/ext.dart';
 
-const _itemHeight = 40.0;
+const _itemHeight = 30.0;
 
 enum FrequencyType { numbers, period }
 
@@ -36,33 +37,33 @@ class _CustomPeriodicalSpinnerState extends State<CustomPeriodicalSpinner> {
     final monthNumbers =
         [for (var i = _selectedStringIndex == 1 ? 1 : 6; i <= finalInterval; i++) i].asMap();
 
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.32,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 4),
-            child: Container(
-              width: 10,
-              height: 10,
-              decoration: const BoxDecoration(
-                color: LoonoColors.primaryEnabled,
-                shape: BoxShape.circle,
-              ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 16, right: 4.0),
+          child: Container(
+            width: 10,
+            height: 10,
+            decoration: const BoxDecoration(
+              color: LoonoColors.primaryEnabled,
+              shape: BoxShape.circle,
             ),
           ),
-          const Text('Jednou za'),
-          _monthPickerColumn(monthNumbers),
-          _frequencyPickerColumn(),
-        ],
-      ),
+        ),
+        Text(
+          context.l10n.once_per,
+          style: LoonoFonts.spinnerTextOnceTo,
+        ),
+        _monthPickerColumn(monthNumbers),
+        _frequencyPickerColumn(),
+      ],
     );
   }
 
   Widget _monthPickerColumn(Map<int, int> monthNumbers) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width / 3,
+      width: MediaQuery.of(context).size.width / 4,
       child: ListWheelScrollView.useDelegate(
         physics: const FixedExtentScrollPhysics(),
         itemExtent: _itemHeight,
@@ -88,7 +89,7 @@ class _CustomPeriodicalSpinnerState extends State<CustomPeriodicalSpinner> {
 
   Widget _frequencyPickerColumn() {
     return SizedBox(
-      width: MediaQuery.of(context).size.width / 3,
+      width: MediaQuery.of(context).size.width / 4,
       child: ListWheelScrollView.useDelegate(
         physics: const FixedExtentScrollPhysics(),
         itemExtent: _itemHeight,

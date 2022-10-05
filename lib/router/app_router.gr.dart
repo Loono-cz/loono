@@ -579,7 +579,7 @@ class AppRouter extends _i15.RootStackRouter {
               actionType: args.actionType,
               onActionTypeSet: args.onActionTypeSet,
               key: args.key),
-          transitionsBuilder: _i15.TransitionsBuilders.slideLeft,
+          transitionsBuilder: _i15.TransitionsBuilders.slideBottom,
           opaque: true,
           barrierDismissible: false);
     },
@@ -591,7 +591,7 @@ class AppRouter extends _i15.RootStackRouter {
               specialist: args.specialist,
               onProviderSet: args.onProviderSet,
               key: args.key),
-          transitionsBuilder: _i15.TransitionsBuilders.slideLeft,
+          transitionsBuilder: _i15.TransitionsBuilders.slideBottom,
           opaque: true,
           barrierDismissible: false);
     },
@@ -607,7 +607,7 @@ class AppRouter extends _i15.RootStackRouter {
               showLastExamDate: args.showLastExamDate,
               isLastExamChoose: args.isLastExamChoose,
               key: args.key),
-          transitionsBuilder: _i15.TransitionsBuilders.slideLeft,
+          transitionsBuilder: _i15.TransitionsBuilders.slideBottom,
           opaque: true,
           barrierDismissible: false);
     },
@@ -619,7 +619,7 @@ class AppRouter extends _i15.RootStackRouter {
               key: args.key,
               dateTime: args.dateTime,
               onTimeSet: args.onTimeSet),
-          transitionsBuilder: _i15.TransitionsBuilders.slideLeft,
+          transitionsBuilder: _i15.TransitionsBuilders.slideBottom,
           opaque: true,
           barrierDismissible: false);
     },
@@ -631,7 +631,7 @@ class AppRouter extends _i15.RootStackRouter {
               key: args.key,
               value: args.value,
               valueChanged: args.valueChanged),
-          transitionsBuilder: _i15.TransitionsBuilders.slideLeft,
+          transitionsBuilder: _i15.TransitionsBuilders.slideBottom,
           opaque: true,
           barrierDismissible: false);
     },

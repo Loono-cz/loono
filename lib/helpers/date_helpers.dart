@@ -18,3 +18,20 @@ int transformInterval(BuildContext context, String str) {
   final desc = splitedString[1];
   return desc == context.l10n.years ? transformYearToMonth(number) : int.parse(number);
 }
+
+DateTime alignDateTime(DateTime dt, Duration alignment, [bool roundUp = true]) {
+  assert(alignment >= Duration.zero);
+  if (alignment == Duration.zero) return dt;
+  final correction = Duration(
+    days: 0,
+    minutes: alignment.inHours > 0
+        ? dt.minute
+        : alignment.inMinutes > 0
+            ? dt.minute % alignment.inMinutes
+            : 0,
+  );
+  if (correction == Duration.zero) return dt;
+  final corrected = dt.subtract(correction);
+  final result = roundUp ? corrected.add(alignment) : corrected;
+  return result;
+}
