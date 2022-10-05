@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:loono/l10n/ext.dart';
 
 class CustomInputTextField extends StatefulWidget {
@@ -68,8 +69,12 @@ class _CustomInputTextFieldState extends State<CustomInputTextField> {
                 : textFieldBorder,
         suffixIcon: widget.prefixIcon != null
             ? null
-            : const Icon(
-                Icons.arrow_downward_outlined,
+            : SvgPicture.asset(
+                'assets/icons/chevron_down.svg',
+                width: 5,
+                height: 5,
+                fit: BoxFit.scaleDown,
+                color: Colors.black87,
               ),
         errorText: widget.error ? context.l10n.mandatory_field : '',
         prefixIcon: widget.prefixIcon,

@@ -42,7 +42,6 @@ class LoonoColors {
     Color.fromARGB(255, 237, 141, 140),
   ];
 
-  static const donateColor = Color(0xFFBE5713);
   static const primaryLight50 = Color(0xFFFDE4D3);
 }
 
@@ -120,6 +119,10 @@ class LoonoFonts {
     fontSize: 16,
     color: LoonoColors.green,
     fontWeight: FontWeight.w700,
+  );
+  static const spinnerTextOnceTo = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
   );
 
   static const cardSubtitle = TextStyle(
