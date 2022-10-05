@@ -20,7 +20,7 @@ class ExaminationProgressContent extends StatelessWidget {
   final CategorizedExamination categorizedExamination;
   final Sex sex;
 
-  ExaminationCategoryType get _examinationCategoryType =>
+  ExaminationCategoryType? get _examinationCategoryType =>
       categorizedExamination.examination.examinationCategoryType;
   bool get _isToday {
     final now = DateTime.now();

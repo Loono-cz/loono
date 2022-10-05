@@ -60,7 +60,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
   ExaminationPreventionStatus get _examination => widget.categorizedExamination.examination;
 
   ExaminationType get _examinationType => _examination.examinationType;
-  ExaminationCategoryType get _examinationCategoryType => _examination.examinationCategoryType;
+  ExaminationCategoryType? get _examinationCategoryType => _examination.examinationCategoryType;
   ExaminationActionType get _examinationActionType =>
       _examination.examinationActionType ?? ExaminationActionType.CONTROL;
 
@@ -154,7 +154,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
             uuid: widget.categorizedExamination.examination.uuid,
             firstExam: false,
             status: ExaminationStatus.NEW,
-            categoryType: _examinationCategoryType,
+            categoryType: _examinationCategoryType!,
             note: note,
             customInterval: _examination.customInterval ?? _examination.intervalYears,
             actionType: _examinationActionType,
