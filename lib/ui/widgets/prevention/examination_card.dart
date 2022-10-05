@@ -30,15 +30,22 @@ class ExaminationCard extends StatelessWidget {
   int _diffInDays(DateTime date) => DateTime(date.year, date.month, date.day)
       .difference(DateTime(now.year, now.month, now.day))
       .inDays;
+  ExaminationCategoryType get examCatType =>
+      categorizedExamination.examination.examinationCategoryType;
+  ExaminationType get examType => categorizedExamination.examination.examinationType;
+  ExaminationActionType? get examActionType =>
+      categorizedExamination.examination.examinationActionType;
 
   Widget get _title => Text(
         categorizedExamination.examination.examinationType.l10n_name,
         style: LoonoFonts.cardTitle,
       );
   Widget get _subtitle => Text(
-        ExaminationActionTypeExt(
-          categorizedExamination.examination.examinationActionType ?? ExaminationActionType.CONTROL,
-        ).l10n_name,
+        examCatType == ExaminationCategoryType.CUSTOM && examActionType != null
+            ? ExaminationActionTypeExt(
+                examActionType!,
+              ).l10n_name
+            : 'Preventivní prohlídka',
         style: LoonoFonts.cardExaminaitonType,
       );
 
