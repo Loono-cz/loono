@@ -23,6 +23,7 @@ import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/examination_badges.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/faq_section.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/custom_exam_form/custom_periodical_spinner.dart';
 import 'package:loono/ui/widgets/prevention/calendar_permission_sheet.dart';
 import 'package:loono/ui/widgets/prevention/change_last_visit_sheet.dart';
 import 'package:loono/ui/widgets/prevention/create_order_from_detail_flow.dart';
@@ -86,7 +87,16 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
     final yearInterval = widget.categorizedExamination.examination.intervalYears;
     //transformMonthToEar
     if (_examinationCategoryType == ExaminationCategoryType.CUSTOM) {
-      return '${transformMonthToYear(yearInterval)} ${yearInterval < 11 ? 'měsíců' : 'roků'}';
+      final transformed = transformMonthToYear(yearInterval).toInt();
+      return '$transformed ${yearInterval < 11 ? getTextForPeriod(
+          Period.perMonth,
+          transformed,
+          context,
+        ) : getTextForPeriod(
+          Period.perYear,
+          transformed,
+          context,
+        )}';
     } else {
       return '${yearInterval.toString()} ${yearInterval > 1 ? context.l10n.years : context.l10n.year}';
     }

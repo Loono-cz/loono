@@ -178,7 +178,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                   children: [
                     checkboxConetnt(
                       context,
-                      'Jednorázové', //TODO: Translation
+                      context.l10n.custom_exam_one_time,
                       () => setState(() {
                         _isPeriodicExam = false;
                         _showPeriodDateTimeError = false;
@@ -189,7 +189,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                     ),
                     checkboxConetnt(
                       context,
-                      'Pravidelné', //TODO: Translation
+                      context.l10n.custom_exam_periodic,
                       () => setState(() {
                         _isPeriodicExam = true;
                         _showPeriodDateTimeError = false;
