@@ -59,6 +59,13 @@ class _ChooseExamPeriodTimeScreenState extends State<ChooseExamPeriodTimeScreen>
         elevation: 0.0,
         backgroundColor: LoonoColors.primaryLight50,
         iconTheme: const IconThemeData(color: Colors.black),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            size: 24.0,
+          ),
+          onPressed: () => AutoRouter.of(context).pop(),
+        ),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),

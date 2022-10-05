@@ -132,7 +132,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                 style: LoonoFonts.customExamLabel,
               ),
               const SizedBox(
-                height: 20,
+                height: 30,
               ),
               CustomInputTextField(
                 error: _showError && _specialist == null,
@@ -147,7 +147,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 8,
               ),
               CustomInputTextField(
                 error: _examinationType == null && _showError,
@@ -164,11 +164,11 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                 ),
               ),
               const SizedBox(
-                height: 30,
+                height: 16,
               ),
               Text(context.l10n.exam_frequency),
               const SizedBox(
-                height: 20,
+                height: 16,
               ),
               Container(
                 decoration: BoxDecoration(
@@ -203,11 +203,11 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                 ),
               ),
               const SizedBox(
-                height: 20.0,
+                height: 16.0,
               ),
               Container(child: buildFrequentionForm(context)),
               const SizedBox(
-                height: 20.0,
+                height: 8.0,
               ),
               TextFormField(
                 minLines: 5,
@@ -219,10 +219,15 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                     ? (_nextExamDate != null && !_nextExamChck) && (_nextExamDate != null)
                     : true,
                 onChanged: onNoteChange,
+
+                //autofillHints: [context.l10n.note_visiting_description],
                 decoration: InputDecoration(
                   hintText: context.l10n.note_visiting_description,
-                  label: Text(context.l10n.note_visiting),
-                  hintStyle: const TextStyle(color: Colors.grey),
+                  label: _note == '' ? null : Text(context.l10n.note_visiting),
+                  hintStyle: const TextStyle(color: Colors.grey, fontSize: 14.0),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: LoonoColors.primaryEnabled),
+                  ),
                   border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
@@ -336,9 +341,6 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                   child: Text(context.l10n.once_to),
                 ),
               ),
-              const SizedBox(
-                width: 20,
-              ),
               Flexible(
                 flex: 2,
                 child: CustomInputTextField(
@@ -357,7 +359,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
             ],
           ),
           const SizedBox(
-            height: 20.0,
+            height: 8.0,
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -366,7 +368,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
             children: [
               SizedBox(
                 width: LoonoSizes.isScreenSmall(context)
-                    ? MediaQuery.of(context).size.width * 0.55
+                    ? MediaQuery.of(context).size.width * 0.5
                     : MediaQuery.of(context).size.width * 0.6,
                 child: CustomInputTextField(
                   error: _showLastExamError && _lastExamDate == null,
@@ -386,6 +388,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                   onClickInputField: () => AutoRouter.of(context).navigate(
                     ChooseExamPeriodDateRoute(
                       pickTime: false,
+                      showLastExamDate: true,
                       label: context.l10n.your_last_examination,
                       dateTime: _lastExamDate,
                       onValueChange: onLastExamDateSet,
@@ -403,12 +406,9 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
               )
             ],
           ),
-          const SizedBox(
-            height: 20.0,
-          ),
           const Divider(),
           const SizedBox(
-            height: 20.0,
+            height: 16.0,
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -417,7 +417,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
             children: [
               SizedBox(
                 width: LoonoSizes.isScreenSmall(context)
-                    ? MediaQuery.of(context).size.width * 0.55
+                    ? MediaQuery.of(context).size.width * 0.5
                     : MediaQuery.of(context).size.width * 0.6,
                 child: CustomInputTextField(
                   error: false,
@@ -463,7 +463,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
         children: [
           const Divider(),
           const SizedBox(
-            height: 8.0,
+            height: 16.0,
           ),
           SizedBox(
             width:
