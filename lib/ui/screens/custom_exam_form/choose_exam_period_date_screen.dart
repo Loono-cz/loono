@@ -72,6 +72,7 @@ class _ChooseExamPeriodDateScreenState extends State<ChooseExamPeriodDateScreen>
             Expanded(
               flex: 1,
               child: CustomDatePicker(
+                defaultDay: DateTime.now().weekday + 1,
                 valueChanged: (value) {
                   _dateTime = value;
                 },

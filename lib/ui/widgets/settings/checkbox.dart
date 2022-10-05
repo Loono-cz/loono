@@ -18,7 +18,7 @@ class CheckboxCustom extends StatelessWidget {
     return Stack(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 17.0),
+          padding: const EdgeInsets.only(left: 10.0),
           child: Row(
             children: [
               Container(
@@ -51,7 +51,7 @@ class CheckboxCustom extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 17),
+                padding: const EdgeInsets.only(left: 10),
                 child: Text(
                   text,
                   style: const TextStyle(fontSize: 14),

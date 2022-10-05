@@ -7,6 +7,7 @@ import 'package:loono/helpers/date_helpers.dart';
 import 'package:loono/helpers/examination_action_types.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/helpers/flushbar_message.dart';
+import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -353,8 +354,10 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
             textBaseline: TextBaseline.ideographic,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
-                flex: 1,
+              SizedBox(
+                width: LoonoSizes.isScreenSmall(context)
+                    ? MediaQuery.of(context).size.width * 0.55
+                    : MediaQuery.of(context).size.width * 0.6,
                 child: CustomInputTextField(
                   error: _showLastExamError,
                   enabled: !_lastExamChck,
@@ -402,8 +405,10 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
             textBaseline: TextBaseline.ideographic,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
-                flex: 1,
+              SizedBox(
+                width: LoonoSizes.isScreenSmall(context)
+                    ? MediaQuery.of(context).size.width * 0.55
+                    : MediaQuery.of(context).size.width * 0.6,
                 child: CustomInputTextField(
                   error: false,
                   enabled: !_nextExamChck,

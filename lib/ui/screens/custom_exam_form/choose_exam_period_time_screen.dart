@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/date_helpers.dart';
 import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -21,7 +22,10 @@ class ChooseExamPeriodTimeScreen extends StatefulWidget {
 }
 
 class _ChooseExamPeriodTimeScreenState extends State<ChooseExamPeriodTimeScreen> {
-  Future<void> _closeForm(BuildContext context) async => Navigator.of(context).pop();
+  Future<void> _closeForm(BuildContext context) async {
+    AutoRouter.of(context).popUntilRouteWithName(CustomExamFormRoute.name);
+  }
+
   DateTime? _dateTime;
   DateTime _time = DateTime.now();
 
@@ -101,9 +105,8 @@ class _ChooseExamPeriodTimeScreenState extends State<ChooseExamPeriodTimeScreen>
                   showFlushBarError(context, context.l10n.error_must_be_in_future);
                   return;
                 }
-
-                final settedDate = _time;
-                widget.onTimeSet(settedDate);
+                final newDate = alignDateTime(_time, const Duration(minutes: 5));
+                widget.onTimeSet(newDate);
                 AutoRouter.of(context).popUntilRouteWithName(CustomExamFormRoute.name);
               },
             )
