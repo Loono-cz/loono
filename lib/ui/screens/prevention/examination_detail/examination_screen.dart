@@ -11,6 +11,7 @@ import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/examination_detail.dart';
 import 'package:loono/ui/screens/prevention/questionnaire/schedule_examination.dart';
 import 'package:loono/ui/widgets/prevention/examination_edit_flow.dart';
+import 'package:loono/ui/widgets/prevention/examination_edit_modal.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
@@ -85,15 +86,22 @@ class ExaminationDetailScreen extends StatelessWidget {
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 8.0),
+            padding: const EdgeInsets.all(8.0),
             child: IconButton(
-              key: const Key('examinationDetailPage_btn_action'),
-              onPressed: () => _showActionSheet(context),
+              key: const Key('examinationDetailPage_btn_menu'),
+              onPressed: () {
+                if (examination.examinationCategoryType == ExaminationCategoryType.CUSTOM) {
+                  //Custom exams menu
+                  showCustomExamEditModal(context, choosedExamination!);
+                } else {
+                  //Default exams menu
+                }
+              },
               icon: SvgPicture.asset(
-                'assets/icons/dots_action.svg',
+                'assets/icons/more_vertical.svg',
               ),
             ),
-          ),
+          )
         ],
       ),
       body: SafeArea(

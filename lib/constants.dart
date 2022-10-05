@@ -148,6 +148,8 @@ class LoonoFonts {
   );
 
   static const customExamSubLabel = TextStyle(fontSize: 14, fontWeight: FontWeight.w400);
+  static const editExaminationMenuItem =
+      TextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Color(0xFF1A1919));
 
   static const actionMenuBack = TextStyle(
     fontSize: 20,

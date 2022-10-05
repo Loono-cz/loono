@@ -32,7 +32,7 @@ class ExaminationProgressContent extends StatelessWidget {
     final yearInterval = categorizedExamination.examination.intervalYears;
     //transformMonthToYear
     if (_examinationCategoryType == ExaminationCategoryType.CUSTOM) {
-      return '${transformMonthToYear(yearInterval)} ${yearInterval < 11 ? 'měsíců' : 'roků'}';
+      return '${transformMonthToYear(yearInterval)} ${yearInterval < 12 ? 'měsíců' : 'roků'}';
     } else {
       return '${yearInterval.toString()} ${yearInterval > 1 ? context.l10n.years : context.l10n.year}';
     }
@@ -112,59 +112,36 @@ class ExaminationProgressContent extends StatelessWidget {
 
   Widget _earlyCheckupContent(BuildContext context) {
     final examination = categorizedExamination.examination;
-    if (examination.periodicExam == true &&
-        examination.examinationCategoryType == ExaminationCategoryType.CUSTOM &&
-        examination.plannedDate == null) {
-      return Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            context.l10n.waiting_you,
-            style: LoonoFonts.paragraphSmallFontStyle.copyWith(
-              color: LoonoColors.primaryEnabled,
-            ),
-          ),
-          Text(
-            context.l10n.first_exam_progress,
-            style: LoonoFonts.paragraphSmallFontStyle.copyWith(
-              color: LoonoColors.primaryEnabled,
-            ),
-          )
-        ],
-      );
+    final interval = examination.intervalYears;
+    DateTime newWaitToDateTime;
+    final lastDateVisit = examination.lastConfirmedDate!.toLocal();
+
+    if (interval <= 11) {
+      newWaitToDateTime = DateTime(lastDateVisit.year, lastDateVisit.month + interval);
     } else {
-      final examination = categorizedExamination.examination;
-      final interval = examination.intervalYears;
-      DateTime newWaitToDateTime;
-      final lastDateVisit = examination.lastConfirmedDate!.toLocal();
+      final isCustom = categorizedExamination.examination.examinationCategoryType ==
+          ExaminationCategoryType.CUSTOM;
 
-      if (interval <= 11) {
-        newWaitToDateTime = DateTime(lastDateVisit.year, lastDateVisit.month + interval);
-      } else {
-        final isCustom = categorizedExamination.examination.examinationCategoryType ==
-            ExaminationCategoryType.CUSTOM;
-
-        newWaitToDateTime = DateTime(
-          lastDateVisit.year + (isCustom ? transformMonthToYear(interval) : interval),
-          lastDateVisit.month,
-        );
-      }
-
-      final formattedDate = DateFormat.yMMMM('cs-CZ').format(newWaitToDateTime);
-      return Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            context.l10n.early_ordering,
-            style: LoonoFonts.paragraphSmallFontStyle.copyWith(color: LoonoColors.primaryEnabled),
-          ),
-          Text(
-            formattedDate,
-            style: LoonoFonts.cardSubtitle.copyWith(fontSize: 16),
-          ),
-        ],
+      newWaitToDateTime = DateTime(
+        lastDateVisit.year + (isCustom ? transformMonthToYear(interval) : interval),
+        lastDateVisit.month,
       );
     }
+
+    final formattedDate = DateFormat.yMMMM('cs-CZ').format(newWaitToDateTime);
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          context.l10n.early_ordering,
+          style: LoonoFonts.paragraphSmallFontStyle.copyWith(color: LoonoColors.primaryEnabled),
+        ),
+        Text(
+          formattedDate,
+          style: LoonoFonts.cardSubtitle.copyWith(fontSize: 16),
+        ),
+      ],
+    );
   }
 
   @override

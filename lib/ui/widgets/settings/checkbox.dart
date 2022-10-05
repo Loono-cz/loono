@@ -51,7 +51,7 @@ class CheckboxCustom extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 17),
+                padding: const EdgeInsets.only(left: 8),
                 child: Text(
                   text,
                   style: const TextStyle(fontSize: 14),

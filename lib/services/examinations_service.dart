@@ -83,6 +83,18 @@ class ExaminationsProvider extends ChangeNotifier {
     }
   }
 
+  void deleteExaminationRecord(String uuid) {
+    final indexToUpdate =
+        examinations?.examinations.indexWhere((examination) => examination.uuid == uuid);
+    if (indexToUpdate != null) {
+      final builder = examinations?.toBuilder();
+      builder?.examinations.removeAt(indexToUpdate);
+      examinations = builder?.build();
+      evaluateExaminations();
+      notifyListeners();
+    }
+  }
+
   void updateSelfExaminationRecord(
     SelfExaminationCompletionInformation data,
     SelfExaminationType type,
@@ -133,7 +145,11 @@ class ExaminationsProvider extends ChangeNotifier {
     }
   }
 
-  void createCustomExamination(ExaminationRecord record, {DateTime? lastConfirmedDate}) {
+  void createCustomExamination(
+    ExaminationRecord record, {
+    DateTime? lastConfirmedDate,
+    bool isUnknown = false,
+  }) {
     final createdItem = ExaminationPreventionStatus(
       (b) => b
         ..examinationType = record.type
@@ -144,12 +160,13 @@ class ExaminationsProvider extends ChangeNotifier {
         ..periodicExam = record.periodicExam
         ..points = record.periodicExam == true ? 50 : 0
         ..firstExam = record.firstExam
-        ..plannedDate = record.plannedDate
+        ..plannedDate = !isUnknown ? record.plannedDate : null
         ..state = record.status
-        ..intervalYears = record.customInterval ?? 2
+        ..intervalYears = record.customInterval ?? 24
         ..priority = 0
         ..count = 0
-        ..badge = BadgeType.SHIELD,
+        ..badge = BadgeType.SHIELD
+        ..uuid = record.uuid,
     );
 
     final builder = examinations?.toBuilder();
@@ -223,7 +240,8 @@ class ExaminationsProvider extends ChangeNotifier {
               ..examinationCategoryType = record.examinationCategoryType
               ..badge = item.badge
               ..periodicExam = record.periodicExam
-              ..note = record.note,
+              ..note = record.note
+              ..intervalYears = record.customInterval,
           );
 
       final builder = examinations?.toBuilder();
@@ -250,6 +268,8 @@ class ExaminationsProvider extends ChangeNotifier {
       ..categorizedExamination = categorizedExamination
       ..choosedExamination = choosedExamination;
   }
+
+  // Future<ApiResponse>
 }
 
 class ChoosedCustomExam {

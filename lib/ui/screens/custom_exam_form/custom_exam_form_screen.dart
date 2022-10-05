@@ -373,7 +373,9 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                   onClickInputField: () => AutoRouter.of(context).navigate(
                     ChooseExamPeriodDateRoute(
                       pickTime: false,
-                      label: context.l10n.your_last_examination,
+                      label: _usersDao.user?.sex == Sex.MALE
+                          ? context.l10n.your_last_examination_male
+                          : context.l10n.your_last_examination_female,
                       dateTime: _lastExamDate,
                       onValueChange: onLastExamDateSet,
                       isLastExamChoose: true,
@@ -477,7 +479,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
           actionType: _examinationType,
           periodicExam: _isPeriodicExam,
           note: _note,
-          customInterval: transformInterval(_customInterval), // Pravidelne
+          customInterval: transformInterval(context, _customInterval), // Pravidelne
           newDate: _lastExamChck && _nextExamChck ? DateTime.now() : _nextExamDate,
           categoryType: ExaminationCategoryType.CUSTOM,
           status:
@@ -487,7 +489,8 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
 
     response.map(
       success: (res) {
-        Provider.of<ExaminationsProvider>(context, listen: false).createCustomExamination(res.data);
+        Provider.of<ExaminationsProvider>(context, listen: false)
+            .createCustomExamination(res.data, isUnknown: _lastExamChck && _nextExamChck);
         AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
         showFlushBarSuccess(context, context.l10n.examinatoin_was_added);
       },
@@ -507,7 +510,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
           actionType: _examinationType,
           periodicExam: _isPeriodicExam,
           note: _note,
-          customInterval: transformInterval(_customInterval), // Pravidelne
+          customInterval: transformInterval(context, _customInterval), // Pravidelne
           newDate: _lastExamDate,
           categoryType: ExaminationCategoryType.CUSTOM,
           status: ExaminationStatus.CONFIRMED,
@@ -537,7 +540,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
           actionType: _examinationType,
           periodicExam: _isPeriodicExam,
           note: _note,
-          customInterval: transformInterval(_customInterval), // Pravidelne
+          customInterval: transformInterval(context, _customInterval), // Pravidelne
           newDate: _lastExamDate,
           categoryType: ExaminationCategoryType.CUSTOM,
           status: ExaminationStatus.CONFIRMED,
@@ -552,7 +555,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
               actionType: _examinationType,
               periodicExam: _isPeriodicExam,
               note: _note,
-              customInterval: transformInterval(_customInterval), // Pravidelne
+              customInterval: transformInterval(context, _customInterval), // Pravidelne
               newDate: _nextExamDate,
               categoryType: ExaminationCategoryType.CUSTOM,
               status: ExaminationStatus.NEW,
@@ -616,12 +619,5 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
         );
       },
     );
-  }
-
-  int transformInterval(String str) {
-    final splitedString = str.split(' ');
-    final number = splitedString[0];
-    final desc = splitedString[1];
-    return desc == context.l10n.years ? transformYearToMonth(number) : int.parse(number);
   }
 }
