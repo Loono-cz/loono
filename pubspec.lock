@@ -1038,7 +1038,6 @@ packages:
       path: dart
       ref: "0ff983c382f3e33e3e096e6e88605e052b5ceadb"
       resolved-ref: "0ff983c382f3e33e3e096e6e88605e052b5ceadb"
-
       url: "https://github.com/Loono-cz/loono-api.git"
     source: git
     version: "1.0.0"

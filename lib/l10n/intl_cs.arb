@@ -1433,5 +1433,9 @@
   "disposable": "Jednorázové",
   "@disposable": {},
   "regularly": "Pravidelné",
-  "@regularly": {}
+  "@regularly": {},
+  "no_connection_message": "Žádné připojení",
+  "@no_connection_message":{},
+  "no_connection_message_check_connection": "Prosím zkontroluj své připojení k síti",
+  "@no_connection_message_check_connection":{}
 }
