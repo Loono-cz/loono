@@ -1455,5 +1455,11 @@
         "type": "int"
       }
     }
-  }
+  },
+  "five_more_examinations": "prohlídek.",
+  "@five_more_examinations": {},
+  "less_then_five_exams": "prohlídky",
+  "@less_then_five_exams": {},
+  "only_one_exam": "prohlídka",
+  "@only_one_exam": {}
 }

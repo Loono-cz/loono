@@ -307,6 +307,16 @@ class ExaminationsSheetOverlay extends StatelessWidget {
       );
     }
 
+    String getExamLabel(int count) {
+      if (count >= 5) {
+        return context.l10n.five_more_examinations;
+      } else if (count > 1) {
+        return context.l10n.less_then_five_exams;
+      }
+
+      return context.l10n.only_one_exam;
+    }
+
     return Padding(
       padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 26.0),
       child: Column(
