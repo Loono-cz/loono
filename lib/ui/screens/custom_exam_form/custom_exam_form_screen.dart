@@ -215,7 +215,9 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                 maxLength: 256,
                 keyboardType: TextInputType.multiline,
                 initialValue: _note,
-                enabled: _isPeriodicExam ? _nextExamDate != null : true,
+                enabled: _isPeriodicExam
+                    ? (_nextExamDate != null && !_nextExamChck) && (_nextExamDate != null)
+                    : true,
                 onChanged: onNoteChange,
                 decoration: InputDecoration(
                   hintText: context.l10n.note_visiting_description,
