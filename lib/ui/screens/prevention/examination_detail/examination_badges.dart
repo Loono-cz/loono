@@ -111,7 +111,7 @@ class ExaminationBadges extends StatelessWidget {
     }
   }
 
-  ExaminationCategoryType get examCategoryType =>
+  ExaminationCategoryType? get examCategoryType =>
       categorizedExamination.examination.examinationCategoryType;
 
   RewardState _getRewardState(Badge? badge) {

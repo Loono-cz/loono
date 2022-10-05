@@ -24,14 +24,12 @@ import 'package:loono/ui/screens/prevention/examination_detail/examination_badge
 import 'package:loono/ui/screens/prevention/examination_detail/faq_section.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/prevention/calendar_permission_sheet.dart';
-import 'package:loono/ui/widgets/prevention/change_last_visit_sheet.dart';
 import 'package:loono/ui/widgets/prevention/create_order_from_detail_flow.dart';
 import 'package:loono/ui/widgets/prevention/datepicker_sheet.dart';
 import 'package:loono/ui/widgets/prevention/examination_confirm_sheet.dart';
 import 'package:loono/ui/widgets/prevention/examination_edit_modal.dart';
 import 'package:loono/ui/widgets/prevention/examination_new_sheet.dart';
 import 'package:loono/ui/widgets/prevention/examination_progress_content.dart';
-import 'package:loono/ui/widgets/prevention/last_visit_sheet.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
@@ -62,7 +60,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
   ExaminationPreventionStatus get _examination => widget.categorizedExamination.examination;
 
   ExaminationType get _examinationType => _examination.examinationType;
-  ExaminationCategoryType get _examinationCategoryType => _examination.examinationCategoryType;
+  ExaminationCategoryType? get _examinationCategoryType => _examination.examinationCategoryType;
   ExaminationActionType get _examinationActionType =>
       _examination.examinationActionType ?? ExaminationActionType.CONTROL;
 
@@ -156,7 +154,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
             uuid: widget.categorizedExamination.examination.uuid,
             firstExam: false,
             status: ExaminationStatus.NEW,
-            categoryType: _examinationCategoryType,
+            categoryType: _examinationCategoryType!,
             note: note,
             customInterval: _examination.customInterval ?? _examination.intervalYears,
             actionType: _examinationActionType,
@@ -261,29 +259,30 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                           _calendarRow(
                             '${context.l10n.last_visit}:\n$lastVisit',
                             onTap: () {
+                              ///TODO: Ma to byt zakomentovane ?
                               /// must be first exam and no planned examination should exist
-                              if (!widget.categorizedExamination.examination.firstExam &&
-                                  widget.categorizedExamination.examination.plannedDate != null) {
-                                return;
-                              }
+                              // if (!widget.categorizedExamination.examination.firstExam &&
+                              //     widget.categorizedExamination.examination.plannedDate != null) {
+                              //   return;
+                              // }
 
-                              /// if "nevim", open question sheet else allow to change date
-                              if (widget.categorizedExamination.examination.lastConfirmedDate !=
-                                  null) {
-                                final title =
-                                    '${_sex == Sex.MALE ? l10n.last_checkup_question_male : l10n.last_checkup_question_female} $preposition $practitioner?';
-                                showChangeLastVisitSheet(
-                                  context: context,
-                                  title: title,
-                                  examination: widget.categorizedExamination,
-                                );
-                              } else {
-                                showLastVisitSheet(
-                                  context: context,
-                                  examination: widget.categorizedExamination,
-                                  sex: _sex,
-                                );
-                              }
+                              // /// if "nevim", open question sheet else allow to change date
+                              // if (widget.categorizedExamination.examination.lastConfirmedDate !=
+                              //     null) {
+                              //   final title =
+                              //       '${_sex == Sex.MALE ? l10n.last_checkup_question_male : l10n.last_checkup_question_female} $preposition $practitioner?';
+                              //   showChangeLastVisitSheet(
+                              //     context: context,
+                              //     title: title,
+                              //     examination: widget.categorizedExamination,
+                              //   );
+                              // } else {
+                              //   showLastVisitSheet(
+                              //     context: context,
+                              //     examination: widget.categorizedExamination,
+                              //     sex: _sex,
+                              //   );
+                              // }
                             },
                           ),
                         if (!_isPeriodicalExam)

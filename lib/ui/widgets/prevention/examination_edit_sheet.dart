@@ -195,7 +195,7 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
                 ),
               ),
             ),
-            if (widget.exam != null && widget.exam?.lastConfirmedDate == null) ...[
+            if (widget.exam?.lastConfirmedDate != null) ...[
               const Divider(),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.baseline,
