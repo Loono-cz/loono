@@ -241,7 +241,7 @@ class ExaminationsProvider extends ChangeNotifier {
               ..badge = item.badge
               ..periodicExam = record.periodicExam
               ..note = record.note
-              ..intervalYears = record.customInterval,
+              ..intervalYears = record.customInterval ?? 0,
           );
 
       final builder = examinations?.toBuilder();

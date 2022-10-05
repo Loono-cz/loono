@@ -35,7 +35,7 @@ class CustomDatePicker extends StatefulWidget {
 }
 
 class CustomDatePickerState extends State<CustomDatePicker> {
-  late int _selectedDayIndex = 0;
+  late int _selectedDayIndex = widget.defaultDay ?? 0;
   late int _selectedMonthIndex = widget.defaultMonth ?? widget.today.month;
   late int _selectedYearIndex = 0;
   late DateTime datePickerDate = DateTime(
@@ -44,7 +44,8 @@ class CustomDatePickerState extends State<CustomDatePicker> {
     _selectedDayIndex + 1,
   );
 
-  final FixedExtentScrollController _dayController = FixedExtentScrollController();
+  final FixedExtentScrollController _dayController =
+      FixedExtentScrollController(initialItem: DateTime.now().day);
   final FixedExtentScrollController _monthController = FixedExtentScrollController();
   final FixedExtentScrollController _yearController = FixedExtentScrollController();
 
