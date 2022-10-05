@@ -90,6 +90,8 @@ class _CustomInputTextFieldState extends State<CustomInputTextField> {
         enabledBorder: textFieldBorder,
         labelText: widget.label,
         labelStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+        floatingLabelAlignment: FloatingLabelAlignment.start,
+        contentPadding: const EdgeInsets.only(left: 40),
       ),
     );
   }

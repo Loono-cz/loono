@@ -457,31 +457,42 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
         ],
       );
     } else {
-      return SizedBox(
-        width: (MediaQuery.of(context).size.width) - (MediaQuery.of(context).size.width / 20) * 10,
-        child: CustomInputTextField(
-          error: _showPeriodDateTimeError && _periodDateTime == null,
-          label: _periodDateTime == null ? '' : context.l10n.examination_term,
-          hintText: context.l10n.examination_term,
-          value: _periodDateTime != null
-              ? DateFormat(LoonoStrings.dateWithHoursFormat).format(_periodDateTime!)
-              : '',
-          prefixIcon: SvgPicture.asset(
-            'assets/icons/calendar.svg',
-            width: 5,
-            height: 5,
-            fit: BoxFit.scaleDown,
-            color: Colors.black87,
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          const Divider(),
+          const SizedBox(
+            height: 8.0,
           ),
-          onClickInputField: () => AutoRouter.of(context).navigate(
-            ChooseExamPeriodDateRoute(
-              label: _getUserLabelBySex(context, sex: _usersDao.user?.sex ?? Sex.FEMALE),
-              pickTime: true,
-              dateTime: _periodDateTime ?? DateTime.now(),
-              onValueChange: onDateSet,
+          SizedBox(
+            width:
+                (MediaQuery.of(context).size.width) - (MediaQuery.of(context).size.width / 20) * 10,
+            child: CustomInputTextField(
+              error: _showPeriodDateTimeError && _periodDateTime == null,
+              label: _periodDateTime == null ? '' : context.l10n.examination_term,
+              hintText: context.l10n.examination_term,
+              value: _periodDateTime != null
+                  ? DateFormat(LoonoStrings.dateWithHoursFormat).format(_periodDateTime!)
+                  : '',
+              prefixIcon: SvgPicture.asset(
+                'assets/icons/calendar.svg',
+                width: 5,
+                height: 5,
+                fit: BoxFit.scaleDown,
+                color: Colors.black87,
+              ),
+              onClickInputField: () => AutoRouter.of(context).navigate(
+                ChooseExamPeriodDateRoute(
+                  label: _getUserLabelBySex(context, sex: _usersDao.user?.sex ?? Sex.FEMALE),
+                  pickTime: true,
+                  dateTime: _periodDateTime ?? DateTime.now(),
+                  onValueChange: onDateSet,
+                ),
+              ),
             ),
           ),
-        ),
+        ],
       );
     }
   }
