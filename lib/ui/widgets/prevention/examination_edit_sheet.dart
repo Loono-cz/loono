@@ -87,13 +87,17 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
 
     final response = await registry.get<ExaminationRepository>().postExamination(
           widget.exam!.examinationType,
-          newDate: date ?? widget.exam?.plannedDate,
+          newDate: date ?? widget.exam?.plannedDate ?? widget.exam!.lastConfirmedDate,
           uuid: widget.exam!.uuid,
           periodicExam: widget.exam?.periodicExam,
           note: widget.exam?.note,
-          categoryType: ExaminationCategoryType.CUSTOM,
+          categoryType: widget.exam?.examinationCategoryType ?? ExaminationCategoryType.CUSTOM,
           status: ExaminationStatus.CONFIRMED,
-          customInterval: transformInterval(context, _term),
+          customInterval: _term.isNotEmpty
+              ? transformInterval(context, _term)
+              : widget.exam?.examinationCategoryType == ExaminationCategoryType.MANDATORY
+                  ? widget.exam!.intervalYears
+                  : widget.exam!.customInterval,
           actionType: widget.exam!.examinationActionType,
           firstExam: true,
         );
@@ -101,8 +105,12 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
     response.map(
       success: (res) {
         final examProvider = Provider.of<ExaminationsProvider>(context, listen: false);
-        final newExam =
-            examProvider.updateAndReturnCustomExaminationsRecord(res.data, widget.exam!);
+
+        final newExam = examProvider.updateAndReturnCustomExaminationsRecord(
+          res.data,
+          examProvider.getChoosedCustomExamination().choosedExamination!,
+        );
+        print(newExam);
         AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
         AutoRouter.of(context).replace(
           ExaminationDetailRoute(
@@ -194,6 +202,9 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
               _term,
               onClickInputField: () => AutoRouter.of(context).navigate(
                 ChooseFrequencyOfExamRoute(
+                  examType: widget.exam!.examinationType,
+                  isDefaultExam:
+                      widget.exam!.examinationCategoryType == ExaminationCategoryType.MANDATORY,
                   value: _term,
                   valueChanged: changeFreqTerm,
                 ),
@@ -216,7 +227,7 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
                       label: _lastExamDate == null ? '' : context.l10n.last_visit,
                       hintText: context.l10n.last_visit,
                       value: _lastExamDate != null
-                          ? DateFormat(LoonoStrings.dateWithHoursFormat).format(_lastExamDate!)
+                          ? DateFormat(LoonoStrings.dateFormat).format(_lastExamDate!)
                           : '',
                       prefixIcon: SvgPicture.asset(
                         'assets/icons/calendar.svg',

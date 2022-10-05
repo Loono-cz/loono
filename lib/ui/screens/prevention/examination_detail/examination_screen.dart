@@ -1,16 +1,12 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_extensions.dart';
-import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/examination_detail.dart';
 import 'package:loono/ui/screens/prevention/questionnaire/schedule_examination.dart';
-import 'package:loono/ui/widgets/prevention/examination_edit_flow.dart';
 import 'package:loono/ui/widgets/prevention/examination_edit_modal.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
@@ -26,38 +22,6 @@ class ExaminationDetailScreen extends StatelessWidget {
   final CategorizedExamination categorizedExamination;
   final String? initialMessage; // show flushbar message on init
   final ExaminationPreventionStatus? choosedExamination;
-
-  void _showActionSheet(BuildContext context) {
-    showCupertinoModalPopup<void>(
-      context: context,
-      builder: (BuildContext context) => CupertinoActionSheet(
-        actions: <CupertinoActionSheetAction>[
-          CupertinoActionSheetAction(
-            onPressed: () {
-              Navigator.pop(context);
-              showExaminationEditSheet(
-                context: context,
-              );
-            },
-            child: Text(
-              context.l10n.btn_edit_examination,
-              style: LoonoFonts.actionMenuItem,
-            ),
-          ),
-          CupertinoActionSheetAction(
-            isDefaultAction: true,
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text(
-              context.l10n.back,
-              style: LoonoFonts.actionMenuBack,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,12 +54,7 @@ class ExaminationDetailScreen extends StatelessWidget {
             child: IconButton(
               key: const Key('examinationDetailPage_btn_menu'),
               onPressed: () {
-                if (examination.examinationCategoryType == ExaminationCategoryType.CUSTOM) {
-                  //Custom exams menu
-                  showCustomExamEditModal(context, choosedExamination!);
-                } else {
-                  //Default exams menu
-                }
+                showCustomExamEditModal(context, examination);
               },
               icon: SvgPicture.asset(
                 'assets/icons/more_vertical.svg',

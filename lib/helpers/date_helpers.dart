@@ -9,14 +9,14 @@ int daysBetween(DateTime from, DateTime to) {
   return (to.difference(from).inHours / 24).round();
 }
 
-int transformYearToMonth(String str) => (int.parse(str.replaceAll(RegExp(r'[^0-9]'), '')) * 12);
+int transformYearToMonth(int year) => (year * 12);
 int transformMonthToYear(num month) => (month < 12 ? month : month / 12).round();
 
 int transformInterval(BuildContext context, String str) {
   final splitedString = str.split(' ');
   final number = splitedString[0];
   final desc = splitedString[1];
-  return desc == context.l10n.years ? transformYearToMonth(number) : int.parse(number);
+  return desc == context.l10n.years ? transformYearToMonth(int.parse(number)) : int.parse(number);
 }
 
 DateTime alignDateTime(DateTime dt, Duration alignment, [bool roundUp = true]) {

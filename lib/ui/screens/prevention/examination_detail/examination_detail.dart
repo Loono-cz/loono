@@ -85,11 +85,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
   String _intervalYears(BuildContext context) {
     final yearInterval = widget.categorizedExamination.examination.intervalYears;
     //transformMonthToEar
-    if (_examinationCategoryType == ExaminationCategoryType.CUSTOM) {
-      return ' ${yearInterval < 12 ? '$yearInterval měsíců' : '${transformMonthToYear(yearInterval)} roků'}';
-    } else {
-      return '${yearInterval.toString()} ${yearInterval > 1 ? context.l10n.years : context.l10n.year}';
-    }
+    return ' ${yearInterval < 12 ? '$yearInterval měsíců' : '${transformMonthToYear(yearInterval)} roků'}';
   }
 
   Widget _calendarRow(String text, {VoidCallback? onTap, bool? interval, bool? showCalendarIcon}) {
@@ -348,7 +344,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
           buildDisposableExamButtons(context, _onEditRegularlyExamTerm)
         else
           buildButtons(context, _onPostNewCheckupSubmit, preposition),
-        if (_nextVisitDate != null)
+        if (_nextVisitDate != _examination.lastConfirmedDate)
           Padding(
             padding: const EdgeInsets.only(left: 16.0, right: 16.0),
             child: TextFormField(

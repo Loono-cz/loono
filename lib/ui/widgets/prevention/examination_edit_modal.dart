@@ -196,29 +196,25 @@ void showCustomExamEditModal(
               style: LoonoFonts.editExaminationMenuItem,
             ),
           ),
-
-        ///TODO: After delet api will be working unset this comment.
-        // CupertinoActionSheetAction(
-        //   key: const Key('editCheckUpDateSheet_action_cancelCheckUp'),
-        //   isDestructiveAction: true,
-        //   onPressed: () {
-        //     if (examinationUuid != null) {
-        //       AutoRouter.of(modalContext).pop();
-        //       showDeleteExaminationSheet(
-        //         context: pageContext,
-        //         id: examinationUuid,
-        //         examinationType: examinationType,
-        //         date: examination.plannedDate?.toLocal() ?? DateTime.now(),
-        //       );
-        //     } else {
-        //       showFlushBarError(
-        //         modalContext,
-        //         modalContext.l10n.something_went_wrong,
-        //       );
-        //     }
-        //   },
-        //   child: Text(pageContext.l10n.delete_exam_action),
-        // ),
+        // if (examination.examinationCategoryType != ExaminationCategoryType.MANDATORY)
+        //   CupertinoActionSheetAction(
+        //     key: const Key('editCheckUpDateSheet_action_cancelCheckUp'),
+        //     isDestructiveAction: true,
+        //     onPressed: () {
+        //       if (examinationUuid != null) {
+        //         AutoRouter.of(modalContext).pop();
+        //         showDeleteExaminationSheet(
+        //           context: pageContext,
+        //           id: examinationUuid,
+        //           examinationType: examinationType,
+        //           date: examination.plannedDate?.toLocal() ?? DateTime.now(),
+        //         );
+        //       } else {
+        //         showFlushBarError(modalContext, modalContext.l10n.something_went_wrong);
+        //       }
+        //     },
+        //     child: Text(pageContext.l10n.cancel_checkup),
+        //   ),
         CupertinoActionSheetAction(
           isDefaultAction: true,
           onPressed: () {

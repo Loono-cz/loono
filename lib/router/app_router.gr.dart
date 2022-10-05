@@ -14,8 +14,8 @@
 import 'package:auto_route/auto_route.dart' as _i15;
 import 'package:built_collection/built_collection.dart' as _i72;
 import 'package:flutter/material.dart' as _i62;
-import 'package:flutter/services.dart' as _i70;
 import 'package:loono_api/loono_api.dart' as _i66;
+import 'package:moor/moor.dart' as _i70;
 
 import '../helpers/examination_category.dart' as _i68;
 import '../models/categorized_examination.dart' as _i67;
@@ -630,7 +630,9 @@ class AppRouter extends _i15.RootStackRouter {
           child: _i60.ChooseFrequencyOfExamScreen(
               key: args.key,
               value: args.value,
-              valueChanged: args.valueChanged),
+              valueChanged: args.valueChanged,
+              isDefaultExam: args.isDefaultExam,
+              examType: args.examType),
           transitionsBuilder: _i15.TransitionsBuilders.slideBottom,
           opaque: true,
           barrierDismissible: false);
@@ -2200,18 +2202,28 @@ class ChooseFrequencyOfExamRoute
   ChooseFrequencyOfExamRoute(
       {_i62.Key? key,
       String? value,
-      required dynamic Function(String) valueChanged})
+      required dynamic Function(String) valueChanged,
+      bool isDefaultExam = false,
+      _i66.ExaminationType? examType})
       : super(ChooseFrequencyOfExamRoute.name,
             path: 'custom-exam-form-choose-exam-frequency',
             args: ChooseFrequencyOfExamRouteArgs(
-                key: key, value: value, valueChanged: valueChanged));
+                key: key,
+                value: value,
+                valueChanged: valueChanged,
+                isDefaultExam: isDefaultExam,
+                examType: examType));
 
   static const String name = 'ChooseFrequencyOfExamRoute';
 }
 
 class ChooseFrequencyOfExamRouteArgs {
   const ChooseFrequencyOfExamRouteArgs(
-      {this.key, this.value, required this.valueChanged});
+      {this.key,
+      this.value,
+      required this.valueChanged,
+      this.isDefaultExam = false,
+      this.examType});
 
   final _i62.Key? key;
 
@@ -2219,9 +2231,13 @@ class ChooseFrequencyOfExamRouteArgs {
 
   final dynamic Function(String) valueChanged;
 
+  final bool isDefaultExam;
+
+  final _i66.ExaminationType? examType;
+
   @override
   String toString() {
-    return 'ChooseFrequencyOfExamRouteArgs{key: $key, value: $value, valueChanged: $valueChanged}';
+    return 'ChooseFrequencyOfExamRouteArgs{key: $key, value: $value, valueChanged: $valueChanged, isDefaultExam: $isDefaultExam, examType: $examType}';
   }
 }
 

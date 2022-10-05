@@ -148,7 +148,7 @@ class _ExaminationEditContentState extends State<_ExaminationEditContent> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Frekvence prohlidek'),
+                    Text(context.l10n.exam_frequency),
                     const SizedBox(height: 30.0),
                     Padding(
                       padding: const EdgeInsets.only(top: 13, left: 13, bottom: 13),

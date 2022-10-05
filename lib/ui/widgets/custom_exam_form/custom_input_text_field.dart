@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/l10n/ext.dart';
 
+// ignore: must_be_immutable
 class CustomInputTextField extends StatefulWidget {
   const CustomInputTextField({
     super.key,
@@ -22,6 +23,7 @@ class CustomInputTextField extends StatefulWidget {
   final bool? enabled;
   final bool error;
   final String? Function(String?)? onValidation;
+
   @override
   State<CustomInputTextField> createState() => _CustomInputTextFieldState();
 }
