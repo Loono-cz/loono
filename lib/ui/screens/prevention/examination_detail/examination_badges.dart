@@ -88,10 +88,7 @@ class ExaminationBadges extends StatelessWidget {
   }
 
   BadgeState _getBadgeState(Badge? data, int index) {
-    if (categorizedExamination.examination.state == ExaminationStatus.CONFIRMED &&
-        !isPlannedDate &&
-        (isLastConfirmedDateOlderMinusTwoMonths) &&
-        index + 1 == data?.level) {
+    if (isLastConfirmedDateOlderMinusTwoMonths && index + 1 == data?.level) {
       return BadgeState.greenBadge;
     } else if (_isBadgeLastInMonthOfValidity(data, index)) {
       return BadgeState.redBadge;
