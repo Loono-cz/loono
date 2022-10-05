@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:loono/constants.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/avatar_arrow_bubble.dart';
 import 'package:loono/ui/widgets/badges/badge_composer.dart';
@@ -26,7 +27,7 @@ class PreventionScreen extends StatelessWidget {
         onPressed: () {
           AutoRouter.of(context).push(const CustomExamFormRoute());
         },
-        backgroundColor: Colors.red,
+        backgroundColor: LoonoColors.primaryEnabled,
         child: const Icon(Icons.add),
       ),
       body: SafeArea(

@@ -1443,5 +1443,17 @@
   "edit_examination": "Upravit prohlídku",
   "@edit_examination": {},
   "examination_was_edited": "Prohlídka byla upravena.",
-  "@examination_was_edited": {}
+  "@examination_was_edited": {},
+  "your_list_of_exam_is_full_warning": "Tvůj seznam prohlídek je plný.",
+  "@your_list_of_exam_is_full_warning": {},
+  "your_list_of_exam_is_full_disclaimer": "Pro přidání další prohlídky odstraň nejprve některou z dříve přidaných prohlídek.",
+  "@your_list_of_exam_is_full_disclaimer": {},
+  "your_list_of_exam_info": "Ještě si můžeš přidat {count}",
+  "@your_list_of_exam_info": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

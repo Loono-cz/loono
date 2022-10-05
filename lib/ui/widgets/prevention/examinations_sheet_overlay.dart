@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:collection/collection.dart';
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/examination_category.dart';
@@ -35,6 +36,7 @@ class ExaminationsSheetOverlay extends StatelessWidget {
           initialChildSize: 0.4,
           maxChildSize: 0.75,
           minChildSize: 0.15,
+          // controller: scrollDragController,
           builder: (context, scrollController) {
             if (examinationsProvider.loading && examinationsProvider.examinations == null) {
               return const Center(
@@ -72,6 +74,7 @@ class ExaminationsSheetOverlay extends StatelessWidget {
             return AvatarBubbleNotifier(
               convertExtent: convertExtent,
               child: Container(
+                height: MediaQuery.of(context).size.height * .5,
                 decoration: const BoxDecoration(
                   color: LoonoColors.bottomSheetPrevention,
                   borderRadius: BorderRadius.only(
@@ -80,52 +83,58 @@ class ExaminationsSheetOverlay extends StatelessWidget {
                   ),
                 ),
                 child: ListView.builder(
+                  physics: const ClampingScrollPhysics(),
                   controller: scrollController,
-                  itemCount: examinationCategoriesOrdering.length,
+                  itemCount: examinationCategoriesOrdering.length + 1,
                   // this prevents card flashing/repositioning when there's ongoing sorting on scroll
                   cacheExtent: SelfExaminationType.values.length * EXAMINATION_CARD_HEIGHT +
                       ExaminationType.values.length * EXAMINATION_CARD_HEIGHT,
                   itemBuilder: (context, index) {
-                    final examinationStatus = examinationCategoriesOrdering.elementAt(index);
-                    final categorizedExaminations = categorized
-                        .where((e) => e.category == examinationStatus)
-                        .toList()
-                      ..sortExaminations();
+                    final itemCount = examinationCategoriesOrdering.length;
 
-                    return Column(
-                      children: [
-                        if (index == 0) ...[
-                          _buildHandle(context),
-                          _buildSelfExaminationCategory(
-                            context,
-                            CardPosition.first,
-                            examinationsProvider.examinations!.selfexaminations
-                                .where(
-                                  (exam) => exam.calculateStatus().position == CardPosition.first,
-                                )
-                                .toBuiltList(),
-                          ),
+                    if (index <= itemCount - 1) {
+                      final examinationStatus = examinationCategoriesOrdering.elementAt(index);
+                      final categorizedExaminations = categorized
+                          .where((e) => e.category == examinationStatus)
+                          .toList()
+                        ..sortExaminations();
+                      return Column(
+                        children: [
+                          if (index == 0) ...[
+                            _buildHandle(context),
+                            _buildSelfExaminationCategory(
+                              context,
+                              CardPosition.first,
+                              examinationsProvider.examinations!.selfexaminations
+                                  .where(
+                                    (exam) => exam.calculateStatus().position == CardPosition.first,
+                                  )
+                                  .toBuiltList(),
+                            ),
+                          ],
+                          if (categorizedExaminations.isNotEmpty)
+                            _buildExaminationCategory(
+                              context,
+                              examinationStatus.getHeaderMessage(context),
+                              categorizedExaminations,
+                            )
+                          else
+                            const SizedBox.shrink(),
+                          if (index == examinationCategoriesOrdering.length - 1)
+                            _buildSelfExaminationCategory(
+                              context,
+                              CardPosition.last,
+                              examinationsProvider.examinations!.selfexaminations
+                                  .where(
+                                    (exam) => exam.calculateStatus().position == CardPosition.last,
+                                  )
+                                  .toBuiltList(),
+                            ),
                         ],
-                        if (categorizedExaminations.isNotEmpty)
-                          _buildExaminationCategory(
-                            context,
-                            examinationStatus.getHeaderMessage(context),
-                            categorizedExaminations,
-                          )
-                        else
-                          const SizedBox.shrink(),
-                        if (index == examinationCategoriesOrdering.length - 1)
-                          _buildSelfExaminationCategory(
-                            context,
-                            CardPosition.last,
-                            examinationsProvider.examinations!.selfexaminations
-                                .where(
-                                  (exam) => exam.calculateStatus().position == CardPosition.last,
-                                )
-                                .toBuiltList(),
-                          ),
-                      ],
-                    );
+                      );
+                    } else {
+                      return _buildPlaceholderCard(context, categorized);
+                    }
                   },
                 ),
               ),
@@ -268,6 +277,67 @@ class ExaminationsSheetOverlay extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildPlaceholderCard(BuildContext context, List<CategorizedExamination> categorized) {
+    final customExamCount = 10 -
+        categorized
+            .where(
+              (element) =>
+                  element.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM,
+            )
+            .length;
+    Widget _buildFullExamColumn(BuildContext context) {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(context.l10n.your_list_of_exam_is_full_warning),
+          const SizedBox(
+            height: 16,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+            child: Text(
+              context.l10n.your_list_of_exam_is_full_disclaimer,
+            ),
+          ),
+        ],
+      );
+    }
+
+    return Padding(
+      padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 26.0),
+      child: Column(
+        children: [
+          const Divider(),
+          const SizedBox(
+            height: 20,
+          ),
+          DottedBorder(
+            color: LoonoColors.primaryEnabled,
+            radius: const Radius.circular(20),
+            borderType: BorderType.RRect,
+            padding: const EdgeInsets.all(0),
+            dashPattern: const [4, 5],
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.white24,
+              ),
+              height: 120,
+              child: Center(
+                child: customExamCount <= 0
+                    ? _buildFullExamColumn(context)
+                    : Text(
+                        '${context.l10n.your_list_of_exam_info(customExamCount)} ${customExamCount >= 5 ? 'prohlídek.' : 'prohlídky.'}',
+                      ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -11,7 +11,7 @@ import 'package:loono/ui/widgets/notification_icon.dart';
 import 'package:loono_api/loono_api.dart';
 
 // ignore: constant_identifier_names
-const EXAMINATION_CARD_HEIGHT = 130.0;
+const EXAMINATION_CARD_HEIGHT = 120.0;
 
 class ExaminationCard extends StatelessWidget {
   ExaminationCard({
@@ -136,6 +136,9 @@ class ExaminationCard extends StatelessWidget {
                   ],
                 ],
               ),
+              const SizedBox(
+                height: 8.0,
+              ),
               _subtitle,
               const SizedBox(height: 8.0),
               dateRow(isSoonOrOverdue ? diffText : ''),
@@ -175,9 +178,12 @@ class ExaminationCard extends StatelessWidget {
                   ],
                 ],
               ),
-              _subtitle,
               const SizedBox(
                 height: 4.0,
+              ),
+              _subtitle,
+              const SizedBox(
+                height: 8.0,
               ),
               Text(
                 'objednej se'.toUpperCase(),
@@ -220,10 +226,12 @@ class ExaminationCard extends StatelessWidget {
             children: [
               _title,
               const SizedBox(
-                height: 2.0,
+                height: 4.0,
               ),
               _subtitle,
-              const Spacer(flex: 2),
+              const SizedBox(
+                height: 8.0,
+              ),
               Text(
                 'do $formattedDate hotovo'.toUpperCase(),
                 style: LoonoFonts.cardSubtitle.copyWith(color: LoonoColors.grey),
