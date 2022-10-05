@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
@@ -16,13 +15,10 @@ import 'package:loono/ui/widgets/custom_time_picker.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
-void showDatePickerSheet({
+void showCustomDatePickerSheet({
   required BuildContext context,
   required CategorizedExamination categorizedExamination,
   required Future<void> Function({required DateTime date}) onSubmit,
-  required String firstStepTitle,
-  required String secondStepTitle,
-  bool isNewCheckup = false,
   String? additionalBottomText,
 }) {
   registry.get<FirebaseAnalytics>().logEvent(name: 'OpenDatePickerModal');
@@ -38,7 +34,7 @@ void showDatePickerSheet({
         key: const Key('datePickerSheet'),
         height: 680,
         decoration: const BoxDecoration(
-          color: LoonoColors.bottomSheetPrevention,
+          color: LoonoColors.primaryLight50,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(15),
             topRight: Radius.circular(15),
@@ -50,10 +46,7 @@ void showDatePickerSheet({
             child: _DatePickerContent(
               categorizedExamination: categorizedExamination,
               onSubmit: onSubmit,
-              firstStepTitle: firstStepTitle,
-              secondStepTitle: secondStepTitle,
               additionalBottomText: additionalBottomText,
-              isNewCheckup: isNewCheckup,
             ),
           ),
         ),
@@ -69,18 +62,12 @@ class _DatePickerContent extends StatefulWidget {
     Key? key,
     required this.categorizedExamination,
     required this.onSubmit,
-    required this.firstStepTitle,
-    required this.secondStepTitle,
-    required this.isNewCheckup,
     this.additionalBottomText,
   }) : super(key: key);
 
   final CategorizedExamination categorizedExamination;
   final Future<void> Function({required DateTime date}) onSubmit;
-  final String firstStepTitle;
-  final String secondStepTitle;
   final String? additionalBottomText;
-  final bool isNewCheckup;
 
   @override
   _DatePickerContentState createState() => _DatePickerContentState();
@@ -90,7 +77,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
   DateTime? newDate;
   bool isFirstStep = true;
 
-  void onDateChanged(DateTime date) {
+  void onDateChanged(DateTime? date) {
     /// prevent setting state from date picker during build
     Future.delayed(Duration.zero, () async {
       setState(() {
@@ -99,7 +86,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
     });
   }
 
-  void onTimeChanged(DateTime date) {
+  void onTimeChanged(DateTime? date) {
     /// prevent setting state from date picker during build
     Future.delayed(Duration.zero, () async {
       setState(() {
@@ -115,32 +102,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
 
   @override
   Widget build(BuildContext context) {
-    final examinationType = widget.categorizedExamination.examination.examinationType;
-    final practitioner =
-        procedureQuestionTitle(context, examinationType: examinationType).toLowerCase();
-    final preposition = czechPreposition(context, examinationType: examinationType);
-    final prepositionDativ = czechPrepositionDativ(context, examinationType: examinationType);
-
     final originalDate = widget.categorizedExamination.examination.plannedDate?.toLocal();
-
-    final newCheckupTitle = isFirstStep
-        ? '${_sex == Sex.MALE ? context.l10n.checkup_new_date_title_male : context.l10n.checkup_new_date_title_female}$prepositionDativ '
-        : '${_sex == Sex.MALE ? context.l10n.checkup_new_time_title_male : context.l10n.checkup_new_time_title_female}$prepositionDativ ';
-
-    String _buildTitle(BuildContext context) {
-      final exam = widget.categorizedExamination.examination;
-      if (widget.isNewCheckup) return newCheckupTitle;
-      if (exam.examinationCategoryType == ExaminationCategoryType.CUSTOM) {
-        return isFirstStep
-            ? _sex == Sex.MALE
-                ? context.l10n.wich_date_you_have_reservation_male
-                : context.l10n.wich_date_you_have_reservation_female
-            : _sex == Sex.MALE
-                ? context.l10n.custom_exam_reservation_time_male
-                : context.l10n.custom_exam_reservation_time_female;
-      }
-      return '${isFirstStep ? context.l10n.new_checkup_date : context.l10n.new_checkup_time} $preposition $practitioner';
-    }
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -175,18 +137,11 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 TextSpan(
                   children: [
                     TextSpan(
-                      text: _buildTitle(context),
+                      text: isFirstStep
+                          ? _getUserFirstStepLabelBySex(context, sex: _sex)
+                          : _getUserSecondStepLabelBySex(context, sex: _sex),
                       style: LoonoFonts.headerFontStyle,
                     ),
-                    if (widget.isNewCheckup)
-                      TextSpan(
-                        text: '${examinationTypeCasus(
-                          context,
-                          casus: Casus.dativ,
-                          examinationType: examinationType,
-                        )}?',
-                        style: LoonoFonts.headerFontStyle.copyWith(fontWeight: FontWeight.w700),
-                      ),
                   ],
                 ),
               ),
@@ -208,26 +163,26 @@ class _DatePickerContentState extends State<_DatePickerContent> {
         const Spacer(),
         Center(
           child: isFirstStep
-              ? CustomDatePicker(
-                  valueChanged: onDateChanged,
-                  yearsBeforeActual: DateTime.now().year - 1900,
-                  yearsOverActual: 2,
-                  allowDays: true,
-                  defaultDay: originalDate?.day,
-                  defaultMonth: originalDate?.month,
-                  defaultYear: originalDate?.year,
+              ? SizedBox(
+                  child: CustomDatePicker(
+                    valueChanged: onDateChanged,
+                    yearsBeforeActual: 10,
+                    yearsOverActual: 10,
+                    allowDays: true,
+                    defaultDay: DateTime.now().day,
+                  ),
                 )
               : CustomTimePicker(
+                  defaultHour: newDate?.hour,
+                  defaultMinute: newDate?.minute,
                   valueChanged: onTimeChanged,
-                  defaultDate: newDate!,
-                  defaultHour: originalDate?.hour,
-                  defaultMinute: originalDate?.minute,
+                  defaultDate: newDate ?? DateTime.now(),
                 ),
         ),
         const Spacer(),
         AsyncLoonoApiButton(
           key: const Key('datePickerSheet_btn_continue'),
-          text: isFirstStep ? context.l10n.continue_info : context.l10n.action_save,
+          text: isFirstStep ? context.l10n.continue_info : context.l10n.confirm_info,
           enabled: newDate != null,
           asyncCallback: () async {
             final isDateValid = Date.now().toDateTime().isAtSameMomentAs(
@@ -266,5 +221,33 @@ class _DatePickerContentState extends State<_DatePickerContent> {
         ),
       ],
     );
+  }
+
+  String _getUserFirstStepLabelBySex(BuildContext context, {required Sex? sex}) {
+    if (sex == null) return '';
+    late final String value;
+    switch (sex) {
+      case Sex.MALE:
+        value = context.l10n.wich_date_you_have_reservation_male;
+        break;
+      case Sex.FEMALE:
+        value = context.l10n.wich_date_you_have_reservation_female;
+        break;
+    }
+    return value;
+  }
+
+  String _getUserSecondStepLabelBySex(BuildContext context, {required Sex? sex}) {
+    if (sex == null) return '';
+    late final String value;
+    switch (sex) {
+      case Sex.MALE:
+        value = context.l10n.checkup_new_time_title_male;
+        break;
+      case Sex.FEMALE:
+        value = context.l10n.checkup_new_time_title_female;
+        break;
+    }
+    return value;
   }
 }

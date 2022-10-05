@@ -25,6 +25,7 @@ import 'package:loono/ui/screens/prevention/examination_detail/faq_section.dart'
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/prevention/calendar_permission_sheet.dart';
 import 'package:loono/ui/widgets/prevention/create_order_from_detail_flow.dart';
+import 'package:loono/ui/widgets/prevention/custom_exam_datepicker_sheet.dart';
 import 'package:loono/ui/widgets/prevention/datepicker_sheet.dart';
 import 'package:loono/ui/widgets/prevention/examination_confirm_sheet.dart';
 import 'package:loono/ui/widgets/prevention/examination_edit_modal.dart';
@@ -73,7 +74,8 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
             : _examinationType.customExamAssetPath,
         width: 180,
       );
-  String get _note => _examination.note ?? '';
+
+  String note = '';
   int get _hashCodeOfExam => _examination.hashCode;
   Sex get _sex {
     final user = registry.get<DatabaseService>().users.user;
@@ -171,6 +173,46 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                 .updateExaminationsRecord(res.data);
           }
           //AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
+          AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
+          AutoRouter.of(context).replace(
+            ExaminationDetailRoute(
+              categorizedExamination: widget.categorizedExamination,
+              choosedExamination: newExam,
+            ),
+          );
+          showFlushBarSuccess(context, l10n.checkup_reminder_toast, sync: true);
+        },
+        failure: (err) {
+          showFlushBarError(
+            context,
+            statusCodeToText(
+              context,
+              err.error.response?.statusCode,
+            ),
+          );
+        },
+      );
+    }
+
+    Future<void> _onEditRegularlyExamTerm({required DateTime date, String? note}) async {
+      final response = await registry.get<ExaminationRepository>().postExamination(
+            _examinationType,
+            newDate: date,
+            uuid: widget.categorizedExamination.examination.uuid,
+            firstExam: false,
+            status: ExaminationStatus.NEW,
+            categoryType: _examinationCategoryType!,
+            note: note,
+            actionType: _examinationActionType,
+            periodicExam: false,
+            customInterval: _examination.customInterval,
+          );
+
+      response.map(
+        success: (res) {
+          ExaminationPreventionStatus? newExam;
+          newExam = Provider.of<ExaminationsProvider>(context, listen: false)
+              .updateAndReturnCustomExaminationsRecord(res.data, _examination);
           AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
           AutoRouter.of(context).replace(
             ExaminationDetailRoute(
@@ -302,7 +344,10 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
         ),
         if (_isPeriodicalExam || _examinationCategoryType == ExaminationCategoryType.MANDATORY)
           buildPeriodicalAndMandatorySection(context),
-        buildButtons(context, _onPostNewCheckupSubmit, preposition),
+        if (!_isPeriodicalExam)
+          buildDisposableExamButtons(context, _onEditRegularlyExamTerm)
+        else
+          buildButtons(context, _onPostNewCheckupSubmit, preposition),
         if (_nextVisitDate != null)
           Padding(
             padding: const EdgeInsets.only(left: 16.0, right: 16.0),
@@ -311,7 +356,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
               maxLines: 10,
               maxLength: 256,
               keyboardType: TextInputType.multiline,
-              initialValue: _note,
+              initialValue: _examination.note,
               enabled: false,
               decoration: InputDecoration(
                 hintText: context.l10n.note_visiting_description,
@@ -382,10 +427,6 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
     Future<void> Function({required DateTime date, String? note}) onPostNewCheckupSubmit,
     String preposition,
   ) {
-    if (!_isPeriodicalExam) {
-      return buildDisposableExamButtons(context);
-    }
-
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Row(
@@ -483,7 +524,10 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                 text: context.l10n.examination_detail_edit_date_button,
                 onTap: () {
                   Provider.of<ExaminationsProvider>(context, listen: false)
-                      .setChoosedCustomExamination(widget.categorizedExamination, null);
+                      .setChoosedCustomExamination(
+                    widget.categorizedExamination,
+                    widget.categorizedExamination.examination,
+                  );
                   showEditModal(context, widget.categorizedExamination);
                 },
               ),
@@ -550,7 +594,10 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
     );
   }
 
-  Widget buildDisposableExamButtons(BuildContext context) {
+  Widget buildDisposableExamButtons(
+    BuildContext context,
+    Future<void> Function({required DateTime date, String? note}) onPostNewCheckupSubmit,
+  ) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Row(
@@ -619,9 +666,13 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
               key: const Key('examinationDetailPage_btn_updateDate'),
               text: context.l10n.examination_detail_edit_date_button,
               onTap: () {
-                // Provider.of<ExaminationsProvider>(context, listen: false)
-                //     .setChoosedCustomExamination(widget.categorizedExamination, null);
-                // showEditModal(context, widget.categorizedExamination);
+                if (!_isPeriodicalExam) {
+                  showCustomDatePickerSheet(
+                    categorizedExamination: widget.categorizedExamination,
+                    context: context,
+                    onSubmit: onPostNewCheckupSubmit,
+                  );
+                }
               },
             ),
           )

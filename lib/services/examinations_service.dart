@@ -216,8 +216,9 @@ class ExaminationsProvider extends ChangeNotifier {
 
   ExaminationPreventionStatus? updateAndReturnCustomExaminationsRecord(
     ExaminationRecord record,
-    ExaminationPreventionStatus item,
-  ) {
+    ExaminationPreventionStatus item, {
+    String? note,
+  }) {
     final indexToUpdate =
         examinations?.examinations.indexWhere((examination) => examination == item);
     if (indexToUpdate != null && indexToUpdate >= 0) {
@@ -240,8 +241,8 @@ class ExaminationsProvider extends ChangeNotifier {
               ..examinationCategoryType = record.examinationCategoryType
               ..badge = item.badge
               ..periodicExam = record.periodicExam
-              ..note = record.note
-              ..intervalYears = record.customInterval,
+              ..note = note ?? record.note
+              ..intervalYears = record.customInterval ?? 0,
           );
 
       final builder = examinations?.toBuilder();

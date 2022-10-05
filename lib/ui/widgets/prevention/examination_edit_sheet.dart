@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/date_helpers.dart';
 import 'package:loono/helpers/flushbar_message.dart';
+import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -37,7 +38,10 @@ void showCustomEditExamSheet({
       borderRadius: BorderRadius.circular(10.0),
     ),
     isScrollControlled: true,
-    builder: (BuildContext modalContext) => CustomEditExamination(exam: exam),
+    builder: (BuildContext modalContext) => Container(
+      color: LoonoColors.primary,
+      child: CustomEditExamination(exam: exam),
+    ),
   ).whenComplete(() {
     registry.get<FirebaseAnalytics>().logEvent(name: 'CloseCancelEditModal');
   });
@@ -202,8 +206,10 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
                 textBaseline: TextBaseline.ideographic,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(
-                    flex: 2,
+                  SizedBox(
+                    width: LoonoSizes.isScreenSmall(context)
+                        ? MediaQuery.of(context).size.width * 0.52
+                        : MediaQuery.of(context).size.width * 0.6,
                     child: CustomInputTextField(
                       error: false,
                       enabled: !_idkCheck,
@@ -231,8 +237,7 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
                       ),
                     ),
                   ),
-                  Expanded(
-                    flex: 1,
+                  Flexible(
                     child: CheckboxCustom(
                       text: context.l10n.idk,
                       isChecked: _idkCheck,

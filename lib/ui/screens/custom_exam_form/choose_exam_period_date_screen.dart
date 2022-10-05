@@ -45,7 +45,7 @@ class _ChooseExamPeriodDateScreenState extends State<ChooseExamPeriodDateScreen>
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: LoonoColors.primaryLight50,
+        backgroundColor: LoonoColors.bottomSheetPrevention,
         iconTheme: const IconThemeData(color: Colors.black),
         leading: Container(),
         actions: [
@@ -72,7 +72,7 @@ class _ChooseExamPeriodDateScreenState extends State<ChooseExamPeriodDateScreen>
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.5,
               child: CustomDatePicker(
-                defaultDay: DateTime.now().weekday + 1,
+                defaultDay: DateTime.now().day,
                 valueChanged: (value) {
                   _dateTime = value;
                 },
