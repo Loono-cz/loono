@@ -74,7 +74,8 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
             : _examinationType.customExamAssetPath,
         width: 180,
       );
-  String get _note => _examination.note ?? '';
+
+  String note = '';
   int get _hashCodeOfExam => _examination.hashCode;
   Sex get _sex {
     final user = registry.get<DatabaseService>().users.user;
@@ -355,7 +356,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
               maxLines: 10,
               maxLength: 256,
               keyboardType: TextInputType.multiline,
-              initialValue: _note,
+              initialValue: _examination.note,
               enabled: false,
               decoration: InputDecoration(
                 hintText: context.l10n.note_visiting_description,
@@ -523,7 +524,10 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                 text: context.l10n.examination_detail_edit_date_button,
                 onTap: () {
                   Provider.of<ExaminationsProvider>(context, listen: false)
-                      .setChoosedCustomExamination(widget.categorizedExamination, null);
+                      .setChoosedCustomExamination(
+                    widget.categorizedExamination,
+                    widget.categorizedExamination.examination,
+                  );
                   showEditModal(context, widget.categorizedExamination);
                 },
               ),

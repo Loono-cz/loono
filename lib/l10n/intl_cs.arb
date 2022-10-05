@@ -1443,5 +1443,9 @@
   "edit_examination": "Upravit prohlídku",
   "@edit_examination": {},
   "examination_was_edited": "Prohlídka byla upravena.",
-  "@examination_was_edited": {}
+  "@examination_was_edited": {},
+  "custom_exam_cancel_question": "Opravdu chceš zrušit termín prohlídky?",
+  "@custom_exam_cancel_question": {},
+  "cancel_term_note_disclaimer": "Se zrušením termínu budou smazány i všechny tvé poznámky k návštevě.",
+  "@cancel_term_note_disclaimer": {}
 }

@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/date_helpers.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
@@ -28,26 +29,45 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
 
   Future<void> onChangeSubmit({required DateTime date}) async {
     /// code anchor: #postChangeExamiantion
+    final intervalYears =
+        ExaminationCategoryType.CUSTOM == examination.examination.examinationCategoryType
+            ? examination.examination.intervalYears < 12
+                ? examination.examination.intervalYears
+                : transformMonthToYear(examination.examination.intervalYears)
+            : examination.examination.intervalYears;
     final response = await registry.get<ExaminationRepository>().postExamination(
           examinationType,
           newDate: date,
           uuid: examination.examination.uuid,
           firstExam: false,
           status: examination.examination.state,
+          periodicExam: examination.examination.periodicExam,
+          actionType: examination.examination.examinationActionType,
+          categoryType: examination.examination.examinationCategoryType!,
+          customInterval: examination.examination.customInterval ?? intervalYears,
         );
     await response.map(
       success: (res) async {
         final autoRouter = AutoRouter.of(pageContext);
-        Provider.of<ExaminationsProvider>(pageContext, listen: false)
-            .updateExaminationsRecord(res.data);
+        ExaminationPreventionStatus? exam;
+        final provider = Provider.of<ExaminationsProvider>(pageContext, listen: false);
+        if (examination.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM) {
+          exam = Provider.of<ExaminationsProvider>(pageContext, listen: false)
+              .updateAndReturnCustomExaminationsRecord(res.data, examination.examination);
+        } else {
+          Provider.of<ExaminationsProvider>(pageContext, listen: false)
+              .updateExaminationsRecord(res.data);
+        }
         await registry.get<CalendarRepository>().updateEventDate(
               examinationType,
               newDate: date,
             );
-        autoRouter.popUntil(
-          (predicate) =>
-              predicate.settings.name ==
-              ExaminationDetailRoute(categorizedExamination: examination).routeName,
+        autoRouter.popUntilRouteWithName(ExaminationDetailRoute.name);
+        await autoRouter.replace(
+          ExaminationDetailRoute(
+            categorizedExamination: provider.getChoosedCustomExamination().categorizedExamination!,
+            choosedExamination: exam,
+          ),
         );
 
         ///TODO: lint fix
@@ -70,27 +90,6 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
       key: const Key('editCheckUpDateSheet'),
       actions: <CupertinoActionSheetAction>[
         CupertinoActionSheetAction(
-          key: const Key('editCheckUpDateSheet_action_cancelCheckUp'),
-          isDestructiveAction: true,
-          onPressed: () {
-            final examinationUuid = examination.examination.uuid;
-
-            if (examinationUuid != null) {
-              AutoRouter.of(modalContext).pop();
-              showCancelExaminationSheet(
-                context: pageContext,
-                id: examinationUuid,
-                examinationType: examinationType,
-                title: '${pageContext.l10n.checkup_cancel_question} $preposition $procedure?',
-                date: examination.examination.plannedDate?.toLocal() ?? DateTime.now(),
-              );
-            } else {
-              showFlushBarError(modalContext, modalContext.l10n.something_went_wrong);
-            }
-          },
-          child: Text(pageContext.l10n.cancel_checkup),
-        ),
-        CupertinoActionSheetAction(
           key: const Key('editCheckUpDateSheet_action_editDateCheckUp'),
           child: Text(
             pageContext.l10n.edit_checkup,
@@ -107,6 +106,29 @@ void showEditModal(BuildContext pageContext, CategorizedExamination examination)
               additionalBottomText: '${pageContext.l10n.original_date}: $formattedDate',
             );
           },
+        ),
+        CupertinoActionSheetAction(
+          key: const Key('editCheckUpDateSheet_action_cancelCheckUp'),
+          isDestructiveAction: true,
+          onPressed: () {
+            final examinationUuid = examination.examination.uuid;
+
+            if (examinationUuid != null) {
+              AutoRouter.of(modalContext).pop();
+              showCancelExaminationSheet(
+                context: pageContext,
+                id: examinationUuid,
+                examinationType: examinationType,
+                title: examination.examination.periodicExam == true
+                    ? pageContext.l10n.custom_exam_cancel_question
+                    : '${pageContext.l10n.checkup_cancel_question} $preposition $procedure?',
+                date: examination.examination.plannedDate?.toLocal() ?? DateTime.now(),
+              );
+            } else {
+              showFlushBarError(modalContext, modalContext.l10n.something_went_wrong);
+            }
+          },
+          child: Text(pageContext.l10n.cancel_checkup),
         ),
         CupertinoActionSheetAction(
           isDefaultAction: true,

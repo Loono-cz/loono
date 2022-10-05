@@ -127,6 +127,21 @@ class _DatePickerContentState extends State<_DatePickerContent> {
         ? '${_sex == Sex.MALE ? context.l10n.checkup_new_date_title_male : context.l10n.checkup_new_date_title_female}$prepositionDativ '
         : '${_sex == Sex.MALE ? context.l10n.checkup_new_time_title_male : context.l10n.checkup_new_time_title_female}$prepositionDativ ';
 
+    String _buildTitle(BuildContext context) {
+      final exam = widget.categorizedExamination.examination;
+      if (widget.isNewCheckup) return newCheckupTitle;
+      if (exam.examinationCategoryType == ExaminationCategoryType.CUSTOM) {
+        return isFirstStep
+            ? _sex == Sex.MALE
+                ? context.l10n.wich_date_you_have_reservation_male
+                : context.l10n.wich_date_you_have_reservation_female
+            : _sex == Sex.MALE
+                ? context.l10n.custom_exam_reservation_time_male
+                : context.l10n.custom_exam_reservation_time_female;
+      }
+      return '${isFirstStep ? context.l10n.new_checkup_date : context.l10n.new_checkup_time} $preposition $practitioner';
+    }
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
@@ -160,9 +175,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 TextSpan(
                   children: [
                     TextSpan(
-                      text: widget.isNewCheckup
-                          ? newCheckupTitle
-                          : '${isFirstStep ? context.l10n.new_checkup_date : context.l10n.new_checkup_time} $preposition $practitioner',
+                      text: _buildTitle(context),
                       style: LoonoFonts.headerFontStyle,
                     ),
                     if (widget.isNewCheckup)
