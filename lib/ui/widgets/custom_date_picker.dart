@@ -45,7 +45,7 @@ class CustomDatePickerState extends State<CustomDatePicker> {
   );
 
   final FixedExtentScrollController _dayController =
-      FixedExtentScrollController(initialItem: DateTime.now().day);
+      FixedExtentScrollController(initialItem: DateTime.now().weekday + 1);
   final FixedExtentScrollController _monthController = FixedExtentScrollController();
   final FixedExtentScrollController _yearController = FixedExtentScrollController();
 

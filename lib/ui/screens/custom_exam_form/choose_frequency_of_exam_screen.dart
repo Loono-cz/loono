@@ -75,16 +75,18 @@ class _ChooseFrequencyOfExamScreenState extends State<ChooseFrequencyOfExamScree
             const SizedBox(
               height: 20.0,
             ),
-            Expanded(
-              flex: 1,
-              child: CustomPeriodicalSpinner(
-                valueChanged: (number, text) {
-                  setState(() {
-                    final isMonth = text.isNotEmpty && text == 'měsíce';
-                    period =
-                        '${number.isEmpty ? isMonth ? 6 : 1 : number} ${text.isEmpty ? 'měsíce' : text}';
-                  });
-                },
+            Flexible(
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 40.0),
+                child: CustomPeriodicalSpinner(
+                  valueChanged: (number, text) {
+                    setState(() {
+                      final isMonth = text.isNotEmpty && text == 'měsíce';
+                      period =
+                          '${number.isEmpty ? isMonth ? 6 : 1 : number} ${text.isEmpty ? 'měsíce' : text}';
+                    });
+                  },
+                ),
               ),
             ),
             const SizedBox(
