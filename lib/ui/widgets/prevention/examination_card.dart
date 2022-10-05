@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/date_helpers.dart';
 import 'package:loono/helpers/examination_action_types.dart';
 import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_types.dart';
@@ -198,12 +199,22 @@ class ExaminationCard extends StatelessWidget {
 
   List<Widget> _waitingContent() {
     final lastDateVisit = categorizedExamination.examination.lastConfirmedDate!.toLocal();
-    final newWaitToDateTime = DateTime(
-      lastDateVisit.year + categorizedExamination.examination.intervalYears,
-      lastDateVisit.month,
-    );
-    final formattedDate = DateFormat.yMMMM('cs-CZ').format(newWaitToDateTime);
+    final interval = categorizedExamination.examination.intervalYears;
+    DateTime newWaitToDateTime;
 
+    if (interval <= 11) {
+      newWaitToDateTime = DateTime(lastDateVisit.year, lastDateVisit.month + interval);
+    } else {
+      final isCustom = categorizedExamination.examination.examinationCategoryType ==
+          ExaminationCategoryType.CUSTOM;
+
+      newWaitToDateTime = DateTime(
+        lastDateVisit.year + (transformMonthToYear(interval)),
+        lastDateVisit.month,
+      );
+    }
+
+    final formattedDate = DateFormat.yMMMM('cs-CZ').format(newWaitToDateTime);
     return <Widget>[
       Expanded(
         child: ListTile(
