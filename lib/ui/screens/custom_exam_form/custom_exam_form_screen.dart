@@ -135,7 +135,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                 height: 20,
               ),
               CustomInputTextField(
-                error: _showError,
+                error: _showError && _specialist == null,
                 label: _specialist == null ? '' : context.l10n.specialist,
                 hintText: context.l10n.choose_specialist,
                 value: _specialist != null ? ExaminationTypeExt(_specialist!).l10n_name : '',
@@ -150,7 +150,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                 height: 20,
               ),
               CustomInputTextField(
-                error: _specialist != null && _examinationType == null || _showError,
+                error: _examinationType == null && _showError,
                 label: _specialist == null ? '' : context.l10n.examination_type,
                 hintText: context.l10n.choose_examination_type,
                 value: _examinationType != null
@@ -236,8 +236,11 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                 child: LoonoButton(
                   text: context.l10n.action_save,
                   onTap: () async {
-                    if (_specialist != null && _examinationType != null) {
-                      if (_isPeriodicExam) {
+                    if (_isPeriodicExam) {
+                      if ((_specialist != null &&
+                          _examinationType != null &&
+                          (_lastExamDate != null || _lastExamChck) &&
+                          (_nextExamDate != null || _nextExamChck))) {
                         if (_lastExamDate != null && _nextExamDate != null) {
                           await sendMandatoryRequest();
                         } else if (_lastExamDate != null) {
@@ -246,17 +249,22 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                           await sendRegularlyRequestNew();
                         }
                       } else {
-                        await sendOnceRequest();
+                        setState(() {
+                          _showError = true;
+                          _showLastExamError = !_lastExamChck ? true : false;
+                        });
                       }
                     } else {
-                      setState(() {
-                        _showError = true;
-                        if (!_isPeriodicExam) {
+                      if (_specialist != null &&
+                          _examinationType != null &&
+                          _periodDateTime != null) {
+                        await sendOnceRequest();
+                      } else {
+                        setState(() {
+                          _showError = true;
                           _showPeriodDateTimeError = true;
-                        } else {
-                          _showLastExamError = true;
-                        }
-                      });
+                        });
+                      }
                     }
                   },
                 ),
@@ -334,7 +342,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
               Flexible(
                 flex: 2,
                 child: CustomInputTextField(
-                  error: _showError,
+                  error: _showError && _customInterval.isEmpty,
                   label: '',
                   hintText: context.l10n.exam_frequency,
                   value: _customInterval,
@@ -361,7 +369,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                     ? MediaQuery.of(context).size.width * 0.55
                     : MediaQuery.of(context).size.width * 0.6,
                 child: CustomInputTextField(
-                  error: _showLastExamError,
+                  error: _showLastExamError && _lastExamDate == null,
                   enabled: !_lastExamChck,
                   label: _lastExamDate == null ? '' : context.l10n.last_examination,
                   hintText: context.l10n.last_examination,
@@ -452,7 +460,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
       return SizedBox(
         width: (MediaQuery.of(context).size.width) - (MediaQuery.of(context).size.width / 20) * 10,
         child: CustomInputTextField(
-          error: _showPeriodDateTimeError,
+          error: _showPeriodDateTimeError && _periodDateTime == null,
           label: _periodDateTime == null ? '' : context.l10n.examination_term,
           hintText: context.l10n.examination_term,
           value: _periodDateTime != null
