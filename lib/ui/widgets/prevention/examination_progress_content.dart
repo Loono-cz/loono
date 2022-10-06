@@ -123,7 +123,7 @@ class ExaminationProgressContent extends StatelessWidget {
           ExaminationCategoryType.CUSTOM;
 
       newWaitToDateTime = DateTime(
-        lastDateVisit.year + (transformMonthToYear(interval)),
+        lastDateVisit.year + (isCustom ? transformMonthToYear(interval) : interval),
         lastDateVisit.month,
       );
     }

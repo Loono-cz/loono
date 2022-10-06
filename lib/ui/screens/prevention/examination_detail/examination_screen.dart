@@ -48,20 +48,22 @@ class ExaminationDetailScreen extends StatelessWidget {
             ),
           ),
         ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: IconButton(
-              key: const Key('examinationDetailPage_btn_menu'),
-              onPressed: () {
-                showCustomExamEditModal(context, examination);
-              },
-              icon: SvgPicture.asset(
-                'assets/icons/more_vertical.svg',
-              ),
-            ),
-          )
-        ],
+        actions: examination.examinationCategoryType == ExaminationCategoryType.CUSTOM
+            ? [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: IconButton(
+                    key: const Key('examinationDetailPage_btn_menu'),
+                    onPressed: () {
+                      showCustomExamEditModal(context, examination);
+                    },
+                    icon: SvgPicture.asset(
+                      'assets/icons/more_vertical.svg',
+                    ),
+                  ),
+                )
+              ]
+            : null,
       ),
       body: SafeArea(
         child: categorizedExamination.category == const ExaminationCategory.unknownLastVisit() &&

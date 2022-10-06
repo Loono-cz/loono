@@ -36,7 +36,7 @@ void showCreateOrderFromDetailSheet({
         key: const Key('datePickerSheet'),
         height: 680,
         decoration: const BoxDecoration(
-          color: LoonoColors.primary,
+          color: LoonoColors.primaryLight50,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(15),
             topRight: Radius.circular(15),

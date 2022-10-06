@@ -29,7 +29,6 @@ import 'package:loono/ui/widgets/prevention/custom_exam_datepicker_sheet.dart';
 import 'package:loono/ui/widgets/prevention/datepicker_sheet.dart';
 import 'package:loono/ui/widgets/prevention/examination_confirm_sheet.dart';
 import 'package:loono/ui/widgets/prevention/examination_edit_modal.dart';
-import 'package:loono/ui/widgets/prevention/examination_new_sheet.dart';
 import 'package:loono/ui/widgets/prevention/examination_progress_content.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
@@ -84,8 +83,11 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
 
   String _intervalYears(BuildContext context) {
     final yearInterval = widget.categorizedExamination.examination.intervalYears;
-    //transformMonthToEar
-    return ' ${yearInterval < 12 ? '$yearInterval měsíců' : '${transformMonthToYear(yearInterval)} roků'}';
+    if (_examinationCategoryType == ExaminationCategoryType.CUSTOM) {
+      return '${transformMonthToYear(yearInterval)} ${yearInterval < 11 ? 'měsíců' : 'roků'}';
+    } else {
+      return '${yearInterval.toString()} ${yearInterval > 1 ? context.l10n.years : context.l10n.year}';
+    }
   }
 
   Widget _calendarRow(String text, {VoidCallback? onTap, bool? interval, bool? showCalendarIcon}) {
@@ -296,32 +298,6 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                         if (_isPeriodicalExam)
                           _calendarRow(
                             '${context.l10n.last_visit}:\n$lastVisit',
-                            onTap: () {
-                              ///TODO: Ma to byt zakomentovane ?
-                              /// must be first exam and no planned examination should exist
-                              // if (!widget.categorizedExamination.examination.firstExam &&
-                              //     widget.categorizedExamination.examination.plannedDate != null) {
-                              //   return;
-                              // }
-
-                              // /// if "nevim", open question sheet else allow to change date
-                              // if (widget.categorizedExamination.examination.lastConfirmedDate !=
-                              //     null) {
-                              //   final title =
-                              //       '${_sex == Sex.MALE ? l10n.last_checkup_question_male : l10n.last_checkup_question_female} $preposition $practitioner?';
-                              //   showChangeLastVisitSheet(
-                              //     context: context,
-                              //     title: title,
-                              //     examination: widget.categorizedExamination,
-                              //   );
-                              // } else {
-                              //   showLastVisitSheet(
-                              //     context: context,
-                              //     examination: widget.categorizedExamination,
-                              //     sex: _sex,
-                              //   );
-                              // }
-                            },
                           ),
                         if (!_isPeriodicalExam)
                           _calendarRow(
@@ -539,24 +515,14 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                 key: const Key('examinationDetailPage_btn_order'),
                 text: context.l10n.examination_detail_order_examination, //objednat se
                 onTap: () {
-                  if (_examinationCategoryType == ExaminationCategoryType.CUSTOM &&
-                      _isPeriodicalExam) {
-                    Provider.of<ExaminationsProvider>(context, listen: false)
-                        .setChoosedCustomExamination(widget.categorizedExamination, _examination);
+                  Provider.of<ExaminationsProvider>(context, listen: false)
+                      .setChoosedCustomExamination(widget.categorizedExamination, _examination);
 
-                    showCreateOrderFromDetailSheet(
-                      context: context,
-                      categorizedExamination: widget.categorizedExamination,
-                      onSubmit: onPostNewCheckupSubmit,
-                    );
-                  } else {
-                    showNewCheckupSheetStep1(
-                      context,
-                      widget.categorizedExamination,
-                      onPostNewCheckupSubmit,
-                      _sex,
-                    );
-                  }
+                  showCreateOrderFromDetailSheet(
+                    context: context,
+                    categorizedExamination: widget.categorizedExamination,
+                    onSubmit: onPostNewCheckupSubmit,
+                  );
                 },
               ),
             ),
@@ -569,18 +535,6 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                   categorizedExamination: widget.categorizedExamination,
                   onSubmit: onPostNewCheckupSubmit,
                   isNewCheckup: true,
-                  firstStepTitle:
-                      '${_sex == Sex.MALE ? context.l10n.checkup_new_date_title_male : context.l10n.checkup_new_date_title_female} $preposition ${examinationTypeCasus(
-                    context,
-                    casus: Casus.genitiv,
-                    examinationType: _examinationType,
-                  ).toUpperCase()}?',
-                  secondStepTitle:
-                      '${context.l10n.checkup_new_time_title} $preposition ${examinationTypeCasus(
-                    context,
-                    casus: Casus.nomativ,
-                    examinationType: _examinationType,
-                  ).toLowerCase()}',
                 ),
               ),
             ),

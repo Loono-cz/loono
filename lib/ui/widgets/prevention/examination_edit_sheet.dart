@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/helpers/date_helpers.dart';
 import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
@@ -91,13 +90,9 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
           uuid: widget.exam!.uuid,
           periodicExam: widget.exam?.periodicExam,
           note: widget.exam?.note,
-          categoryType: widget.exam?.examinationCategoryType ?? ExaminationCategoryType.CUSTOM,
+          categoryType: ExaminationCategoryType.CUSTOM,
           status: ExaminationStatus.CONFIRMED,
-          customInterval: _term.isNotEmpty
-              ? transformInterval(context, _term)
-              : widget.exam?.examinationCategoryType == ExaminationCategoryType.MANDATORY
-                  ? widget.exam!.intervalYears
-                  : widget.exam!.customInterval,
+          customInterval: widget.exam!.customInterval,
           actionType: widget.exam!.examinationActionType,
           firstExam: true,
         );
@@ -110,7 +105,6 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
           res.data,
           examProvider.getChoosedCustomExamination().choosedExamination!,
         );
-        print(newExam);
         AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
         AutoRouter.of(context).replace(
           ExaminationDetailRoute(
