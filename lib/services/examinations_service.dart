@@ -47,10 +47,11 @@ class ExaminationsProvider extends ChangeNotifier {
   }
 
   void updateExaminationsRecord(
-    ExaminationRecord record,
-  ) {
-    final indexToUpdate = examinations?.examinations
-        .indexWhere((examination) => examination.examinationType == record.type);
+    ExaminationRecord record, {
+    String? uuid,
+  }) {
+    final indexToUpdate = examinations?.examinations.indexWhere((examination) =>
+        uuid != null ? examination.uuid == uuid : examination.examinationType == record.type);
     if (indexToUpdate != null && indexToUpdate >= 0) {
       final updatedItem = examinations?.examinations.elementAt(indexToUpdate).rebuild(
             (item) => item

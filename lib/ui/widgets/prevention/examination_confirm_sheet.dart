@@ -52,7 +52,7 @@ void showConfirmationSheet(
         child: Column(
           children: <Widget>[
             Text(
-              '${l10n.checkup_confirmation_title} $preposition $practitioner?',
+              '${l10n.checkup_confirmation_title}?',
               style: LoonoFonts.headerFontStyle,
             ),
             const SizedBox(
@@ -64,6 +64,7 @@ void showConfirmationSheet(
               asyncCallback: () async {
                 /// code anchor: #postConfirmExamiantion
                 final response = await api.confirmExamination(uuid);
+                ExaminationPreventionStatus? exam;
                 await response.map(
                   success: (res) async {
                     final examProvider = Provider.of<ExaminationsProvider>(context, listen: false);
@@ -72,7 +73,7 @@ void showConfirmationSheet(
                     final isCustomExamination =
                         res.data.examinationCategoryType == ExaminationCategoryType.CUSTOM;
                     if (isCustomExamination) {
-                      examProvider.updateCustomExaminationsRecord(
+                      exam = examProvider.updateAndReturnCustomExaminationsRecord(
                         res.data,
                         examProvider.getChoosedCustomExamination().choosedExamination!,
                       );

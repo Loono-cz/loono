@@ -320,7 +320,8 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
           buildDisposableExamButtons(context, _onEditRegularlyExamTerm)
         else
           buildButtons(context, _onPostNewCheckupSubmit, preposition),
-        if (_nextVisitDate != _examination.lastConfirmedDate)
+        if (_nextVisitDate != _examination.lastConfirmedDate &&
+            _examination.state != ExaminationStatus.UNKNOWN)
           Padding(
             padding: const EdgeInsets.only(left: 16.0, right: 16.0),
             child: TextFormField(
@@ -342,12 +343,14 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
           ),
         const SizedBox(height: 10),
         buildExaminationBadges(context),
-        const SizedBox(height: 40),
+        const SizedBox(height: 8.0),
         //SHOWING FAQ Section only for Default
-        if (_isPeriodicalExam && _examinationCategoryType == ExaminationCategoryType.MANDATORY)
+        if (_isPeriodicalExam && _examinationCategoryType == ExaminationCategoryType.MANDATORY) ...[
           FaqSection(examinationType: _examinationType),
-        const SizedBox(height: 20),
-
+          const SizedBox(
+            height: 24.0,
+          )
+        ],
         Padding(
           padding: const EdgeInsets.only(left: 16.0),
           child: Text(
@@ -355,9 +358,9 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
             style: const TextStyle(fontSize: 24.0, fontWeight: FontWeight.w400),
           ),
         ),
-        const SizedBox(height: 20),
+
         buildNextSpecialistExams(context),
-        const SizedBox(height: 20),
+        const SizedBox(height: 30),
       ],
     );
   }
@@ -702,7 +705,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
       child: SizedBox(
         height: 80,
         child: Card(
-          color: LoonoColors.primaryLight,
+          color: LoonoColors.otherExamDetailCardColor,
           elevation: 0,
           child: Padding(
             padding: const EdgeInsets.only(left: 16.0, right: 16.0),
@@ -720,12 +723,17 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                         style: LoonoFonts.cardTitle,
                       ),
                     const SizedBox(
-                      height: 8,
+                      height: 4,
                     ),
-                    if (item?.plannedDate != null)
+                    if (item?.plannedDate != null) ...[
                       _calendarRow(
                         DateFormat(LoonoStrings.dateWithHoursFormat).format(item!.plannedDate!),
                         showCalendarIcon: true,
+                      )
+                    ] else
+                      Text(
+                        context.l10n.order_yourself.toUpperCase(),
+                        style: LoonoFonts.cardSubtitle.copyWith(color: LoonoColors.grey),
                       )
                   ],
                 ),

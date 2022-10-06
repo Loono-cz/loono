@@ -1453,5 +1453,7 @@
   "cancel_term_action": "Zrušit termín",
   "@cancel_term_action": {},
   "delete_exam_action": "Smazat prohlídku",
-  "@delete_exam_action": {}
+  "@delete_exam_action": {},
+  "order_yourself": "objednej se",
+  "@order_yourself": {}
 }

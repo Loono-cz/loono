@@ -43,6 +43,7 @@ class LoonoColors {
   ];
 
   static const primaryLight50 = Color(0xFFFDE4D3);
+  static const otherExamDetailCardColor = Color.fromRGBO(250, 247, 248, 1);
 }
 
 class LoonoStrings {

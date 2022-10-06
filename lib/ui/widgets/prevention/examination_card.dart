@@ -209,7 +209,7 @@ class ExaminationCard extends StatelessWidget {
           ExaminationCategoryType.CUSTOM;
 
       newWaitToDateTime = DateTime(
-        lastDateVisit.year + (transformMonthToYear(interval)),
+        lastDateVisit.year + (isCustom ? transformMonthToYear(interval) : interval),
         lastDateVisit.month,
       );
     }
@@ -227,7 +227,9 @@ class ExaminationCard extends StatelessWidget {
                 height: 2.0,
               ),
               _subtitle,
-              const Spacer(flex: 2),
+              const SizedBox(
+                height: 2.0,
+              ),
               Text(
                 'do $formattedDate hotovo'.toUpperCase(),
                 style: LoonoFonts.cardSubtitle.copyWith(color: LoonoColors.grey),
