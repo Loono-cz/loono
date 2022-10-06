@@ -94,10 +94,13 @@ class ExaminationsSheetOverlay extends StatelessWidget {
 
                     if (index <= itemCount - 1) {
                       final examinationStatus = examinationCategoriesOrdering.elementAt(index);
-                      final categorizedExaminations = categorized
-                          .where((e) => e.category == examinationStatus)
-                          .toList()
-                        ..sortExaminations();
+                      final categorizedExaminations =
+                          categorized.where((e) => e.category == examinationStatus).toList()
+                            ..sortExaminations()
+                            ..sort(
+                              ((a, b) => b.examination.examinationCategoryType!.name
+                                  .compareTo(a.examination.examinationCategoryType!.name)),
+                            );
                       return Column(
                         children: [
                           if (index == 0) ...[
@@ -341,7 +344,7 @@ class ExaminationsSheetOverlay extends StatelessWidget {
                 child: customExamCount <= 0
                     ? _buildFullExamColumn(context)
                     : Text(
-                        '${context.l10n.your_list_of_exam_info(customExamCount)} ${customExamCount >= 5 ? 'prohlídek.' : 'prohlídky.'}',
+                        '${context.l10n.your_list_of_exam_info(customExamCount)} ${getExamLabel(customExamCount)}',
                       ),
               ),
             ),

@@ -101,6 +101,7 @@ class ExaminationProgressContent extends StatelessWidget {
         ),
         Text(
           _isToday ? context.l10n.today : visitDate,
+          textAlign: TextAlign.center,
           style: LoonoFonts.cardSubtitle.copyWith(fontSize: 16),
         ),
         Text(
@@ -161,11 +162,9 @@ class ExaminationProgressContent extends StatelessWidget {
                 isOverdue: isOverdue(categorizedExamination),
               ),
               child: Center(
-                child: Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: _progressBarContent(context),
-                  ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: _progressBarContent(context),
                 ),
               ),
             ),
