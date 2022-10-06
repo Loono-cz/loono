@@ -31,7 +31,7 @@ class ExaminationCard extends StatelessWidget {
   int _diffInDays(DateTime date) => DateTime(date.year, date.month, date.day)
       .difference(DateTime(now.year, now.month, now.day))
       .inDays;
-  ExaminationCategoryType get examCatType =>
+  ExaminationCategoryType? get examCatType =>
       categorizedExamination.examination.examinationCategoryType;
   ExaminationType get examType => categorizedExamination.examination.examinationType;
   ExaminationActionType? get examActionType =>
