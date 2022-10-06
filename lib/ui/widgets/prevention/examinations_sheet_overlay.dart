@@ -171,7 +171,7 @@ class ExaminationsSheetOverlay extends StatelessWidget {
                       categorizedExamination: e,
                       onTap: () {
                         Provider.of<ExaminationsProvider>(context, listen: false)
-                            .setChoosedCustomExamination(
+                            .setChoosedExamination(
                           e,
                           e.examination,
                         );

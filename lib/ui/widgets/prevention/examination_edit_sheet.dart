@@ -103,7 +103,7 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
 
         final newExam = examProvider.updateAndReturnCustomExaminationsRecord(
           res.data,
-          examProvider.getChoosedCustomExamination().choosedExamination!,
+          examProvider.getChoosedExamination().choosedExamination!,
         );
         AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
         AutoRouter.of(context).replace(

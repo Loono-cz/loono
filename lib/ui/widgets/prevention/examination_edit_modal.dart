@@ -71,7 +71,7 @@ void showEditModal(
         autoRouter.popUntilRouteWithName(ExaminationDetailRoute.name);
         await autoRouter.replace(
           ExaminationDetailRoute(
-            categorizedExamination: provider.getChoosedCustomExamination().categorizedExamination!,
+            categorizedExamination: provider.getChoosedExamination().categorizedExamination!,
             choosedExamination: exam,
           ),
         );

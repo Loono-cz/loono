@@ -50,8 +50,10 @@ class ExaminationsProvider extends ChangeNotifier {
     ExaminationRecord record, {
     String? uuid,
   }) {
-    final indexToUpdate = examinations?.examinations.indexWhere((examination) =>
-        uuid != null ? examination.uuid == uuid : examination.examinationType == record.type);
+    final indexToUpdate = examinations?.examinations.indexWhere(
+      (examination) =>
+          uuid != null ? examination.uuid == uuid : examination.examinationType == record.type,
+    );
     if (indexToUpdate != null && indexToUpdate >= 0) {
       final updatedItem = examinations?.examinations.elementAt(indexToUpdate).rebuild(
             (item) => item
@@ -257,7 +259,7 @@ class ExaminationsProvider extends ChangeNotifier {
     return null;
   }
 
-  void setChoosedCustomExamination(
+  void setChoosedExamination(
     CategorizedExamination? categorizedExam,
     ExaminationPreventionStatus? exam,
   ) {
@@ -265,8 +267,8 @@ class ExaminationsProvider extends ChangeNotifier {
     choosedExamination = exam;
   }
 
-  ChoosedCustomExam getChoosedCustomExamination() {
-    return ChoosedCustomExam()
+  ChoosedExam getChoosedExamination() {
+    return ChoosedExam()
       ..categorizedExamination = categorizedExamination
       ..choosedExamination = choosedExamination;
   }
@@ -274,7 +276,7 @@ class ExaminationsProvider extends ChangeNotifier {
   // Future<ApiResponse>
 }
 
-class ChoosedCustomExam {
+class ChoosedExam {
   CategorizedExamination? categorizedExamination;
   ExaminationPreventionStatus? choosedExamination;
 }

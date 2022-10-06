@@ -107,7 +107,7 @@ void showCancelExaminationSheet({
                           ExaminationCategoryType.CUSTOM) {
                         exam = examProvider.updateAndReturnCustomExaminationsRecord(
                           res.data,
-                          examProvider.getChoosedCustomExamination().choosedExamination!,
+                          examProvider.getChoosedExamination().choosedExamination!,
                           note: '',
                         );
                       } else {
@@ -120,7 +120,7 @@ void showCancelExaminationSheet({
                       autoRouter.replace(
                         ExaminationDetailRoute(
                           categorizedExamination:
-                              examProvider.getChoosedCustomExamination().categorizedExamination!,
+                              examProvider.getChoosedExamination().categorizedExamination!,
                           choosedExamination: exam,
                         ),
                       );

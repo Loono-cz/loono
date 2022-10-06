@@ -75,7 +75,7 @@ void showConfirmationSheet(
                     if (isCustomExamination) {
                       exam = examProvider.updateAndReturnCustomExaminationsRecord(
                         res.data,
-                        examProvider.getChoosedCustomExamination().choosedExamination!,
+                        examProvider.getChoosedExamination().choosedExamination!,
                       );
                     } else {
                       examProvider.updateExaminationsRecord(res.data);
