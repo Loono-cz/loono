@@ -47,10 +47,11 @@ class ExaminationsProvider extends ChangeNotifier {
   }
 
   void updateExaminationsRecord(
-    ExaminationRecord record,
-  ) {
-    final indexToUpdate = examinations?.examinations
-        .indexWhere((examination) => examination.examinationType == record.type);
+    ExaminationRecord record, {
+    String? uuid,
+  }) {
+    final indexToUpdate = examinations?.examinations.indexWhere((examination) =>
+        uuid != null ? examination.uuid == uuid : examination.examinationType == record.type);
     if (indexToUpdate != null && indexToUpdate >= 0) {
       final updatedItem = examinations?.examinations.elementAt(indexToUpdate).rebuild(
             (item) => item
@@ -216,8 +217,9 @@ class ExaminationsProvider extends ChangeNotifier {
 
   ExaminationPreventionStatus? updateAndReturnCustomExaminationsRecord(
     ExaminationRecord record,
-    ExaminationPreventionStatus item,
-  ) {
+    ExaminationPreventionStatus item, {
+    String? note,
+  }) {
     final indexToUpdate =
         examinations?.examinations.indexWhere((examination) => examination == item);
     if (indexToUpdate != null && indexToUpdate >= 0) {
@@ -240,8 +242,8 @@ class ExaminationsProvider extends ChangeNotifier {
               ..examinationCategoryType = record.examinationCategoryType
               ..badge = item.badge
               ..periodicExam = record.periodicExam
-              ..note = record.note
-              ..intervalYears = record.customInterval,
+              ..note = note ?? record.note
+              ..intervalYears = record.customInterval ?? 0,
           );
 
       final builder = examinations?.toBuilder();

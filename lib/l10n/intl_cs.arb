@@ -1436,6 +1436,8 @@
   "@disposable": {},
   "regularly": "Pravidelné",
   "@regularly": {},
+  "btn_edit_examination": "Upravit prohlídku",
+  "@btn_edit_examination": {},
   "disposable_exam_delete_question": "Opravdu chceš prohlídku smazat ze svého seznamu?",
   "@disposable_exam_delete_question": {},
   "disposable_exam_delete_desc": "Po smazání ti již nebudeme moci prohlídku připomenout.",
@@ -1461,5 +1463,15 @@
   "less_then_five_exams": "prohlídky",
   "@less_then_five_exams": {},
   "only_one_exam": "prohlídka",
-  "@only_one_exam": {}
+  "@only_one_exam": {},
+  "custom_exam_cancel_question": "Opravdu chceš zrušit termín prohlídky?",
+  "@custom_exam_cancel_question": {},
+  "cancel_term_note_disclaimer": "Se zrušením termínu budou smazány i všechny tvé poznámky k návštevě.",
+  "@cancel_term_note_disclaimer": {},
+  "cancel_term_action": "Zrušit termín",
+  "@cancel_term_action": {},
+  "delete_exam_action": "Smazat prohlídku",
+  "@delete_exam_action": {},
+  "order_yourself": "objednej se",
+  "@order_yourself": {}
 }

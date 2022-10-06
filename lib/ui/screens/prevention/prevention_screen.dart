@@ -28,7 +28,10 @@ class PreventionScreen extends StatelessWidget {
           AutoRouter.of(context).push(const CustomExamFormRoute());
         },
         backgroundColor: LoonoColors.primaryEnabled,
-        child: const Icon(Icons.add),
+        child: const Icon(
+          Icons.add,
+          size: 36.0,
+        ),
       ),
       body: SafeArea(
         child: LayoutBuilder(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loono/constants.dart';
+import 'package:loono/ui/widgets/radio_button.dart';
 
 class CustomRadioButton extends StatelessWidget {
   const CustomRadioButton({
@@ -32,30 +32,7 @@ class CustomRadioButton extends StatelessWidget {
                     style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                   ),
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(
-                      color: isChecked ? LoonoColors.primaryEnabled : Colors.black87,
-                      width: 2,
-                    ),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(50.0),
-                    ),
-                  ),
-                  height: 26,
-                  width: 26,
-                  child: Transform.scale(
-                    scale: 1.4,
-                    child: isChecked
-                        ? const Icon(
-                            Icons.circle,
-                            color: LoonoColors.primaryEnabled,
-                            size: 12.0,
-                          )
-                        : null,
-                  ),
-                ),
+                LoonoRadioButton(isChecked: isChecked),
               ],
             ),
           ),

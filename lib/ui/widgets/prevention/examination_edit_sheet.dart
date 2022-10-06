@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/helpers/date_helpers.dart';
 import 'package:loono/helpers/flushbar_message.dart';
+import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -37,7 +37,10 @@ void showCustomEditExamSheet({
       borderRadius: BorderRadius.circular(10.0),
     ),
     isScrollControlled: true,
-    builder: (BuildContext modalContext) => CustomEditExamination(exam: exam),
+    builder: (BuildContext modalContext) => Container(
+      color: LoonoColors.primary,
+      child: CustomEditExamination(exam: exam),
+    ),
   ).whenComplete(() {
     registry.get<FirebaseAnalytics>().logEvent(name: 'CloseCancelEditModal');
   });
@@ -83,13 +86,13 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
 
     final response = await registry.get<ExaminationRepository>().postExamination(
           widget.exam!.examinationType,
-          newDate: date ?? widget.exam?.plannedDate,
+          newDate: date ?? widget.exam?.plannedDate ?? widget.exam!.lastConfirmedDate,
           uuid: widget.exam!.uuid,
           periodicExam: widget.exam?.periodicExam,
           note: widget.exam?.note,
           categoryType: ExaminationCategoryType.CUSTOM,
           status: ExaminationStatus.CONFIRMED,
-          customInterval: transformInterval(context, _term),
+          customInterval: widget.exam!.customInterval,
           actionType: widget.exam!.examinationActionType,
           firstExam: true,
         );
@@ -97,8 +100,11 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
     response.map(
       success: (res) {
         final examProvider = Provider.of<ExaminationsProvider>(context, listen: false);
-        final newExam =
-            examProvider.updateAndReturnCustomExaminationsRecord(res.data, widget.exam!);
+
+        final newExam = examProvider.updateAndReturnCustomExaminationsRecord(
+          res.data,
+          examProvider.getChoosedCustomExamination().choosedExamination!,
+        );
         AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
         AutoRouter.of(context).replace(
           ExaminationDetailRoute(
@@ -190,27 +196,32 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
               _term,
               onClickInputField: () => AutoRouter.of(context).navigate(
                 ChooseFrequencyOfExamRoute(
+                  examType: widget.exam!.examinationType,
+                  isDefaultExam:
+                      widget.exam!.examinationCategoryType == ExaminationCategoryType.MANDATORY,
                   value: _term,
                   valueChanged: changeFreqTerm,
                 ),
               ),
             ),
-            if (widget.exam != null && widget.exam?.lastConfirmedDate == null) ...[
+            if (widget.exam?.lastConfirmedDate != null) ...[
               const Divider(),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.baseline,
                 textBaseline: TextBaseline.ideographic,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(
-                    flex: 2,
+                  SizedBox(
+                    width: LoonoSizes.isScreenSmall(context)
+                        ? MediaQuery.of(context).size.width * 0.52
+                        : MediaQuery.of(context).size.width * 0.6,
                     child: CustomInputTextField(
                       error: false,
                       enabled: !_idkCheck,
                       label: _lastExamDate == null ? '' : context.l10n.last_visit,
                       hintText: context.l10n.last_visit,
                       value: _lastExamDate != null
-                          ? DateFormat(LoonoStrings.dateWithHoursFormat).format(_lastExamDate!)
+                          ? DateFormat(LoonoStrings.dateFormat).format(_lastExamDate!)
                           : '',
                       prefixIcon: SvgPicture.asset(
                         'assets/icons/calendar.svg',
@@ -231,8 +242,7 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
                       ),
                     ),
                   ),
-                  Expanded(
-                    flex: 1,
+                  Flexible(
                     child: CheckboxCustom(
                       text: context.l10n.idk,
                       isChecked: _idkCheck,

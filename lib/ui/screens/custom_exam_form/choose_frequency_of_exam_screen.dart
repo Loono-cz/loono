@@ -4,6 +4,7 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/close_button.dart';
 import 'package:loono/ui/widgets/custom_exam_form/custom_periodical_spinner.dart';
+import 'package:loono_api/loono_api.dart';
 
 enum FrequencyType { numbers, period }
 
@@ -12,9 +13,15 @@ class ChooseFrequencyOfExamScreen extends StatefulWidget {
     super.key,
     this.value,
     required this.valueChanged,
+    this.isDefaultExam = false,
+    this.examType,
   });
   final Function(String) valueChanged;
   final String? value;
+
+  final bool isDefaultExam;
+  final ExaminationType? examType;
+
   @override
   State<ChooseFrequencyOfExamScreen> createState() => _ChooseFrequencyOfExamScreenState();
 }
@@ -75,16 +82,20 @@ class _ChooseFrequencyOfExamScreenState extends State<ChooseFrequencyOfExamScree
             const SizedBox(
               height: 20.0,
             ),
-            Expanded(
-              flex: 1,
-              child: CustomPeriodicalSpinner(
-                valueChanged: (number, text) {
-                  setState(() {
-                    final isMonth = text.isNotEmpty && text == 'měsíce';
-                    period =
-                        '${number.isEmpty ? isMonth ? 6 : 1 : number} ${text.isEmpty ? 'měsíce' : text}';
-                  });
-                },
+            Flexible(
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 40.0),
+                child: CustomPeriodicalSpinner(
+                  isDefaultExam: widget.isDefaultExam,
+                  examType: widget.examType,
+                  valueChanged: (number, text) {
+                    setState(() {
+                      final isMonth = text.isNotEmpty && text == 'měsíce';
+                      period =
+                          '${number.isEmpty ? isMonth ? 6 : 1 : number} ${text.isEmpty ? 'měsíce' : text}';
+                    });
+                  },
+                ),
               ),
             ),
             const SizedBox(

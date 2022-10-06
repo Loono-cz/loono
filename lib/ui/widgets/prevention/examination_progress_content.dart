@@ -20,7 +20,7 @@ class ExaminationProgressContent extends StatelessWidget {
   final CategorizedExamination categorizedExamination;
   final Sex sex;
 
-  ExaminationCategoryType get _examinationCategoryType =>
+  ExaminationCategoryType? get _examinationCategoryType =>
       categorizedExamination.examination.examinationCategoryType;
   bool get _isToday {
     final now = DateTime.now();
@@ -54,6 +54,7 @@ class ExaminationProgressContent extends StatelessWidget {
       /// examination long overdue
       return Text(
         '${context.l10n.more_than} ${_intervalYears(context)} ${context.l10n.since_last_visit}',
+        softWrap: true,
         textAlign: TextAlign.center,
         style: LoonoFonts.paragraphSmallFontStyle.copyWith(
           fontWeight: FontWeight.w700,
@@ -160,8 +161,7 @@ class ExaminationProgressContent extends StatelessWidget {
                 isOverdue: isOverdue(categorizedExamination),
               ),
               child: Center(
-                child: FittedBox(
-                  fit: BoxFit.fitWidth,
+                child: Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: _progressBarContent(context),

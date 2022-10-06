@@ -45,7 +45,7 @@ class _ChooseExamPeriodDateScreenState extends State<ChooseExamPeriodDateScreen>
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: LoonoColors.primaryLight50,
+        backgroundColor: LoonoColors.bottomSheetPrevention,
         iconTheme: const IconThemeData(color: Colors.black),
         leading: Container(),
         actions: [
@@ -59,7 +59,7 @@ class _ChooseExamPeriodDateScreenState extends State<ChooseExamPeriodDateScreen>
       body: Padding(
         padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 20.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
@@ -69,9 +69,10 @@ class _ChooseExamPeriodDateScreenState extends State<ChooseExamPeriodDateScreen>
             const SizedBox(
               height: 20.0,
             ),
-            Expanded(
-              flex: 1,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.5,
               child: CustomDatePicker(
+                defaultDay: DateTime.now().day,
                 valueChanged: (value) {
                   _dateTime = value;
                 },
@@ -122,10 +123,23 @@ class _ChooseExamPeriodDateScreenState extends State<ChooseExamPeriodDateScreen>
                 }
               },
             ),
-            if (widget.showLastExamDate == true && widget.dateTime != null)
-              Text(
-                'Původní datum: ${DateFormat('d. MMMM yyyy', 'CS-cz').format(widget.dateTime!)}',
-              )
+            const SizedBox(
+              height: 4.0,
+            ),
+            if (widget.showLastExamDate == true && widget.dateTime != null) ...[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Původní datum: ${DateFormat(LoonoStrings.dateFormatWithNameMonth, 'CS-cz').format(widget.dateTime!)}',
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 4.0,
+              ),
+            ]
           ],
         ),
       ),
