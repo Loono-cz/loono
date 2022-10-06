@@ -502,7 +502,13 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                     widget.categorizedExamination,
                     widget.categorizedExamination.examination,
                   );
-                  showEditModal(context, widget.categorizedExamination);
+                  showEditModal(
+                      context,
+                      widget.categorizedExamination,
+                      widget.categorizedExamination.examination.examinationCategoryType!.name == 'CUSTOM'
+                          ? widget.categorizedExamination.examination.customInterval!
+                          : transformYearToMonth(widget.categorizedExamination.examination.intervalYears),
+                  );
                 },
               ),
             ),

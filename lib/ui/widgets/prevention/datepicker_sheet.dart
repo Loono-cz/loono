@@ -22,6 +22,7 @@ void showDatePickerSheet({
   required Future<void> Function({required DateTime date}) onSubmit,
   bool isNewCheckup = false,
   String? additionalBottomText,
+  int intervalMonths = 0,
 }) {
   registry.get<FirebaseAnalytics>().logEvent(name: 'OpenDatePickerModal');
   showModalBottomSheet<void>(
@@ -50,6 +51,7 @@ void showDatePickerSheet({
               onSubmit: onSubmit,
               additionalBottomText: additionalBottomText,
               isNewCheckup: isNewCheckup,
+              intervalMonths: intervalMonths,
             ),
           ),
         ),
@@ -66,6 +68,7 @@ class _DatePickerContent extends StatefulWidget {
     required this.categorizedExamination,
     required this.onSubmit,
     required this.isNewCheckup,
+    required this.intervalMonths,
     this.additionalBottomText,
   }) : super(key: key);
 
@@ -74,6 +77,7 @@ class _DatePickerContent extends StatefulWidget {
 
   final String? additionalBottomText;
   final bool isNewCheckup;
+  final int intervalMonths;
 
   @override
   _DatePickerContentState createState() => _DatePickerContentState();
@@ -234,6 +238,19 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 DateTime.now().isBefore(newDate!);
             if (!isDateValid) {
               showFlushBarError(context, context.l10n.error_must_be_in_future);
+              return;
+            }
+            if (newDate!.isBefore(
+              DateTime(
+                Date.now().toDateTime().year,
+                Date.now().toDateTime().month+widget.intervalMonths,
+                Date.now().toDateTime().day,
+              ),
+            )) {
+              showFlushBarError(
+                context,
+                context.l10n.too_early_checkup,
+              );
               return;
             }
             if (isFirstStep) {
