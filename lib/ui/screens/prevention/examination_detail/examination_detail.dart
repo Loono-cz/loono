@@ -679,7 +679,8 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                 );
               },
             )
-          : Center(
+          : Padding(
+              padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
               child: Text(
                 context.l10n.not_other_examinaiton,
                 style: LoonoFonts.fontStyle,
