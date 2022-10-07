@@ -1473,5 +1473,16 @@
   "delete_exam_action": "Smazat prohlídku",
   "@delete_exam_action": {},
   "order_yourself": "objednej se",
-  "@order_yourself": {}
+  "@order_yourself": {},
+  "error_must_be_in_future_by_interval": "Datum prohlídky musí být v budoucnu dle intervalu co {interval} {textString}",
+  "@error_must_be_in_future_by_interval": {
+    "placeholders": {
+      "interval": {
+        "type": "int"
+      },
+      "textString": {
+        "type": "String"
+      }
+    }
+  }
 }

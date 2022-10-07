@@ -146,6 +146,8 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
 
     /// not ideal in build method but need context
     Future<void> _onPostNewCheckupSubmit({required DateTime date, String? note}) async {
+      print(date);
+
       /// code anchor: #postNewExamination
       /// TODO: Add Note property
       final response = await registry.get<ExaminationRepository>().postExamination(
@@ -408,11 +410,10 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
         children: [
           // displays calendar button for the scheduled check-ups which did not happen yet
           if (_nextVisitDate != null &&
-                  [
-                    const ExaminationCategory.scheduled(),
-                    const ExaminationCategory.scheduledSoonOrOverdue()
-                  ].contains(widget.categorizedExamination.category) ||
-              !_isPeriodicalExam) ...[
+              [
+                const ExaminationCategory.scheduled(),
+                const ExaminationCategory.scheduledSoonOrOverdue()
+              ].contains(widget.categorizedExamination.category)) ...[
             StreamBuilder<CalendarEvent?>(
               stream: _calendarEventsDao.watch(_examinationType),
               builder: (streamContext, snapshot) {
@@ -503,11 +504,14 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                     widget.categorizedExamination.examination,
                   );
                   showEditModal(
-                      context,
-                      widget.categorizedExamination,
-                      widget.categorizedExamination.examination.examinationCategoryType!.name == 'CUSTOM'
-                          ? widget.categorizedExamination.examination.customInterval!
-                          : transformYearToMonth(widget.categorizedExamination.examination.intervalYears),
+                    context,
+                    widget.categorizedExamination,
+                    widget.categorizedExamination.examination.examinationCategoryType ==
+                            ExaminationCategoryType.CUSTOM
+                        ? widget.categorizedExamination.examination.customInterval!
+                        : transformYearToMonth(
+                            widget.categorizedExamination.examination.intervalYears,
+                          ),
                   );
                 },
               ),

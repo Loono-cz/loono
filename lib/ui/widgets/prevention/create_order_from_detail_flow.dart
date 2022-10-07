@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/date_helpers.dart';
 import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
@@ -186,12 +187,32 @@ class _DatePickerContentState extends State<_DatePickerContent> {
               : context.l10n.action_save,
           enabled: newDate != null,
           asyncCallback: () async {
-            final isDateValid = Date.now().toDateTime().isAtSameMomentAs(
-                      Date(newDate!.year, newDate!.month, newDate!.day).toDateTime(),
-                    ) ||
-                DateTime.now().isBefore(newDate!);
+            final defaultInterval = widget.categorizedExamination.examination.intervalYears;
+            final isCustom = widget.categorizedExamination.examination.examinationCategoryType ==
+                ExaminationCategoryType.CUSTOM;
+            final customInterval = widget.categorizedExamination.examination.customInterval;
+
+            final interval = isCustom ? customInterval : defaultInterval;
+
+            final dateInterval =
+                DateTime(DateTime.now().year, DateTime.now().month + interval!, DateTime.now().day);
+            print(dateInterval);
+            final isDateValid = Date.now().toDateTime().isAtSameMomentAs(dateInterval) ||
+                DateTime.now().isAfter(dateInterval) ||
+                newDate?.isAfter(dateInterval) == true;
             if (!isDateValid) {
-              showFlushBarError(context, context.l10n.error_must_be_in_future);
+              final textInterval = isCustom
+                  ? interval < 12
+                      ? 'měsíců'
+                      : 'roků'
+                  : 'roků';
+              showFlushBarError(
+                context,
+                context.l10n.error_must_be_in_future_by_interval(
+                  transformMonthToYear(interval),
+                  textInterval,
+                ),
+              );
               return;
             }
             if (viewStep == ViewSteps.datePicker) {
@@ -237,7 +258,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
             yearsBeforeActual: DateTime.now().year - 1900,
             yearsOverActual: 2,
             allowDays: true,
-            defaultDay: originalDate?.day,
+            defaultDay: originalDate?.day ?? DateTime.now().day,
             defaultMonth: originalDate?.month,
             defaultYear: originalDate?.year,
           ),
