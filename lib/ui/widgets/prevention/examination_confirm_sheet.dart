@@ -52,7 +52,7 @@ void showConfirmationSheet(
         child: Column(
           children: <Widget>[
             Text(
-              '${l10n.checkup_confirmation_title} $preposition $practitioner?',
+              '${l10n.checkup_confirmation_title}?',
               style: LoonoFonts.headerFontStyle,
             ),
             const SizedBox(
@@ -64,23 +64,34 @@ void showConfirmationSheet(
               asyncCallback: () async {
                 /// code anchor: #postConfirmExamiantion
                 final response = await api.confirmExamination(uuid);
+                ExaminationPreventionStatus? exam;
                 await response.map(
                   success: (res) async {
                     final examProvider = Provider.of<ExaminationsProvider>(context, listen: false);
                     final autoRouter = AutoRouter.of(context);
                     await calendar.deleteOnlyDbEvent(examinationType);
-
-                    examProvider.updateExaminationsRecord(res.data);
+                    final isCustomExamination =
+                        res.data.examinationCategoryType == ExaminationCategoryType.CUSTOM;
+                    if (isCustomExamination) {
+                      exam = examProvider.updateAndReturnCustomExaminationsRecord(
+                        res.data,
+                        examProvider.getChoosedExamination().choosedExamination!,
+                      );
+                    } else {
+                      examProvider.updateExaminationsRecord(res.data);
+                    }
                     if (!mounted) return;
-                    await autoRouter.navigate(
-                      AchievementRoute(
-                        header: getAchievementTitle(context, examinationType),
-                        textLines: [l10n.award_desc],
-                        numberOfPoints: awardPoints ?? examinationType.awardPoints,
-                        itemPath: getAchievementAssetPath(examinationType),
-                        onButtonTap: _completedAction,
-                      ),
-                    );
+                    isCustomExamination
+                        ? autoRouter.popUntilRouteWithName(MainRoute.name)
+                        : await autoRouter.navigate(
+                            AchievementRoute(
+                              header: getAchievementTitle(context, examinationType),
+                              textLines: [l10n.award_desc],
+                              numberOfPoints: awardPoints ?? examinationType.awardPoints,
+                              itemPath: getAchievementAssetPath(examinationType),
+                              onButtonTap: _completedAction,
+                            ),
+                          );
                   },
                   failure: (err) async {
                     await AutoRouter.of(context).pop();

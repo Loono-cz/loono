@@ -16,7 +16,7 @@ class OnboardingGynecologyScreen extends StatelessWidget {
 
   final _examinationsQuestionnairesDao = registry.get<DatabaseService>().examinationQuestionnaires;
 
-  static const _type = ExaminationType.GYNECOLOGIST;
+  static const _type = ExaminationType.GYNECOLOGY_AND_OBSTETRICS;
   static const _interval = 1;
 
   @override

@@ -42,8 +42,8 @@ class LoonoColors {
     Color.fromARGB(255, 237, 141, 140),
   ];
 
-  static const donateColor = Color(0xFFBE5713);
-  static const expandTileColor = Color(0xFFFDE4D3);
+  static const primaryLight50 = Color(0xFFFDE4D3);
+  static const otherExamDetailCardColor = Color.fromRGBO(250, 247, 248, 1);
 }
 
 class LoonoStrings {
@@ -64,6 +64,11 @@ class LoonoStrings {
   static const tumorUrl =
       'https://www.linkos.cz/pacient-a-rodina/onkologicke-diagnozy/maligni-melanom-spinaliom-bazaliom-c43-44-d03/maligni-melanom-a-ostatni-nadory-kuze/';
   static const donateDelayInterval = 14;
+  static const dateWithHoursFormat = 'dd.MM.yyyy HH:mm';
+  static const dateFormat = 'dd.MM.yyyy ';
+  static const dateFormatSpacing = 'dd. MMMM yyyy';
+  static const dateFormatWithNameMonth = 'd. MMMM yyyy';
+  static const hoursFormat = 'HH:mm';
 }
 
 class LoonoFonts {
@@ -116,6 +121,10 @@ class LoonoFonts {
     color: LoonoColors.green,
     fontWeight: FontWeight.w700,
   );
+  static const spinnerTextOnceTo = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
 
   static const cardSubtitle = TextStyle(
     fontSize: 11,
@@ -124,10 +133,37 @@ class LoonoFonts {
     fontWeight: FontWeight.w700,
   );
 
+  static const cardExaminaitonType = TextStyle(
+    fontSize: 14,
+    color: LoonoColors.green,
+    fontWeight: FontWeight.w600,
+  );
+
   static const cardAddress = TextStyle(
     fontSize: 12,
     height: 1.5,
     color: LoonoColors.grey,
     fontWeight: FontWeight.w400,
+  );
+
+  static const customExamLabel = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.w400,
+  );
+
+  static const customExamSubLabel = TextStyle(fontSize: 14, fontWeight: FontWeight.w400);
+  static const editExaminationMenuItem =
+      TextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Color(0xFF1A1919));
+
+  static const actionMenuBack = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+    color: Colors.black,
+  );
+
+  static const actionMenuItem = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w400,
+    color: Colors.black,
   );
 }

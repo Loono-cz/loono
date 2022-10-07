@@ -145,8 +145,8 @@ class UpdateProfileScreenState extends State<UpdateProfileScreen> {
           key: const Key('ExpansionTileUserDataSection'),
           textColor: Colors.black,
           iconColor: Colors.black,
-          backgroundColor: LoonoColors.expandTileColor,
-          collapsedBackgroundColor: LoonoColors.expandTileColor,
+          backgroundColor: LoonoColors.primaryLight50,
+          collapsedBackgroundColor: LoonoColors.primaryLight50,
           title: Text(
             context.l10n.user_data_label,
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
@@ -234,8 +234,8 @@ class UpdateProfileScreenState extends State<UpdateProfileScreen> {
           key: const Key('ExpansionTileNotificationSection'),
           textColor: Colors.black,
           iconColor: Colors.black,
-          backgroundColor: LoonoColors.expandTileColor,
-          collapsedBackgroundColor: LoonoColors.expandTileColor,
+          backgroundColor: LoonoColors.primaryLight50,
+          collapsedBackgroundColor: LoonoColors.primaryLight50,
           title: Text(
             context.l10n.notification_settings_label,
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
@@ -265,7 +265,7 @@ class UpdateProfileScreenState extends State<UpdateProfileScreen> {
                           isNotificationSwitched = value;
                         });
                       },
-                      activeTrackColor: LoonoColors.donateColor,
+                      activeTrackColor: LoonoColors.primaryEnabled,
                       activeColor: Colors.white,
                     )
                   ],

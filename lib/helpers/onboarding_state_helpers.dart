@@ -27,8 +27,9 @@ extension OnboardingExaminationQuestionnairesExt on List<ExaminationQuestionnair
         (questionnaire) => questionnaire.type == ExaminationType.GENERAL_PRACTITIONER,
       );
 
-  ExaminationQuestionnaire? get gynecologistQuestionnaire =>
-      firstWhereOrNull((questionnaire) => questionnaire.type == ExaminationType.GYNECOLOGIST);
+  ExaminationQuestionnaire? get gynecologistQuestionnaire => firstWhereOrNull(
+        (questionnaire) => questionnaire.type == ExaminationType.GYNECOLOGY_AND_OBSTETRICS,
+      );
 
   ExaminationQuestionnaire? get dentistQuestionnaire =>
       firstWhereOrNull((questionnaire) => questionnaire.type == ExaminationType.DENTIST);
