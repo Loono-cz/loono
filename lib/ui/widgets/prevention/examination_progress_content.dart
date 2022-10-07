@@ -117,13 +117,12 @@ class ExaminationProgressContent extends StatelessWidget {
     final interval = examination.intervalYears;
     DateTime newWaitToDateTime;
     final lastDateVisit = examination.lastConfirmedDate!.toLocal();
+    final isCustom = categorizedExamination.examination.examinationCategoryType ==
+        ExaminationCategoryType.CUSTOM;
 
-    if (interval <= 11) {
+    if (isCustom && interval <= 11) {
       newWaitToDateTime = DateTime(lastDateVisit.year, lastDateVisit.month + interval);
     } else {
-      final isCustom = categorizedExamination.examination.examinationCategoryType ==
-          ExaminationCategoryType.CUSTOM;
-
       newWaitToDateTime = DateTime(
         lastDateVisit.year + (isCustom ? transformMonthToYear(interval) : interval),
         lastDateVisit.month,
