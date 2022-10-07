@@ -216,7 +216,6 @@ extension ExaminationTypeExt on ExaminationType {
       case ExaminationType.DENTAL_HYGIENE:
         examinationTypeUnion = const ExaminationTypeUnion.dentalhygiene();
         break;
-        break;
       case ExaminationType.GYNECOLOGIST:
         examinationTypeUnion = const ExaminationTypeUnion.gynecologist();
         break;
