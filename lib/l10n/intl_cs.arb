@@ -1474,6 +1474,10 @@
   "@delete_exam_action": {},
   "order_yourself": "objednej se",
   "@order_yourself": {},
+  "no_connection_message": "Žádné připojení",
+  "@no_connection_message": {},
+  "no_connection_message_check_connection": "Prosím zkontroluj své připojení k síti",
+  "@no_connection_message_check_connection": {},
   "error_must_be_in_future_by_interval": "Datum prohlídky musí být v budoucnu dle intervalu co {interval} {textString}",
   "@error_must_be_in_future_by_interval": {
     "placeholders": {

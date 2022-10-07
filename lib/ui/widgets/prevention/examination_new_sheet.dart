@@ -89,7 +89,6 @@ void showNewCheckupSheetStep2(
 ) {
   final l10n = context.l10n;
   final examinationType = categorizedExamination.examination.examinationType;
-  final preposition = czechPreposition(context, examinationType: examinationType);
 
   registry.get<FirebaseAnalytics>().logEvent(name: 'OpenNewCheckupQuestionModal');
   showModalBottomSheet<void>(
