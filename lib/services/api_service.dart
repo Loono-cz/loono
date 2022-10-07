@@ -121,6 +121,18 @@ class ApiService {
     );
   }
 
+  Future<ApiResponse<void>> deleteExamination(
+    String uuid,
+  ) async {
+    return _callApi(
+      () async => _api.getExaminationsApi().deleteExamination(
+        examinationId: ExaminationId((id) {
+          id.uuid = uuid;
+        }),
+      ),
+    );
+  }
+
   Future<ApiResponse<ExaminationRecord>> postExamination(
     ExaminationType type, {
     String? uuid,

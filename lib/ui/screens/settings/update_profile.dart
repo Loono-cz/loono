@@ -265,7 +265,7 @@ class UpdateProfileScreenState extends State<UpdateProfileScreen> {
                           isNotificationSwitched = value;
                         });
                       },
-                      activeTrackColor: LoonoColors.donateColor,
+                      activeTrackColor: LoonoColors.primaryEnabled,
                       activeColor: Colors.white,
                     )
                   ],

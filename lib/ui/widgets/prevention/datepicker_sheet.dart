@@ -20,10 +20,9 @@ void showDatePickerSheet({
   required BuildContext context,
   required CategorizedExamination categorizedExamination,
   required Future<void> Function({required DateTime date}) onSubmit,
-  required String firstStepTitle,
-  required String secondStepTitle,
   bool isNewCheckup = false,
   String? additionalBottomText,
+  int intervalMonths = 0,
 }) {
   registry.get<FirebaseAnalytics>().logEvent(name: 'OpenDatePickerModal');
   showModalBottomSheet<void>(
@@ -38,7 +37,7 @@ void showDatePickerSheet({
         key: const Key('datePickerSheet'),
         height: 680,
         decoration: const BoxDecoration(
-          color: LoonoColors.primary,
+          color: LoonoColors.primaryLight,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(15),
             topRight: Radius.circular(15),
@@ -50,10 +49,9 @@ void showDatePickerSheet({
             child: _DatePickerContent(
               categorizedExamination: categorizedExamination,
               onSubmit: onSubmit,
-              firstStepTitle: firstStepTitle,
-              secondStepTitle: secondStepTitle,
               additionalBottomText: additionalBottomText,
               isNewCheckup: isNewCheckup,
+              intervalMonths: intervalMonths,
             ),
           ),
         ),
@@ -69,18 +67,17 @@ class _DatePickerContent extends StatefulWidget {
     Key? key,
     required this.categorizedExamination,
     required this.onSubmit,
-    required this.firstStepTitle,
-    required this.secondStepTitle,
     required this.isNewCheckup,
+    required this.intervalMonths,
     this.additionalBottomText,
   }) : super(key: key);
 
   final CategorizedExamination categorizedExamination;
   final Future<void> Function({required DateTime date}) onSubmit;
-  final String firstStepTitle;
-  final String secondStepTitle;
+
   final String? additionalBottomText;
   final bool isNewCheckup;
+  final int intervalMonths;
 
   @override
   _DatePickerContentState createState() => _DatePickerContentState();
@@ -116,16 +113,18 @@ class _DatePickerContentState extends State<_DatePickerContent> {
   @override
   Widget build(BuildContext context) {
     final examinationType = widget.categorizedExamination.examination.examinationType;
-    final practitioner =
-        procedureQuestionTitle(context, examinationType: examinationType).toLowerCase();
-    final preposition = czechPreposition(context, examinationType: examinationType);
-    final prepositionDativ = czechPrepositionDativ(context, examinationType: examinationType);
 
     final originalDate = widget.categorizedExamination.examination.plannedDate?.toLocal();
 
-    final newCheckupTitle = isFirstStep
-        ? '${_sex == Sex.MALE ? context.l10n.checkup_new_date_title_male : context.l10n.checkup_new_date_title_female}$prepositionDativ '
-        : '${_sex == Sex.MALE ? context.l10n.checkup_new_time_title_male : context.l10n.checkup_new_time_title_female}$prepositionDativ ';
+    String _buildTitle(BuildContext context) {
+      return isFirstStep
+          ? _sex == Sex.MALE
+              ? context.l10n.wich_date_you_have_reservation_male
+              : context.l10n.wich_date_you_have_reservation_female
+          : _sex == Sex.MALE
+              ? context.l10n.custom_exam_reservation_time_male
+              : context.l10n.custom_exam_reservation_time_female;
+    }
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -160,9 +159,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 TextSpan(
                   children: [
                     TextSpan(
-                      text: widget.isNewCheckup
-                          ? newCheckupTitle
-                          : '${isFirstStep ? context.l10n.new_checkup_date : context.l10n.new_checkup_time} $preposition $practitioner',
+                      text: _buildTitle(context),
                       style: LoonoFonts.headerFontStyle,
                     ),
                     if (widget.isNewCheckup)
@@ -197,12 +194,12 @@ class _DatePickerContentState extends State<_DatePickerContent> {
           child: isFirstStep
               ? CustomDatePicker(
                   valueChanged: onDateChanged,
-                  yearsBeforeActual: DateTime.now().year - 1900,
-                  yearsOverActual: 2,
+                  yearsBeforeActual: DateTime.now().year - (DateTime.now().year - 10),
+                  yearsOverActual: 10,
                   allowDays: true,
-                  defaultDay: originalDate?.day,
-                  defaultMonth: originalDate?.month,
-                  defaultYear: originalDate?.year,
+                  defaultDay: DateTime.now().day,
+                  defaultMonth: DateTime.now().month,
+                  defaultYear: DateTime.now().year,
                 )
               : CustomTimePicker(
                   valueChanged: onTimeChanged,
@@ -223,6 +220,19 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 DateTime.now().isBefore(newDate!);
             if (!isDateValid) {
               showFlushBarError(context, context.l10n.error_must_be_in_future);
+              return;
+            }
+            if (newDate!.isBefore(
+              DateTime(
+                Date.now().toDateTime().year,
+                Date.now().toDateTime().month+widget.intervalMonths,
+                Date.now().toDateTime().day,
+              ),
+            )) {
+              showFlushBarError(
+                context,
+                context.l10n.too_early_checkup,
+              );
               return;
             }
             if (isFirstStep) {

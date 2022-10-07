@@ -16,6 +16,13 @@ class ExaminationRepository {
     return response;
   }
 
+  Future<ApiResponse<void>> deleteExamination(
+    String uuid,
+  ) async {
+    final response = await _apiService.deleteExamination(uuid);
+    return response;
+  }
+
   Future<ApiResponse<ExaminationRecord>> postExamination(
     ExaminationType type, {
     String? uuid,

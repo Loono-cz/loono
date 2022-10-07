@@ -34,9 +34,6 @@ class FaqSection extends StatelessWidget {
                 )
                 .toList(),
           ),
-          const SizedBox(
-            height: 60,
-          ),
         ],
       ),
     );

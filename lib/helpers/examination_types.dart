@@ -293,6 +293,22 @@ extension ExaminationTypeExt on ExaminationType {
   }
 
   String get customExamAssetPath => 'assets/icons/prevention/doctors/universal_specialist.svg';
+
+  int? frequencyOfExam(int age) {
+    switch (this) {
+      case ExaminationType.GYNECOLOGY_AND_OBSTETRICS:
+        return 1;
+      case ExaminationType.COLONOSCOPY:
+        return 10;
+      case ExaminationType.DERMATOLOGIST:
+        return 1;
+      case ExaminationType.OCULAR:
+      case ExaminationType.OPHTHALMOLOGIST:
+        return age >= 19 && age < 44 && age >= 62 ? 2 : 4;
+      default:
+        return 2;
+    }
+  }
 }
 
 extension SelfExaminationTypeExt on SelfExaminationType {
