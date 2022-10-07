@@ -191,14 +191,20 @@ class _DatePickerContentState extends State<_DatePickerContent> {
             final isCustom = widget.categorizedExamination.examination.examinationCategoryType ==
                 ExaminationCategoryType.CUSTOM;
             final customInterval = widget.categorizedExamination.examination.customInterval;
-
+            final plannedDate = widget.categorizedExamination.examination.plannedDate;
             final interval = isCustom ? customInterval : defaultInterval;
-
+            bool isDateValid;
             final dateInterval =
                 DateTime(DateTime.now().year, DateTime.now().month + interval!, DateTime.now().day);
-            final isDateValid = Date.now().toDateTime().isAtSameMomentAs(dateInterval) ||
-                DateTime.now().isAfter(dateInterval) ||
-                newDate?.isAfter(dateInterval) == true;
+            if (plannedDate != null) {
+              isDateValid = Date.now().toDateTime().isAtSameMomentAs(dateInterval) ||
+                  DateTime.now().isAfter(dateInterval) ||
+                  newDate?.isAfter(dateInterval) == true;
+            } else {
+              isDateValid = Date.now().toDateTime().isAtSameMomentAs(newDate!) ||
+                  DateTime.now().isBefore(newDate!);
+            }
+
             if (!isDateValid) {
               final textInterval = isCustom
                   ? interval < 12
@@ -207,10 +213,12 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                   : 'roků';
               showFlushBarError(
                 context,
-                context.l10n.error_must_be_in_future_by_interval(
-                  transformMonthToYear(interval),
-                  textInterval,
-                ),
+                plannedDate != null
+                    ? context.l10n.error_must_be_in_future_by_interval(
+                        transformMonthToYear(interval),
+                        textInterval,
+                      )
+                    : context.l10n.error_must_be_in_future,
               );
               return;
             }
