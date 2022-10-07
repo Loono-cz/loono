@@ -119,7 +119,7 @@ final defaultFemaleExaminations = createExaminationsObject(
     ),
     createExaminationPreventionObject(
       uuid: 'd4fa99fe-87b2-467a-a5e9-c04808868f2c',
-      examinationType: ExaminationType.GYNECOLOGIST,
+      examinationType: ExaminationType.GYNECOLOGY_AND_OBSTETRICS,
       intervalYears: 1,
       firstExam: true,
       priority: 3,

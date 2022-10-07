@@ -45,7 +45,7 @@ Future<void> run({
 
   await selfExaminationDetailPage.clickAtFaqContentText(
     itemPosition: 1,
-    text: 'seznamu lékařů',
+    text: 'seznamu lékařů.',
   );
   await findDoctorPage.verifyScreenIsShown();
   await mainScreenPage.verifyScreenIsShown();

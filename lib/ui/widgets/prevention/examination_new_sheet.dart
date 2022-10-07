@@ -89,7 +89,6 @@ void showNewCheckupSheetStep2(
 ) {
   final l10n = context.l10n;
   final examinationType = categorizedExamination.examination.examinationType;
-  final preposition = czechPreposition(context, examinationType: examinationType);
 
   registry.get<FirebaseAnalytics>().logEvent(name: 'OpenNewCheckupQuestionModal');
   showModalBottomSheet<void>(
@@ -162,18 +161,6 @@ void showNewCheckupSheetStep2(
                   categorizedExamination: categorizedExamination,
                   onSubmit: onSubmit,
                   isNewCheckup: true,
-                  firstStepTitle:
-                      '${sex == Sex.MALE ? l10n.checkup_new_date_title_male : l10n.checkup_new_date_title_female} $preposition ${examinationTypeCasus(
-                    context,
-                    casus: Casus.genitiv,
-                    examinationType: examinationType,
-                  ).toUpperCase()}?',
-                  secondStepTitle:
-                      '${l10n.checkup_new_time_title} $preposition ${examinationTypeCasus(
-                    context,
-                    casus: Casus.nomativ,
-                    examinationType: examinationType,
-                  ).toLowerCase()}',
                 );
               },
             ),

@@ -17,6 +17,7 @@ class ExaminationDetailPage {
   final Finder orderBtn = find.byKey(const Key('examinationDetailPage_btn_order'));
   final Finder addToCalendarBtn = find.byKey(const Key('examinationDetailPage_btn_calendar'));
   final Finder updateDateBtn = find.byKey(const Key('examinationDetailPage_btn_updateDate'));
+  final Finder actionBtn = find.byKey(const Key('examinationDetailPage_btn_action'));
 
   /// Page methods
   Future<void> clickBackButton() async {
@@ -34,6 +35,12 @@ class ExaminationDetailPage {
   Future<void> clickUpdateDateButton() async {
     logTestEvent();
     await tester.tap(updateDateBtn);
+    await tester.pumpAndSettle();
+  }
+
+  Future<void> clickActionButton() async {
+    logTestEvent();
+    await tester.tap(actionBtn);
     await tester.pumpAndSettle();
   }
 

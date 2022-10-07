@@ -1,43 +1,69 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/l10n/ext.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-Widget methodologyDisclosure(Sex sex) {
-  final loonoUrl = sex == Sex.MALE
-      ? 'https://www.loono.cz/prevence/samovysetreni#vysetri-si-koule'
-      : 'https://www.loono.cz/prevence/samovysetreni#vysetri-si-prsa';
-  final linkosUrl = sex == Sex.MALE
-      ? 'https://www.linkos.cz/pacient-a-rodina/onkologicke-diagnozy/zhoubne-nadory-muzskeho-pohlavniho-ustroji-c60-c62/o-varlatech-a-nadorech-varlat/'
-      : 'https://www.linkos.cz/onkologicka-prevence/informace-o-prevenci/nadory-prsu/';
+HarmDisclosureUrls methodologyDisclosureByType(SelfExaminationType type) {
+  var loonoUrl = '';
+  var linkosUrl = '';
+  switch (type) {
+    case SelfExaminationType.BREAST:
+      loonoUrl = LoonoStrings.breastExamUrl;
+      linkosUrl = LoonoStrings.tumorBreastExamUrl;
+      break;
+
+    case SelfExaminationType.SKIN:
+      loonoUrl = LoonoStrings.skinExamUrl;
+      linkosUrl = LoonoStrings.tumorUrl;
+      break;
+
+    case SelfExaminationType.TESTICULAR:
+      loonoUrl = LoonoStrings.testicularExamUrl;
+      linkosUrl = LoonoStrings.tumorTesticularLink;
+      break;
+  }
+  return HarmDisclosureUrls(loonoUrl: loonoUrl, linkosUrl: linkosUrl);
+}
+
+Widget harmDisclosureWidget(BuildContext context, SelfExaminationType type) {
+  final disclosure = methodologyDisclosureByType(type);
   return RichText(
     text: TextSpan(
-      text: 'Více informací o správném postupu samovyšetření nalezneš také na ',
+      text: AppLocalizationsExt(context).l10n.more_information_about_self_exam,
       style: LoonoFonts.paragraphSmallFontStyle,
       children: <TextSpan>[
         TextSpan(
-          text: 'našem webu',
+          text: AppLocalizationsExt(context).l10n.our_web_page,
           style: const TextStyle(decoration: TextDecoration.underline),
           recognizer: TapGestureRecognizer()
             ..onTap = () async {
-              if (await canLaunchUrlString(loonoUrl)) {
-                await launchUrlString(loonoUrl);
+              if (await canLaunchUrlString(disclosure.loonoUrl)) {
+                await launchUrlString(disclosure.loonoUrl);
               }
             },
         ),
-        const TextSpan(text: ' nebo na webu '),
         TextSpan(
-          text: 'České onkologické společnosti.',
+          text: AppLocalizationsExt(context).l10n.or_on_linkos_web_page,
+        ),
+        TextSpan(
+          text: AppLocalizationsExt(context).l10n.czech_oncology_corp,
           style: const TextStyle(decoration: TextDecoration.underline),
           recognizer: TapGestureRecognizer()
             ..onTap = () async {
-              if (await canLaunchUrlString(linkosUrl)) {
-                await launchUrlString(linkosUrl);
+              if (await canLaunchUrlString(disclosure.linkosUrl)) {
+                await launchUrlString(disclosure.linkosUrl);
               }
             },
         ),
       ],
     ),
   );
+}
+
+class HarmDisclosureUrls {
+  HarmDisclosureUrls({required this.loonoUrl, required this.linkosUrl});
+  String loonoUrl;
+  String linkosUrl;
 }

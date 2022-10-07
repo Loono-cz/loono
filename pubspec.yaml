@@ -26,6 +26,7 @@ dependencies:
   diacritic: ^0.1.3
   dio: ^4.0.0
   dio_smart_retry: ^1.1.0
+  dotted_border: ^2.0.0+2
   drift: ^1.4.0
   easy_debounce: ^2.0.2+1
   email_validator: ^2.0.1
@@ -41,6 +42,7 @@ dependencies:
   firebase_storage: ^10.1.0
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.1
   flutter_cache_manager: ^3.1.3
   flutter_config: ^2.0.0
   flutter_dotenv: ^5.0.0
@@ -70,7 +72,7 @@ dependencies:
     git:
       url: https://github.com/Loono-cz/loono-api.git
       path: dart
-      ref: 96d0a5bdca381693f19665093ce9fc61f218ee98
+      ref: 1c6cb646b30eaf82b1c71cd118081a0d8ff7943d
   modal_progress_hud_nsn: ^0.2.1
   onesignal_flutter: ^3.2.4
   open_store: ^0.2.4
@@ -88,6 +90,7 @@ dependencies:
   video_player: ^2.1.10
   yaml: ^3.1.0
   youtube_player_flutter: ^8.0.0
+
 
 dependency_overrides:
   google_sign_in: '5.2.4'
@@ -144,6 +147,7 @@ flutter:
     - assets/badges/achievement/
     - assets/badges/lines/
     - assets/badges_examination/
+    - assets/badges_examination/custom_examination/
     - assets/badges_examination/dentist/
     - assets/badges_examination/colonoscopy/
     - assets/badges_examination/dermatologist/
