@@ -94,7 +94,7 @@ class NewDateScreenState extends State<NewDateScreen> {
                 child: CustomDatePicker(
                   valueChanged: onDateChanged,
                   yearsBeforeActual: DateTime.now().year - 1900,
-                  yearsOverActual: 2,
+                  yearsOverActual: 10,
                   allowDays: true,
                 ),
               ),

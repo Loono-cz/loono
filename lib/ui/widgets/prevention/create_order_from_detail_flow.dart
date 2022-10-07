@@ -187,42 +187,67 @@ class _DatePickerContentState extends State<_DatePickerContent> {
               : context.l10n.action_save,
           enabled: newDate != null,
           asyncCallback: () async {
-            final defaultInterval = widget.categorizedExamination.examination.intervalYears;
-            final isCustom = widget.categorizedExamination.examination.examinationCategoryType ==
-                ExaminationCategoryType.CUSTOM;
-            final customInterval = widget.categorizedExamination.examination.customInterval;
-            final plannedDate = widget.categorizedExamination.examination.plannedDate;
-            final interval = isCustom ? customInterval : defaultInterval;
-            bool isDateValid;
-            final dateInterval =
-                DateTime(DateTime.now().year, DateTime.now().month + interval!, DateTime.now().day);
-            if (plannedDate != null) {
-              isDateValid = Date.now().toDateTime().isAtSameMomentAs(dateInterval) ||
-                  DateTime.now().isAfter(dateInterval) ||
-                  newDate?.isAfter(dateInterval) == true;
-            } else {
-              isDateValid = Date.now().toDateTime().isAtSameMomentAs(newDate!) ||
-                  DateTime.now().isBefore(newDate!);
+            final examination = widget.categorizedExamination.examination;
+            final isCustom = examination.examinationCategoryType == ExaminationCategoryType.CUSTOM;
+            final lastConfirmed = examination.lastConfirmedDate;
+
+            if (isCustom && lastConfirmed != null) {
+              final customInterval = examination.customInterval!;
+              final textInterval = customInterval < 12 ? 'měsíců' : 'roků';
+              final intervalDate = customInterval < 12
+                  ? DateTime(
+                      lastConfirmed.year,
+                      lastConfirmed.month + customInterval,
+                      lastConfirmed.day,
+                    )
+                  : DateTime(
+                      lastConfirmed.year + transformMonthToYear(customInterval),
+                      lastConfirmed.month,
+                      lastConfirmed.day,
+                    );
+
+              final isDateValid = intervalDate.isAtSameMomentAs(
+                    newDate!,
+                  ) ||
+                  intervalDate.isBefore(newDate!);
+              if (!isDateValid) {
+                showFlushBarError(
+                  context,
+                  context.l10n.error_must_be_in_future_by_interval(customInterval, textInterval),
+                );
+                return;
+              }
+            } else if (lastConfirmed != null) {
+              final customInterval = examination.intervalYears;
+              final intervalDate = DateTime(
+                lastConfirmed.year + customInterval,
+                lastConfirmed.month,
+                lastConfirmed.day,
+              );
+
+              final isDateValid = intervalDate.isAtSameMomentAs(
+                    newDate!,
+                  ) ||
+                  intervalDate.isBefore(newDate!);
+              if (!isDateValid) {
+                showFlushBarError(
+                  context,
+                  context.l10n.error_must_be_in_future_by_interval(customInterval, 'roků'),
+                );
+                return;
+              }
             }
 
-            if (!isDateValid) {
-              final textInterval = isCustom
-                  ? interval < 12
-                      ? 'měsíců'
-                      : 'roků'
-                  : 'roků';
-              showFlushBarError(
-                context,
-                plannedDate != null
-                    ? context.l10n.error_must_be_in_future_by_interval(
-                        transformMonthToYear(interval),
-                        textInterval,
-                      )
-                    : context.l10n.error_must_be_in_future,
-              );
-              return;
-            }
             if (viewStep == ViewSteps.datePicker) {
+              if (!(Date.now().toDateTime().isAtSameMomentAs(newDate!) ||
+                  DateTime.now().isBefore(newDate!))) {
+                showFlushBarError(
+                  context,
+                  context.l10n.error_must_be_in_future,
+                );
+                return;
+              }
+
               if (originalDate != null) {
                 /// preset original date
                 newDate = DateTime(
@@ -263,11 +288,9 @@ class _DatePickerContentState extends State<_DatePickerContent> {
           child: CustomDatePicker(
             valueChanged: onDateChanged,
             yearsBeforeActual: DateTime.now().year - 1900,
-            yearsOverActual: 2,
+            yearsOverActual: 10,
             allowDays: true,
             defaultDay: originalDate?.day ?? DateTime.now().day,
-            defaultMonth: originalDate?.month,
-            defaultYear: originalDate?.year,
           ),
         );
       case ViewSteps.timePicker:
