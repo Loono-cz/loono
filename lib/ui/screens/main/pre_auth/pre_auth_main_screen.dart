@@ -37,10 +37,8 @@ class _PreAuthMainScreenState extends State<PreAuthMainScreen> {
   ];
 
   void evalConnectivity(ConnectivityResult result) {
-    if (result == ConnectivityResult.none) {
-      if (noConnectionMessage?.isShowing() == false) {
-        noConnectionMessage?.show(context);
-      }
+    if (result == ConnectivityResult.none && noConnectionMessage?.isShowing() == false) {
+      noConnectionMessage?.show(context);
     } else if (noConnectionMessage?.isDismissed() == false) {
       noConnectionMessage?.dismiss(context);
     }

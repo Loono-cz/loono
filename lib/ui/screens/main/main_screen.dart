@@ -34,10 +34,8 @@ class _MainScreenState extends State<MainScreen> {
   Flushbar? noConnectionMessage;
 
   void evalConnectivity(ConnectivityResult result) {
-    if (result == ConnectivityResult.none) {
-      if (noConnectionMessage?.isShowing() == false) {
-        noConnectionMessage?.show(context);
-      }
+    if (result == ConnectivityResult.none && noConnectionMessage?.isShowing() == false) {
+      noConnectionMessage?.show(context);
     } else if (noConnectionMessage?.isDismissed() == false) {
       noConnectionMessage?.dismiss(context);
     }
