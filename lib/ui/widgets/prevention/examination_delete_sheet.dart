@@ -19,8 +19,6 @@ void showDeleteExaminationSheet({
   required DateTime date,
   required String id,
 }) {
-  final l10n = context.l10n;
-
   registry.get<FirebaseAnalytics>().logEvent(name: 'OpenCancelCheckupModal');
   showModalBottomSheet<void>(
     context: context,

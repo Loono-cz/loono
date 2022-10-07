@@ -140,14 +140,11 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
           )
         : l10n.skip_idk;
 
-    final practitioner =
-        procedureQuestionTitle(context, examinationType: _examinationType).toLowerCase();
     final preposition = czechPreposition(context, examinationType: _examinationType);
 
     /// not ideal in build method but need context
     Future<void> _onPostNewCheckupSubmit({required DateTime date, String? note}) async {
       /// code anchor: #postNewExamination
-      /// TODO: Add Note property
       final response = await registry.get<ExaminationRepository>().postExamination(
             _examinationType,
             newDate: date,
@@ -170,7 +167,6 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
             Provider.of<ExaminationsProvider>(context, listen: false)
                 .updateExaminationsRecord(res.data);
           }
-          //AutoRouter.of(context).popUntilRouteWithName(MainRoute.name);
           AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
           AutoRouter.of(context).replace(
             ExaminationDetailRoute(

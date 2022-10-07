@@ -28,7 +28,6 @@ void showCustomEditExamSheet({
 }) {
   final examProvider = Provider.of<ExaminationsProvider>(context, listen: false);
   final exam = examProvider.examinations?.examinations.firstWhere((p0) => p0.uuid == id);
-  final l10n = context.l10n;
 
   registry.get<FirebaseAnalytics>().logEvent(name: 'OpenCancelCheckupModal');
   showModalBottomSheet<void>(
@@ -58,7 +57,6 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
   DateTime? _lastExamDate;
 
   bool _idkCheck = false;
-  final bool _showLastExamError = false;
 
   void changeFreqTerm(String term) => Future<void>.delayed(
         const Duration(milliseconds: 500),
@@ -81,9 +79,7 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
         }),
       );
 
-  Future<void> _onPostNewCheckupSubmit({DateTime? date, String? note}) async {
-    ///TODO: Zeptat se stepana co by tady asi melo bejt ja totiz uz nevim :D
-
+  Future<void> _onPostNewCheckupSubmit({DateTime? date}) async {
     final response = await registry.get<ExaminationRepository>().postExamination(
           widget.exam!.examinationType,
           newDate: date ?? widget.exam?.plannedDate ?? widget.exam!.lastConfirmedDate,

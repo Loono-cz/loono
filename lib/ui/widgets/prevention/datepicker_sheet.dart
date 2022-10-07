@@ -109,28 +109,10 @@ class _DatePickerContentState extends State<_DatePickerContent> {
   @override
   Widget build(BuildContext context) {
     final examinationType = widget.categorizedExamination.examination.examinationType;
-    final practitioner =
-        procedureQuestionTitle(context, examinationType: examinationType).toLowerCase();
-    final preposition = czechPreposition(context, examinationType: examinationType);
-    final prepositionDativ = czechPrepositionDativ(context, examinationType: examinationType);
 
     final originalDate = widget.categorizedExamination.examination.plannedDate?.toLocal();
 
-    final newCheckupTitle = isFirstStep
-        ? _sex == Sex.MALE
-            ? context.l10n.checkup_new_date_title_male
-            : context.l10n.checkup_new_date_title_female
-        : _sex == Sex.MALE
-            ? context.l10n.checkup_new_time_title_male
-            : context.l10n.checkup_new_time_title_female;
-
     String _buildTitle(BuildContext context) {
-      final exam = widget.categorizedExamination.examination;
-      // if (widget.isNewCheckup) return newCheckupTitle;
-      // if (exam.examinationCategoryType == ExaminationCategoryType.CUSTOM) {
-
-      // }
-      // return '${isFirstStep ? context.l10n.new_checkup_date : context.l10n.new_checkup_time} $preposition $practitioner';
       return isFirstStep
           ? _sex == Sex.MALE
               ? context.l10n.wich_date_you_have_reservation_male
