@@ -55,7 +55,10 @@ class _CustomInputTextFieldState extends State<CustomInputTextField> {
     });
 
     return TextFormField(
-      style: TextStyle(color: widget.value == '' ? Colors.black38 : Colors.black, fontSize: 14),
+      style: TextStyle(
+        color: widget.value == '' || widget.enabled == false ? Colors.black38 : Colors.black,
+        fontSize: 14,
+      ),
       controller: textController,
       readOnly: true,
       enabled: widget.enabled,

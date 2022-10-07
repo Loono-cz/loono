@@ -169,7 +169,8 @@ class ExaminationsProvider extends ChangeNotifier {
         ..priority = 0
         ..count = 0
         ..badge = BadgeType.SHIELD
-        ..uuid = record.uuid,
+        ..uuid = record.uuid
+        ..note = record.note,
     );
 
     final builder = examinations?.toBuilder();

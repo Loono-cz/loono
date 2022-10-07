@@ -87,7 +87,7 @@ class _ChooseCustomExaminationTypeScreenState extends State<ChooseCustomExaminat
                             _examActionType = actionType;
                           }),
                         ),
-                        const Divider()
+                        if (index < ExaminationActionType.values.length - 1) const Divider()
                       ],
                     );
                   }),
