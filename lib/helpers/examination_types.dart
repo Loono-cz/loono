@@ -9,7 +9,7 @@ extension ExaminationTypeExt on ExaminationType {
   int get awardPoints {
     switch (this) {
       case ExaminationType.GENERAL_PRACTITIONER:
-      case ExaminationType.GYNECOLOGY_AND_OBSTETRICS:
+      case ExaminationType.GYNECOLOGIST:
       case ExaminationType.DERMATOLOGIST:
         return 200;
       case ExaminationType.DENTIST:
@@ -213,6 +213,13 @@ extension ExaminationTypeExt on ExaminationType {
       case ExaminationType.VASCULAR:
         examinationTypeUnion = const ExaminationTypeUnion.vascular();
         break;
+      case ExaminationType.DENTAL_HYGIENE:
+        examinationTypeUnion = const ExaminationTypeUnion.dentalhygiene();
+        break;
+        break;
+      case ExaminationType.GYNECOLOGIST:
+        examinationTypeUnion = const ExaminationTypeUnion.gynecologist();
+        break;
     }
     return examinationTypeUnion;
   }
@@ -275,19 +282,17 @@ extension ExaminationTypeExt on ExaminationType {
 
   int? frequencyOfExam(int age) {
     switch (this) {
-      case ExaminationType.GYNECOLOGY_AND_OBSTETRICS:
+      case ExaminationType.GYNECOLOGIST:
         return 1;
       case ExaminationType.COLONOSCOPY:
         return 10;
       case ExaminationType.DERMATOLOGIST:
         return 1;
-      case ExaminationType.OCULAR:
       case ExaminationType.OPHTHALMOLOGIST:
         return age >= 19 && age < 44 && age >= 62 ? 2 : 4;
       default:
         return 2;
     }
-    return null;
   }
 }
 
