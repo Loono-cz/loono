@@ -196,7 +196,6 @@ class _DatePickerContentState extends State<_DatePickerContent> {
 
             final dateInterval =
                 DateTime(DateTime.now().year, DateTime.now().month + interval!, DateTime.now().day);
-            print(dateInterval);
             final isDateValid = Date.now().toDateTime().isAtSameMomentAs(dateInterval) ||
                 DateTime.now().isAfter(dateInterval) ||
                 newDate?.isAfter(dateInterval) == true;
