@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/date_helpers.dart';
 import 'package:loono/helpers/examination_action_types.dart';
 import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_types.dart';
@@ -11,7 +12,7 @@ import 'package:loono/ui/widgets/notification_icon.dart';
 import 'package:loono_api/loono_api.dart';
 
 // ignore: constant_identifier_names
-const EXAMINATION_CARD_HEIGHT = 130.0;
+const EXAMINATION_CARD_HEIGHT = 120.0;
 
 class ExaminationCard extends StatelessWidget {
   ExaminationCard({
@@ -30,15 +31,22 @@ class ExaminationCard extends StatelessWidget {
   int _diffInDays(DateTime date) => DateTime(date.year, date.month, date.day)
       .difference(DateTime(now.year, now.month, now.day))
       .inDays;
+  ExaminationCategoryType? get examCatType =>
+      categorizedExamination.examination.examinationCategoryType;
+  ExaminationType get examType => categorizedExamination.examination.examinationType;
+  ExaminationActionType? get examActionType =>
+      categorizedExamination.examination.examinationActionType;
 
   Widget get _title => Text(
         categorizedExamination.examination.examinationType.l10n_name,
         style: LoonoFonts.cardTitle,
       );
   Widget get _subtitle => Text(
-        ExaminationActionTypeExt(
-          categorizedExamination.examination.examinationActionType ?? ExaminationActionType.CONTROL,
-        ).l10n_name,
+        examCatType == ExaminationCategoryType.CUSTOM && examActionType != null
+            ? ExaminationActionTypeExt(
+                examActionType!,
+              ).l10n_name
+            : 'Preventivní prohlídka',
         style: LoonoFonts.cardExaminaitonType,
       );
 
@@ -99,13 +107,6 @@ class ExaminationCard extends StatelessWidget {
   List<Widget> _scheduledContent({bool isSoonOrOverdue = false}) {
     final nextVisitDate = categorizedExamination.examination.plannedDate!.toLocal();
     final diffDays = _diffInDays(nextVisitDate);
-    // final diffText = now.isAfter(nextVisitDate)
-    //     ? 'byl/a jsi na prohlídce?'
-    //     : diffDays == 0
-    //         ? 'dnes'
-    //         : diffDays == 1
-    //             ? 'zítra'
-    //             : '';
 
     final diffText = diffDays == 0
         ? 'dnes'
@@ -128,6 +129,9 @@ class ExaminationCard extends StatelessWidget {
                     const NotificationIcon.topPriority(),
                   ],
                 ],
+              ),
+              const SizedBox(
+                height: 8.0,
               ),
               _subtitle,
               const SizedBox(height: 8.0),
@@ -168,9 +172,12 @@ class ExaminationCard extends StatelessWidget {
                   ],
                 ],
               ),
-              _subtitle,
               const SizedBox(
                 height: 4.0,
+              ),
+              _subtitle,
+              const SizedBox(
+                height: 8.0,
               ),
               Text(
                 'objednej se'.toUpperCase(),
@@ -198,12 +205,21 @@ class ExaminationCard extends StatelessWidget {
 
   List<Widget> _waitingContent() {
     final lastDateVisit = categorizedExamination.examination.lastConfirmedDate!.toLocal();
-    final newWaitToDateTime = DateTime(
-      lastDateVisit.year + categorizedExamination.examination.intervalYears,
-      lastDateVisit.month,
-    );
-    final formattedDate = DateFormat.yMMMM('cs-CZ').format(newWaitToDateTime);
+    final interval = categorizedExamination.examination.intervalYears;
+    final isCustom = categorizedExamination.examination.examinationCategoryType ==
+        ExaminationCategoryType.CUSTOM;
+    DateTime newWaitToDateTime;
 
+    if (isCustom && interval <= 11) {
+      newWaitToDateTime = DateTime(lastDateVisit.year, lastDateVisit.month + interval);
+    } else {
+      newWaitToDateTime = DateTime(
+        lastDateVisit.year + (isCustom ? transformMonthToYear(interval) : interval),
+        lastDateVisit.month,
+      );
+    }
+
+    final formattedDate = DateFormat.yMMMM('cs-CZ').format(newWaitToDateTime);
     return <Widget>[
       Expanded(
         child: ListTile(
@@ -213,10 +229,12 @@ class ExaminationCard extends StatelessWidget {
             children: [
               _title,
               const SizedBox(
-                height: 2.0,
+                height: 4.0,
               ),
               _subtitle,
-              const Spacer(flex: 2),
+              const SizedBox(
+                height: 2.0,
+              ),
               Text(
                 'do $formattedDate hotovo'.toUpperCase(),
                 style: LoonoFonts.cardSubtitle.copyWith(color: LoonoColors.grey),

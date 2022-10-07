@@ -42,8 +42,8 @@ class LoonoColors {
     Color.fromARGB(255, 237, 141, 140),
   ];
 
-  static const donateColor = Color(0xFFBE5713);
   static const primaryLight50 = Color(0xFFFDE4D3);
+  static const otherExamDetailCardColor = Color.fromRGBO(250, 247, 248, 1);
 }
 
 class LoonoStrings {
@@ -121,6 +121,10 @@ class LoonoFonts {
     color: LoonoColors.green,
     fontWeight: FontWeight.w700,
   );
+  static const spinnerTextOnceTo = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
 
   static const cardSubtitle = TextStyle(
     fontSize: 11,
@@ -148,4 +152,18 @@ class LoonoFonts {
   );
 
   static const customExamSubLabel = TextStyle(fontSize: 14, fontWeight: FontWeight.w400);
+  static const editExaminationMenuItem =
+      TextStyle(fontSize: 20.0, fontWeight: FontWeight.w400, color: Color(0xFF1A1919));
+
+  static const actionMenuBack = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+    color: Colors.black,
+  );
+
+  static const actionMenuItem = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w400,
+    color: Colors.black,
+  );
 }

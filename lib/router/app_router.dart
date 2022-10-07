@@ -66,6 +66,7 @@ const _onboardingTransition = TransitionsBuilders.slideLeft;
 const _preventionTransition = TransitionsBuilders.slideLeft;
 const _findDoctorTransition = TransitionsBuilders.slideLeft;
 const _settingsTransition = TransitionsBuilders.slideLeft;
+const _customFormTransition = TransitionsBuilders.slideBottom;
 
 // After editing this, run:
 // flutter pub run build_runner build --delete-conflicting-outputs
@@ -355,26 +356,26 @@ const _customExamForm = <AutoRoute>[
   CustomRoute<void>(
     page: ChooseCustomExaminationTypeScreen,
     path: 'custom-exam-form-choose-examination',
-    transitionsBuilder: _preventionTransition,
+    transitionsBuilder: _customFormTransition,
   ),
   CustomRoute<void>(
     page: ChooseSpecialistScreen,
     path: 'custom-exam-form-choose-provider',
-    transitionsBuilder: _preventionTransition,
+    transitionsBuilder: _customFormTransition,
   ),
   CustomRoute<void>(
     page: ChooseExamPeriodDateScreen,
     path: 'custom-exam-form-choose-period-date',
-    transitionsBuilder: _preventionTransition,
+    transitionsBuilder: _customFormTransition,
   ),
   CustomRoute<void>(
     page: ChooseExamPeriodTimeScreen,
     path: 'custom-exam-form-choose-period-time',
-    transitionsBuilder: _preventionTransition,
+    transitionsBuilder: _customFormTransition,
   ),
   CustomRoute<void>(
     page: ChooseFrequencyOfExamScreen,
     path: 'custom-exam-form-choose-exam-frequency',
-    transitionsBuilder: _preventionTransition,
+    transitionsBuilder: _customFormTransition,
   )
 ];

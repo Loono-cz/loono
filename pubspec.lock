@@ -407,6 +407,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.2"
+  dotted_border:
+    dependency: "direct main"
+    description:
+      name: dotted_border
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0+2"
   drift:
     dependency: "direct main"
     description:
@@ -1036,9 +1043,8 @@ packages:
     dependency: "direct main"
     description:
       path: dart
-      ref: "0ff983c382f3e33e3e096e6e88605e052b5ceadb"
-      resolved-ref: "0ff983c382f3e33e3e096e6e88605e052b5ceadb"
-
+      ref: "1c6cb646b30eaf82b1c71cd118081a0d8ff7943d"
+      resolved-ref: "1c6cb646b30eaf82b1c71cd118081a0d8ff7943d"
       url: "https://github.com/Loono-cz/loono-api.git"
     source: git
     version: "1.0.0"

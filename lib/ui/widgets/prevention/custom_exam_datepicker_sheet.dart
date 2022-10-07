@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/helpers/date_helpers.dart';
 import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
@@ -16,12 +15,10 @@ import 'package:loono/ui/widgets/custom_time_picker.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
-enum ViewSteps { datePicker, timePicker, noteField }
-
-void showCreateOrderFromDetailSheet({
+void showCustomDatePickerSheet({
   required BuildContext context,
   required CategorizedExamination categorizedExamination,
-  required Future<void> Function({required DateTime date, String? note}) onSubmit,
+  required Future<void> Function({required DateTime date}) onSubmit,
   String? additionalBottomText,
 }) {
   registry.get<FirebaseAnalytics>().logEvent(name: 'OpenDatePickerModal');
@@ -69,8 +66,7 @@ class _DatePickerContent extends StatefulWidget {
   }) : super(key: key);
 
   final CategorizedExamination categorizedExamination;
-  final Future<void> Function({required DateTime date, String? note}) onSubmit;
-
+  final Future<void> Function({required DateTime date}) onSubmit;
   final String? additionalBottomText;
 
   @override
@@ -80,9 +76,8 @@ class _DatePickerContent extends StatefulWidget {
 class _DatePickerContentState extends State<_DatePickerContent> {
   DateTime? newDate;
   bool isFirstStep = true;
-  String? _note;
 
-  void onDateChanged(DateTime date) {
+  void onDateChanged(DateTime? date) {
     /// prevent setting state from date picker during build
     Future.delayed(Duration.zero, () async {
       setState(() {
@@ -91,20 +86,11 @@ class _DatePickerContentState extends State<_DatePickerContent> {
     });
   }
 
-  void onTimeChanged(DateTime date) {
+  void onTimeChanged(DateTime? date) {
     /// prevent setting state from date picker during build
     Future.delayed(Duration.zero, () async {
       setState(() {
         newDate = date;
-      });
-    });
-  }
-
-  void onNoteChange(String note) {
-    /// prevent setting state from date picker during build
-    Future.delayed(Duration.zero, () async {
-      setState(() {
-        _note = note;
       });
     });
   }
@@ -113,8 +99,6 @@ class _DatePickerContentState extends State<_DatePickerContent> {
     final user = registry.get<DatabaseService>().users.user;
     return user?.sex ?? Sex.MALE;
   }
-
-  var viewStep = ViewSteps.datePicker;
 
   @override
   Widget build(BuildContext context) {
@@ -127,7 +111,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            if (viewStep != ViewSteps.datePicker)
+            if (!isFirstStep)
               IconButton(
                 icon: SvgPicture.asset(
                   'assets/icons/arrow_back.svg',
@@ -135,8 +119,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 visualDensity: VisualDensity.compact,
                 onPressed: () {
                   setState(() {
-                    if (viewStep == ViewSteps.noteField) viewStep = ViewSteps.timePicker;
-                    viewStep = ViewSteps.datePicker;
+                    isFirstStep = true;
                   });
                 },
               ),
@@ -154,7 +137,9 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 TextSpan(
                   children: [
                     TextSpan(
-                      text: buildTitle(viewStep),
+                      text: isFirstStep
+                          ? _getUserFirstStepLabelBySex(context, sex: _sex)
+                          : _getUserSecondStepLabelBySex(context, sex: _sex),
                       style: LoonoFonts.headerFontStyle,
                     ),
                   ],
@@ -163,66 +148,52 @@ class _DatePickerContentState extends State<_DatePickerContent> {
             ),
           ],
         ),
-        if (viewStep == ViewSteps.timePicker)
+        if (!isFirstStep)
           Padding(
             padding: const EdgeInsets.only(top: 20.0),
             child: Row(
               children: [
                 Text(
-                  DateFormat(LoonoStrings.dateFormatWithNameMonth, 'cs-CZ')
-                      .format(newDate!)
-                      .toString(),
+                  DateFormat('d. MMMM yyyy', 'cs-CZ').format(newDate!).toString(),
                   style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
                 ),
               ],
             ),
           ),
         const Spacer(),
-        buildStepView(viewStep, originalDate),
+        Center(
+          child: isFirstStep
+              ? SizedBox(
+                  child: CustomDatePicker(
+                    valueChanged: onDateChanged,
+                    yearsBeforeActual: 10,
+                    yearsOverActual: 10,
+                    allowDays: true,
+                    defaultDay: DateTime.now().day,
+                  ),
+                )
+              : CustomTimePicker(
+                  defaultHour: newDate?.hour,
+                  defaultMinute: newDate?.minute,
+                  valueChanged: onTimeChanged,
+                  defaultDate: newDate ?? DateTime.now(),
+                ),
+        ),
         const Spacer(),
         AsyncLoonoApiButton(
           key: const Key('datePickerSheet_btn_continue'),
-          text: viewStep != ViewSteps.noteField
-              ? context.l10n.continue_info
-              : context.l10n.action_save,
+          text: isFirstStep ? context.l10n.continue_info : context.l10n.confirm_info,
           enabled: newDate != null,
           asyncCallback: () async {
-            final defaultInterval = widget.categorizedExamination.examination.intervalYears;
-            final isCustom = widget.categorizedExamination.examination.examinationCategoryType ==
-                ExaminationCategoryType.CUSTOM;
-            final customInterval = widget.categorizedExamination.examination.customInterval;
-            final plannedDate = widget.categorizedExamination.examination.plannedDate;
-            final interval = isCustom ? customInterval : defaultInterval;
-            bool isDateValid;
-            final dateInterval =
-                DateTime(DateTime.now().year, DateTime.now().month + interval!, DateTime.now().day);
-            if (plannedDate != null) {
-              isDateValid = Date.now().toDateTime().isAtSameMomentAs(dateInterval) ||
-                  DateTime.now().isAfter(dateInterval) ||
-                  newDate?.isAfter(dateInterval) == true;
-            } else {
-              isDateValid = Date.now().toDateTime().isAtSameMomentAs(newDate!) ||
-                  DateTime.now().isBefore(newDate!);
-            }
-
+            final isDateValid = Date.now().toDateTime().isAtSameMomentAs(
+                      Date(newDate!.year, newDate!.month, newDate!.day).toDateTime(),
+                    ) ||
+                DateTime.now().isBefore(newDate!);
             if (!isDateValid) {
-              final textInterval = isCustom
-                  ? interval < 12
-                      ? 'měsíců'
-                      : 'roků'
-                  : 'roků';
-              showFlushBarError(
-                context,
-                plannedDate != null
-                    ? context.l10n.error_must_be_in_future_by_interval(
-                        transformMonthToYear(interval),
-                        textInterval,
-                      )
-                    : context.l10n.error_must_be_in_future,
-              );
+              showFlushBarError(context, context.l10n.error_must_be_in_future);
               return;
             }
-            if (viewStep == ViewSteps.datePicker) {
+            if (isFirstStep) {
               if (originalDate != null) {
                 /// preset original date
                 newDate = DateTime(
@@ -234,14 +205,10 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 );
               }
               setState(() {
-                viewStep = ViewSteps.timePicker;
-              });
-            } else if (viewStep == ViewSteps.timePicker) {
-              setState(() {
-                viewStep = ViewSteps.noteField;
+                isFirstStep = false;
               });
             } else {
-              await widget.onSubmit(date: newDate!, note: _note);
+              await widget.onSubmit(date: newDate!);
             }
           },
         ),
@@ -256,70 +223,31 @@ class _DatePickerContentState extends State<_DatePickerContent> {
     );
   }
 
-  Widget buildStepView(ViewSteps view, DateTime? originalDate) {
-    switch (view) {
-      case ViewSteps.datePicker:
-        return Center(
-          child: CustomDatePicker(
-            valueChanged: onDateChanged,
-            yearsBeforeActual: DateTime.now().year - 1900,
-            yearsOverActual: 2,
-            allowDays: true,
-            defaultDay: originalDate?.day ?? DateTime.now().day,
-            defaultMonth: originalDate?.month,
-            defaultYear: originalDate?.year,
-          ),
-        );
-      case ViewSteps.timePicker:
-        return Center(
-          child: CustomTimePicker(
-            valueChanged: onTimeChanged,
-            defaultDate: newDate!,
-            defaultHour: originalDate?.hour,
-            defaultMinute: originalDate?.minute,
-          ),
-        );
-      case ViewSteps.noteField:
-        return TextFormField(
-          minLines: 5,
-          maxLines: 10,
-          maxLength: 256,
-          keyboardType: TextInputType.multiline,
-          initialValue: _note,
-          onChanged: (value) => setState(() {
-            _note = value;
-          }),
-          decoration: InputDecoration(
-            fillColor: Colors.white,
-            filled: true,
-            hintText: context.l10n.note_visiting_description,
-            hintStyle: const TextStyle(color: Colors.grey),
-            focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: LoonoColors.primary),
-              borderRadius: BorderRadius.all(Radius.circular(10.0)),
-            ),
-            border: const OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10.0)),
-            ),
-          ),
-        );
+  String _getUserFirstStepLabelBySex(BuildContext context, {required Sex? sex}) {
+    if (sex == null) return '';
+    late final String value;
+    switch (sex) {
+      case Sex.MALE:
+        value = context.l10n.wich_date_you_have_reservation_male;
+        break;
+      case Sex.FEMALE:
+        value = context.l10n.wich_date_you_have_reservation_female;
+        break;
     }
+    return value;
   }
 
-  String buildTitle(ViewSteps view) {
-    switch (view) {
-      case ViewSteps.datePicker:
-        return _sex == Sex.MALE
-            ? context.l10n.wich_date_you_have_reservation_male
-            : context.l10n.wich_date_you_have_reservation_female;
-      case ViewSteps.timePicker:
-        return _sex == Sex.MALE
-            ? context.l10n.custom_exam_reservation_time_male
-            : context.l10n.custom_exam_reservation_time_female;
-      case ViewSteps.noteField:
-        return context.l10n.note_visiting;
-      default:
-        return '';
+  String _getUserSecondStepLabelBySex(BuildContext context, {required Sex? sex}) {
+    if (sex == null) return '';
+    late final String value;
+    switch (sex) {
+      case Sex.MALE:
+        value = context.l10n.checkup_new_time_title_male;
+        break;
+      case Sex.FEMALE:
+        value = context.l10n.checkup_new_time_title_female;
+        break;
     }
+    return value;
   }
 }

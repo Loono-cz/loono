@@ -274,6 +274,8 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                             : context.l10n.self_examination_done_female,
                         enabled: selfExamination.calculateStatus() ==
                                 const SelfExaminationCategory.active() ||
+                            selfExamination.plannedDate?.toDateTime().isBefore(DateTime.now()) ==
+                                true ||
                             selfExamination.calculateStatus() ==
                                 const SelfExaminationCategory.first(),
                         onTap: () {

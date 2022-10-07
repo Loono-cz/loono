@@ -579,7 +579,7 @@ class AppRouter extends _i15.RootStackRouter {
               actionType: args.actionType,
               onActionTypeSet: args.onActionTypeSet,
               key: args.key),
-          transitionsBuilder: _i15.TransitionsBuilders.slideLeft,
+          transitionsBuilder: _i15.TransitionsBuilders.slideBottom,
           opaque: true,
           barrierDismissible: false);
     },
@@ -591,7 +591,7 @@ class AppRouter extends _i15.RootStackRouter {
               specialist: args.specialist,
               onProviderSet: args.onProviderSet,
               key: args.key),
-          transitionsBuilder: _i15.TransitionsBuilders.slideLeft,
+          transitionsBuilder: _i15.TransitionsBuilders.slideBottom,
           opaque: true,
           barrierDismissible: false);
     },
@@ -607,7 +607,7 @@ class AppRouter extends _i15.RootStackRouter {
               showLastExamDate: args.showLastExamDate,
               isLastExamChoose: args.isLastExamChoose,
               key: args.key),
-          transitionsBuilder: _i15.TransitionsBuilders.slideLeft,
+          transitionsBuilder: _i15.TransitionsBuilders.slideBottom,
           opaque: true,
           barrierDismissible: false);
     },
@@ -619,7 +619,7 @@ class AppRouter extends _i15.RootStackRouter {
               key: args.key,
               dateTime: args.dateTime,
               onTimeSet: args.onTimeSet),
-          transitionsBuilder: _i15.TransitionsBuilders.slideLeft,
+          transitionsBuilder: _i15.TransitionsBuilders.slideBottom,
           opaque: true,
           barrierDismissible: false);
     },
@@ -630,8 +630,10 @@ class AppRouter extends _i15.RootStackRouter {
           child: _i60.ChooseFrequencyOfExamScreen(
               key: args.key,
               value: args.value,
-              valueChanged: args.valueChanged),
-          transitionsBuilder: _i15.TransitionsBuilders.slideLeft,
+              valueChanged: args.valueChanged,
+              isDefaultExam: args.isDefaultExam,
+              examType: args.examType),
+          transitionsBuilder: _i15.TransitionsBuilders.slideBottom,
           opaque: true,
           barrierDismissible: false);
     },
@@ -2200,18 +2202,28 @@ class ChooseFrequencyOfExamRoute
   ChooseFrequencyOfExamRoute(
       {_i62.Key? key,
       String? value,
-      required dynamic Function(String) valueChanged})
+      required dynamic Function(String) valueChanged,
+      bool isDefaultExam = false,
+      _i66.ExaminationType? examType})
       : super(ChooseFrequencyOfExamRoute.name,
             path: 'custom-exam-form-choose-exam-frequency',
             args: ChooseFrequencyOfExamRouteArgs(
-                key: key, value: value, valueChanged: valueChanged));
+                key: key,
+                value: value,
+                valueChanged: valueChanged,
+                isDefaultExam: isDefaultExam,
+                examType: examType));
 
   static const String name = 'ChooseFrequencyOfExamRoute';
 }
 
 class ChooseFrequencyOfExamRouteArgs {
   const ChooseFrequencyOfExamRouteArgs(
-      {this.key, this.value, required this.valueChanged});
+      {this.key,
+      this.value,
+      required this.valueChanged,
+      this.isDefaultExam = false,
+      this.examType});
 
   final _i62.Key? key;
 
@@ -2219,9 +2231,13 @@ class ChooseFrequencyOfExamRouteArgs {
 
   final dynamic Function(String) valueChanged;
 
+  final bool isDefaultExam;
+
+  final _i66.ExaminationType? examType;
+
   @override
   String toString() {
-    return 'ChooseFrequencyOfExamRouteArgs{key: $key, value: $value, valueChanged: $valueChanged}';
+    return 'ChooseFrequencyOfExamRouteArgs{key: $key, value: $value, valueChanged: $valueChanged, isDefaultExam: $isDefaultExam, examType: $examType}';
   }
 }
 

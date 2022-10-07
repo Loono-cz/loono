@@ -664,7 +664,7 @@
   "@calendar_permission_sheet_desc": {},
   "calendar_permission_sheet_button": "Otevřít Nastavení",
   "@calendar_permission_sheet_button": {},
-  "examination_detail_edit_date_button": "Upravit datum",
+  "examination_detail_edit_date_button": "Upravit termín",
   "@examination_detail_edit_date_button": {},
   "examination_call_doctor1": "Zavolej svému",
   "@examination_call_doctor1": {},
@@ -1404,8 +1404,10 @@
   "@idk": {},
   "last_examination": "Poslední vysetreni",
   "@last_examination": {},
-  "your_last_examination": "Kdy naposledy jsi byla na vyšetření?",
-  "@yout_last_examination": {},
+  "your_last_examination_female": "Kdy naposledy jsi byla na vyšetření?",
+  "@yout_last_examination_female": {},
+  "your_last_examination_male": "Kdy naposledy jsi byl na vyšetření?",
+  "@yout_last_examination_male": {},
   "examination_term": "Termin vysetreni",
   "@examination_term": {},
   "once_to": "Jednou za ",
@@ -1433,5 +1435,58 @@
   "disposable": "Jednorázové",
   "@disposable": {},
   "regularly": "Pravidelné",
-  "@regularly": {}
+  "@regularly": {},
+  "btn_edit_examination": "Upravit prohlídku",
+  "@btn_edit_examination": {},
+  "disposable_exam_delete_question": "Opravdu chceš prohlídku smazat ze svého seznamu?",
+  "@disposable_exam_delete_question": {},
+  "disposable_exam_delete_desc": "Po smazání ti již nebudeme moci prohlídku připomenout.",
+  "@disposable_exam_delete_desc": {},
+  "edit_examination": "Upravit prohlídku",
+  "@edit_examination": {},
+  "examination_was_edited": "Prohlídka byla upravena.",
+  "@examination_was_edited": {},
+  "your_list_of_exam_is_full_warning": "Tvůj seznam prohlídek je plný.",
+  "@your_list_of_exam_is_full_warning": {},
+  "your_list_of_exam_is_full_disclaimer": "Pro přidání další prohlídky odstraň nejprve některou z dříve přidaných prohlídek.",
+  "@your_list_of_exam_is_full_disclaimer": {},
+  "your_list_of_exam_info": "Ještě si můžeš přidat {count}",
+  "@your_list_of_exam_info": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "five_more_examinations": "prohlídek.",
+  "@five_more_examinations": {},
+  "less_then_five_exams": "prohlídky",
+  "@less_then_five_exams": {},
+  "only_one_exam": "prohlídka",
+  "@only_one_exam": {},
+  "custom_exam_cancel_question": "Opravdu chceš zrušit termín prohlídky?",
+  "@custom_exam_cancel_question": {},
+  "cancel_term_note_disclaimer": "Se zrušením termínu budou smazány i všechny tvé poznámky k návštevě.",
+  "@cancel_term_note_disclaimer": {},
+  "cancel_term_action": "Zrušit termín",
+  "@cancel_term_action": {},
+  "delete_exam_action": "Smazat prohlídku",
+  "@delete_exam_action": {},
+  "order_yourself": "objednej se",
+  "@order_yourself": {},
+  "no_connection_message": "Žádné připojení",
+  "@no_connection_message": {},
+  "no_connection_message_check_connection": "Prosím zkontroluj své připojení k síti",
+  "@no_connection_message_check_connection": {},
+  "error_must_be_in_future_by_interval": "Datum prohlídky musí být v budoucnu dle intervalu co {interval} {textString}",
+  "@error_must_be_in_future_by_interval": {
+    "placeholders": {
+      "interval": {
+        "type": "int"
+      },
+      "textString": {
+        "type": "String"
+      }
+    }
+  }
 }
