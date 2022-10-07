@@ -105,8 +105,7 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                             children: [
                               const SizedBox(height: 18),
                               Text(
-                                selfExamination.type.l10n_name
-                                    .replaceFirst(' ', '\n'),
+                                selfExamination.type.l10n_name.replaceFirst(' ', '\n'),
                                 key: const Key(
                                   'selfExaminationDetailPage_text_header',
                                 ),
@@ -139,13 +138,11 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                         height: 40,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: _lastResultWithoutPlanned ==
-                                  SelfExaminationStatus.COMPLETED
+                          color: _lastResultWithoutPlanned == SelfExaminationStatus.COMPLETED
                               ? LoonoColors.greenSuccess
                               : LoonoColors.grey,
                         ),
-                        child: _lastResultWithoutPlanned ==
-                                SelfExaminationStatus.COMPLETED
+                        child: _lastResultWithoutPlanned == SelfExaminationStatus.COMPLETED
                             ? const Icon(
                                 Icons.done,
                                 color: Colors.white,
@@ -182,8 +179,7 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                                   const SizedBox(width: 6.0),
                                   Text(
                                     selfExamination.points.toString(),
-                                    style:
-                                        LoonoFonts.primaryColorStyle.copyWith(
+                                    style: LoonoFonts.primaryColorStyle.copyWith(
                                       color: LoonoColors.primaryEnabled,
                                       fontSize: 11,
                                       fontWeight: FontWeight.w700,
@@ -278,9 +274,7 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                             : context.l10n.self_examination_done_female,
                         enabled: selfExamination.calculateStatus() ==
                                 const SelfExaminationCategory.active() ||
-                            selfExamination.plannedDate
-                                    ?.toDateTime()
-                                    .isBefore(DateTime.now()) ==
+                            selfExamination.plannedDate?.toDateTime().isBefore(DateTime.now()) ==
                                 true ||
                             selfExamination.calculateStatus() ==
                                 const SelfExaminationCategory.first(),
