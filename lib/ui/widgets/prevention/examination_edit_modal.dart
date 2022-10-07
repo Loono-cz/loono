@@ -24,6 +24,7 @@ import 'package:provider/provider.dart';
 void showEditModal(
   BuildContext pageContext,
   CategorizedExamination examination,
+  int intervalMonths,
 ) {
   final examinationType = examination.examination.examinationType;
   final preposition = czechPreposition(pageContext, examinationType: examinationType);
@@ -111,6 +112,7 @@ void showEditModal(
               categorizedExamination: examination,
               onSubmit: onChangeSubmit,
               additionalBottomText: '${pageContext.l10n.original_date}: $formattedDate',
+              intervalMonths: intervalMonths,
             );
           },
         ),
