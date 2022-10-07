@@ -118,17 +118,8 @@ extension CategorizedExaminationListExt on List<CategorizedExamination> {
       unknownLastVisit: () => sort(
         (a, b) => a.examination.priority.compareTo(b.examination.priority),
       ),
-      scheduled: () {
-        sort((a, b) {
-          // final cmd = a.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM
-          //     ? ExaminationTypeExt(b.examination.examinationType)
-          //         .l10n_name
-          //         .compareTo(ExaminationTypeExt(a.examination.examinationType).l10n_name)
-          //     : 0;
-
-          return a.examination.plannedDate!.compareTo(b.examination.plannedDate!);
-        });
-      },
+      scheduled: () =>
+          sort((a, b) => a.examination.plannedDate!.compareTo(b.examination.plannedDate!)),
       waiting: () => sort((a, b) {
         final lastVisitDateWithoutDayA = a.examination.lastConfirmedDate!;
         final lastVisitDateWithoutDayB = b.examination.lastConfirmedDate!;
