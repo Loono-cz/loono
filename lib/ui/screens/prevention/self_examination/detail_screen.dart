@@ -165,6 +165,7 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                             selfExamination.points,
                             selfExamination.history,
                             currentProgress,
+                            selfExamination.type,
                           ),
                           child: SizedBox(
                             height: 80,
@@ -310,7 +311,7 @@ class SelfExaminationDetailScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 18),
-                child: methodologyDisclosure(sex),
+                child: harmDisclosureWidget(context, selfExamination.type),
               ),
               const SizedBox(
                 height: 50,

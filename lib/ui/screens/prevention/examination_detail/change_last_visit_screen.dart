@@ -79,6 +79,7 @@ class _ChangeLastVisitScreenState extends State<ChangeLastVisitScreen> {
                   yearsOverActual: 0,
                   defaultMonth: widget.originalDate.month,
                   defaultYear: widget.originalDate.year,
+                  defaultDay: DateTime.now().day,
                 ),
               ),
               const Spacer(),

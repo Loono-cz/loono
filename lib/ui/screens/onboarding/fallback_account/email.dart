@@ -123,7 +123,8 @@ class EmailScreen extends StatelessWidget {
                 ..status = questionnaire.status
                 ..plannedDate = questionnaire.date?.toUtc()
                 ..firstExam = true
-                ..type = questionnaire.type;
+                ..type = questionnaire.type
+                ..examinationCategoryType = ExaminationCategoryType.MANDATORY;
             })
         ],
       ),
