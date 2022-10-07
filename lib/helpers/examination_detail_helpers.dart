@@ -72,7 +72,7 @@ String czechPrepositionDativ(BuildContext context, {required ExaminationType exa
     case ExaminationType.GENERAL_PRACTITIONER:
       res = 'k';
       break;
-    case ExaminationType.GYNECOLOGY_AND_OBSTETRICS:
+    case ExaminationType.GYNECOLOGIST:
       res = 'ke';
       break;
     case ExaminationType.MAMMOGRAM:
@@ -121,9 +121,6 @@ String czechPrepositionDativ(BuildContext context, {required ExaminationType exa
       res = 'k';
       break;
     case ExaminationType.NUTRITION:
-      res = 'k';
-      break;
-    case ExaminationType.OCULAR:
       res = 'k';
       break;
     case ExaminationType.ONCOLOGY:
@@ -183,16 +180,10 @@ String czechPrepositionDativ(BuildContext context, {required ExaminationType exa
     case ExaminationType.SURGERY:
       res = 'na';
       break;
-    case ExaminationType.TANNER:
-      res = 'na';
-      break;
-    case ExaminationType.UROLOGY:
-      res = 'k';
-      break;
     case ExaminationType.VASCULAR:
       res = 'na';
       break;
-    case ExaminationType.dENTALHYGIENE:
+    case ExaminationType.DENTAL_HYGIENE:
       res = 'na';
       break;
   }
@@ -263,7 +254,7 @@ String procedureQuestionTitle(
     case ExaminationType.GENERAL_PRACTITIONER:
       response = context.l10n.practitioner_question_highlight;
       break;
-    case ExaminationType.GYNECOLOGY_AND_OBSTETRICS:
+    case ExaminationType.GYNECOLOGIST:
       response = context.l10n.gynecology_question_highlight;
       break;
     case ExaminationType.MAMMOGRAM:
@@ -314,17 +305,16 @@ String examinationTypeCasus(
       if (casus == Casus.genitiv) return l10n.generalPractitioner_genitiv;
       if (casus == Casus.dativ) return l10n.generalPractitioner_dativ;
       return '${ExaminationType.GENERAL_PRACTITIONER} unkown casus';
-    case ExaminationType.GYNECOLOGY_AND_OBSTETRICS:
+    case ExaminationType.GYNECOLOGIST:
       if (casus == Casus.nomativ) return l10n.gynecologist_nomativ;
       if (casus == Casus.genitiv) return l10n.gynecologist_genitiv;
       if (casus == Casus.dativ) return l10n.gynecologist_dativ;
-      return '${ExaminationType.GYNECOLOGY_AND_OBSTETRICS} unkown casus';
+      return '${ExaminationType.GYNECOLOGIST} unkown casus';
     case ExaminationType.MAMMOGRAM:
       if (casus == Casus.nomativ) return l10n.mammogram_nomativ;
       if (casus == Casus.genitiv) return l10n.mammogram_genitiv;
       if (casus == Casus.dativ) return l10n.mammogram_dativ;
       return '${ExaminationType.MAMMOGRAM} unkown casus';
-    case ExaminationType.OCULAR:
     case ExaminationType.OPHTHALMOLOGIST:
       if (casus == Casus.nomativ) return l10n.ophthalmologist_nomativ;
       if (casus == Casus.genitiv) return l10n.ophthalmologist_genitiv;
@@ -495,26 +485,16 @@ String examinationTypeCasus(
       if (casus == Casus.genitiv) return l10n.surgery_genitiv;
       if (casus == Casus.dativ) return l10n.surgery_dativ;
       return '${ExaminationType.SURGERY} unkown casus';
-    case ExaminationType.TANNER:
-      if (casus == Casus.nomativ) return l10n.tanner_nomativ;
-      if (casus == Casus.genitiv) return l10n.tanner_genitiv;
-      if (casus == Casus.dativ) return l10n.tanner_dativ;
-      return '${ExaminationType.TANNER} unkown casus';
-    case ExaminationType.UROLOGY:
-      if (casus == Casus.nomativ) return l10n.urology_nomativ;
-      if (casus == Casus.genitiv) return l10n.urology_genitiv;
-      if (casus == Casus.dativ) return l10n.urology_dativ;
-      return '${ExaminationType.UROLOGY} unkown casus';
     case ExaminationType.VASCULAR:
       if (casus == Casus.nomativ) return l10n.vascular_nomativ;
       if (casus == Casus.genitiv) return l10n.vascular_genitiv;
       if (casus == Casus.dativ) return l10n.vascular_dativ;
       return '${ExaminationType.VASCULAR} unkown casus';
-    case ExaminationType.dENTALHYGIENE:
+    case ExaminationType.DENTAL_HYGIENE:
       if (casus == Casus.nomativ) return l10n.dental_hygiene_nomativ;
       if (casus == Casus.genitiv) return l10n.dental_hygiene_genitiv;
       if (casus == Casus.dativ) return l10n.dental_hygiene_dativ;
-      return '${ExaminationType.dENTALHYGIENE} unkown casus';
+      return '${ExaminationType.DENTAL_HYGIENE} unkown casus';
   }
   return '${examinationType.name} unkown casus';
 }
