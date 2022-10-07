@@ -1478,4 +1478,15 @@
   "@no_connection_message":{},
   "no_connection_message_check_connection": "Prosím zkontroluj své připojení k síti",
   "@no_connection_message_check_connection":{}
+  "error_must_be_in_future_by_interval": "Datum prohlídky musí být v budoucnu dle intervalu co {interval} {textString}",
+  "@error_must_be_in_future_by_interval": {
+    "placeholders": {
+      "interval": {
+        "type": "int"
+      },
+      "textString": {
+        "type": "String"
+      }
+    }
+  }
 }
