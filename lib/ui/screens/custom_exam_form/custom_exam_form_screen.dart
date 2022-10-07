@@ -220,6 +220,8 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                     ? (_nextExamDate != null && !_nextExamChck) && (_nextExamDate != null)
                     : true,
                 onChanged: onNoteChange,
+
+                //autofillHints: [context.l10n.note_visiting_description],
                 decoration: InputDecoration(
                   hintText: context.l10n.note_visiting_description,
                   label: _note == '' ? null : Text(context.l10n.note_visiting),

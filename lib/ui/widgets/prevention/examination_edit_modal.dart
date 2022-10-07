@@ -113,6 +113,7 @@ void showEditModal(
               categorizedExamination: examination,
               onSubmit: onChangeSubmit,
               additionalBottomText: '${pageContext.l10n.original_date}: $formattedDate',
+              intervalMonths: intervalMonths,
             );
           },
         ),

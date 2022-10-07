@@ -268,7 +268,6 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 return;
               }
             }
-
             if (isFirstStep) {
               if (originalDate != null) {
                 /// preset original date
