@@ -129,7 +129,6 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
     super.initState();
     _note = _examination.note;
     _focusNote = FocusNode();
-    _focusNote.addListener(_noteFocusChanged);
     SchedulerBinding.instance.addPostFrameCallback((_) {
       if (widget.initialMessage != null) {
         showFlushBarSuccess(context, widget.initialMessage!);
@@ -141,44 +140,6 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
   void dispose() {
     _focusNote.dispose();
     super.dispose();
-  }
-
-  Future<void> _noteFocusChanged() async {
-    if (!_focusNote.hasFocus) {
-      final response = await registry.get<ExaminationRepository>().postExamination(
-            _examinationType,
-            newDate: _examination.plannedDate,
-            uuid: _examination.uuid,
-            firstExam: false,
-            status: ExaminationStatus.NEW,
-            categoryType: _examinationCategoryType!,
-            note: _note,
-            actionType: _examinationActionType,
-            periodicExam: _examination.periodicExam,
-            customInterval: _examination.customInterval,
-          );
-
-      response.map(
-        success: (res) {
-          final exProvider = Provider.of<ExaminationsProvider>(context, listen: false);
-          if (_examinationCategoryType == ExaminationCategoryType.CUSTOM) {
-            exProvider.updateAndReturnCustomExaminationsRecord(res.data, _examination);
-          } else {
-            exProvider.updateExaminationsRecord(res.data);
-          }
-          // exProvider.dispose();
-        },
-        failure: (err) {
-          showFlushBarError(
-            context,
-            statusCodeToText(
-              context,
-              err.error.response?.statusCode,
-            ),
-          );
-        },
-      );
-    }
   }
 
   @override
@@ -269,6 +230,42 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
             ),
           );
           showFlushBarSuccess(context, l10n.checkup_reminder_toast, sync: true);
+        },
+        failure: (err) {
+          showFlushBarError(
+            context,
+            statusCodeToText(
+              context,
+              err.error.response?.statusCode,
+            ),
+          );
+        },
+      );
+    }
+
+    Future<void> _noteChanged() async {
+      _focusNote.unfocus();
+      final response = await registry.get<ExaminationRepository>().postExamination(
+            _examinationType,
+            newDate: _examination.plannedDate,
+            uuid: _examination.uuid,
+            firstExam: false,
+            status: ExaminationStatus.NEW,
+            categoryType: _examinationCategoryType!,
+            note: _note,
+            actionType: _examinationActionType,
+            periodicExam: _examination.periodicExam,
+            customInterval: _examination.customInterval,
+          );
+
+      response.map(
+        success: (res) {
+          final exProvider = Provider.of<ExaminationsProvider>(context, listen: false);
+          if (_examinationCategoryType == ExaminationCategoryType.CUSTOM) {
+            exProvider.updateAndReturnCustomExaminationsRecord(res.data, _examination);
+          } else {
+            exProvider.updateExaminationsRecord(res.data);
+          }
         },
         failure: (err) {
           showFlushBarError(
@@ -399,7 +396,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
             padding: const EdgeInsets.only(left: 16.0, right: 16.0),
             child: TextFormField(
               focusNode: _focusNote,
-              minLines: 5,
+              minLines: 1,
               maxLines: 10,
               maxLength: 256,
               keyboardType: TextInputType.multiline,
@@ -413,6 +410,10 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                 hintStyle: const TextStyle(color: Colors.grey),
                 border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                ),
+                suffixIcon: IconButton(
+                  onPressed: (_noteChanged),
+                  icon: const Icon(Icons.done),
                 ),
               ),
             ),
