@@ -81,6 +81,7 @@ class ApiService {
     required BuiltList<ExaminationRecord> examinations,
     required String nickname,
     required String preferredEmail,
+    required bool newsletterOptIn
   }) async {
     return _callApi(
       () async => _api.getAccountApi().postAccountOnboard(
@@ -90,7 +91,8 @@ class ApiService {
                 ..nickname = nickname
                 ..preferredEmail = preferredEmail
                 ..examinations = examinations.toBuilder()
-                ..birthdate = Date(birthdate.year, birthdate.month.index + 1, 1),
+                ..birthdate = Date(birthdate.year, birthdate.month.index + 1, 1)
+                ..newsletterOptIn = newsletterOptIn,
             ),
           ),
     );

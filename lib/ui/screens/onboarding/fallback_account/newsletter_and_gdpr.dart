@@ -73,6 +73,7 @@ class NewsletterAndGDPRScreenState extends State<NewsletterAndGDPRScreen> {
                     _examinationQuestionnairesDao,
                     _apiService,
                     _userRepository,
+                      newsletter,
                   );
                   return null;
                 },

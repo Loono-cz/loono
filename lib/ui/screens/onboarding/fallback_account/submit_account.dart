@@ -27,6 +27,7 @@ Future<void> submitAccount(
   ExaminationQuestionnairesDao examinationQuestionnairesDao,
     ApiService apiService,
     UserRepository userRepository,
+    bool newsletter
 ) async {
   final Either<AuthFailure, AuthUser> createAccountResult;
   if (socialLoginAccount != null) {
@@ -45,7 +46,7 @@ Future<void> submitAccount(
           await examinationQuestionnairesDao.getAll();
 
       final result =
-          await _callOnboardUser(authUser, user, examinationQuestionnaires, apiService);
+          await _callOnboardUser(authUser, user, examinationQuestionnaires, apiService, newsletter);
       await result.when(
         success: (account) async {
           final autoRouter = AutoRouter.of(context);
@@ -67,6 +68,7 @@ Future<ApiResponse<Account>> _callOnboardUser(
   User? user,
   List<ExaminationQuestionnaire> examinationQuestionnaires,
   ApiService apiService,
+    bool newsletter
 ) async {
   if (user == null || examinationQuestionnaires.isEmpty) {
     return ApiResponse.failure(
@@ -100,5 +102,6 @@ Future<ApiResponse<Account>> _callOnboardUser(
     ),
     nickname: user.nickname ?? '',
     preferredEmail: user.email ?? '',
+    newsletterOptIn: newsletter,
   );
 }
