@@ -221,8 +221,8 @@ class _DatePickerContentState extends State<_DatePickerContent> {
 
             if (isCustom && lastConfirmed != null) {
               final customInterval = examination.customInterval!;
-              final textInterval = customInterval < 12 ? 'měsíců' : 'roků';
-              final intervalDate = customInterval < 12
+              final textInterval = customInterval < LoonoStrings.monthInYear ? 'měsíců' : 'roků';
+              final intervalDate = customInterval < LoonoStrings.monthInYear
                   ? DateTime(
                       lastConfirmed.year,
                       lastConfirmed.month + customInterval,
@@ -234,7 +234,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                       lastConfirmed.day,
                     );
 
-              final bool isDateValid = intervalDate.isAtSameMomentAs(
+              final isDateValid = intervalDate.isAtSameMomentAs(
                     newDate!,
                   ) ||
                   intervalDate.isBefore(newDate!);
@@ -255,7 +255,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 lastConfirmed.day,
               );
 
-              final bool isDateValid = intervalDate.isAtSameMomentAs(
+              final isDateValid = intervalDate.isAtSameMomentAs(
                     newDate!,
                   ) ||
                   intervalDate.isBefore(newDate!);
