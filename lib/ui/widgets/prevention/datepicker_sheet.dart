@@ -216,7 +216,6 @@ class _DatePickerContentState extends State<_DatePickerContent> {
           enabled: newDate != null,
           asyncCallback: () async {
             final examination = widget.categorizedExamination.examination;
-            bool isDateValid;
             final isCustom = examination.examinationCategoryType == ExaminationCategoryType.CUSTOM;
             final lastConfirmed = examination.lastConfirmedDate;
 
@@ -235,7 +234,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                       lastConfirmed.day,
                     );
 
-              final isDateValid = intervalDate.isAtSameMomentAs(
+              final bool isDateValid = intervalDate.isAtSameMomentAs(
                     newDate!,
                   ) ||
                   intervalDate.isBefore(newDate!);
@@ -256,7 +255,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 lastConfirmed.day,
               );
 
-              final isDateValid = intervalDate.isAtSameMomentAs(
+              final bool isDateValid = intervalDate.isAtSameMomentAs(
                     newDate!,
                   ) ||
                   intervalDate.isBefore(newDate!);
