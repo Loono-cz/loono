@@ -47,16 +47,14 @@ class PreventionHeader extends StatelessWidget {
                               const SizedBox(
                                 height: 60,
                               ),
-                              if (user?.points != null &&
-                                  user?.nickname != null)
+                              if (user?.points != null && user?.nickname != null)
                                 Column(
                                   mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       '${user?.nickname}',
-                                      style:
-                                          LoonoFonts.headerFontStyle.copyWith(
+                                      style: LoonoFonts.headerFontStyle.copyWith(
                                         color: LoonoColors.grey,
                                       ),
                                     ),
@@ -71,10 +69,8 @@ class PreventionHeader extends StatelessWidget {
                                         ),
                                         Text(
                                           '${user?.points}',
-                                          key:
-                                              const Key('profileButton_points'),
-                                          style: LoonoFonts.subtitleFontStyle
-                                              .copyWith(
+                                          key: const Key('profileButton_points'),
+                                          style: LoonoFonts.subtitleFontStyle.copyWith(
                                             color: LoonoColors.primaryEnabled,
                                           ),
                                         ),

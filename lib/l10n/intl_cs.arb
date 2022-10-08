@@ -74,6 +74,20 @@
   "@fallback_account_email": {},
   "fallback_account_email_desc": "Je tohle tvůj aktuální email? Pošleme ti do něj připomínku šesti nejdůležitějších preventivních prohlídek za rok.",
   "@fallback_account_email_desc": {},
+  "fallback_account_newsletter_title": "Zasílání zpráv",
+  "@fallback_account_newsletter_title": {},
+  "fallback_account_gdpr_title": "Zpracování osobních údajů",
+  "@fallback_account_gdpr_title": {},
+  "fallback_account_newsletter_desc": "Chci od Loona dostávat e-mailem informace o plánovaných akcích a doporučení jak se co nejlépa starat o své zdraví.",
+  "@fallback_account_newsletter_desc": {},
+  "fallback_account_gdpr_desc1": "Souhlasím s ",
+  "@fallback_account_gdpr_desc1": {},
+  "fallback_account_gdpr_desc2": "a ukládáním informací o mém zdravotním stavu pro účely používání aplikace Preventivka",
+  "@fallback_account_gdpr_desc2": {},
+  "fallback_account_gdpr_terms": "Podmínkami užívání",
+  "@fallback_account_gdpr_terms_of": {},
+  "fallback_account_gdpr_privacy": "Zásadami ochrany osobních údajů",
+  "@fallback_account_gdpr_terms": {},
   "new_account": "Nový účet",
   "@new_account": {},
   "no_finding_getting": "Získáváš",
@@ -1488,5 +1502,7 @@
         "type": "String"
       }
     }
-  }
+  },
+  "examination_detail_cusotm_rewards_get_badge_1": "Za dokončenou prohlídku získáš",
+  "@examination_detail_cusotm_rewards_get_badge_1": {}
 }
