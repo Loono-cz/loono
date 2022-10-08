@@ -36,8 +36,7 @@ class NewsletterAndGDPRScreenState extends State<NewsletterAndGDPRScreen> {
 
   final _apiService = registry.get<ApiService>();
   final _authService = registry.get<AuthService>();
-  final _examinationQuestionnairesDao =
-      registry.get<DatabaseService>().examinationQuestionnaires;
+  final _examinationQuestionnairesDao = registry.get<DatabaseService>().examinationQuestionnaires;
   final _userRepository = registry.get<UserRepository>();
 
   @override
@@ -73,7 +72,7 @@ class NewsletterAndGDPRScreenState extends State<NewsletterAndGDPRScreen> {
                     _examinationQuestionnairesDao,
                     _apiService,
                     _userRepository,
-                      newsletter,
+                    newsletter,
                   );
                   return null;
                 },
@@ -171,8 +170,8 @@ class NewsletterAndGDPRScreenState extends State<NewsletterAndGDPRScreen> {
     return TextSpan(
       text: text,
       style: const TextStyle(
-          decoration: TextDecoration.underline,
-          color: LoonoColors.primary,
+        decoration: TextDecoration.underline,
+        color: LoonoColors.primary,
       ),
       recognizer: TapGestureRecognizer()
         ..onTap = () async {
