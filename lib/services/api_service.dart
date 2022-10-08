@@ -81,7 +81,7 @@ class ApiService {
     required BuiltList<ExaminationRecord> examinations,
     required String nickname,
     required String preferredEmail,
-    required bool newsletterOptIn
+    required bool newsletterOptIn,
   }) async {
     return _callApi(
       () async => _api.getAccountApi().postAccountOnboard(

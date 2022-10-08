@@ -25,9 +25,9 @@ Future<void> submitAccount(
   AuthService authService,
   UsersDao usersDao,
   ExaminationQuestionnairesDao examinationQuestionnairesDao,
-    ApiService apiService,
-    UserRepository userRepository,
-    bool newsletter
+  ApiService apiService,
+  UserRepository userRepository,
+  bool newsletter,
 ) async {
   final Either<AuthFailure, AuthUser> createAccountResult;
   if (socialLoginAccount != null) {
@@ -42,8 +42,7 @@ Future<void> submitAccount(
     (failure) => showFlushBarError(context, context.l10n.something_went_wrong),
     (authUser) async {
       final user = usersDao.user;
-      final examinationQuestionnaires =
-          await examinationQuestionnairesDao.getAll();
+      final examinationQuestionnaires = await examinationQuestionnairesDao.getAll();
 
       final result =
           await _callOnboardUser(authUser, user, examinationQuestionnaires, apiService, newsletter);
@@ -68,14 +67,14 @@ Future<ApiResponse<Account>> _callOnboardUser(
   User? user,
   List<ExaminationQuestionnaire> examinationQuestionnaires,
   ApiService apiService,
-    bool newsletter
+  bool newsletter,
 ) async {
   if (user == null || examinationQuestionnaires.isEmpty) {
     return ApiResponse.failure(
-        DioError(requestOptions: RequestOptions(path: '')));
+      DioError(requestOptions: RequestOptions(path: '')),
+    );
   }
-  final generalPractitioner =
-      examinationQuestionnaires.generalPractitionerQuestionnaire;
+  final generalPractitioner = examinationQuestionnaires.generalPractitionerQuestionnaire;
   final gynecologist = examinationQuestionnaires.gynecologistQuestionnaire;
   final dentist = examinationQuestionnaires.dentistQuestionnaire;
   final onboardingQuestionnaires = [
