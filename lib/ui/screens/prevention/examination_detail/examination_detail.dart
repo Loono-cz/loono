@@ -243,8 +243,9 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
       );
     }
 
-    Future<void> _noteChanged() async {
+    Future<void> noteChanged() async {
       _focusNote.unfocus();
+      // TODO: post only required changes! >> note | rewrite exProvider's methods
       final response = await registry.get<ExaminationRepository>().postExamination(
             _examinationType,
             newDate: _examination.plannedDate,
@@ -412,8 +413,14 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
                 suffixIcon: IconButton(
-                  onPressed: (_noteChanged),
-                  icon: const Icon(Icons.done),
+                  onPressed: (() async {
+                    if (_focusNote.hasFocus == true) {
+                      await noteChanged();
+                    }
+                  }),
+                  icon: const Icon(
+                    Icons.done,
+                  ),
                 ),
               ),
             ),
