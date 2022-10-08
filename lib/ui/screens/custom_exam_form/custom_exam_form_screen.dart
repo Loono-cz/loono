@@ -88,10 +88,13 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
 
   void setLastExamCheckbox(bool value) => setState(() {
         _lastExamChck = value;
+        _lastExamDate = null;
         _showLastExamError = false;
       });
+
   void setNextExamCheckbox(bool value) => setState(() {
         _nextExamChck = value;
+        _nextExamDate = null;
       });
 
   void setFrequencyExam(String value) => setState(() {
@@ -101,6 +104,13 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
   void onNoteChange(String value) => setState(() {
         _note = value;
       });
+
+  bool get isFormValid =>
+      _specialist != null &&
+      _examinationType != null &&
+      _customInterval.isNotEmpty &&
+      (_lastExamDate != null || _lastExamChck) &&
+      (_nextExamDate != null || _nextExamChck);
 
   BuildContext? providerContext;
   @override
@@ -243,16 +253,13 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                   text: context.l10n.action_save,
                   asyncCallback: () async {
                     if (_isPeriodicExam) {
-                      if ((_specialist != null &&
-                          _examinationType != null &&
-                          (_lastExamDate != null || _lastExamChck) &&
-                          (_nextExamDate != null || _nextExamChck))) {
+                      if (isFormValid) {
                         if (_lastExamDate != null && _nextExamDate != null) {
-                          await sendMandatoryRequest();
+                          await sendRegularRequest();
                         } else if (_lastExamDate != null) {
-                          await sendMandatoryRequestConfirm();
+                          await sendRegularRequestConfirm();
                         } else {
-                          await sendRegularlyRequestNew();
+                          await sendRegularRequestNew();
                         }
                       } else {
                         setState(() {
@@ -496,7 +503,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
     }
   }
 
-  Future<void> sendRegularlyRequestNew() async {
+  Future<void> sendRegularRequestNew() async {
     final response = await registry.get<ExaminationRepository>().postExamination(
           _specialist!,
           actionType: _examinationType,
@@ -527,7 +534,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
     );
   }
 
-  Future<void> sendMandatoryRequestConfirm() async {
+  Future<void> sendRegularRequestConfirm() async {
     final response = await registry.get<ExaminationRepository>().postExamination(
           _specialist!,
           actionType: _examinationType,
@@ -557,7 +564,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
     );
   }
 
-  Future<void> sendMandatoryRequest() async {
+  Future<void> sendRegularRequest() async {
     final response = await registry.get<ExaminationRepository>().postExamination(
           _specialist!,
           actionType: _examinationType,
