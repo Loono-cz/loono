@@ -17,6 +17,8 @@ import 'package:loono/ui/widgets/custom_time_picker.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
+num yearIntervalInMonth = 12;
+
 void showDatePickerSheet({
   required BuildContext context,
   required CategorizedExamination categorizedExamination,
@@ -221,8 +223,8 @@ class _DatePickerContentState extends State<_DatePickerContent> {
 
             if (isCustom && lastConfirmed != null) {
               final customInterval = examination.customInterval!;
-              final textInterval = customInterval < 12 ? 'měsíců' : 'roků';
-              final intervalDate = customInterval < 12
+              final textInterval = customInterval < yearIntervalInMonth ? 'měsíců' : 'roků';
+              final intervalDate = customInterval < yearIntervalInMonth
                   ? DateTime(
                       lastConfirmed.year,
                       lastConfirmed.month + customInterval,
@@ -234,7 +236,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                       lastConfirmed.day,
                     );
 
-              final bool isDateValid = intervalDate.isAtSameMomentAs(
+              final isDateValid = intervalDate.isAtSameMomentAs(
                     newDate!,
                   ) ||
                   intervalDate.isBefore(newDate!);
@@ -255,7 +257,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 lastConfirmed.day,
               );
 
-              final bool isDateValid = intervalDate.isAtSameMomentAs(
+              final isDateValid = intervalDate.isAtSameMomentAs(
                     newDate!,
                   ) ||
                   intervalDate.isBefore(newDate!);
