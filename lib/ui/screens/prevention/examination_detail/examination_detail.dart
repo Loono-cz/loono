@@ -24,12 +24,14 @@ import 'package:loono/ui/screens/prevention/examination_detail/examination_badge
 import 'package:loono/ui/screens/prevention/examination_detail/faq_section.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/prevention/calendar_permission_sheet.dart';
+import 'package:loono/ui/widgets/prevention/change_last_visit_sheet.dart';
 import 'package:loono/ui/widgets/prevention/create_order_from_detail_flow.dart';
 import 'package:loono/ui/widgets/prevention/custom_exam_datepicker_sheet.dart';
-import 'package:loono/ui/widgets/prevention/datepicker_sheet.dart';
 import 'package:loono/ui/widgets/prevention/examination_confirm_sheet.dart';
 import 'package:loono/ui/widgets/prevention/examination_edit_modal.dart';
+import 'package:loono/ui/widgets/prevention/examination_new_sheet.dart';
 import 'package:loono/ui/widgets/prevention/examination_progress_content.dart';
+import 'package:loono/ui/widgets/prevention/last_visit_sheet.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
@@ -277,7 +279,9 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                         ),
                         const SizedBox(height: 5),
                         Text(
-                          ExaminationActionTypeExt(_examinationActionType).l10n_name,
+                          _examinationCategoryType == ExaminationCategoryType.CUSTOM
+                              ? ExaminationActionTypeExt(_examinationActionType).l10n_name
+                              : context.l10n.preventive_inspection,
                           style: LoonoFonts.headerFontStyle.copyWith(
                             color: LoonoColors.green,
                             fontWeight: FontWeight.w700,
@@ -294,6 +298,30 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                         if (_isPeriodicalExam)
                           _calendarRow(
                             '${context.l10n.last_visit}:\n$lastVisit',
+                            onTap: () {
+                              /// must be first exam and no planned examination should exist
+                              if (!widget.categorizedExamination.examination.firstExam &&
+                                  widget.categorizedExamination.examination.plannedDate != null) {
+                                return;
+                              }
+
+                              /// if "nevim", open question sheet else allow to change date
+                              if (widget.categorizedExamination.examination.lastConfirmedDate !=
+                                  null) {
+                                const title = '';
+                                showChangeLastVisitSheet(
+                                  context: context,
+                                  title: title,
+                                  examination: widget.categorizedExamination,
+                                );
+                              } else {
+                                showLastVisitSheet(
+                                  context: context,
+                                  examination: widget.categorizedExamination,
+                                  sex: _sex,
+                                );
+                              }
+                            },
                           ),
                         if (!_isPeriodicalExam)
                           _calendarRow(
@@ -511,11 +539,10 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
               ),
             ),
           ] else if ([
-                const ExaminationCategory.unknownLastVisit(),
-                const ExaminationCategory.newToSchedule(),
-                const ExaminationCategory.waiting()
-              ].contains(widget.categorizedExamination.category) &&
-              _isPeriodicalExam) ...[
+            const ExaminationCategory.unknownLastVisit(),
+            const ExaminationCategory.newToSchedule(),
+            const ExaminationCategory.waiting()
+          ].contains(widget.categorizedExamination.category)) ...[
             Expanded(
               child: LoonoButton(
                 key: const Key('examinationDetailPage_btn_order'),
@@ -524,11 +551,21 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                   Provider.of<ExaminationsProvider>(context, listen: false)
                       .setChoosedExamination(widget.categorizedExamination, _examination);
 
-                  showCreateOrderFromDetailSheet(
-                    context: context,
-                    categorizedExamination: widget.categorizedExamination,
-                    onSubmit: onPostNewCheckupSubmit,
-                  );
+                  if (_examinationCategoryType == ExaminationCategoryType.CUSTOM &&
+                      _isPeriodicalExam) {
+                    showCreateOrderFromDetailSheet(
+                      context: context,
+                      categorizedExamination: widget.categorizedExamination,
+                      onSubmit: onPostNewCheckupSubmit,
+                    );
+                  } else {
+                    showNewCheckupSheetStep1(
+                      context,
+                      widget.categorizedExamination,
+                      onPostNewCheckupSubmit,
+                      _sex,
+                    );
+                  }
                 },
               ),
             ),
@@ -536,11 +573,10 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
             Expanded(
               child: LoonoButton.light(
                 text: context.l10n.examination_detail_set_examination_button, //mám objednáno
-                onTap: () => showDatePickerSheet(
+                onTap: () => showCreateOrderFromDetailSheet(
                   context: context,
                   categorizedExamination: widget.categorizedExamination,
                   onSubmit: onPostNewCheckupSubmit,
-                  isNewCheckup: true,
                 ),
               ),
             ),

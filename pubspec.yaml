@@ -72,7 +72,7 @@ dependencies:
     git:
       url: https://github.com/Loono-cz/loono-api.git
       path: dart
-      ref: 1c6cb646b30eaf82b1c71cd118081a0d8ff7943d
+      ref: ff1aee8764cf9872db6e3d14cebcb500b29926f4
   modal_progress_hud_nsn: ^0.2.1
   onesignal_flutter: ^3.2.4
   open_store: ^0.2.4
