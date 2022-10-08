@@ -117,7 +117,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
             defaultYear: lastVisit.year,
             valueChanged: onDateChanged,
             yearsBeforeActual: DateTime.now().year - 1900,
-            yearsOverActual: 2,
+            yearsOverActual: 10,
             allowDays: true,
           ),
         ),

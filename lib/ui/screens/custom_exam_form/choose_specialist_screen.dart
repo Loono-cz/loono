@@ -82,7 +82,7 @@ class _ChooseSpecialistScreenState extends State<ChooseSpecialistScreen> {
                             _examType = provider;
                           }),
                         ),
-                        const Divider()
+                        if (index < _exams.length - 1) const Divider()
                       ],
                     );
                   }),
