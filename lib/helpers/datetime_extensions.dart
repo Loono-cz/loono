@@ -27,8 +27,8 @@ extension PreventDate on DateTime {
   }
 
   bool timePickerIsInFuture(BuildContext context) {
-    if (isBefore(DateTime(DateTime.now().year, DateTime.now().hour, DateTime.now().month)) ||
-        isAtSameMomentAs(DateTime.now())) {
+    final now = DateTime.now();
+    if (hour < now.hour || (hour == now.hour && minute <= now.minute)) {
       showFlushBarError(
         context,
         context.l10n.error_must_be_in_future,
