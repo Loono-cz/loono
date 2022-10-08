@@ -108,7 +108,12 @@ class WelcomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSponsor({required String label, required String logoAsset, double? width, double? height,}) {
+  Widget _buildSponsor({
+    required String label,
+    required String logoAsset,
+    double? width,
+    double? height,
+  }) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -125,15 +130,17 @@ class WelcomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSponsorImage(
-      {required String asset, double? width, double? height}) {
+  Widget _buildSponsorImage({
+    required String asset,
+    double? width,
+    double? height,
+  }) {
     if (width != null) {
       return SvgPicture.asset(
         asset,
         width: width,
       );
-    }
-    else if (height != null) {
+    } else if (height != null) {
       return SvgPicture.asset(
         asset,
         height: height,
