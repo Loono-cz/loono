@@ -24,7 +24,7 @@ class PreventionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final count = Provider.of<ExaminationsProvider>(context, listen: false)
+    final count = Provider.of<ExaminationsProvider>(context, listen: true)
             .examinations
             ?.examinations
             .where((item) => item.examinationCategoryType == ExaminationCategoryType.CUSTOM)
