@@ -80,7 +80,8 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
         width: 180,
       );
 
-  String note = '';
+  String? _note;
+  late FocusNode _focusNote;
   int get _hashCodeOfExam => _examination.hashCode;
   Sex get _sex {
     final user = registry.get<DatabaseService>().users.user;
@@ -88,7 +89,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
   }
 
   String _intervalYears(BuildContext context) {
-    final yearInterval = widget.categorizedExamination.examination.intervalYears;
+    final yearInterval = _examination.intervalYears;
     if (_examinationCategoryType == ExaminationCategoryType.CUSTOM) {
       return '${transformMonthToYear(yearInterval)} ${yearInterval < LoonoStrings.monthInYear ? 'měsíců' : 'roků'}';
     } else {
@@ -126,6 +127,9 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
   @override
   void initState() {
     super.initState();
+    _note = _examination.note;
+    _focusNote = FocusNode();
+    _focusNote.addListener(_noteFocusChanged);
     SchedulerBinding.instance.addPostFrameCallback((_) {
       if (widget.initialMessage != null) {
         showFlushBarSuccess(context, widget.initialMessage!);
@@ -134,17 +138,61 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
   }
 
   @override
+  void dispose() {
+    _focusNote.dispose();
+    super.dispose();
+  }
+
+  Future<void> _noteFocusChanged() async {
+    if (!_focusNote.hasFocus) {
+      final response = await registry.get<ExaminationRepository>().postExamination(
+            _examinationType,
+            newDate: _examination.plannedDate,
+            uuid: _examination.uuid,
+            firstExam: false,
+            status: ExaminationStatus.NEW,
+            categoryType: _examinationCategoryType!,
+            note: _note,
+            actionType: _examinationActionType,
+            periodicExam: _examination.periodicExam,
+            customInterval: _examination.customInterval,
+          );
+
+      response.map(
+        success: (res) {
+          final exProvider = Provider.of<ExaminationsProvider>(context, listen: false);
+          if (_examinationCategoryType == ExaminationCategoryType.CUSTOM) {
+            exProvider.updateAndReturnCustomExaminationsRecord(res.data, _examination);
+          } else {
+            exProvider.updateExaminationsRecord(res.data);
+          }
+          // exProvider.dispose();
+        },
+        failure: (err) {
+          showFlushBarError(
+            context,
+            statusCodeToText(
+              context,
+              err.error.response?.statusCode,
+            ),
+          );
+        },
+      );
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final lastVisitDateWithoutDay =
         widget.categorizedExamination.examination.lastConfirmedDate?.toLocal();
 
-    final lastVisit = lastVisitDateWithoutDay != null &&
-            widget.categorizedExamination.examination.state != ExaminationStatus.UNKNOWN
-        ? DateFormat.yMMMM('cs-CZ').format(
-            DateTime(lastVisitDateWithoutDay.year, lastVisitDateWithoutDay.month),
-          )
-        : l10n.skip_idk;
+    final lastVisit =
+        lastVisitDateWithoutDay != null && _examination.state != ExaminationStatus.UNKNOWN
+            ? DateFormat.yMMMM('cs-CZ').format(
+                DateTime(lastVisitDateWithoutDay.year, lastVisitDateWithoutDay.month),
+              )
+            : l10n.skip_idk;
 
     final preposition = czechPreposition(context, examinationType: _examinationType);
 
@@ -154,7 +202,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
       final response = await registry.get<ExaminationRepository>().postExamination(
             _examinationType,
             newDate: date,
-            uuid: widget.categorizedExamination.examination.uuid,
+            uuid: _examination.uuid,
             firstExam: false,
             status: ExaminationStatus.NEW,
             categoryType: _examinationCategoryType!,
@@ -198,7 +246,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
       final response = await registry.get<ExaminationRepository>().postExamination(
             _examinationType,
             newDate: date,
-            uuid: widget.categorizedExamination.examination.uuid,
+            uuid: _examination.uuid,
             firstExam: false,
             status: ExaminationStatus.NEW,
             categoryType: _examinationCategoryType!,
@@ -304,14 +352,12 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                             '${context.l10n.last_visit}:\n$lastVisit',
                             onTap: () {
                               /// must be first exam and no planned examination should exist
-                              if (!widget.categorizedExamination.examination.firstExam &&
-                                  widget.categorizedExamination.examination.plannedDate != null) {
+                              if (!_examination.firstExam && _examination.plannedDate != null) {
                                 return;
                               }
 
                               /// if "nevim", open question sheet else allow to change date
-                              if (widget.categorizedExamination.examination.lastConfirmedDate !=
-                                  null) {
+                              if (_examination.lastConfirmedDate != null) {
                                 const title = '';
                                 showChangeLastVisitSheet(
                                   context: context,
@@ -352,12 +398,15 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
           Padding(
             padding: const EdgeInsets.only(left: 16.0, right: 16.0),
             child: TextFormField(
+              focusNode: _focusNote,
               minLines: 5,
               maxLines: 10,
               maxLength: 256,
               keyboardType: TextInputType.multiline,
               initialValue: _examination.note,
-              enabled: false,
+              onChanged: (value) {
+                _note = value;
+              },
               decoration: InputDecoration(
                 hintText: context.l10n.note_visiting_description,
                 label: Text(context.l10n.note_visiting),
@@ -475,14 +524,14 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                             } else {
                               await autoRouter.push(
                                 CalendarListRoute(
-                                  examinationRecord: widget.categorizedExamination.examination,
+                                  examinationRecord: _examination,
                                 ),
                               );
                             }
                           } else {
                             final result = await autoRouter.push<bool>(
                               CalendarPermissionInfoRoute(
-                                examinationRecord: widget.categorizedExamination.examination,
+                                examinationRecord: _examination,
                               ),
                             );
                             // permission was permanently denied, show permission settings guide
@@ -508,10 +557,10 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                             onTap: () {
                               showConfirmationSheet(
                                 context,
-                                widget.categorizedExamination.examination.examinationType,
+                                _examination.examinationType,
                                 _sex,
-                                widget.categorizedExamination.examination.uuid,
-                                awardPoints: widget.categorizedExamination.examination.points,
+                                _examination.uuid,
+                                awardPoints: _examination.points,
                               );
                             },
                           ),
@@ -528,16 +577,15 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                 onTap: () {
                   Provider.of<ExaminationsProvider>(context, listen: false).setChoosedExamination(
                     widget.categorizedExamination,
-                    widget.categorizedExamination.examination,
+                    _examination,
                   );
                   showEditModal(
                     context,
                     widget.categorizedExamination,
-                    widget.categorizedExamination.examination.examinationCategoryType ==
-                            ExaminationCategoryType.CUSTOM
-                        ? widget.categorizedExamination.examination.customInterval!
+                    _examination.examinationCategoryType == ExaminationCategoryType.CUSTOM
+                        ? _examination.customInterval!
                         : transformYearToMonth(
-                            widget.categorizedExamination.examination.intervalYears,
+                            _examination.intervalYears,
                           ),
                   );
                 },
@@ -635,14 +683,14 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                         } else {
                           await autoRouter.push(
                             CalendarListRoute(
-                              examinationRecord: widget.categorizedExamination.examination,
+                              examinationRecord: _examination,
                             ),
                           );
                         }
                       } else {
                         final result = await autoRouter.push<bool>(
                           CalendarPermissionInfoRoute(
-                            examinationRecord: widget.categorizedExamination.examination,
+                            examinationRecord: _examination,
                           ),
                         );
                         // permission was permanently denied, show permission settings guide
