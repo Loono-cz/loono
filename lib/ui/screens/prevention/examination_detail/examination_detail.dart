@@ -68,6 +68,10 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
 
   DateTime? get _nextVisitDate => _examination.plannedDate;
   bool get _isPeriodicalExam => _examination.periodicExam == true; //Pravidelna prohlidka
+  bool get _isCustomPeriodicalExam =>
+      _isPeriodicalExam &&
+      _examination.examinationCategoryType ==
+          ExaminationCategoryType.CUSTOM; //Pravidelna vlastni prohlidka
 
   Widget get _doctorAsset => SvgPicture.asset(
         _examinationCategoryType == ExaminationCategoryType.MANDATORY
@@ -86,7 +90,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
   String _intervalYears(BuildContext context) {
     final yearInterval = widget.categorizedExamination.examination.intervalYears;
     if (_examinationCategoryType == ExaminationCategoryType.CUSTOM) {
-      return '${transformMonthToYear(yearInterval)} ${yearInterval < 12 ? 'měsíců' : 'roků'}';
+      return '${transformMonthToYear(yearInterval)} ${yearInterval < LoonoStrings.monthInYear ? 'měsíců' : 'roků'}';
     } else {
       return '${yearInterval.toString()} ${yearInterval > 1 ? context.l10n.years : context.l10n.year}';
     }
@@ -344,8 +348,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
           buildDisposableExamButtons(context, _onEditRegularlyExamTerm)
         else
           buildButtons(context, _onPostNewCheckupSubmit, preposition),
-        if (_nextVisitDate != _examination.lastConfirmedDate &&
-            _examination.state != ExaminationStatus.UNKNOWN)
+        if (widget.categorizedExamination.category != const ExaminationCategory.newToSchedule())
           Padding(
             padding: const EdgeInsets.only(left: 16.0, right: 16.0),
             child: TextFormField(
@@ -412,7 +415,9 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
           child: Padding(
             padding: const EdgeInsets.all(4.0),
             child: Text(
-              context.l10n.preventive_inspection,
+              _isCustomPeriodicalExam
+                  ? toBeginningOfSentenceCase(context.l10n.only_one_exam) ?? ''
+                  : context.l10n.preventive_inspection,
               style: preventiveInspectionStyles(widget.categorizedExamination.category),
             ),
           ),
@@ -765,7 +770,8 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                     const SizedBox(
                       height: 4,
                     ),
-                    if (item?.plannedDate != null) ...[
+                    if (item?.plannedDate != null &&
+                        catExam?.category != const ExaminationCategory.newToSchedule()) ...[
                       _calendarRow(
                         DateFormat(LoonoStrings.dateWithHoursFormat).format(item!.plannedDate!),
                         showCalendarIcon: true,
