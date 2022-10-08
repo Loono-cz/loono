@@ -107,7 +107,6 @@ class ExaminationsSheetOverlay extends StatelessWidget {
                                 return a.examination.examinationCategoryType!.name.compareTo(b.examination.examinationCategoryType!.name);
                               }
                             });
-                           
 
                       return Column(
                         children: [

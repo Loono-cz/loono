@@ -234,7 +234,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                       lastConfirmed.day,
                     );
 
-              final bool isDateValid = intervalDate.isAtSameMomentAs(
+              final isDateValid = intervalDate.isAtSameMomentAs(
                     newDate!,
                   ) ||
                   intervalDate.isBefore(newDate!);
@@ -255,7 +255,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 lastConfirmed.day,
               );
 
-              final bool isDateValid = intervalDate.isAtSameMomentAs(
+              final isDateValid = intervalDate.isAtSameMomentAs(
                     newDate!,
                   ) ||
                   intervalDate.isBefore(newDate!);

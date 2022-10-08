@@ -27,7 +27,7 @@ Future<void> submitAccount(
   ExaminationQuestionnairesDao examinationQuestionnairesDao,
     ApiService apiService,
     UserRepository userRepository,
-    bool newsletter
+    bool newsletter,
 ) async {
   final Either<AuthFailure, AuthUser> createAccountResult;
   if (socialLoginAccount != null) {
@@ -68,11 +68,11 @@ Future<ApiResponse<Account>> _callOnboardUser(
   User? user,
   List<ExaminationQuestionnaire> examinationQuestionnaires,
   ApiService apiService,
-    bool newsletter
+  bool newsletter,
 ) async {
   if (user == null || examinationQuestionnaires.isEmpty) {
     return ApiResponse.failure(
-        DioError(requestOptions: RequestOptions(path: '')));
+        DioError(requestOptions: RequestOptions(path: '')),);
   }
   final generalPractitioner =
       examinationQuestionnaires.generalPractitionerQuestionnaire;

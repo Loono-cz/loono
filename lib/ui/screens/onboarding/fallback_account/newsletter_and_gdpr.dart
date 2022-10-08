@@ -171,7 +171,9 @@ class NewsletterAndGDPRScreenState extends State<NewsletterAndGDPRScreen> {
     return TextSpan(
       text: text,
       style: const TextStyle(
-          decoration: TextDecoration.underline, color: LoonoColors.primary),
+          decoration: TextDecoration.underline,
+          color: LoonoColors.primary,
+      ),
       recognizer: TapGestureRecognizer()
         ..onTap = () async {
           if (await canLaunchUrlString(url)) {
