@@ -27,7 +27,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
       _shouldShowNotificationScreen = true;
       await _examinationQuestionnairesDao.createQuestionnaires([
         ExaminationType.GENERAL_PRACTITIONER,
-        ExaminationType.GYNECOLOGY_AND_OBSTETRICS,
+        ExaminationType.GYNECOLOGIST,
         ExaminationType.DENTIST,
       ]);
     }
@@ -115,7 +115,7 @@ class _OnboardingWrapperScreenState extends State<OnboardingWrapperScreen> {
                                   onboardingState: onboardingState,
                                   shouldShowAllowNotificationScreen: _shouldShowNotificationScreen,
                                   currDoctorCcaVisit: gynecologistQuestionnaire?.ccaDoctorVisit,
-                                  examinationType: ExaminationType.GYNECOLOGY_AND_OBSTETRICS,
+                                  examinationType: ExaminationType.GYNECOLOGIST,
                                   achievementRoute: const GynecologyAchievementRoute(),
                                   dateRoute: const GynecologyDateRoute(),
                                   isDatePickerFormFilled:

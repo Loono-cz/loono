@@ -9,7 +9,7 @@ extension ExaminationTypeExt on ExaminationType {
   int get awardPoints {
     switch (this) {
       case ExaminationType.GENERAL_PRACTITIONER:
-      case ExaminationType.GYNECOLOGY_AND_OBSTETRICS:
+      case ExaminationType.GYNECOLOGIST:
       case ExaminationType.DERMATOLOGIST:
         return 200;
       case ExaminationType.DENTIST:
@@ -44,8 +44,6 @@ extension ExaminationTypeExt on ExaminationType {
       case ExaminationType.NEUROLOGY:
 
       case ExaminationType.NUTRITION:
-
-      case ExaminationType.OCULAR:
 
       case ExaminationType.ONCOLOGY:
 
@@ -85,13 +83,7 @@ extension ExaminationTypeExt on ExaminationType {
 
       case ExaminationType.SURGERY:
 
-      case ExaminationType.TANNER:
-
-      case ExaminationType.UROLOGY:
-
       case ExaminationType.VASCULAR:
-
-      case ExaminationType.dENTALHYGIENE:
         return 0;
       default:
         return 0;
@@ -113,16 +105,12 @@ extension ExaminationTypeExt on ExaminationType {
       case ExaminationType.GENERAL_PRACTITIONER:
         examinationTypeUnion = const ExaminationTypeUnion.generalPractitioner();
         break;
-      case ExaminationType.GYNECOLOGY_AND_OBSTETRICS:
-        examinationTypeUnion = const ExaminationTypeUnion.gynecologist();
-        break;
       case ExaminationType.MAMMOGRAM:
         examinationTypeUnion = const ExaminationTypeUnion.mammogram();
         break;
       case ExaminationType.ERGOTHERAPY:
         examinationTypeUnion = const ExaminationTypeUnion.ergotherapy();
         break;
-      case ExaminationType.OCULAR:
       case ExaminationType.OPHTHALMOLOGIST:
         examinationTypeUnion = const ExaminationTypeUnion.ophthalmologist();
         break;
@@ -222,17 +210,14 @@ extension ExaminationTypeExt on ExaminationType {
       case ExaminationType.SURGERY:
         examinationTypeUnion = const ExaminationTypeUnion.surgey();
         break;
-      case ExaminationType.TANNER:
-        examinationTypeUnion = const ExaminationTypeUnion.tanner();
-        break;
-      case ExaminationType.UROLOGY:
-        examinationTypeUnion = const ExaminationTypeUnion.urlogy();
-        break;
       case ExaminationType.VASCULAR:
         examinationTypeUnion = const ExaminationTypeUnion.vascular();
         break;
-      case ExaminationType.dENTALHYGIENE:
+      case ExaminationType.DENTAL_HYGIENE:
         examinationTypeUnion = const ExaminationTypeUnion.dentalhygiene();
+        break;
+      case ExaminationType.GYNECOLOGIST:
+        examinationTypeUnion = const ExaminationTypeUnion.gynecologist();
         break;
     }
     return examinationTypeUnion;
@@ -296,13 +281,12 @@ extension ExaminationTypeExt on ExaminationType {
 
   int? frequencyOfExam(int age) {
     switch (this) {
-      case ExaminationType.GYNECOLOGY_AND_OBSTETRICS:
+      case ExaminationType.GYNECOLOGIST:
         return 1;
       case ExaminationType.COLONOSCOPY:
         return 10;
       case ExaminationType.DERMATOLOGIST:
         return 1;
-      case ExaminationType.OCULAR:
       case ExaminationType.OPHTHALMOLOGIST:
         return age >= 19 && age < 44 && age >= 62 ? 2 : 4;
       default:

@@ -31,7 +31,7 @@ void showEditModal(
   final procedure =
       procedureQuestionTitle(pageContext, examinationType: examinationType).toLowerCase();
 
-  Future<void> onChangeSubmit({required DateTime date}) async {
+  Future<void> onChangeSubmit({required DateTime date, String? note}) async {
     /// code anchor: #postChangeExamiantion
     final intervalYears =
         ExaminationCategoryType.CUSTOM == examination.examination.examinationCategoryType
@@ -49,6 +49,7 @@ void showEditModal(
           actionType: examination.examination.examinationActionType,
           categoryType: examination.examination.examinationCategoryType!,
           customInterval: examination.examination.customInterval ?? intervalYears,
+          note: note,
         );
     await response.map(
       success: (res) async {
