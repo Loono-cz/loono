@@ -34,13 +34,18 @@ class NotificationService {
           ?.value
           .toString();
 
-      if (notificationExaminationType == null) return;
+      final notificationExaminationUuid = res.notification.additionalData?.entries
+          .singleWhereOrNull((element) => element.key == 'examinationUuid')
+          ?.value
+          .toString();
+
+      if (notificationExaminationType == null && notificationExaminationUuid == null) return;
 
       await registry.get<ApiService>().getExaminations().then((res) {
         res.map(
           success: (exams) {
             final examinationToOpen = exams.data.examinations.firstWhereOrNull(
-              (element) => element.examinationType.toString() == notificationExaminationType,
+              (element) => element.uuid.toString() == notificationExaminationUuid,
             );
             if (examinationToOpen != null) {
               registry.get<AppRouter>().push(
