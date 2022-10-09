@@ -14,8 +14,8 @@
 import 'package:auto_route/auto_route.dart' as _i16;
 import 'package:built_collection/built_collection.dart' as _i73;
 import 'package:flutter/material.dart' as _i63;
+import 'package:flutter/services.dart' as _i71;
 import 'package:loono_api/loono_api.dart' as _i67;
-import 'package:moor/moor.dart' as _i71;
 
 import '../helpers/examination_category.dart' as _i69;
 import '../models/categorized_examination.dart' as _i68;
@@ -187,7 +187,10 @@ class AppRouter extends _i16.RootStackRouter {
       return _i16.MaterialPageX<void>(
           routeData: routeData,
           child: _i12.FindDoctorScreen(
-              key: args.key, onCancelTap: args.onCancelTap));
+              key: args.key,
+              onCancelTap: args.onCancelTap,
+              firstSelectedSpecializationName:
+                  args.firstSelectedSpecializationName));
     },
     DoctorSearchDetailRoute.name: (routeData) {
       return _i16.CustomPage<_i65.SearchResult>(
@@ -1105,24 +1108,34 @@ class LoginRouteArgs {
 /// generated route for
 /// [_i12.FindDoctorScreen]
 class FindDoctorRoute extends _i16.PageRouteInfo<FindDoctorRouteArgs> {
-  FindDoctorRoute({_i63.Key? key, void Function()? onCancelTap})
+  FindDoctorRoute(
+      {_i63.Key? key,
+      void Function()? onCancelTap,
+      String? firstSelectedSpecializationName})
       : super(FindDoctorRoute.name,
             path: 'find-doctor',
-            args: FindDoctorRouteArgs(key: key, onCancelTap: onCancelTap));
+            args: FindDoctorRouteArgs(
+                key: key,
+                onCancelTap: onCancelTap,
+                firstSelectedSpecializationName:
+                    firstSelectedSpecializationName));
 
   static const String name = 'FindDoctorRoute';
 }
 
 class FindDoctorRouteArgs {
-  const FindDoctorRouteArgs({this.key, this.onCancelTap});
+  const FindDoctorRouteArgs(
+      {this.key, this.onCancelTap, this.firstSelectedSpecializationName});
 
   final _i63.Key? key;
 
   final void Function()? onCancelTap;
 
+  final String? firstSelectedSpecializationName;
+
   @override
   String toString() {
-    return 'FindDoctorRouteArgs{key: $key, onCancelTap: $onCancelTap}';
+    return 'FindDoctorRouteArgs{key: $key, onCancelTap: $onCancelTap, firstSelectedSpecializationName: $firstSelectedSpecializationName}';
   }
 }
 
