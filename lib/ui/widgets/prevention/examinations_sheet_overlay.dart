@@ -98,13 +98,14 @@ class ExaminationsSheetOverlay extends StatelessWidget {
                       final categorizedExaminations =
                           categorized.where((e) => e.category == examinationStatus).toList()
                             ..sortExaminations()
-                            ..sort((a,b) {
-                              if (a.examination.examinationCategoryType == null){
+                            ..sort((a, b) {
+                              if (a.examination.examinationCategoryType == null) {
                                 return 0;
-                              } else if (b.examination.examinationCategoryType == null){
+                              } else if (b.examination.examinationCategoryType == null) {
                                 return 1;
                               } else {
-                                return a.examination.examinationCategoryType!.name.compareTo(b.examination.examinationCategoryType!.name);
+                                return a.examination.examinationCategoryType!.name
+                                    .compareTo(b.examination.examinationCategoryType!.name);
                               }
                             });
 

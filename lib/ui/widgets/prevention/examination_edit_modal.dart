@@ -51,6 +51,7 @@ void showEditModal(
           customInterval: examination.examination.customInterval ?? intervalYears,
           note: note,
         );
+
     await response.map(
       success: (res) async {
         final autoRouter = AutoRouter.of(pageContext);

@@ -30,7 +30,9 @@ class ExaminationDetailScreen extends StatelessWidget {
             .examinations!
             .examinations
             .firstWhere(
-              (item) => item.examinationType == categorizedExamination.examination.examinationType,
+              (item) => item.uuid != null
+                  ? item.uuid == categorizedExamination.examination.uuid
+                  : item.examinationType == categorizedExamination.examination.examinationType,
             );
 
     return Scaffold(

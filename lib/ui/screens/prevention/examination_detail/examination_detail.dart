@@ -304,8 +304,9 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                             '${context.l10n.last_visit}:\n$lastVisit',
                             onTap: () {
                               /// must be first exam and no planned examination should exist
-                              if (!widget.categorizedExamination.examination.firstExam &&
-                                  widget.categorizedExamination.examination.plannedDate != null) {
+                              if (!_examination.firstExam && _examination.plannedDate != null ||
+                                  _examination.examinationCategoryType ==
+                                      ExaminationCategoryType.CUSTOM) {
                                 return;
                               }
 
