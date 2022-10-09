@@ -147,17 +147,17 @@ void showEditModal(
 
 void showCustomExamEditModal(
   BuildContext pageContext,
-  ExaminationPreventionStatus examination,
+  CategorizedExamination catExam,
 ) {
-  final examinationType = examination.examinationType;
+  final examinationType = catExam.examination.examinationType;
   registry.get<FirebaseAnalytics>().logEvent(name: 'OpenEditCustomExaminationNonPeriodicModal');
-  final examinationUuid = examination.uuid;
+  final examinationUuid = catExam.examination.uuid;
   showCupertinoModalPopup<void>(
     context: pageContext,
     builder: (BuildContext modalContext) => CupertinoActionSheet(
       key: const Key('editCheckUpDateSheet'),
       actions: <CupertinoActionSheetAction>[
-        if (examination.periodicExam == true)
+        if (catExam.examination.periodicExam == true)
           CupertinoActionSheetAction(
             isDefaultAction: true,
             onPressed: () {
@@ -165,9 +165,9 @@ void showCustomExamEditModal(
                 AutoRouter.of(modalContext).pop();
                 showCustomEditExamSheet(
                   context: pageContext,
-                  id: examinationUuid,
+                  catExam: catExam,
                   examinationType: examinationType,
-                  date: examination.plannedDate?.toLocal() ?? DateTime.now(),
+                  date: catExam.examination.plannedDate?.toLocal() ?? DateTime.now(),
                 );
               } else {
                 showFlushBarError(
@@ -181,7 +181,7 @@ void showCustomExamEditModal(
               style: LoonoFonts.editExaminationMenuItem,
             ),
           ),
-        if (examination.examinationCategoryType != ExaminationCategoryType.MANDATORY)
+        if (catExam.examination.examinationCategoryType != ExaminationCategoryType.MANDATORY)
           CupertinoActionSheetAction(
             key: const Key('editCheckUpDateSheet_action_cancelCheckUp'),
             isDestructiveAction: true,
@@ -192,7 +192,7 @@ void showCustomExamEditModal(
                   context: pageContext,
                   id: examinationUuid,
                   examinationType: examinationType,
-                  date: examination.plannedDate?.toLocal() ?? DateTime.now(),
+                  date: catExam.examination.plannedDate?.toLocal() ?? DateTime.now(),
                 );
               } else {
                 showFlushBarError(modalContext, modalContext.l10n.something_went_wrong);

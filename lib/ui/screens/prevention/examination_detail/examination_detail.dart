@@ -370,7 +370,8 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                           if (!_isPeriodicalExam)
                             _calendarRow(
                               _nextVisitDate != null
-                                  ? DateFormat('dd.MM.yyyy HH:mm').format(_nextVisitDate!)
+                                  ? DateFormat(LoonoStrings.dateWithHoursFormat)
+                                      .format(_nextVisitDate!.toLocal())
                                   : '',
                               showCalendarIcon: true,
                             )
@@ -739,11 +740,8 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
               shrinkWrap: true,
               itemCount: specialistExams.length,
               itemBuilder: (context, index) {
-                final item = specialistExams[index];
-
                 return specialistCard(
                   context,
-                  item,
                   categorized.isNotEmpty ? categorized[index] : widget.categorizedExamination,
                 );
               },
@@ -760,9 +758,9 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
 
   Widget specialistCard(
     BuildContext context,
-    ExaminationPreventionStatus? item, //TODO its needet the item ?
     CategorizedExamination? catExam,
   ) {
+    final item = catExam?.examination;
     return GestureDetector(
       onTap: () {
         AutoRouter.of(context).push(

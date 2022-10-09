@@ -57,7 +57,7 @@ class ExaminationDetailScreen extends StatelessWidget {
                   child: IconButton(
                     key: const Key('examinationDetailPage_btn_menu'),
                     onPressed: () {
-                      showCustomExamEditModal(context, examination);
+                      showCustomExamEditModal(context, categorizedExamination);
                     },
                     icon: SvgPicture.asset(
                       'assets/icons/more_vertical.svg',

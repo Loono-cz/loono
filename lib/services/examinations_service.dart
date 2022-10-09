@@ -17,9 +17,6 @@ class ExaminationsProvider extends ChangeNotifier {
   bool loading = false;
   bool hasNotification = false;
 
-  CategorizedExamination? categorizedExamination;
-  ExaminationPreventionStatus? choosedExamination;
-
   Future<ApiResponse<PreventionStatus>> fetchExaminations() async {
     log('fetching examinations from server');
 
