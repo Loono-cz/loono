@@ -102,28 +102,8 @@ void showCancelExaminationSheet({
                           Provider.of<ExaminationsProvider>(context, listen: false);
                       final autoRouter = AutoRouter.of(context);
                       await registry.get<CalendarRepository>().deleteEvent(examinationType);
-                      ExaminationPreventionStatus? exam;
-                      if (examProvider.choosedExamination?.examinationCategoryType ==
-                          ExaminationCategoryType.CUSTOM) {
-                        exam = examProvider.updateAndReturnCustomExaminationsRecord(
-                          res.data,
-                          examProvider.getChoosedExamination().choosedExamination!,
-                          note: '',
-                        );
-                      } else {
-                        examProvider.updateExaminationsRecord(res.data);
-                      }
-
+                      examProvider.updateExaminationsRecord(res.data);
                       autoRouter.popUntilRouteWithName(ExaminationDetailRoute.name);
-
-                      // ignore: unawaited_futures, cascade_invocations
-                      autoRouter.replace(
-                        ExaminationDetailRoute(
-                          categorizedExamination:
-                              examProvider.getChoosedExamination().categorizedExamination!,
-                          choosedExamination: exam,
-                        ),
-                      );
                       // ignore: use_build_context_synchronously
                       showFlushBarSuccess(context, context.l10n.checkup_canceled);
                       //TODO: lint fix

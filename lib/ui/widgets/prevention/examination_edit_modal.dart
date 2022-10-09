@@ -31,7 +31,7 @@ void showEditModal(
   final procedure =
       procedureQuestionTitle(pageContext, examinationType: examinationType).toLowerCase();
 
-  Future<void> onChangeSubmit({required DateTime date}) async {
+  Future<void> onChangeSubmit({required DateTime date, String? note}) async {
     /// code anchor: #postChangeExamiantion
     final intervalYears =
         ExaminationCategoryType.CUSTOM == examination.examination.examinationCategoryType
@@ -49,33 +49,19 @@ void showEditModal(
           actionType: examination.examination.examinationActionType,
           categoryType: examination.examination.examinationCategoryType!,
           customInterval: examination.examination.customInterval ?? intervalYears,
+          note: note,
         );
+
     await response.map(
       success: (res) async {
         final autoRouter = AutoRouter.of(pageContext);
-        ExaminationPreventionStatus? exam;
-        final provider = Provider.of<ExaminationsProvider>(pageContext, listen: false);
-        if (examination.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM) {
-          exam = Provider.of<ExaminationsProvider>(pageContext, listen: false)
-              .updateAndReturnCustomExaminationsRecord(
-            res.data,
-            examination.examination,
-          );
-        } else {
-          Provider.of<ExaminationsProvider>(pageContext, listen: false)
-              .updateExaminationsRecord(res.data);
-        }
+        Provider.of<ExaminationsProvider>(pageContext, listen: false)
+            .updateExaminationsRecord(res.data);
         await registry.get<CalendarRepository>().updateEventDate(
               examinationType,
               newDate: date,
             );
         autoRouter.popUntilRouteWithName(ExaminationDetailRoute.name);
-        await autoRouter.replace(
-          ExaminationDetailRoute(
-            categorizedExamination: provider.getChoosedExamination().categorizedExamination!,
-            choosedExamination: exam,
-          ),
-        );
 
         ///TODO: lint fix
         // ignore: use_build_context_synchronously

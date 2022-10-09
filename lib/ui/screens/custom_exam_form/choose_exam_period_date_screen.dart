@@ -72,7 +72,7 @@ class _ChooseExamPeriodDateScreenState extends State<ChooseExamPeriodDateScreen>
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.5,
               child: CustomDatePicker(
-                defaultDay: DateTime.now().toLocal().day,
+                defaultDay: DateTime.now().day,
                 valueChanged: (value) {
                   _dateTime = value;
                 },

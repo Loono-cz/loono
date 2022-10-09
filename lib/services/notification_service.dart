@@ -8,7 +8,6 @@ import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/api_service.dart';
-
 import 'package:loono/utils/app_config.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';

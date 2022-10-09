@@ -7,13 +7,12 @@ import 'package:loono/helpers/date_helpers.dart';
 import 'package:loono/helpers/examination_action_types.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/helpers/flushbar_message.dart';
-import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/examinations_service.dart';
-import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/custom_exam_form/custom_input_text_field.dart';
 import 'package:loono/ui/widgets/settings/checkbox.dart';
 import 'package:loono/utils/registry.dart';
@@ -89,10 +88,13 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
 
   void setLastExamCheckbox(bool value) => setState(() {
         _lastExamChck = value;
+        _lastExamDate = null;
         _showLastExamError = false;
       });
+
   void setNextExamCheckbox(bool value) => setState(() {
         _nextExamChck = value;
+        _nextExamDate = null;
       });
 
   void setFrequencyExam(String value) => setState(() {
@@ -102,6 +104,13 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
   void onNoteChange(String value) => setState(() {
         _note = value;
       });
+
+  bool get isFormValid =>
+      _specialist != null &&
+      _examinationType != null &&
+      _customInterval.isNotEmpty &&
+      (_lastExamDate != null || _lastExamChck) &&
+      (_nextExamDate != null || _nextExamChck);
 
   BuildContext? providerContext;
   @override
@@ -184,6 +193,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                         _isPeriodicExam = false;
                         _showPeriodDateTimeError = false;
                         _showLastExamError = false;
+                        _note = '';
                       }),
                       !_isPeriodicExam,
                       false,
@@ -192,6 +202,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                       context,
                       context.l10n.regularly, //TODO: Translation
                       () => setState(() {
+                        _note = '';
                         _isPeriodicExam = true;
                         _showPeriodDateTimeError = false;
                         _showLastExamError = false;
@@ -238,20 +249,17 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 30.0),
-                child: LoonoButton(
+                child: AsyncLoonoApiButton(
                   text: context.l10n.action_save,
-                  onTap: () async {
+                  asyncCallback: () async {
                     if (_isPeriodicExam) {
-                      if ((_specialist != null &&
-                          _examinationType != null &&
-                          (_lastExamDate != null || _lastExamChck) &&
-                          (_nextExamDate != null || _nextExamChck))) {
+                      if (isFormValid) {
                         if (_lastExamDate != null && _nextExamDate != null) {
-                          await sendMandatoryRequest();
+                          await sendRegularRequest();
                         } else if (_lastExamDate != null) {
-                          await sendMandatoryRequestConfirm();
+                          await sendRegularRequestConfirm();
                         } else {
-                          await sendRegularlyRequestNew();
+                          await sendRegularRequestNew();
                         }
                       } else {
                         setState(() {
@@ -367,9 +375,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                width: LoonoSizes.isScreenSmall(context)
-                    ? MediaQuery.of(context).size.width * 0.5
-                    : MediaQuery.of(context).size.width * 0.6,
+                width: MediaQuery.of(context).size.width * 0.5,
                 child: CustomInputTextField(
                   error: _showLastExamError && _lastExamDate == null,
                   enabled: !_lastExamChck,
@@ -418,9 +424,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                width: LoonoSizes.isScreenSmall(context)
-                    ? MediaQuery.of(context).size.width * 0.5
-                    : MediaQuery.of(context).size.width * 0.6,
+                width: MediaQuery.of(context).size.width * 0.5,
                 child: CustomInputTextField(
                   error: false,
                   enabled: !_nextExamChck,
@@ -499,7 +503,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
     }
   }
 
-  Future<void> sendRegularlyRequestNew() async {
+  Future<void> sendRegularRequestNew() async {
     final response = await registry.get<ExaminationRepository>().postExamination(
           _specialist!,
           actionType: _examinationType,
@@ -530,7 +534,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
     );
   }
 
-  Future<void> sendMandatoryRequestConfirm() async {
+  Future<void> sendRegularRequestConfirm() async {
     final response = await registry.get<ExaminationRepository>().postExamination(
           _specialist!,
           actionType: _examinationType,
@@ -560,7 +564,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
     );
   }
 
-  Future<void> sendMandatoryRequest() async {
+  Future<void> sendRegularRequest() async {
     final response = await registry.get<ExaminationRepository>().postExamination(
           _specialist!,
           actionType: _examinationType,

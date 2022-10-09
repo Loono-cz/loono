@@ -117,7 +117,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
             defaultYear: lastVisit.year,
             valueChanged: onDateChanged,
             yearsBeforeActual: DateTime.now().year - 1900,
-            yearsOverActual: 2,
+            yearsOverActual: 10,
             allowDays: true,
           ),
         ),
@@ -126,6 +126,14 @@ class _DatePickerContentState extends State<_DatePickerContent> {
           text: context.l10n.action_save,
           enabled: newDate != null,
           asyncCallback: () async {
+            if (newDate?.toLocal().isAfter(DateTime.now()) ?? true) {
+              showFlushBarError(
+                context,
+                context.l10n.error_date_must_be_in_past,
+              );
+              return;
+            }
+
             /// code anchor: #postChangeLastExamiantion
             final response = await registry.get<ExaminationRepository>().postExamination(
                   widget.categorizedExamination.examination.examinationType,
