@@ -118,7 +118,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
 
     final originalDate = widget.categorizedExamination.examination.plannedDate?.toLocal();
 
-    String _buildTitle(BuildContext context) {
+    String buildTitle(BuildContext context) {
       return isFirstStep
           ? _sex == Sex.MALE
               ? context.l10n.wich_date_you_have_reservation_male
@@ -161,7 +161,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 TextSpan(
                   children: [
                     TextSpan(
-                      text: _buildTitle(context),
+                      text: buildTitle(context),
                       style: LoonoFonts.headerFontStyle,
                     ),
                     if (widget.isNewCheckup)

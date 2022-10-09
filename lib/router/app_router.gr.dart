@@ -14,8 +14,8 @@
 import 'package:auto_route/auto_route.dart' as _i16;
 import 'package:built_collection/built_collection.dart' as _i73;
 import 'package:flutter/material.dart' as _i63;
-import 'package:flutter/services.dart' as _i71;
 import 'package:loono_api/loono_api.dart' as _i67;
+import 'package:moor/moor.dart' as _i71;
 
 import '../helpers/examination_category.dart' as _i69;
 import '../models/categorized_examination.dart' as _i68;
@@ -363,7 +363,6 @@ class AppRouter extends _i16.RootStackRouter {
           child: _i36.ExaminationDetailScreen(
               key: args.key,
               categorizedExamination: args.categorizedExamination,
-              choosedExamination: args.choosedExamination,
               initialMessage: args.initialMessage),
           transitionsBuilder: _i16.TransitionsBuilders.slideLeft,
           opaque: true,
@@ -1491,14 +1490,12 @@ class ExaminationDetailRoute
   ExaminationDetailRoute(
       {_i63.Key? key,
       required _i68.CategorizedExamination categorizedExamination,
-      _i67.ExaminationPreventionStatus? choosedExamination,
       String? initialMessage})
       : super(ExaminationDetailRoute.name,
             path: 'prevention-detail',
             args: ExaminationDetailRouteArgs(
                 key: key,
                 categorizedExamination: categorizedExamination,
-                choosedExamination: choosedExamination,
                 initialMessage: initialMessage));
 
   static const String name = 'ExaminationDetailRoute';
@@ -1506,22 +1503,17 @@ class ExaminationDetailRoute
 
 class ExaminationDetailRouteArgs {
   const ExaminationDetailRouteArgs(
-      {this.key,
-      required this.categorizedExamination,
-      this.choosedExamination,
-      this.initialMessage});
+      {this.key, required this.categorizedExamination, this.initialMessage});
 
   final _i63.Key? key;
 
   final _i68.CategorizedExamination categorizedExamination;
 
-  final _i67.ExaminationPreventionStatus? choosedExamination;
-
   final String? initialMessage;
 
   @override
   String toString() {
-    return 'ExaminationDetailRouteArgs{key: $key, categorizedExamination: $categorizedExamination, choosedExamination: $choosedExamination, initialMessage: $initialMessage}';
+    return 'ExaminationDetailRouteArgs{key: $key, categorizedExamination: $categorizedExamination, initialMessage: $initialMessage}';
   }
 }
 
