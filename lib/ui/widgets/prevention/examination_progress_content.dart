@@ -33,7 +33,7 @@ class ExaminationProgressContent extends StatelessWidget {
 
   String _intervalYears(BuildContext context) {
     final interval = _isCustomExamination
-        ? categorizedExamination.examination.customInterval ?? 0
+        ? categorizedExamination.examination.customInterval ?? LoonoStrings.customDefaultMonth
         : categorizedExamination.examination.intervalYears;
     //transformMonthToYear
     if (_isCustomExamination) {
@@ -119,7 +119,9 @@ class ExaminationProgressContent extends StatelessWidget {
 
   Widget _earlyCheckupContent(BuildContext context) {
     final examination = categorizedExamination.examination;
-    final interval = examination.intervalYears;
+    final interval = _isCustomExamination
+        ? examination.customInterval ?? LoonoStrings.customDefaultMonth
+        : examination.intervalYears;
     DateTime newWaitToDateTime;
     final lastDateVisit = examination.lastConfirmedDate!.toLocal();
 

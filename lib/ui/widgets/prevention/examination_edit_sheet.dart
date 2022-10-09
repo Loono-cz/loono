@@ -81,6 +81,7 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
   @override
   void initState() {
     super.initState();
+    _lastExamDate = widget.exam?.lastConfirmedDate;
   }
 
   Future<void> sendRegularRequest({int? customInterval}) async {
@@ -90,10 +91,10 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
           actionType: widget.exam?.examinationActionType,
           periodicExam: widget.exam?.periodicExam,
           note: widget.exam?.note,
-          customInterval: customInterval ?? widget.exam?.customInterval, // Pravidelne
-          newDate: _idkCheck ? DateTime.now() : _lastExamDate,
+          customInterval: customInterval ?? widget.exam?.customInterval,
+          newDate: _lastExamDate,
           categoryType: ExaminationCategoryType.CUSTOM,
-          status: _idkCheck ? ExaminationStatus.UNKNOWN : ExaminationStatus.CONFIRMED,
+          status: ExaminationStatus.CONFIRMED,
           firstExam: true,
         );
     response.map(
@@ -106,8 +107,8 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
               actionType: widget.exam?.examinationActionType,
               periodicExam: widget.exam?.periodicExam,
               note: widget.exam?.note,
-              customInterval: customInterval ?? widget.exam?.customInterval, // Pravidelne
-              newDate: widget.exam!.plannedDate,
+              customInterval: customInterval ?? widget.exam?.customInterval,
+              newDate: _lastExamDate,
               categoryType: ExaminationCategoryType.CUSTOM,
               status: ExaminationStatus.NEW,
               firstExam: true,
@@ -175,15 +176,14 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
   }
 
   Future<void> _onPostNewCheckupSubmit({DateTime? newDate, int? customInterval}) async {
-    // if ([
-    //   const ExaminationCategory.scheduledSoonOrOverdue(),
-    //   const ExaminationCategory.scheduled(),
-    // ].contains(widget.exam!.calculateStatus())) {
-    //   await sendRegularRequest(customInterval: customInterval);
-    // } else {
-    //   await sendRegularRequestConfirm(customInterval: customInterval);
-    // }
-    await sendRegularRequestConfirm(customInterval: customInterval);
+    final exam = widget.exam!;
+    final noPlannedExamExist = exam.firstExam && exam.plannedDate == null ||
+        [ExaminationStatus.CANCELED, ExaminationStatus.CONFIRMED].contains(exam.state);
+    if (noPlannedExamExist) {
+      await sendRegularRequestConfirm(customInterval: customInterval);
+    } else {
+      await sendRegularRequest(customInterval: customInterval);
+    }
   }
 
   @override
@@ -245,7 +245,7 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
     final exam = widget.exam!;
 
     /// must be first exam and no planned examination should exist
-    final noPlannedExamExist = exam.firstExam && exam.plannedDate != null;
+    final noPlannedExamExist = exam.firstExam && exam.plannedDate == null;
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
