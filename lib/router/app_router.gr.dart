@@ -360,9 +360,7 @@ class AppRouter extends _i16.RootStackRouter {
           child: _i36.ExaminationDetailScreen(
               key: args.key,
               categorizedExamination: args.categorizedExamination,
-              choosedExamination: args.choosedExamination,
-              initialMessage: args.initialMessage,
-              uuid: args.uuid),
+              initialMessage: args.initialMessage),
           transitionsBuilder: _i16.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -1479,42 +1477,30 @@ class ExaminationDetailRoute
   ExaminationDetailRoute(
       {_i63.Key? key,
       required _i68.CategorizedExamination categorizedExamination,
-      _i67.ExaminationPreventionStatus? choosedExamination,
-      String? initialMessage,
-      required String uuid})
+      String? initialMessage})
       : super(ExaminationDetailRoute.name,
             path: 'prevention-detail',
             args: ExaminationDetailRouteArgs(
                 key: key,
                 categorizedExamination: categorizedExamination,
-                choosedExamination: choosedExamination,
-                initialMessage: initialMessage,
-                uuid: uuid));
+                initialMessage: initialMessage));
 
   static const String name = 'ExaminationDetailRoute';
 }
 
 class ExaminationDetailRouteArgs {
   const ExaminationDetailRouteArgs(
-      {this.key,
-      required this.categorizedExamination,
-      this.choosedExamination,
-      this.initialMessage,
-      required this.uuid});
+      {this.key, required this.categorizedExamination, this.initialMessage});
 
   final _i63.Key? key;
 
   final _i68.CategorizedExamination categorizedExamination;
 
-  final _i67.ExaminationPreventionStatus? choosedExamination;
-
   final String? initialMessage;
-
-  final String uuid;
 
   @override
   String toString() {
-    return 'ExaminationDetailRouteArgs{key: $key, categorizedExamination: $categorizedExamination, choosedExamination: $choosedExamination, initialMessage: $initialMessage, uuid: $uuid}';
+    return 'ExaminationDetailRouteArgs{key: $key, categorizedExamination: $categorizedExamination, initialMessage: $initialMessage}';
   }
 }
 

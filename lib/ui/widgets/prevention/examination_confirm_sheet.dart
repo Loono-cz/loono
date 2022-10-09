@@ -25,7 +25,7 @@ void showConfirmationSheet(
   int? awardPoints,
   bool mounted = true,
 }) {
-  Future<void> _completedAction() async {
+  Future<void> completedAction() async {
     final autoRouter = AutoRouter.of(context);
     await registry.get<UserRepository>().sync();
     autoRouter.popUntilRouteWithName(ExaminationDetailRoute.name);
@@ -77,7 +77,7 @@ void showConfirmationSheet(
                               textLines: [l10n.award_desc],
                               numberOfPoints: awardPoints ?? examinationType.awardPoints,
                               itemPath: getAchievementAssetPath(examinationType),
-                              onButtonTap: _completedAction,
+                              onButtonTap: completedAction,
                             ),
                           );
                   },

@@ -197,7 +197,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
     _note = _examination.note ?? '';
 
     /// not ideal in build method but need context
-    Future<void> _onPostNewCheckupSubmit({required DateTime date, String? note}) async {
+    Future<void> onPostNewCheckupSubmit({required DateTime date, String? note}) async {
       /// code anchor: #postNewExamination
       final response = await registry.get<ExaminationRepository>().postExamination(
             _examinationType,
@@ -230,7 +230,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
       );
     }
 
-    Future<void> _onEditRegularlyExamTerm({required DateTime date, String? note}) async {
+    Future<void> onEditRegularlyExamTerm({required DateTime date, String? note}) async {
       final response = await registry.get<ExaminationRepository>().postExamination(
             _examinationType,
             newDate: date,
@@ -407,9 +407,9 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
         if (_isPeriodicalExam || _examinationCategoryType == ExaminationCategoryType.MANDATORY)
           buildPeriodicalAndMandatorySection(context),
         if (!_isPeriodicalExam)
-          buildDisposableExamButtons(context, _onEditRegularlyExamTerm)
+          buildDisposableExamButtons(context, onEditRegularlyExamTerm)
         else
-          buildButtons(context, _onPostNewCheckupSubmit, preposition),
+          buildButtons(context, onPostNewCheckupSubmit, preposition),
         if (widget.categorizedExamination.category != const ExaminationCategory.newToSchedule())
           Padding(
             padding: const EdgeInsets.only(left: 16.0, right: 16.0),
@@ -802,16 +802,14 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
 
   Widget specialistCard(
     BuildContext context,
-    ExaminationPreventionStatus? item,
+    ExaminationPreventionStatus? item, //TODO its needet the item ?
     CategorizedExamination? catExam,
   ) {
     return GestureDetector(
       onTap: () {
         AutoRouter.of(context).push(
           ExaminationDetailRoute(
-            uuid: item!.uuid!,
-            categorizedExamination: catExam!,
-            choosedExamination: item,
+            categorizedExamination: catExam!, //TODO: Remove !
           ),
         );
       },

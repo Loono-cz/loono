@@ -53,7 +53,6 @@ class NewTimeScreenState extends State<NewTimeScreen> {
 
     final formattedNewDate = DateFormat('d. MMMM yyyy', 'cs-CZ').format(widget.newDate);
     final cancelRoute = ExaminationDetailRoute(
-      uuid: widget.categorizedExamination.examination.uuid!,
       categorizedExamination: widget.categorizedExamination,
     );
 
