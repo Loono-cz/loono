@@ -178,15 +178,9 @@ class ExaminationsSheetOverlay extends StatelessWidget {
                       index: index,
                       categorizedExamination: e,
                       onTap: () {
-                        Provider.of<ExaminationsProvider>(context, listen: false)
-                            .setChoosedExamination(
-                          e,
-                          e.examination,
-                        );
                         AutoRouter.of(context).navigate(
                           ExaminationDetailRoute(
                             categorizedExamination: e,
-                            choosedExamination: e.examination,
                           ),
                         );
                       },
@@ -299,7 +293,7 @@ class ExaminationsSheetOverlay extends StatelessWidget {
                   element.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM,
             )
             .length;
-    Widget _buildFullExamColumn(BuildContext context) {
+    Widget buildFullExamColumn(BuildContext context) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -350,7 +344,7 @@ class ExaminationsSheetOverlay extends StatelessWidget {
               height: 120,
               child: Center(
                 child: customExamCount <= 0
-                    ? _buildFullExamColumn(context)
+                    ? buildFullExamColumn(context)
                     : Text(
                         '${context.l10n.your_list_of_exam_info(customExamCount)} ${getExamLabel(customExamCount)}',
                       ),

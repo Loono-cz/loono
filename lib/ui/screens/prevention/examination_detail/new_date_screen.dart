@@ -50,8 +50,9 @@ class NewDateScreenState extends State<NewDateScreen> {
     final preposition = czechPreposition(context, examinationType: examinationType);
     final title1 =
         '${_sex == Sex.MALE ? l10n.checkup_new_date_title_male : l10n.checkup_new_date_title_female} $preposition ';
-    final cancelRoute =
-        ExaminationDetailRoute(categorizedExamination: widget.categorizedExamination);
+    final cancelRoute = ExaminationDetailRoute(
+      categorizedExamination: widget.categorizedExamination,
+    );
     return Scaffold(
       backgroundColor: LoonoColors.bottomSheetPrevention,
       appBar: AppBar(

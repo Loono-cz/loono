@@ -6,11 +6,9 @@ import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/date_helpers.dart';
 import 'package:loono/helpers/examination_category.dart';
-import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
@@ -58,7 +56,6 @@ class CustomEditExamination extends StatefulWidget {
 
 class _CustomEditExaminationState extends State<CustomEditExamination> {
   String _customIntervalText = '';
-  int? _customIntervalNumber;
   DateTime? _lastExamDate;
 
   bool _idkCheck = false;
@@ -87,11 +84,9 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
   @override
   void initState() {
     super.initState();
-    _customIntervalNumber = widget.exam?.customInterval;
   }
 
   Future<void> sendRegularRequest({int? customInterval}) async {
-    final examProvider = Provider.of<ExaminationsProvider>(context, listen: false);
     final response = await registry.get<ExaminationRepository>().postExamination(
           widget.exam!.examinationType,
           uuid: widget.exam!.uuid,
@@ -123,19 +118,10 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
             .then((value) {
           value.map(
             success: (newRes) {
-              final newExam = Provider.of<ExaminationsProvider>(context, listen: false)
-                  .updateAndReturnCustomExaminationsRecord(
+              Provider.of<ExaminationsProvider>(context, listen: false).updateExaminationsRecord(
                 res.data,
-                examProvider.getChoosedExamination().choosedExamination!,
               );
               AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
-              AutoRouter.of(context).replace(
-                ExaminationDetailRoute(
-                  categorizedExamination: examProvider.categorizedExamination!,
-                  choosedExamination: newExam,
-                ),
-              );
-
               showFlushBarSuccess(context, context.l10n.examination_was_edited, sync: true);
             },
             failure: (err) => showFlushBarError(
@@ -161,7 +147,6 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
   }
 
   Future<void> sendRegularRequestConfirm({int? customInterval}) async {
-    final examProvider = Provider.of<ExaminationsProvider>(context, listen: false);
     final response = await registry.get<ExaminationRepository>().postExamination(
           widget.exam!.examinationType,
           uuid: widget.exam!.uuid,
@@ -177,19 +162,10 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
 
     response.map(
       success: (res) {
-        final newExam = Provider.of<ExaminationsProvider>(context, listen: false)
-            .updateAndReturnCustomExaminationsRecord(
+        Provider.of<ExaminationsProvider>(context, listen: false).updateExaminationsRecord(
           res.data,
-          examProvider.getChoosedExamination().choosedExamination!,
         );
         AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
-        AutoRouter.of(context).replace(
-          ExaminationDetailRoute(
-            categorizedExamination:
-                CategorizedExamination(category: newExam!.calculateStatus(), examination: newExam),
-            choosedExamination: newExam,
-          ),
-        );
       },
       failure: (err) => showFlushBarError(
         context,
@@ -229,7 +205,6 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          // mainAxisSize: MainAxisSize.min,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
