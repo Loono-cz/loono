@@ -49,9 +49,10 @@ class WelcomeScreen extends StatelessWidget {
                       children: [
                         const Spacer(),
                         _buildSponsor(
-                            label: context.l10n.incubated,
-                            logoAsset: LoonoAssets.cdLogo,
-                            width: 105),
+                          label: context.l10n.incubated,
+                          logoAsset: LoonoAssets.cdLogo,
+                          width: 105,
+                        ),
                         const SizedBox(
                           width: 45,
                         ),
