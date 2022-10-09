@@ -353,7 +353,19 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
 
                                 /// if "nevim", open question sheet else allow to change date
                                 if (_examination.lastConfirmedDate != null) {
-                                  const title = '';
+                                  final practitioner = procedureQuestionTitle(
+                                    context,
+                                    examinationType:
+                                        widget.categorizedExamination.examination.examinationType,
+                                  ).toLowerCase();
+                                  final preposition = czechPreposition(
+                                    context,
+                                    examinationType:
+                                        widget.categorizedExamination.examination.examinationType,
+                                  );
+                                  final title =
+                                      '${l10n.change_last_visit_title} $preposition $practitioner?';
+
                                   showChangeLastVisitSheet(
                                     context: context,
                                     title: title,
@@ -371,8 +383,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                           if (!_isPeriodicalExam)
                             _calendarRow(
                               _nextVisitDate != null
-                                  ? DateFormat(LoonoStrings.dateWithHoursFormat)
-                                      .format(_nextVisitDate!.toLocal())
+                                  ? DateFormat('dd.MM.yyyy HH:mm').format(_nextVisitDate!)
                                   : '',
                               showCalendarIcon: true,
                             )
