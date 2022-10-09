@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/date_helpers.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
+import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
@@ -23,32 +24,32 @@ import 'package:provider/provider.dart';
 
 void showEditModal(
   BuildContext pageContext,
-  CategorizedExamination examination,
+  ExaminationPreventionStatus examination,
   int intervalMonths,
 ) {
-  final examinationType = examination.examination.examinationType;
+  final examinationType = examination.examinationType;
   final preposition = czechPreposition(pageContext, examinationType: examinationType);
   final procedure =
       procedureQuestionTitle(pageContext, examinationType: examinationType).toLowerCase();
 
   Future<void> onChangeSubmit({required DateTime date, String? note}) async {
     /// code anchor: #postChangeExamiantion
-    final intervalYears =
-        ExaminationCategoryType.CUSTOM == examination.examination.examinationCategoryType
-            ? examination.examination.intervalYears < 12
-                ? examination.examination.intervalYears
-                : transformMonthToYear(examination.examination.intervalYears)
-            : examination.examination.intervalYears;
+    final intervalYears = ExaminationCategoryType.CUSTOM == examination.examinationCategoryType
+        ? examination.intervalYears < 12
+            ? examination.intervalYears
+            : transformMonthToYear(examination.intervalYears)
+        : examination.intervalYears;
+
     final response = await registry.get<ExaminationRepository>().postExamination(
           examinationType,
           newDate: date,
-          uuid: examination.examination.uuid,
+          uuid: examination.uuid,
           firstExam: false,
-          status: examination.examination.state,
-          periodicExam: examination.examination.periodicExam,
-          actionType: examination.examination.examinationActionType,
-          categoryType: examination.examination.examinationCategoryType!,
-          customInterval: examination.examination.customInterval ?? intervalYears,
+          status: examination.state,
+          periodicExam: examination.periodicExam,
+          actionType: examination.examinationActionType,
+          categoryType: examination.examinationCategoryType!,
+          customInterval: examination.customInterval ?? intervalYears,
           note: note,
         );
 
@@ -76,8 +77,8 @@ void showEditModal(
     );
   }
 
-  final formattedDate = DateFormat('d. MMMM yyyy, HH:mm', 'cs-CZ')
-      .format(examination.examination.plannedDate!.toLocal());
+  final formattedDate =
+      DateFormat('d. MMMM yyyy, HH:mm', 'cs-CZ').format(examination.plannedDate!.toLocal());
 
   registry.get<FirebaseAnalytics>().logEvent(name: 'OpenEditCheckupModal');
   showCupertinoModalPopup<void>(
@@ -95,7 +96,10 @@ void showEditModal(
             AutoRouter.of(modalContext).pop();
             showDatePickerSheet(
               context: pageContext,
-              categorizedExamination: examination,
+              categorizedExamination: CategorizedExamination(
+                examination: examination,
+                category: examination.calculateStatus(),
+              ),
               onSubmit: onChangeSubmit,
               additionalBottomText: '${pageContext.l10n.original_date}: $formattedDate',
               intervalMonths: intervalMonths,
@@ -106,7 +110,7 @@ void showEditModal(
           key: const Key('editCheckUpDateSheet_action_cancelCheckUp'),
           isDestructiveAction: true,
           onPressed: () {
-            final examinationUuid = examination.examination.uuid;
+            final examinationUuid = examination.uuid;
 
             if (examinationUuid != null) {
               AutoRouter.of(modalContext).pop();
@@ -114,10 +118,10 @@ void showEditModal(
                 context: pageContext,
                 id: examinationUuid,
                 examinationType: examinationType,
-                title: examination.examination.periodicExam == true
+                title: examination.periodicExam == true
                     ? pageContext.l10n.custom_exam_cancel_question
                     : '${pageContext.l10n.checkup_cancel_question} $preposition $procedure?',
-                date: examination.examination.plannedDate?.toLocal() ?? DateTime.now(),
+                date: examination.plannedDate?.toLocal() ?? DateTime.now(),
               );
             } else {
               showFlushBarError(
@@ -147,17 +151,17 @@ void showEditModal(
 
 void showCustomExamEditModal(
   BuildContext pageContext,
-  CategorizedExamination catExam,
+  ExaminationPreventionStatus catExam,
 ) {
-  final examinationType = catExam.examination.examinationType;
+  final examinationType = catExam.examinationType;
   registry.get<FirebaseAnalytics>().logEvent(name: 'OpenEditCustomExaminationNonPeriodicModal');
-  final examinationUuid = catExam.examination.uuid;
+  final examinationUuid = catExam.uuid;
   showCupertinoModalPopup<void>(
     context: pageContext,
     builder: (BuildContext modalContext) => CupertinoActionSheet(
       key: const Key('editCheckUpDateSheet'),
       actions: <CupertinoActionSheetAction>[
-        if (catExam.examination.periodicExam == true)
+        if (catExam.periodicExam == true)
           CupertinoActionSheetAction(
             isDefaultAction: true,
             onPressed: () {
@@ -167,7 +171,7 @@ void showCustomExamEditModal(
                   context: pageContext,
                   catExam: catExam,
                   examinationType: examinationType,
-                  date: catExam.examination.plannedDate?.toLocal() ?? DateTime.now(),
+                  date: catExam.plannedDate?.toLocal() ?? DateTime.now(),
                 );
               } else {
                 showFlushBarError(
@@ -181,7 +185,7 @@ void showCustomExamEditModal(
               style: LoonoFonts.editExaminationMenuItem,
             ),
           ),
-        if (catExam.examination.examinationCategoryType != ExaminationCategoryType.MANDATORY)
+        if (catExam.examinationCategoryType != ExaminationCategoryType.MANDATORY)
           CupertinoActionSheetAction(
             key: const Key('editCheckUpDateSheet_action_cancelCheckUp'),
             isDestructiveAction: true,
@@ -192,7 +196,7 @@ void showCustomExamEditModal(
                   context: pageContext,
                   id: examinationUuid,
                   examinationType: examinationType,
-                  date: catExam.examination.plannedDate?.toLocal() ?? DateTime.now(),
+                  date: catExam.plannedDate?.toLocal() ?? DateTime.now(),
                 );
               } else {
                 showFlushBarError(modalContext, modalContext.l10n.something_went_wrong);

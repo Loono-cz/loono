@@ -269,7 +269,6 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 return;
               }
             }
-            // ignore: use_build_context_synchronously
             if (newDate?.datePickerIsInFuture(context) == false) {
               return;
             }
@@ -288,8 +287,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 isFirstStep = false;
               });
             } else {
-              // ignore: use_build_context_synchronously
-              if (newDate?.timePickerIsInFuture(context) == true) {
+              if (newDate?.timeDatePickerIsInFuture(context) == true) {
                 await widget.onSubmit(date: newDate!);
               }
               return;

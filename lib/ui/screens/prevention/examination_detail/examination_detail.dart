@@ -93,15 +93,6 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
     return user?.sex ?? Sex.MALE;
   }
 
-  String _intervalYears(BuildContext context) {
-    final yearInterval = _examination.intervalYears;
-    if (_examinationCategoryType == ExaminationCategoryType.CUSTOM) {
-      return '${transformMonthToYear(yearInterval)} ${yearInterval < LoonoStrings.monthInYear ? 'měsíců' : 'roků'}';
-    } else {
-      return '${yearInterval.toString()} ${yearInterval > 1 ? context.l10n.years : context.l10n.year}';
-    }
-  }
-
   Widget _calendarRow(String text, {VoidCallback? onTap, bool? interval, bool? showCalendarIcon}) {
     var svgPath = '';
     if (_isPeriodicalExam && interval == true) {
@@ -202,6 +193,14 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                 DateTime(lastVisitDateWithoutDay.year, lastVisitDateWithoutDay.month),
               )
             : l10n.skip_idk;
+
+    String _intervalYears(BuildContext context) {
+      if (_examinationCategoryType == ExaminationCategoryType.CUSTOM) {
+        return '${transformMonthToYear(_examination.customInterval ?? 0)} ${_examination.intervalYears < LoonoStrings.monthInYear ? 'měsíců' : 'roků'}';
+      } else {
+        return '${_examination.intervalYears.toString()} ${_examination.intervalYears > 1 ? context.l10n.years : context.l10n.year}';
+      }
+    }
 
     final preposition = czechPreposition(context, examinationType: _examinationType);
     _editingController.text = _examination.note ?? '';
@@ -567,7 +566,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                 onTap: () {
                   showEditModal(
                     context,
-                    widget.categorizedExamination,
+                    _examination,
                     _examination.examinationCategoryType == ExaminationCategoryType.CUSTOM
                         ? _examination.customInterval!
                         : transformYearToMonth(
