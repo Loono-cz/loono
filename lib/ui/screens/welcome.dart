@@ -11,10 +11,6 @@ import 'package:loono/utils/registry.dart';
 class WelcomeScreen extends StatelessWidget {
   WelcomeScreen({Key? key}) : super(key: key);
 
-  static const cdLogo = 'assets/sponsors/cd.svg';
-  static const ppfLogo = 'assets/sponsors/ppf.svg';
-  static const cgiLogo = 'assets/sponsors/CGI.svg';
-
   final _userRepository = registry.get<UserRepository>();
 
   @override
@@ -52,18 +48,29 @@ class WelcomeScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Spacer(),
-                        _buildSponsor(label: context.l10n.incubated, logoAsset: cdLogo, width: 105),
+                        _buildSponsor(
+                            label: context.l10n.incubated,
+                            logoAsset: LoonoAssets.cdLogo,
+                            width: 105),
                         const SizedBox(
                           width: 45,
                         ),
-                        _buildSponsor(label: context.l10n.with_support, logoAsset: ppfLogo, height: 50),
+                        _buildSponsor(
+                          label: context.l10n.with_support,
+                          logoAsset: LoonoAssets.ppfLogo,
+                          height: 50,
+                        ),
                         const Spacer(),
                       ],
                     ),
                     const SizedBox(
                       height: 15,
                     ),
-                    _buildSponsor(label: context.l10n.technology_partner, logoAsset: cgiLogo, height: 50),
+                    _buildSponsor(
+                      label: context.l10n.technology_partner,
+                      logoAsset: LoonoAssets.cgiLogo,
+                      height: 50,
+                    ),
                   ],
                 ),
                 Column(

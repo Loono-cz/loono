@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+class LoonoAssets {
+  static const cdLogo = 'assets/sponsors/cd.svg';
+  static const ppfLogo = 'assets/sponsors/ppf.svg';
+  static const cgiLogo = 'assets/sponsors/CGI.svg';
+}
+
 class LoonoColors {
   static const primary = Color.fromARGB(255, 239, 173, 137);
   static const primaryLight = Color.fromARGB(255, 254, 241, 233);
