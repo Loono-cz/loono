@@ -180,9 +180,7 @@ class ExaminationsSheetOverlay extends StatelessWidget {
                       onTap: () {
                         AutoRouter.of(context).navigate(
                           ExaminationDetailRoute(
-                            uuid: e.examination.uuid!,
                             categorizedExamination: e,
-                            choosedExamination: e.examination,
                           ),
                         );
                       },

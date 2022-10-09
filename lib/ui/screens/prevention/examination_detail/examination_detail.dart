@@ -816,16 +816,14 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
 
   Widget specialistCard(
     BuildContext context,
-    ExaminationPreventionStatus? item,
+    ExaminationPreventionStatus? item, //TODO its needet the item ?
     CategorizedExamination? catExam,
   ) {
     return GestureDetector(
       onTap: () {
         AutoRouter.of(context).push(
           ExaminationDetailRoute(
-            uuid: item!.uuid!,
-            categorizedExamination: catExam!,
-            choosedExamination: item,
+            categorizedExamination: catExam!, //TODO: Remove !
           ),
         );
       },

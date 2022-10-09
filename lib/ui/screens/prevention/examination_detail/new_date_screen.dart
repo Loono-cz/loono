@@ -51,7 +51,6 @@ class NewDateScreenState extends State<NewDateScreen> {
     final title1 =
         '${_sex == Sex.MALE ? l10n.checkup_new_date_title_male : l10n.checkup_new_date_title_female} $preposition ';
     final cancelRoute = ExaminationDetailRoute(
-      uuid: widget.categorizedExamination.examination.uuid!,
       categorizedExamination: widget.categorizedExamination,
     );
     return Scaffold(
