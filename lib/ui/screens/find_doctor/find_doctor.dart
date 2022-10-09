@@ -81,7 +81,6 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
     _mapState = context.read<MapStateService>();
   }
 
-
   @override
   void dispose() {
     _isFirstSelectedSpecializationSet = false;
@@ -95,8 +94,7 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
       final specializationName = widget.firstSelectedSpecializationName;
       if (specializationName != null) {
         WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-          final specResult =
-              _mapState.getSpecSearchResultByName(specializationName);
+          final specResult = _mapState.getSpecSearchResultByName(specializationName);
           _mapState.setSpecialization(specResult);
         });
       }
@@ -105,11 +103,10 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if(_canFirstSelectedSpecializationSet){
+    if (_canFirstSelectedSpecializationSet) {
       _setFirstSelectedSpecialization();
       _canFirstSelectedSpecializationSet = false;
-    }
-    else {
+    } else {
       _canFirstSelectedSpecializationSet = true;
     }
     final currDoctorDetail =
