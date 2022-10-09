@@ -245,8 +245,6 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                   context.l10n.error_must_be_in_future_by_interval(customInterval, textInterval),
                 );
                 return;
-              } else {
-                await widget.onSubmit(date: newDate!);
               }
             } else if (lastConfirmed != null) {
               final customInterval = examination.intervalYears;
