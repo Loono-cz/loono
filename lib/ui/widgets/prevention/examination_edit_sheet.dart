@@ -179,7 +179,6 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
   }
 
   Future<void> _onPostNewCheckupSubmit({DateTime? newDate, int? customInterval}) async {
-    print(widget.exam);
     if ([
       const ExaminationCategory.scheduledSoonOrOverdue(),
       const ExaminationCategory.scheduled(),
