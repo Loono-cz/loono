@@ -108,7 +108,7 @@ class ExaminationBadges extends StatelessWidget {
     }
   }
 
-  ExaminationCategoryType get examCategoryType =>
+  ExaminationCategoryType? get examCategoryType =>
       categorizedExamination.examination.examinationCategoryType;
 
   RewardState _getRewardState(Badge? badge) {
@@ -284,7 +284,9 @@ class ExaminationBadges extends StatelessWidget {
                           child: Align(
                             alignment: Alignment.topLeft,
                             child: Text(
-                              context.l10n.examination_detail_rewards_get_badge_1,
+                              isCustomExam
+                                  ? context.l10n.examination_detail_cusotm_rewards_get_badge_1
+                                  : context.l10n.examination_detail_rewards_get_badge_1,
                               style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
                             ),
                           ),

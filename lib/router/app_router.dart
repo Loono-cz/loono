@@ -36,6 +36,7 @@ import 'package:loono/ui/screens/onboarding/doctors/general_practitioner_date.da
 import 'package:loono/ui/screens/onboarding/doctors/gynecology.dart';
 import 'package:loono/ui/screens/onboarding/doctors/gynecology_date.dart';
 import 'package:loono/ui/screens/onboarding/fallback_account/email.dart';
+import 'package:loono/ui/screens/onboarding/fallback_account/newsletter_and_gdpr.dart';
 import 'package:loono/ui/screens/onboarding/fallback_account/nickname.dart';
 import 'package:loono/ui/screens/onboarding/fill_form_later.dart';
 import 'package:loono/ui/screens/onboarding/gender.dart';
@@ -66,6 +67,7 @@ const _onboardingTransition = TransitionsBuilders.slideLeft;
 const _preventionTransition = TransitionsBuilders.slideLeft;
 const _findDoctorTransition = TransitionsBuilders.slideLeft;
 const _settingsTransition = TransitionsBuilders.slideLeft;
+const _customFormTransition = TransitionsBuilders.slideBottom;
 
 // After editing this, run:
 // flutter pub run build_runner build --delete-conflicting-outputs
@@ -99,6 +101,7 @@ const _preAuthRoutes = <AutoRoute>[
   _badgeOverviewRoute,
   AutoRoute<void>(page: NicknameScreen, path: 'fallback-account/name'),
   AutoRoute<void>(page: EmailScreen, path: 'fallback-account/email'),
+  AutoRoute<void>(page: NewsletterAndGDPRScreen, path: 'fallback-account/newsletter-gdpr'),
   _loginRoute,
   ..._findDoctorRoutes,
   AutoRoute<void>(page: LogoutScreen, path: 'logout'),
@@ -355,26 +358,26 @@ const _customExamForm = <AutoRoute>[
   CustomRoute<void>(
     page: ChooseCustomExaminationTypeScreen,
     path: 'custom-exam-form-choose-examination',
-    transitionsBuilder: _preventionTransition,
+    transitionsBuilder: _customFormTransition,
   ),
   CustomRoute<void>(
     page: ChooseSpecialistScreen,
     path: 'custom-exam-form-choose-provider',
-    transitionsBuilder: _preventionTransition,
+    transitionsBuilder: _customFormTransition,
   ),
   CustomRoute<void>(
     page: ChooseExamPeriodDateScreen,
     path: 'custom-exam-form-choose-period-date',
-    transitionsBuilder: _preventionTransition,
+    transitionsBuilder: _customFormTransition,
   ),
   CustomRoute<void>(
     page: ChooseExamPeriodTimeScreen,
     path: 'custom-exam-form-choose-period-time',
-    transitionsBuilder: _preventionTransition,
+    transitionsBuilder: _customFormTransition,
   ),
   CustomRoute<void>(
     page: ChooseFrequencyOfExamScreen,
     path: 'custom-exam-form-choose-exam-frequency',
-    transitionsBuilder: _preventionTransition,
+    transitionsBuilder: _customFormTransition,
   )
 ];

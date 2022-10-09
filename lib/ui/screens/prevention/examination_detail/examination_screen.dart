@@ -7,6 +7,7 @@ import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/examination_detail.dart';
 import 'package:loono/ui/screens/prevention/questionnaire/schedule_examination.dart';
+import 'package:loono/ui/widgets/prevention/examination_edit_modal.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
@@ -29,7 +30,9 @@ class ExaminationDetailScreen extends StatelessWidget {
             .examinations!
             .examinations
             .firstWhere(
-              (item) => item.examinationType == categorizedExamination.examination.examinationType,
+              (item) => item.uuid != null
+                  ? item.uuid == categorizedExamination.examination.uuid
+                  : item.examinationType == categorizedExamination.examination.examinationType,
             );
 
     return Scaffold(
@@ -47,6 +50,22 @@ class ExaminationDetailScreen extends StatelessWidget {
             ),
           ),
         ),
+        actions: examination.examinationCategoryType == ExaminationCategoryType.CUSTOM
+            ? [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: IconButton(
+                    key: const Key('examinationDetailPage_btn_menu'),
+                    onPressed: () {
+                      showCustomExamEditModal(context, examination);
+                    },
+                    icon: SvgPicture.asset(
+                      'assets/icons/more_vertical.svg',
+                    ),
+                  ),
+                )
+              ]
+            : null,
       ),
       body: SafeArea(
         child: categorizedExamination.category == const ExaminationCategory.unknownLastVisit() &&

@@ -41,48 +41,37 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Spacer(),
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          context.l10n.incubated,
-                          textAlign: TextAlign.center,
-                          style: LoonoFonts.paragraphSmallFontStyle,
-                        ),
-                        const SizedBox(
-                          height: 9,
-                        ),
-                        SvgPicture.asset(
-                          'assets/sponsors/cd.svg',
+                        const Spacer(),
+                        _buildSponsor(
+                          label: context.l10n.incubated,
+                          logoAsset: LoonoAssets.cdLogo,
                           width: 105,
                         ),
+                        const SizedBox(
+                          width: 45,
+                        ),
+                        _buildSponsor(
+                          label: context.l10n.with_support,
+                          logoAsset: LoonoAssets.ppfLogo,
+                          height: 50,
+                        ),
+                        const Spacer(),
                       ],
                     ),
                     const SizedBox(
-                      width: 45,
+                      height: 15,
                     ),
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          context.l10n.with_support,
-                          textAlign: TextAlign.center,
-                          style: LoonoFonts.paragraphSmallFontStyle,
-                        ),
-                        const SizedBox(
-                          height: 12,
-                        ),
-                        SvgPicture.asset(
-                          'assets/sponsors/ppf.svg',
-                          height: 50,
-                        ),
-                      ],
+                    _buildSponsor(
+                      label: context.l10n.technology_partner,
+                      logoAsset: LoonoAssets.cgiLogo,
+                      height: 50,
                     ),
-                    const Spacer(),
                   ],
                 ),
                 Column(
@@ -125,5 +114,46 @@ class WelcomeScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget _buildSponsor({
+    required String label,
+    required String logoAsset,
+    double? width,
+    double? height,
+  }) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          label,
+          textAlign: TextAlign.center,
+          style: LoonoFonts.paragraphSmallFontStyle,
+        ),
+        const SizedBox(
+          height: 9,
+        ),
+        _buildSponsorImage(asset: logoAsset, width: width, height: height),
+      ],
+    );
+  }
+
+  Widget _buildSponsorImage({
+    required String asset,
+    double? width,
+    double? height,
+  }) {
+    if (width != null) {
+      return SvgPicture.asset(
+        asset,
+        width: width,
+      );
+    } else if (height != null) {
+      return SvgPicture.asset(
+        asset,
+        height: height,
+      );
+    }
+    return const SizedBox();
   }
 }

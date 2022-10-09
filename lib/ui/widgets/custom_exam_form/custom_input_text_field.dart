@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:loono/l10n/ext.dart';
 
+// ignore: must_be_immutable
 class CustomInputTextField extends StatefulWidget {
   const CustomInputTextField({
     super.key,
@@ -21,6 +23,7 @@ class CustomInputTextField extends StatefulWidget {
   final bool? enabled;
   final bool error;
   final String? Function(String?)? onValidation;
+
   @override
   State<CustomInputTextField> createState() => _CustomInputTextFieldState();
 }
@@ -52,7 +55,10 @@ class _CustomInputTextFieldState extends State<CustomInputTextField> {
     });
 
     return TextFormField(
-      style: TextStyle(color: widget.value == '' ? Colors.black38 : Colors.black, fontSize: 14),
+      style: TextStyle(
+        color: widget.value == '' || widget.enabled == false ? Colors.black38 : Colors.black,
+        fontSize: 14,
+      ),
       controller: textController,
       readOnly: true,
       enabled: widget.enabled,
@@ -68,8 +74,12 @@ class _CustomInputTextFieldState extends State<CustomInputTextField> {
                 : textFieldBorder,
         suffixIcon: widget.prefixIcon != null
             ? null
-            : const Icon(
-                Icons.arrow_downward_outlined,
+            : SvgPicture.asset(
+                'assets/icons/chevron_down.svg',
+                width: 5,
+                height: 5,
+                fit: BoxFit.scaleDown,
+                color: Colors.black87,
               ),
         errorText: widget.error ? context.l10n.mandatory_field : '',
         prefixIcon: widget.prefixIcon,

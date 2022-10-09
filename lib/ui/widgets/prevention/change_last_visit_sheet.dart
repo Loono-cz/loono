@@ -68,7 +68,7 @@ class _DatePickerContent extends StatefulWidget {
 class _DatePickerContentState extends State<_DatePickerContent> {
   DateTime? newDate;
 
-  void onDateChanged(DateTime date) {
+  void onDateChanged(DateTime? date) {
     /// prevent setting state from date picker during build
     Future.delayed(Duration.zero, () async {
       setState(() {
@@ -117,7 +117,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
             defaultYear: lastVisit.year,
             valueChanged: onDateChanged,
             yearsBeforeActual: DateTime.now().year - 1900,
-            yearsOverActual: 2,
+            yearsOverActual: 10,
             allowDays: true,
           ),
         ),
@@ -131,8 +131,13 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                   widget.categorizedExamination.examination.examinationType,
                   newDate: newDate,
                   uuid: widget.categorizedExamination.examination.uuid,
+                  periodicExam: widget.categorizedExamination.examination.periodicExam,
                   status: ExaminationStatus.CONFIRMED,
                   firstExam: true,
+                  actionType: widget.categorizedExamination.examination.examinationActionType,
+                  categoryType: widget.categorizedExamination.examination.examinationCategoryType ??
+                      ExaminationCategoryType.MANDATORY,
+                  customInterval: widget.categorizedExamination.examination.customInterval,
                 );
 
             await response.map(

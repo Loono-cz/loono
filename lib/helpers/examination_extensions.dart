@@ -1,13 +1,12 @@
 // ignore_for_file: constant_identifier_names
 
+import 'package:loono/constants.dart';
 import 'package:loono/helpers/date_helpers.dart';
 import 'package:loono/helpers/examination_category.dart';
-import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/helpers/self_examination_category.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono_api/loono_api.dart';
 
-const int MONTHS_IN_YEAR = 12;
 const int TO_SCHEDULE_MONTHS_TRANSFER = 2;
 const int SELF_EXAMINATION_ACTIVE_CARD_INTERVAL_IN_HOURS = 72;
 
@@ -15,9 +14,12 @@ extension ExaminationPreventionStatusExt on ExaminationPreventionStatus {
   ExaminationCategory calculateStatus([DateTime? dateTimeNow]) {
     final now = dateTimeNow ?? DateTime.now();
     final isCustom = examinationCategoryType == ExaminationCategoryType.CUSTOM;
-    final month = isCustom && intervalYears < 12 ? now.month + intervalYears : now.month;
-    final years =
-        isCustom && intervalYears > 12 ? now.year + transformMonthToYear(intervalYears) : now.year;
+    final month = isCustom && intervalYears < LoonoStrings.monthInYear
+        ? now.month + intervalYears
+        : now.month;
+    final years = isCustom && intervalYears > LoonoStrings.monthInYear
+        ? now.year + transformMonthToYear(intervalYears)
+        : now.year;
 
     // STATUS: waiting or newToSchedule
     if (([ExaminationStatus.CONFIRMED, ExaminationStatus.UNKNOWN].contains(state)) &&
@@ -26,7 +28,7 @@ extension ExaminationPreventionStatusExt on ExaminationPreventionStatus {
       final lastVisitDateTime = lastConfirmedDate!.toLocal();
       final lastVisitDateWithoutDay = DateTime(lastVisitDateTime.year, lastVisitDateTime.month);
       DateTime subtractedWaitingDate;
-      if (examinationCategoryType == ExaminationCategoryType.CUSTOM) {
+      if (isCustom) {
         subtractedWaitingDate = DateTime(
           years,
           month,
@@ -35,7 +37,7 @@ extension ExaminationPreventionStatusExt on ExaminationPreventionStatus {
         // if last visit date is before: CURRENT_MONTH - (INTERVAL - 2 months)
         subtractedWaitingDate = DateTime(
           now.year,
-          now.month - (intervalYears * MONTHS_IN_YEAR - TO_SCHEDULE_MONTHS_TRANSFER),
+          now.month - (intervalYears * LoonoStrings.monthInYear - TO_SCHEDULE_MONTHS_TRANSFER),
         );
       }
 
@@ -100,6 +102,7 @@ extension SelfExaminationPreventionStatusExt on SelfExaminationPreventionStatus 
 extension CategorizedExaminationListExt on List<CategorizedExamination> {
   void sortExaminations() {
     if (isEmpty) return;
+
     first.category.whenOrNull(
       scheduledSoonOrOverdue: () =>
           sort((a, b) => a.examination.plannedDate!.compareTo(b.examination.plannedDate!)),
@@ -116,38 +119,19 @@ extension CategorizedExaminationListExt on List<CategorizedExamination> {
         return lastVisitDateTimeA.compareTo(lastVisitDateTimeB);
       }),
       unknownLastVisit: () => sort(
-        (a, b) => a.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM
-            ? b.examination.priority.compareTo(a.examination.priority)
-            : 1,
+        (a, b) => a.examination.priority.compareTo(b.examination.priority),
       ),
-      scheduled: () => sort(
-        (a, b) => a.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM
-            ? b.examination.plannedDate!.compareTo(a.examination.plannedDate!)
-            : 1,
-      ),
-      waiting: () {
-        where(
-          (element) =>
-              element.examination.examinationCategoryType == ExaminationCategoryType.MANDATORY,
-        ).toList().sort((a, b) {
-          final lastVisitDateWithoutDayA = a.examination.lastConfirmedDate!;
-          final lastVisitDateWithoutDayB = b.examination.lastConfirmedDate!;
-          final lastVisitDateTimeA =
-              DateTime(lastVisitDateWithoutDayA.year, lastVisitDateWithoutDayA.month);
-          final lastVisitDateTimeB =
-              DateTime(lastVisitDateWithoutDayB.year, lastVisitDateWithoutDayB.month);
-          return lastVisitDateTimeA.compareTo(lastVisitDateTimeB);
-        });
-
-        where(
-          (element) =>
-              element.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM,
-        ).toList().sort(
-              (a, b) => ExaminationTypeExt(a.examination.examinationType)
-                  .l10n_name
-                  .compareTo(ExaminationTypeExt(b.examination.examinationType).l10n_name),
-            );
-      },
+      scheduled: () =>
+          sort((a, b) => a.examination.plannedDate!.compareTo(b.examination.plannedDate!)),
+      waiting: () => sort((a, b) {
+        final lastVisitDateWithoutDayA = a.examination.lastConfirmedDate!;
+        final lastVisitDateWithoutDayB = b.examination.lastConfirmedDate!;
+        final lastVisitDateTimeA =
+            DateTime(lastVisitDateWithoutDayA.year, lastVisitDateWithoutDayA.month);
+        final lastVisitDateTimeB =
+            DateTime(lastVisitDateWithoutDayB.year, lastVisitDateWithoutDayB.month);
+        return lastVisitDateTimeA.compareTo(lastVisitDateTimeB);
+      }),
     );
   }
 }

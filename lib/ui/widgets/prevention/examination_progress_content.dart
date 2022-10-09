@@ -20,7 +20,7 @@ class ExaminationProgressContent extends StatelessWidget {
   final CategorizedExamination categorizedExamination;
   final Sex sex;
 
-  ExaminationCategoryType get _examinationCategoryType =>
+  ExaminationCategoryType? get _examinationCategoryType =>
       categorizedExamination.examination.examinationCategoryType;
   bool get _isToday {
     final now = DateTime.now();
@@ -28,13 +28,15 @@ class ExaminationProgressContent extends StatelessWidget {
     return now.day == visit.day && now.month == visit.month && now.year == visit.year;
   }
 
+  bool get _isCustomExamination => _examinationCategoryType == ExaminationCategoryType.CUSTOM;
+
   String _intervalYears(BuildContext context) {
-    final yearInterval = categorizedExamination.examination.intervalYears;
+    final interval = categorizedExamination.examination.intervalYears;
     //transformMonthToYear
-    if (_examinationCategoryType == ExaminationCategoryType.CUSTOM) {
-      return '${transformMonthToYear(yearInterval)} ${yearInterval < 11 ? 'měsíců' : 'roků'}';
+    if (_isCustomExamination) {
+      return '${transformMonthToYear(interval)} ${interval < LoonoStrings.monthInYear ? 'měsíců' : 'roků'}';
     } else {
-      return '${yearInterval.toString()} ${yearInterval > 1 ? context.l10n.years : context.l10n.year}';
+      return '${interval.toString()} ${interval > 1 ? context.l10n.years : context.l10n.year}';
     }
   }
 
@@ -54,6 +56,7 @@ class ExaminationProgressContent extends StatelessWidget {
       /// examination long overdue
       return Text(
         '${context.l10n.more_than} ${_intervalYears(context)} ${context.l10n.since_last_visit}',
+        softWrap: true,
         textAlign: TextAlign.center,
         style: LoonoFonts.paragraphSmallFontStyle.copyWith(
           fontWeight: FontWeight.w700,
@@ -100,6 +103,7 @@ class ExaminationProgressContent extends StatelessWidget {
         ),
         Text(
           _isToday ? context.l10n.today : visitDate,
+          textAlign: TextAlign.center,
           style: LoonoFonts.cardSubtitle.copyWith(fontSize: 16),
         ),
         Text(
@@ -112,59 +116,33 @@ class ExaminationProgressContent extends StatelessWidget {
 
   Widget _earlyCheckupContent(BuildContext context) {
     final examination = categorizedExamination.examination;
-    if (examination.periodicExam == true &&
-        examination.examinationCategoryType == ExaminationCategoryType.CUSTOM &&
-        examination.plannedDate == null) {
-      return Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            context.l10n.waiting_you,
-            style: LoonoFonts.paragraphSmallFontStyle.copyWith(
-              color: LoonoColors.primaryEnabled,
-            ),
-          ),
-          Text(
-            context.l10n.first_exam_progress,
-            style: LoonoFonts.paragraphSmallFontStyle.copyWith(
-              color: LoonoColors.primaryEnabled,
-            ),
-          )
-        ],
-      );
+    final interval = examination.intervalYears;
+    DateTime newWaitToDateTime;
+    final lastDateVisit = examination.lastConfirmedDate!.toLocal();
+
+    if (_isCustomExamination && interval < LoonoStrings.monthInYear) {
+      newWaitToDateTime = DateTime(lastDateVisit.year, lastDateVisit.month + interval);
     } else {
-      final examination = categorizedExamination.examination;
-      final interval = examination.intervalYears;
-      DateTime newWaitToDateTime;
-      final lastDateVisit = examination.lastConfirmedDate!.toLocal();
-
-      if (interval <= 11) {
-        newWaitToDateTime = DateTime(lastDateVisit.year, lastDateVisit.month + interval);
-      } else {
-        final isCustom = categorizedExamination.examination.examinationCategoryType ==
-            ExaminationCategoryType.CUSTOM;
-
-        newWaitToDateTime = DateTime(
-          lastDateVisit.year + (isCustom ? transformMonthToYear(interval) : interval),
-          lastDateVisit.month,
-        );
-      }
-
-      final formattedDate = DateFormat.yMMMM('cs-CZ').format(newWaitToDateTime);
-      return Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            context.l10n.early_ordering,
-            style: LoonoFonts.paragraphSmallFontStyle.copyWith(color: LoonoColors.primaryEnabled),
-          ),
-          Text(
-            formattedDate,
-            style: LoonoFonts.cardSubtitle.copyWith(fontSize: 16),
-          ),
-        ],
+      newWaitToDateTime = DateTime(
+        lastDateVisit.year + (_isCustomExamination ? transformMonthToYear(interval) : interval),
+        lastDateVisit.month,
       );
     }
+
+    final formattedDate = DateFormat.yMMMM('cs-CZ').format(newWaitToDateTime);
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          context.l10n.early_ordering,
+          style: LoonoFonts.paragraphSmallFontStyle.copyWith(color: LoonoColors.primaryEnabled),
+        ),
+        Text(
+          formattedDate,
+          style: LoonoFonts.cardSubtitle.copyWith(fontSize: 16),
+        ),
+      ],
+    );
   }
 
   @override
@@ -183,12 +161,9 @@ class ExaminationProgressContent extends StatelessWidget {
                 isOverdue: isOverdue(categorizedExamination),
               ),
               child: Center(
-                child: FittedBox(
-                  fit: BoxFit.fitWidth,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: _progressBarContent(context),
-                  ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: _progressBarContent(context),
                 ),
               ),
             ),

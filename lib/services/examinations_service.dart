@@ -47,10 +47,13 @@ class ExaminationsProvider extends ChangeNotifier {
   }
 
   void updateExaminationsRecord(
-    ExaminationRecord record,
-  ) {
-    final indexToUpdate = examinations?.examinations
-        .indexWhere((examination) => examination.examinationType == record.type);
+    ExaminationRecord record, {
+    String? uuid,
+  }) {
+    final indexToUpdate = examinations?.examinations.indexWhere(
+      (examination) =>
+          uuid != null ? examination.uuid == uuid : examination.examinationType == record.type,
+    );
     if (indexToUpdate != null && indexToUpdate >= 0) {
       final updatedItem = examinations?.examinations.elementAt(indexToUpdate).rebuild(
             (item) => item
@@ -77,6 +80,18 @@ class ExaminationsProvider extends ChangeNotifier {
       final builder = examinations?.toBuilder();
       builder?.examinations.removeAt(indexToUpdate);
       builder?.examinations.add(updatedItem!);
+      examinations = builder?.build();
+      evaluateExaminations();
+      notifyListeners();
+    }
+  }
+
+  void deleteExaminationRecord(String uuid) {
+    final indexToUpdate =
+        examinations?.examinations.indexWhere((examination) => examination.uuid == uuid);
+    if (indexToUpdate != null) {
+      final builder = examinations?.toBuilder();
+      builder?.examinations.removeAt(indexToUpdate);
       examinations = builder?.build();
       evaluateExaminations();
       notifyListeners();
@@ -133,7 +148,11 @@ class ExaminationsProvider extends ChangeNotifier {
     }
   }
 
-  void createCustomExamination(ExaminationRecord record, {DateTime? lastConfirmedDate}) {
+  void createCustomExamination(
+    ExaminationRecord record, {
+    DateTime? lastConfirmedDate,
+    bool isUnknown = false,
+  }) {
     final createdItem = ExaminationPreventionStatus(
       (b) => b
         ..examinationType = record.type
@@ -144,12 +163,14 @@ class ExaminationsProvider extends ChangeNotifier {
         ..periodicExam = record.periodicExam
         ..points = record.periodicExam == true ? 50 : 0
         ..firstExam = record.firstExam
-        ..plannedDate = record.plannedDate
+        ..plannedDate = !isUnknown ? record.plannedDate : null
         ..state = record.status
-        ..intervalYears = record.customInterval ?? 2
+        ..intervalYears = record.customInterval ?? 24
         ..priority = 0
         ..count = 0
-        ..badge = BadgeType.SHIELD,
+        ..badge = BadgeType.SHIELD
+        ..uuid = record.uuid
+        ..note = record.note,
     );
 
     final builder = examinations?.toBuilder();
@@ -199,8 +220,9 @@ class ExaminationsProvider extends ChangeNotifier {
 
   ExaminationPreventionStatus? updateAndReturnCustomExaminationsRecord(
     ExaminationRecord record,
-    ExaminationPreventionStatus item,
-  ) {
+    ExaminationPreventionStatus item, {
+    String? note,
+  }) {
     final indexToUpdate =
         examinations?.examinations.indexWhere((examination) => examination == item);
     if (indexToUpdate != null && indexToUpdate >= 0) {
@@ -223,7 +245,8 @@ class ExaminationsProvider extends ChangeNotifier {
               ..examinationCategoryType = record.examinationCategoryType
               ..badge = item.badge
               ..periodicExam = record.periodicExam
-              ..note = record.note,
+              ..note = note ?? record.note
+              ..intervalYears = record.customInterval ?? 0,
           );
 
       final builder = examinations?.toBuilder();
@@ -237,7 +260,7 @@ class ExaminationsProvider extends ChangeNotifier {
     return null;
   }
 
-  void setChoosedCustomExamination(
+  void setChoosedExamination(
     CategorizedExamination? categorizedExam,
     ExaminationPreventionStatus? exam,
   ) {
@@ -245,14 +268,16 @@ class ExaminationsProvider extends ChangeNotifier {
     choosedExamination = exam;
   }
 
-  ChoosedCustomExam getChoosedCustomExamination() {
-    return ChoosedCustomExam()
+  ChoosedExam getChoosedExamination() {
+    return ChoosedExam()
       ..categorizedExamination = categorizedExamination
       ..choosedExamination = choosedExamination;
   }
+
+  // Future<ApiResponse>
 }
 
-class ChoosedCustomExam {
+class ChoosedExam {
   CategorizedExamination? categorizedExamination;
   ExaminationPreventionStatus? choosedExamination;
 }

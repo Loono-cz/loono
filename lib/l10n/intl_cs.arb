@@ -74,6 +74,20 @@
   "@fallback_account_email": {},
   "fallback_account_email_desc": "Je tohle tvůj aktuální email? Pošleme ti do něj připomínku šesti nejdůležitějších preventivních prohlídek za rok.",
   "@fallback_account_email_desc": {},
+  "fallback_account_newsletter_title": "Zasílání zpráv",
+  "@fallback_account_newsletter_title": {},
+  "fallback_account_gdpr_title": "Zpracování osobních údajů",
+  "@fallback_account_gdpr_title": {},
+  "fallback_account_newsletter_desc": "Chci od Loona dostávat e-mailem informace o plánovaných akcích a doporučení jak se co nejlépa starat o své zdraví.",
+  "@fallback_account_newsletter_desc": {},
+  "fallback_account_gdpr_desc1": "Souhlasím s ",
+  "@fallback_account_gdpr_desc1": {},
+  "fallback_account_gdpr_desc2": "a ukládáním informací o mém zdravotním stavu pro účely používání aplikace Preventivka",
+  "@fallback_account_gdpr_desc2": {},
+  "fallback_account_gdpr_terms": "Podmínkami užívání",
+  "@fallback_account_gdpr_terms_of": {},
+  "fallback_account_gdpr_privacy": "Zásadami ochrany osobních údajů",
+  "@fallback_account_gdpr_terms": {},
   "new_account": "Nový účet",
   "@new_account": {},
   "no_finding_getting": "Získáváš",
@@ -664,7 +678,7 @@
   "@calendar_permission_sheet_desc": {},
   "calendar_permission_sheet_button": "Otevřít Nastavení",
   "@calendar_permission_sheet_button": {},
-  "examination_detail_edit_date_button": "Upravit datum",
+  "examination_detail_edit_date_button": "Upravit termín",
   "@examination_detail_edit_date_button": {},
   "examination_call_doctor1": "Zavolej svému",
   "@examination_call_doctor1": {},
@@ -1260,6 +1274,8 @@
   "@with_support": {},
   "incubated": "Aplikace vznikla\nv inkubátoru",
   "@incubated": {},
+  "technology_partner": "Technologický partner",
+  "@technology_partner": {},
   "too_early_checkup": "Ještě není čas se objednat",
   "@too_early_checkup": {},
   "self_faq_skin_steps_answer_part_4": "Zavolej svému praktickému lékaři nebo rovnou dermatologovi.",
@@ -1404,8 +1420,10 @@
   "@idk": {},
   "last_examination": "Poslední vysetreni",
   "@last_examination": {},
-  "your_last_examination": "Kdy naposledy jsi byla na vyšetření?",
-  "@yout_last_examination": {},
+  "your_last_examination_female": "Kdy naposledy jsi byla na vyšetření?",
+  "@yout_last_examination_female": {},
+  "your_last_examination_male": "Kdy naposledy jsi byl na vyšetření?",
+  "@yout_last_examination_male": {},
   "examination_term": "Termin vysetreni",
   "@examination_term": {},
   "once_to": "Jednou za ",
@@ -1433,5 +1451,60 @@
   "disposable": "Jednorázové",
   "@disposable": {},
   "regularly": "Pravidelné",
-  "@regularly": {}
+  "@regularly": {},
+  "btn_edit_examination": "Upravit prohlídku",
+  "@btn_edit_examination": {},
+  "disposable_exam_delete_question": "Opravdu chceš prohlídku smazat ze svého seznamu?",
+  "@disposable_exam_delete_question": {},
+  "disposable_exam_delete_desc": "Po smazání ti již nebudeme moci prohlídku připomenout.",
+  "@disposable_exam_delete_desc": {},
+  "edit_examination": "Upravit prohlídku",
+  "@edit_examination": {},
+  "examination_was_edited": "Prohlídka byla upravena.",
+  "@examination_was_edited": {},
+  "your_list_of_exam_is_full_warning": "Tvůj seznam prohlídek je plný.",
+  "@your_list_of_exam_is_full_warning": {},
+  "your_list_of_exam_is_full_disclaimer": "Pro přidání další prohlídky odstraň nejprve některou z dříve přidaných prohlídek.",
+  "@your_list_of_exam_is_full_disclaimer": {},
+  "your_list_of_exam_info": "Ještě si můžeš přidat {count}",
+  "@your_list_of_exam_info": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "five_more_examinations": "prohlídek.",
+  "@five_more_examinations": {},
+  "less_then_five_exams": "prohlídky",
+  "@less_then_five_exams": {},
+  "only_one_exam": "prohlídka",
+  "@only_one_exam": {},
+  "custom_exam_cancel_question": "Opravdu chceš zrušit termín prohlídky?",
+  "@custom_exam_cancel_question": {},
+  "cancel_term_note_disclaimer": "Se zrušením termínu budou smazány i všechny tvé poznámky k návštevě.",
+  "@cancel_term_note_disclaimer": {},
+  "cancel_term_action": "Zrušit termín",
+  "@cancel_term_action": {},
+  "delete_exam_action": "Smazat prohlídku",
+  "@delete_exam_action": {},
+  "order_yourself": "objednej se",
+  "@order_yourself": {},
+  "no_connection_message": "Žádné připojení",
+  "@no_connection_message": {},
+  "no_connection_message_check_connection": "Prosím zkontroluj své připojení k síti",
+  "@no_connection_message_check_connection": {},
+  "error_must_be_in_future_by_interval": "Datum prohlídky musí být v budoucnu dle intervalu co {interval} {textString}",
+  "@error_must_be_in_future_by_interval": {
+    "placeholders": {
+      "interval": {
+        "type": "int"
+      },
+      "textString": {
+        "type": "String"
+      }
+    }
+  },
+  "examination_detail_cusotm_rewards_get_badge_1": "Za dokončenou prohlídku získáš",
+  "@examination_detail_cusotm_rewards_get_badge_1": {}
 }
