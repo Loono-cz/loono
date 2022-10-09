@@ -1274,6 +1274,8 @@
   "@with_support": {},
   "incubated": "Aplikace vznikla\nv inkubátoru",
   "@incubated": {},
+  "technology_partner": "Technologický partner",
+  "@technology_partner": {},
   "too_early_checkup": "Ještě není čas se objednat",
   "@too_early_checkup": {},
   "self_faq_skin_steps_answer_part_4": "Zavolej svému praktickému lékaři nebo rovnou dermatologovi.",
