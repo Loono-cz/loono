@@ -242,7 +242,10 @@ class _DatePickerContentState extends State<_DatePickerContent> {
               if (!isDateValid) {
                 showFlushBarError(
                   context,
-                  context.l10n.error_must_be_in_future_by_interval(customInterval, textInterval),
+                  context.l10n.error_must_be_in_future_by_interval(
+                    transformMonthToYear(customInterval),
+                    textInterval,
+                  ),
                 );
                 return;
               }
