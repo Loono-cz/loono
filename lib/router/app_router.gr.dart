@@ -361,7 +361,8 @@ class AppRouter extends _i16.RootStackRouter {
               key: args.key,
               categorizedExamination: args.categorizedExamination,
               choosedExamination: args.choosedExamination,
-              initialMessage: args.initialMessage),
+              initialMessage: args.initialMessage,
+              uuid: args.uuid),
           transitionsBuilder: _i16.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -1479,14 +1480,16 @@ class ExaminationDetailRoute
       {_i63.Key? key,
       required _i68.CategorizedExamination categorizedExamination,
       _i67.ExaminationPreventionStatus? choosedExamination,
-      String? initialMessage})
+      String? initialMessage,
+      required String uuid})
       : super(ExaminationDetailRoute.name,
             path: 'prevention-detail',
             args: ExaminationDetailRouteArgs(
                 key: key,
                 categorizedExamination: categorizedExamination,
                 choosedExamination: choosedExamination,
-                initialMessage: initialMessage));
+                initialMessage: initialMessage,
+                uuid: uuid));
 
   static const String name = 'ExaminationDetailRoute';
 }
@@ -1496,7 +1499,8 @@ class ExaminationDetailRouteArgs {
       {this.key,
       required this.categorizedExamination,
       this.choosedExamination,
-      this.initialMessage});
+      this.initialMessage,
+      required this.uuid});
 
   final _i63.Key? key;
 
@@ -1506,9 +1510,11 @@ class ExaminationDetailRouteArgs {
 
   final String? initialMessage;
 
+  final String uuid;
+
   @override
   String toString() {
-    return 'ExaminationDetailRouteArgs{key: $key, categorizedExamination: $categorizedExamination, choosedExamination: $choosedExamination, initialMessage: $initialMessage}';
+    return 'ExaminationDetailRouteArgs{key: $key, categorizedExamination: $categorizedExamination, choosedExamination: $choosedExamination, initialMessage: $initialMessage, uuid: $uuid}';
   }
 }
 

@@ -52,8 +52,10 @@ class NewTimeScreenState extends State<NewTimeScreen> {
     ).toLowerCase()}';
 
     final formattedNewDate = DateFormat('d. MMMM yyyy', 'cs-CZ').format(widget.newDate);
-    final cancelRoute =
-        ExaminationDetailRoute(categorizedExamination: widget.categorizedExamination);
+    final cancelRoute = ExaminationDetailRoute(
+      uuid: widget.categorizedExamination.examination.uuid!,
+      categorizedExamination: widget.categorizedExamination,
+    );
 
     return Scaffold(
       backgroundColor: LoonoColors.bottomSheetPrevention,
