@@ -4,9 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/date_helpers.dart';
+import 'package:loono/helpers/examination_category.dart';
+import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
@@ -53,20 +57,21 @@ class CustomEditExamination extends StatefulWidget {
 }
 
 class _CustomEditExaminationState extends State<CustomEditExamination> {
-  String _term = '';
+  String _customIntervalText = '';
+  int? _customIntervalNumber;
   DateTime? _lastExamDate;
 
   bool _idkCheck = false;
 
-  void changeFreqTerm(String term) => Future<void>.delayed(
-        const Duration(milliseconds: 500),
+  void changeCustomInterval(String term) => Future<void>.delayed(
+        Duration.zero,
         () => setState(() {
-          _term = term;
+          _customIntervalText = term;
         }),
       );
 
   void setNextExamCheckbox(bool value) => Future<void>.delayed(
-        const Duration(milliseconds: 200),
+        Duration.zero,
         () => setState(() {
           _idkCheck = value;
         }),
@@ -79,47 +84,133 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
         }),
       );
 
-  Future<void> _onPostNewCheckupSubmit({DateTime? date}) async {
+  @override
+  void initState() {
+    super.initState();
+    _customIntervalNumber = widget.exam?.customInterval;
+  }
+
+  Future<void> sendRegularRequest({int? customInterval}) async {
+    final examProvider = Provider.of<ExaminationsProvider>(context, listen: false);
     final response = await registry.get<ExaminationRepository>().postExamination(
           widget.exam!.examinationType,
-          newDate: date ?? widget.exam?.plannedDate ?? widget.exam!.lastConfirmedDate,
           uuid: widget.exam!.uuid,
+          actionType: widget.exam?.examinationActionType,
           periodicExam: widget.exam?.periodicExam,
           note: widget.exam?.note,
+          customInterval: customInterval ?? widget.exam?.customInterval, // Pravidelne
+          newDate: _idkCheck ? DateTime.now() : _lastExamDate,
           categoryType: ExaminationCategoryType.CUSTOM,
-          status: ExaminationStatus.CONFIRMED,
-          customInterval: widget.exam!.customInterval,
-          actionType: widget.exam!.examinationActionType,
+          status: _idkCheck ? ExaminationStatus.UNKNOWN : ExaminationStatus.CONFIRMED,
+          firstExam: true,
+        );
+    response.map(
+      success: (res) {
+        registry
+            .get<ExaminationRepository>()
+            .postExamination(
+              widget.exam!.examinationType,
+              uuid: widget.exam!.uuid,
+              actionType: widget.exam?.examinationActionType,
+              periodicExam: widget.exam?.periodicExam,
+              note: widget.exam?.note,
+              customInterval: customInterval ?? widget.exam?.customInterval, // Pravidelne
+              newDate: widget.exam!.plannedDate,
+              categoryType: ExaminationCategoryType.CUSTOM,
+              status: ExaminationStatus.NEW,
+              firstExam: true,
+            )
+            .then((value) {
+          value.map(
+            success: (newRes) {
+              final newExam = Provider.of<ExaminationsProvider>(context, listen: false)
+                  .updateAndReturnCustomExaminationsRecord(
+                res.data,
+                examProvider.getChoosedExamination().choosedExamination!,
+              );
+              AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
+              AutoRouter.of(context).replace(
+                ExaminationDetailRoute(
+                  categorizedExamination: examProvider.categorizedExamination!,
+                  choosedExamination: newExam,
+                ),
+              );
+
+              showFlushBarSuccess(context, context.l10n.examination_was_edited, sync: true);
+            },
+            failure: (err) => showFlushBarError(
+              context,
+              statusCodeToText(
+                context,
+                err.error.response?.statusCode,
+              ),
+            ),
+          );
+        });
+      },
+      failure: (err) {
+        showFlushBarError(
+          context,
+          statusCodeToText(
+            context,
+            err.error.response?.statusCode,
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> sendRegularRequestConfirm({int? customInterval}) async {
+    final examProvider = Provider.of<ExaminationsProvider>(context, listen: false);
+    final response = await registry.get<ExaminationRepository>().postExamination(
+          widget.exam!.examinationType,
+          uuid: widget.exam!.uuid,
+          actionType: widget.exam?.examinationActionType,
+          periodicExam: widget.exam?.periodicExam,
+          note: widget.exam?.note,
+          customInterval: customInterval ?? widget.exam?.customInterval, // Pravidelne
+          newDate: _idkCheck ? DateTime.now() : _lastExamDate,
+          categoryType: ExaminationCategoryType.CUSTOM,
+          status: _idkCheck ? ExaminationStatus.UNKNOWN : ExaminationStatus.CONFIRMED,
           firstExam: true,
         );
 
     response.map(
       success: (res) {
-        final examProvider = Provider.of<ExaminationsProvider>(context, listen: false);
-
-        final newExam = examProvider.updateAndReturnCustomExaminationsRecord(
+        final newExam = Provider.of<ExaminationsProvider>(context, listen: false)
+            .updateAndReturnCustomExaminationsRecord(
           res.data,
           examProvider.getChoosedExamination().choosedExamination!,
         );
         AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
         AutoRouter.of(context).replace(
           ExaminationDetailRoute(
-            categorizedExamination: examProvider.categorizedExamination!,
+            categorizedExamination:
+                CategorizedExamination(category: newExam!.calculateStatus(), examination: newExam),
             choosedExamination: newExam,
           ),
         );
-
-        showFlushBarSuccess(context, context.l10n.examination_was_edited, sync: true);
       },
-      failure: (err) {
-        showFlushBarError(
+      failure: (err) => showFlushBarError(
+        context,
+        statusCodeToText(
           context,
-          err.error.response?.statusCode == 400
-              ? context.l10n.unsupported_interval
-              : context.l10n.something_went_wrong,
-        );
-      },
+          err.error.response?.statusCode,
+        ),
+      ),
     );
+  }
+
+  Future<void> _onPostNewCheckupSubmit({DateTime? newDate, int? customInterval}) async {
+    final examProvider = Provider.of<ExaminationsProvider>(context, listen: false);
+    if ([
+      const ExaminationCategory.scheduledSoonOrOverdue(),
+      const ExaminationCategory.scheduled(),
+    ].contains(examProvider.categorizedExamination?.category)) {
+      await sendRegularRequest(customInterval: customInterval);
+    } else if (widget.exam?.lastConfirmedDate != null) {
+      await sendRegularRequestConfirm(customInterval: customInterval);
+    }
   }
 
   @override
@@ -163,7 +254,12 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
               key: const Key('editExamSheet_btn_editExam'),
               text: context.l10n.action_save,
               asyncCallback: () async {
-                await _onPostNewCheckupSubmit(date: _lastExamDate);
+                await _onPostNewCheckupSubmit(
+                  newDate: _lastExamDate,
+                  customInterval: _customIntervalText.isNotEmpty
+                      ? transformInterval(context, _customIntervalText)
+                      : null,
+                );
               },
             ),
           ],
@@ -189,18 +285,18 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
             ),
             chooseExamFrequency(
               context,
-              _term,
+              _customIntervalText,
               onClickInputField: () => AutoRouter.of(context).navigate(
                 ChooseFrequencyOfExamRoute(
                   examType: widget.exam!.examinationType,
                   isDefaultExam:
                       widget.exam!.examinationCategoryType == ExaminationCategoryType.MANDATORY,
-                  value: _term,
-                  valueChanged: changeFreqTerm,
+                  value: _customIntervalText,
+                  valueChanged: changeCustomInterval,
                 ),
               ),
             ),
-            if (widget.exam?.lastConfirmedDate != null) ...[
+            if (widget.exam?.state != ExaminationStatus.CONFIRMED) ...[
               const Divider(),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.baseline,
