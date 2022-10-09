@@ -99,9 +99,9 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
           periodicExam: widget.exam?.periodicExam,
           note: widget.exam?.note,
           customInterval: customInterval ?? widget.exam?.customInterval, // Pravidelne
-          newDate: _lastExamDate,
+          newDate: _idkCheck ? DateTime.now() : _lastExamDate,
           categoryType: ExaminationCategoryType.CUSTOM,
-          status: ExaminationStatus.NEW,
+          status: _idkCheck ? ExaminationStatus.UNKNOWN : ExaminationStatus.CONFIRMED,
           firstExam: true,
         );
     response.map(
@@ -169,9 +169,9 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
           periodicExam: widget.exam?.periodicExam,
           note: widget.exam?.note,
           customInterval: customInterval ?? widget.exam?.customInterval, // Pravidelne
-          newDate: _lastExamDate,
+          newDate: _idkCheck ? DateTime.now() : _lastExamDate,
           categoryType: ExaminationCategoryType.CUSTOM,
-          status: ExaminationStatus.CONFIRMED,
+          status: _idkCheck ? ExaminationStatus.UNKNOWN : ExaminationStatus.CONFIRMED,
           firstExam: true,
         );
 
@@ -296,7 +296,7 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
                 ),
               ),
             ),
-            if (widget.exam?.lastConfirmedDate != null) ...[
+            if (widget.exam?.state != ExaminationStatus.CONFIRMED) ...[
               const Divider(),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.baseline,
