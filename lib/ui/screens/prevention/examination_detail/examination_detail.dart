@@ -67,14 +67,14 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
       _examination.examinationActionType ?? ExaminationActionType.CONTROL;
 
   DateTime? get _nextVisitDate => _examination.plannedDate;
-  bool get _isPeriodicalExam => _examination.periodicExam == true; //Pravidelna prohlidka
+  bool get _isPeriodicalExam => _examination.periodicExam == true || _examination.periodicExam == null; //Pravidelna prohlidka
   bool get _isCustomPeriodicalExam =>
       _isPeriodicalExam &&
       _examination.examinationCategoryType ==
           ExaminationCategoryType.CUSTOM; //Pravidelna vlastni prohlidka
 
   Widget get _doctorAsset => SvgPicture.asset(
-        _examinationCategoryType == ExaminationCategoryType.MANDATORY
+    (_examinationCategoryType == ExaminationCategoryType.MANDATORY || _examinationCategoryType == null)
             ? _examinationType.assetPath
             : _examinationType.customExamAssetPath,
         width: 180,
@@ -404,7 +404,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
             ],
           ),
         ),
-        if (_isPeriodicalExam || _examinationCategoryType == ExaminationCategoryType.MANDATORY)
+        if (_isPeriodicalExam || _examinationCategoryType == ExaminationCategoryType.MANDATORY || _examinationCategoryType == null)
           buildPeriodicalAndMandatorySection(context),
         if (!_isPeriodicalExam)
           buildDisposableExamButtons(context, onEditRegularlyExamTerm)
@@ -447,7 +447,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
         buildExaminationBadges(context),
         const SizedBox(height: 8.0),
         //SHOWING FAQ Section only for Default
-        if (_isPeriodicalExam && _examinationCategoryType == ExaminationCategoryType.MANDATORY) ...[
+        if ((_isPeriodicalExam && _examinationCategoryType == ExaminationCategoryType.MANDATORY) || _examinationCategoryType == null) ...[
           FaqSection(examinationType: _examinationType),
           const SizedBox(
             height: 24.0,
