@@ -6,11 +6,9 @@ import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/date_helpers.dart';
 import 'package:loono/helpers/examination_category.dart';
-import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
@@ -123,18 +121,10 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
             .then((value) {
           value.map(
             success: (newRes) {
-              final newExam = Provider.of<ExaminationsProvider>(context, listen: false)
-                  .updateAndReturnCustomExaminationsRecord(
+              Provider.of<ExaminationsProvider>(context, listen: false).updateExaminationsRecord(
                 res.data,
-                examProvider.getChoosedExamination().choosedExamination!,
               );
               AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
-              AutoRouter.of(context).replace(
-                ExaminationDetailRoute(
-                  categorizedExamination: examProvider.categorizedExamination!,
-                  choosedExamination: newExam,
-                ),
-              );
 
               showFlushBarSuccess(context, context.l10n.examination_was_edited, sync: true);
             },
@@ -177,19 +167,10 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
 
     response.map(
       success: (res) {
-        final newExam = Provider.of<ExaminationsProvider>(context, listen: false)
-            .updateAndReturnCustomExaminationsRecord(
+        Provider.of<ExaminationsProvider>(context, listen: false).updateExaminationsRecord(
           res.data,
-          examProvider.getChoosedExamination().choosedExamination!,
         );
         AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
-        AutoRouter.of(context).replace(
-          ExaminationDetailRoute(
-            categorizedExamination:
-                CategorizedExamination(category: newExam!.calculateStatus(), examination: newExam),
-            choosedExamination: newExam,
-          ),
-        );
       },
       failure: (err) => showFlushBarError(
         context,
