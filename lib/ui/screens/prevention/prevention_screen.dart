@@ -1,10 +1,15 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:loono/constants.dart';
+import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/widgets/avatar_arrow_bubble.dart';
 import 'package:loono/ui/widgets/badges/badge_composer.dart';
-import 'package:loono/ui/widgets/feedback/feedback_button.dart';
 import 'package:loono/ui/widgets/prevention/examinations_sheet_overlay.dart';
-import 'package:loono/ui/widgets/prevention/profile_button.dart';
+import 'package:loono/ui/widgets/prevention/prevention_header.dart';
+import 'package:loono_api/loono_api.dart';
+import 'package:provider/provider.dart';
 
 class PreventionScreen extends StatelessWidget {
   PreventionScreen({Key? key}) : super(key: key);
@@ -19,7 +24,25 @@ class PreventionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final count = Provider.of<ExaminationsProvider>(context, listen: true)
+            .examinations
+            ?.examinations
+            .where((item) => item.examinationCategoryType == ExaminationCategoryType.CUSTOM)
+            .length ??
+        0;
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: count >= 10
+            ? null
+            : () {
+                AutoRouter.of(context).push(const CustomExamFormRoute());
+              },
+        backgroundColor: count >= 10 ? LoonoColors.grey : LoonoColors.primaryEnabled,
+        child: const Icon(
+          Icons.add,
+          size: 36.0,
+        ),
+      ),
       body: SafeArea(
         child: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
@@ -34,7 +57,7 @@ class PreventionScreen extends StatelessWidget {
                   ),
                 ),
                 const Padding(
-                  padding: EdgeInsets.only(top: 40),
+                  padding: EdgeInsets.only(top: 75),
                   child: BadgeComposer(showDescription: false),
                 ),
                 IgnorePointer(
@@ -54,12 +77,7 @@ class PreventionScreen extends StatelessWidget {
                 ExaminationsSheetOverlay(
                   convertExtent: convertExtent,
                 ),
-                const ProfileButton(),
-                const Positioned(
-                  top: 20,
-                  right: 15,
-                  child: FeedbackButton(),
-                ),
+                const PreventionHeader()
               ],
             );
           },

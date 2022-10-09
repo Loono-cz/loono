@@ -1,7 +1,5 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:loono/helpers/achievement_helpers.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_extensions.dart';
@@ -72,13 +70,6 @@ class ScheduleExamination extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 20),
-            child: IconButton(
-              onPressed: () => AutoRouter.of(context).pop(),
-              icon: SvgPicture.asset('assets/icons/arrow_back.svg'),
-            ),
-          ),
           Expanded(
             child: UniversalDoctor(
               examinationType: _examinationType,

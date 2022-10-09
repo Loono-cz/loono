@@ -16,12 +16,24 @@ class ExaminationRepository {
     return response;
   }
 
+  Future<ApiResponse<void>> deleteExamination(
+    String uuid,
+  ) async {
+    final response = await _apiService.deleteExamination(uuid);
+    return response;
+  }
+
   Future<ApiResponse<ExaminationRecord>> postExamination(
     ExaminationType type, {
     String? uuid,
     DateTime? newDate,
     ExaminationStatus? status,
     bool? firstExam,
+    ExaminationCategoryType categoryType = ExaminationCategoryType.MANDATORY,
+    String? note,
+    int? customInterval,
+    bool? periodicExam,
+    ExaminationActionType? actionType,
   }) async {
     final response = await _apiService.postExamination(
       type,
@@ -29,6 +41,11 @@ class ExaminationRepository {
       newDate: newDate,
       status: status,
       firstExam: firstExam,
+      note: note,
+      customInterval: customInterval,
+      periodicExam: periodicExam,
+      categoryType: categoryType,
+      actionType: actionType,
     );
     return response;
   }

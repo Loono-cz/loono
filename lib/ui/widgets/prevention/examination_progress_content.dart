@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/date_helpers.dart';
 import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/l10n/ext.dart';
@@ -18,14 +20,25 @@ class ExaminationProgressContent extends StatelessWidget {
   final CategorizedExamination categorizedExamination;
   final Sex sex;
 
+  ExaminationCategoryType? get _examinationCategoryType =>
+      categorizedExamination.examination.examinationCategoryType;
   bool get _isToday {
     final now = DateTime.now();
     final visit = categorizedExamination.examination.plannedDate!.toLocal();
     return now.day == visit.day && now.month == visit.month && now.year == visit.year;
   }
 
-  String _intervalYears(BuildContext context) =>
-      '${categorizedExamination.examination.intervalYears.toString()} ${categorizedExamination.examination.intervalYears > 1 ? context.l10n.years : context.l10n.year}';
+  bool get _isCustomExamination => _examinationCategoryType == ExaminationCategoryType.CUSTOM;
+
+  String _intervalYears(BuildContext context) {
+    final interval = categorizedExamination.examination.intervalYears;
+    //transformMonthToYear
+    if (_isCustomExamination) {
+      return '${transformMonthToYear(interval)} ${interval < LoonoStrings.monthInYear ? 'měsíců' : 'roků'}';
+    } else {
+      return '${interval.toString()} ${interval > 1 ? context.l10n.years : context.l10n.year}';
+    }
+  }
 
   /// get correct combination of text font styles and colors
   Widget _progressBarContent(BuildContext context) {
@@ -43,6 +56,7 @@ class ExaminationProgressContent extends StatelessWidget {
       /// examination long overdue
       return Text(
         '${context.l10n.more_than} ${_intervalYears(context)} ${context.l10n.since_last_visit}',
+        softWrap: true,
         textAlign: TextAlign.center,
         style: LoonoFonts.paragraphSmallFontStyle.copyWith(
           fontWeight: FontWeight.w700,
@@ -65,11 +79,11 @@ class ExaminationProgressContent extends StatelessWidget {
 
   Widget _scheduledVisitContent(BuildContext context) {
     final now = DateTime.now();
-    final visitTime = DateFormat('HH:mm', 'cs-CZ')
+    final visitTime = DateFormat(LoonoStrings.hoursFormat, 'cs-CZ')
         .format(categorizedExamination.examination.plannedDate!.toLocal());
     final visitTimePreposition =
         categorizedExamination.examination.plannedDate!.toLocal().hour > 11 ? 've' : 'v';
-    final visitDate = DateFormat('dd. MMMM yyyy', 'cs-CZ')
+    final visitDate = DateFormat(LoonoStrings.dateFormatSpacing, 'cs-CZ')
         .format(categorizedExamination.examination.plannedDate!.toLocal());
     final isAfterVisit = now.isAfter(categorizedExamination.examination.plannedDate!.toLocal());
     return Column(
@@ -89,6 +103,7 @@ class ExaminationProgressContent extends StatelessWidget {
         ),
         Text(
           _isToday ? context.l10n.today : visitDate,
+          textAlign: TextAlign.center,
           style: LoonoFonts.cardSubtitle.copyWith(fontSize: 16),
         ),
         Text(
@@ -100,11 +115,20 @@ class ExaminationProgressContent extends StatelessWidget {
   }
 
   Widget _earlyCheckupContent(BuildContext context) {
-    final lastDateVisit = categorizedExamination.examination.lastConfirmedDate!.toLocal();
-    final newWaitToDateTime = DateTime(
-      lastDateVisit.year + categorizedExamination.examination.intervalYears,
-      lastDateVisit.month,
-    );
+    final examination = categorizedExamination.examination;
+    final interval = examination.intervalYears;
+    DateTime newWaitToDateTime;
+    final lastDateVisit = examination.lastConfirmedDate!.toLocal();
+
+    if (_isCustomExamination && interval < LoonoStrings.monthInYear) {
+      newWaitToDateTime = DateTime(lastDateVisit.year, lastDateVisit.month + interval);
+    } else {
+      newWaitToDateTime = DateTime(
+        lastDateVisit.year + (_isCustomExamination ? transformMonthToYear(interval) : interval),
+        lastDateVisit.month,
+      );
+    }
+
     final formattedDate = DateFormat.yMMMM('cs-CZ').format(newWaitToDateTime);
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -137,12 +161,9 @@ class ExaminationProgressContent extends StatelessWidget {
                 isOverdue: isOverdue(categorizedExamination),
               ),
               child: Center(
-                child: FittedBox(
-                  fit: BoxFit.fitWidth,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: _progressBarContent(context),
-                  ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: _progressBarContent(context),
                 ),
               ),
             ),
