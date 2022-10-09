@@ -91,7 +91,6 @@ class ExaminationsProvider extends ChangeNotifier {
       builder?.examinations.removeAt(indexToUpdate);
       examinations = builder?.build();
       evaluateExaminations();
-      notifyListeners();
     }
   }
 

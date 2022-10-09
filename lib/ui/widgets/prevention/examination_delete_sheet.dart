@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
@@ -82,14 +83,16 @@ void showDeleteExaminationSheet({
                       //TODO: Upravit smazani konkretniho vysetreni z kalendare
                       // await registry.get<CalendarRepository>().deleteEvent(examinationType);
                       examProvider.deleteExaminationRecord(id);
-                      autoRouter.popUntilRouteWithName(MainRoute.name);
-                      showFlushBarSuccess(context, context.l10n.checkup_canceled);
+                      SchedulerBinding.instance.addPostFrameCallback((_) {
+                        showFlushBarSuccess(context, context.l10n.checkup_canceled);
+                      });
+                      await autoRouter.replace(MainRoute(children: [PreventionRoute()]));
                     },
                     failure: (err) async {
+                      SchedulerBinding.instance.addPostFrameCallback((_) {
+                        showFlushBarError(context, context.l10n.something_went_wrong);
+                      });
                       await AutoRouter.of(context).pop();
-                      //TODO: lint fix
-                      // ignore: use_build_context_synchronously
-                      showFlushBarError(context, context.l10n.something_went_wrong);
                     },
                   );
                 },
