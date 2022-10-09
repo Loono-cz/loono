@@ -17,23 +17,21 @@ class ExaminationDetailScreen extends StatelessWidget {
     required this.categorizedExamination,
     this.choosedExamination,
     this.initialMessage,
+    required this.uuid,
   }) : super(key: key);
 
   final CategorizedExamination categorizedExamination;
   final String? initialMessage; // show flushbar message on init
   final ExaminationPreventionStatus? choosedExamination;
-
+  final String uuid;
   @override
   Widget build(BuildContext context) {
-    final examination = choosedExamination ??
-        Provider.of<ExaminationsProvider>(context, listen: true)
-            .examinations!
-            .examinations
-            .firstWhere(
-              (item) => item.uuid != null
-                  ? item.uuid == categorizedExamination.examination.uuid
-                  : item.examinationType == categorizedExamination.examination.examinationType,
-            );
+    final examination = Provider.of<ExaminationsProvider>(context, listen: true)
+        .examinations!
+        .examinations
+        .firstWhere(
+          (item) => item.uuid == uuid,
+        );
 
     return Scaffold(
       appBar: AppBar(
@@ -75,13 +73,15 @@ class ExaminationDetailScreen extends StatelessWidget {
               )
             : SingleChildScrollView(
                 physics: const ScrollPhysics(),
-                child: ExaminationDetail(
-                  categorizedExamination: CategorizedExamination(
-                    examination: examination,
-                    category: examination.calculateStatus(),
-                  ),
-                  initialMessage: initialMessage,
-                ),
+                child: examination.uuid != null
+                    ? ExaminationDetail(
+                        categorizedExamination: CategorizedExamination(
+                          examination: examination,
+                          category: examination.calculateStatus(),
+                        ),
+                        initialMessage: initialMessage,
+                      )
+                    : Container(),
               ),
       ),
     );

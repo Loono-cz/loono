@@ -67,14 +67,7 @@ void showConfirmationSheet(
                     await calendar.deleteOnlyDbEvent(examinationType);
                     final isCustomExamination =
                         res.data.examinationCategoryType == ExaminationCategoryType.CUSTOM;
-                    if (isCustomExamination) {
-                      examProvider.updateAndReturnCustomExaminationsRecord(
-                        res.data,
-                        examProvider.getChoosedExamination().choosedExamination!,
-                      );
-                    } else {
-                      examProvider.updateExaminationsRecord(res.data);
-                    }
+                    examProvider.updateExaminationsRecord(res.data);
                     if (!mounted) return;
                     isCustomExamination
                         ? autoRouter.popUntilRouteWithName(MainRoute.name)

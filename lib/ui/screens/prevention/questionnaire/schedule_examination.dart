@@ -52,6 +52,7 @@ class ScheduleExamination extends StatelessWidget {
         ..popUntilRouteWithName(const MainScreenRouter().routeName)
         ..navigate(
           ExaminationDetailRoute(
+            uuid: exam.uuid!,
             categorizedExamination: CategorizedExamination(
               examination: exam,
               category: exam.calculateStatus(),
