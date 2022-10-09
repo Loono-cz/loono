@@ -251,7 +251,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                         } else {
                           setState(() {
                             _showError = true;
-                            _showLastExamError = !_lastExamChck ? true : false;
+                            _showLastExamError = !_lastExamChck;
                           });
                         }
                       } else {

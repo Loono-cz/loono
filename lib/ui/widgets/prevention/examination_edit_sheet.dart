@@ -25,10 +25,8 @@ void showCustomEditExamSheet({
   required BuildContext context,
   required ExaminationType examinationType,
   required DateTime date,
-  required ExaminationPreventionStatus catExam,
+  required ExaminationPreventionStatus examination,
 }) {
-  final exam = catExam;
-
   showModalBottomSheet<void>(
     context: context,
     shape: RoundedRectangleBorder(
@@ -37,7 +35,7 @@ void showCustomEditExamSheet({
     isScrollControlled: true,
     builder: (BuildContext modalContext) => Container(
       color: LoonoColors.primary,
-      child: CustomEditExamination(exam: exam),
+      child: CustomEditExamination(exam: examination),
     ),
   ).whenComplete(() {
     registry.get<FirebaseAnalytics>().logEvent(name: 'CloseCancelEditModal');
@@ -45,8 +43,8 @@ void showCustomEditExamSheet({
 }
 
 class CustomEditExamination extends StatefulWidget {
-  const CustomEditExamination({super.key, this.exam});
-  final ExaminationPreventionStatus? exam;
+  const CustomEditExamination({super.key, required this.exam});
+  final ExaminationPreventionStatus exam;
   @override
   State<CustomEditExamination> createState() => _CustomEditExaminationState();
 }
@@ -81,17 +79,17 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
   @override
   void initState() {
     super.initState();
-    _lastExamDate = widget.exam?.lastConfirmedDate;
+    _lastExamDate = widget.exam.lastConfirmedDate;
   }
 
   Future<void> sendRegularRequest({int? customInterval}) async {
     final response = await registry.get<ExaminationRepository>().postExamination(
-          widget.exam!.examinationType,
-          uuid: widget.exam!.uuid,
-          actionType: widget.exam?.examinationActionType,
-          periodicExam: widget.exam?.periodicExam,
-          note: widget.exam?.note,
-          customInterval: customInterval ?? widget.exam?.customInterval,
+          widget.exam.examinationType,
+          uuid: widget.exam.uuid,
+          actionType: widget.exam.examinationActionType,
+          periodicExam: widget.exam.periodicExam,
+          note: widget.exam.note,
+          customInterval: customInterval ?? widget.exam.customInterval,
           newDate: _lastExamDate,
           categoryType: ExaminationCategoryType.CUSTOM,
           status: ExaminationStatus.CONFIRMED,
@@ -102,12 +100,12 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
         registry
             .get<ExaminationRepository>()
             .postExamination(
-              widget.exam!.examinationType,
-              uuid: widget.exam!.uuid,
-              actionType: widget.exam?.examinationActionType,
-              periodicExam: widget.exam?.periodicExam,
-              note: widget.exam?.note,
-              customInterval: customInterval ?? widget.exam?.customInterval,
+              widget.exam.examinationType,
+              uuid: widget.exam.uuid,
+              actionType: widget.exam.examinationActionType,
+              periodicExam: widget.exam.periodicExam,
+              note: widget.exam.note,
+              customInterval: customInterval ?? widget.exam.customInterval,
               newDate: _lastExamDate,
               categoryType: ExaminationCategoryType.CUSTOM,
               status: ExaminationStatus.NEW,
@@ -146,12 +144,12 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
 
   Future<void> sendRegularRequestConfirm({int? customInterval}) async {
     final response = await registry.get<ExaminationRepository>().postExamination(
-          widget.exam!.examinationType,
-          uuid: widget.exam!.uuid,
-          actionType: widget.exam?.examinationActionType,
-          periodicExam: widget.exam?.periodicExam,
-          note: widget.exam?.note,
-          customInterval: customInterval ?? widget.exam?.customInterval, // Pravidelne
+          widget.exam.examinationType,
+          uuid: widget.exam.uuid,
+          actionType: widget.exam.examinationActionType,
+          periodicExam: widget.exam.periodicExam,
+          note: widget.exam.note,
+          customInterval: customInterval ?? widget.exam.customInterval, // Pravidelne
           newDate: _idkCheck ? DateTime.now() : _lastExamDate,
           categoryType: ExaminationCategoryType.CUSTOM,
           status: _idkCheck ? ExaminationStatus.UNKNOWN : ExaminationStatus.CONFIRMED,
@@ -176,7 +174,7 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
   }
 
   Future<void> _onPostNewCheckupSubmit({DateTime? newDate, int? customInterval}) async {
-    final exam = widget.exam!;
+    final exam = widget.exam;
     final noPlannedExamExist = exam.firstExam && exam.plannedDate == null ||
         [ExaminationStatus.CANCELED, ExaminationStatus.CONFIRMED].contains(exam.state);
     if (noPlannedExamExist) {
@@ -242,7 +240,7 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
 
   Widget buildCardContent(BuildContext context) {
     final usersDao = registry.get<DatabaseService>().users;
-    final exam = widget.exam!;
+    final exam = widget.exam;
 
     /// must be first exam and no planned examination should exist
     final noPlannedExamExist = exam.firstExam && exam.plannedDate == null;

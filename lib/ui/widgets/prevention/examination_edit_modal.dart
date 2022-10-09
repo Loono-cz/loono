@@ -169,7 +169,7 @@ void showCustomExamEditModal(
                 AutoRouter.of(modalContext).pop();
                 showCustomEditExamSheet(
                   context: pageContext,
-                  catExam: catExam,
+                  examination: catExam,
                   examinationType: examinationType,
                   date: catExam.plannedDate?.toLocal() ?? DateTime.now(),
                 );

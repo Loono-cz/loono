@@ -205,7 +205,8 @@ class _DatePickerContentState extends State<_DatePickerContent> {
               final lastConfirmed = examination.lastConfirmedDate;
 
               if (isCustom && lastConfirmed != null) {
-                final customInterval = examination.customInterval!;
+                final customInterval =
+                    examination.customInterval ?? LoonoStrings.customDefaultMonth;
                 final textInterval = customInterval < LoonoStrings.monthInYear ? 'měsíců' : 'roků';
                 final intervalDate = customInterval < LoonoStrings.monthInYear
                     ? DateTime(
@@ -220,7 +221,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                       );
 
                 final isDateValid = intervalDate.isAtSameMomentAs(
-                      newDate!,
+                      newDate!, //TODO: Remove !
                     ) ||
                     intervalDate.isBefore(newDate!);
                 if (!isDateValid) {
@@ -261,6 +262,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
 
                 if (originalDate != null) {
                   /// preset original date
+                  /// //TODO: Remove !
                   newDate = DateTime(
                     newDate!.year,
                     newDate!.month,
@@ -277,6 +279,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                   viewStep = ViewSteps.noteField;
                 });
               } else {
+                ///TODO Unwrap
                 await widget.onSubmit(date: newDate!, note: _note);
               }
             },
@@ -284,7 +287,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
           const SizedBox(
             height: 18,
           ),
-          if (widget.additionalBottomText != null) Text(widget.additionalBottomText!),
+          if (widget.additionalBottomText != null) Text(widget.additionalBottomText.toString()),
           const SizedBox(
             height: 18,
           ),
@@ -309,7 +312,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
         return Center(
           child: CustomTimePicker(
             valueChanged: onTimeChanged,
-            defaultDate: newDate!,
+            defaultDate: newDate!, //TODO: Remove !
             defaultHour: 6,
             defaultMinute: 0,
           ),

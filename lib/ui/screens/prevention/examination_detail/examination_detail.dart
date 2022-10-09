@@ -334,13 +334,12 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                             ),
                           ),
                           const SizedBox(height: 20),
-                          if (_isPeriodicalExam)
+                          if (_isPeriodicalExam) ...[
                             _calendarRow(
                               '${context.l10n.once_per} ${_intervalYears(context)}',
                               interval: true,
                             ),
-                          const SizedBox(height: 10),
-                          if (_isPeriodicalExam)
+                            const SizedBox(height: 10),
                             _calendarRow(
                               '${context.l10n.last_visit}:\n$lastVisit',
                               onTap: () {
@@ -380,10 +379,12 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                                 }
                               },
                             ),
+                          ],
                           if (!_isPeriodicalExam)
                             _calendarRow(
                               _nextVisitDate != null
-                                  ? DateFormat('dd.MM.yyyy HH:mm').format(_nextVisitDate!)
+                                  ? DateFormat(LoonoStrings.dateWithHoursFormat)
+                                      .format(_nextVisitDate!.toLocal())
                                   : '',
                               showCalendarIcon: true,
                             )
