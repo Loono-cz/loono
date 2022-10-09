@@ -69,6 +69,7 @@ class LoonoStrings {
   static const dateFormatSpacing = 'dd. MMMM yyyy';
   static const dateFormatWithNameMonth = 'd. MMMM yyyy';
   static const hoursFormat = 'HH:mm';
+  static const monthInYear = 12;
 }
 
 class LoonoFonts {

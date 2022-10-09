@@ -28,13 +28,15 @@ class ExaminationProgressContent extends StatelessWidget {
     return now.day == visit.day && now.month == visit.month && now.year == visit.year;
   }
 
+  bool get _isCustomExamination => _examinationCategoryType == ExaminationCategoryType.CUSTOM;
+
   String _intervalYears(BuildContext context) {
-    final yearInterval = categorizedExamination.examination.intervalYears;
+    final interval = categorizedExamination.examination.intervalYears;
     //transformMonthToYear
-    if (_examinationCategoryType == ExaminationCategoryType.CUSTOM) {
-      return '${transformMonthToYear(yearInterval)} ${yearInterval < 12 ? 'měsíců' : 'roků'}';
+    if (_isCustomExamination) {
+      return '${transformMonthToYear(interval)} ${interval < LoonoStrings.monthInYear ? 'měsíců' : 'roků'}';
     } else {
-      return '${yearInterval.toString()} ${yearInterval > 1 ? context.l10n.years : context.l10n.year}';
+      return '${interval.toString()} ${interval > 1 ? context.l10n.years : context.l10n.year}';
     }
   }
 
@@ -117,14 +119,12 @@ class ExaminationProgressContent extends StatelessWidget {
     final interval = examination.intervalYears;
     DateTime newWaitToDateTime;
     final lastDateVisit = examination.lastConfirmedDate!.toLocal();
-    final isCustom = categorizedExamination.examination.examinationCategoryType ==
-        ExaminationCategoryType.CUSTOM;
 
-    if (isCustom && interval <= 11) {
+    if (_isCustomExamination && interval < LoonoStrings.monthInYear) {
       newWaitToDateTime = DateTime(lastDateVisit.year, lastDateVisit.month + interval);
     } else {
       newWaitToDateTime = DateTime(
-        lastDateVisit.year + (isCustom ? transformMonthToYear(interval) : interval),
+        lastDateVisit.year + (_isCustomExamination ? transformMonthToYear(interval) : interval),
         lastDateVisit.month,
       );
     }
