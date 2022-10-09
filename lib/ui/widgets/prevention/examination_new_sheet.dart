@@ -69,7 +69,8 @@ void showNewCheckupSheetStep1(
               ).toLowerCase()}',
               onTap: () => appRouter.push(
                 FindDoctorRoute(
-                  targetSpecialization: getSpecializationByExaminationType(examinationType),
+                  firstSelectedSpecializationName:
+                      getSpecializationByExaminationType(examinationType),
                   onCancelTap: () async {
                     final autoRouter = AutoRouter.of(context);
                     await appRouter.pop();
