@@ -5,6 +5,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -49,13 +50,15 @@ class _MainScreenState extends State<MainScreen> {
     checkAndShowDonatePage(context, mounted: mounted);
     registry.get<UserRepository>().sync();
 
-    subscription = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
-      evalConnectivity(result);
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      subscription = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
+        evalConnectivity(result);
 
-      /// re-evaluate connection status after network reconnection
-      if (result != ConnectivityResult.none && !examinationsProvider.loading) {
-        examinationsProvider.fetchExaminations();
-      }
+        /// re-evaluate connection status after network reconnection
+        if (result != ConnectivityResult.none && !examinationsProvider.loading) {
+          examinationsProvider.fetchExaminations();
+        }
+      });
     });
   }
 
