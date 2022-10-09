@@ -271,7 +271,7 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
                 ),
               ),
             ),
-            if (widget.exam?.state != ExaminationStatus.CONFIRMED) ...[
+            if (widget.exam?.firstExam == true && widget.exam?.plannedDate != null) ...[
               const Divider(),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.baseline,

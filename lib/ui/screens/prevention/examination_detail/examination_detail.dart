@@ -21,7 +21,9 @@ import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/examination_badges.dart';
+import 'package:loono/ui/screens/prevention/examination_detail/faq_section.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/note_text_field.dart';
 import 'package:loono/ui/widgets/prevention/calendar_permission_sheet.dart';
 import 'package:loono/ui/widgets/prevention/change_last_visit_sheet.dart';
 import 'package:loono/ui/widgets/prevention/create_order_from_detail_flow.dart';
@@ -388,12 +390,34 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
             buildButtons(context, onPostNewCheckupSubmit, preposition),
           if (widget.categorizedExamination.category != const ExaminationCategory.newToSchedule())
             Padding(
-              padding: const EdgeInsets.only(left: 16.0),
-              child: Text(
-                context.l10n.next_specialist_examination,
-                style: const TextStyle(fontSize: 24.0, fontWeight: FontWeight.w400),
+              padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+              child: noteTextField(
+                context,
+                noteController: _editingController,
+                onNoteChange: (value) {
+                  _note = value;
+                },
+                focusNode: _focusNote,
               ),
             ),
+          const SizedBox(height: 10),
+          buildExaminationBadges(context),
+          const SizedBox(height: 8.0),
+          //SHOWING FAQ Section only for Default
+          if (_examinationCategoryType == ExaminationCategoryType.MANDATORY ||
+              _examinationCategoryType == null) ...[
+            FaqSection(examinationType: _examinationType),
+            const SizedBox(
+              height: 24.0,
+            )
+          ],
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: Text(
+              context.l10n.next_specialist_examination,
+              style: const TextStyle(fontSize: 24.0, fontWeight: FontWeight.w400),
+            ),
+          ),
           buildNextSpecialistExams(context),
           const SizedBox(height: 30),
         ],
