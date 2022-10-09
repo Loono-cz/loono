@@ -202,7 +202,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
             : l10n.skip_idk;
 
     final preposition = czechPreposition(context, examinationType: _examinationType);
-    _note = _examination.note ?? '';
+    _editingController.text = _examination.note ?? '';
 
     /// not ideal in build method but need context
     Future<void> _onPostNewCheckupSubmit({required DateTime date, String? note}) async {
