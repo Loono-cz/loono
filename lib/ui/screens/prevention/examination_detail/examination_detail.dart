@@ -216,12 +216,6 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
           Provider.of<ExaminationsProvider>(context, listen: false)
               .updateExaminationsRecord(res.data);
           AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
-          // AutoRouter.of(context).replace(
-          //   ExaminationDetailRoute(
-          //     categorizedExamination: catExam ?? widget.categorizedExamination,
-          //     choosedExamination: newExam,
-          //   ),
-          // );
           showFlushBarSuccess(context, l10n.checkup_reminder_toast, sync: true);
         },
         failure: (err) {

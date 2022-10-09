@@ -81,6 +81,11 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
         }),
       );
 
+  @override
+  void initState() {
+    super.initState();
+  }
+
   Future<void> sendRegularRequest({int? customInterval}) async {
     final response = await registry.get<ExaminationRepository>().postExamination(
           widget.exam!.examinationType,
@@ -117,7 +122,6 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
                 res.data,
               );
               AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
-
               showFlushBarSuccess(context, context.l10n.examination_was_edited, sync: true);
             },
             failure: (err) => showFlushBarError(
@@ -201,7 +205,6 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          // mainAxisSize: MainAxisSize.min,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
