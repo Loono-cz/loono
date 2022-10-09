@@ -187,7 +187,10 @@ class AppRouter extends _i16.RootStackRouter {
       return _i16.MaterialPageX<void>(
           routeData: routeData,
           child: _i12.FindDoctorScreen(
-              key: args.key, onCancelTap: args.onCancelTap));
+              key: args.key,
+              onCancelTap: args.onCancelTap,
+              firstSelectedSpecializationName:
+                  args.firstSelectedSpecializationName));
     },
     DoctorSearchDetailRoute.name: (routeData) {
       return _i16.CustomPage<_i65.SearchResult>(
@@ -360,7 +363,6 @@ class AppRouter extends _i16.RootStackRouter {
           child: _i36.ExaminationDetailScreen(
               key: args.key,
               categorizedExamination: args.categorizedExamination,
-              choosedExamination: args.choosedExamination,
               initialMessage: args.initialMessage),
           transitionsBuilder: _i16.TransitionsBuilders.slideLeft,
           opaque: true,
@@ -1106,24 +1108,34 @@ class LoginRouteArgs {
 /// generated route for
 /// [_i12.FindDoctorScreen]
 class FindDoctorRoute extends _i16.PageRouteInfo<FindDoctorRouteArgs> {
-  FindDoctorRoute({_i63.Key? key, void Function()? onCancelTap})
+  FindDoctorRoute(
+      {_i63.Key? key,
+      void Function()? onCancelTap,
+      String? firstSelectedSpecializationName})
       : super(FindDoctorRoute.name,
             path: 'find-doctor',
-            args: FindDoctorRouteArgs(key: key, onCancelTap: onCancelTap));
+            args: FindDoctorRouteArgs(
+                key: key,
+                onCancelTap: onCancelTap,
+                firstSelectedSpecializationName:
+                    firstSelectedSpecializationName));
 
   static const String name = 'FindDoctorRoute';
 }
 
 class FindDoctorRouteArgs {
-  const FindDoctorRouteArgs({this.key, this.onCancelTap});
+  const FindDoctorRouteArgs(
+      {this.key, this.onCancelTap, this.firstSelectedSpecializationName});
 
   final _i63.Key? key;
 
   final void Function()? onCancelTap;
 
+  final String? firstSelectedSpecializationName;
+
   @override
   String toString() {
-    return 'FindDoctorRouteArgs{key: $key, onCancelTap: $onCancelTap}';
+    return 'FindDoctorRouteArgs{key: $key, onCancelTap: $onCancelTap, firstSelectedSpecializationName: $firstSelectedSpecializationName}';
   }
 }
 
@@ -1478,14 +1490,12 @@ class ExaminationDetailRoute
   ExaminationDetailRoute(
       {_i63.Key? key,
       required _i68.CategorizedExamination categorizedExamination,
-      _i67.ExaminationPreventionStatus? choosedExamination,
       String? initialMessage})
       : super(ExaminationDetailRoute.name,
             path: 'prevention-detail',
             args: ExaminationDetailRouteArgs(
                 key: key,
                 categorizedExamination: categorizedExamination,
-                choosedExamination: choosedExamination,
                 initialMessage: initialMessage));
 
   static const String name = 'ExaminationDetailRoute';
@@ -1493,22 +1503,17 @@ class ExaminationDetailRoute
 
 class ExaminationDetailRouteArgs {
   const ExaminationDetailRouteArgs(
-      {this.key,
-      required this.categorizedExamination,
-      this.choosedExamination,
-      this.initialMessage});
+      {this.key, required this.categorizedExamination, this.initialMessage});
 
   final _i63.Key? key;
 
   final _i68.CategorizedExamination categorizedExamination;
 
-  final _i67.ExaminationPreventionStatus? choosedExamination;
-
   final String? initialMessage;
 
   @override
   String toString() {
-    return 'ExaminationDetailRouteArgs{key: $key, categorizedExamination: $categorizedExamination, choosedExamination: $choosedExamination, initialMessage: $initialMessage}';
+    return 'ExaminationDetailRouteArgs{key: $key, categorizedExamination: $categorizedExamination, initialMessage: $initialMessage}';
   }
 }
 

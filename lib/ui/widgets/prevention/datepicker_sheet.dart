@@ -118,7 +118,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
 
     final originalDate = widget.categorizedExamination.examination.plannedDate?.toLocal();
 
-    String _buildTitle(BuildContext context) {
+    String buildTitle(BuildContext context) {
       return isFirstStep
           ? _sex == Sex.MALE
               ? context.l10n.wich_date_you_have_reservation_male
@@ -161,7 +161,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 TextSpan(
                   children: [
                     TextSpan(
-                      text: _buildTitle(context),
+                      text: buildTitle(context),
                       style: LoonoFonts.headerFontStyle,
                     ),
                     if (widget.isNewCheckup)
@@ -269,7 +269,6 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 return;
               }
             }
-            // ignore: use_build_context_synchronously
             if (newDate?.datePickerIsInFuture(context) == false) {
               return;
             }
@@ -288,8 +287,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 isFirstStep = false;
               });
             } else {
-              // ignore: use_build_context_synchronously
-              if (newDate?.timePickerIsInFuture(context) == true) {
+              if (newDate?.timeDatePickerIsInFuture(context) == true) {
                 await widget.onSubmit(date: newDate!);
               }
               return;

@@ -5,12 +5,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/date_helpers.dart';
-import 'package:loono/helpers/examination_category.dart';
-import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
@@ -28,12 +25,8 @@ void showCustomEditExamSheet({
   required BuildContext context,
   required ExaminationType examinationType,
   required DateTime date,
-  required String id,
+  required ExaminationPreventionStatus examination,
 }) {
-  final examProvider = Provider.of<ExaminationsProvider>(context, listen: false);
-  final exam = examProvider.examinations?.examinations.firstWhere((p0) => p0.uuid == id);
-
-  registry.get<FirebaseAnalytics>().logEvent(name: 'OpenCancelCheckupModal');
   showModalBottomSheet<void>(
     context: context,
     shape: RoundedRectangleBorder(
@@ -42,7 +35,7 @@ void showCustomEditExamSheet({
     isScrollControlled: true,
     builder: (BuildContext modalContext) => Container(
       color: LoonoColors.primary,
-      child: CustomEditExamination(exam: exam),
+      child: CustomEditExamination(exam: examination),
     ),
   ).whenComplete(() {
     registry.get<FirebaseAnalytics>().logEvent(name: 'CloseCancelEditModal');
@@ -50,15 +43,14 @@ void showCustomEditExamSheet({
 }
 
 class CustomEditExamination extends StatefulWidget {
-  const CustomEditExamination({super.key, this.exam});
-  final ExaminationPreventionStatus? exam;
+  const CustomEditExamination({super.key, required this.exam});
+  final ExaminationPreventionStatus exam;
   @override
   State<CustomEditExamination> createState() => _CustomEditExaminationState();
 }
 
 class _CustomEditExaminationState extends State<CustomEditExamination> {
   String _customIntervalText = '';
-  int? _customIntervalNumber;
   DateTime? _lastExamDate;
 
   bool _idkCheck = false;
@@ -87,21 +79,20 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
   @override
   void initState() {
     super.initState();
-    _customIntervalNumber = widget.exam?.customInterval;
+    _lastExamDate = widget.exam.lastConfirmedDate;
   }
 
   Future<void> sendRegularRequest({int? customInterval}) async {
-    final examProvider = Provider.of<ExaminationsProvider>(context, listen: false);
     final response = await registry.get<ExaminationRepository>().postExamination(
-          widget.exam!.examinationType,
-          uuid: widget.exam!.uuid,
-          actionType: widget.exam?.examinationActionType,
-          periodicExam: widget.exam?.periodicExam,
-          note: widget.exam?.note,
-          customInterval: customInterval ?? widget.exam?.customInterval, // Pravidelne
-          newDate: _idkCheck ? DateTime.now() : _lastExamDate,
+          widget.exam.examinationType,
+          uuid: widget.exam.uuid,
+          actionType: widget.exam.examinationActionType,
+          periodicExam: widget.exam.periodicExam,
+          note: widget.exam.note,
+          customInterval: customInterval ?? widget.exam.customInterval,
+          newDate: _lastExamDate,
           categoryType: ExaminationCategoryType.CUSTOM,
-          status: _idkCheck ? ExaminationStatus.UNKNOWN : ExaminationStatus.CONFIRMED,
+          status: ExaminationStatus.CONFIRMED,
           firstExam: true,
         );
     response.map(
@@ -109,13 +100,13 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
         registry
             .get<ExaminationRepository>()
             .postExamination(
-              widget.exam!.examinationType,
-              uuid: widget.exam!.uuid,
-              actionType: widget.exam?.examinationActionType,
-              periodicExam: widget.exam?.periodicExam,
-              note: widget.exam?.note,
-              customInterval: customInterval ?? widget.exam?.customInterval, // Pravidelne
-              newDate: widget.exam!.plannedDate,
+              widget.exam.examinationType,
+              uuid: widget.exam.uuid,
+              actionType: widget.exam.examinationActionType,
+              periodicExam: widget.exam.periodicExam,
+              note: widget.exam.note,
+              customInterval: customInterval ?? widget.exam.customInterval,
+              newDate: _lastExamDate,
               categoryType: ExaminationCategoryType.CUSTOM,
               status: ExaminationStatus.NEW,
               firstExam: true,
@@ -123,19 +114,10 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
             .then((value) {
           value.map(
             success: (newRes) {
-              final newExam = Provider.of<ExaminationsProvider>(context, listen: false)
-                  .updateAndReturnCustomExaminationsRecord(
-                res.data,
-                examProvider.getChoosedExamination().choosedExamination!,
+              Provider.of<ExaminationsProvider>(context, listen: false).updateExaminationsRecord(
+                newRes.data,
               );
               AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
-              AutoRouter.of(context).replace(
-                ExaminationDetailRoute(
-                  categorizedExamination: examProvider.categorizedExamination!,
-                  choosedExamination: newExam,
-                ),
-              );
-
               showFlushBarSuccess(context, context.l10n.examination_was_edited, sync: true);
             },
             failure: (err) => showFlushBarError(
@@ -161,14 +143,13 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
   }
 
   Future<void> sendRegularRequestConfirm({int? customInterval}) async {
-    final examProvider = Provider.of<ExaminationsProvider>(context, listen: false);
     final response = await registry.get<ExaminationRepository>().postExamination(
-          widget.exam!.examinationType,
-          uuid: widget.exam!.uuid,
-          actionType: widget.exam?.examinationActionType,
-          periodicExam: widget.exam?.periodicExam,
-          note: widget.exam?.note,
-          customInterval: customInterval ?? widget.exam?.customInterval, // Pravidelne
+          widget.exam.examinationType,
+          uuid: widget.exam.uuid,
+          actionType: widget.exam.examinationActionType,
+          periodicExam: widget.exam.periodicExam,
+          note: widget.exam.note,
+          customInterval: customInterval ?? widget.exam.customInterval, // Pravidelne
           newDate: _idkCheck ? DateTime.now() : _lastExamDate,
           categoryType: ExaminationCategoryType.CUSTOM,
           status: _idkCheck ? ExaminationStatus.UNKNOWN : ExaminationStatus.CONFIRMED,
@@ -177,19 +158,10 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
 
     response.map(
       success: (res) {
-        final newExam = Provider.of<ExaminationsProvider>(context, listen: false)
-            .updateAndReturnCustomExaminationsRecord(
+        Provider.of<ExaminationsProvider>(context, listen: false).updateExaminationsRecord(
           res.data,
-          examProvider.getChoosedExamination().choosedExamination!,
         );
         AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
-        AutoRouter.of(context).replace(
-          ExaminationDetailRoute(
-            categorizedExamination:
-                CategorizedExamination(category: newExam!.calculateStatus(), examination: newExam),
-            choosedExamination: newExam,
-          ),
-        );
       },
       failure: (err) => showFlushBarError(
         context,
@@ -202,14 +174,13 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
   }
 
   Future<void> _onPostNewCheckupSubmit({DateTime? newDate, int? customInterval}) async {
-    final examProvider = Provider.of<ExaminationsProvider>(context, listen: false);
-    if ([
-      const ExaminationCategory.scheduledSoonOrOverdue(),
-      const ExaminationCategory.scheduled(),
-    ].contains(examProvider.categorizedExamination?.category)) {
-      await sendRegularRequest(customInterval: customInterval);
-    } else if (widget.exam?.lastConfirmedDate != null) {
+    final exam = widget.exam;
+    final noPlannedExamExist = exam.firstExam && exam.plannedDate == null ||
+        [ExaminationStatus.CANCELED, ExaminationStatus.CONFIRMED].contains(exam.state);
+    if (noPlannedExamExist) {
       await sendRegularRequestConfirm(customInterval: customInterval);
+    } else {
+      await sendRegularRequest(customInterval: customInterval);
     }
   }
 
@@ -229,7 +200,6 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          // mainAxisSize: MainAxisSize.min,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -270,6 +240,10 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
 
   Widget buildCardContent(BuildContext context) {
     final usersDao = registry.get<DatabaseService>().users;
+    final exam = widget.exam;
+
+    /// must be first exam and no planned examination should exist
+    final noPlannedExamExist = exam.firstExam && exam.plannedDate == null;
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -288,15 +262,14 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
               _customIntervalText,
               onClickInputField: () => AutoRouter.of(context).navigate(
                 ChooseFrequencyOfExamRoute(
-                  examType: widget.exam!.examinationType,
-                  isDefaultExam:
-                      widget.exam!.examinationCategoryType == ExaminationCategoryType.MANDATORY,
+                  examType: exam.examinationType,
+                  isDefaultExam: exam.examinationCategoryType == ExaminationCategoryType.MANDATORY,
                   value: _customIntervalText,
                   valueChanged: changeCustomInterval,
                 ),
               ),
             ),
-            if (widget.exam?.state != ExaminationStatus.CONFIRMED) ...[
+            if (noPlannedExamExist) ...[
               const Divider(),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.baseline,

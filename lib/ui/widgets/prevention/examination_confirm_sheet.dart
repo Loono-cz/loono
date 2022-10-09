@@ -25,7 +25,7 @@ void showConfirmationSheet(
   int? awardPoints,
   bool mounted = true,
 }) {
-  Future<void> _completedAction() async {
+  Future<void> completedAction() async {
     final autoRouter = AutoRouter.of(context);
     await registry.get<UserRepository>().sync();
     autoRouter.popUntilRouteWithName(ExaminationDetailRoute.name);
@@ -67,24 +67,17 @@ void showConfirmationSheet(
                     await calendar.deleteOnlyDbEvent(examinationType);
                     final isCustomExamination =
                         res.data.examinationCategoryType == ExaminationCategoryType.CUSTOM;
-                    if (isCustomExamination) {
-                      examProvider.updateAndReturnCustomExaminationsRecord(
-                        res.data,
-                        examProvider.getChoosedExamination().choosedExamination!,
-                      );
-                    } else {
-                      examProvider.updateExaminationsRecord(res.data);
-                    }
+                    examProvider.updateExaminationsRecord(res.data);
                     if (!mounted) return;
                     isCustomExamination
-                        ? autoRouter.popUntilRouteWithName(MainRoute.name)
+                        ? await completedAction()
                         : await autoRouter.navigate(
                             AchievementRoute(
                               header: getAchievementTitle(context, examinationType),
                               textLines: [l10n.award_desc],
                               numberOfPoints: awardPoints ?? examinationType.awardPoints,
                               itemPath: getAchievementAssetPath(examinationType),
-                              onButtonTap: _completedAction,
+                              onButtonTap: completedAction,
                             ),
                           );
                   },
