@@ -15,22 +15,24 @@ class ExaminationDetailScreen extends StatelessWidget {
   const ExaminationDetailScreen({
     Key? key,
     required this.categorizedExamination,
-    this.choosedExamination,
     this.initialMessage,
-    required this.uuid,
   }) : super(key: key);
 
   final CategorizedExamination categorizedExamination;
   final String? initialMessage; // show flushbar message on init
-  final ExaminationPreventionStatus? choosedExamination;
-  final String uuid;
+  ExaminationPreventionStatus get _exam => categorizedExamination.examination;
+
+  bool get _isMandatory => _exam.examinationCategoryType == ExaminationCategoryType.MANDATORY;
+
   @override
   Widget build(BuildContext context) {
     final examination = Provider.of<ExaminationsProvider>(context, listen: true)
         .examinations!
         .examinations
         .firstWhere(
-          (item) => item.uuid == uuid,
+          (item) => item.uuid != null
+              ? item.uuid == _exam.uuid
+              : _exam.examinationType == item.examinationType,
         );
 
     return Scaffold(
@@ -67,21 +69,19 @@ class ExaminationDetailScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: categorizedExamination.category == const ExaminationCategory.unknownLastVisit() &&
-                choosedExamination?.examinationCategoryType == ExaminationCategoryType.MANDATORY
+                _isMandatory
             ? ScheduleExamination(
                 examinationRecord: categorizedExamination.examination,
               )
             : SingleChildScrollView(
                 physics: const ScrollPhysics(),
-                child: examination.uuid != null
-                    ? ExaminationDetail(
-                        categorizedExamination: CategorizedExamination(
-                          examination: examination,
-                          category: examination.calculateStatus(),
-                        ),
-                        initialMessage: initialMessage,
-                      )
-                    : Container(),
+                child: ExaminationDetail(
+                  categorizedExamination: CategorizedExamination(
+                    examination: examination,
+                    category: examination.calculateStatus(),
+                  ),
+                  initialMessage: initialMessage,
+                ),
               ),
       ),
     );

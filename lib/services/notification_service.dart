@@ -45,7 +45,6 @@ class NotificationService {
             if (examinationToOpen != null) {
               registry.get<AppRouter>().push(
                     ExaminationDetailRoute(
-                      uuid: examinationToOpen.uuid!,
                       categorizedExamination: CategorizedExamination(
                         examination: examinationToOpen,
                         category: examinationToOpen.calculateStatus(),

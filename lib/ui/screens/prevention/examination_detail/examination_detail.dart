@@ -21,9 +21,7 @@ import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/examination_badges.dart';
-import 'package:loono/ui/screens/prevention/examination_detail/faq_section.dart';
 import 'package:loono/ui/widgets/button.dart';
-import 'package:loono/ui/widgets/note_text_field.dart';
 import 'package:loono/ui/widgets/prevention/calendar_permission_sheet.dart';
 import 'package:loono/ui/widgets/prevention/change_last_visit_sheet.dart';
 import 'package:loono/ui/widgets/prevention/create_order_from_detail_flow.dart';
@@ -205,7 +203,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
     _editingController.text = _examination.note ?? '';
 
     /// not ideal in build method but need context
-    Future<void> _onPostNewCheckupSubmit({required DateTime date, String? note}) async {
+    Future<void> onPostNewCheckupSubmit({required DateTime date, String? note}) async {
       /// code anchor: #postNewExamination
       final response = await registry.get<ExaminationRepository>().postExamination(
             _examinationType,
@@ -238,7 +236,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
       );
     }
 
-    Future<void> _onEditRegularlyExamTerm({required DateTime date, String? note}) async {
+    Future<void> onEditRegularlyExamTerm({required DateTime date, String? note}) async {
       final response = await registry.get<ExaminationRepository>().postExamination(
             _examinationType,
             newDate: date,
@@ -385,40 +383,17 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
           if (_isPeriodicalExam || _examinationCategoryType == ExaminationCategoryType.MANDATORY)
             buildPeriodicalAndMandatorySection(context),
           if (!_isPeriodicalExam)
-            buildDisposableExamButtons(context, _onEditRegularlyExamTerm)
+            buildDisposableExamButtons(context, onEditRegularlyExamTerm)
           else
-            buildButtons(context, _onPostNewCheckupSubmit, preposition),
+            buildButtons(context, onPostNewCheckupSubmit, preposition),
           if (widget.categorizedExamination.category != const ExaminationCategory.newToSchedule())
             Padding(
-              padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-              child: noteTextField(
-                context,
-                noteController: _editingController,
-                onNoteChange: (value) {
-                  _note = value;
-                },
-                focusNode: _focusNote,
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Text(
+                context.l10n.next_specialist_examination,
+                style: const TextStyle(fontSize: 24.0, fontWeight: FontWeight.w400),
               ),
             ),
-          const SizedBox(height: 10),
-          buildExaminationBadges(context),
-          const SizedBox(height: 8.0),
-          //SHOWING FAQ Section only for Default
-          if (_isPeriodicalExam &&
-              _examinationCategoryType == ExaminationCategoryType.MANDATORY) ...[
-            FaqSection(examinationType: _examinationType),
-            const SizedBox(
-              height: 24.0,
-            )
-          ],
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0),
-            child: Text(
-              context.l10n.next_specialist_examination,
-              style: const TextStyle(fontSize: 24.0, fontWeight: FontWeight.w400),
-            ),
-          ),
-
           buildNextSpecialistExams(context),
           const SizedBox(height: 30),
         ],
@@ -761,16 +736,14 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
 
   Widget specialistCard(
     BuildContext context,
-    ExaminationPreventionStatus? item,
+    ExaminationPreventionStatus? item, //TODO its needet the item ?
     CategorizedExamination? catExam,
   ) {
     return GestureDetector(
       onTap: () {
         AutoRouter.of(context).push(
           ExaminationDetailRoute(
-            uuid: item!.uuid!,
-            categorizedExamination: catExam!,
-            choosedExamination: item,
+            categorizedExamination: catExam!, //TODO: Remove !
           ),
         );
       },
