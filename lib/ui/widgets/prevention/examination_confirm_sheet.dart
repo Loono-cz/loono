@@ -70,7 +70,7 @@ void showConfirmationSheet(
                     examProvider.updateExaminationsRecord(res.data);
                     if (!mounted) return;
                     isCustomExamination
-                        ? autoRouter.popUntilRouteWithName(MainRoute.name)
+                        ? await completedAction()
                         : await autoRouter.navigate(
                             AchievementRoute(
                               header: getAchievementTitle(context, examinationType),
