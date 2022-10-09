@@ -56,7 +56,6 @@ class CustomEditExamination extends StatefulWidget {
 
 class _CustomEditExaminationState extends State<CustomEditExamination> {
   String _customIntervalText = '';
-  int? _customIntervalNumber;
   DateTime? _lastExamDate;
 
   bool _idkCheck = false;
@@ -85,11 +84,9 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
   @override
   void initState() {
     super.initState();
-    _customIntervalNumber = widget.exam?.customInterval;
   }
 
   Future<void> sendRegularRequest({int? customInterval}) async {
-    final examProvider = Provider.of<ExaminationsProvider>(context, listen: false);
     final response = await registry.get<ExaminationRepository>().postExamination(
           widget.exam!.examinationType,
           uuid: widget.exam!.uuid,
@@ -150,7 +147,6 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
   }
 
   Future<void> sendRegularRequestConfirm({int? customInterval}) async {
-    final examProvider = Provider.of<ExaminationsProvider>(context, listen: false);
     final response = await registry.get<ExaminationRepository>().postExamination(
           widget.exam!.examinationType,
           uuid: widget.exam!.uuid,
@@ -209,7 +205,6 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          // mainAxisSize: MainAxisSize.min,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.end,

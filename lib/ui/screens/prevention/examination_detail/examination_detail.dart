@@ -145,8 +145,8 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
 
     response.map(
       success: (res) {
-        final exProvider = Provider.of<ExaminationsProvider>(context, listen: false);
-        exProvider.updateExaminationsRecord(res.data);
+        Provider.of<ExaminationsProvider>(context, listen: false)
+            .updateExaminationsRecord(res.data);
 
         showFlushBarSuccess(
           context,
@@ -258,39 +258,6 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
               .updateExaminationsRecord(res.data);
           AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
           showFlushBarSuccess(context, l10n.checkup_reminder_toast, sync: true);
-        },
-        failure: (err) {
-          showFlushBarError(
-            context,
-            statusCodeToText(
-              context,
-              err.error.response?.statusCode,
-            ),
-          );
-        },
-      );
-    }
-
-    Future<void> noteChanged() async {
-      _focusNote.unfocus();
-      // TODO: post only required changes! >> note | rewrite exProvider's methods
-      final response = await registry.get<ExaminationRepository>().postExamination(
-            _examinationType,
-            newDate: _examination.plannedDate,
-            uuid: _examination.uuid,
-            firstExam: false,
-            status: ExaminationStatus.NEW,
-            categoryType: _examinationCategoryType!,
-            note: _note,
-            actionType: _examinationActionType,
-            periodicExam: _examination.periodicExam,
-            customInterval: _examination.customInterval,
-          );
-
-      response.map(
-        success: (res) {
-          final exProvider = Provider.of<ExaminationsProvider>(context, listen: false);
-          exProvider.updateExaminationsRecord(res.data);
         },
         failure: (err) {
           showFlushBarError(
