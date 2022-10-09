@@ -409,6 +409,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
               child: noteTextField(
                 context,
                 noteController: _editingController,
+                enable: _examination.plannedDate?.toLocal().isBefore(DateTime.now()) == false,
                 onNoteChange: (value) {
                   _note = value;
                 },
