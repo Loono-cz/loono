@@ -39,7 +39,8 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
   final mapController = Completer<GoogleMapController>();
   final _sheetController = DraggableScrollableController();
 
-  final _healthcareProviderRepository = registry.get<HealthcareProviderRepository>();
+  final _healthcareProviderRepository =
+      registry.get<HealthcareProviderRepository>();
 
   late final MapStateService _mapState;
 
@@ -51,7 +52,8 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
 
   Future<void> _setHealthcareProviders({bool tryFetchAgainData = false}) async {
     if (_mapState.allHealthcareProviders.isEmpty) {
-      final healthcareProviders = await _healthcareProviderRepository.getHealthcareProviders();
+      final healthcareProviders =
+          await _healthcareProviderRepository.getHealthcareProviders();
       if (healthcareProviders != null && healthcareProviders.isNotEmpty) {
         _mapState.addAll(healthcareProviders);
         setState(() => _isHealthCareProvidersInMapService = true);
@@ -81,7 +83,6 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
     _mapState = context.read<MapStateService>();
   }
 
-
   @override
   void dispose() {
     _isFirstSelectedSpecializationSet = false;
@@ -96,7 +97,7 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
       if (specializationName != null) {
         WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
           final specResult =
-          _mapState.getSpecSearchResultByName(specializationName);
+              _mapState.getSpecSearchResultByName(specializationName);
           _mapState.setSpecialization(specResult);
         });
       }
@@ -105,34 +106,35 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if(_canFirstSelectedSpecializationSet){
+    if (_canFirstSelectedSpecializationSet) {
       _setFirstSelectedSpecialization();
       _canFirstSelectedSpecializationSet = false;
-    }
-    else {
+    } else {
       _canFirstSelectedSpecializationSet = true;
     }
     final currDoctorDetail =
-    context.select<MapStateService, SimpleHealthcareProvider?>((value) => value.doctorDetail);
-    final currSpec =
-    context.select<MapStateService, SearchResult?>((value) => value.currSpecialization);
+        context.select<MapStateService, SimpleHealthcareProvider?>(
+            (value) => value.doctorDetail);
+    final currSpec = context.select<MapStateService, SearchResult?>(
+        (value) => value.currSpecialization);
 
     return Scaffold(
       appBar: widget.onCancelTap != null
           ? AppBar(
-        backgroundColor: LoonoColors.bottomSheetPrevention,
-        actions: [
-          IconButton(
-            key: const Key('findDoctorPage_closeButton'),
-            icon: const Icon(Icons.close),
-            onPressed: widget.onCancelTap,
-          ),
-        ],
-      )
+              backgroundColor: LoonoColors.bottomSheetPrevention,
+              actions: [
+                IconButton(
+                  key: const Key('findDoctorPage_closeButton'),
+                  icon: const Icon(Icons.close),
+                  onPressed: widget.onCancelTap,
+                ),
+              ],
+            )
           : null,
       body: SafeArea(
         child: MemoizedStreamBuilder<HealthcareSyncState>(
-          memoizedStream: _healthcareProviderRepository.healthcareProvidersSyncStateStream,
+          memoizedStream:
+              _healthcareProviderRepository.healthcareProvidersSyncStateStream,
           builder: (context, snapshot) {
             final healthcareSyncState = snapshot.data;
             if (healthcareSyncState == HealthcareSyncState.completed &&
@@ -167,11 +169,13 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
                                   zoom: searchResult.zoomLevel,
                                 ),
                               );
-                              _sheetController.jumpTo(MapVariables.MIN_SHEET_SIZE);
+                              _sheetController
+                                  .jumpTo(MapVariables.MIN_SHEET_SIZE);
                               _setMapOpacity(1);
                             },
                           ),
-                          SpecializationChipsList(showDefaultSpecs: currSpec == null),
+                          SpecializationChipsList(
+                              showDefaultSpecs: currSpec == null),
                         ],
                       ),
                     ),
@@ -184,7 +188,8 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
                         await animateToPos(
                           mapController,
                           cameraPosition: CameraPosition(
-                            target: LatLng(healthcareProvider.lat, healthcareProvider.lng),
+                            target: LatLng(
+                                healthcareProvider.lat, healthcareProvider.lng),
                             zoom: MapVariables.DOCTOR_DETAIL_ZOOM,
                           ),
                         );
@@ -201,7 +206,8 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
                     const Align(
                       alignment: Alignment.bottomLeft,
                       child: Padding(
-                        padding: EdgeInsets.only(left: 9, bottom: bottomGoogleLogoPadding),
+                        padding: EdgeInsets.only(
+                            left: 9, bottom: bottomGoogleLogoPadding),
                         child: FeedbackButton(),
                       ),
                     ),
@@ -235,8 +241,8 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
                       child: DoctorDetailSheet(
                         key: const Key('findDoctorPage_doctorDetailSheet'),
                         doctor: currDoctorDetail,
-                        closeDetail: () =>
-                            _mapState.setDoctorDetail(null, unblockOnMoveMapFiltering: false),
+                        closeDetail: () => _mapState.setDoctorDetail(null,
+                            unblockOnMoveMapFiltering: false),
                       ),
                     ),
                   ),
