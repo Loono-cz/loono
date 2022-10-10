@@ -13,7 +13,7 @@ class PointsDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         const LoonoPointIcon(width: 24.0),
         const SizedBox(width: 8.0),

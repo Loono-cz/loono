@@ -1,9 +1,11 @@
 import 'dart:async';
 
+import 'package:another_flushbar/flushbar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/webview_service.dart';
@@ -27,7 +29,7 @@ class PreAuthMainScreen extends StatefulWidget {
 
 class _PreAuthMainScreenState extends State<PreAuthMainScreen> {
   StreamSubscription? subscription;
-  final noConnectionMessage = noConnectionFlushbar(isPreAuth: true);
+  Flushbar? noConnectionMessage;
 
   static const analyticsTabNames = [
     'PreAuthPreventionTab',
@@ -36,10 +38,10 @@ class _PreAuthMainScreenState extends State<PreAuthMainScreen> {
   ];
 
   void evalConnectivity(ConnectivityResult result) {
-    if (result == ConnectivityResult.none) {
-      noConnectionMessage.show(context);
-    } else {
-      noConnectionMessage.dismiss(context);
+    if (result == ConnectivityResult.none && noConnectionMessage?.isShowing() == false) {
+      noConnectionMessage?.show(context);
+    } else if (noConnectionMessage?.isDismissed() == false) {
+      noConnectionMessage?.dismiss(context);
     }
   }
 
@@ -50,27 +52,21 @@ class _PreAuthMainScreenState extends State<PreAuthMainScreen> {
     Connectivity().checkConnectivity().then(
           evalConnectivity,
         );
-
-    subscription = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
-      evalConnectivity(result);
-
-      /// re-evaluate connection status after network reconnection
-      if (result != ConnectivityResult.none) {
-        Connectivity().checkConnectivity().then(
-              evalConnectivity,
-            );
-      }
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      subscription = Connectivity().onConnectivityChanged.listen(evalConnectivity);
     });
   }
 
   @override
   void dispose() {
-    super.dispose();
     subscription?.cancel();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    noConnectionMessage ??= noConnectionFlushbar(context: context, isPreAuth: true);
+
     return WillPopScope(
       onWillPop: () async {
         final webViewController = context.read<WebViewProvider>().webViewController;
