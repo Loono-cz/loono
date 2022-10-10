@@ -36,11 +36,12 @@ class _MainScreenState extends State<MainScreen> {
   Flushbar? noConnectionMessage;
 
   void evalConnectivity(ConnectivityResult result) {
-    if (result == ConnectivityResult.none && noConnectionMessage?.isShowing() == false) {
-      noConnectionMessage?.show(context);
-    } else if (noConnectionMessage?.isDismissed() == false) {
-      noConnectionMessage?.dismiss(context);
-    }
+    /// TEMP: od not show 'no connection' flushbar -> randomly shows bcs of unknown bug
+    // if (result == ConnectivityResult.none && noConnectionMessage?.isShowing() == false) {
+    //   noConnectionMessage?.show(context);
+    // } else if (noConnectionMessage?.isDismissed() == false) {
+    //   noConnectionMessage?.dismiss(context);
+    // }
   }
 
   @override
