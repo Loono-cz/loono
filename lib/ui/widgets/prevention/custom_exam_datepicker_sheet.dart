@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/datetime_extensions.dart';
 import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
@@ -208,7 +209,10 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 isFirstStep = false;
               });
             } else {
-              await widget.onSubmit(date: newDate!);
+              if (newDate?.timeDatePickerIsInPast(context) == true) {
+                await widget.onSubmit(date: newDate!);
+              }
+              return;
             }
           },
         ),

@@ -275,6 +275,9 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                   viewStep = ViewSteps.timePicker;
                 });
               } else if (viewStep == ViewSteps.timePicker) {
+                if (!newDate!.timeDatePickerIsInPast(context)) {
+                  return;
+                }
                 setState(() {
                   viewStep = ViewSteps.noteField;
                 });
