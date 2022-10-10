@@ -69,7 +69,7 @@ class ExaminationDetailScreen extends StatelessWidget {
         child: categorizedExamination.category == const ExaminationCategory.unknownLastVisit() &&
                 _isMandatory
             ? ScheduleExamination(
-                examinationRecord: categorizedExamination.examination,
+                examinationRecord: examination,
               )
             : SingleChildScrollView(
                 physics: const ScrollPhysics(),

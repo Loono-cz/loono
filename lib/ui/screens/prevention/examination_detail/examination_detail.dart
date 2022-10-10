@@ -71,6 +71,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
   DateTime? get _nextVisitDate => _examination.plannedDate;
   bool get _isPeriodicalExam =>
       _examination.periodicExam == true || _examination.periodicExam == null; //Pravidelna prohlidka
+
   bool get _isCustomPeriodicalExam =>
       _isPeriodicalExam &&
       _examination.examinationCategoryType ==
@@ -736,30 +737,35 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
     final specialistExams = examProvider.examinations?.examinations
         .toList()
         .where(
-          (exam) => exam.examinationType == _examinationType && exam.hashCode != _hashCodeOfExam,
+          (exam) => exam.examinationType == _examinationType && exam != _examination,
         )
         .toList();
-    final categorized = specialistExams != null
-        ? specialistExams
-            .map(
-              (e) => CategorizedExamination(
-                examination: e,
-                category: e.calculateStatus(),
-              ),
-            )
-            .toList()
-        : <CategorizedExamination>[];
+
     return Padding(
       padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-      child: specialistExams!.isNotEmpty
+      child: specialistExams != null && specialistExams.isNotEmpty
           ? ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: specialistExams.length,
               itemBuilder: (context, index) {
-                return specialistCard(
-                  context,
-                  categorized.isNotEmpty ? categorized[index] : widget.categorizedExamination,
+                final exam = specialistExams[index];
+                final catExam = CategorizedExamination(
+                  examination: exam,
+                  category: exam.calculateStatus(),
+                );
+                return InkWell(
+                  onTap: () {
+                    AutoRouter.of(context).replace(
+                      ExaminationDetailRoute(
+                        categorizedExamination: catExam, //TODO: Remove !
+                      ),
+                    );
+                  },
+                  child: specialistCard(
+                    context,
+                    catExam,
+                  ),
                 );
               },
             )
@@ -775,56 +781,49 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
 
   Widget specialistCard(
     BuildContext context,
-    CategorizedExamination? catExam,
+    CategorizedExamination catExam,
   ) {
-    final item = catExam?.examination;
-    return GestureDetector(
-      onTap: () {
-        AutoRouter.of(context).push(
-          ExaminationDetailRoute(
-            categorizedExamination: catExam!, //TODO: Remove !
-          ),
-        );
-      },
-      child: SizedBox(
-        height: 80,
-        child: Card(
-          color: LoonoColors.otherExamDetailCardColor,
-          elevation: 0,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    if (item?.examinationActionType != null)
-                      Text(
-                        ExaminationActionTypeExt(item!.examinationActionType!).l10n_name,
-                        style: LoonoFonts.cardTitle,
-                      ),
-                    const SizedBox(
-                      height: 4,
+    final item = catExam.examination;
+    return SizedBox(
+      height: 80,
+      child: Card(
+        color: LoonoColors.otherExamDetailCardColor,
+        elevation: 0,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (item.examinationActionType != null)
+                    Text(
+                      item.examinationCategoryType == ExaminationCategoryType.CUSTOM
+                          ? ExaminationActionTypeExt(item.examinationActionType!).l10n_name
+                          : context.l10n.preventive_inspection,
+                      style: LoonoFonts.cardTitle,
                     ),
-                    if (item?.plannedDate != null &&
-                        catExam?.category != const ExaminationCategory.newToSchedule()) ...[
-                      _calendarRow(
-                        DateFormat(LoonoStrings.dateWithHoursFormat).format(item!.plannedDate!),
-                        showCalendarIcon: true,
-                      )
-                    ] else
-                      Text(
-                        context.l10n.order_yourself.toUpperCase(),
-                        style: LoonoFonts.cardSubtitle.copyWith(color: LoonoColors.grey),
-                      )
-                  ],
-                ),
-                SvgPicture.asset('assets/icons/next_icon.svg')
-              ],
-            ),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  if (item.plannedDate != null &&
+                      catExam.category != const ExaminationCategory.newToSchedule()) ...[
+                    _calendarRow(
+                      DateFormat(LoonoStrings.dateWithHoursFormat).format(item.plannedDate!),
+                      showCalendarIcon: true,
+                    )
+                  ] else
+                    Text(
+                      context.l10n.order_yourself.toUpperCase(),
+                      style: LoonoFonts.cardSubtitle.copyWith(color: LoonoColors.grey),
+                    )
+                ],
+              ),
+              SvgPicture.asset('assets/icons/next_icon.svg')
+            ],
           ),
         ),
       ),
