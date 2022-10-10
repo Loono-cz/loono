@@ -758,7 +758,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                   onTap: () {
                     AutoRouter.of(context).replace(
                       ExaminationDetailRoute(
-                        categorizedExamination: catExam, //TODO: Remove !
+                        categorizedExamination: catExam,
                       ),
                     );
                   },
