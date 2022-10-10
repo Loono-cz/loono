@@ -142,6 +142,7 @@ class NewsletterAndGDPRScreenState extends State<NewsletterAndGDPRScreen> {
 
   Widget _buildGDPRDescription(BuildContext context) {
     return RichText(
+      textAlign: TextAlign.justify,
       text: TextSpan(
         text: context.l10n.fallback_account_gdpr_desc1,
         style: const TextStyle(
@@ -196,6 +197,7 @@ class NewsletterAndGDPRScreenState extends State<NewsletterAndGDPRScreen> {
   Widget _buildDescription(String description) {
     return Text(
       description,
+      textAlign: TextAlign.justify,
       style: const TextStyle(
         color: LoonoColors.black,
         height: 1.5,
