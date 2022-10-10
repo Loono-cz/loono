@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:another_flushbar/flushbar.dart';
 import 'package:auto_route/auto_route.dart';
@@ -46,8 +47,9 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
     final examinationsProvider = Provider.of<ExaminationsProvider>(context, listen: false);
-
-    checkAndShowDonatePage(context, mounted: mounted);
+    if (!Platform.isIOS) {
+      checkAndShowDonatePage(context, mounted: mounted);
+    }
     registry.get<UserRepository>().sync();
 
     SchedulerBinding.instance.addPostFrameCallback((_) {

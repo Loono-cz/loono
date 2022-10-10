@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
@@ -104,24 +106,26 @@ class OpenSettingsScreen extends StatelessWidget {
                     const SizedBox(height: 36.0)
                   else
                     const SizedBox(height: 48.0),
-                  Text(
-                    context.l10n.donate_label_desc,
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: LoonoButton(
-                      text: context.l10n.donate_label_btn,
-                      onTap: () async {
-                        if (await canLaunchUrlString(LoonoStrings.donateUrl)) {
-                          await launchUrlString(LoonoStrings.donateUrl);
-                        }
-                      },
+                  if (!Platform.isIOS) ...[
+                    Text(
+                      context.l10n.donate_label_desc,
+                      style: const TextStyle(fontSize: 16),
                     ),
-                  ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: LoonoButton(
+                        text: context.l10n.donate_label_btn,
+                        onTap: () async {
+                          if (await canLaunchUrlString(LoonoStrings.donateUrl)) {
+                            await launchUrlString(LoonoStrings.donateUrl);
+                          }
+                        },
+                      ),
+                    ),
+                  ],
                   const SizedBox(height: 28.0),
                   Align(
                     child: Column(

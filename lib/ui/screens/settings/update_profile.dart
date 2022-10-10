@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -85,12 +87,13 @@ class UpdateProfileScreenState extends State<UpdateProfileScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     context.l10n.update_profile_header,
                     style: const TextStyle(fontSize: 24),
                   ),
-                  const SizedBox(height: 28.0),
+                  const SizedBox(height: 16.0),
                   userSettingSection(
                     const Key(''),
                     context,
@@ -98,10 +101,12 @@ class UpdateProfileScreenState extends State<UpdateProfileScreen> {
                     birthDateWithoutDay,
                   ),
                   const SizedBox(
-                    height: 28.0,
+                    height: 16.0,
                   ),
-                  notificationSection(context),
-                  const SizedBox(height: 80.0),
+                  if (!Platform.isIOS) ...[
+                    notificationSection(context),
+                  ],
+                  // const SizedBox(height: 80.0),
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: TextButton(

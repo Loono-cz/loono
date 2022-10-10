@@ -70,7 +70,7 @@ void showDeleteExaminationSheet({
               ),
               AsyncLoonoApiButton(
                 key: const Key('cancelCheckUpSheet_btn_cancelCheckUp'),
-                text: context.l10n.cancel_checkup,
+                text: context.l10n.delete_checkup,
                 asyncCallback: () async {
                   /// code anchor: #postCancelExamiantion
                   final response =
@@ -84,7 +84,7 @@ void showDeleteExaminationSheet({
                       // await registry.get<CalendarRepository>().deleteEvent(examinationType);
                       examProvider.deleteExaminationRecord(id);
                       SchedulerBinding.instance.addPostFrameCallback((_) {
-                        showFlushBarSuccess(context, context.l10n.checkup_canceled);
+                        showFlushBarSuccess(context, context.l10n.checkup_deleted);
                       });
                       await autoRouter.replace(MainRoute(children: [PreventionRoute()]));
                     },
