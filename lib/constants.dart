@@ -76,6 +76,7 @@ class LoonoStrings {
   static const dateFormatWithNameMonth = 'd. MMMM yyyy';
   static const hoursFormat = 'HH:mm';
   static const monthInYear = 12;
+  static const customDefaultMonth = 6;
 }
 
 class LoonoFonts {

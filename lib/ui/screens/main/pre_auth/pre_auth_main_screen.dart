@@ -5,6 +5,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/webview_service.dart';
@@ -51,8 +52,9 @@ class _PreAuthMainScreenState extends State<PreAuthMainScreen> {
     Connectivity().checkConnectivity().then(
           evalConnectivity,
         );
-
-    subscription = Connectivity().onConnectivityChanged.listen(evalConnectivity);
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      subscription = Connectivity().onConnectivityChanged.listen(evalConnectivity);
+    });
   }
 
   @override

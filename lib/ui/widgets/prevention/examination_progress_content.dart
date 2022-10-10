@@ -22,6 +22,7 @@ class ExaminationProgressContent extends StatelessWidget {
 
   ExaminationCategoryType? get _examinationCategoryType =>
       categorizedExamination.examination.examinationCategoryType;
+
   bool get _isToday {
     final now = DateTime.now();
     final visit = categorizedExamination.examination.plannedDate!.toLocal();
@@ -31,7 +32,9 @@ class ExaminationProgressContent extends StatelessWidget {
   bool get _isCustomExamination => _examinationCategoryType == ExaminationCategoryType.CUSTOM;
 
   String _intervalYears(BuildContext context) {
-    final interval = categorizedExamination.examination.intervalYears;
+    final interval = _isCustomExamination
+        ? categorizedExamination.examination.customInterval ?? LoonoStrings.customDefaultMonth
+        : categorizedExamination.examination.intervalYears;
     //transformMonthToYear
     if (_isCustomExamination) {
       return '${transformMonthToYear(interval)} ${interval < LoonoStrings.monthInYear ? 'měsíců' : 'roků'}';
@@ -116,7 +119,9 @@ class ExaminationProgressContent extends StatelessWidget {
 
   Widget _earlyCheckupContent(BuildContext context) {
     final examination = categorizedExamination.examination;
-    final interval = examination.intervalYears;
+    final interval = _isCustomExamination
+        ? examination.customInterval ?? LoonoStrings.customDefaultMonth
+        : examination.intervalYears;
     DateTime newWaitToDateTime;
     final lastDateVisit = examination.lastConfirmedDate!.toLocal();
 

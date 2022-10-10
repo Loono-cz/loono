@@ -26,9 +26,21 @@ extension PreventDate on DateTime {
     return true;
   }
 
-  bool timePickerIsInFuture(BuildContext context) {
+  bool timeDatePickerIsInFuture(BuildContext context) {
     final now = DateTime.now();
-    if (hour < now.hour || (hour == now.hour && minute <= now.minute)) {
+    if (isBefore(now) || isAtSameMomentAs(now)) {
+      showFlushBarError(
+        context,
+        context.l10n.error_must_be_in_future,
+      );
+      return false;
+    }
+    return true;
+  }
+
+  bool timeDatePickerIsInPast(BuildContext context) {
+    final now = DateTime.now();
+    if (isBefore(now)) {
       showFlushBarError(
         context,
         context.l10n.error_must_be_in_future,

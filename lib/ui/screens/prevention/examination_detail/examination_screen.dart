@@ -56,9 +56,7 @@ class ExaminationDetailScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: IconButton(
                     key: const Key('examinationDetailPage_btn_menu'),
-                    onPressed: () {
-                      showCustomExamEditModal(context, examination);
-                    },
+                    onPressed: () => showCustomExamEditModal(context, examination),
                     icon: SvgPicture.asset(
                       'assets/icons/more_vertical.svg',
                     ),
@@ -71,7 +69,7 @@ class ExaminationDetailScreen extends StatelessWidget {
         child: categorizedExamination.category == const ExaminationCategory.unknownLastVisit() &&
                 _isMandatory
             ? ScheduleExamination(
-                examinationRecord: categorizedExamination.examination,
+                examinationRecord: examination,
               )
             : SingleChildScrollView(
                 physics: const ScrollPhysics(),

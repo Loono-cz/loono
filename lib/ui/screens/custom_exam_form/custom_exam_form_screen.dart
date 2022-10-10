@@ -14,7 +14,9 @@ import 'package:loono/services/database_service.dart';
 import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/custom_exam_form/custom_input_text_field.dart';
+import 'package:loono/ui/widgets/note_text_field.dart';
 import 'package:loono/ui/widgets/settings/checkbox.dart';
+import 'package:loono/utils/hidekeyboard_util.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
@@ -42,10 +44,8 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
   bool _showError = false;
   bool _showLastExamError = false;
   bool _showPeriodDateTimeError = false;
-  @override
-  void initState() {
-    super.initState();
-  }
+
+  final TextEditingController _noteController = TextEditingController();
 
   final _usersDao = registry.get<DatabaseService>().users;
 
@@ -131,158 +131,146 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                context.l10n.add_examination,
-                style: LoonoFonts.customExamLabel,
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              CustomInputTextField(
-                error: _showError && _specialist == null,
-                label: _specialist == null ? '' : context.l10n.specialist,
-                hintText: context.l10n.choose_specialist,
-                value: _specialist != null ? ExaminationTypeExt(_specialist!).l10n_name : '',
-                onClickInputField: () => AutoRouter.of(context).navigate(
-                  ChooseSpecialistRoute(
-                    specialist: _specialist,
-                    onProviderSet: onProviderSet,
-                  ),
+        child: GestureDetector(
+          onTap: () => hideKeyboard(context),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  context.l10n.add_examination,
+                  style: LoonoFonts.customExamLabel,
                 ),
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              CustomInputTextField(
-                error: _examinationType == null && _showError,
-                label: _specialist == null ? '' : context.l10n.examination_type,
-                hintText: context.l10n.choose_examination_type,
-                value: _examinationType != null
-                    ? ExaminationActionTypeExt(_examinationType!).l10n_name
-                    : '',
-                onClickInputField: () => AutoRouter.of(context).navigate(
-                  ChooseCustomExaminationTypeRoute(
-                    actionType: _examinationType,
-                    onActionTypeSet: onActionTypeSet,
-                  ),
+                const SizedBox(
+                  height: 30,
                 ),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              Text(context.l10n.exam_frequency),
-              const SizedBox(
-                height: 16,
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-                  border: Border.all(color: LoonoColors.primary, width: 1),
-                ),
-                child: Row(
-                  children: [
-                    checkboxConetnt(
-                      context,
-                      context.l10n.disposable, //TODO: Translation
-                      () => setState(() {
-                        _isPeriodicExam = false;
-                        _showPeriodDateTimeError = false;
-                        _showLastExamError = false;
-                        _note = '';
-                      }),
-                      !_isPeriodicExam,
-                      false,
+                CustomInputTextField(
+                  error: _showError && _specialist == null,
+                  label: _specialist == null ? '' : context.l10n.specialist,
+                  hintText: context.l10n.choose_specialist,
+                  value: _specialist != null ? ExaminationTypeExt(_specialist!).l10n_name : '',
+                  onClickInputField: () => AutoRouter.of(context).navigate(
+                    ChooseSpecialistRoute(
+                      specialist: _specialist,
+                      onProviderSet: onProviderSet,
                     ),
-                    checkboxConetnt(
-                      context,
-                      context.l10n.regularly, //TODO: Translation
-                      () => setState(() {
-                        _note = '';
-                        _isPeriodicExam = true;
-                        _showPeriodDateTimeError = false;
-                        _showLastExamError = false;
-                      }),
-                      _isPeriodicExam,
-                      true,
+                  ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                CustomInputTextField(
+                  error: _examinationType == null && _showError,
+                  label: _specialist == null ? '' : context.l10n.examination_type,
+                  hintText: context.l10n.choose_examination_type,
+                  value: _examinationType != null
+                      ? ExaminationActionTypeExt(_examinationType!).l10n_name
+                      : '',
+                  onClickInputField: () => AutoRouter.of(context).navigate(
+                    ChooseCustomExaminationTypeRoute(
+                      actionType: _examinationType,
+                      onActionTypeSet: onActionTypeSet,
                     ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 16.0,
-              ),
-              Container(child: buildFrequentionForm(context)),
-              const SizedBox(
-                height: 8.0,
-              ),
-              TextFormField(
-                minLines: 5,
-                maxLines: 10,
-                maxLength: 256,
-                keyboardType: TextInputType.multiline,
-                initialValue: _note,
-                enabled: _isPeriodicExam
-                    ? (_nextExamDate != null && !_nextExamChck) && (_nextExamDate != null)
-                    : true,
-                onChanged: onNoteChange,
-
-                //autofillHints: [context.l10n.note_visiting_description],
-                decoration: InputDecoration(
-                  hintText: context.l10n.note_visiting_description,
-                  label: _note == '' ? null : Text(context.l10n.note_visiting),
-                  hintStyle: const TextStyle(color: Colors.grey, fontSize: 14.0),
-                  focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: LoonoColors.primaryEnabled),
-                  ),
-                  border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 15.0,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 30.0),
-                child: AsyncLoonoApiButton(
-                  text: context.l10n.action_save,
-                  asyncCallback: () async {
-                    if (_isPeriodicExam) {
-                      if (isFormValid) {
-                        if (_lastExamDate != null && _nextExamDate != null) {
-                          await sendRegularRequest();
-                        } else if (_lastExamDate != null) {
-                          await sendRegularRequestConfirm();
+                const SizedBox(
+                  height: 16,
+                ),
+                Text(context.l10n.exam_frequency),
+                const SizedBox(
+                  height: 16,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+                    border: Border.all(color: LoonoColors.primary, width: 1),
+                  ),
+                  child: Row(
+                    children: [
+                      checkboxConetnt(
+                        context,
+                        context.l10n.disposable,
+                        () => setState(() {
+                          _noteController.text = '';
+                          _isPeriodicExam = false;
+                          _showPeriodDateTimeError = false;
+                          _showLastExamError = false;
+                          _note = '';
+                        }),
+                        !_isPeriodicExam,
+                        false,
+                      ),
+                      checkboxConetnt(
+                        context,
+                        context.l10n.regularly,
+                        () => setState(() {
+                          _noteController.text = '';
+                          _isPeriodicExam = true;
+                          _showPeriodDateTimeError = false;
+                          _showLastExamError = false;
+                        }),
+                        _isPeriodicExam,
+                        true,
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 16.0,
+                ),
+                Container(child: buildFrequentionForm(context)),
+                const SizedBox(
+                  height: 8.0,
+                ),
+                noteTextField(
+                  context,
+                  noteController: _noteController,
+                  onNoteChange: onNoteChange,
+                  enable: _isPeriodicExam
+                      ? (_nextExamDate != null && !_nextExamChck) && (_nextExamDate != null)
+                      : true,
+                ),
+                const SizedBox(
+                  height: 15.0,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 30.0),
+                  child: AsyncLoonoApiButton(
+                    text: context.l10n.action_save,
+                    asyncCallback: () async {
+                      if (_isPeriodicExam) {
+                        if (isFormValid) {
+                          if (_lastExamDate != null && _nextExamDate != null) {
+                            await sendRegularRequest();
+                          } else if (_lastExamDate != null) {
+                            await sendRegularRequestConfirm();
+                          } else {
+                            await sendRegularRequestNew();
+                          }
                         } else {
-                          await sendRegularRequestNew();
+                          setState(() {
+                            _showError = true;
+                            _showLastExamError = !_lastExamChck;
+                          });
                         }
                       } else {
-                        setState(() {
-                          _showError = true;
-                          _showLastExamError = !_lastExamChck ? true : false;
-                        });
+                        if (_specialist != null &&
+                            _examinationType != null &&
+                            _periodDateTime != null) {
+                          await sendOnceRequest();
+                        } else {
+                          setState(() {
+                            _showError = true;
+                            _showPeriodDateTimeError = true;
+                          });
+                        }
                       }
-                    } else {
-                      if (_specialist != null &&
-                          _examinationType != null &&
-                          _periodDateTime != null) {
-                        await sendOnceRequest();
-                      } else {
-                        setState(() {
-                          _showError = true;
-                          _showPeriodDateTimeError = true;
-                        });
-                      }
-                    }
-                  },
-                ),
-              )
-            ],
+                    },
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

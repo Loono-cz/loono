@@ -88,10 +88,7 @@ class ExaminationBadges extends StatelessWidget {
   }
 
   BadgeState _getBadgeState(Badge? data, int index) {
-    if (categorizedExamination.examination.state == ExaminationStatus.CONFIRMED &&
-        !isPlannedDate &&
-        (isLastConfirmedDateOlderMinusTwoMonths) &&
-        index + 1 == data?.level) {
+    if (isLastConfirmedDateOlderMinusTwoMonths && index + 1 == data?.level) {
       return BadgeState.greenBadge;
     } else if (_isBadgeLastInMonthOfValidity(data, index)) {
       return BadgeState.redBadge;
@@ -200,10 +197,12 @@ class ExaminationBadges extends StatelessWidget {
                                             color: Colors.white,
                                           ),
                                           position: b.BadgePosition.bottomEnd(bottom: -8, end: -24),
-                                          child: examCategoryType == ExaminationCategoryType.CUSTOM
+                                          child: examCategoryType ==
+                                                  ExaminationCategoryType
+                                                      .CUSTOM //TODO: customExamCount is probably only for first examination.
                                               ? SvgPicture.asset(
                                                   'assets/badges_examination/custom_examination/badge'
-                                                  '${badge != null && badge.level >= index + 1 ? '_award.svg' : '_disabled.svg'}',
+                                                  '${badge != null ? '_award.svg' : '_disabled.svg'}', //TODO Logic about custom exam rewards ??
                                                 )
                                               : Image.asset(
                                                   'assets/badges_examination/${examinationType.toString().toLowerCase()}'

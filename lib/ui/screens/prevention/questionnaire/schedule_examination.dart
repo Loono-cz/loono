@@ -39,13 +39,16 @@ class ScheduleExamination extends StatelessWidget {
 
   void _navigateToDetail(
     BuildContext context,
+    String uuid,
     ExaminationsProvider provider, {
     String? message,
   }) {
     /// TODO: this whole post-auth navigation needs refactor as part of https://cesko-digital.atlassian.net/browse/LOON-571
     /// to get rid of initialMessage and stateful widget from exam detail
     final exam = provider.examinations?.examinations.firstWhereOrNull(
-      (item) => item.examinationType == _examinationType,
+      (item) => item.uuid != null && uuid.isNotEmpty
+          ? item.uuid == uuid
+          : examinationRecord.examinationType == item.examinationType,
     );
     if (exam != null) {
       _appRouter
@@ -107,10 +110,13 @@ class ScheduleExamination extends StatelessWidget {
                                             );
                                     response.map(
                                       success: (res) {
-                                        examinationsProvider.updateExaminationsRecord(res.data);
+                                        examinationsProvider.updateExaminationsRecord(
+                                          res.data,
+                                        );
                                         registry.get<UserRepository>().sync();
                                         _navigateToDetail(
                                           context,
+                                          res.data.uuid ?? '',
                                           examinationsProvider,
                                           message: context.l10n.checkup_reminder_toast,
                                         );
@@ -139,6 +145,7 @@ class ScheduleExamination extends StatelessWidget {
                                         registry.get<UserRepository>().sync();
                                         _navigateToDetail(
                                           context,
+                                          res.data.uuid ?? '',
                                           examinationsProvider,
                                           message: context.l10n.checkup_reminder_toast,
                                         );
@@ -176,7 +183,7 @@ class ScheduleExamination extends StatelessWidget {
                   success: (res) async {
                     Provider.of<ExaminationsProvider>(context, listen: false)
                         .updateExaminationsRecord(res.data);
-                    _navigateToDetail(context, examinationsProvider);
+                    _navigateToDetail(context, res.data.uuid ?? '', examinationsProvider);
                     await registry.get<UserRepository>().sync();
                   },
                   failure: (err) async {
