@@ -36,6 +36,7 @@ import 'package:loono/ui/screens/onboarding/doctors/general_practitioner_date.da
 import 'package:loono/ui/screens/onboarding/doctors/gynecology.dart';
 import 'package:loono/ui/screens/onboarding/doctors/gynecology_date.dart';
 import 'package:loono/ui/screens/onboarding/fallback_account/email.dart';
+import 'package:loono/ui/screens/onboarding/fallback_account/newsletter_and_gdpr.dart';
 import 'package:loono/ui/screens/onboarding/fallback_account/nickname.dart';
 import 'package:loono/ui/screens/onboarding/fill_form_later.dart';
 import 'package:loono/ui/screens/onboarding/gender.dart';
@@ -100,6 +101,7 @@ const _preAuthRoutes = <AutoRoute>[
   _badgeOverviewRoute,
   AutoRoute<void>(page: NicknameScreen, path: 'fallback-account/name'),
   AutoRoute<void>(page: EmailScreen, path: 'fallback-account/email'),
+  AutoRoute<void>(page: NewsletterAndGDPRScreen, path: 'fallback-account/newsletter-gdpr'),
   _loginRoute,
   ..._findDoctorRoutes,
   AutoRoute<void>(page: LogoutScreen, path: 'logout'),

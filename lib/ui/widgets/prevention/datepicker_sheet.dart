@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/date_helpers.dart';
+import 'package:loono/helpers/datetime_extensions.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
@@ -22,6 +24,7 @@ void showDatePickerSheet({
   required Future<void> Function({required DateTime date}) onSubmit,
   bool isNewCheckup = false,
   String? additionalBottomText,
+  int intervalMonths = 0,
 }) {
   registry.get<FirebaseAnalytics>().logEvent(name: 'OpenDatePickerModal');
   showModalBottomSheet<void>(
@@ -50,6 +53,7 @@ void showDatePickerSheet({
               onSubmit: onSubmit,
               additionalBottomText: additionalBottomText,
               isNewCheckup: isNewCheckup,
+              intervalMonths: intervalMonths,
             ),
           ),
         ),
@@ -66,6 +70,7 @@ class _DatePickerContent extends StatefulWidget {
     required this.categorizedExamination,
     required this.onSubmit,
     required this.isNewCheckup,
+    required this.intervalMonths,
     this.additionalBottomText,
   }) : super(key: key);
 
@@ -74,6 +79,7 @@ class _DatePickerContent extends StatefulWidget {
 
   final String? additionalBottomText;
   final bool isNewCheckup;
+  final int intervalMonths;
 
   @override
   _DatePickerContentState createState() => _DatePickerContentState();
@@ -109,28 +115,10 @@ class _DatePickerContentState extends State<_DatePickerContent> {
   @override
   Widget build(BuildContext context) {
     final examinationType = widget.categorizedExamination.examination.examinationType;
-    final practitioner =
-        procedureQuestionTitle(context, examinationType: examinationType).toLowerCase();
-    final preposition = czechPreposition(context, examinationType: examinationType);
-    final prepositionDativ = czechPrepositionDativ(context, examinationType: examinationType);
 
     final originalDate = widget.categorizedExamination.examination.plannedDate?.toLocal();
 
-    final newCheckupTitle = isFirstStep
-        ? _sex == Sex.MALE
-            ? context.l10n.checkup_new_date_title_male
-            : context.l10n.checkup_new_date_title_female
-        : _sex == Sex.MALE
-            ? context.l10n.checkup_new_time_title_male
-            : context.l10n.checkup_new_time_title_female;
-
-    String _buildTitle(BuildContext context) {
-      final exam = widget.categorizedExamination.examination;
-      // if (widget.isNewCheckup) return newCheckupTitle;
-      // if (exam.examinationCategoryType == ExaminationCategoryType.CUSTOM) {
-
-      // }
-      // return '${isFirstStep ? context.l10n.new_checkup_date : context.l10n.new_checkup_time} $preposition $practitioner';
+    String buildTitle(BuildContext context) {
       return isFirstStep
           ? _sex == Sex.MALE
               ? context.l10n.wich_date_you_have_reservation_male
@@ -173,7 +161,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 TextSpan(
                   children: [
                     TextSpan(
-                      text: _buildTitle(context),
+                      text: buildTitle(context),
                       style: LoonoFonts.headerFontStyle,
                     ),
                     if (widget.isNewCheckup)
@@ -228,12 +216,60 @@ class _DatePickerContentState extends State<_DatePickerContent> {
           text: isFirstStep ? context.l10n.continue_info : context.l10n.action_save,
           enabled: newDate != null,
           asyncCallback: () async {
-            final isDateValid = Date.now().toDateTime().isAtSameMomentAs(
-                      Date(newDate!.year, newDate!.month, newDate!.day).toDateTime(),
-                    ) ||
-                DateTime.now().isBefore(newDate!);
-            if (!isDateValid) {
-              showFlushBarError(context, context.l10n.error_must_be_in_future);
+            final examination = widget.categorizedExamination.examination;
+            final isCustom = examination.examinationCategoryType == ExaminationCategoryType.CUSTOM;
+            final lastConfirmed = examination.lastConfirmedDate;
+
+            if (isCustom && lastConfirmed != null) {
+              final customInterval = examination.customInterval!;
+              final textInterval = customInterval < LoonoStrings.monthInYear ? 'měsíců' : 'roků';
+              final intervalDate = customInterval < LoonoStrings.monthInYear
+                  ? DateTime(
+                      lastConfirmed.year,
+                      lastConfirmed.month + customInterval,
+                      lastConfirmed.day,
+                    )
+                  : DateTime(
+                      lastConfirmed.year + transformMonthToYear(customInterval),
+                      lastConfirmed.month,
+                      lastConfirmed.day,
+                    );
+
+              final isDateValid = intervalDate.isAtSameMomentAs(
+                    newDate!,
+                  ) ||
+                  intervalDate.isBefore(newDate!);
+              if (!isDateValid) {
+                showFlushBarError(
+                  context,
+                  context.l10n.error_must_be_in_future_by_interval(
+                    transformMonthToYear(customInterval),
+                    textInterval,
+                  ),
+                );
+                return;
+              }
+            } else if (lastConfirmed != null) {
+              final customInterval = examination.intervalYears;
+              final intervalDate = DateTime(
+                lastConfirmed.year + customInterval,
+                lastConfirmed.month,
+                lastConfirmed.day,
+              );
+
+              final isDateValid = intervalDate.isAtSameMomentAs(
+                    newDate!,
+                  ) ||
+                  intervalDate.isBefore(newDate!);
+              if (!isDateValid) {
+                showFlushBarError(
+                  context,
+                  context.l10n.error_must_be_in_future_by_interval(customInterval, 'roků'),
+                );
+                return;
+              }
+            }
+            if (newDate?.datePickerIsInFuture(context) == false) {
               return;
             }
             if (isFirstStep) {
@@ -251,7 +287,10 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 isFirstStep = false;
               });
             } else {
-              await widget.onSubmit(date: newDate!);
+              if (newDate?.timeDatePickerIsInFuture(context) == true) {
+                await widget.onSubmit(date: newDate!);
+              }
+              return;
             }
           },
         ),

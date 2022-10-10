@@ -22,19 +22,24 @@ class ExaminationProgressContent extends StatelessWidget {
 
   ExaminationCategoryType? get _examinationCategoryType =>
       categorizedExamination.examination.examinationCategoryType;
+
   bool get _isToday {
     final now = DateTime.now();
     final visit = categorizedExamination.examination.plannedDate!.toLocal();
     return now.day == visit.day && now.month == visit.month && now.year == visit.year;
   }
 
+  bool get _isCustomExamination => _examinationCategoryType == ExaminationCategoryType.CUSTOM;
+
   String _intervalYears(BuildContext context) {
-    final yearInterval = categorizedExamination.examination.intervalYears;
+    final interval = _isCustomExamination
+        ? categorizedExamination.examination.customInterval ?? LoonoStrings.customDefaultMonth
+        : categorizedExamination.examination.intervalYears;
     //transformMonthToYear
-    if (_examinationCategoryType == ExaminationCategoryType.CUSTOM) {
-      return '${transformMonthToYear(yearInterval)} ${yearInterval < 12 ? 'měsíců' : 'roků'}';
+    if (_isCustomExamination) {
+      return '${transformMonthToYear(interval)} ${interval < LoonoStrings.monthInYear ? 'měsíců' : 'roků'}';
     } else {
-      return '${yearInterval.toString()} ${yearInterval > 1 ? context.l10n.years : context.l10n.year}';
+      return '${interval.toString()} ${interval > 1 ? context.l10n.years : context.l10n.year}';
     }
   }
 
@@ -114,18 +119,17 @@ class ExaminationProgressContent extends StatelessWidget {
 
   Widget _earlyCheckupContent(BuildContext context) {
     final examination = categorizedExamination.examination;
-    final interval = examination.intervalYears;
+    final interval = _isCustomExamination
+        ? examination.customInterval ?? LoonoStrings.customDefaultMonth
+        : examination.intervalYears;
     DateTime newWaitToDateTime;
     final lastDateVisit = examination.lastConfirmedDate!.toLocal();
 
-    if (interval <= 11) {
+    if (_isCustomExamination && interval < LoonoStrings.monthInYear) {
       newWaitToDateTime = DateTime(lastDateVisit.year, lastDateVisit.month + interval);
     } else {
-      final isCustom = categorizedExamination.examination.examinationCategoryType ==
-          ExaminationCategoryType.CUSTOM;
-
       newWaitToDateTime = DateTime(
-        lastDateVisit.year + (isCustom ? transformMonthToYear(interval) : interval),
+        lastDateVisit.year + (_isCustomExamination ? transformMonthToYear(interval) : interval),
         lastDateVisit.month,
       );
     }

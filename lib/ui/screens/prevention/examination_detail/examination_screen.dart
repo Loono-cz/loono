@@ -15,23 +15,25 @@ class ExaminationDetailScreen extends StatelessWidget {
   const ExaminationDetailScreen({
     Key? key,
     required this.categorizedExamination,
-    this.choosedExamination,
     this.initialMessage,
   }) : super(key: key);
 
   final CategorizedExamination categorizedExamination;
   final String? initialMessage; // show flushbar message on init
-  final ExaminationPreventionStatus? choosedExamination;
+  ExaminationPreventionStatus get _exam => categorizedExamination.examination;
+
+  bool get _isMandatory => _exam.examinationCategoryType == ExaminationCategoryType.MANDATORY;
 
   @override
   Widget build(BuildContext context) {
-    final examination = choosedExamination ??
-        Provider.of<ExaminationsProvider>(context, listen: true)
-            .examinations!
-            .examinations
-            .firstWhere(
-              (item) => item.examinationType == categorizedExamination.examination.examinationType,
-            );
+    final examination = Provider.of<ExaminationsProvider>(context, listen: true)
+        .examinations!
+        .examinations
+        .firstWhere(
+          (item) => item.uuid != null
+              ? item.uuid == _exam.uuid
+              : _exam.examinationType == item.examinationType,
+        );
 
     return Scaffold(
       appBar: AppBar(
@@ -54,9 +56,7 @@ class ExaminationDetailScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: IconButton(
                     key: const Key('examinationDetailPage_btn_menu'),
-                    onPressed: () {
-                      showCustomExamEditModal(context, examination);
-                    },
+                    onPressed: () => showCustomExamEditModal(context, examination),
                     icon: SvgPicture.asset(
                       'assets/icons/more_vertical.svg',
                     ),
@@ -67,9 +67,9 @@ class ExaminationDetailScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: categorizedExamination.category == const ExaminationCategory.unknownLastVisit() &&
-                choosedExamination?.examinationCategoryType == ExaminationCategoryType.MANDATORY
+                _isMandatory
             ? ScheduleExamination(
-                examinationRecord: categorizedExamination.examination,
+                examinationRecord: examination,
               )
             : SingleChildScrollView(
                 physics: const ScrollPhysics(),

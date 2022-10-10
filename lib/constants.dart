@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+class LoonoAssets {
+  static const cdLogo = 'assets/sponsors/cd.svg';
+  static const ppfLogo = 'assets/sponsors/ppf.svg';
+  static const cgiLogo = 'assets/sponsors/CGI.svg';
+}
+
 class LoonoColors {
   static const primary = Color.fromARGB(255, 239, 173, 137);
   static const primaryLight = Color.fromARGB(255, 254, 241, 233);
@@ -69,6 +75,8 @@ class LoonoStrings {
   static const dateFormatSpacing = 'dd. MMMM yyyy';
   static const dateFormatWithNameMonth = 'd. MMMM yyyy';
   static const hoursFormat = 'HH:mm';
+  static const monthInYear = 12;
+  static const customDefaultMonth = 6;
 }
 
 class LoonoFonts {

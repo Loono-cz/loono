@@ -65,7 +65,9 @@ class _ChooseCustomExaminationTypeScreenState extends State<ChooseCustomExaminat
             const SizedBox(
               height: 20.0,
             ),
-            const Divider(),
+            const Divider(
+              thickness: 1.0,
+            ),
             Expanded(
               flex: 1,
               child: SingleChildScrollView(
@@ -87,15 +89,14 @@ class _ChooseCustomExaminationTypeScreenState extends State<ChooseCustomExaminat
                             _examActionType = actionType;
                           }),
                         ),
-                        const Divider()
+                        const Divider(
+                          thickness: 1.0,
+                        )
                       ],
                     );
                   }),
                 ),
               ),
-            ),
-            const Divider(
-              thickness: 2.0,
             ),
             const SizedBox(
               height: 40.0,

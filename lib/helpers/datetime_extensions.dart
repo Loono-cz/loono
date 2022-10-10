@@ -13,4 +13,28 @@ extension PreventDate on DateTime {
     }
     return true;
   }
+
+  bool datePickerIsInFuture(BuildContext context) {
+    if (isBefore(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day)) ||
+        isAtSameMomentAs(DateTime.now())) {
+      showFlushBarError(
+        context,
+        context.l10n.error_must_be_in_future,
+      );
+      return false;
+    }
+    return true;
+  }
+
+  bool timeDatePickerIsInFuture(BuildContext context) {
+    final now = DateTime.now();
+    if (isBefore(now) || isAtSameMomentAs(now)) {
+      showFlushBarError(
+        context,
+        context.l10n.error_must_be_in_future,
+      );
+      return false;
+    }
+    return true;
+  }
 }

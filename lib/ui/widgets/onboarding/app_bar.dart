@@ -12,7 +12,7 @@ AppBar createAccountAppBar(
     backgroundColor: Colors.transparent,
     elevation: 0,
     title: Text(
-      '${context.l10n.new_account} ($step/2)',
+      '${context.l10n.new_account} ($step/3)',
       style: LoonoFonts.headerFontStyle,
     ),
     iconTheme: const IconThemeData(color: LoonoColors.black),

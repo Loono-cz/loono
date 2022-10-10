@@ -11,7 +11,7 @@ const _donateInfoDataKey = 'donateInfoData';
 
 /// We do not want to delete these keys on logout/delete account because we need to access
 /// them afterwards. These data are securely stored.
-const _ignoredKeys = <String>[_appleAccountsDataKey];
+const _ignoredKeys = <String>[_appleAccountsDataKey, _donateInfoDataKey];
 
 class SecureStorageService {
   const SecureStorageService({

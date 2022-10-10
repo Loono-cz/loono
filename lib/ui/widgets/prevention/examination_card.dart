@@ -107,13 +107,6 @@ class ExaminationCard extends StatelessWidget {
   List<Widget> _scheduledContent({bool isSoonOrOverdue = false}) {
     final nextVisitDate = categorizedExamination.examination.plannedDate!.toLocal();
     final diffDays = _diffInDays(nextVisitDate);
-    // final diffText = now.isAfter(nextVisitDate)
-    //     ? 'byl/a jsi na prohlídce?'
-    //     : diffDays == 0
-    //         ? 'dnes'
-    //         : diffDays == 1
-    //             ? 'zítra'
-    //             : '';
 
     final diffText = diffDays == 0
         ? 'dnes'
@@ -213,14 +206,13 @@ class ExaminationCard extends StatelessWidget {
   List<Widget> _waitingContent() {
     final lastDateVisit = categorizedExamination.examination.lastConfirmedDate!.toLocal();
     final interval = categorizedExamination.examination.intervalYears;
+    final isCustom = categorizedExamination.examination.examinationCategoryType ==
+        ExaminationCategoryType.CUSTOM;
     DateTime newWaitToDateTime;
 
-    if (interval <= 11) {
+    if (isCustom && interval <= 11) {
       newWaitToDateTime = DateTime(lastDateVisit.year, lastDateVisit.month + interval);
     } else {
-      final isCustom = categorizedExamination.examination.examinationCategoryType ==
-          ExaminationCategoryType.CUSTOM;
-
       newWaitToDateTime = DateTime(
         lastDateVisit.year + (isCustom ? transformMonthToYear(interval) : interval),
         lastDateVisit.month,

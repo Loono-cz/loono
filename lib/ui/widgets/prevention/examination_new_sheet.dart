@@ -7,15 +7,16 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/find_doctor/specialization_chips_list.dart';
 import 'package:loono/ui/widgets/how/loon_botton_sheet.dart';
-import 'package:loono/ui/widgets/prevention/datepicker_sheet.dart';
+import 'package:loono/ui/widgets/prevention/create_order_from_detail_flow.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
 void showNewCheckupSheetStep1(
   BuildContext context,
   CategorizedExamination categorizedExamination,
-  Future<void> Function({required DateTime date}) onSubmit,
+  Future<void> Function({required DateTime date, String? note}) onSubmit,
   Sex sex,
 ) {
   final l10n = context.l10n;
@@ -51,7 +52,11 @@ void showNewCheckupSheetStep1(
               ).toLowerCase()}',
               onTap: () {
                 AutoRouter.of(context).popForced();
-                showNewCheckupSheetStep2(context, categorizedExamination, onSubmit, sex);
+                showCreateOrderFromDetailSheet(
+                  context: context,
+                  categorizedExamination: categorizedExamination,
+                  onSubmit: onSubmit,
+                );
               },
             ),
             const SizedBox(height: 20),
@@ -64,6 +69,8 @@ void showNewCheckupSheetStep1(
               ).toLowerCase()}',
               onTap: () => appRouter.push(
                 FindDoctorRoute(
+                  firstSelectedSpecializationName:
+                      getSpecializationByExaminationType(examinationType),
                   onCancelTap: () async {
                     final autoRouter = AutoRouter.of(context);
                     await appRouter.pop();
@@ -84,12 +91,11 @@ void showNewCheckupSheetStep1(
 void showNewCheckupSheetStep2(
   BuildContext context,
   CategorizedExamination categorizedExamination,
-  Future<void> Function({required DateTime date}) onSubmit,
+  Future<void> Function({required DateTime date, String? note}) onSubmit,
   Sex sex,
 ) {
   final l10n = context.l10n;
   final examinationType = categorizedExamination.examination.examinationType;
-  final preposition = czechPreposition(context, examinationType: examinationType);
 
   registry.get<FirebaseAnalytics>().logEvent(name: 'OpenNewCheckupQuestionModal');
   showModalBottomSheet<void>(
@@ -157,11 +163,10 @@ void showNewCheckupSheetStep2(
               text: l10n.examination_i_have_appointment_button,
               onTap: () {
                 AutoRouter.of(context).popForced();
-                showDatePickerSheet(
+                showCreateOrderFromDetailSheet(
                   context: context,
                   categorizedExamination: categorizedExamination,
                   onSubmit: onSubmit,
-                  isNewCheckup: true,
                 );
               },
             ),

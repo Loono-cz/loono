@@ -45,7 +45,7 @@ class _ChooseExamPeriodDateScreenState extends State<ChooseExamPeriodDateScreen>
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: LoonoColors.bottomSheetPrevention,
+        backgroundColor: LoonoColors.primaryLight50,
         iconTheme: const IconThemeData(color: Colors.black),
         leading: Container(),
         actions: [

@@ -31,7 +31,7 @@ class MapPreview extends StatelessWidget {
   Widget build(BuildContext context) {
     final mapState = context.watch<MapStateService>();
 
-    bool _locationDenied(LocationPermission permission) {
+    bool locationDenied(LocationPermission permission) {
       return [LocationPermission.denied, LocationPermission.deniedForever].contains(permission);
     }
 
@@ -73,12 +73,12 @@ class MapPreview extends StatelessWidget {
             final autoRouter = AutoRouter.of(context);
             var permission = await Geolocator.checkPermission();
 
-            if (_locationDenied(permission)) {
+            if (locationDenied(permission)) {
               await autoRouter.push(const NoPermissionsRoute());
             }
 
             permission = await Geolocator.checkPermission();
-            if (!_locationDenied(permission)) {
+            if (!locationDenied(permission)) {
               final currentPos = await determinePosition(permission);
               final latLng = LatLng(currentPos.latitude, currentPos.longitude);
               await animateToPos(

@@ -3,7 +3,6 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/achievement_helpers.dart';
-import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
@@ -26,11 +25,7 @@ void showConfirmationSheet(
   int? awardPoints,
   bool mounted = true,
 }) {
-  final practitioner =
-      procedureQuestionTitle(context, examinationType: examinationType).toLowerCase();
-  final preposition = czechPreposition(context, examinationType: examinationType);
-
-  Future<void> _completedAction() async {
+  Future<void> completedAction() async {
     final autoRouter = AutoRouter.of(context);
     await registry.get<UserRepository>().sync();
     autoRouter.popUntilRouteWithName(ExaminationDetailRoute.name);
@@ -64,7 +59,7 @@ void showConfirmationSheet(
               asyncCallback: () async {
                 /// code anchor: #postConfirmExamiantion
                 final response = await api.confirmExamination(uuid);
-                ExaminationPreventionStatus? exam;
+
                 await response.map(
                   success: (res) async {
                     final examProvider = Provider.of<ExaminationsProvider>(context, listen: false);
@@ -72,24 +67,17 @@ void showConfirmationSheet(
                     await calendar.deleteOnlyDbEvent(examinationType);
                     final isCustomExamination =
                         res.data.examinationCategoryType == ExaminationCategoryType.CUSTOM;
-                    if (isCustomExamination) {
-                      exam = examProvider.updateAndReturnCustomExaminationsRecord(
-                        res.data,
-                        examProvider.getChoosedExamination().choosedExamination!,
-                      );
-                    } else {
-                      examProvider.updateExaminationsRecord(res.data);
-                    }
+                    examProvider.updateExaminationsRecord(res.data);
                     if (!mounted) return;
                     isCustomExamination
-                        ? autoRouter.popUntilRouteWithName(MainRoute.name)
+                        ? await completedAction()
                         : await autoRouter.navigate(
                             AchievementRoute(
                               header: getAchievementTitle(context, examinationType),
                               textLines: [l10n.award_desc],
                               numberOfPoints: awardPoints ?? examinationType.awardPoints,
                               itemPath: getAchievementAssetPath(examinationType),
-                              onButtonTap: _completedAction,
+                              onButtonTap: completedAction,
                             ),
                           );
                   },
