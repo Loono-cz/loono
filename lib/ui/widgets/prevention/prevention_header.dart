@@ -47,7 +47,8 @@ class PreventionHeader extends StatelessWidget {
                               const SizedBox(
                                 height: 48,
                               ),
-                              if (user?.points != null && user?.nickname != null)
+                              if (user?.points != null &&
+                                  user?.nickname != null)
                                 Column(
                                   mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.start,
