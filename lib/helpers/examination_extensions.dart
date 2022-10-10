@@ -24,7 +24,7 @@ extension ExaminationPreventionStatusExt on ExaminationPreventionStatus {
     // STATUS: waiting or newToSchedule
     if (([ExaminationStatus.CONFIRMED, ExaminationStatus.UNKNOWN].contains(state)) &&
         lastConfirmedDate != null &&
-        periodicExam == true) {
+        (periodicExam == true || periodicExam == null)) {
       final lastVisitDateTime = lastConfirmedDate!.toLocal();
       final lastVisitDateWithoutDay = DateTime(lastVisitDateTime.year, lastVisitDateTime.month);
       DateTime subtractedWaitingDate;

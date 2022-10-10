@@ -37,4 +37,16 @@ extension PreventDate on DateTime {
     }
     return true;
   }
+
+  bool timeDatePickerIsInPast(BuildContext context) {
+    final now = DateTime.now();
+    if (isBefore(now)) {
+      showFlushBarError(
+        context,
+        context.l10n.error_must_be_in_future,
+      );
+      return false;
+    }
+    return true;
+  }
 }

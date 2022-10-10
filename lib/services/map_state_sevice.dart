@@ -5,7 +5,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_cluster_manager/google_maps_cluster_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:loono/helpers/map_variables.dart';
-import 'package:loono/helpers/simple_health_care_provider_helper.dart';
 import 'package:loono/models/healthcare_item_place.dart';
 import 'package:loono/models/search_result.dart';
 import 'package:loono/utils/map_utils.dart';
@@ -92,113 +91,123 @@ class MapStateService with ChangeNotifier {
     notifyListeners();
   }
 
-  void search(String query) {
+  Future<void> search(String query) async {
     final normalizedQuery = removeDiacritics(query).toLowerCase();
 
-    final uniqueCitiesMap = <String, SimpleHealthcareProvider>{};
-    final uniqueCitiesWithSameNameMap = <String, Set<SimpleHealthcareProvider>>{};
+    final cities = _searchCities(normalizedQuery);
+    final addresses = _searchAddresses(normalizedQuery);
+    final specializations = _searchSpecializations(normalizedQuery);
 
-    final uniqueAddressesMap = <String, SimpleHealthcareProvider>{};
-    final uniqueSpecializationsMap = <String>{};
+    searchResults.replaceRange(
+      0,
+      searchResults.length,
+      [...await specializations, ...await cities, ...await addresses],
+    );
+    notifyListeners();
+  }
+
+  Future<List<SearchResult>> _searchCities(final String query) async {
+    final cities = <SearchResult>{};
+    final citiesNames = <String>{};
+    for (final provider in _allHealthcareProviders) {
+      final city = provider.city;
+      final cityName = '$city (${provider.postalCode})';
+
+      if (citiesNames.contains(cityName)) continue;
+      citiesNames.add(cityName);
+
+      final comparableCity = removeDiacritics(city.toLowerCase());
+      if (comparableCity.contains(query) || query.contains(comparableCity)) {
+        cities.add(
+          SearchResult(
+            data: provider,
+            searchType: SearchType.city,
+            overriddenText: cityName,
+          ),
+        );
+      }
+    }
+    return cities.toList().sorted(
+          (a, b) => compareNatural(
+            a.overriddenText ?? a.text,
+            b.overriddenText ?? b.text,
+          ),
+        );
+  }
+
+  Future<List<SearchResult>> _searchAddresses(final String query) async {
+    final addresses = <SearchResult>{};
+    final addressesNames = <String>{};
+
+    for (final provider in _allHealthcareProviders) {
+      final street = provider.street ?? '';
+      final houseNumber = provider.houseNumber;
+
+      var address = '${provider.city} $street';
+      final comparableAddress = removeDiacritics(provider.street?.toLowerCase() ?? '');
+
+      if (addressesNames.contains(address) ||
+          addressesNames.contains('$address $houseNumber') ||
+          comparableAddress == '') continue;
+
+      if (comparableAddress.contains(query) || query.contains(comparableAddress)) {
+        try {
+          final q = query.split('$comparableAddress ')[1].trim();
+          if (q.contains(houseNumber) || houseNumber.contains(q)) {
+            address += ' $houseNumber';
+          }
+        } catch (e) {
+          debugPrint('_searchAddresses LOG: ${e.toString()}');
+        }
+
+        addressesNames.add(address);
+        addresses.add(
+          SearchResult(
+            data: provider,
+            searchType: SearchType.address,
+            overriddenText: address,
+          ),
+        );
+      }
+    }
+
+    return addresses.toList().sorted((a, b) {
+      final hasAHouseNumber = a.text.contains(a.data?.houseNumber ?? '');
+      final hasBHouseNumber = b.text.contains(b.data?.houseNumber ?? '');
+
+      final houseNumberResult = hasAHouseNumber == hasBHouseNumber
+          ? 0
+          : hasAHouseNumber
+              ? -1
+              : 1;
+      return houseNumberResult == 0
+          ? compareNatural(a.overriddenText ?? a.text, b.overriddenText ?? b.text)
+          : houseNumberResult;
+    });
+  }
+
+  Future<List<SearchResult>> _searchSpecializations(final String query) async {
+    final specializations = <SearchResult>{};
+    final specializationsNames = <String>{};
 
     final specs = _allSpecs.map((spec) => spec.overriddenText).whereType<String>();
     bool matchesSpecQuery(String specialization) =>
-        removeDiacritics(specialization).toLowerCase().contains(normalizedQuery);
+        removeDiacritics(specialization).toLowerCase().contains(query);
     final matchedSpecs = specs.where(matchesSpecQuery);
     final anyHealthcareProvider = _allHealthcareProviders.firstOrNull;
     for (final spec in matchedSpecs) {
-      uniqueSpecializationsMap.add(spec);
+      if (specializationsNames.contains(spec)) continue;
+      specializationsNames.add(spec);
+
+      specializations.add(
+        SearchResult(
+          data: anyHealthcareProvider,
+          searchType: SearchType.specialization,
+          overriddenText: spec,
+        ),
+      );
     }
-
-    for (final healthcareProvider in _allHealthcareProviders) {
-      final isCityMatching =
-          removeDiacritics(healthcareProvider.city.toLowerCase()).contains(normalizedQuery);
-      if (isCityMatching) {
-        final city = healthcareProvider.city;
-        final sameCityFromMap = uniqueCitiesMap[city];
-        final sameCityWithNameAlreadyAdded = uniqueCitiesWithSameNameMap.containsKey(city);
-        // Checking for cities which have same name but are in different locations
-        // (different postal code).
-        if (sameCityFromMap != null || sameCityWithNameAlreadyAdded) {
-          final a = healthcareProvider;
-          bool hasSamePostalCode(SimpleHealthcareProvider b) =>
-              a.postalCode.isNotEmpty && (a.postalCode == b.postalCode);
-          final cityAlreadyAdded =
-              uniqueCitiesWithSameNameMap[city]?.firstWhereOrNull(hasSamePostalCode) != null;
-          if (!cityAlreadyAdded) {
-            // Whether the city is also far away from the other. To ignore for example results from
-            // Prague 1 where postal codes are (110 00, 118 000, etc.)
-            final anyCity = sameCityFromMap ?? uniqueCitiesWithSameNameMap[city]?.firstOrNull;
-            if (anyCity != null) {
-              bool isFarAway() =>
-                  (Geolocator.distanceBetween(
-                        healthcareProvider.lat,
-                        healthcareProvider.lng,
-                        anyCity.lat,
-                        anyCity.lng,
-                      ) ~/
-                      1000) >
-                  20;
-              if (isFarAway()) {
-                uniqueCitiesWithSameNameMap.update(
-                  city,
-                  (set) => set..add(healthcareProvider),
-                  ifAbsent: () => <SimpleHealthcareProvider>{anyCity, healthcareProvider},
-                );
-                uniqueCitiesMap.remove(city);
-              }
-            }
-          }
-        } else {
-          // City is not added yet.
-          uniqueCitiesMap[city] = healthcareProvider;
-        }
-      }
-
-      final isAddressMatching = healthcareProvider.street == null
-          ? false
-          : removeDiacritics(healthcareProvider.street!.toLowerCase()).contains(normalizedQuery);
-      if (isAddressMatching) {
-        uniqueAddressesMap['${healthcareProvider.city}-${healthcareProvider.street}'] =
-            healthcareProvider;
-      }
-    }
-
-    final cities = [
-      ...uniqueCitiesMap.values.map((e) => SearchResult(data: e, searchType: SearchType.city)),
-      for (final healthcareProvidersSameCityName in uniqueCitiesWithSameNameMap.values)
-        for (final item in healthcareProvidersSameCityName)
-          SearchResult(
-            data: item,
-            searchType: SearchType.city,
-            overriddenText: '${item.city} (${item.getFormattedPostalCode()})',
-          ),
-    ].sorted((a, b) => compareNatural(a.overriddenText ?? a.text, b.overriddenText ?? b.text));
-    final addresses = uniqueAddressesMap.values
-        .map((e) => SearchResult(data: e, searchType: SearchType.address))
-        .sorted((a, b) => compareNatural(a.text, b.text));
-    final specializations = anyHealthcareProvider != null
-        ? (uniqueSpecializationsMap
-            .map(
-              (e) => SearchResult(
-                data: anyHealthcareProvider,
-                searchType: SearchType.specialization,
-                overriddenText: e,
-              ),
-            )
-            .sorted((a, b) => compareNatural(a.text, b.text)))
-        : <SearchResult>[];
-    debugPrint(
-      '-------\nSEARCH QUERY: $query\nADDRESSES: ${uniqueAddressesMap.length}\nCITIES: ${cities.length}\nSPECS: ${specializations.length}',
-    );
-
-    final results = [
-      ...specializations,
-      ...cities,
-      ...addresses,
-    ];
-    searchResults.replaceRange(0, searchResults.length, results);
-    notifyListeners();
+    return specializations.toList();
   }
 
   void clearSearchResults() {
