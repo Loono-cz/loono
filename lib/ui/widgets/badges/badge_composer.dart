@@ -427,7 +427,7 @@ class BadgeComposerState extends State<BadgeComposer> {
             final sex = snapshot.data?.sex;
             final badges = snapshot.data?.badges ?? BuiltList(<Badge>[]);
 
-            int _levelOf(BadgeType type) {
+            int levelOf(BadgeType type) {
               final level = badges.firstWhereOrNull((e) => e.type == type)?.level;
               if (level != null && level > supportedBadgeLevels) {
                 debugPrint(
@@ -450,21 +450,21 @@ class BadgeComposerState extends State<BadgeComposer> {
                     ? Stack(
                         alignment: Alignment.topCenter,
                         children: [
-                          _getCloak(_levelOf(BadgeType.COAT)),
+                          _getCloak(levelOf(BadgeType.COAT)),
                           SvgPicture.asset(
                             sex == Sex.MALE
                                 ? 'assets/badges/body/man.svg'
                                 : 'assets/badges/body/woman.svg',
                           ),
-                          _getHeadband(_levelOf(BadgeType.HEADBAND)),
-                          _getGoogles(sex, _levelOf(BadgeType.GLASSES)),
-                          _getBoots(_levelOf(BadgeType.SHOES)),
-                          if (sex == Sex.FEMALE) _getArmour(_levelOf(BadgeType.TOP)),
-                          _getBelt(sex, _levelOf(BadgeType.BELT)),
-                          _getCloakBuckle(_levelOf(BadgeType.COAT)),
-                          _getGloves(sex, _levelOf(BadgeType.GLOVES)),
-                          _getShield(_levelOf(BadgeType.SHIELD)),
-                          _getPauldrons(_levelOf(BadgeType.PAULDRONS))
+                          _getHeadband(levelOf(BadgeType.HEADBAND)),
+                          _getGoogles(sex, levelOf(BadgeType.GLASSES)),
+                          _getBoots(levelOf(BadgeType.SHOES)),
+                          if (sex == Sex.FEMALE) _getArmour(levelOf(BadgeType.TOP)),
+                          _getBelt(sex, levelOf(BadgeType.BELT)),
+                          _getCloakBuckle(levelOf(BadgeType.COAT)),
+                          _getGloves(sex, levelOf(BadgeType.GLOVES)),
+                          _getShield(levelOf(BadgeType.SHIELD)),
+                          _getPauldrons(levelOf(BadgeType.PAULDRONS))
                         ],
                       )
                     : const SizedBox(),

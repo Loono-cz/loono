@@ -35,6 +35,7 @@ class DonatePageState extends State<DonatePage> {
               fontWeight: FontWeight.w400,
               fontSize: 24,
             ),
+            textAlign: TextAlign.center,
           ),
 
           Text(
@@ -43,21 +44,26 @@ class DonatePageState extends State<DonatePage> {
               fontWeight: FontWeight.w400,
               fontSize: 16,
             ),
+            textAlign: TextAlign.center,
           ),
 
           ///button
           SizedBox(
             width: MediaQuery.of(context).size.width,
-            child: LoonoButton(
-              text: context.l10n.donate_label_btn,
-              onTap: () async {
-                if (await canLaunchUrlString(LoonoStrings.donateUrl)) {
-                  await launchUrlString(LoonoStrings.donateUrl);
-                }
-              },
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: LoonoButton(
+                text: context.l10n.donate_label_btn,
+                onTap: () async {
+                  if (await canLaunchUrlString(LoonoStrings.donateUrl)) {
+                    await launchUrlString(LoonoStrings.donateUrl);
+                  }
+                },
+              ),
             ),
           ),
           RichText(
+            textAlign: TextAlign.center,
             text: TextSpan(
               style: const TextStyle(
                 fontSize: 14,

@@ -1,29 +1,46 @@
 // ignore_for_file: constant_identifier_names
 
+import 'package:loono/constants.dart';
+import 'package:loono/helpers/date_helpers.dart';
 import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/self_examination_category.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono_api/loono_api.dart';
 
-const int MONTHS_IN_YEAR = 12;
 const int TO_SCHEDULE_MONTHS_TRANSFER = 2;
 const int SELF_EXAMINATION_ACTIVE_CARD_INTERVAL_IN_HOURS = 72;
 
 extension ExaminationPreventionStatusExt on ExaminationPreventionStatus {
   ExaminationCategory calculateStatus([DateTime? dateTimeNow]) {
     final now = dateTimeNow ?? DateTime.now();
+    final isCustom = examinationCategoryType == ExaminationCategoryType.CUSTOM;
+    final month = isCustom && intervalYears < LoonoStrings.monthInYear
+        ? now.month + intervalYears
+        : now.month;
+    final years = isCustom && intervalYears > LoonoStrings.monthInYear
+        ? now.year + transformMonthToYear(intervalYears)
+        : now.year;
 
     // STATUS: waiting or newToSchedule
     if (([ExaminationStatus.CONFIRMED, ExaminationStatus.UNKNOWN].contains(state)) &&
-        lastConfirmedDate != null) {
+        lastConfirmedDate != null &&
+        (periodicExam == true || periodicExam == null)) {
       final lastVisitDateTime = lastConfirmedDate!.toLocal();
       final lastVisitDateWithoutDay = DateTime(lastVisitDateTime.year, lastVisitDateTime.month);
+      DateTime subtractedWaitingDate;
+      if (isCustom) {
+        subtractedWaitingDate = DateTime(
+          years,
+          month,
+        );
+      } else {
+        // if last visit date is before: CURRENT_MONTH - (INTERVAL - 2 months)
+        subtractedWaitingDate = DateTime(
+          now.year,
+          now.month - (intervalYears * LoonoStrings.monthInYear - TO_SCHEDULE_MONTHS_TRANSFER),
+        );
+      }
 
-      // if last visit date is before: CURRENT_MONTH - (INTERVAL - 2 months)
-      final subtractedWaitingDate = DateTime(
-        now.year,
-        now.month - (intervalYears * MONTHS_IN_YEAR - TO_SCHEDULE_MONTHS_TRANSFER),
-      );
       // then waiting time has ended, move to "TO BE SCHEDULED"
       if (lastVisitDateWithoutDay.isBefore(subtractedWaitingDate) ||
           lastVisitDateWithoutDay.isAtSameMomentAs(subtractedWaitingDate)) {
@@ -32,7 +49,6 @@ extension ExaminationPreventionStatusExt on ExaminationPreventionStatus {
       // else wait
       return const ExaminationCategory.waiting();
     }
-
     if ([ExaminationStatus.UNKNOWN, ExaminationStatus.CANCELED].contains(state)) {
       return const ExaminationCategory.newToSchedule();
     }
@@ -86,6 +102,7 @@ extension SelfExaminationPreventionStatusExt on SelfExaminationPreventionStatus 
 extension CategorizedExaminationListExt on List<CategorizedExamination> {
   void sortExaminations() {
     if (isEmpty) return;
+
     first.category.whenOrNull(
       scheduledSoonOrOverdue: () =>
           sort((a, b) => a.examination.plannedDate!.compareTo(b.examination.plannedDate!)),
@@ -101,8 +118,9 @@ extension CategorizedExaminationListExt on List<CategorizedExamination> {
             DateTime(lastVisitDateWithoutDayB.year, lastVisitDateWithoutDayB.month);
         return lastVisitDateTimeA.compareTo(lastVisitDateTimeB);
       }),
-      unknownLastVisit: () =>
-          sort((a, b) => a.examination.priority.compareTo(b.examination.priority)),
+      unknownLastVisit: () => sort(
+        (a, b) => a.examination.priority.compareTo(b.examination.priority),
+      ),
       scheduled: () =>
           sort((a, b) => a.examination.plannedDate!.compareTo(b.examination.plannedDate!)),
       waiting: () => sort((a, b) {

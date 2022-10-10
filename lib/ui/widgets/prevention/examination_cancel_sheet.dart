@@ -7,6 +7,7 @@ import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/repositories/examination_repository.dart';
+import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/close_button.dart';
@@ -78,6 +79,13 @@ void showCancelExaminationSheet({
                 asset: 'assets/icons/prevention/phone.svg',
                 content: l10n.checkup_cancel_notify_doc,
               ),
+              const Expanded(
+                child: SizedBox(),
+              ),
+              RecommendationItem(
+                asset: 'assets/icons/prevention/delete_note_icon.svg',
+                content: l10n.cancel_term_note_disclaimer,
+              ),
               const SizedBox(
                 height: 60,
               ),
@@ -95,10 +103,11 @@ void showCancelExaminationSheet({
                       final autoRouter = AutoRouter.of(context);
                       await registry.get<CalendarRepository>().deleteEvent(examinationType);
                       examProvider.updateExaminationsRecord(res.data);
-                      await autoRouter.pop();
-                      //TODO: lint fix
+                      autoRouter.popUntilRouteWithName(ExaminationDetailRoute.name);
                       // ignore: use_build_context_synchronously
                       showFlushBarSuccess(context, context.l10n.checkup_canceled);
+                      //TODO: lint fix
+                      // ignore: use_build_context_synchronously
                     },
                     failure: (err) async {
                       await AutoRouter.of(context).pop();

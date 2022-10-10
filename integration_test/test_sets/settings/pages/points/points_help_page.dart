@@ -18,7 +18,7 @@ class PointsHelpPage with SettingsFinders {
 
   /// Page methods
   Future<void> clickLeaderboardButton() async {
-    logTestEvent();
+    logTestEvent('Click on Žebříček btn');
     await tester.tap(leaderboardBtn);
     await tester.pumpAndSettle();
   }

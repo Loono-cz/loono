@@ -1,7 +1,5 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:loono/helpers/achievement_helpers.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_extensions.dart';
@@ -41,13 +39,16 @@ class ScheduleExamination extends StatelessWidget {
 
   void _navigateToDetail(
     BuildContext context,
+    String uuid,
     ExaminationsProvider provider, {
     String? message,
   }) {
     /// TODO: this whole post-auth navigation needs refactor as part of https://cesko-digital.atlassian.net/browse/LOON-571
     /// to get rid of initialMessage and stateful widget from exam detail
     final exam = provider.examinations?.examinations.firstWhereOrNull(
-      (item) => item.examinationType == _examinationType,
+      (item) => item.uuid != null && uuid.isNotEmpty
+          ? item.uuid == uuid
+          : examinationRecord.examinationType == item.examinationType,
     );
     if (exam != null) {
       _appRouter
@@ -72,13 +73,6 @@ class ScheduleExamination extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 20),
-            child: IconButton(
-              onPressed: () => AutoRouter.of(context).pop(),
-              icon: SvgPicture.asset('assets/icons/arrow_back.svg'),
-            ),
-          ),
           Expanded(
             child: UniversalDoctor(
               examinationType: _examinationType,
@@ -116,10 +110,13 @@ class ScheduleExamination extends StatelessWidget {
                                             );
                                     response.map(
                                       success: (res) {
-                                        examinationsProvider.updateExaminationsRecord(res.data);
+                                        examinationsProvider.updateExaminationsRecord(
+                                          res.data,
+                                        );
                                         registry.get<UserRepository>().sync();
                                         _navigateToDetail(
                                           context,
+                                          res.data.uuid ?? '',
                                           examinationsProvider,
                                           message: context.l10n.checkup_reminder_toast,
                                         );
@@ -148,6 +145,7 @@ class ScheduleExamination extends StatelessWidget {
                                         registry.get<UserRepository>().sync();
                                         _navigateToDetail(
                                           context,
+                                          res.data.uuid ?? '',
                                           examinationsProvider,
                                           message: context.l10n.checkup_reminder_toast,
                                         );
@@ -185,7 +183,7 @@ class ScheduleExamination extends StatelessWidget {
                   success: (res) async {
                     Provider.of<ExaminationsProvider>(context, listen: false)
                         .updateExaminationsRecord(res.data);
-                    _navigateToDetail(context, examinationsProvider);
+                    _navigateToDetail(context, res.data.uuid ?? '', examinationsProvider);
                     await registry.get<UserRepository>().sync();
                   },
                   failure: (err) async {

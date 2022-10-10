@@ -43,9 +43,14 @@ class ExaminationsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateExaminationsRecord(ExaminationRecord record) {
-    final indexToUpdate = examinations?.examinations
-        .indexWhere((examination) => examination.examinationType == record.type);
+  void updateExaminationsRecord(
+    ExaminationRecord record,
+  ) {
+    final indexToUpdate = examinations?.examinations.indexWhere(
+      (examination) => record.uuid != null && examination.uuid != null
+          ? examination.uuid == record.uuid
+          : examination.examinationType == record.type,
+    );
     if (indexToUpdate != null && indexToUpdate >= 0) {
       final updatedItem = examinations?.examinations.elementAt(indexToUpdate).rebuild(
             (item) => item
@@ -60,7 +65,13 @@ class ExaminationsProvider extends ChangeNotifier {
                       ? record.plannedDate?.toLocal()
                       : item.lastConfirmedDate
               ..state = record.status ?? item.state
-              ..firstExam = record.firstExam ?? item.firstExam,
+              ..firstExam = record.firstExam ?? item.firstExam
+              ..customInterval = record.customInterval
+              ..examinationActionType = record.examinationActionType
+              ..examinationCategoryType = record.examinationCategoryType
+              ..badge = item.badge
+              ..periodicExam = record.periodicExam
+              ..note = record.note,
           );
 
       final builder = examinations?.toBuilder();
@@ -69,6 +80,17 @@ class ExaminationsProvider extends ChangeNotifier {
       examinations = builder?.build();
       evaluateExaminations();
       notifyListeners();
+    }
+  }
+
+  void deleteExaminationRecord(String uuid) {
+    final indexToUpdate =
+        examinations?.examinations.indexWhere((examination) => examination.uuid == uuid);
+    if (indexToUpdate != null) {
+      final builder = examinations?.toBuilder();
+      builder?.examinations.removeAt(indexToUpdate);
+      examinations = builder?.build();
+      evaluateExaminations();
     }
   }
 
@@ -121,4 +143,37 @@ class ExaminationsProvider extends ChangeNotifier {
       }
     }
   }
+
+  void createCustomExamination(
+    ExaminationRecord record, {
+    DateTime? lastConfirmedDate,
+    bool isUnknown = false,
+  }) {
+    final createdItem = ExaminationPreventionStatus(
+      (b) => b
+        ..examinationType = record.type
+        ..customInterval = record.customInterval
+        ..examinationActionType = record.examinationActionType
+        ..examinationCategoryType = record.examinationCategoryType
+        ..lastConfirmedDate = lastConfirmedDate
+        ..periodicExam = record.periodicExam
+        ..points = record.periodicExam == true ? 50 : 0
+        ..firstExam = record.firstExam
+        ..plannedDate = !isUnknown ? record.plannedDate : null
+        ..state = record.status
+        ..intervalYears = record.customInterval ?? 24
+        ..priority = 0
+        ..count = 0
+        ..badge = BadgeType.SHIELD
+        ..uuid = record.uuid
+        ..note = record.note,
+    );
+
+    final builder = examinations?.toBuilder();
+    builder?.examinations.add(createdItem);
+    examinations = builder?.build();
+    evaluateExaminations();
+    notifyListeners();
+  }
+  // Future<ApiResponse>
 }

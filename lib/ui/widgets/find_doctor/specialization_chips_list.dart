@@ -17,7 +17,7 @@ const _defaultSpecs = <String, String>{
   'Další odbornosti': '',
 };
 
-String getSpecializationByExaminationType(ExaminationType examinationType){
+String getSpecializationByExaminationType(ExaminationType examinationType) {
   switch (examinationType) {
     case ExaminationType.GENERAL_PRACTITIONER:
       return _defaultSpecs['Praktický lékař'] ?? '';

@@ -3,7 +3,6 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/achievement_helpers.dart';
-import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
@@ -26,11 +25,7 @@ void showConfirmationSheet(
   int? awardPoints,
   bool mounted = true,
 }) {
-  final practitioner =
-      procedureQuestionTitle(context, examinationType: examinationType).toLowerCase();
-  final preposition = czechPreposition(context, examinationType: examinationType);
-
-  Future<void> _completedAction() async {
+  Future<void> completedAction() async {
     final autoRouter = AutoRouter.of(context);
     await registry.get<UserRepository>().sync();
     autoRouter.popUntilRouteWithName(ExaminationDetailRoute.name);
@@ -52,7 +47,7 @@ void showConfirmationSheet(
         child: Column(
           children: <Widget>[
             Text(
-              '${l10n.checkup_confirmation_title} $preposition $practitioner?',
+              '${l10n.checkup_confirmation_title}?',
               style: LoonoFonts.headerFontStyle,
             ),
             const SizedBox(
@@ -64,23 +59,27 @@ void showConfirmationSheet(
               asyncCallback: () async {
                 /// code anchor: #postConfirmExamiantion
                 final response = await api.confirmExamination(uuid);
+
                 await response.map(
                   success: (res) async {
                     final examProvider = Provider.of<ExaminationsProvider>(context, listen: false);
                     final autoRouter = AutoRouter.of(context);
                     await calendar.deleteOnlyDbEvent(examinationType);
-
+                    final isCustomExamination =
+                        res.data.examinationCategoryType == ExaminationCategoryType.CUSTOM;
                     examProvider.updateExaminationsRecord(res.data);
                     if (!mounted) return;
-                    await autoRouter.navigate(
-                      AchievementRoute(
-                        header: getAchievementTitle(context, examinationType),
-                        textLines: [l10n.award_desc],
-                        numberOfPoints: awardPoints ?? examinationType.awardPoints,
-                        itemPath: getAchievementAssetPath(examinationType),
-                        onButtonTap: _completedAction,
-                      ),
-                    );
+                    isCustomExamination
+                        ? await completedAction()
+                        : await autoRouter.navigate(
+                            AchievementRoute(
+                              header: getAchievementTitle(context, examinationType),
+                              textLines: [l10n.award_desc],
+                              numberOfPoints: awardPoints ?? examinationType.awardPoints,
+                              itemPath: getAchievementAssetPath(examinationType),
+                              onButtonTap: completedAction,
+                            ),
+                          );
                   },
                   failure: (err) async {
                     await AutoRouter.of(context).pop();
