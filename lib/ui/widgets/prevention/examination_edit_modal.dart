@@ -48,7 +48,7 @@ void showEditModal(
           status: examination.state,
           periodicExam: examination.periodicExam,
           actionType: examination.examinationActionType,
-          categoryType: examination.examinationCategoryType!,
+          categoryType: examination.examinationCategoryType ?? ExaminationCategoryType.MANDATORY,
           customInterval: examination.customInterval ?? intervalYears,
           note: note,
         );
