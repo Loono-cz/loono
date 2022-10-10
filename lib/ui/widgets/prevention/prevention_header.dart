@@ -45,7 +45,7 @@ class PreventionHeader extends StatelessWidget {
                             children: [
                               //const FeedbackButton(),
                               const SizedBox(
-                                height: 60,
+                                height: 48,
                               ),
                               if (user?.points != null && user?.nickname != null)
                                 Column(
