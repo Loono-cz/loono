@@ -54,16 +54,15 @@ class NewsletterAndGDPRScreenState extends State<NewsletterAndGDPRScreen> {
               ),
               _buildNewsletter(context),
               const SizedBox(
-                height: 40,
+                height: 50,
               ),
               _buildGDPR(context),
               const SizedBox(
-                height: 80,
+                height: 70,
               ),
               AsyncLoonoButton(
                 text: context.l10n.create_new_account,
                 asyncCallback: () async {
-                  // TODO save and process newsletter value
                   await submitAccount(
                     context,
                     socialLoginAccount,
@@ -90,12 +89,15 @@ class NewsletterAndGDPRScreenState extends State<NewsletterAndGDPRScreen> {
 
   Widget _buildNewsletter(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildTitle(context.l10n.fallback_account_newsletter_title),
         const SizedBox(
           height: 10,
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             CheckboxCustom(
               text: '',
@@ -103,6 +105,7 @@ class NewsletterAndGDPRScreenState extends State<NewsletterAndGDPRScreen> {
               whatIsChecked: (checked) => setState(() {
                 newsletter = checked;
               }),
+              paddingLeft: 0,
             ),
             Expanded(
               child: _buildDescription(
@@ -110,13 +113,15 @@ class NewsletterAndGDPRScreenState extends State<NewsletterAndGDPRScreen> {
               ),
             ),
           ],
-        )
+        ),
       ],
     );
   }
 
   Widget _buildGDPR(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildTitle(context.l10n.fallback_account_gdpr_title),
         const SizedBox(
@@ -130,6 +135,7 @@ class NewsletterAndGDPRScreenState extends State<NewsletterAndGDPRScreen> {
               whatIsChecked: (checked) => setState(() {
                 gdpr = checked;
               }),
+              paddingLeft: 0,
             ),
             Expanded(
               child: _buildGDPRDescription(context),
@@ -173,6 +179,8 @@ class NewsletterAndGDPRScreenState extends State<NewsletterAndGDPRScreen> {
       style: const TextStyle(
         decoration: TextDecoration.underline,
         color: LoonoColors.primary,
+        fontWeight: FontWeight.w400,
+        height: 1.5,
       ),
       recognizer: TapGestureRecognizer()
         ..onTap = () async {
