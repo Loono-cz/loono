@@ -94,18 +94,22 @@ class NewsletterAndGDPRScreenState extends State<NewsletterAndGDPRScreen> {
       children: [
         _buildTitle(context.l10n.fallback_account_newsletter_title),
         const SizedBox(
-          height: 10,
+          height: 12,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CheckboxCustom(
-              text: '',
-              isChecked: newsletter,
-              whatIsChecked: (checked) => setState(() {
-                newsletter = checked;
-              }),
-              paddingLeft: 0,
+            Padding(
+              padding: const EdgeInsets.only(top: 4.0),
+              child: CheckboxCustom(
+                text: '',
+                isChecked: newsletter,
+                whatIsChecked: (checked) => setState(() {
+                  newsletter = checked;
+                }),
+                paddingLeft: 0,
+              ),
             ),
             Expanded(
               child: _buildDescription(
@@ -125,17 +129,22 @@ class NewsletterAndGDPRScreenState extends State<NewsletterAndGDPRScreen> {
       children: [
         _buildTitle(context.l10n.fallback_account_gdpr_title),
         const SizedBox(
-          height: 10,
+          height: 12,
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CheckboxCustom(
-              text: '',
-              isChecked: gdpr,
-              whatIsChecked: (checked) => setState(() {
-                gdpr = checked;
-              }),
-              paddingLeft: 0,
+            Padding(
+              padding: const EdgeInsets.only(top: 4.0),
+              child: CheckboxCustom(
+                text: '',
+                isChecked: gdpr,
+                whatIsChecked: (checked) => setState(() {
+                  gdpr = checked;
+                }),
+                paddingLeft: 0,
+              ),
             ),
             Expanded(
               child: _buildGDPRDescription(context),
@@ -147,28 +156,31 @@ class NewsletterAndGDPRScreenState extends State<NewsletterAndGDPRScreen> {
   }
 
   Widget _buildGDPRDescription(BuildContext context) {
-    return RichText(
-      textAlign: TextAlign.justify,
-      text: TextSpan(
-        text: context.l10n.fallback_account_gdpr_desc1,
-        style: const TextStyle(
-          color: LoonoColors.black,
-          height: 1.5,
-          fontWeight: FontWeight.w400,
+    return Padding(
+      padding: const EdgeInsets.only(left: 8.0, right: 4.0),
+      child: RichText(
+        softWrap: true,
+        text: TextSpan(
+          text: context.l10n.fallback_account_gdpr_desc1,
+          style: const TextStyle(
+            color: LoonoColors.black,
+            height: 1.5,
+            fontWeight: FontWeight.w400,
+          ),
+          children: <TextSpan>[
+            _buildLink(
+              context.l10n.fallback_account_gdpr_terms,
+              LoonoStrings.termsUrl,
+            ),
+            const TextSpan(text: ', '),
+            _buildLink(
+              context.l10n.fallback_account_gdpr_privacy,
+              LoonoStrings.privacyUrl,
+            ),
+            const TextSpan(text: ' '),
+            TextSpan(text: context.l10n.fallback_account_gdpr_desc2),
+          ],
         ),
-        children: <TextSpan>[
-          _buildLink(
-            context.l10n.fallback_account_gdpr_terms,
-            LoonoStrings.termsUrl,
-          ),
-          const TextSpan(text: ', '),
-          _buildLink(
-            context.l10n.fallback_account_gdpr_privacy,
-            LoonoStrings.privacyUrl,
-          ),
-          const TextSpan(text: ' '),
-          TextSpan(text: context.l10n.fallback_account_gdpr_desc2),
-        ],
       ),
     );
   }
@@ -203,13 +215,16 @@ class NewsletterAndGDPRScreenState extends State<NewsletterAndGDPRScreen> {
   }
 
   Widget _buildDescription(String description) {
-    return Text(
-      description,
-      textAlign: TextAlign.justify,
-      style: const TextStyle(
-        color: LoonoColors.black,
-        height: 1.5,
-        fontWeight: FontWeight.w400,
+    return Padding(
+      padding: const EdgeInsets.only(left: 8.0, right: 4.0),
+      child: Text(
+        description,
+        //textAlign: TextAlign.justify,
+        style: const TextStyle(
+          color: LoonoColors.black,
+          height: 1.5,
+          fontWeight: FontWeight.w400,
+        ),
       ),
     );
   }
