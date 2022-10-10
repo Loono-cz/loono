@@ -144,10 +144,11 @@ class MapStateService with ChangeNotifier {
       final houseNumber = provider.houseNumber;
 
       var address = '${provider.city} $street';
-      final comparableAddress = removeDiacritics(provider.street?.toLowerCase()??'');
+      final comparableAddress = removeDiacritics(provider.street?.toLowerCase() ?? '');
 
-
-      if(addressesNames.contains(address) || addressesNames.contains('$address $houseNumber') || comparableAddress == '') continue;
+      if (addressesNames.contains(address) ||
+          addressesNames.contains('$address $houseNumber') ||
+          comparableAddress == '') continue;
 
       if (comparableAddress.contains(query) || query.contains(comparableAddress)) {
         try {
@@ -155,10 +156,10 @@ class MapStateService with ChangeNotifier {
           if (q.contains(houseNumber) || houseNumber.contains(q)) {
             address += ' $houseNumber';
           }
+        } catch (e) {
+          debugPrint('_searchAddresses LOG: ${e.toString()}');
         }
-        on RangeError {}
 
-        
         addressesNames.add(address);
         addresses.add(
           SearchResult(
@@ -174,8 +175,14 @@ class MapStateService with ChangeNotifier {
       final hasAHouseNumber = a.text.contains(a.data?.houseNumber ?? '');
       final hasBHouseNumber = b.text.contains(b.data?.houseNumber ?? '');
 
-      final houseNumberResult = hasAHouseNumber == hasBHouseNumber ? 0 : hasAHouseNumber? -1 : 1;
-      return houseNumberResult == 0 ? compareNatural(a.overriddenText ?? a.text,b.overriddenText ?? b.text) : houseNumberResult;
+      final houseNumberResult = hasAHouseNumber == hasBHouseNumber
+          ? 0
+          : hasAHouseNumber
+              ? -1
+              : 1;
+      return houseNumberResult == 0
+          ? compareNatural(a.overriddenText ?? a.text, b.overriddenText ?? b.text)
+          : houseNumberResult;
     });
   }
 
@@ -183,8 +190,7 @@ class MapStateService with ChangeNotifier {
     final specializations = <SearchResult>{};
     final specializationsNames = <String>{};
 
-    final specs =
-        _allSpecs.map((spec) => spec.overriddenText).whereType<String>();
+    final specs = _allSpecs.map((spec) => spec.overriddenText).whereType<String>();
     bool matchesSpecQuery(String specialization) =>
         removeDiacritics(specialization).toLowerCase().contains(query);
     final matchedSpecs = specs.where(matchesSpecQuery);
