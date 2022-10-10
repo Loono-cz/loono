@@ -14,12 +14,6 @@ extension ExaminationPreventionStatusExt on ExaminationPreventionStatus {
   ExaminationCategory calculateStatus([DateTime? dateTimeNow]) {
     final now = dateTimeNow ?? DateTime.now();
     final isCustom = examinationCategoryType == ExaminationCategoryType.CUSTOM;
-    final month = isCustom && intervalYears < LoonoStrings.monthInYear
-        ? now.month + intervalYears
-        : now.month;
-    final years = isCustom && intervalYears > LoonoStrings.monthInYear
-        ? now.year + transformMonthToYear(intervalYears)
-        : now.year;
 
     // STATUS: waiting or newToSchedule
     if (([ExaminationStatus.CONFIRMED, ExaminationStatus.UNKNOWN].contains(state)) &&
@@ -28,10 +22,12 @@ extension ExaminationPreventionStatusExt on ExaminationPreventionStatus {
       final lastVisitDateTime = lastConfirmedDate!.toLocal();
       final lastVisitDateWithoutDay = DateTime(lastVisitDateTime.year, lastVisitDateTime.month);
       DateTime subtractedWaitingDate;
-      if (isCustom) {
+      if (isCustom && customInterval != null) {
         subtractedWaitingDate = DateTime(
-          years,
-          month,
+          now.year,
+          now.month -
+              (transformMonthToYear(customInterval!) * LoonoStrings.monthInYear -
+                  TO_SCHEDULE_MONTHS_TRANSFER),
         );
       } else {
         // if last visit date is before: CURRENT_MONTH - (INTERVAL - 2 months)
