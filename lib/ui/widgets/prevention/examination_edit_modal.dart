@@ -202,7 +202,7 @@ void showCustomExamEditModal(
                 showFlushBarError(modalContext, modalContext.l10n.something_went_wrong);
               }
             },
-            child: Text(pageContext.l10n.cancel_checkup),
+            child: Text(pageContext.l10n.delete_checkup),
           ),
         CupertinoActionSheetAction(
           isDefaultAction: true,
