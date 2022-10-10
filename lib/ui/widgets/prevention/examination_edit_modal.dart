@@ -171,7 +171,7 @@ void showCustomExamEditModal(
                   context: pageContext,
                   examination: catExam,
                   examinationType: examinationType,
-                  date: catExam.plannedDate?.toLocal() ?? DateTime.now(),
+                  date: catExam.plannedDate?.toLocal() ?? DateTime.now().toLocal(),
                 );
               } else {
                 showFlushBarError(
@@ -196,7 +196,7 @@ void showCustomExamEditModal(
                   context: pageContext,
                   id: examinationUuid,
                   examinationType: examinationType,
-                  date: catExam.plannedDate?.toLocal() ?? DateTime.now(),
+                  date: catExam.plannedDate?.toLocal() ?? DateTime.now().toLocal(),
                 );
               } else {
                 showFlushBarError(modalContext, modalContext.l10n.something_went_wrong);

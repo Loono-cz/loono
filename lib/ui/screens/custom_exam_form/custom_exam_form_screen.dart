@@ -498,7 +498,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
           periodicExam: _isPeriodicExam,
           note: _note,
           customInterval: transformInterval(context, _customInterval), // Pravidelne
-          newDate: _lastExamChck && _nextExamChck ? DateTime.now() : _nextExamDate,
+          newDate: _lastExamChck && _nextExamChck ? null : _nextExamDate,
           categoryType: ExaminationCategoryType.CUSTOM,
           status:
               _lastExamChck && _nextExamChck ? ExaminationStatus.UNKNOWN : ExaminationStatus.NEW,

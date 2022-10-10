@@ -150,7 +150,7 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
           periodicExam: widget.exam.periodicExam,
           note: widget.exam.note,
           customInterval: customInterval ?? widget.exam.customInterval, // Pravidelne
-          newDate: _idkCheck ? DateTime.now() : _lastExamDate,
+          newDate: _idkCheck ? null : _lastExamDate,
           categoryType: ExaminationCategoryType.CUSTOM,
           status: _idkCheck ? ExaminationStatus.UNKNOWN : ExaminationStatus.CONFIRMED,
           firstExam: true,
