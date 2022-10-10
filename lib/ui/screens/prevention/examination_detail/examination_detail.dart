@@ -88,7 +88,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
   String? _note;
   final TextEditingController _editingController = TextEditingController();
   late FocusNode _focusNote;
-  int get _hashCodeOfExam => _examination.hashCode;
+
   Sex get _sex {
     final user = registry.get<DatabaseService>().users.user;
     return user?.sex ?? Sex.MALE;
