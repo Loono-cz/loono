@@ -39,8 +39,7 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
   final mapController = Completer<GoogleMapController>();
   final _sheetController = DraggableScrollableController();
 
-  final _healthcareProviderRepository =
-      registry.get<HealthcareProviderRepository>();
+  final _healthcareProviderRepository = registry.get<HealthcareProviderRepository>();
 
   late final MapStateService _mapState;
 
@@ -52,8 +51,7 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
 
   Future<void> _setHealthcareProviders({bool tryFetchAgainData = false}) async {
     if (_mapState.allHealthcareProviders.isEmpty) {
-      final healthcareProviders =
-          await _healthcareProviderRepository.getHealthcareProviders();
+      final healthcareProviders = await _healthcareProviderRepository.getHealthcareProviders();
       if (healthcareProviders != null && healthcareProviders.isNotEmpty) {
         _mapState.addAll(healthcareProviders);
         setState(() => _isHealthCareProvidersInMapService = true);
@@ -96,8 +94,7 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
       final specializationName = widget.firstSelectedSpecializationName;
       if (specializationName != null) {
         WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-          final specResult =
-              _mapState.getSpecSearchResultByName(specializationName);
+          final specResult = _mapState.getSpecSearchResultByName(specializationName);
           _mapState.setSpecialization(specResult);
         });
       }
@@ -112,8 +109,7 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
     } else {
       _canFirstSelectedSpecializationSet = true;
     }
-    final currDoctorDetail =
-        context.select<MapStateService, SimpleHealthcareProvider?>(
+    final currDoctorDetail = context.select<MapStateService, SimpleHealthcareProvider?>(
       (value) => value.doctorDetail,
     );
     final currSpec = context.select<MapStateService, SearchResult?>(
@@ -135,8 +131,7 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
           : null,
       body: SafeArea(
         child: MemoizedStreamBuilder<HealthcareSyncState>(
-          memoizedStream:
-              _healthcareProviderRepository.healthcareProvidersSyncStateStream,
+          memoizedStream: _healthcareProviderRepository.healthcareProvidersSyncStateStream,
           builder: (context, snapshot) {
             final healthcareSyncState = snapshot.data;
             if (healthcareSyncState == HealthcareSyncState.completed &&
@@ -171,8 +166,7 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
                                   zoom: searchResult.zoomLevel,
                                 ),
                               );
-                              _sheetController
-                                  .jumpTo(MapVariables.MIN_SHEET_SIZE);
+                              _sheetController.jumpTo(MapVariables.MIN_SHEET_SIZE);
                               _setMapOpacity(1);
                             },
                           ),
