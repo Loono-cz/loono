@@ -38,9 +38,6 @@ class ExaminationBadges extends StatelessWidget {
   int get recommendedIntervalInMonthsMinusTwoMonths =>
       categorizedExamination.examination.intervalYears.toInt() * 12 - 2;
 
-  bool get isCustomExam =>
-      categorizedExamination.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM;
-
   ///Minus 2 months
   DateTime get recommendedIntervalTransferToDate => DateTime(
         actualDate.year,
@@ -197,17 +194,10 @@ class ExaminationBadges extends StatelessWidget {
                                             color: Colors.white,
                                           ),
                                           position: b.BadgePosition.bottomEnd(bottom: -8, end: -24),
-                                          child: examCategoryType ==
-                                                  ExaminationCategoryType
-                                                      .CUSTOM //TODO: customExamCount is probably only for first examination.
-                                              ? SvgPicture.asset(
-                                                  'assets/badges_examination/custom_examination/badge'
-                                                  '${badge != null ? '_award.svg' : '_disabled.svg'}', //TODO Logic about custom exam rewards ??
-                                                )
-                                              : Image.asset(
-                                                  'assets/badges_examination/${examinationType.toString().toLowerCase()}'
-                                                  '/level_${badge != null && badge.type.name == categorizedExamination.examination.badge?.name && badge.level >= index + 1 ? '${index + 1}.png' : '${index + 1}_disabled.png'}',
-                                                ),
+                                          child: Image.asset(
+                                            'assets/badges_examination/${examinationType.toString().toLowerCase()}'
+                                            '/level_${badge != null && badge.type.name == categorizedExamination.examination.badge?.name && badge.level >= index + 1 ? '${index + 1}.png' : '${index + 1}_disabled.png'}',
+                                          ),
                                         ),
                                       ),
                                       if (badgeState == BadgeState.redBadge)
@@ -249,7 +239,7 @@ class ExaminationBadges extends StatelessWidget {
                     ),
                   ),
                 ),
-                if (rewardState == RewardState.lastMonthValidity && !isCustomExam)
+                if (rewardState == RewardState.lastMonthValidity)
                   Padding(
                     padding: const EdgeInsets.only(left: 18.0, bottom: 20),
                     child: Column(
@@ -286,9 +276,7 @@ class ExaminationBadges extends StatelessWidget {
                           child: Align(
                             alignment: Alignment.topLeft,
                             child: Text(
-                              isCustomExam
-                                  ? context.l10n.examination_detail_cusotm_rewards_get_badge_1
-                                  : context.l10n.examination_detail_rewards_get_badge_1,
+                              context.l10n.examination_detail_rewards_get_badge_1,
                               style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
                             ),
                           ),
@@ -297,20 +285,14 @@ class ExaminationBadges extends StatelessWidget {
                           padding: const EdgeInsets.only(left: 12.0),
                           child: Row(
                             children: [
-                              if (!isCustomExam)
-                                Text(
-                                  '${_getBadgeName(categorizedExamination.examination.badge, context)} ',
-                                  style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                                )
-                              else
-                                Container(),
-                              if (!isCustomExam)
-                                Text(
-                                  '${context.l10n.examination_detail_rewards_get_badge_2} ',
-                                  style: const TextStyle(fontSize: 12),
-                                )
-                              else
-                                Container(),
+                              Text(
+                                '${_getBadgeName(categorizedExamination.examination.badge, context)} ',
+                                style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                '${context.l10n.examination_detail_rewards_get_badge_2} ',
+                                style: const TextStyle(fontSize: 12),
+                              ),
                               SizedBox(
                                 width: 16,
                                 height: 16,

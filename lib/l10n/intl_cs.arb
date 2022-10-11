@@ -1510,5 +1510,7 @@
     }
   },
   "examination_detail_cusotm_rewards_get_badge_1": "Za dokončenou prohlídku získáš",
-  "@examination_detail_cusotm_rewards_get_badge_1": {}
+  "@examination_detail_cusotm_rewards_get_badge_1": {},
+  "examination_detail_rewards_for_custom_examination": "Odměna za pravidelné prohlídky",
+  "@examination_detail_rewards_for_custom_examination": {}
 }

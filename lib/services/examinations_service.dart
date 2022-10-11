@@ -71,7 +71,11 @@ class ExaminationsProvider extends ChangeNotifier {
               ..examinationCategoryType = record.examinationCategoryType
               ..badge = item.badge
               ..periodicExam = record.periodicExam
-              ..note = record.note,
+              ..note = record.note
+              ..count = record.examinationCategoryType == ExaminationCategoryType.CUSTOM &&
+                      item.count != null
+                  ? item.count = item.count! + 1
+                  : item.count,
           );
 
       final builder = examinations?.toBuilder();

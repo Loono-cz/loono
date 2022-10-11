@@ -20,6 +20,7 @@ import 'package:loono/services/calendar_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/examinations_service.dart';
+import 'package:loono/ui/screens/prevention/examination_detail/custom_exam_reward.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/examination_badges.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/faq_section.dart';
 import 'package:loono/ui/widgets/button.dart';
@@ -419,7 +420,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
               ),
             ),
           const SizedBox(height: 10),
-          buildExaminationBadges(context),
+          if (_isPeriodicalExam) buildExaminationBadges(context),
           const SizedBox(height: 8.0),
           //SHOWING FAQ Section only for Default
           if ((_isPeriodicalExam &&
@@ -723,12 +724,15 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
   }
 
   Widget buildExaminationBadges(BuildContext context) {
-    return _isPeriodicalExam
-        ? ExaminationBadges(
+    return _isCustomPeriodicalExam
+        ? CustomExamReward(
             examinationType: _examinationType,
             categorizedExamination: widget.categorizedExamination,
           )
-        : Container();
+        : ExaminationBadges(
+            examinationType: _examinationType,
+            categorizedExamination: widget.categorizedExamination,
+          );
   }
 
   Widget buildNextSpecialistExams(BuildContext context) {
