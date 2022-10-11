@@ -109,10 +109,12 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
     } else {
       _canFirstSelectedSpecializationSet = true;
     }
-    final currDoctorDetail =
-        context.select<MapStateService, SimpleHealthcareProvider?>((value) => value.doctorDetail);
-    final currSpec =
-        context.select<MapStateService, SearchResult?>((value) => value.currSpecialization);
+    final currDoctorDetail = context.select<MapStateService, SimpleHealthcareProvider?>(
+      (value) => value.doctorDetail,
+    );
+    final currSpec = context.select<MapStateService, SearchResult?>(
+      (value) => value.currSpecialization,
+    );
 
     return Scaffold(
       appBar: widget.onCancelTap != null
@@ -168,7 +170,9 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
                               _setMapOpacity(1);
                             },
                           ),
-                          SpecializationChipsList(showDefaultSpecs: currSpec == null),
+                          SpecializationChipsList(
+                            showDefaultSpecs: currSpec == null,
+                          ),
                         ],
                       ),
                     ),
@@ -181,7 +185,10 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
                         await animateToPos(
                           mapController,
                           cameraPosition: CameraPosition(
-                            target: LatLng(healthcareProvider.lat, healthcareProvider.lng),
+                            target: LatLng(
+                              healthcareProvider.lat,
+                              healthcareProvider.lng,
+                            ),
                             zoom: MapVariables.DOCTOR_DETAIL_ZOOM,
                           ),
                         );
@@ -198,7 +205,10 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
                     const Align(
                       alignment: Alignment.bottomLeft,
                       child: Padding(
-                        padding: EdgeInsets.only(left: 9, bottom: bottomGoogleLogoPadding),
+                        padding: EdgeInsets.only(
+                          left: 9,
+                          bottom: bottomGoogleLogoPadding,
+                        ),
                         child: FeedbackButton(),
                       ),
                     ),
@@ -232,8 +242,10 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
                       child: DoctorDetailSheet(
                         key: const Key('findDoctorPage_doctorDetailSheet'),
                         doctor: currDoctorDetail,
-                        closeDetail: () =>
-                            _mapState.setDoctorDetail(null, unblockOnMoveMapFiltering: false),
+                        closeDetail: () => _mapState.setDoctorDetail(
+                          null,
+                          unblockOnMoveMapFiltering: false,
+                        ),
                       ),
                     ),
                   ),
