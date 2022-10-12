@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 
 // ignore: must_be_immutable
@@ -57,7 +58,7 @@ class _CustomInputTextFieldState extends State<CustomInputTextField> {
     return TextFormField(
       style: TextStyle(
         color: widget.value == '' || widget.enabled == false ? Colors.black38 : Colors.black,
-        fontSize: 14,
+        fontSize: LoonoSizes.isScreenSmall(context) ? 12.0 : 14,
       ),
       controller: textController,
       readOnly: true,

@@ -217,7 +217,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                   ),
                 ),
                 const SizedBox(
-                  height: 16.0,
+                  height: 24.0,
                 ),
                 Container(child: buildFrequentionForm(context)),
                 const SizedBox(
@@ -342,7 +342,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                 child: CustomInputTextField(
                   error: _showError && _customInterval.isEmpty,
                   label: '',
-                  hintText: context.l10n.exam_frequency,
+                  hintText: context.l10n.choose_interval,
                   value: _customInterval,
                   onClickInputField: () => AutoRouter.of(context).navigate(
                     ChooseFrequencyOfExamRoute(
@@ -374,8 +374,8 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                       : '',
                   prefixIcon: SvgPicture.asset(
                     'assets/icons/calendar.svg',
-                    width: 5,
-                    height: 5,
+                    width: 10,
+                    height: 10,
                     fit: BoxFit.scaleDown,
                     color: _lastExamChck ? Colors.black38 : Colors.black87,
                   ),
@@ -423,8 +423,6 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                       : '',
                   prefixIcon: SvgPicture.asset(
                     'assets/icons/calendar.svg',
-                    width: 5,
-                    height: 5,
                     fit: BoxFit.scaleDown,
                     color: _nextExamChck ? Colors.black38 : Colors.black87,
                   ),
