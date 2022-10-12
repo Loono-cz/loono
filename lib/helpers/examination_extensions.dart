@@ -100,8 +100,26 @@ extension CategorizedExaminationListExt on List<CategorizedExamination> {
     if (isEmpty) return;
 
     first.category.whenOrNull(
-      scheduledSoonOrOverdue: () =>
-          sort((a, b) => a.examination.plannedDate!.compareTo(b.examination.plannedDate!)),
+      scheduledSoonOrOverdue: () => sort((a, b) {
+        if ((a.examination.plannedDate != b.examination.plannedDate) &&
+            (a.examination.plannedDate != null && b.examination.plannedDate != null)) {
+          return a.examination.plannedDate!.compareTo(b.examination.plannedDate!);
+        } else if ((a.examination.examinationCategoryType == ExaminationCategoryType.MANDATORY ||
+                a.examination.examinationCategoryType == null) &&
+            (b.examination.examinationCategoryType == ExaminationCategoryType.MANDATORY ||
+                b.examination.examinationCategoryType == null)) {
+          return a.examination.priority.compareTo(b.examination.priority);
+        } else if (a.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM &&
+            b.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM) {
+          return a.examination.examinationType.name.compareTo(b.examination.examinationType.name);
+        } else if ((a.examination.examinationCategoryType == ExaminationCategoryType.MANDATORY ||
+                a.examination.examinationCategoryType == null) &&
+            b.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM) {
+          return 0;
+        } else {
+          return 1;
+        }
+      }),
       newToSchedule: () => sort((a, b) {
         if (a.examination.lastConfirmedDate == null || b.examination.lastConfirmedDate == null) {
           return -1;
@@ -112,21 +130,76 @@ extension CategorizedExaminationListExt on List<CategorizedExamination> {
             DateTime(lastVisitDateWithoutDayA.year, lastVisitDateWithoutDayA.month);
         final lastVisitDateTimeB =
             DateTime(lastVisitDateWithoutDayB.year, lastVisitDateWithoutDayB.month);
-        return lastVisitDateTimeA.compareTo(lastVisitDateTimeB);
+
+        if (lastVisitDateTimeA != lastVisitDateTimeB) {
+          return lastVisitDateTimeA.compareTo(lastVisitDateTimeB);
+        } else if ((a.examination.examinationCategoryType == ExaminationCategoryType.MANDATORY ||
+                a.examination.examinationCategoryType == null) &&
+            (b.examination.examinationCategoryType == ExaminationCategoryType.MANDATORY ||
+                b.examination.examinationCategoryType == null)) {
+          return a.examination.priority.compareTo(b.examination.priority);
+        } else if (a.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM &&
+            b.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM) {
+          return a.examination.examinationType.name.compareTo(b.examination.examinationType.name);
+        } else if ((a.examination.examinationCategoryType == ExaminationCategoryType.MANDATORY ||
+                a.examination.examinationCategoryType == null) &&
+            b.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM) {
+          return 0;
+        } else {
+          return 1;
+        }
       }),
       unknownLastVisit: () => sort(
         (a, b) => a.examination.priority.compareTo(b.examination.priority),
       ),
-      scheduled: () =>
-          sort((a, b) => a.examination.plannedDate!.compareTo(b.examination.plannedDate!)),
+      scheduled: () => sort((a, b) {
+        if ((a.examination.plannedDate != b.examination.plannedDate) &&
+            (a.examination.plannedDate != null && b.examination.plannedDate != null)) {
+          return a.examination.plannedDate!.compareTo(b.examination.plannedDate!);
+        } else if ((a.examination.examinationCategoryType == ExaminationCategoryType.MANDATORY ||
+                a.examination.examinationCategoryType == null) &&
+            (b.examination.examinationCategoryType == ExaminationCategoryType.MANDATORY ||
+                b.examination.examinationCategoryType == null)) {
+          return a.examination.priority.compareTo(b.examination.priority);
+        } else if (a.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM &&
+            b.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM) {
+          return a.examination.examinationType.name.compareTo(b.examination.examinationType.name);
+        } else if ((a.examination.examinationCategoryType == ExaminationCategoryType.MANDATORY ||
+                a.examination.examinationCategoryType == null) &&
+            b.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM) {
+          return 0;
+        } else {
+          return 1;
+        }
+      }),
       waiting: () => sort((a, b) {
-        final lastVisitDateWithoutDayA = a.examination.lastConfirmedDate!;
-        final lastVisitDateWithoutDayB = b.examination.lastConfirmedDate!;
-        final lastVisitDateTimeA =
-            DateTime(lastVisitDateWithoutDayA.year, lastVisitDateWithoutDayA.month);
-        final lastVisitDateTimeB =
-            DateTime(lastVisitDateWithoutDayB.year, lastVisitDateWithoutDayB.month);
-        return lastVisitDateTimeA.compareTo(lastVisitDateTimeB);
+        if (a.examination.lastConfirmedDate != null && b.examination.lastConfirmedDate != null) {
+          final lastVisitDateWithoutDayA = a.examination.lastConfirmedDate!;
+          final lastVisitDateWithoutDayB = b.examination.lastConfirmedDate!;
+          final lastVisitDateTimeA =
+              DateTime(lastVisitDateWithoutDayA.year, lastVisitDateWithoutDayA.month);
+          final lastVisitDateTimeB =
+              DateTime(lastVisitDateWithoutDayB.year, lastVisitDateWithoutDayB.month);
+
+          if (lastVisitDateTimeA != lastVisitDateTimeB) {
+            return lastVisitDateTimeA.compareTo(lastVisitDateTimeB);
+          } else if ((a.examination.examinationCategoryType == ExaminationCategoryType.MANDATORY ||
+                  a.examination.examinationCategoryType == null) &&
+              (b.examination.examinationCategoryType == ExaminationCategoryType.MANDATORY ||
+                  b.examination.examinationCategoryType == null)) {
+            return a.examination.priority.compareTo(b.examination.priority);
+          } else if (a.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM &&
+              b.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM) {
+            return a.examination.examinationType.name.compareTo(b.examination.examinationType.name);
+          } else if ((a.examination.examinationCategoryType == ExaminationCategoryType.MANDATORY ||
+                  a.examination.examinationCategoryType == null) &&
+              b.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM) {
+            return 0;
+          } else {
+            return 1;
+          }
+        }
+        return 1;
       }),
     );
   }
