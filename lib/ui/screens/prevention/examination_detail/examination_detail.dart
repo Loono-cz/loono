@@ -69,13 +69,14 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
       _examination.examinationActionType ?? ExaminationActionType.CONTROL;
 
   DateTime? get _nextVisitDate => _examination.plannedDate;
+  //Pravidelna prohlidka
   bool get _isPeriodicalExam =>
-      _examination.periodicExam == true || _examination.periodicExam == null; //Pravidelna prohlidka
-
+      _examination.periodicExam == true || _examination.periodicExam == null;
+  //Pravidelna vlastni prohlidka
   bool get _isCustomPeriodicalExam =>
-      _isPeriodicalExam &&
-      _examination.examinationCategoryType ==
-          ExaminationCategoryType.CUSTOM; //Pravidelna vlastni prohlidka
+      _isPeriodicalExam && _examination.examinationCategoryType == ExaminationCategoryType.CUSTOM;
+
+  bool isNoteTextChanged = false;
 
   Widget get _doctorAsset => SvgPicture.asset(
         (_examinationCategoryType == ExaminationCategoryType.MANDATORY ||
@@ -85,7 +86,6 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
         width: 180,
       );
 
-  String? _note;
   final TextEditingController _editingController = TextEditingController();
   late FocusNode _focusNote;
 
@@ -122,16 +122,15 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
   }
 
   Future<void> noteChanged() async {
-    _focusNote.unfocus();
     // TODO: post only required changes! >> note | rewrite exProvider's methods
     final response = await registry.get<ExaminationRepository>().postExamination(
           _examinationType,
           newDate: _examination.plannedDate,
           uuid: _examination.uuid,
-          firstExam: false,
-          status: ExaminationStatus.NEW,
+          firstExam: _examination.firstExam,
+          status: _examination.state,
           categoryType: _examinationCategoryType ?? ExaminationCategoryType.MANDATORY,
-          note: _note,
+          note: _editingController.text,
           actionType: _examinationActionType,
           periodicExam: _examination.periodicExam,
           customInterval: _examination.customInterval,
@@ -141,7 +140,6 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
       success: (res) {
         Provider.of<ExaminationsProvider>(context, listen: false)
             .updateExaminationsRecord(res.data);
-
         showFlushBarSuccess(
           context,
           context.l10n.examination_was_edited,
@@ -162,11 +160,11 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
   @override
   void initState() {
     super.initState();
-    _note = _examination.note;
     _focusNote = FocusNode();
     _focusNote.addListener(() async {
-      if (!_focusNote.hasFocus) {
+      if (!_focusNote.hasFocus && isNoteTextChanged) {
         await noteChanged();
+        isNoteTextChanged = false;
       }
     });
     SchedulerBinding.instance.addPostFrameCallback((_) {
@@ -179,6 +177,8 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
   @override
   void dispose() {
     _focusNote.dispose();
+    _editingController.dispose();
+    isNoteTextChanged = false;
     super.dispose();
   }
 
@@ -204,7 +204,6 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
     }
 
     final preposition = czechPreposition(context, examinationType: _examinationType);
-    _editingController.text = _examination.note ?? '';
 
     /// not ideal in build method but need context
     Future<void> onPostNewCheckupSubmit({required DateTime date, String? note}) async {
@@ -273,6 +272,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
       );
     }
 
+    _editingController.text = _examination.note ?? '';
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () => hideKeyboard(context),
@@ -413,7 +413,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                 noteController: _editingController,
                 enable: _examination.plannedDate?.toLocal().isBefore(DateTime.now()) == false,
                 onNoteChange: (value) {
-                  _note = value;
+                  isNoteTextChanged = true;
                 },
                 focusNode: _focusNote,
               ),
