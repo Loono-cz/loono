@@ -26,14 +26,15 @@ class ExaminationDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final examination = Provider.of<ExaminationsProvider>(context, listen: true)
-        .examinations!
-        .examinations
-        .firstWhere(
-          (item) => item.uuid != null
-              ? item.uuid == _exam.uuid
-              : _exam.examinationType == item.examinationType,
-        );
+    final exams =
+        Provider.of<ExaminationsProvider>(context, listen: true).examinations!.examinations;
+
+    final examination = exams.firstWhere(
+      (item) => item.uuid == _exam.uuid,
+      orElse: () => exams.firstWhere(
+        (item) => _exam.examinationType == item.examinationType && item.uuid == null,
+      ),
+    );
 
     return Scaffold(
       appBar: AppBar(
