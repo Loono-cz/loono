@@ -92,7 +92,7 @@ void showHowItWentSheet(
                 unawaited(
                   provider.fetchExaminations(),
                 );
-                await autoRouter.popAndPush(HasFindingRoute(sex: sex));
+                await autoRouter.popAndPush(HasFindingRoute(sex: sex, examType: selfExamination.type));
               },
             ),
           ],
