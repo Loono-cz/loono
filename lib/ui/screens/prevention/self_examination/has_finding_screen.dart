@@ -5,10 +5,9 @@ import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/find_doctor/specialization_chips_list.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-
-import '../../../widgets/find_doctor/specialization_chips_list.dart';
 
 class HasFindingScreen extends StatelessWidget {
   const HasFindingScreen({Key? key, required this.sex, required this.examType})
