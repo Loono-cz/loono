@@ -6,13 +6,17 @@ import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/widgets/avatar_arrow_bubble.dart';
 import 'package:loono/ui/widgets/badges/badge_composer.dart';
+import 'package:loono/ui/widgets/prevention/custom_exam_full_dialog.dart';
 import 'package:loono/ui/widgets/prevention/examinations_sheet_overlay.dart';
 import 'package:loono/ui/widgets/prevention/prevention_header.dart';
+import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
 class PreventionScreen extends StatelessWidget {
   PreventionScreen({Key? key}) : super(key: key);
+
+  AppRouter get appRouter => registry.get<AppRouter>();
 
   final ValueNotifier<double?> extentFromTop = ValueNotifier<double?>(null);
 
@@ -32,11 +36,9 @@ class PreventionScreen extends StatelessWidget {
         0;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: count >= 10
-            ? null
-            : () {
-                AutoRouter.of(context).push(const CustomExamFormRoute());
-              },
+        onPressed: () => count >= 10
+            ? showCustomExamFullDialog(context: context, router: appRouter)
+            : AutoRouter.of(context).push(const CustomExamFormRoute()),
         backgroundColor: count >= 10 ? LoonoColors.grey : LoonoColors.primaryEnabled,
         child: const Icon(
           Icons.add,

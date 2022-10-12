@@ -23,6 +23,9 @@ PODS:
   - Firebase/Crashlytics (9.4.0):
     - Firebase/CoreOnly
     - FirebaseCrashlytics (~> 9.4.0)
+  - Firebase/RemoteConfig (9.4.0):
+    - Firebase/CoreOnly
+    - FirebaseRemoteConfig (~> 9.4.0)
   - Firebase/Storage (9.4.0):
     - Firebase/CoreOnly
     - FirebaseStorage (~> 9.4.0)
@@ -41,10 +44,16 @@ PODS:
     - Firebase/Crashlytics (= 9.4.0)
     - firebase_core
     - Flutter
+  - firebase_remote_config (2.0.20):
+    - Firebase/RemoteConfig (= 9.4.0)
+    - firebase_core
+    - Flutter
   - firebase_storage (10.3.7):
     - Firebase/Storage (= 9.4.0)
     - firebase_core
     - Flutter
+  - FirebaseABTesting (9.6.0):
+    - FirebaseCore (~> 9.0)
   - FirebaseAnalytics/WithoutAdIdSupport (9.4.0):
     - FirebaseCore (~> 9.0)
     - FirebaseInstallations (~> 9.0)
@@ -87,6 +96,12 @@ PODS:
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/UserDefaults (~> 7.7)
     - PromisesObjC (~> 2.1)
+  - FirebaseRemoteConfig (9.4.0):
+    - FirebaseABTesting (~> 9.0)
+    - FirebaseCore (~> 9.0)
+    - FirebaseInstallations (~> 9.0)
+    - GoogleUtilities/Environment (~> 7.7)
+    - "GoogleUtilities/NSData+zlib (~> 7.7)"
   - FirebaseStorage (9.4.0):
     - FirebaseAppCheckInterop (~> 9.0)
     - FirebaseAuthInterop (~> 9.0)
@@ -249,6 +264,7 @@ DEPENDENCIES:
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_crashlytics (from `.symlinks/plugins/firebase_crashlytics/ios`)
+  - firebase_remote_config (from `.symlinks/plugins/firebase_remote_config/ios`)
   - firebase_storage (from `.symlinks/plugins/firebase_storage/ios`)
   - Flutter (from `Flutter`)
   - flutter_config (from `.symlinks/plugins/flutter_config/ios`)
@@ -280,6 +296,7 @@ SPEC REPOS:
   trunk:
     - AppAuth
     - Firebase
+    - FirebaseABTesting
     - FirebaseAnalytics
     - FirebaseAppCheckInterop
     - FirebaseAuth
@@ -290,6 +307,7 @@ SPEC REPOS:
     - FirebaseCoreInternal
     - FirebaseCrashlytics
     - FirebaseInstallations
+    - FirebaseRemoteConfig
     - FirebaseStorage
     - FirebaseStorageInternal
     - FMDB
@@ -323,6 +341,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_core/ios"
   firebase_crashlytics:
     :path: ".symlinks/plugins/firebase_crashlytics/ios"
+  firebase_remote_config:
+    :path: ".symlinks/plugins/firebase_remote_config/ios"
   firebase_storage:
     :path: ".symlinks/plugins/firebase_storage/ios"
   Flutter:
@@ -384,7 +404,9 @@ SPEC CHECKSUMS:
   firebase_auth: 74cfbf7be1e3e7fdaac9e7f117cefd89155251a9
   firebase_core: 8e500850dd138c269d197c8dfca3ae886fa3b6f2
   firebase_crashlytics: 4414603468b8f1514eb246de097f9101c36448db
+  firebase_remote_config: 276c74fd16cba1db4a0ef73dbde716bec6dda0d2
   firebase_storage: 846832b7f2d22238678dc9abc513f2151f102462
+  FirebaseABTesting: 61826730ce9eee8781ba99a2b3420e9bce148dc9
   FirebaseAnalytics: a1a24e72b7ba7f47045a4633f1abb545c07bd29c
   FirebaseAppCheckInterop: d5ecda0c09f8069406643d6e0fa12c09d1b736e3
   FirebaseAuth: ae5d4402e1516497357d909162b091b3ca2a2e9c
@@ -395,6 +417,7 @@ SPEC CHECKSUMS:
   FirebaseCoreInternal: bca76517fe1ed381e989f5e7d8abb0da8d85bed3
   FirebaseCrashlytics: 121ea1d37f4906c94c4c9307297af5121b98b789
   FirebaseInstallations: 0a115432c4e223c5ab20b0dbbe4cbefa793a0e8e
+  FirebaseRemoteConfig: 6d9982bc64548a6e3c1b497b9fa53938ad135f2d
   FirebaseStorage: 160ba975dd3452d9c59a3bf5ea9bf70ff96bd3c2
   FirebaseStorageInternal: 81d8a597324ccd06c41a43c5700bc1185a2fc328
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
