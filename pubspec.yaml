@@ -47,7 +47,12 @@ dependencies:
   flutter_cache_manager: ^3.1.3
   flutter_config: ^2.0.0
   flutter_dotenv: ^5.0.0
-  flutter_facebook_sdk: ^1.0.0
+ 
+  flutter_facebook_sdk:
+    git:
+      url: https://github.com/saadfarhan124/flutter_facebook_sdk.git
+      ref: e6690f208ccc04d26f97c6eef9e0163f3be6290b
+
   flutter_inappwebview: ^5.4.3+7
   flutter_localizations:
     sdk: flutter

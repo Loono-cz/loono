@@ -39,7 +39,7 @@ class _MainScreenState extends State<MainScreen> {
 
   String _deepLinkUrl = 'Unknown';
   FlutterFacebookSdk? facebookDeepLinks;
-  bool isAdvertisingTrackingEnabled = false;
+  bool isAdvertisingTrackingEnabled = true;
 
   Future<void> initPlatformState() async {
     String? deepLinkUrl;
@@ -62,7 +62,25 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   Future<void> logActivateApp() async {
-    await facebookDeepLinks!.logActivateApp();
+    await facebookDeepLinks?.setAdvertiserTracking(isEnabled: isAdvertisingTrackingEnabled);
+    final isInitializedSdk = await facebookDeepLinks!.initializeSDK();
+    if (isInitializedSdk) {
+      print('initialized');
+    }
+    final isAppActivated = await facebookDeepLinks!.logActivateApp();
+    if (isAppActivated) {
+      print('activated');
+    }
+  }
+
+  Future<void> logEvent({
+    required String eventName,
+    double? valueToSum,
+    dynamic? parameters,
+  }) async {
+    final result = await facebookDeepLinks!
+        .logEvent(eventName: eventName, parameters: parameters, valueToSum: valueToSum);
+    print('LogEvent $result');
   }
 
   void evalConnectivity(ConnectivityResult result) {
@@ -82,9 +100,14 @@ class _MainScreenState extends State<MainScreen> {
       checkAndShowDonatePage(context, mounted: mounted);
     }
     registry.get<UserRepository>().sync();
-    initPlatformState();
+
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      //  await logActivateApp();
+      await initPlatformState();
+
+      await logActivateApp();
+
+      await logEvent(eventName: 'MainScreen');
+
       subscription = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
         evalConnectivity(result);
 

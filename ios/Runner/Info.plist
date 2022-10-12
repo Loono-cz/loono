@@ -40,8 +40,10 @@
 		</array>
 		<key>FacebookAppID</key>
 		<string>2160983414083142</string>
+		<key>FacebookClientToken</key>
+		<string>203dc869851c4ff2375b3a780c5af295</string>
 		<key>FacebookDisplayName</key>
-		<string>Preventivka</string>
+		<string>preventivka</string>
 		<key>FacebookAutoLogAppEventsEnabled</key>
 		<true/>
 		<key>FacebookAdvertiserIDCollectionEnabled</key>
