@@ -69,13 +69,14 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
       _examination.examinationActionType ?? ExaminationActionType.CONTROL;
 
   DateTime? get _nextVisitDate => _examination.plannedDate;
+  //Pravidelna prohlidka
   bool get _isPeriodicalExam =>
-      _examination.periodicExam == true || _examination.periodicExam == null; //Pravidelna prohlidka
-
+      _examination.periodicExam == true || _examination.periodicExam == null;
+  //Pravidelna vlastni prohlidka
   bool get _isCustomPeriodicalExam =>
-      _isPeriodicalExam &&
-      _examination.examinationCategoryType ==
-          ExaminationCategoryType.CUSTOM; //Pravidelna vlastni prohlidka
+      _isPeriodicalExam && _examination.examinationCategoryType == ExaminationCategoryType.CUSTOM;
+
+  bool isNoteTextChanged = false;
 
   Widget get _doctorAsset => SvgPicture.asset(
         (_examinationCategoryType == ExaminationCategoryType.MANDATORY ||
@@ -156,16 +157,14 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
     );
   }
 
-  bool noteChange = false;
-
   @override
   void initState() {
     super.initState();
     _focusNote = FocusNode();
     _focusNote.addListener(() async {
-      if (!_focusNote.hasFocus && noteChange) {
+      if (!_focusNote.hasFocus && isNoteTextChanged) {
         await noteChanged();
-        noteChange = false;
+        isNoteTextChanged = false;
       }
     });
     SchedulerBinding.instance.addPostFrameCallback((_) {
@@ -179,7 +178,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
   void dispose() {
     _focusNote.dispose();
     _editingController.dispose();
-    noteChange = false;
+    isNoteTextChanged = false;
     super.dispose();
   }
 
@@ -414,7 +413,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                 noteController: _editingController,
                 enable: _examination.plannedDate?.toLocal().isBefore(DateTime.now()) == false,
                 onNoteChange: (value) {
-                  noteChange = true;
+                  isNoteTextChanged = true;
                 },
                 focusNode: _focusNote,
               ),
