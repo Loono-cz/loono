@@ -31,7 +31,21 @@
 					<string>com.googleusercontent.apps.682822084991-1339pn73ln6d433lif52f9jp0k65e7en</string>
 				</array>
 			</dict>
+			<dict>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>fb2160983414083142</string>
+				</array>
+      		</dict>
 		</array>
+		<key>FacebookAppID</key>
+		<string>2160983414083142</string>
+		<key>FacebookDisplayName</key>
+		<string>Preventivka</string>
+		<key>FacebookAutoLogAppEventsEnabled</key>
+		<true/>
+		<key>FacebookAdvertiserIDCollectionEnabled</key>
+		<true/>
 		<key>CFBundleVersion</key>
 		<string>$(FLUTTER_BUILD_NUMBER)</string>
 		<key>ITSAppUsesNonExemptEncryption</key>
