@@ -20,8 +20,8 @@ void showCustomExamFullDialog({
             color: LoonoColors.bottomSheetLight,
             borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
-          height: 438,
-          width: 339,
+          height: MediaQuery.of(context).size.height * 0.65,
+          width: MediaQuery.of(context).size.width * 0.85,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -36,8 +36,7 @@ void showCustomExamFullDialog({
               Text(
                 context.l10n.custom_exam_full_dialog_title,
                 textAlign: TextAlign.center,
-                style:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
               const SizedBox(
                 height: 22,
@@ -48,7 +47,7 @@ void showCustomExamFullDialog({
                 style: const TextStyle(fontSize: 14),
               ),
               const SizedBox(
-                height: 55,
+                height: 26,
               ),
               LoonoButton(
                 text: context.l10n.i_agree,

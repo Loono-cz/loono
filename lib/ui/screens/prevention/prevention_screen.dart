@@ -36,11 +36,9 @@ class PreventionScreen extends StatelessWidget {
         0;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          count >= 10
-              ? showCustomExamFullDialog(context: context, router: appRouter)
-              : AutoRouter.of(context).push(const CustomExamFormRoute());
-        },
+        onPressed: () => count >= 10
+            ? showCustomExamFullDialog(context: context, router: appRouter)
+            : AutoRouter.of(context).push(const CustomExamFormRoute()),
         backgroundColor: count >= 10 ? LoonoColors.grey : LoonoColors.primaryEnabled,
         child: const Icon(
           Icons.add,
