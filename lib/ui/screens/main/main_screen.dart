@@ -4,11 +4,10 @@ import 'dart:io';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:facebook_app_events/facebook_app_events.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_facebook_sdk/flutter_facebook_sdk.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -37,50 +36,55 @@ class _MainScreenState extends State<MainScreen> {
 
   Flushbar? noConnectionMessage;
 
-  String _deepLinkUrl = 'Unknown';
-  FlutterFacebookSdk? facebookDeepLinks;
+  final String _deepLinkUrl = 'Unknown';
+  FacebookAppEvents facebookAppEvents = FacebookAppEvents();
   bool isAdvertisingTrackingEnabled = true;
 
-  Future<void> initPlatformState() async {
-    String? deepLinkUrl;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      facebookDeepLinks = FlutterFacebookSdk();
-      facebookDeepLinks!.onDeepLinkReceived!.listen((event) {
-        setState(() {
-          _deepLinkUrl = event;
-        });
-      });
-      deepLinkUrl = await facebookDeepLinks!.getDeepLinkUrl;
-      setState(() {
-        _deepLinkUrl = deepLinkUrl!;
-      });
-    } on PlatformException {
-      print;
-    }
-    if (!mounted) return;
-  }
+  // Future<void> initPlatformState() async {
+  //   String? deepLinkUrl;
+  //   // Platform messages may fail, so we use a try/catch PlatformException.
+  //   try {
+  //     facebookDeepLinks = FlutterFacebookSdk();
+  //     facebookDeepLinks!.onDeepLinkReceived!.listen((event) {
+  //       setState(() {
+  //         _deepLinkUrl = event;
+  //       });
+  //     });
+  //     deepLinkUrl = await facebookDeepLinks!.getDeepLinkUrl;
+  //     setState(() {
+  //       _deepLinkUrl = deepLinkUrl!;
+  //     });
+  //   } on PlatformException {
+  //     print;
+  //   }
+  //   if (!mounted) return;
+  // }
 
-  Future<void> logActivateApp() async {
-    await facebookDeepLinks?.setAdvertiserTracking(isEnabled: isAdvertisingTrackingEnabled);
-    final isInitializedSdk = await facebookDeepLinks!.initializeSDK();
-    if (isInitializedSdk) {
-      print('initialized');
-    }
-    final isAppActivated = await facebookDeepLinks!.logActivateApp();
-    if (isAppActivated) {
-      print('activated');
-    }
+  // Future<void> logActivateApp() async {
+  //   await facebookDeepLinks?.setAdvertiserTracking(isEnabled: isAdvertisingTrackingEnabled);
+  //   final isInitializedSdk = await facebookDeepLinks!.initializeSDK();
+  //   if (isInitializedSdk) {
+  //     print('initialized');
+  //   }
+  //   final isAppActivated = await facebookDeepLinks!.logActivateApp();
+  //   if (isAppActivated) {
+  //     print('activated');
+  //   }
+  // }
+
+  Future<void> testFacebookApp() async {
+    await facebookAppEvents.flush();
+    await facebookAppEvents.setAutoLogAppEventsEnabled(true);
+    final appId = await facebookAppEvents.getApplicationId();
+    print(appId);
+    final test =
+        await facebookAppEvents.setAdvertiserTracking(enabled: isAdvertisingTrackingEnabled);
   }
 
   Future<void> logEvent({
     required String eventName,
-    double? valueToSum,
-    dynamic? parameters,
   }) async {
-    final result = await facebookDeepLinks!
-        .logEvent(eventName: eventName, parameters: parameters, valueToSum: valueToSum);
-    print('LogEvent $result');
+    await facebookAppEvents.logEvent(name: eventName);
   }
 
   void evalConnectivity(ConnectivityResult result) {
@@ -101,13 +105,12 @@ class _MainScreenState extends State<MainScreen> {
     }
     registry.get<UserRepository>().sync();
 
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await initPlatformState();
-
-      await logActivateApp();
-
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await testFacebookApp();
       await logEvent(eventName: 'MainScreen');
+    });
 
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
       subscription = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
         evalConnectivity(result);
 

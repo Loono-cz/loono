@@ -479,6 +479,13 @@ packages:
       url: "https://github.com/simolus3/moor.git"
     source: git
     version: "1.0.0"
+  facebook_app_events:
+    dependency: "direct main"
+    description:
+      name: facebook_app_events
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.17.1"
   fake_async:
     dependency: transitive
     description:
@@ -671,15 +678,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_facebook_sdk:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: e6690f208ccc04d26f97c6eef9e0163f3be6290b
-      resolved-ref: e6690f208ccc04d26f97c6eef9e0163f3be6290b
-      url: "https://github.com/saadfarhan124/flutter_facebook_sdk.git"
-    source: git
-    version: "1.1.0"
   flutter_inappwebview:
     dependency: "direct main"
     description:

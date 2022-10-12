@@ -35,6 +35,7 @@ dependencies:
       url: https://github.com/simolus3/moor.git
       path: extras/encryption
       ref: fd0764594dc70b04f5ea5dcd18aa2213abbbce12
+  facebook_app_events: ^0.17.1
   firebase_analytics: ^9.1.2
   firebase_auth: ^3.3.9
   firebase_core: ^1.2.0
@@ -48,10 +49,6 @@ dependencies:
   flutter_config: ^2.0.0
   flutter_dotenv: ^5.0.0
  
-  flutter_facebook_sdk:
-    git:
-      url: https://github.com/saadfarhan124/flutter_facebook_sdk.git
-      ref: e6690f208ccc04d26f97c6eef9e0163f3be6290b
 
   flutter_inappwebview: ^5.4.3+7
   flutter_localizations:
