@@ -1,7 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:loono/constants.dart';
-import 'package:loono/helpers/date_helpers.dart';
 import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/self_examination_category.dart';
 import 'package:loono/models/categorized_examination.dart';
@@ -25,9 +24,7 @@ extension ExaminationPreventionStatusExt on ExaminationPreventionStatus {
       if (isCustom && customInterval != null) {
         subtractedWaitingDate = DateTime(
           now.year,
-          now.month -
-              (transformMonthToYear(customInterval!) * LoonoStrings.monthInYear -
-                  TO_SCHEDULE_MONTHS_TRANSFER),
+          now.month - customInterval!,
         );
       } else {
         // if last visit date is before: CURRENT_MONTH - (INTERVAL - 2 months)

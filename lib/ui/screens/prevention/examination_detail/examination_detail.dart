@@ -76,6 +76,8 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
   bool get _isCustomPeriodicalExam =>
       _isPeriodicalExam && _examination.examinationCategoryType == ExaminationCategoryType.CUSTOM;
 
+  bool get _isCustomExam => _examinationCategoryType == ExaminationCategoryType.CUSTOM;
+
   bool isNoteTextChanged = false;
 
   Widget get _doctorAsset => SvgPicture.asset(
@@ -196,11 +198,16 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
             : l10n.skip_idk;
 
     String _intervalYears(BuildContext context) {
-      if (_examinationCategoryType == ExaminationCategoryType.CUSTOM) {
-        return '${transformMonthToYear(_examination.customInterval ?? 0)} ${_examination.intervalYears < LoonoStrings.monthInYear ? 'měsíců' : 'roků'}';
-      } else {
-        return '${_examination.intervalYears.toString()} ${_examination.intervalYears > 1 ? context.l10n.years : context.l10n.year}';
+      var count = _isCustomExam
+          ? _examination.customInterval ?? 0
+          : _examination.intervalYears;
+      final period = _isCustomExam && count < LoonoStrings.monthInYear
+          ? Period.perMonth
+          : Period.perYear;
+      if (_isCustomExam) {
+        count = transformMonthToYear(count);
       }
+      return '$count ${getTextForPeriod(context, period, count)}';
     }
 
     final preposition = czechPreposition(context, examinationType: _examinationType);
@@ -828,5 +835,27 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
         ),
       ),
     );
+  }
+}
+
+enum Period {
+  perMonth,
+  perYear,
+}
+
+String getTextForPeriod( BuildContext context,Period period, int count) {
+  switch (period) {
+    case Period.perMonth:
+      return count == 1
+          ? context.l10n.custom_exam_every_month_1
+          : count <= 4
+          ? context.l10n.custom_exam_every_month_less_4
+          : context.l10n.custom_exam_every_month_more_4;
+    case Period.perYear:
+      return count == 1
+          ? context.l10n.custom_exam_every_year_1
+          : count <= 4
+          ? context.l10n.custom_exam_every_year_less_4
+          : context.l10n.custom_exam_every_year_more_4;
   }
 }

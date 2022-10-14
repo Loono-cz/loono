@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -9,6 +11,8 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/ui/widgets/prevention/progress_bar/base_ring.dart';
 import 'package:loono_api/loono_api.dart';
+
+import '../../screens/prevention/examination_detail/examination_detail.dart';
 
 class ExaminationProgressContent extends StatelessWidget {
   const ExaminationProgressContent({
@@ -36,15 +40,15 @@ class ExaminationProgressContent extends StatelessWidget {
         ? categorizedExamination.examination.customInterval ?? LoonoStrings.customDefaultMonth
         : categorizedExamination.examination.intervalYears;
     //transformMonthToYear
-    if (_isCustomExamination) {
-      return '${transformMonthToYear(interval)} ${interval < LoonoStrings.monthInYear ? 'měsíců' : 'roků'}';
-    } else {
-      return '${interval.toString()} ${interval > 1 ? context.l10n.years : context.l10n.year}';
-    }
+    final period = _isCustomExamination && interval < LoonoStrings.monthInYear
+        ? Period.perMonth
+        : Period.perYear;
+    return '$interval ${getTextForPeriod(context, period, interval)}';
   }
 
   /// get correct combination of text font styles and colors
   Widget _progressBarContent(BuildContext context) {
+    log('category: ${categorizedExamination.category}');
     if ([
       const ExaminationCategory.scheduledSoonOrOverdue(),
       const ExaminationCategory.scheduled(),
