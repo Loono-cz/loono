@@ -125,7 +125,7 @@ class ExaminationProgressContent extends StatelessWidget {
     DateTime newWaitToDateTime;
     final lastDateVisit = examination.lastConfirmedDate!.toLocal();
 
-    if (_isCustomExamination && interval < LoonoStrings.monthInYear) {
+    if (_isCustomExamination && interval <= LoonoStrings.monthInYear) {
       newWaitToDateTime = DateTime(lastDateVisit.year, lastDateVisit.month + interval);
     } else {
       newWaitToDateTime = DateTime(
