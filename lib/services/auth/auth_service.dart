@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:loono/models/apple_account_info.dart';
 import 'package:loono/models/firebase_user.dart';
 import 'package:loono/models/social_login_account.dart';
@@ -110,29 +111,17 @@ class AuthService {
     if (appleUserId == null) return const Left(AuthFailure.unknown(null, '0x92'));
 
     final AppleAccountInfo appleAccountInfo;
-    final appleUserEmail = appleCredential.email;
-    if (appleUserEmail == null) {
-      // try to obtain the account from the secure storage
-      final savedAccountInfo = await _secureStorage.getAppleAccountInfoById(appleUserId);
-      if (savedAccountInfo == null) {
-        return Left(
-          AuthFailure.accountNotExists(SocialLoginAccount.apple(appleCredential, cryptoNonce)),
-        );
-      } else {
-        appleAccountInfo = savedAccountInfo;
-      }
-    } else {
-      // we got the email and other user details, save it so we can get it later
-      // we get these details only during first authorization
-      appleAccountInfo = AppleAccountInfo(
-        userIdentifier: appleUserId,
-        email: appleUserEmail,
-        givenName: appleCredential.givenName,
-        familyName: appleCredential.familyName,
-      );
-      await _secureStorage.saveAppleAccountInfo(appleAccountInfo);
-    }
-
+    final decodedToken = JwtDecoder.decode(appleCredential.identityToken ?? '');
+    final appleUserEmail = appleCredential.email ?? decodedToken['email'].toString();
+    final savedAccountInfo = await _secureStorage.getAppleAccountInfoById(appleUserId);
+    appleAccountInfo = AppleAccountInfo(
+      userIdentifier: appleUserId,
+      email: appleUserEmail,
+      givenName: appleCredential.givenName ?? savedAccountInfo?.givenName.toString(),
+      familyName: appleCredential.familyName ?? savedAccountInfo?.familyName.toString(),
+      identifierToken: appleCredential.identityToken,
+    );
+    await _secureStorage.saveAppleAccountInfo(appleAccountInfo);
     final signInMethods = await _auth.fetchSignInMethodsForEmail(appleAccountInfo.email);
     if (signInMethods.isEmpty) {
       return Left(
@@ -244,6 +233,7 @@ class AuthService {
       ],
       nonce: cryptoNonce.nonce,
     );
+
     return appleCredential;
   }
 
