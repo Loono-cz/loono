@@ -30,7 +30,7 @@ class ExaminationDetailScreen extends StatelessWidget {
         Provider.of<ExaminationsProvider>(context, listen: true).examinations!.examinations;
 
     final examination = exams.firstWhere(
-      (item) => item.uuid == _exam.uuid,
+      (item) => item.uuid != null && item.uuid == _exam.uuid,
       orElse: () => exams.firstWhere(
         (item) => _exam.examinationType == item.examinationType && item.uuid == null,
       ),
