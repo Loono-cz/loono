@@ -9,10 +9,9 @@ import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
+import 'package:loono/ui/screens/prevention/examination_detail/examination_detail.dart';
 import 'package:loono/ui/widgets/prevention/progress_bar/base_ring.dart';
 import 'package:loono_api/loono_api.dart';
-
-import '../../screens/prevention/examination_detail/examination_detail.dart';
 
 class ExaminationProgressContent extends StatelessWidget {
   const ExaminationProgressContent({
