@@ -11,11 +11,13 @@ class CategorizedExaminationConverter {
 
   var converting = false;
 
-  Future<List<CategorizedExamination>> convert([final List<ExaminationPreventionStatus>? newStatuses]) async {
-    if(newStatuses != null){
+  Future<List<CategorizedExamination>> convert([
+    final List<ExaminationPreventionStatus>? newStatuses,
+  ]) async {
+    if (newStatuses != null) {
       _preventionStatuses = newStatuses;
     }
-    if(_preventionStatuses == null){
+    if (_preventionStatuses == null) {
       return [];
     }
     converting = true;
@@ -34,6 +36,7 @@ class CategorizedExaminationConverter {
   }
 }
 
+///Sorts async [List] of [CategorizedExamination] by [CategorizedExaminationListExt]
 class CategorizedExaminationSorter {
   CategorizedExaminationSorter(this.exams);
 
@@ -41,8 +44,9 @@ class CategorizedExaminationSorter {
 
   var sorting = false;
 
-  Future<List<CategorizedExamination>> sort(
-      [final List<CategorizedExamination>? newExams]) async {
+  Future<List<CategorizedExamination>> sort([
+    final List<CategorizedExamination>? newExams,
+  ]) async {
     if (newExams != null) {
       exams = newExams;
     }
