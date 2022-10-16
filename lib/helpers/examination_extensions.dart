@@ -112,7 +112,7 @@ extension ExaminationExt on ExaminationPreventionStatus{
 }
 
 extension CategorizedExaminationListExt on List<CategorizedExamination> {
-  void sortExaminations() {
+  Future<void> sortExaminations() async {
     if (isEmpty) return;
 
     final scheduledOrOverdue = <CategorizedExamination>[];
@@ -132,15 +132,24 @@ extension CategorizedExaminationListExt on List<CategorizedExamination> {
     }
 
     final sorted = <CategorizedExamination>[
-      ...scheduledOrOverdue.sorted(_compareByDateThenByCategoryType),
-      ...newToSchedule.sorted(_compareNewToSchedule),
-      ...unknownLastVisit
-          .sorted((a, b) => compareExaminationType(a, b, compareByDate: false)),
-      ...scheduled.sorted(_compareByDateThenByCategoryType),
-      ...waiting.sorted(_compareByDateThenByCategoryType),
+      ...await _sortByDateThenCategoryType(scheduledOrOverdue),
+      ...await _sortNewToSchedule(newToSchedule),
+      ...await _sortUnknownLastVisit(unknownLastVisit),
+      ...await _sortByDateThenCategoryType(scheduled),
+      ...await _sortByDateThenCategoryType(waiting),
     ];
     clear();
     addAll(sorted);
+  }
+
+  Future<List<CategorizedExamination>> _sortByDateThenCategoryType(List<CategorizedExamination> exams) async {
+   return exams.sorted(_compareByDateThenByCategoryType);
+  }
+  Future<List<CategorizedExamination>> _sortNewToSchedule(List<CategorizedExamination> exams) async {
+   return exams.sorted(_compareNewToSchedule);
+  }
+  Future<List<CategorizedExamination>> _sortUnknownLastVisit(List<CategorizedExamination> exams) async {
+   return exams.sorted((a, b) => compareExaminationType(a, b, compareByDate: false));
   }
 
   int _compareNewToSchedule(CategorizedExamination a,
