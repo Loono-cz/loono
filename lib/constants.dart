@@ -4,6 +4,11 @@ class LoonoAssets {
   static const cdLogo = 'assets/sponsors/cd.svg';
   static const ppfLogo = 'assets/sponsors/ppf.svg';
   static const cgiLogo = 'assets/sponsors/CGI.svg';
+
+  static const customExamBadge = 'assets/badges_examination/custom_examination/badge';
+  static const examinationCardSuccessIcon = 'assets/icons/prevention/success_checkmark.svg';
+
+  static const calendarIcon = 'assets/icons/prevention/calendar.svg';
 }
 
 class LoonoColors {
@@ -23,6 +28,7 @@ class LoonoColors {
   static const leaderboardPrimary = Color.fromRGBO(248, 185, 144, 1);
   static const pink = Color.fromRGBO(252, 237, 237, 1);
   static const red = Color.fromRGBO(216, 66, 72, 1);
+  static const orangeLight = Color.fromRGBO(254, 242, 233, 1.0);
   static const secondaryFont = Color.fromRGBO(59, 126, 129, 1);
   static const redButton = Color.fromARGB(255, 230, 87, 86);
   static const settingsBackground = Color.fromRGBO(254, 242, 233, 1);

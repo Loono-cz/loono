@@ -7,6 +7,7 @@ import 'package:loono/helpers/examination_action_types.dart';
 import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/models/categorized_examination.dart';
+import 'package:loono/ui/widgets/examination_badge.dart';
 import 'package:loono/ui/widgets/loono_point.dart';
 import 'package:loono/ui/widgets/notification_icon.dart';
 import 'package:loono_api/loono_api.dart';
@@ -60,6 +61,21 @@ class ExaminationCard extends StatelessWidget {
   Widget get _doctorCircle => SvgPicture.asset(
         'assets/icons/card_circle.svg',
       );
+
+  DateTime get actualDate => DateTime.now();
+
+  int get recommendedIntervalInMonthsMinusTwoMonths =>
+      categorizedExamination.examination.intervalYears.toInt() * 12 - 2;
+
+  DateTime get recommendedIntervalTransferToDate => DateTime(
+    actualDate.year,
+    actualDate.month - recommendedIntervalInMonthsMinusTwoMonths,
+    actualDate.day,
+  );
+
+  bool get isLastConfirmedDateOlderMinusTwoMonths =>
+      (categorizedExamination.examination.lastConfirmedDate?.compareTo(
+        recommendedIntervalTransferToDate,) ?? 0) >= 0;
 
   @override
   Widget build(BuildContext context) {
@@ -190,16 +206,30 @@ class ExaminationCard extends StatelessWidget {
           ),
         ),
       ),
-      Stack(
-        children: [
-          _doctorCircle,
-          Positioned(
-            right: 0,
-            bottom: 0,
-            child: _doctorAsset,
-          ),
-        ],
-      )
+      SizedBox(
+        width: 170,
+        child: Stack(
+          alignment: Alignment.centerRight,
+          children: [
+            _doctorCircle,
+            Positioned(
+              right: 0,
+              bottom: 0,
+              child: _doctorAsset,
+            ),
+            if (categorizedExamination.examination.lastConfirmedDate != null &&
+                !(categorizedExamination.examination.plannedDate == null) &&
+                !isLastConfirmedDateOlderMinusTwoMonths)
+              Positioned(
+                right: 95,
+                child: ExaminationBadge(
+                  categorizedExamination: categorizedExamination,
+                  badgeState: BadgeState.redBadge,
+                ),
+              ),
+          ],
+        ),
+      ),
     ];
   }
 
@@ -257,7 +287,7 @@ class ExaminationCard extends StatelessWidget {
             Positioned(
               bottom: 10,
               right: 80,
-              child: SvgPicture.asset('assets/icons/prevention/success_checkmark.svg', width: 50),
+              child: SvgPicture.asset(LoonoAssets.examinationCardSuccessIcon, width: 50),
             ),
           ],
         ),
@@ -273,7 +303,7 @@ class ExaminationCard extends StatelessWidget {
       textBaseline: TextBaseline.alphabetic,
       crossAxisAlignment: CrossAxisAlignment.baseline,
       children: [
-        SvgPicture.asset('assets/icons/prevention/calendar.svg'),
+        SvgPicture.asset(LoonoAssets.calendarIcon),
         const SizedBox(width: 7.0),
         Text(formattedDate, style: LoonoFonts.cardSubtitle),
         const SizedBox(
