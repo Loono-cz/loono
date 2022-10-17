@@ -20,18 +20,17 @@ Future<void> newAppointmentFlow({
   await orderSheetPage.verifyHaveDoctorSheet1IsShown();
 
   await orderSheetPage.clickAlreadyHaveDoctorSheet1Button();
-  await orderSheetPage.verifyInstructionSheet2IsShown();
 
-  await orderSheetPage.clickIHaveAppointmentSheet2Button();
   await datePickerSheetPage.verifyDatePickerSheetIsShown();
 
   datePickerSheetPage.verifyDatePickerIsShown();
   await datePickerSheetPage.datePickerSheetPickNextMonth();
   await datePickerSheetPage.clickDatePickerSheetContinueButton();
 
-  await datePickerSheetPage.verifyDatePickerSheetIsShown();
   datePickerSheetPage.verifyTimePickerIsShown();
 
+  await datePickerSheetPage.clickDatePickerSheetContinueButton();
+  await datePickerSheetPage.verifyNoteInputFieldIsShown();
   await datePickerSheetPage.clickDatePickerSheetContinueButton();
   await tester.waitForToastToDisappear(msgPattern: 'připomeneme');
 
