@@ -225,6 +225,7 @@ class ExaminationCard extends StatelessWidget {
                 child: ExaminationBadge(
                   categorizedExamination: categorizedExamination,
                   badgeState: BadgeState.redBadge,
+                  alignment: MainAxisAlignment.center,
                 ),
               ),
           ],

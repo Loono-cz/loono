@@ -14,6 +14,7 @@ class ExaminationBadge extends StatelessWidget {
     this.badgeLevel = 1,
     this.disabled = false,
     this.showPoints = false,
+    this.alignment = MainAxisAlignment.start,
   }) : super(key: key);
 
   final CategorizedExamination categorizedExamination;
@@ -21,6 +22,7 @@ class ExaminationBadge extends StatelessWidget {
   final int badgeLevel;
   final bool disabled;
   final bool showPoints;
+  final MainAxisAlignment alignment;
 
   ExaminationCategoryType? get examCategoryType =>
       categorizedExamination.examination.examinationCategoryType;
@@ -31,7 +33,7 @@ class ExaminationBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: alignment,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         b.Badge(
