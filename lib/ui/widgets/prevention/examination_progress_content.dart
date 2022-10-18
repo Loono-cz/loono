@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
@@ -22,6 +21,8 @@ class ExaminationProgressContent extends StatelessWidget {
 
   ExaminationCategoryType? get _examinationCategoryType =>
       categorizedExamination.examination.examinationCategoryType;
+
+  ExaminationCategory get category => categorizedExamination.category;
 
   bool get _isToday {
     final now = DateTime.now();
@@ -173,9 +174,73 @@ class ExaminationProgressContent extends StatelessWidget {
               ),
             ),
           ),
-          progressBarLeftDot(categorizedExamination.category),
-          progressBarRightDot(categorizedExamination.category),
+          _buildProgressBarLeftDot(),
+          _buildProgressBarRightDot(),
         ],
+      ),
+    );
+  }
+
+  Widget _buildProgressBarLeftDot() {
+    var color = LoonoColors.red;
+    if ([
+      const ExaminationCategory.scheduledSoonOrOverdue(),
+      const ExaminationCategory.scheduled(),
+    ].contains(category)) {
+      color = LoonoColors.greenSuccess;
+    } else if (category == const ExaminationCategory.waiting()) {
+      color = LoonoColors.primary;
+    }
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: Container(
+          color: color,
+          width: 16,
+          height: 16,
+          child: Visibility(
+            visible: [
+              const ExaminationCategory.scheduledSoonOrOverdue(),
+              const ExaminationCategory.scheduled(),
+            ].contains(category),
+            child: const Icon(
+              Icons.done,
+              size: 14,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildProgressBarRightDot() {
+    var color = LoonoColors.primary;
+    IconData? icon;
+    if (category == const ExaminationCategory.scheduledSoonOrOverdue()) {
+      color = LoonoColors.red;
+      icon = Icons.priority_high;
+    } else if (category == const ExaminationCategory.waiting()) {
+      color = LoonoColors.greenSuccess;
+      icon = Icons.done;
+    }
+    return Align(
+      alignment: Alignment.centerRight,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: Container(
+          color: color,
+          width: 16,
+          height: 16,
+          child: icon != null
+              ? Icon(
+            icon,
+            size: 14,
+            color: Colors.white,
+          )
+              : const SizedBox(),
+        ),
       ),
     );
   }
