@@ -146,7 +146,8 @@ class ResultFromDoctorScreen extends StatelessWidget {
         return context.l10n.self_examination_cancer_testicular;
       case SelfExaminationType.SKIN:
         return context.l10n.self_examination_cancer_skin;
+      default:
+        return '';
     }
-    return '';
   }
 }

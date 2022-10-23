@@ -206,7 +206,7 @@ class HasFindingScreen extends StatelessWidget {
           style: LoonoFonts.paragraphFontStyle,
           children: [
             TextSpan(
-              text: 'www.mamo.cz',
+              text: LoonoStrings.mamoUrl,
               style: const TextStyle(
                 color: LoonoColors.primary,
               ),
