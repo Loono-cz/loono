@@ -96,15 +96,17 @@ extension SelfExaminationPreventionStatusExt on SelfExaminationPreventionStatus 
   }
 }
 
-extension ExaminationExt on ExaminationPreventionStatus{
-  DateTime? get targetExamDate  {
-    if(plannedDate != null && plannedDate != lastConfirmedDate){
+extension ExaminationExt on ExaminationPreventionStatus {
+  DateTime? get targetExamDate {
+    if (plannedDate != null && plannedDate != lastConfirmedDate) {
       return plannedDate!;
-    }
-    else if(lastConfirmedDate != null){
-      final months =
-          customInterval != null ? customInterval! : intervalYears * 12;
-      return DateTime(lastConfirmedDate!.year, lastConfirmedDate!.month + months, lastConfirmedDate!.day);
+    } else if (lastConfirmedDate != null) {
+      final months = customInterval != null ? customInterval! : intervalYears * 12;
+      return DateTime(
+        lastConfirmedDate!.year,
+        lastConfirmedDate!.month + months,
+        lastConfirmedDate!.day,
+      );
     } else {
       return null;
     }
@@ -142,49 +144,53 @@ extension CategorizedExaminationListExt on List<CategorizedExamination> {
     addAll(sorted);
   }
 
-  Future<List<CategorizedExamination>> _sortByDateThenCategoryType(List<CategorizedExamination> exams) async {
-   return exams.sorted(_compareByDateThenByCategoryType);
-  }
-  Future<List<CategorizedExamination>> _sortNewToSchedule(List<CategorizedExamination> exams) async {
-   return exams.sorted(_compareNewToSchedule);
-  }
-  Future<List<CategorizedExamination>> _sortUnknownLastVisit(List<CategorizedExamination> exams) async {
-   return exams.sorted((a, b) => compareExaminationType(a, b, compareByDate: false));
+  Future<List<CategorizedExamination>> _sortByDateThenCategoryType(
+    List<CategorizedExamination> exams,
+  ) async {
+    return exams.sorted(_compareByDateThenByCategoryType);
   }
 
-  int _compareNewToSchedule(CategorizedExamination a,
-      CategorizedExamination b,) {
+  Future<List<CategorizedExamination>> _sortNewToSchedule(
+    List<CategorizedExamination> exams,
+  ) async {
+    return exams.sorted(_compareNewToSchedule);
+  }
+
+  Future<List<CategorizedExamination>> _sortUnknownLastVisit(
+    List<CategorizedExamination> exams,
+  ) async {
+    return exams.sorted((a, b) => compareExaminationType(a, b, compareByDate: false));
+  }
+
+  int _compareNewToSchedule(
+    CategorizedExamination a,
+    CategorizedExamination b,
+  ) {
     final now = DateTime.now();
     final aWaitingDate = a.examination.isCustom
         ? DateTime(now.year, now.month - (a.examination.customInterval ?? 0))
         : DateTime(
-      now.year,
-      now.month -
-          (a.examination.intervalYears * LoonoStrings.monthInYear -
-              TO_SCHEDULE_MONTHS_TRANSFER),
-    );
+            now.year,
+            now.month -
+                (a.examination.intervalYears * LoonoStrings.monthInYear -
+                    TO_SCHEDULE_MONTHS_TRANSFER),
+          );
     final bWaitingDate = b.examination.isCustom
         ? DateTime(now.year, now.month - (b.examination.customInterval ?? 0))
         : DateTime(
-      now.year,
-      now.month -
-          (b.examination.intervalYears * LoonoStrings.monthInYear -
-              TO_SCHEDULE_MONTHS_TRANSFER),
-    );
-    final aDifference = now
-        .difference(aWaitingDate)
-        .inDays;
-    final bDifference = now
-        .difference(bWaitingDate)
-        .inDays;
+            now.year,
+            now.month -
+                (b.examination.intervalYears * LoonoStrings.monthInYear -
+                    TO_SCHEDULE_MONTHS_TRANSFER),
+          );
+    final aDifference = now.difference(aWaitingDate).inDays;
+    final bDifference = now.difference(bWaitingDate).inDays;
 
     if (aDifference > 60 && bDifference < 60) {
       return -1;
-    }
-    else if (aDifference < 60 && bDifference > 60) {
+    } else if (aDifference < 60 && bDifference > 60) {
       return 1;
-    }
-    else {
+    } else {
       return compareExaminationType(a, b, compareByDate: false);
     }
   }
@@ -193,12 +199,12 @@ extension CategorizedExaminationListExt on List<CategorizedExamination> {
     CategorizedExamination a,
     CategorizedExamination b,
   ) {
-    final dateDifference = a.examination.targetExamDate!.difference(b.examination.targetExamDate!).inDays;
+    final dateDifference =
+        a.examination.targetExamDate!.difference(b.examination.targetExamDate!).inDays;
 
     if (dateDifference == 0) {
       return compareExaminationType(a, b, compareByDate: false);
-    }
-    else {
+    } else {
       return dateDifference > 0 ? 1 : -1;
     }
   }
