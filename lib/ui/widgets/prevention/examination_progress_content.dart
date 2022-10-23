@@ -1,6 +1,3 @@
-import 'dart:developer';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
@@ -9,7 +6,6 @@ import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_detail_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
-import 'package:loono/ui/screens/prevention/examination_detail/examination_detail.dart';
 import 'package:loono/ui/widgets/prevention/progress_bar/base_ring.dart';
 import 'package:loono_api/loono_api.dart';
 
@@ -26,6 +22,8 @@ class ExaminationProgressContent extends StatelessWidget {
   ExaminationCategoryType? get _examinationCategoryType =>
       categorizedExamination.examination.examinationCategoryType;
 
+  ExaminationCategory get category => categorizedExamination.category;
+
   bool get _isToday {
     final now = DateTime.now();
     final visit = categorizedExamination.examination.plannedDate!.toLocal();
@@ -39,15 +37,15 @@ class ExaminationProgressContent extends StatelessWidget {
         ? categorizedExamination.examination.customInterval ?? LoonoStrings.customDefaultMonth
         : categorizedExamination.examination.intervalYears;
     //transformMonthToYear
-    final period = _isCustomExamination && interval < LoonoStrings.monthInYear
-        ? Period.perMonth
-        : Period.perYear;
-    return '$interval ${getTextForPeriod(context, period, interval)}';
+    if (_isCustomExamination) {
+      return '${transformMonthToYear(interval)} ${interval < LoonoStrings.monthInYear ? 'měsíců' : 'roků'}';
+    } else {
+      return '${interval.toString()} ${interval > 1 ? context.l10n.years : context.l10n.year}';
+    }
   }
 
   /// get correct combination of text font styles and colors
   Widget _progressBarContent(BuildContext context) {
-    log('category: ${categorizedExamination.category}');
     if ([
       const ExaminationCategory.scheduledSoonOrOverdue(),
       const ExaminationCategory.scheduled(),
@@ -88,7 +86,7 @@ class ExaminationProgressContent extends StatelessWidget {
     final visitTime = DateFormat(LoonoStrings.hoursFormat, 'cs-CZ')
         .format(categorizedExamination.examination.plannedDate!.toLocal());
     final visitTimePreposition =
-        categorizedExamination.examination.plannedDate!.toLocal().hour > 11 ? 've' : 'v';
+    categorizedExamination.examination.plannedDate!.toLocal().hour > 11 ? 've' : 'v';
     final visitDate = DateFormat(LoonoStrings.dateFormatSpacing, 'cs-CZ')
         .format(categorizedExamination.examination.plannedDate!.toLocal());
     final isAfterVisit = now.isAfter(categorizedExamination.examination.plannedDate!.toLocal());
@@ -98,8 +96,8 @@ class ExaminationProgressContent extends StatelessWidget {
         Text(
           isAfterVisit
               ? (sex == Sex.MALE
-                  ? context.l10n.did_you_visited_male
-                  : context.l10n.did_you_visited_female)
+              ? context.l10n.did_you_visited_male
+              : context.l10n.did_you_visited_female)
               : context.l10n.next_visit,
           textAlign: TextAlign.center,
           style: LoonoFonts.paragraphSmallFontStyle.copyWith(
@@ -176,9 +174,73 @@ class ExaminationProgressContent extends StatelessWidget {
               ),
             ),
           ),
-          progressBarLeftDot(categorizedExamination.category),
-          progressBarRightDot(categorizedExamination.category),
+          _buildProgressBarLeftDot(),
+          _buildProgressBarRightDot(),
         ],
+      ),
+    );
+  }
+
+  Widget _buildProgressBarLeftDot() {
+    var color = LoonoColors.red;
+    if ([
+      const ExaminationCategory.scheduledSoonOrOverdue(),
+      const ExaminationCategory.scheduled(),
+    ].contains(category)) {
+      color = LoonoColors.greenSuccess;
+    } else if (category == const ExaminationCategory.waiting()) {
+      color = LoonoColors.primary;
+    }
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: Container(
+          color: color,
+          width: 16,
+          height: 16,
+          child: Visibility(
+            visible: [
+              const ExaminationCategory.scheduledSoonOrOverdue(),
+              const ExaminationCategory.scheduled(),
+            ].contains(category),
+            child: const Icon(
+              Icons.done,
+              size: 14,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildProgressBarRightDot() {
+    var color = LoonoColors.primary;
+    IconData? icon;
+    if (category == const ExaminationCategory.scheduledSoonOrOverdue()) {
+      color = LoonoColors.red;
+      icon = Icons.priority_high;
+    } else if (category == const ExaminationCategory.waiting()) {
+      color = LoonoColors.greenSuccess;
+      icon = Icons.done;
+    }
+    return Align(
+      alignment: Alignment.centerRight,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: Container(
+          color: color,
+          width: 16,
+          height: 16,
+          child: icon != null
+              ? Icon(
+            icon,
+            size: 14,
+            color: Colors.white,
+          )
+              : const SizedBox(),
+        ),
       ),
     );
   }
