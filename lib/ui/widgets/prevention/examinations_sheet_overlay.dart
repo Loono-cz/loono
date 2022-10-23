@@ -40,7 +40,8 @@ class ExaminationsSheetOverlay extends StatelessWidget {
           // controller: scrollDragController,
           builder: (context, scrollController) {
             final converter = CategorizedExaminationConverter(
-                examinationsProvider.examinations?.examinations.toList());
+              examinationsProvider.examinations?.examinations.toList(),
+            );
             if ((examinationsProvider.loading && examinationsProvider.examinations == null) ||
                 converter.converting) {
               return const Center(
