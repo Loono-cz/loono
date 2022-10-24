@@ -138,8 +138,9 @@ class ResultFromDoctorScreen extends StatelessWidget {
       ),
     );
   }
-  String _getSubtitleText(BuildContext context){
-    switch(selfExamination.type){
+
+  String _getSubtitleText(BuildContext context) {
+    switch (selfExamination.type) {
       case SelfExaminationType.BREAST:
         return context.l10n.self_examination_cancer_breast;
       case SelfExaminationType.TESTICULAR:
