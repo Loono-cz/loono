@@ -36,22 +36,25 @@ Future<void> checkAndShowDonatePage(
             .add(const Duration(days: LoonoStrings.donateDelayInterval)),
       ) &&
       donateInfo.showNotification == true) {
-    donateUserInfo = DonateUserInfo(lastOpened: DateTime.now(), showNotification: true);
+    donateUserInfo =
+        DonateUserInfo(lastOpened: DateTime.now(), showNotification: true);
     showModal = true;
   }
-  await secureStorageRegistry.storeDonateInfoData(
-    donateUserInfo!,
-  );
+  if (donateUserInfo != null) {
+    await secureStorageRegistry.storeDonateInfoData(
+      donateUserInfo,
+    );
+  }
 
   if (!mounted || !showModal) return;
-  Future.delayed(const Duration(seconds: 30), () => showDelayDonatePage(context));
+  Future.delayed(
+      const Duration(seconds: 30), () => showDelayDonatePage(context));
 }
 
 Future<void> showDelayDonatePage(
   BuildContext context, [
   bool mounted = true,
 ]) async {
-  await Future<void>.delayed(const Duration(seconds: 5));
   if (!mounted) return;
   showDonateBottomSheet(context);
 }
