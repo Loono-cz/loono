@@ -27,14 +27,18 @@ class ExaminationProgressContent extends StatelessWidget {
   bool get _isToday {
     final now = DateTime.now();
     final visit = categorizedExamination.examination.plannedDate!.toLocal();
-    return now.day == visit.day && now.month == visit.month && now.year == visit.year;
+    return now.day == visit.day &&
+        now.month == visit.month &&
+        now.year == visit.year;
   }
 
-  bool get _isCustomExamination => _examinationCategoryType == ExaminationCategoryType.CUSTOM;
+  bool get _isCustomExamination =>
+      _examinationCategoryType == ExaminationCategoryType.CUSTOM;
 
   String _intervalYears(BuildContext context) {
     final interval = _isCustomExamination
-        ? categorizedExamination.examination.customInterval ?? LoonoStrings.customDefaultMonth
+        ? categorizedExamination.examination.customInterval ??
+            LoonoStrings.customDefaultMonth
         : categorizedExamination.examination.intervalYears;
     //transformMonthToYear
     if (_isCustomExamination) {
@@ -52,8 +56,10 @@ class ExaminationProgressContent extends StatelessWidget {
     ].contains(categorizedExamination.category)) {
       /// known next visit
       return _scheduledVisitContent(context);
-    } else if (const ExaminationCategory.waiting() == categorizedExamination.category ||
-        categorizedExamination.examination.state == ExaminationStatus.CONFIRMED) {
+    } else if (const ExaminationCategory.waiting() ==
+            categorizedExamination.category ||
+        categorizedExamination.examination.state ==
+            ExaminationStatus.CONFIRMED) {
       /// awaiting new checkup
       return _earlyCheckupContent(context);
     } else if (categorizedExamination.examination.lastConfirmedDate != null) {
@@ -86,18 +92,21 @@ class ExaminationProgressContent extends StatelessWidget {
     final visitTime = DateFormat(LoonoStrings.hoursFormat, 'cs-CZ')
         .format(categorizedExamination.examination.plannedDate!.toLocal());
     final visitTimePreposition =
-    categorizedExamination.examination.plannedDate!.toLocal().hour > 11 ? 've' : 'v';
+        categorizedExamination.examination.plannedDate!.toLocal().hour > 11
+            ? 've'
+            : 'v';
     final visitDate = DateFormat(LoonoStrings.dateFormatSpacing, 'cs-CZ')
         .format(categorizedExamination.examination.plannedDate!.toLocal());
-    final isAfterVisit = now.isAfter(categorizedExamination.examination.plannedDate!.toLocal());
+    final isAfterVisit =
+        now.isAfter(categorizedExamination.examination.plannedDate!.toLocal());
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
           isAfterVisit
               ? (sex == Sex.MALE
-              ? context.l10n.did_you_visited_male
-              : context.l10n.did_you_visited_female)
+                  ? context.l10n.did_you_visited_male
+                  : context.l10n.did_you_visited_female)
               : context.l10n.next_visit,
           textAlign: TextAlign.center,
           style: LoonoFonts.paragraphSmallFontStyle.copyWith(
@@ -127,10 +136,12 @@ class ExaminationProgressContent extends StatelessWidget {
     final lastDateVisit = examination.lastConfirmedDate!.toLocal();
 
     if (_isCustomExamination && interval <= LoonoStrings.monthInYear) {
-      newWaitToDateTime = DateTime(lastDateVisit.year, lastDateVisit.month + interval);
+      newWaitToDateTime =
+          DateTime(lastDateVisit.year, lastDateVisit.month + interval);
     } else {
       newWaitToDateTime = DateTime(
-        lastDateVisit.year + (_isCustomExamination ? transformMonthToYear(interval) : interval),
+        lastDateVisit.year +
+            (_isCustomExamination ? transformMonthToYear(interval) : interval),
         lastDateVisit.month,
       );
     }
@@ -141,7 +152,8 @@ class ExaminationProgressContent extends StatelessWidget {
       children: [
         Text(
           context.l10n.early_ordering,
-          style: LoonoFonts.paragraphSmallFontStyle.copyWith(color: LoonoColors.primaryEnabled),
+          style: LoonoFonts.paragraphSmallFontStyle
+              .copyWith(color: LoonoColors.primaryEnabled),
         ),
         Text(
           formattedDate,
@@ -161,7 +173,8 @@ class ExaminationProgressContent extends StatelessWidget {
           SizedBox(
             child: CustomPaint(
               painter: Ring(
-                progressColor: progressBarColor(categorizedExamination.category),
+                progressColor:
+                    progressBarColor(categorizedExamination.category),
                 upperArcAngle: upperArcProgress(categorizedExamination),
                 lowerArcAngle: lowerArcProgress(categorizedExamination),
                 isOverdue: isOverdue(categorizedExamination),
@@ -235,10 +248,10 @@ class ExaminationProgressContent extends StatelessWidget {
           height: 16,
           child: icon != null
               ? Icon(
-            icon,
-            size: 14,
-            color: Colors.white,
-          )
+                  icon,
+                  size: 14,
+                  color: Colors.white,
+                )
               : const SizedBox(),
         ),
       ),

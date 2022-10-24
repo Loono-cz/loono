@@ -46,7 +46,10 @@ TextStyle preventiveInspectionStyles(ExaminationCategory category) {
   return LoonoFonts.cardTitle.copyWith(color: color, fontWeight: weight);
 }
 
-String czechPreposition(BuildContext context, {required ExaminationType examinationType}) {
+String czechPreposition(
+  BuildContext context, {
+  required ExaminationType examinationType,
+}) {
   if ([
     ExaminationType.COLONOSCOPY,
     ExaminationType.MAMMOGRAM,
@@ -57,7 +60,10 @@ String czechPreposition(BuildContext context, {required ExaminationType examinat
   }
 }
 
-String czechPrepositionDativ(BuildContext context, {required ExaminationType examinationType}) {
+String czechPrepositionDativ(
+  BuildContext context, {
+  required ExaminationType examinationType,
+}) {
   var res = '';
   switch (examinationType) {
     case ExaminationType.COLONOSCOPY:
@@ -207,9 +213,9 @@ final czechMonthsInflected = [
 
 /// Gets localized message of: "In the last [interval] years".
 String getQuestionnaireFirstAnswer(
-    BuildContext context, {
-      required int interval,
-    }) {
+  BuildContext context, {
+  required int interval,
+}) {
   final l10n = context.l10n;
   return Intl.plural(
     interval,
@@ -222,9 +228,9 @@ String getQuestionnaireFirstAnswer(
 
 /// Gets localized message of: "More than [interval] years".
 String getQuestionnaireSecondAnswer(
-    BuildContext context, {
-      required int interval,
-    }) {
+  BuildContext context, {
+  required int interval,
+}) {
   final l10n = context.l10n;
   return Intl.plural(
     interval,
@@ -237,9 +243,9 @@ String getQuestionnaireSecondAnswer(
 
 //TODO: Fix translation highlight.
 String procedureQuestionTitle(
-    BuildContext context, {
-      required ExaminationType examinationType,
-    }) {
+  BuildContext context, {
+  required ExaminationType examinationType,
+}) {
   var response = '';
   switch (examinationType) {
     case ExaminationType.COLONOSCOPY:
@@ -279,10 +285,10 @@ String procedureQuestionTitle(
 enum Casus { nomativ, genitiv, dativ }
 
 String examinationTypeCasus(
-    BuildContext context, {
-      required ExaminationType examinationType,
-      required Casus casus,
-    }) {
+  BuildContext context, {
+  required ExaminationType examinationType,
+  required Casus casus,
+}) {
   final l10n = context.l10n;
   switch (examinationType) {
     case ExaminationType.COLONOSCOPY:
@@ -356,8 +362,12 @@ String examinationTypeCasus(
       if (casus == Casus.dativ) return l10n.cardiology_dativ;
       return '${ExaminationType.CARDIOLOGY} unkown casus';
     case ExaminationType.ENDOCRINOLOGY_AND_HORMONES:
-      if (casus == Casus.nomativ) return l10n.endocrinology_and_hormones_nomativ;
-      if (casus == Casus.genitiv) return l10n.endocrinology_and_hormones_genitiv;
+      if (casus == Casus.nomativ) {
+        return l10n.endocrinology_and_hormones_nomativ;
+      }
+      if (casus == Casus.genitiv) {
+        return l10n.endocrinology_and_hormones_genitiv;
+      }
       if (casus == Casus.dativ) return l10n.endocrinology_and_hormones_dativ;
       return '${ExaminationType.ENDOCRINOLOGY_AND_HORMONES} unkown casus';
     case ExaminationType.ERGOTHERAPY:
@@ -500,10 +510,10 @@ String examinationTypeCasus(
 }
 
 String selfExaminationTypeCasus(
-    BuildContext context, {
-      required SelfExaminationType selfExaminationType,
-      required Casus casus,
-    }) {
+  BuildContext context, {
+  required SelfExaminationType selfExaminationType,
+  required Casus casus,
+}) {
   final l10n = context.l10n;
   switch (selfExaminationType) {
     case SelfExaminationType.BREAST:
@@ -530,9 +540,9 @@ double upperArcProgress(CategorizedExamination examination) {
   final category = examination.category;
   final interval = examination.examination.intervalYears;
   if ([
-    const ExaminationCategory.scheduled(),
-    const ExaminationCategory.scheduledSoonOrOverdue(),
-  ].contains(category) &&
+        const ExaminationCategory.scheduled(),
+        const ExaminationCategory.scheduledSoonOrOverdue(),
+      ].contains(category) &&
       nextVisit != null) {
     final totalDays = daysBetween(
       DateTime(nextVisit.year - interval, nextVisit.month),
@@ -543,7 +553,8 @@ double upperArcProgress(CategorizedExamination examination) {
       DateTime.now(),
     );
     return (sinceScheduledDays / totalDays).clamp(0, 1);
-  } else if (category == const ExaminationCategory.waiting() || _newToScheduleFullProgressBar(examination)) {
+  } else if (category == const ExaminationCategory.waiting() ||
+      _newToScheduleFullProgressBar(examination)) {
     return 1;
   }
   return 0;
@@ -553,9 +564,13 @@ double lowerArcProgress(CategorizedExamination examination) {
   final nextVisit = examination.examination.plannedDate?.toLocal();
   final lastVisit = examination.examination.lastConfirmedDate?.toLocal();
   final category = examination.category;
-  final intervalMonths = examination.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM ? examination.examination.customInterval! : examination.examination.intervalYears*12;
+  final intervalMonths = examination.examination.examinationCategoryType ==
+          ExaminationCategoryType.CUSTOM
+      ? examination.examination.customInterval!
+      : examination.examination.intervalYears * 12;
 
-  if (category == const ExaminationCategory.scheduledSoonOrOverdue() && nextVisit != null) {
+  if (category == const ExaminationCategory.scheduledSoonOrOverdue() &&
+      nextVisit != null) {
     final intervalDays = daysBetween(
       nextVisit,
       DateTime(nextVisit.year, nextVisit.month + intervalMonths),
@@ -566,7 +581,9 @@ double lowerArcProgress(CategorizedExamination examination) {
           DateTime(nextVisit.year, nextVisit.month + intervalMonths),
         );
     return (afterScheduledDays / intervalDays).clamp(0, 1);
-  } else if ((category == const ExaminationCategory.waiting() || _newToScheduleFullProgressBar(examination)) && lastVisit != null) {
+  } else if ((category == const ExaminationCategory.waiting() ||
+          _newToScheduleFullProgressBar(examination)) &&
+      lastVisit != null) {
     final intervalDays = daysBetween(
       DateTime(lastVisit.year, lastVisit.month),
       DateTime(lastVisit.year, lastVisit.month + intervalMonths),
@@ -580,14 +597,16 @@ double lowerArcProgress(CategorizedExamination examination) {
   return 0;
 }
 
-bool _newToScheduleFullProgressBar(CategorizedExamination exam){
-  return exam.examination.lastConfirmedDate != null && exam.category == const ExaminationCategory.newToSchedule();
+bool _newToScheduleFullProgressBar(CategorizedExamination exam) {
+  return exam.examination.lastConfirmedDate != null &&
+      exam.category == const ExaminationCategory.newToSchedule();
 }
 
 bool isOverdue(CategorizedExamination examination) {
   final nextVisit = examination.examination.plannedDate?.toLocal();
   if (nextVisit != null) {
-    return examination.category == const ExaminationCategory.scheduledSoonOrOverdue() &&
+    return examination.category ==
+            const ExaminationCategory.scheduledSoonOrOverdue() &&
         DateTime.now().isAfter(nextVisit);
   }
   return false;
@@ -607,7 +626,8 @@ double selfExaminationProgress(Date? plannedDate) {
   if (plannedDate?.toDateTime() != null) {
     final date = plannedDate?.toDateTime() as DateTime;
     final planedDate = date.millisecondsSinceEpoch;
-    final startDate = DateTime(date.year, date.month - 1, date.day).millisecondsSinceEpoch;
+    final startDate =
+        DateTime(date.year, date.month - 1, date.day).millisecondsSinceEpoch;
     final todayDate = DateTime.now().millisecondsSinceEpoch;
     final total = planedDate - startDate;
     final current = todayDate - startDate;
