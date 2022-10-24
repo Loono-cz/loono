@@ -48,7 +48,9 @@ Future<void> checkAndShowDonatePage(
 
   if (!mounted || !showModal) return;
   Future.delayed(
-      const Duration(seconds: 30), () => showDelayDonatePage(context));
+    const Duration(seconds: 30),
+    () => showDelayDonatePage(context),
+  );
 }
 
 Future<void> showDelayDonatePage(
