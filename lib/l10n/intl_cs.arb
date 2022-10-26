@@ -1412,6 +1412,8 @@
   "@custom_exam_full_dialog_title": {},
   "custom_exam_full_dialog_desc": "Do seznamu si můžeš přidat maximálně deset prohlídek. Smazáním dříve přidaných prohlídek získáš dodatečný prostor.",
   "@custom_exam_full_dialog_desc": {},
+  "custom_exam_frequency": "Do seznamu si můžeš přidat maximálně deset prohlídek. Smazáním dříve přidaných prohlídek získáš dodatečný prostor.",
+  "@custom_exam_frequency": {},
   "i_agree": "Rozumím",
   "@i_agree": {},
   "add_examination": "Přidat prohlídku",
