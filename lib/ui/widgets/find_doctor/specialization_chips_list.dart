@@ -34,6 +34,21 @@ String getSpecializationByExaminationType(ExaminationType examinationType) {
   }
 }
 
+String getSpecializationBySelfExaminationType(
+  SelfExaminationType examinationType,
+) {
+  switch (examinationType) {
+    case SelfExaminationType.BREAST:
+      return _defaultSpecs['Gynekolog'] ?? '';
+    case SelfExaminationType.TESTICULAR:
+      return _defaultSpecs['Další odbornosti'] ?? '';
+    case SelfExaminationType.SKIN:
+      return _defaultSpecs['Dermatolog'] ?? '';
+    default:
+      return _defaultSpecs['Praktický lékař'] ?? '';
+  }
+}
+
 class SpecializationChipsList extends StatelessWidget {
   SpecializationChipsList({
     Key? key,
