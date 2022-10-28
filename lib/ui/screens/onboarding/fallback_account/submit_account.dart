@@ -41,6 +41,7 @@ Future<void> submitAccount(
   createAccountResult.fold(
     (failure) => showFlushBarError(context, context.l10n.something_went_wrong),
     (authUser) async {
+      final autoRouter = AutoRouter.of(context);
       final user = usersDao.user;
       final examinationQuestionnaires = await examinationQuestionnairesDao.getAll();
 
@@ -48,14 +49,14 @@ Future<void> submitAccount(
           await _callOnboardUser(authUser, user, examinationQuestionnaires, apiService, newsletter);
       await result.when(
         success: (account) async {
-          final autoRouter = AutoRouter.of(context);
           await userRepository.updateCurrentUserFromAccount(account);
           await autoRouter.replaceAll([BadgeOverviewRoute()]);
         },
         failure: (_) async {
           // delete account so user can not login without saving info to server first
           showFlushBarError(context, context.l10n.something_went_wrong);
-          await authUser.delete();
+          await userRepository.deleteAccount();
+          autoRouter.popUntilRoot();
         },
       );
     },
