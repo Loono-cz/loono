@@ -537,7 +537,8 @@ class AppRouter extends _i16.RootStackRouter {
       final args = routeData.argsAs<HasFindingRouteArgs>();
       return _i16.CustomPage<void>(
           routeData: routeData,
-          child: _i52.HasFindingScreen(key: args.key, sex: args.sex),
+          child: _i52.HasFindingScreen(
+              key: args.key, sex: args.sex, examType: args.examType),
           transitionsBuilder: _i16.TransitionsBuilders.slideLeft,
           opaque: true,
           barrierDismissible: false);
@@ -1974,24 +1975,30 @@ class EducationalVideoRouteArgs {
 /// generated route for
 /// [_i52.HasFindingScreen]
 class HasFindingRoute extends _i16.PageRouteInfo<HasFindingRouteArgs> {
-  HasFindingRoute({_i63.Key? key, required _i67.Sex sex})
+  HasFindingRoute(
+      {_i63.Key? key,
+      required _i67.Sex sex,
+      required _i67.SelfExaminationType examType})
       : super(HasFindingRoute.name,
             path: 'self-examination/detail/has-finding',
-            args: HasFindingRouteArgs(key: key, sex: sex));
+            args: HasFindingRouteArgs(key: key, sex: sex, examType: examType));
 
   static const String name = 'HasFindingRoute';
 }
 
 class HasFindingRouteArgs {
-  const HasFindingRouteArgs({this.key, required this.sex});
+  const HasFindingRouteArgs(
+      {this.key, required this.sex, required this.examType});
 
   final _i63.Key? key;
 
   final _i67.Sex sex;
 
+  final _i67.SelfExaminationType examType;
+
   @override
   String toString() {
-    return 'HasFindingRouteArgs{key: $key, sex: $sex}';
+    return 'HasFindingRouteArgs{key: $key, sex: $sex, examType: $examType}';
   }
 }
 
