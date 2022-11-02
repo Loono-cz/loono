@@ -38,22 +38,22 @@ int compareExaminationType(
                 b.examination.examinationType.l10n_name,
               );
         return _processComparedValue(
-            a: a,
-            b: b,
-            compared: compared,
-            compareByDate: compareByDate,
-            tryAgainOnEquality: repeat,
+          a: a,
+          b: b,
+          compared: compared,
+          compareByDate: compareByDate,
+          tryAgainOnEquality: repeat,
         );
       case ExaminationCategoryType.MANDATORY:
         final compared = compareByDate
             ? _compareExamDate(a, b)
             : a.examination.priority.compareTo(b.examination.priority);
         return _processComparedValue(
-            a: a,
-            b: b,
-            compared: compared,
-            compareByDate: compareByDate,
-            tryAgainOnEquality: repeat,
+          a: a,
+          b: b,
+          compared: compared,
+          compareByDate: compareByDate,
+          tryAgainOnEquality: repeat,
         );
     }
   }
@@ -61,8 +61,13 @@ int compareExaminationType(
 }
 
 int _compareExamDate(CategorizedExamination a, CategorizedExamination b) {
-  final duration = a.examination.targetExamDate?.difference(b.examination.targetExamDate!).inDays ?? 0;
-  return duration > 0 ? 1 : duration < 0 ? -1 : 0;
+  final duration =
+      a.examination.targetExamDate?.difference(b.examination.targetExamDate!).inDays ?? 0;
+  return duration > 0
+      ? 1
+      : duration < 0
+          ? -1
+          : 0;
 }
 
 int _processComparedValue({

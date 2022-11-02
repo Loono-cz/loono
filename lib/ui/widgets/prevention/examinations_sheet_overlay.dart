@@ -39,7 +39,7 @@ class ExaminationsSheetOverlay extends StatelessWidget {
           minChildSize: 0.15,
           // controller: scrollDragController,
           builder: (context, scrollController) {
-            if ((examinationsProvider.loading && examinationsProvider.examinations == null)) {
+            if (examinationsProvider.loading && examinationsProvider.examinations == null) {
               return const Center(
                 child: CircularProgressIndicator(
                   color: LoonoColors.primaryEnabled,
@@ -89,10 +89,9 @@ class ExaminationsSheetOverlay extends StatelessWidget {
                     if (index <= itemCount - 1) {
                       final examinationStatus = examinationCategoriesOrdering.elementAt(index);
 
-                      final categorizedExaminations = categorized
-                          .where((e) => e.category == examinationStatus)
-                          .toList();
-                        //..sortExaminations();
+                      final categorizedExaminations =
+                          categorized.where((e) => e.category == examinationStatus).toList();
+                      //..sortExaminations();
 
                       return Column(
                         children: [
