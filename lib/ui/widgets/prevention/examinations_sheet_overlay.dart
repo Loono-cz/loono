@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/categorized_examination_converter.dart';
 import 'package:loono/helpers/examination_category.dart';
 import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/helpers/self_examination_category.dart';
@@ -38,7 +39,11 @@ class ExaminationsSheetOverlay extends StatelessWidget {
           minChildSize: 0.15,
           // controller: scrollDragController,
           builder: (context, scrollController) {
-            if (examinationsProvider.loading && examinationsProvider.examinations == null) {
+            final converter = CategorizedExaminationConverter(
+              examinationsProvider.examinations?.examinations.toList(),
+            );
+            if ((examinationsProvider.loading && examinationsProvider.examinations == null) ||
+                converter.converting) {
               return const Center(
                 child: CircularProgressIndicator(
                   color: LoonoColors.primaryEnabled,
@@ -62,14 +67,8 @@ class ExaminationsSheetOverlay extends StatelessWidget {
               );
             }
 
-            final categorized = examinationsProvider.examinations!.examinations
-                .map(
-                  (e) => CategorizedExamination(
-                    examination: e,
-                    category: e.calculateStatus(),
-                  ),
-                )
-                .toList();
+            converter.convert(examinationsProvider.examinations!.examinations.toList());
+            final categorized = converter.exams;
 
             return AvatarBubbleNotifier(
               convertExtent: convertExtent,
@@ -95,10 +94,9 @@ class ExaminationsSheetOverlay extends StatelessWidget {
                     if (index <= itemCount - 1) {
                       final examinationStatus = examinationCategoriesOrdering.elementAt(index);
 
-                      final categorizedExaminations = categorized
-                          .where((e) => e.category == examinationStatus)
-                          .toList()
-                        ..sortExaminations();
+                      final categorizedExaminations =
+                          categorized.where((e) => e.category == examinationStatus).toList();
+                      //..sortExaminations();
 
                       return Column(
                         children: [

@@ -77,9 +77,7 @@ class ResultFromDoctorScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(top: 8.0),
                             child: Text(
-                              sex == Sex.MALE
-                                  ? context.l10n.self_examination_cancer_male
-                                  : context.l10n.self_examination_cancer_female,
+                              _getSubtitleText(context),
                               style: const TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 14,
@@ -139,5 +137,18 @@ class ResultFromDoctorScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _getSubtitleText(BuildContext context) {
+    switch (selfExamination.type) {
+      case SelfExaminationType.BREAST:
+        return context.l10n.self_examination_cancer_breast;
+      case SelfExaminationType.TESTICULAR:
+        return context.l10n.self_examination_cancer_testicular;
+      case SelfExaminationType.SKIN:
+        return context.l10n.self_examination_cancer_skin;
+      default:
+        return '';
+    }
   }
 }

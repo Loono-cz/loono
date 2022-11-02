@@ -28,12 +28,14 @@ mixin _$AppleAccountInfo {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AppleAccountInfoCopyWith<AppleAccountInfo> get copyWith => throw _privateConstructorUsedError;
+  $AppleAccountInfoCopyWith<AppleAccountInfo> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $AppleAccountInfoCopyWith<$Res> {
-  factory $AppleAccountInfoCopyWith(AppleAccountInfo value, $Res Function(AppleAccountInfo) then) =
+  factory $AppleAccountInfoCopyWith(
+          AppleAccountInfo value, $Res Function(AppleAccountInfo) then) =
       _$AppleAccountInfoCopyWithImpl<$Res>;
   $Res call(
       {String userIdentifier,
@@ -44,7 +46,8 @@ abstract class $AppleAccountInfoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AppleAccountInfoCopyWithImpl<$Res> implements $AppleAccountInfoCopyWith<$Res> {
+class _$AppleAccountInfoCopyWithImpl<$Res>
+    implements $AppleAccountInfoCopyWith<$Res> {
   _$AppleAccountInfoCopyWithImpl(this._value, this._then);
 
   final AppleAccountInfo _value;
@@ -85,7 +88,8 @@ class _$AppleAccountInfoCopyWithImpl<$Res> implements $AppleAccountInfoCopyWith<
 }
 
 /// @nodoc
-abstract class _$$_AppleAccountInfoCopyWith<$Res> implements $AppleAccountInfoCopyWith<$Res> {
+abstract class _$$_AppleAccountInfoCopyWith<$Res>
+    implements $AppleAccountInfoCopyWith<$Res> {
   factory _$$_AppleAccountInfoCopyWith(
           _$_AppleAccountInfo value, $Res Function(_$_AppleAccountInfo) then) =
       __$$_AppleAccountInfoCopyWithImpl<$Res>;
@@ -99,7 +103,8 @@ abstract class _$$_AppleAccountInfoCopyWith<$Res> implements $AppleAccountInfoCo
 }
 
 /// @nodoc
-class __$$_AppleAccountInfoCopyWithImpl<$Res> extends _$AppleAccountInfoCopyWithImpl<$Res>
+class __$$_AppleAccountInfoCopyWithImpl<$Res>
+    extends _$AppleAccountInfoCopyWithImpl<$Res>
     implements _$$_AppleAccountInfoCopyWith<$Res> {
   __$$_AppleAccountInfoCopyWithImpl(
       _$_AppleAccountInfo _value, $Res Function(_$_AppleAccountInfo) _then)
@@ -175,11 +180,14 @@ class _$_AppleAccountInfo implements _AppleAccountInfo {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AppleAccountInfo &&
-            const DeepCollectionEquality().equals(other.userIdentifier, userIdentifier) &&
+            const DeepCollectionEquality()
+                .equals(other.userIdentifier, userIdentifier) &&
             const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality().equals(other.givenName, givenName) &&
-            const DeepCollectionEquality().equals(other.familyName, familyName) &&
-            const DeepCollectionEquality().equals(other.identifierToken, identifierToken));
+            const DeepCollectionEquality()
+                .equals(other.familyName, familyName) &&
+            const DeepCollectionEquality()
+                .equals(other.identifierToken, identifierToken));
   }
 
   @JsonKey(ignore: true)
@@ -213,7 +221,8 @@ abstract class _AppleAccountInfo implements AppleAccountInfo {
       required final String? familyName,
       required final String? identifierToken}) = _$_AppleAccountInfo;
 
-  factory _AppleAccountInfo.fromJson(Map<String, dynamic> json) = _$_AppleAccountInfo.fromJson;
+  factory _AppleAccountInfo.fromJson(Map<String, dynamic> json) =
+      _$_AppleAccountInfo.fromJson;
 
   @override
   String get userIdentifier;
