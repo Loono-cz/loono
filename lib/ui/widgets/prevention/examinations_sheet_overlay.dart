@@ -39,8 +39,7 @@ class ExaminationsSheetOverlay extends StatelessWidget {
           minChildSize: 0.15,
           // controller: scrollDragController,
           builder: (context, scrollController) {
-            final converter = CategorizedExaminationConverter(examinationsProvider.examinations?.examinations.toList());
-            if ((examinationsProvider.loading && examinationsProvider.examinations == null) || converter.converting) {
+            if ((examinationsProvider.loading && examinationsProvider.examinations == null)) {
               return const Center(
                 child: CircularProgressIndicator(
                   color: LoonoColors.primaryEnabled,
@@ -64,9 +63,7 @@ class ExaminationsSheetOverlay extends StatelessWidget {
               );
             }
 
-            converter.convert(examinationsProvider.examinations!.examinations.toList());
-            final categorized = converter.exams;
-
+            final categorized = CategorizedExaminationConverter.convert(examinationsProvider.examinations!.examinations.toList());
 
             return AvatarBubbleNotifier(
               convertExtent: convertExtent,

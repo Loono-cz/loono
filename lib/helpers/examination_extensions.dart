@@ -1,4 +1,6 @@
 // ignore_for_file: constant_identifier_names
+import 'dart:developer';
+
 import 'package:collection/collection.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/date_helpers.dart';
@@ -99,7 +101,7 @@ extension SelfExaminationPreventionStatusExt on SelfExaminationPreventionStatus 
 extension ExaminationExt on ExaminationPreventionStatus{
   DateTime? get targetExamDate  {
     if(plannedDate != null && plannedDate != lastConfirmedDate){
-      return plannedDate!;
+      return DateTime(plannedDate!.year, plannedDate!.month, plannedDate!.day);
     }
     else if(lastConfirmedDate != null){
       final months =
@@ -112,7 +114,7 @@ extension ExaminationExt on ExaminationPreventionStatus{
 }
 
 extension CategorizedExaminationListExt on List<CategorizedExamination> {
-  Future<void> sortExaminations() async {
+  void sortExaminations() {
     if (isEmpty) return;
 
     final scheduledOrOverdue = <CategorizedExamination>[];
@@ -132,23 +134,23 @@ extension CategorizedExaminationListExt on List<CategorizedExamination> {
     }
 
     final sorted = <CategorizedExamination>[
-      ...await _sortByDateThenCategoryType(scheduledOrOverdue),
-      ...await _sortNewToSchedule(newToSchedule),
-      ...await _sortUnknownLastVisit(unknownLastVisit),
-      ...await _sortByDateThenCategoryType(scheduled),
-      ...await _sortByDateThenCategoryType(waiting),
+      ..._sortByDateThenCategoryType(scheduledOrOverdue),
+      ..._sortNewToSchedule(newToSchedule),
+      ..._sortUnknownLastVisit(unknownLastVisit),
+      ..._sortByDateThenCategoryType(scheduled),
+      ..._sortByDateThenCategoryType(waiting),
     ];
     clear();
     addAll(sorted);
   }
 
-  Future<List<CategorizedExamination>> _sortByDateThenCategoryType(List<CategorizedExamination> exams) async {
+  List<CategorizedExamination> _sortByDateThenCategoryType(List<CategorizedExamination> exams) {
    return exams.sorted(_compareByDateThenByCategoryType);
   }
-  Future<List<CategorizedExamination>> _sortNewToSchedule(List<CategorizedExamination> exams) async {
+  List<CategorizedExamination> _sortNewToSchedule(List<CategorizedExamination> exams) {
    return exams.sorted(_compareNewToSchedule);
   }
-  Future<List<CategorizedExamination>> _sortUnknownLastVisit(List<CategorizedExamination> exams) async {
+  List<CategorizedExamination> _sortUnknownLastVisit(List<CategorizedExamination> exams) {
    return exams.sorted((a, b) => compareExaminationType(a, b, compareByDate: false));
   }
 
@@ -194,6 +196,7 @@ extension CategorizedExaminationListExt on List<CategorizedExamination> {
     CategorizedExamination b,
   ) {
     final dateDifference = a.examination.targetExamDate!.difference(b.examination.targetExamDate!).inDays;
+    log('date difference ${a.examination.targetExamDate} - ${b.examination.targetExamDate} = $dateDifference');
 
     if (dateDifference == 0) {
       return compareExaminationType(a, b, compareByDate: false);
