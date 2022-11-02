@@ -57,12 +57,14 @@ int compareExaminationType(
         );
     }
   }
-  return 0;
+  return comparedCategoryType;
 }
 
 int _compareExamDate(CategorizedExamination a, CategorizedExamination b) {
-  final duration =
-      a.examination.targetExamDate?.difference(b.examination.targetExamDate!).inDays ?? 0;
+  final duration = a.examination.targetExamDate
+          ?.difference(b.examination.targetExamDate!)
+          .inMinutes ??
+      0;
   return duration > 0
       ? 1
       : duration < 0

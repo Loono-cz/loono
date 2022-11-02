@@ -1,5 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
+import 'package:collection/collection.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/date_helpers.dart';
 import 'package:loono/helpers/examination_category.dart';
@@ -12,29 +13,35 @@ const int TO_SCHEDULE_MONTHS_TRANSFER = 2;
 const int SELF_EXAMINATION_ACTIVE_CARD_INTERVAL_IN_HOURS = 72;
 
 extension ExaminationPreventionStatusExt on ExaminationPreventionStatus {
-  bool get isCustom => examinationCategoryType == ExaminationCategoryType.CUSTOM;
+  bool get isCustom =>
+      examinationCategoryType == ExaminationCategoryType.CUSTOM;
   ExaminationCategory calculateStatus([DateTime? dateTimeNow]) {
     final now = dateTimeNow ?? DateTime.now();
 
     // STATUS: waiting or newToSchedule
-    if (([ExaminationStatus.CONFIRMED, ExaminationStatus.UNKNOWN].contains(state)) &&
+    if (([ExaminationStatus.CONFIRMED, ExaminationStatus.UNKNOWN]
+            .contains(state)) &&
         lastConfirmedDate != null &&
         (periodicExam == true || periodicExam == null)) {
       final lastVisitDateTime = lastConfirmedDate!.toLocal();
-      final lastVisitDateWithoutDay = DateTime(lastVisitDateTime.year, lastVisitDateTime.month);
+      final lastVisitDateWithoutDay =
+          DateTime(lastVisitDateTime.year, lastVisitDateTime.month);
       DateTime subtractedWaitingDate;
       if (isCustom && customInterval != null) {
         subtractedWaitingDate = DateTime(
           now.year,
           now.month -
-              (transformMonthToYear(customInterval!) * LoonoStrings.monthInYear -
+              (transformMonthToYear(customInterval!) *
+                      LoonoStrings.monthInYear -
                   TO_SCHEDULE_MONTHS_TRANSFER),
         );
       } else {
         // if last visit date is before: CURRENT_MONTH - (INTERVAL - 2 months)
         subtractedWaitingDate = DateTime(
           now.year,
-          now.month - (intervalYears * LoonoStrings.monthInYear - TO_SCHEDULE_MONTHS_TRANSFER),
+          now.month -
+              (intervalYears * LoonoStrings.monthInYear -
+                  TO_SCHEDULE_MONTHS_TRANSFER),
         );
       }
 
@@ -46,7 +53,8 @@ extension ExaminationPreventionStatusExt on ExaminationPreventionStatus {
       // else wait
       return const ExaminationCategory.waiting();
     }
-    if ([ExaminationStatus.UNKNOWN, ExaminationStatus.CANCELED].contains(state)) {
+    if ([ExaminationStatus.UNKNOWN, ExaminationStatus.CANCELED]
+        .contains(state)) {
       return const ExaminationCategory.newToSchedule();
     }
 
@@ -64,7 +72,8 @@ extension ExaminationPreventionStatusExt on ExaminationPreventionStatus {
   }
 }
 
-extension SelfExaminationPreventionStatusExt on SelfExaminationPreventionStatus {
+extension SelfExaminationPreventionStatusExt
+    on SelfExaminationPreventionStatus {
   SelfExaminationCategory calculateStatus([DateTime? dateTimeNow]) {
     final now = dateTimeNow ?? DateTime.now();
 
@@ -82,8 +91,13 @@ extension SelfExaminationPreventionStatusExt on SelfExaminationPreventionStatus 
 
     if (history.last == SelfExaminationStatus.PLANNED) {
       if (plannedDate != null) {
-        final nowDate = DateTime(now.year, now.month, now.day); //now with set hour and minute to 0
-        final difference = plannedDate!.toDateTime().difference(nowDate).inHours.abs();
+        final nowDate = DateTime(
+          now.year,
+          now.month,
+          now.day,
+        ); //now with set hour and minute to 0
+        final difference =
+            plannedDate!.toDateTime().difference(nowDate).inHours.abs();
         if (difference <= SELF_EXAMINATION_ACTIVE_CARD_INTERVAL_IN_HOURS) {
           return const SelfExaminationCategory.active();
         } else {
@@ -96,15 +110,26 @@ extension SelfExaminationPreventionStatusExt on SelfExaminationPreventionStatus 
   }
 }
 
-extension ExaminationExt on ExaminationPreventionStatus{
-  DateTime? get targetExamDate  {
-    if(plannedDate != null && plannedDate != lastConfirmedDate){
-      return DateTime(plannedDate!.year, plannedDate!.month, plannedDate!.day);
-    }
-    else if(lastConfirmedDate != null){
+extension ExaminationExt on ExaminationPreventionStatus {
+  DateTime? get targetExamDate {
+    if (plannedDate != null && plannedDate != lastConfirmedDate) {
+      return DateTime(
+        plannedDate!.year,
+        plannedDate!.month,
+        plannedDate!.day,
+        plannedDate!.hour,
+        plannedDate!.minute,
+      );
+    } else if (lastConfirmedDate != null) {
       final months =
           customInterval != null ? customInterval! : intervalYears * 12;
-      return DateTime(lastConfirmedDate!.year, lastConfirmedDate!.month + months, lastConfirmedDate!.day);
+      return DateTime(
+        lastConfirmedDate!.year,
+        lastConfirmedDate!.month + months,
+        lastConfirmedDate!.day,
+        lastConfirmedDate!.hour,
+        lastConfirmedDate!.minute,
+      );
     } else {
       return null;
     }
@@ -142,49 +167,54 @@ extension CategorizedExaminationListExt on List<CategorizedExamination> {
     addAll(sorted);
   }
 
-  List<CategorizedExamination> _sortByDateThenCategoryType(List<CategorizedExamination> exams) {
-   return exams.sorted(_compareByDateThenByCategoryType);
-  }
-  List<CategorizedExamination> _sortNewToSchedule(List<CategorizedExamination> exams) {
-   return exams.sorted(_compareNewToSchedule);
-  }
-  List<CategorizedExamination> _sortUnknownLastVisit(List<CategorizedExamination> exams) {
-   return exams.sorted((a, b) => compareExaminationType(a, b, compareByDate: false));
+  List<CategorizedExamination> _sortByDateThenCategoryType(
+    List<CategorizedExamination> exams,
+  ) {
+    return exams.sorted(_compareByDateThenByCategoryType);
   }
 
-  int _compareNewToSchedule(CategorizedExamination a,
-      CategorizedExamination b,) {
+  List<CategorizedExamination> _sortNewToSchedule(
+    List<CategorizedExamination> exams,
+  ) {
+    return exams.sorted(_compareNewToSchedule);
+  }
+
+  List<CategorizedExamination> _sortUnknownLastVisit(
+    List<CategorizedExamination> exams,
+  ) {
+    return exams
+        .sorted((a, b) => compareExaminationType(a, b, compareByDate: false));
+  }
+
+  int _compareNewToSchedule(
+    CategorizedExamination a,
+    CategorizedExamination b,
+  ) {
     final now = DateTime.now();
     final aWaitingDate = a.examination.isCustom
         ? DateTime(now.year, now.month - (a.examination.customInterval ?? 0))
         : DateTime(
-      now.year,
-      now.month -
-          (a.examination.intervalYears * LoonoStrings.monthInYear -
-              TO_SCHEDULE_MONTHS_TRANSFER),
-    );
+            now.year,
+            now.month -
+                (a.examination.intervalYears * LoonoStrings.monthInYear -
+                    TO_SCHEDULE_MONTHS_TRANSFER),
+          );
     final bWaitingDate = b.examination.isCustom
         ? DateTime(now.year, now.month - (b.examination.customInterval ?? 0))
         : DateTime(
-      now.year,
-      now.month -
-          (b.examination.intervalYears * LoonoStrings.monthInYear -
-              TO_SCHEDULE_MONTHS_TRANSFER),
-    );
-    final aDifference = now
-        .difference(aWaitingDate)
-        .inDays;
-    final bDifference = now
-        .difference(bWaitingDate)
-        .inDays;
+            now.year,
+            now.month -
+                (b.examination.intervalYears * LoonoStrings.monthInYear -
+                    TO_SCHEDULE_MONTHS_TRANSFER),
+          );
+    final aDifference = now.difference(aWaitingDate).inDays;
+    final bDifference = now.difference(bWaitingDate).inDays;
 
     if (aDifference > 60 && bDifference < 60) {
       return -1;
-    }
-    else if (aDifference < 60 && bDifference > 60) {
+    } else if (aDifference < 60 && bDifference > 60) {
       return 1;
-    }
-    else {
+    } else {
       return compareExaminationType(a, b, compareByDate: false);
     }
   }
@@ -193,13 +223,12 @@ extension CategorizedExaminationListExt on List<CategorizedExamination> {
     CategorizedExamination a,
     CategorizedExamination b,
   ) {
-    final dateDifference = a.examination.targetExamDate!.difference(b.examination.targetExamDate!).inDays;
-    log('date difference ${a.examination.targetExamDate} - ${b.examination.targetExamDate} = $dateDifference');
-
+    final dateDifference = a.examination.targetExamDate!
+        .difference(b.examination.targetExamDate!)
+        .inMinutes;
     if (dateDifference == 0) {
       return compareExaminationType(a, b, compareByDate: false);
-    }
-    else {
+    } else {
       return dateDifference > 0 ? 1 : -1;
     }
   }
