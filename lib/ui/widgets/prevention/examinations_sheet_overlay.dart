@@ -64,7 +64,8 @@ class ExaminationsSheetOverlay extends StatelessWidget {
             }
 
             final categorized = CategorizedExaminationConverter.convert(
-                examinationsProvider.examinations!.examinations.toList());
+              examinationsProvider.examinations!.examinations.toList(),
+            );
 
             return AvatarBubbleNotifier(
               convertExtent: convertExtent,
