@@ -118,7 +118,8 @@ class CarouselImageContent extends StatelessWidget {
             const SizedBox(width: double.infinity, height: 0.0),
             Padding(
               padding: EdgeInsets.symmetric(
-                  horizontal: context.mediaQuery.compactSizeOf(18.0)),
+                horizontal: context.mediaQuery.compactSizeOf(18.0),
+              ),
               child: Text(
                 headerText,
                 textAlign: TextAlign.left,
@@ -137,7 +138,8 @@ class CarouselImageContent extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             child: Padding(
               padding: EdgeInsets.symmetric(
-                  horizontal: MediaQuery.of(context).size.width * 0.12),
+                horizontal: MediaQuery.of(context).size.width * 0.12,
+              ),
               child: Center(
                 child: Text(
                   bodyText,
@@ -154,7 +156,8 @@ class CarouselImageContent extends StatelessWidget {
           child: SizedBox(
             width: MediaQuery.of(context).size.width,
             child: Center(
-                child: Text(bottomText, style: LoonoFonts.paragraphFontStyle)),
+              child: Text(bottomText, style: LoonoFonts.paragraphFontStyle),
+            ),
           ),
         ),
       ],

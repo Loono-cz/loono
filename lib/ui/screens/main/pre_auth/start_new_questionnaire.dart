@@ -47,7 +47,7 @@ class StartNewQuestionnaireScreen extends StatelessWidget {
                         style: LoonoSizes.responsiveStyleScale(context, LoonoFonts.headerFontStyle),
                       ),
                     ),
-                    Expanded(child: SvgPicture.asset('assets/icons/people.svg')),
+                    Expanded(child: SvgPicture.asset(LoonoAssets.people)),
                   ],
                 ),
               ),

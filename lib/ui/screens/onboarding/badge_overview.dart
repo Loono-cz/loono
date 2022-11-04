@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/sex_extensions.dart';
+import 'package:loono/helpers/size_helpers.dart';
 import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -11,6 +12,7 @@ import 'package:loono/services/db/database.dart';
 import 'package:loono/ui/widgets/badges/badge_composer.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/loono_point.dart';
+import 'package:loono/ui/widgets/space.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
@@ -41,28 +43,28 @@ class BadgeOverviewScreen extends StatelessWidget {
                 return Stack(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 24.0, top: 100),
+                      padding: EdgeInsets.only(left: context.mediaQuery.compactSizeOf(24.0), top: context.mediaQuery.compactSizeOf(100)),
                       child: SvgPicture.asset(
-                        'assets/icons/hero_background.svg',
+                        LoonoAssets.heroBackground,
                         width: double.infinity,
-                        height: MediaQuery.of(context).size.width * 0.735,
+                        height: context.mediaQuery.size.width * 0.735,
                       ),
                     ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const SizedBox(height: 24),
+                        const Space.vertical(24),
                         Text(
                           '${sex == Sex.MALE ? context.l10n.gamification_introduction_header_male : context.l10n.gamification_introduction_header_female} ${user?.nickname ?? (sex?.getNicknameHintLabel(context)) ?? ''}',
                           textAlign: TextAlign.center,
                           style: LoonoFonts.headerFontStyle,
                         ),
-                        const SizedBox(height: 18),
+                        const Space.vertical(18),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const LoonoPointIcon(color: LoonoColors.primaryEnabled, width: 16.0),
-                            const SizedBox(width: 7),
+                            const Space.horizontal(7),
                             Text(
                               '${user?.points ?? 0} ${context.l10n.gamification_introduction_points.toUpperCase()}',
                               style: LoonoFonts.subtitleFontStyle.copyWith(
@@ -82,9 +84,9 @@ class BadgeOverviewScreen extends StatelessWidget {
                                     shrinkWrap: true,
                                     children: [
                                       const BadgeComposer(),
-                                      const SizedBox(height: 10),
+                                      const Space.vertical(10),
                                       Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 18),
+                                        padding: EdgeInsets.symmetric(horizontal: context.mediaQuery.compactSizeOf(18)),
                                         child: _buildDescContainer(context),
                                       ),
                                       SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
@@ -97,7 +99,7 @@ class BadgeOverviewScreen extends StatelessWidget {
                                   child: SizedBox(
                                     width: MediaQuery.of(context).size.width,
                                     child: Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 18),
+                                      padding: EdgeInsets.symmetric(horizontal: context.mediaQuery.compactSizeOf(18)),
                                       child: LoonoButton(
                                         key: const Key('badgeOverviewPage_btn_continue'),
                                         text: context.l10n.gamification_introduction_button,
@@ -115,12 +117,12 @@ class BadgeOverviewScreen extends StatelessWidget {
                           const BadgeComposer(),
                           const SizedBox(height: 10),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 18),
+                            padding: EdgeInsets.symmetric(horizontal: context.mediaQuery.compactSizeOf(18)),
                             child: _buildDescContainer(context),
                           ),
                           const Spacer(),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 18),
+                            padding: EdgeInsets.symmetric(horizontal: context.mediaQuery.compactSizeOf(18)),
                             child: LoonoButton(
                               key: const Key('badgeOverviewPage_btn_continue'),
                               text: context.l10n.gamification_introduction_button,
@@ -150,7 +152,7 @@ class BadgeOverviewScreen extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(12)),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(18.0),
+        padding: EdgeInsets.all(context.mediaQuery.compactSizeOf(18)),
         child: Text(
           context.l10n.gamification_introduction_desc,
           style: LoonoFonts.paragraphFontStyle,

@@ -2,11 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/helpers/size_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/space.dart';
 import 'package:loono/utils/registry.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -32,9 +32,7 @@ class WelcomeScreen extends StatelessWidget {
                     SvgPicture.asset(
                       'assets/icons/welcome-logo.svg',
                     ),
-                    SizedBox(
-                      height: context.mediaQuery.compactSizeOf(24),
-                    ),
+                    const Space.vertical(24),
                     Text(
                       context.l10n.carousel_welcome_dialog,
                       textAlign: TextAlign.center,
@@ -54,9 +52,7 @@ class WelcomeScreen extends StatelessWidget {
                           logoAsset: LoonoAssets.cdLogo,
                           width: 105,
                         ),
-                        SizedBox(
-                          width: context.mediaQuery.compactSizeOf(45),
-                        ),
+                        const Space.horizontal(45),
                         _buildSponsor(
                           label: context.l10n.with_support,
                           logoAsset: LoonoAssets.ppfLogo,
@@ -65,9 +61,7 @@ class WelcomeScreen extends StatelessWidget {
                         const Spacer(),
                       ],
                     ),
-                    SizedBox(
-                      height: context.mediaQuery.compactSizeOf(15),
-                    ),
+                    const Space.vertical(15),
                     _buildSponsor(
                       label: context.l10n.technology_partner,
                       logoAsset: LoonoAssets.cgiLogo,
@@ -85,9 +79,7 @@ class WelcomeScreen extends StatelessWidget {
                         await autoRouter.push(const IntroCarouselRoute());
                       },
                     ),
-                    SizedBox(
-                      height: context.mediaQuery.compactSizeOf(15),
-                    ),
+                    const Space.vertical(15),
                     TextButton(
                       onPressed: () async {
                         final autoRouter = AutoRouter.of(context);
@@ -106,9 +98,7 @@ class WelcomeScreen extends StatelessWidget {
                         style: LoonoFonts.fontStyle,
                       ),
                     ),
-                    SizedBox(
-                      height: context.mediaQuery.compactSizeOf(40),
-                    ),
+                    const Space.vertical(40),
                   ],
                 ),
               ],

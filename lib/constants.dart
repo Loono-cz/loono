@@ -4,6 +4,23 @@ class LoonoAssets {
   static const cdLogo = 'assets/sponsors/cd.svg';
   static const ppfLogo = 'assets/sponsors/ppf.svg';
   static const cgiLogo = 'assets/sponsors/CGI.svg';
+
+  static const genderFemale = 'assets/icons/gender-woman.svg';
+  static const genderMale = 'assets/icons/gender-man.svg';
+  static const genderOther = 'assets/icons/gender-other.svg';
+
+  static const notificationBells = 'assets/icons/notification_bells.svg';
+
+  static const person = 'assets/icons/a_person.svg';
+
+  static const check = 'assets/icons/check.svg';
+
+  static const doctor = 'assets/icons/a_doctor.svg';
+
+  static const heroBackground = 'assets/icons/hero_background.svg';
+  static const itemShadow = 'assets/icons/item-shadow.svg';
+
+  static const people = 'assets/icons/people.svg';
 }
 
 class LoonoColors {
