@@ -25,49 +25,61 @@ class WelcomeScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const SizedBox(),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SvgPicture.asset(
-                      'assets/icons/welcome-logo.svg',
+                Expanded(
+                  child: Center(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const SizedBox(),
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SvgPicture.asset(
+                                LoonoAssets.welcomeLogo,
+                              ),
+                              const Space.vertical(24),
+                              Text(
+                                context.l10n.carousel_welcome_dialog,
+                                textAlign: TextAlign.center,
+                                style: LoonoFonts.headerFontStyle,
+                              ),
+                            ],
+                          ),
+                          const Space.vertical(60),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  _buildSponsor(
+                                    label: context.l10n.incubated,
+                                    logoAsset: LoonoAssets.cdLogo,
+                                    width: 105,
+                                  ),
+                                  const Space.horizontal(45),
+                                  _buildSponsor(
+                                    label: context.l10n.with_support,
+                                    logoAsset: LoonoAssets.ppfLogo,
+                                    height: 50,
+                                  ),
+                                ],
+                              ),
+                              const Space.vertical(15),
+                              _buildSponsor(
+                                label: context.l10n.technology_partner,
+                                logoAsset: LoonoAssets.cgiLogo,
+                                height: 50,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                    const Space.vertical(24),
-                    Text(
-                      context.l10n.carousel_welcome_dialog,
-                      textAlign: TextAlign.center,
-                      style: LoonoFonts.headerFontStyle,
-                    ),
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Spacer(),
-                        _buildSponsor(
-                          label: context.l10n.incubated,
-                          logoAsset: LoonoAssets.cdLogo,
-                          width: 105,
-                        ),
-                        const Space.horizontal(45),
-                        _buildSponsor(
-                          label: context.l10n.with_support,
-                          logoAsset: LoonoAssets.ppfLogo,
-                          height: 50,
-                        ),
-                        const Spacer(),
-                      ],
-                    ),
-                    const Space.vertical(15),
-                    _buildSponsor(
-                      label: context.l10n.technology_partner,
-                      logoAsset: LoonoAssets.cgiLogo,
-                      height: 50,
-                    ),
-                  ],
+                  ),
                 ),
                 Column(
                   children: [

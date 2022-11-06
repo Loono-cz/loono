@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 extension ScreenSize on MediaQueryData {
@@ -14,7 +12,6 @@ extension ScreenSize on MediaQueryData {
   ///when [useCompactStyle] return lesser size
   double compactSizeOf(double size) {
     if(useCompactStyle) {
-      log('size ($size): ${size / textScaleFactor}');
       return size / textScaleFactor;
     }
     else {

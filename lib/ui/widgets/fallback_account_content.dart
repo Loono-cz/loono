@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/async_button.dart';
+import 'package:loono/ui/widgets/space.dart';
 
 typedef SubmitCallback = Future<bool?> Function(String input);
 
@@ -60,7 +61,8 @@ class FallbackAccountContentState extends State<FallbackAccountContent> {
 
   Future<bool?> validateAndSubmit() async {
     if (_formKey.currentState?.validate() == true) {
-      final submitResult = await widget.onSubmit.call(_textEditingController.text);
+      final submitResult =
+          await widget.onSubmit.call(_textEditingController.text);
       return submitResult;
     }
     return null;
@@ -105,19 +107,30 @@ class FallbackAccountContentState extends State<FallbackAccountContent> {
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: Column(
             children: [
-              const SizedBox(height: 118.0),
-              _buildTitle(),
-              const SizedBox(height: 19.0),
-              _buildForm(),
-              if (widget.description.isNotEmpty) ..._buildDescription(),
-              const Spacer(),
+              Expanded(
+                child: Center(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        const Space.vertical(118.0),
+                        _buildTitle(),
+                        const Space.vertical(19.0),
+                        _buildForm(),
+                        if (widget.description.isNotEmpty)
+                          ..._buildDescription(),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              const Space.vertical(18.0),
               AsyncLoonoButton(
                 text: widget.buttonText ?? context.l10n.confirm_info,
                 asyncCallback: validateAndSubmit,
                 onSuccess: widget.onSuccess,
                 onError: widget.onError,
               ),
-              const SizedBox(height: 18.0),
+              const Space.vertical(18.0),
             ],
           ),
         ),
@@ -174,7 +187,8 @@ class FallbackAccountContentState extends State<FallbackAccountContent> {
           ),
           hintText: widget.hint,
           hintStyle: const TextStyle(fontSize: 24.0, color: LoonoColors.grey),
-          counterStyle: LoonoFonts.paragraphFontStyle.copyWith(color: LoonoColors.primaryEnabled),
+          counterStyle: LoonoFonts.paragraphFontStyle
+              .copyWith(color: LoonoColors.primaryEnabled),
           focusedBorder: customInputDecoration(LoonoColors.primaryEnabled),
           filled: widget.filled,
           fillColor: widget.filled == true ? Colors.white : null,

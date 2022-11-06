@@ -11,6 +11,7 @@ import 'package:loono/ui/screens/onboarding/fallback_account/submit_account.dart
 import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/onboarding/app_bar.dart';
 import 'package:loono/ui/widgets/settings/checkbox.dart';
+import 'package:loono/ui/widgets/space.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -36,7 +37,8 @@ class NewsletterAndGDPRScreenState extends State<NewsletterAndGDPRScreen> {
 
   final _apiService = registry.get<ApiService>();
   final _authService = registry.get<AuthService>();
-  final _examinationQuestionnairesDao = registry.get<DatabaseService>().examinationQuestionnaires;
+  final _examinationQuestionnairesDao =
+      registry.get<DatabaseService>().examinationQuestionnaires;
   final _userRepository = registry.get<UserRepository>();
 
   @override
@@ -45,42 +47,42 @@ class NewsletterAndGDPRScreenState extends State<NewsletterAndGDPRScreen> {
       appBar: createAccountAppBar(context, step: 3),
       backgroundColor: null,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18.0),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 40,
+        child: Expanded(
+          child: Center(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                child: Column(
+                  children: [
+                    const Space.vertical(40),
+                    _buildNewsletter(context),
+                    const Space.vertical(50),
+                    _buildGDPR(context),
+                    const Space.vertical(70),
+                    AsyncLoonoButton(
+                      text: context.l10n.create_new_account,
+                      asyncCallback: () async {
+                        await submitAccount(
+                          context,
+                          socialLoginAccount,
+                          _authService,
+                          _usersDao,
+                          _examinationQuestionnairesDao,
+                          _apiService,
+                          _userRepository,
+                          newsletter,
+                        );
+                        return null;
+                      },
+                      onSuccess: () {},
+                      onError: () {},
+                      enabled: gdpr,
+                    ),
+                    const Space.vertical(18.0),
+                  ],
+                ),
               ),
-              _buildNewsletter(context),
-              const SizedBox(
-                height: 50,
-              ),
-              _buildGDPR(context),
-              const SizedBox(
-                height: 70,
-              ),
-              AsyncLoonoButton(
-                text: context.l10n.create_new_account,
-                asyncCallback: () async {
-                  await submitAccount(
-                    context,
-                    socialLoginAccount,
-                    _authService,
-                    _usersDao,
-                    _examinationQuestionnairesDao,
-                    _apiService,
-                    _userRepository,
-                    newsletter,
-                  );
-                  return null;
-                },
-                onSuccess: () {},
-                onError: () {},
-                enabled: gdpr,
-              ),
-              const SizedBox(height: 18.0),
-            ],
+            ),
           ),
         ),
       ),
@@ -93,9 +95,7 @@ class NewsletterAndGDPRScreenState extends State<NewsletterAndGDPRScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildTitle(context.l10n.fallback_account_newsletter_title),
-        const SizedBox(
-          height: 12,
-        ),
+        const Space.vertical(12),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,9 +128,7 @@ class NewsletterAndGDPRScreenState extends State<NewsletterAndGDPRScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildTitle(context.l10n.fallback_account_gdpr_title),
-        const SizedBox(
-          height: 12,
-        ),
+        const Space.vertical(12),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -3,6 +3,7 @@ import 'package:loono/constants.dart';
 import 'package:loono/helpers/size_helpers.dart';
 import 'package:loono/helpers/text_highlighter.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/ui/widgets/space.dart';
 
 class CarouselStatContent extends StatelessWidget {
   const CarouselStatContent({
@@ -36,26 +37,30 @@ class CarouselStatContent extends StatelessWidget {
       padding: EdgeInsets.symmetric(
         horizontal: MediaQuery.of(context).size.width * 0.15,
       ),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            _buildHeader(),
-            SizedBox(
-              height: context.mediaQuery.compactSizeOf(60.0),
+      child: Expanded(
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                _buildHeader(),
+                const Space.vertical(60.0),
+                Text(
+                  bodyText,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 15.0,
+                    height: 1.5,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const Space.vertical(60),
+                if (button != null) button!,
+                const Space.vertical(20),
+                _buildExplanation(context),
+              ],
             ),
-            Text(
-              bodyText,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 15.0,
-                height: 1.5,
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            if (button != null) button!,
-            _buildExplanation(context),
-          ],
+          ),
         ),
       ),
     );
