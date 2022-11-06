@@ -161,7 +161,8 @@ class LoginScreen extends StatelessWidget {
         if (Platform.isIOS) ...[
           Padding(
             padding: EdgeInsets.symmetric(
-                horizontal: context.mediaQuery.compactSizeOf(18.0)),
+              horizontal: context.mediaQuery.compactSizeOf(18.0),
+            ),
             child: SocialLoginButton.apple(
               onPressed: () async => _processSocialLogin(
                 context,
