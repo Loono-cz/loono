@@ -284,7 +284,6 @@ class DatePickerState extends State<DatePicker> {
     return isSet;
   }
 
-  ///removes moths over [maxDate] and under [minDate]
   Map<int, String> _getAvailableMonths() {
     if (_isMinYear()) {
       final months = <int, String>{};
@@ -413,8 +412,11 @@ class DatePickerState extends State<DatePicker> {
     );
   }
 
-  void _selectedItemHandle(
-      {required ColumnType forType, required Map items, required int value}) {
+  void _selectedItemHandle({
+    required ColumnType forType,
+    required Map items,
+    required int value,
+  }) {
     /// handle different month lengths
     if (forType == ColumnType.month || forType == ColumnType.year) {
       /// compensate for leap years
