@@ -1,5 +1,7 @@
 import 'package:loono/models/api_response.dart';
+import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/services/api_service.dart';
+import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
 class ExaminationRepository {
@@ -8,11 +10,13 @@ class ExaminationRepository {
   }) : _apiService = apiService;
 
   final ApiService _apiService;
+  UserRepository get _userRepository => registry.get<UserRepository>();
 
   Future<ApiResponse<ExaminationRecord>> cancelExamination(
     String uuid,
   ) async {
     final response = await _apiService.cancelExamination(uuid);
+    await _userRepository.sync();
     return response;
   }
 
@@ -20,6 +24,7 @@ class ExaminationRepository {
     String uuid,
   ) async {
     final response = await _apiService.deleteExamination(uuid);
+    await _userRepository.sync();
     return response;
   }
 
@@ -47,6 +52,7 @@ class ExaminationRepository {
       categoryType: categoryType,
       actionType: actionType,
     );
+    await _userRepository.sync();
     return response;
   }
 
@@ -54,6 +60,7 @@ class ExaminationRepository {
     String? uuid,
   ) async {
     final response = await _apiService.confirmExamination(uuid);
+    await _userRepository.sync();
     return response;
   }
 
@@ -65,6 +72,7 @@ class ExaminationRepository {
       type,
       result: result,
     );
+    await _userRepository.sync();
     return response;
   }
 
@@ -77,6 +85,7 @@ class ExaminationRepository {
       type,
       result: result,
     );
+    await _userRepository.sync();
     return response;
   }
 }
