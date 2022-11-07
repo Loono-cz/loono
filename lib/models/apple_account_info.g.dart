@@ -12,6 +12,7 @@ _$_AppleAccountInfo _$$_AppleAccountInfoFromJson(Map<String, dynamic> json) =>
       email: json['email'] as String,
       givenName: json['givenName'] as String?,
       familyName: json['familyName'] as String?,
+      identifierToken: json['identifierToken'] as String?,
     );
 
 Map<String, dynamic> _$$_AppleAccountInfoToJson(_$_AppleAccountInfo instance) =>
@@ -20,4 +21,5 @@ Map<String, dynamic> _$$_AppleAccountInfoToJson(_$_AppleAccountInfo instance) =>
       'email': instance.email,
       'givenName': instance.givenName,
       'familyName': instance.familyName,
+      'identifierToken': instance.identifierToken,
     };

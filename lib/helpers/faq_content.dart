@@ -293,9 +293,6 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
         ),
       ];
       break;
-    case ExaminationType.TOKS:
-      // TODO: This case is not used yet
-      break;
     case ExaminationType.ULTRASOUND_BREAST:
       result = [
         FAQPair(
@@ -332,9 +329,8 @@ List<FAQPair> faqContent(BuildContext context, ExaminationType type) {
         ),
       ];
       break;
-    case ExaminationType.VENEREAL_DISEASES:
-      // TODO: Handle this case.
-      break;
+    default:
+      return result;
   }
   return result;
 }

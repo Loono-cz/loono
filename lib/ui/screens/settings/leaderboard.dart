@@ -5,7 +5,6 @@ import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/api_service.dart';
 import 'package:loono/ui/screens/settings/settings_bottom_sheet.dart';
-import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/loono_point.dart';
 import 'package:loono/ui/widgets/settings/leaderboard_tile.dart';
 import 'package:loono/utils/registry.dart';
@@ -71,11 +70,6 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
             ),
             const SizedBox(height: 20.0),
             Expanded(child: _getLeaderboardList()),
-            const SizedBox(height: 20.0),
-            LoonoButton.light(
-              text: context.l10n.leaderboard_points_help_button,
-              onTap: () => widget.changePage(SettingsPage.SettingsPointsPage),
-            ),
             const SizedBox(height: 40.0),
           ],
         ),

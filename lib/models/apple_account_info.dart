@@ -10,6 +10,7 @@ class AppleAccountInfo with _$AppleAccountInfo {
     required String email,
     required String? givenName,
     required String? familyName,
+    required String? identifierToken,
   }) = _AppleAccountInfo;
 
   factory AppleAccountInfo.fromJson(Map<String, dynamic> json) => _$AppleAccountInfoFromJson(json);

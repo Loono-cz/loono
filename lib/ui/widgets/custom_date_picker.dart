@@ -35,16 +35,17 @@ class CustomDatePicker extends StatefulWidget {
 }
 
 class CustomDatePickerState extends State<CustomDatePicker> {
-  late int _selectedDayIndex = 0;
+  int? _defaultDay;
+  late int _selectedDayIndex = widget.defaultDay ?? 0;
   late int _selectedMonthIndex = widget.defaultMonth ?? widget.today.month;
   late int _selectedYearIndex = 0;
   late DateTime datePickerDate = DateTime(
     widget.defaultYear ?? widget.today.year,
     _selectedMonthIndex,
-    _selectedDayIndex + 1,
+    _selectedDayIndex,
   );
 
-  final FixedExtentScrollController _dayController = FixedExtentScrollController();
+  FixedExtentScrollController _dayController = FixedExtentScrollController();
   final FixedExtentScrollController _monthController = FixedExtentScrollController();
   final FixedExtentScrollController _yearController = FixedExtentScrollController();
 
@@ -52,6 +53,14 @@ class CustomDatePickerState extends State<CustomDatePicker> {
   void initState() {
     widget.valueChanged(datePickerDate);
     super.initState();
+    setState(() {
+      _defaultDay = widget.defaultDay;
+      _dayController = FixedExtentScrollController(
+        initialItem: _defaultDay != null
+            ? _datePickerDays.toList().indexOf(_defaultDay!)
+            : _selectedDayIndex,
+      );
+    });
   }
 
   @override
@@ -156,6 +165,10 @@ class CustomDatePickerState extends State<CustomDatePicker> {
   }
 
   Widget _datePickerColumn({required ColumnType forType}) {
+    if (forType == ColumnType.day && _defaultDay != null) {
+      _selectedDayIndex = _datePickerDays.toList().indexOf(_defaultDay!);
+    }
+
     final items = forType == ColumnType.day
         ? _datePickerDays.asMap()
         : forType == ColumnType.month
@@ -195,6 +208,10 @@ class CustomDatePickerState extends State<CustomDatePicker> {
           _selectedItemHandle(forType: forType, items: items, value: items.keys.elementAt(index));
 
           setState(() {
+            if (forType == ColumnType.day && _defaultDay != null) {
+              _defaultDay = null;
+            }
+
             forType == ColumnType.day
                 ? _selectedDayIndex = index
                 : forType == ColumnType.month

@@ -5,6 +5,12 @@ import 'package:loono/router/sub_routers/app_startup_wrapper_screen.dart';
 import 'package:loono/router/sub_routers/onboarding_wrapper_screen.dart';
 import 'package:loono/router/sub_routers/pre_auth_prevention_wrapper_screen.dart';
 import 'package:loono/ui/screens/about_health/about_health.dart';
+import 'package:loono/ui/screens/custom_exam_form/choose_exam_period_date_screen.dart';
+import 'package:loono/ui/screens/custom_exam_form/choose_exam_period_time_screen.dart';
+import 'package:loono/ui/screens/custom_exam_form/choose_examination_screen.dart';
+import 'package:loono/ui/screens/custom_exam_form/choose_frequency_of_exam_screen.dart';
+import 'package:loono/ui/screens/custom_exam_form/choose_specialist_screen.dart';
+import 'package:loono/ui/screens/custom_exam_form/custom_exam_form_screen.dart';
 import 'package:loono/ui/screens/dentist_achievement.dart';
 import 'package:loono/ui/screens/find_doctor/doctor_search_detail.dart';
 import 'package:loono/ui/screens/find_doctor/find_doctor.dart';
@@ -30,6 +36,7 @@ import 'package:loono/ui/screens/onboarding/doctors/general_practitioner_date.da
 import 'package:loono/ui/screens/onboarding/doctors/gynecology.dart';
 import 'package:loono/ui/screens/onboarding/doctors/gynecology_date.dart';
 import 'package:loono/ui/screens/onboarding/fallback_account/email.dart';
+import 'package:loono/ui/screens/onboarding/fallback_account/newsletter_and_gdpr.dart';
 import 'package:loono/ui/screens/onboarding/fallback_account/nickname.dart';
 import 'package:loono/ui/screens/onboarding/fill_form_later.dart';
 import 'package:loono/ui/screens/onboarding/gender.dart';
@@ -60,6 +67,7 @@ const _onboardingTransition = TransitionsBuilders.slideLeft;
 const _preventionTransition = TransitionsBuilders.slideLeft;
 const _findDoctorTransition = TransitionsBuilders.slideLeft;
 const _settingsTransition = TransitionsBuilders.slideLeft;
+const _customFormTransition = TransitionsBuilders.slideBottom;
 
 // After editing this, run:
 // flutter pub run build_runner build --delete-conflicting-outputs
@@ -93,6 +101,7 @@ const _preAuthRoutes = <AutoRoute>[
   _badgeOverviewRoute,
   AutoRoute<void>(page: NicknameScreen, path: 'fallback-account/name'),
   AutoRoute<void>(page: EmailScreen, path: 'fallback-account/email'),
+  AutoRoute<void>(page: NewsletterAndGDPRScreen, path: 'fallback-account/newsletter-gdpr'),
   _loginRoute,
   ..._findDoctorRoutes,
   AutoRoute<void>(page: LogoutScreen, path: 'logout'),
@@ -123,6 +132,7 @@ const _postAuthRouter = AutoRoute<void>(
     ..._preventionRoutes,
     ..._settingsRoutes,
     ..._selfExaminationRoutes,
+    ..._customExamForm
   ],
 );
 
@@ -341,4 +351,33 @@ const _selfExaminationRoutes = <AutoRoute>[
     path: 'self-examination/detail/reusult-from-doctor',
     transitionsBuilder: _preventionTransition,
   ),
+];
+
+const _customExamForm = <AutoRoute>[
+  CustomRoute<void>(page: CustomExamFormScreen, path: 'custom-exam-form'),
+  CustomRoute<void>(
+    page: ChooseCustomExaminationTypeScreen,
+    path: 'custom-exam-form-choose-examination',
+    transitionsBuilder: _customFormTransition,
+  ),
+  CustomRoute<void>(
+    page: ChooseSpecialistScreen,
+    path: 'custom-exam-form-choose-provider',
+    transitionsBuilder: _customFormTransition,
+  ),
+  CustomRoute<void>(
+    page: ChooseExamPeriodDateScreen,
+    path: 'custom-exam-form-choose-period-date',
+    transitionsBuilder: _customFormTransition,
+  ),
+  CustomRoute<void>(
+    page: ChooseExamPeriodTimeScreen,
+    path: 'custom-exam-form-choose-period-time',
+    transitionsBuilder: _customFormTransition,
+  ),
+  CustomRoute<void>(
+    page: ChooseFrequencyOfExamScreen,
+    path: 'custom-exam-form-choose-exam-frequency',
+    transitionsBuilder: _customFormTransition,
+  )
 ];

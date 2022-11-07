@@ -10,6 +10,7 @@ import 'package:dio_smart_retry/dio_smart_retry.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
@@ -45,6 +46,8 @@ const retryBlacklist = ['/account/onboard', '/leaderboard'];
 /// TODO: select correct status code for force update with BE
 // ignore: constant_identifier_names
 const FORCE_UPDATE_STATUS_CODE = 410;
+// ignore: constant_identifier_names
+const USE_PROD_BE = 'USE_PROD_BE';
 
 Future<void> setup({
   Dio? dioOverride,
@@ -52,14 +55,24 @@ Future<void> setup({
 }) async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  final remoteConfig = FirebaseRemoteConfig.instance;
+  await remoteConfig.setConfigSettings(
+    RemoteConfigSettings(
+      fetchTimeout: const Duration(minutes: 1),
+      minimumFetchInterval: const Duration(hours: 1), //TODO Increase to 5 minutes maybe.
+    ),
+  );
+  await remoteConfig.fetchAndActivate();
   await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(!kDebugMode);
 
+  final useProdBe = remoteConfig.getBool(USE_PROD_BE);
   final appInfo = await PackageInfo.fromPlatform();
   await dotenv.load(fileName: 'assets/.env');
 
   final defaultDioOptions = BaseOptions(
-    baseUrl:
-        flavor == AppFlavors.dev ? 'https://app.devel.loono.cz/v1' : 'https://app.prod.loono.cz/v1',
+    baseUrl: useProdBe
+        ? 'https://app.prod.loono.cz/v1'
+        : 'https://app.devel.loono.cz/v1', //TODO: After review change it back.
     connectTimeout: 5000,
     receiveTimeout: 8000,
   );

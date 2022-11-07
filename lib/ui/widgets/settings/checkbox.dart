@@ -7,18 +7,20 @@ class CheckboxCustom extends StatelessWidget {
     required this.text,
     this.isChecked = false,
     required this.whatIsChecked,
+    this.paddingLeft = 24.0,
   }) : super(key: key);
 
   final String text;
   final bool isChecked;
   final ValueChanged<bool> whatIsChecked;
+  final double paddingLeft;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 17.0),
+          padding: EdgeInsets.only(left: paddingLeft),
           child: Row(
             children: [
               Container(
@@ -51,7 +53,7 @@ class CheckboxCustom extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 17),
+                padding: const EdgeInsets.only(left: 10),
                 child: Text(
                   text,
                   style: const TextStyle(fontSize: 14),

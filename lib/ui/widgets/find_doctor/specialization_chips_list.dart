@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/services/map_state_sevice.dart';
 import 'package:loono/ui/widgets/find_doctor/specializations_list_sheet.dart';
+import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
 // key - spec name in chip in UI
@@ -15,6 +16,38 @@ const _defaultSpecs = <String, String>{
   'Oční': 'Oční',
   'Další odbornosti': '',
 };
+
+String getSpecializationByExaminationType(ExaminationType examinationType) {
+  switch (examinationType) {
+    case ExaminationType.GENERAL_PRACTITIONER:
+      return _defaultSpecs['Praktický lékař'] ?? '';
+    case ExaminationType.DENTIST:
+      return _defaultSpecs['Zubař'] ?? '';
+    case ExaminationType.GYNECOLOGIST:
+      return _defaultSpecs['Gynekolog'] ?? '';
+    case ExaminationType.DERMATOLOGIST:
+      return _defaultSpecs['Dermatolog'] ?? '';
+    case ExaminationType.OPHTHALMOLOGIST:
+      return _defaultSpecs['Oční'] ?? '';
+    default:
+      return _defaultSpecs['Další odbornosti'] ?? '';
+  }
+}
+
+String getSpecializationBySelfExaminationType(
+  SelfExaminationType examinationType,
+) {
+  switch (examinationType) {
+    case SelfExaminationType.BREAST:
+      return _defaultSpecs['Gynekolog'] ?? '';
+    case SelfExaminationType.TESTICULAR:
+      return _defaultSpecs['Další odbornosti'] ?? '';
+    case SelfExaminationType.SKIN:
+      return _defaultSpecs['Dermatolog'] ?? '';
+    default:
+      return _defaultSpecs['Praktický lékař'] ?? '';
+  }
+}
 
 class SpecializationChipsList extends StatelessWidget {
   SpecializationChipsList({

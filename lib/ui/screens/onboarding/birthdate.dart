@@ -90,6 +90,7 @@ class _OnBoardingBirthdateScreenState extends State<OnBoardingBirthdateScreen> {
                       yearsOverActual: 0,
                       defaultMonth: DateTime.january,
                       defaultYear: DateTime.now().year - 35,
+                      defaultDay: DateTime.now().day,
                     ),
                   ),
                 ),

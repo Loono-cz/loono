@@ -81,6 +81,7 @@ class ApiService {
     required BuiltList<ExaminationRecord> examinations,
     required String nickname,
     required String preferredEmail,
+    required bool newsletterOptIn,
   }) async {
     return _callApi(
       () async => _api.getAccountApi().postAccountOnboard(
@@ -90,7 +91,8 @@ class ApiService {
                 ..nickname = nickname
                 ..preferredEmail = preferredEmail
                 ..examinations = examinations.toBuilder()
-                ..birthdate = Date(birthdate.year, birthdate.month.index + 1, 1),
+                ..birthdate = Date(birthdate.year, birthdate.month.index + 1, 1)
+                ..newsletterOptIn = newsletterOptIn,
             ),
           ),
     );
@@ -121,12 +123,29 @@ class ApiService {
     );
   }
 
+  Future<ApiResponse<void>> deleteExamination(
+    String uuid,
+  ) async {
+    return _callApi(
+      () async => _api.getExaminationsApi().deleteExamination(
+        examinationId: ExaminationId((id) {
+          id.uuid = uuid;
+        }),
+      ),
+    );
+  }
+
   Future<ApiResponse<ExaminationRecord>> postExamination(
     ExaminationType type, {
     String? uuid,
-    DateTime? newDate,
+    DateTime? newDate, //planned Date
     ExaminationStatus? status,
     bool? firstExam,
+    ExaminationCategoryType categoryType = ExaminationCategoryType.MANDATORY,
+    String? note,
+    int? customInterval,
+    bool? periodicExam,
+    ExaminationActionType? actionType,
   }) async {
     return _callApi(
       () async => _api.getExaminationsApi().postExaminations(
@@ -136,7 +155,12 @@ class ApiService {
             ..type = type
             ..plannedDate = newDate?.toUtc()
             ..status = status
-            ..firstExam = firstExam;
+            ..firstExam = firstExam
+            ..customInterval = customInterval
+            ..periodicExam = periodicExam
+            ..note = note
+            ..examinationCategoryType = categoryType
+            ..examinationActionType = actionType;
         }),
       ),
     );

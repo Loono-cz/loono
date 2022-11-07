@@ -48,6 +48,7 @@ class PreventiveExaminationDatePickerScreen extends StatelessWidget {
                   valueChanged: onDateChanged,
                   yearsBeforeActual: DateTime.now().year - 1900,
                   yearsOverActual: 0,
+                  defaultDay: DateTime.now().day,
                 ),
               ),
               const Spacer(),

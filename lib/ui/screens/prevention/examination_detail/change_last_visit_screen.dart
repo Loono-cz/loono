@@ -97,9 +97,7 @@ class _ChangeLastVisitScreenState extends State<ChangeLastVisitScreen> {
               LoonoButton(
                 text: context.l10n.action_save,
                 onTap: () async {
-                  final response = await registry
-                      .get<ExaminationRepository>()
-                      .postExamination(
+                  final response = await registry.get<ExaminationRepository>().postExamination(
                         widget.examinationType,
                         newDate: newDate,
                         uuid: widget.uuid,
@@ -109,12 +107,10 @@ class _ChangeLastVisitScreenState extends State<ChangeLastVisitScreen> {
                       await AutoRouter.of(context).pop();
                       //TODO: Fix lint...
                       // ignore: use_build_context_synchronously
-                      showFlushBarSuccess(
-                          context, context.l10n.checkup_reminder_toast);
+                      showFlushBarSuccess(context, context.l10n.checkup_reminder_toast);
                     },
                     failure: (err) async {
-                      showFlushBarError(
-                          context, context.l10n.something_went_wrong);
+                      showFlushBarError(context, context.l10n.something_went_wrong);
                     },
                   );
                 },

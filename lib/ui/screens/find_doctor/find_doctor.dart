@@ -23,9 +23,11 @@ class FindDoctorScreen extends StatefulWidget {
   const FindDoctorScreen({
     Key? key,
     this.onCancelTap,
+    this.firstSelectedSpecializationName,
   }) : super(key: key);
 
   final VoidCallback? onCancelTap;
+  final String? firstSelectedSpecializationName;
 
   @override
   State<FindDoctorScreen> createState() => FindDoctorScreenState();
@@ -40,6 +42,9 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
   final _healthcareProviderRepository = registry.get<HealthcareProviderRepository>();
 
   late final MapStateService _mapState;
+
+  bool _isFirstSelectedSpecializationSet = false;
+  bool _canFirstSelectedSpecializationSet = false;
 
   bool _isHealthCareProvidersInMapService = false;
   double _mapOpacity = 1;
@@ -77,11 +82,39 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
   }
 
   @override
+  void dispose() {
+    _isFirstSelectedSpecializationSet = false;
+    super.dispose();
+  }
+
+  void _setFirstSelectedSpecialization() {
+    if (!_isFirstSelectedSpecializationSet) {
+      _isFirstSelectedSpecializationSet = true;
+
+      final specializationName = widget.firstSelectedSpecializationName;
+      if (specializationName != null) {
+        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+          final specResult = _mapState.getSpecSearchResultByName(specializationName);
+          _mapState.setSpecialization(specResult);
+        });
+      }
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final currDoctorDetail =
-        context.select<MapStateService, SimpleHealthcareProvider?>((value) => value.doctorDetail);
-    final currSpec =
-        context.select<MapStateService, SearchResult?>((value) => value.currSpecialization);
+    if (_canFirstSelectedSpecializationSet) {
+      _setFirstSelectedSpecialization();
+      _canFirstSelectedSpecializationSet = false;
+    } else {
+      _canFirstSelectedSpecializationSet = true;
+    }
+    final currDoctorDetail = context.select<MapStateService, SimpleHealthcareProvider?>(
+      (value) => value.doctorDetail,
+    );
+    final currSpec = context.select<MapStateService, SearchResult?>(
+      (value) => value.currSpecialization,
+    );
 
     return Scaffold(
       appBar: widget.onCancelTap != null
@@ -137,7 +170,9 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
                               _setMapOpacity(1);
                             },
                           ),
-                          SpecializationChipsList(showDefaultSpecs: currSpec == null),
+                          SpecializationChipsList(
+                            showDefaultSpecs: currSpec == null,
+                          ),
                         ],
                       ),
                     ),
@@ -150,7 +185,10 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
                         await animateToPos(
                           mapController,
                           cameraPosition: CameraPosition(
-                            target: LatLng(healthcareProvider.lat, healthcareProvider.lng),
+                            target: LatLng(
+                              healthcareProvider.lat,
+                              healthcareProvider.lng,
+                            ),
                             zoom: MapVariables.DOCTOR_DETAIL_ZOOM,
                           ),
                         );
@@ -167,7 +205,10 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
                     const Align(
                       alignment: Alignment.bottomLeft,
                       child: Padding(
-                        padding: EdgeInsets.only(left: 9, bottom: bottomGoogleLogoPadding),
+                        padding: EdgeInsets.only(
+                          left: 9,
+                          bottom: bottomGoogleLogoPadding,
+                        ),
                         child: FeedbackButton(),
                       ),
                     ),
@@ -201,8 +242,10 @@ class FindDoctorScreenState extends State<FindDoctorScreen> {
                       child: DoctorDetailSheet(
                         key: const Key('findDoctorPage_doctorDetailSheet'),
                         doctor: currDoctorDetail,
-                        closeDetail: () =>
-                            _mapState.setDoctorDetail(null, unblockOnMoveMapFiltering: false),
+                        closeDetail: () => _mapState.setDoctorDetail(
+                          null,
+                          unblockOnMoveMapFiltering: false,
+                        ),
                       ),
                     ),
                   ),
