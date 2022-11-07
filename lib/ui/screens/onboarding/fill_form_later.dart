@@ -52,7 +52,7 @@ class FillOnboardingFormLaterScreen extends StatelessWidget {
                               l10n.fill_formLater_title,
                               style: LoonoFonts.headerFontStyle,
                             ),
-                            const Space.vertical(20),
+                            const CustomSpacer.vertical(20),
                             Text(
                               l10n.fill_formLater_text,
                               style: LoonoFonts.paragraphFontStyle,
@@ -75,7 +75,7 @@ class FillOnboardingFormLaterScreen extends StatelessWidget {
                         text: context.l10n.fill_form_later_button_1,
                         onTap: () => AutoRouter.of(context).popForced(),
                       ),
-                      const Space.vertical(8),
+                      const CustomSpacer.vertical(8),
                       LoonoButton.light(
                         text: context.l10n.fill_form_later_button_2,
                         onTap: () =>

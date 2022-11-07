@@ -42,7 +42,7 @@ class StartNewQuestionnaireScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Space.vertical(isScreenSmall ? 20 : 40),
+            CustomSpacer.vertical(isScreenSmall ? 20 : 40),
             Padding(
               padding: EdgeInsets.symmetric(
                 vertical:
@@ -55,7 +55,7 @@ class StartNewQuestionnaireScreen extends StatelessWidget {
                     AutoRouter.of(context).push(const OnboardingWrapperRoute()),
               ),
             ),
-            if (!isScreenSmall) const Space.vertical(20),
+            if (!isScreenSmall) const CustomSpacer.vertical(20),
           ],
         ),
       ),
@@ -68,7 +68,7 @@ class StartNewQuestionnaireScreen extends StatelessWidget {
       color: const Color.fromRGBO(241, 249, 249, 1),
       child: Column(
         children: [
-          const Space.vertical(10),
+          const CustomSpacer.vertical(10),
           SkipButton(
             text: context.l10n.already_have_an_account_skip_button,
             onPressed: () {
@@ -81,7 +81,7 @@ class StartNewQuestionnaireScreen extends StatelessWidget {
               ]);
             },
           ),
-          Space.vertical(isScreenSmall ? 6 : 24),
+          CustomSpacer.vertical(isScreenSmall ? 6 : 24),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
             child: Text(

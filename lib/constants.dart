@@ -124,6 +124,12 @@ class LoonoFonts {
     fontWeight: FontWeight.w700,
   );
 
+  static const subtitleColoredFontStyle = TextStyle(
+    fontSize: 14,
+    color: LoonoColors.primaryEnabled,
+    fontWeight: FontWeight.bold,
+  );
+
   static const paragraphFontStyle = TextStyle(
     fontSize: 14,
     height: 1.5,
@@ -136,6 +142,13 @@ class LoonoFonts {
     height: 1.5,
     color: LoonoColors.black,
     fontWeight: FontWeight.normal,
+  );
+
+  static const paragraphBoldFontStyle = TextStyle(
+    fontSize: 15.0,
+    height: 1.5,
+    color: Colors.black,
+    fontWeight: FontWeight.w500,
   );
 
   static const primaryColorStyle = TextStyle(
@@ -193,5 +206,11 @@ class LoonoFonts {
     fontSize: 20,
     fontWeight: FontWeight.w400,
     color: Colors.black,
+  );
+
+  static const carouselTitle = TextStyle(
+    fontSize: 14,
+    color: LoonoColors.primaryEnabled,
+    fontWeight: FontWeight.bold,
   );
 }

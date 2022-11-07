@@ -53,18 +53,18 @@ class BadgeOverviewScreen extends StatelessWidget {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Space.vertical(24),
+                        const CustomSpacer.vertical(24),
                         Text(
                           '${sex == Sex.MALE ? context.l10n.gamification_introduction_header_male : context.l10n.gamification_introduction_header_female} ${user?.nickname ?? (sex?.getNicknameHintLabel(context)) ?? ''}',
                           textAlign: TextAlign.center,
                           style: LoonoFonts.headerFontStyle,
                         ),
-                        const Space.vertical(18),
+                        const CustomSpacer.vertical(18),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const LoonoPointIcon(color: LoonoColors.primaryEnabled, width: 16.0),
-                            const Space.horizontal(7),
+                            const CustomSpacer.horizontal(7),
                             Text(
                               '${user?.points ?? 0} ${context.l10n.gamification_introduction_points.toUpperCase()}',
                               style: LoonoFonts.subtitleFontStyle.copyWith(
@@ -84,7 +84,7 @@ class BadgeOverviewScreen extends StatelessWidget {
                                     shrinkWrap: true,
                                     children: [
                                       const BadgeComposer(),
-                                      const Space.vertical(10),
+                                      const CustomSpacer.vertical(10),
                                       Padding(
                                         padding: EdgeInsets.symmetric(horizontal: context.mediaQuery.compactSizeOf(18)),
                                         child: _buildDescContainer(context),

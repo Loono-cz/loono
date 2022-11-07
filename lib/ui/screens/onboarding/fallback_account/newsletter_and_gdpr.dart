@@ -54,11 +54,11 @@ class NewsletterAndGDPRScreenState extends State<NewsletterAndGDPRScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 18.0),
                 child: Column(
                   children: [
-                    const Space.vertical(40),
+                    const CustomSpacer.vertical(40),
                     _buildNewsletter(context),
-                    const Space.vertical(50),
+                    const CustomSpacer.vertical(50),
                     _buildGDPR(context),
-                    const Space.vertical(70),
+                    const CustomSpacer.vertical(70),
                     AsyncLoonoButton(
                       text: context.l10n.create_new_account,
                       asyncCallback: () async {
@@ -78,7 +78,7 @@ class NewsletterAndGDPRScreenState extends State<NewsletterAndGDPRScreen> {
                       onError: () {},
                       enabled: gdpr,
                     ),
-                    const Space.vertical(18.0),
+                    const CustomSpacer.vertical(18.0),
                   ],
                 ),
               ),
@@ -95,7 +95,7 @@ class NewsletterAndGDPRScreenState extends State<NewsletterAndGDPRScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildTitle(context.l10n.fallback_account_newsletter_title),
-        const Space.vertical(12),
+        const CustomSpacer.vertical(12),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,7 +128,7 @@ class NewsletterAndGDPRScreenState extends State<NewsletterAndGDPRScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildTitle(context.l10n.fallback_account_gdpr_title),
-        const Space.vertical(12),
+        const CustomSpacer.vertical(12),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,

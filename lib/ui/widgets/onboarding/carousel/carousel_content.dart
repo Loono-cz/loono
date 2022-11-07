@@ -43,20 +43,15 @@ class CarouselStatContent extends StatelessWidget {
             child: Column(
               children: [
                 _buildHeader(),
-                const Space.vertical(60.0),
+                const CustomSpacer.vertical(60.0),
                 Text(
                   bodyText,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 15.0,
-                    height: 1.5,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: LoonoFonts.paragraphBoldFontStyle,
                 ),
-                const Space.vertical(60),
+                const CustomSpacer.vertical(60),
                 if (button != null) button!,
-                const Space.vertical(20),
+                const CustomSpacer.vertical(20),
                 _buildExplanation(context),
               ],
             ),

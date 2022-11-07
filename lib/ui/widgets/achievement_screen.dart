@@ -49,21 +49,21 @@ class AchievementScreen extends StatelessWidget {
                             itemPath,
                             width: MediaQuery.of(context).size.width / 3,
                           ),
-                          const Space.vertical(24),
+                          const CustomSpacer.vertical(24),
                           SvgPicture.asset(LoonoAssets.itemShadow),
-                          const Space.vertical(24),
+                          const CustomSpacer.vertical(24),
                           Text(
                             context.l10n.achievement_subtitle_earning,
                             textAlign: TextAlign.center,
                             style: LoonoFonts.paragraphFontStyle,
                           ),
-                          const Space.vertical(8),
+                          const CustomSpacer.vertical(8),
                           Text(
                             header,
                             textAlign: TextAlign.center,
                             style: LoonoFonts.bigFontStyle,
                           ),
-                          const Space.vertical(12),
+                          const CustomSpacer.vertical(12),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 16),
                             child: Column(
@@ -78,12 +78,12 @@ class AchievementScreen extends StatelessWidget {
                                   .toList(),
                             ),
                           ),
-                          const Space.vertical(24),
+                          const CustomSpacer.vertical(24),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               const LoonoPointIcon(),
-                              const Space.horizontal(8),
+                              const CustomSpacer.horizontal(8),
                               Text(
                                 numberOfPoints.toString(),
                                 style: LoonoFonts.subtitleFontStyle.copyWith(
@@ -97,12 +97,12 @@ class AchievementScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Space.vertical(70),
+                const CustomSpacer.vertical(70),
                 LoonoButton(
                   text: context.l10n.continue_info,
                   onTap: onButtonTap,
                 ),
-                Space.vertical(LoonoSizes.buttonBottomPadding(context)),
+                CustomSpacer.vertical(LoonoSizes.buttonBottomPadding(context)),
               ],
             ),
           ),

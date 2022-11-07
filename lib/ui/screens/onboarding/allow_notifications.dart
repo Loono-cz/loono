@@ -27,7 +27,7 @@ class AllowNotificationsScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: Column(
             children: [
-              const Space.vertical(20),
+              const CustomSpacer.vertical(20),
               SkipButton(
                 text: context.l10n.skip_notification,
                 onPressed: onSkipTap ??

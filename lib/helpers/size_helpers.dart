@@ -4,10 +4,8 @@ extension ScreenSize on MediaQueryData {
   bool get isTextBig => textScaleFactor >= 1.5;
 
   bool get isMobileScreen => size.height <= 750;
-  bool get isScreenSmall => size.height <= 300;
 
-  ///Is screen small or is font size big
-  bool get useCompactStyle => isTextBig || isScreenSmall;
+  bool get useCompactStyle => isTextBig;
 
   ///when [useCompactStyle] return lesser size
   double compactSizeOf(double size) {

@@ -68,14 +68,10 @@ class ContinueOnboardingFormScreen extends StatelessWidget {
                         Row(
                           children: [
                             _buildOnboardingFormProgressIndicator(),
-                            const Space.horizontal(10),
+                            const CustomSpacer.horizontal(10),
                             Text(
                               l10n.continue_onboarding_form_progress,
-                              style: const TextStyle(
-                                fontSize: 14,
-                                color: LoonoColors.primaryEnabled,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: LoonoFonts.subtitleColoredFontStyle,
                             )
                           ],
                         ),
@@ -102,7 +98,7 @@ class ContinueOnboardingFormScreen extends StatelessWidget {
                     l10n.continue_onboarding_text,
                     style: LoonoFonts.paragraphFontStyle,
                   ),
-                  Space.vertical(isScreenSmall ? 30 : 80),
+                  CustomSpacer.vertical(isScreenSmall ? 30 : 80),
                   LoonoButton(
                     text: l10n.continue_onboarding_form_button,
                     onTap: () => AutoRouter.of(context)

@@ -68,7 +68,7 @@ class _OnBoardingBirthdateScreenState extends State<OnBoardingBirthdateScreen> {
                       widget.sex.getBirthdateLabel(context),
                       style: const TextStyle(color: Colors.black, fontSize: 24),
                     ),
-                    const Space.vertical(8),
+                    const CustomSpacer.vertical(8),
                     Text(
                       context.l10n.birthdate_subtitle.split('\n')[0],
                       style: LoonoFonts.paragraphSmallFontStyle,

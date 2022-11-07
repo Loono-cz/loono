@@ -39,7 +39,7 @@ class WelcomeScreen extends StatelessWidget {
                               SvgPicture.asset(
                                 LoonoAssets.welcomeLogo,
                               ),
-                              const Space.vertical(24),
+                              const CustomSpacer.vertical(24),
                               Text(
                                 context.l10n.carousel_welcome_dialog,
                                 textAlign: TextAlign.center,
@@ -47,7 +47,7 @@ class WelcomeScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                          const Space.vertical(60),
+                          const CustomSpacer.vertical(60),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -60,7 +60,7 @@ class WelcomeScreen extends StatelessWidget {
                                     logoAsset: LoonoAssets.cdLogo,
                                     width: 105,
                                   ),
-                                  const Space.horizontal(45),
+                                  const CustomSpacer.horizontal(45),
                                   _buildSponsor(
                                     label: context.l10n.with_support,
                                     logoAsset: LoonoAssets.ppfLogo,
@@ -68,7 +68,7 @@ class WelcomeScreen extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              const Space.vertical(15),
+                              const CustomSpacer.vertical(15),
                               _buildSponsor(
                                 label: context.l10n.technology_partner,
                                 logoAsset: LoonoAssets.cgiLogo,
@@ -91,7 +91,7 @@ class WelcomeScreen extends StatelessWidget {
                         await autoRouter.push(const IntroCarouselRoute());
                       },
                     ),
-                    const Space.vertical(15),
+                    const CustomSpacer.vertical(15),
                     TextButton(
                       onPressed: () async {
                         final autoRouter = AutoRouter.of(context);
@@ -110,7 +110,7 @@ class WelcomeScreen extends StatelessWidget {
                         style: LoonoFonts.fontStyle,
                       ),
                     ),
-                    const Space.vertical(40),
+                    const CustomSpacer.vertical(40),
                   ],
                 ),
               ],

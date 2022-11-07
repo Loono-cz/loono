@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:loono/helpers/size_helpers.dart';
 
 ///Space between widgets
-class Space extends StatelessWidget {
-  const Space({Key? key, required this.verticalSpace, required this.horizontalSpace})
+class CustomSpacer extends StatelessWidget {
+  const CustomSpacer({Key? key, required this.verticalSpace, required this.horizontalSpace})
       : super(key: key);
 
   ///Vertical space between widgets
-  const Space.vertical(double space, {Key? key})
+  const CustomSpacer.vertical(double space, {Key? key})
       : horizontalSpace = space,
         verticalSpace = 0,
         super(key: key);
 
   ///Horizontal space between widgets
-  const Space.horizontal( double space,{Key? key})
+  const CustomSpacer.horizontal( double space,{Key? key})
       : horizontalSpace = 0,
         verticalSpace = space,
         super(key: key);

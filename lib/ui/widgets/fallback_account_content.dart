@@ -112,9 +112,9 @@ class FallbackAccountContentState extends State<FallbackAccountContent> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        const Space.vertical(118.0),
+                        const CustomSpacer.vertical(118.0),
                         _buildTitle(),
-                        const Space.vertical(19.0),
+                        const CustomSpacer.vertical(19.0),
                         _buildForm(),
                         if (widget.description.isNotEmpty)
                           ..._buildDescription(),
@@ -123,14 +123,14 @@ class FallbackAccountContentState extends State<FallbackAccountContent> {
                   ),
                 ),
               ),
-              const Space.vertical(18.0),
+              const CustomSpacer.vertical(18.0),
               AsyncLoonoButton(
                 text: widget.buttonText ?? context.l10n.confirm_info,
                 asyncCallback: validateAndSubmit,
                 onSuccess: widget.onSuccess,
                 onError: widget.onError,
               ),
-              const Space.vertical(18.0),
+              const CustomSpacer.vertical(18.0),
             ],
           ),
         ),

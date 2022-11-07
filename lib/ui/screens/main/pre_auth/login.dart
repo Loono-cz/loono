@@ -62,7 +62,7 @@ class LoginScreen extends StatelessWidget {
                         children: [
                           Column(
                             children: [
-                              const Space.vertical(30),
+                              const CustomSpacer.vertical(30),
                               if (!isScreenSmall &&
                                   registry.get<AppConfig>().flavor ==
                                       AppFlavors.dev) ...[
@@ -115,7 +115,7 @@ class LoginScreen extends StatelessWidget {
                                     'switch api (dev flavour only)',
                                   ),
                                 ),
-                                const Space.vertical(10),
+                                const CustomSpacer.vertical(10),
                               ],
                               Padding(
                                 padding: EdgeInsets.symmetric(
@@ -140,7 +140,7 @@ class LoginScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                          if (isScreenSmall) const Space.vertical(10),
+                          if (isScreenSmall) const CustomSpacer.vertical(10),
                         ],
                       ),
                     ),
@@ -170,7 +170,7 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
           ),
-          const Space.vertical(20.0),
+          const CustomSpacer.vertical(20.0),
         ],
         Padding(
           padding: EdgeInsets.symmetric(
@@ -183,7 +183,7 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
         ),
-        if (!isScreenSmall) const Space.vertical(10),
+        if (!isScreenSmall) const CustomSpacer.vertical(10),
         TextButton(
           onPressed: () async {
             final autoRouter = AutoRouter.of(context);
@@ -199,7 +199,7 @@ class LoginScreen extends StatelessWidget {
             style: LoonoFonts.paragraphFontStyle,
           ),
         ),
-        if (!isScreenSmall) const Space.vertical(10),
+        if (!isScreenSmall) const CustomSpacer.vertical(10),
       ],
     );
   }
