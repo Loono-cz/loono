@@ -61,10 +61,12 @@ int compareExaminationType(
 }
 
 int _compareExamDate(CategorizedExamination a, CategorizedExamination b) {
-  final duration = a.examination.targetExamDate
-          ?.difference(b.examination.targetExamDate!)
-          .inMinutes ??
-      0;
+  if(a.examination.targetExamDate == null || b.examination.targetExamDate == null) {
+    return 0;
+  }
+  final duration = a.examination.targetExamDate!
+      .difference(b.examination.targetExamDate!)
+      .inMinutes;
   return duration > 0
       ? 1
       : duration < 0

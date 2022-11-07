@@ -223,6 +223,10 @@ extension CategorizedExaminationListExt on List<CategorizedExamination> {
     CategorizedExamination a,
     CategorizedExamination b,
   ) {
+    if (a.examination.targetExamDate == null ||
+        b.examination.targetExamDate == null) {
+      return compareExaminationType(a, b, compareByDate: false);
+    }
     final dateDifference = a.examination.targetExamDate!
         .difference(b.examination.targetExamDate!)
         .inMinutes;

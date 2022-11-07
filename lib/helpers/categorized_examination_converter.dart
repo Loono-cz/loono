@@ -7,7 +7,7 @@ class CategorizedExaminationConverter {
   static List<CategorizedExamination> convert(
     final List<ExaminationPreventionStatus> preventionStatuses,
   ) {
-    final e = preventionStatuses
+    return preventionStatuses
         .map(
           (e) => CategorizedExamination(
             examination: e,
@@ -16,7 +16,5 @@ class CategorizedExaminationConverter {
         )
         .toList()
       ..sortExaminations();
-
-    return e;
   }
 }
