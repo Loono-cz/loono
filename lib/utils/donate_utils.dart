@@ -25,19 +25,15 @@ Future<void> checkAndShowDonatePage(
     final date = DateTime(
       now.year,
       now.month,
-      now.day -
-          (LoonoStrings.donateDelayInterval -
-              LoonoStrings.donateFirstDelayInterval),
+      now.day - (LoonoStrings.donateDelayInterval - LoonoStrings.donateFirstDelayInterval),
     );
     donateUserInfo = DonateUserInfo(lastOpened: date, showNotification: true);
     showModal = false;
   } else if (DateTime.now().isAfter(
-        donateInfo.lastOpened
-            .add(const Duration(days: LoonoStrings.donateDelayInterval)),
+        donateInfo.lastOpened.add(const Duration(days: LoonoStrings.donateDelayInterval)),
       ) &&
       donateInfo.showNotification == true) {
-    donateUserInfo =
-        DonateUserInfo(lastOpened: DateTime.now(), showNotification: true);
+    donateUserInfo = DonateUserInfo(lastOpened: DateTime.now(), showNotification: true);
     showModal = true;
   }
   if (donateUserInfo != null) {
