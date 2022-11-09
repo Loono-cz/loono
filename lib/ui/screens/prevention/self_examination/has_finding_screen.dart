@@ -54,8 +54,9 @@ class HasFindingScreen extends StatelessWidget {
                                 child: IconButton(
                                   key: const Key('hasFindingPage_btn_close'),
                                   onPressed: () =>
-                                      AutoRouter.of(context)
-                                          .navigate(const MainRoute(),),
+                                      AutoRouter.of(context).navigate(
+                                    const MainRoute(),
+                                  ),
                                   icon: const Icon(Icons.close),
                                 ),
                               ),
@@ -65,7 +66,7 @@ class HasFindingScreen extends StatelessWidget {
                             children: [
                               Padding(
                                 padding:
-                                const EdgeInsets.symmetric(vertical: 20),
+                                    const EdgeInsets.symmetric(vertical: 20),
                                 child: Text(
                                   strings.title,
                                   style: LoonoFonts.headerFontStyle.copyWith(
@@ -88,18 +89,18 @@ class HasFindingScreen extends StatelessWidget {
                                     'hasFindingPage_btn_findDoctor',
                                   ),
                                   text: context.l10n.main_menu_item_find_doc,
-                                  onTap: () =>
-                                      AutoRouter.of(context).replace(
-                                        MainRoute(
-                                          children: [
-                                            FindDoctorRoute(
-                                              firstSelectedSpecializationName:
+                                  onTap: () => AutoRouter.of(context).replace(
+                                    MainRoute(
+                                      children: [
+                                        FindDoctorRoute(
+                                          firstSelectedSpecializationName:
                                               getSpecializationBySelfExaminationType(
-                                                  examType),
-                                            )
-                                          ],
-                                        ),
-                                      ),
+                                            examType,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
                                 ),
                               )
                             ],
@@ -176,13 +177,12 @@ class HasFindingScreen extends StatelessWidget {
               color: LoonoColors.primary,
             ),
             recognizer: TapGestureRecognizer()
-              ..onTap = () =>
-                  AutoRouter.of(context).replace(
+              ..onTap = () => AutoRouter.of(context).replace(
                     MainRoute(
                       children: [
                         FindDoctorRoute(
                           firstSelectedSpecializationName:
-                          getSpecializationBySelfExaminationType(examType),
+                              getSpecializationBySelfExaminationType(examType),
                         )
                       ],
                     ),
@@ -205,8 +205,7 @@ class HasFindingScreen extends StatelessWidget {
               color: LoonoColors.primary,
             ),
             recognizer: TapGestureRecognizer()
-              ..onTap = () =>
-                  launchUrlString(
+              ..onTap = () => launchUrlString(
                     'mailto:${LoonoStrings.contactEmail}',
                   ),
           )
@@ -221,7 +220,7 @@ class HasFindingScreen extends StatelessWidget {
       child: RichText(
         text: TextSpan(
           text:
-          context.l10n.self_examination_has_finding_part_2_desc_female_note,
+              context.l10n.self_examination_has_finding_part_2_desc_female_note,
           style: LoonoFonts.paragraphFontStyle,
           children: [
             TextSpan(
@@ -253,9 +252,11 @@ class _HasFindingStrings {
   final String important;
 }
 
-_HasFindingStrings _getHasFindingStringsForExamType(SelfExaminationType type,
-    Sex sex,
-    BuildContext context,) {
+_HasFindingStrings _getHasFindingStringsForExamType(
+  SelfExaminationType type,
+  Sex sex,
+  BuildContext context,
+) {
   var title = '';
   var goToDoctor = '';
   var important = '';
