@@ -1,4 +1,5 @@
 // ignore_for_file: constant_identifier_names
+
 import 'package:collection/collection.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/date_helpers.dart';
@@ -82,7 +83,11 @@ extension SelfExaminationPreventionStatusExt on SelfExaminationPreventionStatus 
 
     if (history.last == SelfExaminationStatus.PLANNED) {
       if (plannedDate != null) {
-        final nowDate = DateTime(now.year, now.month, now.day); //now with set hour and minute to 0
+        final nowDate = DateTime(
+          now.year,
+          now.month,
+          now.day,
+        ); //now with set hour and minute to 0
         final difference = plannedDate!.toDateTime().difference(nowDate).inHours.abs();
         if (difference <= SELF_EXAMINATION_ACTIVE_CARD_INTERVAL_IN_HOURS) {
           return const SelfExaminationCategory.active();
@@ -99,13 +104,21 @@ extension SelfExaminationPreventionStatusExt on SelfExaminationPreventionStatus 
 extension ExaminationExt on ExaminationPreventionStatus {
   DateTime? get targetExamDate {
     if (plannedDate != null && plannedDate != lastConfirmedDate) {
-      return plannedDate!;
+      return DateTime(
+        plannedDate!.year,
+        plannedDate!.month,
+        plannedDate!.day,
+        plannedDate!.hour,
+        plannedDate!.minute,
+      );
     } else if (lastConfirmedDate != null) {
       final months = customInterval != null ? customInterval! : intervalYears * 12;
       return DateTime(
         lastConfirmedDate!.year,
         lastConfirmedDate!.month + months,
         lastConfirmedDate!.day,
+        lastConfirmedDate!.hour,
+        lastConfirmedDate!.minute,
       );
     } else {
       return null;
@@ -114,7 +127,7 @@ extension ExaminationExt on ExaminationPreventionStatus {
 }
 
 extension CategorizedExaminationListExt on List<CategorizedExamination> {
-  Future<void> sortExaminations() async {
+  void sortExaminations() {
     if (isEmpty) return;
 
     final scheduledOrOverdue = <CategorizedExamination>[];
@@ -134,31 +147,31 @@ extension CategorizedExaminationListExt on List<CategorizedExamination> {
     }
 
     final sorted = <CategorizedExamination>[
-      ...await _sortByDateThenCategoryType(scheduledOrOverdue),
-      ...await _sortNewToSchedule(newToSchedule),
-      ...await _sortUnknownLastVisit(unknownLastVisit),
-      ...await _sortByDateThenCategoryType(scheduled),
-      ...await _sortByDateThenCategoryType(waiting),
+      ..._sortByDateThenCategoryType(scheduledOrOverdue),
+      ..._sortNewToSchedule(newToSchedule),
+      ..._sortUnknownLastVisit(unknownLastVisit),
+      ..._sortByDateThenCategoryType(scheduled),
+      ..._sortByDateThenCategoryType(waiting),
     ];
     clear();
     addAll(sorted);
   }
 
-  Future<List<CategorizedExamination>> _sortByDateThenCategoryType(
+  List<CategorizedExamination> _sortByDateThenCategoryType(
     List<CategorizedExamination> exams,
-  ) async {
+  ) {
     return exams.sorted(_compareByDateThenByCategoryType);
   }
 
-  Future<List<CategorizedExamination>> _sortNewToSchedule(
+  List<CategorizedExamination> _sortNewToSchedule(
     List<CategorizedExamination> exams,
-  ) async {
+  ) {
     return exams.sorted(_compareNewToSchedule);
   }
 
-  Future<List<CategorizedExamination>> _sortUnknownLastVisit(
+  List<CategorizedExamination> _sortUnknownLastVisit(
     List<CategorizedExamination> exams,
-  ) async {
+  ) {
     return exams.sorted((a, b) => compareExaminationType(a, b, compareByDate: false));
   }
 
@@ -199,9 +212,11 @@ extension CategorizedExaminationListExt on List<CategorizedExamination> {
     CategorizedExamination a,
     CategorizedExamination b,
   ) {
+    if (a.examination.targetExamDate == null || b.examination.targetExamDate == null) {
+      return compareExaminationType(a, b, compareByDate: false);
+    }
     final dateDifference =
-        a.examination.targetExamDate!.difference(b.examination.targetExamDate!).inDays;
-
+        a.examination.targetExamDate!.difference(b.examination.targetExamDate!).inMinutes;
     if (dateDifference == 0) {
       return compareExaminationType(a, b, compareByDate: false);
     } else {
