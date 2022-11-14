@@ -34,14 +34,14 @@ class Users extends Table {
   DateTimeColumn get latestMapUpdate => dateTime().nullable()();
 
   TextColumn get searchHistory => text().map(const SearchHistoryDbConverter()).withDefault(
-        Constant(const SearchHistoryDbConverter().mapToSql(<SearchResult>[])!),
+        Constant(const SearchHistoryDbConverter().toSql(<SearchResult>[])),
       )();
 
   IntColumn get points => integer().withDefault(const Constant(0))();
 
   TextColumn get badges => text()
       .map(const BadgeListDbConverter())
-      .withDefault(Constant(const BadgeListDbConverter().mapToSql(BuiltList.of(<Badge>[]))!))();
+      .withDefault(Constant(const BadgeListDbConverter().toSql(BuiltList.of(<Badge>[]))))();
 }
 
 @DriftAccessor(tables: [Users])

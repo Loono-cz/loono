@@ -14,7 +14,7 @@ class ExaminationQuestionnaires extends Table {
   TextColumn get type => text().map(const ExaminationTypeDbConverter())();
 
   TextColumn get status => text().map(const ExaminationStatusDbConverter()).withDefault(
-        Constant(const ExaminationStatusDbConverter().mapToSql(ExaminationStatus.NEW)!),
+        Constant(const ExaminationStatusDbConverter().toSql(ExaminationStatus.NEW)),
       )();
 
   DateTimeColumn get date => dateTime().nullable()();
@@ -30,8 +30,7 @@ class ExaminationQuestionnairesDao extends DatabaseAccessor<AppDatabase>
   Future<ExaminationQuestionnaire?> get(ExaminationType examinationType) =>
       (select(examinationQuestionnaires)
             ..where(
-              (tbl) =>
-                  tbl.type.equals(const ExaminationTypeDbConverter().mapToSql(examinationType)),
+              (tbl) => tbl.type.equals(const ExaminationTypeDbConverter().toSql(examinationType)),
             ))
           .getSingleOrNull();
 
@@ -40,8 +39,7 @@ class ExaminationQuestionnairesDao extends DatabaseAccessor<AppDatabase>
   Stream<ExaminationQuestionnaire?> watch(ExaminationType examinationType) =>
       (select(examinationQuestionnaires)
             ..where(
-              (tbl) =>
-                  tbl.type.equals(const ExaminationTypeDbConverter().mapToSql(examinationType)),
+              (tbl) => tbl.type.equals(const ExaminationTypeDbConverter().toSql(examinationType)),
             ))
           .watchSingleOrNull();
 
@@ -115,7 +113,7 @@ class ExaminationQuestionnairesDao extends DatabaseAccessor<AppDatabase>
   }) async {
     await (update(examinationQuestionnaires)
           ..where(
-            (tbl) => tbl.type.equals(const ExaminationTypeDbConverter().mapToSql(examinationType)),
+            (tbl) => tbl.type.equals(const ExaminationTypeDbConverter().toSql(examinationType)),
           ))
         .write(examinationQuestionnairesCompanion);
   }

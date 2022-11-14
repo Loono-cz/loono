@@ -24,7 +24,7 @@ class CalendarEventsDao extends DatabaseAccessor<AppDatabase> with _$CalendarEve
 
   Future<CalendarEvent?> get(ExaminationType examinationType) => (select(calendarEvents)
         ..where(
-          (tbl) => tbl.type.equals(const ExaminationTypeDbConverter().mapToSql(examinationType)),
+          (tbl) => tbl.type.equals(const ExaminationTypeDbConverter().toSql(examinationType)),
         ))
       .getSingleOrNull();
 
@@ -32,7 +32,7 @@ class CalendarEventsDao extends DatabaseAccessor<AppDatabase> with _$CalendarEve
 
   Stream<CalendarEvent?> watch(ExaminationType examinationType) => (select(calendarEvents)
         ..where(
-          (tbl) => tbl.type.equals(const ExaminationTypeDbConverter().mapToSql(examinationType)),
+          (tbl) => tbl.type.equals(const ExaminationTypeDbConverter().toSql(examinationType)),
         ))
       .watchSingleOrNull();
 
@@ -48,7 +48,7 @@ class CalendarEventsDao extends DatabaseAccessor<AppDatabase> with _$CalendarEve
   }) async {
     await (update(calendarEvents)
           ..where(
-            (tbl) => tbl.type.equals(const ExaminationTypeDbConverter().mapToSql(examinationType)),
+            (tbl) => tbl.type.equals(const ExaminationTypeDbConverter().toSql(examinationType)),
           ))
         .write(calendarEventsCompanion);
   }
@@ -56,7 +56,7 @@ class CalendarEventsDao extends DatabaseAccessor<AppDatabase> with _$CalendarEve
   Future<void> deleteEvent(ExaminationType examinationType) async {
     await (delete(calendarEvents)
           ..where(
-            (tbl) => tbl.type.equals(const ExaminationTypeDbConverter().mapToSql(examinationType)),
+            (tbl) => tbl.type.equals(const ExaminationTypeDbConverter().toSql(examinationType)),
           ))
         .go();
   }

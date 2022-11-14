@@ -35,7 +35,8 @@ mixin _$SearchResult {
 abstract class $SearchResultCopyWith<$Res> {
   factory $SearchResultCopyWith(
           SearchResult value, $Res Function(SearchResult) then) =
-      _$SearchResultCopyWithImpl<$Res>;
+      _$SearchResultCopyWithImpl<$Res, SearchResult>;
+  @useResult
   $Res call(
       {SearchType searchType,
       String? overriddenText,
@@ -43,33 +44,36 @@ abstract class $SearchResultCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SearchResultCopyWithImpl<$Res> implements $SearchResultCopyWith<$Res> {
+class _$SearchResultCopyWithImpl<$Res, $Val extends SearchResult>
+    implements $SearchResultCopyWith<$Res> {
   _$SearchResultCopyWithImpl(this._value, this._then);
 
-  final SearchResult _value;
   // ignore: unused_field
-  final $Res Function(SearchResult) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? searchType = freezed,
+    Object? searchType = null,
     Object? overriddenText = freezed,
     Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      searchType: searchType == freezed
+      searchType: null == searchType
           ? _value.searchType
           : searchType // ignore: cast_nullable_to_non_nullable
               as SearchType,
-      overriddenText: overriddenText == freezed
+      overriddenText: freezed == overriddenText
           ? _value.overriddenText
           : overriddenText // ignore: cast_nullable_to_non_nullable
               as String?,
-      data: data == freezed
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as SimpleHealthcareProvider?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -80,6 +84,7 @@ abstract class _$$_SearchResultCopyWith<$Res>
           _$_SearchResult value, $Res Function(_$_SearchResult) then) =
       __$$_SearchResultCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {SearchType searchType,
       String? overriddenText,
@@ -88,31 +93,29 @@ abstract class _$$_SearchResultCopyWith<$Res>
 
 /// @nodoc
 class __$$_SearchResultCopyWithImpl<$Res>
-    extends _$SearchResultCopyWithImpl<$Res>
+    extends _$SearchResultCopyWithImpl<$Res, _$_SearchResult>
     implements _$$_SearchResultCopyWith<$Res> {
   __$$_SearchResultCopyWithImpl(
       _$_SearchResult _value, $Res Function(_$_SearchResult) _then)
-      : super(_value, (v) => _then(v as _$_SearchResult));
+      : super(_value, _then);
 
-  @override
-  _$_SearchResult get _value => super._value as _$_SearchResult;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? searchType = freezed,
+    Object? searchType = null,
     Object? overriddenText = freezed,
     Object? data = freezed,
   }) {
     return _then(_$_SearchResult(
-      searchType: searchType == freezed
+      searchType: null == searchType
           ? _value.searchType
           : searchType // ignore: cast_nullable_to_non_nullable
               as SearchType,
-      overriddenText: overriddenText == freezed
+      overriddenText: freezed == overriddenText
           ? _value.overriddenText
           : overriddenText // ignore: cast_nullable_to_non_nullable
               as String?,
-      data: data == freezed
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as SimpleHealthcareProvider?,
@@ -149,23 +152,21 @@ class _$_SearchResult implements _SearchResult {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SearchResult &&
-            const DeepCollectionEquality()
-                .equals(other.searchType, searchType) &&
-            const DeepCollectionEquality()
-                .equals(other.overriddenText, overriddenText) &&
-            const DeepCollectionEquality().equals(other.data, data));
+            (identical(other.searchType, searchType) ||
+                other.searchType == searchType) &&
+            (identical(other.overriddenText, overriddenText) ||
+                other.overriddenText == overriddenText) &&
+            (identical(other.data, data) || other.data == data));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(searchType),
-      const DeepCollectionEquality().hash(overriddenText),
-      const DeepCollectionEquality().hash(data));
+  int get hashCode =>
+      Object.hash(runtimeType, searchType, overriddenText, data);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_SearchResultCopyWith<_$_SearchResult> get copyWith =>
       __$$_SearchResultCopyWithImpl<_$_SearchResult>(this, _$identity);
 

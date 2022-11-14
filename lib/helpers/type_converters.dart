@@ -20,17 +20,15 @@ class CategoryDbConverter extends TypeConverter<BuiltList<String>, String> {
   const CategoryDbConverter();
 
   @override
-  BuiltList<String>? mapToDart(String? fromDb) {
-    if (fromDb == null) return null;
+  BuiltList<String> fromSql(String fromDb) {
     return standardSerializers.deserialize(
       jsonDecode(fromDb),
       specifiedType: const FullType(BuiltList, [FullType(String)]),
-    ) as BuiltList<String>?;
+    ) as BuiltList<String>;
   }
 
   @override
-  String? mapToSql(BuiltList<String>? value) {
-    if (value == null) return null;
+  String toSql(BuiltList<String> value) {
     return jsonEncode(
       standardSerializers.serialize(
         value,
@@ -44,14 +42,12 @@ class ExaminationTypeDbConverter extends TypeConverter<ExaminationType, String> 
   const ExaminationTypeDbConverter();
 
   @override
-  ExaminationType? mapToDart(String? fromDb) {
-    if (fromDb == null) return null;
+  ExaminationType fromSql(String fromDb) {
     return ExaminationType.values.singleWhere((examinationType) => examinationType.name == fromDb);
   }
 
   @override
-  String? mapToSql(ExaminationType? value) {
-    if (value == null) return null;
+  String toSql(ExaminationType value) {
     return value.name;
   }
 }
@@ -60,15 +56,13 @@ class ExaminationStatusDbConverter extends TypeConverter<ExaminationStatus, Stri
   const ExaminationStatusDbConverter();
 
   @override
-  ExaminationStatus? mapToDart(String? fromDb) {
-    if (fromDb == null) return null;
+  ExaminationStatus fromSql(String fromDb) {
     return ExaminationStatus.values
         .singleWhere((examinationStatus) => examinationStatus.name == fromDb);
   }
 
   @override
-  String? mapToSql(ExaminationStatus? value) {
-    if (value == null) return null;
+  String toSql(ExaminationStatus value) {
     return value.name;
   }
 }
@@ -77,14 +71,12 @@ class SexDbConverter extends TypeConverter<Sex, String> {
   const SexDbConverter();
 
   @override
-  Sex? mapToDart(String? fromDb) {
-    if (fromDb == null) return null;
+  Sex fromSql(String fromDb) {
     return Sex.values.singleWhere((sex) => sex.name == fromDb);
   }
 
   @override
-  String? mapToSql(Sex? value) {
-    if (value == null) return null;
+  String toSql(Sex value) {
     return value.name;
   }
 }
@@ -93,15 +85,13 @@ class DateOfBirthDbConverter extends TypeConverter<DateWithoutDay, String> {
   const DateOfBirthDbConverter();
 
   @override
-  DateWithoutDay? mapToDart(String? fromDb) {
-    if (fromDb == null) return null;
+  DateWithoutDay fromSql(String fromDb) {
     final dateTimeMap = jsonDecode(fromDb) as Map<String, dynamic>;
     return DateWithoutDay.fromJson(dateTimeMap);
   }
 
   @override
-  String? mapToSql(DateWithoutDay? value) {
-    if (value == null) return null;
+  String toSql(DateWithoutDay value) {
     return jsonEncode(value.toJson());
   }
 }
@@ -110,8 +100,7 @@ class BadgeListDbConverter extends TypeConverter<BuiltList<Badge>, String> {
   const BadgeListDbConverter();
 
   @override
-  BuiltList<Badge>? mapToDart(String? fromDb) {
-    if (fromDb == null) return null;
+  BuiltList<Badge> fromSql(String fromDb) {
     return standardSerializers.deserialize(
           jsonDecode(fromDb),
           specifiedType: const FullType(BuiltList, [FullType(Badge)]),
@@ -120,8 +109,7 @@ class BadgeListDbConverter extends TypeConverter<BuiltList<Badge>, String> {
   }
 
   @override
-  String? mapToSql(BuiltList<Badge>? value) {
-    if (value == null) return null;
+  String toSql(BuiltList<Badge> value) {
     return jsonEncode(
       standardSerializers.serialize(
         value,
@@ -150,8 +138,7 @@ class SearchHistoryDbConverter extends TypeConverter<List<SearchResult>, String>
   const SearchHistoryDbConverter();
 
   @override
-  List<SearchResult>? mapToDart(String? fromDb) {
-    if (fromDb == null) return null;
+  List<SearchResult> fromSql(String fromDb) {
     final list = (json.decode(fromDb) as Iterable<dynamic>).map(
       (dynamic e) => SearchResult.fromJson(e as Map<String, dynamic>),
     );
@@ -159,8 +146,7 @@ class SearchHistoryDbConverter extends TypeConverter<List<SearchResult>, String>
   }
 
   @override
-  String? mapToSql(List<SearchResult>? value) {
-    if (value == null) return null;
+  String toSql(List<SearchResult> value) {
     return jsonEncode(value.map((e) => e.toJson()).toList()).toString();
   }
 }
@@ -170,8 +156,7 @@ class SimpleHealthcareProviderListConverter
   const SimpleHealthcareProviderListConverter();
 
   @override
-  List<SimpleHealthcareProvider>? mapToDart(String? fromDb) {
-    if (fromDb == null) return null;
+  List<SimpleHealthcareProvider> fromSql(String fromDb) {
     final list = (json.decode(fromDb) as Iterable<dynamic>).map(
       (dynamic e) => standardSerializers.fromJson(
         SimpleHealthcareProvider.serializer,
@@ -182,8 +167,7 @@ class SimpleHealthcareProviderListConverter
   }
 
   @override
-  String? mapToSql(List<SimpleHealthcareProvider>? value) {
-    if (value == null) return null;
+  String toSql(List<SimpleHealthcareProvider> value) {
     return jsonEncode(
       value.map((e) => standardSerializers.toJson(SimpleHealthcareProvider.serializer, e)).toList(),
     ).toString();
