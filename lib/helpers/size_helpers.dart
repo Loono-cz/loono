@@ -9,10 +9,9 @@ extension ScreenSize on MediaQueryData {
 
   ///when [useCompactStyle] return lesser size
   double compactSizeOf(double size) {
-    if(useCompactStyle) {
+    if (useCompactStyle) {
       return size / textScaleFactor;
-    }
-    else {
+    } else {
       return size;
     }
   }
