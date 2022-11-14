@@ -65,7 +65,7 @@ class StartNewQuestionnaireScreen extends StatelessWidget {
     double horizontalPadding,
   ) {
     return Container(
-      color: const Color.fromRGBO(241, 249, 249, 1),
+      color: LoonoColors.greenLight,
       child: Column(
         children: [
           const CustomSpacer.vertical(10),
