@@ -30,11 +30,10 @@ dependencies:
   drift: ^2.2.0
   easy_debounce: ^2.0.2+1
   email_validator: ^2.0.1
-  encrypted_moor:
-    git:
-      url: https://github.com/simolus3/moor.git
-      path: extras/encryption
-      ref: fd0764594dc70b04f5ea5dcd18aa2213abbbce12
+  encrypted_drift:
+   git:
+    url: https://github.com/simolus3/drift.git
+    path: extras/encryption
   firebase_analytics: ^10.0.5
   firebase_auth: ^4.1.2
   firebase_core: ^2.2.0

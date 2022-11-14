@@ -421,13 +421,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.17"
-  encrypted_moor:
+  encrypted_drift:
     dependency: "direct main"
     description:
       path: "extras/encryption"
-      ref: fd0764594dc70b04f5ea5dcd18aa2213abbbce12
-      resolved-ref: fd0764594dc70b04f5ea5dcd18aa2213abbbce12
-      url: "https://github.com/simolus3/moor.git"
+      ref: HEAD
+      resolved-ref: "75fe463a9fa5d344cff623828aec4b6bd5409205"
+      url: "https://github.com/simolus3/drift.git"
     source: git
     version: "1.0.0"
   fake_async:
@@ -1083,13 +1083,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.0"
-  moor:
-    dependency: transitive
-    description:
-      name: moor
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.5.0"
   nested:
     dependency: transitive
     description:

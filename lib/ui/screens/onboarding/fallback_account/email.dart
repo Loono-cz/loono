@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:drift/drift.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/helpers/nickname_hint_resolver.dart';
 import 'package:loono/helpers/validators.dart';
@@ -11,7 +12,6 @@ import 'package:loono/ui/widgets/fallback_account_content.dart';
 import 'package:loono/ui/widgets/onboarding/app_bar.dart';
 import 'package:loono/utils/registry.dart';
 // ignore: depend_on_referenced_packages
-import 'package:moor/moor.dart';
 
 class EmailScreen extends StatelessWidget {
   EmailScreen({
