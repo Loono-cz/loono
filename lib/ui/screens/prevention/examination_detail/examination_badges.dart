@@ -55,7 +55,8 @@ class ExaminationBadges extends StatelessWidget {
           0) >=
       0;
 
-  Color get _infoboxColor => _isBadgeLastInMonthOfValidity() ? LoonoColors.orangeLight : LoonoColors.greenLight;
+  Color get _infoboxColor =>
+      _isBadgeLastInMonthOfValidity() ? LoonoColors.orangeLight : LoonoColors.greenLight;
 
   String _getBadgeName(BadgeType? type, BuildContext context) {
     switch (type) {
@@ -170,12 +171,14 @@ class ExaminationBadges extends StatelessWidget {
                         shrinkWrap: true,
                         itemBuilder: (BuildContext context, int index) {
                           final badgeState = _getBadgeState(badge, index);
-                          final enabled = categorizedExamination.examination
-                              .examinationCategoryType ==
-                              ExaminationCategoryType.MANDATORY ? badge !=
-                              null && badge.type.name ==
-                              categorizedExamination.examination.badge?.name &&
-                              badge.level >= index + 1 : badge != null;
+                          final enabled =
+                              categorizedExamination.examination.examinationCategoryType ==
+                                      ExaminationCategoryType.MANDATORY
+                                  ? badge != null &&
+                                      badge.type.name ==
+                                          categorizedExamination.examination.badge?.name &&
+                                      badge.level >= index + 1
+                                  : badge != null;
                           return Padding(
                             padding: const EdgeInsets.only(right: 20.0),
                             child: ExaminationBadge(

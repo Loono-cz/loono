@@ -68,14 +68,17 @@ class ExaminationCard extends StatelessWidget {
       categorizedExamination.examination.intervalYears.toInt() * 12 - 2;
 
   DateTime get recommendedIntervalTransferToDate => DateTime(
-    actualDate.year,
-    actualDate.month - recommendedIntervalInMonthsMinusTwoMonths,
-    actualDate.day,
-  );
+        actualDate.year,
+        actualDate.month - recommendedIntervalInMonthsMinusTwoMonths,
+        actualDate.day,
+      );
 
   bool get isLastConfirmedDateOlderMinusTwoMonths =>
       (categorizedExamination.examination.lastConfirmedDate?.compareTo(
-        recommendedIntervalTransferToDate,) ?? 0) >= 0;
+            recommendedIntervalTransferToDate,
+          ) ??
+          0) >=
+      0;
 
   @override
   Widget build(BuildContext context) {

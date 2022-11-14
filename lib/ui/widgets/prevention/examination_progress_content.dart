@@ -235,10 +235,10 @@ class ExaminationProgressContent extends StatelessWidget {
           height: 16,
           child: icon != null
               ? Icon(
-            icon,
-            size: 14,
-            color: Colors.white,
-          )
+                  icon,
+                  size: 14,
+                  color: Colors.white,
+                )
               : const SizedBox(),
         ),
       ),

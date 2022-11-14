@@ -27,8 +27,7 @@ class ExaminationBadge extends StatelessWidget {
   ExaminationCategoryType? get examCategoryType =>
       categorizedExamination.examination.examinationCategoryType;
 
-  ExaminationType get examinationType =>
-      categorizedExamination.examination.examinationType;
+  ExaminationType get examinationType => categorizedExamination.examination.examinationType;
 
   @override
   Widget build(BuildContext context) {
@@ -71,8 +70,7 @@ class ExaminationBadge extends StatelessWidget {
                       : _buildIcon(),
                 ),
               ),
-              if (badgeState == BadgeState.redBadge)
-                SvgPicture.asset('assets/icons/ellipse.svg'),
+              if (badgeState == BadgeState.redBadge) SvgPicture.asset('assets/icons/ellipse.svg'),
             ],
           ),
         ),
@@ -109,12 +107,12 @@ class ExaminationBadge extends StatelessWidget {
     return disabled
         ? Image.asset('$path${badgeLevel}_disabled.png')
         : SizedBox(
-      width: 40,
-      height: 40,
-      child: SvgPicture.asset(
-        '$path$badgeLevel.svg',
-      ),
-    );
+            width: 40,
+            height: 40,
+            child: SvgPicture.asset(
+              '$path$badgeLevel.svg',
+            ),
+          );
   }
 }
 

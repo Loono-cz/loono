@@ -543,7 +543,8 @@ double upperArcProgress(CategorizedExamination examination) {
       DateTime.now(),
     );
     return (sinceScheduledDays / totalDays).clamp(0, 1);
-  } else if (category == const ExaminationCategory.waiting() || _newToScheduleFullProgressBar(examination)) {
+  } else if (category == const ExaminationCategory.waiting() ||
+      _newToScheduleFullProgressBar(examination)) {
     return 1;
   }
   return 0;
@@ -566,7 +567,9 @@ double lowerArcProgress(CategorizedExamination examination) {
           DateTime(nextVisit.year + interval, nextVisit.month),
         );
     return (afterScheduledDays / intervalDays).clamp(0, 1);
-  } else if ((category == const ExaminationCategory.waiting() || _newToScheduleFullProgressBar(examination)) && lastVisit != null) {
+  } else if ((category == const ExaminationCategory.waiting() ||
+          _newToScheduleFullProgressBar(examination)) &&
+      lastVisit != null) {
     final intervalDays = daysBetween(
       DateTime(lastVisit.year, lastVisit.month),
       DateTime(lastVisit.year + interval, lastVisit.month),
@@ -580,8 +583,9 @@ double lowerArcProgress(CategorizedExamination examination) {
   return 0;
 }
 
-bool _newToScheduleFullProgressBar(CategorizedExamination exam){
-  return exam.examination.lastConfirmedDate != null && exam.category == const ExaminationCategory.newToSchedule();
+bool _newToScheduleFullProgressBar(CategorizedExamination exam) {
+  return exam.examination.lastConfirmedDate != null &&
+      exam.category == const ExaminationCategory.newToSchedule();
 }
 
 bool isOverdue(CategorizedExamination examination) {
