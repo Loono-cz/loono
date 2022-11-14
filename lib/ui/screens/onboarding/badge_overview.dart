@@ -44,8 +44,9 @@ class BadgeOverviewScreen extends StatelessWidget {
                   children: [
                     Padding(
                       padding: EdgeInsets.only(
-                          left: context.mediaQuery.compactSizeOf(24.0),
-                          top: context.mediaQuery.compactSizeOf(100)),
+                        left: context.mediaQuery.compactSizeOf(24.0),
+                        top: context.mediaQuery.compactSizeOf(100),
+                      ),
                       child: SvgPicture.asset(
                         LoonoAssets.heroBackground,
                         width: double.infinity,
@@ -89,7 +90,8 @@ class BadgeOverviewScreen extends StatelessWidget {
                                       const CustomSpacer.vertical(10),
                                       Padding(
                                         padding: EdgeInsets.symmetric(
-                                            horizontal: context.mediaQuery.compactSizeOf(18)),
+                                          horizontal: context.mediaQuery.compactSizeOf(18),
+                                        ),
                                         child: _buildDescContainer(context),
                                       ),
                                       SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
@@ -103,7 +105,8 @@ class BadgeOverviewScreen extends StatelessWidget {
                                     width: MediaQuery.of(context).size.width,
                                     child: Padding(
                                       padding: EdgeInsets.symmetric(
-                                          horizontal: context.mediaQuery.compactSizeOf(18)),
+                                        horizontal: context.mediaQuery.compactSizeOf(18),
+                                      ),
                                       child: LoonoButton(
                                         key: const Key('badgeOverviewPage_btn_continue'),
                                         text: context.l10n.gamification_introduction_button,
@@ -122,13 +125,15 @@ class BadgeOverviewScreen extends StatelessWidget {
                           const SizedBox(height: 10),
                           Padding(
                             padding: EdgeInsets.symmetric(
-                                horizontal: context.mediaQuery.compactSizeOf(18)),
+                              horizontal: context.mediaQuery.compactSizeOf(18),
+                            ),
                             child: _buildDescContainer(context),
                           ),
                           const Spacer(),
                           Padding(
                             padding: EdgeInsets.symmetric(
-                                horizontal: context.mediaQuery.compactSizeOf(18)),
+                              horizontal: context.mediaQuery.compactSizeOf(18),
+                            ),
                             child: LoonoButton(
                               key: const Key('badgeOverviewPage_btn_continue'),
                               text: context.l10n.gamification_introduction_button,
