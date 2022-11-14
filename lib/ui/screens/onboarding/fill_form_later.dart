@@ -42,8 +42,7 @@ class FillOnboardingFormLaterScreen extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(
                           top: context.mediaQuery.compactSizeOf(40),
-                          right: context.mediaQuery
-                              .compactSizeOf(size.width * 0.2),
+                          right: context.mediaQuery.compactSizeOf(size.width * 0.2),
                           left: context.mediaQuery.compactSizeOf(18),
                         ),
                         child: Column(
@@ -78,8 +77,7 @@ class FillOnboardingFormLaterScreen extends StatelessWidget {
                       const CustomSpacer.vertical(8),
                       LoonoButton.light(
                         text: context.l10n.fill_form_later_button_2,
-                        onTap: () =>
-                            AutoRouter.of(context).push(PreAuthMainRoute()),
+                        onTap: () => AutoRouter.of(context).push(PreAuthMainRoute()),
                       ),
                     ],
                   ),

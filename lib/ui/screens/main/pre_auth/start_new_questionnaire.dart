@@ -29,8 +29,7 @@ class StartNewQuestionnaireScreen extends StatelessWidget {
                     _buildHeader(context, isScreenSmall, horizontalPadding),
                     Padding(
                       padding: EdgeInsets.symmetric(
-                        vertical: context.mediaQuery
-                            .compactSizeOf(isScreenSmall ? 10 : 30),
+                        vertical: context.mediaQuery.compactSizeOf(isScreenSmall ? 10 : 30),
                         horizontal: horizontalPadding,
                       ),
                       child: Text(
@@ -45,14 +44,12 @@ class StartNewQuestionnaireScreen extends StatelessWidget {
             CustomSpacer.vertical(isScreenSmall ? 20 : 40),
             Padding(
               padding: EdgeInsets.symmetric(
-                vertical:
-                context.mediaQuery.compactSizeOf(isScreenSmall ? 10 : 30),
+                vertical: context.mediaQuery.compactSizeOf(isScreenSmall ? 10 : 30),
                 horizontal: horizontalPadding,
               ),
               child: LoonoButton(
                 text: l10n.start_new_questionnaire_button,
-                onTap: () =>
-                    AutoRouter.of(context).push(const OnboardingWrapperRoute()),
+                onTap: () => AutoRouter.of(context).push(const OnboardingWrapperRoute()),
               ),
             ),
             if (!isScreenSmall) const CustomSpacer.vertical(20),
@@ -63,7 +60,10 @@ class StartNewQuestionnaireScreen extends StatelessWidget {
   }
 
   Widget _buildHeader(
-      BuildContext context, bool isScreenSmall, double horizontalPadding,) {
+    BuildContext context,
+    bool isScreenSmall,
+    double horizontalPadding,
+  ) {
     return Container(
       color: const Color.fromRGBO(241, 249, 249, 1),
       child: Column(

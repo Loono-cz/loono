@@ -61,8 +61,7 @@ class FallbackAccountContentState extends State<FallbackAccountContent> {
 
   Future<bool?> validateAndSubmit() async {
     if (_formKey.currentState?.validate() == true) {
-      final submitResult =
-          await widget.onSubmit.call(_textEditingController.text);
+      final submitResult = await widget.onSubmit.call(_textEditingController.text);
       return submitResult;
     }
     return null;
@@ -116,8 +115,7 @@ class FallbackAccountContentState extends State<FallbackAccountContent> {
                         _buildTitle(),
                         const CustomSpacer.vertical(19.0),
                         _buildForm(),
-                        if (widget.description.isNotEmpty)
-                          ..._buildDescription(),
+                        if (widget.description.isNotEmpty) ..._buildDescription(),
                       ],
                     ),
                   ),
@@ -187,8 +185,7 @@ class FallbackAccountContentState extends State<FallbackAccountContent> {
           ),
           hintText: widget.hint,
           hintStyle: const TextStyle(fontSize: 24.0, color: LoonoColors.grey),
-          counterStyle: LoonoFonts.paragraphFontStyle
-              .copyWith(color: LoonoColors.primaryEnabled),
+          counterStyle: LoonoFonts.paragraphFontStyle.copyWith(color: LoonoColors.primaryEnabled),
           focusedBorder: customInputDecoration(LoonoColors.primaryEnabled),
           filled: widget.filled,
           fillColor: widget.filled == true ? Colors.white : null,

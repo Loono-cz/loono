@@ -37,8 +37,7 @@ class NewsletterAndGDPRScreenState extends State<NewsletterAndGDPRScreen> {
 
   final _apiService = registry.get<ApiService>();
   final _authService = registry.get<AuthService>();
-  final _examinationQuestionnairesDao =
-      registry.get<DatabaseService>().examinationQuestionnaires;
+  final _examinationQuestionnairesDao = registry.get<DatabaseService>().examinationQuestionnaires;
   final _userRepository = registry.get<UserRepository>();
 
   @override

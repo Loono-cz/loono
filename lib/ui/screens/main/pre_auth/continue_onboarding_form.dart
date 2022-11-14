@@ -18,8 +18,7 @@ class ContinueOnboardingFormScreen extends StatelessWidget {
   ContinueOnboardingFormScreen({Key? key}) : super(key: key);
 
   final _usersDao = registry.get<DatabaseService>().users;
-  final _examinationQuestionnairesDao =
-      registry.get<DatabaseService>().examinationQuestionnaires;
+  final _examinationQuestionnairesDao = registry.get<DatabaseService>().examinationQuestionnaires;
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +38,7 @@ class ContinueOnboardingFormScreen extends StatelessWidget {
                   SkipButton(
                     text: l10n.already_have_an_account_skip_button,
                     onPressed: () {
-                      if (AutoRouter.of(context)
-                          .isRouteActive(PreAuthMainRoute.name)) {
+                      if (AutoRouter.of(context).isRouteActive(PreAuthMainRoute.name)) {
                         AutoRouter.of(context).popUntilRoot();
                       }
                       // a hacky way till https://github.com/Milad-Akarie/auto_route_library/issues/496 is solved
@@ -101,8 +99,7 @@ class ContinueOnboardingFormScreen extends StatelessWidget {
                   CustomSpacer.vertical(isScreenSmall ? 30 : 80),
                   LoonoButton(
                     text: l10n.continue_onboarding_form_button,
-                    onTap: () => AutoRouter.of(context)
-                        .push(const OnboardingWrapperRoute()),
+                    onTap: () => AutoRouter.of(context).push(const OnboardingWrapperRoute()),
                   ),
                 ],
               ),

@@ -13,7 +13,7 @@ class CustomSpacer extends StatelessWidget {
         super(key: key);
 
   ///Horizontal space between widgets
-  const CustomSpacer.horizontal( double space,{Key? key})
+  const CustomSpacer.horizontal(double space, {Key? key})
       : horizontalSpace = 0,
         verticalSpace = space,
         super(key: key);

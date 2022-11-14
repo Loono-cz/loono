@@ -74,8 +74,7 @@ class CarouselStatContent extends StatelessWidget {
                   .map(
                     (item) => TextSpan(
                       text: item.text,
-                      style:
-                          item.highlight ? highlightTextStyle : statTextStyle,
+                      style: item.highlight ? highlightTextStyle : statTextStyle,
                     ),
                   )
                   .toList(),

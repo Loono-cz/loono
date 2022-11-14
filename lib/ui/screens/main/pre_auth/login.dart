@@ -31,8 +31,7 @@ class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
 
   final _authService = registry.get<AuthService>();
-  final _examinationQuestionnairesDao =
-      registry.get<DatabaseService>().examinationQuestionnaires;
+  final _examinationQuestionnairesDao = registry.get<DatabaseService>().examinationQuestionnaires;
   final _userRepository = registry.get<UserRepository>();
 
   final ValueNotifier<bool> _isLoading = ValueNotifier(false);
@@ -64,8 +63,7 @@ class LoginScreen extends StatelessWidget {
                             children: [
                               const CustomSpacer.vertical(30),
                               if (!isScreenSmall &&
-                                  registry.get<AppConfig>().flavor ==
-                                      AppFlavors.dev) ...[
+                                  registry.get<AppConfig>().flavor == AppFlavors.dev) ...[
                                 TextButton(
                                   onPressed: () async {
                                     final data = await s.rootBundle.loadString(
@@ -84,18 +82,13 @@ class LoginScreen extends StatelessWidget {
                                             child: ListBody(
                                               children: apis.nodes
                                                   .map(
-                                                    (dynamic api) =>
-                                                        ElevatedButton(
+                                                    (dynamic api) => ElevatedButton(
                                                       onPressed: () async {
-                                                        final autoRouter =
-                                                            AutoRouter.of(
+                                                        final autoRouter = AutoRouter.of(
                                                           context,
                                                         );
-                                                        await registry
-                                                            .get<AuthService>()
-                                                            .switchApi(
-                                                              api['url']
-                                                                  .toString(),
+                                                        await registry.get<AuthService>().switchApi(
+                                                              api['url'].toString(),
                                                             );
                                                         await autoRouter.pop();
                                                       },
@@ -119,8 +112,7 @@ class LoginScreen extends StatelessWidget {
                               ],
                               Padding(
                                 padding: EdgeInsets.symmetric(
-                                  horizontal:
-                                      context.mediaQuery.compactSizeOf(18.0),
+                                  horizontal: context.mediaQuery.compactSizeOf(18.0),
                                 ),
                                 child: Align(
                                   alignment: Alignment.centerLeft,
@@ -211,12 +203,10 @@ class LoginScreen extends StatelessWidget {
     final Either<AuthFailure, AuthUser> accountExistsResult;
     switch (socialLoginMethod) {
       case SocialLoginMethod.apple:
-        accountExistsResult =
-            await _authService.checkAppleAccountExistsAndSignIn();
+        accountExistsResult = await _authService.checkAppleAccountExistsAndSignIn();
         break;
       case SocialLoginMethod.google:
-        accountExistsResult =
-            await _authService.checkGoogleAccountExistsAndSignIn();
+        accountExistsResult = await _authService.checkGoogleAccountExistsAndSignIn();
         break;
     }
     accountExistsResult.fold(
