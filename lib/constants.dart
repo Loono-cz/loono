@@ -4,6 +4,7 @@ class LoonoAssets {
   static const cdLogo = 'assets/sponsors/cd.svg';
   static const ppfLogo = 'assets/sponsors/ppf.svg';
   static const cgiLogo = 'assets/sponsors/CGI.svg';
+  static const mzcrLogo = 'assets/sponsors/mzcr.svg';
   static const welcomeLogo = 'assets/icons/welcome-logo.svg';
 
   static const genderFemale = 'assets/icons/gender-woman.svg';
