@@ -33,34 +33,37 @@ mixin _$DonateUserInfo {
 abstract class $DonateUserInfoCopyWith<$Res> {
   factory $DonateUserInfoCopyWith(
           DonateUserInfo value, $Res Function(DonateUserInfo) then) =
-      _$DonateUserInfoCopyWithImpl<$Res>;
+      _$DonateUserInfoCopyWithImpl<$Res, DonateUserInfo>;
+  @useResult
   $Res call({DateTime lastOpened, bool showNotification});
 }
 
 /// @nodoc
-class _$DonateUserInfoCopyWithImpl<$Res>
+class _$DonateUserInfoCopyWithImpl<$Res, $Val extends DonateUserInfo>
     implements $DonateUserInfoCopyWith<$Res> {
   _$DonateUserInfoCopyWithImpl(this._value, this._then);
 
-  final DonateUserInfo _value;
   // ignore: unused_field
-  final $Res Function(DonateUserInfo) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? lastOpened = freezed,
-    Object? showNotification = freezed,
+    Object? lastOpened = null,
+    Object? showNotification = null,
   }) {
     return _then(_value.copyWith(
-      lastOpened: lastOpened == freezed
+      lastOpened: null == lastOpened
           ? _value.lastOpened
           : lastOpened // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      showNotification: showNotification == freezed
+      showNotification: null == showNotification
           ? _value.showNotification
           : showNotification // ignore: cast_nullable_to_non_nullable
               as bool,
-    ));
+    ) as $Val);
   }
 }
 
@@ -71,31 +74,30 @@ abstract class _$$_DonateUserInfoCopyWith<$Res>
           _$_DonateUserInfo value, $Res Function(_$_DonateUserInfo) then) =
       __$$_DonateUserInfoCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({DateTime lastOpened, bool showNotification});
 }
 
 /// @nodoc
 class __$$_DonateUserInfoCopyWithImpl<$Res>
-    extends _$DonateUserInfoCopyWithImpl<$Res>
+    extends _$DonateUserInfoCopyWithImpl<$Res, _$_DonateUserInfo>
     implements _$$_DonateUserInfoCopyWith<$Res> {
   __$$_DonateUserInfoCopyWithImpl(
       _$_DonateUserInfo _value, $Res Function(_$_DonateUserInfo) _then)
-      : super(_value, (v) => _then(v as _$_DonateUserInfo));
+      : super(_value, _then);
 
-  @override
-  _$_DonateUserInfo get _value => super._value as _$_DonateUserInfo;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? lastOpened = freezed,
-    Object? showNotification = freezed,
+    Object? lastOpened = null,
+    Object? showNotification = null,
   }) {
     return _then(_$_DonateUserInfo(
-      lastOpened: lastOpened == freezed
+      lastOpened: null == lastOpened
           ? _value.lastOpened
           : lastOpened // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      showNotification: showNotification == freezed
+      showNotification: null == showNotification
           ? _value.showNotification
           : showNotification // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -127,21 +129,19 @@ class _$_DonateUserInfo implements _DonateUserInfo {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_DonateUserInfo &&
-            const DeepCollectionEquality()
-                .equals(other.lastOpened, lastOpened) &&
-            const DeepCollectionEquality()
-                .equals(other.showNotification, showNotification));
+            (identical(other.lastOpened, lastOpened) ||
+                other.lastOpened == lastOpened) &&
+            (identical(other.showNotification, showNotification) ||
+                other.showNotification == showNotification));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(lastOpened),
-      const DeepCollectionEquality().hash(showNotification));
+  int get hashCode => Object.hash(runtimeType, lastOpened, showNotification);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_DonateUserInfoCopyWith<_$_DonateUserInfo> get copyWith =>
       __$$_DonateUserInfoCopyWithImpl<_$_DonateUserInfo>(this, _$identity);
 

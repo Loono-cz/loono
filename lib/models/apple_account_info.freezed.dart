@@ -36,7 +36,8 @@ mixin _$AppleAccountInfo {
 abstract class $AppleAccountInfoCopyWith<$Res> {
   factory $AppleAccountInfoCopyWith(
           AppleAccountInfo value, $Res Function(AppleAccountInfo) then) =
-      _$AppleAccountInfoCopyWithImpl<$Res>;
+      _$AppleAccountInfoCopyWithImpl<$Res, AppleAccountInfo>;
+  @useResult
   $Res call(
       {String userIdentifier,
       String email,
@@ -46,44 +47,46 @@ abstract class $AppleAccountInfoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AppleAccountInfoCopyWithImpl<$Res>
+class _$AppleAccountInfoCopyWithImpl<$Res, $Val extends AppleAccountInfo>
     implements $AppleAccountInfoCopyWith<$Res> {
   _$AppleAccountInfoCopyWithImpl(this._value, this._then);
 
-  final AppleAccountInfo _value;
   // ignore: unused_field
-  final $Res Function(AppleAccountInfo) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userIdentifier = freezed,
-    Object? email = freezed,
+    Object? userIdentifier = null,
+    Object? email = null,
     Object? givenName = freezed,
     Object? familyName = freezed,
     Object? identifierToken = freezed,
   }) {
     return _then(_value.copyWith(
-      userIdentifier: userIdentifier == freezed
+      userIdentifier: null == userIdentifier
           ? _value.userIdentifier
           : userIdentifier // ignore: cast_nullable_to_non_nullable
               as String,
-      email: email == freezed
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      givenName: givenName == freezed
+      givenName: freezed == givenName
           ? _value.givenName
           : givenName // ignore: cast_nullable_to_non_nullable
               as String?,
-      familyName: familyName == freezed
+      familyName: freezed == familyName
           ? _value.familyName
           : familyName // ignore: cast_nullable_to_non_nullable
               as String?,
-      identifierToken: identifierToken == freezed
+      identifierToken: freezed == identifierToken
           ? _value.identifierToken
           : identifierToken // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -94,6 +97,7 @@ abstract class _$$_AppleAccountInfoCopyWith<$Res>
           _$_AppleAccountInfo value, $Res Function(_$_AppleAccountInfo) then) =
       __$$_AppleAccountInfoCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String userIdentifier,
       String email,
@@ -104,41 +108,39 @@ abstract class _$$_AppleAccountInfoCopyWith<$Res>
 
 /// @nodoc
 class __$$_AppleAccountInfoCopyWithImpl<$Res>
-    extends _$AppleAccountInfoCopyWithImpl<$Res>
+    extends _$AppleAccountInfoCopyWithImpl<$Res, _$_AppleAccountInfo>
     implements _$$_AppleAccountInfoCopyWith<$Res> {
   __$$_AppleAccountInfoCopyWithImpl(
       _$_AppleAccountInfo _value, $Res Function(_$_AppleAccountInfo) _then)
-      : super(_value, (v) => _then(v as _$_AppleAccountInfo));
+      : super(_value, _then);
 
-  @override
-  _$_AppleAccountInfo get _value => super._value as _$_AppleAccountInfo;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userIdentifier = freezed,
-    Object? email = freezed,
+    Object? userIdentifier = null,
+    Object? email = null,
     Object? givenName = freezed,
     Object? familyName = freezed,
     Object? identifierToken = freezed,
   }) {
     return _then(_$_AppleAccountInfo(
-      userIdentifier: userIdentifier == freezed
+      userIdentifier: null == userIdentifier
           ? _value.userIdentifier
           : userIdentifier // ignore: cast_nullable_to_non_nullable
               as String,
-      email: email == freezed
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      givenName: givenName == freezed
+      givenName: freezed == givenName
           ? _value.givenName
           : givenName // ignore: cast_nullable_to_non_nullable
               as String?,
-      familyName: familyName == freezed
+      familyName: freezed == familyName
           ? _value.familyName
           : familyName // ignore: cast_nullable_to_non_nullable
               as String?,
-      identifierToken: identifierToken == freezed
+      identifierToken: freezed == identifierToken
           ? _value.identifierToken
           : identifierToken // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -180,28 +182,25 @@ class _$_AppleAccountInfo implements _AppleAccountInfo {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AppleAccountInfo &&
-            const DeepCollectionEquality()
-                .equals(other.userIdentifier, userIdentifier) &&
-            const DeepCollectionEquality().equals(other.email, email) &&
-            const DeepCollectionEquality().equals(other.givenName, givenName) &&
-            const DeepCollectionEquality()
-                .equals(other.familyName, familyName) &&
-            const DeepCollectionEquality()
-                .equals(other.identifierToken, identifierToken));
+            (identical(other.userIdentifier, userIdentifier) ||
+                other.userIdentifier == userIdentifier) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.givenName, givenName) ||
+                other.givenName == givenName) &&
+            (identical(other.familyName, familyName) ||
+                other.familyName == familyName) &&
+            (identical(other.identifierToken, identifierToken) ||
+                other.identifierToken == identifierToken));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(userIdentifier),
-      const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(givenName),
-      const DeepCollectionEquality().hash(familyName),
-      const DeepCollectionEquality().hash(identifierToken));
+  int get hashCode => Object.hash(runtimeType, userIdentifier, email, givenName,
+      familyName, identifierToken);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AppleAccountInfoCopyWith<_$_AppleAccountInfo> get copyWith =>
       __$$_AppleAccountInfoCopyWithImpl<_$_AppleAccountInfo>(this, _$identity);
 

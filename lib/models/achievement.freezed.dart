@@ -33,33 +33,37 @@ mixin _$Achievement {
 abstract class $AchievementCopyWith<$Res> {
   factory $AchievementCopyWith(
           Achievement value, $Res Function(Achievement) then) =
-      _$AchievementCopyWithImpl<$Res>;
+      _$AchievementCopyWithImpl<$Res, Achievement>;
+  @useResult
   $Res call({String id, int points});
 }
 
 /// @nodoc
-class _$AchievementCopyWithImpl<$Res> implements $AchievementCopyWith<$Res> {
+class _$AchievementCopyWithImpl<$Res, $Val extends Achievement>
+    implements $AchievementCopyWith<$Res> {
   _$AchievementCopyWithImpl(this._value, this._then);
 
-  final Achievement _value;
   // ignore: unused_field
-  final $Res Function(Achievement) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? points = freezed,
+    Object? id = null,
+    Object? points = null,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      points: points == freezed
+      points: null == points
           ? _value.points
           : points // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -70,30 +74,30 @@ abstract class _$$_AchievementCopyWith<$Res>
           _$_Achievement value, $Res Function(_$_Achievement) then) =
       __$$_AchievementCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String id, int points});
 }
 
 /// @nodoc
-class __$$_AchievementCopyWithImpl<$Res> extends _$AchievementCopyWithImpl<$Res>
+class __$$_AchievementCopyWithImpl<$Res>
+    extends _$AchievementCopyWithImpl<$Res, _$_Achievement>
     implements _$$_AchievementCopyWith<$Res> {
   __$$_AchievementCopyWithImpl(
       _$_Achievement _value, $Res Function(_$_Achievement) _then)
-      : super(_value, (v) => _then(v as _$_Achievement));
+      : super(_value, _then);
 
-  @override
-  _$_Achievement get _value => super._value as _$_Achievement;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? points = freezed,
+    Object? id = null,
+    Object? points = null,
   }) {
     return _then(_$_Achievement(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      points: points == freezed
+      points: null == points
           ? _value.points
           : points // ignore: cast_nullable_to_non_nullable
               as int,
@@ -125,19 +129,17 @@ class _$_Achievement implements _Achievement {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Achievement &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.points, points));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.points, points) || other.points == points));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(points));
+  int get hashCode => Object.hash(runtimeType, id, points);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AchievementCopyWith<_$_Achievement> get copyWith =>
       __$$_AchievementCopyWithImpl<_$_Achievement>(this, _$identity);
 

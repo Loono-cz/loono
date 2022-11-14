@@ -66,50 +66,50 @@ mixin _$ExaminationTypeUnion {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -222,55 +222,55 @@ mixin _$ExaminationTypeUnion {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -333,17 +333,19 @@ mixin _$ExaminationTypeUnion {
 abstract class $ExaminationTypeUnionCopyWith<$Res> {
   factory $ExaminationTypeUnionCopyWith(ExaminationTypeUnion value,
           $Res Function(ExaminationTypeUnion) then) =
-      _$ExaminationTypeUnionCopyWithImpl<$Res>;
+      _$ExaminationTypeUnionCopyWithImpl<$Res, ExaminationTypeUnion>;
 }
 
 /// @nodoc
-class _$ExaminationTypeUnionCopyWithImpl<$Res>
+class _$ExaminationTypeUnionCopyWithImpl<$Res,
+        $Val extends ExaminationTypeUnion>
     implements $ExaminationTypeUnionCopyWith<$Res> {
   _$ExaminationTypeUnionCopyWithImpl(this._value, this._then);
 
-  final ExaminationTypeUnion _value;
   // ignore: unused_field
-  final $Res Function(ExaminationTypeUnion) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -356,16 +358,13 @@ abstract class _$$ColonoscopyExaminationTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$ColonoscopyExaminationTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res,
+        _$ColonoscopyExaminationTypeUnion>
     implements _$$ColonoscopyExaminationTypeUnionCopyWith<$Res> {
   __$$ColonoscopyExaminationTypeUnionCopyWithImpl(
       _$ColonoscopyExaminationTypeUnion _value,
       $Res Function(_$ColonoscopyExaminationTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$ColonoscopyExaminationTypeUnion));
-
-  @override
-  _$ColonoscopyExaminationTypeUnion get _value =>
-      super._value as _$ColonoscopyExaminationTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -443,50 +442,50 @@ class _$ColonoscopyExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return colonoscopy?.call();
   }
@@ -611,55 +610,55 @@ class _$ColonoscopyExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return colonoscopy?.call(this);
   }
@@ -741,16 +740,13 @@ abstract class _$$DentistExaminationTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$DentistExaminationTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res,
+        _$DentistExaminationTypeUnion>
     implements _$$DentistExaminationTypeUnionCopyWith<$Res> {
   __$$DentistExaminationTypeUnionCopyWithImpl(
       _$DentistExaminationTypeUnion _value,
       $Res Function(_$DentistExaminationTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$DentistExaminationTypeUnion));
-
-  @override
-  _$DentistExaminationTypeUnion get _value =>
-      super._value as _$DentistExaminationTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -827,50 +823,50 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return dentist?.call();
   }
@@ -995,55 +991,55 @@ class _$DentistExaminationTypeUnion extends DentistExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return dentist?.call(this);
   }
@@ -1124,16 +1120,13 @@ abstract class _$$DermatologistExaminationTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$DermatologistExaminationTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res,
+        _$DermatologistExaminationTypeUnion>
     implements _$$DermatologistExaminationTypeUnionCopyWith<$Res> {
   __$$DermatologistExaminationTypeUnionCopyWithImpl(
       _$DermatologistExaminationTypeUnion _value,
       $Res Function(_$DermatologistExaminationTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$DermatologistExaminationTypeUnion));
-
-  @override
-  _$DermatologistExaminationTypeUnion get _value =>
-      super._value as _$DermatologistExaminationTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -1211,50 +1204,50 @@ class _$DermatologistExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return dermatologist?.call();
   }
@@ -1379,55 +1372,55 @@ class _$DermatologistExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return dermatologist?.call(this);
   }
@@ -1509,17 +1502,13 @@ abstract class _$$GeneralPractitionerExaminationTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$GeneralPractitionerExaminationTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res,
+        _$GeneralPractitionerExaminationTypeUnion>
     implements _$$GeneralPractitionerExaminationTypeUnionCopyWith<$Res> {
   __$$GeneralPractitionerExaminationTypeUnionCopyWithImpl(
       _$GeneralPractitionerExaminationTypeUnion _value,
       $Res Function(_$GeneralPractitionerExaminationTypeUnion) _then)
-      : super(_value,
-            (v) => _then(v as _$GeneralPractitionerExaminationTypeUnion));
-
-  @override
-  _$GeneralPractitionerExaminationTypeUnion get _value =>
-      super._value as _$GeneralPractitionerExaminationTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -1597,50 +1586,50 @@ class _$GeneralPractitionerExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return generalPractitioner?.call();
   }
@@ -1765,55 +1754,55 @@ class _$GeneralPractitionerExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return generalPractitioner?.call(this);
   }
@@ -1896,16 +1885,13 @@ abstract class _$$MammogramExaminationTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$MammogramExaminationTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res,
+        _$MammogramExaminationTypeUnion>
     implements _$$MammogramExaminationTypeUnionCopyWith<$Res> {
   __$$MammogramExaminationTypeUnionCopyWithImpl(
       _$MammogramExaminationTypeUnion _value,
       $Res Function(_$MammogramExaminationTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$MammogramExaminationTypeUnion));
-
-  @override
-  _$MammogramExaminationTypeUnion get _value =>
-      super._value as _$MammogramExaminationTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -1982,50 +1968,50 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return mammogram?.call();
   }
@@ -2150,55 +2136,55 @@ class _$MammogramExaminationTypeUnion extends MammogramExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return mammogram?.call(this);
   }
@@ -2280,16 +2266,13 @@ abstract class _$$GynecologistExaminationTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$GynecologistExaminationTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res,
+        _$GynecologistExaminationTypeUnion>
     implements _$$GynecologistExaminationTypeUnionCopyWith<$Res> {
   __$$GynecologistExaminationTypeUnionCopyWithImpl(
       _$GynecologistExaminationTypeUnion _value,
       $Res Function(_$GynecologistExaminationTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$GynecologistExaminationTypeUnion));
-
-  @override
-  _$GynecologistExaminationTypeUnion get _value =>
-      super._value as _$GynecologistExaminationTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -2367,50 +2350,50 @@ class _$GynecologistExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return gynecologist?.call();
   }
@@ -2535,55 +2518,55 @@ class _$GynecologistExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return gynecologist?.call(this);
   }
@@ -2665,16 +2648,13 @@ abstract class _$$OphthalmologistExaminationTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$OphthalmologistExaminationTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res,
+        _$OphthalmologistExaminationTypeUnion>
     implements _$$OphthalmologistExaminationTypeUnionCopyWith<$Res> {
   __$$OphthalmologistExaminationTypeUnionCopyWithImpl(
       _$OphthalmologistExaminationTypeUnion _value,
       $Res Function(_$OphthalmologistExaminationTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$OphthalmologistExaminationTypeUnion));
-
-  @override
-  _$OphthalmologistExaminationTypeUnion get _value =>
-      super._value as _$OphthalmologistExaminationTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -2752,50 +2732,50 @@ class _$OphthalmologistExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return ophthalmologist?.call();
   }
@@ -2920,55 +2900,55 @@ class _$OphthalmologistExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return ophthalmologist?.call(this);
   }
@@ -3051,17 +3031,13 @@ abstract class _$$UltrasoundBreastExaminationTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$UltrasoundBreastExaminationTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res,
+        _$UltrasoundBreastExaminationTypeUnion>
     implements _$$UltrasoundBreastExaminationTypeUnionCopyWith<$Res> {
   __$$UltrasoundBreastExaminationTypeUnionCopyWithImpl(
       _$UltrasoundBreastExaminationTypeUnion _value,
       $Res Function(_$UltrasoundBreastExaminationTypeUnion) _then)
-      : super(
-            _value, (v) => _then(v as _$UltrasoundBreastExaminationTypeUnion));
-
-  @override
-  _$UltrasoundBreastExaminationTypeUnion get _value =>
-      super._value as _$UltrasoundBreastExaminationTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -3139,50 +3115,50 @@ class _$UltrasoundBreastExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return ultrasoundBreast?.call();
   }
@@ -3307,55 +3283,55 @@ class _$UltrasoundBreastExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return ultrasoundBreast?.call(this);
   }
@@ -3438,16 +3414,13 @@ abstract class _$$UrologistExaminationTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$UrologistExaminationTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res,
+        _$UrologistExaminationTypeUnion>
     implements _$$UrologistExaminationTypeUnionCopyWith<$Res> {
   __$$UrologistExaminationTypeUnionCopyWithImpl(
       _$UrologistExaminationTypeUnion _value,
       $Res Function(_$UrologistExaminationTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$UrologistExaminationTypeUnion));
-
-  @override
-  _$UrologistExaminationTypeUnion get _value =>
-      super._value as _$UrologistExaminationTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -3524,50 +3497,50 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return urologist?.call();
   }
@@ -3692,55 +3665,55 @@ class _$UrologistExaminationTypeUnion extends UrologistExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return urologist?.call(this);
   }
@@ -3821,15 +3794,11 @@ abstract class _$$AlergollogyExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$AlergollogyExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res, _$AlergollogyExamTypeUnion>
     implements _$$AlergollogyExamTypeUnionCopyWith<$Res> {
   __$$AlergollogyExamTypeUnionCopyWithImpl(_$AlergollogyExamTypeUnion _value,
       $Res Function(_$AlergollogyExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$AlergollogyExamTypeUnion));
-
-  @override
-  _$AlergollogyExamTypeUnion get _value =>
-      super._value as _$AlergollogyExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -3906,50 +3875,50 @@ class _$AlergollogyExamTypeUnion extends AlergollogyExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return allergology?.call();
   }
@@ -4074,55 +4043,55 @@ class _$AlergollogyExamTypeUnion extends AlergollogyExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return allergology?.call(this);
   }
@@ -4202,15 +4171,11 @@ abstract class _$$CardiologyExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$CardiologyExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res, _$CardiologyExamTypeUnion>
     implements _$$CardiologyExamTypeUnionCopyWith<$Res> {
   __$$CardiologyExamTypeUnionCopyWithImpl(_$CardiologyExamTypeUnion _value,
       $Res Function(_$CardiologyExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$CardiologyExamTypeUnion));
-
-  @override
-  _$CardiologyExamTypeUnion get _value =>
-      super._value as _$CardiologyExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -4287,50 +4252,50 @@ class _$CardiologyExamTypeUnion extends CardiologyExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return cardiology?.call();
   }
@@ -4455,55 +4420,55 @@ class _$CardiologyExamTypeUnion extends CardiologyExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return cardiology?.call(this);
   }
@@ -4584,17 +4549,13 @@ abstract class _$$EndocrinologyAndHormonesExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$EndocrinologyAndHormonesExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res,
+        _$EndocrinologyAndHormonesExamTypeUnion>
     implements _$$EndocrinologyAndHormonesExamTypeUnionCopyWith<$Res> {
   __$$EndocrinologyAndHormonesExamTypeUnionCopyWithImpl(
       _$EndocrinologyAndHormonesExamTypeUnion _value,
       $Res Function(_$EndocrinologyAndHormonesExamTypeUnion) _then)
-      : super(
-            _value, (v) => _then(v as _$EndocrinologyAndHormonesExamTypeUnion));
-
-  @override
-  _$EndocrinologyAndHormonesExamTypeUnion get _value =>
-      super._value as _$EndocrinologyAndHormonesExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -4672,50 +4633,50 @@ class _$EndocrinologyAndHormonesExamTypeUnion
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return endocrinologyandhormones?.call();
   }
@@ -4840,55 +4801,55 @@ class _$EndocrinologyAndHormonesExamTypeUnion
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return endocrinologyandhormones?.call(this);
   }
@@ -4971,16 +4932,13 @@ abstract class _$$GastroenterologyExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$GastroenterologyExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res,
+        _$GastroenterologyExamTypeUnion>
     implements _$$GastroenterologyExamTypeUnionCopyWith<$Res> {
   __$$GastroenterologyExamTypeUnionCopyWithImpl(
       _$GastroenterologyExamTypeUnion _value,
       $Res Function(_$GastroenterologyExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$GastroenterologyExamTypeUnion));
-
-  @override
-  _$GastroenterologyExamTypeUnion get _value =>
-      super._value as _$GastroenterologyExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -5057,50 +5015,50 @@ class _$GastroenterologyExamTypeUnion extends GastroenterologyExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return gastroenterology?.call();
   }
@@ -5225,55 +5183,55 @@ class _$GastroenterologyExamTypeUnion extends GastroenterologyExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return gastroenterology?.call(this);
   }
@@ -5354,14 +5312,11 @@ abstract class _$$GeneticsExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$GeneticsExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res, _$GeneticsExamTypeUnion>
     implements _$$GeneticsExamTypeUnionCopyWith<$Res> {
   __$$GeneticsExamTypeUnionCopyWithImpl(_$GeneticsExamTypeUnion _value,
       $Res Function(_$GeneticsExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$GeneticsExamTypeUnion));
-
-  @override
-  _$GeneticsExamTypeUnion get _value => super._value as _$GeneticsExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -5437,50 +5392,50 @@ class _$GeneticsExamTypeUnion extends GeneticsExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return genetics?.call();
   }
@@ -5605,55 +5560,55 @@ class _$GeneticsExamTypeUnion extends GeneticsExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return genetics?.call(this);
   }
@@ -5733,15 +5688,11 @@ abstract class _$$HematologyExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$HematologyExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res, _$HematologyExamTypeUnion>
     implements _$$HematologyExamTypeUnionCopyWith<$Res> {
   __$$HematologyExamTypeUnionCopyWithImpl(_$HematologyExamTypeUnion _value,
       $Res Function(_$HematologyExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$HematologyExamTypeUnion));
-
-  @override
-  _$HematologyExamTypeUnion get _value =>
-      super._value as _$HematologyExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -5818,50 +5769,50 @@ class _$HematologyExamTypeUnion extends HematologyExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return hematology?.call();
   }
@@ -5986,55 +5937,55 @@ class _$HematologyExamTypeUnion extends HematologyExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return hematology?.call(this);
   }
@@ -6114,15 +6065,11 @@ abstract class _$$ImmunologyExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$ImmunologyExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res, _$ImmunologyExamTypeUnion>
     implements _$$ImmunologyExamTypeUnionCopyWith<$Res> {
   __$$ImmunologyExamTypeUnionCopyWithImpl(_$ImmunologyExamTypeUnion _value,
       $Res Function(_$ImmunologyExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$ImmunologyExamTypeUnion));
-
-  @override
-  _$ImmunologyExamTypeUnion get _value =>
-      super._value as _$ImmunologyExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -6199,50 +6146,50 @@ class _$ImmunologyExamTypeUnion extends ImmunologyExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return immunology?.call();
   }
@@ -6367,55 +6314,55 @@ class _$ImmunologyExamTypeUnion extends ImmunologyExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return immunology?.call(this);
   }
@@ -6495,14 +6442,11 @@ abstract class _$$InternExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$InternExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res, _$InternExamTypeUnion>
     implements _$$InternExamTypeUnionCopyWith<$Res> {
   __$$InternExamTypeUnionCopyWithImpl(
       _$InternExamTypeUnion _value, $Res Function(_$InternExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$InternExamTypeUnion));
-
-  @override
-  _$InternExamTypeUnion get _value => super._value as _$InternExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -6578,50 +6522,50 @@ class _$InternExamTypeUnion extends InternExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return intern?.call();
   }
@@ -6746,55 +6690,55 @@ class _$InternExamTypeUnion extends InternExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return intern?.call(this);
   }
@@ -6874,14 +6818,11 @@ abstract class _$$NephrologyTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$NephrologyTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res, _$NephrologyTypeUnion>
     implements _$$NephrologyTypeUnionCopyWith<$Res> {
   __$$NephrologyTypeUnionCopyWithImpl(
       _$NephrologyTypeUnion _value, $Res Function(_$NephrologyTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$NephrologyTypeUnion));
-
-  @override
-  _$NephrologyTypeUnion get _value => super._value as _$NephrologyTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -6957,50 +6898,50 @@ class _$NephrologyTypeUnion extends NephrologyTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return nephrology?.call();
   }
@@ -7125,55 +7066,55 @@ class _$NephrologyTypeUnion extends NephrologyTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return nephrology?.call(this);
   }
@@ -7253,15 +7194,11 @@ abstract class _$$NeurologyExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$NeurologyExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res, _$NeurologyExamTypeUnion>
     implements _$$NeurologyExamTypeUnionCopyWith<$Res> {
   __$$NeurologyExamTypeUnionCopyWithImpl(_$NeurologyExamTypeUnion _value,
       $Res Function(_$NeurologyExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$NeurologyExamTypeUnion));
-
-  @override
-  _$NeurologyExamTypeUnion get _value =>
-      super._value as _$NeurologyExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -7337,50 +7274,50 @@ class _$NeurologyExamTypeUnion extends NeurologyExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return neurology?.call();
   }
@@ -7505,55 +7442,55 @@ class _$NeurologyExamTypeUnion extends NeurologyExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return neurology?.call(this);
   }
@@ -7633,15 +7570,11 @@ abstract class _$$NutritionExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$NutritionExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res, _$NutritionExamTypeUnion>
     implements _$$NutritionExamTypeUnionCopyWith<$Res> {
   __$$NutritionExamTypeUnionCopyWithImpl(_$NutritionExamTypeUnion _value,
       $Res Function(_$NutritionExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$NutritionExamTypeUnion));
-
-  @override
-  _$NutritionExamTypeUnion get _value =>
-      super._value as _$NutritionExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -7717,50 +7650,50 @@ class _$NutritionExamTypeUnion extends NutritionExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return nutrition?.call();
   }
@@ -7885,55 +7818,55 @@ class _$NutritionExamTypeUnion extends NutritionExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return nutrition?.call(this);
   }
@@ -8013,14 +7946,11 @@ abstract class _$$OncologyExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$OncologyExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res, _$OncologyExamTypeUnion>
     implements _$$OncologyExamTypeUnionCopyWith<$Res> {
   __$$OncologyExamTypeUnionCopyWithImpl(_$OncologyExamTypeUnion _value,
       $Res Function(_$OncologyExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$OncologyExamTypeUnion));
-
-  @override
-  _$OncologyExamTypeUnion get _value => super._value as _$OncologyExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -8096,50 +8026,50 @@ class _$OncologyExamTypeUnion extends OncologyExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return oncology?.call();
   }
@@ -8264,55 +8194,55 @@ class _$OncologyExamTypeUnion extends OncologyExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return oncology?.call(this);
   }
@@ -8392,14 +8322,11 @@ abstract class _$$OrlExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$OrlExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res, _$OrlExamTypeUnion>
     implements _$$OrlExamTypeUnionCopyWith<$Res> {
   __$$OrlExamTypeUnionCopyWithImpl(
       _$OrlExamTypeUnion _value, $Res Function(_$OrlExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$OrlExamTypeUnion));
-
-  @override
-  _$OrlExamTypeUnion get _value => super._value as _$OrlExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -8475,50 +8402,50 @@ class _$OrlExamTypeUnion extends OrlExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return orl?.call();
   }
@@ -8643,55 +8570,55 @@ class _$OrlExamTypeUnion extends OrlExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return orl?.call(this);
   }
@@ -8772,15 +8699,12 @@ abstract class _$$OrthodonticsExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$OrthodonticsExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res,
+        _$OrthodonticsExamTypeUnion>
     implements _$$OrthodonticsExamTypeUnionCopyWith<$Res> {
   __$$OrthodonticsExamTypeUnionCopyWithImpl(_$OrthodonticsExamTypeUnion _value,
       $Res Function(_$OrthodonticsExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$OrthodonticsExamTypeUnion));
-
-  @override
-  _$OrthodonticsExamTypeUnion get _value =>
-      super._value as _$OrthodonticsExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -8857,50 +8781,50 @@ class _$OrthodonticsExamTypeUnion extends OrthodonticsExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return orthodontics?.call();
   }
@@ -9025,55 +8949,55 @@ class _$OrthodonticsExamTypeUnion extends OrthodonticsExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return orthodontics?.call(this);
   }
@@ -9153,15 +9077,11 @@ abstract class _$$OrthopedicsExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$OrthopedicsExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res, _$OrthopedicsExamTypeUnion>
     implements _$$OrthopedicsExamTypeUnionCopyWith<$Res> {
   __$$OrthopedicsExamTypeUnionCopyWithImpl(_$OrthopedicsExamTypeUnion _value,
       $Res Function(_$OrthopedicsExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$OrthopedicsExamTypeUnion));
-
-  @override
-  _$OrthopedicsExamTypeUnion get _value =>
-      super._value as _$OrthopedicsExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -9238,50 +9158,50 @@ class _$OrthopedicsExamTypeUnion extends OrthopedicsExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return orthopedics?.call();
   }
@@ -9406,55 +9326,55 @@ class _$OrthopedicsExamTypeUnion extends OrthopedicsExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return orthopedics?.call(this);
   }
@@ -9534,14 +9454,11 @@ abstract class _$$OtherExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$OtherExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res, _$OtherExamTypeUnion>
     implements _$$OtherExamTypeUnionCopyWith<$Res> {
   __$$OtherExamTypeUnionCopyWithImpl(
       _$OtherExamTypeUnion _value, $Res Function(_$OtherExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$OtherExamTypeUnion));
-
-  @override
-  _$OtherExamTypeUnion get _value => super._value as _$OtherExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -9617,50 +9534,50 @@ class _$OtherExamTypeUnion extends OtherExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return other?.call();
   }
@@ -9785,55 +9702,55 @@ class _$OtherExamTypeUnion extends OtherExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return other?.call(this);
   }
@@ -9914,16 +9831,13 @@ abstract class _$$PallativemedicineExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$PallativemedicineExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res,
+        _$PallativemedicineExamTypeUnion>
     implements _$$PallativemedicineExamTypeUnionCopyWith<$Res> {
   __$$PallativemedicineExamTypeUnionCopyWithImpl(
       _$PallativemedicineExamTypeUnion _value,
       $Res Function(_$PallativemedicineExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$PallativemedicineExamTypeUnion));
-
-  @override
-  _$PallativemedicineExamTypeUnion get _value =>
-      super._value as _$PallativemedicineExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -10000,50 +9914,50 @@ class _$PallativemedicineExamTypeUnion extends PallativemedicineExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return pallativemedicine?.call();
   }
@@ -10168,55 +10082,55 @@ class _$PallativemedicineExamTypeUnion extends PallativemedicineExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return pallativemedicine?.call(this);
   }
@@ -10298,15 +10212,12 @@ abstract class _$$PediatricianExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$PediatricianExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res,
+        _$PediatricianExamTypeUnion>
     implements _$$PediatricianExamTypeUnionCopyWith<$Res> {
   __$$PediatricianExamTypeUnionCopyWithImpl(_$PediatricianExamTypeUnion _value,
       $Res Function(_$PediatricianExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$PediatricianExamTypeUnion));
-
-  @override
-  _$PediatricianExamTypeUnion get _value =>
-      super._value as _$PediatricianExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -10383,50 +10294,50 @@ class _$PediatricianExamTypeUnion extends PediatricianExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return pediatrician?.call();
   }
@@ -10551,55 +10462,55 @@ class _$PediatricianExamTypeUnion extends PediatricianExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return pediatrician?.call(this);
   }
@@ -10679,15 +10590,11 @@ abstract class _$$PhoniatricsExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$PhoniatricsExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res, _$PhoniatricsExamTypeUnion>
     implements _$$PhoniatricsExamTypeUnionCopyWith<$Res> {
   __$$PhoniatricsExamTypeUnionCopyWithImpl(_$PhoniatricsExamTypeUnion _value,
       $Res Function(_$PhoniatricsExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$PhoniatricsExamTypeUnion));
-
-  @override
-  _$PhoniatricsExamTypeUnion get _value =>
-      super._value as _$PhoniatricsExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -10764,50 +10671,50 @@ class _$PhoniatricsExamTypeUnion extends PhoniatricsExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return phoniatrics?.call();
   }
@@ -10932,55 +10839,55 @@ class _$PhoniatricsExamTypeUnion extends PhoniatricsExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return phoniatrics?.call(this);
   }
@@ -11061,16 +10968,13 @@ abstract class _$$PhysiotherapyExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$PhysiotherapyExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res,
+        _$PhysiotherapyExamTypeUnion>
     implements _$$PhysiotherapyExamTypeUnionCopyWith<$Res> {
   __$$PhysiotherapyExamTypeUnionCopyWithImpl(
       _$PhysiotherapyExamTypeUnion _value,
       $Res Function(_$PhysiotherapyExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$PhysiotherapyExamTypeUnion));
-
-  @override
-  _$PhysiotherapyExamTypeUnion get _value =>
-      super._value as _$PhysiotherapyExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -11147,50 +11051,50 @@ class _$PhysiotherapyExamTypeUnion extends PhysiotherapyExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return physiotherapy?.call();
   }
@@ -11315,55 +11219,55 @@ class _$PhysiotherapyExamTypeUnion extends PhysiotherapyExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return physiotherapy?.call(this);
   }
@@ -11443,15 +11347,11 @@ abstract class _$$PsychiatryExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$PsychiatryExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res, _$PsychiatryExamTypeUnion>
     implements _$$PsychiatryExamTypeUnionCopyWith<$Res> {
   __$$PsychiatryExamTypeUnionCopyWithImpl(_$PsychiatryExamTypeUnion _value,
       $Res Function(_$PsychiatryExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$PsychiatryExamTypeUnion));
-
-  @override
-  _$PsychiatryExamTypeUnion get _value =>
-      super._value as _$PsychiatryExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -11528,50 +11428,50 @@ class _$PsychiatryExamTypeUnion extends PsychiatryExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return psychiatry?.call();
   }
@@ -11696,55 +11596,55 @@ class _$PsychiatryExamTypeUnion extends PsychiatryExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return psychiatry?.call(this);
   }
@@ -11824,15 +11724,11 @@ abstract class _$$PsychologyExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$PsychologyExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res, _$PsychologyExamTypeUnion>
     implements _$$PsychologyExamTypeUnionCopyWith<$Res> {
   __$$PsychologyExamTypeUnionCopyWithImpl(_$PsychologyExamTypeUnion _value,
       $Res Function(_$PsychologyExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$PsychologyExamTypeUnion));
-
-  @override
-  _$PsychologyExamTypeUnion get _value =>
-      super._value as _$PsychologyExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -11909,50 +11805,50 @@ class _$PsychologyExamTypeUnion extends PsychologyExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return psychology?.call();
   }
@@ -12077,55 +11973,55 @@ class _$PsychologyExamTypeUnion extends PsychologyExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return psychology?.call(this);
   }
@@ -12205,14 +12101,11 @@ abstract class _$$PumonaryExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$PumonaryExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res, _$PumonaryExamTypeUnion>
     implements _$$PumonaryExamTypeUnionCopyWith<$Res> {
   __$$PumonaryExamTypeUnionCopyWithImpl(_$PumonaryExamTypeUnion _value,
       $Res Function(_$PumonaryExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$PumonaryExamTypeUnion));
-
-  @override
-  _$PumonaryExamTypeUnion get _value => super._value as _$PumonaryExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -12288,50 +12181,50 @@ class _$PumonaryExamTypeUnion extends PumonaryExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return pulmonary?.call();
   }
@@ -12456,55 +12349,55 @@ class _$PumonaryExamTypeUnion extends PumonaryExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return pulmonary?.call(this);
   }
@@ -12585,16 +12478,13 @@ abstract class _$$RegabilitationExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$RegabilitationExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res,
+        _$RegabilitationExamTypeUnion>
     implements _$$RegabilitationExamTypeUnionCopyWith<$Res> {
   __$$RegabilitationExamTypeUnionCopyWithImpl(
       _$RegabilitationExamTypeUnion _value,
       $Res Function(_$RegabilitationExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$RegabilitationExamTypeUnion));
-
-  @override
-  _$RegabilitationExamTypeUnion get _value =>
-      super._value as _$RegabilitationExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -12671,50 +12561,50 @@ class _$RegabilitationExamTypeUnion extends RegabilitationExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return rehabilitation?.call();
   }
@@ -12839,55 +12729,55 @@ class _$RegabilitationExamTypeUnion extends RegabilitationExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return rehabilitation?.call(this);
   }
@@ -12968,16 +12858,13 @@ abstract class _$$ProductiveMedicineExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$ProductiveMedicineExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res,
+        _$ProductiveMedicineExamTypeUnion>
     implements _$$ProductiveMedicineExamTypeUnionCopyWith<$Res> {
   __$$ProductiveMedicineExamTypeUnionCopyWithImpl(
       _$ProductiveMedicineExamTypeUnion _value,
       $Res Function(_$ProductiveMedicineExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$ProductiveMedicineExamTypeUnion));
-
-  @override
-  _$ProductiveMedicineExamTypeUnion get _value =>
-      super._value as _$ProductiveMedicineExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -13055,50 +12942,50 @@ class _$ProductiveMedicineExamTypeUnion
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return reproductivemedicine?.call();
   }
@@ -13223,55 +13110,55 @@ class _$ProductiveMedicineExamTypeUnion
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return reproductivemedicine?.call(this);
   }
@@ -13353,15 +13240,12 @@ abstract class _$$RheumatologyExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$RheumatologyExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res,
+        _$RheumatologyExamTypeUnion>
     implements _$$RheumatologyExamTypeUnionCopyWith<$Res> {
   __$$RheumatologyExamTypeUnionCopyWithImpl(_$RheumatologyExamTypeUnion _value,
       $Res Function(_$RheumatologyExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$RheumatologyExamTypeUnion));
-
-  @override
-  _$RheumatologyExamTypeUnion get _value =>
-      super._value as _$RheumatologyExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -13438,50 +13322,50 @@ class _$RheumatologyExamTypeUnion extends RheumatologyExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return rheumatology?.call();
   }
@@ -13606,55 +13490,55 @@ class _$RheumatologyExamTypeUnion extends RheumatologyExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return rheumatology?.call(this);
   }
@@ -13734,14 +13618,11 @@ abstract class _$$SexologyExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$SexologyExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res, _$SexologyExamTypeUnion>
     implements _$$SexologyExamTypeUnionCopyWith<$Res> {
   __$$SexologyExamTypeUnionCopyWithImpl(_$SexologyExamTypeUnion _value,
       $Res Function(_$SexologyExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$SexologyExamTypeUnion));
-
-  @override
-  _$SexologyExamTypeUnion get _value => super._value as _$SexologyExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -13817,50 +13698,50 @@ class _$SexologyExamTypeUnion extends SexologyExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return sexology?.call();
   }
@@ -13985,55 +13866,55 @@ class _$SexologyExamTypeUnion extends SexologyExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return sexology?.call(this);
   }
@@ -14114,16 +13995,13 @@ abstract class _$$SpeechTherapistExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$SpeechTherapistExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res,
+        _$SpeechTherapistExamTypeUnion>
     implements _$$SpeechTherapistExamTypeUnionCopyWith<$Res> {
   __$$SpeechTherapistExamTypeUnionCopyWithImpl(
       _$SpeechTherapistExamTypeUnion _value,
       $Res Function(_$SpeechTherapistExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$SpeechTherapistExamTypeUnion));
-
-  @override
-  _$SpeechTherapistExamTypeUnion get _value =>
-      super._value as _$SpeechTherapistExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -14200,50 +14078,50 @@ class _$SpeechTherapistExamTypeUnion extends SpeechTherapistExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return speechtherapist?.call();
   }
@@ -14368,55 +14246,55 @@ class _$SpeechTherapistExamTypeUnion extends SpeechTherapistExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return speechtherapist?.call(this);
   }
@@ -14497,16 +14375,13 @@ abstract class _$$SportMedicineExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$SportMedicineExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res,
+        _$SportMedicineExamTypeUnion>
     implements _$$SportMedicineExamTypeUnionCopyWith<$Res> {
   __$$SportMedicineExamTypeUnionCopyWithImpl(
       _$SportMedicineExamTypeUnion _value,
       $Res Function(_$SportMedicineExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$SportMedicineExamTypeUnion));
-
-  @override
-  _$SportMedicineExamTypeUnion get _value =>
-      super._value as _$SportMedicineExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -14583,50 +14458,50 @@ class _$SportMedicineExamTypeUnion extends SportMedicineExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return sportmedicine?.call();
   }
@@ -14751,55 +14626,55 @@ class _$SportMedicineExamTypeUnion extends SportMedicineExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return sportmedicine?.call(this);
   }
@@ -14879,14 +14754,11 @@ abstract class _$$SurgeyExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$SurgeyExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res, _$SurgeyExamTypeUnion>
     implements _$$SurgeyExamTypeUnionCopyWith<$Res> {
   __$$SurgeyExamTypeUnionCopyWithImpl(
       _$SurgeyExamTypeUnion _value, $Res Function(_$SurgeyExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$SurgeyExamTypeUnion));
-
-  @override
-  _$SurgeyExamTypeUnion get _value => super._value as _$SurgeyExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -14962,50 +14834,50 @@ class _$SurgeyExamTypeUnion extends SurgeyExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return surgey?.call();
   }
@@ -15130,55 +15002,55 @@ class _$SurgeyExamTypeUnion extends SurgeyExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return surgey?.call(this);
   }
@@ -15258,14 +15130,11 @@ abstract class _$$TannerExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$TannerExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res, _$TannerExamTypeUnion>
     implements _$$TannerExamTypeUnionCopyWith<$Res> {
   __$$TannerExamTypeUnionCopyWithImpl(
       _$TannerExamTypeUnion _value, $Res Function(_$TannerExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$TannerExamTypeUnion));
-
-  @override
-  _$TannerExamTypeUnion get _value => super._value as _$TannerExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -15341,50 +15210,50 @@ class _$TannerExamTypeUnion extends TannerExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return tanner?.call();
   }
@@ -15509,55 +15378,55 @@ class _$TannerExamTypeUnion extends TannerExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return tanner?.call(this);
   }
@@ -15637,14 +15506,11 @@ abstract class _$$UrlogoyExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$UrlogoyExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res, _$UrlogoyExamTypeUnion>
     implements _$$UrlogoyExamTypeUnionCopyWith<$Res> {
   __$$UrlogoyExamTypeUnionCopyWithImpl(_$UrlogoyExamTypeUnion _value,
       $Res Function(_$UrlogoyExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$UrlogoyExamTypeUnion));
-
-  @override
-  _$UrlogoyExamTypeUnion get _value => super._value as _$UrlogoyExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -15720,50 +15586,50 @@ class _$UrlogoyExamTypeUnion extends UrlogoyExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return urlogy?.call();
   }
@@ -15888,55 +15754,55 @@ class _$UrlogoyExamTypeUnion extends UrlogoyExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return urlogy?.call(this);
   }
@@ -16016,14 +15882,11 @@ abstract class _$$VascularExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$VascularExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res, _$VascularExamTypeUnion>
     implements _$$VascularExamTypeUnionCopyWith<$Res> {
   __$$VascularExamTypeUnionCopyWithImpl(_$VascularExamTypeUnion _value,
       $Res Function(_$VascularExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$VascularExamTypeUnion));
-
-  @override
-  _$VascularExamTypeUnion get _value => super._value as _$VascularExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -16099,50 +15962,50 @@ class _$VascularExamTypeUnion extends VascularExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return vascular?.call();
   }
@@ -16267,55 +16130,55 @@ class _$VascularExamTypeUnion extends VascularExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return vascular?.call(this);
   }
@@ -16396,16 +16259,13 @@ abstract class _$$DentalhygieneExamTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$DentalhygieneExamTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res,
+        _$DentalhygieneExamTypeUnion>
     implements _$$DentalhygieneExamTypeUnionCopyWith<$Res> {
   __$$DentalhygieneExamTypeUnionCopyWithImpl(
       _$DentalhygieneExamTypeUnion _value,
       $Res Function(_$DentalhygieneExamTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$DentalhygieneExamTypeUnion));
-
-  @override
-  _$DentalhygieneExamTypeUnion get _value =>
-      super._value as _$DentalhygieneExamTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -16482,50 +16342,50 @@ class _$DentalhygieneExamTypeUnion extends DentalhygieneExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return dentalhygiene?.call();
   }
@@ -16650,55 +16510,55 @@ class _$DentalhygieneExamTypeUnion extends DentalhygieneExamTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return dentalhygiene?.call(this);
   }
@@ -16778,14 +16638,11 @@ abstract class _$$ErgotherapyTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErgotherapyTypeUnionCopyWithImpl<$Res>
-    extends _$ExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$ExaminationTypeUnionCopyWithImpl<$Res, _$ErgotherapyTypeUnion>
     implements _$$ErgotherapyTypeUnionCopyWith<$Res> {
   __$$ErgotherapyTypeUnionCopyWithImpl(_$ErgotherapyTypeUnion _value,
       $Res Function(_$ErgotherapyTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$ErgotherapyTypeUnion));
-
-  @override
-  _$ErgotherapyTypeUnion get _value => super._value as _$ErgotherapyTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -16861,50 +16718,50 @@ class _$ErgotherapyTypeUnion extends ErgotherapyTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colonoscopy,
-    TResult Function()? dentist,
-    TResult Function()? dermatologist,
-    TResult Function()? generalPractitioner,
-    TResult Function()? mammogram,
-    TResult Function()? gynecologist,
-    TResult Function()? ophthalmologist,
-    TResult Function()? ultrasoundBreast,
-    TResult Function()? urologist,
-    TResult Function()? allergology,
-    TResult Function()? cardiology,
-    TResult Function()? endocrinologyandhormones,
-    TResult Function()? gastroenterology,
-    TResult Function()? genetics,
-    TResult Function()? hematology,
-    TResult Function()? immunology,
-    TResult Function()? intern,
-    TResult Function()? nephrology,
-    TResult Function()? neurology,
-    TResult Function()? nutrition,
-    TResult Function()? oncology,
-    TResult Function()? orl,
-    TResult Function()? orthodontics,
-    TResult Function()? orthopedics,
-    TResult Function()? other,
-    TResult Function()? pallativemedicine,
-    TResult Function()? pediatrician,
-    TResult Function()? phoniatrics,
-    TResult Function()? physiotherapy,
-    TResult Function()? psychiatry,
-    TResult Function()? psychology,
-    TResult Function()? pulmonary,
-    TResult Function()? rehabilitation,
-    TResult Function()? reproductivemedicine,
-    TResult Function()? rheumatology,
-    TResult Function()? sexology,
-    TResult Function()? speechtherapist,
-    TResult Function()? sportmedicine,
-    TResult Function()? surgey,
-    TResult Function()? tanner,
-    TResult Function()? urlogy,
-    TResult Function()? vascular,
-    TResult Function()? dentalhygiene,
-    TResult Function()? ergotherapy,
+    TResult? Function()? colonoscopy,
+    TResult? Function()? dentist,
+    TResult? Function()? dermatologist,
+    TResult? Function()? generalPractitioner,
+    TResult? Function()? mammogram,
+    TResult? Function()? gynecologist,
+    TResult? Function()? ophthalmologist,
+    TResult? Function()? ultrasoundBreast,
+    TResult? Function()? urologist,
+    TResult? Function()? allergology,
+    TResult? Function()? cardiology,
+    TResult? Function()? endocrinologyandhormones,
+    TResult? Function()? gastroenterology,
+    TResult? Function()? genetics,
+    TResult? Function()? hematology,
+    TResult? Function()? immunology,
+    TResult? Function()? intern,
+    TResult? Function()? nephrology,
+    TResult? Function()? neurology,
+    TResult? Function()? nutrition,
+    TResult? Function()? oncology,
+    TResult? Function()? orl,
+    TResult? Function()? orthodontics,
+    TResult? Function()? orthopedics,
+    TResult? Function()? other,
+    TResult? Function()? pallativemedicine,
+    TResult? Function()? pediatrician,
+    TResult? Function()? phoniatrics,
+    TResult? Function()? physiotherapy,
+    TResult? Function()? psychiatry,
+    TResult? Function()? psychology,
+    TResult? Function()? pulmonary,
+    TResult? Function()? rehabilitation,
+    TResult? Function()? reproductivemedicine,
+    TResult? Function()? rheumatology,
+    TResult? Function()? sexology,
+    TResult? Function()? speechtherapist,
+    TResult? Function()? sportmedicine,
+    TResult? Function()? surgey,
+    TResult? Function()? tanner,
+    TResult? Function()? urlogy,
+    TResult? Function()? vascular,
+    TResult? Function()? dentalhygiene,
+    TResult? Function()? ergotherapy,
   }) {
     return ergotherapy?.call();
   }
@@ -17029,55 +16886,55 @@ class _$ErgotherapyTypeUnion extends ErgotherapyTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
-    TResult Function(DentistExaminationTypeUnion value)? dentist,
-    TResult Function(DermatologistExaminationTypeUnion value)? dermatologist,
-    TResult Function(GeneralPractitionerExaminationTypeUnion value)?
+    TResult? Function(ColonoscopyExaminationTypeUnion value)? colonoscopy,
+    TResult? Function(DentistExaminationTypeUnion value)? dentist,
+    TResult? Function(DermatologistExaminationTypeUnion value)? dermatologist,
+    TResult? Function(GeneralPractitionerExaminationTypeUnion value)?
         generalPractitioner,
-    TResult Function(MammogramExaminationTypeUnion value)? mammogram,
-    TResult Function(GynecologistExaminationTypeUnion value)? gynecologist,
-    TResult Function(OphthalmologistExaminationTypeUnion value)?
+    TResult? Function(MammogramExaminationTypeUnion value)? mammogram,
+    TResult? Function(GynecologistExaminationTypeUnion value)? gynecologist,
+    TResult? Function(OphthalmologistExaminationTypeUnion value)?
         ophthalmologist,
-    TResult Function(UltrasoundBreastExaminationTypeUnion value)?
+    TResult? Function(UltrasoundBreastExaminationTypeUnion value)?
         ultrasoundBreast,
-    TResult Function(UrologistExaminationTypeUnion value)? urologist,
-    TResult Function(AlergollogyExamTypeUnion value)? allergology,
-    TResult Function(CardiologyExamTypeUnion value)? cardiology,
-    TResult Function(EndocrinologyAndHormonesExamTypeUnion value)?
+    TResult? Function(UrologistExaminationTypeUnion value)? urologist,
+    TResult? Function(AlergollogyExamTypeUnion value)? allergology,
+    TResult? Function(CardiologyExamTypeUnion value)? cardiology,
+    TResult? Function(EndocrinologyAndHormonesExamTypeUnion value)?
         endocrinologyandhormones,
-    TResult Function(GastroenterologyExamTypeUnion value)? gastroenterology,
-    TResult Function(GeneticsExamTypeUnion value)? genetics,
-    TResult Function(HematologyExamTypeUnion value)? hematology,
-    TResult Function(ImmunologyExamTypeUnion value)? immunology,
-    TResult Function(InternExamTypeUnion value)? intern,
-    TResult Function(NephrologyTypeUnion value)? nephrology,
-    TResult Function(NeurologyExamTypeUnion value)? neurology,
-    TResult Function(NutritionExamTypeUnion value)? nutrition,
-    TResult Function(OncologyExamTypeUnion value)? oncology,
-    TResult Function(OrlExamTypeUnion value)? orl,
-    TResult Function(OrthodonticsExamTypeUnion value)? orthodontics,
-    TResult Function(OrthopedicsExamTypeUnion value)? orthopedics,
-    TResult Function(OtherExamTypeUnion value)? other,
-    TResult Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
-    TResult Function(PediatricianExamTypeUnion value)? pediatrician,
-    TResult Function(PhoniatricsExamTypeUnion value)? phoniatrics,
-    TResult Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
-    TResult Function(PsychiatryExamTypeUnion value)? psychiatry,
-    TResult Function(PsychologyExamTypeUnion value)? psychology,
-    TResult Function(PumonaryExamTypeUnion value)? pulmonary,
-    TResult Function(RegabilitationExamTypeUnion value)? rehabilitation,
-    TResult Function(ProductiveMedicineExamTypeUnion value)?
+    TResult? Function(GastroenterologyExamTypeUnion value)? gastroenterology,
+    TResult? Function(GeneticsExamTypeUnion value)? genetics,
+    TResult? Function(HematologyExamTypeUnion value)? hematology,
+    TResult? Function(ImmunologyExamTypeUnion value)? immunology,
+    TResult? Function(InternExamTypeUnion value)? intern,
+    TResult? Function(NephrologyTypeUnion value)? nephrology,
+    TResult? Function(NeurologyExamTypeUnion value)? neurology,
+    TResult? Function(NutritionExamTypeUnion value)? nutrition,
+    TResult? Function(OncologyExamTypeUnion value)? oncology,
+    TResult? Function(OrlExamTypeUnion value)? orl,
+    TResult? Function(OrthodonticsExamTypeUnion value)? orthodontics,
+    TResult? Function(OrthopedicsExamTypeUnion value)? orthopedics,
+    TResult? Function(OtherExamTypeUnion value)? other,
+    TResult? Function(PallativemedicineExamTypeUnion value)? pallativemedicine,
+    TResult? Function(PediatricianExamTypeUnion value)? pediatrician,
+    TResult? Function(PhoniatricsExamTypeUnion value)? phoniatrics,
+    TResult? Function(PhysiotherapyExamTypeUnion value)? physiotherapy,
+    TResult? Function(PsychiatryExamTypeUnion value)? psychiatry,
+    TResult? Function(PsychologyExamTypeUnion value)? psychology,
+    TResult? Function(PumonaryExamTypeUnion value)? pulmonary,
+    TResult? Function(RegabilitationExamTypeUnion value)? rehabilitation,
+    TResult? Function(ProductiveMedicineExamTypeUnion value)?
         reproductivemedicine,
-    TResult Function(RheumatologyExamTypeUnion value)? rheumatology,
-    TResult Function(SexologyExamTypeUnion value)? sexology,
-    TResult Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
-    TResult Function(SportMedicineExamTypeUnion value)? sportmedicine,
-    TResult Function(SurgeyExamTypeUnion value)? surgey,
-    TResult Function(TannerExamTypeUnion value)? tanner,
-    TResult Function(UrlogoyExamTypeUnion value)? urlogy,
-    TResult Function(VascularExamTypeUnion value)? vascular,
-    TResult Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
-    TResult Function(ErgotherapyTypeUnion value)? ergotherapy,
+    TResult? Function(RheumatologyExamTypeUnion value)? rheumatology,
+    TResult? Function(SexologyExamTypeUnion value)? sexology,
+    TResult? Function(SpeechTherapistExamTypeUnion value)? speechtherapist,
+    TResult? Function(SportMedicineExamTypeUnion value)? sportmedicine,
+    TResult? Function(SurgeyExamTypeUnion value)? surgey,
+    TResult? Function(TannerExamTypeUnion value)? tanner,
+    TResult? Function(UrlogoyExamTypeUnion value)? urlogy,
+    TResult? Function(VascularExamTypeUnion value)? vascular,
+    TResult? Function(DentalhygieneExamTypeUnion value)? dentalhygiene,
+    TResult? Function(ErgotherapyTypeUnion value)? ergotherapy,
   }) {
     return ergotherapy?.call(this);
   }
@@ -17159,9 +17016,9 @@ mixin _$SelfExaminationTypeUnion {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? breast,
-    TResult Function()? testicular,
-    TResult Function()? skin,
+    TResult? Function()? breast,
+    TResult? Function()? testicular,
+    TResult? Function()? skin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -17182,9 +17039,9 @@ mixin _$SelfExaminationTypeUnion {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(BrestSelfExaminationTypeUnion value)? breast,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicular,
-    TResult Function(SkinSelfExaminationTypeUnion value)? skin,
+    TResult? Function(BrestSelfExaminationTypeUnion value)? breast,
+    TResult? Function(TesticularSelfExaminationTypeUnion value)? testicular,
+    TResult? Function(SkinSelfExaminationTypeUnion value)? skin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -17201,17 +17058,19 @@ mixin _$SelfExaminationTypeUnion {
 abstract class $SelfExaminationTypeUnionCopyWith<$Res> {
   factory $SelfExaminationTypeUnionCopyWith(SelfExaminationTypeUnion value,
           $Res Function(SelfExaminationTypeUnion) then) =
-      _$SelfExaminationTypeUnionCopyWithImpl<$Res>;
+      _$SelfExaminationTypeUnionCopyWithImpl<$Res, SelfExaminationTypeUnion>;
 }
 
 /// @nodoc
-class _$SelfExaminationTypeUnionCopyWithImpl<$Res>
+class _$SelfExaminationTypeUnionCopyWithImpl<$Res,
+        $Val extends SelfExaminationTypeUnion>
     implements $SelfExaminationTypeUnionCopyWith<$Res> {
   _$SelfExaminationTypeUnionCopyWithImpl(this._value, this._then);
 
-  final SelfExaminationTypeUnion _value;
   // ignore: unused_field
-  final $Res Function(SelfExaminationTypeUnion) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -17224,16 +17083,13 @@ abstract class _$$BrestSelfExaminationTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$BrestSelfExaminationTypeUnionCopyWithImpl<$Res>
-    extends _$SelfExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$SelfExaminationTypeUnionCopyWithImpl<$Res,
+        _$BrestSelfExaminationTypeUnion>
     implements _$$BrestSelfExaminationTypeUnionCopyWith<$Res> {
   __$$BrestSelfExaminationTypeUnionCopyWithImpl(
       _$BrestSelfExaminationTypeUnion _value,
       $Res Function(_$BrestSelfExaminationTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$BrestSelfExaminationTypeUnion));
-
-  @override
-  _$BrestSelfExaminationTypeUnion get _value =>
-      super._value as _$BrestSelfExaminationTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -17269,9 +17125,9 @@ class _$BrestSelfExaminationTypeUnion extends BrestSelfExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? breast,
-    TResult Function()? testicular,
-    TResult Function()? skin,
+    TResult? Function()? breast,
+    TResult? Function()? testicular,
+    TResult? Function()? skin,
   }) {
     return breast?.call();
   }
@@ -17304,9 +17160,9 @@ class _$BrestSelfExaminationTypeUnion extends BrestSelfExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(BrestSelfExaminationTypeUnion value)? breast,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicular,
-    TResult Function(SkinSelfExaminationTypeUnion value)? skin,
+    TResult? Function(BrestSelfExaminationTypeUnion value)? breast,
+    TResult? Function(TesticularSelfExaminationTypeUnion value)? testicular,
+    TResult? Function(SkinSelfExaminationTypeUnion value)? skin,
   }) {
     return breast?.call(this);
   }
@@ -17342,16 +17198,13 @@ abstract class _$$TesticularSelfExaminationTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$TesticularSelfExaminationTypeUnionCopyWithImpl<$Res>
-    extends _$SelfExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$SelfExaminationTypeUnionCopyWithImpl<$Res,
+        _$TesticularSelfExaminationTypeUnion>
     implements _$$TesticularSelfExaminationTypeUnionCopyWith<$Res> {
   __$$TesticularSelfExaminationTypeUnionCopyWithImpl(
       _$TesticularSelfExaminationTypeUnion _value,
       $Res Function(_$TesticularSelfExaminationTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$TesticularSelfExaminationTypeUnion));
-
-  @override
-  _$TesticularSelfExaminationTypeUnion get _value =>
-      super._value as _$TesticularSelfExaminationTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -17388,9 +17241,9 @@ class _$TesticularSelfExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? breast,
-    TResult Function()? testicular,
-    TResult Function()? skin,
+    TResult? Function()? breast,
+    TResult? Function()? testicular,
+    TResult? Function()? skin,
   }) {
     return testicular?.call();
   }
@@ -17423,9 +17276,9 @@ class _$TesticularSelfExaminationTypeUnion
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(BrestSelfExaminationTypeUnion value)? breast,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicular,
-    TResult Function(SkinSelfExaminationTypeUnion value)? skin,
+    TResult? Function(BrestSelfExaminationTypeUnion value)? breast,
+    TResult? Function(TesticularSelfExaminationTypeUnion value)? testicular,
+    TResult? Function(SkinSelfExaminationTypeUnion value)? skin,
   }) {
     return testicular?.call(this);
   }
@@ -17462,16 +17315,13 @@ abstract class _$$SkinSelfExaminationTypeUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$SkinSelfExaminationTypeUnionCopyWithImpl<$Res>
-    extends _$SelfExaminationTypeUnionCopyWithImpl<$Res>
+    extends _$SelfExaminationTypeUnionCopyWithImpl<$Res,
+        _$SkinSelfExaminationTypeUnion>
     implements _$$SkinSelfExaminationTypeUnionCopyWith<$Res> {
   __$$SkinSelfExaminationTypeUnionCopyWithImpl(
       _$SkinSelfExaminationTypeUnion _value,
       $Res Function(_$SkinSelfExaminationTypeUnion) _then)
-      : super(_value, (v) => _then(v as _$SkinSelfExaminationTypeUnion));
-
-  @override
-  _$SkinSelfExaminationTypeUnion get _value =>
-      super._value as _$SkinSelfExaminationTypeUnion;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -17507,9 +17357,9 @@ class _$SkinSelfExaminationTypeUnion extends SkinSelfExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? breast,
-    TResult Function()? testicular,
-    TResult Function()? skin,
+    TResult? Function()? breast,
+    TResult? Function()? testicular,
+    TResult? Function()? skin,
   }) {
     return skin?.call();
   }
@@ -17542,9 +17392,9 @@ class _$SkinSelfExaminationTypeUnion extends SkinSelfExaminationTypeUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(BrestSelfExaminationTypeUnion value)? breast,
-    TResult Function(TesticularSelfExaminationTypeUnion value)? testicular,
-    TResult Function(SkinSelfExaminationTypeUnion value)? skin,
+    TResult? Function(BrestSelfExaminationTypeUnion value)? breast,
+    TResult? Function(TesticularSelfExaminationTypeUnion value)? testicular,
+    TResult? Function(SkinSelfExaminationTypeUnion value)? skin,
   }) {
     return skin?.call(this);
   }
