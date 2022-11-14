@@ -81,12 +81,9 @@ class DatePickerState extends State<DatePicker> {
   Map<int, String> _lastAvailableMonths = {};
   List<int> _lastAvailableDays = [];
 
-  final FixedExtentScrollController _dayController =
-      FixedExtentScrollController();
-  final FixedExtentScrollController _monthController =
-      FixedExtentScrollController();
-  final FixedExtentScrollController _yearController =
-      FixedExtentScrollController();
+  final FixedExtentScrollController _dayController = FixedExtentScrollController();
+  final FixedExtentScrollController _monthController = FixedExtentScrollController();
+  final FixedExtentScrollController _yearController = FixedExtentScrollController();
 
   List<int> get _datePickerYears {
     final defaultYear = widget.getDefaultYear();
@@ -97,9 +94,7 @@ class DatePickerState extends State<DatePicker> {
     final diff = maxYear - minYear;
     final years = <int>[];
     for (var i = 0; i <= diff; i++) {
-      final year = defaultYear + i <= maxYear
-          ? defaultYear + i
-          : defaultYear - (diff - i + 1);
+      final year = defaultYear + i <= maxYear ? defaultYear + i : defaultYear - (diff - i + 1);
       years.add(year);
     }
     return years;
@@ -126,8 +121,7 @@ class DatePickerState extends State<DatePicker> {
   }
 
   List<int> get _datePickerDays {
-    final daysInMonth =
-        DateUtils.getDaysInMonth(_getSelectedYear(), _selectedMonth);
+    final daysInMonth = DateUtils.getDaysInMonth(_getSelectedYear(), _selectedMonth);
 
     final days = [for (var i = 1; i <= daysInMonth; i += 1) i];
 
@@ -451,8 +445,7 @@ class DatePickerState extends State<DatePicker> {
         );
         break;
       case ColumnType.month:
-        datePickerDate =
-            DateTime(datePickerDate.year, value + 1, datePickerDate.day);
+        datePickerDate = DateTime(datePickerDate.year, value + 1, datePickerDate.day);
         break;
       case ColumnType.year:
         datePickerDate = DateTime(
