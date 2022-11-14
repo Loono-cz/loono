@@ -13,35 +13,29 @@ const int TO_SCHEDULE_MONTHS_TRANSFER = 2;
 const int SELF_EXAMINATION_ACTIVE_CARD_INTERVAL_IN_HOURS = 72;
 
 extension ExaminationPreventionStatusExt on ExaminationPreventionStatus {
-  bool get isCustom =>
-      examinationCategoryType == ExaminationCategoryType.CUSTOM;
+  bool get isCustom => examinationCategoryType == ExaminationCategoryType.CUSTOM;
   ExaminationCategory calculateStatus([DateTime? dateTimeNow]) {
     final now = dateTimeNow ?? DateTime.now();
 
     // STATUS: waiting or newToSchedule
-    if (([ExaminationStatus.CONFIRMED, ExaminationStatus.UNKNOWN]
-            .contains(state)) &&
+    if (([ExaminationStatus.CONFIRMED, ExaminationStatus.UNKNOWN].contains(state)) &&
         lastConfirmedDate != null &&
         (periodicExam == true || periodicExam == null)) {
       final lastVisitDateTime = lastConfirmedDate!.toLocal();
-      final lastVisitDateWithoutDay =
-          DateTime(lastVisitDateTime.year, lastVisitDateTime.month);
+      final lastVisitDateWithoutDay = DateTime(lastVisitDateTime.year, lastVisitDateTime.month);
       DateTime subtractedWaitingDate;
       if (isCustom && customInterval != null) {
         subtractedWaitingDate = DateTime(
           now.year,
           now.month -
-              (transformMonthToYear(customInterval!) *
-                      LoonoStrings.monthInYear -
+              (transformMonthToYear(customInterval!) * LoonoStrings.monthInYear -
                   TO_SCHEDULE_MONTHS_TRANSFER),
         );
       } else {
         // if last visit date is before: CURRENT_MONTH - (INTERVAL - 2 months)
         subtractedWaitingDate = DateTime(
           now.year,
-          now.month -
-              (intervalYears * LoonoStrings.monthInYear -
-                  TO_SCHEDULE_MONTHS_TRANSFER),
+          now.month - (intervalYears * LoonoStrings.monthInYear - TO_SCHEDULE_MONTHS_TRANSFER),
         );
       }
 
@@ -53,8 +47,7 @@ extension ExaminationPreventionStatusExt on ExaminationPreventionStatus {
       // else wait
       return const ExaminationCategory.waiting();
     }
-    if ([ExaminationStatus.UNKNOWN, ExaminationStatus.CANCELED]
-        .contains(state)) {
+    if ([ExaminationStatus.UNKNOWN, ExaminationStatus.CANCELED].contains(state)) {
       return const ExaminationCategory.newToSchedule();
     }
 
@@ -72,8 +65,7 @@ extension ExaminationPreventionStatusExt on ExaminationPreventionStatus {
   }
 }
 
-extension SelfExaminationPreventionStatusExt
-    on SelfExaminationPreventionStatus {
+extension SelfExaminationPreventionStatusExt on SelfExaminationPreventionStatus {
   SelfExaminationCategory calculateStatus([DateTime? dateTimeNow]) {
     final now = dateTimeNow ?? DateTime.now();
 
@@ -96,8 +88,7 @@ extension SelfExaminationPreventionStatusExt
           now.month,
           now.day,
         ); //now with set hour and minute to 0
-        final difference =
-            plannedDate!.toDateTime().difference(nowDate).inHours.abs();
+        final difference = plannedDate!.toDateTime().difference(nowDate).inHours.abs();
         if (difference <= SELF_EXAMINATION_ACTIVE_CARD_INTERVAL_IN_HOURS) {
           return const SelfExaminationCategory.active();
         } else {
@@ -121,8 +112,7 @@ extension ExaminationExt on ExaminationPreventionStatus {
         plannedDate!.minute,
       );
     } else if (lastConfirmedDate != null) {
-      final months =
-          customInterval != null ? customInterval! : intervalYears * 12;
+      final months = customInterval != null ? customInterval! : intervalYears * 12;
       return DateTime(
         lastConfirmedDate!.year,
         lastConfirmedDate!.month + months,
@@ -182,8 +172,7 @@ extension CategorizedExaminationListExt on List<CategorizedExamination> {
   List<CategorizedExamination> _sortUnknownLastVisit(
     List<CategorizedExamination> exams,
   ) {
-    return exams
-        .sorted((a, b) => compareExaminationType(a, b, compareByDate: false));
+    return exams.sorted((a, b) => compareExaminationType(a, b, compareByDate: false));
   }
 
   int _compareNewToSchedule(
@@ -223,13 +212,11 @@ extension CategorizedExaminationListExt on List<CategorizedExamination> {
     CategorizedExamination a,
     CategorizedExamination b,
   ) {
-    if (a.examination.targetExamDate == null ||
-        b.examination.targetExamDate == null) {
+    if (a.examination.targetExamDate == null || b.examination.targetExamDate == null) {
       return compareExaminationType(a, b, compareByDate: false);
     }
-    final dateDifference = a.examination.targetExamDate!
-        .difference(b.examination.targetExamDate!)
-        .inMinutes;
+    final dateDifference =
+        a.examination.targetExamDate!.difference(b.examination.targetExamDate!).inMinutes;
     if (dateDifference == 0) {
       return compareExaminationType(a, b, compareByDate: false);
     } else {
