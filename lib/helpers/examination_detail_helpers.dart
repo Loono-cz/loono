@@ -564,13 +564,12 @@ double lowerArcProgress(CategorizedExamination examination) {
   final nextVisit = examination.examination.plannedDate?.toLocal();
   final lastVisit = examination.examination.lastConfirmedDate?.toLocal();
   final category = examination.category;
-  final intervalMonths = examination.examination.examinationCategoryType ==
-          ExaminationCategoryType.CUSTOM
-      ? examination.examination.customInterval!
-      : examination.examination.intervalYears * 12;
+  final intervalMonths =
+      examination.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM
+          ? examination.examination.customInterval!
+          : examination.examination.intervalYears * 12;
 
-  if (category == const ExaminationCategory.scheduledSoonOrOverdue() &&
-      nextVisit != null) {
+  if (category == const ExaminationCategory.scheduledSoonOrOverdue() && nextVisit != null) {
     final intervalDays = daysBetween(
       nextVisit,
       DateTime(nextVisit.year, nextVisit.month + intervalMonths),
@@ -605,8 +604,7 @@ bool _newToScheduleFullProgressBar(CategorizedExamination exam) {
 bool isOverdue(CategorizedExamination examination) {
   final nextVisit = examination.examination.plannedDate?.toLocal();
   if (nextVisit != null) {
-    return examination.category ==
-            const ExaminationCategory.scheduledSoonOrOverdue() &&
+    return examination.category == const ExaminationCategory.scheduledSoonOrOverdue() &&
         DateTime.now().isAfter(nextVisit);
   }
   return false;
@@ -626,8 +624,7 @@ double selfExaminationProgress(Date? plannedDate) {
   if (plannedDate?.toDateTime() != null) {
     final date = plannedDate?.toDateTime() as DateTime;
     final planedDate = date.millisecondsSinceEpoch;
-    final startDate =
-        DateTime(date.year, date.month - 1, date.day).millisecondsSinceEpoch;
+    final startDate = DateTime(date.year, date.month - 1, date.day).millisecondsSinceEpoch;
     final todayDate = DateTime.now().millisecondsSinceEpoch;
     final total = planedDate - startDate;
     final current = todayDate - startDate;
