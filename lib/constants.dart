@@ -4,6 +4,7 @@ class LoonoAssets {
   static const cdLogo = 'assets/sponsors/cd.svg';
   static const ppfLogo = 'assets/sponsors/ppf.svg';
   static const cgiLogo = 'assets/sponsors/CGI.svg';
+  static const mzcrLogo = 'assets/sponsors/mzcr.svg';
 }
 
 class LoonoColors {
@@ -71,6 +72,7 @@ class LoonoStrings {
       'https://www.linkos.cz/pacient-a-rodina/onkologicke-diagnozy/maligni-melanom-spinaliom-bazaliom-c43-44-d03/maligni-melanom-a-ostatni-nadory-kuze/';
   static const mamoUrl = 'https://www.mamo.cz';
   static const donateDelayInterval = 14;
+  static const donateFirstDelayInterval = 7;
   static const dateWithHoursFormat = 'dd.MM.yyyy HH:mm';
   static const dateFormat = 'dd.MM.yyyy ';
   static const dateFormatSpacing = 'dd. MMMM yyyy';
