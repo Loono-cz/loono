@@ -242,17 +242,18 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
     final usersDao = registry.get<DatabaseService>().users;
     final exam = widget.exam;
 
-    /// must be first exam and no planned examination should exist
-    final noPlannedExamExist = exam.firstExam && exam.plannedDate == null;
+    /// no planned examination should exist
+    final noPlannedExamExist =
+        exam.plannedDate == null || exam.plannedDate?.isBefore(DateTime.now()) == true;
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Frekvence prohlídek',
-              style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600),
+            Text(
+              context.l10n.custom_exam_frequency,
+              style: const TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600),
             ),
             const SizedBox(
               height: 10.0,

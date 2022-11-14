@@ -52,10 +52,15 @@ class PreventionHeader extends StatelessWidget {
                                   mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      '${user?.nickname}',
-                                      style: LoonoFonts.headerFontStyle.copyWith(
-                                        color: LoonoColors.grey,
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width * 0.5,
+                                      child: Text(
+                                        '${user?.nickname}',
+                                        softWrap: true,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: LoonoFonts.headerFontStyle.copyWith(
+                                          color: LoonoColors.grey,
+                                        ),
                                       ),
                                     ),
                                     Row(
