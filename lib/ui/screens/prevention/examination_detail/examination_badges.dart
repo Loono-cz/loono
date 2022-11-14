@@ -88,8 +88,8 @@ class ExaminationBadges extends StatelessWidget {
   }
 
   BadgeState _getBadgeState(Badge? data, int index, int count) {
-    if(isCustomExam){
-      return count >= index +1 ? BadgeState.greenBadge : BadgeState.normalBadge;
+    if (isCustomExam) {
+      return count >= index + 1 ? BadgeState.greenBadge : BadgeState.normalBadge;
     }
     if (isLastConfirmedDateOlderMinusTwoMonths && index + 1 == data?.level) {
       return BadgeState.greenBadge;
