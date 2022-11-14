@@ -41,38 +41,34 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Spacer(),
-                        _buildSponsor(
-                          label: context.l10n.incubated,
-                          logoAsset: LoonoAssets.cdLogo,
-                          width: 105,
-                        ),
-                        const SizedBox(
-                          width: 45,
-                        ),
-                        _buildSponsor(
-                          label: context.l10n.with_support,
-                          logoAsset: LoonoAssets.ppfLogo,
-                          height: 50,
-                        ),
-                        const Spacer(),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    _buildSponsor(
-                      label: context.l10n.technology_partner,
-                      logoAsset: LoonoAssets.cgiLogo,
-                      height: 50,
-                    ),
-                  ],
+                IgnorePointer(
+                  child: GridView.count(
+                    crossAxisCount: 2,
+                    shrinkWrap: true,
+                    childAspectRatio: (1 / .6),
+                    children: [
+                      _buildSponsor(
+                        label: context.l10n.incubated,
+                        logoAsset: LoonoAssets.cdLogo,
+                        width: 105,
+                      ),
+                      _buildSponsor(
+                        label: context.l10n.with_support,
+                        logoAsset: LoonoAssets.ppfLogo,
+                        height: 50,
+                      ),
+                      _buildSponsor(
+                        label: context.l10n.with_support,
+                        logoAsset: LoonoAssets.mzcrLogo,
+                        height: 45,
+                      ),
+                      _buildSponsor(
+                        label: context.l10n.technology_partner,
+                        logoAsset: LoonoAssets.cgiLogo,
+                        height: 50,
+                      )
+                    ],
+                  ),
                 ),
                 Column(
                   children: [

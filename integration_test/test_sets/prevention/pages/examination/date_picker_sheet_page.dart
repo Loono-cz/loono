@@ -18,7 +18,7 @@ class DatePickerSheetPage {
   // Page finders
   final Finder datePickerSheet = find.byKey(const Key('datePickerSheet'));
   final Finder datePickerSheetContinueBtn = find.byKey(const Key('datePickerSheet_btn_continue'));
-
+  final Finder datePickerSheetNoteInputField = find.byKey(const Key('note_input_field'));
   // Page methods
   Future<void> clickDatePickerSheetContinueButton() async {
     logTestEvent();
@@ -50,5 +50,10 @@ class DatePickerSheetPage {
   Future<void> verifyDatePickerSheetIsShown() async {
     logTestEvent();
     await tester.pumpUntilFound(datePickerSheet);
+  }
+
+  Future<void> verifyNoteInputFieldIsShown() async {
+    logTestEvent();
+    await tester.pumpUntilFound(datePickerSheetNoteInputField);
   }
 }
