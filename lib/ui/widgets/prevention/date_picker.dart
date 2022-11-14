@@ -126,7 +126,8 @@ class DatePickerState extends State<DatePicker> {
   }
 
   List<int> get _datePickerDays {
-    final daysInMonth = DateUtils.getDaysInMonth(_getSelectedYear(), _selectedMonth);
+    final daysInMonth =
+        DateUtils.getDaysInMonth(_getSelectedYear(), _selectedMonth);
 
     final days = [for (var i = 1; i <= daysInMonth; i += 1) i];
 
@@ -146,6 +147,7 @@ class DatePickerState extends State<DatePicker> {
     _dayController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     final isSet = _isSetDefaultDate();
@@ -180,19 +182,19 @@ class DatePickerState extends State<DatePicker> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              if(widget.dayEnabled)
+              if (widget.dayEnabled)
                 _datePickerColumn(
                   forType: ColumnType.day,
                   items: _getAvailableDays().asMap(),
                   selectedIndex: _getSelectedDayIndex(),
                 ),
-              if(widget.monthEnabled)
+              if (widget.monthEnabled)
                 _datePickerColumn(
                   forType: ColumnType.month,
                   items: _getAvailableMonths().values.toList().asMap(),
                   selectedIndex: _getSelectedMonthIndex(),
                 ),
-              if(widget.dayEnabled)
+              if (widget.dayEnabled)
                 _datePickerColumn(
                   forType: ColumnType.year,
                   items: _datePickerYears.asMap(),
@@ -216,7 +218,7 @@ class DatePickerState extends State<DatePicker> {
     );
   }
 
-  void _moveTo(FixedExtentScrollController controller,int itemIndex){
+  void _moveTo(FixedExtentScrollController controller, int itemIndex) {
     if (widget.animated) {
       controller.animateToItem(
         itemIndex,
@@ -228,33 +230,39 @@ class DatePickerState extends State<DatePicker> {
     }
   }
 
-  int _getSelectedDayIndex(){
+  int _getSelectedDayIndex() {
     return _getSelectedItemIndex(_selectedDay, _getAvailableDays());
   }
-  int _getSelectedMonthIndex(){
-    return _getSelectedItemIndex(_selectedMonth, _getAvailableMonths().keys.toList());}
 
-  int _getSelectedItemIndex(int selected, List<int> values){
+  int _getSelectedMonthIndex() {
+    return _getSelectedItemIndex(
+      _selectedMonth,
+      _getAvailableMonths().keys.toList(),
+    );
+  }
+
+  int _getSelectedItemIndex(int selected, List<int> values) {
     var index = -1;
-    while(index == -1 && selected >=0){
+    while (index == -1 && selected >= 0) {
       index = values.indexOf(selected);
       selected--;
     }
     selected = _selectedDay;
-    while(index == -1 && selected < values.length){
+    while (index == -1 && selected < values.length) {
       index = values.indexOf(selected);
       selected++;
     }
     return index;
   }
 
-  void _setSelectedDayIndex(int index){
+  void _setSelectedDayIndex(int index) {
     final values = _getAvailableDays();
     setState(() {
       _selectedDay = index < values.length ? values[index] : values.last;
     });
   }
-  void _setSelectedMonthIndex(int index){
+
+  void _setSelectedMonthIndex(int index) {
     final values = _getAvailableMonths().keys.toList();
     setState(() {
       _selectedMonth = index < values.length ? values[index] : values.last;
@@ -291,9 +299,9 @@ class DatePickerState extends State<DatePicker> {
 
       var monthIndex = 1;
 
-      while(monthIndex < 12){
-        final month = monthIndex +1;
-        if(month >= minMonth){
+      while (monthIndex < 12) {
+        final month = monthIndex + 1;
+        if (month >= minMonth) {
           months[month] = _datePickerMonths[month]!;
         }
         monthIndex++;
