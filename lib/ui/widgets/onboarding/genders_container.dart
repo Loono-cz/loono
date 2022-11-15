@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/size_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/onboarding/gender_button.dart';
 import 'package:loono_api/loono_api.dart';
@@ -49,7 +50,7 @@ class GendersContainerState extends State<GendersContainer> {
               flex: 4,
               child: GenderButton(
                 active: activeButton == Gender.woman,
-                path: 'assets/icons/gender-woman.svg',
+                path: LoonoAssets.genderFemale,
                 label: context.l10n.gender_female,
                 width: 28,
                 height: 45,
@@ -65,7 +66,7 @@ class GendersContainerState extends State<GendersContainer> {
               flex: 4,
               child: GenderButton(
                 active: activeButton == Gender.man,
-                path: 'assets/icons/gender-man.svg',
+                path: LoonoAssets.genderMale,
                 label: context.l10n.gender_male,
                 width: 40,
                 height: 40,
@@ -81,7 +82,7 @@ class GendersContainerState extends State<GendersContainer> {
               flex: 4,
               child: GenderButton(
                 active: activeButton == Gender.other,
-                path: 'assets/icons/gender-other.svg',
+                path: LoonoAssets.genderOther,
                 label: context.l10n.gender_other,
                 width: 28,
                 height: 45,
@@ -105,7 +106,7 @@ class GendersContainerState extends State<GendersContainer> {
     sheetController = Scaffold.of(context).showBottomSheet<dynamic>(
       (context) {
         return FractionallySizedBox(
-          heightFactor: MediaQuery.of(context).size.height > 750 ? 0.37 : 0.441,
+          heightFactor: context.mediaQuery.size.height > 750 ? 0.37 : 0.441,
           child: Container(
             decoration: BoxDecoration(
               color: widget.bottomSheetColor,
@@ -113,53 +114,55 @@ class GendersContainerState extends State<GendersContainer> {
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 24.0),
-                  ShaderMask(
-                    shaderCallback: (bounds) => linearGradient.createShader(
-                      Rect.fromLTWH(0.0, 0.0, bounds.width, bounds.height),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 24.0),
+                    ShaderMask(
+                      shaderCallback: (bounds) => linearGradient.createShader(
+                        Rect.fromLTWH(0.0, 0.0, bounds.width, bounds.height),
+                      ),
+                      child: Text(
+                        context.l10n.gender_other.toUpperCase(),
+                        style: const TextStyle(color: Colors.white, fontSize: 24.0),
+                      ),
                     ),
-                    child: Text(
-                      context.l10n.gender_other.toUpperCase(),
-                      style: const TextStyle(color: Colors.white, fontSize: 24.0),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 35.0),
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 18.0),
-                        Text(context.l10n.gender_other_sheet_desc, style: textStyle),
-                        const SizedBox(height: 22.0),
-                        RichText(
-                          text: TextSpan(
-                            text: '${context.l10n.gender_other_sheet_contact} ',
-                            style: textStyle,
-                            children: [
-                              TextSpan(
-                                text: LoonoStrings.contactEmail,
-                                style: textStyle.copyWith(decoration: TextDecoration.underline),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () async {
-                                    final emailLaunchUri = Uri(
-                                      scheme: 'mailto',
-                                      path: LoonoStrings.contactEmail,
-                                    );
-                                    if (await canLaunchUrlString(emailLaunchUri.toString())) {
-                                      await launchUrlString(emailLaunchUri.toString());
-                                    }
-                                  },
-                              ),
-                              const TextSpan(text: '.', style: textStyle),
-                            ],
+                    Padding(
+                      padding: const EdgeInsets.only(right: 35.0),
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 18.0),
+                          Text(context.l10n.gender_other_sheet_desc, style: textStyle),
+                          const SizedBox(height: 22.0),
+                          RichText(
+                            text: TextSpan(
+                              text: '${context.l10n.gender_other_sheet_contact} ',
+                              style: textStyle,
+                              children: [
+                                TextSpan(
+                                  text: LoonoStrings.contactEmail,
+                                  style: textStyle.copyWith(decoration: TextDecoration.underline),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () async {
+                                      final emailLaunchUri = Uri(
+                                        scheme: 'mailto',
+                                        path: LoonoStrings.contactEmail,
+                                      );
+                                      if (await canLaunchUrlString(emailLaunchUri.toString())) {
+                                        await launchUrlString(emailLaunchUri.toString());
+                                      }
+                                    },
+                                ),
+                                const TextSpan(text: '.', style: textStyle),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
