@@ -6,6 +6,7 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/space.dart';
 import 'package:loono/utils/registry.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -24,55 +25,61 @@ class WelcomeScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const SizedBox(),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SvgPicture.asset(
-                      'assets/icons/welcome-logo.svg',
+                Expanded(
+                  child: Center(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const SizedBox(),
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SvgPicture.asset(
+                                LoonoAssets.welcomeLogo,
+                              ),
+                              const CustomSpacer.vertical(24),
+                              Text(
+                                context.l10n.carousel_welcome_dialog,
+                                textAlign: TextAlign.center,
+                                style: LoonoFonts.headerFontStyle,
+                              ),
+                            ],
+                          ),
+                          IgnorePointer(
+                            child: GridView.count(
+                              crossAxisCount: 2,
+                              shrinkWrap: true,
+                              childAspectRatio: (1 / .6),
+                              children: [
+                                _buildSponsor(
+                                  label: context.l10n.incubated,
+                                  logoAsset: LoonoAssets.cdLogo,
+                                  width: 105,
+                                ),
+                                _buildSponsor(
+                                  label: context.l10n.with_support,
+                                  logoAsset: LoonoAssets.ppfLogo,
+                                  height: 50,
+                                ),
+                                _buildSponsor(
+                                  label: context.l10n.with_support,
+                                  logoAsset: LoonoAssets.mzcrLogo,
+                                  height: 45,
+                                ),
+                                _buildSponsor(
+                                  label: context.l10n.technology_partner,
+                                  logoAsset: LoonoAssets.cgiLogo,
+                                  height: 50,
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    Text(
-                      context.l10n.carousel_welcome_dialog,
-                      textAlign: TextAlign.center,
-                      style: LoonoFonts.headerFontStyle,
-                    ),
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Spacer(),
-                        _buildSponsor(
-                          label: context.l10n.incubated,
-                          logoAsset: LoonoAssets.cdLogo,
-                          width: 105,
-                        ),
-                        const SizedBox(
-                          width: 45,
-                        ),
-                        _buildSponsor(
-                          label: context.l10n.with_support,
-                          logoAsset: LoonoAssets.ppfLogo,
-                          height: 50,
-                        ),
-                        const Spacer(),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    _buildSponsor(
-                      label: context.l10n.technology_partner,
-                      logoAsset: LoonoAssets.cgiLogo,
-                      height: 50,
-                    ),
-                  ],
+                  ),
                 ),
                 Column(
                   children: [
@@ -84,9 +91,7 @@ class WelcomeScreen extends StatelessWidget {
                         await autoRouter.push(const IntroCarouselRoute());
                       },
                     ),
-                    const SizedBox(
-                      height: 15,
-                    ),
+                    const CustomSpacer.vertical(15),
                     TextButton(
                       onPressed: () async {
                         final autoRouter = AutoRouter.of(context);
@@ -95,7 +100,9 @@ class WelcomeScreen extends StatelessWidget {
                         // ignore: unawaited_futures
                         autoRouter.replaceAll([
                           LoginRoute(),
-                          PreAuthMainRoute(overridenPreventionRoute: LoginRoute()),
+                          PreAuthMainRoute(
+                            overridenPreventionRoute: LoginRoute(),
+                          ),
                         ]);
                       },
                       child: Text(
@@ -103,9 +110,7 @@ class WelcomeScreen extends StatelessWidget {
                         style: LoonoFonts.fontStyle,
                       ),
                     ),
-                    const SizedBox(
-                      height: 40,
-                    ),
+                    const CustomSpacer.vertical(40),
                   ],
                 ),
               ],

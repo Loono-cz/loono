@@ -12,7 +12,7 @@ class SignUpEmailPage {
   final WidgetTester tester;
 
   /// Page finders
-  final Finder createAccountBtn = find.text('Vytvořit účet');
+  final Finder confirmBtn = find.text('Potvrdit');
   final Finder textField = find.byType(TextField);
 
   /// Page methods
@@ -22,9 +22,9 @@ class SignUpEmailPage {
     await tester.pumpAndSettle();
   }
 
-  Future<void> clickCreateAccountButton() async {
+  Future<void> clickConfirmButton() async {
     logTestEvent();
-    await tester.tap(createAccountBtn);
+    await tester.tap(confirmBtn);
     await tester.pumpAndSettle();
   }
 

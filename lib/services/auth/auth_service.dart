@@ -117,8 +117,8 @@ class AuthService {
     appleAccountInfo = AppleAccountInfo(
       userIdentifier: appleUserId,
       email: appleUserEmail,
-      givenName: appleCredential.givenName ?? savedAccountInfo?.givenName.toString(),
-      familyName: appleCredential.familyName ?? savedAccountInfo?.familyName.toString(),
+      givenName: appleCredential.givenName ?? savedAccountInfo?.givenName ?? '',
+      familyName: appleCredential.familyName ?? savedAccountInfo?.familyName ?? '',
       identifierToken: appleCredential.identityToken,
     );
     await _secureStorage.saveAppleAccountInfo(appleAccountInfo);

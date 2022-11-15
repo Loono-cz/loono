@@ -37,7 +37,7 @@ void showCreateOrderFromDetailSheet({
     isScrollControlled: true,
     builder: (BuildContext modalContext) {
       return Container(
-        key: const Key('datePickerSheet'),
+        key: const Key('examinationDetailPage_orderSheet2'),
         height: 680,
         decoration: const BoxDecoration(
           color: LoonoColors.primaryLight50,
@@ -134,6 +134,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
       behavior: HitTestBehavior.translucent,
       onTap: () => hideKeyboard(context),
       child: Column(
+        key: const Key('datePickerSheet'), //note_text_field
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Row(
@@ -322,12 +323,15 @@ class _DatePickerContentState extends State<_DatePickerContent> {
           ),
         );
       case ViewSteps.noteField:
-        return noteTextField(
-          context,
-          noteController: _noteController,
-          onNoteChange: (value) => setState(() {
-            _note = value;
-          }),
+        return Container(
+          key: const Key('note_input_field'),
+          child: noteTextField(
+            context,
+            noteController: _noteController,
+            onNoteChange: (value) => setState(() {
+              _note = value;
+            }),
+          ),
         );
     }
   }
