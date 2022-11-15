@@ -720,6 +720,8 @@
   "@last_checkup_sheet_button": {},
   "preposition_in": "V",
   "@preposition_in": {},
+  "preposition_in_ve": "Ve",
+  "@preposition_in_ve": {},
   "original_date": "Původní termín",
   "@original_date": {},
   "change_last_visit_title": "Změň datum poslední preventivní prohlídky",
@@ -1543,5 +1545,7 @@
   "choose_interval": "Vyber interval",
   "@choose_interval": {},
   "prevention_age_limit": "Prevence je zatím pro starší 18 let",
-  "@prevention_age_limit": {}
+  "@prevention_age_limit": {},
+  "not_ordered": "Neobjednáno",
+  "@not_ordered": {}
 }
