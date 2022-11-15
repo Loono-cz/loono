@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/size_helpers.dart';
 import 'package:loono/helpers/text_highlighter.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/ui/widgets/space.dart';
 
 class CarouselStatContent extends StatelessWidget {
   const CarouselStatContent({
@@ -31,52 +33,60 @@ class CarouselStatContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.15),
-          child: Column(
-            children: [
-              const SizedBox(width: double.infinity, height: 50.0),
-              RichText(
-                textAlign: TextAlign.center,
-                text: highlightPattern == null
-                    ? TextSpan(text: statText, style: statTextStyle)
-                    : TextSpan(
-                        children:
-                            TextHighlighter.parse(statText, highlightPattern: highlightPattern!)
-                                .map(
-                                  (item) => TextSpan(
-                                    text: item.text,
-                                    style: item.highlight ? highlightTextStyle : statTextStyle,
-                                  ),
-                                )
-                                .toList(),
-                      ),
-              ),
-              const SizedBox(height: 60.0),
-              Text(
-                bodyText,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 15.0,
-                  height: 1.5,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: MediaQuery.of(context).size.width * 0.15,
+      ),
+      child: Expanded(
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                _buildHeader(),
+                const CustomSpacer.vertical(60.0),
+                Text(
+                  bodyText,
+                  textAlign: TextAlign.center,
+                  style: LoonoFonts.paragraphBoldFontStyle,
                 ),
-              ),
-              const Spacer(),
-              Text(
-                '* ${context.l10n.carousel_content_data_source} $dataSourceText',
-                textAlign: TextAlign.center,
-                style: LoonoFonts.paragraphSmallFontStyle.copyWith(color: Colors.black),
-              ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-            ],
+                const CustomSpacer.vertical(60),
+                if (button != null) button!,
+                const CustomSpacer.vertical(20),
+                _buildExplanation(context),
+              ],
+            ),
           ),
         ),
-        if (button != null) button!,
-      ],
+      ),
+    );
+  }
+
+  Widget _buildHeader() {
+    return RichText(
+      textAlign: TextAlign.center,
+      text: highlightPattern == null
+          ? TextSpan(text: statText, style: statTextStyle)
+          : TextSpan(
+              children: TextHighlighter.parse(
+                statText,
+                highlightPattern: highlightPattern!,
+              )
+                  .map(
+                    (item) => TextSpan(
+                      text: item.text,
+                      style: item.highlight ? highlightTextStyle : statTextStyle,
+                    ),
+                  )
+                  .toList(),
+            ),
+    );
+  }
+
+  Widget _buildExplanation(BuildContext context) {
+    return Text(
+      '* ${context.l10n.carousel_content_data_source} $dataSourceText',
+      textAlign: TextAlign.center,
+      style: LoonoFonts.paragraphSmallFontStyle.copyWith(color: Colors.black),
     );
   }
 }
@@ -106,7 +116,9 @@ class CarouselImageContent extends StatelessWidget {
           children: [
             const SizedBox(width: double.infinity, height: 0.0),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 18.0),
+              padding: EdgeInsets.symmetric(
+                horizontal: context.mediaQuery.compactSizeOf(18.0),
+              ),
               child: Text(
                 headerText,
                 textAlign: TextAlign.left,
@@ -124,7 +136,9 @@ class CarouselImageContent extends StatelessWidget {
           child: SizedBox(
             width: MediaQuery.of(context).size.width,
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.12),
+              padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.12,
+              ),
               child: Center(
                 child: Text(
                   bodyText,
@@ -140,7 +154,9 @@ class CarouselImageContent extends StatelessWidget {
           bottom: MediaQuery.of(context).size.height * 0.06,
           child: SizedBox(
             width: MediaQuery.of(context).size.width,
-            child: Center(child: Text(bottomText, style: LoonoFonts.paragraphFontStyle)),
+            child: Center(
+              child: Text(bottomText, style: LoonoFonts.paragraphFontStyle),
+            ),
           ),
         ),
       ],
