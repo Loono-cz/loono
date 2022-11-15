@@ -3,6 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/user_repository.dart';
@@ -32,11 +33,14 @@ class ExaminationBadges extends StatelessWidget {
 
   DateTime? get lastConfirmedDate => categorizedExamination.examination.lastConfirmedDate;
 
+  int get _intervalYears => categorizedExamination.examination.intervalYears.toInt();
+
   int get recommendedIntervalInMonths =>
       categorizedExamination.examination.intervalYears.toInt() * 12;
 
-  int get recommendedIntervalInMonthsMinusTwoMonths =>
-      categorizedExamination.examination.intervalYears.toInt() * 12 - 2;
+  int get recommendedIntervalInMonthsMinusTwoMonths => categorizedExamination.examination.isCustom
+      ? (categorizedExamination.examination.customInterval ?? _intervalYears) - 2
+      : _intervalYears * 12 - 2;
 
   bool get isCustomExam =>
       categorizedExamination.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM;
@@ -171,14 +175,9 @@ class ExaminationBadges extends StatelessWidget {
                         shrinkWrap: true,
                         itemBuilder: (BuildContext context, int index) {
                           final badgeState = _getBadgeState(badge, index);
-                          final enabled =
-                              categorizedExamination.examination.examinationCategoryType ==
-                                      ExaminationCategoryType.MANDATORY
-                                  ? badge != null &&
-                                      badge.type.name ==
-                                          categorizedExamination.examination.badge?.name &&
-                                      badge.level >= index + 1
-                                  : badge != null;
+                          final enabled = badge != null &&
+                              badge.type.name == categorizedExamination.examination.badge?.name &&
+                              badge.level >= index + 1;
                           return Padding(
                             padding: const EdgeInsets.only(right: 20.0),
                             child: ExaminationBadge(

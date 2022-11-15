@@ -10,6 +10,8 @@ class LoonoAssets {
 
   static const calendarIcon = 'assets/icons/prevention/calendar.svg';
   static const mzcrLogo = 'assets/sponsors/mzcr.svg';
+
+  static const ellipse = 'assets/icons/ellipse.svg';
 }
 
 class LoonoColors {

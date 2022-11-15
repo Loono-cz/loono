@@ -64,13 +64,13 @@ class ExaminationBadge extends StatelessWidget {
                           ExaminationCategoryType
                               .CUSTOM //TODO: customExamCount is probably only for first examination.
                       ? SvgPicture.asset(
-                          '${LoonoAssets.examinationCardSuccessIcon}'
-                          '${disabled ? '_disabled.svg' : '_award.svg'}', //TODO Logic about custom exam rewards ??
+                          '${LoonoAssets.customExamBadge}'
+                          '${disabled ? '_disabled.svg' : '_award.svg'}',
                         )
                       : _buildIcon(),
                 ),
               ),
-              if (badgeState == BadgeState.redBadge) SvgPicture.asset('assets/icons/ellipse.svg'),
+              if (badgeState == BadgeState.redBadge) SvgPicture.asset(LoonoAssets.ellipse),
             ],
           ),
         ),
