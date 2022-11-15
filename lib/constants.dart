@@ -6,7 +6,6 @@ class LoonoAssets {
   static const cgiLogo = 'assets/sponsors/CGI.svg';
   static const mzcrLogo = 'assets/sponsors/mzcr.svg';
 
-
   static const customExamBadge = 'assets/badges_examination/custom_examination/badge';
   static const examinationCardSuccessIcon = 'assets/icons/prevention/success_checkmark.svg';
 
