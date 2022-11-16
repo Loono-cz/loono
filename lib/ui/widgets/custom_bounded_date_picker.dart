@@ -7,8 +7,9 @@ const _itemHeight = 40.0;
 
 enum ColumnType { day, month, year }
 
-class DatePicker extends StatefulWidget {
-  DatePicker({
+/// Date picker to select date in range between [minDate] and [maxDate]
+class CustomBoundedDatePicker extends StatefulWidget {
+  CustomBoundedDatePicker({
     Key? key,
     required this.valueChanged,
     required this.defaultDate,
@@ -33,7 +34,7 @@ class DatePicker extends StatefulWidget {
   final bool animated;
 
   @override
-  DatePickerState createState() => DatePickerState();
+  CustomBoundedDatePickerState createState() => CustomBoundedDatePickerState();
 
   int getDefaultYear() {
     return defaultDate.year;
@@ -72,7 +73,7 @@ class DatePicker extends StatefulWidget {
   }
 }
 
-class DatePickerState extends State<DatePicker> {
+class CustomBoundedDatePickerState extends State<CustomBoundedDatePicker> {
   late int _selectedDay = -1;
   late int _selectedMonth = -1;
   late int _selectedYearIndex = -1;

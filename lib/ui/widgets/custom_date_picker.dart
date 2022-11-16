@@ -7,6 +7,7 @@ const _itemHeight = 40.0;
 
 enum ColumnType { day, month, year }
 
+/// Basic date picker
 class CustomDatePicker extends StatefulWidget {
   CustomDatePicker({
     Key? key,
