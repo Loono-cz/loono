@@ -147,11 +147,11 @@ class DatePickerState extends State<DatePicker> {
     final isSet = _isSetDefaultDate();
 
     if (isSet) {
-      if (_lastAvailableMonths.length != _getAvailableMonths().length) {
+      if (!_lastAvailableMonths.isSameAs(_getAvailableMonths())) {
         _lastAvailableMonths = _getAvailableMonths();
         _moveTo(_monthController, _getSelectedMonthIndex());
       }
-      if (_lastAvailableDays.length != _getAvailableDays().length) {
+      if (!_lastAvailableDays.isSameAs(_getAvailableDays())) {
         _lastAvailableDays = _getAvailableDays();
         _moveTo(_dayController, _getSelectedDayIndex());
       }
@@ -229,22 +229,24 @@ class DatePickerState extends State<DatePicker> {
   }
 
   int _getSelectedMonthIndex() {
-    return _getSelectedItemIndex(
+    final index = _getSelectedItemIndex(
       _selectedMonth,
       _getAvailableMonths().keys.toList(),
     );
+    return index >= 0 ? index : 0;
   }
 
-  int _getSelectedItemIndex(int selected, List<int> values) {
+  int _getSelectedItemIndex(final int selected, final List<int> values) {
+    var select = selected;
     var index = -1;
-    while (index == -1 && selected >= 0) {
+    while (index == -1 && select >= 0) {
       index = values.indexOf(selected);
-      selected--;
+      select--;
     }
-    selected = _selectedDay;
-    while (index == -1 && selected < values.length) {
-      index = values.indexOf(selected);
-      selected++;
+    select = selected;
+    while (index == -1 && select < values.length) {
+      index = values.indexOf(select);
+      select++;
     }
     return index;
   }
@@ -291,7 +293,7 @@ class DatePickerState extends State<DatePicker> {
       final months = <int, String>{};
       final minMonth = widget.minDate.month;
 
-      var monthIndex = 1;
+      var monthIndex = 0;
 
       while (monthIndex < 12) {
         final month = monthIndex + 1;
@@ -333,7 +335,7 @@ class DatePickerState extends State<DatePicker> {
         day--;
       }
 
-      return days;
+      return days.reversed.toList();
     } else if (_isMaxMonth()) {
       final days = <int>[];
 
@@ -456,5 +458,23 @@ class DatePickerState extends State<DatePicker> {
         break;
     }
     widget.valueChanged(datePickerDate);
+  }
+}
+
+extension _MonthsMapExt on Map<int, String> {
+  bool isSameAs(final Map<int, String> other) {
+    return keys.toList().isSameAs(other.keys.toList());
+  }
+}
+
+extension _IntListExt on List<int> {
+  bool isSameAs(final List<int> other) {
+    if (length != other.length) return false;
+    for (final item in this) {
+      if (!other.contains(item)) {
+        return false;
+      }
+    }
+    return true;
   }
 }
