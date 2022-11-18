@@ -27,10 +27,10 @@ mixin _$AuthFailure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? message, String? errCode)? unknown,
-    TResult? Function()? noMessage,
-    TResult? Function(SocialLoginAccount socialLoginAccount)? accountNotExists,
-    TResult? Function(String? message)? network,
+    TResult Function(String? message, String? errCode)? unknown,
+    TResult Function()? noMessage,
+    TResult Function(SocialLoginAccount socialLoginAccount)? accountNotExists,
+    TResult Function(String? message)? network,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -52,10 +52,10 @@ mixin _$AuthFailure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(UnknownFailure value)? unknown,
-    TResult? Function(NoMessageFailure value)? noMessage,
-    TResult? Function(AccountNotExists value)? accountNotExists,
-    TResult? Function(NetworkFailure value)? network,
+    TResult Function(UnknownFailure value)? unknown,
+    TResult Function(NoMessageFailure value)? noMessage,
+    TResult Function(AccountNotExists value)? accountNotExists,
+    TResult Function(NetworkFailure value)? network,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -73,18 +73,16 @@ mixin _$AuthFailure {
 abstract class $AuthFailureCopyWith<$Res> {
   factory $AuthFailureCopyWith(
           AuthFailure value, $Res Function(AuthFailure) then) =
-      _$AuthFailureCopyWithImpl<$Res, AuthFailure>;
+      _$AuthFailureCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$AuthFailureCopyWithImpl<$Res, $Val extends AuthFailure>
-    implements $AuthFailureCopyWith<$Res> {
+class _$AuthFailureCopyWithImpl<$Res> implements $AuthFailureCopyWith<$Res> {
   _$AuthFailureCopyWithImpl(this._value, this._then);
 
+  final AuthFailure _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(AuthFailure) _then;
 }
 
 /// @nodoc
@@ -92,30 +90,31 @@ abstract class _$$UnknownFailureCopyWith<$Res> {
   factory _$$UnknownFailureCopyWith(
           _$UnknownFailure value, $Res Function(_$UnknownFailure) then) =
       __$$UnknownFailureCopyWithImpl<$Res>;
-  @useResult
   $Res call({String? message, String? errCode});
 }
 
 /// @nodoc
 class __$$UnknownFailureCopyWithImpl<$Res>
-    extends _$AuthFailureCopyWithImpl<$Res, _$UnknownFailure>
+    extends _$AuthFailureCopyWithImpl<$Res>
     implements _$$UnknownFailureCopyWith<$Res> {
   __$$UnknownFailureCopyWithImpl(
       _$UnknownFailure _value, $Res Function(_$UnknownFailure) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$UnknownFailure));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$UnknownFailure get _value => super._value as _$UnknownFailure;
+
   @override
   $Res call({
     Object? message = freezed,
     Object? errCode = freezed,
   }) {
     return _then(_$UnknownFailure(
-      freezed == message
+      message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
-      freezed == errCode
+      errCode == freezed
           ? _value.errCode
           : errCode // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -143,16 +142,18 @@ class _$UnknownFailure extends UnknownFailure {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UnknownFailure &&
-            (identical(other.message, message) || other.message == message) &&
-            (identical(other.errCode, errCode) || other.errCode == errCode));
+            const DeepCollectionEquality().equals(other.message, message) &&
+            const DeepCollectionEquality().equals(other.errCode, errCode));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message, errCode);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(message),
+      const DeepCollectionEquality().hash(errCode));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$UnknownFailureCopyWith<_$UnknownFailure> get copyWith =>
       __$$UnknownFailureCopyWithImpl<_$UnknownFailure>(this, _$identity);
 
@@ -171,10 +172,10 @@ class _$UnknownFailure extends UnknownFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? message, String? errCode)? unknown,
-    TResult? Function()? noMessage,
-    TResult? Function(SocialLoginAccount socialLoginAccount)? accountNotExists,
-    TResult? Function(String? message)? network,
+    TResult Function(String? message, String? errCode)? unknown,
+    TResult Function()? noMessage,
+    TResult Function(SocialLoginAccount socialLoginAccount)? accountNotExists,
+    TResult Function(String? message)? network,
   }) {
     return unknown?.call(message, errCode);
   }
@@ -208,10 +209,10 @@ class _$UnknownFailure extends UnknownFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(UnknownFailure value)? unknown,
-    TResult? Function(NoMessageFailure value)? noMessage,
-    TResult? Function(AccountNotExists value)? accountNotExists,
-    TResult? Function(NetworkFailure value)? network,
+    TResult Function(UnknownFailure value)? unknown,
+    TResult Function(NoMessageFailure value)? noMessage,
+    TResult Function(AccountNotExists value)? accountNotExists,
+    TResult Function(NetworkFailure value)? network,
   }) {
     return unknown?.call(this);
   }
@@ -253,11 +254,14 @@ abstract class _$$NoMessageFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$NoMessageFailureCopyWithImpl<$Res>
-    extends _$AuthFailureCopyWithImpl<$Res, _$NoMessageFailure>
+    extends _$AuthFailureCopyWithImpl<$Res>
     implements _$$NoMessageFailureCopyWith<$Res> {
   __$$NoMessageFailureCopyWithImpl(
       _$NoMessageFailure _value, $Res Function(_$NoMessageFailure) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$NoMessageFailure));
+
+  @override
+  _$NoMessageFailure get _value => super._value as _$NoMessageFailure;
 }
 
 /// @nodoc
@@ -294,10 +298,10 @@ class _$NoMessageFailure extends NoMessageFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? message, String? errCode)? unknown,
-    TResult? Function()? noMessage,
-    TResult? Function(SocialLoginAccount socialLoginAccount)? accountNotExists,
-    TResult? Function(String? message)? network,
+    TResult Function(String? message, String? errCode)? unknown,
+    TResult Function()? noMessage,
+    TResult Function(SocialLoginAccount socialLoginAccount)? accountNotExists,
+    TResult Function(String? message)? network,
   }) {
     return noMessage?.call();
   }
@@ -331,10 +335,10 @@ class _$NoMessageFailure extends NoMessageFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(UnknownFailure value)? unknown,
-    TResult? Function(NoMessageFailure value)? noMessage,
-    TResult? Function(AccountNotExists value)? accountNotExists,
-    TResult? Function(NetworkFailure value)? network,
+    TResult Function(UnknownFailure value)? unknown,
+    TResult Function(NoMessageFailure value)? noMessage,
+    TResult Function(AccountNotExists value)? accountNotExists,
+    TResult Function(NetworkFailure value)? network,
   }) {
     return noMessage?.call(this);
   }
@@ -365,25 +369,26 @@ abstract class _$$AccountNotExistsCopyWith<$Res> {
   factory _$$AccountNotExistsCopyWith(
           _$AccountNotExists value, $Res Function(_$AccountNotExists) then) =
       __$$AccountNotExistsCopyWithImpl<$Res>;
-  @useResult
   $Res call({SocialLoginAccount socialLoginAccount});
 }
 
 /// @nodoc
 class __$$AccountNotExistsCopyWithImpl<$Res>
-    extends _$AuthFailureCopyWithImpl<$Res, _$AccountNotExists>
+    extends _$AuthFailureCopyWithImpl<$Res>
     implements _$$AccountNotExistsCopyWith<$Res> {
   __$$AccountNotExistsCopyWithImpl(
       _$AccountNotExists _value, $Res Function(_$AccountNotExists) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$AccountNotExists));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$AccountNotExists get _value => super._value as _$AccountNotExists;
+
   @override
   $Res call({
-    Object? socialLoginAccount = null,
+    Object? socialLoginAccount = freezed,
   }) {
     return _then(_$AccountNotExists(
-      null == socialLoginAccount
+      socialLoginAccount == freezed
           ? _value.socialLoginAccount
           : socialLoginAccount // ignore: cast_nullable_to_non_nullable
               as SocialLoginAccount,
@@ -409,16 +414,16 @@ class _$AccountNotExists extends AccountNotExists {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AccountNotExists &&
-            (identical(other.socialLoginAccount, socialLoginAccount) ||
-                other.socialLoginAccount == socialLoginAccount));
+            const DeepCollectionEquality()
+                .equals(other.socialLoginAccount, socialLoginAccount));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, socialLoginAccount);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(socialLoginAccount));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$AccountNotExistsCopyWith<_$AccountNotExists> get copyWith =>
       __$$AccountNotExistsCopyWithImpl<_$AccountNotExists>(this, _$identity);
 
@@ -437,10 +442,10 @@ class _$AccountNotExists extends AccountNotExists {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? message, String? errCode)? unknown,
-    TResult? Function()? noMessage,
-    TResult? Function(SocialLoginAccount socialLoginAccount)? accountNotExists,
-    TResult? Function(String? message)? network,
+    TResult Function(String? message, String? errCode)? unknown,
+    TResult Function()? noMessage,
+    TResult Function(SocialLoginAccount socialLoginAccount)? accountNotExists,
+    TResult Function(String? message)? network,
   }) {
     return accountNotExists?.call(socialLoginAccount);
   }
@@ -474,10 +479,10 @@ class _$AccountNotExists extends AccountNotExists {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(UnknownFailure value)? unknown,
-    TResult? Function(NoMessageFailure value)? noMessage,
-    TResult? Function(AccountNotExists value)? accountNotExists,
-    TResult? Function(NetworkFailure value)? network,
+    TResult Function(UnknownFailure value)? unknown,
+    TResult Function(NoMessageFailure value)? noMessage,
+    TResult Function(AccountNotExists value)? accountNotExists,
+    TResult Function(NetworkFailure value)? network,
   }) {
     return accountNotExists?.call(this);
   }
@@ -514,25 +519,26 @@ abstract class _$$NetworkFailureCopyWith<$Res> {
   factory _$$NetworkFailureCopyWith(
           _$NetworkFailure value, $Res Function(_$NetworkFailure) then) =
       __$$NetworkFailureCopyWithImpl<$Res>;
-  @useResult
   $Res call({String? message});
 }
 
 /// @nodoc
 class __$$NetworkFailureCopyWithImpl<$Res>
-    extends _$AuthFailureCopyWithImpl<$Res, _$NetworkFailure>
+    extends _$AuthFailureCopyWithImpl<$Res>
     implements _$$NetworkFailureCopyWith<$Res> {
   __$$NetworkFailureCopyWithImpl(
       _$NetworkFailure _value, $Res Function(_$NetworkFailure) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$NetworkFailure));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$NetworkFailure get _value => super._value as _$NetworkFailure;
+
   @override
   $Res call({
     Object? message = freezed,
   }) {
     return _then(_$NetworkFailure(
-      freezed == message
+      message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -558,15 +564,15 @@ class _$NetworkFailure extends NetworkFailure {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NetworkFailure &&
-            (identical(other.message, message) || other.message == message));
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$NetworkFailureCopyWith<_$NetworkFailure> get copyWith =>
       __$$NetworkFailureCopyWithImpl<_$NetworkFailure>(this, _$identity);
 
@@ -585,10 +591,10 @@ class _$NetworkFailure extends NetworkFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? message, String? errCode)? unknown,
-    TResult? Function()? noMessage,
-    TResult? Function(SocialLoginAccount socialLoginAccount)? accountNotExists,
-    TResult? Function(String? message)? network,
+    TResult Function(String? message, String? errCode)? unknown,
+    TResult Function()? noMessage,
+    TResult Function(SocialLoginAccount socialLoginAccount)? accountNotExists,
+    TResult Function(String? message)? network,
   }) {
     return network?.call(message);
   }
@@ -622,10 +628,10 @@ class _$NetworkFailure extends NetworkFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(UnknownFailure value)? unknown,
-    TResult? Function(NoMessageFailure value)? noMessage,
-    TResult? Function(AccountNotExists value)? accountNotExists,
-    TResult? Function(NetworkFailure value)? network,
+    TResult Function(UnknownFailure value)? unknown,
+    TResult Function(NoMessageFailure value)? noMessage,
+    TResult Function(AccountNotExists value)? accountNotExists,
+    TResult Function(NetworkFailure value)? network,
   }) {
     return network?.call(this);
   }

@@ -86,7 +86,7 @@ class ProgressDot extends StatelessWidget {
       ),
       child: Align(
         child: style == ProgressDotStyle.done
-            ? SvgPicture.asset('assets/icons/check.svg', width: 16.0)
+            ? SvgPicture.asset(LoonoAssets.check, width: 16.0)
             : Text(
                 text,
                 style: TextStyle(

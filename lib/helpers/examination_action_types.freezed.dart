@@ -26,10 +26,10 @@ mixin _$ExaminationActionTypeUnion {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? examination,
-    TResult? Function()? control,
-    TResult? Function()? bloodcollection,
-    TResult? Function()? visualizationmethods,
+    TResult Function()? examination,
+    TResult Function()? control,
+    TResult Function()? bloodcollection,
+    TResult Function()? visualizationmethods,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -52,10 +52,10 @@ mixin _$ExaminationActionTypeUnion {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ExaminationUnion value)? examination,
-    TResult? Function(ControlUnion value)? control,
-    TResult? Function(BloodcollectionUnion value)? bloodcollection,
-    TResult? Function(VisualizationMethodsUnion value)? visualizationmethods,
+    TResult Function(ExaminationUnion value)? examination,
+    TResult Function(ControlUnion value)? control,
+    TResult Function(BloodcollectionUnion value)? bloodcollection,
+    TResult Function(VisualizationMethodsUnion value)? visualizationmethods,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -73,20 +73,17 @@ mixin _$ExaminationActionTypeUnion {
 abstract class $ExaminationActionTypeUnionCopyWith<$Res> {
   factory $ExaminationActionTypeUnionCopyWith(ExaminationActionTypeUnion value,
           $Res Function(ExaminationActionTypeUnion) then) =
-      _$ExaminationActionTypeUnionCopyWithImpl<$Res,
-          ExaminationActionTypeUnion>;
+      _$ExaminationActionTypeUnionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ExaminationActionTypeUnionCopyWithImpl<$Res,
-        $Val extends ExaminationActionTypeUnion>
+class _$ExaminationActionTypeUnionCopyWithImpl<$Res>
     implements $ExaminationActionTypeUnionCopyWith<$Res> {
   _$ExaminationActionTypeUnionCopyWithImpl(this._value, this._then);
 
+  final ExaminationActionTypeUnion _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(ExaminationActionTypeUnion) _then;
 }
 
 /// @nodoc
@@ -98,11 +95,14 @@ abstract class _$$ExaminationUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$ExaminationUnionCopyWithImpl<$Res>
-    extends _$ExaminationActionTypeUnionCopyWithImpl<$Res, _$ExaminationUnion>
+    extends _$ExaminationActionTypeUnionCopyWithImpl<$Res>
     implements _$$ExaminationUnionCopyWith<$Res> {
   __$$ExaminationUnionCopyWithImpl(
       _$ExaminationUnion _value, $Res Function(_$ExaminationUnion) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$ExaminationUnion));
+
+  @override
+  _$ExaminationUnion get _value => super._value as _$ExaminationUnion;
 }
 
 /// @nodoc
@@ -138,10 +138,10 @@ class _$ExaminationUnion extends ExaminationUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? examination,
-    TResult? Function()? control,
-    TResult? Function()? bloodcollection,
-    TResult? Function()? visualizationmethods,
+    TResult Function()? examination,
+    TResult Function()? control,
+    TResult Function()? bloodcollection,
+    TResult Function()? visualizationmethods,
   }) {
     return examination?.call();
   }
@@ -176,10 +176,10 @@ class _$ExaminationUnion extends ExaminationUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ExaminationUnion value)? examination,
-    TResult? Function(ControlUnion value)? control,
-    TResult? Function(BloodcollectionUnion value)? bloodcollection,
-    TResult? Function(VisualizationMethodsUnion value)? visualizationmethods,
+    TResult Function(ExaminationUnion value)? examination,
+    TResult Function(ControlUnion value)? control,
+    TResult Function(BloodcollectionUnion value)? bloodcollection,
+    TResult Function(VisualizationMethodsUnion value)? visualizationmethods,
   }) {
     return examination?.call(this);
   }
@@ -214,11 +214,14 @@ abstract class _$$ControlUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$ControlUnionCopyWithImpl<$Res>
-    extends _$ExaminationActionTypeUnionCopyWithImpl<$Res, _$ControlUnion>
+    extends _$ExaminationActionTypeUnionCopyWithImpl<$Res>
     implements _$$ControlUnionCopyWith<$Res> {
   __$$ControlUnionCopyWithImpl(
       _$ControlUnion _value, $Res Function(_$ControlUnion) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$ControlUnion));
+
+  @override
+  _$ControlUnion get _value => super._value as _$ControlUnion;
 }
 
 /// @nodoc
@@ -254,10 +257,10 @@ class _$ControlUnion extends ControlUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? examination,
-    TResult? Function()? control,
-    TResult? Function()? bloodcollection,
-    TResult? Function()? visualizationmethods,
+    TResult Function()? examination,
+    TResult Function()? control,
+    TResult Function()? bloodcollection,
+    TResult Function()? visualizationmethods,
   }) {
     return control?.call();
   }
@@ -292,10 +295,10 @@ class _$ControlUnion extends ControlUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ExaminationUnion value)? examination,
-    TResult? Function(ControlUnion value)? control,
-    TResult? Function(BloodcollectionUnion value)? bloodcollection,
-    TResult? Function(VisualizationMethodsUnion value)? visualizationmethods,
+    TResult Function(ExaminationUnion value)? examination,
+    TResult Function(ControlUnion value)? control,
+    TResult Function(BloodcollectionUnion value)? bloodcollection,
+    TResult Function(VisualizationMethodsUnion value)? visualizationmethods,
   }) {
     return control?.call(this);
   }
@@ -330,12 +333,14 @@ abstract class _$$BloodcollectionUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$BloodcollectionUnionCopyWithImpl<$Res>
-    extends _$ExaminationActionTypeUnionCopyWithImpl<$Res,
-        _$BloodcollectionUnion>
+    extends _$ExaminationActionTypeUnionCopyWithImpl<$Res>
     implements _$$BloodcollectionUnionCopyWith<$Res> {
   __$$BloodcollectionUnionCopyWithImpl(_$BloodcollectionUnion _value,
       $Res Function(_$BloodcollectionUnion) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$BloodcollectionUnion));
+
+  @override
+  _$BloodcollectionUnion get _value => super._value as _$BloodcollectionUnion;
 }
 
 /// @nodoc
@@ -371,10 +376,10 @@ class _$BloodcollectionUnion extends BloodcollectionUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? examination,
-    TResult? Function()? control,
-    TResult? Function()? bloodcollection,
-    TResult? Function()? visualizationmethods,
+    TResult Function()? examination,
+    TResult Function()? control,
+    TResult Function()? bloodcollection,
+    TResult Function()? visualizationmethods,
   }) {
     return bloodcollection?.call();
   }
@@ -409,10 +414,10 @@ class _$BloodcollectionUnion extends BloodcollectionUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ExaminationUnion value)? examination,
-    TResult? Function(ControlUnion value)? control,
-    TResult? Function(BloodcollectionUnion value)? bloodcollection,
-    TResult? Function(VisualizationMethodsUnion value)? visualizationmethods,
+    TResult Function(ExaminationUnion value)? examination,
+    TResult Function(ControlUnion value)? control,
+    TResult Function(BloodcollectionUnion value)? bloodcollection,
+    TResult Function(VisualizationMethodsUnion value)? visualizationmethods,
   }) {
     return bloodcollection?.call(this);
   }
@@ -448,12 +453,15 @@ abstract class _$$VisualizationMethodsUnionCopyWith<$Res> {
 
 /// @nodoc
 class __$$VisualizationMethodsUnionCopyWithImpl<$Res>
-    extends _$ExaminationActionTypeUnionCopyWithImpl<$Res,
-        _$VisualizationMethodsUnion>
+    extends _$ExaminationActionTypeUnionCopyWithImpl<$Res>
     implements _$$VisualizationMethodsUnionCopyWith<$Res> {
   __$$VisualizationMethodsUnionCopyWithImpl(_$VisualizationMethodsUnion _value,
       $Res Function(_$VisualizationMethodsUnion) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$VisualizationMethodsUnion));
+
+  @override
+  _$VisualizationMethodsUnion get _value =>
+      super._value as _$VisualizationMethodsUnion;
 }
 
 /// @nodoc
@@ -490,10 +498,10 @@ class _$VisualizationMethodsUnion extends VisualizationMethodsUnion {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? examination,
-    TResult? Function()? control,
-    TResult? Function()? bloodcollection,
-    TResult? Function()? visualizationmethods,
+    TResult Function()? examination,
+    TResult Function()? control,
+    TResult Function()? bloodcollection,
+    TResult Function()? visualizationmethods,
   }) {
     return visualizationmethods?.call();
   }
@@ -528,10 +536,10 @@ class _$VisualizationMethodsUnion extends VisualizationMethodsUnion {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ExaminationUnion value)? examination,
-    TResult? Function(ControlUnion value)? control,
-    TResult? Function(BloodcollectionUnion value)? bloodcollection,
-    TResult? Function(VisualizationMethodsUnion value)? visualizationmethods,
+    TResult Function(ExaminationUnion value)? examination,
+    TResult Function(ControlUnion value)? control,
+    TResult Function(BloodcollectionUnion value)? bloodcollection,
+    TResult Function(VisualizationMethodsUnion value)? visualizationmethods,
   }) {
     return visualizationmethods?.call(this);
   }

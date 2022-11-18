@@ -33,37 +33,34 @@ mixin _$DateWithoutDay {
 abstract class $DateWithoutDayCopyWith<$Res> {
   factory $DateWithoutDayCopyWith(
           DateWithoutDay value, $Res Function(DateWithoutDay) then) =
-      _$DateWithoutDayCopyWithImpl<$Res, DateWithoutDay>;
-  @useResult
+      _$DateWithoutDayCopyWithImpl<$Res>;
   $Res call({Months month, int year});
 }
 
 /// @nodoc
-class _$DateWithoutDayCopyWithImpl<$Res, $Val extends DateWithoutDay>
+class _$DateWithoutDayCopyWithImpl<$Res>
     implements $DateWithoutDayCopyWith<$Res> {
   _$DateWithoutDayCopyWithImpl(this._value, this._then);
 
+  final DateWithoutDay _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(DateWithoutDay) _then;
 
-  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? month = null,
-    Object? year = null,
+    Object? month = freezed,
+    Object? year = freezed,
   }) {
     return _then(_value.copyWith(
-      month: null == month
+      month: month == freezed
           ? _value.month
           : month // ignore: cast_nullable_to_non_nullable
               as Months,
-      year: null == year
+      year: year == freezed
           ? _value.year
           : year // ignore: cast_nullable_to_non_nullable
               as int,
-    ) as $Val);
+    ));
   }
 }
 
@@ -74,30 +71,31 @@ abstract class _$$_DateWithoutDayCopyWith<$Res>
           _$_DateWithoutDay value, $Res Function(_$_DateWithoutDay) then) =
       __$$_DateWithoutDayCopyWithImpl<$Res>;
   @override
-  @useResult
   $Res call({Months month, int year});
 }
 
 /// @nodoc
 class __$$_DateWithoutDayCopyWithImpl<$Res>
-    extends _$DateWithoutDayCopyWithImpl<$Res, _$_DateWithoutDay>
+    extends _$DateWithoutDayCopyWithImpl<$Res>
     implements _$$_DateWithoutDayCopyWith<$Res> {
   __$$_DateWithoutDayCopyWithImpl(
       _$_DateWithoutDay _value, $Res Function(_$_DateWithoutDay) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_DateWithoutDay));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_DateWithoutDay get _value => super._value as _$_DateWithoutDay;
+
   @override
   $Res call({
-    Object? month = null,
-    Object? year = null,
+    Object? month = freezed,
+    Object? year = freezed,
   }) {
     return _then(_$_DateWithoutDay(
-      month: null == month
+      month: month == freezed
           ? _value.month
           : month // ignore: cast_nullable_to_non_nullable
               as Months,
-      year: null == year
+      year: year == freezed
           ? _value.year
           : year // ignore: cast_nullable_to_non_nullable
               as int,
@@ -128,17 +126,19 @@ class _$_DateWithoutDay implements _DateWithoutDay {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_DateWithoutDay &&
-            (identical(other.month, month) || other.month == month) &&
-            (identical(other.year, year) || other.year == year));
+            const DeepCollectionEquality().equals(other.month, month) &&
+            const DeepCollectionEquality().equals(other.year, year));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, month, year);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(month),
+      const DeepCollectionEquality().hash(year));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_DateWithoutDayCopyWith<_$_DateWithoutDay> get copyWith =>
       __$$_DateWithoutDayCopyWithImpl<_$_DateWithoutDay>(this, _$identity);
 

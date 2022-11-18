@@ -27,11 +27,11 @@ mixin _$SelfExaminationCategory {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? first,
-    TResult? Function()? active,
-    TResult? Function()? waiting,
-    TResult? Function()? hasFinding,
-    TResult? Function()? hasFindingExpectingResult,
+    TResult Function()? first,
+    TResult Function()? active,
+    TResult Function()? waiting,
+    TResult Function()? hasFinding,
+    TResult Function()? hasFindingExpectingResult,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,11 +56,11 @@ mixin _$SelfExaminationCategory {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FirstSelfExamination value)? first,
-    TResult? Function(ActiveSelfExamination value)? active,
-    TResult? Function(WaitingSelfExamination value)? waiting,
-    TResult? Function(HasFindingSelfExamination value)? hasFinding,
-    TResult? Function(HasFindingExpectingResultSelfExamination value)?
+    TResult Function(FirstSelfExamination value)? first,
+    TResult Function(ActiveSelfExamination value)? active,
+    TResult Function(WaitingSelfExamination value)? waiting,
+    TResult Function(HasFindingSelfExamination value)? hasFinding,
+    TResult Function(HasFindingExpectingResultSelfExamination value)?
         hasFindingExpectingResult,
   }) =>
       throw _privateConstructorUsedError;
@@ -81,19 +81,17 @@ mixin _$SelfExaminationCategory {
 abstract class $SelfExaminationCategoryCopyWith<$Res> {
   factory $SelfExaminationCategoryCopyWith(SelfExaminationCategory value,
           $Res Function(SelfExaminationCategory) then) =
-      _$SelfExaminationCategoryCopyWithImpl<$Res, SelfExaminationCategory>;
+      _$SelfExaminationCategoryCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SelfExaminationCategoryCopyWithImpl<$Res,
-        $Val extends SelfExaminationCategory>
+class _$SelfExaminationCategoryCopyWithImpl<$Res>
     implements $SelfExaminationCategoryCopyWith<$Res> {
   _$SelfExaminationCategoryCopyWithImpl(this._value, this._then);
 
+  final SelfExaminationCategory _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(SelfExaminationCategory) _then;
 }
 
 /// @nodoc
@@ -105,11 +103,14 @@ abstract class _$$FirstSelfExaminationCopyWith<$Res> {
 
 /// @nodoc
 class __$$FirstSelfExaminationCopyWithImpl<$Res>
-    extends _$SelfExaminationCategoryCopyWithImpl<$Res, _$FirstSelfExamination>
+    extends _$SelfExaminationCategoryCopyWithImpl<$Res>
     implements _$$FirstSelfExaminationCopyWith<$Res> {
   __$$FirstSelfExaminationCopyWithImpl(_$FirstSelfExamination _value,
       $Res Function(_$FirstSelfExamination) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$FirstSelfExamination));
+
+  @override
+  _$FirstSelfExamination get _value => super._value as _$FirstSelfExamination;
 }
 
 /// @nodoc
@@ -146,11 +147,11 @@ class _$FirstSelfExamination extends FirstSelfExamination {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? first,
-    TResult? Function()? active,
-    TResult? Function()? waiting,
-    TResult? Function()? hasFinding,
-    TResult? Function()? hasFindingExpectingResult,
+    TResult Function()? first,
+    TResult Function()? active,
+    TResult Function()? waiting,
+    TResult Function()? hasFinding,
+    TResult Function()? hasFindingExpectingResult,
   }) {
     return first?.call();
   }
@@ -187,11 +188,11 @@ class _$FirstSelfExamination extends FirstSelfExamination {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FirstSelfExamination value)? first,
-    TResult? Function(ActiveSelfExamination value)? active,
-    TResult? Function(WaitingSelfExamination value)? waiting,
-    TResult? Function(HasFindingSelfExamination value)? hasFinding,
-    TResult? Function(HasFindingExpectingResultSelfExamination value)?
+    TResult Function(FirstSelfExamination value)? first,
+    TResult Function(ActiveSelfExamination value)? active,
+    TResult Function(WaitingSelfExamination value)? waiting,
+    TResult Function(HasFindingSelfExamination value)? hasFinding,
+    TResult Function(HasFindingExpectingResultSelfExamination value)?
         hasFindingExpectingResult,
   }) {
     return first?.call(this);
@@ -229,11 +230,14 @@ abstract class _$$ActiveSelfExaminationCopyWith<$Res> {
 
 /// @nodoc
 class __$$ActiveSelfExaminationCopyWithImpl<$Res>
-    extends _$SelfExaminationCategoryCopyWithImpl<$Res, _$ActiveSelfExamination>
+    extends _$SelfExaminationCategoryCopyWithImpl<$Res>
     implements _$$ActiveSelfExaminationCopyWith<$Res> {
   __$$ActiveSelfExaminationCopyWithImpl(_$ActiveSelfExamination _value,
       $Res Function(_$ActiveSelfExamination) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$ActiveSelfExamination));
+
+  @override
+  _$ActiveSelfExamination get _value => super._value as _$ActiveSelfExamination;
 }
 
 /// @nodoc
@@ -270,11 +274,11 @@ class _$ActiveSelfExamination extends ActiveSelfExamination {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? first,
-    TResult? Function()? active,
-    TResult? Function()? waiting,
-    TResult? Function()? hasFinding,
-    TResult? Function()? hasFindingExpectingResult,
+    TResult Function()? first,
+    TResult Function()? active,
+    TResult Function()? waiting,
+    TResult Function()? hasFinding,
+    TResult Function()? hasFindingExpectingResult,
   }) {
     return active?.call();
   }
@@ -311,11 +315,11 @@ class _$ActiveSelfExamination extends ActiveSelfExamination {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FirstSelfExamination value)? first,
-    TResult? Function(ActiveSelfExamination value)? active,
-    TResult? Function(WaitingSelfExamination value)? waiting,
-    TResult? Function(HasFindingSelfExamination value)? hasFinding,
-    TResult? Function(HasFindingExpectingResultSelfExamination value)?
+    TResult Function(FirstSelfExamination value)? first,
+    TResult Function(ActiveSelfExamination value)? active,
+    TResult Function(WaitingSelfExamination value)? waiting,
+    TResult Function(HasFindingSelfExamination value)? hasFinding,
+    TResult Function(HasFindingExpectingResultSelfExamination value)?
         hasFindingExpectingResult,
   }) {
     return active?.call(this);
@@ -353,12 +357,15 @@ abstract class _$$WaitingSelfExaminationCopyWith<$Res> {
 
 /// @nodoc
 class __$$WaitingSelfExaminationCopyWithImpl<$Res>
-    extends _$SelfExaminationCategoryCopyWithImpl<$Res,
-        _$WaitingSelfExamination>
+    extends _$SelfExaminationCategoryCopyWithImpl<$Res>
     implements _$$WaitingSelfExaminationCopyWith<$Res> {
   __$$WaitingSelfExaminationCopyWithImpl(_$WaitingSelfExamination _value,
       $Res Function(_$WaitingSelfExamination) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$WaitingSelfExamination));
+
+  @override
+  _$WaitingSelfExamination get _value =>
+      super._value as _$WaitingSelfExamination;
 }
 
 /// @nodoc
@@ -395,11 +402,11 @@ class _$WaitingSelfExamination extends WaitingSelfExamination {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? first,
-    TResult? Function()? active,
-    TResult? Function()? waiting,
-    TResult? Function()? hasFinding,
-    TResult? Function()? hasFindingExpectingResult,
+    TResult Function()? first,
+    TResult Function()? active,
+    TResult Function()? waiting,
+    TResult Function()? hasFinding,
+    TResult Function()? hasFindingExpectingResult,
   }) {
     return waiting?.call();
   }
@@ -436,11 +443,11 @@ class _$WaitingSelfExamination extends WaitingSelfExamination {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FirstSelfExamination value)? first,
-    TResult? Function(ActiveSelfExamination value)? active,
-    TResult? Function(WaitingSelfExamination value)? waiting,
-    TResult? Function(HasFindingSelfExamination value)? hasFinding,
-    TResult? Function(HasFindingExpectingResultSelfExamination value)?
+    TResult Function(FirstSelfExamination value)? first,
+    TResult Function(ActiveSelfExamination value)? active,
+    TResult Function(WaitingSelfExamination value)? waiting,
+    TResult Function(HasFindingSelfExamination value)? hasFinding,
+    TResult Function(HasFindingExpectingResultSelfExamination value)?
         hasFindingExpectingResult,
   }) {
     return waiting?.call(this);
@@ -479,12 +486,15 @@ abstract class _$$HasFindingSelfExaminationCopyWith<$Res> {
 
 /// @nodoc
 class __$$HasFindingSelfExaminationCopyWithImpl<$Res>
-    extends _$SelfExaminationCategoryCopyWithImpl<$Res,
-        _$HasFindingSelfExamination>
+    extends _$SelfExaminationCategoryCopyWithImpl<$Res>
     implements _$$HasFindingSelfExaminationCopyWith<$Res> {
   __$$HasFindingSelfExaminationCopyWithImpl(_$HasFindingSelfExamination _value,
       $Res Function(_$HasFindingSelfExamination) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$HasFindingSelfExamination));
+
+  @override
+  _$HasFindingSelfExamination get _value =>
+      super._value as _$HasFindingSelfExamination;
 }
 
 /// @nodoc
@@ -522,11 +532,11 @@ class _$HasFindingSelfExamination extends HasFindingSelfExamination {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? first,
-    TResult? Function()? active,
-    TResult? Function()? waiting,
-    TResult? Function()? hasFinding,
-    TResult? Function()? hasFindingExpectingResult,
+    TResult Function()? first,
+    TResult Function()? active,
+    TResult Function()? waiting,
+    TResult Function()? hasFinding,
+    TResult Function()? hasFindingExpectingResult,
   }) {
     return hasFinding?.call();
   }
@@ -563,11 +573,11 @@ class _$HasFindingSelfExamination extends HasFindingSelfExamination {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FirstSelfExamination value)? first,
-    TResult? Function(ActiveSelfExamination value)? active,
-    TResult? Function(WaitingSelfExamination value)? waiting,
-    TResult? Function(HasFindingSelfExamination value)? hasFinding,
-    TResult? Function(HasFindingExpectingResultSelfExamination value)?
+    TResult Function(FirstSelfExamination value)? first,
+    TResult Function(ActiveSelfExamination value)? active,
+    TResult Function(WaitingSelfExamination value)? waiting,
+    TResult Function(HasFindingSelfExamination value)? hasFinding,
+    TResult Function(HasFindingExpectingResultSelfExamination value)?
         hasFindingExpectingResult,
   }) {
     return hasFinding?.call(this);
@@ -606,13 +616,17 @@ abstract class _$$HasFindingExpectingResultSelfExaminationCopyWith<$Res> {
 
 /// @nodoc
 class __$$HasFindingExpectingResultSelfExaminationCopyWithImpl<$Res>
-    extends _$SelfExaminationCategoryCopyWithImpl<$Res,
-        _$HasFindingExpectingResultSelfExamination>
+    extends _$SelfExaminationCategoryCopyWithImpl<$Res>
     implements _$$HasFindingExpectingResultSelfExaminationCopyWith<$Res> {
   __$$HasFindingExpectingResultSelfExaminationCopyWithImpl(
       _$HasFindingExpectingResultSelfExamination _value,
       $Res Function(_$HasFindingExpectingResultSelfExamination) _then)
-      : super(_value, _then);
+      : super(_value,
+            (v) => _then(v as _$HasFindingExpectingResultSelfExamination));
+
+  @override
+  _$HasFindingExpectingResultSelfExamination get _value =>
+      super._value as _$HasFindingExpectingResultSelfExamination;
 }
 
 /// @nodoc
@@ -651,11 +665,11 @@ class _$HasFindingExpectingResultSelfExamination
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? first,
-    TResult? Function()? active,
-    TResult? Function()? waiting,
-    TResult? Function()? hasFinding,
-    TResult? Function()? hasFindingExpectingResult,
+    TResult Function()? first,
+    TResult Function()? active,
+    TResult Function()? waiting,
+    TResult Function()? hasFinding,
+    TResult Function()? hasFindingExpectingResult,
   }) {
     return hasFindingExpectingResult?.call();
   }
@@ -692,11 +706,11 @@ class _$HasFindingExpectingResultSelfExamination
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FirstSelfExamination value)? first,
-    TResult? Function(ActiveSelfExamination value)? active,
-    TResult? Function(WaitingSelfExamination value)? waiting,
-    TResult? Function(HasFindingSelfExamination value)? hasFinding,
-    TResult? Function(HasFindingExpectingResultSelfExamination value)?
+    TResult Function(FirstSelfExamination value)? first,
+    TResult Function(ActiveSelfExamination value)? active,
+    TResult Function(WaitingSelfExamination value)? waiting,
+    TResult Function(HasFindingSelfExamination value)? hasFinding,
+    TResult Function(HasFindingExpectingResultSelfExamination value)?
         hasFindingExpectingResult,
   }) {
     return hasFindingExpectingResult?.call(this);

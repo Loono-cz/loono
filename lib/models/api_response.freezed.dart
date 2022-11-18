@@ -24,8 +24,8 @@ mixin _$ApiResponse<T> {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(T data)? success,
-    TResult? Function(DioError error)? failure,
+    TResult Function(T data)? success,
+    TResult Function(DioError error)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,8 +43,8 @@ mixin _$ApiResponse<T> {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SuccessApiResponse<T> value)? success,
-    TResult? Function(FailureApiResponse<T> value)? failure,
+    TResult Function(SuccessApiResponse<T> value)? success,
+    TResult Function(FailureApiResponse<T> value)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,18 +60,17 @@ mixin _$ApiResponse<T> {
 abstract class $ApiResponseCopyWith<T, $Res> {
   factory $ApiResponseCopyWith(
           ApiResponse<T> value, $Res Function(ApiResponse<T>) then) =
-      _$ApiResponseCopyWithImpl<T, $Res, ApiResponse<T>>;
+      _$ApiResponseCopyWithImpl<T, $Res>;
 }
 
 /// @nodoc
-class _$ApiResponseCopyWithImpl<T, $Res, $Val extends ApiResponse<T>>
+class _$ApiResponseCopyWithImpl<T, $Res>
     implements $ApiResponseCopyWith<T, $Res> {
   _$ApiResponseCopyWithImpl(this._value, this._then);
 
+  final ApiResponse<T> _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(ApiResponse<T>) _then;
 }
 
 /// @nodoc
@@ -79,25 +78,26 @@ abstract class _$$SuccessApiResponseCopyWith<T, $Res> {
   factory _$$SuccessApiResponseCopyWith(_$SuccessApiResponse<T> value,
           $Res Function(_$SuccessApiResponse<T>) then) =
       __$$SuccessApiResponseCopyWithImpl<T, $Res>;
-  @useResult
   $Res call({T data});
 }
 
 /// @nodoc
 class __$$SuccessApiResponseCopyWithImpl<T, $Res>
-    extends _$ApiResponseCopyWithImpl<T, $Res, _$SuccessApiResponse<T>>
+    extends _$ApiResponseCopyWithImpl<T, $Res>
     implements _$$SuccessApiResponseCopyWith<T, $Res> {
   __$$SuccessApiResponseCopyWithImpl(_$SuccessApiResponse<T> _value,
       $Res Function(_$SuccessApiResponse<T>) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$SuccessApiResponse<T>));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$SuccessApiResponse<T> get _value => super._value as _$SuccessApiResponse<T>;
+
   @override
   $Res call({
-    Object? data = null,
+    Object? data = freezed,
   }) {
     return _then(_$SuccessApiResponse<T>(
-      null == data
+      data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as T,
@@ -132,7 +132,6 @@ class _$SuccessApiResponse<T> extends SuccessApiResponse<T> {
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$SuccessApiResponseCopyWith<T, _$SuccessApiResponse<T>> get copyWith =>
       __$$SuccessApiResponseCopyWithImpl<T, _$SuccessApiResponse<T>>(
           this, _$identity);
@@ -149,8 +148,8 @@ class _$SuccessApiResponse<T> extends SuccessApiResponse<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(T data)? success,
-    TResult? Function(DioError error)? failure,
+    TResult Function(T data)? success,
+    TResult Function(DioError error)? failure,
   }) {
     return success?.call(data);
   }
@@ -180,8 +179,8 @@ class _$SuccessApiResponse<T> extends SuccessApiResponse<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SuccessApiResponse<T> value)? success,
-    TResult? Function(FailureApiResponse<T> value)? failure,
+    TResult Function(SuccessApiResponse<T> value)? success,
+    TResult Function(FailureApiResponse<T> value)? failure,
   }) {
     return success?.call(this);
   }
@@ -215,25 +214,26 @@ abstract class _$$FailureApiResponseCopyWith<T, $Res> {
   factory _$$FailureApiResponseCopyWith(_$FailureApiResponse<T> value,
           $Res Function(_$FailureApiResponse<T>) then) =
       __$$FailureApiResponseCopyWithImpl<T, $Res>;
-  @useResult
   $Res call({DioError error});
 }
 
 /// @nodoc
 class __$$FailureApiResponseCopyWithImpl<T, $Res>
-    extends _$ApiResponseCopyWithImpl<T, $Res, _$FailureApiResponse<T>>
+    extends _$ApiResponseCopyWithImpl<T, $Res>
     implements _$$FailureApiResponseCopyWith<T, $Res> {
   __$$FailureApiResponseCopyWithImpl(_$FailureApiResponse<T> _value,
       $Res Function(_$FailureApiResponse<T>) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$FailureApiResponse<T>));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$FailureApiResponse<T> get _value => super._value as _$FailureApiResponse<T>;
+
   @override
   $Res call({
-    Object? error = null,
+    Object? error = freezed,
   }) {
     return _then(_$FailureApiResponse<T>(
-      null == error
+      error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as DioError,
@@ -259,15 +259,15 @@ class _$FailureApiResponse<T> extends FailureApiResponse<T> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FailureApiResponse<T> &&
-            (identical(other.error, error) || other.error == error));
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, error);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$FailureApiResponseCopyWith<T, _$FailureApiResponse<T>> get copyWith =>
       __$$FailureApiResponseCopyWithImpl<T, _$FailureApiResponse<T>>(
           this, _$identity);
@@ -284,8 +284,8 @@ class _$FailureApiResponse<T> extends FailureApiResponse<T> {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(T data)? success,
-    TResult? Function(DioError error)? failure,
+    TResult Function(T data)? success,
+    TResult Function(DioError error)? failure,
   }) {
     return failure?.call(error);
   }
@@ -315,8 +315,8 @@ class _$FailureApiResponse<T> extends FailureApiResponse<T> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SuccessApiResponse<T> value)? success,
-    TResult? Function(FailureApiResponse<T> value)? failure,
+    TResult Function(SuccessApiResponse<T> value)? success,
+    TResult Function(FailureApiResponse<T> value)? failure,
   }) {
     return failure?.call(this);
   }
