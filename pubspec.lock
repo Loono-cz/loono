@@ -14,7 +14,7 @@ packages:
       name: _flutterfire_internals
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.8"
+    version: "1.0.9"
   adaptive_dialog:
     dependency: "direct main"
     description:
@@ -238,14 +238,14 @@ packages:
       name: cloud_firestore_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.8.5"
+    version: "5.9.0"
   cloud_firestore_web:
     dependency: transitive
     description:
       name: cloud_firestore_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.5"
+    version: "3.1.0"
   code_builder:
     dependency: transitive
     description:
@@ -287,7 +287,7 @@ packages:
       name: crop_your_image
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.2"
+    version: "0.7.3"
   cross_file:
     dependency: transitive
     description:
@@ -426,7 +426,7 @@ packages:
     description:
       path: "extras/encryption"
       ref: HEAD
-      resolved-ref: "75fe463a9fa5d344cff623828aec4b6bd5409205"
+      resolved-ref: f6830bcd68afecfd51aafc1462da796f14be1677
       url: "https://github.com/simolus3/drift.git"
     source: git
     version: "1.0.0"
@@ -457,49 +457,49 @@ packages:
       name: firebase_analytics
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "10.0.5"
+    version: "10.0.6"
   firebase_analytics_platform_interface:
     dependency: transitive
     description:
       name: firebase_analytics_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.3.13"
+    version: "3.3.14"
   firebase_analytics_web:
     dependency: transitive
     description:
       name: firebase_analytics_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.1+4"
+    version: "0.5.1+5"
   firebase_auth:
     dependency: "direct main"
     description:
       name: firebase_auth
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.2"
+    version: "4.1.3"
   firebase_auth_platform_interface:
     dependency: "direct dev"
     description:
       name: firebase_auth_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.11.2"
+    version: "6.11.3"
   firebase_auth_web:
     dependency: transitive
     description:
       name: firebase_auth_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.1.2"
+    version: "5.1.3"
   firebase_core:
     dependency: "direct main"
     description:
       name: firebase_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.0"
+    version: "2.3.0"
   firebase_core_platform_interface:
     dependency: transitive
     description:
@@ -520,35 +520,35 @@ packages:
       name: firebase_crashlytics
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.5"
+    version: "3.0.6"
   firebase_crashlytics_platform_interface:
     dependency: transitive
     description:
       name: firebase_crashlytics_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.3.6"
+    version: "3.3.7"
   firebase_storage:
     dependency: "direct main"
     description:
       name: firebase_storage
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "11.0.5"
+    version: "11.0.6"
   firebase_storage_platform_interface:
     dependency: transitive
     description:
       name: firebase_storage_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.23"
+    version: "4.1.24"
   firebase_storage_web:
     dependency: transitive
     description:
       name: firebase_storage_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.3.15"
+    version: "3.3.16"
   fixnum:
     dependency: transitive
     description:
@@ -607,7 +607,7 @@ packages:
       name: flutter_inappwebview
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.7.1"
+    version: "5.7.1+2"
   flutter_keyboard_visibility:
     dependency: transitive
     description:
@@ -872,14 +872,28 @@ packages:
       name: google_sign_in
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.2.4"
+    version: "5.4.2"
+  google_sign_in_android:
+    dependency: transitive
+    description:
+      name: google_sign_in_android
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "6.1.2"
+  google_sign_in_ios:
+    dependency: transitive
+    description:
+      name: google_sign_in_ios
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.5.1"
   google_sign_in_platform_interface:
     dependency: "direct dev"
     description:
       name: google_sign_in_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.2"
+    version: "2.3.0"
   google_sign_in_web:
     dependency: transitive
     description:
@@ -1003,14 +1017,14 @@ packages:
       name: json_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.6.0"
+    version: "4.7.0"
   json_serializable:
     dependency: "direct dev"
     description:
       name: json_serializable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.3.2"
+    version: "6.5.4"
   jwt_decoder:
     dependency: "direct main"
     description:
@@ -1327,7 +1341,7 @@ packages:
       name: rxdart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.27.6"
+    version: "0.27.7"
   share_plus:
     dependency: "direct main"
     description:
@@ -1500,14 +1514,14 @@ packages:
       name: talker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0+1"
+    version: "2.1.0"
   talker_logger:
     dependency: transitive
     description:
       name: talker_logger
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.1.0"
   term_glyph:
     dependency: transitive
     description:
