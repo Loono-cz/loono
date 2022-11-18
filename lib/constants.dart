@@ -4,6 +4,7 @@ class LoonoAssets {
   static const cdLogo = 'assets/sponsors/cd.svg';
   static const ppfLogo = 'assets/sponsors/ppf.svg';
   static const cgiLogo = 'assets/sponsors/CGI.svg';
+  static const mzcrLogo = 'assets/sponsors/mzcr.svg';
 }
 
 class LoonoColors {
