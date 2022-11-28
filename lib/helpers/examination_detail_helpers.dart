@@ -46,7 +46,10 @@ TextStyle preventiveInspectionStyles(ExaminationCategory category) {
   return LoonoFonts.cardTitle.copyWith(color: color, fontWeight: weight);
 }
 
-String czechPreposition(BuildContext context, {required ExaminationType examinationType}) {
+String czechPreposition(
+  BuildContext context, {
+  required ExaminationType examinationType,
+}) {
   if ([
     ExaminationType.COLONOSCOPY,
     ExaminationType.MAMMOGRAM,
@@ -57,7 +60,10 @@ String czechPreposition(BuildContext context, {required ExaminationType examinat
   }
 }
 
-String czechPrepositionDativ(BuildContext context, {required ExaminationType examinationType}) {
+String czechPrepositionDativ(
+  BuildContext context, {
+  required ExaminationType examinationType,
+}) {
   var res = '';
   switch (examinationType) {
     case ExaminationType.COLONOSCOPY:
@@ -356,8 +362,12 @@ String examinationTypeCasus(
       if (casus == Casus.dativ) return l10n.cardiology_dativ;
       return '${ExaminationType.CARDIOLOGY} unkown casus';
     case ExaminationType.ENDOCRINOLOGY_AND_HORMONES:
-      if (casus == Casus.nomativ) return l10n.endocrinology_and_hormones_nomativ;
-      if (casus == Casus.genitiv) return l10n.endocrinology_and_hormones_genitiv;
+      if (casus == Casus.nomativ) {
+        return l10n.endocrinology_and_hormones_nomativ;
+      }
+      if (casus == Casus.genitiv) {
+        return l10n.endocrinology_and_hormones_genitiv;
+      }
       if (casus == Casus.dativ) return l10n.endocrinology_and_hormones_dativ;
       return '${ExaminationType.ENDOCRINOLOGY_AND_HORMONES} unkown casus';
     case ExaminationType.ERGOTHERAPY:
@@ -554,17 +564,20 @@ double lowerArcProgress(CategorizedExamination examination) {
   final nextVisit = examination.examination.plannedDate?.toLocal();
   final lastVisit = examination.examination.lastConfirmedDate?.toLocal();
   final category = examination.category;
-  final interval = examination.examination.intervalYears;
+  final intervalMonths =
+      examination.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM
+          ? examination.examination.customInterval!
+          : examination.examination.intervalYears * 12;
 
   if (category == const ExaminationCategory.scheduledSoonOrOverdue() && nextVisit != null) {
     final intervalDays = daysBetween(
       nextVisit,
-      DateTime(nextVisit.year + interval, nextVisit.month),
+      DateTime(nextVisit.year, nextVisit.month + intervalMonths),
     );
     final afterScheduledDays = intervalDays -
         daysBetween(
           DateTime.now(),
-          DateTime(nextVisit.year + interval, nextVisit.month),
+          DateTime(nextVisit.year, nextVisit.month + intervalMonths),
         );
     return (afterScheduledDays / intervalDays).clamp(0, 1);
   } else if ((category == const ExaminationCategory.waiting() ||
@@ -572,7 +585,7 @@ double lowerArcProgress(CategorizedExamination examination) {
       lastVisit != null) {
     final intervalDays = daysBetween(
       DateTime(lastVisit.year, lastVisit.month),
-      DateTime(lastVisit.year + interval, lastVisit.month),
+      DateTime(lastVisit.year, lastVisit.month + intervalMonths),
     );
     final afterLastVisitDays = daysBetween(
       DateTime(lastVisit.year, lastVisit.month),

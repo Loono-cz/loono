@@ -106,8 +106,6 @@ void showCancelExaminationSheet({
                       autoRouter.popUntilRouteWithName(ExaminationDetailRoute.name);
                       // ignore: use_build_context_synchronously
                       showFlushBarSuccess(context, context.l10n.checkup_canceled);
-                      //TODO: lint fix
-                      // ignore: use_build_context_synchronously
                     },
                     failure: (err) async {
                       await AutoRouter.of(context).pop();

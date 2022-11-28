@@ -82,36 +82,25 @@ class ExaminationProgressContent extends StatelessWidget {
   }
 
   Widget _scheduledVisitContent(BuildContext context) {
-    final now = DateTime.now();
-    final visitTime = DateFormat(LoonoStrings.hoursFormat, 'cs-CZ')
-        .format(categorizedExamination.examination.plannedDate!.toLocal());
-    final visitTimePreposition =
-        categorizedExamination.examination.plannedDate!.toLocal().hour > 11 ? 've' : 'v';
-    final visitDate = DateFormat(LoonoStrings.dateFormatSpacing, 'cs-CZ')
-        .format(categorizedExamination.examination.plannedDate!.toLocal());
-    final isAfterVisit = now.isAfter(categorizedExamination.examination.plannedDate!.toLocal());
+    final visitData = _getVisitDataForExamination(context);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          isAfterVisit
-              ? (sex == Sex.MALE
-                  ? context.l10n.did_you_visited_male
-                  : context.l10n.did_you_visited_female)
-              : context.l10n.next_visit,
+          visitData.title,
           textAlign: TextAlign.center,
           style: LoonoFonts.paragraphSmallFontStyle.copyWith(
             color: LoonoColors.primaryEnabled,
-            fontWeight: isAfterVisit ? FontWeight.w700 : FontWeight.w400,
+            fontWeight: visitData.isAfter ? FontWeight.w700 : FontWeight.w400,
           ),
         ),
         Text(
-          _isToday ? context.l10n.today : visitDate,
+          _isToday ? context.l10n.today : visitData.date,
           textAlign: TextAlign.center,
           style: LoonoFonts.cardSubtitle.copyWith(fontSize: 16),
         ),
         Text(
-          _isToday ? '$visitTimePreposition $visitTime' : visitTime,
+          visitData.time,
           style: LoonoFonts.cardSubtitle.copyWith(fontSize: 16),
         )
       ],
@@ -244,4 +233,50 @@ class ExaminationProgressContent extends StatelessWidget {
       ),
     );
   }
+
+  _VisitContentData _getVisitDataForExamination(BuildContext context) {
+    final now = DateTime.now();
+    final plannedDate = categorizedExamination.examination.plannedDate;
+    if (plannedDate == null) {
+      // this situation should not happened
+      return _VisitContentData(
+        title: context.l10n.not_ordered,
+        time: context.l10n.not_ordered,
+        date: context.l10n.not_ordered,
+        isAfter: false,
+      );
+    }
+    final time = DateFormat(LoonoStrings.hoursFormat, 'cs-CZ')
+        .format(categorizedExamination.examination.plannedDate!.toLocal());
+    final visitTimePreposition = categorizedExamination.examination.plannedDate!.toLocal().hour > 11
+        ? context.l10n.preposition_in
+        : context.l10n.preposition_in_ve;
+    final date = DateFormat(LoonoStrings.dateFormatSpacing, 'cs-CZ')
+        .format(categorizedExamination.examination.plannedDate!.toLocal());
+    final isAfter = now.isAfter(categorizedExamination.examination.plannedDate!.toLocal());
+    return _VisitContentData(
+      title: isAfter
+          ? (sex == Sex.MALE
+              ? context.l10n.did_you_visited_male
+              : context.l10n.did_you_visited_female)
+          : context.l10n.next_visit,
+      time: _isToday ? '$visitTimePreposition $time' : time,
+      date: _isToday ? context.l10n.today : date,
+      isAfter: isAfter,
+    );
+  }
+}
+
+class _VisitContentData {
+  const _VisitContentData({
+    required this.title,
+    required this.time,
+    required this.date,
+    required this.isAfter,
+  });
+
+  final String title;
+  final String time;
+  final String date;
+  final bool isAfter;
 }

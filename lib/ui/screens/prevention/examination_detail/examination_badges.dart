@@ -94,7 +94,10 @@ class ExaminationBadges extends StatelessWidget {
         ((index == null) || (index + 1 == badge?.level));
   }
 
-  BadgeState _getBadgeState(Badge? data, int index) {
+  BadgeState _getBadgeState(Badge? data, int index, int count) {
+    if (isCustomExam) {
+      return count >= index + 1 ? BadgeState.greenBadge : BadgeState.normalBadge;
+    }
     if (isLastConfirmedDateOlderMinusTwoMonths && index + 1 == data?.level) {
       return BadgeState.greenBadge;
     } else if (_isBadgeLastInMonthOfValidity(data, index)) {
@@ -146,6 +149,7 @@ class ExaminationBadges extends StatelessWidget {
             final badge = snapshot.data?.toList().firstWhereOrNull(
                   (element) => element?.type.name == categorizedExamination.examination.badge?.name,
                 );
+            final count = categorizedExamination.examination.count;
             final rewardState = _getRewardState(badge);
             return Column(
               children: [
@@ -174,7 +178,7 @@ class ExaminationBadges extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         shrinkWrap: true,
                         itemBuilder: (BuildContext context, int index) {
-                          final badgeState = _getBadgeState(badge, index);
+                          final badgeState = _getBadgeState(badge, index, count);
                           final enabled = badge != null &&
                               badge.type.name == categorizedExamination.examination.badge?.name &&
                               badge.level >= index + 1;
@@ -290,3 +294,5 @@ class ExaminationBadges extends StatelessWidget {
 }
 
 enum RewardState { reward, lastMonthValidity, invisible }
+
+enum BadgeState { normalBadge, greenBadge, redBadge }
