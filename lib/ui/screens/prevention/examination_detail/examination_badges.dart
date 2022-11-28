@@ -87,7 +87,10 @@ class ExaminationBadges extends StatelessWidget {
         ((index == null) || (index + 1 == badge?.level));
   }
 
-  BadgeState _getBadgeState(Badge? data, int index) {
+  BadgeState _getBadgeState(Badge? data, int index, int count) {
+    if (isCustomExam) {
+      return count >= index + 1 ? BadgeState.greenBadge : BadgeState.normalBadge;
+    }
     if (isLastConfirmedDateOlderMinusTwoMonths && index + 1 == data?.level) {
       return BadgeState.greenBadge;
     } else if (_isBadgeLastInMonthOfValidity(data, index)) {
@@ -139,6 +142,7 @@ class ExaminationBadges extends StatelessWidget {
             final badge = snapshot.data?.toList().firstWhereOrNull(
                   (element) => element?.type.name == categorizedExamination.examination.badge?.name,
                 );
+            final count = categorizedExamination.examination.count;
             final rewardState = _getRewardState(badge);
             return Column(
               children: [
@@ -167,7 +171,7 @@ class ExaminationBadges extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         shrinkWrap: true,
                         itemBuilder: (BuildContext context, int index) {
-                          final badgeState = _getBadgeState(badge, index);
+                          final badgeState = _getBadgeState(badge, index, count);
                           return Padding(
                             padding: const EdgeInsets.only(right: 20.0),
                             child: Column(
@@ -202,7 +206,7 @@ class ExaminationBadges extends StatelessWidget {
                                                       .CUSTOM //TODO: customExamCount is probably only for first examination.
                                               ? SvgPicture.asset(
                                                   'assets/badges_examination/custom_examination/badge'
-                                                  '${badge != null ? '_award.svg' : '_disabled.svg'}', //TODO Logic about custom exam rewards ??
+                                                  '${count >= index + 1 ? '_award.svg' : '_disabled.svg'}',
                                                 )
                                               : Image.asset(
                                                   'assets/badges_examination/${examinationType.toString().toLowerCase()}'
@@ -215,9 +219,9 @@ class ExaminationBadges extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                if (badge != null &&
+                                if ((badge != null || isCustomExam) &&
                                     snapshot.data != null &&
-                                    badge.level >= index + 1)
+                                    (badge?.level ?? count) >= index + 1)
                                   Padding(
                                     padding: const EdgeInsets.only(top: 6.0),
                                     child: Row(
