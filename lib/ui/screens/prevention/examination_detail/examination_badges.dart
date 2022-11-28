@@ -1,12 +1,13 @@
-import 'package:badges/badges.dart' as b;
 import 'package:built_collection/built_collection.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/examination_extensions.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/repositories/user_repository.dart';
+import 'package:loono/ui/widgets/examination_badge.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
@@ -32,11 +33,14 @@ class ExaminationBadges extends StatelessWidget {
 
   DateTime? get lastConfirmedDate => categorizedExamination.examination.lastConfirmedDate;
 
+  int get _intervalYears => categorizedExamination.examination.intervalYears.toInt();
+
   int get recommendedIntervalInMonths =>
       categorizedExamination.examination.intervalYears.toInt() * 12;
 
-  int get recommendedIntervalInMonthsMinusTwoMonths =>
-      categorizedExamination.examination.intervalYears.toInt() * 12 - 2;
+  int get recommendedIntervalInMonthsMinusTwoMonths => categorizedExamination.examination.isCustom
+      ? (categorizedExamination.examination.customInterval ?? _intervalYears) - 2
+      : _intervalYears * 12 - 2;
 
   bool get isCustomExam =>
       categorizedExamination.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM;
@@ -54,6 +58,9 @@ class ExaminationBadges extends StatelessWidget {
           ) ??
           0) >=
       0;
+
+  Color get _infoboxColor =>
+      _isBadgeLastInMonthOfValidity() ? LoonoColors.orangeLight : LoonoColors.greenLight;
 
   String _getBadgeName(BadgeType? type, BuildContext context) {
     switch (type) {
@@ -80,7 +87,7 @@ class ExaminationBadges extends StatelessWidget {
     }
   }
 
-  bool _isBadgeLastInMonthOfValidity(Badge? badge, [int? index]) {
+  bool _isBadgeLastInMonthOfValidity([Badge? badge, int? index]) {
     return lastConfirmedDate != null &&
         !isPlannedDate &&
         !isLastConfirmedDateOlderMinusTwoMonths &&
@@ -130,11 +137,11 @@ class ExaminationBadges extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 18.0, right: 18.0),
       child: Container(
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(
             Radius.circular(10.0),
           ),
-          color: LoonoColors.greenLight,
+          color: _infoboxColor,
         ),
         child: FutureBuilder<BuiltList<Badge?>?>(
           future: registry.get<UserRepository>().getBadges(),
@@ -172,80 +179,19 @@ class ExaminationBadges extends StatelessWidget {
                         shrinkWrap: true,
                         itemBuilder: (BuildContext context, int index) {
                           final badgeState = _getBadgeState(badge, index, count);
+                          final enabled = badge != null &&
+                              badge.type.name == categorizedExamination.examination.badge?.name &&
+                              badge.level >= index + 1;
                           return Padding(
                             padding: const EdgeInsets.only(right: 20.0),
-                            child: Column(
-                              children: [
-                                b.Badge(
-                                  showBadge: badgeState == BadgeState.redBadge,
-                                  badgeColor: LoonoColors.red,
-                                  position: b.BadgePosition.topStart(top: -10, start: 27),
-                                  padding: const EdgeInsets.all(4),
-                                  badgeContent: const Icon(
-                                    Icons.close,
-                                    size: 14,
-                                    color: Colors.white,
-                                  ),
-                                  child: Stack(
-                                    children: [
-                                      CircleAvatar(
-                                        radius: 35,
-                                        backgroundColor: Colors.white,
-                                        child: b.Badge(
-                                          showBadge: badgeState == BadgeState.greenBadge,
-                                          badgeColor: LoonoColors.green,
-                                          padding: const EdgeInsets.all(4),
-                                          badgeContent: const Icon(
-                                            Icons.check,
-                                            size: 14,
-                                            color: Colors.white,
-                                          ),
-                                          position: b.BadgePosition.bottomEnd(bottom: -8, end: -24),
-                                          child: examCategoryType ==
-                                                  ExaminationCategoryType
-                                                      .CUSTOM //TODO: customExamCount is probably only for first examination.
-                                              ? SvgPicture.asset(
-                                                  'assets/badges_examination/custom_examination/badge'
-                                                  '${count >= index + 1 ? '_award.svg' : '_disabled.svg'}',
-                                                )
-                                              : Image.asset(
-                                                  'assets/badges_examination/${examinationType.toString().toLowerCase()}'
-                                                  '/level_${badge != null && badge.type.name == categorizedExamination.examination.badge?.name && badge.level >= index + 1 ? '${index + 1}.png' : '${index + 1}_disabled.png'}',
-                                                ),
-                                        ),
-                                      ),
-                                      if (badgeState == BadgeState.redBadge)
-                                        SvgPicture.asset('assets/icons/ellipse.svg'),
-                                    ],
-                                  ),
-                                ),
-                                if ((badge != null || isCustomExam) &&
-                                    snapshot.data != null &&
-                                    (badge?.level ?? count) >= index + 1)
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 6.0),
-                                    child: Row(
-                                      children: [
-                                        SizedBox(
-                                          width: 16,
-                                          height: 16,
-                                          child: SvgPicture.asset('assets/icons/points.svg'),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 7.0),
-                                          child: Text(
-                                            categorizedExamination.examination.points.toString(),
-                                            style: const TextStyle(
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 11,
-                                              color: LoonoColors.checkBoxMark,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                              ],
+                            child: ExaminationBadge(
+                              categorizedExamination: categorizedExamination,
+                              badgeState: badgeState,
+                              showPoints: badge != null &&
+                                  snapshot.data != null &&
+                                  badge.level >= index + 1,
+                              badgeLevel: index + 1,
+                              disabled: !enabled,
                             ),
                           );
                         },
@@ -318,7 +264,7 @@ class ExaminationBadges extends StatelessWidget {
                               SizedBox(
                                 width: 16,
                                 height: 16,
-                                child: SvgPicture.asset('assets/icons/points.svg'),
+                                child: SvgPicture.asset(LoonoAssets.points),
                               ),
                               Text(
                                 ' ${categorizedExamination.examination.points.toString()} ',
@@ -348,5 +294,3 @@ class ExaminationBadges extends StatelessWidget {
 }
 
 enum RewardState { reward, lastMonthValidity, invisible }
-
-enum BadgeState { normalBadge, greenBadge, redBadge }
