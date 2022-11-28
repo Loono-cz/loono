@@ -264,7 +264,7 @@ class ExaminationBadges extends StatelessWidget {
                               SizedBox(
                                 width: 16,
                                 height: 16,
-                                child: SvgPicture.asset('assets/icons/points.svg'),
+                                child: SvgPicture.asset(LoonoAssets.points),
                               ),
                               Text(
                                 ' ${categorizedExamination.examination.points.toString()} ',
@@ -294,5 +294,3 @@ class ExaminationBadges extends StatelessWidget {
 }
 
 enum RewardState { reward, lastMonthValidity, invisible }
-
-enum BadgeState { normalBadge, greenBadge, redBadge }

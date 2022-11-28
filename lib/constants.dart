@@ -31,6 +31,8 @@ class LoonoAssets {
   static const itemShadow = 'assets/icons/item-shadow.svg';
 
   static const people = 'assets/icons/people.svg';
+
+  static const points = 'assets/icons/points.svg';
 }
 
 class LoonoColors {
