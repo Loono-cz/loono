@@ -35,13 +35,13 @@ class CarouselStatContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _widgetPadding = MediaQuery.of(context).size.width * paddingMultiplier;
+    final widgetPadding = MediaQuery.of(context).size.width * paddingMultiplier;
     return Column(
       children: [
         Expanded(
           child: Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: _widgetPadding,
+              horizontal: widgetPadding,
             ),
             child: SingleChildScrollView(
               child: Column(
@@ -64,9 +64,9 @@ class CarouselStatContent extends StatelessWidget {
             const CustomSpacer.vertical(20),
             Padding(
               padding: EdgeInsets.only(
-                left: _widgetPadding,
-                right: _widgetPadding,
-                bottom: _widgetPadding,
+                left: widgetPadding,
+                right: widgetPadding,
+                bottom: widgetPadding,
               ),
               child: _buildExplanation(context),
             ),
