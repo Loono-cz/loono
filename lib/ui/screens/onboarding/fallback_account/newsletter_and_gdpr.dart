@@ -46,38 +46,40 @@ class NewsletterAndGDPRScreenState extends State<NewsletterAndGDPRScreen> {
       appBar: createAccountAppBar(context, step: 3),
       backgroundColor: null,
       body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 18.0),
-              child: Column(
-                children: [
-                  const CustomSpacer.vertical(40),
-                  _buildNewsletter(context),
-                  const CustomSpacer.vertical(50),
-                  _buildGDPR(context),
-                  const CustomSpacer.vertical(70),
-                  AsyncLoonoButton(
-                    text: context.l10n.create_new_account,
-                    asyncCallback: () async {
-                      await submitAccount(
-                        context,
-                        socialLoginAccount,
-                        _authService,
-                        _usersDao,
-                        _examinationQuestionnairesDao,
-                        _apiService,
-                        _userRepository,
-                        newsletter,
-                      );
-                      return null;
-                    },
-                    onSuccess: () {},
-                    onError: () {},
-                    enabled: gdpr,
-                  ),
-                  const CustomSpacer.vertical(18.0),
-                ],
+        child: Expanded(
+          child: Center(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                child: Column(
+                  children: [
+                    const CustomSpacer.vertical(40),
+                    _buildNewsletter(context),
+                    const CustomSpacer.vertical(50),
+                    _buildGDPR(context),
+                    const CustomSpacer.vertical(70),
+                    AsyncLoonoButton(
+                      text: context.l10n.create_new_account,
+                      asyncCallback: () async {
+                        await submitAccount(
+                          context,
+                          socialLoginAccount,
+                          _authService,
+                          _usersDao,
+                          _examinationQuestionnairesDao,
+                          _apiService,
+                          _userRepository,
+                          newsletter,
+                        );
+                        return null;
+                      },
+                      onSuccess: () {},
+                      onError: () {},
+                      enabled: gdpr,
+                    ),
+                    const CustomSpacer.vertical(18.0),
+                  ],
+                ),
               ),
             ),
           ),
