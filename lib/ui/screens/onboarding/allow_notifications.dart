@@ -6,6 +6,7 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/onboarding_state_service.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
+import 'package:loono/ui/widgets/space.dart';
 import 'package:provider/provider.dart';
 
 class AllowNotificationsScreen extends StatelessWidget {
@@ -26,7 +27,7 @@ class AllowNotificationsScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: Column(
             children: [
-              const SizedBox(height: 20.0),
+              const CustomSpacer.vertical(20),
               SkipButton(
                 text: context.l10n.skip_notification,
                 onPressed: onSkipTap ??
@@ -34,7 +35,7 @@ class AllowNotificationsScreen extends StatelessWidget {
               ),
               const Spacer(),
               SvgPicture.asset(
-                'assets/icons/notification_bells.svg',
+                LoonoAssets.notificationBells,
                 width: MediaQuery.of(context).size.width * 0.5,
               ),
               const Spacer(),
