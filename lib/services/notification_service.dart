@@ -30,7 +30,7 @@ class NotificationService {
           log('key: ${data.key}\nvalue: ${data.value}');
         }
       }
-     await NotificationRouter.fromNotificationData(additionalData).navigate();
+      await NotificationRouter.fromNotificationData(additionalData).navigate();
     });
   }
 
