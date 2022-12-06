@@ -16,10 +16,10 @@ class NotificationRouter {
     }
     var screen = Screen.main;
     switch (data[screenParamName]) {
-      case Screen.examination:
+      case 'checkup':
         screen = Screen.examination;
         break;
-      case Screen.selfExamination:
+      case 'self':
         screen = Screen.selfExamination;
         break;
       default:
@@ -68,7 +68,7 @@ class NotificationRouter {
     final categorized = CategorizedExaminationConverter.convert(
       exams.where((exam) => exam.uuid == uuid).toList(),
     );
-    log('open $categorized');
+    log('open push notification on $categorized');
     if (categorized.length == 1) {
       await registry.get<AppRouter>().push(
             ExaminationDetailRoute(

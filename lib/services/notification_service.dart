@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -24,13 +23,7 @@ class NotificationService {
     await OneSignal.shared.setAppId(appId);
     OneSignal.shared.setPermissionObserver(_onPermissionStateChanges);
     OneSignal.shared.setNotificationOpenedHandler((OSNotificationOpenedResult res) async {
-      final additionalData = res.notification.additionalData;
-      if (additionalData != null) {
-        for (final data in additionalData.entries) {
-          log('key: ${data.key}\nvalue: ${data.value}');
-        }
-      }
-      await NotificationRouter.fromNotificationData(additionalData).navigate();
+      await NotificationRouter.fromNotificationData(res.notification.additionalData).navigate();
     });
   }
 
