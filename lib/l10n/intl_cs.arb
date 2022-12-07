@@ -1547,5 +1547,11 @@
   "prevention_age_limit": "Prevence je zatím pro starší 18 let",
   "@prevention_age_limit": {},
   "not_ordered": "Neobjednáno",
-  "@not_ordered": {}
+  "@not_ordered": {},
+  "notification_loading_header": "Probíhá načítání",
+  "@notification_loading_header": {},
+  "notification_loading_examination": "Počkejte chvíli než načteme preventivní prohlídku",
+  "@notification_loading_examination": {},
+  "notification_loading_self_examination": "Počkejte chvíli než načteme samovyšetření",
+  "@notification_loading_self_examination": {}
 }

@@ -8,22 +8,22 @@ import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
 class NotificationRouter {
-  const NotificationRouter(this.screen, [this.uuid = '']);
+  NotificationRouter(this.screen, [this.uuid = '']);
 
   factory NotificationRouter.fromNotificationData(Map<String, dynamic>? data) {
     if (data == null) {
-      return const NotificationRouter(Screen.main);
+      return NotificationRouter(NotificationScreen.main);
     }
-    var screen = Screen.main;
+    var screen = NotificationScreen.main;
     switch (data[screenParamName]) {
       case 'checkup':
-        screen = Screen.examination;
+        screen = NotificationScreen.examination;
         break;
       case 'self':
-        screen = Screen.selfExamination;
+        screen = NotificationScreen.selfExamination;
         break;
       default:
-        screen = Screen.main;
+        screen = NotificationScreen.main;
     }
     return NotificationRouter(screen, data[uuidParamName].toString());
   }
@@ -31,12 +31,18 @@ class NotificationRouter {
   static const screenParamName = 'screen';
   static const uuidParamName = 'examinationUuid';
 
-  final Screen screen;
+  final NotificationScreen screen;
   final String uuid;
+
+  bool loaded = false;
+
+  final List<Function> _onDone = [];
 
   AppRouter get appRouter => registry.get<AppRouter>();
 
   Future<void> navigate() async {
+   appRouter.push(MainRoute(notificationRouter:this)).ignore();
+    log(screen.toString());
     if (screen.isExamination) {
       var exams = <ExaminationPreventionStatus>[];
       var selfExams = <SelfExaminationPreventionStatus>[];
@@ -52,10 +58,10 @@ class NotificationRouter {
         },
       );
       switch (screen) {
-        case Screen.examination:
+        case NotificationScreen.examination:
           await _openExaminationScreen(exams, uuid);
           break;
-        case Screen.selfExamination:
+        case NotificationScreen.selfExamination:
           await _openSelfExaminationScreen(selfExams, uuid);
           break;
         default:
@@ -70,12 +76,14 @@ class NotificationRouter {
     );
     log('open push notification on $categorized');
     if (categorized.length == 1) {
-      await registry.get<AppRouter>().push(
-            ExaminationDetailRoute(
-              categorizedExamination: categorized.first,
-            ),
-          );
+      _notifyListeners();
+      await appRouter.push(
+        ExaminationDetailRoute(
+          categorizedExamination: categorized.first,
+        ),
+      );
     } else {
+      _notifyListeners();
       log('examination with uuid $uuid was not found');
     }
   }
@@ -96,19 +104,35 @@ class NotificationRouter {
           log('Unable to fetch examination data for notifications');
         },
       );
-      await registry.get<AppRouter>().push(
-            SelfExaminationDetailRoute(
-              sex: sex,
-              selfExamination: selfExam,
-            ),
-          );
+      _notifyListeners();
+      await appRouter.push(
+        SelfExaminationDetailRoute(
+          sex: sex,
+          selfExamination: selfExam,
+        ),
+      );
     } else {
+      _notifyListeners();
       log('self examination with uuid $uuid was not found');
+    }
+  }
+
+  void _notifyListeners() {
+    for (final listener in _onDone) {
+      listener.call();
+    }
+  }
+
+  void addListener(Function listener) {
+    if (loaded) {
+      listener.call();
+    } else {
+      _onDone.add(listener);
     }
   }
 }
 
-enum Screen {
+enum NotificationScreen {
   main,
   examination,
   selfExamination;
