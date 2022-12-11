@@ -29,102 +29,102 @@ class BadgeOverviewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 18),
-            child: StreamBuilder<User?>(
-              stream: _usersDao.watchUser(),
-              builder: (context, snapshot) {
-                final user = snapshot.data;
-                final sex = user?.sex;
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 18),
+          child: StreamBuilder<User?>(
+            stream: _usersDao.watchUser(),
+            builder: (context, snapshot) {
+              final user = snapshot.data;
+              final sex = user?.sex;
 
-                return Stack(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(
-                        left: context.mediaQuery.compactSizeOf(24.0),
-                        top: context.mediaQuery.compactSizeOf(100),
-                      ),
-                      child: SvgPicture.asset(
-                        LoonoAssets.heroBackground,
-                        width: double.infinity,
-                        height: context.mediaQuery.size.width * 0.735,
-                      ),
+              return Stack(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(
+                      left: context.mediaQuery.compactSizeOf(24.0),
+                      top: context.mediaQuery.compactSizeOf(100),
                     ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const CustomSpacer.vertical(24),
-                        Text(
-                          '${sex == Sex.MALE ? context.l10n.gamification_introduction_header_male : context.l10n.gamification_introduction_header_female} ${user?.nickname ?? (sex?.getNicknameHintLabel(context)) ?? ''}',
-                          textAlign: TextAlign.center,
-                          style: LoonoFonts.headerFontStyle,
-                        ),
-                        const CustomSpacer.vertical(18),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                    child: SvgPicture.asset(
+                      LoonoAssets.heroBackground,
+                      width: double.infinity,
+                      height: context.mediaQuery.size.width * 0.735,
+                    ),
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const CustomSpacer.vertical(24),
+                      Text(
+                        '${sex == Sex.MALE ? context.l10n.gamification_introduction_header_male : context.l10n.gamification_introduction_header_female} ${user?.nickname ?? (sex?.getNicknameHintLabel(context)) ?? ''}',
+                        textAlign: TextAlign.center,
+                        style: LoonoFonts.headerFontStyle,
+                      ),
+                      const CustomSpacer.vertical(18),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const LoonoPointIcon(color: LoonoColors.primaryEnabled, width: 16.0),
+                          const CustomSpacer.horizontal(7),
+                          Text(
+                            '${user?.points ?? 0} ${context.l10n.gamification_introduction_points.toUpperCase()}',
+                            style: LoonoFonts.subtitleFontStyle.copyWith(
+                              color: LoonoColors.primaryEnabled,
+                              fontSize: 11,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Expanded(
+                        child: Stack(
                           children: [
-                            const LoonoPointIcon(color: LoonoColors.primaryEnabled, width: 16.0),
-                            const CustomSpacer.horizontal(7),
-                            Text(
-                              '${user?.points ?? 0} ${context.l10n.gamification_introduction_points.toUpperCase()}',
-                              style: LoonoFonts.subtitleFontStyle.copyWith(
-                                color: LoonoColors.primaryEnabled,
-                                fontSize: 11,
+                            Scrollbar(
+                              thumbVisibility: true,
+                              child: ListView(
+                                shrinkWrap: true,
+                                children: [
+                                  const BadgeComposer(),
+                                  const CustomSpacer.vertical(10),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: context.mediaQuery.compactSizeOf(18),
+                                    ),
+                                    child: _buildDescContainer(context),
+                                  ),
+                                  SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
+                                  SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
+                                ],
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 10,
+                              child: SizedBox(
+                                width: MediaQuery.of(context).size.width,
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: context.mediaQuery.compactSizeOf(18),
+                                  ),
+                                  child: LoonoButton(
+                                    key: const Key('badgeOverviewPage_btn_continue'),
+                                    text: context.l10n.gamification_introduction_button,
+                                    onTap: onButtonTap ??
+                                        () => AutoRouter.of(context)
+                                            .replaceAll([const MainScreenRouter()]),
+                                  ),
+                                ),
                               ),
                             ),
                           ],
                         ),
-                        Expanded(
-                          child: Stack(
-                            children: [
-                              Scrollbar(
-                                thumbVisibility: true,
-                                child: ListView(
-                                  shrinkWrap: true,
-                                  children: [
-                                    const BadgeComposer(),
-                                    const CustomSpacer.vertical(10),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                        horizontal: context.mediaQuery.compactSizeOf(18),
-                                      ),
-                                      child: _buildDescContainer(context),
-                                    ),
-                                    SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
-                                    SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
-                                  ],
-                                ),
-                              ),
-                              Positioned(
-                                bottom: 10,
-                                child: SizedBox(
-                                  width: MediaQuery.of(context).size.width,
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: context.mediaQuery.compactSizeOf(18),
-                                    ),
-                                    child: LoonoButton(
-                                      key: const Key('badgeOverviewPage_btn_continue'),
-                                      text: context.l10n.gamification_introduction_button,
-                                      onTap: onButtonTap ??
-                                          () => AutoRouter.of(context)
-                                              .replaceAll([const MainScreenRouter()]),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                );
-              },
-            ),
+                      ),
+                    ],
+                  ),
+                ],
+              );
+            },
           ),
         ),
+      ),
     );
   }
 
