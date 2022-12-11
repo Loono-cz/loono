@@ -7,6 +7,14 @@ class LoonoAssets {
   static const mzcrLogo = 'assets/sponsors/mzcr.svg';
   static const welcomeLogo = 'assets/icons/welcome-logo.svg';
 
+  static const customExamBadge = 'assets/badges_examination/custom_examination/badge';
+  static const examinationCardSuccessIcon = 'assets/icons/prevention/success_checkmark.svg';
+
+  static const calendarIcon = 'assets/icons/prevention/calendar.svg';
+
+  static const ellipse = 'assets/icons/ellipse.svg';
+  static const welcomeLogo = 'assets/icons/welcome-logo.svg';
+
   static const genderFemale = 'assets/icons/gender-woman.svg';
   static const genderMale = 'assets/icons/gender-man.svg';
   static const genderOther = 'assets/icons/gender-other.svg';
@@ -24,6 +32,8 @@ class LoonoAssets {
   static const itemShadow = 'assets/icons/item-shadow.svg';
 
   static const people = 'assets/icons/people.svg';
+
+  static const points = 'assets/icons/points.svg';
 }
 
 class LoonoColors {
@@ -43,6 +53,7 @@ class LoonoColors {
   static const leaderboardPrimary = Color.fromRGBO(248, 185, 144, 1);
   static const pink = Color.fromRGBO(252, 237, 237, 1);
   static const red = Color.fromRGBO(216, 66, 72, 1);
+  static const orangeLight = Color.fromRGBO(254, 242, 233, 1.0);
   static const secondaryFont = Color.fromRGBO(59, 126, 129, 1);
   static const redButton = Color.fromARGB(255, 230, 87, 86);
   static const settingsBackground = Color.fromRGBO(254, 242, 233, 1);
