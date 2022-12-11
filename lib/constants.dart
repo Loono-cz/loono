@@ -13,7 +13,6 @@ class LoonoAssets {
   static const calendarIcon = 'assets/icons/prevention/calendar.svg';
 
   static const ellipse = 'assets/icons/ellipse.svg';
-  static const welcomeLogo = 'assets/icons/welcome-logo.svg';
 
   static const genderFemale = 'assets/icons/gender-woman.svg';
   static const genderMale = 'assets/icons/gender-man.svg';

@@ -28,9 +28,7 @@ class BadgeOverviewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
-      child: Scaffold(
+    return Scaffold(
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.only(top: 18),
@@ -77,73 +75,48 @@ class BadgeOverviewScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        if (LoonoSizes.isScreenSmall(context))
-                          Expanded(
-                            child: Stack(
-                              children: [
-                                Scrollbar(
-                                  thumbVisibility: true,
-                                  child: ListView(
-                                    shrinkWrap: true,
-                                    children: [
-                                      const BadgeComposer(),
-                                      const CustomSpacer.vertical(10),
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                          horizontal: context.mediaQuery.compactSizeOf(18),
-                                        ),
-                                        child: _buildDescContainer(context),
-                                      ),
-                                      SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
-                                      SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
-                                    ],
-                                  ),
-                                ),
-                                Positioned(
-                                  bottom: 10,
-                                  child: SizedBox(
-                                    width: MediaQuery.of(context).size.width,
-                                    child: Padding(
+                        Expanded(
+                          child: Stack(
+                            children: [
+                              Scrollbar(
+                                thumbVisibility: true,
+                                child: ListView(
+                                  shrinkWrap: true,
+                                  children: [
+                                    const BadgeComposer(),
+                                    const CustomSpacer.vertical(10),
+                                    Padding(
                                       padding: EdgeInsets.symmetric(
                                         horizontal: context.mediaQuery.compactSizeOf(18),
                                       ),
-                                      child: LoonoButton(
-                                        key: const Key('badgeOverviewPage_btn_continue'),
-                                        text: context.l10n.gamification_introduction_button,
-                                        onTap: onButtonTap ??
-                                            () => AutoRouter.of(context)
-                                                .replaceAll([const MainScreenRouter()]),
-                                      ),
+                                      child: _buildDescContainer(context),
+                                    ),
+                                    SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
+                                    SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
+                                  ],
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 10,
+                                child: SizedBox(
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: context.mediaQuery.compactSizeOf(18),
+                                    ),
+                                    child: LoonoButton(
+                                      key: const Key('badgeOverviewPage_btn_continue'),
+                                      text: context.l10n.gamification_introduction_button,
+                                      onTap: onButtonTap ??
+                                          () => AutoRouter.of(context)
+                                              .replaceAll([const MainScreenRouter()]),
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
-                          )
-                        else ...[
-                          const BadgeComposer(),
-                          const SizedBox(height: 10),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: context.mediaQuery.compactSizeOf(18),
-                            ),
-                            child: _buildDescContainer(context),
+                              ),
+                            ],
                           ),
-                          const Spacer(),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: context.mediaQuery.compactSizeOf(18),
-                            ),
-                            child: LoonoButton(
-                              key: const Key('badgeOverviewPage_btn_continue'),
-                              text: context.l10n.gamification_introduction_button,
-                              onTap: onButtonTap ??
-                                  () =>
-                                      AutoRouter.of(context).replaceAll([const MainScreenRouter()]),
-                            ),
-                          ),
-                          const Spacer(flex: 2),
-                        ],
+                        ),
                       ],
                     ),
                   ],
@@ -152,7 +125,6 @@ class BadgeOverviewScreen extends StatelessWidget {
             ),
           ),
         ),
-      ),
     );
   }
 
