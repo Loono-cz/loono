@@ -38,11 +38,8 @@ class NotificationRouter {
 
   final List<Function> _onDone = [];
 
-  AppRouter get appRouter => registry.get<AppRouter>();
-
-  Future<void> navigate() async {
-   appRouter.push(MainRoute(notificationRouter:this)).ignore();
-    log(screen.toString());
+  Future<void> navigate(AppRouter appRouter) async {
+    appRouter.push(MainRoute(notificationRouter: this)).ignore();
     if (screen.isExamination) {
       var exams = <ExaminationPreventionStatus>[];
       var selfExams = <SelfExaminationPreventionStatus>[];
@@ -59,10 +56,10 @@ class NotificationRouter {
       );
       switch (screen) {
         case NotificationScreen.examination:
-          await _openExaminationScreen(exams, uuid);
+          await _openExaminationScreen(exams, uuid, appRouter);
           break;
         case NotificationScreen.selfExamination:
-          await _openSelfExaminationScreen(selfExams, uuid);
+          await _openSelfExaminationScreen(selfExams, uuid, appRouter);
           break;
         default:
           return;
@@ -70,7 +67,11 @@ class NotificationRouter {
     }
   }
 
-  Future<void> _openExaminationScreen(List<ExaminationPreventionStatus> exams, String uuid) async {
+  Future<void> _openExaminationScreen(
+    List<ExaminationPreventionStatus> exams,
+    String uuid,
+    AppRouter appRouter,
+  ) async {
     final categorized = CategorizedExaminationConverter.convert(
       exams.where((exam) => exam.uuid == uuid).toList(),
     );
@@ -91,6 +92,7 @@ class NotificationRouter {
   Future<void> _openSelfExaminationScreen(
     List<SelfExaminationPreventionStatus> selfExams,
     String uuid,
+    AppRouter appRouter,
   ) async {
     final selfExam = selfExams.firstWhereOrNull((element) => element.lastExamUuid == uuid);
     if (selfExam != null) {
@@ -118,6 +120,7 @@ class NotificationRouter {
   }
 
   void _notifyListeners() {
+    loaded = true;
     for (final listener in _onDone) {
       listener.call();
     }

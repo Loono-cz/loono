@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/router/notification_router.dart';
 import 'package:loono/utils/app_config.dart';
 import 'package:loono/utils/registry.dart';
@@ -23,7 +24,13 @@ class NotificationService {
     await OneSignal.shared.setAppId(appId);
     OneSignal.shared.setPermissionObserver(_onPermissionStateChanges);
     OneSignal.shared.setNotificationOpenedHandler((OSNotificationOpenedResult res) async {
-      await NotificationRouter.fromNotificationData(res.notification.additionalData).navigate();
+      final notificationRouter = NotificationRouter.fromNotificationData(res.notification.additionalData);
+      while (!isRegistryInitialized) {
+        await Future<void>.delayed(const Duration(milliseconds: 100));
+      }
+      await notificationRouter.navigate(
+        registry.get<AppRouter>(),
+      );
     });
   }
 
