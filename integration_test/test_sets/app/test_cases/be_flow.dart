@@ -36,6 +36,7 @@ import '../../settings/pages/update_profile/edit_email_page.dart';
 import '../../settings/pages/update_profile/update_profile_page.dart';
 import '../pages/achievement_page.dart';
 import '../pages/login_page.dart';
+import '../pages/newsletter_and_gdpr.dart';
 import '../pages/welcome_page.dart';
 
 /*
@@ -63,6 +64,7 @@ Future<void> run({required WidgetTester tester}) async {
   final onboardingFormDonePage = OnboardingFormDonePage(tester);
   final signUpNicknamePage = SignUpNicknamePage(tester);
   final signUpEmailPage = SignUpEmailPage(tester);
+  final signUpNewsLetterAndGdpr = SignUpNewsletterAndGdpr(tester);
   final badgeOverviewPage = BadgeOverviewPage(tester);
 
   final preventionPage = PreventionPage(tester);
@@ -121,7 +123,10 @@ Future<void> run({required WidgetTester tester}) async {
   await signUpEmailPage.verifyScreenIsShown();
 
   await signUpEmailPage.insertEmail('backend.test@loono.cz');
-  await signUpEmailPage.clickCreateAccountButton();
+  await signUpEmailPage.clickConfirmButton();
+  await signUpNewsLetterAndGdpr.verifyScreenIsShown();
+
+  await signUpNewsLetterAndGdpr.clickCreateAccountButton();
 
   await badgeOverviewPage.verifyScreenIsShown();
   try {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/async_button.dart';
+import 'package:loono/ui/widgets/space.dart';
 
 typedef SubmitCallback = Future<bool?> Function(String input);
 
@@ -105,19 +106,29 @@ class FallbackAccountContentState extends State<FallbackAccountContent> {
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: Column(
             children: [
-              const SizedBox(height: 118.0),
-              _buildTitle(),
-              const SizedBox(height: 19.0),
-              _buildForm(),
-              if (widget.description.isNotEmpty) ..._buildDescription(),
-              const Spacer(),
+              Expanded(
+                child: Center(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        const CustomSpacer.vertical(118.0),
+                        _buildTitle(),
+                        const CustomSpacer.vertical(19.0),
+                        _buildForm(),
+                        if (widget.description.isNotEmpty) ..._buildDescription(),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              const CustomSpacer.vertical(18.0),
               AsyncLoonoButton(
                 text: widget.buttonText ?? context.l10n.confirm_info,
                 asyncCallback: validateAndSubmit,
                 onSuccess: widget.onSuccess,
                 onError: widget.onError,
               ),
-              const SizedBox(height: 18.0),
+              const CustomSpacer.vertical(18.0),
             ],
           ),
         ),

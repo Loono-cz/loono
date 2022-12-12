@@ -17,31 +17,42 @@ Future<void> checkAndShowDonatePage(
   final secureStorageRegistry = registry.get<SecureStorageService>();
   final donateInfo = await secureStorageRegistry.getDonateInfoData();
 
-  final donateuserInfo = DonateUserInfo(lastOpened: DateTime.now(), showNotification: true);
+  DonateUserInfo? donateUserInfo;
   var showModal = false;
 
   if (donateInfo == null) {
-    await secureStorageRegistry.storeDonateInfoData(donateuserInfo);
-    showModal = true;
+    final now = DateTime.now();
+    final date = DateTime(
+      now.year,
+      now.month,
+      now.day - (LoonoStrings.donateDelayInterval - LoonoStrings.donateFirstDelayInterval),
+    );
+    donateUserInfo = DonateUserInfo(lastOpened: date, showNotification: true);
+    showModal = false;
   } else if (DateTime.now().isAfter(
         donateInfo.lastOpened.add(const Duration(days: LoonoStrings.donateDelayInterval)),
       ) &&
       donateInfo.showNotification == true) {
-    await secureStorageRegistry.storeDonateInfoData(
-      donateuserInfo,
-    );
+    donateUserInfo = DonateUserInfo(lastOpened: DateTime.now(), showNotification: true);
     showModal = true;
+  }
+  if (donateUserInfo != null) {
+    await secureStorageRegistry.storeDonateInfoData(
+      donateUserInfo,
+    );
   }
 
   if (!mounted || !showModal) return;
-  await showDelayDonatePage(context);
+  Future.delayed(
+    const Duration(seconds: 30),
+    () => showDelayDonatePage(context),
+  );
 }
 
 Future<void> showDelayDonatePage(
   BuildContext context, [
   bool mounted = true,
 ]) async {
-  await Future<void>.delayed(const Duration(seconds: 5));
   if (!mounted) return;
   showDonateBottomSheet(context);
 }

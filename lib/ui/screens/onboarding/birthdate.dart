@@ -11,6 +11,7 @@ import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/custom_date_picker.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
+import 'package:loono/ui/widgets/space.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
@@ -67,7 +68,7 @@ class _OnBoardingBirthdateScreenState extends State<OnBoardingBirthdateScreen> {
                       widget.sex.getBirthdateLabel(context),
                       style: const TextStyle(color: Colors.black, fontSize: 24),
                     ),
-                    const SizedBox(height: 8),
+                    const CustomSpacer.vertical(8),
                     Text(
                       context.l10n.birthdate_subtitle.split('\n')[0],
                       style: LoonoFonts.paragraphSmallFontStyle,
@@ -109,7 +110,7 @@ class _OnBoardingBirthdateScreenState extends State<OnBoardingBirthdateScreen> {
                     } else {
                       showFlushBarError(
                         context,
-                        'Prevence je zatím pro starší 18 let',
+                        context.l10n.prevention_age_limit,
                         sync: false,
                       );
                     }

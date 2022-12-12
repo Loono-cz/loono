@@ -243,7 +243,8 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
     final exam = widget.exam;
 
     /// no planned examination should exist
-    final noPlannedExamExist = exam.plannedDate == null || exam.plannedDate?.isBefore(DateTime.now()) == true;
+    final noPlannedExamExist =
+        exam.plannedDate == null || exam.plannedDate?.isBefore(DateTime.now()) == true;
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
