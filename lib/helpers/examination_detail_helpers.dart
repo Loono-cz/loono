@@ -46,7 +46,10 @@ TextStyle preventiveInspectionStyles(ExaminationCategory category) {
   return LoonoFonts.cardTitle.copyWith(color: color, fontWeight: weight);
 }
 
-String czechPreposition(BuildContext context, {required ExaminationType examinationType}) {
+String czechPreposition(
+  BuildContext context, {
+  required ExaminationType examinationType,
+}) {
   if ([
     ExaminationType.COLONOSCOPY,
     ExaminationType.MAMMOGRAM,
@@ -57,7 +60,10 @@ String czechPreposition(BuildContext context, {required ExaminationType examinat
   }
 }
 
-String czechPrepositionDativ(BuildContext context, {required ExaminationType examinationType}) {
+String czechPrepositionDativ(
+  BuildContext context, {
+  required ExaminationType examinationType,
+}) {
   var res = '';
   switch (examinationType) {
     case ExaminationType.COLONOSCOPY:
@@ -356,8 +362,12 @@ String examinationTypeCasus(
       if (casus == Casus.dativ) return l10n.cardiology_dativ;
       return '${ExaminationType.CARDIOLOGY} unkown casus';
     case ExaminationType.ENDOCRINOLOGY_AND_HORMONES:
-      if (casus == Casus.nomativ) return l10n.endocrinology_and_hormones_nomativ;
-      if (casus == Casus.genitiv) return l10n.endocrinology_and_hormones_genitiv;
+      if (casus == Casus.nomativ) {
+        return l10n.endocrinology_and_hormones_nomativ;
+      }
+      if (casus == Casus.genitiv) {
+        return l10n.endocrinology_and_hormones_genitiv;
+      }
       if (casus == Casus.dativ) return l10n.endocrinology_and_hormones_dativ;
       return '${ExaminationType.ENDOCRINOLOGY_AND_HORMONES} unkown casus';
     case ExaminationType.ERGOTHERAPY:
@@ -543,7 +553,8 @@ double upperArcProgress(CategorizedExamination examination) {
       DateTime.now(),
     );
     return (sinceScheduledDays / totalDays).clamp(0, 1);
-  } else if (category == const ExaminationCategory.waiting()) {
+  } else if (category == const ExaminationCategory.waiting() ||
+      _newToScheduleFullProgressBar(examination)) {
     return 1;
   }
   return 0;
@@ -553,23 +564,28 @@ double lowerArcProgress(CategorizedExamination examination) {
   final nextVisit = examination.examination.plannedDate?.toLocal();
   final lastVisit = examination.examination.lastConfirmedDate?.toLocal();
   final category = examination.category;
-  final interval = examination.examination.intervalYears;
+  final intervalMonths =
+      examination.examination.examinationCategoryType == ExaminationCategoryType.CUSTOM
+          ? examination.examination.customInterval!
+          : examination.examination.intervalYears * 12;
 
   if (category == const ExaminationCategory.scheduledSoonOrOverdue() && nextVisit != null) {
     final intervalDays = daysBetween(
       nextVisit,
-      DateTime(nextVisit.year + interval, nextVisit.month),
+      DateTime(nextVisit.year, nextVisit.month + intervalMonths),
     );
     final afterScheduledDays = intervalDays -
         daysBetween(
           DateTime.now(),
-          DateTime(nextVisit.year + interval, nextVisit.month),
+          DateTime(nextVisit.year, nextVisit.month + intervalMonths),
         );
     return (afterScheduledDays / intervalDays).clamp(0, 1);
-  } else if (category == const ExaminationCategory.waiting() && lastVisit != null) {
+  } else if ((category == const ExaminationCategory.waiting() ||
+          _newToScheduleFullProgressBar(examination)) &&
+      lastVisit != null) {
     final intervalDays = daysBetween(
       DateTime(lastVisit.year, lastVisit.month),
-      DateTime(lastVisit.year + interval, lastVisit.month),
+      DateTime(lastVisit.year, lastVisit.month + intervalMonths),
     );
     final afterLastVisitDays = daysBetween(
       DateTime(lastVisit.year, lastVisit.month),
@@ -578,6 +594,11 @@ double lowerArcProgress(CategorizedExamination examination) {
     return (afterLastVisitDays / intervalDays).clamp(0, 1);
   }
   return 0;
+}
+
+bool _newToScheduleFullProgressBar(CategorizedExamination exam) {
+  return exam.examination.lastConfirmedDate != null &&
+      exam.category == const ExaminationCategory.newToSchedule();
 }
 
 bool isOverdue(CategorizedExamination examination) {
@@ -597,70 +618,6 @@ Color progressBarColor(ExaminationCategory category) {
     return LoonoColors.primaryEnabled;
   }
   return LoonoColors.greenSuccess;
-}
-
-Widget progressBarLeftDot(ExaminationCategory category) {
-  var color = LoonoColors.red;
-  if ([
-    const ExaminationCategory.scheduledSoonOrOverdue(),
-    const ExaminationCategory.scheduled(),
-  ].contains(category)) {
-    color = LoonoColors.greenSuccess;
-  } else if (category == const ExaminationCategory.waiting()) {
-    color = LoonoColors.primary;
-  }
-  return Align(
-    alignment: Alignment.centerLeft,
-    child: ClipRRect(
-      borderRadius: BorderRadius.circular(8),
-      child: Container(
-        color: color,
-        width: 16,
-        height: 16,
-        child: Visibility(
-          visible: [
-            const ExaminationCategory.scheduledSoonOrOverdue(),
-            const ExaminationCategory.scheduled(),
-          ].contains(category),
-          child: const Icon(
-            Icons.done,
-            size: 14,
-            color: Colors.white,
-          ),
-        ),
-      ),
-    ),
-  );
-}
-
-Widget progressBarRightDot(ExaminationCategory category) {
-  var color = LoonoColors.primary;
-  IconData? icon;
-  if (category == const ExaminationCategory.scheduledSoonOrOverdue()) {
-    color = LoonoColors.red;
-    icon = Icons.priority_high;
-  } else if (category == const ExaminationCategory.waiting()) {
-    color = LoonoColors.greenSuccess;
-    icon = Icons.done;
-  }
-  return Align(
-    alignment: Alignment.centerRight,
-    child: ClipRRect(
-      borderRadius: BorderRadius.circular(8),
-      child: Container(
-        color: color,
-        width: 16,
-        height: 16,
-        child: icon != null
-            ? Icon(
-                icon,
-                size: 14,
-                color: Colors.white,
-              )
-            : const SizedBox(),
-      ),
-    ),
-  );
 }
 
 double selfExaminationProgress(Date? plannedDate) {

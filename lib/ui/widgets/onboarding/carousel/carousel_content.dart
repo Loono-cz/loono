@@ -14,6 +14,7 @@ class CarouselStatContent extends StatelessWidget {
     this.bodyText = '',
     this.button,
     this.dataSourceText = '',
+    required this.paddingMultiplier,
   }) : super(key: key);
 
   final String statText;
@@ -22,6 +23,7 @@ class CarouselStatContent extends StatelessWidget {
   final String bodyText;
   final String dataSourceText;
   final Widget? button;
+  final double paddingMultiplier;
 
   TextStyle get statTextStyle => TextStyle(
         color: statTextColor,
@@ -33,31 +35,44 @@ class CarouselStatContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width * 0.15,
-      ),
-      child: Expanded(
-        child: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                _buildHeader(),
-                const CustomSpacer.vertical(60.0),
-                Text(
-                  bodyText,
-                  textAlign: TextAlign.center,
-                  style: LoonoFonts.paragraphBoldFontStyle,
-                ),
-                const CustomSpacer.vertical(60),
-                if (button != null) button!,
-                const CustomSpacer.vertical(20),
-                _buildExplanation(context),
-              ],
+    final widgetPadding = MediaQuery.of(context).size.width * paddingMultiplier;
+    return Column(
+      children: [
+        Expanded(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: widgetPadding,
+            ),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  _buildHeader(),
+                  const CustomSpacer.vertical(60.0),
+                  Text(
+                    bodyText,
+                    textAlign: TextAlign.center,
+                    style: LoonoFonts.paragraphBoldFontStyle,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-      ),
+        Column(
+          children: [
+            if (button != null) button!,
+            const CustomSpacer.vertical(20),
+            Padding(
+              padding: EdgeInsets.only(
+                left: widgetPadding,
+                right: widgetPadding,
+                bottom: widgetPadding,
+              ),
+              child: _buildExplanation(context),
+            ),
+          ],
+        ),
+      ],
     );
   }
 
