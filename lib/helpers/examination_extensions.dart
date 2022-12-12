@@ -100,7 +100,9 @@ extension SelfExaminationPreventionStatusExt on SelfExaminationPreventionStatus 
 
 extension ExaminationExt on ExaminationPreventionStatus {
   DateTime? get targetExamDate {
-    if (plannedDate != null && plannedDate != lastConfirmedDate) {
+    if (plannedDate != null &&
+        plannedDate != lastConfirmedDate &&
+        plannedDate?.isAfter(lastConfirmedDate ?? DateTime.fromMillisecondsSinceEpoch(0)) == true) {
       return DateTime(
         plannedDate!.year,
         plannedDate!.month,
