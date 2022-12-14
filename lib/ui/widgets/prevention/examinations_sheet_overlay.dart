@@ -93,7 +93,6 @@ class ExaminationsSheetOverlay extends StatelessWidget {
 
                       final categorizedExaminations =
                           categorized.where((e) => e.category == examinationStatus).toList();
-                      //..sortExaminations();
 
                       return Column(
                         children: [
