@@ -1549,9 +1549,5 @@
   "not_ordered": "Neobjednáno",
   "@not_ordered": {},
   "notification_loading_header": "Probíhá načítání",
-  "@notification_loading_header": {},
-  "notification_loading_examination": "Počkejte chvíli než načteme preventivní prohlídku",
-  "@notification_loading_examination": {},
-  "notification_loading_self_examination": "Počkejte chvíli než načteme samovyšetření",
-  "@notification_loading_self_examination": {}
+  "@notification_loading_header": {}
 }
