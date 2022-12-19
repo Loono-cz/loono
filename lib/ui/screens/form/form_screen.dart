@@ -1,20 +1,69 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/note_text_field.dart';
 import 'package:loono/ui/widgets/space.dart';
 
-class FormScreen extends StatelessWidget {
+enum QuestionTypes {
+  uninitialized,
+  selfExam,
+  mentalHealth,
+  preventionAndHealthStyle,
+  heartAndVessel,
+  reproductionalHealth,
+  sexualHealth,
+  preventiveExamAndScreening,
+  other,
+}
+
+class FormScreen extends StatefulWidget {
   FormScreen({super.key});
 
+  @override
+  State<FormScreen> createState() => _FormScreenState();
+}
+
+class _FormScreenState extends State<FormScreen> {
   final _textFieldController = TextEditingController();
+  int? defaultIndex;
+  final QuestionTypes questionType = QuestionTypes.uninitialized;
+  final List<String> _choices = [
+    'Samovyšetření prsou/varlat',
+    'Duševní zdraví',
+    'Prevence a životní styl',
+    'Zdravé srdce a cévy',
+    'Reprodukční zdraví',
+    'Sexuální zdraví',
+    'Preventivní prohlídky a screeningy',
+    'Jiné',
+  ];
+
+  void updateState(bool value, int index) {
+    setState(() {
+      defaultIndex = value ? index : defaultIndex;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(237, 248, 253, 1),
-      // appBar: AppBar(),
+      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+      appBar: AppBar(
+        elevation: 0.0,
+        backgroundColor: Colors.white24,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+          onPressed: () {
+            AutoRouter.of(context).pop();
+          },
+        ),
+      ),
       body: SafeArea(
         child: Column(
           children: [
@@ -25,34 +74,69 @@ class FormScreen extends StatelessWidget {
                 ),
                 child: SingleChildScrollView(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        context.l10n.specialist_question,
-                        style: LoonoFonts.customExamLabel,
+                        context.l10n.form_specialist_question,
+                        textAlign: TextAlign.left,
+                        style: const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                       const CustomSpacer.vertical(30),
-                      const Text(
-                        'Na tvé dotazy ohledně prevence a zdraví odpoví naši odborníci. Odpověd dostaneš cca do týdne na tvůj e-mail “user e-mail address”.',
-                        style: LoonoFonts.paragraphFontStyle,
+                      Text(
+                        context.l10n.form_question_answer('"user e-mail address"'),
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                       const Divider(
                         height: 60,
                       ),
-                      const Text('Jaké oblasti se dotaz týká?',
-                          style: LoonoFonts.cardExaminaitonType,),
-                      Container(),
-                      const CustomSpacer.vertical(30),
-                      
-                      //TODO: Vyuzit existujuci
-                      TextField(
-                        controller: _textFieldController,
-                        decoration: const InputDecoration(
-                          hintText: 'Prostor pro tvůj dotaz',
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: Text(
+                          context.l10n.form_question_field,
                         ),
+                      ),
+                      Wrap(
+                        children: List.generate(_choices.length, (index) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 5),
+                            child: ChoiceChip(
+                              avatar: index == defaultIndex
+                                  ? const Icon(
+                                      Icons.check,
+                                      color: LoonoColors.primaryEnabled,
+                                    )
+                                  : null,
+                              label: Text(
+                                _choices[index],
+                                style: TextStyle(
+                                  color: index == defaultIndex
+                                      ? LoonoColors.primaryEnabled
+                                      : LoonoColors.black,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              selected: index == defaultIndex,
+                              selectedColor: LoonoColors.beigeLight,
+                              onSelected: (value) {
+                                updateState(value, index);
+                              },
+                            ),
+                          );
+                        }),
+                      ),
+                      const CustomSpacer.vertical(30),
+                      noteTextField(
+                        context,
+                        noteController: _textFieldController,
+                        onNoteChange: null,
                         maxLength: 700,
-                        keyboardType: TextInputType.multiline,
-                        maxLines: 7,
-                        onSubmitted: null,
                       ),
                     ],
                   ),
