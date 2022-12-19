@@ -137,7 +137,8 @@ class ExaminationsSheetOverlay extends StatelessWidget {
                           _buildPlaceholderCard(context, categorized),
                           const CustomSpacer.vertical(20),
                           const ConsultancyCard(
-                              topic: ConsultancyTopic(ConsultancyTopicType.prevention)),
+                            topic: ConsultancyTopic(ConsultancyTopicType.prevention),
+                          ),
                           const CustomSpacer.vertical(68),
                         ],
                       );

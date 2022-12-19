@@ -308,8 +308,8 @@ class SelfExaminationDetailScreen extends StatelessWidget {
               ),
               const CustomSpacer.vertical(20),
               ConsultancyCard(
-                  topic:
-                      ConsultancyTopic.selfExamination(selfExaminationType: selfExamination.type)),
+                topic: ConsultancyTopic.selfExamination(selfExaminationType: selfExamination.type),
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 18),
                 child: harmDisclosureWidget(context, selfExamination.type),
