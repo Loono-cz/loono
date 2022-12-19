@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:collection/collection.dart';
 import 'package:loono/helpers/categorized_examination_converter.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -28,6 +26,8 @@ class NotificationRouter {
     return NotificationRouter(screen, data[uuidParamName].toString());
   }
 
+  AppRouter get appRouter => registry.get<AppRouter>();
+
   static const screenParamName = 'screen';
   static const uuidParamName = 'examinationUuid';
 
@@ -38,7 +38,7 @@ class NotificationRouter {
 
   final List<Function> _onDone = [];
 
-  Future<void> navigate(AppRouter appRouter) async {
+  Future<void> navigate() async {
     appRouter.push(MainRoute(notificationRouter: this)).ignore();
     if (screen.isExamination) {
       var exams = <ExaminationPreventionStatus>[];
@@ -50,16 +50,14 @@ class NotificationRouter {
           exams = data.data.examinations.toList();
           selfExams = data.data.selfexaminations.toList();
         },
-        failure: (err) {
-          log('Unable to fetch examination data for notifications');
-        },
+        failure: (err) {},
       );
       switch (screen) {
         case NotificationScreen.examination:
-          await _openExaminationScreen(exams, uuid, appRouter);
+          await _openExaminationScreen(exams, uuid);
           break;
         case NotificationScreen.selfExamination:
-          await _openSelfExaminationScreen(selfExams, uuid, appRouter);
+          await _openSelfExaminationScreen(selfExams, uuid);
           break;
         default:
           return;
@@ -70,12 +68,10 @@ class NotificationRouter {
   Future<void> _openExaminationScreen(
     List<ExaminationPreventionStatus> exams,
     String uuid,
-    AppRouter appRouter,
   ) async {
     final categorized = CategorizedExaminationConverter.convert(
       exams.where((exam) => exam.uuid == uuid).toList(),
     );
-    log('open push notification on $categorized');
     if (categorized.length == 1) {
       _notifyListeners();
       await appRouter.push(
@@ -85,37 +81,34 @@ class NotificationRouter {
       );
     } else {
       _notifyListeners();
-      log('examination with uuid $uuid was not found');
     }
   }
 
   Future<void> _openSelfExaminationScreen(
     List<SelfExaminationPreventionStatus> selfExams,
     String uuid,
-    AppRouter appRouter,
   ) async {
     final selfExam = selfExams.firstWhereOrNull((element) => element.lastExamUuid == uuid);
     if (selfExam != null) {
       final account = await registry.get<ApiService>().getAccount();
-      var sex = Sex.MALE;
+      Sex? sex;
       account.map(
         success: (data) {
           sex = data.data.sex;
         },
-        failure: (err) {
-          log('Unable to fetch examination data for notifications');
-        },
+        failure: (err) {},
       );
       _notifyListeners();
-      await appRouter.push(
-        SelfExaminationDetailRoute(
-          sex: sex,
-          selfExamination: selfExam,
-        ),
-      );
+      if (sex != null) {
+        await appRouter.push(
+          SelfExaminationDetailRoute(
+            sex: sex!,
+            selfExamination: selfExam,
+          ),
+        );
+      }
     } else {
       _notifyListeners();
-      log('self examination with uuid $uuid was not found');
     }
   }
 
