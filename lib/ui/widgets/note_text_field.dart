@@ -8,12 +8,13 @@ Widget noteTextField(
   bool? enable = true,
   required void Function(String)? onNoteChange,
   FocusNode? focusNode,
+  int maxLength = 256,
 }) {
   return TextFormField(
     controller: noteController,
     minLines: 5,
     maxLines: 10,
-    maxLength: 256,
+    maxLength: maxLength,
     keyboardType: TextInputType.multiline,
     enabled: enable,
     focusNode: focusNode,
