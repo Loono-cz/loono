@@ -30,10 +30,10 @@ class OnboardingSecondCarouselScreen extends StatelessWidget {
             statTextColor: LoonoColors.primaryEnabled,
             bodyText: context.l10n.carousel_content_2_body,
             button: CarouselButton(
-              heightMultiplier: 0.14,
               text: context.l10n.continue_info,
               onTap: () => AutoRouter.of(context).push(PreAuthMainRoute()),
             ),
+            paddingMultiplier: 0.14,
             dataSourceText: context.l10n.carousel_content_2_data_source,
           ),
         ),
