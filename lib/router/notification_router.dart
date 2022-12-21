@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:loono/constants.dart';
 import 'package:loono/helpers/categorized_examination_converter.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/api_service.dart';
@@ -13,23 +14,20 @@ class NotificationRouter {
       return NotificationRouter(NotificationScreen.main);
     }
     var screen = NotificationScreen.main;
-    switch (data[screenParamName]) {
-      case 'checkup':
+    switch (data[LoonoStrings.notificationScreenParamName]) {
+      case LoonoStrings.notificationScreenExamination:
         screen = NotificationScreen.examination;
         break;
-      case 'self':
+      case LoonoStrings.notificationScreenSelfExamination:
         screen = NotificationScreen.selfExamination;
         break;
       default:
         screen = NotificationScreen.main;
     }
-    return NotificationRouter(screen, data[uuidParamName].toString());
+    return NotificationRouter(screen, data[LoonoStrings.notificationUuidParamName].toString());
   }
 
   AppRouter get appRouter => registry.get<AppRouter>();
-
-  static const screenParamName = 'screen';
-  static const uuidParamName = 'examinationUuid';
 
   final NotificationScreen screen;
   final String uuid;

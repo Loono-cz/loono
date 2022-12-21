@@ -109,6 +109,11 @@ class LoonoStrings {
   static const hoursFormat = 'HH:mm';
   static const monthInYear = 12;
   static const customDefaultMonth = 6;
+
+  static const notificationScreenParamName = 'screen';
+  static const notificationUuidParamName = 'examinationUuid';
+  static const notificationScreenExamination = 'checkup';
+  static const notificationScreenSelfExamination = 'self';
 }
 
 class LoonoFonts {
