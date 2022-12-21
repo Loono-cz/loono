@@ -26,8 +26,6 @@ class GenderButton extends StatelessWidget {
       behavior: HitTestBehavior.translucent,
       onTap: onClick,
       child: Container(
-        width: 100,
-        height: 145,
         padding: const EdgeInsets.all(5),
         decoration: active
             ? BoxDecoration(
