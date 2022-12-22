@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/note_text_field.dart';
 import 'package:loono/ui/widgets/space.dart';
+import 'package:loono/utils/registry.dart';
 
 enum QuestionTypes {
   uninitialized,
@@ -27,9 +29,8 @@ class FormScreen extends StatefulWidget {
 }
 
 class _FormScreenState extends State<FormScreen> {
+  final _currentUser = registry.get<DatabaseService>().users.user!;
   final _textFieldController = TextEditingController();
-  int? defaultIndex;
-  final QuestionTypes questionType = QuestionTypes.uninitialized;
   final List<String> _choices = [
     'Samovyšetření prsou/varlat',
     'Duševní zdraví',
@@ -41,14 +42,24 @@ class _FormScreenState extends State<FormScreen> {
     'Jiné',
   ];
 
+  int? activeChipIndex;
+  QuestionTypes questionType = QuestionTypes.uninitialized;
+
   void updateState(bool value, int index) {
-    setState(() {
-      defaultIndex = value ? index : defaultIndex;
-    });
+    if (value) {
+      setState(() {
+        questionType = QuestionTypes.values[index + 1];
+        activeChipIndex = index;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    
+    // print(questionType);
+    // print(activeChipIndex);
+
     return Scaffold(
       backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
       appBar: AppBar(
@@ -86,7 +97,7 @@ class _FormScreenState extends State<FormScreen> {
                       ),
                       const CustomSpacer.vertical(30),
                       Text(
-                        context.l10n.form_question_answer('"user e-mail address"'),
+                        context.l10n.form_question_answer('"${_currentUser.email!}"'),
                         style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
@@ -106,7 +117,7 @@ class _FormScreenState extends State<FormScreen> {
                           return Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 5),
                             child: ChoiceChip(
-                              avatar: index == defaultIndex
+                              avatar: index == activeChipIndex
                                   ? const Icon(
                                       Icons.check,
                                       color: LoonoColors.primaryEnabled,
@@ -115,14 +126,14 @@ class _FormScreenState extends State<FormScreen> {
                               label: Text(
                                 _choices[index],
                                 style: TextStyle(
-                                  color: index == defaultIndex
+                                  color: index == activeChipIndex
                                       ? LoonoColors.primaryEnabled
                                       : LoonoColors.black,
                                   fontSize: 14,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-                              selected: index == defaultIndex,
+                              selected: index == activeChipIndex,
                               selectedColor: LoonoColors.beigeLight,
                               onSelected: (value) {
                                 updateState(value, index);
@@ -137,6 +148,7 @@ class _FormScreenState extends State<FormScreen> {
                         noteController: _textFieldController,
                         onNoteChange: null,
                         maxLength: 700,
+                        isForm: true,
                       ),
                     ],
                   ),
@@ -152,7 +164,7 @@ class _FormScreenState extends State<FormScreen> {
               ),
               child: LoonoButton(
                 onTap: () {},
-                text: 'Odeslat dotaz',
+                text: context.l10n.form_send_question,
               ),
             )
           ],
