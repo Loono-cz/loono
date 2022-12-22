@@ -1548,9 +1548,9 @@
   "@prevention_age_limit": {},
   "not_ordered": "Neobjednáno",
   "@not_ordered": {},
-  "form_specialist_question": "Dotaz do odborné poradny",
+  "form_specialist_question": "Dotaz do poradny",
   "@form_specialist_question": {},
-  "form_question_answer": "Na tvé dotazy ohledně prevence a zdraví odpoví naši odborníci. Odpověd dostaneš cca do týdne na tvůj e-mail {email}.",
+  "form_question_answer": "Na tvůj dotaz ohledně zdraví a prevence odpoví naši odborníci z řad lékařů. Odpověď ti zašleme do týdne na e-mail {email}.",
   "@form_question_answer": {
     "placeholders": {
       "email": {
@@ -1559,5 +1559,11 @@
     }
   },
   "form_question_field": "Jaké oblasti se dotaz týká?",
-  "@form_question_field": {}
+  "@form_question_field": {},
+  "form_question_label": "Tvůj dotaz",
+  "@form_question_label": {},
+  "form_question_hint": "Prostor pro tvůj dotaz ...",
+  "@form_question_hint": {},
+  "form_send_question": "Odeslat dotaz",
+  "@form_send_question": {}
 }
