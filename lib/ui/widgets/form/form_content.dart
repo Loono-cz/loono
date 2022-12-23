@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:loono/constants.dart';
 
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/database_service.dart';
@@ -42,9 +44,60 @@ class _FormContentState extends State<FormContent> {
   final _currentUser = registry.get<DatabaseService>().users.user!;
   final _textFieldController = TextEditingController();
   QuestionTypes questionType;
+  bool wrapperError = false;
+  bool textInputError = false;
 
   void updateQuestionType(int index) {
     questionType = QuestionTypes.values[index + 1];
+  }
+
+  void showErrorSnackBar() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          context.l10n.form_snack_error,
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        backgroundColor: LoonoColors.errorColor,
+      ),
+    );
+  }
+
+  void sendForm() {
+    setState(() {
+      if (questionType == QuestionTypes.uninitialized) {
+        wrapperError = true;
+        showErrorSnackBar();
+      } else {
+        wrapperError = false;
+      }
+      if (_textFieldController.text.isEmpty) {
+        textInputError = true;
+        showErrorSnackBar();
+      } else {
+        textInputError = false;
+      }
+
+      if (questionType != QuestionTypes.uninitialized && _textFieldController.text.isNotEmpty) {
+        // TODO: SEND FORM
+        AutoRouter.of(context).pop();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              context.l10n.form_snack_success,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            backgroundColor: LoonoColors.greenSuccess,
+          ),
+        );
+      }
+    });
   }
 
   @override
@@ -93,6 +146,18 @@ class _FormContentState extends State<FormContent> {
                     questionType.index == 0 ? null : questionType.index - 1,
                     updateQuestionType,
                   ),
+                  if (wrapperError)
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: Text(
+                        context.l10n.form_wrapper_error,
+                        style: const TextStyle(
+                          color: LoonoColors.red,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
                   const CustomSpacer.vertical(30),
                   noteTextField(
                     context,
@@ -100,6 +165,8 @@ class _FormContentState extends State<FormContent> {
                     onNoteChange: null,
                     maxLength: 700,
                     isForm: true,
+                    error: textInputError,
+                    errorText: context.l10n.form_input_error,
                   ),
                 ],
               ),
@@ -114,7 +181,7 @@ class _FormContentState extends State<FormContent> {
             right: 18,
           ),
           child: LoonoButton(
-            onTap: () {},
+            onTap: sendForm,
             text: context.l10n.form_send_question,
           ),
         )
