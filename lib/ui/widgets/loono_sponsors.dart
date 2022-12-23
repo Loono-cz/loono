@@ -88,30 +88,16 @@ class _Sponsor extends StatelessWidget {
   }
 
   Widget _buildSponsorImage() {
-    if (logoAsset.contains('.svg')) {
-      if (width != null) {
-        return SvgPicture.asset(
-          logoAsset,
-          width: width,
-        );
-      } else if (height != null) {
-        return SvgPicture.asset(
-          logoAsset,
-          height: height,
-        );
-      }
-    } else {
-      if (width != null) {
-        return Image.asset(
-          logoAsset,
-          width: width,
-        );
-      } else if (height != null) {
-        return Image.asset(
-          logoAsset,
-          height: height,
-        );
-      }
+    if (width != null) {
+      return SvgPicture.asset(
+        logoAsset,
+        width: width,
+      );
+    } else if (height != null) {
+      return SvgPicture.asset(
+        logoAsset,
+        height: height,
+      );
     }
     return const SizedBox();
   }
