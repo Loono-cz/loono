@@ -1560,10 +1560,18 @@
   },
   "form_question_field": "Jaké oblasti se dotaz týká?",
   "@form_question_field": {},
+  "form_wrapper_error": "Vyber kategorii dotazu.",
+  "@form_wrapper_error": {},
   "form_question_label": "Tvůj dotaz",
   "@form_question_label": {},
   "form_question_hint": "Prostor pro tvůj dotaz ...",
   "@form_question_hint": {},
+  "form_input_error": "Doplň prosím tvůj dotaz.",
+  "@form_input_error": {},
   "form_send_question": "Odeslat dotaz",
-  "@form_send_question": {}
+  "@form_send_question": {},
+  "form_snack_error": "Vyplň prosím všechny povinná pole.",
+  "@form_snack_error": {},
+  "form_snack_success": "Tvůj dotaz byl odeslán.",
+  "@form_snack_success": {}
 }
