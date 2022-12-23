@@ -10,6 +10,8 @@ Widget noteTextField(
   FocusNode? focusNode,
   int maxLength = 256,
   bool isForm = false,
+  bool error = false,
+  String errorText = '',
 }) {
   return TextFormField(
     controller: noteController,
@@ -35,6 +37,7 @@ Widget noteTextField(
                 )
               : Text(context.l10n.note_visiting)),
       hintStyle: const TextStyle(color: Colors.grey, fontSize: 14.0),
+      errorText: error ? errorText : null,
       focusedBorder: const OutlineInputBorder(
         borderSide: BorderSide(color: LoonoColors.primaryEnabled),
       ),
