@@ -5,7 +5,7 @@ class LoonoAssets {
   static const ppfLogo = 'assets/sponsors/ppf.svg';
   static const cgiLogo = 'assets/sponsors/CGI.svg';
   static const mzcrLogo = 'assets/sponsors/mzcr.svg';
-  static const pragueLogo = 'assets/sponsors/prague.png';
+  static const pragueLogo = 'assets/sponsors/prague.svg';
   static const welcomeLogo = 'assets/icons/welcome-logo.svg';
 
   static const customExamBadge = 'assets/badges_examination/custom_examination/badge';

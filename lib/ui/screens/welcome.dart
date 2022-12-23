@@ -6,8 +6,8 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/loono_sponsors.dart';
 import 'package:loono/ui/widgets/space.dart';
-import 'package:loono/ui/widgets/sponsors.dart';
 import 'package:loono/utils/registry.dart';
 
 class WelcomeScreen extends StatelessWidget {
