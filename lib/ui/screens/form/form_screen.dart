@@ -4,7 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:loono/ui/widgets/form/form_content.dart';
 
 class FormScreen extends StatelessWidget {
-  const FormScreen({super.key});
+  const FormScreen({
+    super.key,
+    this.initializedType = QuestionTypes.selfExam,
+  });
+
+  final QuestionTypes initializedType;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +28,8 @@ class FormScreen extends StatelessWidget {
           },
         ),
       ),
-      body: const SafeArea(
-        child: FormContent(),
+      body: SafeArea(
+        child: FormContent(initializedType),
       ),
     );
   }

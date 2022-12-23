@@ -3,17 +3,28 @@ import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 
 class FormQuestionTypesWrapper extends StatefulWidget {
-  const FormQuestionTypesWrapper(this.updateQuestionType, {super.key,});
+  const FormQuestionTypesWrapper(
+    this.defaultChipIndex,
+    this.updateQuestionType, {
+    super.key,
+  });
 
+  final int? defaultChipIndex;
   final Function updateQuestionType;
 
   @override
-  State<FormQuestionTypesWrapper> createState() => _FormQuestionTypesWrapperState(updateQuestionType);
+  State<FormQuestionTypesWrapper> createState() => _FormQuestionTypesWrapperState(
+        defaultChipIndex,
+        updateQuestionType,
+      );
 }
 
 class _FormQuestionTypesWrapperState extends State<FormQuestionTypesWrapper> {
-  _FormQuestionTypesWrapperState(this.updateQuestionType);
-  Function updateQuestionType;
+  _FormQuestionTypesWrapperState(
+    this.activeChipIndex,
+    this.updateQuestionType,
+  );
+  final Function updateQuestionType;
   final List<String> choices = [
     'Samovyšetření prsou/varlat',
     'Duševní zdraví',
@@ -51,9 +62,7 @@ class _FormQuestionTypesWrapperState extends State<FormQuestionTypesWrapper> {
             label: Text(
               choices[index],
               style: TextStyle(
-                color: index == activeChipIndex
-                    ? LoonoColors.primaryEnabled
-                    : LoonoColors.black,
+                color: index == activeChipIndex ? LoonoColors.primaryEnabled : LoonoColors.black,
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
               ),

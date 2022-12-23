@@ -21,16 +21,27 @@ enum QuestionTypes {
 }
 
 class FormContent extends StatefulWidget {
-  const FormContent({super.key});
+  const FormContent(
+    this.questionType, {
+    super.key,
+  });
+
+  final QuestionTypes questionType;
 
   @override
-  State<FormContent> createState() => _FormContentState();
+  State<FormContent> createState() => _FormContentState(
+        questionType,
+      );
 }
 
 class _FormContentState extends State<FormContent> {
+  _FormContentState(
+    this.questionType,
+  );
+
   final _currentUser = registry.get<DatabaseService>().users.user!;
   final _textFieldController = TextEditingController();
-  QuestionTypes questionType = QuestionTypes.uninitialized;
+  QuestionTypes questionType;
 
   void updateQuestionType(int index) {
     questionType = QuestionTypes.values[index + 1];
@@ -39,72 +50,75 @@ class _FormContentState extends State<FormContent> {
   @override
   Widget build(BuildContext context) {
     return Column(
-        children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 18,
-              ),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      context.l10n.form_specialist_question,
-                      textAlign: TextAlign.left,
-                      style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w400,
-                      ),
+      children: [
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 18,
+            ),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    context.l10n.form_specialist_question,
+                    textAlign: TextAlign.left,
+                    style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w400,
                     ),
-                    const CustomSpacer.vertical(30),
-                    Text(
-                      context.l10n.form_question_answer('"${_currentUser.email!}"'),
+                  ),
+                  const CustomSpacer.vertical(30),
+                  Text(
+                    context.l10n.form_question_answer('"${_currentUser.email!}"'),
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  const Divider(
+                    height: 60,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: Text(
+                      context.l10n.form_question_field,
                       style: const TextStyle(
                         fontSize: 14,
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
-                    const Divider(
-                      height: 60,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 20),
-                      child: Text(
-                        context.l10n.form_question_field,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                    FormQuestionTypesWrapper(updateQuestionType),
-                    const CustomSpacer.vertical(30),
-                    noteTextField(
-                      context,
-                      noteController: _textFieldController,
-                      onNoteChange: null,
-                      maxLength: 700,
-                      isForm: true,
-                    ),
-                  ],
-                ),
+                  ),
+                  FormQuestionTypesWrapper(
+                    questionType.index == 0 ? null : questionType.index - 1,
+                    updateQuestionType,
+                  ),
+                  const CustomSpacer.vertical(30),
+                  noteTextField(
+                    context,
+                    noteController: _textFieldController,
+                    onNoteChange: null,
+                    maxLength: 700,
+                    isForm: true,
+                  ),
+                ],
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(
-              top: 30,
-              bottom: 70,
-              left: 18,
-              right: 18,
-            ),
-            child: LoonoButton(
-              onTap: () {},
-              text: context.l10n.form_send_question,
-            ),
-          )
-        ],
-      );
+        ),
+        Padding(
+          padding: const EdgeInsets.only(
+            top: 30,
+            bottom: 70,
+            left: 18,
+            right: 18,
+          ),
+          child: LoonoButton(
+            onTap: () {},
+            text: context.l10n.form_send_question,
+          ),
+        )
+      ],
+    );
   }
 }
