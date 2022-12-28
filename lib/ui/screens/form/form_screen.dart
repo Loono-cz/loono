@@ -2,11 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import 'package:loono/ui/widgets/form/form_content.dart';
+import 'package:loono/utils/hidekeyboard_util.dart';
 
 class FormScreen extends StatelessWidget {
   const FormScreen({
     super.key,
-    this.initializedType = QuestionTypes.selfExam,
+    this.initializedType = QuestionTypes.uninitialized,
   });
 
   final QuestionTypes initializedType;
@@ -29,7 +30,10 @@ class FormScreen extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: FormContent(initializedType),
+        child: GestureDetector(
+          onTap: () => hideKeyboard(context),
+          child: FormContent(initializedType),
+        ),
       ),
     );
   }
