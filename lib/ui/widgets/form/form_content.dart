@@ -37,7 +37,7 @@ class FormContent extends StatefulWidget {
 class _FormContentState extends State<FormContent> {
   final _currentUser = registry.get<DatabaseService>().users.user!;
   final _textFieldController = TextEditingController();
-  QuestionTypes questionType = QuestionTypes.uninitialized;
+  late QuestionTypes questionType;
   bool wrapperError = false;
   bool textInputError = false;
 
@@ -47,11 +47,11 @@ class _FormContentState extends State<FormContent> {
     questionType = widget.questionType;
   }
 
-  void updateQuestionType(int index) {
+  void _updateQuestionType(int index) {
     questionType = QuestionTypes.values[index + 1];
   }
 
-  void showErrorSnackBar() {
+  void _showErrorSnackBar() {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
@@ -63,17 +63,17 @@ class _FormContentState extends State<FormContent> {
     );
   }
 
-  void validateFormFields() {
+  void _validateFormFields() {
     setState(() {
       if (questionType == QuestionTypes.uninitialized) {
         wrapperError = true;
-        showErrorSnackBar();
+        _showErrorSnackBar();
       } else {
         wrapperError = false;
       }
       if (_textFieldController.text.isEmpty) {
         textInputError = true;
-        showErrorSnackBar();
+        _showErrorSnackBar();
       } else {
         textInputError = false;
       }
@@ -81,9 +81,9 @@ class _FormContentState extends State<FormContent> {
   }
 
   void _sendForm() {
-    validateFormFields();
+    _validateFormFields();
     if (questionType != QuestionTypes.uninitialized && _textFieldController.text.isNotEmpty) {
-      // TODO: SEND FORM ulozit a print udaje
+      // TODO: SEND FORM
       final name = _currentUser.nickname!;
       final sex = _currentUser.sex!;
       final age = _currentUser.dateOfBirth!;
@@ -141,7 +141,7 @@ class _FormContentState extends State<FormContent> {
                   ),
                   FormQuestionTypesWrapper(
                     questionType.index == 0 ? null : questionType.index - 1,
-                    updateQuestionType,
+                    _updateQuestionType,
                   ),
                   if (wrapperError)
                     Padding(

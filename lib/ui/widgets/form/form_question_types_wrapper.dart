@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:loono/loono.dart';
 
 class FormQuestionTypesWrapper extends StatefulWidget {
   const FormQuestionTypesWrapper(
