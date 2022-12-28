@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:loono/constants.dart';
+import 'package:loono/l10n/ext.dart';
+import 'package:loono/loono.dart';
 
 class FormQuestionTypesWrapper extends StatefulWidget {
   const FormQuestionTypesWrapper(
@@ -13,19 +15,11 @@ class FormQuestionTypesWrapper extends StatefulWidget {
   final Function updateQuestionType;
 
   @override
-  State<FormQuestionTypesWrapper> createState() => _FormQuestionTypesWrapperState(
-        defaultChipIndex,
-        updateQuestionType,
-      );
+  State<FormQuestionTypesWrapper> createState() => _FormQuestionTypesWrapperState();
 }
 
 class _FormQuestionTypesWrapperState extends State<FormQuestionTypesWrapper> {
-  _FormQuestionTypesWrapperState(
-    this.activeChipIndex,
-    this.updateQuestionType,
-  );
-  final Function updateQuestionType;
-  final List<String> choices = [
+  late List<String> choices = [
     'Samovyšetření prsou/varlat',
     'Duševní zdraví',
     'Prevence a životní styl',
@@ -35,7 +29,15 @@ class _FormQuestionTypesWrapperState extends State<FormQuestionTypesWrapper> {
     'Preventivní prohlídky a screeningy',
     'Jiné',
   ];
+  late Function updateQuestionType;
   int? activeChipIndex;
+
+  @override
+  void initState() {
+    updateQuestionType = widget.updateQuestionType;
+    activeChipIndex = widget.defaultChipIndex;
+    super.initState();
+  }
 
   void updateState(bool value, int index) {
     if (value) {
@@ -61,11 +63,7 @@ class _FormQuestionTypesWrapperState extends State<FormQuestionTypesWrapper> {
                 : null,
             label: Text(
               choices[index],
-              style: TextStyle(
-                color: index == activeChipIndex ? LoonoColors.primaryEnabled : LoonoColors.black,
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-              ),
+              style: index == activeChipIndex ? LoonoFonts.chipStyleActive : LoonoFonts.chipStyleDefault,
             ),
             selected: index == activeChipIndex,
             selectedColor: LoonoColors.beigeLight,

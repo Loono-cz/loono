@@ -31,21 +31,21 @@ class FormContent extends StatefulWidget {
   final QuestionTypes questionType;
 
   @override
-  State<FormContent> createState() => _FormContentState(
-        questionType,
-      );
+  State<FormContent> createState() => _FormContentState();
 }
 
 class _FormContentState extends State<FormContent> {
-  _FormContentState(
-    this.questionType,
-  );
-
   final _currentUser = registry.get<DatabaseService>().users.user!;
   final _textFieldController = TextEditingController();
-  QuestionTypes questionType;
+  QuestionTypes questionType = QuestionTypes.uninitialized;
   bool wrapperError = false;
   bool textInputError = false;
+
+  @override
+  void initState() {
+    super.initState();
+    questionType = widget.questionType;
+  }
 
   void updateQuestionType(int index) {
     questionType = QuestionTypes.values[index + 1];
@@ -56,17 +56,14 @@ class _FormContentState extends State<FormContent> {
       SnackBar(
         content: Text(
           context.l10n.form_snack_error,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w700,
-          ),
+          style: LoonoFonts.snackbarStyle,
         ),
         backgroundColor: LoonoColors.errorColor,
       ),
     );
   }
 
-  void sendForm() {
+  void validateFormFields() {
     setState(() {
       if (questionType == QuestionTypes.uninitialized) {
         wrapperError = true;
@@ -80,24 +77,32 @@ class _FormContentState extends State<FormContent> {
       } else {
         textInputError = false;
       }
-
-      if (questionType != QuestionTypes.uninitialized && _textFieldController.text.isNotEmpty) {
-        // TODO: SEND FORM
-        AutoRouter.of(context).pop();
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              context.l10n.form_snack_success,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            backgroundColor: LoonoColors.greenSuccess,
-          ),
-        );
-      }
     });
+  }
+
+  void _sendForm() {
+    validateFormFields();
+    if (questionType != QuestionTypes.uninitialized && _textFieldController.text.isNotEmpty) {
+      // TODO: SEND FORM ulozit a print udaje
+      final name = _currentUser.nickname!;
+      final sex = _currentUser.sex!;
+      final age = _currentUser.dateOfBirth!;
+      final message = _textFieldController.text;
+      print(name);
+      print(sex);
+      print(age);
+      print(message);
+      AutoRouter.of(context).popUntilRoot();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            context.l10n.form_snack_success,
+            style: LoonoFonts.snackbarStyle,
+          ),
+          backgroundColor: LoonoColors.greenSuccess,
+        ),
+      );
+    }
   }
 
   @override
@@ -116,18 +121,12 @@ class _FormContentState extends State<FormContent> {
                   Text(
                     context.l10n.form_specialist_question,
                     textAlign: TextAlign.left,
-                    style: const TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w400,
-                    ),
+                    style: LoonoFonts.headerFontStyle,
                   ),
                   const CustomSpacer.vertical(30),
                   Text(
                     context.l10n.form_question_answer('"${_currentUser.email!}"'),
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                    ),
+                    style: LoonoFonts.paragraphFontStyle,
                   ),
                   const Divider(
                     height: 60,
@@ -136,10 +135,7 @@ class _FormContentState extends State<FormContent> {
                     padding: const EdgeInsets.only(bottom: 20),
                     child: Text(
                       context.l10n.form_question_field,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: LoonoFonts.subtitleFontStyle,
                     ),
                   ),
                   FormQuestionTypesWrapper(
@@ -151,11 +147,7 @@ class _FormContentState extends State<FormContent> {
                       padding: const EdgeInsets.only(left: 15),
                       child: Text(
                         context.l10n.form_wrapper_error,
-                        style: const TextStyle(
-                          color: LoonoColors.red,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                        ),
+                        style: LoonoFonts.errorMessageStyle,
                       ),
                     ),
                   const CustomSpacer.vertical(30),
@@ -166,7 +158,6 @@ class _FormContentState extends State<FormContent> {
                     maxLength: 700,
                     isForm: true,
                     error: textInputError,
-                    errorText: context.l10n.form_input_error,
                   ),
                 ],
               ),
@@ -181,7 +172,7 @@ class _FormContentState extends State<FormContent> {
             right: 18,
           ),
           child: LoonoButton(
-            onTap: sendForm,
+            onTap: _sendForm,
             text: context.l10n.form_send_question,
           ),
         )
