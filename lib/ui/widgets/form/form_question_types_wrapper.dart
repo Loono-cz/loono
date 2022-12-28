@@ -19,27 +19,37 @@ class FormQuestionTypesWrapper extends StatefulWidget {
 }
 
 class _FormQuestionTypesWrapperState extends State<FormQuestionTypesWrapper> {
-  late List<String> choices = [
-    'Samovyšetření prsou/varlat',
-    'Duševní zdraví',
-    'Prevence a životní styl',
-    'Zdravé srdce a cévy',
-    'Reprodukční zdraví',
-    'Sexuální zdraví',
-    'Preventivní prohlídky a screeningy',
-    'Jiné',
-  ];
+  late List<String> choices;
   late Function updateQuestionType;
   int? activeChipIndex;
+  bool initialized = false;
 
   @override
   void initState() {
-    updateQuestionType = widget.updateQuestionType;
-    activeChipIndex = widget.defaultChipIndex;
+    initialized = true;
     super.initState();
   }
 
-  void updateState(bool value, int index) {
+  @override
+  void didChangeDependencies() {
+    if(initialized){
+      choices = [
+        context.l10n.form_self_exam,
+        context.l10n.form_mentalHealth,
+        context.l10n.form_preventionAndHealthStyle,
+        context.l10n.form_heartAndVessel,
+        context.l10n.form_reproductionalHealth,
+        context.l10n.form_sexualHealth,
+        context.l10n.form_preventiveExamAndScreening,
+        context.l10n.form_other,
+      ];
+      updateQuestionType = widget.updateQuestionType;
+      activeChipIndex = widget.defaultChipIndex;
+    }
+    super.didChangeDependencies();
+  }
+
+  void _updateState(bool value, int index) {
     if (value) {
       setState(() {
         updateQuestionType(index);
@@ -68,7 +78,7 @@ class _FormQuestionTypesWrapperState extends State<FormQuestionTypesWrapper> {
             selected: index == activeChipIndex,
             selectedColor: LoonoColors.beigeLight,
             onSelected: (value) {
-              updateState(value, index);
+              _updateState(value, index);
             },
           ),
         );

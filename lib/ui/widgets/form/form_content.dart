@@ -92,6 +92,7 @@ class _FormContentState extends State<FormContent> {
       print(sex);
       print(age);
       print(message);
+      print(questionType);
       AutoRouter.of(context).popUntilRoot();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
