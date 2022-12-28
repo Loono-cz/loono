@@ -28,9 +28,9 @@ class MapStateService with ChangeNotifier {
 
   final double _topPctPadding = getTopMapPadding();
 
-  MarkerId selectedMarkerId = const MarkerId('-1');
+  MarkerId _selectedMarkerId = const MarkerId('-1');
 
-  bool isAnyMarkerSelected = false;
+  bool _isAnyMarkerSelected = false;
 
   LocationPermission _locationPermission = LocationPermission.unableToDetermine;
 
@@ -89,19 +89,19 @@ class MapStateService with ChangeNotifier {
   }
 
   void clusterSelect(MarkerId markerId) {
-    selectedMarkerId = markerId;
-    isAnyMarkerSelected = true;
+    _selectedMarkerId = markerId;
+    _isAnyMarkerSelected = true;
   }
 
   void clusterUnselect() {
-    isAnyMarkerSelected = false;
+    _isAnyMarkerSelected = false;
   }
 
   void updateMarkers(Set<Marker> markers) {
     _markers.clear();
-    if (isAnyMarkerSelected) {
+    if (_isAnyMarkerSelected) {
       for (final marker in markers) {
-        if (marker.markerId == selectedMarkerId) {
+        if (marker.markerId == _selectedMarkerId) {
           _markers.add(marker);
         }
       }
