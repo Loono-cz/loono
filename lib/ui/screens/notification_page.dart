@@ -37,19 +37,13 @@ class NotificationPageState extends State<NotificationPage> {
             SvgPicture.asset('assets/newsletter_illustration.svg'),
           Text(
             context.l10n.do_you_like_loono,
-            style: const TextStyle(
-              fontWeight: FontWeight.w400,
-              fontSize: 24,
-            ),
+            style: LoonoFonts.customExamLabel,
             textAlign: TextAlign.center,
           ),
 
           Text(
             context.l10n.donate_desc_loono,
-            style: const TextStyle(
-              fontWeight: FontWeight.w400,
-              fontSize: 16,
-            ),
+            style: LoonoFonts.spinnerTextOnceTo,
             textAlign: TextAlign.center,
           ),
 
@@ -71,11 +65,7 @@ class NotificationPageState extends State<NotificationPage> {
           RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                color: Colors.black87,
-              ),
+              style: LoonoFonts.notificationSubText,
               children: [
                 TextSpan(
                   text: context.l10n.donate_anytime,
