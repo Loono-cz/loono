@@ -231,4 +231,10 @@ class LoonoFonts {
     fontWeight: FontWeight.w400,
     color: Colors.black87,
   );
+
+  static const notificationSubTextGrey = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: Colors.grey,
+  );
 }
