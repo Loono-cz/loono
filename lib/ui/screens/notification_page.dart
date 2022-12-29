@@ -97,7 +97,7 @@ class NotificationPageState extends State<NotificationPage> {
           else if (widget.notficationType == NotficationType.newsletter)
             Text(
               context.l10n.newsletter_edit,
-              style: LoonoFonts.spinnerTextOnceTo,
+              style: LoonoFonts.notificationSubTextGrey,
               textAlign: TextAlign.center,
             ),
         ],
