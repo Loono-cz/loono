@@ -5,7 +5,7 @@ on:
   workflow_dispatch: # can be triggered manually
 
 env:
-  flutter_version: '3.0.5'
+  flutter_version: '3.3.10'
   test_file_name: 'be_test'
 
 jobs:
@@ -15,7 +15,7 @@ jobs:
       matrix:
         device-name: [ Pixel 5e ]
         device-id: [ redfin ] # PHYSICAL_DEVICE (up to 5 runs/day)
-        api-level: [ 30 ]
+        api-level: [ 31 ]
 
     steps:
       - uses: actions/checkout@v3
