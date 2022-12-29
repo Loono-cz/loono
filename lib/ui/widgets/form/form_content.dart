@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:loono/constants.dart';
 
+import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/button.dart';
@@ -121,7 +121,6 @@ class _FormContentState extends State<FormContent> {
                 children: [
                   Text(
                     context.l10n.form_specialist_question,
-                    textAlign: TextAlign.left,
                     style: LoonoFonts.headerFontStyle,
                   ),
                   const CustomSpacer.vertical(30),

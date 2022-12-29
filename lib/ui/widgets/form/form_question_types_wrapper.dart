@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 
@@ -9,8 +10,8 @@ class FormQuestionTypesWrapper extends StatefulWidget {
     super.key,
   });
 
-  final int? _defaultChipIndex;
   final Function _updateQuestionType;
+  final int? _defaultChipIndex;
 
   @override
   State<FormQuestionTypesWrapper> createState() => _FormQuestionTypesWrapperState();
@@ -23,14 +24,9 @@ class _FormQuestionTypesWrapperState extends State<FormQuestionTypesWrapper> {
   bool _initialized = false;
 
   @override
-  void initState() {
-    _initialized = true;
-    super.initState();
-  }
-
-  @override
   void didChangeDependencies() {
-    if (_initialized) {
+    if (!_initialized) {
+      _initialized = true;
       _choices = [
         context.l10n.form_self_exam,
         context.l10n.form_mentalHealth,
