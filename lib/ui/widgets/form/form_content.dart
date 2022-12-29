@@ -10,7 +10,7 @@ import 'package:loono/ui/widgets/note_text_field.dart';
 import 'package:loono/ui/widgets/space.dart';
 import 'package:loono/utils/registry.dart';
 
-enum QuestionTypes {
+enum FormQuestionType {
   uninitialized,
   selfExam,
   mentalHealth,
@@ -24,11 +24,11 @@ enum QuestionTypes {
 
 class FormContent extends StatefulWidget {
   const FormContent(
-    this._questionType, {
+    this.questionType, {
     super.key,
   });
 
-  final QuestionTypes _questionType;
+  final FormQuestionType questionType;
 
   @override
   State<FormContent> createState() => _FormContentState();
@@ -37,18 +37,18 @@ class FormContent extends StatefulWidget {
 class _FormContentState extends State<FormContent> {
   final _currentUser = registry.get<DatabaseService>().users.user!;
   final _textFieldController = TextEditingController();
-  late QuestionTypes _questionType;
+  late FormQuestionType _questionType;
   bool _wrapperError = false;
   bool _textInputError = false;
 
   @override
   void initState() {
     super.initState();
-    _questionType = widget._questionType;
+    _questionType = widget.questionType;
   }
 
   void _updateQuestionType(int index) {
-    _questionType = QuestionTypes.values[index + 1];
+    _questionType = FormQuestionType.values[index + 1];
   }
 
   void _showErrorSnackBar() {
@@ -65,7 +65,7 @@ class _FormContentState extends State<FormContent> {
 
   void _validateFormFields() {
     setState(() {
-      if (_questionType == QuestionTypes.uninitialized) {
+      if (_questionType == FormQuestionType.uninitialized) {
         _wrapperError = true;
         _showErrorSnackBar();
       } else {
@@ -82,7 +82,7 @@ class _FormContentState extends State<FormContent> {
 
   void _sendForm() {
     _validateFormFields();
-    if (_questionType != QuestionTypes.uninitialized && _textFieldController.text.isNotEmpty) {
+    if (_questionType != FormQuestionType.uninitialized && _textFieldController.text.isNotEmpty) {
       // TODO: SEND FORM
       // final name = _currentUser.nickname!;
       // final sex = _currentUser.sex!;

@@ -5,13 +5,13 @@ import 'package:loono/l10n/ext.dart';
 
 class FormQuestionTypesWrapper extends StatefulWidget {
   const FormQuestionTypesWrapper(
-    this._defaultChipIndex,
-    this._updateQuestionType, {
+    this.defaultChipIndex,
+    this.updateQuestionType, {
     super.key,
   });
 
-  final Function _updateQuestionType;
-  final int? _defaultChipIndex;
+  final Function updateQuestionType;
+  final int? defaultChipIndex;
 
   @override
   State<FormQuestionTypesWrapper> createState() => _FormQuestionTypesWrapperState();
@@ -37,8 +37,8 @@ class _FormQuestionTypesWrapperState extends State<FormQuestionTypesWrapper> {
         context.l10n.form_preventiveExamAndScreening,
         context.l10n.form_other,
       ];
-      _updateQuestionType = widget._updateQuestionType;
-      _activeChipIndex = widget._defaultChipIndex;
+      _updateQuestionType = widget.updateQuestionType;
+      _activeChipIndex = widget.defaultChipIndex;
     }
     super.didChangeDependencies();
   }

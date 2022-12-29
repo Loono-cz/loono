@@ -7,10 +7,10 @@ import 'package:loono/utils/hidekeyboard_util.dart';
 class FormScreen extends StatelessWidget {
   const FormScreen({
     super.key,
-    this.initializedType = QuestionTypes.uninitialized,
+    this.initializedType = FormQuestionType.uninitialized,
   });
 
-  final QuestionTypes initializedType;
+  final FormQuestionType initializedType;
 
   @override
   Widget build(BuildContext context) {
