@@ -1,38 +1,37 @@
 import 'package:flutter/material.dart';
-
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 
 class FormQuestionTypesWrapper extends StatefulWidget {
   const FormQuestionTypesWrapper(
-    this.defaultChipIndex,
-    this.updateQuestionType, {
+    this._defaultChipIndex,
+    this._updateQuestionType, {
     super.key,
   });
 
-  final int? defaultChipIndex;
-  final Function updateQuestionType;
+  final int? _defaultChipIndex;
+  final Function _updateQuestionType;
 
   @override
   State<FormQuestionTypesWrapper> createState() => _FormQuestionTypesWrapperState();
 }
 
 class _FormQuestionTypesWrapperState extends State<FormQuestionTypesWrapper> {
-  late List<String> choices;
-  late Function updateQuestionType;
-  int? activeChipIndex;
-  bool initialized = false;
+  late List<String> _choices;
+  late Function _updateQuestionType;
+  int? _activeChipIndex;
+  bool _initialized = false;
 
   @override
   void initState() {
-    initialized = true;
+    _initialized = true;
     super.initState();
   }
 
   @override
   void didChangeDependencies() {
-    if(initialized){
-      choices = [
+    if (_initialized) {
+      _choices = [
         context.l10n.form_self_exam,
         context.l10n.form_mentalHealth,
         context.l10n.form_preventionAndHealthStyle,
@@ -42,8 +41,8 @@ class _FormQuestionTypesWrapperState extends State<FormQuestionTypesWrapper> {
         context.l10n.form_preventiveExamAndScreening,
         context.l10n.form_other,
       ];
-      updateQuestionType = widget.updateQuestionType;
-      activeChipIndex = widget.defaultChipIndex;
+      _updateQuestionType = widget._updateQuestionType;
+      _activeChipIndex = widget._defaultChipIndex;
     }
     super.didChangeDependencies();
   }
@@ -51,8 +50,8 @@ class _FormQuestionTypesWrapperState extends State<FormQuestionTypesWrapper> {
   void _updateState(bool value, int index) {
     if (value) {
       setState(() {
-        updateQuestionType(index);
-        activeChipIndex = index;
+        _updateQuestionType(index);
+        _activeChipIndex = index;
       });
     }
   }
@@ -60,21 +59,23 @@ class _FormQuestionTypesWrapperState extends State<FormQuestionTypesWrapper> {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      children: List.generate(choices.length, (index) {
+      children: List.generate(_choices.length, (index) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 5),
           child: ChoiceChip(
-            avatar: index == activeChipIndex
+            avatar: index == _activeChipIndex
                 ? const Icon(
                     Icons.check,
                     color: LoonoColors.primaryEnabled,
                   )
                 : null,
             label: Text(
-              choices[index],
-              style: index == activeChipIndex ? LoonoFonts.chipStyleActive : LoonoFonts.chipStyleDefault,
+              _choices[index],
+              style: index == _activeChipIndex
+                  ? LoonoFonts.chipStyleActive
+                  : LoonoFonts.chipStyleDefault,
             ),
-            selected: index == activeChipIndex,
+            selected: index == _activeChipIndex,
             selectedColor: LoonoColors.beigeLight,
             onSelected: (value) {
               _updateState(value, index);

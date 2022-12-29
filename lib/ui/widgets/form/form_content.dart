@@ -24,11 +24,11 @@ enum QuestionTypes {
 
 class FormContent extends StatefulWidget {
   const FormContent(
-    this.questionType, {
+    this._questionType, {
     super.key,
   });
 
-  final QuestionTypes questionType;
+  final QuestionTypes _questionType;
 
   @override
   State<FormContent> createState() => _FormContentState();
@@ -37,18 +37,18 @@ class FormContent extends StatefulWidget {
 class _FormContentState extends State<FormContent> {
   final _currentUser = registry.get<DatabaseService>().users.user!;
   final _textFieldController = TextEditingController();
-  late QuestionTypes questionType;
-  bool wrapperError = false;
-  bool textInputError = false;
+  late QuestionTypes _questionType;
+  bool _wrapperError = false;
+  bool _textInputError = false;
 
   @override
   void initState() {
     super.initState();
-    questionType = widget.questionType;
+    _questionType = widget._questionType;
   }
 
   void _updateQuestionType(int index) {
-    questionType = QuestionTypes.values[index + 1];
+    _questionType = QuestionTypes.values[index + 1];
   }
 
   void _showErrorSnackBar() {
@@ -65,34 +65,34 @@ class _FormContentState extends State<FormContent> {
 
   void _validateFormFields() {
     setState(() {
-      if (questionType == QuestionTypes.uninitialized) {
-        wrapperError = true;
+      if (_questionType == QuestionTypes.uninitialized) {
+        _wrapperError = true;
         _showErrorSnackBar();
       } else {
-        wrapperError = false;
+        _wrapperError = false;
       }
       if (_textFieldController.text.isEmpty) {
-        textInputError = true;
+        _textInputError = true;
         _showErrorSnackBar();
       } else {
-        textInputError = false;
+        _textInputError = false;
       }
     });
   }
 
   void _sendForm() {
     _validateFormFields();
-    if (questionType != QuestionTypes.uninitialized && _textFieldController.text.isNotEmpty) {
+    if (_questionType != QuestionTypes.uninitialized && _textFieldController.text.isNotEmpty) {
       // TODO: SEND FORM
-      final name = _currentUser.nickname!;
-      final sex = _currentUser.sex!;
-      final age = _currentUser.dateOfBirth!;
-      final message = _textFieldController.text;
-      print(name);
-      print(sex);
-      print(age);
-      print(message);
-      print(questionType);
+      // final name = _currentUser.nickname!;
+      // final sex = _currentUser.sex!;
+      // final age = _currentUser.dateOfBirth!;
+      // final message = _textFieldController.text;
+      // print(name);
+      // print(sex);
+      // print(age);
+      // print(message);
+      // print(_questionType);
       AutoRouter.of(context).popUntilRoot();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -140,10 +140,10 @@ class _FormContentState extends State<FormContent> {
                     ),
                   ),
                   FormQuestionTypesWrapper(
-                    questionType.index == 0 ? null : questionType.index - 1,
+                    _questionType.index == 0 ? null : _questionType.index - 1,
                     _updateQuestionType,
                   ),
-                  if (wrapperError)
+                  if (_wrapperError)
                     Padding(
                       padding: const EdgeInsets.only(left: 15),
                       child: Text(
@@ -158,7 +158,7 @@ class _FormContentState extends State<FormContent> {
                     onNoteChange: null,
                     maxLength: 700,
                     isForm: true,
-                    error: textInputError,
+                    error: _textInputError,
                   ),
                 ],
               ),
