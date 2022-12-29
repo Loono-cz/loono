@@ -225,4 +225,10 @@ class LoonoFonts {
     color: LoonoColors.primaryEnabled,
     fontWeight: FontWeight.bold,
   );
+
+  static const notificationSubText = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: Colors.black87,
+  );
 }
