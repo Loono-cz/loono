@@ -18,8 +18,17 @@ class NotificationPage extends StatefulWidget {
 }
 
 class NotificationPageState extends State<NotificationPage> {
-  Future<void> _closeForm(BuildContext context) async => Navigator.of(context).pop();
+  Future<void> donationFunction() async {
+    if (await canLaunchUrlString(LoonoStrings.donateUrl)) {
+      await launchUrlString(LoonoStrings.donateUrl);
+    }
+  }
 
+  void newsletterButtonFunction() {
+    return;
+  }
+
+  Future<void> _closeForm(BuildContext context) async => Navigator.of(context).pop();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -60,11 +69,9 @@ class NotificationPageState extends State<NotificationPage> {
                 text: (widget.notficationType == NotficationType.donate)
                     ? context.l10n.donate_label_btn
                     : context.l10n.newsletter_label_btn,
-                onTap: () async {
-                  if (await canLaunchUrlString(LoonoStrings.donateUrl)) {
-                    await launchUrlString(LoonoStrings.donateUrl);
-                  }
-                },
+                onTap: (widget.notficationType == NotficationType.donate)
+                    ? donationFunction
+                    : newsletterButtonFunction,
               ),
             ),
           ),
