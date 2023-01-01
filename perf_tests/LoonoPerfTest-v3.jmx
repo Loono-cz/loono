@@ -10,22 +10,32 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="UserCount" elementType="Argument">
             <stringProp name="Argument.name">UserCount</stringProp>
-            <stringProp name="Argument.value">80</stringProp>
+            <stringProp name="Argument.value">10</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="UserCsvFileIndex" elementType="Argument">
-            <stringProp name="Argument.name">UserCsvFileIndex</stringProp>
+          <elementProp name="UserIndexStart" elementType="Argument">
+            <stringProp name="Argument.name">UserIndexStart</stringProp>
             <stringProp name="Argument.value">1</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="StartAtTime" elementType="Argument">
             <stringProp name="Argument.name">StartAtTime</stringProp>
-            <stringProp name="Argument.value">true</stringProp>
+            <stringProp name="Argument.value">false</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="StartTime" elementType="Argument">
             <stringProp name="Argument.name">StartTime</stringProp>
             <stringProp name="Argument.value">12:07:00</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="AccountMailPrefix" elementType="Argument">
+            <stringProp name="Argument.name">AccountMailPrefix</stringProp>
+            <stringProp name="Argument.value">LoonoTest</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="AccountPass" elementType="Argument">
+            <stringProp name="Argument.name">AccountPass</stringProp>
+            <stringProp name="Argument.value">LoonoTest13579</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -37,25 +47,13 @@
         <stringProp name="TestPlan.comments">Load file with API keys and other configs</stringProp>
         <stringProp name="delimiter">;</stringProp>
         <stringProp name="fileEncoding"></stringProp>
-        <stringProp name="filename">/LoonoConfig.lptc</stringProp>
+        <stringProp name="filename">LoonoConfig.lptc</stringProp>
         <boolProp name="ignoreFirstLine">true</boolProp>
         <boolProp name="quotedData">false</boolProp>
         <boolProp name="recycle">true</boolProp>
         <stringProp name="shareMode">shareMode.all</stringProp>
         <boolProp name="stopThread">false</boolProp>
         <stringProp name="variableNames">ApiKey</stringProp>
-      </CSVDataSet>
-      <hashTree/>
-      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Users config" enabled="true">
-        <stringProp name="filename">/users-loono-jmeter-0${UserCsvFileIndex}.csv</stringProp>
-        <stringProp name="fileEncoding"></stringProp>
-        <stringProp name="variableNames">USER,PASS</stringProp>
-        <boolProp name="ignoreFirstLine">true</boolProp>
-        <stringProp name="delimiter">;</stringProp>
-        <boolProp name="quotedData">false</boolProp>
-        <boolProp name="recycle">true</boolProp>
-        <boolProp name="stopThread">false</boolProp>
-        <stringProp name="shareMode">shareMode.all</stringProp>
       </CSVDataSet>
       <hashTree/>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Firebase API - CreateUsers" enabled="true">
@@ -72,15 +70,30 @@
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
       </ThreadGroup>
       <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Firebase - Create User" enabled="true">
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Account indexer" enabled="true">
+          <boolProp name="LoopController.continue_forever">true</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </LoopController>
+        <hashTree>
+          <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Index" enabled="true">
+            <stringProp name="CounterConfig.start">${UserIndexStart}</stringProp>
+            <stringProp name="CounterConfig.end"></stringProp>
+            <stringProp name="CounterConfig.incr">1</stringProp>
+            <stringProp name="CounterConfig.name">index</stringProp>
+            <stringProp name="CounterConfig.format">0000</stringProp>
+            <boolProp name="CounterConfig.per_user">false</boolProp>
+          </CounterConfig>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Firebase - Log in user" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-	&quot;email&quot;:&quot;${USER}&quot;,&#xd;
-	&quot;password&quot;:&quot;${PASS}&quot;,&#xd;
+	&quot;email&quot;:&quot;${AccountMailPrefix}${index}@loono.cz&quot;,&#xd;
+	&quot;password&quot;:&quot;${AccountPass}&quot;,&#xd;
 	&quot;returnSecureToken&quot;:true&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
@@ -91,9 +104,9 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/v1/accounts:signUp?key=${ApiKey}</stringProp>
+          <stringProp name="HTTPSampler.path">/v1/accounts:signInWithPassword?key=${ApiKey}</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
           <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
@@ -102,7 +115,7 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header" enabled="true">
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Headers" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Content-Type</stringProp>
@@ -111,6 +124,67 @@
             </collectionProp>
           </HeaderManager>
           <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor - idToken" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">message</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.error.message</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+            <stringProp name="JSONPostProcessor.defaultValues">xxx</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor - email" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">email</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.email</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+            <stringProp name="JSONPostProcessor.defaultValues">No_default</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
+          <stringProp name="IfController.condition">${__jexl3(&quot;${message}&quot;.equals(&quot;EMAIL_NOT_FOUND&quot;) == true,)}</stringProp>
+          <boolProp name="IfController.evaluateAll">false</boolProp>
+          <boolProp name="IfController.useExpression">true</boolProp>
+        </IfController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Firebase - Create User" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+	&quot;email&quot;:&quot;${AccountMailPrefix}${index}@loono.cz&quot;,&#xd;
+	&quot;password&quot;:&quot;${AccountPass}&quot;,&#xd;
+	&quot;returnSecureToken&quot;:true&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">identitytoolkit.googleapis.com</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/v1/accounts:signUp?key=${ApiKey}</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
         </hashTree>
         <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
@@ -231,6 +305,21 @@ else{
 </stringProp>
         </BeanShellTimer>
         <hashTree/>
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Account indexer" enabled="true">
+          <boolProp name="LoopController.continue_forever">true</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </LoopController>
+        <hashTree>
+          <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Index" enabled="true">
+            <stringProp name="CounterConfig.start">${UserIndexStart}</stringProp>
+            <stringProp name="CounterConfig.end"></stringProp>
+            <stringProp name="CounterConfig.incr">1</stringProp>
+            <stringProp name="CounterConfig.name">index</stringProp>
+            <stringProp name="CounterConfig.format">0000</stringProp>
+            <boolProp name="CounterConfig.per_user">false</boolProp>
+          </CounterConfig>
+          <hashTree/>
+        </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Firebase - SignIn" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
@@ -238,8 +327,8 @@ else{
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-	&quot;email&quot;:&quot;${USER}&quot;,&#xd;
-	&quot;password&quot;:&quot;${PASS}&quot;,&#xd;
+	&quot;email&quot;:&quot;${AccountMailPrefix}${index}@loono.cz&quot;,&#xd;
+	&quot;password&quot;:&quot;${AccountPass}&quot;,&#xd;
 	&quot;returnSecureToken&quot;:true&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
@@ -289,10 +378,14 @@ Random rand = new Random();
 vars.put(&quot;sex&quot;,list[rand.nextInt(2)]);
 
 // Create Nick and prepare email for OnBoarding
-String mail = vars.get(&quot;USER&quot;); 
+String mail = vars.get(&quot;AccountMailPrefix&quot;)+vars.get(&quot;index&quot;)+&quot;@loono.cz&quot;; 
 String nick = mail.split(&quot;@&quot;,2)[0];
 vars.put(&quot;nick&quot;,nick);
-vars.put(&quot;email&quot;, mail);</stringProp>
+vars.put(&quot;email&quot;, mail);
+
+ResponseCode = &quot;200&quot;;
+ResponseMessage = &quot;Dynamic data was generated&quot;;
+IsSuccess = true;</stringProp>
           <stringProp name="BeanShellSampler.filename"></stringProp>
           <stringProp name="BeanShellSampler.parameters"></stringProp>
           <boolProp name="BeanShellSampler.resetInterpreter">true</boolProp>
@@ -627,6 +720,21 @@ vars.put(&quot;email&quot;, mail);</stringProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
       </ThreadGroup>
       <hashTree>
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Account indexer" enabled="true">
+          <boolProp name="LoopController.continue_forever">true</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </LoopController>
+        <hashTree>
+          <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Index" enabled="true">
+            <stringProp name="CounterConfig.start">${UserIndexStart}</stringProp>
+            <stringProp name="CounterConfig.end"></stringProp>
+            <stringProp name="CounterConfig.incr">1</stringProp>
+            <stringProp name="CounterConfig.name">index</stringProp>
+            <stringProp name="CounterConfig.format">0000</stringProp>
+            <boolProp name="CounterConfig.per_user">false</boolProp>
+          </CounterConfig>
+          <hashTree/>
+        </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Firebase - SignIn" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
@@ -634,8 +742,8 @@ vars.put(&quot;email&quot;, mail);</stringProp>
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-	&quot;email&quot;:&quot;${USER}&quot;,&#xd;
-	&quot;password&quot;:&quot;${PASS}&quot;,&#xd;
+	&quot;email&quot;:&quot;${AccountMailPrefix}${index}@loono.cz&quot;,&#xd;
+	&quot;password&quot;:&quot;${AccountPass}&quot;,&#xd;
 	&quot;returnSecureToken&quot;:true&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
@@ -812,6 +920,21 @@ vars.put(&quot;email&quot;, mail);</stringProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
       </ThreadGroup>
       <hashTree>
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Account indexer" enabled="true">
+          <boolProp name="LoopController.continue_forever">true</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </LoopController>
+        <hashTree>
+          <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Index" enabled="true">
+            <stringProp name="CounterConfig.start">${UserIndexStart}</stringProp>
+            <stringProp name="CounterConfig.end"></stringProp>
+            <stringProp name="CounterConfig.incr">1</stringProp>
+            <stringProp name="CounterConfig.name">index</stringProp>
+            <stringProp name="CounterConfig.format">0000</stringProp>
+            <boolProp name="CounterConfig.per_user">false</boolProp>
+          </CounterConfig>
+          <hashTree/>
+        </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Firebase - SignIn" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
@@ -819,9 +942,9 @@ vars.put(&quot;email&quot;, mail);</stringProp>
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-	&quot;email&quot;			:&quot;${USER}&quot;,&#xd;
-	&quot;password&quot;		:&quot;${PASS}&quot;,&#xd;
-	&quot;returnSecureToken	&quot;:true&#xd;
+	&quot;email&quot;:&quot;${AccountMailPrefix}${index}@loono.cz&quot;,&#xd;
+	&quot;password&quot;:&quot;${AccountPass}&quot;,&#xd;
+	&quot;returnSecureToken&quot;:true&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
