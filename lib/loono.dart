@@ -57,11 +57,14 @@ class Loono extends StatelessWidget {
         return MultiProvider(
           providers: [
             ChangeNotifierProvider<ExaminationsProvider>(
-                create: (_) => ExaminationsProvider()),
+              create: (_) => ExaminationsProvider(),
+            ),
             ChangeNotifierProvider<MapStateService>(
-                create: (_) => MapStateService()),
+              create: (_) => MapStateService(),
+            ),
             ChangeNotifierProvider<WebViewProvider>(
-                create: (_) => WebViewProvider()),
+              create: (_) => WebViewProvider(),
+            ),
           ],
           child: MaterialApp.router(
             title: 'Preventivka',
