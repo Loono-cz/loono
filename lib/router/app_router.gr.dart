@@ -12,16 +12,16 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i16;
-import 'package:built_collection/built_collection.dart' as _i73;
+import 'package:built_collection/built_collection.dart' as _i74;
 import 'package:flutter/material.dart' as _i63;
 import 'package:loono_api/loono_api.dart' as _i67;
-import 'package:moor/moor.dart' as _i71;
+import 'package:moor/moor.dart' as _i72;
 
-import '../helpers/examination_category.dart' as _i69;
-import '../models/categorized_examination.dart' as _i68;
+import '../helpers/examination_category.dart' as _i70;
+import '../models/categorized_examination.dart' as _i69;
 import '../models/search_result.dart' as _i65;
 import '../models/social_login_account.dart' as _i66;
-import '../services/db/database.dart' as _i70;
+import '../services/db/database.dart' as _i71;
 import '../ui/screens/about_health/about_health.dart' as _i20;
 import '../ui/screens/custom_exam_form/choose_exam_period_date_screen.dart'
     as _i59;
@@ -89,10 +89,11 @@ import '../ui/screens/settings/edit_nickname.dart' as _i42;
 import '../ui/screens/settings/edit_photo.dart' as _i44;
 import '../ui/screens/settings/gallery_photo_taken.dart' as _i48;
 import '../ui/screens/settings/photo_cropped_result.dart' as _i49;
-import '../ui/screens/settings/settings_bottom_sheet.dart' as _i72;
+import '../ui/screens/settings/settings_bottom_sheet.dart' as _i73;
 import '../ui/screens/welcome.dart' as _i18;
 import '../ui/widgets/achievement_screen.dart' as _i37;
 import 'guards/check_is_logged_in.dart' as _i64;
+import 'notification_router.dart' as _i68;
 import 'sub_routers/app_startup_wrapper_screen.dart' as _i1;
 import 'sub_routers/onboarding_wrapper_screen.dart' as _i4;
 import 'sub_routers/pre_auth_prevention_wrapper_screen.dart' as _i19;
@@ -353,8 +354,12 @@ class AppRouter extends _i16.RootStackRouter {
           barrierDismissible: false);
     },
     MainRoute.name: (routeData) {
+      final args =
+          routeData.argsAs<MainRouteArgs>(orElse: () => const MainRouteArgs());
       return _i16.MaterialPageX<void>(
-          routeData: routeData, child: const _i35.MainScreen());
+          routeData: routeData,
+          child: _i35.MainScreen(
+              key: args.key, notificationRouter: args.notificationRouter));
     },
     ExaminationDetailRoute.name: (routeData) {
       final args = routeData.argsAs<ExaminationDetailRouteArgs>();
@@ -1477,11 +1482,31 @@ class DentistDateRoute extends _i16.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i35.MainScreen]
-class MainRoute extends _i16.PageRouteInfo<void> {
-  const MainRoute({List<_i16.PageRouteInfo>? children})
-      : super(MainRoute.name, path: '', initialChildren: children);
+class MainRoute extends _i16.PageRouteInfo<MainRouteArgs> {
+  MainRoute(
+      {_i63.Key? key,
+      _i68.NotificationRouter? notificationRouter,
+      List<_i16.PageRouteInfo>? children})
+      : super(MainRoute.name,
+            path: '',
+            args:
+                MainRouteArgs(key: key, notificationRouter: notificationRouter),
+            initialChildren: children);
 
   static const String name = 'MainRoute';
+}
+
+class MainRouteArgs {
+  const MainRouteArgs({this.key, this.notificationRouter});
+
+  final _i63.Key? key;
+
+  final _i68.NotificationRouter? notificationRouter;
+
+  @override
+  String toString() {
+    return 'MainRouteArgs{key: $key, notificationRouter: $notificationRouter}';
+  }
 }
 
 /// generated route for
@@ -1490,7 +1515,7 @@ class ExaminationDetailRoute
     extends _i16.PageRouteInfo<ExaminationDetailRouteArgs> {
   ExaminationDetailRoute(
       {_i63.Key? key,
-      required _i68.CategorizedExamination categorizedExamination,
+      required _i69.CategorizedExamination categorizedExamination,
       String? initialMessage})
       : super(ExaminationDetailRoute.name,
             path: 'prevention-detail',
@@ -1508,7 +1533,7 @@ class ExaminationDetailRouteArgs {
 
   final _i63.Key? key;
 
-  final _i68.CategorizedExamination categorizedExamination;
+  final _i69.CategorizedExamination categorizedExamination;
 
   final String? initialMessage;
 
@@ -1679,7 +1704,7 @@ class ChangeLastVisitRoute
       required String title,
       required _i67.ExaminationType examinationType,
       required String? uuid,
-      required _i69.ExaminationCategory status})
+      required _i70.ExaminationCategory status})
       : super(ChangeLastVisitRoute.name,
             path: 'checkup/last-visit-update',
             args: ChangeLastVisitRouteArgs(
@@ -1712,7 +1737,7 @@ class ChangeLastVisitRouteArgs {
 
   final String? uuid;
 
-  final _i69.ExaminationCategory status;
+  final _i70.ExaminationCategory status;
 
   @override
   String toString() {
@@ -1723,7 +1748,7 @@ class ChangeLastVisitRouteArgs {
 /// generated route for
 /// [_i42.EditNicknameScreen]
 class EditNicknameRoute extends _i16.PageRouteInfo<EditNicknameRouteArgs> {
-  EditNicknameRoute({_i63.Key? key, required _i70.User? user})
+  EditNicknameRoute({_i63.Key? key, required _i71.User? user})
       : super(EditNicknameRoute.name,
             path: 'settings/update-profile/nickname',
             args: EditNicknameRouteArgs(key: key, user: user));
@@ -1736,7 +1761,7 @@ class EditNicknameRouteArgs {
 
   final _i63.Key? key;
 
-  final _i70.User? user;
+  final _i71.User? user;
 
   @override
   String toString() {
@@ -1747,7 +1772,7 @@ class EditNicknameRouteArgs {
 /// generated route for
 /// [_i43.EditEmailScreen]
 class EditEmailRoute extends _i16.PageRouteInfo<EditEmailRouteArgs> {
-  EditEmailRoute({_i63.Key? key, required _i70.User? user})
+  EditEmailRoute({_i63.Key? key, required _i71.User? user})
       : super(EditEmailRoute.name,
             path: 'settings/update-profile/email',
             args: EditEmailRouteArgs(key: key, user: user));
@@ -1760,7 +1785,7 @@ class EditEmailRouteArgs {
 
   final _i63.Key? key;
 
-  final _i70.User? user;
+  final _i71.User? user;
 
   @override
   String toString() {
@@ -1773,8 +1798,8 @@ class EditEmailRouteArgs {
 class EditPhotoRoute extends _i16.PageRouteInfo<EditPhotoRouteArgs> {
   EditPhotoRoute(
       {_i63.Key? key,
-      _i71.Uint8List? imageBytes,
-      required dynamic Function(_i72.SettingsPage) changePage})
+      _i72.Uint8List? imageBytes,
+      required dynamic Function(_i73.SettingsPage) changePage})
       : super(EditPhotoRoute.name,
             path: 'settings/update-profile/photo',
             args: EditPhotoRouteArgs(
@@ -1789,9 +1814,9 @@ class EditPhotoRouteArgs {
 
   final _i63.Key? key;
 
-  final _i71.Uint8List? imageBytes;
+  final _i72.Uint8List? imageBytes;
 
-  final dynamic Function(_i72.SettingsPage) changePage;
+  final dynamic Function(_i73.SettingsPage) changePage;
 
   @override
   String toString() {
@@ -1836,7 +1861,7 @@ class AfterDeletionRouteArgs {
 /// [_i47.CameraPhotoTakenScreen]
 class CameraPhotoTakenRoute
     extends _i16.PageRouteInfo<CameraPhotoTakenRouteArgs> {
-  CameraPhotoTakenRoute({_i63.Key? key, required _i71.Uint8List imageBytes})
+  CameraPhotoTakenRoute({_i63.Key? key, required _i72.Uint8List imageBytes})
       : super(CameraPhotoTakenRoute.name,
             path: 'settings/update-profile/photo/camera-taken',
             args: CameraPhotoTakenRouteArgs(key: key, imageBytes: imageBytes));
@@ -1849,7 +1874,7 @@ class CameraPhotoTakenRouteArgs {
 
   final _i63.Key? key;
 
-  final _i71.Uint8List imageBytes;
+  final _i72.Uint8List imageBytes;
 
   @override
   String toString() {
@@ -1861,7 +1886,7 @@ class CameraPhotoTakenRouteArgs {
 /// [_i48.GalleryPhotoTakenScreen]
 class GalleryPhotoTakenRoute
     extends _i16.PageRouteInfo<GalleryPhotoTakenRouteArgs> {
-  GalleryPhotoTakenRoute({_i63.Key? key, required _i71.Uint8List imageBytes})
+  GalleryPhotoTakenRoute({_i63.Key? key, required _i72.Uint8List imageBytes})
       : super(GalleryPhotoTakenRoute.name,
             path: 'settings/update-profile/photo/gallery-taken',
             args: GalleryPhotoTakenRouteArgs(key: key, imageBytes: imageBytes));
@@ -1874,7 +1899,7 @@ class GalleryPhotoTakenRouteArgs {
 
   final _i63.Key? key;
 
-  final _i71.Uint8List imageBytes;
+  final _i72.Uint8List imageBytes;
 
   @override
   String toString() {
@@ -1886,7 +1911,7 @@ class GalleryPhotoTakenRouteArgs {
 /// [_i49.PhotoCroppedResultScreen]
 class PhotoCroppedResultRoute
     extends _i16.PageRouteInfo<PhotoCroppedResultRouteArgs> {
-  PhotoCroppedResultRoute({_i63.Key? key, required _i71.Uint8List imageBytes})
+  PhotoCroppedResultRoute({_i63.Key? key, required _i72.Uint8List imageBytes})
       : super(PhotoCroppedResultRoute.name,
             path: 'settings/update-profile/photo/photo-cropped-result',
             args:
@@ -1900,7 +1925,7 @@ class PhotoCroppedResultRouteArgs {
 
   final _i63.Key? key;
 
-  final _i71.Uint8List imageBytes;
+  final _i72.Uint8List imageBytes;
 
   @override
   String toString() {
@@ -2008,7 +2033,7 @@ class NoFindingRoute extends _i16.PageRouteInfo<NoFindingRouteArgs> {
   NoFindingRoute(
       {_i63.Key? key,
       required int points,
-      required _i73.BuiltList<_i67.SelfExaminationStatus> history,
+      required _i74.BuiltList<_i67.SelfExaminationStatus> history,
       _i67.BadgeType? badgeType})
       : super(NoFindingRoute.name,
             path: 'self-examination/detail/no-finding',
@@ -2029,7 +2054,7 @@ class NoFindingRouteArgs {
 
   final int points;
 
-  final _i73.BuiltList<_i67.SelfExaminationStatus> history;
+  final _i74.BuiltList<_i67.SelfExaminationStatus> history;
 
   final _i67.BadgeType? badgeType;
 
