@@ -14,8 +14,8 @@
 import 'package:auto_route/auto_route.dart' as _i16;
 import 'package:built_collection/built_collection.dart' as _i74;
 import 'package:flutter/material.dart' as _i63;
+import 'package:flutter/services.dart' as _i72;
 import 'package:loono_api/loono_api.dart' as _i67;
-import 'package:moor/moor.dart' as _i72;
 
 import '../helpers/examination_category.dart' as _i70;
 import '../models/categorized_examination.dart' as _i69;
