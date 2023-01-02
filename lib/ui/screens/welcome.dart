@@ -6,6 +6,7 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/loono_sponsors.dart';
 import 'package:loono/ui/widgets/space.dart';
 import 'package:loono/utils/registry.dart';
 
@@ -20,12 +21,12 @@ class WelcomeScreen extends StatelessWidget {
       backgroundColor: LoonoColors.primaryLight,
       body: SafeArea(
         child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 18.0),
                   child: Center(
                     child: SingleChildScrollView(
                       child: Column(
@@ -43,37 +44,36 @@ class WelcomeScreen extends StatelessWidget {
                               Text(
                                 context.l10n.carousel_welcome_dialog,
                                 textAlign: TextAlign.center,
-                                style: LoonoFonts.headerFontStyle,
+                                style: LoonoFonts.headerLightFontStyle,
                               ),
                             ],
                           ),
-                          IgnorePointer(
-                            child: GridView.count(
-                              crossAxisCount: 2,
-                              shrinkWrap: true,
-                              childAspectRatio: (1 / .6),
-                              children: [
-                                _buildSponsor(
-                                  label: context.l10n.incubated,
-                                  logoAsset: LoonoAssets.cdLogo,
-                                  width: 105,
+                          const CustomSpacer.vertical(60),
+                          LoonoButton(
+                            text: context.l10n.carousel_start,
+                            onTap: () async {
+                              final autoRouter = AutoRouter.of(context);
+                              await _userRepository.createUserIfNotExists();
+                              await autoRouter.push(const IntroCarouselRoute());
+                            },
+                          ),
+                          const CustomSpacer.vertical(15),
+                          TextButton(
+                            onPressed: () async {
+                              final autoRouter = AutoRouter.of(context);
+                              await _userRepository.createUserIfNotExists();
+
+                              // ignore: unawaited_futures
+                              autoRouter.replaceAll([
+                                LoginRoute(),
+                                PreAuthMainRoute(
+                                  overridenPreventionRoute: LoginRoute(),
                                 ),
-                                _buildSponsor(
-                                  label: context.l10n.with_support,
-                                  logoAsset: LoonoAssets.ppfLogo,
-                                  height: 50,
-                                ),
-                                _buildSponsor(
-                                  label: context.l10n.with_support,
-                                  logoAsset: LoonoAssets.mzcrLogo,
-                                  height: 45,
-                                ),
-                                _buildSponsor(
-                                  label: context.l10n.technology_partner,
-                                  logoAsset: LoonoAssets.cgiLogo,
-                                  height: 50,
-                                )
-                              ],
+                              ]);
+                            },
+                            child: Text(
+                              context.l10n.carousel_have_account,
+                              style: LoonoFonts.fontStyle,
                             ),
                           ),
                         ],
@@ -81,84 +81,12 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Column(
-                  children: [
-                    LoonoButton(
-                      text: context.l10n.carousel_start,
-                      onTap: () async {
-                        final autoRouter = AutoRouter.of(context);
-                        await _userRepository.createUserIfNotExists();
-                        await autoRouter.push(const IntroCarouselRoute());
-                      },
-                    ),
-                    const CustomSpacer.vertical(15),
-                    TextButton(
-                      onPressed: () async {
-                        final autoRouter = AutoRouter.of(context);
-                        await _userRepository.createUserIfNotExists();
-
-                        // ignore: unawaited_futures
-                        autoRouter.replaceAll([
-                          LoginRoute(),
-                          PreAuthMainRoute(
-                            overridenPreventionRoute: LoginRoute(),
-                          ),
-                        ]);
-                      },
-                      child: Text(
-                        context.l10n.carousel_have_account,
-                        style: LoonoFonts.fontStyle,
-                      ),
-                    ),
-                    const CustomSpacer.vertical(40),
-                  ],
-                ),
-              ],
-            ),
+              ),
+              const LoonoSponsors(),
+            ],
           ),
         ),
       ),
     );
-  }
-
-  Widget _buildSponsor({
-    required String label,
-    required String logoAsset,
-    double? width,
-    double? height,
-  }) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          label,
-          textAlign: TextAlign.center,
-          style: LoonoFonts.paragraphSmallFontStyle,
-        ),
-        const SizedBox(
-          height: 9,
-        ),
-        _buildSponsorImage(asset: logoAsset, width: width, height: height),
-      ],
-    );
-  }
-
-  Widget _buildSponsorImage({
-    required String asset,
-    double? width,
-    double? height,
-  }) {
-    if (width != null) {
-      return SvgPicture.asset(
-        asset,
-        width: width,
-      );
-    } else if (height != null) {
-      return SvgPicture.asset(
-        asset,
-        height: height,
-      );
-    }
-    return const SizedBox();
   }
 }
