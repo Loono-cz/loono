@@ -1547,5 +1547,9 @@
   "prevention_age_limit": "Prevence je zatím pro starší 18 let",
   "@prevention_age_limit": {},
   "not_ordered": "Neobjednáno",
-  "@not_ordered": {}
+  "@not_ordered": {},
+  "consultancy_card_title": "Máš dotaz ohledně prevence?",
+  "@consultancy_card_title": {},
+  "consultancy_card_description": "Zeptej se odborníků v naší poradně.",
+  "@consultancy_card_description": {}
 }

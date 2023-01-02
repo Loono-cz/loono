@@ -34,6 +34,8 @@ class LoonoAssets {
   static const people = 'assets/icons/people.svg';
 
   static const points = 'assets/icons/points.svg';
+
+  static const consultancyButtonIcon = 'assets/icons/consultancy/consultancy_card_icon.svg';
 }
 
 class LoonoColors {
@@ -236,5 +238,11 @@ class LoonoFonts {
     fontSize: 14,
     color: LoonoColors.primaryEnabled,
     fontWeight: FontWeight.bold,
+  );
+
+  static const cardDescription = TextStyle(
+    fontSize: 14,
+    color: LoonoColors.grey,
+    fontWeight: FontWeight.w400,
   );
 }
