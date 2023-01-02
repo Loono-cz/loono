@@ -82,7 +82,8 @@ class Loono extends StatelessWidget {
               appRouter,
               navigatorObservers: () => [
                 FirebaseAnalyticsObserver(
-                    analytics: registry.get<FirebaseAnalytics>())
+                    analytics: registry.get<FirebaseAnalytics>(),
+                )
               ],
             ),
             routeInformationParser: appRouter.defaultRouteParser(),
