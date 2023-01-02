@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -25,7 +26,8 @@ class Loono extends StatelessWidget {
   Widget build(BuildContext context) {
     final auth = registry.get<AuthService>();
     final appRouter = registry.get<AppRouter>();
-    final healthcareProviderRepository = registry.get<HealthcareProviderRepository>();
+    final healthcareProviderRepository =
+        registry.get<HealthcareProviderRepository>();
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
     );
@@ -54,16 +56,20 @@ class Loono extends StatelessWidget {
 
         return MultiProvider(
           providers: [
-            ChangeNotifierProvider<ExaminationsProvider>(create: (_) => ExaminationsProvider()),
-            ChangeNotifierProvider<MapStateService>(create: (_) => MapStateService()),
-            ChangeNotifierProvider<WebViewProvider>(create: (_) => WebViewProvider()),
+            ChangeNotifierProvider<ExaminationsProvider>(
+                create: (_) => ExaminationsProvider()),
+            ChangeNotifierProvider<MapStateService>(
+                create: (_) => MapStateService()),
+            ChangeNotifierProvider<WebViewProvider>(
+                create: (_) => WebViewProvider()),
           ],
           child: MaterialApp.router(
             title: 'Preventivka',
             color: Colors.deepOrange,
             theme: ThemeData.light().copyWith(
               appBarTheme: const AppBarTheme(
-                systemOverlayStyle: SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
+                systemOverlayStyle:
+                    SystemUiOverlayStyle(statusBarBrightness: Brightness.light),
               ),
             ),
             localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -71,8 +77,10 @@ class Loono extends StatelessWidget {
             locale: defaultLocale != null ? Locale(defaultLocale!) : null,
             routerDelegate: AutoRouterDelegate(
               appRouter,
-              navigatorObservers: () =>
-                  [FirebaseAnalyticsObserver(analytics: registry.get<FirebaseAnalytics>())],
+              navigatorObservers: () => [
+                FirebaseAnalyticsObserver(
+                    analytics: registry.get<FirebaseAnalytics>())
+              ],
             ),
             routeInformationParser: appRouter.defaultRouteParser(),
           ),
