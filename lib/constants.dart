@@ -240,6 +240,29 @@ class LoonoFonts {
     fontWeight: FontWeight.bold,
   );
 
+  static const snackbarStyle = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+  );
+
+  static const errorMessageStyle = TextStyle(
+    color: LoonoColors.red,
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+  );
+
+  static const chipStyleActive = TextStyle(
+    color: LoonoColors.primaryEnabled,
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const chipStyleDefault = TextStyle(
+    color: LoonoColors.black,
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+  );
+
   static const cardDescription = TextStyle(
     fontSize: 14,
     color: LoonoColors.grey,
