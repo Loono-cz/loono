@@ -13,11 +13,14 @@ import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/screens/prevention/self_examination/self_faq_section.dart';
 import 'package:loono/ui/widgets/badges/self_exam_badges_sheet.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/consultancy/consultancy_card.dart';
+import 'package:loono/ui/widgets/consultancy/consultancy_topic.dart';
 import 'package:loono/ui/widgets/feedback/feedback_button.dart';
 import 'package:loono/ui/widgets/loono_point.dart';
 import 'package:loono/ui/widgets/prevention/harm_disclosure.dart';
 import 'package:loono/ui/widgets/prevention/progress_bar/self_examination_ring.dart';
 import 'package:loono/ui/widgets/prevention/self_examination/how_it_went_sheet.dart';
+import 'package:loono/ui/widgets/space.dart';
 import 'package:loono_api/loono_api.dart';
 
 class SelfExaminationDetailScreen extends StatelessWidget {
@@ -302,6 +305,10 @@ class SelfExaminationDetailScreen extends StatelessWidget {
               SelfFaqSection(
                 key: const Key('selfExaminationDetailPage_faqSection'),
                 selfExaminationType: selfExamination.type,
+              ),
+              const CustomSpacer.vertical(20),
+              ConsultancyCard(
+                topic: ConsultancyTopic.selfExamination(selfExaminationType: selfExamination.type),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 18),

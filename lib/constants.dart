@@ -34,6 +34,8 @@ class LoonoAssets {
   static const people = 'assets/icons/people.svg';
 
   static const points = 'assets/icons/points.svg';
+
+  static const consultancyButtonIcon = 'assets/icons/consultancy/consultancy_card_icon.svg';
 }
 
 class LoonoColors {
@@ -111,6 +113,11 @@ class LoonoStrings {
   static const hoursFormat = 'HH:mm';
   static const monthInYear = 12;
   static const customDefaultMonth = 6;
+
+  static const notificationScreenParamName = 'screen';
+  static const notificationUuidParamName = 'examinationUuid';
+  static const notificationScreenExamination = 'checkup';
+  static const notificationScreenSelfExamination = 'self';
 }
 
 class LoonoFonts {
@@ -231,5 +238,11 @@ class LoonoFonts {
     fontSize: 14,
     color: LoonoColors.primaryEnabled,
     fontWeight: FontWeight.bold,
+  );
+
+  static const cardDescription = TextStyle(
+    fontSize: 14,
+    color: LoonoColors.grey,
+    fontWeight: FontWeight.w400,
   );
 }
