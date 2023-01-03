@@ -20,7 +20,7 @@
   "@badge_shield_desc": {},
   "carousel_start": "Začít",
   "@carousel_start": {},
-  "carousel_welcome_dialog": "Chraň své zdraví\nprevencí",
+  "carousel_welcome_dialog": "Chraň své zdraví prevencí",
   "@carousel_welcome_dialog": {},
   "carousel_have_account": "Už mám účet",
   "@carousel_have_account": {},
@@ -1287,7 +1287,7 @@
   "@allow_location": {},
   "with_support": "Za podpory",
   "@with_support": {},
-  "incubated": "Aplikace vznikla\nv inkubátoru",
+  "incubated": "Aplikace vznikla v inkubátoru",
   "@incubated": {},
   "technology_partner": "Technologický partner",
   "@technology_partner": {},
@@ -1589,5 +1589,9 @@
   "form_snack_error": "Vyplň prosím všechny povinná pole.",
   "@form_snack_error": {},
   "form_snack_success": "Tvůj dotaz byl odeslán.",
-  "@form_snack_success": {}
+  "@form_snack_success": {},
+  "consultancy_card_title": "Máš dotaz ohledně prevence?",
+  "@consultancy_card_title": {},
+  "consultancy_card_description": "Zeptej se odborníků v naší poradně.",
+  "@consultancy_card_description": {}
 }

@@ -23,6 +23,8 @@ import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/examination_badges.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/faq_section.dart';
 import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/consultancy/consultancy_card.dart';
+import 'package:loono/ui/widgets/consultancy/consultancy_topic.dart';
 import 'package:loono/ui/widgets/note_text_field.dart';
 import 'package:loono/ui/widgets/prevention/calendar_permission_sheet.dart';
 import 'package:loono/ui/widgets/prevention/change_last_visit_sheet.dart';
@@ -33,6 +35,7 @@ import 'package:loono/ui/widgets/prevention/examination_edit_modal.dart';
 import 'package:loono/ui/widgets/prevention/examination_new_sheet.dart';
 import 'package:loono/ui/widgets/prevention/examination_progress_content.dart';
 import 'package:loono/ui/widgets/prevention/last_visit_sheet.dart';
+import 'package:loono/ui/widgets/space.dart';
 import 'package:loono/utils/hidekeyboard_util.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
@@ -197,7 +200,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
               )
             : l10n.skip_idk;
 
-    String _intervalYears(BuildContext context) {
+    String intervalYears(BuildContext context) {
       var count = _isCustomExam ? _examination.customInterval ?? 0 : _examination.intervalYears;
       final period =
           _isCustomExam && count < LoonoStrings.monthInYear ? Period.perMonth : Period.perYear;
@@ -341,7 +344,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                           const SizedBox(height: 20),
                           if (_isPeriodicalExam) ...[
                             _calendarRow(
-                              '${context.l10n.once_per} ${_intervalYears(context)}',
+                              '${context.l10n.once_per} ${intervalYears(context)}',
                               interval: true,
                             ),
                             const SizedBox(height: 10),
@@ -430,6 +433,8 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                   _examinationCategoryType == ExaminationCategoryType.MANDATORY) ||
               _examinationCategoryType == null) ...[
             FaqSection(examinationType: _examinationType),
+            const CustomSpacer.vertical(20),
+            ConsultancyCard(topic: ConsultancyTopic.examination(examinationType: _examinationType)),
             const SizedBox(
               height: 24.0,
             )
