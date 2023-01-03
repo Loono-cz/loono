@@ -5,6 +5,7 @@ class LoonoAssets {
   static const ppfLogo = 'assets/sponsors/ppf.svg';
   static const cgiLogo = 'assets/sponsors/CGI.svg';
   static const mzcrLogo = 'assets/sponsors/mzcr.svg';
+  static const pragueLogo = 'assets/sponsors/prague.svg';
   static const welcomeLogo = 'assets/icons/welcome-logo.svg';
 
   static const customExamBadge = 'assets/badges_examination/custom_examination/badge';
@@ -54,6 +55,7 @@ class LoonoColors {
   static const leaderboardPrimary = Color.fromRGBO(248, 185, 144, 1);
   static const pink = Color.fromRGBO(252, 237, 237, 1);
   static const red = Color.fromRGBO(216, 66, 72, 1);
+  static const white = Color.fromRGBO(255, 255, 255, 1);
   static const orangeLight = Color.fromRGBO(254, 242, 233, 1.0);
   static const secondaryFont = Color.fromRGBO(59, 126, 129, 1);
   static const redButton = Color.fromARGB(255, 230, 87, 86);
@@ -111,6 +113,11 @@ class LoonoStrings {
   static const hoursFormat = 'HH:mm';
   static const monthInYear = 12;
   static const customDefaultMonth = 6;
+
+  static const notificationScreenParamName = 'screen';
+  static const notificationUuidParamName = 'examinationUuid';
+  static const notificationScreenExamination = 'checkup';
+  static const notificationScreenSelfExamination = 'self';
 }
 
 class LoonoFonts {
@@ -130,6 +137,11 @@ class LoonoFonts {
     fontSize: 24,
     color: LoonoColors.black,
     fontWeight: FontWeight.normal,
+  );
+  static const headerLightFontStyle = TextStyle(
+    fontSize: 24,
+    color: LoonoColors.grey,
+    fontWeight: FontWeight.w400,
   );
 
   static const subtitleFontStyle = TextStyle(
@@ -226,6 +238,35 @@ class LoonoFonts {
     fontSize: 14,
     color: LoonoColors.primaryEnabled,
     fontWeight: FontWeight.bold,
+  );
+
+  static const cardDescription = TextStyle(
+    fontSize: 14,
+    color: LoonoColors.grey,
+    fontWeight: FontWeight.w400,
+  );
+
+  static const snackbarStyle = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+  );
+
+  static const errorMessageStyle = TextStyle(
+    color: LoonoColors.red,
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+  );
+
+  static const chipStyleActive = TextStyle(
+    color: LoonoColors.primaryEnabled,
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const chipStyleDefault = TextStyle(
+    color: LoonoColors.black,
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
   );
 
   static const cardDescription = TextStyle(

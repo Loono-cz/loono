@@ -200,7 +200,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
               )
             : l10n.skip_idk;
 
-    String _intervalYears(BuildContext context) {
+    String intervalYears(BuildContext context) {
       var count = _isCustomExam ? _examination.customInterval ?? 0 : _examination.intervalYears;
       final period =
           _isCustomExam && count < LoonoStrings.monthInYear ? Period.perMonth : Period.perYear;
@@ -344,7 +344,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                           const SizedBox(height: 20),
                           if (_isPeriodicalExam) ...[
                             _calendarRow(
-                              '${context.l10n.once_per} ${_intervalYears(context)}',
+                              '${context.l10n.once_per} ${intervalYears(context)}',
                               interval: true,
                             ),
                             const SizedBox(height: 10),
