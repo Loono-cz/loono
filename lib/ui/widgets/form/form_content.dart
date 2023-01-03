@@ -35,7 +35,7 @@ class FormContent extends StatefulWidget {
 }
 
 class _FormContentState extends State<FormContent> {
-  final _currentUser = registry.get<DatabaseService>().users.user!;
+  final _currentUser = registry.get<DatabaseService>().users.user;
   final _textFieldController = TextEditingController();
   late FormQuestionType _questionType;
   bool _wrapperError = false;
@@ -84,9 +84,9 @@ class _FormContentState extends State<FormContent> {
     _validateFormFields();
     if (_questionType != FormQuestionType.uninitialized && _textFieldController.text.isNotEmpty) {
       // TODO: SEND FORM
-      // final name = _currentUser.nickname!;
-      // final sex = _currentUser.sex!;
-      // final age = _currentUser.dateOfBirth!;
+      // final name = _currentUser?.nickname;
+      // final sex = _currentUser?.sex;
+      // final age = _currentUser?.dateOfBirth;
       // final message = _textFieldController.text;
       // print(name);
       // print(sex);
@@ -125,7 +125,7 @@ class _FormContentState extends State<FormContent> {
                   ),
                   const CustomSpacer.vertical(30),
                   Text(
-                    context.l10n.form_question_answer('"${_currentUser.email!}"'),
+                    context.l10n.form_question_answer('"${_currentUser?.email}"'),
                     style: LoonoFonts.paragraphFontStyle,
                   ),
                   const Divider(
