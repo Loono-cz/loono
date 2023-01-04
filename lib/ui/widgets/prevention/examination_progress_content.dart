@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loono/constants.dart';
@@ -22,6 +21,8 @@ class ExaminationProgressContent extends StatelessWidget {
 
   ExaminationCategoryType? get _examinationCategoryType =>
       categorizedExamination.examination.examinationCategoryType;
+
+  ExaminationCategory get category => categorizedExamination.category;
 
   bool get _isToday {
     final now = DateTime.now();
@@ -81,36 +82,25 @@ class ExaminationProgressContent extends StatelessWidget {
   }
 
   Widget _scheduledVisitContent(BuildContext context) {
-    final now = DateTime.now();
-    final visitTime = DateFormat(LoonoStrings.hoursFormat, 'cs-CZ')
-        .format(categorizedExamination.examination.plannedDate!.toLocal());
-    final visitTimePreposition =
-        categorizedExamination.examination.plannedDate!.toLocal().hour > 11 ? 've' : 'v';
-    final visitDate = DateFormat(LoonoStrings.dateFormatSpacing, 'cs-CZ')
-        .format(categorizedExamination.examination.plannedDate!.toLocal());
-    final isAfterVisit = now.isAfter(categorizedExamination.examination.plannedDate!.toLocal());
+    final visitData = _getVisitDataForExamination(context);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          isAfterVisit
-              ? (sex == Sex.MALE
-                  ? context.l10n.did_you_visited_male
-                  : context.l10n.did_you_visited_female)
-              : context.l10n.next_visit,
+          visitData.title,
           textAlign: TextAlign.center,
           style: LoonoFonts.paragraphSmallFontStyle.copyWith(
             color: LoonoColors.primaryEnabled,
-            fontWeight: isAfterVisit ? FontWeight.w700 : FontWeight.w400,
+            fontWeight: visitData.isAfter ? FontWeight.w700 : FontWeight.w400,
           ),
         ),
         Text(
-          _isToday ? context.l10n.today : visitDate,
+          _isToday ? context.l10n.today : visitData.date,
           textAlign: TextAlign.center,
           style: LoonoFonts.cardSubtitle.copyWith(fontSize: 16),
         ),
         Text(
-          _isToday ? '$visitTimePreposition $visitTime' : visitTime,
+          visitData.time,
           style: LoonoFonts.cardSubtitle.copyWith(fontSize: 16),
         )
       ],
@@ -173,10 +163,120 @@ class ExaminationProgressContent extends StatelessWidget {
               ),
             ),
           ),
-          progressBarLeftDot(categorizedExamination.category),
-          progressBarRightDot(categorizedExamination.category),
+          _buildProgressBarLeftDot(),
+          _buildProgressBarRightDot(),
         ],
       ),
     );
   }
+
+  Widget _buildProgressBarLeftDot() {
+    var color = LoonoColors.red;
+    if ([
+      const ExaminationCategory.scheduledSoonOrOverdue(),
+      const ExaminationCategory.scheduled(),
+    ].contains(category)) {
+      color = LoonoColors.greenSuccess;
+    } else if (category == const ExaminationCategory.waiting()) {
+      color = LoonoColors.primary;
+    }
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: Container(
+          color: color,
+          width: 16,
+          height: 16,
+          child: Visibility(
+            visible: [
+              const ExaminationCategory.scheduledSoonOrOverdue(),
+              const ExaminationCategory.scheduled(),
+            ].contains(category),
+            child: const Icon(
+              Icons.done,
+              size: 14,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildProgressBarRightDot() {
+    var color = LoonoColors.primary;
+    IconData? icon;
+    if (category == const ExaminationCategory.scheduledSoonOrOverdue()) {
+      color = LoonoColors.red;
+      icon = Icons.priority_high;
+    } else if (category == const ExaminationCategory.waiting()) {
+      color = LoonoColors.greenSuccess;
+      icon = Icons.done;
+    }
+    return Align(
+      alignment: Alignment.centerRight,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: Container(
+          color: color,
+          width: 16,
+          height: 16,
+          child: icon != null
+              ? Icon(
+                  icon,
+                  size: 14,
+                  color: Colors.white,
+                )
+              : const SizedBox(),
+        ),
+      ),
+    );
+  }
+
+  _VisitContentData _getVisitDataForExamination(BuildContext context) {
+    final now = DateTime.now();
+    final plannedDate = categorizedExamination.examination.plannedDate;
+    if (plannedDate == null) {
+      // this situation should not happened
+      return _VisitContentData(
+        title: context.l10n.not_ordered,
+        time: context.l10n.not_ordered,
+        date: context.l10n.not_ordered,
+        isAfter: false,
+      );
+    }
+    final time = DateFormat(LoonoStrings.hoursFormat, 'cs-CZ')
+        .format(categorizedExamination.examination.plannedDate!.toLocal());
+    final visitTimePreposition = categorizedExamination.examination.plannedDate!.toLocal().hour > 11
+        ? context.l10n.preposition_in
+        : context.l10n.preposition_in_ve;
+    final date = DateFormat(LoonoStrings.dateFormatSpacing, 'cs-CZ')
+        .format(categorizedExamination.examination.plannedDate!.toLocal());
+    final isAfter = now.isAfter(categorizedExamination.examination.plannedDate!.toLocal());
+    return _VisitContentData(
+      title: isAfter
+          ? (sex == Sex.MALE
+              ? context.l10n.did_you_visited_male
+              : context.l10n.did_you_visited_female)
+          : context.l10n.next_visit,
+      time: _isToday ? '$visitTimePreposition $time' : time,
+      date: _isToday ? context.l10n.today : date,
+      isAfter: isAfter,
+    );
+  }
+}
+
+class _VisitContentData {
+  const _VisitContentData({
+    required this.title,
+    required this.time,
+    required this.date,
+    required this.isAfter,
+  });
+
+  final String title;
+  final String time;
+  final String date;
+  final bool isAfter;
 }
