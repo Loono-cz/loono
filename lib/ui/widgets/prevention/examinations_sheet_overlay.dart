@@ -14,7 +14,6 @@ import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/widgets/avatar_bubble_notifier.dart';
 import 'package:loono/ui/widgets/consultancy/consultancy_card.dart';
-import 'package:loono/ui/widgets/consultancy/consultancy_topic.dart';
 import 'package:loono/ui/widgets/prevention/examination_card.dart';
 import 'package:loono/ui/widgets/prevention/self_examination/self_examination_card.dart';
 import 'package:loono/ui/widgets/space.dart';
@@ -136,9 +135,7 @@ class ExaminationsSheetOverlay extends StatelessWidget {
                         children: [
                           _buildPlaceholderCard(context, categorized),
                           const CustomSpacer.vertical(20),
-                          const ConsultancyCard(
-                            topic: ConsultancyTopic(ConsultancyTopicType.prevention),
-                          ),
+                          const ConsultancyCard.prevention(),
                           const CustomSpacer.vertical(68),
                         ],
                       );
