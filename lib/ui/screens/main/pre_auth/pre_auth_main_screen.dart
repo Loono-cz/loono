@@ -29,7 +29,7 @@ class PreAuthMainScreen extends StatefulWidget {
 
 class _PreAuthMainScreenState extends State<PreAuthMainScreen> {
   StreamSubscription? subscription;
-  Flushbar? noConnectionMessage;
+  SnackBar? noConnectionMessage;
 
   static const analyticsTabNames = [
     'PreAuthPreventionTab',
@@ -39,11 +39,17 @@ class _PreAuthMainScreenState extends State<PreAuthMainScreen> {
 
   void evalConnectivity(ConnectivityResult result) {
     /// TEMP: od not show 'no connection' flushbar -> randomly shows bcs of unknown bug
-    // if (result == ConnectivityResult.none && noConnectionMessage?.isShowing() == false) {
-    //   noConnectionMessage?.show(context);
-    // } else if (noConnectionMessage?.isDismissed() == false) {
-    //   noConnectionMessage?.dismiss(context);
-    // }
+    if (result == ConnectivityResult.none) {
+      if (noConnectionMessage != null) {
+        ScaffoldMessenger.of(context).showSnackBar(noConnectionMessage!);
+      }
+
+      //   noConnectionMessage?.show(context);
+    } else if (result != ConnectivityResult.none) {
+      ScaffoldMessenger.of(context).removeCurrentSnackBar();
+
+      // noConnectionMessage?.dismiss();
+    }
   }
 
   @override
