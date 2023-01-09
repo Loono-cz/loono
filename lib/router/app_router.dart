@@ -130,7 +130,7 @@ const _postAuthRouter = AutoRoute<void>(
       ],
     ),
     _badgeOverviewRoute,
-    _consultancyFromRoute,
+    _consultancyFormRoute,
     ..._preventionRoutes,
     ..._settingsRoutes,
     ..._selfExaminationRoutes,
@@ -168,7 +168,7 @@ const _allowNotificationRoute = CustomRoute<void>(
 const _aboutHealthRoute = AutoRoute<void>(page: AboutHealthScreen, path: 'about-health');
 const _forceUpdateRoute = AutoRoute<void>(page: ForceUpdateScreen, path: 'force-update');
 const _badgeOverviewRoute = AutoRoute<void>(page: BadgeOverviewScreen, path: 'badge-overview');
-const _consultancyFromRoute = AutoRoute<void>(page: FormScreen, path: 'consultancy-form');
+const _consultancyFormRoute = AutoRoute<void>(page: FormScreen, path: 'consultancy-form');
 
 const _findDoctorRoutes = <AutoRoute>[
   AutoRoute<void>(page: FindDoctorScreen, path: 'find-doctor'),

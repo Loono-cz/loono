@@ -23,7 +23,7 @@ import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/examination_badges.dart';
 import 'package:loono/ui/screens/prevention/examination_detail/faq_section.dart';
 import 'package:loono/ui/widgets/button.dart';
-import 'package:loono/ui/widgets/consultancy/consultancy_card.dart';
+import 'package:loono/ui/widgets/consultancy/form_card.dart';
 import 'package:loono/ui/widgets/note_text_field.dart';
 import 'package:loono/ui/widgets/prevention/calendar_permission_sheet.dart';
 import 'package:loono/ui/widgets/prevention/change_last_visit_sheet.dart';
@@ -433,11 +433,9 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
               _examinationCategoryType == null) ...[
             FaqSection(examinationType: _examinationType),
             const CustomSpacer.vertical(20),
-            const ConsultancyCard.examination(),
-            const SizedBox(
-              height: 24.0,
-            )
           ],
+          const FormCard.examination(),
+          const CustomSpacer.vertical(24),
           Padding(
             padding: const EdgeInsets.only(left: 16.0),
             child: Text(

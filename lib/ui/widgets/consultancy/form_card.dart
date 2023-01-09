@@ -7,17 +7,26 @@ import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/consultancy/form/form_content.dart';
 import 'package:loono/ui/widgets/space.dart';
 
-class ConsultancyCard extends StatelessWidget {
-  const ConsultancyCard({Key? key, required this.questionType}) : super(key: key);
+class FormCard extends StatelessWidget {
+  const FormCard({Key? key, required this.questionType}) : super(key: key);
 
-  const ConsultancyCard.prevention({Key? key})
-      : this(questionType: FormQuestionType.preventionAndHealthStyle, key: key);
+  const FormCard.prevention({Key? key})
+      : this(
+          questionType: FormQuestionType.preventiveExamAndScreening,
+          key: key,
+        );
 
-  const ConsultancyCard.examination({Key? key})
-      : this(questionType: FormQuestionType.preventiveExamAndScreening, key: key);
+  const FormCard.examination({Key? key})
+      : this(
+          questionType: FormQuestionType.preventiveExamAndScreening,
+          key: key,
+        );
 
-  const ConsultancyCard.selfExamination({Key? key})
-      : this(questionType: FormQuestionType.selfExam, key: key);
+  const FormCard.selfExamination({Key? key})
+      : this(
+          questionType: FormQuestionType.selfExam,
+          key: key,
+        );
 
   final FormQuestionType questionType;
 

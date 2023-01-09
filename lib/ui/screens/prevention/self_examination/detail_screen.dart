@@ -13,7 +13,7 @@ import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/screens/prevention/self_examination/self_faq_section.dart';
 import 'package:loono/ui/widgets/badges/self_exam_badges_sheet.dart';
 import 'package:loono/ui/widgets/button.dart';
-import 'package:loono/ui/widgets/consultancy/consultancy_card.dart';
+import 'package:loono/ui/widgets/consultancy/form_card.dart';
 import 'package:loono/ui/widgets/feedback/feedback_button.dart';
 import 'package:loono/ui/widgets/loono_point.dart';
 import 'package:loono/ui/widgets/prevention/harm_disclosure.dart';
@@ -306,7 +306,7 @@ class SelfExaminationDetailScreen extends StatelessWidget {
                 selfExaminationType: selfExamination.type,
               ),
               const CustomSpacer.vertical(20),
-              const ConsultancyCard.selfExamination(),
+              const FormCard.selfExamination(),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 18),
                 child: harmDisclosureWidget(context, selfExamination.type),
