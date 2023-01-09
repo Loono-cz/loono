@@ -31,7 +31,7 @@ class NotificationService : OSRemoteNotificationReceivedHandler {
             MainScope().launch {
                 val id = event.notification.androidNotificationId
                 while (!notificationManager.activeNotifications.containsId(id)) {
-                    delay(30_000)
+                    delay(500)
                 }
                 notificationManager.cancel(id)
             }
