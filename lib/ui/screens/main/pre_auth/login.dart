@@ -13,6 +13,7 @@ import 'package:loono/helpers/social_login_helpers.dart';
 import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/models/firebase_user.dart';
+import 'package:loono/platform_specific/platfrom_specific_account_channel.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/auth/auth_service.dart';
@@ -220,6 +221,7 @@ class LoginScreen extends StatelessWidget {
                   // An account with this email already exists, proceed through the login.
                   await _userRepository.createUser();
                   await autoRouter.replaceAll([const MainScreenRouter()]);
+                  accountChannel.loggedIn();
                 },
                 failure: (_) async {
                   showFlushBarError(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/platform_specific/platfrom_specific_account_channel.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/ui/widgets/button.dart';
@@ -23,6 +24,7 @@ class _LogoutScreenState extends State<LogoutScreen> {
   void initState() {
     super.initState();
     appClear().then((value) {
+      accountChannel.loggedOut();
       Future.delayed(Duration.zero, () {
         if (mounted) {
           showFlushBarSuccess(

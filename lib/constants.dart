@@ -5,7 +5,6 @@ class LoonoAssets {
   static const ppfLogo = 'assets/sponsors/ppf.svg';
   static const cgiLogo = 'assets/sponsors/CGI.svg';
   static const mzcrLogo = 'assets/sponsors/mzcr.svg';
-  static const mzcrLogo = 'assets/sponsors/mzcr.svg';
   static const pragueLogo = 'assets/sponsors/prague.svg';
   static const welcomeLogo = 'assets/icons/welcome-logo.svg';
 
@@ -119,6 +118,9 @@ class LoonoStrings {
   static const notificationUuidParamName = 'examinationUuid';
   static const notificationScreenExamination = 'checkup';
   static const notificationScreenSelfExamination = 'self';
+
+  static const platformSpecificAccountChannel = 'account_channel';
+  static const platformSpecificAccountChannelLoggedIn = 'logged_in';
 }
 
 class LoonoFonts {
