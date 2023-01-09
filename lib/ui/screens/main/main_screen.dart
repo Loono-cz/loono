@@ -37,16 +37,16 @@ class _MainScreenState extends State<MainScreen> {
 
   final analyticsTabNames = ['PreventionTab', 'FindDoctorTab', 'ExploreSectionTab'];
 
-  Flushbar? noConnectionMessage;
+  Flushbar? _noConnectionMessage;
 
   late NotificationScreen open = widget.notificationRouter?.screen ?? NotificationScreen.main;
 
   void evalConnectivity(ConnectivityResult result) {
     /// TEMP: od not show 'no connection' flushbar -> randomly shows bcs of unknown bug
-    if (result == ConnectivityResult.none && (noConnectionMessage?.isShowing() == false)) {
-      noConnectionMessage?.show(context);
-    } else if (result != ConnectivityResult.none && (noConnectionMessage?.isShowing() ?? false)) {
-      noConnectionMessage?.dismiss();
+    if (result == ConnectivityResult.none && (_noConnectionMessage?.isShowing() == false)) {
+      _noConnectionMessage?.show(context);
+    } else if (result != ConnectivityResult.none && (_noConnectionMessage?.isShowing() ?? false)) {
+      _noConnectionMessage?.dismiss();
     }
   }
 
@@ -85,7 +85,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    noConnectionMessage ??= noConnectionFlushbar(context: context);
+    _noConnectionMessage ??= noConnectionFlushbar(context: context);
     final hasNotification =
         context.select<ExaminationsProvider, bool>((state) => state.hasNotification);
 
