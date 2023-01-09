@@ -6,7 +6,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -31,7 +30,8 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  StreamSubscription? subscription;
+  late StreamSubscription<ConnectivityResult> _connectivitySubscription;
+  final Connectivity _connectivity = Connectivity();
 
   bool connectivityLocked = true;
 
@@ -43,11 +43,11 @@ class _MainScreenState extends State<MainScreen> {
 
   void evalConnectivity(ConnectivityResult result) {
     /// TEMP: od not show 'no connection' flushbar -> randomly shows bcs of unknown bug
-    // if (result == ConnectivityResult.none && noConnectionMessage?.isShowing() == false) {
-    //   noConnectionMessage?.show(context);
-    // } else if (noConnectionMessage?.isDismissed() == false) {
-    //   noConnectionMessage?.dismiss(context);
-    // }
+    if (result == ConnectivityResult.none && (noConnectionMessage?.isShowing() == false)) {
+      noConnectionMessage?.show(context);
+    } else if (result != ConnectivityResult.none && (noConnectionMessage?.isShowing() ?? false)) {
+      noConnectionMessage?.dismiss();
+    }
   }
 
   @override
@@ -59,15 +59,15 @@ class _MainScreenState extends State<MainScreen> {
     }
     registry.get<UserRepository>().sync();
 
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      subscription = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
-        evalConnectivity(result);
+    _connectivity.checkConnectivity().then(evalConnectivity);
+    _connectivitySubscription =
+        _connectivity.onConnectivityChanged.listen((ConnectivityResult result) {
+      evalConnectivity(result);
 
-        /// re-evaluate connection status after network reconnection
-        if (result != ConnectivityResult.none && !examinationsProvider.loading) {
-          examinationsProvider.fetchExaminations();
-        }
-      });
+      /// re-evaluate connection status after network reconnection
+      if (result != ConnectivityResult.none && !examinationsProvider.loading) {
+        examinationsProvider.fetchExaminations();
+      }
     });
 
     widget.notificationRouter?.addListener(() {
@@ -79,13 +79,13 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void dispose() {
-    subscription?.cancel();
+    _connectivitySubscription.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    // noConnectionMessage ??= noConnectionFlushbar(context: context);
+    noConnectionMessage ??= noConnectionFlushbar(context: context);
     final hasNotification =
         context.select<ExaminationsProvider, bool>((state) => state.hasNotification);
 
