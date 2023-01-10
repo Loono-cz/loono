@@ -16,6 +16,7 @@ import 'package:loono/ui/screens/find_doctor/doctor_search_detail.dart';
 import 'package:loono/ui/screens/find_doctor/find_doctor.dart';
 import 'package:loono/ui/screens/find_doctor/no_permissions_screen.dart';
 import 'package:loono/ui/screens/force_update.dart';
+import 'package:loono/ui/screens/form/form_screen.dart';
 import 'package:loono/ui/screens/general_practicioner_achievement.dart';
 import 'package:loono/ui/screens/gynecology_achievement.dart';
 import 'package:loono/ui/screens/logout.dart';
@@ -129,6 +130,7 @@ const _postAuthRouter = AutoRoute<void>(
       ],
     ),
     _badgeOverviewRoute,
+    _consultancyFormRoute,
     ..._preventionRoutes,
     ..._settingsRoutes,
     ..._selfExaminationRoutes,
@@ -166,6 +168,7 @@ const _allowNotificationRoute = CustomRoute<void>(
 const _aboutHealthRoute = AutoRoute<void>(page: AboutHealthScreen, path: 'about-health');
 const _forceUpdateRoute = AutoRoute<void>(page: ForceUpdateScreen, path: 'force-update');
 const _badgeOverviewRoute = AutoRoute<void>(page: BadgeOverviewScreen, path: 'badge-overview');
+const _consultancyFormRoute = AutoRoute<void>(page: FormScreen, path: 'consultancy-form');
 
 const _findDoctorRoutes = <AutoRoute>[
   AutoRoute<void>(page: FindDoctorScreen, path: 'find-doctor'),

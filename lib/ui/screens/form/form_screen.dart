@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-import 'package:loono/ui/widgets/form/form_content.dart';
+import 'package:loono/ui/widgets/consultancy/form/form_content.dart';
 import 'package:loono/utils/hidekeyboard_util.dart';
 
 class FormScreen extends StatelessWidget {
