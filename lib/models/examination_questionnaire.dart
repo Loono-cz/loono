@@ -17,11 +17,13 @@ class ExaminationQuestionnaires extends Table {
         Constant(const ExaminationStatusDbConverter().mapToSql(ExaminationStatus.NEW)!),
       )();
 
-  TextColumn get examinationCategoryType => text()
-      .map(ExaminationCategoryTypeConverter())
-      .withDefault(
-        Constant(ExaminationCategoryTypeConverter().mapToSql(ExaminationCategoryType.MANDATORY)!),
-      )();
+  TextColumn get examinationCategoryType =>
+      text().map(const ExaminationCategoryTypeDbConverter()).withDefault(
+            Constant(
+              const ExaminationCategoryTypeDbConverter()
+                  .mapToSql(ExaminationCategoryType.MANDATORY)!,
+            ),
+          )();
 
   DateTimeColumn get date => dateTime().nullable()();
 

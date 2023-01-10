@@ -1130,7 +1130,7 @@ class $ExaminationQuestionnairesTable extends ExaminationQuestionnaires
               'examination_category_type', aliasedName, false,
               type: const StringType(),
               requiredDuringInsert: false,
-              defaultValue: Constant(ExaminationCategoryTypeConverter()
+              defaultValue: Constant(const ExaminationCategoryTypeDbConverter()
                   .mapToSql(ExaminationCategoryType.MANDATORY)!))
           .withConverter<ExaminationCategoryType>(
               $ExaminationQuestionnairesTable.$converter2);
@@ -1193,7 +1193,7 @@ class $ExaminationQuestionnairesTable extends ExaminationQuestionnaires
   static TypeConverter<ExaminationStatus, String> $converter1 =
       const ExaminationStatusDbConverter();
   static TypeConverter<ExaminationCategoryType, String> $converter2 =
-      ExaminationCategoryTypeConverter();
+      const ExaminationCategoryTypeDbConverter();
 }
 
 abstract class _$AppDatabase extends GeneratedDatabase {

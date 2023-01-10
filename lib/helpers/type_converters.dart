@@ -207,7 +207,9 @@ class AppleAccountInfoListJsonConverter implements JsonConverter<List<AppleAccou
   }
 }
 
-class ExaminationCategoryTypeConverter extends TypeConverter<ExaminationCategoryType, String> {
+class ExaminationCategoryTypeDbConverter extends TypeConverter<ExaminationCategoryType, String> {
+  const ExaminationCategoryTypeDbConverter();
+
   @override
   ExaminationCategoryType? mapToDart(String? fromDb) {
     if (fromDb == null) return ExaminationCategoryType.MANDATORY;
