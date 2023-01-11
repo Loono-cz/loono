@@ -66,4 +66,8 @@ class NotificationService {
       _permissionController.add(changes.to.status!);
     }
   }
+
+  Future<void> enableNotifications(bool enabled) async {
+    await OneSignal.shared.disablePush(!enabled);
+  }
 }

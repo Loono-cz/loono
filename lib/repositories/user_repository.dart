@@ -10,7 +10,6 @@ import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/helpers/search_helpers.dart';
 import 'package:loono/models/api_response.dart';
 import 'package:loono/models/search_result.dart';
-import 'package:loono/platform_specific/platfrom_specific_account_channel.dart';
 import 'package:loono/services/api_service.dart';
 import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/database_service.dart';
@@ -71,7 +70,6 @@ class UserRepository {
         badges: Value<BuiltList<Badge>>(data.badges),
       ),
     );
-    await _updateIsAccountLoggedIn();
   }
 
   Future<void> updateCurrentUserFromSelfExamCompletion(
@@ -99,7 +97,6 @@ class UserRepository {
   Future<void> createUser() async {
     await _db.users.deleteAll();
     await _db.users.insert(UsersCompanion.insert());
-    await _updateIsAccountLoggedIn();
   }
 
   Future<void> createUserIfNotExists() async {
@@ -107,7 +104,6 @@ class UserRepository {
     if (users.isEmpty) {
       await createUser();
     }
-    await _updateIsAccountLoggedIn();
   }
 
   Future<void> updateCurrentUser(UsersCompanion usersCompanion) async {
@@ -132,11 +128,9 @@ class UserRepository {
     final apiResponse = await _apiService.deleteAccount();
     return apiResponse.map(
       success: (_) async {
-        await _updateIsAccountLoggedIn();
         return true;
       },
       failure: (_) async {
-        await _updateIsAccountLoggedIn();
         return false;
       },
     );
@@ -255,10 +249,5 @@ class UserRepository {
   Future<bool> isAnyAccountLoggedIn() async {
     final users = await _db.users.getUser();
     return users.isNotEmpty;
-  }
-
-  /// updates logged in status in specific platforms via [AccountChannel]
-  Future<void> _updateIsAccountLoggedIn() async {
-    accountChannel.setIsLoggedIn(await isAnyAccountLoggedIn());
   }
 }
