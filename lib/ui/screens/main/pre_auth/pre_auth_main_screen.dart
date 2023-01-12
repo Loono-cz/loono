@@ -38,7 +38,6 @@ class _PreAuthMainScreenState extends State<PreAuthMainScreen> {
   ];
 
   void evalConnectivity(ConnectivityResult result) {
-    /// TEMP: od not show 'no connection' flushbar -> randomly shows bcs of unknown bug
     if (result == ConnectivityResult.none && (_noConnectionMessage?.isShowing() == false)) {
       _noConnectionMessage?.show(context);
     } else if (result != ConnectivityResult.none && (_noConnectionMessage?.isShowing() ?? false)) {
