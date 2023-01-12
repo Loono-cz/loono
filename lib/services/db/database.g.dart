@@ -877,10 +877,15 @@ class ExaminationQuestionnaire extends DataClass
     implements Insertable<ExaminationQuestionnaire> {
   final ExaminationType type;
   final ExaminationStatus status;
+  final ExaminationCategoryType examinationCategoryType;
   final DateTime? date;
   final bool? firstExam;
   ExaminationQuestionnaire(
-      {required this.type, required this.status, this.date, this.firstExam});
+      {required this.type,
+      required this.status,
+      required this.examinationCategoryType,
+      this.date,
+      this.firstExam});
   factory ExaminationQuestionnaire.fromData(Map<String, dynamic> data,
       {String? prefix}) {
     final effectivePrefix = prefix ?? '';
@@ -891,6 +896,9 @@ class ExaminationQuestionnaire extends DataClass
       status: $ExaminationQuestionnairesTable.$converter1.mapToDart(
           const StringType()
               .mapFromDatabaseResponse(data['${effectivePrefix}status']))!,
+      examinationCategoryType: $ExaminationQuestionnairesTable.$converter2
+          .mapToDart(const StringType().mapFromDatabaseResponse(
+              data['${effectivePrefix}examination_category_type']))!,
       date: const DateTimeType()
           .mapFromDatabaseResponse(data['${effectivePrefix}date']),
       firstExam: const BoolType()
@@ -908,6 +916,11 @@ class ExaminationQuestionnaire extends DataClass
       final converter = $ExaminationQuestionnairesTable.$converter1;
       map['status'] = Variable<String>(converter.mapToSql(status)!);
     }
+    {
+      final converter = $ExaminationQuestionnairesTable.$converter2;
+      map['examination_category_type'] =
+          Variable<String>(converter.mapToSql(examinationCategoryType)!);
+    }
     if (!nullToAbsent || date != null) {
       map['date'] = Variable<DateTime?>(date);
     }
@@ -921,6 +934,7 @@ class ExaminationQuestionnaire extends DataClass
     return ExaminationQuestionnairesCompanion(
       type: Value(type),
       status: Value(status),
+      examinationCategoryType: Value(examinationCategoryType),
       date: date == null && nullToAbsent ? const Value.absent() : Value(date),
       firstExam: firstExam == null && nullToAbsent
           ? const Value.absent()
@@ -934,6 +948,8 @@ class ExaminationQuestionnaire extends DataClass
     return ExaminationQuestionnaire(
       type: serializer.fromJson<ExaminationType>(json['type']),
       status: serializer.fromJson<ExaminationStatus>(json['status']),
+      examinationCategoryType: serializer
+          .fromJson<ExaminationCategoryType>(json['examinationCategoryType']),
       date: serializer.fromJson<DateTime?>(json['date']),
       firstExam: serializer.fromJson<bool?>(json['firstExam']),
     );
@@ -944,6 +960,8 @@ class ExaminationQuestionnaire extends DataClass
     return <String, dynamic>{
       'type': serializer.toJson<ExaminationType>(type),
       'status': serializer.toJson<ExaminationStatus>(status),
+      'examinationCategoryType':
+          serializer.toJson<ExaminationCategoryType>(examinationCategoryType),
       'date': serializer.toJson<DateTime?>(date),
       'firstExam': serializer.toJson<bool?>(firstExam),
     };
@@ -952,11 +970,14 @@ class ExaminationQuestionnaire extends DataClass
   ExaminationQuestionnaire copyWith(
           {ExaminationType? type,
           ExaminationStatus? status,
+          ExaminationCategoryType? examinationCategoryType,
           DateTime? date,
           bool? firstExam}) =>
       ExaminationQuestionnaire(
         type: type ?? this.type,
         status: status ?? this.status,
+        examinationCategoryType:
+            examinationCategoryType ?? this.examinationCategoryType,
         date: date ?? this.date,
         firstExam: firstExam ?? this.firstExam,
       );
@@ -965,6 +986,7 @@ class ExaminationQuestionnaire extends DataClass
     return (StringBuffer('ExaminationQuestionnaire(')
           ..write('type: $type, ')
           ..write('status: $status, ')
+          ..write('examinationCategoryType: $examinationCategoryType, ')
           ..write('date: $date, ')
           ..write('firstExam: $firstExam')
           ..write(')'))
@@ -972,13 +994,15 @@ class ExaminationQuestionnaire extends DataClass
   }
 
   @override
-  int get hashCode => Object.hash(type, status, date, firstExam);
+  int get hashCode =>
+      Object.hash(type, status, examinationCategoryType, date, firstExam);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is ExaminationQuestionnaire &&
           other.type == this.type &&
           other.status == this.status &&
+          other.examinationCategoryType == this.examinationCategoryType &&
           other.date == this.date &&
           other.firstExam == this.firstExam);
 }
@@ -987,29 +1011,35 @@ class ExaminationQuestionnairesCompanion
     extends UpdateCompanion<ExaminationQuestionnaire> {
   final Value<ExaminationType> type;
   final Value<ExaminationStatus> status;
+  final Value<ExaminationCategoryType> examinationCategoryType;
   final Value<DateTime?> date;
   final Value<bool?> firstExam;
   const ExaminationQuestionnairesCompanion({
     this.type = const Value.absent(),
     this.status = const Value.absent(),
+    this.examinationCategoryType = const Value.absent(),
     this.date = const Value.absent(),
     this.firstExam = const Value.absent(),
   });
   ExaminationQuestionnairesCompanion.insert({
     required ExaminationType type,
     this.status = const Value.absent(),
+    this.examinationCategoryType = const Value.absent(),
     this.date = const Value.absent(),
     this.firstExam = const Value.absent(),
   }) : type = Value(type);
   static Insertable<ExaminationQuestionnaire> custom({
     Expression<ExaminationType>? type,
     Expression<ExaminationStatus>? status,
+    Expression<ExaminationCategoryType>? examinationCategoryType,
     Expression<DateTime?>? date,
     Expression<bool?>? firstExam,
   }) {
     return RawValuesInsertable({
       if (type != null) 'type': type,
       if (status != null) 'status': status,
+      if (examinationCategoryType != null)
+        'examination_category_type': examinationCategoryType,
       if (date != null) 'date': date,
       if (firstExam != null) 'first_exam': firstExam,
     });
@@ -1018,11 +1048,14 @@ class ExaminationQuestionnairesCompanion
   ExaminationQuestionnairesCompanion copyWith(
       {Value<ExaminationType>? type,
       Value<ExaminationStatus>? status,
+      Value<ExaminationCategoryType>? examinationCategoryType,
       Value<DateTime?>? date,
       Value<bool?>? firstExam}) {
     return ExaminationQuestionnairesCompanion(
       type: type ?? this.type,
       status: status ?? this.status,
+      examinationCategoryType:
+          examinationCategoryType ?? this.examinationCategoryType,
       date: date ?? this.date,
       firstExam: firstExam ?? this.firstExam,
     );
@@ -1039,6 +1072,11 @@ class ExaminationQuestionnairesCompanion
       final converter = $ExaminationQuestionnairesTable.$converter1;
       map['status'] = Variable<String>(converter.mapToSql(status.value)!);
     }
+    if (examinationCategoryType.present) {
+      final converter = $ExaminationQuestionnairesTable.$converter2;
+      map['examination_category_type'] =
+          Variable<String>(converter.mapToSql(examinationCategoryType.value)!);
+    }
     if (date.present) {
       map['date'] = Variable<DateTime?>(date.value);
     }
@@ -1053,6 +1091,7 @@ class ExaminationQuestionnairesCompanion
     return (StringBuffer('ExaminationQuestionnairesCompanion(')
           ..write('type: $type, ')
           ..write('status: $status, ')
+          ..write('examinationCategoryType: $examinationCategoryType, ')
           ..write('date: $date, ')
           ..write('firstExam: $firstExam')
           ..write(')'))
@@ -1083,6 +1122,18 @@ class $ExaminationQuestionnairesTable extends ExaminationQuestionnaires
                   .mapToSql(ExaminationStatus.NEW)!))
           .withConverter<ExaminationStatus>(
               $ExaminationQuestionnairesTable.$converter1);
+  final VerificationMeta _examinationCategoryTypeMeta =
+      const VerificationMeta('examinationCategoryType');
+  @override
+  late final GeneratedColumnWithTypeConverter<ExaminationCategoryType, String?>
+      examinationCategoryType = GeneratedColumn<String?>(
+              'examination_category_type', aliasedName, false,
+              type: const StringType(),
+              requiredDuringInsert: false,
+              defaultValue: Constant(const ExaminationCategoryTypeDbConverter()
+                  .mapToSql(ExaminationCategoryType.MANDATORY)!))
+          .withConverter<ExaminationCategoryType>(
+              $ExaminationQuestionnairesTable.$converter2);
   final VerificationMeta _dateMeta = const VerificationMeta('date');
   @override
   late final GeneratedColumn<DateTime?> date = GeneratedColumn<DateTime?>(
@@ -1096,7 +1147,8 @@ class $ExaminationQuestionnairesTable extends ExaminationQuestionnaires
       requiredDuringInsert: false,
       defaultConstraints: 'CHECK (first_exam IN (0, 1))');
   @override
-  List<GeneratedColumn> get $columns => [type, status, date, firstExam];
+  List<GeneratedColumn> get $columns =>
+      [type, status, examinationCategoryType, date, firstExam];
   @override
   String get aliasedName => _alias ?? 'examination_questionnaires';
   @override
@@ -1109,6 +1161,8 @@ class $ExaminationQuestionnairesTable extends ExaminationQuestionnaires
     final data = instance.toColumns(true);
     context.handle(_typeMeta, const VerificationResult.success());
     context.handle(_statusMeta, const VerificationResult.success());
+    context.handle(
+        _examinationCategoryTypeMeta, const VerificationResult.success());
     if (data.containsKey('date')) {
       context.handle(
           _dateMeta, date.isAcceptableOrUnknown(data['date']!, _dateMeta));
@@ -1138,6 +1192,8 @@ class $ExaminationQuestionnairesTable extends ExaminationQuestionnaires
       const ExaminationTypeDbConverter();
   static TypeConverter<ExaminationStatus, String> $converter1 =
       const ExaminationStatusDbConverter();
+  static TypeConverter<ExaminationCategoryType, String> $converter2 =
+      const ExaminationCategoryTypeDbConverter();
 }
 
 abstract class _$AppDatabase extends GeneratedDatabase {
