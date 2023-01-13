@@ -5,7 +5,7 @@ import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/button.dart';
-import 'package:loono/ui/widgets/form/form_question_types_wrapper.dart';
+import 'package:loono/ui/widgets/consultancy/form/form_question_types_wrapper.dart';
 import 'package:loono/ui/widgets/note_text_field.dart';
 import 'package:loono/ui/widgets/space.dart';
 import 'package:loono/utils/registry.dart';

@@ -243,6 +243,12 @@ class LoonoFonts {
     fontWeight: FontWeight.bold,
   );
 
+  static const cardDescription = TextStyle(
+    fontSize: 14,
+    color: LoonoColors.grey,
+    fontWeight: FontWeight.w400,
+  );
+
   static const snackbarStyle = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w700,
@@ -264,11 +270,5 @@ class LoonoFonts {
     color: LoonoColors.black,
     fontSize: 14,
     fontWeight: FontWeight.w600,
-  );
-
-  static const cardDescription = TextStyle(
-    fontSize: 14,
-    color: LoonoColors.grey,
-    fontWeight: FontWeight.w400,
   );
 }

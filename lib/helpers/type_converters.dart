@@ -12,6 +12,7 @@ import 'package:loono_api/loono_api.dart'
         Badge,
         ExaminationStatus,
         ExaminationType,
+        ExaminationCategoryType,
         Sex,
         SimpleHealthcareProvider,
         standardSerializers;
@@ -203,5 +204,22 @@ class AppleAccountInfoListJsonConverter implements JsonConverter<List<AppleAccou
   @override
   String toJson(List<AppleAccountInfo> objects) {
     return jsonEncode(objects.map((e) => e.toJson()).toList()).toString();
+  }
+}
+
+class ExaminationCategoryTypeDbConverter extends TypeConverter<ExaminationCategoryType, String> {
+  const ExaminationCategoryTypeDbConverter();
+
+  @override
+  ExaminationCategoryType? mapToDart(String? fromDb) {
+    if (fromDb == null) return ExaminationCategoryType.MANDATORY;
+    return ExaminationCategoryType.values
+        .singleWhere((examinationCategoryType) => examinationCategoryType.name == fromDb);
+  }
+
+  @override
+  String? mapToSql(ExaminationCategoryType? value) {
+    if (value == null) return null;
+    return value.name;
   }
 }
