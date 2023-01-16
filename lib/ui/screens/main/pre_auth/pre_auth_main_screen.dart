@@ -5,7 +5,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/webview_service.dart';
@@ -28,8 +27,9 @@ class PreAuthMainScreen extends StatefulWidget {
 }
 
 class _PreAuthMainScreenState extends State<PreAuthMainScreen> {
-  StreamSubscription? subscription;
-  Flushbar? noConnectionMessage;
+  late StreamSubscription<ConnectivityResult> _connectivitySubscription;
+  final Connectivity _connectivity = Connectivity();
+  Flushbar? _noConnectionMessage;
 
   static const analyticsTabNames = [
     'PreAuthPreventionTab',
@@ -38,35 +38,30 @@ class _PreAuthMainScreenState extends State<PreAuthMainScreen> {
   ];
 
   void evalConnectivity(ConnectivityResult result) {
-    /// TEMP: od not show 'no connection' flushbar -> randomly shows bcs of unknown bug
-    // if (result == ConnectivityResult.none && noConnectionMessage?.isShowing() == false) {
-    //   noConnectionMessage?.show(context);
-    // } else if (noConnectionMessage?.isDismissed() == false) {
-    //   noConnectionMessage?.dismiss(context);
-    // }
+    if (result == ConnectivityResult.none && (_noConnectionMessage?.isShowing() == false)) {
+      _noConnectionMessage?.show(context);
+    } else if (result != ConnectivityResult.none && (_noConnectionMessage?.isShowing() ?? false)) {
+      _noConnectionMessage?.dismiss();
+    }
   }
 
   @override
   void initState() {
     super.initState();
 
-    Connectivity().checkConnectivity().then(
-          evalConnectivity,
-        );
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      subscription = Connectivity().onConnectivityChanged.listen(evalConnectivity);
-    });
+    _connectivity.checkConnectivity().then(evalConnectivity);
+    _connectivitySubscription = _connectivity.onConnectivityChanged.listen(evalConnectivity);
   }
 
   @override
   void dispose() {
-    subscription?.cancel();
+    _connectivitySubscription.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    noConnectionMessage ??= noConnectionFlushbar(context: context, isPreAuth: true);
+    _noConnectionMessage ??= noConnectionFlushbar(context: context, isPreAuth: true);
 
     return WillPopScope(
       onWillPop: () async {
