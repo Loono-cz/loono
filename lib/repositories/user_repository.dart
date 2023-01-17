@@ -148,6 +148,17 @@ class UserRepository {
     return result;
   }
 
+  Future<bool> updateNewsletter(bool newsletter) async {
+    final apiResponse = await _apiService.updateAccountUser(newsletter: newsletter);
+    final result = await apiResponse.map(
+      success: (_) async {
+        return true;
+      },
+      failure: (_) async => false,
+    );
+    return result;
+  }
+
   Future<bool> updateEmail(String email) async {
     final apiResponse = await _apiService.updateAccountUser(preferredEmail: email);
     final result = await apiResponse.map(
