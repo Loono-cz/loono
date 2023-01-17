@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/ui/screens/settings/settings_bottom_sheet.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/close_button.dart';
+import 'package:loono/utils/registry.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 enum NotficationType { newsletter, donate }
@@ -24,8 +26,8 @@ class NotificationPageState extends State<NotificationPage> {
     }
   }
 
-  void newsletterButtonFunction() {
-    return;
+  Future<void> newsletterButtonFunction() async {
+    await registry.get<UserRepository>().updateNewsletter(true);
   }
 
   Future<void> _closeForm(BuildContext context) async => Navigator.of(context).pop();
