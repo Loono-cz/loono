@@ -24,8 +24,5 @@ jobs:
       - name: Install dependencies
         run: dart pub get
         
-      - name: Analyze Dart
-        uses: zgosalvez/github-actions-analyze-dart@v2
-        
       - name: Analyze project source
         run: dart analyze
