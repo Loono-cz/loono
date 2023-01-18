@@ -118,9 +118,6 @@ class LoonoStrings {
   static const notificationUuidParamName = 'examinationUuid';
   static const notificationScreenExamination = 'checkup';
   static const notificationScreenSelfExamination = 'self';
-
-  static const platformSpecificAccountChannel = 'account_channel';
-  static const platformSpecificAccountChannelLoggedIn = 'logged_in';
 }
 
 class LoonoFonts {
