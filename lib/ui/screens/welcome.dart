@@ -5,6 +5,7 @@ import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/ui/screens/main/main_screen.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/loono_sponsors.dart';
 import 'package:loono/ui/widgets/space.dart';
@@ -17,6 +18,7 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MainScreen.shouldShowSplashScreen = false;
     return Scaffold(
       backgroundColor: LoonoColors.primaryLight,
       body: SafeArea(
