@@ -108,3 +108,5 @@ It is possible to set auto start at time. This feature help to coordinate distru
 	 - after "user thinking" (or in app content loading) get account info and examination info
  - after test delete user
 	 - delete rate of users is maximaly 10 per second, artificially is reduce to 8/second
+
+Note
