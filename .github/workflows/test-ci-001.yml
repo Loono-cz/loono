@@ -46,4 +46,4 @@ jobs:
       - name: Copy .env.example into .env file
         run: sh ./bin/ci_workflow_scripts/env_copy.sh
 
-      - uses: zgosalvez/github-actions-analyze-dart@v2
+      - uses: zgosalvez/github-actions-analyze-dart@v1
