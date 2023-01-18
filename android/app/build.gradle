@@ -79,12 +79,15 @@ android {
         }
 
         /* start remove second
+
+
         release {
             storeFile = file("loono-debug")
             storePassword = "Vd3ryhCWsy3PJHP"
             keyAlias = "vcas-debug"
             keyPassword = "Vd3ryhCWsy3PJHP"
         }
+
         end remove second */
 
 
