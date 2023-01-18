@@ -10,7 +10,14 @@ jobs:
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.0.5'
-          channel: 'stable'
+          flutter-version: ${{ env.flutter_version }}
+          cache: true
+          cache-key: ${{ runner.OS }}-flutter-${{ env.flutter_version }}
+          cache-path: ${{ runner.tool_cache }}/flutter
+          
       - run: flutter pub get
+      
+      - name: Copy .env.example into .env file
+        run: sh ./bin/ci_workflow_scripts/env_copy.sh
+      
       - run: flutter analyze
