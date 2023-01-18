@@ -4,7 +4,6 @@ buildscript {
         google()
         jcenter()
         maven { url 'https://plugins.gradle.org/m2/' } // Gradle Plugin Portal
-        mavenCentral()
     }
 
     dependencies {
