@@ -245,9 +245,4 @@ class UserRepository {
       },
     );
   }
-
-  Future<bool> isAnyAccountLoggedIn() async {
-    final users = await _db.users.getUser();
-    return users.isNotEmpty;
-  }
 }
