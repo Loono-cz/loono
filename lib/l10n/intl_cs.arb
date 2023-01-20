@@ -1593,5 +1593,15 @@
   "consultancy_card_title": "Máš dotaz ohledně prevence?",
   "@consultancy_card_title": {},
   "consultancy_card_description": "Zeptej se odborníků v naší poradně.",
-  "@consultancy_card_description": {}
+  "@consultancy_card_description": {},
+  "schedule_appointment": "Běž na prohlídku",
+  "@schedule_appointment": {},
+  "book_appointment": "Objednej se",
+  "@book_appointment": {},
+  "other_appointments": "Další prohlídky",
+  "@other_appointments": {},
+  "appointment_reminder": "Připomenu ti prohlídku",
+  "@appointment_reminder": {},
+  "book_reminder": "Připomenu ti objednání",
+  "@book_reminder": {}
 }
