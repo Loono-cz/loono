@@ -1,0 +1,45 @@
+
+on: push
+
+name: Sample Workflow
+
+jobs:
+  analyze:
+    timeout-minutes: 20
+    name: Example
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.flutter_version }}
+          cache: true
+          cache-key: ${{ runner.OS }}-flutter-${{ env.flutter_version }}
+          cache-path: ${{ runner.tool_cache }}/flutter
+          
+      - run: flutter pub get
+      
+      - name: Copy .env.example into .env file
+        run: sh ./bin/ci_workflow_scripts/env_copy.sh
+      
+      - run: flutter analyze
+      
+  format:
+    timeout-minutes: 20
+    name: Example
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.flutter_version }}
+          cache: true
+          cache-key: ${{ runner.OS }}-flutter-${{ env.flutter_version }}
+          cache-path: ${{ runner.tool_cache }}/flutter
+          
+      - run: flutter pub get
+      
+      - name: Copy .env.example into .env file
+        run: sh ./bin/ci_workflow_scripts/env_copy.sh
+      
+      - run: flutter format
