@@ -1,7 +1,9 @@
-
-on: push
-
 name: CI v2
+on: [ push, pull_request ]
+
+env:
+ flutter_version: '3.3.10'
+
 
 jobs:
   analyze:
