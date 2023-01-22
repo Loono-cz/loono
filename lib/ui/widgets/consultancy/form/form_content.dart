@@ -1,12 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/services/api_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/async_button.dart';
-import 'package:loono/services/api_service.dart';
 import 'package:loono/ui/widgets/consultancy/form/form_question_types_wrapper.dart';
 import 'package:loono/ui/widgets/note_text_field.dart';
 import 'package:loono/ui/widgets/space.dart';
@@ -88,7 +87,7 @@ class _FormContentState extends State<FormContent> {
     _validateFormFields();
     if (_questionType != FormQuestionType.uninitialized &&
         _textFieldController.text.isNotEmpty) {
-      return await _apiService.sendConsultancyForm(
+      return _apiService.sendConsultancyForm(
         tag: _questionType.toString(),
         message: _textFieldController.text,
       );
