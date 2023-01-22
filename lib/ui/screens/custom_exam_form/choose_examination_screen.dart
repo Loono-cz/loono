@@ -5,6 +5,7 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/close_button.dart';
 import 'package:loono/ui/widgets/custom_exam_form/custom_radio_button.dart';
+import 'package:loono/ui/widgets/space.dart';
 import 'package:loono_api/loono_api.dart';
 
 class ChooseCustomExaminationTypeScreen extends StatefulWidget {
@@ -60,14 +61,14 @@ class _ChooseCustomExaminationTypeScreenState extends State<ChooseCustomExaminat
           children: [
             Text(
               context.l10n.custom_exam_type_question,
-              style: const TextStyle(fontSize: 24.0),
+              style: LoonoFonts.headerFontStyle,
             ),
-            const SizedBox(
-              height: 20.0,
+            const CustomSpacer.vertical(30),
+            Text(
+              context.l10n.custom_exam_type_description,
+              style: LoonoFonts.paragraphFontStyle,
             ),
-            const Divider(
-              thickness: 1.0,
-            ),
+            const CustomSpacer.vertical(60),
             Expanded(
               flex: 1,
               child: SingleChildScrollView(
@@ -78,6 +79,9 @@ class _ChooseCustomExaminationTypeScreenState extends State<ChooseCustomExaminat
                   itemCount: ExaminationActionType.values.length,
                   itemBuilder: ((context, index) {
                     final actionType = ExaminationActionType.values.toList()[index];
+                    if (actionType == ExaminationActionType.VISUALIZATION_METHODS) {
+                      return Container();
+                    }
 
                     return Column(
                       children: [
