@@ -1,10 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/services/api_service.dart';
 import 'package:loono/services/database_service.dart';
-import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/consultancy/form/form_question_types_wrapper.dart';
 import 'package:loono/ui/widgets/note_text_field.dart';
 import 'package:loono/ui/widgets/space.dart';
@@ -35,6 +36,8 @@ class FormContent extends StatefulWidget {
 }
 
 class _FormContentState extends State<FormContent> {
+  final _apiService = registry.get<ApiService>();
+
   final _currentUser = registry.get<DatabaseService>().users.user;
   final _textFieldController = TextEditingController();
   late FormQuestionType _questionType;
@@ -80,30 +83,15 @@ class _FormContentState extends State<FormContent> {
     });
   }
 
-  void _sendForm() {
+  Future<bool?> _sendData() async {
     _validateFormFields();
     if (_questionType != FormQuestionType.uninitialized && _textFieldController.text.isNotEmpty) {
-      // TODO: SEND FORM
-      // final name = _currentUser?.nickname;
-      // final sex = _currentUser?.sex;
-      // final age = _currentUser?.dateOfBirth;
-      // final message = _textFieldController.text;
-      // print(name);
-      // print(sex);
-      // print(age);
-      // print(message);
-      // print(_questionType);
-      AutoRouter.of(context).popUntilRoot();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            context.l10n.form_snack_success,
-            style: LoonoFonts.snackbarStyle,
-          ),
-          backgroundColor: LoonoColors.greenSuccess,
-        ),
+      return _apiService.sendConsultancyForm(
+        tag: _questionType.toString(),
+        message: _textFieldController.text,
       );
     }
+    return Future.value(null);
   }
 
   @override
@@ -171,9 +159,22 @@ class _FormContentState extends State<FormContent> {
             left: 18,
             right: 18,
           ),
-          child: LoonoButton(
-            onTap: _sendForm,
+          child: AsyncLoonoButton(
             text: context.l10n.form_send_question,
+            asyncCallback: _sendData,
+            onSuccess: () {
+              AutoRouter.of(context).popUntilRoot();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    context.l10n.form_snack_success,
+                    style: LoonoFonts.snackbarStyle,
+                  ),
+                  backgroundColor: LoonoColors.greenSuccess,
+                ),
+              );
+            },
+            onError: () => showFlushBarError(context, context.l10n.something_went_wrong),
           ),
         )
       ],

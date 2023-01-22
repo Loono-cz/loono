@@ -16,7 +16,9 @@ class ApiService {
 
   final LoonoApi _api;
 
-  Future<ApiResponse<T>> _callApi<T>(Future<Response<T>> Function() apiCallback) async {
+  Future<ApiResponse<T>> _callApi<T>(
+    Future<Response<T>> Function() apiCallback,
+  ) async {
     try {
       // ignore: omit_local_variable_types
       final Response<T> response = await apiCallback();
@@ -41,7 +43,9 @@ class ApiService {
   }
 
   Future<ApiResponse<HealthcareProviderLastUpdate>> getProvidersLastUpdate() async {
-    return _callApi(() async => _api.getProvidersApi().getProvidersLastupdate());
+    return _callApi(
+      () async => _api.getProvidersApi().getProvidersLastupdate(),
+    );
   }
 
   Future<ApiResponse<HealthcareProviderDetailList>> getProvidersDetailByIds(
@@ -98,7 +102,9 @@ class ApiService {
     );
   }
 
-  Future<ApiResponse<PreventionStatus>> getExaminations({ApiParams? params}) async {
+  Future<ApiResponse<PreventionStatus>> getExaminations({
+    ApiParams? params,
+  }) async {
     return _callApi(
       () async => _api.getExaminationsApi().getExaminations(
             cancelToken: params?.cancelToken,
@@ -203,7 +209,9 @@ class ApiService {
   }
 
   Future<ApiResponse<Leaderboard>> getLeaderboard() {
-    return _callApi(() async => _api.getLeaderboardApi().getLeaderboard(leaderboardSize: 6));
+    return _callApi(
+      () async => _api.getLeaderboardApi().getLeaderboard(leaderboardSize: 6),
+    );
   }
 
   Future<ApiResponse<void>> deleteAccount() async {
@@ -243,6 +251,22 @@ class ApiService {
                 ..uid = uid
                 ..message = message
                 ..evaluation = rating,
+            ),
+          ),
+    );
+    return res.when(success: (_) => true, failure: (_) => false);
+  }
+
+  Future<bool> sendConsultancyForm({
+    required String tag,
+    required String message,
+  }) async {
+    final res = await _callApi(
+      () async => _api.getDefaultApi().postConsultancyFrom(
+            consultancyFormContent: ConsultancyFormContent(
+              (b) => b
+                ..tag = tag
+                ..message = message,
             ),
           ),
     );
