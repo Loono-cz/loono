@@ -96,7 +96,6 @@ class _FormContentState extends State<FormContent> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
     return Column(
       children: [
         Expanded(
@@ -175,7 +174,7 @@ class _FormContentState extends State<FormContent> {
                 ),
               );
             },
-            onError: () => showFlushBarError(context, l10n.something_went_wrong),
+            onError: () => showFlushBarError(context, context.l10n.something_went_wrong),
           ),
         )
       ],
