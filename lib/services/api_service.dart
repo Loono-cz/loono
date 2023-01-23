@@ -255,9 +255,11 @@ class ApiService {
   }) async {
     final res = await _callApi(
       () async => _api.getDefaultApi().postConsultancyFrom(
-            consultancyFormContent: ConsultancyFormContent((b) => b
-              ..tag = tag
-              ..message = message),
+            consultancyFormContent: ConsultancyFormContent(
+              (b) => b
+                ..tag = tag
+                ..message = message,
+            ),
           ),
     );
     return res.when(success: (_) => true, failure: (_) => false);
