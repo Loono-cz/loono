@@ -44,4 +44,4 @@ jobs:
       - name: Copy .env.example into .env file
         run: sh ./bin/ci_workflow_scripts/env_copy.sh
       
-      - run: flutter format
+      - run: flutter format .
