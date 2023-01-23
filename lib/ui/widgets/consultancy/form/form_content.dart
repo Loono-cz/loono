@@ -85,8 +85,7 @@ class _FormContentState extends State<FormContent> {
 
   Future<bool?> _sendData() async {
     _validateFormFields();
-    if (_questionType != FormQuestionType.uninitialized &&
-        _textFieldController.text.isNotEmpty) {
+    if (_questionType != FormQuestionType.uninitialized && _textFieldController.text.isNotEmpty) {
       return _apiService.sendConsultancyForm(
         tag: _questionType.toString(),
         message: _textFieldController.text,
@@ -115,8 +114,7 @@ class _FormContentState extends State<FormContent> {
                   ),
                   const CustomSpacer.vertical(30),
                   Text(
-                    context.l10n
-                        .form_question_answer('"${_currentUser?.email}"'),
+                    context.l10n.form_question_answer('"${_currentUser?.email}"'),
                     style: LoonoFonts.paragraphFontStyle,
                   ),
                   const Divider(
@@ -177,8 +175,7 @@ class _FormContentState extends State<FormContent> {
                 ),
               );
             },
-            onError: () =>
-                showFlushBarError(context, l10n.something_went_wrong),
+            onError: () => showFlushBarError(context, l10n.something_went_wrong),
           ),
         )
       ],

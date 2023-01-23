@@ -42,8 +42,7 @@ class ApiService {
     );
   }
 
-  Future<ApiResponse<HealthcareProviderLastUpdate>>
-      getProvidersLastUpdate() async {
+  Future<ApiResponse<HealthcareProviderLastUpdate>> getProvidersLastUpdate() async {
     return _callApi(
       () async => _api.getProvidersApi().getProvidersLastupdate(),
     );
@@ -185,8 +184,7 @@ class ApiService {
     );
   }
 
-  Future<ApiResponse<SelfExaminationCompletionInformation>>
-      confirmSelfExamination(
+  Future<ApiResponse<SelfExaminationCompletionInformation>> confirmSelfExamination(
     SelfExaminationType type, {
     required SelfExaminationResult result,
   }) async {
