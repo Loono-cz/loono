@@ -49,4 +49,4 @@ jobs:
         run: sh ./bin/ci_workflow_scripts/env_copy.sh
 
       - name: Analyze
-        run: flutter analyze .
+        uses: zgosalvez/github-actions-analyze-dart@v2
