@@ -86,10 +86,11 @@ class _FormContentState extends State<FormContent> {
   Future<bool?> _sendData() async {
     _validateFormFields();
     if (_questionType != FormQuestionType.uninitialized && _textFieldController.text.isNotEmpty) {
-      return _apiService.sendConsultancyForm(
+      final response = await _apiService.sendConsultancyForm(
         tag: _questionType.toString(),
         message: _textFieldController.text,
       );
+      return response ? Future.value(true) : Future.value(false);
     }
     return Future.value(null);
   }
