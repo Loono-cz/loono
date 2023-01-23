@@ -8,7 +8,7 @@ if (localPropertiesFile.exists()) {
 
 def flutterRoot = localProperties.getProperty('flutter.sdk')
 if (flutterRoot == null) {
-    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+    throw GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
 }
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
@@ -133,6 +133,7 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation platform('com.google.firebase:firebase-bom:29.2.1')
     testImplementation 'junit:junit:4.12'
+    implementation 'com.facebook.android:facebook-android-sdk:latest.release'
 
     // https://developer.android.com/jetpack/androidx/releases/test/#1.2.0
     androidTestImplementation 'androidx.test:runner:1.2.0'
