@@ -13,8 +13,10 @@ import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/examinations_service.dart';
 import 'package:loono/ui/widgets/avatar_bubble_notifier.dart';
+import 'package:loono/ui/widgets/consultancy/form_card.dart';
 import 'package:loono/ui/widgets/prevention/examination_card.dart';
 import 'package:loono/ui/widgets/prevention/self_examination/self_examination_card.dart';
+import 'package:loono/ui/widgets/space.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:provider/provider.dart';
 
@@ -39,11 +41,7 @@ class ExaminationsSheetOverlay extends StatelessWidget {
           minChildSize: 0.15,
           // controller: scrollDragController,
           builder: (context, scrollController) {
-            final converter = CategorizedExaminationConverter(
-              examinationsProvider.examinations?.examinations.toList(),
-            );
-            if ((examinationsProvider.loading && examinationsProvider.examinations == null) ||
-                converter.converting) {
+            if (examinationsProvider.loading && examinationsProvider.examinations == null) {
               return const Center(
                 child: CircularProgressIndicator(
                   color: LoonoColors.primaryEnabled,
@@ -67,8 +65,9 @@ class ExaminationsSheetOverlay extends StatelessWidget {
               );
             }
 
-            converter.convert(examinationsProvider.examinations!.examinations.toList());
-            final categorized = converter.exams;
+            final categorized = CategorizedExaminationConverter.convert(
+              examinationsProvider.examinations!.examinations.toList(),
+            );
 
             return AvatarBubbleNotifier(
               convertExtent: convertExtent,
@@ -96,7 +95,6 @@ class ExaminationsSheetOverlay extends StatelessWidget {
 
                       final categorizedExaminations =
                           categorized.where((e) => e.category == examinationStatus).toList();
-                      //..sortExaminations();
 
                       return Column(
                         children: [
@@ -133,7 +131,14 @@ class ExaminationsSheetOverlay extends StatelessWidget {
                         ],
                       );
                     } else {
-                      return _buildPlaceholderCard(context, categorized);
+                      return Column(
+                        children: [
+                          _buildPlaceholderCard(context, categorized),
+                          const CustomSpacer.vertical(20),
+                          const FormCard.prevention(),
+                          const CustomSpacer.vertical(68),
+                        ],
+                      );
                     }
                   },
                 ),
@@ -262,7 +267,7 @@ class ExaminationsSheetOverlay extends StatelessWidget {
       children: [
         Center(
           child: Padding(
-            padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
+            padding: const EdgeInsets.only(top: 20.0),
             child: Container(
               width: MediaQuery.of(context).size.width / 3,
               height: 4.0,

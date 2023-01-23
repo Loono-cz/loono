@@ -248,4 +248,20 @@ class ApiService {
     );
     return res.when(success: (_) => true, failure: (_) => false);
   }
+
+  Future<bool> sendConsultancyForm({
+    required String tag,
+    required String message,
+  }) async {
+    final res = await _callApi(
+      () async => _api.getDefaultApi().postConsultancyFrom(
+            consultancyFormContent: ConsultancyFormContent(
+              (b) => b
+                ..tag = tag
+                ..message = message,
+            ),
+          ),
+    );
+    return res.when(success: (_) => true, failure: (_) => false);
+  }
 }

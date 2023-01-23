@@ -5,6 +5,7 @@ import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/services/notification_service.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/utils/app_clear.dart';
 import 'package:loono/utils/registry.dart';
@@ -23,6 +24,7 @@ class _LogoutScreenState extends State<LogoutScreen> {
   void initState() {
     super.initState();
     appClear().then((value) {
+      registry.get<NotificationService>().enableNotifications(false);
       Future.delayed(Duration.zero, () {
         if (mounted) {
           showFlushBarSuccess(

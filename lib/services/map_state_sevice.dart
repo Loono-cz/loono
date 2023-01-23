@@ -28,6 +28,10 @@ class MapStateService with ChangeNotifier {
 
   final double _topPctPadding = getTopMapPadding();
 
+  MarkerId _selectedMarkerId = const MarkerId('-1');
+
+  bool _isAnyMarkerSelected = false;
+
   LocationPermission _locationPermission = LocationPermission.unableToDetermine;
 
   SimpleHealthcareProvider? doctorDetail;
@@ -84,10 +88,26 @@ class MapStateService with ChangeNotifier {
     notifyListeners();
   }
 
+  void clusterSelect(MarkerId markerId) {
+    _selectedMarkerId = markerId;
+    _isAnyMarkerSelected = true;
+  }
+
+  void clusterUnselect() {
+    _isAnyMarkerSelected = false;
+  }
+
   void updateMarkers(Set<Marker> markers) {
-    _markers
-      ..clear()
-      ..addAll(markers);
+    _markers.clear();
+    if (_isAnyMarkerSelected) {
+      for (final marker in markers) {
+        if (marker.markerId == _selectedMarkerId) {
+          _markers.add(marker);
+        }
+      }
+    } else {
+      _markers.addAll(markers);
+    }
     notifyListeners();
   }
 
