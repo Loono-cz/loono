@@ -33,17 +33,14 @@ class _ChooseFrequencyOfExamScreenState extends State<ChooseFrequencyOfExamScree
   String stringPeriod = '';
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    setState(() {
-      if (widget.value!.isNotEmpty) {
-        final str = widget.value?.split(' ');
-        if (str != null) {
-          numberPeriod = str[0];
-          stringPeriod = str[1];
-        }
+    if (widget.value!.isNotEmpty) {
+      final str = widget.value?.split(' ');
+      if (str != null) {
+        numberPeriod = str[0];
+        stringPeriod = str[1];
       }
-    });
+    }
   }
 
   @override
