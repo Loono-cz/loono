@@ -1,7 +1,4 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:loono/helpers/platform_helpers.dart';
 import 'package:loono/services/notification_service.dart';
 import 'package:loono_api/loono_api.dart';
 

@@ -1,5 +1,4 @@
 // ignore_for_file: constant_identifier_names
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
@@ -108,7 +107,6 @@ Future<void> pushNotificationOrPreAuthMainScreen(BuildContext context) async {
   final shouldDisplayNotificationScreen = await shouldAskForNotification(
     onboardingStateService: context.read<OnboardingStateService>(),
   );
-  log('should display notification: $shouldDisplayNotificationScreen');
   final globalRouter = registry.get<AppRouter>();
   if (shouldDisplayNotificationScreen) {
     await globalRouter.pushAll([
@@ -130,14 +128,11 @@ Future<bool> shouldAskForNotification({
   required OnboardingStateService onboardingStateService,
 }) async {
   final androidVersion = await getAndroidVersion();
-  log('dont show: ${Platform.isAndroid && (androidVersion ?? 16) < 33}');
   if (Platform.isAndroid && (androidVersion ?? 16) < 33) {
     onboardingStateService.ignoreNotificationPermission();
     return false;
   }
   final permissionStatus = await Permission.notification.status;
-  log('permission status: $permissionStatus');
-  log('requested yet: ${onboardingStateService.hasNotRequestedNotificationsPermissionYet}');
   if (permissionStatus.isGranted) return false;
   if (onboardingStateService.hasNotRequestedNotificationsPermissionYet) return true;
   return false;
