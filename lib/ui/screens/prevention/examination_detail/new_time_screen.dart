@@ -119,8 +119,7 @@ class NewTimeScreenState extends State<NewTimeScreen> {
                           );
                       autoRouter.popUntilRouteWithName(MainRoute.name);
 
-                      //TODO: Fix lint...
-                      // ignore: use_build_context_synchronously
+                      if (!mounted) return;
                       showFlushBarSuccess(context, context.l10n.checkup_reminder_toast);
                     },
                     failure: (err) {

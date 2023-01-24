@@ -151,8 +151,7 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
                   if (result) {
                     await _userRepository.updateDeviceCalendarId(_calendarIdChoice!);
                     await autoRouter.pop();
-                    //TODO: Fix lint...
-                    // ignore: use_build_context_synchronously
+                    if (!mounted) return;
                     showFlushBarSuccess(
                       context,
                       l10n.calendar_added_success_message,

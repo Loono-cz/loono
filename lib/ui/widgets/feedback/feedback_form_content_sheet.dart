@@ -152,8 +152,7 @@ class _FeedbackFormContentState extends State<_FeedbackFormContent> {
                   ),
                   onSuccess: () async {
                     await _closeForm(context);
-                    //TODO: Fix lint
-                    // ignore: use_build_context_synchronously
+                    if (!mounted) return;
                     showFlushBarSuccess(context, l10n.feedback_form_success_message, sync: false);
                   },
                   onError: () => showFlushBarError(context, l10n.something_went_wrong),

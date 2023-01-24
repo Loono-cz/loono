@@ -524,8 +524,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                                 deviceCalendarId: defaultDeviceCalendarId,
                                 startingDate: _nextVisitDate!,
                               );
-                              //TODO: Fix lint...
-                              // ignore: use_build_context_synchronously
+                              if (!mounted) return;
                               showFlushBarSuccess(
                                 context,
                                 context.l10n.calendar_added_success_message,
@@ -545,8 +544,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                             );
                             // permission was permanently denied, show permission settings guide
                             if (result == false) {
-                              //TODO: Fix lint...
-                              // ignore: use_build_context_synchronously
+                              if (!mounted) return;
                               showCalendarPermissionSheet(context);
                             }
                           }
@@ -676,8 +674,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                             deviceCalendarId: defaultDeviceCalendarId,
                             startingDate: _nextVisitDate!,
                           );
-                          //TODO: Fix lint...
-                          // ignore: use_build_context_synchronously
+                          if (!mounted) return;
                           showFlushBarSuccess(
                             context,
                             context.l10n.calendar_added_success_message,
@@ -697,8 +694,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                         );
                         // permission was permanently denied, show permission settings guide
                         if (result == false) {
-                          //TODO: Fix lint...
-                          // ignore: use_build_context_synchronously
+                          if (!mounted) return;
                           showCalendarPermissionSheet(context);
                         }
                       }
