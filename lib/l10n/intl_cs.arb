@@ -1550,7 +1550,7 @@
   "@not_ordered": {},
   "form_specialist_question": "Dotaz do poradny",
   "@form_specialist_question": {},
-  "form_question_answer": "Na tvůj dotaz ohledně zdraví a prevence odpoví naši odborníci z řad lékařů. Odpověď ti zašleme do týdne na e-mail {email}.",
+  "form_question_answer": "Na tvůj dotaz ohledně zdraví a prevence odpoví naši odborníci z řad lékařů. Pozor, odborná poradna neslouží jako lékař na dálku, ale jako upřesnění informací v aplikaci. Odpověď ti zašleme do týdne na e-mail {email}.",
   "@form_question_answer": {
     "placeholders": {
       "email": {

@@ -115,7 +115,7 @@ class _FormContentState extends State<FormContent> {
                   ),
                   const CustomSpacer.vertical(30),
                   Text(
-                    context.l10n.form_question_answer('"${_currentUser?.email}"'),
+                    context.l10n.form_question_answer('${_currentUser?.email}'),
                     style: LoonoFonts.paragraphFontStyle,
                   ),
                   const Divider(
@@ -149,38 +149,38 @@ class _FormContentState extends State<FormContent> {
                     isForm: true,
                     error: _textInputError,
                   ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 30,
+                      bottom: 70,
+                      left: 18,
+                      right: 18,
+                    ),
+                    child: AsyncLoonoButton(
+                      text: context.l10n.form_send_question,
+                      asyncCallback: () async {
+                        return _sendData(formQuestionForBE);
+                      },
+                      onSuccess: () {
+                        AutoRouter.of(context).popUntilRoot();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              context.l10n.form_snack_success,
+                              style: LoonoFonts.snackbarStyle,
+                            ),
+                            backgroundColor: LoonoColors.greenSuccess,
+                          ),
+                        );
+                      },
+                      onError: () => showFlushBarError(context, context.l10n.something_went_wrong),
+                    ),
+                  )
                 ],
               ),
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(
-            top: 30,
-            bottom: 70,
-            left: 18,
-            right: 18,
-          ),
-          child: AsyncLoonoButton(
-            text: context.l10n.form_send_question,
-            asyncCallback: () async {
-              return _sendData(formQuestionForBE);
-            },
-            onSuccess: () {
-              AutoRouter.of(context).popUntilRoot();
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    context.l10n.form_snack_success,
-                    style: LoonoFonts.snackbarStyle,
-                  ),
-                  backgroundColor: LoonoColors.greenSuccess,
-                ),
-              );
-            },
-            onError: () => showFlushBarError(context, context.l10n.something_went_wrong),
-          ),
-        )
       ],
     );
   }
