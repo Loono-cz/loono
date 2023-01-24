@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:loono/constants.dart';
 import 'package:loono/l10n/ext.dart';
 
@@ -59,12 +58,7 @@ class _FormQuestionTypesWrapperState extends State<FormQuestionTypesWrapper> {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 5),
           child: ChoiceChip(
-            avatar: index == _activeChipIndex
-                ? const Icon(
-                    Icons.check,
-                    color: LoonoColors.primaryEnabled,
-                  )
-                : null,
+            avatar: null,
             label: Text(
               _choices[index],
               style: index == _activeChipIndex
@@ -73,6 +67,8 @@ class _FormQuestionTypesWrapperState extends State<FormQuestionTypesWrapper> {
             ),
             selected: index == _activeChipIndex,
             selectedColor: LoonoColors.beigeLight,
+            disabledColor: Colors.transparent,
+            backgroundColor: LoonoColors.choiceChipDisable,
             onSelected: (value) {
               _updateState(value, index);
             },

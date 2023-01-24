@@ -1405,8 +1405,18 @@
   "@custom_exam_reservation_time_female": {},
   "custom_exam_reservation_time_male": "Na jaký čas jsi objednaný?",
   "@custom_exam_reservation_time_male": {},
-  "custom_exam_type_question": "O jaký typ vyšetření se jedná?",
+  "custom_exam_type_question": "Zvol typ vyšetření",
   "@custom_exam_type_question": {},
+  "custom_exam_type_description": "Vyber libovolné označení, které nejlépe odpovídá důvodu tvé návštěvy.",
+  "@custom_exam_type_description": {},
+  "custom_exam_original_date": "Původní datum: {date}",
+  "@custom_exam_original_date": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "custom_exam_choose_provider": "Vyber specialistu",
   "@custom_exam_choose_provider": {},
   "custom_exam_choosen_provider": "Vybraný specialista: ",
@@ -1550,7 +1560,7 @@
   "@not_ordered": {},
   "form_specialist_question": "Dotaz do poradny",
   "@form_specialist_question": {},
-  "form_question_answer": "Na tvůj dotaz ohledně zdraví a prevence odpoví naši odborníci z řad lékařů. Odpověď ti zašleme do týdne na e-mail {email}.",
+  "form_question_answer": "Na tvůj dotaz ohledně zdraví a prevence odpoví naši odborníci z řad lékařů. Pozor, odborná poradna neslouží jako lékař na dálku, ale jako upřesnění informací v aplikaci. Odpověď ti zašleme do týdne na e-mail {email}.",
   "@form_question_answer": {
     "placeholders": {
       "email": {

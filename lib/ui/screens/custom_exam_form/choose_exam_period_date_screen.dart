@@ -132,14 +132,17 @@ class _ChooseExamPeriodDateScreenState extends State<ChooseExamPeriodDateScreen>
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'Původní datum: ${DateFormat(LoonoStrings.dateFormatWithNameMonth, 'CS-cz').format(widget.dateTime!)}',
+                    context.l10n.custom_exam_original_date(
+                      DateFormat(LoonoStrings.dateFormatWithNameMonth, 'CS-cz')
+                          .format(widget.dateTime!),
+                    ),
                   ),
                 ],
               ),
               const SizedBox(
                 height: 4.0,
               ),
-            ]
+            ],
           ],
         ),
       ),
