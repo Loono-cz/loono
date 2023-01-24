@@ -87,7 +87,7 @@ class _FormContentState extends State<FormContent> {
     _validateFormFields();
     if (_questionType != FormQuestionType.uninitialized && _textFieldController.text.isNotEmpty) {
       final response = await _apiService.sendConsultancyForm(
-        tag: formQuestionForBE[_questionType] ?? "Other",
+        tag: formQuestionForBE[_questionType] ?? 'Other',
         message: _textFieldController.text,
       );
       return response ? Future.value(true) : Future.value(false);
@@ -97,7 +97,7 @@ class _FormContentState extends State<FormContent> {
 
   @override
   Widget build(BuildContext context) {
-    var formQuestionForBE = getFormQuestionTypeForBE(context);
+    final formQuestionForBE = getFormQuestionTypeForBE(context);
     return Column(
       children: [
         Expanded(
