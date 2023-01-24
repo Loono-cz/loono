@@ -83,11 +83,11 @@ class _FormContentState extends State<FormContent> {
     });
   }
 
-  Future<bool?> _sendData() async {
+  Future<bool?> _sendData(Map<FormQuestionType, String> formQuestionForBE) async {
     _validateFormFields();
     if (_questionType != FormQuestionType.uninitialized && _textFieldController.text.isNotEmpty) {
       final response = await _apiService.sendConsultancyForm(
-        tag: _questionType.toString(),
+        tag: formQuestionForBE[_questionType] ?? "Other",
         message: _textFieldController.text,
       );
       return response ? Future.value(true) : Future.value(false);
@@ -97,6 +97,7 @@ class _FormContentState extends State<FormContent> {
 
   @override
   Widget build(BuildContext context) {
+    var formQuestionForBE = getFormQuestionTypeForBE(context);
     return Column(
       children: [
         Expanded(
@@ -162,7 +163,9 @@ class _FormContentState extends State<FormContent> {
           ),
           child: AsyncLoonoButton(
             text: context.l10n.form_send_question,
-            asyncCallback: _sendData,
+            asyncCallback: () async {
+              return _sendData(formQuestionForBE);
+            },
             onSuccess: () {
               AutoRouter.of(context).popUntilRoot();
               ScaffoldMessenger.of(context).showSnackBar(
@@ -180,5 +183,19 @@ class _FormContentState extends State<FormContent> {
         )
       ],
     );
+  }
+
+  Map<FormQuestionType, String> getFormQuestionTypeForBE(BuildContext context) {
+    final map = <FormQuestionType, String>{
+      FormQuestionType.selfExam: context.l10n.form_self_exam,
+      FormQuestionType.mentalHealth: context.l10n.form_mentalHealth,
+      FormQuestionType.preventionAndHealthStyle: context.l10n.form_preventionAndHealthStyle,
+      FormQuestionType.heartAndVessel: context.l10n.form_heartAndVessel,
+      FormQuestionType.reproductionalHealth: context.l10n.form_reproductionalHealth,
+      FormQuestionType.sexualHealth: context.l10n.form_sexualHealth,
+      FormQuestionType.preventiveExamAndScreening: context.l10n.form_preventiveExamAndScreening,
+      FormQuestionType.other: context.l10n.form_other,
+    };
+    return map;
   }
 }
