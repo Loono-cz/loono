@@ -1,8 +1,10 @@
 // ignore_for_file: constant_identifier_names
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:loono/helpers/platform_helpers.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/notification_service.dart';
@@ -99,13 +101,14 @@ extension OnboardingExaminationQuestionnaireExt on ExaminationQuestionnaire {
   }
 }
 
-/// According to onboarding flow diagram, on iOS, there should be displayed [AllowNotificationsScreen]
+/// According to onboarding flow diagram, on iOS and Android 13+, there should be displayed [AllowNotificationsScreen]
 /// if the user has not specified date in any onboarding form.
 Future<void> pushNotificationOrPreAuthMainScreen(BuildContext context) async {
   final preAuthMainRoute = PreAuthMainRoute();
   final shouldDisplayNotificationScreen = await shouldAskForNotification(
     onboardingStateService: context.read<OnboardingStateService>(),
   );
+  log('should display notification: $shouldDisplayNotificationScreen');
   final globalRouter = registry.get<AppRouter>();
   if (shouldDisplayNotificationScreen) {
     await globalRouter.pushAll([
@@ -126,8 +129,15 @@ Future<void> pushNotificationOrPreAuthMainScreen(BuildContext context) async {
 Future<bool> shouldAskForNotification({
   required OnboardingStateService onboardingStateService,
 }) async {
-  if (!Platform.isIOS) return false;
+  final androidVersion = await getAndroidVersion();
+  log('dont show: ${Platform.isAndroid && (androidVersion ?? 16) < 33}');
+  if (Platform.isAndroid && (androidVersion ?? 16) < 33) {
+    onboardingStateService.ignoreNotificationPermission();
+    return false;
+  }
   final permissionStatus = await Permission.notification.status;
+  log('permission status: $permissionStatus');
+  log('requested yet: ${onboardingStateService.hasNotRequestedNotificationsPermissionYet}');
   if (permissionStatus.isGranted) return false;
   if (onboardingStateService.hasNotRequestedNotificationsPermissionYet) return true;
   return false;
