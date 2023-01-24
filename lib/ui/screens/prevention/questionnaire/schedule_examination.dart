@@ -189,7 +189,7 @@ class ScheduleExamination extends StatelessWidget {
                   failure: (err) async {
                     await _appRouter.pop();
                     //TODO: fix lint.
-                    if (!mounted) return;
+                    // ignore: use_build_context_synchronously
                     showFlushBarError(context, context.l10n.something_went_wrong);
                   },
                 );
