@@ -181,12 +181,13 @@ class _DatePickerContentState extends State<_DatePickerContent> {
               padding: const EdgeInsets.only(top: 20.0),
               child: Row(
                 children: [
-                  Text(
-                    DateFormat(LoonoStrings.dateFormatWithNameMonth, 'cs-CZ')
-                        .format(newDate!)
-                        .toString(),
-                    style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
-                  ),
+                  if (newDate != null)
+                    Text(
+                      DateFormat(LoonoStrings.dateFormatWithNameMonth, 'cs-CZ')
+                          .format(newDate!)
+                          .toString(),
+                      style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
+                    ),
                 ],
               ),
             ),
@@ -200,92 +201,92 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 : context.l10n.action_save,
             enabled: newDate != null,
             asyncCallback: () async {
-              final examination = widget.categorizedExamination.examination;
-              final isCustom =
-                  examination.examinationCategoryType == ExaminationCategoryType.CUSTOM;
-              final lastConfirmed = examination.lastConfirmedDate;
+              if (newDate != null) {
+                final examination = widget.categorizedExamination.examination;
+                final isCustom =
+                    examination.examinationCategoryType == ExaminationCategoryType.CUSTOM;
+                final lastConfirmed = examination.lastConfirmedDate;
 
-              if (isCustom && lastConfirmed != null) {
-                final customInterval =
-                    examination.customInterval ?? LoonoStrings.customDefaultMonth;
-                final textInterval = customInterval < LoonoStrings.monthInYear ? 'měsíců' : 'roků';
-                final intervalDate = customInterval < LoonoStrings.monthInYear
-                    ? DateTime(
-                        lastConfirmed.year,
-                        lastConfirmed.month + customInterval,
-                        lastConfirmed.day,
-                      )
-                    : DateTime(
-                        lastConfirmed.year + transformMonthToYear(customInterval),
-                        lastConfirmed.month,
-                        lastConfirmed.day,
-                      );
+                if (isCustom && lastConfirmed != null) {
+                  final customInterval =
+                      examination.customInterval ?? LoonoStrings.customDefaultMonth;
+                  final textInterval =
+                      customInterval < LoonoStrings.monthInYear ? 'měsíců' : 'roků';
+                  final intervalDate = customInterval < LoonoStrings.monthInYear
+                      ? DateTime(
+                          lastConfirmed.year,
+                          lastConfirmed.month + customInterval,
+                          lastConfirmed.day,
+                        )
+                      : DateTime(
+                          lastConfirmed.year + transformMonthToYear(customInterval),
+                          lastConfirmed.month,
+                          lastConfirmed.day,
+                        );
 
-                final isDateValid = intervalDate.isAtSameMomentAs(
-                      newDate!, //TODO: Remove !
-                    ) ||
-                    intervalDate.isBefore(newDate!);
-                if (!isDateValid) {
-                  showFlushBarError(
-                    context,
-                    context.l10n.error_must_be_in_future_by_interval(
-                      transformMonthToYear(customInterval),
-                      textInterval,
-                    ),
+                  final isDateValid = intervalDate.isAtSameMomentAs(
+                        newDate!,
+                      ) ||
+                      intervalDate.isBefore(newDate!);
+                  if (!isDateValid) {
+                    showFlushBarError(
+                      context,
+                      context.l10n.error_must_be_in_future_by_interval(
+                        transformMonthToYear(customInterval),
+                        textInterval,
+                      ),
+                    );
+                    return;
+                  }
+                } else if (lastConfirmed != null) {
+                  final customInterval = examination.intervalYears;
+                  final intervalDate = DateTime(
+                    lastConfirmed.year + customInterval,
+                    lastConfirmed.month,
+                    lastConfirmed.day,
                   );
-                  return;
-                }
-              } else if (lastConfirmed != null) {
-                final customInterval = examination.intervalYears;
-                final intervalDate = DateTime(
-                  lastConfirmed.year + customInterval,
-                  lastConfirmed.month,
-                  lastConfirmed.day,
-                );
 
-                final isDateValid = intervalDate.isAtSameMomentAs(
-                      newDate!,
-                    ) ||
-                    intervalDate.isBefore(newDate!);
-                if (!isDateValid) {
-                  showFlushBarError(
-                    context,
-                    context.l10n.error_must_be_in_future_by_interval(customInterval, 'roků'),
-                  );
-                  return;
-                }
-              }
-
-              if (viewStep == ViewSteps.datePicker) {
-                if (!newDate!.datePickerIsInFuture(context)) {
-                  return;
+                  final isDateValid = intervalDate.isAtSameMomentAs(
+                        newDate!,
+                      ) ||
+                      intervalDate.isBefore(newDate!);
+                  if (!isDateValid) {
+                    showFlushBarError(
+                      context,
+                      context.l10n.error_must_be_in_future_by_interval(customInterval, 'roků'),
+                    );
+                    return;
+                  }
                 }
 
-                if (originalDate != null) {
-                  /// preset original date
-                  /// //TODO: Remove !
-                  newDate = DateTime(
-                    newDate!.year,
-                    newDate!.month,
-                    newDate!.day,
-                    originalDate.hour.clamp(0, 23),
-                    originalDate.minute.clamp(0, 55),
-                  );
+                if (viewStep == ViewSteps.datePicker) {
+                  if (!newDate!.datePickerIsInFuture(context)) {
+                    return;
+                  }
+
+                  if (originalDate != null && newDate != null) {
+                    /// preset original date
+                    newDate = DateTime(
+                      newDate!.year,
+                      newDate!.month,
+                      newDate!.day,
+                      originalDate.hour.clamp(0, 23),
+                      originalDate.minute.clamp(0, 55),
+                    );
+                  }
+                  setState(() {
+                    viewStep = ViewSteps.timePicker;
+                  });
+                } else if (viewStep == ViewSteps.timePicker) {
+                  if (!newDate!.timeDatePickerIsInPast(context)) {
+                    return;
+                  }
+                  setState(() {
+                    viewStep = ViewSteps.noteField;
+                  });
+                } else {
+                  await widget.onSubmit(date: newDate!, note: _note);
                 }
-                setState(() {
-                  viewStep = ViewSteps.timePicker;
-                });
-              } else if (viewStep == ViewSteps.timePicker) {
-                //TODO: Unwrap
-                if (!newDate!.timeDatePickerIsInPast(context)) {
-                  return;
-                }
-                setState(() {
-                  viewStep = ViewSteps.noteField;
-                });
-              } else {
-                ///TODO Unwrap
-                await widget.onSubmit(date: newDate!, note: _note);
               }
             },
           ),
@@ -314,14 +315,16 @@ class _DatePickerContentState extends State<_DatePickerContent> {
           ),
         );
       case ViewSteps.timePicker:
-        return Center(
-          child: CustomTimePicker(
-            valueChanged: onTimeChanged,
-            defaultDate: newDate!, //TODO: Remove !
-            defaultHour: 6,
-            defaultMinute: 0,
-          ),
-        );
+        return newDate != null
+            ? Center(
+                child: CustomTimePicker(
+                  valueChanged: onTimeChanged,
+                  defaultDate: newDate!,
+                  defaultHour: 6,
+                  defaultMinute: 0,
+                ),
+              )
+            : Container();
       case ViewSteps.noteField:
         return Container(
           key: const Key('note_input_field'),
