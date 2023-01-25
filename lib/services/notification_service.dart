@@ -92,7 +92,7 @@ class NotificationService {
   }
 
   Future<bool> _shouldAskForNotification() async {
-    final userRepository= registry.get<UserRepository>();
+    final userRepository = registry.get<UserRepository>();
     final permissionRequested = await userRepository.requestedNotificationPermission();
     await userRepository.setNotificationPermissionRequested();
     if (!Platform.isIOS) return false;

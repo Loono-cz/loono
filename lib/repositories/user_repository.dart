@@ -261,6 +261,10 @@ class UserRepository {
   }
 
   Future<void> setNotificationPermissionRequested() async {
-    await _db.users.updateCurrentUser(const UsersCompanion(notificationPermissionRequested: Value(true)));
+    await _db.users.updateCurrentUser(
+      const UsersCompanion(
+        notificationPermissionRequested: Value(true),
+      ),
+    );
   }
 }
