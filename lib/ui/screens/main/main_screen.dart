@@ -6,6 +6,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:loono/helpers/onboarding_state_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -56,6 +57,8 @@ class _MainScreenState extends State<MainScreen> {
     if (!Platform.isIOS) {
       checkAndShowDonatePage(context, mounted: mounted);
     }
+    pushNotificationOrPreAuthMainScreen(context);
+
     registry.get<UserRepository>().sync();
 
     _connectivity.checkConnectivity().then(evalConnectivity);
