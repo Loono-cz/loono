@@ -50,3 +50,6 @@ app.*.map.json
 /.mason/
 .fvm/
 lib/._constants.dart
+
+# Perf test related
+*.lptc

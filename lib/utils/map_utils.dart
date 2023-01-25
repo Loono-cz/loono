@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:ui' as ui;
 
 import 'package:collection/collection.dart';
-import 'package:drift/drift.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
@@ -68,8 +67,10 @@ Future<Marker> Function(
             )
           : BitmapDescriptor.fromBytes(healthcareRepository.customMarkerIcon);
 
+      final newMarkerId = MarkerId(cluster.getId());
+
       return Marker(
-        markerId: MarkerId(cluster.getId()),
+        markerId: newMarkerId,
         position: cluster.location,
         consumeTapEvents: !cluster.isMultiple,
         onTap: cluster.isMultiple
@@ -77,9 +78,14 @@ Future<Marker> Function(
                 ? () {
                     mapState
                       ..setDoctorDetail(null)
-                      ..applyFilter();
+                      ..applyFilter()
+                      ..clusterUnselect();
                   }
-                : () => mapState.setActiveDoctors(cluster.items.map((e) => e.healthcareProvider))
+                : () {
+                    mapState
+                      ..setActiveDoctors(cluster.items.map((e) => e.healthcareProvider))
+                      ..clusterSelect(newMarkerId);
+                  }
             : () => mapState.setDoctorDetail(cluster.items.first.healthcareProvider),
         infoWindow: InfoWindow.noText,
         icon: icon ?? BitmapDescriptor.defaultMarker,

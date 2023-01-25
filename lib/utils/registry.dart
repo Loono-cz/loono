@@ -48,6 +48,9 @@ const FORCE_UPDATE_STATUS_CODE = 410;
 // ignore: constant_identifier_names
 const USE_PROD_BE = 'USE_PROD_BE';
 
+bool _isRegistryInitialized = false;
+bool get isRegistryInitialized => _isRegistryInitialized;
+
 Future<void> setup({
   Dio? dioOverride,
   required AppFlavors flavor,
@@ -238,4 +241,5 @@ Future<void> setup({
   // splash screen
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  _isRegistryInitialized = true;
 }
