@@ -3,11 +3,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
-import 'package:loono/services/onboarding_state_service.dart';
+import 'package:loono/services/notification_service.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/skip_button.dart';
 import 'package:loono/ui/widgets/space.dart';
-import 'package:provider/provider.dart';
+import 'package:loono/utils/registry.dart';
 
 class AllowNotificationsScreen extends StatelessWidget {
   const AllowNotificationsScreen({
@@ -30,8 +30,7 @@ class AllowNotificationsScreen extends StatelessWidget {
               const CustomSpacer.vertical(20),
               SkipButton(
                 text: context.l10n.skip_notification,
-                onPressed: onSkipTap ??
-                    () => context.read<OnboardingStateService>().skipPermissionRequest(),
+                onPressed: () => onSkipTap?.call(), //TODO: decline permisson
               ),
               const Spacer(),
               SvgPicture.asset(
@@ -48,7 +47,7 @@ class AllowNotificationsScreen extends StatelessWidget {
               LoonoButton(
                 text: context.l10n.notification_allow_button,
                 onTap: onContinueTap ??
-                    () async => context.read<OnboardingStateService>().promptPermission(),
+                    () async => registry.get<NotificationService>().promptPermissions(),
               ),
               SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
             ],

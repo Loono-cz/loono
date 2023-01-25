@@ -2,10 +2,13 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:loono/repositories/user_repository.dart';
+import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/router/notification_router.dart';
 import 'package:loono/utils/app_config.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class NotificationService {
   NotificationService();
@@ -69,5 +72,53 @@ class NotificationService {
 
   Future<void> enableNotifications(bool enabled) async {
     await OneSignal.shared.disablePush(!enabled);
+  }
+
+  Future<void> requestNotificationPermission({bool fromOnboarding = false}) async {
+    final shouldDisplayNotificationScreen = await _shouldAskForNotification();
+    final globalRouter = registry.get<AppRouter>();
+
+    switch (fromOnboarding) {
+      case true:
+        final preAuthMainRoute = PreAuthMainRoute();
+        if (shouldDisplayNotificationScreen) {
+          await globalRouter.pushAll([
+            preAuthMainRoute,
+            AllowNotificationsRoute(
+              onSkipTap: () => globalRouter.push(preAuthMainRoute),
+              onContinueTap: () async {
+                await registry.get<NotificationService>().promptPermissions();
+                await globalRouter.push(preAuthMainRoute);
+              },
+            ),
+          ]);
+        } else {
+          await globalRouter.push(preAuthMainRoute);
+        }
+        break;
+      case false:
+        if (shouldDisplayNotificationScreen) {
+          await globalRouter.push(
+            AllowNotificationsRoute(
+              onSkipTap: globalRouter.pop,
+              onContinueTap: () async {
+                await registry.get<NotificationService>().promptPermissions();
+                await globalRouter.pop();
+              },
+            ),
+          );
+        }
+        break;
+    }
+  }
+
+  Future<bool> _shouldAskForNotification() async {
+    final userRepository = registry.get<UserRepository>();
+    final permissionRequested = await userRepository.requestedNotificationPermission();
+    if (!Platform.isIOS) return false;
+    final permissionStatus = await Permission.notification.status;
+    if (permissionStatus.isGranted) return false;
+    if (!permissionRequested) return true;
+    return false;
   }
 }

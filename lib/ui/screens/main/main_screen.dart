@@ -11,6 +11,7 @@ import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/router/notification_router.dart';
 import 'package:loono/services/examinations_service.dart';
+import 'package:loono/services/notification_service.dart';
 import 'package:loono/services/webview_service.dart';
 import 'package:loono/ui/widgets/custom_navigation_bar.dart';
 import 'package:loono/ui/widgets/no_connection_message.dart';
@@ -57,6 +58,7 @@ class _MainScreenState extends State<MainScreen> {
       checkAndShowDonatePage(context, mounted: mounted);
     }
     registry.get<UserRepository>().sync();
+    registry.get<NotificationService>().requestNotificationPermission();
 
     _connectivity.checkConnectivity().then(evalConnectivity);
     _connectivitySubscription =

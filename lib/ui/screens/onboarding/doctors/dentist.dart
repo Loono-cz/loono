@@ -5,6 +5,7 @@ import 'package:loono/helpers/onboarding_state_helpers.dart';
 import 'package:loono/helpers/sex_extensions.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/database_service.dart';
+import 'package:loono/services/notification_service.dart';
 import 'package:loono/ui/widgets/universal_doctor_screen.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
@@ -43,7 +44,9 @@ class OnboardingDentistScreen extends StatelessWidget {
             );
             //TODO: Fix lint...
             // ignore: use_build_context_synchronously
-            await pushNotificationOrPreAuthMainScreen(context);
+            await registry
+                .get<NotificationService>()
+                .requestNotificationPermission(fromOnboarding: true);
           },
         ),
       ),

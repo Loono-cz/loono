@@ -1,17 +1,8 @@
 // ignore_for_file: constant_identifier_names
-import 'dart:io';
 
 import 'package:collection/collection.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/db/database.dart';
-import 'package:loono/services/notification_service.dart';
-import 'package:loono/services/onboarding_state_service.dart';
-import 'package:loono/ui/screens/onboarding/allow_notifications.dart';
-import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:provider/provider.dart';
 
 const LAST_ONBOARDING_QUESTIONNAIRE = ExaminationType.DENTIST;
 
@@ -101,34 +92,50 @@ extension OnboardingExaminationQuestionnaireExt on ExaminationQuestionnaire {
 
 /// According to onboarding flow diagram, on iOS, there should be displayed [AllowNotificationsScreen]
 /// if the user has not specified date in any onboarding form.
-Future<void> pushNotificationOrPreAuthMainScreen(BuildContext context) async {
-  final preAuthMainRoute = PreAuthMainRoute();
-  final shouldDisplayNotificationScreen = await shouldAskForNotification(
-    onboardingStateService: context.read<OnboardingStateService>(),
-  );
-  final globalRouter = registry.get<AppRouter>();
-  if (shouldDisplayNotificationScreen) {
-    await globalRouter.pushAll([
-      preAuthMainRoute,
-      AllowNotificationsRoute(
-        onSkipTap: () => globalRouter.push(preAuthMainRoute),
-        onContinueTap: () async {
-          await registry.get<NotificationService>().promptPermissions();
-          await globalRouter.push(preAuthMainRoute);
-        },
-      ),
-    ]);
-  } else {
-    await globalRouter.push(preAuthMainRoute);
-  }
-}
+// Future<void> pushNotificationOrPreAuthMainScreen({bool fromOnboarding = false}) async {
+//   final shouldDisplayNotificationScreen = await _shouldAskForNotification();
+//   final globalRouter = registry.get<AppRouter>();
 
-Future<bool> shouldAskForNotification({
-  required OnboardingStateService onboardingStateService,
-}) async {
-  if (!Platform.isIOS) return false;
-  final permissionStatus = await Permission.notification.status;
-  if (permissionStatus.isGranted) return false;
-  if (onboardingStateService.hasNotRequestedNotificationsPermissionYet) return true;
-  return false;
-}
+//   switch (fromOnboarding) {
+//     case true:
+//       final preAuthMainRoute = PreAuthMainRoute();
+//       if (shouldDisplayNotificationScreen) {
+//         await globalRouter.pushAll([
+//           preAuthMainRoute,
+//           AllowNotificationsRoute(
+//             onSkipTap: () => globalRouter.push(preAuthMainRoute),
+//             onContinueTap: () async {
+//               await registry.get<NotificationService>().promptPermissions();
+//               await globalRouter.push(preAuthMainRoute);
+//             },
+//           ),
+//         ]);
+//       } else {
+//         await globalRouter.push(preAuthMainRoute);
+//       }
+//       break;
+//     case false:
+//       if (shouldDisplayNotificationScreen) {
+//         await globalRouter.push(
+//           AllowNotificationsRoute(
+//             onSkipTap: globalRouter.pop,
+//             onContinueTap: () async {
+//               await registry.get<NotificationService>().promptPermissions();
+//               await globalRouter.pop();
+//             },
+//           ),
+//         );
+//       }
+//       break;
+//   }
+// }
+
+// Future<bool> _shouldAskForNotification() async {
+//   final userRepository = registry.get<UserRepository>();
+//   final permissionRequested = await userRepository.requestedNotificationPermission();
+//   if (!Platform.isIOS) return false;
+//   final permissionStatus = await Permission.notification.status;
+//   if (permissionStatus.isGranted) return false;
+//   if (!permissionRequested) return true;
+//   return false;
+// }
