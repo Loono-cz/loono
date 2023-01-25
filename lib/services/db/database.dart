@@ -29,7 +29,7 @@ class AppDatabase extends _$AppDatabase {
       : super(EncryptedExecutor.inDatabaseFolder(path: path, password: password));
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
 
   @override
   MigrationStrategy get migration {
@@ -39,6 +39,9 @@ class AppDatabase extends _$AppDatabase {
       },
       onUpgrade: (Migrator m, int from, int to) async {
         flutter.debugPrint('**Moor** migration');
+        if (from < 2) {
+          await m.addColumn(users, users.notificationPermissionRequested);
+        }
       },
     );
   }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/helpers/datetime_extensions.dart';
-import 'package:loono/helpers/onboarding_state_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/screens/onboarding/preventive_examination_date_picker.dart';
@@ -37,14 +36,10 @@ class _DentistDateScreenState extends State<DentistDateScreen> {
             dateWithoutDay:
                 DateWithoutDay(month: monthFromInt(selectedDate!.month), year: selectedDate!.year),
           );
-          if (!mounted) return;
-          await pushNotificationOrPreAuthMainScreen(context);
         }
       },
       onSkipButtonPress: () async {
         await _examinationsQuestionnairesDao.setDontKnowLastVisitDate(_type);
-        if (!mounted) return;
-        await pushNotificationOrPreAuthMainScreen(context);
       },
     );
   }

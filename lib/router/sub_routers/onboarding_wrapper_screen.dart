@@ -182,10 +182,6 @@ PageRouteInfo? _nextDoctorOnlyRoute({
   required PageRouteInfo nextDoctorRoute,
 }) {
   if (prevDoctorCcaVisit != null && isPrevDatePickerFormFilled == true) {
-    if (onboardingState.hasNotRequestedNotificationsPermissionYet &&
-        shouldShowAllowNotificationScreen) {
-      return AllowNotificationsRoute();
-    }
     return nextDoctorRoute;
   }
   return null;
@@ -207,10 +203,6 @@ PageRouteInfo? _dateOrAchievementOrNextDoctorRoute({
         return achievementRoute;
       } else {
         if (isDatePickerFormFilled == true) {
-          if (onboardingState.hasNotRequestedNotificationsPermissionYet &&
-              shouldShowAllowNotificationScreen) {
-            return AllowNotificationsRoute();
-          }
           return nextDoctorRoute;
         }
         return dateRoute;

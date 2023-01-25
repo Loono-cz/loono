@@ -1,11 +1,15 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:loono/repositories/user_repository.dart';
+import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/router/notification_router.dart';
 import 'package:loono/utils/app_config.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class NotificationService {
   NotificationService();
@@ -69,5 +73,32 @@ class NotificationService {
 
   Future<void> enableNotifications(bool enabled) async {
     await OneSignal.shared.disablePush(!enabled);
+  }
+
+  Future<void> requestNotificationPermission(BuildContext context) async {
+    final shouldDisplayNotificationScreen = await _shouldAskForNotification();
+    final globalRouter = registry.get<AppRouter>();
+    if (shouldDisplayNotificationScreen) {
+      await globalRouter.push(
+        AllowNotificationsRoute(
+          onSkipTap: globalRouter.pop,
+          onContinueTap: () async {
+            await registry.get<NotificationService>().promptPermissions();
+            await globalRouter.pop();
+          },
+        ),
+      );
+    }
+  }
+
+  Future<bool> _shouldAskForNotification() async {
+    final userRepository= registry.get<UserRepository>();
+    final permissionRequested = await userRepository.requestedNotificationPermission();
+    await userRepository.setNotificationPermissionRequested();
+    if (!Platform.isIOS) return false;
+    final permissionStatus = await Permission.notification.status;
+    if (permissionStatus.isGranted) return false;
+    if (!permissionRequested) return true;
+    return false;
   }
 }

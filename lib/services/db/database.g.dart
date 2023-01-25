@@ -20,6 +20,7 @@ class User extends DataClass implements Insertable<User> {
   final List<SearchResult> searchHistory;
   final int points;
   final BuiltList<Badge> badges;
+  final bool? notificationPermissionRequested;
   User(
       {required this.id,
       this.sex,
@@ -32,7 +33,8 @@ class User extends DataClass implements Insertable<User> {
       this.latestMapUpdate,
       required this.searchHistory,
       required this.points,
-      required this.badges});
+      required this.badges,
+      this.notificationPermissionRequested});
   factory User.fromData(Map<String, dynamic> data, {String? prefix}) {
     final effectivePrefix = prefix ?? '';
     return User(
@@ -60,6 +62,8 @@ class User extends DataClass implements Insertable<User> {
           .mapFromDatabaseResponse(data['${effectivePrefix}points'])!,
       badges: $UsersTable.$converter3.mapToDart(const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}badges']))!,
+      notificationPermissionRequested: const BoolType().mapFromDatabaseResponse(
+          data['${effectivePrefix}notification_permission_requested']),
     );
   }
   @override
@@ -104,6 +108,10 @@ class User extends DataClass implements Insertable<User> {
       final converter = $UsersTable.$converter3;
       map['badges'] = Variable<String>(converter.mapToSql(badges)!);
     }
+    if (!nullToAbsent || notificationPermissionRequested != null) {
+      map['notification_permission_requested'] =
+          Variable<bool?>(notificationPermissionRequested);
+    }
     return map;
   }
 
@@ -134,6 +142,10 @@ class User extends DataClass implements Insertable<User> {
       searchHistory: Value(searchHistory),
       points: Value(points),
       badges: Value(badges),
+      notificationPermissionRequested:
+          notificationPermissionRequested == null && nullToAbsent
+              ? const Value.absent()
+              : Value(notificationPermissionRequested),
     );
   }
 
@@ -156,6 +168,8 @@ class User extends DataClass implements Insertable<User> {
           serializer.fromJson<List<SearchResult>>(json['searchHistory']),
       points: serializer.fromJson<int>(json['points']),
       badges: serializer.fromJson<BuiltList<Badge>>(json['badges']),
+      notificationPermissionRequested:
+          serializer.fromJson<bool?>(json['notificationPermissionRequested']),
     );
   }
   @override
@@ -176,6 +190,8 @@ class User extends DataClass implements Insertable<User> {
       'searchHistory': serializer.toJson<List<SearchResult>>(searchHistory),
       'points': serializer.toJson<int>(points),
       'badges': serializer.toJson<BuiltList<Badge>>(badges),
+      'notificationPermissionRequested':
+          serializer.toJson<bool?>(notificationPermissionRequested),
     };
   }
 
@@ -191,7 +207,8 @@ class User extends DataClass implements Insertable<User> {
           DateTime? latestMapUpdate,
           List<SearchResult>? searchHistory,
           int? points,
-          BuiltList<Badge>? badges}) =>
+          BuiltList<Badge>? badges,
+          bool? notificationPermissionRequested}) =>
       User(
         id: id ?? this.id,
         sex: sex ?? this.sex,
@@ -206,6 +223,8 @@ class User extends DataClass implements Insertable<User> {
         searchHistory: searchHistory ?? this.searchHistory,
         points: points ?? this.points,
         badges: badges ?? this.badges,
+        notificationPermissionRequested: notificationPermissionRequested ??
+            this.notificationPermissionRequested,
       );
   @override
   String toString() {
@@ -221,7 +240,9 @@ class User extends DataClass implements Insertable<User> {
           ..write('latestMapUpdate: $latestMapUpdate, ')
           ..write('searchHistory: $searchHistory, ')
           ..write('points: $points, ')
-          ..write('badges: $badges')
+          ..write('badges: $badges, ')
+          ..write(
+              'notificationPermissionRequested: $notificationPermissionRequested')
           ..write(')'))
         .toString();
   }
@@ -239,7 +260,8 @@ class User extends DataClass implements Insertable<User> {
       latestMapUpdate,
       searchHistory,
       points,
-      badges);
+      badges,
+      notificationPermissionRequested);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -255,7 +277,9 @@ class User extends DataClass implements Insertable<User> {
           other.latestMapUpdate == this.latestMapUpdate &&
           other.searchHistory == this.searchHistory &&
           other.points == this.points &&
-          other.badges == this.badges);
+          other.badges == this.badges &&
+          other.notificationPermissionRequested ==
+              this.notificationPermissionRequested);
 }
 
 class UsersCompanion extends UpdateCompanion<User> {
@@ -271,6 +295,7 @@ class UsersCompanion extends UpdateCompanion<User> {
   final Value<List<SearchResult>> searchHistory;
   final Value<int> points;
   final Value<BuiltList<Badge>> badges;
+  final Value<bool?> notificationPermissionRequested;
   const UsersCompanion({
     this.id = const Value.absent(),
     this.sex = const Value.absent(),
@@ -284,6 +309,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     this.searchHistory = const Value.absent(),
     this.points = const Value.absent(),
     this.badges = const Value.absent(),
+    this.notificationPermissionRequested = const Value.absent(),
   });
   UsersCompanion.insert({
     this.id = const Value.absent(),
@@ -298,6 +324,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     this.searchHistory = const Value.absent(),
     this.points = const Value.absent(),
     this.badges = const Value.absent(),
+    this.notificationPermissionRequested = const Value.absent(),
   });
   static Insertable<User> custom({
     Expression<String>? id,
@@ -312,6 +339,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     Expression<List<SearchResult>>? searchHistory,
     Expression<int>? points,
     Expression<BuiltList<Badge>>? badges,
+    Expression<bool?>? notificationPermissionRequested,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -328,6 +356,8 @@ class UsersCompanion extends UpdateCompanion<User> {
       if (searchHistory != null) 'search_history': searchHistory,
       if (points != null) 'points': points,
       if (badges != null) 'badges': badges,
+      if (notificationPermissionRequested != null)
+        'notification_permission_requested': notificationPermissionRequested,
     });
   }
 
@@ -343,7 +373,8 @@ class UsersCompanion extends UpdateCompanion<User> {
       Value<DateTime?>? latestMapUpdate,
       Value<List<SearchResult>>? searchHistory,
       Value<int>? points,
-      Value<BuiltList<Badge>>? badges}) {
+      Value<BuiltList<Badge>>? badges,
+      Value<bool?>? notificationPermissionRequested}) {
     return UsersCompanion(
       id: id ?? this.id,
       sex: sex ?? this.sex,
@@ -358,6 +389,8 @@ class UsersCompanion extends UpdateCompanion<User> {
       searchHistory: searchHistory ?? this.searchHistory,
       points: points ?? this.points,
       badges: badges ?? this.badges,
+      notificationPermissionRequested: notificationPermissionRequested ??
+          this.notificationPermissionRequested,
     );
   }
 
@@ -408,6 +441,10 @@ class UsersCompanion extends UpdateCompanion<User> {
       final converter = $UsersTable.$converter3;
       map['badges'] = Variable<String>(converter.mapToSql(badges.value)!);
     }
+    if (notificationPermissionRequested.present) {
+      map['notification_permission_requested'] =
+          Variable<bool?>(notificationPermissionRequested.value);
+    }
     return map;
   }
 
@@ -425,7 +462,9 @@ class UsersCompanion extends UpdateCompanion<User> {
           ..write('latestMapUpdate: $latestMapUpdate, ')
           ..write('searchHistory: $searchHistory, ')
           ..write('points: $points, ')
-          ..write('badges: $badges')
+          ..write('badges: $badges, ')
+          ..write(
+              'notificationPermissionRequested: $notificationPermissionRequested')
           ..write(')'))
         .toString();
   }
@@ -517,6 +556,16 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
               defaultValue: Constant(const BadgeListDbConverter()
                   .mapToSql(BuiltList.of(<Badge>[]))!))
           .withConverter<BuiltList<Badge>>($UsersTable.$converter3);
+  final VerificationMeta _notificationPermissionRequestedMeta =
+      const VerificationMeta('notificationPermissionRequested');
+  @override
+  late final GeneratedColumn<bool?> notificationPermissionRequested =
+      GeneratedColumn<bool?>(
+          'notification_permission_requested', aliasedName, true,
+          type: const BoolType(),
+          requiredDuringInsert: false,
+          defaultConstraints:
+              'CHECK (notification_permission_requested IN (0, 1))');
   @override
   List<GeneratedColumn> get $columns => [
         id,
@@ -530,7 +579,8 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
         latestMapUpdate,
         searchHistory,
         points,
-        badges
+        badges,
+        notificationPermissionRequested
       ];
   @override
   String get aliasedName => _alias ?? 'users';
@@ -585,6 +635,13 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
           points.isAcceptableOrUnknown(data['points']!, _pointsMeta));
     }
     context.handle(_badgesMeta, const VerificationResult.success());
+    if (data.containsKey('notification_permission_requested')) {
+      context.handle(
+          _notificationPermissionRequestedMeta,
+          notificationPermissionRequested.isAcceptableOrUnknown(
+              data['notification_permission_requested']!,
+              _notificationPermissionRequestedMeta));
+    }
     return context;
   }
 
