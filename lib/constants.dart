@@ -5,6 +5,37 @@ class LoonoAssets {
   static const ppfLogo = 'assets/sponsors/ppf.svg';
   static const cgiLogo = 'assets/sponsors/CGI.svg';
   static const mzcrLogo = 'assets/sponsors/mzcr.svg';
+  static const pragueLogo = 'assets/sponsors/prague.svg';
+  static const welcomeLogo = 'assets/icons/welcome-logo.svg';
+
+  static const customExamBadge = 'assets/badges_examination/custom_examination/badge';
+  static const examinationCardSuccessIcon = 'assets/icons/prevention/success_checkmark.svg';
+
+  static const calendarIcon = 'assets/icons/prevention/calendar.svg';
+
+  static const ellipse = 'assets/icons/ellipse.svg';
+
+  static const genderFemale = 'assets/icons/gender-woman.svg';
+  static const genderMale = 'assets/icons/gender-man.svg';
+  static const genderOther = 'assets/icons/gender-other.svg';
+
+  static const notificationBells = 'assets/icons/notification_bells.svg';
+
+  static const person = 'assets/icons/a_person.svg';
+
+  static const check = 'assets/icons/check.svg';
+
+  static const doctor = 'assets/icons/a_doctor.svg';
+  static const carouselDoctor = 'assets/icons/carousel_doctors.svg';
+
+  static const heroBackground = 'assets/icons/hero_background.svg';
+  static const itemShadow = 'assets/icons/item-shadow.svg';
+
+  static const people = 'assets/icons/people.svg';
+
+  static const points = 'assets/icons/points.svg';
+
+  static const consultancyButtonIcon = 'assets/icons/consultancy/consultancy_card_icon.svg';
 }
 
 class LoonoColors {
@@ -24,6 +55,8 @@ class LoonoColors {
   static const leaderboardPrimary = Color.fromRGBO(248, 185, 144, 1);
   static const pink = Color.fromRGBO(252, 237, 237, 1);
   static const red = Color.fromRGBO(216, 66, 72, 1);
+  static const white = Color.fromRGBO(255, 255, 255, 1);
+  static const orangeLight = Color.fromRGBO(254, 242, 233, 1.0);
   static const secondaryFont = Color.fromRGBO(59, 126, 129, 1);
   static const redButton = Color.fromARGB(255, 230, 87, 86);
   static const settingsBackground = Color.fromRGBO(254, 242, 233, 1);
@@ -38,6 +71,7 @@ class LoonoColors {
   static const checkBoxMark = Color.fromRGBO(190, 87, 19, 1);
   static const primaryWashed = Color.fromRGBO(203, 167, 142, 1);
   static const errorColor = Color.fromRGBO(194, 63, 56, 1);
+  static const choiceChipDisable = Color.fromRGBO(0xEB, 0xEB, 0xEB, 1);
 
   static const rainbow = <Color>[
     Color.fromARGB(255, 230, 87, 86),
@@ -80,6 +114,11 @@ class LoonoStrings {
   static const hoursFormat = 'HH:mm';
   static const monthInYear = 12;
   static const customDefaultMonth = 6;
+
+  static const notificationScreenParamName = 'screen';
+  static const notificationUuidParamName = 'examinationUuid';
+  static const notificationScreenExamination = 'checkup';
+  static const notificationScreenSelfExamination = 'self';
 }
 
 class LoonoFonts {
@@ -100,11 +139,22 @@ class LoonoFonts {
     color: LoonoColors.black,
     fontWeight: FontWeight.normal,
   );
+  static const headerLightFontStyle = TextStyle(
+    fontSize: 24,
+    color: LoonoColors.grey,
+    fontWeight: FontWeight.w400,
+  );
 
   static const subtitleFontStyle = TextStyle(
     fontSize: 14,
     color: LoonoColors.black,
     fontWeight: FontWeight.w700,
+  );
+
+  static const subtitleColoredFontStyle = TextStyle(
+    fontSize: 14,
+    color: LoonoColors.primaryEnabled,
+    fontWeight: FontWeight.bold,
   );
 
   static const paragraphFontStyle = TextStyle(
@@ -119,6 +169,13 @@ class LoonoFonts {
     height: 1.5,
     color: LoonoColors.black,
     fontWeight: FontWeight.normal,
+  );
+
+  static const paragraphBoldFontStyle = TextStyle(
+    fontSize: 15.0,
+    height: 1.5,
+    color: Colors.black,
+    fontWeight: FontWeight.w500,
   );
 
   static const primaryColorStyle = TextStyle(
@@ -176,5 +233,40 @@ class LoonoFonts {
     fontSize: 20,
     fontWeight: FontWeight.w400,
     color: Colors.black,
+  );
+
+  static const carouselTitle = TextStyle(
+    fontSize: 14,
+    color: LoonoColors.primaryEnabled,
+    fontWeight: FontWeight.bold,
+  );
+
+  static const cardDescription = TextStyle(
+    fontSize: 14,
+    color: LoonoColors.grey,
+    fontWeight: FontWeight.w400,
+  );
+
+  static const snackbarStyle = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+  );
+
+  static const errorMessageStyle = TextStyle(
+    color: LoonoColors.red,
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+  );
+
+  static const chipStyleActive = TextStyle(
+    color: LoonoColors.primaryEnabled,
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const chipStyleDefault = TextStyle(
+    color: LoonoColors.black,
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
   );
 }

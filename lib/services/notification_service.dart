@@ -1,16 +1,10 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:io';
 
-import 'package:collection/collection.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:loono/helpers/examination_extensions.dart';
-import 'package:loono/models/categorized_examination.dart';
-import 'package:loono/router/app_router.gr.dart';
-import 'package:loono/services/api_service.dart';
+import 'package:loono/router/notification_router.dart';
 import 'package:loono/utils/app_config.dart';
 import 'package:loono/utils/registry.dart';
-import 'package:loono_api/loono_api.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 class NotificationService {
@@ -29,57 +23,12 @@ class NotificationService {
     await OneSignal.shared.setAppId(appId);
     OneSignal.shared.setPermissionObserver(_onPermissionStateChanges);
     OneSignal.shared.setNotificationOpenedHandler((OSNotificationOpenedResult res) async {
-      final notificationExaminationType = res.notification.additionalData?.entries
-          .singleWhereOrNull((element) => element.key == 'examinationType')
-          ?.value
-          .toString();
-
-      final notificationExaminationUuid = res.notification.additionalData?.entries
-          .singleWhereOrNull((element) => element.key == 'examinationUuid')
-          ?.value
-          .toString();
-
-      if (notificationExaminationType == null && notificationExaminationUuid == null) return;
-
-      await registry.get<ApiService>().getExaminations().then((res) {
-        res.map(
-          success: (exams) {
-            final examinationToOpen = exams.data.examinations.firstWhereOrNull(
-              (element) => element.uuid.toString() == notificationExaminationUuid,
-            );
-            if (examinationToOpen != null) {
-              registry.get<AppRouter>().push(
-                    ExaminationDetailRoute(
-                      categorizedExamination: CategorizedExamination(
-                        examination: examinationToOpen,
-                        category: examinationToOpen.calculateStatus(),
-                      ),
-                    ),
-                  );
-              return;
-            }
-
-            final selfExaminationToOpen = exams.data.selfexaminations.firstWhereOrNull(
-              (element) => element.type.toString() == notificationExaminationType,
-            );
-            if (selfExaminationToOpen != null) {
-              registry.get<AppRouter>().push(
-                    SelfExaminationDetailRoute(
-                      sex: selfExaminationToOpen.type == SelfExaminationType.TESTICULAR
-                          ? Sex.MALE
-                          : Sex.FEMALE,
-                      selfExamination: selfExaminationToOpen,
-                    ),
-                  );
-              return;
-            }
-            log('Failed to recognize examination from notification');
-          },
-          failure: (err) {
-            log('Unable to fetch examination data for notifications');
-          },
-        );
-      });
+      final notificationRouter =
+          NotificationRouter.fromNotificationData(res.notification.additionalData);
+      while (!isRegistryInitialized) {
+        await Future<void>.delayed(const Duration(milliseconds: 100));
+      }
+      await notificationRouter.navigate();
     });
   }
 
@@ -116,5 +65,9 @@ class NotificationService {
     if (changes.to.status != null) {
       _permissionController.add(changes.to.status!);
     }
+  }
+
+  Future<void> enableNotifications(bool enabled) async {
+    await OneSignal.shared.disablePush(!enabled);
   }
 }

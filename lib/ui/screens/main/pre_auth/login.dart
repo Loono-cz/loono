@@ -8,6 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/helpers/onboarding_state_helpers.dart';
+import 'package:loono/helpers/size_helpers.dart';
 import 'package:loono/helpers/social_login_helpers.dart';
 import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
@@ -18,7 +19,9 @@ import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/auth/failures.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/examinations_service.dart';
+import 'package:loono/services/notification_service.dart';
 import 'package:loono/ui/widgets/social_login_button.dart';
+import 'package:loono/ui/widgets/space.dart';
 import 'package:loono/utils/app_config.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -44,122 +47,153 @@ class LoginScreen extends StatelessWidget {
       builder: (context, isLoadingValue, _) {
         return ModalProgressHUD(
           inAsyncCall: isLoadingValue,
-          progressIndicator: const CircularProgressIndicator(color: LoonoColors.primaryEnabled),
+          progressIndicator: const CircularProgressIndicator(
+            color: LoonoColors.primaryEnabled,
+          ),
           opacity: 0.5,
           child: Scaffold(
             body: SafeArea(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
-                    child: SizedBox(
+                    child: SingleChildScrollView(
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const SizedBox(height: 30),
-                          if (!isScreenSmall &&
-                              registry.get<AppConfig>().flavor == AppFlavors.dev) ...[
-                            TextButton(
-                              onPressed: () async {
-                                final data =
-                                    await s.rootBundle.loadString('assets/supported_apis.yaml');
-                                final apis = loadYaml(data) as YamlList;
+                          Column(
+                            children: [
+                              const CustomSpacer.vertical(30),
+                              if (!isScreenSmall &&
+                                  registry.get<AppConfig>().flavor == AppFlavors.dev) ...[
+                                TextButton(
+                                  onPressed: () async {
+                                    final data = await s.rootBundle.loadString(
+                                      'assets/supported_apis.yaml',
+                                    );
+                                    final apis = loadYaml(data) as YamlList;
 
-                                await showDialog<void>(
-                                  context: context,
-                                  barrierDismissible: false, // user must tap button!
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      title: const Text('Select API'),
-                                      content: SingleChildScrollView(
-                                        child: ListBody(
-                                          children: apis.nodes
-                                              .map(
-                                                (dynamic api) => ElevatedButton(
-                                                  onPressed: () async {
-                                                    final autoRouter = AutoRouter.of(context);
-                                                    await registry
-                                                        .get<AuthService>()
-                                                        .switchApi(api['url'].toString());
-                                                    await autoRouter.pop();
-                                                  },
-                                                  child: Text(api['url'].toString()),
-                                                ),
-                                              )
-                                              .toList(),
-                                        ),
-                                      ),
+                                    await showDialog<void>(
+                                      context: context,
+                                      barrierDismissible: false,
+                                      // user must tap button!
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: const Text('Select API'),
+                                          content: SingleChildScrollView(
+                                            child: ListBody(
+                                              children: apis.nodes
+                                                  .map(
+                                                    (dynamic api) => ElevatedButton(
+                                                      onPressed: () async {
+                                                        final autoRouter = AutoRouter.of(
+                                                          context,
+                                                        );
+                                                        await registry.get<AuthService>().switchApi(
+                                                              api['url'].toString(),
+                                                            );
+                                                        await autoRouter.pop();
+                                                      },
+                                                      child: Text(
+                                                        api['url'].toString(),
+                                                      ),
+                                                    ),
+                                                  )
+                                                  .toList(),
+                                            ),
+                                          ),
+                                        );
+                                      },
                                     );
                                   },
-                                );
-                              },
-                              child: const Text('switch api (dev flavour only)'),
-                            ),
-                            const SizedBox(height: 10),
-                          ],
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                context.l10n.login_header,
-                                textAlign: TextAlign.left,
-                                style: LoonoSizes.responsiveStyleScale(
-                                  context,
-                                  LoonoFonts.headerFontStyle,
+                                  child: const Text(
+                                    'switch api (dev flavour only)',
+                                  ),
+                                ),
+                                const CustomSpacer.vertical(10),
+                              ],
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: context.mediaQuery.compactSizeOf(18.0),
+                                ),
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    context.l10n.login_header,
+                                    textAlign: TextAlign.left,
+                                    style: LoonoSizes.responsiveStyleScale(
+                                      context,
+                                      LoonoFonts.headerFontStyle,
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
+                              SvgPicture.asset(
+                                LoonoAssets.carouselDoctor,
+                                width: context.mediaQuery.size.width * 0.9,
+                              ),
+                            ],
                           ),
-                          Expanded(child: SvgPicture.asset('assets/icons/carousel_doctors.svg')),
+                          if (isScreenSmall) const CustomSpacer.vertical(10),
                         ],
                       ),
                     ),
                   ),
-                  if (isScreenSmall) const SizedBox(height: 10),
-                  if (Platform.isIOS) ...[
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                      child: SocialLoginButton.apple(
-                        onPressed: () async => _processSocialLogin(
-                          context,
-                          socialLoginMethod: SocialLoginMethod.apple,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 20.0),
-                  ],
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                    child: SocialLoginButton.google(
-                      onPressed: () async => _processSocialLogin(
-                        context,
-                        socialLoginMethod: SocialLoginMethod.google,
-                      ),
-                    ),
-                  ),
-                  if (!isScreenSmall) const SizedBox(height: 10),
-                  TextButton(
-                    onPressed: () async {
-                      final autoRouter = AutoRouter.of(context);
-                      final questionnaires = await _examinationQuestionnairesDao.getAll();
-                      if (questionnaires.isOnboardingDone) {
-                        await autoRouter.push(PreAuthMainRoute());
-                      } else {
-                        await autoRouter.push(const OnboardingWrapperRoute());
-                      }
-                    },
-                    child: Text(
-                      context.l10n.login_create_new_account,
-                      style: LoonoFonts.paragraphFontStyle,
-                    ),
-                  ),
-                  if (!isScreenSmall) const SizedBox(height: 10),
+                  _buildLoginButtons(context, isScreenSmall),
                 ],
               ),
             ),
           ),
         );
       },
+    );
+  }
+
+  Widget _buildLoginButtons(BuildContext context, bool isScreenSmall) {
+    return Column(
+      children: [
+        if (Platform.isIOS) ...[
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: context.mediaQuery.compactSizeOf(18.0),
+            ),
+            child: SocialLoginButton.apple(
+              onPressed: () async => _processSocialLogin(
+                context,
+                socialLoginMethod: SocialLoginMethod.apple,
+              ),
+            ),
+          ),
+          const CustomSpacer.vertical(20.0),
+        ],
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: context.mediaQuery.compactSizeOf(18.0),
+          ),
+          child: SocialLoginButton.google(
+            onPressed: () async => _processSocialLogin(
+              context,
+              socialLoginMethod: SocialLoginMethod.google,
+            ),
+          ),
+        ),
+        if (!isScreenSmall) const CustomSpacer.vertical(10),
+        TextButton(
+          onPressed: () async {
+            final autoRouter = AutoRouter.of(context);
+            final questionnaires = await _examinationQuestionnairesDao.getAll();
+            if (questionnaires.isOnboardingDone) {
+              await autoRouter.push(PreAuthMainRoute());
+            } else {
+              await autoRouter.push(const OnboardingWrapperRoute());
+            }
+          },
+          child: Text(
+            context.l10n.login_create_new_account,
+            style: LoonoFonts.paragraphFontStyle,
+          ),
+        ),
+        if (!isScreenSmall) const CustomSpacer.vertical(10),
+      ],
     );
   }
 
@@ -187,9 +221,13 @@ class LoginScreen extends StatelessWidget {
                   // An account with this email already exists, proceed through the login.
                   await _userRepository.createUser();
                   await autoRouter.replaceAll([const MainScreenRouter()]);
+                  await registry.get<NotificationService>().enableNotifications(true);
                 },
                 failure: (_) async {
-                  showFlushBarError(context, context.l10n.login_server_down_message);
+                  showFlushBarError(
+                    context,
+                    context.l10n.login_server_down_message,
+                  );
                   await _authService.signOut();
                 },
               ),
