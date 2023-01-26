@@ -101,56 +101,56 @@ class _MainScreenState extends State<MainScreen> {
 
     //TODO pull request 466
     //return open == NotificationScreen.main ?
-    return  WillPopScope(
-            /// index 2 has its own WillPopScope for webview navigation. This prevents pop event override
-            onWillPop: () async {
-              final webViewController = context.read<WebViewProvider>().webViewController;
-              if (AutoRouter.of(context).isRouteActive(AboutHealthRoute.name) &&
-                  webViewController != null &&
-                  await webViewController.canGoBack()) {
-                await webViewController.goBack();
-              }
-              return false;
+    return WillPopScope(
+      /// index 2 has its own WillPopScope for webview navigation. This prevents pop event override
+      onWillPop: () async {
+        final webViewController = context.read<WebViewProvider>().webViewController;
+        if (AutoRouter.of(context).isRouteActive(AboutHealthRoute.name) &&
+            webViewController != null &&
+            await webViewController.canGoBack()) {
+          await webViewController.goBack();
+        }
+        return false;
+      },
+      child: AutoTabsScaffold(
+        routes: [
+          PreventionRoute(),
+          FindDoctorRoute(),
+          AboutHealthRoute(),
+        ],
+        bottomNavigationBuilder: (_, tabsRouter) {
+          return CustomNavigationBar(
+            key: const Key('mainScreenPage_bottomNavBar'),
+            currentIndex: tabsRouter.activeIndex,
+            onTap: (index) async {
+              await registry.get<FirebaseAnalytics>().setCurrentScreen(
+                    screenName: analyticsTabNames[index],
+                  );
+              tabsRouter.setActiveIndex(index);
             },
-            child: AutoTabsScaffold(
-              routes: [
-                PreventionRoute(),
-                FindDoctorRoute(),
-                AboutHealthRoute(),
-              ],
-              bottomNavigationBuilder: (_, tabsRouter) {
-                return CustomNavigationBar(
-                  key: const Key('mainScreenPage_bottomNavBar'),
-                  currentIndex: tabsRouter.activeIndex,
-                  onTap: (index) async {
-                    await registry.get<FirebaseAnalytics>().setCurrentScreen(
-                          screenName: analyticsTabNames[index],
-                        );
-                    tabsRouter.setActiveIndex(index);
-                  },
-                  items: [
-                    CustomNavigationBarItem(
-                      hasNotification: hasNotification,
-                      label: context.l10n.main_menu_item_prevention,
-                      iconPath: 'assets/icons/tabs/prevention.svg',
-                      iconPathActive: 'assets/icons/tabs/prevention_active.svg',
-                    ),
-                    CustomNavigationBarItem(
-                      label: context.l10n.main_menu_item_find_doc,
-                      iconPath: 'assets/icons/tabs/find_doctor.svg',
-                      iconPathActive: 'assets/icons/tabs/find_doctor_active.svg',
-                    ),
-                    CustomNavigationBarItem(
-                      label: context.l10n.main_menu_item_about_health,
-                      iconPath: 'assets/icons/tabs/explore.svg',
-                      iconPathActive: 'assets/icons/tabs/explore_active.svg',
-                    ),
-                  ],
-                );
-              },
-            ),
+            items: [
+              CustomNavigationBarItem(
+                hasNotification: hasNotification,
+                label: context.l10n.main_menu_item_prevention,
+                iconPath: 'assets/icons/tabs/prevention.svg',
+                iconPathActive: 'assets/icons/tabs/prevention_active.svg',
+              ),
+              CustomNavigationBarItem(
+                label: context.l10n.main_menu_item_find_doc,
+                iconPath: 'assets/icons/tabs/find_doctor.svg',
+                iconPathActive: 'assets/icons/tabs/find_doctor_active.svg',
+              ),
+              CustomNavigationBarItem(
+                label: context.l10n.main_menu_item_about_health,
+                iconPath: 'assets/icons/tabs/explore.svg',
+                iconPathActive: 'assets/icons/tabs/explore_active.svg',
+              ),
+            ],
           );
-      //TODO pull request 466
-      //  : NotificationLoadingWidget(screen: open);
+        },
+      ),
+    );
+    //TODO pull request 466
+    //  : NotificationLoadingWidget(screen: open);
   }
 }
