@@ -42,6 +42,8 @@ class Users extends Table {
   TextColumn get badges => text()
       .map(const BadgeListDbConverter())
       .withDefault(Constant(const BadgeListDbConverter().mapToSql(BuiltList.of(<Badge>[]))!))();
+
+  BoolColumn get notificationPermissionRequested => boolean().withDefault(const Constant(false))();
 }
 
 @DriftAccessor(tables: [Users])

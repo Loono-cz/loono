@@ -245,4 +245,22 @@ class UserRepository {
       },
     );
   }
+
+  Future<bool> requestedNotificationPermission() async {
+    final users = await _db.users.getUser();
+    for (final user in users) {
+      if (user.notificationPermissionRequested) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  Future<void> setNotificationPermissionRequested() async {
+    await _db.users.updateCurrentUser(
+      const UsersCompanion(
+        notificationPermissionRequested: Value<bool>(true),
+      ),
+    );
+  }
 }

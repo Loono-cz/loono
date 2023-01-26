@@ -11,6 +11,7 @@ import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/router/notification_router.dart';
 import 'package:loono/services/examinations_service.dart';
+import 'package:loono/services/onboarding_state_service.dart';
 import 'package:loono/services/webview_service.dart';
 import 'package:loono/ui/widgets/custom_navigation_bar.dart';
 import 'package:loono/ui/widgets/no_connection_message.dart';
@@ -56,6 +57,7 @@ class _MainScreenState extends State<MainScreen> {
     if (!Platform.isIOS) {
       checkAndShowDonatePage(context, mounted: mounted);
     }
+
     registry.get<UserRepository>().sync();
 
     _connectivity.checkConnectivity().then(evalConnectivity);
@@ -82,11 +84,23 @@ class _MainScreenState extends State<MainScreen> {
     super.dispose();
   }
 
+  Future<bool> askForNotification() async {
+    final userRepository = registry.get<UserRepository>();
+    final dontCallNotificationDialog = await userRepository.requestedNotificationPermission();
+    return dontCallNotificationDialog;
+  }
+
   @override
   Widget build(BuildContext context) {
     _noConnectionMessage ??= noConnectionFlushbar(context: context);
     final hasNotification =
         context.select<ExaminationsProvider, bool>((state) => state.hasNotification);
+
+    Future.delayed(const Duration(seconds: 5), () async {
+      if (await askForNotification()) {
+        await context.read<OnboardingStateService>().promptPermission();
+      }
+    });
 
     return open == NotificationScreen.main
         ? WillPopScope(
