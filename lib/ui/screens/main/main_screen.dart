@@ -11,6 +11,7 @@ import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/router/notification_router.dart';
 import 'package:loono/services/examinations_service.dart';
+import 'package:loono/services/notification_service.dart';
 import 'package:loono/services/webview_service.dart';
 import 'package:loono/ui/widgets/custom_navigation_bar.dart';
 import 'package:loono/ui/widgets/no_connection_message.dart';
@@ -56,6 +57,7 @@ class _MainScreenState extends State<MainScreen> {
     if (!Platform.isIOS) {
       checkAndShowDonatePage(context, mounted: mounted);
     }
+
     registry.get<UserRepository>().sync();
 
     _connectivity.checkConnectivity().then(evalConnectivity);
@@ -82,11 +84,20 @@ class _MainScreenState extends State<MainScreen> {
     super.dispose();
   }
 
+  Future<void> askForNotification() async {
+    final notificationService = registry.get<NotificationService>();
+    await notificationService.promptPermissions();
+  }
+
   @override
   Widget build(BuildContext context) {
     _noConnectionMessage ??= noConnectionFlushbar(context: context);
     final hasNotification =
         context.select<ExaminationsProvider, bool>((state) => state.hasNotification);
+
+    Future.delayed(Duration.zero, () async {
+      await askForNotification();
+    });
 
     return open == NotificationScreen.main
         ? WillPopScope(
@@ -111,9 +122,9 @@ class _MainScreenState extends State<MainScreen> {
                   key: const Key('mainScreenPage_bottomNavBar'),
                   currentIndex: tabsRouter.activeIndex,
                   onTap: (index) async {
-                    await registry
-                        .get<FirebaseAnalytics>()
-                        .setCurrentScreen(screenName: analyticsTabNames[index]);
+                    await registry.get<FirebaseAnalytics>().setCurrentScreen(
+                          screenName: analyticsTabNames[index],
+                        );
                     tabsRouter.setActiveIndex(index);
                   },
                   items: [
