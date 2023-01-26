@@ -15,7 +15,6 @@ import 'package:loono/services/notification_service.dart';
 import 'package:loono/services/webview_service.dart';
 import 'package:loono/ui/widgets/custom_navigation_bar.dart';
 import 'package:loono/ui/widgets/no_connection_message.dart';
-import 'package:loono/ui/widgets/notification_loading_widget.dart';
 import 'package:loono/utils/donate_utils.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:provider/provider.dart';
@@ -40,7 +39,8 @@ class _MainScreenState extends State<MainScreen> {
 
   Flushbar? _noConnectionMessage;
 
-  late NotificationScreen open = widget.notificationRouter?.screen ?? NotificationScreen.main;
+  // TODO pull request 466
+  //late NotificationScreen open = widget.notificationRouter?.screen ?? NotificationScreen.main;
 
   void evalConnectivity(ConnectivityResult result) {
     if (result == ConnectivityResult.none && (_noConnectionMessage?.isShowing() == false)) {
@@ -71,11 +71,11 @@ class _MainScreenState extends State<MainScreen> {
       }
     });
 
-    widget.notificationRouter?.addListener(() {
+    /*widget.notificationRouter?.addListener(() {
       setState(() {
         open = NotificationScreen.main;
       });
-    });
+    }); */ // TODO pull request 466
   }
 
   @override
@@ -99,8 +99,9 @@ class _MainScreenState extends State<MainScreen> {
       await askForNotification();
     });
 
-    return open == NotificationScreen.main
-        ? WillPopScope(
+    //TODO pull request 466
+    //return open == NotificationScreen.main ?
+    return  WillPopScope(
             /// index 2 has its own WillPopScope for webview navigation. This prevents pop event override
             onWillPop: () async {
               final webViewController = context.read<WebViewProvider>().webViewController;
@@ -148,7 +149,8 @@ class _MainScreenState extends State<MainScreen> {
                 );
               },
             ),
-          )
-        : NotificationLoadingWidget(screen: open);
+          );
+      //TODO pull request 466
+      //  : NotificationLoadingWidget(screen: open);
   }
 }
