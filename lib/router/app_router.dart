@@ -26,7 +26,6 @@ import 'package:loono/ui/screens/main/pre_auth/login.dart';
 import 'package:loono/ui/screens/main/pre_auth/onboarding_form_done.dart';
 import 'package:loono/ui/screens/main/pre_auth/pre_auth_main_screen.dart';
 import 'package:loono/ui/screens/main/pre_auth/start_new_questionnaire.dart';
-import 'package:loono/ui/screens/onboarding/allow_notifications.dart';
 import 'package:loono/ui/screens/onboarding/badge_overview.dart';
 import 'package:loono/ui/screens/onboarding/birthdate.dart';
 import 'package:loono/ui/screens/onboarding/carousel/carousel.dart';
@@ -97,7 +96,7 @@ const _preAuthRoutes = <AutoRoute>[
   _preAuthMainScreenRouter,
   AutoRoute<void>(page: IntroCarouselScreen, path: 'intro-carousel'),
   _onboardingQuestionnaireRouter,
-  _allowNotificationRoute,
+  // _allowNotificationRoute, TODO
   AutoRoute<void>(page: FillOnboardingFormLaterScreen, path: 'fill-form-later'),
   _badgeOverviewRoute,
   AutoRoute<void>(page: NicknameScreen, path: 'fallback-account/name'),
@@ -160,11 +159,11 @@ const _preAuthPreventionRouter = AutoRoute<void>(
 );
 
 const _loginRoute = AutoRoute<void>(page: LoginScreen, path: 'login');
-const _allowNotificationRoute = CustomRoute<void>(
+/*const _allowNotificationRoute = CustomRoute<void>(
   page: AllowNotificationsScreen,
   path: 'allow-notifications',
   transitionsBuilder: _onboardingTransition,
-);
+);*/ // ToDo
 const _aboutHealthRoute = AutoRoute<void>(page: AboutHealthScreen, path: 'about-health');
 const _forceUpdateRoute = AutoRoute<void>(page: ForceUpdateScreen, path: 'force-update');
 const _badgeOverviewRoute = AutoRoute<void>(page: BadgeOverviewScreen, path: 'badge-overview');
@@ -213,7 +212,7 @@ const _onboardingQuestionnaireRouter = AutoRoute<void>(
       path: 'doctor/general-practitioner-date',
       transitionsBuilder: _onboardingTransition,
     ),
-    _allowNotificationRoute,
+    //_allowNotificationRoute, TODO
     CustomRoute<void>(
       page: OnboardingGynecologyScreen,
       path: 'doctor/gynecology',

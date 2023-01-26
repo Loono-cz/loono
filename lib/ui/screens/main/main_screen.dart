@@ -11,7 +11,7 @@ import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/router/notification_router.dart';
 import 'package:loono/services/examinations_service.dart';
-import 'package:loono/services/onboarding_state_service.dart';
+import 'package:loono/services/notification_service.dart';
 import 'package:loono/services/webview_service.dart';
 import 'package:loono/ui/widgets/custom_navigation_bar.dart';
 import 'package:loono/ui/widgets/no_connection_message.dart';
@@ -36,16 +36,23 @@ class _MainScreenState extends State<MainScreen> {
 
   bool connectivityLocked = true;
 
-  final analyticsTabNames = ['PreventionTab', 'FindDoctorTab', 'ExploreSectionTab'];
+  final analyticsTabNames = [
+    'PreventionTab',
+    'FindDoctorTab',
+    'ExploreSectionTab'
+  ];
 
   Flushbar? _noConnectionMessage;
 
-  late NotificationScreen open = widget.notificationRouter?.screen ?? NotificationScreen.main;
+  late NotificationScreen open =
+      widget.notificationRouter?.screen ?? NotificationScreen.main;
 
   void evalConnectivity(ConnectivityResult result) {
-    if (result == ConnectivityResult.none && (_noConnectionMessage?.isShowing() == false)) {
+    if (result == ConnectivityResult.none &&
+        (_noConnectionMessage?.isShowing() == false)) {
       _noConnectionMessage?.show(context);
-    } else if (result != ConnectivityResult.none && (_noConnectionMessage?.isShowing() ?? false)) {
+    } else if (result != ConnectivityResult.none &&
+        (_noConnectionMessage?.isShowing() ?? false)) {
       _noConnectionMessage?.dismiss();
     }
   }
@@ -53,7 +60,8 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    final examinationsProvider = Provider.of<ExaminationsProvider>(context, listen: false);
+    final examinationsProvider =
+        Provider.of<ExaminationsProvider>(context, listen: false);
     if (!Platform.isIOS) {
       checkAndShowDonatePage(context, mounted: mounted);
     }
@@ -86,72 +94,86 @@ class _MainScreenState extends State<MainScreen> {
 
   Future<bool> askForNotification() async {
     final userRepository = registry.get<UserRepository>();
-    final dontCallNotificationDialog = await userRepository.requestedNotificationPermission();
-    return dontCallNotificationDialog;
+    final dontCallNotificationDialog =
+        await userRepository.requestedNotificationPermission();
+    await userRepository.setNotificationPermissionRequested();
+    await userRepository.sync();
+    if (!dontCallNotificationDialog) {
+      var notificationService = registry.get<NotificationService>();
+      await notificationService.promptPermissions();
+    }
+    return !dontCallNotificationDialog;
   }
+
 
   @override
   Widget build(BuildContext context) {
     _noConnectionMessage ??= noConnectionFlushbar(context: context);
-    final hasNotification =
-        context.select<ExaminationsProvider, bool>((state) => state.hasNotification);
+    final hasNotification = context
+        .select<ExaminationsProvider, bool>((state) => state.hasNotification);
 
-    Future.delayed(const Duration(seconds: 5), () async {
-      if (await askForNotification()) {
-        await context.read<OnboardingStateService>().promptPermission();
-      }
+    Future.delayed(Duration.zero, () async {
+      await askForNotification();
     });
 
     return open == NotificationScreen.main
-        ? WillPopScope(
-            /// index 2 has its own WillPopScope for webview navigation. This prevents pop event override
-            onWillPop: () async {
-              final webViewController = context.read<WebViewProvider>().webViewController;
-              if (AutoRouter.of(context).isRouteActive(AboutHealthRoute.name) &&
-                  webViewController != null &&
-                  await webViewController.canGoBack()) {
-                await webViewController.goBack();
-              }
-              return false;
-            },
-            child: AutoTabsScaffold(
-              routes: [
-                PreventionRoute(),
-                FindDoctorRoute(),
-                AboutHealthRoute(),
-              ],
-              bottomNavigationBuilder: (_, tabsRouter) {
-                return CustomNavigationBar(
-                  key: const Key('mainScreenPage_bottomNavBar'),
-                  currentIndex: tabsRouter.activeIndex,
-                  onTap: (index) async {
-                    await registry
-                        .get<FirebaseAnalytics>()
-                        .setCurrentScreen(screenName: analyticsTabNames[index]);
-                    tabsRouter.setActiveIndex(index);
-                  },
-                  items: [
-                    CustomNavigationBarItem(
-                      hasNotification: hasNotification,
-                      label: context.l10n.main_menu_item_prevention,
-                      iconPath: 'assets/icons/tabs/prevention.svg',
-                      iconPathActive: 'assets/icons/tabs/prevention_active.svg',
-                    ),
-                    CustomNavigationBarItem(
-                      label: context.l10n.main_menu_item_find_doc,
-                      iconPath: 'assets/icons/tabs/find_doctor.svg',
-                      iconPathActive: 'assets/icons/tabs/find_doctor_active.svg',
-                    ),
-                    CustomNavigationBarItem(
-                      label: context.l10n.main_menu_item_about_health,
-                      iconPath: 'assets/icons/tabs/explore.svg',
-                      iconPathActive: 'assets/icons/tabs/explore_active.svg',
-                    ),
+            ? WillPopScope(
+                /// index 2 has its own WillPopScope for webview navigation. This prevents pop event override
+                onWillPop: () async {
+                  final webViewController =
+                      context.read<WebViewProvider>().webViewController;
+                  if (AutoRouter.of(context)
+                          .isRouteActive(AboutHealthRoute.name) &&
+                      webViewController != null &&
+                      await webViewController.canGoBack()) {
+                    await webViewController.goBack();
+                  }
+                  return false;
+                },
+                child: AutoTabsScaffold(
+                  routes: [
+                    PreventionRoute(),
+                    FindDoctorRoute(),
+                    AboutHealthRoute(),
                   ],
-                );
-              },
-            ),
-          )
-        : NotificationLoadingWidget(screen: open);
+                  bottomNavigationBuilder: (_, tabsRouter) {
+                    return CustomNavigationBar(
+                      key: const Key('mainScreenPage_bottomNavBar'),
+                      currentIndex: tabsRouter.activeIndex,
+                      onTap: (index) async {
+                        await registry
+                            .get<FirebaseAnalytics>()
+                            .setCurrentScreen(
+                              screenName: analyticsTabNames[index],
+                            );
+                        tabsRouter.setActiveIndex(index);
+                      },
+                      items: [
+                        CustomNavigationBarItem(
+                          hasNotification: hasNotification,
+                          label: context.l10n.main_menu_item_prevention,
+                          iconPath: 'assets/icons/tabs/prevention.svg',
+                          iconPathActive:
+                              'assets/icons/tabs/prevention_active.svg',
+                        ),
+                        CustomNavigationBarItem(
+                          label: context.l10n.main_menu_item_find_doc,
+                          iconPath: 'assets/icons/tabs/find_doctor.svg',
+                          iconPathActive:
+                              'assets/icons/tabs/find_doctor_active.svg',
+                        ),
+                        CustomNavigationBarItem(
+                          label: context.l10n.main_menu_item_about_health,
+                          iconPath: 'assets/icons/tabs/explore.svg',
+                          iconPathActive:
+                              'assets/icons/tabs/explore_active.svg',
+                        ),
+                      ],
+                    );
+                  },
+                ),
+              )
+            : NotificationLoadingWidget(screen: open);
+
   }
 }
