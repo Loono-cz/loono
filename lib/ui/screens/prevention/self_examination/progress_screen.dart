@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loono/helpers/ui_helpers.dart';
+import 'package:loono/l10n/ext.dart';
 
-// TODO:
 class ProgressRewardScreen extends StatelessWidget {
   const ProgressRewardScreen({Key? key}) : super(key: key);
 
@@ -14,7 +14,7 @@ class ProgressRewardScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text('Pokračuj dál v samovyšetřování a získáš další odměny.'),
+              Text(context.l10n.no_findings_progress_desc),
               SizedBox(height: LoonoSizes.buttonBottomPadding(context)),
             ],
           ),
