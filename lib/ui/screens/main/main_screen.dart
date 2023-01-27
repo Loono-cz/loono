@@ -60,7 +60,15 @@ class _MainScreenState extends State<MainScreen> {
 
     registry.get<UserRepository>().sync();
 
-    _connectivity.checkConnectivity().then(evalConnectivity);
+    /// Initialize connectivity status and examinations
+    _connectivity.checkConnectivity().then((ConnectivityResult result) {
+      evalConnectivity(result);
+      if (result != ConnectivityResult.none) {
+        examinationsProvider.fetchExaminations();
+      }
+    });
+
+    /// Set-up connectivity listener
     _connectivitySubscription =
         _connectivity.onConnectivityChanged.listen((ConnectivityResult result) {
       evalConnectivity(result);
