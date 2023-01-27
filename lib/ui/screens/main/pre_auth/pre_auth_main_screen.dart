@@ -78,10 +78,10 @@ class _PreAuthMainScreenState extends State<PreAuthMainScreen> {
         ],
         bottomNavigationBuilder: (_, tabsRouter) {
           return bottomNavigationBuilder(
-                  context,
-                  tabsRouter,
-                  analyticsTabNames,
-                );
+            context,
+            tabsRouter,
+            analyticsTabNames,
+          );
         },
       ),
     );
