@@ -13,7 +13,7 @@ import 'package:url_launcher/url_launcher_string.dart';
 enum NotficationType { newsletter, donate }
 
 class NotificationPage extends StatefulWidget {
-  const NotificationPage({Key? key, required this.notficationType}) : super(key: key);
+  const NotificationPage({required this.notficationType, super.key});
   final NotficationType notficationType;
   @override
   NotificationPageState createState() => NotificationPageState();
