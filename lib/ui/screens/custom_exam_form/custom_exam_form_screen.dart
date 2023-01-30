@@ -373,7 +373,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                       ? DateFormat(LoonoStrings.dateFormat).format(_lastExamDate!)
                       : '',
                   prefixIcon: SvgPicture.asset(
-                    'assets/icons/calendar.svg',
+                    LoonoAssets.calendarIcon,
                     width: 10,
                     height: 10,
                     fit: BoxFit.scaleDown,
@@ -422,7 +422,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                       ? DateFormat(LoonoStrings.dateWithHoursFormat).format(_nextExamDate!)
                       : '',
                   prefixIcon: SvgPicture.asset(
-                    'assets/icons/calendar.svg',
+                    LoonoAssets.calendarIcon,
                     fit: BoxFit.scaleDown,
                     color: _nextExamChck ? Colors.black38 : Colors.black87,
                   ),
@@ -468,7 +468,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
                   ? DateFormat(LoonoStrings.dateWithHoursFormat).format(_periodDateTime!)
                   : '',
               prefixIcon: SvgPicture.asset(
-                'assets/icons/calendar.svg',
+                LoonoAssets.calendarIcon,
                 width: 5,
                 height: 5,
                 fit: BoxFit.scaleDown,

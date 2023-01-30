@@ -88,4 +88,11 @@ class SecureStorageService {
   }
 
   Future<void> deleteDonateInfoData() => _storage.delete(key: _donateInfoDataKey);
+
+  Future<DonateUserInfo?> getNewsletterInfoData() async {
+    final data = await _storage.read(key: _donateInfoDataKey);
+    if (data == null) return null;
+    final donateData = DonateUserInfo.fromJson(jsonDecode(data) as Map<String, dynamic>);
+    return donateData;
+  }
 }

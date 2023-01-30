@@ -42,7 +42,7 @@ packages:
       name: another_flushbar
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.10.29"
+    version: "1.12.29"
   archive:
     dependency: "direct main"
     description:
@@ -238,7 +238,7 @@ packages:
       name: connectivity_plus
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.6+1"
+    version: "1.4.0"
   connectivity_plus_linux:
     dependency: transitive
     description:
@@ -252,21 +252,21 @@ packages:
       name: connectivity_plus_macos
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.4"
+    version: "1.2.6"
   connectivity_plus_platform_interface:
     dependency: transitive
     description:
       name: connectivity_plus_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.1"
+    version: "1.2.3"
   connectivity_plus_web:
     dependency: transitive
     description:
       name: connectivity_plus_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.3"
+    version: "1.2.5"
   connectivity_plus_windows:
     dependency: transitive
     description:
@@ -1050,8 +1050,8 @@ packages:
     dependency: "direct main"
     description:
       path: dart
-      ref: "1ec66a681c0779c718395c1ba668681dced37ebd"
-      resolved-ref: "1ec66a681c0779c718395c1ba668681dced37ebd"
+      ref: "123403f6f025bf352d74d8b2ccbee5163a486fa9"
+      resolved-ref: "123403f6f025bf352d74d8b2ccbee5163a486fa9"
       url: "https://github.com/Loono-cz/loono-api.git"
     source: git
     version: "1.0.0"
@@ -1131,7 +1131,7 @@ packages:
       name: onesignal_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.4.1"
+    version: "3.5.0"
   open_store:
     dependency: "direct main"
     description:

@@ -19,6 +19,7 @@ import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/auth/failures.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/examinations_service.dart';
+import 'package:loono/services/notification_service.dart';
 import 'package:loono/ui/widgets/social_login_button.dart';
 import 'package:loono/ui/widgets/space.dart';
 import 'package:loono/utils/app_config.dart';
@@ -220,6 +221,7 @@ class LoginScreen extends StatelessWidget {
                   // An account with this email already exists, proceed through the login.
                   await _userRepository.createUser();
                   await autoRouter.replaceAll([const MainScreenRouter()]);
+                  await registry.get<NotificationService>().enableNotifications(true);
                 },
                 failure: (_) async {
                   showFlushBarError(
