@@ -241,18 +241,6 @@ class LoonoFonts {
     fontWeight: FontWeight.bold,
   );
 
-<<<<<<< HEAD
-  static const notificationSubText = TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w400,
-    color: Colors.black87,
-  );
-
-  static const notificationSubTextGrey = TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w400,
-    color: Colors.grey,
-=======
   static const cardDescription = TextStyle(
     fontSize: 14,
     color: LoonoColors.grey,
@@ -280,6 +268,17 @@ class LoonoFonts {
     color: LoonoColors.black,
     fontSize: 14,
     fontWeight: FontWeight.w400,
->>>>>>> develop
+  );
+  
+  static const notificationSubText = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: Colors.black87,
+  );
+
+  static const notificationSubTextGrey = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: Colors.grey,
   );
 }
