@@ -1,5 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:loono/ui/screens/notification_page.dart';
+import 'package:loono/constants.dart';
+import 'package:loono/l10n/ext.dart';
+import 'package:loono/router/app_router.gr.dart';
+import 'package:loono/ui/widgets/onboarding/carousel/app_bar.dart';
+import 'package:loono/ui/widgets/onboarding/carousel/button.dart';
+import 'package:loono/ui/widgets/onboarding/carousel/carousel_content.dart';
 
 class OnboardingSecondCarouselScreen extends StatelessWidget {
   const OnboardingSecondCarouselScreen({Key? key, this.onNext, this.onBack}) : super(key: key);
@@ -9,12 +15,27 @@ class OnboardingSecondCarouselScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromRGBO(237, 248, 253, 1),
-      body: SafeArea(
-        child: NotificationPage(
-          key: key,
-          notficationType: NotficationType.newsletter,
+    return WillPopScope(
+      onWillPop: () async {
+        onBack?.call();
+        return false;
+      },
+      child: Scaffold(
+        backgroundColor: const Color.fromRGBO(237, 248, 253, 1),
+        appBar: carouselAppBar(context, onBack),
+        body: SafeArea(
+          child: CarouselStatContent(
+            statText: context.l10n.carousel_content_2_stat,
+            highlightPattern: '(${context.l10n.carousel_content_2_stat_highlight})',
+            statTextColor: LoonoColors.primaryEnabled,
+            bodyText: context.l10n.carousel_content_2_body,
+            button: CarouselButton(
+              text: context.l10n.continue_info,
+              onTap: () => AutoRouter.of(context).push(PreAuthMainRoute()),
+            ),
+            paddingMultiplier: 0.14,
+            dataSourceText: context.l10n.carousel_content_2_data_source,
+          ),
         ),
       ),
     );
