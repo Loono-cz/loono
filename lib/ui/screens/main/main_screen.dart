@@ -16,6 +16,7 @@ import 'package:loono/services/webview_service.dart';
 import 'package:loono/ui/widgets/custom_navigation_bar.dart';
 import 'package:loono/ui/widgets/no_connection_message.dart';
 import 'package:loono/utils/donate_utils.dart';
+import 'package:loono/utils/newsletter_utils.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:provider/provider.dart';
 
@@ -56,6 +57,7 @@ class _MainScreenState extends State<MainScreen> {
     final examinationsProvider = Provider.of<ExaminationsProvider>(context, listen: false);
     if (!Platform.isIOS) {
       checkAndShowDonatePage(context, mounted: mounted);
+      checkAndShowNewsletterPage(context, mounted: mounted);
     }
 
     registry.get<UserRepository>().sync();
