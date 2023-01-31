@@ -12,17 +12,10 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i16;
-<<<<<<< HEAD
-import 'package:built_collection/built_collection.dart' as _i73;
-import 'package:flutter/material.dart' as _i63;
-import 'package:flutter/services.dart' as _i71;
-import 'package:loono_api/loono_api.dart' as _i67;
-=======
 import 'package:built_collection/built_collection.dart' as _i76;
 import 'package:flutter/material.dart' as _i64;
 import 'package:flutter/services.dart' as _i74;
 import 'package:loono_api/loono_api.dart' as _i68;
->>>>>>> develop
 
 import '../helpers/examination_category.dart' as _i72;
 import '../models/categorized_examination.dart' as _i71;

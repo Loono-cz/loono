@@ -1558,18 +1558,6 @@
   "@prevention_age_limit": {},
   "not_ordered": "Neobjednáno",
   "@not_ordered": {},
-<<<<<<< HEAD
-
-  "newsletter_be_informed": "Buď stále v obraze!",
-  "@newsletter_be_informed": {},
-  "newsletter_desc": "Přihlaš se k odběru Loono newsletteru a dostávej měsíčně na e-mail informace o plánovaných akcích, novinkách a doporučení jak se co nejlépe starat o své zdraví.  ",
-  "@newsletter_desc": {},
-  "newsletter_label_btn": "Chci dostávat newsletter",
-  "@newsletter_label_btn": {},
-  "newsletter_edit": "Odebírání newsletteru si můžeš kdykoliv upravit v nastavení svého účtu.",
-  "@newsletter_edit": {}
-
-=======
   "form_specialist_question": "Dotaz do poradny",
   "@form_specialist_question": {},
   "form_question_answer": "Na tvůj dotaz ohledně zdraví a prevence odpoví naši odborníci z řad lékařů. Pozor, odborná poradna neslouží jako lékař na dálku, ale jako upřesnění informací v aplikaci. Odpověď ti zašleme do týdne na e-mail {email}.",
@@ -1615,6 +1603,13 @@
   "consultancy_card_title": "Máš dotaz ohledně prevence?",
   "@consultancy_card_title": {},
   "consultancy_card_description": "Zeptej se odborníků v naší poradně.",
-  "@consultancy_card_description": {}
->>>>>>> develop
+  "@consultancy_card_description": {},
+  "newsletter_be_informed": "Buď stále v obraze!",
+  "@newsletter_be_informed": {},
+  "newsletter_desc": "Přihlaš se k odběru Loono newsletteru a dostávej měsíčně na e-mail informace o plánovaných akcích, novinkách a doporučení jak se co nejlépe starat o své zdraví.  ",
+  "@newsletter_desc": {},
+  "newsletter_label_btn": "Chci dostávat newsletter",
+  "@newsletter_label_btn": {},
+  "newsletter_edit": "Odebírání newsletteru si můžeš kdykoliv upravit v nastavení svého účtu.",
+  "@newsletter_edit": {}
 }
