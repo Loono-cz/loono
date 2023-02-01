@@ -81,7 +81,11 @@ void showConfirmationSheet(
                             ),
                           );
                     if (!mounted) return;
-                    showFlushBarSuccess(context, context.l10n.examination_confirmed_message, sync: true);
+                    showFlushBarSuccess(
+                      context,
+                      context.l10n.examination_confirmed_message,
+                      sync: true,
+                    );
                   },
                   failure: (err) async {
                     await AutoRouter.of(context).pop();
