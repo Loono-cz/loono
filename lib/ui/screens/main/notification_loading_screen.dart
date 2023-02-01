@@ -28,7 +28,7 @@ class NotificationLoadingScreen extends StatelessWidget {
           ),
         ),
       ),
-      onWillPop: () async => false
+      onWillPop: () async => false,
     );
   }
 }

@@ -69,7 +69,7 @@ class NotificationRouter {
       exams.where((exam) => exam.uuid == uuid).toList(),
     );
     if (categorized.length == 1) {
-      await appRouter.replace (
+      await appRouter.replace(
         ExaminationDetailRoute(
           categorizedExamination: categorized.first,
         ),
