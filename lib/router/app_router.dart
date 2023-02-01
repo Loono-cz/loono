@@ -21,6 +21,7 @@ import 'package:loono/ui/screens/general_practicioner_achievement.dart';
 import 'package:loono/ui/screens/gynecology_achievement.dart';
 import 'package:loono/ui/screens/logout.dart';
 import 'package:loono/ui/screens/main/main_screen.dart';
+import 'package:loono/ui/screens/main/notification_loading_screen.dart';
 import 'package:loono/ui/screens/main/pre_auth/continue_onboarding_form.dart';
 import 'package:loono/ui/screens/main/pre_auth/login.dart';
 import 'package:loono/ui/screens/main/pre_auth/onboarding_form_done.dart';
@@ -134,7 +135,11 @@ const _postAuthRouter = AutoRoute<void>(
     ..._preventionRoutes,
     ..._settingsRoutes,
     ..._selfExaminationRoutes,
-    ..._customExamForm
+    ..._customExamForm,
+    AutoRoute<void>(
+      page: NotificationLoadingScreen,
+      path: 'notification-loading',
+    ),
   ],
 );
 
