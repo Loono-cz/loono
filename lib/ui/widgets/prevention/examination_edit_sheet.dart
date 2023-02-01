@@ -162,6 +162,7 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
           res.data,
         );
         AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
+        showFlushBarSuccess(context, context.l10n.examination_was_edited, sync: true);
       },
       failure: (err) => showFlushBarError(
         context,
