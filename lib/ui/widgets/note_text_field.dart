@@ -8,12 +8,15 @@ Widget noteTextField(
   bool? enable = true,
   required void Function(String)? onNoteChange,
   FocusNode? focusNode,
+  int maxLength = 256,
+  bool isForm = false,
+  bool error = false,
 }) {
   return TextFormField(
     controller: noteController,
     minLines: 5,
     maxLines: 10,
-    maxLength: 256,
+    maxLength: maxLength,
     keyboardType: TextInputType.multiline,
     enabled: enable,
     focusNode: focusNode,
@@ -21,9 +24,19 @@ Widget noteTextField(
     decoration: InputDecoration(
       filled: true,
       fillColor: Colors.white,
-      hintText: context.l10n.note_visiting_description,
-      label: noteController.text.isEmpty ? null : Text(context.l10n.note_visiting),
+      hintText: isForm ? context.l10n.form_question_hint : context.l10n.note_visiting_description,
+      label: noteController.text.isEmpty
+          ? null
+          : (isForm
+              ? Text(
+                  context.l10n.form_question_label,
+                  style: const TextStyle(
+                    color: LoonoColors.primaryEnabled,
+                  ),
+                )
+              : Text(context.l10n.note_visiting)),
       hintStyle: const TextStyle(color: Colors.grey, fontSize: 14.0),
+      errorText: error ? context.l10n.form_input_error : null,
       focusedBorder: const OutlineInputBorder(
         borderSide: BorderSide(color: LoonoColors.primaryEnabled),
       ),
