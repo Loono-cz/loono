@@ -36,6 +36,13 @@ class LoonoAssets {
   static const points = 'assets/icons/points.svg';
 
   static const consultancyButtonIcon = 'assets/icons/consultancy/consultancy_card_icon.svg';
+
+  static const preventionIcon = 'assets/icons/tabs/prevention.svg';
+  static const preventionInactiveIcon = 'assets/icons/tabs/prevention_active.svg';
+  static const findDoctorIcon = 'assets/icons/tabs/find_doctor.svg';
+  static const findDoctorInactiveIcon = 'assets/icons/tabs/find_doctor.svg';
+  static const exploreIcon = 'assets/icons/tabs/explore.svg';
+  static const exploreInactiveIcon = 'assets/icons/tabs/explore_active.svg';
 }
 
 class LoonoColors {
@@ -71,7 +78,6 @@ class LoonoColors {
   static const checkBoxMark = Color.fromRGBO(190, 87, 19, 1);
   static const primaryWashed = Color.fromRGBO(203, 167, 142, 1);
   static const errorColor = Color.fromRGBO(194, 63, 56, 1);
-  static const choiceChipDisable = Color.fromRGBO(0xEB, 0xEB, 0xEB, 1);
 
   static const rainbow = <Color>[
     Color.fromARGB(255, 230, 87, 86),
@@ -267,6 +273,6 @@ class LoonoFonts {
   static const chipStyleDefault = TextStyle(
     color: LoonoColors.black,
     fontSize: 14,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w600,
   );
 }
