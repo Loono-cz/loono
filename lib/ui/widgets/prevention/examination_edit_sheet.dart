@@ -12,6 +12,7 @@ import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/examinations_service.dart';
+import 'package:loono/ui/screens/prevention/examination_detail/examination_detail.dart';
 import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/close_button.dart';
 import 'package:loono/ui/widgets/custom_exam_form/custom_input_text_field.dart';
@@ -55,6 +56,8 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
 
   bool _idkCheck = false;
 
+  bool _initialized = false;
+
   void changeCustomInterval(String term) => Future<void>.delayed(
         Duration.zero,
         () => setState(() {
@@ -76,10 +79,14 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
         }),
       );
 
-  @override
-  void initState() {
-    super.initState();
-    _lastExamDate = widget.exam.lastConfirmedDate;
+  void _init() {
+    if (_initialized) return;
+    setState(() {
+      _lastExamDate = widget.exam.lastConfirmedDate;
+      _customIntervalText = getTextForCustomInterval(context, widget.exam.customInterval);
+      _idkCheck = _lastExamDate == null;
+      _initialized = true;
+    });
   }
 
   Future<void> sendRegularRequest({int? customInterval}) async {
@@ -187,6 +194,7 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
 
   @override
   Widget build(BuildContext context) {
+    _init();
     return Container(
       key: const Key('editExamSheet'),
       decoration: const BoxDecoration(
@@ -291,7 +299,7 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
                           ? DateFormat(LoonoStrings.dateFormat).format(_lastExamDate!)
                           : '',
                       prefixIcon: SvgPicture.asset(
-                        'assets/icons/calendar.svg',
+                        LoonoAssets.calendarIcon,
                         width: 5,
                         height: 5,
                         fit: BoxFit.scaleDown,
