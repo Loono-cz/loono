@@ -153,6 +153,8 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                 Provider.of<ExaminationsProvider>(context, listen: false)
                     .updateExaminationsRecord(res.data);
                 await AutoRouter.of(context).pop();
+                if (!mounted) return;
+                showFlushBarSuccess(context, context.l10n.examination_last_visit_edited);
               },
               failure: (err) async {
                 showFlushBarError(

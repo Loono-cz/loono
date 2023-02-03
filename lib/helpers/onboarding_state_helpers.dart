@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:loono/helpers/platform_helpers.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/notification_service.dart';
@@ -99,7 +100,7 @@ extension OnboardingExaminationQuestionnaireExt on ExaminationQuestionnaire {
   }
 }
 
-/// According to onboarding flow diagram, on iOS, there should be displayed [AllowNotificationsScreen]
+/// According to onboarding flow diagram, on iOS and Android 13+, there should be displayed [AllowNotificationsScreen]
 /// if the user has not specified date in any onboarding form.
 Future<void> pushNotificationOrPreAuthMainScreen(BuildContext context) async {
   final preAuthMainRoute = PreAuthMainRoute();
@@ -126,7 +127,11 @@ Future<void> pushNotificationOrPreAuthMainScreen(BuildContext context) async {
 Future<bool> shouldAskForNotification({
   required OnboardingStateService onboardingStateService,
 }) async {
-  if (!Platform.isIOS) return false;
+  final androidVersion = await getAndroidVersion();
+  if (Platform.isAndroid && (androidVersion ?? 16) < 33) {
+    onboardingStateService.ignoreNotificationPermission();
+    return false;
+  }
   final permissionStatus = await Permission.notification.status;
   if (permissionStatus.isGranted) return false;
   if (onboardingStateService.hasNotRequestedNotificationsPermissionYet) return true;
