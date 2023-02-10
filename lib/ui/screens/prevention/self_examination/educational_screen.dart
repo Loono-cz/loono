@@ -20,7 +20,6 @@ class EducationalVideoScreen extends StatelessWidget {
   final SelfExaminationPreventionStatus selfExamination;
   final bool mounted = true;
 
-  ///TODO: After structure change load video url from BE.
   String _getVideoByExaminationType(SelfExaminationType? type) {
     switch (type) {
       case SelfExaminationType.BREAST:
