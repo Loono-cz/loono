@@ -26,7 +26,6 @@ class FirebaseStorageService {
     return _getUserFolderRef(uid).child('files').child('avatar.png');
   }
 
-  // TODO: Error handling (https://cesko-digital.atlassian.net/browse/LOON-386)
   /// Uploads data in the form of bytes to Firebase Storage to the referenced [ref] location.
   ///
   /// If the file already exists in the [ref] location, the current one will be replaced and
