@@ -160,7 +160,6 @@ class UserRepository {
     return result;
   }
 
-  // TODO: Error handling (https://cesko-digital.atlassian.net/browse/LOON-386)
   // TODO: Compress the image before uploading (https://cesko-digital.atlassian.net/browse/LOON-368)
   /// Updates user's avatar.
   ///
