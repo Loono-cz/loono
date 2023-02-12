@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +22,8 @@ class Loono extends StatelessWidget {
   const Loono({Key? key, this.defaultLocale}) : super(key: key);
 
   final String? defaultLocale;
+
+  static var showSplashScreen = true;
 
   @override
   Widget build(BuildContext context) {
@@ -44,11 +48,14 @@ class Loono extends StatelessWidget {
             !appRouter.isRouteActive(LoginRoute.name) &&
             !appRouter.isRouteActive(LogoutRoute.name) &&
             !appRouter.isRouteActive(AfterDeletionRoute.name)) {
-          SchedulerBinding.instance.addPostFrameCallback((_) {
-            appRouter.removeWhere((_) => true);
-            // ignore: cascade_invocations
-            appRouter.push(const MainScreenRouter());
-          });
+          if (Loono.showSplashScreen) {
+            Loono.showSplashScreen = false;
+            log(appRouter.currentPath.toString());
+            appRouter.push(const SplashRoute());
+            _showMainScreen(appRouter, delay: const Duration(seconds: 5));
+          } else {
+            _showMainScreen(appRouter);
+          }
           healthcareProviderRepository.checkAndUpdateIfNeeded();
         }
 
@@ -79,5 +86,15 @@ class Loono extends StatelessWidget {
         );
       },
     );
+  }
+
+  void _showMainScreen(AppRouter appRouter, {Duration delay = Duration.zero}) {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      Future<void>.delayed(delay, () {
+        appRouter
+          ..removeWhere((_) => true)
+          ..push(const MainScreenRouter());
+      });
+    });
   }
 }
