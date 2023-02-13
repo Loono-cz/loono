@@ -35,6 +35,7 @@ dependencies:
       url: https://github.com/simolus3/moor.git
       path: extras/encryption
       ref: fd0764594dc70b04f5ea5dcd18aa2213abbbce12
+  facebook_app_events: ^0.18.3
   firebase_analytics: ^9.1.2
   firebase_auth: ^3.3.9
   firebase_core: ^1.2.0

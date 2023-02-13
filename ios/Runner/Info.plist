@@ -27,6 +27,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
+			    <string>fb2160983414083142</string>
 				<string>com.googleusercontent.apps.47384724742-jrt87snrcj3fkl2vba7bdhojmrgkrou9</string>
 				<string>com.googleusercontent.apps.682822084991-1339pn73ln6d433lif52f9jp0k65e7en</string>
 			</array>
@@ -89,5 +90,12 @@
 	<false/>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>FacebookAppID</key>
+    <string>2160983414083142</string>
+    <key>FacebookClientToken</key>
+    <string>203dc869851c4ff2375b3a780c5af295</string>
+    <key>FacebookDisplayName</key>
+    <string>Preventivka</string>
+    <key>FacebookAutoLogAppEventsEnabled</key>
 </dict>
 </plist>

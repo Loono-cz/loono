@@ -458,6 +458,13 @@ packages:
       url: "https://github.com/simolus3/moor.git"
     source: git
     version: "1.0.0"
+  facebook_app_events:
+    dependency: "direct main"
+    description:
+      name: facebook_app_events
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.18.3"
   fake_async:
     dependency: transitive
     description:
