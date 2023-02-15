@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:loono/services/notification_service.dart';
 import 'package:loono_api/loono_api.dart';
@@ -16,9 +14,8 @@ class OnboardingStateService extends ChangeNotifier {
   final _obtainedExaminationAchievements = <ExaminationType>{};
 
   // on Android notifications are allowed by default
-  NotificationPermissionState _notificationPermissionState = Platform.isIOS
-      ? NotificationPermissionState.notRequestedYet
-      : NotificationPermissionState.requested;
+  NotificationPermissionState _notificationPermissionState =
+      NotificationPermissionState.notRequestedYet;
 
   bool containsAchievement(ExaminationType examination) =>
       _obtainedExaminationAchievements.contains(examination);
@@ -47,5 +44,10 @@ class OnboardingStateService extends ChangeNotifier {
   void skipPermissionRequest() {
     _notificationPermissionState = NotificationPermissionState.skipped;
     notifyListeners();
+  }
+
+  ///Ignore notification on Android 12 and lower
+  void ignoreNotificationPermission() {
+    _notificationPermissionState = NotificationPermissionState.requested;
   }
 }

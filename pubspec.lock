@@ -1050,8 +1050,8 @@ packages:
     dependency: "direct main"
     description:
       path: dart
-      ref: "1ec66a681c0779c718395c1ba668681dced37ebd"
-      resolved-ref: "1ec66a681c0779c718395c1ba668681dced37ebd"
+      ref: "123403f6f025bf352d74d8b2ccbee5163a486fa9"
+      resolved-ref: "123403f6f025bf352d74d8b2ccbee5163a486fa9"
       url: "https://github.com/Loono-cz/loono-api.git"
     source: git
     version: "1.0.0"
@@ -1131,7 +1131,7 @@ packages:
       name: onesignal_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.4.1"
+    version: "3.5.0"
   open_store:
     dependency: "direct main"
     description:

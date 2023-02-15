@@ -9,10 +9,10 @@ import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/router/notification_router.dart';
 import 'package:loono/services/examinations_service.dart';
+import 'package:loono/services/notification_service.dart';
 import 'package:loono/services/webview_service.dart';
 import 'package:loono/ui/widgets/bottom_navigation_builder.dart';
 import 'package:loono/ui/widgets/no_connection_message.dart';
-import 'package:loono/ui/widgets/notification_loading_widget.dart';
 import 'package:loono/utils/donate_utils.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:provider/provider.dart';
@@ -37,7 +37,8 @@ class _MainScreenState extends State<MainScreen> {
 
   Flushbar? _noConnectionMessage;
 
-  late NotificationScreen open = widget.notificationRouter?.screen ?? NotificationScreen.main;
+  // TODO pull request 466
+  //late NotificationScreen open = widget.notificationRouter?.screen ?? NotificationScreen.main;
 
   void evalConnectivity(ConnectivityResult result) {
     if (result == ConnectivityResult.none && (_noConnectionMessage?.isShowing() == false)) {
@@ -54,9 +55,18 @@ class _MainScreenState extends State<MainScreen> {
     if (!Platform.isIOS) {
       checkAndShowDonatePage(context, mounted: mounted);
     }
+
     registry.get<UserRepository>().sync();
 
-    _connectivity.checkConnectivity().then(evalConnectivity);
+    /// Initialize connectivity status and examinations
+    _connectivity.checkConnectivity().then((ConnectivityResult result) {
+      evalConnectivity(result);
+      if (result != ConnectivityResult.none) {
+        examinationsProvider.fetchExaminations();
+      }
+    });
+
+    /// Set-up connectivity listener
     _connectivitySubscription =
         _connectivity.onConnectivityChanged.listen((ConnectivityResult result) {
       evalConnectivity(result);
@@ -67,11 +77,11 @@ class _MainScreenState extends State<MainScreen> {
       }
     });
 
-    widget.notificationRouter?.addListener(() {
+    /*widget.notificationRouter?.addListener(() {
       setState(() {
         open = NotificationScreen.main;
       });
-    });
+    }); */ // TODO pull request 466
   }
 
   @override
@@ -80,40 +90,51 @@ class _MainScreenState extends State<MainScreen> {
     super.dispose();
   }
 
+  Future<void> askForNotification() async {
+    final notificationService = registry.get<NotificationService>();
+    await notificationService.promptPermissions();
+  }
+
   @override
   Widget build(BuildContext context) {
     _noConnectionMessage ??= noConnectionFlushbar(context: context);
     final hasNotification =
         context.select<ExaminationsProvider, bool>((state) => state.hasNotification);
 
-    return open == NotificationScreen.main
-        ? WillPopScope(
-            /// index 2 has its own WillPopScope for webview navigation. This prevents pop event override
-            onWillPop: () async {
-              final webViewController = context.read<WebViewProvider>().webViewController;
-              if (AutoRouter.of(context).isRouteActive(AboutHealthRoute.name) &&
-                  webViewController != null &&
-                  await webViewController.canGoBack()) {
-                await webViewController.goBack();
-              }
-              return false;
-            },
-            child: AutoTabsScaffold(
-              routes: [
-                PreventionRoute(),
-                FindDoctorRoute(),
-                AboutHealthRoute(),
-              ],
-              bottomNavigationBuilder: (_, tabsRouter) {
-                return bottomNavigationBuilder(
-                  context,
-                  tabsRouter,
-                  analyticsTabNames,
-                  hasNotification: hasNotification,
-                );
-              },
-            ),
-          )
-        : NotificationLoadingWidget(screen: open);
+    Future.delayed(Duration.zero, () async {
+      await askForNotification();
+    });
+
+    //TODO pull request 466
+    //return open == NotificationScreen.main ?
+    return WillPopScope(
+      /// index 2 has its own WillPopScope for webview navigation. This prevents pop event override
+      onWillPop: () async {
+        final webViewController = context.read<WebViewProvider>().webViewController;
+        if (AutoRouter.of(context).isRouteActive(AboutHealthRoute.name) &&
+            webViewController != null &&
+            await webViewController.canGoBack()) {
+          await webViewController.goBack();
+        }
+        return false;
+      },
+      child: AutoTabsScaffold(
+        routes: [
+          PreventionRoute(),
+          FindDoctorRoute(),
+          AboutHealthRoute(),
+        ],
+        bottomNavigationBuilder: (_, tabsRouter) {
+          return bottomNavigationBuilder(
+            context,
+            tabsRouter,
+            analyticsTabNames,
+            hasNotification: hasNotification,
+          );
+        },
+      ),
+    );
+    //TODO pull request 466
+    //  : NotificationLoadingWidget(screen: open);
   }
 }

@@ -684,6 +684,10 @@
   "@examination_call_doctor1": {},
   "examination_call_doctor2": "a objednej se na",
   "@examination_call_doctor2": {},
+  "examination_last_visit_edited": "Poslední prohlídka byla aktualizována.",
+  "@examination_last_visit_edited": {},
+  "examination_confirmed_message": "Připomeneme ti, kdy se znovu objednat.",
+  "@examination_confirmed_message": {},
   "back": "Zpět",
   "@back": {},
   "cancel_checkup": "Zrušit prohlídku",
@@ -1405,8 +1409,18 @@
   "@custom_exam_reservation_time_female": {},
   "custom_exam_reservation_time_male": "Na jaký čas jsi objednaný?",
   "@custom_exam_reservation_time_male": {},
-  "custom_exam_type_question": "O jaký typ vyšetření se jedná?",
+  "custom_exam_type_question": "Zvol typ vyšetření",
   "@custom_exam_type_question": {},
+  "custom_exam_type_description": "Vyber libovolné označení, které nejlépe odpovídá důvodu tvé návštěvy.",
+  "@custom_exam_type_description": {},
+  "custom_exam_original_date": "Původní datum: {date}",
+  "@custom_exam_original_date": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "custom_exam_choose_provider": "Vyber specialistu",
   "@custom_exam_choose_provider": {},
   "custom_exam_choosen_provider": "Vybraný specialista: ",
@@ -1427,7 +1441,7 @@
   "@custom_exam_every_year_less_4": {},
   "custom_exam_every_year_more_4": "let",
   "@custom_exam_every_year_more_4": {},
-  "custom_exam_frequency": "Do seznamu si můžeš přidat maximálně deset prohlídek. Smazáním dříve přidaných prohlídek získáš dodatečný prostor.",
+  "custom_exam_frequency": "Frekvence prohlídek",
   "@custom_exam_frequency": {},
   "i_agree": "Rozumím",
   "@i_agree": {},
@@ -1550,7 +1564,7 @@
   "@not_ordered": {},
   "form_specialist_question": "Dotaz do poradny",
   "@form_specialist_question": {},
-  "form_question_answer": "Na tvůj dotaz ohledně zdraví a prevence odpoví naši odborníci z řad lékařů. Odpověď ti zašleme do týdne na e-mail {email}.",
+  "form_question_answer": "Na tvůj dotaz ohledně zdraví a prevence odpoví naši odborníci z řad lékařů. Pozor, odborná poradna neslouží jako lékař na dálku, ale jako upřesnění informací v aplikaci. Odpověď ti zašleme do týdne na e-mail {email}.",
   "@form_question_answer": {
     "placeholders": {
       "email": {

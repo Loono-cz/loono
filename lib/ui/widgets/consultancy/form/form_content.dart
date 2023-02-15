@@ -1,10 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/services/api_service.dart';
 import 'package:loono/services/database_service.dart';
-import 'package:loono/ui/widgets/button.dart';
+import 'package:loono/ui/widgets/async_button.dart';
 import 'package:loono/ui/widgets/consultancy/form/form_question_types_wrapper.dart';
 import 'package:loono/ui/widgets/note_text_field.dart';
 import 'package:loono/ui/widgets/space.dart';
@@ -35,6 +36,8 @@ class FormContent extends StatefulWidget {
 }
 
 class _FormContentState extends State<FormContent> {
+  final _apiService = registry.get<ApiService>();
+
   final _currentUser = registry.get<DatabaseService>().users.user;
   final _textFieldController = TextEditingController();
   late FormQuestionType _questionType;
@@ -80,34 +83,21 @@ class _FormContentState extends State<FormContent> {
     });
   }
 
-  void _sendForm() {
+  Future<bool?> _sendData(Map<FormQuestionType, String> formQuestionForBE) async {
     _validateFormFields();
     if (_questionType != FormQuestionType.uninitialized && _textFieldController.text.isNotEmpty) {
-      // TODO: SEND FORM
-      // final name = _currentUser?.nickname;
-      // final sex = _currentUser?.sex;
-      // final age = _currentUser?.dateOfBirth;
-      // final message = _textFieldController.text;
-      // print(name);
-      // print(sex);
-      // print(age);
-      // print(message);
-      // print(_questionType);
-      AutoRouter.of(context).popUntilRoot();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            context.l10n.form_snack_success,
-            style: LoonoFonts.snackbarStyle,
-          ),
-          backgroundColor: LoonoColors.greenSuccess,
-        ),
+      final response = await _apiService.sendConsultancyForm(
+        tag: formQuestionForBE[_questionType] ?? 'Other',
+        message: _textFieldController.text,
       );
+      return response ? Future.value(true) : Future.value(false);
     }
+    return Future.value(null);
   }
 
   @override
   Widget build(BuildContext context) {
+    final formQuestionForBE = getFormQuestionTypeForBE(context);
     return Column(
       children: [
         Expanded(
@@ -125,7 +115,7 @@ class _FormContentState extends State<FormContent> {
                   ),
                   const CustomSpacer.vertical(30),
                   Text(
-                    context.l10n.form_question_answer('"${_currentUser?.email}"'),
+                    context.l10n.form_question_answer('${_currentUser?.email}'),
                     style: LoonoFonts.paragraphFontStyle,
                   ),
                   const Divider(
@@ -159,24 +149,53 @@ class _FormContentState extends State<FormContent> {
                     isForm: true,
                     error: _textInputError,
                   ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 30,
+                      bottom: 70,
+                      left: 18,
+                      right: 18,
+                    ),
+                    child: AsyncLoonoButton(
+                      text: context.l10n.form_send_question,
+                      asyncCallback: () async {
+                        return _sendData(formQuestionForBE);
+                      },
+                      onSuccess: () {
+                        AutoRouter.of(context).popUntilRoot();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              context.l10n.form_snack_success,
+                              style: LoonoFonts.snackbarStyle,
+                            ),
+                            backgroundColor: LoonoColors.greenSuccess,
+                          ),
+                        );
+                      },
+                      onError: () => showFlushBarError(context, context.l10n.something_went_wrong),
+                    ),
+                  )
                 ],
               ),
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(
-            top: 30,
-            bottom: 70,
-            left: 18,
-            right: 18,
-          ),
-          child: LoonoButton(
-            onTap: _sendForm,
-            text: context.l10n.form_send_question,
-          ),
-        )
       ],
     );
+  }
+
+  Map<FormQuestionType, String> getFormQuestionTypeForBE(BuildContext context) {
+    final map = <FormQuestionType, String>{
+      FormQuestionType.selfExam: context.l10n.form_self_exam,
+      FormQuestionType.mentalHealth: context.l10n.form_mentalHealth,
+      FormQuestionType.preventionAndHealthStyle: context.l10n.form_preventionAndHealthStyle,
+      FormQuestionType.heartAndVessel: context.l10n.form_heartAndVessel,
+      FormQuestionType.reproductionalHealth: context.l10n.form_reproductionalHealth,
+      FormQuestionType.sexualHealth: context.l10n.form_sexualHealth,
+      FormQuestionType.preventiveExamAndScreening: context.l10n.form_preventiveExamAndScreening,
+      FormQuestionType.other: context.l10n.form_other,
+    };
+    return map;
   }
 }

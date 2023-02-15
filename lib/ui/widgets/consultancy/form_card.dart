@@ -48,20 +48,22 @@ class FormCard extends StatelessWidget {
               const CustomSpacer.horizontal(5),
               SvgPicture.asset(LoonoAssets.consultancyButtonIcon),
               const CustomSpacer.horizontal(15),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    context.l10n.consultancy_card_title,
-                    style: LoonoFonts.subtitleFontStyle,
-                  ),
-                  const CustomSpacer.vertical(5),
-                  Text(
-                    context.l10n.consultancy_card_description,
-                    style: LoonoFonts.cardDescription,
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      context.l10n.consultancy_card_title,
+                      style: LoonoFonts.subtitleFontStyle,
+                    ),
+                    const CustomSpacer.vertical(5),
+                    Text(
+                      context.l10n.consultancy_card_description,
+                      style: LoonoFonts.cardDescription,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

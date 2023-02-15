@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:loono/helpers/platform_helpers.dart';
 import 'package:loono/router/notification_router.dart';
 import 'package:loono/utils/app_config.dart';
 import 'package:loono/utils/registry.dart';
@@ -45,11 +46,12 @@ class NotificationService {
     return _permissionController.stream.distinct();
   }
 
-  /// Useful only on iOS. Does nothing on Android.
+  /// On IOS at all versions. On Android use on 13+ - added notification
   ///
   /// Returns `true` if notifications permissions are granted.
   Future<bool> promptPermissions() async {
-    if (Platform.isAndroid) {
+    final androidVersion = await getAndroidVersion();
+    if (Platform.isAndroid && (androidVersion ?? 16) < 33) {
       return true;
     }
     return OneSignal.shared.promptUserForPushNotificationPermission();
@@ -65,5 +67,9 @@ class NotificationService {
     if (changes.to.status != null) {
       _permissionController.add(changes.to.status!);
     }
+  }
+
+  Future<void> enableNotifications(bool enabled) async {
+    await OneSignal.shared.disablePush(!enabled);
   }
 }
