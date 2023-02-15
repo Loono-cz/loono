@@ -60,9 +60,7 @@ class ExaminationBadge extends StatelessWidget {
                     color: Colors.white,
                   ),
                   position: b.BadgePosition.bottomEnd(bottom: -8, end: -24),
-                  child: examCategoryType ==
-                          ExaminationCategoryType
-                              .CUSTOM //TODO: customExamCount is probably only for first examination.
+                  child: examCategoryType == ExaminationCategoryType.CUSTOM
                       ? SvgPicture.asset(
                           '${LoonoAssets.customExamBadge}'
                           '${disabled ? '_disabled.svg' : '_award.svg'}',
