@@ -34,10 +34,8 @@ class NotificationRouter {
 
   bool loaded = false;
 
-  final List<Function> _onDone = [];
-
   Future<void> navigate() async {
-    appRouter.push(MainRoute(notificationRouter: this)).ignore();
+    await appRouter.pushAll(const [MainRoute(), NotificationLoadingRoute()]);
     if (screen.isExamination) {
       var exams = <ExaminationPreventionStatus>[];
       var selfExams = <SelfExaminationPreventionStatus>[];
@@ -71,14 +69,11 @@ class NotificationRouter {
       exams.where((exam) => exam.uuid == uuid).toList(),
     );
     if (categorized.length == 1) {
-      _notifyListeners();
-      await appRouter.push(
+      await appRouter.replace(
         ExaminationDetailRoute(
           categorizedExamination: categorized.first,
         ),
       );
-    } else {
-      _notifyListeners();
     }
   }
 
@@ -96,32 +91,14 @@ class NotificationRouter {
         },
         failure: (err) {},
       );
-      _notifyListeners();
       if (sex != null) {
-        await appRouter.push(
+        await appRouter.replace(
           SelfExaminationDetailRoute(
             sex: sex!,
             selfExamination: selfExam,
           ),
         );
       }
-    } else {
-      _notifyListeners();
-    }
-  }
-
-  void _notifyListeners() {
-    loaded = true;
-    for (final listener in _onDone) {
-      listener.call();
-    }
-  }
-
-  void addListener(Function listener) {
-    if (loaded) {
-      listener.call();
-    } else {
-      _onDone.add(listener);
     }
   }
 }
