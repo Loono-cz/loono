@@ -1,4 +1,4 @@
-import 'dart:developer';
+import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:loono/helpers/map_variables.dart';
+import 'package:loono/helpers/platform_helpers.dart';
 import 'package:loono/models/firebase_user.dart';
 import 'package:loono/repositories/healthcare_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -37,7 +38,6 @@ class Loono extends StatelessWidget {
     if (useHybridComposition()) {
       AndroidGoogleMapsFlutter.useAndroidViewSurface = true;
     }
-
     return StreamBuilder<AuthUser?>(
       stream: auth.onAuthStateChanged,
       builder: (context, snapshot) {
@@ -50,9 +50,7 @@ class Loono extends StatelessWidget {
             !appRouter.isRouteActive(AfterDeletionRoute.name)) {
           if (Loono.showSplashScreen) {
             Loono.showSplashScreen = false;
-            log(appRouter.currentPath.toString());
-            appRouter.push(const SplashRoute());
-            _showMainScreen(appRouter, delay: const Duration(seconds: 5));
+            _showSplashscreen(appRouter);
           } else {
             _showMainScreen(appRouter);
           }
@@ -86,6 +84,15 @@ class Loono extends StatelessWidget {
         );
       },
     );
+  }
+
+  Future<void> _showSplashscreen(AppRouter appRouter) async {
+    if (Platform.isAndroid && ((await getAndroidVersion()) ?? 0) >= 31) {
+      await appRouter.push(const SplashRoute());
+      _showMainScreen(appRouter, delay: const Duration(seconds: 5));
+    } else {
+      _showMainScreen(appRouter);
+    }
   }
 
   void _showMainScreen(AppRouter appRouter, {Duration delay = Duration.zero}) {
