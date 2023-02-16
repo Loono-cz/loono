@@ -136,10 +136,7 @@ const _postAuthRouter = AutoRoute<void>(
     ..._settingsRoutes,
     ..._selfExaminationRoutes,
     ..._customExamForm,
-    AutoRoute<void>(
-      page: NotificationLoadingScreen,
-      path: 'notification-loading',
-    ),
+    _notificationLoadingRoute,
   ],
 );
 
@@ -389,3 +386,8 @@ const _customExamForm = <AutoRoute>[
     transitionsBuilder: _customFormTransition,
   )
 ];
+
+const _notificationLoadingRoute = AutoRoute<void>(
+  page: NotificationLoadingScreen,
+  path: 'notification-loading',
+);
