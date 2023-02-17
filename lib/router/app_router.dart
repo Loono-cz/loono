@@ -62,6 +62,7 @@ import 'package:loono/ui/screens/settings/edit_nickname.dart';
 import 'package:loono/ui/screens/settings/edit_photo.dart';
 import 'package:loono/ui/screens/settings/gallery_photo_taken.dart';
 import 'package:loono/ui/screens/settings/photo_cropped_result.dart';
+import 'package:loono/ui/screens/splash_screen.dart';
 import 'package:loono/ui/screens/welcome.dart';
 import 'package:loono/ui/widgets/achievement_screen.dart';
 
@@ -76,6 +77,7 @@ const _customFormTransition = TransitionsBuilders.slideBottom;
 @MaterialAutoRouter(
   replaceInRouteName: 'Page|Screen,Route',
   routes: <AutoRoute>[
+    _splashscreenRoute,
     _appStartUpRouter,
     ..._preAuthRoutes,
     _postAuthRouter,
@@ -83,6 +85,11 @@ const _customFormTransition = TransitionsBuilders.slideBottom;
   ],
 )
 class $AppRouter {}
+
+const _splashscreenRoute = AutoRoute<void>(
+  page: SplashScreen,
+  path: 'splashscreen',
+);
 
 const _appStartUpRouter = AutoRoute<void>(
   path: 'app-start-up',
