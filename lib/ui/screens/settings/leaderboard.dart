@@ -1,3 +1,4 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
@@ -50,6 +51,10 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (_leaderboardData == null && _fetchState == FetchState.loaded) {
+      setState(() => _fetchState = FetchState.error);
+      showFlushBarError(context, context.l10n.something_went_wrong);
+    }
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -92,21 +97,36 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                     user: e.value,
                   ),
                 ),
-            Divider(
-              color: LoonoColors.leaderboardPrimary,
-              indent: MediaQuery.of(context).size.width / 4,
-              endIndent: MediaQuery.of(context).size.width / 4,
-            ),
-            ..._leaderboardData!.peers.asMap().entries.mapIndexed(
-                  (i, e) => LeaderboardTile(
-                    position: e.value.isThisMe == true
-                        ? _leaderboardData!.myOrder
-                        : (i == 0 ? _leaderboardData!.myOrder - 1 : _leaderboardData!.myOrder + 1),
-                    user: e.value,
-                  ),
-                ),
+            if (!_leaderboardData!.top.containsMe()) ..._getPeersPart()
           ],
         );
     }
+  }
+
+  List<Widget> _getPeersPart() {
+    return [
+      Divider(
+        color: LoonoColors.leaderboardPrimary,
+        indent: MediaQuery.of(context).size.width / 4,
+        endIndent: MediaQuery.of(context).size.width / 4,
+      ),
+      ..._leaderboardData!.peers.asMap().entries.mapIndexed(
+            (i, e) => LeaderboardTile(
+              position: e.value.isThisMe == true
+                  ? _leaderboardData!.myOrder
+                  : (i == 0 ? _leaderboardData!.myOrder - 1 : _leaderboardData!.myOrder + 1),
+              user: e.value,
+            ),
+          ),
+    ];
+  }
+}
+
+extension _LeaderboardUserListExt on BuiltList<LeaderboardUser> {
+  bool containsMe() {
+    for (final user in this) {
+      if (user.isThisMe == true) return true;
+    }
+    return false;
   }
 }
