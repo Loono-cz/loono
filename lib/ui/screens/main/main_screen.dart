@@ -7,9 +7,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
-import 'package:loono/router/notification_router.dart';
 import 'package:loono/services/examinations_service.dart';
-import 'package:loono/services/notification_service.dart';
 import 'package:loono/services/webview_service.dart';
 import 'package:loono/ui/widgets/bottom_navigation_builder.dart';
 import 'package:loono/ui/widgets/no_connection_message.dart';
@@ -19,9 +17,7 @@ import 'package:provider/provider.dart';
 
 /// Post-auth main screen.
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key, this.notificationRouter}) : super(key: key);
-
-  final NotificationRouter? notificationRouter;
+  const MainScreen({Key? key}) : super(key: key);
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -36,9 +32,6 @@ class _MainScreenState extends State<MainScreen> {
   final analyticsTabNames = ['PreventionTab', 'FindDoctorTab', 'ExploreSectionTab'];
 
   Flushbar? _noConnectionMessage;
-
-  // TODO pull request 466
-  //late NotificationScreen open = widget.notificationRouter?.screen ?? NotificationScreen.main;
 
   void evalConnectivity(ConnectivityResult result) {
     if (result == ConnectivityResult.none && (_noConnectionMessage?.isShowing() == false)) {
@@ -55,7 +48,6 @@ class _MainScreenState extends State<MainScreen> {
     if (!Platform.isIOS) {
       checkAndShowDonatePage(context, mounted: mounted);
     }
-
     registry.get<UserRepository>().sync();
 
     /// Initialize connectivity status and examinations
@@ -76,12 +68,6 @@ class _MainScreenState extends State<MainScreen> {
         examinationsProvider.fetchExaminations();
       }
     });
-
-    /*widget.notificationRouter?.addListener(() {
-      setState(() {
-        open = NotificationScreen.main;
-      });
-    }); */ // TODO pull request 466
   }
 
   @override
@@ -90,23 +76,12 @@ class _MainScreenState extends State<MainScreen> {
     super.dispose();
   }
 
-  Future<void> askForNotification() async {
-    final notificationService = registry.get<NotificationService>();
-    await notificationService.promptPermissions();
-  }
-
   @override
   Widget build(BuildContext context) {
     _noConnectionMessage ??= noConnectionFlushbar(context: context);
     final hasNotification =
         context.select<ExaminationsProvider, bool>((state) => state.hasNotification);
 
-    Future.delayed(Duration.zero, () async {
-      await askForNotification();
-    });
-
-    //TODO pull request 466
-    //return open == NotificationScreen.main ?
     return WillPopScope(
       /// index 2 has its own WillPopScope for webview navigation. This prevents pop event override
       onWillPop: () async {
@@ -134,7 +109,5 @@ class _MainScreenState extends State<MainScreen> {
         },
       ),
     );
-    //TODO pull request 466
-    //  : NotificationLoadingWidget(screen: open);
   }
 }

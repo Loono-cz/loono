@@ -53,7 +53,7 @@ class HasFindingScreen extends StatelessWidget {
                                 child: IconButton(
                                   key: const Key('hasFindingPage_btn_close'),
                                   onPressed: () => AutoRouter.of(context).navigate(
-                                    MainRoute(),
+                                    const MainRoute(),
                                   ),
                                   icon: const Icon(Icons.close),
                                 ),

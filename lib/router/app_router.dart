@@ -21,6 +21,7 @@ import 'package:loono/ui/screens/general_practicioner_achievement.dart';
 import 'package:loono/ui/screens/gynecology_achievement.dart';
 import 'package:loono/ui/screens/logout.dart';
 import 'package:loono/ui/screens/main/main_screen.dart';
+import 'package:loono/ui/screens/main/notification_loading_screen.dart';
 import 'package:loono/ui/screens/main/pre_auth/continue_onboarding_form.dart';
 import 'package:loono/ui/screens/main/pre_auth/login.dart';
 import 'package:loono/ui/screens/main/pre_auth/onboarding_form_done.dart';
@@ -61,6 +62,7 @@ import 'package:loono/ui/screens/settings/edit_nickname.dart';
 import 'package:loono/ui/screens/settings/edit_photo.dart';
 import 'package:loono/ui/screens/settings/gallery_photo_taken.dart';
 import 'package:loono/ui/screens/settings/photo_cropped_result.dart';
+import 'package:loono/ui/screens/splash_screen.dart';
 import 'package:loono/ui/screens/welcome.dart';
 import 'package:loono/ui/widgets/achievement_screen.dart';
 
@@ -75,6 +77,7 @@ const _customFormTransition = TransitionsBuilders.slideBottom;
 @MaterialAutoRouter(
   replaceInRouteName: 'Page|Screen,Route',
   routes: <AutoRoute>[
+    _splashscreenRoute,
     _appStartUpRouter,
     ..._preAuthRoutes,
     _postAuthRouter,
@@ -82,6 +85,11 @@ const _customFormTransition = TransitionsBuilders.slideBottom;
   ],
 )
 class $AppRouter {}
+
+const _splashscreenRoute = AutoRoute<void>(
+  page: SplashScreen,
+  path: 'splashscreen',
+);
 
 const _appStartUpRouter = AutoRoute<void>(
   path: 'app-start-up',
@@ -134,7 +142,8 @@ const _postAuthRouter = AutoRoute<void>(
     ..._preventionRoutes,
     ..._settingsRoutes,
     ..._selfExaminationRoutes,
-    ..._customExamForm
+    ..._customExamForm,
+    _notificationLoadingRoute,
   ],
 );
 
@@ -384,3 +393,8 @@ const _customExamForm = <AutoRoute>[
     transitionsBuilder: _customFormTransition,
   )
 ];
+
+const _notificationLoadingRoute = AutoRoute<void>(
+  page: NotificationLoadingScreen,
+  path: 'notification-loading',
+);
