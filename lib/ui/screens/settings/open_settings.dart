@@ -9,12 +9,14 @@ import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/examinations_service.dart';
+import 'package:loono/services/notification_service.dart';
 import 'package:loono/ui/screens/settings/settings_bottom_sheet.dart';
 import 'package:loono/ui/widgets/button.dart';
 import 'package:loono/ui/widgets/confirmation_dialog.dart';
 import 'package:loono/ui/widgets/feedback/email_feedback_button.dart';
 import 'package:loono/ui/widgets/settings/avatar.dart';
 import 'package:loono/ui/widgets/settings/points_display.dart';
+import 'package:loono/utils/app_clear.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
@@ -137,13 +139,14 @@ class OpenSettingsScreen extends StatelessWidget {
                               description: context.l10n.logout_confirmation_dialog_content,
                               confirmationButtonLabel: context.l10n.continue_info,
                               onConfirm: () {
-                                AutoRouter.of(context).pushAndPopUntil(
-                                  // TODO: After updating a routes do logout processes here instead of in LogoutScreen
-                                  const LogoutRoute(),
-                                  predicate: (_) => false,
-                                );
-                                Provider.of<ExaminationsProvider>(context, listen: false)
-                                    .clearExaminations();
+                                appClear().then((value) {
+                                  registry.get<NotificationService>().enableNotifications(false);
+                                  Provider.of<ExaminationsProvider>(context, listen: false)
+                                      .clearExaminations();
+                                  AutoRouter.of(context).replaceAll(
+                                    [const LogoutRoute()],
+                                  );
+                                });
                               },
                             );
                           },
