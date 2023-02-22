@@ -156,7 +156,10 @@ class OpenSettingsScreen extends StatelessWidget {
                                       );
                                     });
                                   } else {
-                                    showFlushBarError(context, context.l10n.logout_screen_failure_message);
+                                    showFlushBarError(
+                                      context,
+                                      context.l10n.logout_screen_failure_message,
+                                    );
                                   }
                                 });
                               },
