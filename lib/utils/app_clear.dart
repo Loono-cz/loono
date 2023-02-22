@@ -15,11 +15,11 @@ Future<void> appClear({bool deletingAccount = false}) async {
       debugPrint(e.toString());
     }
   }
-  await registry.get<AuthService>().signOut();
   await registry.get<DatabaseService>().clearDb();
   await registry.get<SecureStorageService>().deleteAll();
   await registry.get<NotificationService>().removeUserId();
 
   // clears saved user avatar and other app's temp data
   await registry.get<DefaultCacheManager>().emptyCache();
+  await registry.get<AuthService>().signOut();
 }
