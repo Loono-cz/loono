@@ -412,6 +412,8 @@
   "@logout_confirmation_dialog_content": {},
   "logout_screen_success_message": "Odhlášení proběhlo úspěšně",
   "@logout_screen_success_message": {},
+  "logout_screen_failure_message": "Odhlášení se nezdařilo, prosím, zkuste to prosím znovu",
+  "@logout_screen_failure_message": {},
   "logout_screen_header": "Tak zase příště",
   "@logout_screen_header": {},
   "logout_screen_content": "Abychom ti mohli připomínat preventivní prohlídky notifikacemi, musíš se přihlásit.",

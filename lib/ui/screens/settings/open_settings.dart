@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
+import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/helpers/ui_helpers.dart';
 import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -139,13 +141,23 @@ class OpenSettingsScreen extends StatelessWidget {
                               description: context.l10n.logout_confirmation_dialog_content,
                               confirmationButtonLabel: context.l10n.continue_info,
                               onConfirm: () {
-                                appClear().then((value) {
-                                  registry.get<NotificationService>().enableNotifications(false);
-                                  Provider.of<ExaminationsProvider>(context, listen: false)
-                                      .clearExaminations();
-                                  AutoRouter.of(context).replaceAll(
-                                    [const LogoutRoute()],
-                                  );
+                                Connectivity()
+                                    .checkConnectivity()
+                                    .then((ConnectivityResult connectionResult) {
+                                  if (connectionResult != ConnectivityResult.none) {
+                                    appClear().then((_) {
+                                      registry
+                                          .get<NotificationService>()
+                                          .enableNotifications(false);
+                                      Provider.of<ExaminationsProvider>(context, listen: false)
+                                          .clearExaminations();
+                                      AutoRouter.of(context).replaceAll(
+                                        [const LogoutRoute()],
+                                      );
+                                    });
+                                  } else {
+                                    showFlushBarError(context, context.l10n.logout_screen_failure_message);
+                                  }
                                 });
                               },
                             );
