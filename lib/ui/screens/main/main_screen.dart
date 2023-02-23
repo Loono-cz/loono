@@ -10,6 +10,7 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/examinations_service.dart';
+import 'package:loono/services/notification_service.dart';
 import 'package:loono/services/webview_service.dart';
 import 'package:loono/ui/widgets/custom_navigation_bar.dart';
 import 'package:loono/ui/widgets/no_connection_message.dart';
@@ -50,6 +51,7 @@ class _MainScreenState extends State<MainScreen> {
     if (!Platform.isIOS) {
       checkAndShowDonatePage(context, mounted: mounted);
     }
+
     registry.get<UserRepository>().sync();
 
     /// Initialize connectivity status and examinations
@@ -78,11 +80,20 @@ class _MainScreenState extends State<MainScreen> {
     super.dispose();
   }
 
+  Future<void> askForNotification() async {
+    final notificationService = registry.get<NotificationService>();
+    await notificationService.promptPermissions();
+  }
+
   @override
   Widget build(BuildContext context) {
     _noConnectionMessage ??= noConnectionFlushbar(context: context);
     final hasNotification =
         context.select<ExaminationsProvider, bool>((state) => state.hasNotification);
+
+    Future.delayed(Duration.zero, () async {
+      await askForNotification();
+    });
 
     return WillPopScope(
       /// index 2 has its own WillPopScope for webview navigation. This prevents pop event override

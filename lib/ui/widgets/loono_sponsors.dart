@@ -17,18 +17,18 @@ class LoonoSponsors extends StatelessWidget {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 _Sponsor(
                   label: context.l10n.incubated,
                   logoAsset: LoonoAssets.cdLogo,
                   width: 105,
                 ),
-                const CustomSpacer.horizontal(45),
+                const CustomSpacer.horizontal(20),
                 _Sponsor(
                   label: context.l10n.with_support,
                   logoAsset: LoonoAssets.ppfLogo,
-                  height: 45,
+                  height: 50,
                 ),
               ],
             ),
@@ -40,7 +40,7 @@ class LoonoSponsors extends StatelessWidget {
                 _Sponsor(
                   label: context.l10n.with_support,
                   logoAsset: LoonoAssets.mzcrLogo,
-                  height: 50,
+                  height: 45,
                 ),
                 _Sponsor(
                   label: context.l10n.technology_partner,
@@ -80,7 +80,7 @@ class _Sponsor extends StatelessWidget {
           style: LoonoFonts.paragraphSmallFontStyle,
         ),
         const SizedBox(
-          height: 10,
+          height: 9,
         ),
         _buildSponsorImage(),
       ],

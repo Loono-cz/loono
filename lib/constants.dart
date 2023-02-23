@@ -36,13 +36,6 @@ class LoonoAssets {
   static const points = 'assets/icons/points.svg';
 
   static const consultancyButtonIcon = 'assets/icons/consultancy/consultancy_card_icon.svg';
-
-  static const preventionIcon = 'assets/icons/tabs/prevention.svg';
-  static const preventionInactiveIcon = 'assets/icons/tabs/prevention_active.svg';
-  static const findDoctorIcon = 'assets/icons/tabs/find_doctor.svg';
-  static const findDoctorInactiveIcon = 'assets/icons/tabs/find_doctor.svg';
-  static const exploreIcon = 'assets/icons/tabs/explore.svg';
-  static const exploreInactiveIcon = 'assets/icons/tabs/explore_active.svg';
 }
 
 class LoonoColors {
@@ -274,6 +267,6 @@ class LoonoFonts {
   static const chipStyleDefault = TextStyle(
     color: LoonoColors.black,
     fontSize: 14,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w400,
   );
 }
