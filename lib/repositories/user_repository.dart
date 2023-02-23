@@ -68,6 +68,7 @@ class UserRepository {
         profileImageUrl: Value<String?>(data.profileImageUrl),
         points: Value<int>(data.points),
         badges: Value<BuiltList<Badge>>(data.badges),
+        createdAt: Value<String?>(data.createdAt),
       ),
     );
   }
@@ -149,7 +150,7 @@ class UserRepository {
   }
 
   Future<bool> updateNewsletter(bool newsletter) async {
-    final apiResponse = await _apiService.updateAccountUser(newsletter: newsletter);
+    final apiResponse = await _apiService.updateAccountUser(newsletterOptIn: newsletter);
     final result = await apiResponse.map(
       success: (_) async {
         return true;
@@ -256,4 +257,17 @@ class UserRepository {
       },
     );
   }
+/*
+  Future<bool?> getNewsletterOptIn() async {
+    final account = await _apiService.getAccount();
+    return account.map(
+      success: (data) {
+        return data.data.newsletterOptIn;
+      },
+      failure: (FailureApiResponse<Account> value) {
+        log(value.error.toString());
+        return null;
+      },
+    );
+  }*/
 }

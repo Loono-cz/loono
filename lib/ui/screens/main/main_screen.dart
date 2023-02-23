@@ -57,8 +57,8 @@ class _MainScreenState extends State<MainScreen> {
     final examinationsProvider = Provider.of<ExaminationsProvider>(context, listen: false);
     if (!Platform.isIOS) {
       checkAndShowDonatePage(context, mounted: mounted);
-      checkAndShowNewsletterPage(context, mounted: mounted);
     }
+    checkAndShowNewsletterPage(context, mounted: mounted);
 
     registry.get<UserRepository>().sync();
 

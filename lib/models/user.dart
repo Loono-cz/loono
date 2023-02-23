@@ -44,6 +44,12 @@ class Users extends Table {
       .withDefault(Constant(const BadgeListDbConverter().mapToSql(BuiltList.of(<Badge>[]))!))();
 
   BoolColumn get newsletterNotificationShown => boolean().withDefault(const Constant(false))();
+
+  BoolColumn get newsletterOptIn => boolean().withDefault(const Constant(false))();
+
+  TextColumn get createdAt => text().map(const DateOfBirthDbConverter()).nullable()();
+  //DateTimeColumn get createdAt => dateTime().nullable()();
+
 }
 
 @DriftAccessor(tables: [Users])

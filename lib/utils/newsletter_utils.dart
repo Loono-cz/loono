@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:loono/constants.dart';
-import 'package:loono/models/donate_user_info.dart';
-import 'package:loono/services/secure_storage_service.dart';
+import 'package:loono/services/api_service.dart';
+import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/newsletter/newsletter_bottom_sheet.dart';
 import 'package:loono/utils/registry.dart';
 
@@ -14,42 +13,46 @@ Future<void> checkAndShowNewsletterPage(
   BuildContext context, {
   bool mounted = true,
 }) async {
-  final secureStorageRegistry = registry.get<SecureStorageService>();
-  final donateInfo = await secureStorageRegistry.getDonateInfoData();
+  final user = registry.get<DatabaseService>().users.user;
+  final newsletterNotificationShown = user!.newsletterNotificationShown;
 
-  DonateUserInfo? donateUserInfo;
+  final account = await registry.get<ApiService>().getAccount();
+  var newsletterOptIn = false;
+  account.map(
+    success: (data) {
+      newsletterOptIn = data.data.newsletterOptIn;
+    },
+    failure: (err) {},
+  );
+
+  final createdAtString = user.createdAt;
+
   var showModal = false;
+  final dateNewOnBoarding = DateTime.utc(2022, 10, 11);
 
-  if (donateInfo == null) {
-    final now = DateTime.now();
-    final date = DateTime(
-      now.year,
-      now.month,
-      now.day - (LoonoStrings.donateDelayInterval - LoonoStrings.donateFirstDelayInterval),
-    );
-    donateUserInfo = DonateUserInfo(lastOpened: date, showNotification: true);
-    showModal = false;
-  } else if (DateTime.now().isAfter(
-        donateInfo.lastOpened.add(const Duration(days: LoonoStrings.donateDelayInterval)),
-      ) &&
-      donateInfo.showNotification == true) {
-    donateUserInfo = DonateUserInfo(lastOpened: DateTime.now(), showNotification: true);
-    showModal = true;
-  }
-  if (donateUserInfo != null) {
-    await secureStorageRegistry.storeDonateInfoData(
-      donateUserInfo,
-    );
+  if (createdAtString != null) {
+    final createdAtDate = DateTime.tryParse(createdAtString)!;
+    if (!newsletterNotificationShown &&
+        createdAtDate.isBefore(dateNewOnBoarding) &&
+        !newsletterOptIn) {
+      showModal = true;
+      //nastavit newsletternotificationShown na true
+    }
+  } else {
+    if (!newsletterNotificationShown && !newsletterOptIn) {
+      showModal = true;
+      //nastavit newsletternotificationShown na true
+    }
   }
 
   if (!mounted || !showModal) return;
   Future.delayed(
     const Duration(seconds: 30),
-    () => showDelayDonatePage(context),
+    () => showDelayNewsletterPage(context),
   );
 }
 
-Future<void> showDelayDonatePage(
+Future<void> showDelayNewsletterPage(
   BuildContext context, [
   bool mounted = true,
 ]) async {
