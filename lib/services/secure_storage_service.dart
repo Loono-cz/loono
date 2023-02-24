@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:collection/collection.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -8,10 +9,11 @@ import 'package:loono/models/donate_user_info.dart';
 
 const _appleAccountsDataKey = 'appleAccountsData';
 const _donateInfoDataKey = 'donateInfoData';
+const _databasePassKey = 'databasePassword';
 
 /// We do not want to delete these keys on logout/delete account because we need to access
 /// them afterwards. These data are securely stored.
-const _ignoredKeys = <String>[_appleAccountsDataKey, _donateInfoDataKey];
+const _ignoredKeys = <String>[_appleAccountsDataKey, _donateInfoDataKey, _databasePassKey];
 
 class SecureStorageService {
   const SecureStorageService({
@@ -37,7 +39,6 @@ class SecureStorageService {
       newAccounts.add(appleAccountInfo);
     } else {
       // account with this ID is already saved
-      // TODO: can some data get updated? what if the user changes his email? it should not change in Firebase... 🤔
       return;
     }
     final serializedData = const AppleAccountInfoListJsonConverter().toJson(newAccounts);
@@ -88,4 +89,20 @@ class SecureStorageService {
   }
 
   Future<void> deleteDonateInfoData() => _storage.delete(key: _donateInfoDataKey);
+
+  Future<void> generateDatabasePass() async {
+    final r = Random.secure();
+    var key = '';
+    for (var i = 0; i < 20; i++) {
+      key += String.fromCharCode(r.nextBool() ? (r.nextInt(26) + 65) : (r.nextInt(26) + 97));
+    }
+    await _storage.write(key: _databasePassKey, value: key);
+  }
+
+  Future<String?> getDatabasePass() async {
+    final pass = await _storage.read(key: _databasePassKey);
+    return pass;
+  }
+
+  Future<void> deleteDatabasePass() => _storage.delete(key: _databasePassKey);
 }
