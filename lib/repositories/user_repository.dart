@@ -160,7 +160,6 @@ class UserRepository {
     return result;
   }
 
-  // TODO: Compress the image before uploading (https://cesko-digital.atlassian.net/browse/LOON-368)
   /// Updates user's avatar.
   ///
   /// If the user already has an avatar, the current one will be replaced and

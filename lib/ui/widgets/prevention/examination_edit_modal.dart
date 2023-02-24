@@ -63,8 +63,6 @@ void showEditModal(
               newDate: date,
             );
         autoRouter.popUntilRouteWithName(ExaminationDetailRoute.name);
-
-        ///TODO: lint fix
         // ignore: use_build_context_synchronously
         showFlushBarSuccess(
           pageContext,

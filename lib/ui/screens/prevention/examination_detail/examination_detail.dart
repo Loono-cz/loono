@@ -126,7 +126,6 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
   }
 
   Future<void> noteChanged() async {
-    // TODO: post only required changes! >> note | rewrite exProvider's methods
     final response = await registry.get<ExaminationRepository>().postExamination(
           _examinationType,
           newDate: _examination.plannedDate,

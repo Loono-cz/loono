@@ -43,8 +43,6 @@ class ScheduleExamination extends StatelessWidget {
     ExaminationsProvider provider, {
     String? message,
   }) {
-    /// TODO: this whole post-auth navigation needs refactor as part of https://cesko-digital.atlassian.net/browse/LOON-571
-    /// to get rid of initialMessage and stateful widget from exam detail
     final exam = provider.examinations?.examinations.firstWhereOrNull(
       (item) => item.uuid != null && uuid.isNotEmpty
           ? item.uuid == uuid
@@ -188,7 +186,6 @@ class ScheduleExamination extends StatelessWidget {
                   },
                   failure: (err) async {
                     await _appRouter.pop();
-                    //TODO: fix lint.
                     // ignore: use_build_context_synchronously
                     showFlushBarError(context, context.l10n.something_went_wrong);
                   },
