@@ -68,7 +68,7 @@ class UserRepository {
         profileImageUrl: Value<String?>(data.profileImageUrl),
         points: Value<int>(data.points),
         badges: Value<BuiltList<Badge>>(data.badges),
-        createdAt: Value<DateTime?>(DateTime.tryParse(data.createdAt)),
+        createdAt: Value<DateTime?>(data.createdAt.toDateTime()),
       ),
     );
   }

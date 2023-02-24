@@ -63,7 +63,6 @@ class ApiService {
     String? preferredEmail,
     String? profileImageUrl,
     bool? newsletterOptIn,
-    // bool? newsletterNotificationShown,
   }) async {
     return _callApi(
       () async => _api.getAccountApi().postAccount(
@@ -73,7 +72,6 @@ class ApiService {
             ..preferredEmail = preferredEmail
             ..newsletterOptIn = newsletterOptIn
             ..profileImageUrl = profileImageUrl;
-          //..newsletterNotificationShown=newsletterNotificationShown;
         }),
       ),
     );

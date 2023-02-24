@@ -19,7 +19,7 @@ class Users extends Table {
 
   TextColumn get sex => text().map(const SexDbConverter()).nullable()();
 
-  //TextColumn get dateOfBirth => text().map(const DateOfBirthDbConverter()).nullable()();
+  TextColumn get dateOfBirth => text().map(const DateOfBirthDbConverter()).nullable()();
 
   TextColumn get nickname => text().nullable()();
 
@@ -43,11 +43,12 @@ class Users extends Table {
       .map(const BadgeListDbConverter())
       .withDefault(Constant(const BadgeListDbConverter().mapToSql(BuiltList.of(<Badge>[]))!))();
 
-  BoolColumn get newsletterNotificationShown => boolean().withDefault(const Constant(false))();
+  BoolColumn get newsletterNotificationShown =>
+      boolean().withDefault(const Constant(false)).nullable()();
 
-  BoolColumn get newsletterOptIn => boolean().withDefault(const Constant(false))();
+  BoolColumn get newsletterOptIn => boolean().withDefault(const Constant(false)).nullable()();
 
-  TextColumn get createdAt => text().nullable()();
+  DateTimeColumn get createdAt => dateTime().nullable()();
 }
 
 @DriftAccessor(tables: [Users])

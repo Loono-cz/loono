@@ -10,12 +10,12 @@ import 'package:loono/utils/registry.dart';
 ///[mounted] mounted property is set default to true, just for case you want to use
 /// funciton in stateless widgets, and is used for lint helper.
 
-Future<void> checkAndShowNewsletterPage(
-  BuildContext context, {
-  bool mounted = true,
+Future<void> checkAndShowNewsletterPage({
+  required BuildContext context,
+  required bool mounted,
 }) async {
   final user = registry.get<DatabaseService>().users.user;
-  final newsletterNotificationShown = user!.newsletterNotificationShown;
+  final newsletterNotificationShown = user?.newsletterNotificationShown ?? false;
 
   final account = await registry.get<ApiService>().getAccount();
   var newsletterOptIn = false;
@@ -26,26 +26,24 @@ Future<void> checkAndShowNewsletterPage(
     },
     failure: (err) {},
   );
-  final createdAtDate = user.createdAt;
+  final createdAtDate = user?.createdAt;
 
-  var showModal = false;
   final dateNewOnBoarding = DateTime.utc(2022, 10, 11);
+  const endNotifTimeStamp = 1680300000000;
 
   if (createdAtDate != null) {
     if (!newsletterNotificationShown &&
         createdAtDate.isBefore(dateNewOnBoarding) &&
-        !newsletterOptIn) {
-      showModal = true;
-
+        !newsletterOptIn &&
+        DateTime.now().millisecondsSinceEpoch < endNotifTimeStamp) {
       await registry.get<UserRepository>().updateNewsletterNotificationShown(true);
+      if (!mounted) return;
+      Future.delayed(
+        const Duration(seconds: 5),
+        () => showDelayNewsletterPage(context),
+      );
     }
   }
-
-  if (!mounted || !showModal) return;
-  Future.delayed(
-    const Duration(seconds: 30),
-    () => showDelayNewsletterPage(context),
-  );
 }
 
 Future<void> showDelayNewsletterPage(
