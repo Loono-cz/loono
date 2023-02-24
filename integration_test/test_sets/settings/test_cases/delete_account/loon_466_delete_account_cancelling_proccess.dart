@@ -45,6 +45,5 @@ Future<void> run({
   await deleteAccountPage.verifyDeleteAccountButtonVisibilityState(isShown: true);
 
   // close screen
-  // TODO: should be modal and should be PreventionScreen / MainScreen
   await deleteAccountPage.clickCloseScreenButton();
 }
