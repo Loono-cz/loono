@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/services/api_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/newsletter/newsletter_bottom_sheet.dart';
@@ -18,13 +19,13 @@ Future<void> checkAndShowNewsletterPage(
 
   final account = await registry.get<ApiService>().getAccount();
   var newsletterOptIn = false;
+
   account.map(
     success: (data) {
       newsletterOptIn = data.data.newsletterOptIn;
     },
     failure: (err) {},
   );
-
   final createdAtString = user.createdAt;
 
   var showModal = false;
@@ -36,12 +37,13 @@ Future<void> checkAndShowNewsletterPage(
         createdAtDate.isBefore(dateNewOnBoarding) &&
         !newsletterOptIn) {
       showModal = true;
-      //nastavit newsletternotificationShown na true
+
+      await registry.get<UserRepository>().updateNewsletterNotificationShown(true);
     }
   } else {
     if (!newsletterNotificationShown && !newsletterOptIn) {
       showModal = true;
-      //nastavit newsletternotificationShown na true
+      await registry.get<UserRepository>().updateNewsletterNotificationShown(true);
     }
   }
 

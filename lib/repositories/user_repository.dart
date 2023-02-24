@@ -257,17 +257,8 @@ class UserRepository {
       },
     );
   }
-/*
-  Future<bool?> getNewsletterOptIn() async {
-    final account = await _apiService.getAccount();
-    return account.map(
-      success: (data) {
-        return data.data.newsletterOptIn;
-      },
-      failure: (FailureApiResponse<Account> value) {
-        log(value.error.toString());
-        return null;
-      },
-    );
-  }*/
+
+  Future<void> updateNewsletterNotificationShown(bool newsletterNotificationShown) async {
+    await _db.users.updateNewsletterNotificationShown(true);
+  }
 }

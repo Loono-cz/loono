@@ -47,9 +47,10 @@ class Users extends Table {
 
   BoolColumn get newsletterOptIn => boolean().withDefault(const Constant(false))();
 
-  TextColumn get createdAt => text().map(const DateOfBirthDbConverter()).nullable()();
-  //DateTimeColumn get createdAt => dateTime().nullable()();
+  //TextColumn get createdAt => text().nullable()();
 
+  //TextColumn get createdAt => text().map(const DateOfCreationDbConverter()).nullable()();
+  DateTimeColumn get createdAt => dateTime().nullable()();
 }
 
 @DriftAccessor(tables: [Users])
@@ -88,5 +89,11 @@ class UsersDao extends DatabaseAccessor<AppDatabase> with _$UsersDaoMixin {
 
   Future<void> updateLatestMapServerUpdate(DateTime date) async {
     await updateCurrentUser(UsersCompanion(latestMapUpdate: Value(date)));
+  }
+
+  Future<void> updateNewsletterNotificationShown(bool newsletterNotificationShown) async {
+    await updateCurrentUser(
+      UsersCompanion(newsletterNotificationShown: Value(newsletterNotificationShown)),
+    );
   }
 }

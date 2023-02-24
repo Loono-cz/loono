@@ -21,6 +21,7 @@ class User extends DataClass implements Insertable<User> {
   final int points;
   final BuiltList<Badge> badges;
   final bool newsletterNotificationShown;
+  final bool newsletterOptIn;
   final String? createdAt;
   User(
       {required this.id,
@@ -36,6 +37,7 @@ class User extends DataClass implements Insertable<User> {
       required this.points,
       required this.badges,
       required this.newsletterNotificationShown,
+      required this.newsletterOptIn,
       this.createdAt});
   factory User.fromData(Map<String, dynamic> data, {String? prefix}) {
     final effectivePrefix = prefix ?? '';
@@ -66,6 +68,8 @@ class User extends DataClass implements Insertable<User> {
           .mapFromDatabaseResponse(data['${effectivePrefix}badges']))!,
       newsletterNotificationShown: const BoolType().mapFromDatabaseResponse(
           data['${effectivePrefix}newsletter_notification_shown'])!,
+      newsletterOptIn: const BoolType().mapFromDatabaseResponse(
+          data['${effectivePrefix}newsletter_opt_in'])!,
       createdAt: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}created_at']),
     );
@@ -114,6 +118,7 @@ class User extends DataClass implements Insertable<User> {
     }
     map['newsletter_notification_shown'] =
         Variable<bool>(newsletterNotificationShown);
+    map['newsletter_opt_in'] = Variable<bool>(newsletterOptIn);
     if (!nullToAbsent || createdAt != null) {
       map['created_at'] = Variable<String?>(createdAt);
     }
@@ -148,6 +153,7 @@ class User extends DataClass implements Insertable<User> {
       points: Value(points),
       badges: Value(badges),
       newsletterNotificationShown: Value(newsletterNotificationShown),
+      newsletterOptIn: Value(newsletterOptIn),
       createdAt: createdAt == null && nullToAbsent
           ? const Value.absent()
           : Value(createdAt),
@@ -175,6 +181,7 @@ class User extends DataClass implements Insertable<User> {
       badges: serializer.fromJson<BuiltList<Badge>>(json['badges']),
       newsletterNotificationShown:
           serializer.fromJson<bool>(json['newsletterNotificationShown']),
+      newsletterOptIn: serializer.fromJson<bool>(json['newsletterOptIn']),
       createdAt: serializer.fromJson<String?>(json['createdAt']),
     );
   }
@@ -198,6 +205,7 @@ class User extends DataClass implements Insertable<User> {
       'badges': serializer.toJson<BuiltList<Badge>>(badges),
       'newsletterNotificationShown':
           serializer.toJson<bool>(newsletterNotificationShown),
+      'newsletterOptIn': serializer.toJson<bool>(newsletterOptIn),
       'createdAt': serializer.toJson<String?>(createdAt),
     };
   }
@@ -216,6 +224,7 @@ class User extends DataClass implements Insertable<User> {
           int? points,
           BuiltList<Badge>? badges,
           bool? newsletterNotificationShown,
+          bool? newsletterOptIn,
           String? createdAt}) =>
       User(
         id: id ?? this.id,
@@ -233,6 +242,7 @@ class User extends DataClass implements Insertable<User> {
         badges: badges ?? this.badges,
         newsletterNotificationShown:
             newsletterNotificationShown ?? this.newsletterNotificationShown,
+        newsletterOptIn: newsletterOptIn ?? this.newsletterOptIn,
         createdAt: createdAt ?? this.createdAt,
       );
   @override
@@ -251,6 +261,7 @@ class User extends DataClass implements Insertable<User> {
           ..write('points: $points, ')
           ..write('badges: $badges, ')
           ..write('newsletterNotificationShown: $newsletterNotificationShown, ')
+          ..write('newsletterOptIn: $newsletterOptIn, ')
           ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
@@ -271,6 +282,7 @@ class User extends DataClass implements Insertable<User> {
       points,
       badges,
       newsletterNotificationShown,
+      newsletterOptIn,
       createdAt);
   @override
   bool operator ==(Object other) =>
@@ -290,6 +302,7 @@ class User extends DataClass implements Insertable<User> {
           other.badges == this.badges &&
           other.newsletterNotificationShown ==
               this.newsletterNotificationShown &&
+          other.newsletterOptIn == this.newsletterOptIn &&
           other.createdAt == this.createdAt);
 }
 
@@ -307,6 +320,7 @@ class UsersCompanion extends UpdateCompanion<User> {
   final Value<int> points;
   final Value<BuiltList<Badge>> badges;
   final Value<bool> newsletterNotificationShown;
+  final Value<bool> newsletterOptIn;
   final Value<String?> createdAt;
   const UsersCompanion({
     this.id = const Value.absent(),
@@ -322,6 +336,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     this.points = const Value.absent(),
     this.badges = const Value.absent(),
     this.newsletterNotificationShown = const Value.absent(),
+    this.newsletterOptIn = const Value.absent(),
     this.createdAt = const Value.absent(),
   });
   UsersCompanion.insert({
@@ -338,6 +353,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     this.points = const Value.absent(),
     this.badges = const Value.absent(),
     this.newsletterNotificationShown = const Value.absent(),
+    this.newsletterOptIn = const Value.absent(),
     this.createdAt = const Value.absent(),
   });
   static Insertable<User> custom({
@@ -354,6 +370,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     Expression<int>? points,
     Expression<BuiltList<Badge>>? badges,
     Expression<bool>? newsletterNotificationShown,
+    Expression<bool>? newsletterOptIn,
     Expression<String?>? createdAt,
   }) {
     return RawValuesInsertable({
@@ -373,6 +390,7 @@ class UsersCompanion extends UpdateCompanion<User> {
       if (badges != null) 'badges': badges,
       if (newsletterNotificationShown != null)
         'newsletter_notification_shown': newsletterNotificationShown,
+      if (newsletterOptIn != null) 'newsletter_opt_in': newsletterOptIn,
       if (createdAt != null) 'created_at': createdAt,
     });
   }
@@ -391,6 +409,7 @@ class UsersCompanion extends UpdateCompanion<User> {
       Value<int>? points,
       Value<BuiltList<Badge>>? badges,
       Value<bool>? newsletterNotificationShown,
+      Value<bool>? newsletterOptIn,
       Value<String?>? createdAt}) {
     return UsersCompanion(
       id: id ?? this.id,
@@ -408,6 +427,7 @@ class UsersCompanion extends UpdateCompanion<User> {
       badges: badges ?? this.badges,
       newsletterNotificationShown:
           newsletterNotificationShown ?? this.newsletterNotificationShown,
+      newsletterOptIn: newsletterOptIn ?? this.newsletterOptIn,
       createdAt: createdAt ?? this.createdAt,
     );
   }
@@ -463,6 +483,9 @@ class UsersCompanion extends UpdateCompanion<User> {
       map['newsletter_notification_shown'] =
           Variable<bool>(newsletterNotificationShown.value);
     }
+    if (newsletterOptIn.present) {
+      map['newsletter_opt_in'] = Variable<bool>(newsletterOptIn.value);
+    }
     if (createdAt.present) {
       map['created_at'] = Variable<String?>(createdAt.value);
     }
@@ -485,6 +508,7 @@ class UsersCompanion extends UpdateCompanion<User> {
           ..write('points: $points, ')
           ..write('badges: $badges, ')
           ..write('newsletterNotificationShown: $newsletterNotificationShown, ')
+          ..write('newsletterOptIn: $newsletterOptIn, ')
           ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
@@ -587,6 +611,15 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
           requiredDuringInsert: false,
           defaultConstraints: 'CHECK (newsletter_notification_shown IN (0, 1))',
           defaultValue: const Constant(false));
+  final VerificationMeta _newsletterOptInMeta =
+      const VerificationMeta('newsletterOptIn');
+  @override
+  late final GeneratedColumn<bool?> newsletterOptIn = GeneratedColumn<bool?>(
+      'newsletter_opt_in', aliasedName, false,
+      type: const BoolType(),
+      requiredDuringInsert: false,
+      defaultConstraints: 'CHECK (newsletter_opt_in IN (0, 1))',
+      defaultValue: const Constant(false));
   final VerificationMeta _createdAtMeta = const VerificationMeta('createdAt');
   @override
   late final GeneratedColumn<String?> createdAt = GeneratedColumn<String?>(
@@ -607,6 +640,7 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
         points,
         badges,
         newsletterNotificationShown,
+        newsletterOptIn,
         createdAt
       ];
   @override
@@ -668,6 +702,12 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
           newsletterNotificationShown.isAcceptableOrUnknown(
               data['newsletter_notification_shown']!,
               _newsletterNotificationShownMeta));
+    }
+    if (data.containsKey('newsletter_opt_in')) {
+      context.handle(
+          _newsletterOptInMeta,
+          newsletterOptIn.isAcceptableOrUnknown(
+              data['newsletter_opt_in']!, _newsletterOptInMeta));
     }
     if (data.containsKey('created_at')) {
       context.handle(_createdAtMeta,
