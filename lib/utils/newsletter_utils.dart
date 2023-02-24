@@ -26,13 +26,12 @@ Future<void> checkAndShowNewsletterPage(
     },
     failure: (err) {},
   );
-  final createdAtString = user.createdAt;
+  final createdAtDate = user.createdAt;
 
   var showModal = false;
   final dateNewOnBoarding = DateTime.utc(2022, 10, 11);
 
-  if (createdAtString != null) {
-    final createdAtDate = DateTime.tryParse(createdAtString)!;
+  if (createdAtDate != null) {
     if (!newsletterNotificationShown &&
         createdAtDate.isBefore(dateNewOnBoarding) &&
         !newsletterOptIn) {

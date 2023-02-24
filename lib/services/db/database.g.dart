@@ -22,7 +22,7 @@ class User extends DataClass implements Insertable<User> {
   final BuiltList<Badge> badges;
   final bool newsletterNotificationShown;
   final bool newsletterOptIn;
-  final String? createdAt;
+  final DateTime? createdAt;
   User(
       {required this.id,
       this.sex,
@@ -70,7 +70,7 @@ class User extends DataClass implements Insertable<User> {
           data['${effectivePrefix}newsletter_notification_shown'])!,
       newsletterOptIn: const BoolType().mapFromDatabaseResponse(
           data['${effectivePrefix}newsletter_opt_in'])!,
-      createdAt: const StringType()
+      createdAt: const DateTimeType()
           .mapFromDatabaseResponse(data['${effectivePrefix}created_at']),
     );
   }
@@ -120,7 +120,7 @@ class User extends DataClass implements Insertable<User> {
         Variable<bool>(newsletterNotificationShown);
     map['newsletter_opt_in'] = Variable<bool>(newsletterOptIn);
     if (!nullToAbsent || createdAt != null) {
-      map['created_at'] = Variable<String?>(createdAt);
+      map['created_at'] = Variable<DateTime?>(createdAt);
     }
     return map;
   }
@@ -182,7 +182,7 @@ class User extends DataClass implements Insertable<User> {
       newsletterNotificationShown:
           serializer.fromJson<bool>(json['newsletterNotificationShown']),
       newsletterOptIn: serializer.fromJson<bool>(json['newsletterOptIn']),
-      createdAt: serializer.fromJson<String?>(json['createdAt']),
+      createdAt: serializer.fromJson<DateTime?>(json['createdAt']),
     );
   }
   @override
@@ -206,7 +206,7 @@ class User extends DataClass implements Insertable<User> {
       'newsletterNotificationShown':
           serializer.toJson<bool>(newsletterNotificationShown),
       'newsletterOptIn': serializer.toJson<bool>(newsletterOptIn),
-      'createdAt': serializer.toJson<String?>(createdAt),
+      'createdAt': serializer.toJson<DateTime?>(createdAt),
     };
   }
 
@@ -225,7 +225,7 @@ class User extends DataClass implements Insertable<User> {
           BuiltList<Badge>? badges,
           bool? newsletterNotificationShown,
           bool? newsletterOptIn,
-          String? createdAt}) =>
+          DateTime? createdAt}) =>
       User(
         id: id ?? this.id,
         sex: sex ?? this.sex,
@@ -321,7 +321,7 @@ class UsersCompanion extends UpdateCompanion<User> {
   final Value<BuiltList<Badge>> badges;
   final Value<bool> newsletterNotificationShown;
   final Value<bool> newsletterOptIn;
-  final Value<String?> createdAt;
+  final Value<DateTime?> createdAt;
   const UsersCompanion({
     this.id = const Value.absent(),
     this.sex = const Value.absent(),
@@ -371,7 +371,7 @@ class UsersCompanion extends UpdateCompanion<User> {
     Expression<BuiltList<Badge>>? badges,
     Expression<bool>? newsletterNotificationShown,
     Expression<bool>? newsletterOptIn,
-    Expression<String?>? createdAt,
+    Expression<DateTime?>? createdAt,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -410,7 +410,7 @@ class UsersCompanion extends UpdateCompanion<User> {
       Value<BuiltList<Badge>>? badges,
       Value<bool>? newsletterNotificationShown,
       Value<bool>? newsletterOptIn,
-      Value<String?>? createdAt}) {
+      Value<DateTime?>? createdAt}) {
     return UsersCompanion(
       id: id ?? this.id,
       sex: sex ?? this.sex,
@@ -487,7 +487,7 @@ class UsersCompanion extends UpdateCompanion<User> {
       map['newsletter_opt_in'] = Variable<bool>(newsletterOptIn.value);
     }
     if (createdAt.present) {
-      map['created_at'] = Variable<String?>(createdAt.value);
+      map['created_at'] = Variable<DateTime?>(createdAt.value);
     }
     return map;
   }
@@ -622,9 +622,9 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
       defaultValue: const Constant(false));
   final VerificationMeta _createdAtMeta = const VerificationMeta('createdAt');
   @override
-  late final GeneratedColumn<String?> createdAt = GeneratedColumn<String?>(
+  late final GeneratedColumn<DateTime?> createdAt = GeneratedColumn<DateTime?>(
       'created_at', aliasedName, true,
-      type: const StringType(), requiredDuringInsert: false);
+      type: const IntType(), requiredDuringInsert: false);
   @override
   List<GeneratedColumn> get $columns => [
         id,

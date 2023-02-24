@@ -19,7 +19,7 @@ class Users extends Table {
 
   TextColumn get sex => text().map(const SexDbConverter()).nullable()();
 
-  TextColumn get dateOfBirth => text().map(const DateOfBirthDbConverter()).nullable()();
+  //TextColumn get dateOfBirth => text().map(const DateOfBirthDbConverter()).nullable()();
 
   TextColumn get nickname => text().nullable()();
 
@@ -47,10 +47,7 @@ class Users extends Table {
 
   BoolColumn get newsletterOptIn => boolean().withDefault(const Constant(false))();
 
-  //TextColumn get createdAt => text().nullable()();
-
-  //TextColumn get createdAt => text().map(const DateOfCreationDbConverter()).nullable()();
-  DateTimeColumn get createdAt => dateTime().nullable()();
+  TextColumn get createdAt => text().nullable()();
 }
 
 @DriftAccessor(tables: [Users])
