@@ -6,7 +6,7 @@ import 'package:loono/ui/widgets/loono_sponsors.dart';
 
 import 'package:loono/ui/widgets/space.dart';
 
-class Splashscreen extends StatelessWidget{
+class Splashscreen extends StatelessWidget {
   const Splashscreen({Key? key}) : super(key: key);
 
   @override

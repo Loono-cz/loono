@@ -86,6 +86,7 @@ class Loono extends StatelessWidget {
       },
     );
   }
+
   Future<void> _showSplashscreen(AppRouter appRouter) async {
     if (Platform.isAndroid && ((await getAndroidVersion()) ?? 0) >= 31) {
       await appRouter.push(const Splashscreen());
