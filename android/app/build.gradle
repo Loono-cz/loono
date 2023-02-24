@@ -48,7 +48,7 @@ android {
     defaultConfig {
         applicationId "cz.loono.app"
         minSdkVersion 21
-        targetSdk 31
+        targetSdk 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
 
