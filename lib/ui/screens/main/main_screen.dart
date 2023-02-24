@@ -52,7 +52,7 @@ class _MainScreenState extends State<MainScreen> {
     if (!Platform.isIOS) {
       checkAndShowDonatePage(context, mounted: mounted);
     }
-    checkAndShowNewsletterPage(context, mounted: mounted);
+    checkAndShowNewsletterPage(context: context, mounted: mounted);
 
     registry.get<UserRepository>().sync();
 
