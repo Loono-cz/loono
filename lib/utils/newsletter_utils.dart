@@ -39,11 +39,6 @@ Future<void> checkAndShowNewsletterPage(
 
       await registry.get<UserRepository>().updateNewsletterNotificationShown(true);
     }
-  } else {
-    if (!newsletterNotificationShown && !newsletterOptIn) {
-      showModal = true;
-      await registry.get<UserRepository>().updateNewsletterNotificationShown(true);
-    }
   }
 
   if (!mounted || !showModal) return;
