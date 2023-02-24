@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loono/constants.dart';
-import 'package:loono/router/notification_router.dart';
 import 'package:loono/ui/widgets/space.dart';
 
-class NotificationLoadingWidget extends StatelessWidget {
-  const NotificationLoadingWidget({Key? key, required this.screen}) : super(key: key);
-
-  final NotificationScreen screen;
+class NotificationLoadingScreen extends StatelessWidget {
+  const NotificationLoadingScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

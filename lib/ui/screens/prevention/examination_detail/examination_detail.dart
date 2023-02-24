@@ -858,3 +858,10 @@ String getTextForPeriod(BuildContext context, Period period, int count) {
               : context.l10n.custom_exam_every_year_more_4;
   }
 }
+
+String getTextForCustomInterval(BuildContext context, int? count) {
+  if (count == null) return '';
+  return count < 12
+      ? '$count ${getTextForPeriod(context, Period.perMonth, count)}'
+      : '${count ~/ 12} ${getTextForPeriod(context, Period.perYear, count ~/ 12)}';
+}
