@@ -72,8 +72,8 @@ class NotificationPageState extends State<NotificationPage> {
                     ? context.l10n.donate_label_btn
                     : context.l10n.newsletter_label_btn,
                 onTap: (widget.notficationType == NotficationType.donate)
-                    ? donationFunction
-                    : newsletterButtonFunction,
+                    ? _donationFunction
+                    : _newsletterButtonFunction,
               ),
             ),
           ),
