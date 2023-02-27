@@ -98,7 +98,11 @@ class SecureStorageService {
     final r = Random.secure();
     var key = '';
     for (var i = 0; i < passwordLength; i++) {
-      key += String.fromCharCode(r.nextBool() ? (r.nextInt(charCount) + upperCharASCIIcode) : (r.nextInt(charCount) + smallCharASCIIcode));
+      key += String.fromCharCode(
+        r.nextBool()
+            ? (r.nextInt(charCount) + upperCharASCIIcode)
+            : (r.nextInt(charCount) + smallCharASCIIcode),
+      );
     }
     await _storage.write(key: _databasePassKey, value: key);
   }
