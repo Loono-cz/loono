@@ -20,13 +20,13 @@ class NotificationPage extends StatefulWidget {
 }
 
 class NotificationPageState extends State<NotificationPage> {
-  Future<void> donationFunction() async {
+  Future<void> _donationFunction() async {
     if (await canLaunchUrlString(LoonoStrings.donateUrl)) {
       await launchUrlString(LoonoStrings.donateUrl);
     }
   }
 
-  Future<void> newsletterButtonFunction() async {
+  Future<void> _newsletterButtonFunction() async {
     await registry.get<UserRepository>().updateNewsletter(true);
   }
 
