@@ -92,14 +92,14 @@ class SearchDoctorCard extends StatelessWidget {
                                   if (hasPhoneNumber) ...[
                                     const SizedBox(width: 8),
                                     SvgPicture.asset(
-                                      'assets/icons/telephone.svg',
+                                      LoonoAssets.telephoneIcon,
                                       color: LoonoColors.grey,
                                     ),
                                   ],
                                   if (hasEmail) ...[
                                     const SizedBox(width: 8),
                                     SvgPicture.asset(
-                                      'assets/icons/at.svg',
+                                      LoonoAssets.atIcon,
                                       color: LoonoColors.grey,
                                     ),
                                   ],
