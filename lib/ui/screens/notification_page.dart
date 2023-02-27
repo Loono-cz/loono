@@ -43,9 +43,9 @@ class NotificationPageState extends State<NotificationPage> {
             child: LoonoCloseButton(onPressed: () async => _closeForm(context)),
           ),
           if (widget.notficationType == NotficationType.donate)
-            SvgPicture.asset('assets/donate_ilustration.svg')
+            SvgPicture.asset(LoonoAssets.donatePage)
           else if (widget.notficationType == NotficationType.newsletter)
-            SvgPicture.asset('assets/newsletter_illustration.svg'),
+            SvgPicture.asset(LoonoAssets.newsletterPage),
           Text(
             (widget.notficationType == NotficationType.donate)
                 ? context.l10n.do_you_like_loono
