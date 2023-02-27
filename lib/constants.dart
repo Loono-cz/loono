@@ -36,6 +36,9 @@ class LoonoAssets {
   static const points = 'assets/icons/points.svg';
 
   static const consultancyButtonIcon = 'assets/icons/consultancy/consultancy_card_icon.svg';
+  
+  static const donatePage = 'assets/donate_ilustration.svg';
+  static const newsletterPage = 'assets/newsletter_illustration.svg';
 }
 
 class LoonoColors {
