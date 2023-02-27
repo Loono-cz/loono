@@ -214,7 +214,6 @@ class ExaminationsSheetOverlay extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 6),
                     child: SelfExaminationCard(
                       key: ValueKey<SelfExaminationType>(selfExamination.type),
-                      // TODO: different route based on the category
                       selfExamination: selfExamination,
                       onTap: (sex) {
                         final category = selfExamination.calculateStatus();

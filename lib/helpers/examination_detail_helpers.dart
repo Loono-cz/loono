@@ -241,7 +241,6 @@ String getQuestionnaireSecondAnswer(
   );
 }
 
-//TODO: Fix translation highlight.
 String procedureQuestionTitle(
   BuildContext context, {
   required ExaminationType examinationType,
@@ -269,7 +268,6 @@ String procedureQuestionTitle(
     case ExaminationType.OPHTHALMOLOGIST:
       response = context.l10n.oculist_question_highlight;
       break;
-
     case ExaminationType.ULTRASOUND_BREAST:
       response = context.l10n.ultrasound_breast_question_highlight;
       break;

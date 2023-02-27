@@ -104,6 +104,5 @@ Future<void> run({required WidgetTester tester, required Charlatan charlatan}) a
   await questionnaireDoctorDatePickerPage.clickContinueButton();
 
   // final route, onboarding is completed 🎉
-  // TODO: check saved values in DB
   await onboardingFormDonePage.verifyScreenIsShown();
 }

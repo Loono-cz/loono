@@ -5,6 +5,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/repositories/calendar_repository.dart';
 import 'package:loono/repositories/examination_repository.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/examinations_service.dart';
@@ -80,13 +81,12 @@ void showDeleteExaminationSheet({
                       final examProvider =
                           Provider.of<ExaminationsProvider>(context, listen: false);
                       final autoRouter = AutoRouter.of(context);
-                      //TODO: Upravit smazani konkretniho vysetreni z kalendare
-                      // await registry.get<CalendarRepository>().deleteEvent(examinationType);
-                      examProvider.deleteExaminationRecord(id);
+                      await registry.get<CalendarRepository>().deleteEvent(examinationType);
                       SchedulerBinding.instance.addPostFrameCallback((_) {
                         showFlushBarSuccess(context, context.l10n.checkup_deleted);
                       });
                       await autoRouter.replace(MainRoute(children: [PreventionRoute()]));
+                      examProvider.deleteExaminationRecord(id);
                     },
                     failure: (err) async {
                       SchedulerBinding.instance.addPostFrameCallback((_) {

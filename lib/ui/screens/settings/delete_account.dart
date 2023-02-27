@@ -131,8 +131,7 @@ class DeleteAccountScreenState extends State<DeleteAccountScreen> {
                               if (res) {
                                 await autoRouter.push(AfterDeletionRoute(sex: _sex));
                               } else {
-                                //TODO: Fix lint..
-                                // ignore: use_build_context_synchronously
+                                if (!mounted) return;
                                 showFlushBarError(
                                   context,
                                   context.l10n.something_went_wrong,

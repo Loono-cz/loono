@@ -31,10 +31,6 @@ class OnboardingStateService extends ChangeNotifier {
   bool get hasNotRequestedNotificationsPermissionYet =>
       _notificationPermissionState == NotificationPermissionState.notRequestedYet;
 
-  // TODO: User might decline the permission. Handle this possible state.
-  /// Prompt iOS users for notification permissions.
-  /// When user declines the permission we cannot request it again. This should
-  /// be represented in the UI.
   Future<void> promptPermission() async {
     final permissionGranted = await notificationService.promptPermissions();
     if (permissionGranted) {

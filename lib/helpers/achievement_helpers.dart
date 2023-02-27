@@ -27,7 +27,7 @@ String getAchievementTitle(BuildContext context, ExaminationType type) {
       result = context.l10n.achievement_ophthalmologist_header;
       break;
     case ExaminationType.ULTRASOUND_BREAST:
-      // TODO: Handle this case.
+      result = context.l10n.achievement_ultrasound_header;
       break;
     case ExaminationType.UROLOGIST:
       result = context.l10n.achievement_belt_urologist_header;

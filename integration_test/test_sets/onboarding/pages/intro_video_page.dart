@@ -37,7 +37,6 @@ class IntroVideoPage {
 
   Future<void> replayVideo() async {
     logTestEvent();
-    // TODO: Refactor this. Very flaky cuz it depends on delays which are not consistent.
     final videoPlayer = tester.widget<VideoPlayer>(find.byType(VideoPlayer));
     await tester.pump(const Duration(seconds: 1));
     final beforeResetProgress = videoPlayer.controller.value;

@@ -46,7 +46,6 @@ Future<void> run({
     ..verifyFaqSectionIsShown()
     ..verifyFaqQuestionsAreShown();
 
-  // TODO click reward progress bar -> modal sheet shows - modal is missing
 
   await selfExaminationDetailPage.verifySelfExamFaqContentIsCollapsed(itemPosition: 1);
   await selfExaminationDetailPage.verifySelfExamFaqContentIsCollapsed(itemPosition: 2);

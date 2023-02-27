@@ -78,7 +78,6 @@ class _PhotoCroppedResultScreenState extends State<PhotoCroppedResultScreen> {
                       setState(() => _isUploading = false);
                       if (photoUploadResult) {
                         final autoRouter = AutoRouter.of(context);
-                        // TODO: Hacky solution. Should be in bottom modal sheet too but requires bigger refactor
                         await autoRouter.pop();
                         await autoRouter.pop();
                         // ignore: use_build_context_synchronously

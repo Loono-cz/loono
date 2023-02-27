@@ -76,7 +76,6 @@ Future<void> run({
   // fake /delete API response
   charlatan.whenDelete('/account', (_) => CharlatanHttpResponse(statusCode: 200));
   await deleteAccountPage.confirmDeleteAccountDialog();
-  // TODO: verify launch with email method was called (via method channel handler)?
   // await afterDeletionPage.clickSendEmailButton();
 
   await tester.waitForToastToDisappear(msgPattern: 'jsme smazali');

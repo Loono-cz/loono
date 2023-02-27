@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:loono/l10n/ext.dart';
 import 'package:loono/ui/widgets/prevention/examinations_sheet_overlay.dart';
 
 part 'examination_category.freezed.dart';
@@ -13,15 +14,14 @@ const examinationCategoriesOrdering = <ExaminationCategory>[
   ExaminationCategory.waiting(),
 ];
 
-// TODO: localization
 extension ExaminationStatusExt on ExaminationCategory {
   String getHeaderMessage(BuildContext context) {
     return when(
-      scheduledSoonOrOverdue: () => 'Běž na prohlídku',
-      newToSchedule: () => 'Objednej se',
-      unknownLastVisit: () => 'Další prohlídky',
-      scheduled: () => 'Připomenu ti prohlídku',
-      waiting: () => 'Připomenu ti objednání',
+      scheduledSoonOrOverdue: () => context.l10n.schedule_appointment,
+      newToSchedule: () => context.l10n.book_appointment,
+      unknownLastVisit: () => context.l10n.other_appointments,
+      scheduled: () => context.l10n.appointment_reminder,
+      waiting: () => context.l10n.book_reminder,
     );
   }
 }
