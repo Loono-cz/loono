@@ -91,10 +91,14 @@ class SecureStorageService {
   Future<void> deleteDonateInfoData() => _storage.delete(key: _donateInfoDataKey);
 
   Future<void> generateDatabasePass() async {
+    const passwordLength = 20;
+    const charCount = 26;
+    const upperCharASCIIcode = 65;
+    const smallCharASCIIcode = 97;
     final r = Random.secure();
     var key = '';
-    for (var i = 0; i < 20; i++) {
-      key += String.fromCharCode(r.nextBool() ? (r.nextInt(26) + 65) : (r.nextInt(26) + 97));
+    for (var i = 0; i < passwordLength; i++) {
+      key += String.fromCharCode(r.nextBool() ? (r.nextInt(charCount) + upperCharASCIIcode) : (r.nextInt(charCount) + smallCharASCIIcode));
     }
     await _storage.write(key: _databasePassKey, value: key);
   }
