@@ -28,7 +28,7 @@ Future<void> checkAndShowNewsletterPage({
   );
   final createdAtDate = user?.createdAt;
 
-  final dateNewOnBoarding = DateTime.utc(2022, 10, 11);
+  final dateNewOnBoarding = DateTime(2022, 10, 11);
   const endNotifTimeStamp = 1680300000000;
 
   if (createdAtDate != null) {
@@ -40,16 +40,8 @@ Future<void> checkAndShowNewsletterPage({
       if (!mounted) return;
       Future.delayed(
         const Duration(seconds: 5),
-        () => showDelayNewsletterPage(context),
+        () => showNewsletterBottomSheet(context),
       );
     }
   }
-}
-
-Future<void> showDelayNewsletterPage(
-  BuildContext context, [
-  bool mounted = true,
-]) async {
-  if (!mounted) return;
-  showNewsletterBottomSheet(context);
 }
