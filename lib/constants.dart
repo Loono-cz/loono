@@ -277,6 +277,6 @@ class LoonoFonts {
   static const chipStyleDefault = TextStyle(
     color: LoonoColors.black,
     fontSize: 14,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w400,
   );
 }
