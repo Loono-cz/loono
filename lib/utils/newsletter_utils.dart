@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:loono/constants.dart';
 import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/services/api_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/ui/widgets/newsletter/newsletter_bottom_sheet.dart';
 import 'package:loono/utils/registry.dart';
-import 'package:loono/constants.dart';
 
 ///Function to show newsletter page
 ///[context] BuildContetxt
