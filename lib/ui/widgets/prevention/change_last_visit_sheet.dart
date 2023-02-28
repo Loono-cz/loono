@@ -146,6 +146,7 @@ class _DatePickerContentState extends State<_DatePickerContent> {
                   categoryType: widget.categorizedExamination.examination.examinationCategoryType ??
                       ExaminationCategoryType.MANDATORY,
                   customInterval: widget.categorizedExamination.examination.customInterval,
+                  createdAt: widget.categorizedExamination.examination.createdAt,
                 );
 
             await response.map(

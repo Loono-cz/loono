@@ -51,6 +51,7 @@ void showEditModal(
           categoryType: examination.examinationCategoryType ?? ExaminationCategoryType.MANDATORY,
           customInterval: examination.customInterval ?? intervalYears,
           note: note,
+          createdAt: examination.createdAt,
         );
 
     await response.map(

@@ -105,6 +105,7 @@ class ScheduleExamination extends StatelessWidget {
                                               firstExam: true,
                                               status: ExaminationStatus.UNKNOWN,
                                               newDate: Date.now().toDateTime(),
+                                              createdAt: Date.now(),
                                             );
                                     response.map(
                                       success: (res) {
@@ -135,6 +136,7 @@ class ScheduleExamination extends StatelessWidget {
                                               firstExam: true,
                                               newDate: pickedDate,
                                               status: ExaminationStatus.CONFIRMED,
+                                              createdAt: Date.now(),
                                             );
                                     response.map(
                                       success: (res) {
@@ -176,6 +178,7 @@ class ScheduleExamination extends StatelessWidget {
                       uuid: examinationRecord.uuid,
                       firstExam: true,
                       status: ExaminationStatus.UNKNOWN,
+                      createdAt: Date.now(),
                     );
                 await response.map(
                   success: (res) async {

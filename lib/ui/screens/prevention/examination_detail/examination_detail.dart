@@ -137,6 +137,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
           actionType: _examinationActionType,
           periodicExam: _examination.periodicExam,
           customInterval: _examination.customInterval,
+          createdAt: _examination.createdAt,
         );
 
     response.map(
@@ -213,6 +214,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
     /// not ideal in build method but need context
     Future<void> onPostNewCheckupSubmit({required DateTime date, String? note}) async {
       /// code anchor: #postNewExamination
+      // TODO: Preco sa tu prepisuje UUID? Tu by sa mal vytvorit novy zaznam s UUID = null...
       final response = await registry.get<ExaminationRepository>().postExamination(
             _examinationType,
             newDate: date,
@@ -223,6 +225,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
             note: note,
             customInterval: _examination.customInterval ?? _examination.intervalYears,
             actionType: _examinationActionType,
+            createdAt: _examination.createdAt,
           );
 
       response.map(
@@ -256,6 +259,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
             actionType: _examinationActionType,
             periodicExam: false,
             customInterval: _examination.customInterval,
+            createdAt: _examination.createdAt,
           );
 
       response.map(

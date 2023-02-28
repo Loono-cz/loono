@@ -501,6 +501,7 @@ class _CustomExamFormScreenState extends State<CustomExamFormScreen> {
           status:
               _lastExamChck && _nextExamChck ? ExaminationStatus.UNKNOWN : ExaminationStatus.NEW,
           firstExam: true,
+          createdAt: Date.now(),
         );
 
     response.map(
