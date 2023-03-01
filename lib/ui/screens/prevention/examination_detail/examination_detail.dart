@@ -191,6 +191,9 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
     final lastVisitDateWithoutDay =
         widget.categorizedExamination.examination.lastConfirmedDate?.toLocal();
 
+    debugPrint(lastVisitDateWithoutDay.toString());
+    debugPrint(_examination.state.toString());
+
     final lastVisit =
         lastVisitDateWithoutDay != null && _examination.state != ExaminationStatus.UNKNOWN
             ? DateFormat.yMMMM('cs-CZ').format(
@@ -210,13 +213,15 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
 
     final preposition = czechPreposition(context, examinationType: _examinationType);
 
+    // TODO:
+    // create new entry on BE, do not update the old one with the same uuid!
     /// not ideal in build method but need context
     Future<void> onPostNewCheckupSubmit({required DateTime date, String? note}) async {
       /// code anchor: #postNewExamination
       final response = await registry.get<ExaminationRepository>().postExamination(
             _examinationType,
             newDate: date,
-            uuid: _examination.uuid,
+            uuid: null,
             firstExam: false,
             status: ExaminationStatus.NEW,
             categoryType: _examinationCategoryType ?? ExaminationCategoryType.MANDATORY,
@@ -640,7 +645,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
 
   Widget buildDisposableExamButtons(
     BuildContext context,
-    Future<void> Function({required DateTime date, String? note}) onPostNewCheckupSubmit,
+    Future<void> Function({required DateTime date, String? note}) onEditRegularlyExamTerm,
   ) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -712,7 +717,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                   showCustomDatePickerSheet(
                     categorizedExamination: widget.categorizedExamination,
                     context: context,
-                    onSubmit: onPostNewCheckupSubmit,
+                    onSubmit: onEditRegularlyExamTerm,
                   );
                 }
               },
