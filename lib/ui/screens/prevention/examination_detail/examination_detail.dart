@@ -214,7 +214,6 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
     /// not ideal in build method but need context
     Future<void> onPostNewCheckupSubmit({required DateTime date, String? note}) async {
       /// code anchor: #postNewExamination
-      // TODO: Preco sa tu prepisuje UUID? Tu by sa mal vytvorit novy zaznam s UUID = null...
       final response = await registry.get<ExaminationRepository>().postExamination(
             _examinationType,
             newDate: date,
