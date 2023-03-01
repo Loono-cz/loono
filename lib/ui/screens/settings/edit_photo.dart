@@ -105,8 +105,7 @@ class _EditPhotoScreenState extends State<EditPhotoScreen> {
                       });
                       final result = await _userRepository.deleteUserPhoto();
                       if (result) {
-                        //TODO: Fix lint
-                        // ignore: use_build_context_synchronously
+                        if (!mounted) return;
                         showFlushBarSuccess(
                           context,
                           context.l10n.edit_photo_delete_photo_action_success,

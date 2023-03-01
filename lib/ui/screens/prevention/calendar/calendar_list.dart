@@ -82,8 +82,9 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
                       final calendars =
                           snapshot.data!.where((c) => c.isReadOnly == false && c.id != null);
 
-                      // TODO: Handle this case
-                      if (calendars.isEmpty) return const Center(child: Text('Žádné kalendáře'));
+                      if (calendars.isEmpty) {
+                        return Center(child: Text(l10n.no_calendars));
+                      }
                       if (calendars.length == 1) {
                         WidgetsBinding.instance.scheduleFrameCallback((_) {
                           setState(() => _calendarIdChoice = calendars.first.id);
@@ -151,8 +152,7 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
                   if (result) {
                     await _userRepository.updateDeviceCalendarId(_calendarIdChoice!);
                     await autoRouter.pop();
-                    //TODO: Fix lint...
-                    // ignore: use_build_context_synchronously
+                    if (!mounted) return;
                     showFlushBarSuccess(
                       context,
                       l10n.calendar_added_success_message,

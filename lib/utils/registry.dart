@@ -42,7 +42,6 @@ final registry = GetIt.instance;
 
 const retryBlacklist = ['/account/onboard', '/leaderboard'];
 
-/// TODO: select correct status code for force update with BE
 // ignore: constant_identifier_names
 const FORCE_UPDATE_STATUS_CODE = 410;
 // ignore: constant_identifier_names
@@ -196,8 +195,12 @@ Future<void> setup({
       deviceCalendarPlugin: DeviceCalendarPlugin(),
     ),
   );
-  // TODO: generate the key and store it into secure storage
-  await registry.get<DatabaseService>().init('SUPER SECURE KEY');
+
+  await registry.get<SecureStorageService>().generateDatabasePass();
+  final key = await registry.get<SecureStorageService>().getDatabasePass();
+  if (key != null) {
+    await registry.get<DatabaseService>().init(key);
+  }
 
   // repositories
   registry.registerSingleton<UserRepository>(

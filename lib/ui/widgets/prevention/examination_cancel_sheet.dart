@@ -109,7 +109,6 @@ void showCancelExaminationSheet({
                     },
                     failure: (err) async {
                       await AutoRouter.of(context).pop();
-                      //TODO: lint fix
                       // ignore: use_build_context_synchronously
                       showFlushBarError(context, context.l10n.something_went_wrong);
                     },

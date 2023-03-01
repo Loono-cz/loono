@@ -97,7 +97,6 @@ void main() {
           logTestStart('loon543');
           await loon543.run(tester: tester, charlatan: charlatan);
         },
-        // TODO: on iOS there is slightly different routing in the onboarding form
         skip: Platform.isIOS,
       );
 
@@ -107,7 +106,6 @@ void main() {
           logTestStart('loon544');
           await loon544.run(tester: tester, charlatan: charlatan);
         },
-        // TODO: on iOS there is slightly different routing in the onboarding form
         skip: Platform.isIOS,
       );
 
@@ -284,7 +282,6 @@ void main() {
 
   group('Prevention', () {
     group('Examination', () {
-      // TODO:
     });
 
     group('Self Examination', () {

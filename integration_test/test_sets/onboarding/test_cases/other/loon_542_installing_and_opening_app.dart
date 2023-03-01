@@ -40,7 +40,6 @@ Future<void> run({required WidgetTester tester, required Charlatan charlatan}) a
   await introVideoPage.waitForVideoLoad();
   await introVideoPage.verifyScreenIsShown();
   introVideoPage.checkVideoIsMuted();
-  // TODO: Veryfing behavior of replaying the video is very flaky.
   // await introVideoPage.replayVideo();
 
   await introVideoPage.clickContinueBtn();
@@ -59,7 +58,6 @@ Future<void> run({required WidgetTester tester, required Charlatan charlatan}) a
   await findDoctorPage.verifyScreenIsShown();
 
   await preAuthMainScreenPage.clickAboutHealthTab();
-  // TODO: POM
   expect(find.byType(AboutHealthScreen), findsOneWidget);
 
   await preAuthMainScreenPage.clickPreventionTab();

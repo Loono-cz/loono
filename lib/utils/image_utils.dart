@@ -65,7 +65,7 @@ Future<Either<ImageError, Uint8List>> takePictureAsBytes(ImageSource imageSource
               maxWidth: 400,
             );
       } catch (e) {
-        // TODO: Better error messaging
+        debugPrint(e.toString());
         return const Left(ImageError.unknown());
       }
       return picture == null

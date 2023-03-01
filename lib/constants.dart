@@ -37,6 +37,16 @@ class LoonoAssets {
 
   static const consultancyButtonIcon = 'assets/icons/consultancy/consultancy_card_icon.svg';
 
+  static const preventionIcon = 'assets/icons/tabs/prevention_active.svg';
+  static const preventionInactiveIcon = 'assets/icons/tabs/prevention.svg';
+  static const findDoctorIcon = 'assets/icons/tabs/find_doctor_active.svg';
+  static const findDoctorInactiveIcon = 'assets/icons/tabs/find_doctor.svg';
+  static const exploreIcon = 'assets/icons/tabs/explore_active.svg';
+  static const exploreInactiveIcon = 'assets/icons/tabs/explore.svg';
+
+  static const atIcon = 'assets/icons/at.svg';
+  static const telephoneIcon = 'assets/icons/telephone.svg';
+
   static const donatePage = 'assets/donate_ilustration.svg';
   static const newsletterPage = 'assets/newsletter_illustration.svg';
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/ui/widgets/extend_inkwell.dart';
 
-/// TODO: Async loading button placeholder (https://cesko-digital.atlassian.net/browse/LOON-476)
 class AsyncLoonoButton extends StatefulWidget {
   const AsyncLoonoButton({
     Key? key,
