@@ -55,8 +55,11 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
     final user = await userRepository.getCurrentUser();
 
     _leaderboardData = leaderboard.data;
-    _peers = _leaderboardData!.peers.toList();
-    if (user != null) {
+    final peers = _leaderboardData?.peers.toList();
+    if (peers != null) {
+      _peers = peers;
+    }
+    if (user != null && _leaderboardData?.myOrder != null) {
       await _peers.insertMe(user, _leaderboardData!.myOrder);
     }
     setState(() {
@@ -106,19 +109,20 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
       case FetchState.loaded:
         return ListView(
           children: [
-            ..._leaderboardData!.top.asMap().entries.map(
+            ...?_leaderboardData?.top.asMap().entries.map(
                   (e) => LeaderboardTile(
                     position: e.key + 1,
                     user: e.value,
                   ),
                 ),
-            if (!_leaderboardData!.top.toList().containsMe()) ..._getPeersPart()
+            if (_leaderboardData?.top.toList().containsMe() == false) ..._getPeersPart()
           ],
         );
     }
   }
 
   List<Widget> _getPeersPart() {
+    final myOrder = _leaderboardData?.myOrder ?? 0;
     return [
       Divider(
         color: LoonoColors.leaderboardPrimary,
@@ -127,9 +131,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
       ),
       ..._peers.asMap().entries.mapIndexed(
             (i, e) => LeaderboardTile(
-              position: e.value.isThisMe == true
-                  ? _leaderboardData!.myOrder
-                  : (i == 0 ? _leaderboardData!.myOrder - 1 : _leaderboardData!.myOrder + 1),
+              position: e.value.isThisMe == true ? myOrder : (i == 0 ? myOrder - 1 : myOrder + 1),
               user: e.value,
             ),
           ),
