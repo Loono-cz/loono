@@ -146,6 +146,7 @@ class ApiService {
     int? customInterval,
     bool? periodicExam,
     ExaminationActionType? actionType,
+    Date? createdAt,
   }) async {
     return _callApi(
       () async => _api.getExaminationsApi().postExaminations(
@@ -160,7 +161,8 @@ class ApiService {
             ..periodicExam = periodicExam
             ..note = note
             ..examinationCategoryType = categoryType
-            ..examinationActionType = actionType;
+            ..examinationActionType = actionType
+            ..createdAt = createdAt;
         }),
       ),
     );

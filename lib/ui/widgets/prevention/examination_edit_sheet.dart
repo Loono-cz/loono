@@ -101,6 +101,7 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
           categoryType: ExaminationCategoryType.CUSTOM,
           status: ExaminationStatus.CONFIRMED,
           firstExam: true,
+          createdAt: widget.exam.createdAt,
         );
     response.map(
       success: (res) {
@@ -117,6 +118,7 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
               categoryType: ExaminationCategoryType.CUSTOM,
               status: ExaminationStatus.NEW,
               firstExam: true,
+              createdAt: widget.exam.createdAt,
             )
             .then((value) {
           value.map(
@@ -161,6 +163,7 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
           categoryType: ExaminationCategoryType.CUSTOM,
           status: _idkCheck ? ExaminationStatus.UNKNOWN : ExaminationStatus.CONFIRMED,
           firstExam: true,
+          createdAt: widget.exam.createdAt,
         );
 
     response.map(

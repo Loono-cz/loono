@@ -43,8 +43,9 @@ class _ModalContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    // TODO: replace now() with date of Account creation
-    final lastVisit = examination.examination.lastConfirmedDate?.toLocal() ?? DateTime.now();
+    final createdAt = examination.examination.createdAt ?? Date.now();
+    final lastVisit =
+        examination.examination.lastConfirmedDate?.toLocal() ?? createdAt.toDateTime().toLocal();
 
     final notificationDate = DateTime(
       lastVisit.year + examination.examination.intervalYears,
