@@ -84,6 +84,7 @@ class ApiService {
     required String nickname,
     required String preferredEmail,
     required bool newsletterOptIn,
+    //required Date createdAt,
   }) async {
     return _callApi(
       () async => _api.getAccountApi().postAccountOnboard(
@@ -95,6 +96,7 @@ class ApiService {
                 ..examinations = examinations.toBuilder()
                 ..birthdate = Date(birthdate.year, birthdate.month.index + 1, 1)
                 ..newsletterOptIn = newsletterOptIn,
+              // ..createdAt=
             ),
           ),
     );
