@@ -77,7 +77,8 @@ class ExaminationsProvider extends ChangeNotifier {
               ..examinationCategoryType = record.examinationCategoryType
               ..badge = item.badge
               ..periodicExam = record.periodicExam
-              ..note = record.note,
+              ..note = record.note
+              ..createdAt = record.createdAt,
           );
 
       final builder = examinations?.toBuilder();

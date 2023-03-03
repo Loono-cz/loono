@@ -39,6 +39,7 @@ class ExaminationRepository {
     int? customInterval,
     bool? periodicExam,
     ExaminationActionType? actionType,
+    Date? createdAt,
   }) async {
     final response = await _apiService.postExamination(
       type,
@@ -51,6 +52,7 @@ class ExaminationRepository {
       periodicExam: periodicExam,
       categoryType: categoryType,
       actionType: actionType,
+      createdAt: createdAt,
     );
     await _userRepository.sync();
     return response;

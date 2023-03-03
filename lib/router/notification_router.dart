@@ -9,8 +9,8 @@ import 'package:loono_api/loono_api.dart';
 class NotificationRouter {
   NotificationRouter(this.screen, [this.uuid = '']);
 
-  factory NotificationRouter.fromNotificationData(Map<String, dynamic>? data) {
-    if (data == null) {
+  factory NotificationRouter.fromNotificationData(Map<String, dynamic> data) {
+    if (data.isEmpty) {
       return NotificationRouter(NotificationScreen.main);
     }
     var screen = NotificationScreen.main;
@@ -35,8 +35,8 @@ class NotificationRouter {
   bool loaded = false;
 
   Future<void> navigate() async {
-    await appRouter.pushAll(const [MainRoute(), NotificationLoadingRoute()]);
     if (screen.isExamination) {
+      await appRouter.pushAll(const [NotificationLoadingRoute()]);
       var exams = <ExaminationPreventionStatus>[];
       var selfExams = <SelfExaminationPreventionStatus>[];
       final examsResponse = await registry.get<ApiService>().getExaminations();
@@ -68,12 +68,14 @@ class NotificationRouter {
     final categorized = CategorizedExaminationConverter.convert(
       exams.where((exam) => exam.uuid == uuid).toList(),
     );
-    if (categorized.length == 1) {
+    if (categorized.isNotEmpty) {
       await appRouter.replace(
         ExaminationDetailRoute(
           categorizedExamination: categorized.first,
         ),
       );
+    } else {
+      appRouter.push(const MainRoute()).ignore();
     }
   }
 

@@ -24,8 +24,9 @@ class NotificationService {
     await OneSignal.shared.setAppId(appId);
     OneSignal.shared.setPermissionObserver(_onPermissionStateChanges);
     OneSignal.shared.setNotificationOpenedHandler((OSNotificationOpenedResult res) async {
-      final notificationRouter =
-          NotificationRouter.fromNotificationData(res.notification.additionalData);
+      final notificationRouter = NotificationRouter.fromNotificationData(
+        res.notification.additionalData ?? <String, dynamic>{},
+      );
       while (!isRegistryInitialized) {
         await Future<void>.delayed(const Duration(milliseconds: 100));
       }

@@ -256,6 +256,11 @@ class UserRepository {
     );
   }
 
+  Future<User?> getCurrentUser() async {
+    final users = await _db.users.getUser();
+    return users.firstOrNull;
+  }
+
   Future<void> updateNewsletterNotificationShown(bool newsletterNotificationShown) async {
     await _db.users.updateNewsletterNotificationShown(true);
   }
