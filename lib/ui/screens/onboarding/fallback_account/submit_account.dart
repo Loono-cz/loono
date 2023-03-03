@@ -104,5 +104,7 @@ Future<ApiResponse<Account>> _callOnboardUser(
     nickname: user.nickname ?? '',
     preferredEmail: user.email ?? '',
     newsletterOptIn: newsletter,
+    //createdAt: user.createdAt!.toDate(),
+    createdAt: Date.now(),
   );
 }
