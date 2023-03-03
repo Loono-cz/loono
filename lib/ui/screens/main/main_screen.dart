@@ -13,6 +13,7 @@ import 'package:loono/services/webview_service.dart';
 import 'package:loono/ui/widgets/bottom_navigation_builder.dart';
 import 'package:loono/ui/widgets/no_connection_message.dart';
 import 'package:loono/utils/donate_utils.dart';
+import 'package:loono/utils/newsletter_utils.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:provider/provider.dart';
 
@@ -49,6 +50,7 @@ class _MainScreenState extends State<MainScreen> {
     if (!Platform.isIOS) {
       checkAndShowDonatePage(context, mounted: mounted);
     }
+    checkAndShowNewsletterPage(context: context, mounted: mounted);
 
     registry.get<UserRepository>().sync();
 
