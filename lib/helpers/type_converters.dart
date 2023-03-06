@@ -10,9 +10,9 @@ import 'package:loono/models/search_result.dart';
 import 'package:loono_api/loono_api.dart'
     show
         Badge,
+        ExaminationCategoryType,
         ExaminationStatus,
         ExaminationType,
-        ExaminationCategoryType,
         Sex,
         SimpleHealthcareProvider,
         standardSerializers;
