@@ -211,9 +211,8 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
 
     final preposition = czechPreposition(context, examinationType: _examinationType);
 
-    // create new entry on BE, do not update the old one with the same uuid!
-    /// not ideal in build method but need context
-    Future<void> onPostNewCheckupSubmit({required DateTime date, String? note}) async {
+    // not ideal in build method but need context
+    Future<void> postNewExaminationRecord({required DateTime date, String? note}) async {
       /// code anchor: #postNewExamination
       final response = await registry.get<ExaminationRepository>().postExamination(
             _examinationType,
@@ -246,7 +245,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
       );
     }
 
-    Future<void> onEditRegularlyExamTerm({required DateTime date, String? note}) async {
+    Future<void> editExaminationRecord({required DateTime date, String? note}) async {
       final response = await registry.get<ExaminationRepository>().postExamination(
             _examinationType,
             newDate: date,
@@ -410,9 +409,9 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
               _examinationCategoryType == null)
             buildPeriodicalAndMandatorySection(context),
           if (!_isPeriodicalExam)
-            buildDisposableExamButtons(context, onEditRegularlyExamTerm)
+            buildDisposableExamButtons(context, editExaminationRecord)
           else
-            buildButtons(context, onPostNewCheckupSubmit, preposition),
+            buildButtons(context, postNewExaminationRecord, preposition),
           if (widget.categorizedExamination.category != const ExaminationCategory.newToSchedule())
             Padding(
               padding: const EdgeInsets.only(left: 16.0, right: 16.0),
@@ -488,7 +487,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
 
   Widget buildButtons(
     BuildContext context,
-    Future<void> Function({required DateTime date, String? note}) onPostNewCheckupSubmit,
+    Future<void> Function({required DateTime date, String? note}) postNewExaminationRecord,
     String preposition,
   ) {
     return Padding(
@@ -611,13 +610,13 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                     showCreateOrderFromDetailSheet(
                       context: context,
                       categorizedExamination: widget.categorizedExamination,
-                      onSubmit: onPostNewCheckupSubmit,
+                      onSubmit: postNewExaminationRecord,
                     );
                   } else {
                     showNewCheckupSheetStep1(
                       context,
                       widget.categorizedExamination,
-                      onPostNewCheckupSubmit,
+                      postNewExaminationRecord,
                       _sex,
                     );
                   }
@@ -631,7 +630,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                 onTap: () => showCreateOrderFromDetailSheet(
                   context: context,
                   categorizedExamination: widget.categorizedExamination,
-                  onSubmit: onPostNewCheckupSubmit,
+                  onSubmit: postNewExaminationRecord,
                 ),
               ),
             ),
@@ -643,7 +642,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
 
   Widget buildDisposableExamButtons(
     BuildContext context,
-    Future<void> Function({required DateTime date, String? note}) onEditRegularlyExamTerm,
+    Future<void> Function({required DateTime date, String? note}) editExaminationRecord,
   ) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -715,7 +714,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
                   showCustomDatePickerSheet(
                     categorizedExamination: widget.categorizedExamination,
                     context: context,
-                    onSubmit: onEditRegularlyExamTerm,
+                    onSubmit: editExaminationRecord,
                   );
                 }
               },

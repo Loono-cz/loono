@@ -53,7 +53,7 @@ class ExaminationsProvider extends ChangeNotifier {
       examination = exams.firstWhere(
         (item) => item.uuid == record.uuid,
         orElse: () => exams.firstWhere(
-          (item) => record.type == item.examinationType, // && item.uuid == null,
+          (item) => record.type == item.examinationType,
         ),
       );
     }
@@ -83,6 +83,7 @@ class ExaminationsProvider extends ChangeNotifier {
               ..note = record.note
               ..createdAt = record.createdAt,
           );
+
       final builder = examinations?.toBuilder();
       builder?.examinations.removeAt(indexToUpdate);
       builder?.examinations.add(updatedItem!);
