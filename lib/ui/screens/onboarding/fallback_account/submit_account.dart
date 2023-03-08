@@ -96,7 +96,8 @@ Future<ApiResponse<Account>> _callOnboardUser(
               ..plannedDate = questionnaire.date?.toUtc()
               ..firstExam = true
               ..type = questionnaire.type
-              ..examinationCategoryType = ExaminationCategoryType.MANDATORY;
+              ..examinationCategoryType = ExaminationCategoryType.MANDATORY
+              ..createdAt = Date.now();
           })
       ],
     ),

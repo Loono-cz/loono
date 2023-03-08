@@ -46,6 +46,9 @@ class LoonoAssets {
 
   static const atIcon = 'assets/icons/at.svg';
   static const telephoneIcon = 'assets/icons/telephone.svg';
+
+  static const donatePage = 'assets/donate_ilustration.svg';
+  static const newsletterPage = 'assets/newsletter_illustration.svg';
 }
 
 class LoonoColors {
@@ -124,6 +127,7 @@ class LoonoStrings {
   static const hoursFormat = 'HH:mm';
   static const monthInYear = 12;
   static const customDefaultMonth = 6;
+  static const newsletterDurationDelay = 5;
 
   static const notificationScreenParamName = 'screen';
   static const notificationUuidParamName = 'examinationUuid';
@@ -278,5 +282,17 @@ class LoonoFonts {
     color: LoonoColors.black,
     fontSize: 14,
     fontWeight: FontWeight.w400,
+  );
+
+  static const notificationSubText = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: Colors.black87,
+  );
+
+  static const notificationSubTextGrey = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: Colors.grey,
   );
 }

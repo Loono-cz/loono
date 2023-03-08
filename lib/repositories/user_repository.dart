@@ -68,6 +68,7 @@ class UserRepository {
         profileImageUrl: Value<String?>(data.profileImageUrl),
         points: Value<int>(data.points),
         badges: Value<BuiltList<Badge>>(data.badges),
+        createdAt: Value<DateTime?>(data.createdAt.toDateTime()),
       ),
     );
   }
@@ -141,6 +142,17 @@ class UserRepository {
     final result = await apiResponse.map(
       success: (_) async {
         await _db.users.updateCurrentUser(UsersCompanion(nickname: Value(nickname)));
+        return true;
+      },
+      failure: (_) async => false,
+    );
+    return result;
+  }
+
+  Future<bool> updateNewsletter(bool newsletter) async {
+    final apiResponse = await _apiService.updateAccountUser(newsletterOptIn: newsletter);
+    final result = await apiResponse.map(
+      success: (_) async {
         return true;
       },
       failure: (_) async => false,
@@ -242,5 +254,14 @@ class UserRepository {
         return null;
       },
     );
+  }
+
+  Future<User?> getCurrentUser() async {
+    final users = await _db.users.getUser();
+    return users.firstOrNull;
+  }
+
+  Future<void> updateNewsletterNotificationShown(bool newsletterNotificationShown) async {
+    await _db.users.updateNewsletterNotificationShown(true);
   }
 }

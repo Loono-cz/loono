@@ -20,6 +20,9 @@ class User extends DataClass implements Insertable<User> {
   final List<SearchResult> searchHistory;
   final int points;
   final BuiltList<Badge> badges;
+  final bool? newsletterNotificationShown;
+  final bool? newsletterOptIn;
+  final DateTime? createdAt;
   User(
       {required this.id,
       this.sex,
@@ -32,7 +35,10 @@ class User extends DataClass implements Insertable<User> {
       this.latestMapUpdate,
       required this.searchHistory,
       required this.points,
-      required this.badges});
+      required this.badges,
+      this.newsletterNotificationShown,
+      this.newsletterOptIn,
+      this.createdAt});
   factory User.fromData(Map<String, dynamic> data, {String? prefix}) {
     final effectivePrefix = prefix ?? '';
     return User(
@@ -60,6 +66,12 @@ class User extends DataClass implements Insertable<User> {
           .mapFromDatabaseResponse(data['${effectivePrefix}points'])!,
       badges: $UsersTable.$converter3.mapToDart(const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}badges']))!,
+      newsletterNotificationShown: const BoolType().mapFromDatabaseResponse(
+          data['${effectivePrefix}newsletter_notification_shown']),
+      newsletterOptIn: const BoolType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}newsletter_opt_in']),
+      createdAt: const DateTimeType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}created_at']),
     );
   }
   @override
@@ -104,6 +116,16 @@ class User extends DataClass implements Insertable<User> {
       final converter = $UsersTable.$converter3;
       map['badges'] = Variable<String>(converter.mapToSql(badges)!);
     }
+    if (!nullToAbsent || newsletterNotificationShown != null) {
+      map['newsletter_notification_shown'] =
+          Variable<bool?>(newsletterNotificationShown);
+    }
+    if (!nullToAbsent || newsletterOptIn != null) {
+      map['newsletter_opt_in'] = Variable<bool?>(newsletterOptIn);
+    }
+    if (!nullToAbsent || createdAt != null) {
+      map['created_at'] = Variable<DateTime?>(createdAt);
+    }
     return map;
   }
 
@@ -134,6 +156,16 @@ class User extends DataClass implements Insertable<User> {
       searchHistory: Value(searchHistory),
       points: Value(points),
       badges: Value(badges),
+      newsletterNotificationShown:
+          newsletterNotificationShown == null && nullToAbsent
+              ? const Value.absent()
+              : Value(newsletterNotificationShown),
+      newsletterOptIn: newsletterOptIn == null && nullToAbsent
+          ? const Value.absent()
+          : Value(newsletterOptIn),
+      createdAt: createdAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(createdAt),
     );
   }
 
@@ -156,6 +188,10 @@ class User extends DataClass implements Insertable<User> {
           serializer.fromJson<List<SearchResult>>(json['searchHistory']),
       points: serializer.fromJson<int>(json['points']),
       badges: serializer.fromJson<BuiltList<Badge>>(json['badges']),
+      newsletterNotificationShown:
+          serializer.fromJson<bool?>(json['newsletterNotificationShown']),
+      newsletterOptIn: serializer.fromJson<bool?>(json['newsletterOptIn']),
+      createdAt: serializer.fromJson<DateTime?>(json['createdAt']),
     );
   }
   @override
@@ -176,6 +212,10 @@ class User extends DataClass implements Insertable<User> {
       'searchHistory': serializer.toJson<List<SearchResult>>(searchHistory),
       'points': serializer.toJson<int>(points),
       'badges': serializer.toJson<BuiltList<Badge>>(badges),
+      'newsletterNotificationShown':
+          serializer.toJson<bool?>(newsletterNotificationShown),
+      'newsletterOptIn': serializer.toJson<bool?>(newsletterOptIn),
+      'createdAt': serializer.toJson<DateTime?>(createdAt),
     };
   }
 
@@ -191,7 +231,10 @@ class User extends DataClass implements Insertable<User> {
           DateTime? latestMapUpdate,
           List<SearchResult>? searchHistory,
           int? points,
-          BuiltList<Badge>? badges}) =>
+          BuiltList<Badge>? badges,
+          bool? newsletterNotificationShown,
+          bool? newsletterOptIn,
+          DateTime? createdAt}) =>
       User(
         id: id ?? this.id,
         sex: sex ?? this.sex,
@@ -206,6 +249,10 @@ class User extends DataClass implements Insertable<User> {
         searchHistory: searchHistory ?? this.searchHistory,
         points: points ?? this.points,
         badges: badges ?? this.badges,
+        newsletterNotificationShown:
+            newsletterNotificationShown ?? this.newsletterNotificationShown,
+        newsletterOptIn: newsletterOptIn ?? this.newsletterOptIn,
+        createdAt: createdAt ?? this.createdAt,
       );
   @override
   String toString() {
@@ -221,7 +268,10 @@ class User extends DataClass implements Insertable<User> {
           ..write('latestMapUpdate: $latestMapUpdate, ')
           ..write('searchHistory: $searchHistory, ')
           ..write('points: $points, ')
-          ..write('badges: $badges')
+          ..write('badges: $badges, ')
+          ..write('newsletterNotificationShown: $newsletterNotificationShown, ')
+          ..write('newsletterOptIn: $newsletterOptIn, ')
+          ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
   }
@@ -239,7 +289,10 @@ class User extends DataClass implements Insertable<User> {
       latestMapUpdate,
       searchHistory,
       points,
-      badges);
+      badges,
+      newsletterNotificationShown,
+      newsletterOptIn,
+      createdAt);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -255,7 +308,11 @@ class User extends DataClass implements Insertable<User> {
           other.latestMapUpdate == this.latestMapUpdate &&
           other.searchHistory == this.searchHistory &&
           other.points == this.points &&
-          other.badges == this.badges);
+          other.badges == this.badges &&
+          other.newsletterNotificationShown ==
+              this.newsletterNotificationShown &&
+          other.newsletterOptIn == this.newsletterOptIn &&
+          other.createdAt == this.createdAt);
 }
 
 class UsersCompanion extends UpdateCompanion<User> {
@@ -271,6 +328,9 @@ class UsersCompanion extends UpdateCompanion<User> {
   final Value<List<SearchResult>> searchHistory;
   final Value<int> points;
   final Value<BuiltList<Badge>> badges;
+  final Value<bool?> newsletterNotificationShown;
+  final Value<bool?> newsletterOptIn;
+  final Value<DateTime?> createdAt;
   const UsersCompanion({
     this.id = const Value.absent(),
     this.sex = const Value.absent(),
@@ -284,6 +344,9 @@ class UsersCompanion extends UpdateCompanion<User> {
     this.searchHistory = const Value.absent(),
     this.points = const Value.absent(),
     this.badges = const Value.absent(),
+    this.newsletterNotificationShown = const Value.absent(),
+    this.newsletterOptIn = const Value.absent(),
+    this.createdAt = const Value.absent(),
   });
   UsersCompanion.insert({
     this.id = const Value.absent(),
@@ -298,6 +361,9 @@ class UsersCompanion extends UpdateCompanion<User> {
     this.searchHistory = const Value.absent(),
     this.points = const Value.absent(),
     this.badges = const Value.absent(),
+    this.newsletterNotificationShown = const Value.absent(),
+    this.newsletterOptIn = const Value.absent(),
+    this.createdAt = const Value.absent(),
   });
   static Insertable<User> custom({
     Expression<String>? id,
@@ -312,6 +378,9 @@ class UsersCompanion extends UpdateCompanion<User> {
     Expression<List<SearchResult>>? searchHistory,
     Expression<int>? points,
     Expression<BuiltList<Badge>>? badges,
+    Expression<bool?>? newsletterNotificationShown,
+    Expression<bool?>? newsletterOptIn,
+    Expression<DateTime?>? createdAt,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -328,6 +397,10 @@ class UsersCompanion extends UpdateCompanion<User> {
       if (searchHistory != null) 'search_history': searchHistory,
       if (points != null) 'points': points,
       if (badges != null) 'badges': badges,
+      if (newsletterNotificationShown != null)
+        'newsletter_notification_shown': newsletterNotificationShown,
+      if (newsletterOptIn != null) 'newsletter_opt_in': newsletterOptIn,
+      if (createdAt != null) 'created_at': createdAt,
     });
   }
 
@@ -343,7 +416,10 @@ class UsersCompanion extends UpdateCompanion<User> {
       Value<DateTime?>? latestMapUpdate,
       Value<List<SearchResult>>? searchHistory,
       Value<int>? points,
-      Value<BuiltList<Badge>>? badges}) {
+      Value<BuiltList<Badge>>? badges,
+      Value<bool?>? newsletterNotificationShown,
+      Value<bool?>? newsletterOptIn,
+      Value<DateTime?>? createdAt}) {
     return UsersCompanion(
       id: id ?? this.id,
       sex: sex ?? this.sex,
@@ -358,6 +434,10 @@ class UsersCompanion extends UpdateCompanion<User> {
       searchHistory: searchHistory ?? this.searchHistory,
       points: points ?? this.points,
       badges: badges ?? this.badges,
+      newsletterNotificationShown:
+          newsletterNotificationShown ?? this.newsletterNotificationShown,
+      newsletterOptIn: newsletterOptIn ?? this.newsletterOptIn,
+      createdAt: createdAt ?? this.createdAt,
     );
   }
 
@@ -408,6 +488,16 @@ class UsersCompanion extends UpdateCompanion<User> {
       final converter = $UsersTable.$converter3;
       map['badges'] = Variable<String>(converter.mapToSql(badges.value)!);
     }
+    if (newsletterNotificationShown.present) {
+      map['newsletter_notification_shown'] =
+          Variable<bool?>(newsletterNotificationShown.value);
+    }
+    if (newsletterOptIn.present) {
+      map['newsletter_opt_in'] = Variable<bool?>(newsletterOptIn.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime?>(createdAt.value);
+    }
     return map;
   }
 
@@ -425,7 +515,10 @@ class UsersCompanion extends UpdateCompanion<User> {
           ..write('latestMapUpdate: $latestMapUpdate, ')
           ..write('searchHistory: $searchHistory, ')
           ..write('points: $points, ')
-          ..write('badges: $badges')
+          ..write('badges: $badges, ')
+          ..write('newsletterNotificationShown: $newsletterNotificationShown, ')
+          ..write('newsletterOptIn: $newsletterOptIn, ')
+          ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
   }
@@ -517,6 +610,29 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
               defaultValue: Constant(const BadgeListDbConverter()
                   .mapToSql(BuiltList.of(<Badge>[]))!))
           .withConverter<BuiltList<Badge>>($UsersTable.$converter3);
+  final VerificationMeta _newsletterNotificationShownMeta =
+      const VerificationMeta('newsletterNotificationShown');
+  @override
+  late final GeneratedColumn<bool?> newsletterNotificationShown =
+      GeneratedColumn<bool?>('newsletter_notification_shown', aliasedName, true,
+          type: const BoolType(),
+          requiredDuringInsert: false,
+          defaultConstraints: 'CHECK (newsletter_notification_shown IN (0, 1))',
+          defaultValue: const Constant(false));
+  final VerificationMeta _newsletterOptInMeta =
+      const VerificationMeta('newsletterOptIn');
+  @override
+  late final GeneratedColumn<bool?> newsletterOptIn = GeneratedColumn<bool?>(
+      'newsletter_opt_in', aliasedName, true,
+      type: const BoolType(),
+      requiredDuringInsert: false,
+      defaultConstraints: 'CHECK (newsletter_opt_in IN (0, 1))',
+      defaultValue: const Constant(false));
+  final VerificationMeta _createdAtMeta = const VerificationMeta('createdAt');
+  @override
+  late final GeneratedColumn<DateTime?> createdAt = GeneratedColumn<DateTime?>(
+      'created_at', aliasedName, true,
+      type: const IntType(), requiredDuringInsert: false);
   @override
   List<GeneratedColumn> get $columns => [
         id,
@@ -530,7 +646,10 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
         latestMapUpdate,
         searchHistory,
         points,
-        badges
+        badges,
+        newsletterNotificationShown,
+        newsletterOptIn,
+        createdAt
       ];
   @override
   String get aliasedName => _alias ?? 'users';
@@ -585,6 +704,23 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
           points.isAcceptableOrUnknown(data['points']!, _pointsMeta));
     }
     context.handle(_badgesMeta, const VerificationResult.success());
+    if (data.containsKey('newsletter_notification_shown')) {
+      context.handle(
+          _newsletterNotificationShownMeta,
+          newsletterNotificationShown.isAcceptableOrUnknown(
+              data['newsletter_notification_shown']!,
+              _newsletterNotificationShownMeta));
+    }
+    if (data.containsKey('newsletter_opt_in')) {
+      context.handle(
+          _newsletterOptInMeta,
+          newsletterOptIn.isAcceptableOrUnknown(
+              data['newsletter_opt_in']!, _newsletterOptInMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(_createdAtMeta,
+          createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta));
+    }
     return context;
   }
 

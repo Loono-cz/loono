@@ -137,6 +137,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
           actionType: _examinationActionType,
           periodicExam: _examination.periodicExam,
           customInterval: _examination.customInterval,
+          createdAt: _examination.createdAt,
         );
 
     response.map(
@@ -231,6 +232,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
             note: note,
             customInterval: _examination.customInterval ?? _examination.intervalYears,
             actionType: _examinationActionType,
+            createdAt: _examination.createdAt,
           );
 
       response.map(
@@ -278,6 +280,7 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
             actionType: _examinationActionType,
             periodicExam: false,
             customInterval: _examination.customInterval,
+            createdAt: _examination.createdAt,
           );
 
       response.map(

@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/flushbar_message.dart';
 import 'package:loono/l10n/ext.dart';
+import 'package:loono/models/api_response.dart';
+import 'package:loono/repositories/user_repository.dart';
 import 'package:loono/services/api_service.dart';
+import 'package:loono/services/db/database.dart';
 import 'package:loono/ui/screens/settings/settings_bottom_sheet.dart';
 import 'package:loono/ui/widgets/loono_point.dart';
 import 'package:loono/ui/widgets/settings/leaderboard_tile.dart';
@@ -28,6 +31,8 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
   FetchState _fetchState = FetchState.loading;
   Leaderboard? _leaderboardData;
 
+  List<LeaderboardUser> _peers = [];
+
   @override
   void initState() {
     super.initState();
@@ -35,10 +40,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
     registry.get<ApiService>().getLeaderboard().then((e) {
       e.map(
         success: (leaderboard) {
-          setState(() {
-            _leaderboardData = leaderboard.data;
-            _fetchState = FetchState.loaded;
-          });
+          _processData(leaderboard);
         },
         failure: (e) {
           setState(() => _fetchState = FetchState.error);
@@ -48,8 +50,29 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
     });
   }
 
+  Future<void> _processData(SuccessApiResponse<Leaderboard> leaderboard) async {
+    final userRepository = registry.get<UserRepository>();
+    final user = await userRepository.getCurrentUser();
+
+    _leaderboardData = leaderboard.data;
+    final peers = _leaderboardData?.peers.toList();
+    if (peers != null) {
+      _peers = peers;
+    }
+    if (user != null && _leaderboardData?.myOrder != null) {
+      await _peers.insertMe(user, _leaderboardData!.myOrder);
+    }
+    setState(() {
+      _fetchState = FetchState.loaded;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (_leaderboardData == null && _fetchState == FetchState.loaded) {
+      setState(() => _fetchState = FetchState.error);
+      showFlushBarError(context, context.l10n.something_went_wrong);
+    }
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -86,27 +109,52 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
       case FetchState.loaded:
         return ListView(
           children: [
-            ..._leaderboardData!.top.asMap().entries.map(
+            ...?_leaderboardData?.top.asMap().entries.map(
                   (e) => LeaderboardTile(
                     position: e.key + 1,
                     user: e.value,
                   ),
                 ),
-            Divider(
-              color: LoonoColors.leaderboardPrimary,
-              indent: MediaQuery.of(context).size.width / 4,
-              endIndent: MediaQuery.of(context).size.width / 4,
-            ),
-            ..._leaderboardData!.peers.asMap().entries.mapIndexed(
-                  (i, e) => LeaderboardTile(
-                    position: e.value.isThisMe == true
-                        ? _leaderboardData!.myOrder
-                        : (i == 0 ? _leaderboardData!.myOrder - 1 : _leaderboardData!.myOrder + 1),
-                    user: e.value,
-                  ),
-                ),
+            if (_leaderboardData?.top.toList().containsMe() == false) ..._getPeersPart()
           ],
         );
     }
+  }
+
+  List<Widget> _getPeersPart() {
+    final myOrder = _leaderboardData?.myOrder ?? 0;
+    return [
+      Divider(
+        color: LoonoColors.leaderboardPrimary,
+        indent: MediaQuery.of(context).size.width / 4,
+        endIndent: MediaQuery.of(context).size.width / 4,
+      ),
+      ..._peers.asMap().entries.mapIndexed(
+            (i, e) => LeaderboardTile(
+              position: e.value.isThisMe == true ? myOrder : (i == 0 ? myOrder - 1 : myOrder + 1),
+              user: e.value,
+            ),
+          ),
+    ];
+  }
+}
+
+extension _LeaderboardUserListExt on List<LeaderboardUser> {
+  bool containsMe() {
+    for (final user in this) {
+      if (user.isThisMe == true) return true;
+    }
+    return false;
+  }
+
+  Future<void> insertMe(User currentUser, int myOrder) async {
+    if (containsMe()) return;
+
+    final builder = LeaderboardUserBuilder()
+      ..isThisMe = true
+      ..points = currentUser.points
+      ..profileImageUrl = currentUser.profileImageUrl
+      ..name = currentUser.nickname;
+    insert(1, builder.build());
   }
 }
