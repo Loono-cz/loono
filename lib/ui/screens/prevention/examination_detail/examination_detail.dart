@@ -192,13 +192,6 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
     final lastVisitDateWithoutDay =
         widget.categorizedExamination.examination.lastConfirmedDate?.toLocal();
 
-    print('===');
-    print(_examination.uuid);
-    print(_examination.calculateStatus().toString());
-    print(lastVisitDateWithoutDay.toString());
-    print(_examination.state.toString());
-    print('===');
-
     final lastVisit =
         lastVisitDateWithoutDay != null && _examination.state != ExaminationStatus.UNKNOWN
             ? DateFormat.yMMMM('cs-CZ').format(
@@ -218,7 +211,6 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
 
     final preposition = czechPreposition(context, examinationType: _examinationType);
 
-    // TODO:
     // create new entry on BE, do not update the old one with the same uuid!
     /// not ideal in build method but need context
     Future<void> onPostNewCheckupSubmit({required DateTime date, String? note}) async {
@@ -237,23 +229,9 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
 
       response.map(
         success: (res) {
-          AutoRouter.of(context).popUntilRoot();
           Provider.of<ExaminationsProvider>(context, listen: false)
               .updateExaminationsRecord(res.data);
-          final newExam = Provider.of<ExaminationsProvider>(context, listen: false)
-              .examinations
-              ?.examinations
-              .firstWhere((p0) => p0.uuid == res.data.uuid);
-          if (newExam != null) {
-            AutoRouter.of(context).push(
-              ExaminationDetailRoute(
-                categorizedExamination: CategorizedExamination(
-                  examination: newExam,
-                  category: newExam.calculateStatus(),
-                ),
-              ),
-            );
-          }
+          AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
           showFlushBarSuccess(context, l10n.checkup_reminder_toast, sync: true);
         },
         failure: (err) {
