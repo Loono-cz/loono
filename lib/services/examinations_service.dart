@@ -27,6 +27,7 @@ class ExaminationsProvider extends ChangeNotifier {
     examResponse.map(
       success: (exams) {
         examinations = exams.data;
+        print(exams.data.toString());
         evaluateExaminations();
         loading = false;
       },
@@ -48,12 +49,16 @@ class ExaminationsProvider extends ChangeNotifier {
   ) {
     final exams = examinations?.examinations;
 
-    final examination = exams?.firstWhere(
-      (item) => item.uuid == record.uuid,
-      orElse: () => exams.firstWhere(
-        (item) => record.type == item.examinationType && item.uuid == null,
-      ),
-    );
+    ExaminationPreventionStatus? examination;
+    print(record.toString());
+    if (exams != null && exams.isNotEmpty) {
+      examination = exams.firstWhere(
+        (item) => item.uuid == record.uuid,
+        orElse: () => exams.firstWhere(
+          (item) => record.type == item.examinationType, // && item.uuid == null,
+        ),
+      );
+    }
 
     final indexToUpdate = examinations?.examinations.indexWhere((item) => item == examination);
 
@@ -79,10 +84,10 @@ class ExaminationsProvider extends ChangeNotifier {
               ..periodicExam = record.periodicExam
               ..note = record.note,
           );
-
       final builder = examinations?.toBuilder();
       builder?.examinations.removeAt(indexToUpdate);
       builder?.examinations.add(updatedItem!);
+      print(examinations?.examinations.elementAt(indexToUpdate).toString());
       examinations = builder?.build();
       evaluateExaminations();
       notifyListeners();

@@ -191,8 +191,12 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
     final lastVisitDateWithoutDay =
         widget.categorizedExamination.examination.lastConfirmedDate?.toLocal();
 
-    debugPrint(lastVisitDateWithoutDay.toString());
-    debugPrint(_examination.state.toString());
+    print('===');
+    print(_examination.uuid);
+    print(_examination.calculateStatus().toString());
+    print(lastVisitDateWithoutDay.toString());
+    print(_examination.state.toString());
+    print('===');
 
     final lastVisit =
         lastVisitDateWithoutDay != null && _examination.state != ExaminationStatus.UNKNOWN
@@ -221,7 +225,6 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
       final response = await registry.get<ExaminationRepository>().postExamination(
             _examinationType,
             newDate: date,
-            uuid: null,
             firstExam: false,
             status: ExaminationStatus.NEW,
             categoryType: _examinationCategoryType ?? ExaminationCategoryType.MANDATORY,
@@ -232,9 +235,23 @@ class _ExaminationDetailState extends State<ExaminationDetail> {
 
       response.map(
         success: (res) {
+          AutoRouter.of(context).popUntilRoot();
           Provider.of<ExaminationsProvider>(context, listen: false)
               .updateExaminationsRecord(res.data);
-          AutoRouter.of(context).popUntilRouteWithName(ExaminationDetailRoute.name);
+          final newExam = Provider.of<ExaminationsProvider>(context, listen: false)
+              .examinations
+              ?.examinations
+              .firstWhere((p0) => p0.uuid == res.data.uuid);
+          if (newExam != null) {
+            AutoRouter.of(context).push(
+              ExaminationDetailRoute(
+                categorizedExamination: CategorizedExamination(
+                  examination: newExam,
+                  category: newExam.calculateStatus(),
+                ),
+              ),
+            );
+          }
           showFlushBarSuccess(context, l10n.checkup_reminder_toast, sync: true);
         },
         failure: (err) {
