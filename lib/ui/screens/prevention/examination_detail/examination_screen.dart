@@ -27,14 +27,17 @@ class ExaminationDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final exams =
-        Provider.of<ExaminationsProvider>(context, listen: true).examinations!.examinations;
+        Provider.of<ExaminationsProvider>(context, listen: true).examinations?.examinations;
 
-    final examination = exams.firstWhere(
-      (item) => item.uuid != null && item.uuid == _exam.uuid,
-      orElse: () => exams.firstWhere(
-        (item) => _exam.examinationType == item.examinationType,
-      ),
-    );
+    ExaminationPreventionStatus? examination;
+    if (exams != null && exams.isNotEmpty) {
+      examination = exams.firstWhere(
+        (item) => item.uuid != null && item.uuid == _exam.uuid,
+        orElse: () => exams.firstWhere(
+          (item) => _exam.examinationType == item.examinationType,
+        ),
+      );
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -51,13 +54,17 @@ class ExaminationDetailScreen extends StatelessWidget {
             ),
           ),
         ),
-        actions: examination.examinationCategoryType == ExaminationCategoryType.CUSTOM
+        actions: (examination?.examinationCategoryType == ExaminationCategoryType.CUSTOM)
             ? [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: IconButton(
                     key: const Key('examinationDetailPage_btn_menu'),
-                    onPressed: () => showCustomExamEditModal(context, examination),
+                    onPressed: () {
+                      if (examination != null) {
+                        showCustomExamEditModal(context, examination);
+                      }
+                    },
                     icon: SvgPicture.asset(
                       'assets/icons/more_vertical.svg',
                     ),
@@ -67,21 +74,23 @@ class ExaminationDetailScreen extends StatelessWidget {
             : null,
       ),
       body: SafeArea(
-        child: categorizedExamination.category == const ExaminationCategory.unknownLastVisit() &&
-                _isMandatory
-            ? ScheduleExamination(
-                examinationRecord: examination,
-              )
-            : SingleChildScrollView(
-                physics: const ScrollPhysics(),
-                child: ExaminationDetail(
-                  categorizedExamination: CategorizedExamination(
-                    examination: examination,
-                    category: examination.calculateStatus(),
-                  ),
-                  initialMessage: initialMessage,
-                ),
-              ),
+        child: examination != null
+            ? categorizedExamination.category == const ExaminationCategory.unknownLastVisit() &&
+                    _isMandatory
+                ? ScheduleExamination(
+                    examinationRecord: examination,
+                  )
+                : SingleChildScrollView(
+                    physics: const ScrollPhysics(),
+                    child: ExaminationDetail(
+                      categorizedExamination: CategorizedExamination(
+                        examination: examination,
+                        category: examination.calculateStatus(),
+                      ),
+                      initialMessage: initialMessage,
+                    ),
+                  )
+            : Container(),
       ),
     );
   }
