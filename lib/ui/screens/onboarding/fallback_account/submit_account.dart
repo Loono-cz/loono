@@ -53,6 +53,7 @@ Future<void> submitAccount(
           await autoRouter.replaceAll([BadgeOverviewRoute()]);
         },
         failure: (_) async {
+          // TODO: Tu to vyhodi chybovu hlasku a vymaze ucet z Firebase, ale v DB ostane
           // delete account so user can not login without saving info to server first
           showFlushBarError(context, context.l10n.something_went_wrong);
           await userRepository.deleteAccount();

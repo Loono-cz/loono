@@ -122,6 +122,7 @@ class AuthService {
       identifierToken: appleCredential.identityToken,
     );
     await _secureStorage.saveAppleAccountInfo(appleAccountInfo);
+    // TODO: Vyhladavame apple ucet podla mailu, ale pre mail ziadny zaznam neexistuje, ale pre AppleIdUid existuje, to nam nenajde
     final signInMethods = await _auth.fetchSignInMethodsForEmail(appleAccountInfo.email);
     if (signInMethods.isEmpty) {
       return Left(
@@ -211,6 +212,7 @@ class AuthService {
       rawNonce: cryptoNonce.rawNonce,
     );
 
+    // TODO: Tu vytiahneme udaje k druhemu uctu a nie k tomu nasemu z Firebase
     UserCredential? userCredential;
     try {
       userCredential = await _auth.signInWithCredential(oauthCredential);
