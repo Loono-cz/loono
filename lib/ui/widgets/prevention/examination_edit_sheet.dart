@@ -55,7 +55,7 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
   DateTime? _lastExamDate;
 
   bool _idkCheck = false;
-
+  bool _showDateError = false;
   bool _initialized = false;
 
   void changeCustomInterval(String term) => Future<void>.delayed(
@@ -69,6 +69,7 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
         Duration.zero,
         () => setState(() {
           _idkCheck = value;
+          _showDateError = false;
         }),
       );
 
@@ -76,8 +77,11 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
         const Duration(milliseconds: 200),
         () => setState(() {
           _lastExamDate = dateTime;
+          _showDateError = false;
         }),
       );
+
+  void _showDateErrorMessage() => setState(() => _showDateError = true);
 
   void _init() {
     if (_initialized) return;
@@ -236,12 +240,14 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
               key: const Key('editExamSheet_btn_editExam'),
               text: context.l10n.action_save,
               asyncCallback: () async {
-                await _onPostNewCheckupSubmit(
-                  newDate: _lastExamDate,
-                  customInterval: _customIntervalText.isNotEmpty
-                      ? transformInterval(context, _customIntervalText)
-                      : null,
-                );
+                (_lastExamDate != null || _idkCheck == true)
+                    ? await _onPostNewCheckupSubmit(
+                        newDate: _lastExamDate,
+                        customInterval: _customIntervalText.isNotEmpty
+                            ? transformInterval(context, _customIntervalText)
+                            : null,
+                      )
+                    : _showDateErrorMessage();
               },
             ),
           ],
@@ -294,7 +300,7 @@ class _CustomEditExaminationState extends State<CustomEditExamination> {
                         ? MediaQuery.of(context).size.width * 0.52
                         : MediaQuery.of(context).size.width * 0.6,
                     child: CustomInputTextField(
-                      error: false,
+                      error: _showDateError,
                       enabled: !_idkCheck,
                       label: _lastExamDate == null ? '' : context.l10n.last_visit,
                       hintText: context.l10n.last_visit,

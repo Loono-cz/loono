@@ -48,12 +48,15 @@ class ExaminationsProvider extends ChangeNotifier {
   ) {
     final exams = examinations?.examinations;
 
-    final examination = exams?.firstWhere(
-      (item) => item.uuid == record.uuid,
-      orElse: () => exams.firstWhere(
-        (item) => record.type == item.examinationType && item.uuid == null,
-      ),
-    );
+    ExaminationPreventionStatus? examination;
+    if (exams != null && exams.isNotEmpty) {
+      examination = exams.firstWhere(
+        (item) => item.uuid == record.uuid,
+        orElse: () => exams.firstWhere(
+          (item) => record.type == item.examinationType,
+        ),
+      );
+    }
 
     final indexToUpdate = examinations?.examinations.indexWhere((item) => item == examination);
 
