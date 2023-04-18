@@ -217,9 +217,9 @@ class LoginScreen extends StatelessWidget {
         await context.read<ExaminationsProvider>().fetchExaminations().then(
               (res) async => res.when(
                 success: (data) async {
+                  // An account with this email already exists, proceed through the login.
                   final autoRouter = AutoRouter.of(context);
                   await registry.get<NotificationService>().enableNotifications(true);
-                  // An account with this email already exists, proceed through the login.
                   await _userRepository.createUser();
                   await autoRouter.replaceAll([const MainScreenRouter()]);
                 },
