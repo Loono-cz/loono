@@ -53,7 +53,7 @@ class NotificationRouter {
           await _openExaminationScreen(exams, uuid);
           break;
         case NotificationScreen.selfExamination:
-          await _openSelfExaminationScreen(selfExams, uuid);
+          appRouter.push(const MainRoute()).ignore();
           break;
         default:
           return;
@@ -76,31 +76,6 @@ class NotificationRouter {
       );
     } else {
       appRouter.push(const MainRoute()).ignore();
-    }
-  }
-
-  Future<void> _openSelfExaminationScreen(
-    List<SelfExaminationPreventionStatus> selfExams,
-    String uuid,
-  ) async {
-    final selfExam = selfExams.firstWhereOrNull((element) => element.lastExamUuid == uuid);
-    if (selfExam != null) {
-      final account = await registry.get<ApiService>().getAccount();
-      Sex? sex;
-      account.map(
-        success: (data) {
-          sex = data.data.sex;
-        },
-        failure: (err) {},
-      );
-      if (sex != null) {
-        await appRouter.replace(
-          SelfExaminationDetailRoute(
-            sex: sex!,
-            selfExamination: selfExam,
-          ),
-        );
-      }
     }
   }
 }
