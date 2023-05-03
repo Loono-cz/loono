@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/categorized_examination_converter.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -38,13 +37,11 @@ class NotificationRouter {
     if (screen.isExamination) {
       await appRouter.pushAll(const [NotificationLoadingRoute()]);
       var exams = <ExaminationPreventionStatus>[];
-      var selfExams = <SelfExaminationPreventionStatus>[];
       final examsResponse = await registry.get<ApiService>().getExaminations();
 
       examsResponse.map(
         success: (data) {
           exams = data.data.examinations.toList();
-          selfExams = data.data.selfexaminations.toList();
         },
         failure: (err) {},
       );
