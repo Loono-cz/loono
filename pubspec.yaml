@@ -69,7 +69,6 @@ dependencies:
   intl: ^0.17.0
   json_annotation: ^4.0.1
   jwt_decoder: ^2.0.1
-  logging: ^1.1.1
   loono_api:
     git:
       url: https://github.com/Loono-cz/loono-api.git
