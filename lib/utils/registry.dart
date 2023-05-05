@@ -34,6 +34,7 @@ import 'package:loono/services/save_directories.dart';
 import 'package:loono/services/secure_storage_service.dart';
 import 'package:loono/utils/app_clear.dart';
 import 'package:loono/utils/app_config.dart';
+import 'package:loono/utils/my_logger.dart';
 import 'package:loono/utils/picture_precaching.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -243,6 +244,7 @@ Future<void> setup({
 
   // splash screen
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  await MyLogger().writeToFile('registry.dart: Preserving splashscreen...');
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   _isRegistryInitialized = true;
 }

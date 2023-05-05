@@ -16,6 +16,7 @@ import 'package:loono/services/auth/auth_service.dart';
 import 'package:loono/services/examinations_service.dart';
 import 'package:loono/services/map_state_sevice.dart';
 import 'package:loono/services/webview_service.dart';
+import 'package:loono/utils/my_logger.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:provider/provider.dart';
 
@@ -42,20 +43,33 @@ class Loono extends StatelessWidget {
     return StreamBuilder<AuthUser?>(
       stream: auth.onAuthStateChanged,
       builder: (context, snapshot) {
+        MyLogger().writeToFile('Loono.dart: build');
         final authUser = snapshot.data;
+        MyLogger().writeToFile('Loono.dart: AuthUser = ${authUser.toString()}');
+        MyLogger().writeToFile('Loono.dart: check appRouter.Routes...');
+        MyLogger().writeToFile('Loono.dart: ${EmailRoute.name} isActive ${appRouter.isRouteActive(EmailRoute.name)}');
+        MyLogger().writeToFile('Loono.dart: ${OnboardingFormDoneRoute.name} isActive ${appRouter.isRouteActive(OnboardingFormDoneRoute.name)}');
+        MyLogger().writeToFile('Loono.dart: ${LoginRoute.name} isActive ${appRouter.isRouteActive(LoginRoute.name)}');
+        MyLogger().writeToFile('Loono.dart: ${LogoutRoute.name} isActive ${appRouter.isRouteActive(LogoutRoute.name)}');
+        MyLogger().writeToFile('Loono.dart: ${AfterDeletionRoute.name} isActive ${appRouter.isRouteActive(AfterDeletionRoute.name)}');
         if (authUser == null &&
             !appRouter.isRouteActive(EmailRoute.name) &&
             !appRouter.isRouteActive(OnboardingFormDoneRoute.name) &&
             !appRouter.isRouteActive(LoginRoute.name) &&
             !appRouter.isRouteActive(LogoutRoute.name) &&
             !appRouter.isRouteActive(AfterDeletionRoute.name)) {
+          MyLogger().writeToFile('Loono.dart: AuthUser is null, appRouter.Routes are INactive'); 
           if (showSplashScreen) {
+            MyLogger().writeToFile('Loono.dart: showSplash()');
             showSplashScreen = false;
             _showSplashscreen(appRouter);
           } else {
+            MyLogger().writeToFile('Loono.dart: showMainScreen()');
             _showMainScreen(appRouter);
           }
           healthcareProviderRepository.checkAndUpdateIfNeeded();
+        } else{
+          MyLogger().writeToFile('Loono.dart: User is not null || There is an active route!');
         }
 
         return MultiProvider(
@@ -88,6 +102,7 @@ class Loono extends StatelessWidget {
   }
 
   Future<void> _showSplashscreen(AppRouter appRouter) async {
+    await MyLogger().writeToFile('Loono.dart -> _showSplashScreen()...');
     if (Platform.isAndroid && ((await getAndroidVersion()) ?? 0) >= 31) {
       await appRouter.push(const Splashscreen());
       _showMainScreen(appRouter, delay: const Duration(seconds: 5));
@@ -97,6 +112,7 @@ class Loono extends StatelessWidget {
   }
 
   void _showMainScreen(AppRouter appRouter, {Duration delay = Duration.zero}) {
+    MyLogger().writeToFile('Loono.dart -> _showMainScreen()...');
     SchedulerBinding.instance.addPostFrameCallback((_) {
       Future<void>.delayed(delay, () {
         appRouter
