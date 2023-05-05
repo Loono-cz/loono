@@ -1,20 +1,29 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
 
 class MyLogger{
-  static Future<void> writeToFile(String text) async {
-    final directory = await getApplicationDocumentsDirectory();
-    final file = File('${directory.path}/SplashscreenLogs.txt');
-    await file.writeAsString('log: ${DateTime.now()}: $text', mode: FileMode.append);
-    await file.writeAsString('\n', mode: FileMode.append);
+
+  factory MyLogger() {
+    return _instance;
   }
 
-  static Future<void> initFile() async {
-    final directory = await getApplicationDocumentsDirectory();
+  MyLogger._internal();
+  static final MyLogger _instance = MyLogger._internal();
+  Directory? directory;
+  File? file;
+  List<String> logs = [];
+
+  Future<void> writeToFile(String text) async {
+    logs.add('log: ${DateTime.now()}: $text\n');
+    file?.writeAsString(logs.toString()).ignore();
+  }
+
+  Future<void> initFile() async {
+    directory = await getApplicationDocumentsDirectory();
+    file = File('${directory?.path}/SplashscreenLogs.txt');
     // print(directory);
-    final file = File('${directory.path}/SplashscreenLogs.txt');
-    await file.writeAsString('log: ${DateTime.now()}: Initializing logs...');
-    await file.writeAsString('\n', mode: FileMode.append);
+    logs.add('log: ${DateTime.now()}: Initializing logs...\n');
   }
 }
