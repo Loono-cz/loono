@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 
 class MyLogger {
@@ -22,7 +23,7 @@ class MyLogger {
   Future<void> initFile() async {
     directory = await getApplicationDocumentsDirectory();
     file = File('${directory?.path}/SplashscreenLogs.txt');
-    // print(directory);
+    debugPrint(directory?.toString());
     logs.add('log: ${DateTime.now()}: Initializing logs...\n');
   }
 }

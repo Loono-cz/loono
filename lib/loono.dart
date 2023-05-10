@@ -47,18 +47,28 @@ class Loono extends StatelessWidget {
         final authUser = snapshot.data;
         MyLogger().writeToFile('Loono.dart: AuthUser = ${authUser.toString()}');
         MyLogger().writeToFile('Loono.dart: check appRouter.Routes...');
-        MyLogger().writeToFile('Loono.dart: ${EmailRoute.name} isActive ${appRouter.isRouteActive(EmailRoute.name)}');
-        MyLogger().writeToFile('Loono.dart: ${OnboardingFormDoneRoute.name} isActive ${appRouter.isRouteActive(OnboardingFormDoneRoute.name)}');
-        MyLogger().writeToFile('Loono.dart: ${LoginRoute.name} isActive ${appRouter.isRouteActive(LoginRoute.name)}');
-        MyLogger().writeToFile('Loono.dart: ${LogoutRoute.name} isActive ${appRouter.isRouteActive(LogoutRoute.name)}');
-        MyLogger().writeToFile('Loono.dart: ${AfterDeletionRoute.name} isActive ${appRouter.isRouteActive(AfterDeletionRoute.name)}');
+        MyLogger().writeToFile(
+          'Loono.dart: ${EmailRoute.name} isActive ${appRouter.isRouteActive(EmailRoute.name)}',
+        );
+        MyLogger().writeToFile(
+          'Loono.dart: ${OnboardingFormDoneRoute.name} isActive ${appRouter.isRouteActive(OnboardingFormDoneRoute.name)}',
+        );
+        MyLogger().writeToFile(
+          'Loono.dart: ${LoginRoute.name} isActive ${appRouter.isRouteActive(LoginRoute.name)}',
+        );
+        MyLogger().writeToFile(
+          'Loono.dart: ${LogoutRoute.name} isActive ${appRouter.isRouteActive(LogoutRoute.name)}',
+        );
+        MyLogger().writeToFile(
+          'Loono.dart: ${AfterDeletionRoute.name} isActive ${appRouter.isRouteActive(AfterDeletionRoute.name)}',
+        );
         if (authUser == null &&
             !appRouter.isRouteActive(EmailRoute.name) &&
             !appRouter.isRouteActive(OnboardingFormDoneRoute.name) &&
             !appRouter.isRouteActive(LoginRoute.name) &&
             !appRouter.isRouteActive(LogoutRoute.name) &&
             !appRouter.isRouteActive(AfterDeletionRoute.name)) {
-          MyLogger().writeToFile('Loono.dart: AuthUser is null, appRouter.Routes are INactive'); 
+          MyLogger().writeToFile('Loono.dart: AuthUser is null, appRouter.Routes are INactive');
           if (showSplashScreen) {
             MyLogger().writeToFile('Loono.dart: showSplash()');
             showSplashScreen = false;
@@ -68,7 +78,7 @@ class Loono extends StatelessWidget {
             _showMainScreen(appRouter);
           }
           healthcareProviderRepository.checkAndUpdateIfNeeded();
-        } else{
+        } else {
           MyLogger().writeToFile('Loono.dart: User is not null || There is an active route!');
         }
 

@@ -9,6 +9,7 @@ import 'package:loono/helpers/self_examination_category.dart';
 import 'package:loono/models/api_response.dart';
 import 'package:loono/models/categorized_examination.dart';
 import 'package:loono/services/api_service.dart';
+import 'package:loono/utils/my_logger.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
@@ -19,6 +20,7 @@ class ExaminationsProvider extends ChangeNotifier {
 
   Future<ApiResponse<PreventionStatus>> fetchExaminations() async {
     log('fetching examinations from server');
+    await MyLogger().writeToFile('fetching examinations from server');
 
     loading = true;
     notifyListeners();

@@ -10,6 +10,7 @@ import 'package:loono/services/database_service.dart';
 import 'package:loono/services/save_directories.dart';
 import 'package:loono/utils/map_utils.dart';
 import 'package:loono/utils/memoized_stream.dart';
+import 'package:loono/utils/my_logger.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
@@ -38,7 +39,10 @@ class HealthcareProviderRepository {
   }
 
   final healthcareProvidersSyncMemoryStorage = MemoryStorage<HealthcareSyncState>(
-    onStateChanged: (state) => debugPrint('HEALTHCARE_PROVIDERS STREAM VALUE: $state'),
+    onStateChanged: (state) {
+      MyLogger().writeToFile('HEALTHCARE_PROVIDERS STREAM VALUE: $state');
+      debugPrint('HEALTHCARE_PROVIDERS STREAM VALUE: $state');
+    },
   );
 
   MemoizedStream<HealthcareSyncState> get healthcareProvidersSyncStateStream =>
@@ -58,10 +62,14 @@ class HealthcareProviderRepository {
         _syncState != HealthcareSyncState.error) return;
 
     healthcareProvidersSyncMemoryStorage.setState(HealthcareSyncState.started);
+    await MyLogger().writeToFile('HEALTHCARE_PROVIDERS: check started');
     debugPrint('HEALTHCARE_PROVIDERS: check started');
     final localLatestUpdateCheck = _db.users.user?.latestMapUpdateCheck;
     final localLatestUpdate = _db.users.user?.latestMapUpdate;
     final serverLatestUpdate = await _getServerLatestUpdate(localLatestUpdateCheck);
+    await MyLogger().writeToFile(
+      'HEALTHCARE_PROVIDERS: LOCAL LATEST: $localLatestUpdate | SERVER LATEST: $serverLatestUpdate',
+    );
     debugPrint(
       'HEALTHCARE_PROVIDERS: LOCAL LATEST: $localLatestUpdate | SERVER LATEST: $serverLatestUpdate',
     );
@@ -73,6 +81,7 @@ class HealthcareProviderRepository {
       }
       await _storeList(data, serverLatestUpdate);
     } else {
+      await MyLogger().writeToFile('HEALTHCARE_PROVIDERS: DATA ARE UP TO DATE');
       debugPrint('HEALTHCARE_PROVIDERS: DATA ARE UP TO DATE');
     }
     healthcareProvidersSyncMemoryStorage.setState(HealthcareSyncState.completed);
@@ -106,17 +115,23 @@ class HealthcareProviderRepository {
     if (localLatestUpdateCheck != null &&
         now.toDateTime().difference(localLatestUpdateCheck).inDays.abs() >
             UPDATE_CHECK_INTERVAL_IN_DAYS) {
+      await MyLogger().writeToFile(
+        'HEALTHCARE_PROVIDERS: IT IS MORE THAN 21 DAYS SINCE LATEST UPDATE DATA CHECK',
+      );
       debugPrint('HEALTHCARE_PROVIDERS: IT IS MORE THAN 21 DAYS SINCE LATEST UPDATE DATA CHECK');
       // server data are updated usually on the 2nd day month of each month
       final serverLatestUpdateResponse = await _apiService.getProvidersLastUpdate();
       serverLatestUpdateData = serverLatestUpdateResponse.map(
         success: (response) async {
+          await MyLogger().writeToFile('HEALTHCARE_PROVIDERS: SERVER UPDATE CHECK WAS SUCCESSFUL');
           debugPrint('HEALTHCARE_PROVIDERS: SERVER UPDATE CHECK WAS SUCCESSFUL');
           await _db.users.updateLatestMapUpdateCheck(now.toDateTime());
           return response.data.lastUpdate.toDateTime();
         },
         failure: (_) async {
           // API update check was unsuccessful, try the next day
+          await MyLogger()
+              .writeToFile('HEALTHCARE_PROVIDERS: SERVER UPDATE CHECK WAS UNSUCCESSFUL');
           debugPrint('HEALTHCARE_PROVIDERS: SERVER UPDATE CHECK WAS UNSUCCESSFUL');
           await _db.users
               .updateLatestMapUpdateCheck(now.toDateTime().subtract(const Duration(days: 19)));

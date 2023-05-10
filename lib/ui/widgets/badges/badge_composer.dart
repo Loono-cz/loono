@@ -7,6 +7,7 @@ import 'package:loono/l10n/ext.dart';
 import 'package:loono/router/app_router.gr.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
+import 'package:loono/utils/my_logger.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 
@@ -430,6 +431,9 @@ class BadgeComposerState extends State<BadgeComposer> {
             int levelOf(BadgeType type) {
               final level = badges.firstWhereOrNull((e) => e.type == type)?.level;
               if (level != null && level > supportedBadgeLevels) {
+                MyLogger().writeToFile(
+                  'debug hint: app currently supports only $supportedBadgeLevels levels of badge assets',
+                );
                 debugPrint(
                   '⚠️ debug hint: app currently supports only $supportedBadgeLevels levels of badge assets ⚠️',
                 );

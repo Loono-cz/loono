@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:loono/helpers/date_without_day.dart';
 import 'package:loono/models/api_params.dart';
 import 'package:loono/models/api_response.dart';
+import 'package:loono/utils/my_logger.dart';
 import 'package:loono_api/loono_api.dart';
 
 class ApiService {
@@ -22,6 +23,7 @@ class ApiService {
       final Response<T> response = await apiCallback();
       return ApiResponse<T>.success(response.data as T);
     } on DioError catch (e) {
+      await MyLogger().writeToFile('${e.message}: ${e.response.toString()}\n${e.toString()}');
       debugPrint('${e.message}: ${e.response.toString()}\n${e.toString()}');
       return ApiResponse.failure(e);
     }

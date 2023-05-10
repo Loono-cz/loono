@@ -16,6 +16,7 @@ import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
 import 'package:loono/services/firebase_storage_service.dart';
 import 'package:loono/services/notification_service.dart';
+import 'package:loono/utils/my_logger.dart';
 import 'package:loono_api/loono_api.dart';
 
 class UserRepository {
@@ -31,6 +32,7 @@ class UserRepository {
         _firebaseStorageService = firebaseStorageService {
     _authService.onAuthStateChanged.listen((authUser) async {
       if (authUser != null) {
+        await MyLogger().writeToFile('log: SYNCING WITH API');
         debugPrint('log: SYNCING WITH API');
         await _authService.refreshUserToken();
         unawaited(sync());
@@ -250,6 +252,7 @@ class UserRepository {
         return data.data.badges;
       },
       failure: (FailureApiResponse<Account> value) {
+        MyLogger().writeToFile(value.error.toString());
         log(value.error.toString());
         return null;
       },

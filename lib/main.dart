@@ -10,7 +10,6 @@ Future<void> main() async {
   /// Logs
   await MyLogger().initFile();
   await MyLogger().writeToFile('main.dart: Logs initialized');
-  ///
 
   runApp(const Loono());
 }

@@ -13,6 +13,7 @@ import 'package:loono/services/auth/failures.dart';
 import 'package:loono/services/secure_storage_service.dart';
 import 'package:loono/utils/app_config.dart';
 import 'package:loono/utils/crypto_utils.dart';
+import 'package:loono/utils/my_logger.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart' as api;
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -101,6 +102,7 @@ class AuthService {
     } on SignInWithAppleException catch (e) {
       return Left(authFailureFromSignInWithAppleException(e));
     } catch (e) {
+      await MyLogger().writeToFile(e.toString());
       debugPrint(e.toString());
       return const Left(AuthFailure.unknown(null, '0x90'));
     }

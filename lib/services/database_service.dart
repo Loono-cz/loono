@@ -3,6 +3,7 @@ import 'package:loono/models/calendar_event.dart';
 import 'package:loono/models/examination_questionnaire.dart';
 import 'package:loono/models/user.dart';
 import 'package:loono/services/db/database.dart';
+import 'package:loono/utils/my_logger.dart';
 import 'package:path_provider/path_provider.dart';
 
 class DatabaseService {
@@ -15,6 +16,7 @@ class DatabaseService {
     try {
       await (await getApplicationSupportDirectory()).create(recursive: true);
     } catch (_) {
+      await MyLogger().writeToFile('directory could not be created');
       debugPrint('directory could not be created');
     }
     _engine = AppDatabase('app.db', key);

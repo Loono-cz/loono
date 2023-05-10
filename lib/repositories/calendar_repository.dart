@@ -7,6 +7,7 @@ import 'package:loono/helpers/examination_types.dart';
 import 'package:loono/services/calendar_service.dart';
 import 'package:loono/services/database_service.dart';
 import 'package:loono/services/db/database.dart';
+import 'package:loono/utils/my_logger.dart';
 import 'package:loono/utils/registry.dart';
 import 'package:loono_api/loono_api.dart';
 import 'package:timezone/timezone.dart' as tz;
@@ -66,6 +67,7 @@ class CalendarRepository {
         return true;
       }
     }
+    await MyLogger().writeToFile('DEBUG: calendar or event id is null');
     debugPrint('DEBUG: calendar or event id is null');
     return false;
   }
@@ -90,6 +92,9 @@ class CalendarRepository {
         );
         await registry.get<FirebaseAnalytics>().logEvent(name: 'UpdateVisitInCalendar');
       } else {
+        await MyLogger().writeToFile(
+          'DEBUG: there was an "existingDbCalendarEvent" but it was not updated in the device calendar',
+        );
         debugPrint(
           'DEBUG: there was an "existingDbCalendarEvent" but it was not updated in the device calendar',
         );
@@ -107,6 +112,9 @@ class CalendarRepository {
       );
       await registry.get<FirebaseAnalytics>().logEvent(name: 'RemoveVisitFromCalendar');
       if (!result) {
+        await MyLogger().writeToFile(
+          'DEBUG: there was an "existingDbCalendarEvent" but it was not removed from the device calendar',
+        );
         debugPrint(
           'DEBUG: there was an "existingDbCalendarEvent" but it was not removed from the device calendar',
         );
