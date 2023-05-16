@@ -30,13 +30,11 @@ Future<void> checkAndShowNewsletterPage({
   final createdAtDate = user?.createdAt;
 
   final dateNewOnBoarding = DateTime(2022, 10, 11);
-  const endNotifTimeStamp = 1680300000000;
 
   if (createdAtDate != null) {
     if (!newsletterNotificationShown &&
         createdAtDate.isBefore(dateNewOnBoarding) &&
-        !newsletterOptIn &&
-        DateTime.now().millisecondsSinceEpoch < endNotifTimeStamp) {
+        !newsletterOptIn) {
       await registry.get<UserRepository>().updateNewsletterNotificationShown(true);
       if (!mounted) return;
       Future.delayed(
