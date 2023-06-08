@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:loono/constants.dart';
 import 'package:loono/helpers/categorized_examination_converter.dart';
 import 'package:loono/router/app_router.gr.dart';
@@ -38,13 +37,11 @@ class NotificationRouter {
     if (screen.isExamination) {
       await appRouter.pushAll(const [NotificationLoadingRoute()]);
       var exams = <ExaminationPreventionStatus>[];
-      var selfExams = <SelfExaminationPreventionStatus>[];
       final examsResponse = await registry.get<ApiService>().getExaminations();
 
       examsResponse.map(
         success: (data) {
           exams = data.data.examinations.toList();
-          selfExams = data.data.selfexaminations.toList();
         },
         failure: (err) {},
       );
@@ -53,7 +50,7 @@ class NotificationRouter {
           await _openExaminationScreen(exams, uuid);
           break;
         case NotificationScreen.selfExamination:
-          await _openSelfExaminationScreen(selfExams, uuid);
+          appRouter.push(const MainRoute()).ignore();
           break;
         default:
           return;
@@ -76,31 +73,6 @@ class NotificationRouter {
       );
     } else {
       appRouter.push(const MainRoute()).ignore();
-    }
-  }
-
-  Future<void> _openSelfExaminationScreen(
-    List<SelfExaminationPreventionStatus> selfExams,
-    String uuid,
-  ) async {
-    final selfExam = selfExams.firstWhereOrNull((element) => element.lastExamUuid == uuid);
-    if (selfExam != null) {
-      final account = await registry.get<ApiService>().getAccount();
-      Sex? sex;
-      account.map(
-        success: (data) {
-          sex = data.data.sex;
-        },
-        failure: (err) {},
-      );
-      if (sex != null) {
-        await appRouter.replace(
-          SelfExaminationDetailRoute(
-            sex: sex!,
-            selfExamination: selfExam,
-          ),
-        );
-      }
     }
   }
 }

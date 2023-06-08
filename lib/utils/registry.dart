@@ -197,11 +197,18 @@ Future<void> setup({
     ),
   );
 
-  await registry.get<SecureStorageService>().generateDatabasePass();
-  final key = await registry.get<SecureStorageService>().getDatabasePass();
-  if (key != null) {
-    await registry.get<DatabaseService>().init(key);
-  }
+  /// TODO: Generate db key and store it into secure storage...
+  /// Db sa vygeneruje pri instalacii appky a kluc musi ostat rovnaky po cely cas kedy je appka nainstalovana (Kvoli androidu)
+  ///
+  // if (await registry.get<SecureStorageService>().getDatabasePass() == null) {
+  //   await registry.get<SecureStorageService>().generateDatabasePass();
+  // }
+  // final key = await registry.get<SecureStorageService>().getDatabasePass();
+  // if (key != null) {
+  //   await registry.get<DatabaseService>().init(key);
+  // }
+
+  await registry.get<DatabaseService>().init('SUPER SECURE KEY');
 
   // repositories
   registry.registerSingleton<UserRepository>(
